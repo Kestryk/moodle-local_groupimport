@@ -45,6 +45,15 @@ $string['noresults'] = 'No results to display yet. Upload a CSV file to begin th
 // Error messages.
 $string['csvmissingcolumns'] = 'The CSV is missing one or more required columns: useridentifier, groupname (and optionally groupingname).';
 $string['csvloaderror'] = 'Error while reading the CSV file: {$a}';
+$string['csvempty'] = 'The CSV file is empty.';
+$string['csvinvalidrowmissing'] = 'Invalid line: missing useridentifier or groupname.';
+$string['usernotfound'] = "User '{$a}' not found.";
+$string['usernotenrolled'] = "User '{$a}' is not enrolled in this course.";
+$string['usermultiplematches'] = "Multiple users match '{$a->identifier}' for field '{$a->field}'.";
+$string['groupcreatefailed'] = "Unable to create group '{$a->groupname}' for user '{$a->identifier}'.";
+$string['groupingcreatefailed'] = "Unable to create grouping '{$a->groupingname}' for group '{$a->groupname}'.";
+$string['useralreadyingroup'] = "User '{$a->identifier}' is already a member of group '{$a->groupname}'.";
+$string['useraddedtogroup'] = "User '{$a->identifier}' added to group '{$a->groupname}'.";
 
 // Template filename.
 $string['templatename'] = 'groupimport_template.csv';
@@ -55,9 +64,8 @@ $string['backtocourse'] = 'Back to course';
 // Privacy.
 $string['privacy:metadata'] = 'The Local Group Import plugin does not store any personal data. It only processes existing course enrolment information.';
 
-// -------------------------.
-// Admin settings.
-// -------------------------.
+
+// Category : Admin settings.
 
 // Allowed identification fields.
 $string['alloweduserfields'] = 'User fields allowed for identification';
@@ -67,16 +75,15 @@ $string['alloweduserfields_desc'] = 'Select which user fields can be used to ide
 $string['defaultuserfield'] = 'Default user identification field';
 $string['defaultuserfield_desc'] = 'This field will be pre-selected in the import form. It must be one of the allowed fields defined above.';
 
-// -------------------------.
-// Form: User identification field.
-// -------------------------.
+
+// Category : Form: User identification field.
+
 
 $string['userfield'] = 'User identification field';
 $string['userfield_help'] = 'This option specifies how the "useridentifier" column of the CSV file should be interpreted—for example as a username, an email address, an ID number, or as the value of a custom profile field.';
 
-// -------------------------.
-// Guided tours.
-// -------------------------.
+
+// Category : Guided tours.
 
 $string['tour_groupimport_teacher_name'] = 'Guide: Group import (teachers)';
 $string['tour_groupimport_teacher_desc'] = 'Guided tour to import groups and enrolments from a CSV file, with checks on user existence and course enrolment.';

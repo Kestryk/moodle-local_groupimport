@@ -45,6 +45,15 @@ $string['noresults'] = 'Aucun résultat à afficher pour le moment. Téléversez
 // Messages d’erreur.
 $string['csvmissingcolumns'] = 'Le CSV ne contient pas toutes les colonnes requises : useridentifier, groupname (et éventuellement groupingname).';
 $string['csvloaderror'] = 'Erreur lors de la lecture du fichier CSV : {$a}.';
+$string['csvempty'] = 'Le fichier CSV est vide.';
+$string['csvinvalidrowmissing'] = 'Ligne invalide : identifiant utilisateur ou nom du groupe manquant.';
+$string['usernotfound'] = "Utilisateur '{$a}' introuvable.";
+$string['usernotenrolled'] = "L'utilisateur '{$a}' n'est pas inscrit à ce cours.";
+$string['usermultiplematches'] = "Plusieurs utilisateurs correspondent à '{$a->identifier}' pour le champ '{$a->field}'.";
+$string['groupcreatefailed'] = "Impossible de créer le groupe '{$a->groupname}' pour l'utilisateur '{$a->identifier}'.";
+$string['groupingcreatefailed'] = "Impossible de créer le groupement '{$a->groupingname}' pour le groupe '{$a->groupname}'.";
+$string['useralreadyingroup'] = "L'utilisateur '{$a->identifier}' est déjà membre du groupe '{$a->groupname}'.";
+$string['useraddedtogroup'] = "L'utilisateur '{$a->identifier}' a été ajouté au groupe '{$a->groupname}'.";
 
 // Nom du fichier modèle.
 $string['templatename'] = 'modele_import_groupes.csv';
@@ -55,9 +64,9 @@ $string['backtocourse'] = 'Retour au cours';
 // Confidentialité.
 $string['privacy:metadata'] = 'Le plugin Local Group Import ne stocke aucune donnée personnelle. Il traite uniquement des informations d’inscription existantes au cours.';
 
-// -------------------------.
-// Paramètres d’administration.
-// -------------------------.
+
+// Catégorie : Paramètres d’administration.
+
 
 // Champs d’identification autorisés.
 $string['alloweduserfields'] = 'Champs utilisables pour identifier les utilisateurs';
@@ -67,16 +76,16 @@ $string['alloweduserfields_desc'] = 'Sélectionnez les champs pouvant être util
 $string['defaultuserfield'] = 'Champ d’identification par défaut';
 $string['defaultuserfield_desc'] = 'Ce champ sera présélectionné dans le formulaire d’import. Il doit faire partie des champs autorisés définis ci-dessus.';
 
-// -------------------------.
-// Formulaire : champ d’identification.
-// -------------------------.
+
+// Catégorie : Formulaire : champ d’identification.
+
 
 $string['userfield'] = 'Champ d’identification des utilisateurs';
 $string['userfield_help'] = 'Cette option précise comment interpréter la colonne "useridentifier" du fichier CSV : par exemple comme un username, une adresse email, un idnumber, ou la valeur d’un champ de profil personnalisé.';
 
-// -------------------------.
-// Visites guidées.
-// -------------------------.
+
+// Catégorie : sVisites guidées.
+
 
 $string['tour_groupimport_teacher_name'] = 'Guide : Import de groupes (enseignants)';
 $string['tour_groupimport_teacher_desc'] = 'Visite guidée pour importer des groupes et des inscriptions depuis un fichier CSV, avec contrôle d’existence des utilisateurs et d’inscription au cours.';

@@ -71,7 +71,7 @@ function local_groupimport_parse_csv_content(string $content, array &$errors): a
     }
 
     if ($headerline === null) {
-        $errors[] = 'Le fichier CSV est vide.';
+        $errors[] = get_string('csvempty', 'local_groupimport');
         return ['header' => [], 'rows' => []];
     }
 
@@ -194,7 +194,7 @@ if ($mform->is_cancelled()) {
                     }
 
                     if ($identifier === '' || $groupname === '') {
-                        $errors[] = "Ligne invalide : useridentifier ou groupname manquant.";
+                        $errors[] = get_string('csvinvalidrowmissing', 'local_groupimport');
                         continue;
                     }
 
@@ -228,18 +228,19 @@ if ($mform->is_cancelled()) {
                         if (count($users) === 1) {
                             $user = reset($users);
                         } else if (count($users) > 1) {
-                            $errors[] = "Plusieurs utilisateurs correspondent à '$identifier' pour le champ '$shortname'.";
+                            $a = (object)['identifier' => $identifier, 'field' => $shortname];
+                            $errors[] = get_string('usermultiplematches', 'local_groupimport', $a);
                         }
                     }
 
                     if (!$user) {
-                        $errors[] = "Utilisateur '$identifier' introuvable.";
+                        $errors[] = get_string('usernotfound', 'local_groupimport', $identifier);
                         continue;
                     }
 
                     // 2. Check the user is enrolled in the course.
                     if (!is_enrolled($context, $user->id)) {
-                        $errors[] = "Utilisateur '$identifier' non inscrit dans ce cours.";
+                        $errors[] = get_string('usernotenrolled', 'local_groupimport', $identifier);
                         continue;
                     }
 
@@ -252,7 +253,8 @@ if ($mform->is_cancelled()) {
 
                         $groupid = groups_create_group($groupdata);
                         if (!$groupid) {
-                            $errors[] = "Impossible de créer le groupe '$groupname' pour l'utilisateur '$identifier'.";
+                            $a = (object)['groupname' => $groupname, 'identifier' => $identifier];
+                            $errors[] = get_string('groupcreatefailed', 'local_groupimport', $a);
                             continue;
                         }
                     }
@@ -275,7 +277,8 @@ if ($mform->is_cancelled()) {
 
                             $groupingid = groups_create_grouping($groupingdata);
                             if (!$groupingid) {
-                                $errors[] = "Impossible de créer le groupement '$groupingname' pour le groupe '$groupname'.";
+                                $a = (object)['groupingname' => $groupingname, 'groupname' => $groupname];
+                                $errors[] = get_string('groupingcreatefailed', 'local_groupimport', $a);
                             }
                         }
 
@@ -301,7 +304,8 @@ if ($mform->is_cancelled()) {
 
                         $success[] = $msg . '.';
                     } else {
-                        $errors[] = "Utilisateur '$identifier' déjà membre du groupe '$groupname'.";
+                        $a = (object)['identifier' => $identifier, 'groupname' => $groupname];
+                        $errors[] = get_string('useralreadyingroup', 'local_groupimport', $a);
                     }
                 }
             }
