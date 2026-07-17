@@ -297,6 +297,38 @@
     }
   }
 
+  // On desktop the card grows below its header. Keep the terminal details
+  // action anchored to the card itself so compact/full transitions cannot
+  // move it when metadata rows enter the layout.
+  @media (min-width: 1025px) {
+    &-user__headline,
+    &--compact-users &-user__headline,
+    &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      padding-right: 2.45rem;
+      position: static;
+      width: 100%;
+    }
+
+    &-user__headline-main,
+    &--compact-users &-user__headline-main,
+    &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline-main {
+      grid-column: 1;
+      min-width: 0;
+    }
+
+    &-user__detail-button,
+    &--compact-users &-user__detail-button,
+    &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__detail-button {
+      grid-column: auto;
+      margin: 0;
+      position: absolute;
+      right: 0.85rem;
+      top: 0.72rem;
+    }
+  }
+
   &-user__email {
     color: var(--local-groupimport-easystud-text-muted);
     display: block;
@@ -314,7 +346,23 @@
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline {
+    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     margin-bottom: 0.12rem;
+    width: 100%;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline-main {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__detail-button {
+    align-self: center;
+    grid-column: 2;
+    justify-self: end;
+    margin-left: 0;
   }
 
   &--compact-users &-user__headline-main {

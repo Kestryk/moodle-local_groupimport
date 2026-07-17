@@ -244,6 +244,19 @@ Disabled buttons should remain visually understandable but clearly unavailable.
 On small screens, prefer hiding unavailable contextual actions rather than
 showing many disabled buttons.
 
+## Responsive card action trigger
+
+Use `mobile-card-menu-trigger` for the explicit menu button on compact cards.
+It is not a replacement for desktop card actions: expose it only in the
+responsive workspace and route it to the same action resolver as long press.
+
+- Keep the target at least `--easyedu-touch-target-min` in both dimensions.
+- Use `aria-haspopup="menu"` and update `aria-expanded` while the sheet is open.
+- Normal remains quiet; hover, focus-visible and open states share the primary
+  soft surface. Disabled controls use the native `disabled` attribute.
+- Plugins may change the icon, but must not reduce the target or remove the
+  accessible label.
+
 ## Import Audit Checklist
 
 Before accepting a plugin-local button style, check:

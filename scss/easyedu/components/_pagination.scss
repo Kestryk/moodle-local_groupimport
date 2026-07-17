@@ -136,13 +136,14 @@
 
 @mixin pagination-mobile($breakpoint: 48rem) {
   @media (max-width: $breakpoint) {
-    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.3rem;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 
     [data-easyedu-pagination-tools],
     [data-easystud-pagination-tools],
     .easyedu-pagination__tools {
-      grid-column: 1 / -1;
-      justify-self: center;
+      grid-column: 3;
+      justify-self: end;
     }
 
     [data-easyedu-pagination-count],

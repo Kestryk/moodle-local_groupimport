@@ -39,6 +39,10 @@ Must:
 - use only the shared regular, medium, semibold and strong weights for reusable
   administration chrome;
 - preserve plugin-owned wrapping, truncation and responsive layout rules.
+- use the shared mobile entity-switcher, context-sheet, card-menu and touch
+  target contracts before adding plugin-local responsive surfaces;
+- keep all primary navigation destinations reachable in the compact rail and
+  reuse an existing card action trigger instead of injecting a duplicate;
 
 Must not:
 
@@ -82,6 +86,31 @@ Must not:
 - expose the native legend visually over the component border or force
   translated titles to one line;
 - use this component for multi-select or binary on/off controls.
+
+## Slideshow administration surfaces
+
+Must:
+
+- combine `slideshow-admin-grid`, `slideshow-card-layout` and
+  `slideshow-card-body-layout` when Course/Site or equivalent context cards
+  must share one height;
+- use `slideshow-settings-grid` so each Content/Controls section stops at its
+  real content height;
+- use `slideshow-action-zone` to align editor and reset actions without fixed
+  card heights;
+- preserve checked, unchecked, focus and disabled semantics through
+  `slideshow-toggle-row`;
+- pass one stable semantic accent through the complete card;
+- preserve plugin-owned input names, values, ids, modal targets and event
+  handlers.
+
+Must not:
+
+- stretch tinted settings sections only to align sibling card footers;
+- use fixed content heights to equalise context cards;
+- reference private or undefined visual tokens when a public `--easyedu-*`
+  token exists;
+- move activation, persistence or preview behaviour into the visual mixins.
 
 ## Guide: show in interface selector
 
@@ -365,6 +394,16 @@ Must not:
 - replace native selects with custom lists unless keyboard and screen-reader
   behaviour is rebuilt deliberately;
 - put long help text in labels when a help icon/tooltip is more appropriate.
+- reuse a card reveal chevron as the trigger for a responsive filter panel.
+- replace an established desktop filter-disclosure wrapper globally when only
+  its compact presentation needs to change; preserve the markup and scope the
+  alternate styling to the responsive breakpoint.
+
+Responsive plugin navigation may use `mobile-primary-nav-rail` or the
+`mobile-primary-nav-trigger` / `mobile-primary-nav-panel` /
+`mobile-primary-nav-backdrop` family. The off-canvas variant must preserve all
+destinations, Escape, backdrop close and focus return without replacing native
+Moodle course navigation.
 
 ## Badges, tokens and counters
 
@@ -409,3 +448,36 @@ Must not:
 - let a modal exceed the viewport because related lists are not collapsed into
   metadata sections;
 - restyle file pickers independently in each plugin.
+# Responsive compact-workspace contract
+
+- Preserve semantic identity rails at their desktop width; reserve horizontal
+  room around cards instead of shrinking the rail or clipping its icon.
+- A mobile navigation panel must expose both plugin tools and the complete
+  native Moodle destination set. Keep the guide launcher adjacent to, but
+  outside, the panel trigger.
+- Never defeat `[hidden]` with unconditional `display: block !important`.
+- Reuse and normalise an existing card menu trigger; never render two triggers.
+- Keep trigger normalisation idempotent and preserve an established semantic
+  menu glyph; a MutationObserver must not recreate its own child markup.
+- Style plugin tools and native Moodle destinations with the same mobile
+  navigation-link primitive, grouped under explicit section headings.
+- Clear desktop-only focus classes while an independent mobile entity view is
+  active, and never expose mobile-only filters from desktop selectors.
+- Sticky Back to top controls must respect safe areas and yield to modals,
+  context sheets, action trays and busy states.
+## Responsive navigation and cards
+
+- Preserve desktop primary navigation as a dedicated DOM region when adding an
+  off-canvas responsive alternative. Mobile classes must not own desktop nodes.
+- Compact navigation rows must not look like raw links and must retain active,
+  focus and touch-target states.
+- Reserve a terminal card-action column before placing the canonical mobile
+  menu. Never overlay identity text, badges or a participant details action.
+- Use non-draggable hover feedback only on fine pointers and never add a grab
+  cursor or drag affordance to a non-draggable container.
+- A filter disclosure is one native button containing its label and chevron.
+  Use the compact variant on desktop and the 44px touch variant on responsive
+  layouts; never split the clickable label and icon.
+- Persistent card actions must not move when detail rows expand or collapse.
+- Responsive entity ownership must be explicit in the DOM. Never infer it from
+  a translated label, child index or incidental template order.

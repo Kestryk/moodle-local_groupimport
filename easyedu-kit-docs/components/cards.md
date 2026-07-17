@@ -154,3 +154,17 @@ Plugin-owned details:
 - Business rules for drag/drop compatibility.
 - Pagination/filtering that decides which cards are visible.
 - Context menu commands and permission checks.
+## Non-draggable container hover
+
+Use `non-draggable-card-hover` for selectable containers such as groupings that
+need pointer feedback but cannot be dragged. Apply it only inside
+`(hover: hover) and (pointer: fine)`, keep the default cursor, and suppress the
+translation under `prefers-reduced-motion`.
+
+## Terminal actions and expanding details
+
+When a card header contains a persistent action such as a details button,
+reserve a terminal action slot and keep it anchored to the card. Expanding
+metadata must grow below the header and must not recalculate the action's
+horizontal or vertical position. Keep the identity region `minmax(0, 1fr)` and
+truncate or wrap its optional metadata before moving the terminal action.

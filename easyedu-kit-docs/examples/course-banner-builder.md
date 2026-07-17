@@ -46,6 +46,18 @@ and playback controls. Use `slideshow-activation-band`,
 property. Field names, checkbox values and editor-launch hooks remain owned by
 the plugin.
 
+Use `slideshow-admin-grid`, `slideshow-card-layout`,
+`slideshow-card-body-layout` and `slideshow-settings-grid` together so sibling
+Course/Site cards share one height while Content and Controls sections stop at
+their real content height. Anchor appearance/reset controls with
+`slideshow-action-zone`; do not create fixed heights or stretch coloured
+sections merely to align card footers.
+
+`slideshow-toggle-row` owns checked, unchecked, focus and disabled surfaces.
+The plugin still owns input values and event handling. Context-specific primary
+actions may use the same accent variable, but must preserve sufficient text
+contrast and must not add raised shadows.
+
 ## Sync
 
 ```powershell

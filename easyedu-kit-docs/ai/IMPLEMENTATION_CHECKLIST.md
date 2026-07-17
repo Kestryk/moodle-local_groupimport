@@ -13,6 +13,8 @@ Use this checklist for every UI task in EasyEdu plugins.
 - [ ] Identify matching components/tokens/mixins.
 - [ ] Read the component's "Import Audit Checklist" when it exists.
 - [ ] Identify missing kit behaviour before touching the plugin.
+- [ ] On mobile, verify one entity workspace is visible, touch targets meet the
+  shared minimum, and long press and explicit menu buttons resolve identical actions.
 - [ ] When another plugin is the visual reference, capture computed styles and
       perform an inverse audit before recreating its appearance.
 
@@ -58,6 +60,11 @@ Use this checklist for every UI task in EasyEdu plugins.
       of copying local font sizes or weights.
 - [ ] Keep user-configurable preview/final content outside shared administration
       typography.
+- [ ] For paired Slideshow administration cards, use the shared card/grid/body
+      layout mixins instead of fixed heights or stretched coloured sections.
+- [ ] Anchor Slideshow editor/reset actions with `slideshow-action-zone` and
+      keep all input names, ids, modal targets and event handlers plugin-owned.
+- [ ] Validate checked, unchecked, focus and disabled Slideshow toggle states.
 
 ## 4. Guide-specific checklist
 
@@ -82,6 +89,10 @@ Use this checklist for every UI task in EasyEdu plugins.
       plugins when practical.
 - [ ] If asked or necessary, use browser/headless checks for visual parity.
 - [ ] Confirm production packages exclude AI/docs/test-only files where needed.
+- [ ] For dedicated mobile entity views, confirm desktop parent containers are
+      hidden and each entity is rendered through one flat catalogue only.
+- [ ] For off-canvas plugin navigation, test close button, backdrop, Escape,
+      focus return, safe areas and preservation of native Moodle navigation.
 
 ## 6. Final report
 
@@ -92,3 +103,30 @@ Report:
 - verification commands;
 - what remains intentionally not tested;
 - whether the kit was committed/pushed.
+# Responsive compact workspace
+
+- [ ] Identity rails keep the canonical width at every responsive breakpoint.
+- [ ] Every mobile card has exactly one canonical action-grip trigger.
+- [ ] Filter panels are truly hidden when closed and animate independently.
+- [ ] Mobile-only filters remain absent at desktop breakpoints, including when
+      a desktop focus mode is active.
+- [ ] Card-menu observers are idempotent and preserve the approved menu icon.
+- [ ] Mobile navigation groups plugin tools and native Moodle links with the
+      same accessible navigation-link treatment.
+- [ ] Reset is visible only for an active scope and closes that scope.
+- [ ] Mobile navigation exposes plugin tools and all native Moodle links.
+- [ ] Guide launch remains available beside the navigation trigger.
+- [ ] Back to top respects safe areas and other sticky surfaces.
+## Responsive parity checks
+
+- [ ] Desktop navigation remains visible and unchanged above the breakpoint.
+- [ ] Compact drawer destinations use action-row styling, not raw link styling.
+- [ ] Card terminal actions remain aligned without covering identity content.
+- [ ] Filters, top pagination and first cards share the same compact rhythm.
+- [ ] Non-draggable hover feedback is absent on touch and reduced-motion paths.
+- [ ] More-filters text and chevron form one button with synchronized
+      `aria-expanded`, `hidden` content and a 44px touch target.
+- [ ] Terminal card actions keep the same position before and after details
+      expand.
+- [ ] Compact views hide only explicitly owned entity regions and preserve data
+      required by shared actions.

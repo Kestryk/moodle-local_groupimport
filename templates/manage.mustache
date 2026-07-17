@@ -3,9 +3,14 @@
     id="local-groupimport-easystud"
     data-easystud-course-id="{{courseid}}"
     data-easystud-detail-labels="{{detaillabelsjson}}"
+    data-easystud-mobile-card-actions="{{mobilecardactions}}"
     data-easyedu-motion-policy="{{motionpolicy}}"
 >
     <div class="local-groupimport-easystud__notifications" data-easystud-notifications="1" aria-live="polite"></div>
+    <div class="local-groupimport-easystud-action-status" data-easystud-action-busy-status="1" role="status" aria-live="polite" hidden>
+        <span class="local-groupimport-easystud-action-status__spinner" aria-hidden="true"></span>
+        <span data-easystud-action-busy-text>{{actioninprogress}}</span>
+    </div>
 
     {{^useeasyeduguide}}
     <div class="local-groupimport-easystud-discovery" data-easystud-discovery="1" hidden>
@@ -41,7 +46,10 @@
             </div>
             <p class="text-muted mb-0">{{description}}</p>
         </div>
-        <div class="local-groupimport-easystud__header-actions easyedu-admin-primary-nav--balanced">
+        <div
+            class="local-groupimport-easystud__header-actions local-groupimport-easystud__header-actions--desktop easyedu-admin-primary-nav--balanced"
+            data-easystud-desktop-primary-nav="1"
+        >
             {{#useeasyeduguide}}
                 {{#easyeduguide}}
                     {{> local_groupimport/easyedu_guide }}
@@ -85,6 +93,62 @@
                 </button>
             </div>
         </div>
+        <div class="local-groupimport-easystud-mobile-header-controls">
+            <button
+                type="button"
+                class="local-groupimport-easystud-mobile-nav-trigger"
+                data-easystud-mobile-nav-open="1"
+                aria-controls="local-groupimport-easystud-mobile-navigation"
+                aria-expanded="false"
+            >
+                <span class="fa fa-bars" aria-hidden="true"></span>
+                <span>{{mobilenavigationlabel}}</span>
+            </button>
+            <div class="local-groupimport-easystud-mobile-guide-slot" data-easystud-mobile-guide-slot="1"></div>
+        </div>
+        <div class="local-groupimport-easystud-mobile-nav-backdrop" data-easystud-mobile-nav-backdrop="1" hidden></div>
+        <div
+            id="local-groupimport-easystud-mobile-navigation"
+            class="local-groupimport-easystud__header-actions easyedu-admin-primary-nav--balanced"
+            data-easystud-mobile-nav-panel="1"
+        >
+            <div class="local-groupimport-easystud-mobile-nav-header">
+                <strong>{{mobilenavigationlabel}}</strong>
+                <button type="button" data-easystud-mobile-nav-close="1" aria-label="{{mobilenavigationcloselabel}}">
+                    <span class="fa fa-times" aria-hidden="true"></span>
+                </button>
+            </div>
+            <nav class="local-groupimport-easystud-mobile-nav-section" aria-label="{{mobilenavigationtoolslabel}}">
+                <h3 class="local-groupimport-easystud-mobile-nav-section__title">{{mobilenavigationtoolslabel}}</h3>
+                <div class="easyedu-admin-primary-nav__actions local-groupimport-easystud-mobile-nav-section__links">
+                <span class="local-groupimport-easystud-mobile-nav-section__link active" aria-current="page">
+                    <span class="fa fa-users me-2" aria-hidden="true"></span>
+                    <span>{{managerlabel}}</span>
+                </span>
+                <a class="local-groupimport-easystud-mobile-nav-section__link" href="{{nativeparticipantsurl}}">
+                    <span class="fa fa-user-graduate me-2" aria-hidden="true"></span>
+                    <span>{{nativeparticipantslabel}}</span>
+                </a>
+                <a class="local-groupimport-easystud-mobile-nav-section__link" href="{{csvurl}}">
+                    <span class="fa fa-file-import me-2" aria-hidden="true"></span>
+                    <span>{{csvlabel}}</span>
+                </a>
+                <button
+                    type="button"
+                    class="local-groupimport-easystud-mobile-nav-section__link"
+                    data-easystud-open-clipboard="1"
+                    aria-haspopup="dialog"
+                >
+                    <span class="fa fa-clipboard-list me-2" aria-hidden="true"></span>
+                    <span>{{clipboardlabel}}</span>
+                </button>
+                </div>
+            </nav>
+            <nav class="local-groupimport-easystud-mobile-nav-section" aria-label="{{mobilenavigationmoodlelabel}}">
+                <h3 class="local-groupimport-easystud-mobile-nav-section__title">{{mobilenavigationmoodlelabel}}</h3>
+                <div class="local-groupimport-easystud-mobile-nav-section__links" data-easystud-mobile-moodle-nav="1"></div>
+            </nav>
+        </div>
     </div>
 
     <div class="local-groupimport-easystud__layout-toggles">
@@ -114,6 +178,26 @@
         </div>
     </div>
 
+    <div
+        class="local-groupimport-easystud-mobile-view"
+        data-easystud-mobile-view-switcher="1"
+        role="group"
+        aria-label="{{mobileviewlabel}}"
+    >
+        <button type="button" data-easystud-mobile-view="participants" aria-pressed="true">
+            <span class="fa fa-user" aria-hidden="true"></span>
+            <span>{{mobileviewparticipants}}</span>
+        </button>
+        <button type="button" data-easystud-mobile-view="groups" aria-pressed="false">
+            <span class="fa fa-users" aria-hidden="true"></span>
+            <span>{{mobileviewgroups}}</span>
+        </button>
+        <button type="button" data-easystud-mobile-view="groupings" aria-pressed="false">
+            <span class="fa fa-layer-group" aria-hidden="true"></span>
+            <span>{{mobileviewgroupings}}</span>
+        </button>
+    </div>
+
     <div class="local-groupimport-easystud__layout">
         <div class="local-groupimport-easystud__panel local-groupimport-easystud__panel--participants card" data-easystud-participants-panel="1">
             <div class="card-body">
@@ -139,7 +223,7 @@
                 </div>
 
                 <div class="local-groupimport-easystud__participant-content" data-easystud-participant-content="1">
-                    <div class="local-groupimport-easystud__participant-main">
+                    <div class="local-groupimport-easystud__participant-main" data-easystud-mobile-entity-region="participants">
                         <div class="local-groupimport-easystud__filters" data-easystud-filters="1">
                             <div class="local-groupimport-easystud-column-heading local-groupimport-easystud-column-heading--participants">
                                 <span class="local-groupimport-easystud-column-heading__title">{{participantstitle}}</span>
@@ -221,17 +305,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="local-groupimport-easystud-advanced-filters__control">
-                                <span class="local-groupimport-easystud-advanced-filters__more" data-easystud-advanced-filters-more="participants">{{morefilters}}</span>
-                                <button
-                                    type="button"
-                                    class="local-groupimport-easystud-group__members-toggle local-groupimport-easystud-advanced-filters__toggle"
-                                    data-easystud-advanced-filters-toggle="participants"
-                                    aria-expanded="false"
-                                >
-                                    <span class="fa fa-chevron-down" aria-hidden="true"></span>
-                                </button>
-                            </div>
+                        <div class="local-groupimport-easystud-advanced-filters__control">
+                            <button
+                                type="button"
+                                class="local-groupimport-easystud-group__members-toggle local-groupimport-easystud-advanced-filters__toggle"
+                                data-easystud-advanced-filters-toggle="participants"
+                                aria-expanded="false"
+                            >
+                                <span class="local-groupimport-easystud-advanced-filters__more">{{morefilters}}</span>
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                            </button>
+                        </div>
                         </div>
 
                         <div
@@ -453,17 +537,17 @@
                                     >{{resetfilterslabel}}</button>
                                 </div>
                             </div>
-                            <div class="local-groupimport-easystud-advanced-filters__control">
-                                <span class="local-groupimport-easystud-advanced-filters__more" data-easystud-advanced-filters-more="participant-groups">{{morefilters}}</span>
-                                <button
-                                    type="button"
-                                    class="local-groupimport-easystud-group__members-toggle local-groupimport-easystud-advanced-filters__toggle"
-                                    data-easystud-advanced-filters-toggle="participant-groups"
-                                    aria-expanded="false"
-                                >
-                                    <span class="fa fa-chevron-down" aria-hidden="true"></span>
-                                </button>
-                            </div>
+                        <div class="local-groupimport-easystud-advanced-filters__control">
+                            <button
+                                type="button"
+                                class="local-groupimport-easystud-group__members-toggle local-groupimport-easystud-advanced-filters__toggle"
+                                data-easystud-advanced-filters-toggle="participant-groups"
+                                aria-expanded="false"
+                            >
+                                <span class="local-groupimport-easystud-advanced-filters__more">{{morefilters}}</span>
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                            </button>
+                        </div>
                         </div>
                         <div class="local-groupimport-easystud-participant-groups__list">
                             {{#participantfocusgroups}}
@@ -635,7 +719,7 @@
                 </div>
 
                 <div class="local-groupimport-easystud-create-row">
-                    <div class="local-groupimport-easystud-create-card local-groupimport-easystud-create-card--group">
+                    <div class="local-groupimport-easystud-create-card local-groupimport-easystud-create-card--group" data-easystud-mobile-entity-region="groups">
                         <div class="local-groupimport-easystud-column-heading local-groupimport-easystud-column-heading--structure">
                             <span class="local-groupimport-easystud-column-heading__title">{{groupscolumnlabel}}</span>
                         </div>
@@ -696,18 +780,18 @@
                             </div>
                         </div>
                         <div class="local-groupimport-easystud-advanced-filters__control">
-                            <span class="local-groupimport-easystud-advanced-filters__more" data-easystud-advanced-filters-more="structure-groups">{{morefilters}}</span>
                             <button
                                 type="button"
                                 class="local-groupimport-easystud-group__members-toggle local-groupimport-easystud-advanced-filters__toggle"
                                 data-easystud-advanced-filters-toggle="structure-groups"
                                 aria-expanded="false"
                             >
+                                <span class="local-groupimport-easystud-advanced-filters__more">{{morefilters}}</span>
                                 <span class="fa fa-chevron-down" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>
-                    <div class="local-groupimport-easystud-create-card local-groupimport-easystud-create-card--grouping">
+                    <div class="local-groupimport-easystud-create-card local-groupimport-easystud-create-card--grouping" data-easystud-mobile-entity-region="groupings">
                         <div class="local-groupimport-easystud-column-heading local-groupimport-easystud-column-heading--structure">
                             <span class="local-groupimport-easystud-column-heading__title">{{groupingscolumnlabel}}</span>
                         </div>
@@ -740,11 +824,33 @@
                                 >
                             </label>
                         </div>
+                        <div class="local-groupimport-easystud-advanced-filters" data-easystud-advanced-filters="structure-groupings">
+                            <div class="local-groupimport-easystud-grouping-mobile-filters">
+                                <span class="local-groupimport-easystud__filter-label">{{groupingoccupancylabel}}</span>
+                                <div class="local-groupimport-easystud-grouping-mobile-filters__choices" role="group" aria-label="{{groupingoccupancylabel}}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary is-active" data-easystud-grouping-occupancy="all" aria-pressed="true">{{filteralllabel}}</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-grouping-occupancy="filled" aria-pressed="false">{{filterwithgroupslabel}}</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-grouping-occupancy="empty" aria-pressed="false">{{filteremptylabel}}</button>
+                                </div>
+                                <button type="button" class="btn btn-outline-secondary btn-sm local-groupimport-easystud__filters-reset local-groupimport-easystud__filters-reset--groupings" data-easystud-reset-grouping-filters="1">{{resetfilterslabel}}</button>
+                            </div>
+                        </div>
+                        <div class="local-groupimport-easystud-advanced-filters__control local-groupimport-easystud-advanced-filters__control--groupings-mobile">
+                            <button
+                                type="button"
+                                class="local-groupimport-easystud-group__members-toggle local-groupimport-easystud-advanced-filters__toggle"
+                                data-easystud-advanced-filters-toggle="structure-groupings"
+                                aria-expanded="false"
+                            >
+                                <span class="local-groupimport-easystud-advanced-filters__more">{{morefilters}}</span>
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="local-groupimport-easystud-tree" data-easystud-tree="1">
-                    <div class="local-groupimport-easystud-structure-groups" data-easystud-structure-groups="1" hidden>
+                    <div class="local-groupimport-easystud-structure-groups" data-easystud-structure-groups="1" data-easystud-mobile-entity-region="groups" hidden>
                         <div class="local-groupimport-easystud-structure-groups__list">
                             {{#structurefocusgroups}}
                                 <div
@@ -890,7 +996,11 @@
                             {{/structurefocusgroups}}
                         </div>
                     </div>
-                    <div class="local-groupimport-easystud-tree__section local-groupimport-easystud-tree__section--ungrouped" data-easystud-grouping-drop="0">
+                    <div
+                        class="local-groupimport-easystud-tree__section local-groupimport-easystud-tree__section--ungrouped"
+                        data-easystud-grouping-drop="0"
+                        data-easystud-mobile-entity-region="groups"
+                    >
                         <button
                             type="button"
                             class="local-groupimport-easystud-tree__toggle"
@@ -1062,7 +1172,7 @@
                         </div>
                     </div>
 
-                    <div class="local-groupimport-easystud-tree__groupings">
+                    <div class="local-groupimport-easystud-tree__groupings" data-easystud-mobile-entity-region="groupings">
                     {{#groupings}}
                         <div
                             class="local-groupimport-easystud-tree__section"
@@ -2263,20 +2373,39 @@
         </div>
     </div>
 
-    <div class="local-groupimport-easystud-context-menu" data-easystud-context-menu="1" hidden role="menu">
-        {{#contextactions}}
-            <button
-                type="button"
-                data-easystud-context-action="{{action}}"
-                data-easystud-contexts="{{contexts}}"
-                data-easystud-context-label="{{label}}"
-                {{#multilabel}}data-easystud-context-multi-label="{{multilabel}}"{{/multilabel}}
-                {{#fieldkey}}data-easystud-context-field="{{fieldkey}}"{{/fieldkey}}
-                role="menuitem"
-            >
-                <span class="fa {{icon}}" aria-hidden="true"></span>
-                <span data-easystud-context-text="1">{{label}}</span>
+    <div class="local-groupimport-easystud-context-backdrop" data-easystud-context-backdrop="1" hidden></div>
+    <div class="local-groupimport-easystud-context-menu" data-easystud-context-menu="1" hidden role="menu" aria-label="{{mobilecontexttitle}}">
+        <div class="local-groupimport-easystud-context-menu__header" data-easystud-context-header="1">
+            <strong>{{mobilecontexttitle}}</strong>
+            <button type="button" data-easystud-context-close="1" aria-label="{{mobilecontextclose}}">
+                <span class="fa fa-times" aria-hidden="true"></span>
             </button>
-        {{/contextactions}}
+        </div>
+        <div class="local-groupimport-easystud-context-menu__list">
+            {{#contextactions}}
+                <button
+                    type="button"
+                    data-easystud-context-action="{{action}}"
+                    data-easystud-contexts="{{contexts}}"
+                    data-easystud-context-label="{{label}}"
+                    {{#multilabel}}data-easystud-context-multi-label="{{multilabel}}"{{/multilabel}}
+                    {{#fieldkey}}data-easystud-context-field="{{fieldkey}}"{{/fieldkey}}
+                    role="menuitem"
+                >
+                    <span class="fa {{icon}}" aria-hidden="true"></span>
+                    <span data-easystud-context-text="1">{{label}}</span>
+                </button>
+            {{/contextactions}}
+        </div>
     </div>
+    <button
+        type="button"
+        class="local-groupimport-easystud-back-to-top"
+        data-easystud-back-to-top="1"
+        aria-label="{{backtotoplabel}}"
+        data-easystud-hover-help="{{backtotoplabel}}"
+        hidden
+    >
+        <span class="fa fa-arrow-up" aria-hidden="true"></span>
+    </button>
 </div>

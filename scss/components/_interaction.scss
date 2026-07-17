@@ -70,6 +70,12 @@
     }
   }
 
+  &-context-menu__list {
+    display: grid;
+    gap: 0.18rem;
+    min-width: 0;
+  }
+
   &-drag-preview__badge {
     @include easyedu.drag-preview-count-badge;
 

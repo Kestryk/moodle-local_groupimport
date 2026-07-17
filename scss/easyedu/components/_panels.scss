@@ -107,9 +107,25 @@
 }
 
 @mixin semantic-accent-panel($variant: primary, $rail-height: 0.35rem) {
+  $rail-color: var(--easyedu-semantic-rail-primary);
+
   @include panel-shell;
 
-  background: var(--easyedu-semantic-panel-bg);
+  @if $variant == success {
+    $rail-color: var(--easyedu-semantic-rail-success);
+  } @else if $variant == warning {
+    $rail-color: var(--easyedu-semantic-rail-warning);
+  } @else if $variant == danger {
+    $rail-color: var(--easyedu-semantic-rail-danger);
+  }
+
+  // Painting the rail as a background keeps it inside the panel's rounded
+  // border even when consumers need overflow: visible for menus or popovers.
+  background-color: var(--easyedu-semantic-panel-bg);
+  background-image: $rail-color;
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100% $rail-height;
   box-shadow: var(--easyedu-shadow-soft);
   overflow: visible;
   position: relative;
@@ -122,25 +138,6 @@
     border-color: var(--easyedu-semantic-border-danger);
   } @else {
     border-color: var(--easyedu-semantic-border-primary);
-  }
-
-  &::before {
-    background: var(--easyedu-semantic-rail-primary);
-    content: "";
-    height: $rail-height;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-
-    @if $variant == success {
-      background: var(--easyedu-semantic-rail-success);
-    } @else if $variant == warning {
-      background: var(--easyedu-semantic-rail-warning);
-    } @else if $variant == danger {
-      background: var(--easyedu-semantic-rail-danger);
-    }
   }
 }
 

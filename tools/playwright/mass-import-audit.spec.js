@@ -26,6 +26,27 @@ const expectNoPageOverflow = async page => {
     expect(overflow).toBe(false);
 };
 
+const expectAccentRailsContained = async root => {
+    const rails = await root.locator('.local-groupimport-import-card').evaluateAll(nodes => nodes.map(node => {
+        const style = getComputedStyle(node);
+        const pseudo = getComputedStyle(node, '::before');
+        return {
+            backgroundImage: style.backgroundImage,
+            borderTopLeftRadius: parseFloat(style.borderTopLeftRadius),
+            borderTopRightRadius: parseFloat(style.borderTopRightRadius),
+            pseudoContent: pseudo.content,
+        };
+    }));
+
+    expect(rails).toHaveLength(2);
+    rails.forEach(rail => {
+        expect(rail.backgroundImage).toContain('linear-gradient');
+        expect(rail.borderTopLeftRadius).toBeGreaterThan(0);
+        expect(rail.borderTopRightRadius).toBeGreaterThan(0);
+        expect(rail.pseudoContent).toBe('none');
+    });
+};
+
 test('renders the EasyEdu Mass Import navigation and history modal', async({page}) => {
     await login(page);
 
@@ -34,6 +55,7 @@ test('renders the EasyEdu Mass Import navigation and history modal', async({page
     await expect(root.locator('.local-groupimport-import-card--upload')).toBeVisible();
     await expect(root.locator('.local-groupimport-import-card--results')).toBeVisible();
     await expectNoPageOverflow(page);
+    await expectAccentRailsContained(root);
 
     const alignment = await root.evaluate(node => {
         const parent = node.parentElement.getBoundingClientRect();
@@ -59,6 +81,19 @@ test('renders the EasyEdu Mass Import navigation and history modal', async({page
 test('anchors the EasyStud guide at the start of the primary navigation', async({page}) => {
     await login(page);
     await page.goto(new URL('/local/groupimport/manage.php?id=5', baseUrl).toString());
+    const managementRoot = page.locator('.local-groupimport-easystud');
+    const managementRails = await managementRoot.locator(
+        '.local-groupimport-easystud__panel--participants, .local-groupimport-easystud__panel--structure'
+    ).evaluateAll(nodes => nodes.map(node => ({
+        backgroundImage: getComputedStyle(node).backgroundImage,
+        pseudoContent: getComputedStyle(node, '::before').content,
+    })));
+    expect(managementRails).toHaveLength(2);
+    managementRails.forEach(rail => {
+        expect(rail.backgroundImage.match(/linear-gradient/g)).toHaveLength(2);
+        expect(rail.pseudoContent).toBe('none');
+    });
+
     const navigation = page.locator('.local-groupimport-easystud__header-actions');
     const guide = navigation.locator(':scope > .easyedu-guide, :scope > [class*="easyedu-guide"]').first();
     const actions = navigation.locator(':scope > .easyedu-admin-primary-nav__actions');
@@ -115,6 +150,7 @@ test('previews a dropped file and keeps replacement controls usable', async({pag
     await expect(root).toHaveClass(/has-preview/);
     await expect(root).toHaveClass(/is-upload-collapsed/);
     await expect(root.locator('.local-groupimport-import-preview__table')).toBeVisible();
+    await expectAccentRailsContained(root);
 
     const strategy = root.locator('.local-groupimport-import-preview__strategy');
     const strategyBody = strategy.locator('.easyedu-segmented-choice__body');
@@ -149,6 +185,7 @@ test('previews a dropped file and keeps replacement controls usable', async({pag
     await toggle.click();
     await expect(root).not.toHaveClass(/is-upload-collapsed/);
     await expect(root.locator('.local-groupimport-import-card--upload [type="submit"]')).toContainText(/replace file/i);
+    await expectAccentRailsContained(root);
 
     const replacementTransfer = await page.evaluateHandle(() => new DataTransfer());
     await replacementTransfer.evaluate((transfer, content) => {

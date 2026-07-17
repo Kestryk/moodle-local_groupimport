@@ -33,6 +33,11 @@ const participantFocusClass = 'local-groupimport-easystud--participant-focus';
 const hoverPopoverClass = 'local-groupimport-easystud-hover-popover';
 const panelActionOverflowClass = 'local-groupimport-easystud__panel-action--overflow-hidden';
 const guideRefreshEvent = 'easyedu:guide-refresh-highlight';
+const responsiveWorkspaceQuery = '(max-width: 1024px)';
+
+const isResponsiveWorkspace = () => {
+    return !!(window.matchMedia && window.matchMedia(responsiveWorkspaceQuery).matches);
+};
 
 const requestGuideHighlightRefresh = (root, options = {}) => {
     if (!root) {
@@ -1123,6 +1128,13 @@ const setRenameEditing = (form, editing) => {
     if (header) {
         header.classList.toggle('is-rename-editing', editing);
     }
+    const root = form.closest('.local-groupimport-easystud');
+    if (root) {
+        const hasOpenEditor = editing || !!root.querySelector(
+            '.local-groupimport-easystud-rename__edit:not([hidden])'
+        );
+        root.classList.toggle('local-groupimport-easystud--inline-editing', hasOpenEditor);
+    }
 };
 
 const syncCatalogFilters = (root, options = {}) => {
@@ -1163,6 +1175,7 @@ const syncCatalogFilters = (root, options = {}) => {
     });
     applyCatalogSearch(root, options);
     applyStructureSearch(root, options);
+    syncResponsiveResetButtons(root);
 };
 
 const getInputQuery = (root, selector) => {
@@ -1171,13 +1184,49 @@ const getInputQuery = (root, selector) => {
 };
 
 const getStructureGroupSearchQuery = root => {
-    return root.classList.contains(structureFocusClass) ?
+    return (root.classList.contains(structureFocusClass) ||
+        root.getAttribute('data-easystud-mobile-view-active') === 'groups') ?
         getInputQuery(root, '[data-easystud-structure-group-search]') : '';
 };
 
 const getStructureGroupingSearchQuery = root => {
-    return root.classList.contains(structureFocusClass) ?
+    return (root.classList.contains(structureFocusClass) ||
+        root.getAttribute('data-easystud-mobile-view-active') === 'groupings') ?
         getInputQuery(root, '[data-easystud-structure-grouping-search]') : '';
+};
+
+const syncResponsiveResetButtons = root => {
+    const participantActive = !!(
+        getInputQuery(root, '[data-easystud-search]') ||
+        getSelectedFilterValues(root.querySelector('[data-easystud-role-filter]')).length ||
+        getSelectedFilterValues(root.querySelector('[data-easystud-group-filter]')).length ||
+        getSelectedFilterValues(root.querySelector('[data-easystud-grouping-filter]')).length
+    );
+    root.querySelectorAll('[data-easystud-reset-filters]').forEach(button => {
+        button.classList.toggle('is-active', participantActive);
+    });
+
+    ['participants', 'structure'].forEach(key => {
+        const searchSelector = key === 'structure' ? '[data-easystud-structure-group-search]' :
+            '[data-easystud-catalog-search="participants"]';
+        const toggle = root.querySelector('[data-easystud-catalog-show-ungrouped="' + key + '"]');
+        const active = !!(
+            getInputQuery(root, searchSelector) ||
+            getSelectedFilterValues(root.querySelector('[data-easystud-catalog-grouping-filter="' + key + '"]')).length ||
+            (toggle && toggle.checked)
+        );
+        root.querySelectorAll('[data-easystud-reset-catalog-filters="' + key + '"]').forEach(button => {
+            button.classList.toggle('is-active', active);
+        });
+    });
+    const groupingOccupancy = root.querySelector('[data-easystud-grouping-occupancy][aria-pressed="true"]');
+    const groupingFiltersActive = !!(
+        getInputQuery(root, '[data-easystud-structure-grouping-search]') ||
+        (groupingOccupancy && groupingOccupancy.getAttribute('data-easystud-grouping-occupancy') !== 'all')
+    );
+    root.querySelectorAll('[data-easystud-reset-grouping-filters]').forEach(button => {
+        button.classList.toggle('is-active', groupingFiltersActive);
+    });
 };
 
 const matchesSearchText = (element, query) => {
@@ -1214,9 +1263,14 @@ const applyCatalogSearch = (root, options = {}) => {
 
 const applyStructureSearch = (root, options = {}) => {
     const groupingQuery = getStructureGroupingSearchQuery(root);
+    const occupancy = root.querySelector('[data-easystud-grouping-occupancy][aria-pressed="true"]');
+    const occupancyValue = occupancy ? occupancy.getAttribute('data-easystud-grouping-occupancy') : 'all';
 
     root.querySelectorAll('[data-easystud-tree] [data-easystud-grouping-id]').forEach(grouping => {
-        grouping.hidden = !matchesSearchText(grouping, groupingQuery);
+        const hasGroups = getGroupsInGrouping(grouping).length > 0;
+        const matchesOccupancy = occupancyValue === 'all' ||
+            (occupancyValue === 'filled' && hasGroups) || (occupancyValue === 'empty' && !hasGroups);
+        grouping.hidden = !matchesSearchText(grouping, groupingQuery) || !matchesOccupancy;
     });
     syncFilteredEmptyStates(root);
     if (options.pagination !== false) {
@@ -1322,6 +1376,26 @@ const ensureGroupMemberSearchControls = (root, group) => {
     group.insertBefore(panel, members);
 };
 
+const normaliseCardMenuButton = (button, root) => {
+    if (!button) {
+        return;
+    }
+    button.classList.add('local-groupimport-easystud-card-menu');
+    button.setAttribute('data-easystud-card-menu', '1');
+    button.setAttribute('aria-haspopup', 'menu');
+    if (!button.getAttribute('aria-expanded')) {
+        button.setAttribute('aria-expanded', 'false');
+    }
+    if (!button.getAttribute('aria-label')) {
+        button.setAttribute('aria-label', root.getAttribute('data-easystud-mobile-card-actions') || 'Open actions');
+    }
+    const icon = button.querySelector(':scope > .local-groupimport-easystud-card-menu__icon.fa-bars');
+    if (!icon || button.children.length !== 1) {
+        button.innerHTML =
+            '<span class="fa fa-bars local-groupimport-easystud-card-menu__icon" aria-hidden="true"></span>';
+    }
+};
+
 const ensureNestedGroupActionMenus = root => {
     root.querySelectorAll('.local-groupimport-easystud-tree__children > [data-easystud-group-id]').forEach(group => {
         const header = group.querySelector(':scope > .local-groupimport-easystud-group__header');
@@ -1342,13 +1416,14 @@ const ensureNestedGroupActionMenus = root => {
         if (!toggle) {
             toggle = document.createElement('button');
             toggle.type = 'button';
-            toggle.className = 'btn btn-link p-0 local-groupimport-easystud-group__actions-toggle';
+            toggle.className = 'btn btn-link p-0 local-groupimport-easystud-group__actions-toggle ' +
+                'local-groupimport-easystud-card-menu';
             toggle.setAttribute('data-easystud-group-actions-toggle', '1');
             toggle.setAttribute('aria-expanded', 'false');
             toggle.setAttribute('aria-label', 'More actions');
-            toggle.innerHTML = '<span class="fa fa-bars" aria-hidden="true"></span>';
             header.insertBefore(toggle, rename.nextSibling);
         }
+        normaliseCardMenuButton(toggle, root);
 
         const ensureMenuButtonLabel = button => {
             if (button.querySelector('.local-groupimport-easystud-group__actions-menu-label')) {
@@ -1780,6 +1855,228 @@ const bindHeaderNavigation = root => {
     toggle.addEventListener('click', applyLabel);
 };
 
+// Present the plugin destinations as an accessible off-canvas panel on compact screens.
+const bindMobilePrimaryNavigation = root => {
+    const openButton = root.querySelector('[data-easystud-mobile-nav-open]');
+    const panel = root.querySelector('[data-easystud-mobile-nav-panel]');
+    const backdrop = root.querySelector('[data-easystud-mobile-nav-backdrop]');
+    const closeButton = root.querySelector('[data-easystud-mobile-nav-close]');
+    if (!openButton || !panel || !backdrop || !closeButton) {
+        return;
+    }
+
+    const mobileLinks = panel.querySelector('[data-easystud-mobile-moodle-nav]');
+    const nativeMenu = root.querySelector('.local-groupimport-easystud__navigation .dropdown-menu');
+    if (mobileLinks && nativeMenu && !mobileLinks.children.length) {
+        nativeMenu.querySelectorAll('.dropdown-header, .dropdown-item[data-value]').forEach(item => {
+            if (item.classList.contains('dropdown-header')) {
+                const group = document.createElement('p');
+                group.className = 'local-groupimport-easystud-mobile-nav-section__group';
+                group.textContent = item.textContent.trim();
+                mobileLinks.appendChild(group);
+                return;
+            }
+            const url = item.getAttribute('data-value');
+            if (!url) {
+                return;
+            }
+            const link = document.createElement('a');
+            link.className = 'local-groupimport-easystud-mobile-nav-section__link';
+            link.href = url;
+            link.textContent = item.textContent.trim();
+            // The current EasyStud destination is already identified in the tools
+            // section; avoid exposing a second current page from Moodle's source menu.
+            if (!panel.querySelector('[aria-current="page"]') &&
+                    (item.getAttribute('aria-selected') === 'true' || item.classList.contains('active'))) {
+                link.setAttribute('aria-current', 'page');
+            }
+            mobileLinks.appendChild(link);
+        });
+    }
+
+    const guideSlot = root.querySelector('[data-easystud-mobile-guide-slot]');
+    const desktopNavigation = root.querySelector('[data-easystud-desktop-primary-nav]');
+    const guideNode = desktopNavigation ?
+        desktopNavigation.querySelector('[data-easyedu-guide-root], [data-easystud-open-tutorial]') : null;
+    const guideAnchor = guideNode ? document.createComment('easyedu-guide-launcher') : null;
+    if (guideNode && guideAnchor) {
+        guideNode.parentNode.insertBefore(guideAnchor, guideNode);
+    }
+    const syncGuideLauncher = matches => {
+        if (matches) {
+            panel.setAttribute('role', 'dialog');
+            panel.setAttribute('aria-modal', 'true');
+            panel.setAttribute('aria-label', openButton.textContent.trim());
+        } else {
+            panel.removeAttribute('role');
+            panel.removeAttribute('aria-modal');
+            panel.removeAttribute('aria-label');
+        }
+        if (!guideNode || !guideSlot || !guideAnchor) {
+            return;
+        }
+        if (matches) {
+            guideSlot.appendChild(guideNode);
+        } else if (guideAnchor.parentNode) {
+            guideAnchor.parentNode.insertBefore(guideNode, guideAnchor.nextSibling);
+        }
+    };
+
+    const getFocusable = () => Array.from(panel.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(element => !element.hidden && element.getClientRects().length);
+
+    const close = (restoreFocus = true) => {
+        panel.classList.remove('is-open');
+        backdrop.hidden = true;
+        openButton.setAttribute('aria-expanded', 'false');
+        document.documentElement.classList.remove('easyedu-mobile-nav-open');
+        if (restoreFocus) {
+            openButton.focus({preventScroll: true});
+        }
+    };
+    const open = () => {
+        panel.classList.add('is-open');
+        backdrop.hidden = false;
+        openButton.setAttribute('aria-expanded', 'true');
+        document.documentElement.classList.add('easyedu-mobile-nav-open');
+        const current = panel.querySelector('[aria-current="page"], .active, a, button');
+        if (current) {
+            current.focus({preventScroll: true});
+        }
+    };
+
+    openButton.addEventListener('click', open);
+    closeButton.addEventListener('click', () => close());
+    backdrop.addEventListener('click', () => close());
+    panel.addEventListener('click', event => {
+        if (event.target.closest('a')) {
+            close(false);
+        }
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && panel.classList.contains('is-open')) {
+            close();
+            return;
+        }
+        if (event.key === 'Tab' && panel.classList.contains('is-open')) {
+            const focusable = getFocusable();
+            if (!focusable.length) {
+                return;
+            }
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    });
+    const responsiveMedia = window.matchMedia(responsiveWorkspaceQuery);
+    syncGuideLauncher(responsiveMedia.matches);
+    responsiveMedia.addEventListener('change', event => {
+        syncGuideLauncher(event.matches);
+        if (!event.matches) {
+            close(false);
+        }
+    });
+};
+
+const bindBackToTop = root => {
+    const button = root.querySelector('[data-easystud-back-to-top]');
+    if (!button) {
+        return;
+    }
+    const media = window.matchMedia(responsiveWorkspaceQuery);
+    const contextMenu = root.querySelector('[data-easystud-context-menu]');
+    const modalSelector = '[role="dialog"]:not([hidden]):not([data-easystud-mobile-nav-panel]), .modal.show';
+    const floatingSelector = '[data-easystud-mobile-actions]:not([hidden]), ' +
+        '[data-easystud-action-busy-status]:not([hidden]), ' +
+        '[data-easyedu-guided-panel]:not([hidden]), [data-easystud-guided-panel]:not([hidden])';
+    let syncFrame = null;
+    const sync = () => {
+        const hasVisibleModal = Array.from(document.querySelectorAll(modalSelector)).some(surface => {
+            const style = window.getComputedStyle(surface);
+            return surface.getClientRects().length > 0 && style.display !== 'none' && style.visibility !== 'hidden';
+        });
+        const obscured = !!(
+            (contextMenu && !contextMenu.hidden) ||
+            hasVisibleModal ||
+            root.querySelector('[data-easystud-mobile-nav-panel].is-open')
+        );
+        let offset = 14;
+        root.querySelectorAll(floatingSelector).forEach(surface => {
+            const rect = surface.getBoundingClientRect();
+            // Safe-area padding can leave a small gap below a bottom-docked
+            // surface. Treat it as occupying the bottom edge so the control
+            // is always lifted above action trays and guided checklists.
+            if (rect.width && rect.height && rect.bottom > window.innerHeight - 48) {
+                offset = Math.max(offset, Math.ceil(window.innerHeight - rect.top + 12));
+            }
+        });
+        const offsetValue = offset + 'px';
+        const hidden = !media.matches || window.scrollY < 400 || obscured;
+        if (button.style.getPropertyValue('--easyedu-back-to-top-bottom') !== offsetValue) {
+            button.style.setProperty('--easyedu-back-to-top-bottom', offsetValue);
+        }
+        if (button.classList.contains('is-obscured') !== obscured) {
+            button.classList.toggle('is-obscured', obscured);
+        }
+        if (button.hidden !== hidden) {
+            button.hidden = hidden;
+        }
+    };
+    const scheduleSync = () => {
+        if (syncFrame !== null) {
+            return;
+        }
+        syncFrame = window.requestAnimationFrame(() => {
+            syncFrame = null;
+            sync();
+        });
+    };
+    button.addEventListener('click', () => {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top: 0, behavior: reduced ? 'auto' : 'smooth'});
+    });
+    window.addEventListener('scroll', scheduleSync, {passive: true});
+    window.addEventListener('resize', scheduleSync);
+    media.addEventListener('change', scheduleSync);
+
+    const stateObserver = new MutationObserver(scheduleSync);
+    const observeFloatingSurface = surface => stateObserver.observe(surface, {
+        attributes: true,
+        attributeFilter: ['class', 'hidden'],
+    });
+    if (contextMenu) {
+        observeFloatingSurface(contextMenu);
+    }
+    root.querySelectorAll(floatingSelector).forEach(observeFloatingSurface);
+
+    // Ajax updates may replace a floating surface. Watch additions only; observing every
+    // class/hidden mutation in the manager would make this callback observe its own button.
+    new MutationObserver(mutations => {
+        mutations.forEach(mutation => mutation.addedNodes.forEach(node => {
+            if (!node || node.nodeType !== 1) {
+                return;
+            }
+            if (node.matches && node.matches(floatingSelector)) {
+                observeFloatingSurface(node);
+            }
+            if (node.querySelectorAll) {
+                node.querySelectorAll(floatingSelector).forEach(observeFloatingSurface);
+            }
+        }));
+        scheduleSync();
+    }).observe(root, {childList: true, subtree: true});
+    document.addEventListener('shown.bs.modal', scheduleSync);
+    document.addEventListener('hidden.bs.modal', scheduleSync);
+    sync();
+};
+
 const bindLayoutModeToggle = root => {
     const buttons = Array.from(root.querySelectorAll('[data-easystud-layout-mode]'));
     const participantGroupsPanel = root.querySelector('[data-easystud-participant-groups-panel]');
@@ -1791,6 +2088,7 @@ const bindLayoutModeToggle = root => {
 
     const applyModeState = mode => {
         const normalisedmode = mode || 'both';
+        root.easystudDesktopMode = normalisedmode;
         clearSelectionState(root);
         root.classList.toggle(participantFocusClass, normalisedmode === 'participants');
         root.classList.toggle(structureFocusClass, normalisedmode === 'structure');
@@ -1860,6 +2158,106 @@ const bindLayoutModeToggle = root => {
     });
 
     applyMode('both', false);
+    root.easystudApplyDesktopMode = applyMode;
+};
+
+// Keep compact entity navigation independent from the three desktop workspaces.
+const bindMobileEntityViews = root => {
+    const media = window.matchMedia ? window.matchMedia(responsiveWorkspaceQuery) : null;
+    const switcher = root.querySelector('[data-easystud-mobile-view-switcher]');
+    const buttons = Array.from(root.querySelectorAll('[data-easystud-mobile-view]'));
+    const participantPanel = root.querySelector('[data-easystud-participants-panel]');
+    const structurePanel = root.querySelector('[data-easystud-structure-panel]');
+    const structureTitle = structurePanel ? structurePanel.querySelector('.local-groupimport-easystud__panel-title') : null;
+    const structureTitleDefault = structureTitle ? structureTitle.textContent : '';
+    const structureGroups = root.querySelector('[data-easystud-structure-groups]');
+    const layout = root.querySelector('.local-groupimport-easystud__layout');
+    if (!media || !switcher || !buttons.length || !participantPanel || !structurePanel) {
+        return;
+    }
+
+    let mobileView = 'participants';
+    const closeResponsiveGuide = () => {
+        root.querySelectorAll('[data-easystud-tutorial-modal], [data-easyedu-guide-modal]').forEach(modal => {
+            modal.hidden = true;
+        });
+        root.querySelectorAll('[data-easystud-guided-panel], [data-easyedu-guided-panel], ' +
+            '[data-easystud-tutorial-return], [data-easyedu-guide-return]').forEach(panel => {
+            panel.hidden = true;
+        });
+    };
+
+    const applyMobileState = view => {
+        mobileView = ['participants', 'groups', 'groupings'].indexOf(view) === -1 ? 'participants' : view;
+        root.setAttribute('data-easystud-mobile-view-active', mobileView);
+        // Desktop focus classes hide whole regions and must not leak into the
+        // three independent responsive workspaces.
+        root.classList.remove(participantFocusClass, structureFocusClass);
+        clearSelectionState(root);
+        updateSelectionActions(root);
+
+        buttons.forEach(button => {
+            const active = button.getAttribute('data-easystud-mobile-view') === mobileView;
+            button.setAttribute('aria-pressed', active ? 'true' : 'false');
+            button.classList.toggle('is-active', active);
+        });
+        participantPanel.hidden = mobileView !== 'participants';
+        structurePanel.hidden = mobileView === 'participants';
+        if (structureGroups) {
+            structureGroups.hidden = mobileView !== 'groups';
+        }
+        if (structureTitle && mobileView !== 'participants') {
+            const activeButton = buttons.find(button => button.getAttribute('data-easystud-mobile-view') === mobileView);
+            const label = activeButton ? activeButton.querySelector('span:last-child') : null;
+            structureTitle.textContent = label ? label.textContent : structureTitleDefault;
+        }
+        closeResponsiveGuide();
+        syncPagination(root);
+        scheduleResponsiveUiRefresh(root, {pagination: false, guide: false});
+    };
+
+    const applyMobileView = (view, animate = true) => {
+        if (!media.matches) {
+            return;
+        }
+        if (animate && layout) {
+            Motion.swap(layout, () => applyMobileState(view), {
+                exit: false,
+                enterDuration: Motion.timing.normal,
+                resize: false,
+                swapOpacity: 0.72,
+            });
+            return;
+        }
+        applyMobileState(view);
+    };
+
+    const syncViewportMode = () => {
+        root.classList.toggle('local-groupimport-easystud--responsive-workspace', media.matches);
+        if (media.matches) {
+            applyMobileView(mobileView, false);
+            return;
+        }
+        root.removeAttribute('data-easystud-mobile-view-active');
+        if (structureTitle) {
+            structureTitle.textContent = structureTitleDefault;
+        }
+        participantPanel.hidden = false;
+        structurePanel.hidden = false;
+        if (root.easystudApplyDesktopMode) {
+            root.easystudApplyDesktopMode(root.easystudDesktopMode || 'both', false);
+        }
+    };
+
+    buttons.forEach(button => button.addEventListener('click', () => {
+        applyMobileView(button.getAttribute('data-easystud-mobile-view') || 'participants');
+    }));
+    if (media.addEventListener) {
+        media.addEventListener('change', syncViewportMode);
+    } else {
+        media.addListener(syncViewportMode);
+    }
+    syncViewportMode();
 };
 
 const ensurePanelActionOverflowControls = actions => {
@@ -2024,8 +2422,18 @@ let pendingActionCount = 0;
 const setActionBusyState = busy => {
     document.querySelectorAll('.local-groupimport-easystud').forEach(container => {
         const labels = JSON.parse(container.getAttribute('data-easystud-detail-labels') || '{}');
-        container.setAttribute('data-easystud-action-busy-label', labels.actioninprogress || 'Working...');
+        const label = labels.actioninprogress || 'Working...';
+        const status = container.querySelector('[data-easystud-action-busy-status]');
+        container.setAttribute('data-easystud-action-busy-label', label);
         container.classList.toggle('is-action-busy', busy);
+        container.setAttribute('aria-busy', busy ? 'true' : 'false');
+        if (status) {
+            const text = status.querySelector('[data-easystud-action-busy-text]');
+            if (text) {
+                text.textContent = label;
+            }
+            status.hidden = !busy;
+        }
     });
 };
 
@@ -4087,7 +4495,8 @@ const applyFilters = (root, options = {}) => {
     const query = normalise(searchControl ? searchControl.value : '');
     const selectedroles = getSelectedFilterValues(roleControl).map(normalise);
     const selectedgroups = getSelectedFilterValues(groupControl);
-    const selectedgroupings = root.classList.contains(participantFocusClass) ?
+    const selectedgroupings = (root.classList.contains(participantFocusClass) ||
+        root.getAttribute('data-easystud-mobile-view-active') === 'participants') ?
         getSelectedFilterValues(groupingControl) : [];
 
     root.querySelectorAll('[data-easystud-user]').forEach(user => {
@@ -4111,6 +4520,7 @@ const applyFilters = (root, options = {}) => {
         syncPagination(root);
     }
     updateParticipantEmptyState(root);
+    syncResponsiveResetButtons(root);
     if (options.responsive !== false) {
         scheduleResponsiveUiRefresh(root);
     }
@@ -4180,6 +4590,7 @@ const bindFilters = root => {
             applyFilters(root);
             updateRoleFilterMode(root);
             requestGuideHighlightRefresh(root);
+            closeResponsiveAdvancedFilters(root, 'participants');
         });
     }
 
@@ -4531,7 +4942,7 @@ const updateSelectionActions = root => {
     const hasSelection = selectedUsers.length || selectedGroups.length || selectedGroupings.length || selectedMembers.length;
     const activetype = getActiveSelectionType(root);
     const labels = getLabels(root);
-    const willSingleParticipantSelected = selectedUsers.length === 1;
+    const willSingleParticipantSelected = selectedUsers.length === 1 && !isResponsiveWorkspace();
     const previousExpandedParticipant = root.easystudExpandedParticipant || null;
     const nextExpandedParticipant = willSingleParticipantSelected ? selectedUsers[0] : null;
     const participantToResize = nextExpandedParticipant || previousExpandedParticipant;
@@ -4994,13 +5405,17 @@ const bindGroupDragDrop = (root, courseId) => {
             window.location.reload();
         });
 
-        if (root.classList.contains(structureFocusClass) && targetGroupingId !== '0') {
-            runChangingMove(false);
+        if (!root.classList.contains(participantFocusClass) && targetGroupingId !== '0' && hasGroupingOrigin) {
+            openGroupDropModeModal(root, () => runChangingMove(false), () => runChangingMove(true));
             return;
         }
 
-        if (!root.classList.contains(participantFocusClass) && targetGroupingId !== '0' && hasGroupingOrigin) {
-            openGroupDropModeModal(root, () => runChangingMove(false), () => runChangingMove(true));
+        // Groups dragged from the dedicated catalog do not represent one
+        // specific origin grouping, so adding them remains non-destructive.
+        // A nested group card has a concrete origin and is handled by the
+        // copy-or-move modal above in every management view.
+        if (root.classList.contains(structureFocusClass) && targetGroupingId !== '0') {
+            runChangingMove(false);
             return;
         }
 
@@ -5883,15 +6298,28 @@ const bindDuplicateActions = (root, courseId) => {
 // Bind right-click menus for fast local actions.
 const bindContextMenu = (root, courseId) => {
     const menu = root.querySelector('[data-easystud-context-menu]');
+    const backdrop = root.querySelector('[data-easystud-context-backdrop]');
     if (!menu) {
         return;
     }
 
     let context = null;
+    let returnFocus = null;
 
     const hideMenu = () => {
         menu.hidden = true;
+        menu.classList.remove('is-mobile-sheet');
+        root.querySelectorAll('[data-easystud-card-menu][aria-expanded="true"]').forEach(button => {
+            button.setAttribute('aria-expanded', 'false');
+        });
+        if (backdrop) {
+            backdrop.hidden = true;
+        }
         context = null;
+        if (returnFocus && document.contains(returnFocus)) {
+            returnFocus.focus({preventScroll: true});
+        }
+        returnFocus = null;
     };
 
     const getContextItems = (type, target) => {
@@ -6008,13 +6436,27 @@ const bindContextMenu = (root, courseId) => {
     const showMenu = (event, type, target) => {
         event.preventDefault();
         context = {type, target};
+        returnFocus = event.currentTarget && event.currentTarget.focus ? event.currentTarget : target;
+        if (returnFocus && returnFocus.matches && returnFocus.matches('[data-easystud-card-menu]')) {
+            returnFocus.setAttribute('aria-expanded', 'true');
+        }
         setVisibleActions(type, target);
         menu.hidden = false;
-        const rect = menu.getBoundingClientRect();
-        const left = Math.min(event.clientX, window.innerWidth - rect.width - 8);
-        const top = Math.min(event.clientY, window.innerHeight - rect.height - 8);
-        menu.style.left = Math.max(8, left) + 'px';
-        menu.style.top = Math.max(8, top) + 'px';
+        const mobile = isResponsiveWorkspace();
+        menu.classList.toggle('is-mobile-sheet', mobile);
+        if (backdrop) {
+            backdrop.hidden = !mobile;
+        }
+        if (mobile) {
+            menu.style.removeProperty('left');
+            menu.style.removeProperty('top');
+        } else {
+            const rect = menu.getBoundingClientRect();
+            const left = Math.min(event.clientX, window.innerWidth - rect.width - 8);
+            const top = Math.min(event.clientY, window.innerHeight - rect.height - 8);
+            menu.style.left = Math.max(8, left) + 'px';
+            menu.style.top = Math.max(8, top) + 'px';
+        }
         const first = menu.querySelector('[data-easystud-context-action]:not([hidden])');
         if (first) {
             first.focus();
@@ -6068,6 +6510,55 @@ const bindContextMenu = (root, courseId) => {
         setItemSelected(target, true);
         updateSelectionActions(root);
     };
+
+    const ensureCardMenuButtons = () => {
+        root.querySelectorAll('[data-easystud-user], [data-easystud-group-id], [data-easystud-grouping-id]').forEach(card => {
+            if (card.querySelector(':scope > [data-easystud-card-menu]')) {
+                return;
+            }
+            const existing = card.querySelector(':scope > .local-groupimport-easystud-group__header > ' +
+                '[data-easystud-group-actions-toggle]');
+            if (existing) {
+                normaliseCardMenuButton(existing, root);
+                return;
+            }
+            const button = document.createElement('button');
+            button.type = 'button';
+            normaliseCardMenuButton(button, root);
+            card.appendChild(button);
+        });
+    };
+
+    root.addEventListener('click', event => {
+        const trigger = event.target.closest('[data-easystud-card-menu]');
+        if (!trigger || !root.contains(trigger)) {
+            return;
+        }
+        event.stopPropagation();
+        const item = getContextTarget({target: trigger});
+        if (!item) {
+            return;
+        }
+        prepareContextSelection(item);
+        showMenu({
+            preventDefault: () => event.preventDefault(),
+            clientX: trigger.getBoundingClientRect().right,
+            clientY: trigger.getBoundingClientRect().bottom,
+            currentTarget: trigger,
+        }, item.type, item.target);
+    });
+    ensureCardMenuButtons();
+    let cardMenuRefreshFrame = null;
+    const cardMenuObserver = new MutationObserver(mutations => {
+        if (!mutations.some(mutation => mutation.addedNodes.length) || cardMenuRefreshFrame !== null) {
+            return;
+        }
+        cardMenuRefreshFrame = window.requestAnimationFrame(() => {
+            cardMenuRefreshFrame = null;
+            ensureCardMenuButtons();
+        });
+    });
+    cardMenuObserver.observe(root, {childList: true, subtree: true});
 
     root.addEventListener('contextmenu', event => {
         const item = getContextTarget(event);
@@ -6199,9 +6690,16 @@ const bindContextMenu = (root, courseId) => {
                 }
             });
         } else if (action === 'group-focus-rename') {
-            const toggle = target.querySelector('[data-easystud-rename-toggle]');
-            if (toggle) {
-                toggle.click();
+            const form = target.querySelector('.local-groupimport-easystud-rename');
+            if (form) {
+                setRenameEditing(form, true);
+                const input = form.querySelector('input[name="name"]');
+                if (input) {
+                    window.requestAnimationFrame(() => {
+                        input.focus();
+                        input.select();
+                    });
+                }
             }
         } else if (action === 'copy-group-name') {
             copyText(getContextItems('group', target).map(group => getGroupName(group)).filter(Boolean).join('\n'));
@@ -6219,9 +6717,16 @@ const bindContextMenu = (root, courseId) => {
                 button.click();
             }
         } else if (action === 'grouping-focus-rename') {
-            const toggle = target.querySelector('[data-easystud-rename-toggle]');
-            if (toggle) {
-                toggle.click();
+            const form = target.querySelector('.local-groupimport-easystud-rename');
+            if (form) {
+                setRenameEditing(form, true);
+                const input = form.querySelector('input[name="name"]');
+                if (input) {
+                    window.requestAnimationFrame(() => {
+                        input.focus();
+                        input.select();
+                    });
+                }
             }
         } else if (action === 'grouping-paste-groups') {
             const groupingid = target.getAttribute('data-easystud-grouping-id');
@@ -6286,7 +6791,19 @@ const bindContextMenu = (root, courseId) => {
             hideMenu();
         }
     });
-    window.addEventListener('scroll', hideMenu, true);
+    if (backdrop) {
+        backdrop.addEventListener('click', hideMenu);
+    }
+    menu.addEventListener('click', event => {
+        if (event.target.closest('[data-easystud-context-close]')) {
+            hideMenu();
+        }
+    });
+    window.addEventListener('scroll', () => {
+        if (!isResponsiveWorkspace()) {
+            hideMenu();
+        }
+    }, true);
 };
 
 const bindCatalogFilters = root => {
@@ -6299,6 +6816,35 @@ const bindCatalogFilters = root => {
     root.querySelectorAll('[data-easystud-structure-grouping-search]').forEach(search => {
         search.addEventListener('input', () => applyStructureSearch(root));
     });
+    root.querySelectorAll('[data-easystud-grouping-occupancy]').forEach(button => {
+        button.addEventListener('click', () => {
+            root.querySelectorAll('[data-easystud-grouping-occupancy]').forEach(option => {
+                const active = option === button;
+                option.classList.toggle('is-active', active);
+                option.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+            applyStructureSearch(root);
+            syncResponsiveResetButtons(root);
+            closeResponsiveAdvancedFilters(root, 'structure-groupings');
+        });
+    });
+    const resetGroupingFilters = root.querySelector('[data-easystud-reset-grouping-filters]');
+    if (resetGroupingFilters) {
+        resetGroupingFilters.addEventListener('click', () => {
+            const all = root.querySelector('[data-easystud-grouping-occupancy="all"]');
+            root.querySelectorAll('[data-easystud-grouping-occupancy]').forEach(option => {
+                const active = option === all;
+                option.classList.toggle('is-active', active);
+                option.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+            const search = root.querySelector('[data-easystud-structure-grouping-search]');
+            if (search) {
+                search.value = '';
+            }
+            applyStructureSearch(root);
+            syncResponsiveResetButtons(root);
+        });
+    }
     root.querySelectorAll('[data-easystud-reset-catalog-filters]').forEach(button => {
         button.addEventListener('click', () => {
             const key = button.getAttribute('data-easystud-reset-catalog-filters');
@@ -6327,6 +6873,7 @@ const bindCatalogFilters = root => {
                 }
             }
             syncCatalogFilters(root);
+            closeResponsiveAdvancedFilters(root, key === 'structure' ? 'structure-groups' : 'participant-groups');
         });
     });
     syncCatalogFilters(root);
@@ -6497,6 +7044,9 @@ const bindNestedGroupActionMenus = root => {
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-group-actions-toggle]');
         if (toggle && root.contains(toggle)) {
+            if (isResponsiveWorkspace()) {
+                return;
+            }
             event.preventDefault();
             const header = toggle.closest('.local-groupimport-easystud-group__header');
             const menu = header ? header.querySelector('[data-easystud-group-actions-menu]') : null;
@@ -6525,6 +7075,16 @@ const bindNestedGroupActionMenus = root => {
     });
 
     ensureNestedGroupActionMenus(root);
+};
+
+const closeResponsiveAdvancedFilters = (root, key) => {
+    if (!isResponsiveWorkspace()) {
+        return;
+    }
+    const toggle = root.querySelector('[data-easystud-advanced-filters-toggle="' + key + '"]');
+    if (toggle && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.click();
+    }
 };
 
 const bindAdvancedFilters = root => {
@@ -7881,6 +8441,10 @@ export const init = (rootId, courseId) => {
         if (!root) {
             return;
         }
+        if (root.getAttribute('data-easystud-manager-initialised') === '1') {
+            return;
+        }
+        root.setAttribute('data-easystud-manager-initialised', '1');
 
         Motion.init(root);
 
@@ -7919,7 +8483,10 @@ export const init = (rootId, courseId) => {
             () => bindPastePreview(root),
             () => bindHoverPopovers(root),
             () => bindHeaderNavigation(root),
+            () => bindMobilePrimaryNavigation(root),
+            () => bindBackToTop(root),
             () => bindLayoutModeToggle(root),
+            () => bindMobileEntityViews(root),
             () => syncResponsiveDragAvailability(root),
             () => bindResponsiveDragGuard(root),
             () => normaliseMemberRemoveLabels(root),

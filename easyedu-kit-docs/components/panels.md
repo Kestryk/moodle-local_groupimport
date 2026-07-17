@@ -50,5 +50,8 @@ Panels are the large boxes that organise an EasyEdu management screen.
 - Use semantic accent panels when a management surface needs a persistent
   meaning. `primary`, `success`, `warning` and `danger` share identical
   geometry and differ only through public semantic tokens.
+- The semantic rail is painted by the panel background so it is clipped by the
+  real rounded border while menus and popovers can still escape through
+  `overflow: visible`. Do not recreate it with an unclipped `::before` element.
 - Keep plugin-specific layout, minimum heights and action menus outside the
   mixin. If menus must escape the panel, retain `overflow: visible` locally.

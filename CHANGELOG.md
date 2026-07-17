@@ -10,8 +10,103 @@ Maintenance convention:
 
 ## Unreleased
 
+### 2026-07-17
+
+- Kept participant detail actions fixed at the same desktop card coordinates
+  while compact cards expand into full details.
+- Removed the Groups without groupings container from the dedicated Groupings
+  workspace while preserving its data and its complete-view behaviour.
+- Replaced split More filters labels and chevrons with one accessible,
+  animated disclosure button using compact desktop and touch-sized variants.
+- Updated the embedded EasyEdu contracts to UI kit `0.4.44`.
+
+### 2026-07-16
+
+- Restored the historical desktop EasyStud action navigation as a dedicated
+  region while retaining the categorised off-canvas navigation on compact
+  screens.
+- Anchored participant detail and card-menu actions to terminal header slots,
+  aligned compact list spacing and added subtle non-draggable grouping hover
+  feedback.
+- Restored the approved blue card-action menu glyph on compact layouts while
+  retaining one shared action resolver for click, long press and selection.
+- Restored the Moodle AMD wrapper for the rebuilt course manager so RequireJS
+  can initialise EasyStud actions and the participant navigation integration.
+- Stopped the responsive card-menu observer from repeatedly replacing its own
+  action-grip markup, which created an unbounded detached DOM tree and blocked
+  clicks, context menus and the browser main thread.
+- Kept mobile-only grouping occupancy filters out of the desktop structure
+  workspace, restored the requested blue menu icon on every card and prevented
+  desktop focus classes from hiding participants after a responsive switch.
+- Grouped the mobile drawer into styled EasyStud tools and Course participants
+  sections, including the native enrolled-users, mass-import and clipboard
+  destinations.
+- Removed a self-triggering responsive Back to top observer that could keep
+  the browser main thread busy after card and panel mutations. Synchronisation
+  is now frame-coalesced, observes only relevant floating surfaces and avoids
+  redundant DOM writes; the manager also rejects duplicate AMD initialisation.
+- Restored the full semantic identity-rail width on responsive participant,
+  group and grouping cards while containing every card inside the viewport.
+- Repaired independent More filters disclosure animation, conditional Reset
+  controls and the native hidden-state contract for grouping filters.
+- Normalised every responsive card action button to the canonical action-grip
+  and kept click, long press and the bottom action sheet on one resolver.
+- Expanded the mobile navigation panel with the complete Moodle participant
+  navigation, kept EasyGuide adjacent to its trigger and added an accessible
+  safe-area-aware Back to top control.
+- Synced and documented EasyEdu UI kit 0.4.41 responsive rail, navigation,
+  disclosure and sticky-surface contracts.
+
+### 2026-07-15
+
+- Finalised the three responsive Participants, Groups and Groupings
+  workspaces with a scrollable all-destination navigation rail, direct group
+  catalogue, independent mobile filters and stable one-row list tools.
+- Reused the established nested-group menu trigger for the mobile context
+  sheet, removed duplicate card menus and restored responsive inline rename
+  with touch-sized Save and Cancel controls.
+- Contained expanded grouping rails within the viewport and added a real
+  accessible responsive action-status pill for Ajax operations.
+- Synced and documented EasyEdu UI kit 0.4.39 responsive navigation,
+  pagination, panel-spacing, rail-containment and busy-state primitives.
+- Replaced the compact primary-navigation rail with an accessible off-canvas
+  panel, including backdrop, Escape handling, explicit close and focus return.
+- Removed the desktop-only ungrouped container from the mobile Groups view,
+  restored the exhaustive flat catalogue and its independent grouping filters,
+  and replaced card-style filter chevrons with compact disclosure buttons.
+- Reduced mobile identity rails, contained expanded grouping cards, widened
+  group-member lists and refined the touch-friendly inline rename surface.
+- Synced EasyEdu UI kit 0.4.40 and added Playwright coverage for navigation,
+  flat group catalogues, filters, card containment and responsive rename.
+- Restored the original desktop More filters markup after the responsive
+  disclosure regression, kept both structure-view panels independent and
+  forced the mobile flat Groups catalogue to render its cards rather than only
+  clearing the parent hidden attribute.
+
+### 2026-07-14
+
+- Restored the copy-or-move choice when a nested group is dragged from one
+  grouping to another in the dedicated Groups & Groupings view. Groups dragged
+  from the exhaustive catalog remain additive and dropping into the same
+  grouping remains a no-op.
+- Reworked simplified management below 1024 px into three exclusive mobile
+  workspaces for Participants, Groups and Groupings while preserving the three
+  historical desktop layouts unchanged.
+- Added an explicit card action trigger and a safe-area-aware bottom action
+  sheet shared with long press, retained compact participant cards during
+  selection, disabled tactile drag feedback and kept only available actions in
+  the sticky mobile selection tray.
+- Temporarily disabled every EasyStud guide surface in the responsive
+  workspace and restored the active desktop layout when returning above the
+  breakpoint without marking guide progress as completed.
+- Synced the EasyEdu UI kit 0.4.38 responsive primitives, touch-target token,
+  Moodle colour-picker group and AI/component documentation into the plugin.
+
 ### 2026-07-13
 
+- Kept the Mass Import and simplified-management accent rails inside their
+  rounded panel borders, including expanded and collapsed preview states, and
+  synchronised the reusable panel contract from EasyEdu UI kit 0.4.37.
 - Centred the simplified-management navigation actions independently of the
   EasyStud guide launcher and promoted the balanced rail structure to EasyEdu
   UI kit 0.4.32.

@@ -412,24 +412,68 @@
   }
 }
 
-@mixin more-filters-toggle {
+// Disclosure used below a compact filter surface. The visual size remains
+// restrained on desktop while coarse pointers receive a full touch target.
+@mixin filter-disclosure-trigger($size: compact) {
   align-items: center;
   background: transparent;
-  border: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
   color: var(--easyedu-text-muted);
   display: inline-flex;
-  font-size: 0.74rem;
+  font-family: inherit;
+  font-size: 0.76rem;
   font-weight: 760;
-  gap: 0.35rem;
+  gap: 0.42rem;
   justify-content: center;
-  line-height: 1;
-  padding: 0.2rem 0.35rem;
+  line-height: 1.1;
+  min-width: 0;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
 
-  &:hover,
-  &:focus-visible {
+  @if $size == touch {
+    min-height: 2.75rem;
+    padding: 0.62rem 0.9rem;
+  } @else {
+    min-height: 2.1rem;
+    padding: 0.42rem 0.68rem;
+  }
+
+  &:hover {
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 58%, transparent 42%);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 18%, transparent 82%);
     color: var(--easyedu-primary-strong);
+  }
+
+  &:focus-visible {
+    border-color: var(--easyedu-focus);
+    box-shadow: var(--easyedu-focus-shadow);
     outline: 0;
   }
+
+  &[aria-expanded="true"],
+  &.is-expanded {
+    background: var(--easyedu-primary-soft);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 24%, transparent 76%);
+    color: var(--easyedu-primary-strong);
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    background: transparent;
+    border-color: transparent;
+    color: var(--easyedu-text-subtle);
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+}
+
+// Backward-compatible name retained for existing consumers.
+@mixin more-filters-toggle {
+  @include filter-disclosure-trigger(compact);
 }
 
 // Visual checkbox used for multi-selection in card/list interfaces. Keep the
@@ -648,6 +692,36 @@
   font-size: 0.78rem;
   font-weight: 760;
   letter-spacing: 0.04em;
+}
+
+// Align a Moodle QuickForm colour group without changing its submission
+// structure. Apply this to the group's `.felement` after `color-picker-control`.
+@mixin moodle-color-picker-group {
+  > fieldset > .d-flex {
+    align-items: center !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0.55rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  > fieldset > .d-flex > .fitem {
+    flex: 1 1 auto;
+    margin: 0 !important;
+    min-width: 0;
+    order: 2;
+  }
+
+  > fieldset > .d-flex > input[type="color"] {
+    flex: 0 0 3.1rem;
+    order: 1;
+  }
+
+  > fieldset > .d-flex input[type="text"] {
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 @mixin detected-token-input {

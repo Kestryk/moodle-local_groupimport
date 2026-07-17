@@ -29,6 +29,27 @@
   }
 }
 
+// Subtle feedback for selectable container cards that are not draggable.
+@mixin non-draggable-card-hover(
+  $background: var(--easyedu-surface-soft),
+  $border: var(--easyedu-card-border),
+  $shadow: var(--easyedu-shadow-soft)
+) {
+  cursor: default;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease,
+    transform var(--easyedu-motion-fast) ease;
+
+  &:hover {
+    background: $background;
+    border-color: $border;
+    box-shadow: $shadow;
+    transform: translateY(-1px);
+  }
+}
+
 @mixin identity-rail($icon, $icon-color: var(--easyedu-identity-icon-color)) {
   &::before {
     align-items: center;

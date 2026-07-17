@@ -2,24 +2,13 @@
 
 @media (max-width: 768px) {
   .local-groupimport-easystud {
-    --local-groupimport-easystud-identity-border-width: 1rem;
-
     &__header,
     &__panel-heading {
       align-items: stretch;
     }
 
-    &__header-actions {
-      display: grid;
-      gap: 0.45rem;
-      grid-template-columns: 1fr;
-      margin-top: 0.75rem;
-
-      .btn {
-        justify-content: center;
-        margin-left: 0 !important;
-        width: 100%;
-      }
+    &__header-actions .btn {
+      margin-left: 0 !important;
     }
 
     &__layout-toggles {
@@ -212,44 +201,17 @@
     }
 
     &-advanced-filters__control {
-      background: #eef5fb;
-      border: 1px solid #d5e3ef;
-      border-radius: 999px;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
       box-shadow: none;
-      color: #4f6b84;
-      cursor: pointer;
-      gap: 0.28rem;
       justify-self: center;
       margin-top: 0.44rem;
-      padding: 0.24rem 0.62rem;
-      transition:
-        background-color var(--easyedu-motion-fast) ease,
-        border-color var(--easyedu-motion-fast) ease,
-        box-shadow var(--easyedu-motion-fast) ease;
-
-      &:hover,
-      &:focus-within {
-        background: #e6f0f8;
-        border-color: #bdd0e4;
-      }
-    }
-
-    &-advanced-filters__control &-advanced-filters__more {
-      color: inherit;
-      font-size: 0.7rem;
-      font-weight: 700;
-      line-height: 1.1;
+      padding: 0;
     }
 
     &-advanced-filters__control &-advanced-filters__toggle {
-      color: inherit;
-      height: 0.92rem;
-      width: 0.92rem;
-    }
-
-    &-advanced-filters.is-expanded + &-advanced-filters__control {
-      background: #e0edf7;
-      border-color: #abc3da;
+      @include easyedu.filter-disclosure-trigger(touch);
     }
 
     &-create,
@@ -267,7 +229,9 @@
     }
 
     &-tree__groupings {
-      padding-left: calc(var(--local-groupimport-easystud-identity-border-width) + 0.1rem);
+      box-sizing: border-box;
+      padding-left: 0;
+      width: 100%;
     }
 
     &-user {
@@ -362,6 +326,18 @@
       padding: 0.68rem 0.68rem 0.72rem;
     }
 
+    &-group__members,
+    &-group__member-add,
+    &-group__member-search {
+      margin-inline: 0;
+      max-width: none;
+      width: 100%;
+    }
+
+    &-group__members > &-member {
+      width: 100%;
+    }
+
     &-group > .local-groupimport-easystud-selector {
       left: 0.55rem;
       top: 0.98rem;
@@ -429,7 +405,11 @@
     }
 
     &-tree__section {
+      box-sizing: border-box;
+      margin-inline: 0;
+      max-width: 100%;
       padding: 0.52rem 0.62rem 0.62rem;
+      width: 100%;
     }
 
     &-tree__section[data-easystud-grouping-id].is-expanded,
@@ -444,6 +424,25 @@
     &-tree__section[data-easystud-grouping-id].is-expanded.is-selected::after,
     &-tree__section[data-easystud-grouping-id].is-expanded.is-selected:focus-within::after {
       display: block;
+    }
+
+    &--responsive-workspace &-rename__edit:not([hidden]) {
+      background: color-mix(in srgb, var(--easyedu-surface) 92%, var(--easyedu-primary-soft) 8%);
+      border: 1px solid var(--easyedu-card-border);
+      border-radius: var(--easyedu-control-radius);
+      gap: 0.35rem;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      margin: 0.45rem 0 0;
+      padding: 0.35rem;
+    }
+
+    &--responsive-workspace &-rename__edit .form-control {
+      border-radius: calc(var(--easyedu-control-radius) - 0.12rem);
+      min-width: 0;
+    }
+
+    &--responsive-workspace &-rename__edit .btn {
+      padding-inline: 0.65rem;
     }
 
     &-tree__toggle {
@@ -774,21 +773,12 @@
       }
     }
 
-    &-context-menu {
-      border-radius: 1rem;
-      bottom: 0.75rem;
-      left: 0.75rem !important;
-      max-height: min(60vh, 24rem);
-      overflow: auto;
-      padding: 0.45rem;
-      position: fixed;
-      right: 0.75rem;
+    &-context-menu.is-mobile-sheet {
+      border-radius: 1rem 1rem 0 0;
+      left: 0 !important;
+      right: 0;
       top: auto !important;
-      width: auto;
-
-      button {
-        min-height: 2.55rem;
-      }
+      width: 100%;
     }
   }
 }

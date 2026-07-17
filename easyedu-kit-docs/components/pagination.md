@@ -54,6 +54,11 @@ one column has multiple pages.
 Place select-all/select-results controls in the list tools area, not inside the
 pagination controls, so the page navigation remains centred.
 
+On mobile, retain three columns: selection at the start, page controls in the
+centre and compact sort tools at the end. Hide the result count before moving
+or wrapping the sort control. Bottom pagination should contain centred page
+controls only.
+
 Recommended structure:
 
 ```html

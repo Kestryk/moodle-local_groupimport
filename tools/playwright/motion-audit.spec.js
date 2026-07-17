@@ -70,6 +70,78 @@ const assertStableLayout = async page => {
     expect(state.horizontalScrollRegions).toBe(0);
 };
 
+test('asks whether to copy or move a group between groupings in the structure view', async({page}) => {
+    await login(page);
+    await clickWhenAvailable(page, '[data-easystud-layout-mode="structure"]');
+
+    const groupings = page.locator(
+        '[data-easystud-tree] [data-easystud-grouping-id]:visible'
+    );
+    const groupingCount = await groupings.count();
+    if (groupingCount < 2) {
+        test.skip();
+        return;
+    }
+
+    let sourceIndex = -1;
+    for (let index = 0; index < groupingCount; index++) {
+        const groupCount = await groupings.nth(index).locator(
+            ':scope > [data-easystud-container-group-list] > [data-easystud-group-id]'
+        ).count();
+        if (groupCount > 0) {
+            sourceIndex = index;
+            break;
+        }
+    }
+    if (sourceIndex === -1) {
+        test.skip();
+        return;
+    }
+
+    const sourceGrouping = groupings.nth(sourceIndex);
+    const targetGrouping = groupings.nth(sourceIndex === 0 ? 1 : 0);
+    await sourceGrouping.locator(':scope > .local-groupimport-easystud-grouping__header ' +
+        '[data-easystud-collapse-toggle]').click();
+    await waitForMotion(page);
+
+    const sourceGroup = sourceGrouping.locator(
+        ':scope > [data-easystud-container-group-list] > [data-easystud-group-id]:visible'
+    ).first();
+    await expect(sourceGroup).toBeVisible();
+    await page.evaluate(([source, target]) => {
+        const transfer = new DataTransfer();
+        source.dispatchEvent(new DragEvent('dragstart', {
+            bubbles: true,
+            cancelable: true,
+            dataTransfer: transfer,
+        }));
+        target.dispatchEvent(new DragEvent('dragover', {
+            bubbles: true,
+            cancelable: true,
+            dataTransfer: transfer,
+        }));
+        target.dispatchEvent(new DragEvent('drop', {
+            bubbles: true,
+            cancelable: true,
+            dataTransfer: transfer,
+        }));
+        source.dispatchEvent(new DragEvent('dragend', {
+            bubbles: true,
+            cancelable: true,
+            dataTransfer: transfer,
+        }));
+    }, [await sourceGroup.elementHandle(), await targetGrouping.elementHandle()]);
+
+    const choiceModal = page.locator(
+        '.local-groupimport-easystud-modal:has([data-easystud-choice-copy])'
+    );
+    await expect(choiceModal).toBeVisible();
+    await expect(choiceModal.locator('[data-easystud-choice-copy]')).toBeVisible();
+    await expect(choiceModal.locator('[data-easystud-choice-move]')).toBeVisible();
+    await choiceModal.locator('[data-easystud-choice-close]').click();
+    await expect(choiceModal).toBeHidden();
+});
+
 for (const mode of [
     {name: 'standard motion', reducedMotion: 'no-preference'},
     {name: 'reduced motion', reducedMotion: 'reduce'},

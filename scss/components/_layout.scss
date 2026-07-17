@@ -2,6 +2,34 @@
 @use "../easyedu" as easyedu;
 
 .local-groupimport-easystud {
+  &-mobile-nav-trigger,
+  &-mobile-nav-backdrop,
+  &-mobile-nav-header,
+  &-mobile-header-controls,
+  &-mobile-nav-section,
+  &-back-to-top {
+    display: none;
+  }
+
+  &-mobile-view {
+    display: none;
+  }
+
+  &-action-status {
+    display: none;
+  }
+
+  [data-easystud-advanced-filters="structure-groupings"],
+  &-advanced-filters__control--groupings-mobile {
+    display: none !important;
+  }
+
+  &-card-menu,
+  &-context-menu__header,
+  &-context-backdrop {
+    display: none;
+  }
+
   &__navigation {
     margin: 0.3rem 0 0.7rem;
 
@@ -226,6 +254,11 @@
       white-space: nowrap;
       width: 1px;
     }
+  }
+
+  // The compact drawer is a separate region and must never occupy desktop layout space.
+  &__header-actions[data-easystud-mobile-nav-panel] {
+    display: none;
   }
 
   &__panel-actions {
@@ -511,7 +544,13 @@
   &__panel {
     @include easyedu.panel-shell;
 
-    background: linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
+    background-color: #fff;
+    background-image:
+      var(--local-groupimport-easystud-panel-rail),
+      linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
+    background-position: left top, left top;
+    background-repeat: no-repeat;
+    background-size: 100% 0.35rem, 100% 100%;
     border-radius: 1rem;
     box-shadow: var(--local-groupimport-easystud-shadow-soft);
     height: clamp(42rem, 72vh, 64rem);
@@ -531,30 +570,18 @@
       padding: 1rem;
     }
 
-    &::before {
-      content: "";
-      height: 0.35rem;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
   }
 
   &__panel--participants {
-    border-color: #cddbed;
+    --local-groupimport-easystud-panel-rail: linear-gradient(90deg, #0f6cbf 0%, #5b9bd8 100%);
 
-    &::before {
-      background: linear-gradient(90deg, #0f6cbf 0%, #5b9bd8 100%);
-    }
+    border-color: #cddbed;
   }
 
   &__panel--structure {
-    border-color: #d8decf;
+    --local-groupimport-easystud-panel-rail: linear-gradient(90deg, #1b7f5a 0%, #65a97f 100%);
 
-    &::before {
-      background: linear-gradient(90deg, #1b7f5a 0%, #65a97f 100%);
-    }
+    border-color: #d8decf;
   }
 
   &__panel-heading {
@@ -730,64 +757,32 @@
   }
 
   &-advanced-filters__more {
-    color: #718296;
     display: inline-flex;
-    font-family: inherit;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0;
-    line-height: 1.1;
-    margin: 0.36rem 0.08rem -0.04rem auto;
+    margin: 0;
     text-align: center;
-    text-transform: none;
-    vertical-align: middle;
   }
 
   &-advanced-filters__control {
     align-items: center;
     align-self: center;
     display: inline-flex;
-    gap: 0.16rem;
     justify-content: center;
-    line-height: 1;
     margin-top: 0.32rem;
-
-    .local-groupimport-easystud-advanced-filters__more,
-    .local-groupimport-easystud-advanced-filters__toggle {
-      margin: 0;
-    }
   }
 
   &-advanced-filters__toggle {
-    align-items: center;
-    background: transparent !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    color: #6b7c8f;
-    display: inline-flex;
-    height: 1rem;
-    justify-content: center;
+    @include easyedu.filter-disclosure-trigger(compact);
+
     margin: 0;
-    min-height: 0;
-    vertical-align: middle;
-    width: 1rem;
-
-    &:hover {
-      background: transparent !important;
-      color: var(--local-groupimport-easystud-primary-strong);
-      transform: translateY(1px);
-    }
-
-    &:focus {
-      background: transparent !important;
-      color: var(--local-groupimport-easystud-primary-strong);
-    }
 
     .fa {
-      font-size: 0.58rem;
+      font-size: 0.68rem;
       line-height: 1;
-      position: relative;
-      top: 0.025rem;
+      transition: transform var(--easyedu-motion-fast) ease;
+    }
+
+    &[aria-expanded="true"] .fa {
+      transform: rotate(180deg);
     }
   }
 
