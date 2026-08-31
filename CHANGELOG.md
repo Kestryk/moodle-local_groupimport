@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+### EED-UI-2026-0071 - Additive Copy and Paste memberships - 2026-08-31
+
+#### Fixed
+
+- Preserve all existing Group memberships when a copied Participant is pasted
+  into another Group.
+- Preserve all existing Grouping assignments when a copied Group is pasted
+  into another Grouping, and render an additional live card instead of moving
+  the existing card.
+- Keep repeated Paste operations idempotent while leaving the explicit Move
+  workflow and its remove-origin option unchanged.
+
+#### Validation
+
+- Add focused PHPUnit coverage for additive Participant and Group mutations,
+  rebuild the canonical RequireJS AMD bundle and document the managed preview
+  protocol in `docs/eed-ui-2026-0071-copy-paste-memberships.md`.
+
 ### EED-UI-2026-0069 - French localisation - 2026-08-31
 
 #### Fixed

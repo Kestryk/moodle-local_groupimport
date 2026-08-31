@@ -6859,7 +6859,10 @@ const bindContextMenu = (root, courseId) => {
             groupingid,
             groups: text,
         })).then(response => {
-            (response.groups || []).forEach(group => moveGroupElementToGrouping(root, group.id, groupingid));
+            (response.groups || []).forEach(group => {
+                const sourceGroup = getTreeGroupElementsById(root, group.id)[0] || null;
+                copyGroupElementToGrouping(root, sourceGroup, groupingid);
+            });
             clearSelectionState(root);
             updateSelectionActions(root);
             showNotification(root, response.message || '', 'success');

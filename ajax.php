@@ -446,11 +446,14 @@ try {
             if (!is_enrolled($context, $userid)) {
                 continue;
             }
-            if (groups_is_member($groupid, $userid)) {
-                $existing++;
-            } else {
-                groups_add_member($groupid, $userid);
+            if (\local_groupimport\service\membership_assignment::add_user_to_group(
+                (int)$course->id,
+                $groupid,
+                $userid
+            )) {
                 $added++;
+            } else {
+                $existing++;
             }
         }
 
@@ -483,14 +486,17 @@ try {
                 $missing[] = $token;
                 continue;
             }
-            if (groups_is_member($groupid, $user->id)) {
-                $existing++;
-            } else {
-                groups_add_member($groupid, $user->id);
+            if (\local_groupimport\service\membership_assignment::add_user_to_group(
+                (int)$course->id,
+                $groupid,
+                (int)$user->id
+            )) {
                 $addedusers[] = [
                     'id' => (int)$user->id,
                     'fullname' => fullname($user),
                 ];
+            } else {
+                $existing++;
             }
         }
 
@@ -548,29 +554,30 @@ try {
             }
         }
 
-        $movedgroups = [];
+        $addedgroups = [];
         $existing = 0;
         foreach ($matchedgroups as $group) {
-            $alreadyassigned = $DB->record_exists('groupings_groups', ['groupingid' => $groupingid, 'groupid' => $group->id]);
-            local_groupimport_remove_group_from_other_groupings((int)$group->id, $course->id, $groupingid);
-            if ($alreadyassigned) {
-                $existing++;
-            } else {
-                groups_assign_grouping($groupingid, $group->id);
-                $movedgroups[] = [
+            if (\local_groupimport\service\membership_assignment::add_group_to_grouping(
+                (int)$course->id,
+                (int)$group->id,
+                $groupingid
+            )) {
+                $addedgroups[] = [
                     'id' => (int)$group->id,
                     'name' => format_string($group->name),
                 ];
+            } else {
+                $existing++;
             }
         }
 
         $response['success'] = true;
-        $response['groups'] = $movedgroups;
+        $response['groups'] = $addedgroups;
         $response['existing'] = $existing;
         $response['missing'] = array_values(array_unique($missing));
         $response['ambiguous'] = array_values(array_unique($ambiguous));
         $response['message'] = get_string('groupsaddsummary', 'local_groupimport', (object)[
-            'added' => count($movedgroups),
+            'added' => count($addedgroups),
             'existing' => $existing,
         ]);
     } else if ($action === 'removeuser') {

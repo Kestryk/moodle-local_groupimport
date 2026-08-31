@@ -66,6 +66,7 @@ create their own scenario data and must not share state with another scenario.
 | Group/grouping settings dialogs | Behat accessibility plus functional | Planned |
 | Add users to a group by identifiers | Behat | Missing identifier fixture |
 | Add groups to a grouping by identifiers | Behat | Planned |
+| Context Copy/Paste preserves existing memberships | PHPUnit plus focused Playwright | Service coverage added; managed preview pending |
 | Mass import preview and reports | PHPUnit/service tests plus Playwright | Partial |
 | Identifier auto-detection | PHPUnit data provider | Missing deterministic fixture files |
 | Import history rollback | PHPUnit/service tests plus opt-in Playwright | Partial destructive audit |
@@ -107,6 +108,20 @@ Each scenario creates unique group and grouping names. Confirm:
 - deletion requires confirmation when the object contains children;
 - deletion removes stale copies from nested views;
 - success toasts report affected and already-existing item counts.
+
+### Context Copy and Paste
+
+Copy/Paste is additive and is not an alias for Move. With isolated scenario
+data, verify that:
+
+- pasting a Participant into a destination Group preserves every prior Group
+  membership and adds exactly the destination;
+- pasting a Group into a destination Grouping preserves every prior Grouping
+  assignment and adds exactly the destination;
+- repeating the same Paste creates no duplicate and reports an existing item;
+- the live cards, counts and entity detail modals rehydrate without a reload;
+- the separately labelled Move flow retains its explicit origin-removal
+  behavior.
 
 ### Mass import
 
