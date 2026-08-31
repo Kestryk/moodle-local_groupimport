@@ -41,7 +41,7 @@
   }
 
   &__participant-navigation {
-    margin: 0.3rem 0 1.35rem;
+    margin: 0.3rem 0 0.45rem;
 
     .select-menu {
       max-width: 24rem;
@@ -65,8 +65,16 @@
   }
 
   &__navigation {
-    margin: 0.3rem 0 1.05rem;
+    margin: 0 0 1.05rem;
     @include easyedu.navigation-component(64rem, true);
+  }
+
+  &__intro {
+    color: var(--local-groupimport-easystud-text-muted);
+    font-size: var(--easyedu-font-size-body);
+    line-height: var(--easyedu-line-height-body);
+    margin: 0 0 1rem;
+    max-width: 64rem;
   }
 
   &__notifications {

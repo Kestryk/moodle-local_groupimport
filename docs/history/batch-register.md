@@ -1,5 +1,19 @@
 # EasyStud batch register
 
+## Wave 10 - EED-UI-2026-0033-RF5 / 0034-RF1 / 0051-RF2
+
+- Date: 2026-08-31
+- Base: cumulative Wave 9 source `398b273`.
+- Scope: representative four-section Administration Skeleton, common
+  Administration page identity and title-description-Navigation ordering in
+  Student Management.
+- Preservation: native settings controls and multiselect, storage, dependency
+  behavior, loading/no-script/fail-open lifecycle, Mass Import and all course
+  management interactions remain unchanged.
+- Validation: official Sass build plus focused Wave 10, Administration
+  loading, typography, language, release and diff contracts; no runtime,
+  cache, fixture, preview or browser activity.
+
 ## EED-UI-2026-0038-RF6 / EED-UI-2026-0054-RF2
 
 - Date: 2026-08-31

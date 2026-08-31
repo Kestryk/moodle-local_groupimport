@@ -31,6 +31,9 @@ $generatedstyles = Read-RequiredFile 'styles.css'
 $documentation = Read-RequiredFile 'docs\testing\admin-settings-loading-state.md'
 
 Assert-Contains 'Administration skeleton markup' $settings "'data-easystud-loading-skeleton' => '1'"
+Assert-Contains 'Administration skeleton live-section map' $settings '$adminloadingskeletonspec = ['
+Assert-Contains 'Administration skeleton identifier overview' $settings "['overview-wide', 'control-tall']"
+Assert-Contains 'Administration skeleton participant-display rows' $settings "['overview', 'control', 'control', 'control', 'control', 'control']"
 Assert-Contains 'Administration no-script fallback' $settings 'html_writer::tag('
 Assert-Contains 'Administration no-script fallback' $settings "'noscript',"
 Assert-Contains 'Administration no-script Markdown context block' $settings '"\n" . html_writer::tag(''style'','
@@ -44,6 +47,7 @@ Assert-Contains 'Administration fail-open deadline' $bootstrap '}, 1500);'
 Assert-Contains 'Administration JavaScript-only loading styles' $styles 'body.jsenabled.local-groupimport-admin-settings-page--loading'
 Assert-Contains 'Generated Administration JavaScript-only loading styles' $generatedstyles 'body.jsenabled.local-groupimport-admin-settings-page--loading'
 Assert-Contains 'Administration no-script documentation' $documentation 'no-script fallback'
+Assert-Contains 'Administration live geometry documentation' $documentation 'four live settings sections'
 if ($styles.Contains('body.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton]')) {
     throw 'Administration loading styles must not show the Skeleton when Moodle has not marked JavaScript enabled.'
 }

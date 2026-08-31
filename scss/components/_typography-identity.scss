@@ -26,6 +26,12 @@
     color: var(--local-groupimport-easystud-primary);
   }
 
+  &__intro {
+    @include easyedu.type-body;
+
+    color: var(--easyedu-text-muted);
+  }
+
   &__panel-title {
     @include easyedu.type-panel-title;
   }
@@ -103,6 +109,18 @@
 
   #adminsettings > .settingsform > h2 {
     @include easyedu.type-page-identity;
+  }
+
+  .local-groupimport-admin-settings__page-eyebrow {
+    @include easyedu.type-eyebrow;
+  }
+
+  .local-groupimport-admin-settings__page-title {
+    @include easyedu.type-page-identity;
+  }
+
+  .local-groupimport-admin-settings__page-description {
+    @include easyedu.type-body;
   }
 
   .formsettingheading h3,

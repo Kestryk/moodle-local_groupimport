@@ -29,6 +29,10 @@ local numeric weights are not introduced by this adoption layer.
 - Administration replaces the heavy Automatic user identification family with
   page, panel, section and control-label roles while retaining Moodle's native
   form markup and all current setting semantics.
+- Administration RF1 adds the common EasyStud eyebrow, an Administration page
+  title and a short description before the native settings sections. The
+  identity is a non-setting heading, so it changes no stored value, dependency
+  rule or multiselect behavior.
 
 ## Non-regression boundary
 
@@ -37,5 +41,8 @@ This lot changes typography only. Navigation and Guide typography belong to
 Mass Import actions and lifecycle belong to 0041. Pagination, responsive
 geometry, Skeleton states, generated markup and JavaScript are unchanged.
 
+Student Management RF2 renders its existing title selector, description,
+Navigation and content in that exact order. Mass Import already follows the
+same identity-introduction-Navigation sequence and is retained unchanged.
 Human visual review remains required after a separately authorized preview.
 The source/static handoff does not claim browser acceptance.

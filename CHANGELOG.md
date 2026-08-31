@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+### Wave 10 - Administration identity, Skeleton and page order - 2026-08-31
+
+#### Fixed
+
+- Make the Administration Skeleton represent the four live settings sections
+  and their full-width overview/control rhythm instead of an unrelated
+  three-column dashboard.
+- Add the shared EasyStud eyebrow, Administration title and short description
+  before native settings without changing Moodle controls or stored values.
+- Render Student Management title, description, Navigation and content in the
+  requested order with explicit separation at desktop and narrow widths.
+
+#### Validation
+
+- Rebuild official Sass and run focused Wave 10, Administration loading,
+  typography, language, release and diff contracts. Runtime, cache, fixture,
+  preview and browser checks remain separately coordinated.
+
 ### Wave 9 - Entity modal controls and compact guidance - 2026-08-31
 
 #### Fixed

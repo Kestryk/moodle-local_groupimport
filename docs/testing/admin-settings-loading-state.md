@@ -14,10 +14,13 @@ deadline fails open to a degraded state. No loading text or second modal is
 introduced. The loading selector deliberately outranks Moodle's broad
 `.settingsform > *` reset and its ID-qualified `display: none` rule, and reveals
 its first `fieldset` parent so the server-rendered skeleton is not hidden by
-the native settings layout. The skeleton includes three overview cards and
-three lower settings sections with ten form-row placeholders, including a tall
-multiselect-shaped control, so the complete admin page height remains simulated
-instead of only the first viewport being represented. Because Moodle's
+the native settings layout. The skeleton follows the four live settings sections
+in their real order: features, interface/accessibility, learner identification
+and participant-card display. Its three overview placeholders and eight native
+setting-row placeholders use the same full-width vertical rhythm as the content
+they replace; the identifier control retains a tall multiselect-shaped cue.
+This represents the complete page rather than an unrelated three-column card
+dashboard. Because Moodle's
 dependency controller can rewrite inline display values during bootstrap, the
 loader preserves those values, temporarily forces every non-skeleton fieldset
 child hidden, and restores the latest Moodle state before revealing the form.
@@ -64,6 +67,10 @@ and 5.3 remain deferred to the final compatibility matrix.
 Run `tools/release/test-admin-settings-loading-contract.ps1` with PHP lint,
 the classic-bootstrap syntax check and the plugin Sass build. Runtime/browser
 validation remains a separately authorized bundle.
+
+`EED-UI-2026-0033-RF5` changes only this decorative geometry. The accepted
+minimum interval, fade, no-script fallback, degraded fail-open path and
+`aria-busy` ownership remain unchanged.
 
 ### Markup correction - 2026-07-30
 

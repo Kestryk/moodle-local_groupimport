@@ -181,34 +181,50 @@ if ($hassiteconfig) {
         ['data-local-groupimport-admin-features' => '1']
     );
 
-    $adminloadingskeletoncards = [];
-    for ($skeletoncard = 0; $skeletoncard < 3; $skeletoncard++) {
-        $adminloadingskeletoncards[] = html_writer::div(
-            html_writer::tag('span', '', [
-                'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-card-title',
-            ]) .
-                html_writer::tag('span', '', [
-                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-field',
-                ]) .
-                html_writer::tag('span', '', [
-                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-field local-groupimport-admin-settings__loading-field--short',
-                ]) .
-                html_writer::tag('span', '', [
-                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-row',
-                ]),
-            'local-groupimport-admin-settings__loading-card'
-        );
-    }
-
+    // Mirror the live settings page rather than drawing an unrelated card
+    // dashboard. Each item represents one real overview panel or native
+    // setting row in the same four-section order used below.
+    $adminloadingskeletonspec = [
+        ['overview', 'control'],
+        ['control'],
+        ['overview-wide', 'control-tall'],
+        ['overview', 'control', 'control', 'control', 'control', 'control'],
+    ];
     $adminloadingskeletonsections = [];
-    foreach ([3, 2, 5] as $sectionindex => $sectionrows) {
+    foreach ($adminloadingskeletonspec as $sectionrows) {
         $rows = [];
-        for ($skeletonrow = 0; $skeletonrow < $sectionrows; $skeletonrow++) {
-            $controlclass = 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-form-control';
-            if ($sectionindex === 1 && $skeletonrow === 0) {
-                $controlclass .= ' local-groupimport-admin-settings__loading-form-control--tall';
+        foreach ($sectionrows as $rowtype) {
+            if (str_starts_with($rowtype, 'overview')) {
+                $overviewclass = 'local-groupimport-admin-settings__loading-overview';
+                if ($rowtype === 'overview-wide') {
+                    $overviewclass .= ' local-groupimport-admin-settings__loading-overview--wide';
+                }
+
+                $rows[] = html_writer::div(
+                    html_writer::tag('span', '', [
+                        'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-overview-icon',
+                    ]) .
+                        html_writer::div(
+                            html_writer::tag('span', '', [
+                                'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-card-title',
+                            ]) .
+                                html_writer::tag('span', '', [
+                                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-row',
+                                ]) .
+                                html_writer::tag('span', '', [
+                                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-row local-groupimport-admin-settings__loading-row--short',
+                                ]),
+                            'local-groupimport-admin-settings__loading-overview-copy'
+                        ),
+                    $overviewclass
+                );
+                continue;
             }
 
+            $controlclass = 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-form-control';
+            if ($rowtype === 'control-tall') {
+                $controlclass .= ' local-groupimport-admin-settings__loading-form-control--tall';
+            }
             $rows[] = html_writer::div(
                 html_writer::tag('span', '', [
                     'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-form-label',
@@ -226,6 +242,25 @@ if ($hassiteconfig) {
             'local-groupimport-admin-settings__loading-section'
         );
     }
+
+    $adminpageidentityhtml = html_writer::div(
+        html_writer::span(
+            get_string('easystudlabel', 'local_groupimport'),
+            'local-groupimport-admin-settings__page-eyebrow'
+        ) .
+            html_writer::tag(
+                'h2',
+                get_string('adminpageidentitytitle', 'local_groupimport'),
+                ['class' => 'local-groupimport-admin-settings__page-title']
+            ) .
+            html_writer::tag(
+                'p',
+                get_string('adminpageidentitydescription', 'local_groupimport'),
+                ['class' => 'local-groupimport-admin-settings__page-description']
+            ),
+        'local-groupimport-admin-settings__page-identity',
+        ['data-easystud-page-identity' => 'administration']
+    );
 
     // The classic bootstrap owns the normal loading lifecycle. Without scripts,
     // restore native settings instead of retaining the decorative placeholder.
@@ -256,8 +291,7 @@ if ($hassiteconfig) {
                 ]),
             'local-groupimport-admin-settings__loading-header'
         ) .
-        html_writer::div(implode('', $adminloadingskeletoncards), 'local-groupimport-admin-settings__loading-grid') .
-            html_writer::div(implode('', $adminloadingskeletonsections), 'local-groupimport-admin-settings__loading-sections'),
+        html_writer::div(implode('', $adminloadingskeletonsections), 'local-groupimport-admin-settings__loading-sections'),
         'local-groupimport-admin-settings__loading-skeleton',
         [
             'data-easystud-loading-skeleton' => '1',
@@ -270,6 +304,12 @@ if ($hassiteconfig) {
         'local_groupimport/loadingoverview',
         '',
         $adminloadingskeletonhtml
+    ));
+
+    $settings->add(new admin_setting_heading(
+        'local_groupimport/pageidentity',
+        '',
+        $adminpageidentityhtml
     ));
 
     $settings->add(new admin_setting_heading(

@@ -535,7 +535,7 @@
   display: none;
 }
 .local-groupimport-easystud__participant-navigation {
-  margin: 0.3rem 0 1.35rem;
+  margin: 0.3rem 0 0.45rem;
 }
 .local-groupimport-easystud__participant-navigation .select-menu {
   max-width: 24rem;
@@ -556,7 +556,7 @@
   padding: 0;
 }
 .local-groupimport-easystud__navigation {
-  margin: 0.3rem 0 1.05rem;
+  margin: 0 0 1.05rem;
   position: relative;
 }
 .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] {
@@ -1514,6 +1514,13 @@
 }
 [dir=rtl] .local-groupimport-easystud__navigation .easyedu-navigation__item:hover, .local-groupimport-easystud__navigation[dir=rtl] .easyedu-navigation__item:hover {
   transform: translateX(-0.08rem);
+}
+.local-groupimport-easystud__intro {
+  color: var(--local-groupimport-easystud-text-muted);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
+  margin: 0 0 1rem;
+  max-width: 64rem;
 }
 .local-groupimport-easystud__notifications {
   display: grid;
@@ -14042,23 +14049,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: grid;
   gap: 0.55rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-grid {
-  align-items: stretch;
-  display: grid;
-  gap: 0.9rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-sections {
   display: grid;
-  gap: 0.9rem;
+  gap: 1.25rem;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-section {
-  background: linear-gradient(135deg, #fff 0%, var(--easyedu-surface-soft) 100%);
-  border: 1px solid #cfdee9;
-  border-radius: 0.85rem;
   display: grid;
   gap: 0.75rem;
-  padding: 0.9rem;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-section-title {
   height: 0.9rem;
@@ -14070,9 +14067,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {
   align-items: center;
+  background: linear-gradient(135deg, #fff 0%, var(--easyedu-surface-soft) 100%);
+  border: 1px solid #cfdee9;
+  border-radius: 0.85rem;
   display: grid;
   gap: 0.8rem;
   grid-template-columns: minmax(8rem, 0.36fr) minmax(0, 1fr);
+  min-height: 5.4rem;
+  padding: 0.9rem;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-label {
   height: 0.75rem;
@@ -14085,14 +14087,28 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-control--tall {
   height: 6.2rem;
 }
-#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-card {
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {
+  align-items: start;
   background: linear-gradient(135deg, #fff 0%, var(--easyedu-surface-soft) 100%);
   border: 1px solid #cfdee9;
   border-radius: 0.85rem;
   display: grid;
-  gap: 0.65rem;
+  gap: 0.8rem;
+  grid-template-columns: 2.55rem minmax(0, 1fr);
+  min-height: 6.5rem;
+  padding: 1rem;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview--wide {
   min-height: 11rem;
-  padding: 0.85rem;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview-icon {
+  height: 2.55rem;
+  width: 2.55rem;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview-copy {
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {
   background: var(--easyedu-loading-surface);
@@ -14147,6 +14163,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   height: 0.85rem;
   width: 84%;
 }
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-row--short {
+  width: 58%;
+}
 #page-admin-setting-local_groupimport .settingsform {
   margin-left: auto;
   margin-right: auto;
@@ -14156,6 +14175,31 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   margin-left: auto;
   margin-right: auto;
   max-width: min(100%, 76rem);
+}
+#page-admin-setting-local_groupimport #admin-pageidentity {
+  margin: 0 0 1.2rem;
+}
+#page-admin-setting-local_groupimport #admin-pageidentity .form-description,
+#page-admin-setting-local_groupimport #admin-pageidentity .form-setting {
+  max-width: none;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-identity {
+  display: grid;
+  gap: 0.3rem;
+  padding-block: 0.15rem;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-eyebrow {
+  color: var(--local-groupimport-easystud-primary);
+  display: block;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-title {
+  color: var(--easyedu-text);
+  margin: 0;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-description {
+  color: var(--easyedu-text-muted);
+  margin: 0;
+  max-width: 58rem;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings {
   background: var(--easyedu-surface);
@@ -14581,9 +14625,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   width: min(100%, 22rem) !important;
 }
 @media (max-width: 48rem) {
-  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings {
     padding: 0.85rem;
   }
@@ -14594,6 +14635,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {
     align-items: stretch;
     grid-template-columns: minmax(0, 1fr);
+  }
+  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+  }
+  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview-icon {
+    height: 2.2rem;
+    width: 2.2rem;
   }
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-control {
     width: 100%;
@@ -18983,6 +19031,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   text-transform: uppercase;
   color: var(--local-groupimport-easystud-primary);
 }
+.local-groupimport-easystud__intro {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
+  color: var(--easyedu-text-muted);
+}
 .local-groupimport-easystud__panel-title {
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
@@ -19108,6 +19165,33 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-size: var(--easyedu-font-size-page-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-eyebrow {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-eyebrow);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-title {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-page-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-description {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
 }
 #page-admin-setting-local_groupimport .formsettingheading h3,
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero-copy h3 {

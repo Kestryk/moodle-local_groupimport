@@ -37,6 +37,8 @@ the historical Group Import CSV plugin without moving data or changing URLs.
 
 - Keeps Moodle's native settings APIs and controls while showing a structural
   EasyStud skeleton until dependency/show-hide controls settle.
+- Uses the common EasyStud page identity and a Skeleton whose section/card
+  rhythm represents the settings that will replace it.
 - Reuses the shared bottom-end `Loading in progress` indicator during the
   settings bootstrap.
 
