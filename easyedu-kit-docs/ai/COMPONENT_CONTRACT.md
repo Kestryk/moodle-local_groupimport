@@ -612,6 +612,12 @@ Must:
   modals;
 - use `settings-modal-filepicker` and `modal-file-drop-state` for image/file
   uploads.
+- use `help-tooltip` for contextual question-mark controls and keep theme link
+  decoration from replacing the shared hover/focus treatment;
+- compose `toggle-check` with `slideshow-toggle-row` when an entity-modal image
+  toggle must match the accepted CCB/Kit surface and Motion states;
+- keep entity-count field labels on `type-caption` with a deliberate
+  label-to-value gap.
 
 Must not:
 

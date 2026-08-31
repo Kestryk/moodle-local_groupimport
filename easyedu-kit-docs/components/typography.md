@@ -36,6 +36,11 @@ controls may use `type-caption`, just like compact Mass Import guidance. Keep
 page identity, authored introductions and section headings on their respective
 larger roles.
 
+Body copy inside an existing information or guidance panel may also use
+`type-caption` when it is short operational help. This changes only the text
+role: panel density, colour, border, icon and action composition remain owned by
+their dedicated component contract.
+
 ```scss
 .local-example {
   @include easyedu.token-defaults;

@@ -1,5 +1,17 @@
 # EasyStud batch register
 
+## EED-UI-2026-0038-RF6 / EED-UI-2026-0054-RF2
+
+- Date: 2026-08-31
+- Base: cumulative accepted EasyStud source `b28da7b`.
+- Scope: canonical help-control parity, shared Group image toggle Motion,
+  Participant-equivalent entity-count field labels and compact green-panel
+  guidance copy.
+- Preservation: accepted counters, modal structure, entity/image transactions,
+  native Administration controls and settings storage remain unchanged.
+- Validation: official Sass/AMD builds plus focused modal, global AMD, syntax,
+  release and diff contracts; no runtime, cache, fixture, preview or browser.
+
 ## EED-UI-2026-0072 - Nested card search focus
 
 - Date: 2026-08-31

@@ -12592,6 +12592,21 @@
   min-height: 1.62rem;
   padding: 0.2rem 0.55rem;
 }
+.local-groupimport-easystud-settings-modal__field--entity-count {
+  gap: 0.32rem;
+}
+.local-groupimport-easystud-settings-modal__field--entity-count > .local-groupimport-easystud-settings-modal__field-label {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  color: #62788e;
+  font-weight: var(--easyedu-font-weight-semibold);
+  letter-spacing: 0;
+  text-transform: none;
+}
 .local-groupimport-easystud-settings-modal__file-row {
   align-items: stretch;
   background: #fff;
@@ -12734,30 +12749,39 @@
 }
 .local-groupimport-easystud-settings-modal__help {
   align-items: center;
-  appearance: none;
-  background: transparent;
-  border: 1px solid rgba(15, 108, 191, 0.35);
+  background: var(--easyedu-primary-soft);
+  border: 1px solid color-mix(in srgb, var(--easyedu-primary) 24%, #fff 76%);
   border-radius: 999px;
   color: var(--easyedu-primary);
   display: inline-flex;
-  flex: 0 0 1.15rem;
   font-size: 0.72rem;
-  font-weight: 700;
-  height: 1.15rem;
+  font-weight: 800;
+  height: 1.35rem;
   justify-content: center;
   line-height: 1;
-  min-height: 1.15rem;
-  min-width: 1.15rem;
-  padding: 0;
+  width: 1.35rem;
+}
+.local-groupimport-easystud-settings-modal__help {
+  text-decoration: none;
+}
+.local-groupimport-easystud-settings-modal__help {
+  appearance: none;
+  flex: 0 0 1.35rem;
+  height: 1.35rem !important;
+  margin-inline-start: 0.08rem;
+  max-height: 1.35rem !important;
+  max-width: 1.35rem !important;
+  min-height: 1.35rem !important;
+  min-width: 1.35rem !important;
+  padding: 0 !important;
   text-decoration: none !important;
   text-decoration-line: none !important;
-  width: 1.15rem;
-  margin-inline-start: 0.08rem;
+  width: 1.35rem !important;
 }
 .local-groupimport-easystud-settings-modal__help:hover, .local-groupimport-easystud-settings-modal__help:active, .local-groupimport-easystud-settings-modal__help:focus, .local-groupimport-easystud-settings-modal__help:focus-visible {
-  background: var(--easyedu-primary-soft);
-  border-color: rgba(15, 108, 191, 0.35);
-  color: var(--easyedu-primary-strong);
+  background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, #fff 28%) !important;
+  border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%) !important;
+  color: var(--easyedu-primary) !important;
   text-decoration: none !important;
   text-decoration-line: none !important;
 }
@@ -12786,9 +12810,15 @@
   gap: 0.55rem;
   min-height: var(--easyedu-control-height);
   padding: 0.35rem 0.65rem;
-  font-weight: var(--easyedu-font-weight-regular);
-  justify-self: start;
-  margin-block-start: 0.08rem;
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid color-mix(in srgb, var(--local-groupimport-easystud-group) 12%, var(--easyedu-control-border) 88%);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  cursor: pointer;
+  min-height: 2.3rem;
+  padding: 0.42rem 0.55rem;
+  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease;
 }
 .local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check input {
   height: 1px;
@@ -12813,6 +12843,36 @@
   background: var(--easyedu-accent);
   border-color: var(--easyedu-accent);
   box-shadow: inset 0.76rem 0 0 #fff;
+}
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check label {
+  cursor: pointer;
+}
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check:hover {
+  border-color: color-mix(in srgb, var(--local-groupimport-easystud-group) 34%, var(--easyedu-control-border) 66%);
+}
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check:focus-within {
+  border-color: color-mix(in srgb, var(--local-groupimport-easystud-group) 34%, var(--easyedu-control-border) 66%);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) color-mix(in srgb, var(--local-groupimport-easystud-group) 22%, transparent);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check:has(input:checked) {
+  background: color-mix(in srgb, var(--local-groupimport-easystud-group) 6%, var(--easyedu-surface) 94%);
+  border-color: color-mix(in srgb, var(--local-groupimport-easystud-group) 30%, var(--easyedu-control-border) 70%);
+}
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check:has(input:disabled) {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-control-border);
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check:has(input:disabled) label {
+  cursor: not-allowed;
+}
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-toggle-check {
+  font-weight: var(--easyedu-font-weight-regular);
+  justify-self: start;
+  margin-block-start: 0.08rem;
 }
 .local-groupimport-easystud-settings-modal__lists {
   display: grid;
@@ -19072,8 +19132,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
-  font-size: var(--easyedu-font-size-control);
-  line-height: var(--easyedu-line-height-body);
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__field-card h4 {
   font-family: var(--easyedu-font-family-ui);

@@ -4000,8 +4000,11 @@ const openAdvancedSettingsModal = (root, item) => {
                             renderAdvancedInput(labels.advancedsettingsname || '', 'name', getAdvancedValue(item, 'name')) +
                             renderAdvancedInput(labels.advancedsettingsidnumber || '', 'idnumber',
                                 getAdvancedValue(item, 'idnumber')) +
-                            '<div class="local-groupimport-easystud-settings-modal__field local-groupimport-easystud-settings-modal__field--readonly">' +
-                                '<span>' + escapeHtml(isgroup ? (labels.advancedsettingsmembers || '') :
+                            '<div class="local-groupimport-easystud-settings-modal__field ' +
+                                    'local-groupimport-easystud-settings-modal__field--readonly ' +
+                                    'local-groupimport-easystud-settings-modal__field--entity-count">' +
+                                '<span class="local-groupimport-easystud-settings-modal__field-label">' +
+                                escapeHtml(isgroup ? (labels.advancedsettingsmembers || '') :
                                 (labels.advancedsettingsgroups || '')) + '</span>' +
                                 '<strong>' + escapeHtml(count || notset) + '</strong>' +
                             '</div>' +

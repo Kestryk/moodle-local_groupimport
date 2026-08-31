@@ -214,6 +214,22 @@
     }
   }
 
+  &-settings-modal__field--entity-count {
+    // Entity counts use the same quiet field-label role as Participant
+    // metadata. Keep the label/value breathing room independent from the
+    // generic native settings-field defaults.
+    gap: 0.32rem;
+
+    > .local-groupimport-easystud-settings-modal__field-label {
+      @include easyedu.type-caption;
+
+      color: #62788e;
+      font-weight: var(--easyedu-font-weight-semibold);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+  }
+
   &-settings-modal__file-row {
     align-items: stretch;
     background: #fff;
@@ -280,38 +296,33 @@
   }
 
   &-settings-modal__help {
-    // Keep the local control on the accepted CCB Slideshow question-mark
-    // geometry. It intentionally does not use Bootstrap's `.btn-link`, whose
-    // hover rule underlines contextual controls in some Moodle themes.
-    align-items: center;
-    appearance: none;
-    background: transparent;
-    border: 1px solid rgba(15, 108, 191, 0.35);
-    border-radius: 999px;
-    color: var(--easyedu-primary);
-    display: inline-flex;
-    flex: 0 0 1.15rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    height: 1.15rem;
-    justify-content: center;
-    line-height: 1;
-    min-height: 1.15rem;
-    min-width: 1.15rem;
-    padding: 0;
-    text-decoration: none !important;
-    text-decoration-line: none !important;
-    width: 1.15rem;
+    // Reuse the actual Kit/CCB Slideshow help primitive. Bootstrap's button
+    // resets remain explicitly neutralised because Moodle themes can otherwise
+    // reintroduce an underline or change the circular control box.
+    @include easyedu.help-tooltip;
 
-    margin-inline-start: 0.08rem;
+    & {
+      appearance: none;
+      flex: 0 0 1.35rem;
+      height: 1.35rem !important;
+      margin-inline-start: 0.08rem;
+      max-height: 1.35rem !important;
+      max-width: 1.35rem !important;
+      min-height: 1.35rem !important;
+      min-width: 1.35rem !important;
+      padding: 0 !important;
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+      width: 1.35rem !important;
+    }
 
     &:hover,
     &:active,
     &:focus,
     &:focus-visible {
-      background: var(--easyedu-primary-soft);
-      border-color: rgba(15, 108, 191, 0.35);
-      color: var(--easyedu-primary-strong);
+      background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, #fff 28%) !important;
+      border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%) !important;
+      color: var(--easyedu-primary) !important;
       text-decoration: none !important;
       text-decoration-line: none !important;
     }
@@ -330,10 +341,13 @@
 
   &-settings-modal &-toggle-check {
     @include easyedu.toggle-check;
+    @include easyedu.slideshow-toggle-row(var(--local-groupimport-easystud-group));
 
-    font-weight: var(--easyedu-font-weight-regular);
-    justify-self: start;
-    margin-block-start: 0.08rem;
+    & {
+      font-weight: var(--easyedu-font-weight-regular);
+      justify-self: start;
+      margin-block-start: 0.08rem;
+    }
   }
 
   &-settings-modal__lists {

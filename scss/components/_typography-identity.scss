@@ -122,10 +122,10 @@
   }
 
   .local-groupimport-admin-settings__hint span {
-    @include easyedu.type-ui-base;
-
-    font-size: var(--easyedu-font-size-control);
-    line-height: var(--easyedu-line-height-body);
+    // Current green guidance panels keep their accepted shell. Only their
+    // operational body copy moves to the already accepted compact help role;
+    // KIT 0026 owns the future full panel-system migration.
+    @include easyedu.type-caption;
   }
 
   .local-groupimport-admin-settings__field-card h4 {

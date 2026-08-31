@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+### Wave 9 - Entity modal controls and compact guidance - 2026-08-31
+
+#### Fixed
+
+- Match Group and Grouping contextual question marks to the shared CCB
+  Slideshow/Kit help control, including its diameter, hover state, no-underline
+  behavior and visible keyboard focus.
+- Give the Group image removal toggle the shared CCB/Kit checked, hover, focus,
+  disabled and transition surface without changing the image transaction.
+- Keep Group and Grouping entity-count labels on the accepted Participant
+  caption role with deliberate label-to-value spacing.
+- Reduce only the body copy inside current green EasyStud Administration
+  guidance panels to the accepted compact operational-help role.
+
+#### Validation
+
+- Rebuild official Sass and Course Manager AMD outputs and run focused modal,
+  global AMD-format, syntax, release and diff checks. Runtime, cache, fixture,
+  preview and browser checks remain separately coordinated.
+
 ### EED-UI-2026-0072 - Nested card search focus - 2026-08-31
 
 #### Fixed
