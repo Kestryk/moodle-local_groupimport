@@ -280,10 +280,11 @@
   }
 
   &-settings-modal__help {
-    // CCB Slideshow currently owns the accepted 1.15rem contextual question
-    // geometry. The future Kit help-control migration will replace this local
-    // compatibility mapping in both consumers.
+    // Keep the local control on the accepted CCB Slideshow question-mark
+    // geometry. It intentionally does not use Bootstrap's `.btn-link`, whose
+    // hover rule underlines contextual controls in some Moodle themes.
     align-items: center;
+    appearance: none;
     background: transparent;
     border: 1px solid rgba(15, 108, 191, 0.35);
     border-radius: 999px;
@@ -298,17 +299,25 @@
     min-height: 1.15rem;
     min-width: 1.15rem;
     padding: 0;
-    text-decoration: none;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
     width: 1.15rem;
 
     margin-inline-start: 0.08rem;
 
     &:hover,
+    &:active,
+    &:focus,
     &:focus-visible {
       background: var(--easyedu-primary-soft);
       border-color: rgba(15, 108, 191, 0.35);
       color: var(--easyedu-primary-strong);
-      text-decoration: none;
+      text-decoration: none !important;
+      text-decoration-line: none !important;
+    }
+
+    &:focus-visible {
+      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
     }
   }
 
@@ -341,6 +350,10 @@
     summary {
       @include easyedu.metadata-section-summary;
 
+      // Match the accepted Participant count pill while leaving enough room
+      // between the title and count when the modal is narrow.
+      gap: 0.7rem;
+
       > .local-groupimport-easystud-settings-modal__list-title {
         @include easyedu.type-control-label;
 
@@ -355,13 +368,15 @@
 
         align-items: center;
         display: inline-flex;
-        font-size: var(--easyedu-font-size-caption);
+        font-size: 0.78rem;
         font-weight: var(--easyedu-font-weight-semibold);
         gap: 0.28rem;
         justify-self: end;
         max-width: min(12rem, 100%);
+        min-height: 1.45rem;
         min-width: 0;
         overflow: hidden;
+        padding: 0.16rem 0.54rem;
 
         .local-groupimport-easystud-settings-modal__list-count-label {
           font-size: inherit;

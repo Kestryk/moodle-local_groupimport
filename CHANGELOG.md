@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+### Wave 4 RF5/RF1 - Group and Grouping help, counters and Administration copy - 2026-08-31
+
+#### Fixed
+
+- Align Group and Grouping contextual question-mark controls with the accepted
+  compact CCB Slideshow control and prevent theme link underlines on hover or
+  focus while retaining keyboard focus visibility.
+- Give Group and Grouping settings-modal accordion counters the accepted
+  Participant pill density and a clear title-to-counter gap, including narrow
+  modal layouts.
+- Apply the accepted compact operational paragraph role to EasyStud
+  Administration guidance and native setting descriptions without changing
+  page identity, headings or authored introduction copy.
+
+#### Validation
+
+- Rebuilt Sass and Course Manager AMD output and passed the focused wave
+  contract, syntax, release and diff checks. Browser, cache and preview
+  activity remain separately coordinated.
+
 ### AMD runtime format repair - 2026-08-31
 
 #### Fixed

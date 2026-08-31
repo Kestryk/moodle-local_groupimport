@@ -103,3 +103,13 @@
   `styles.css` is rebuilt and covered by a source/generated CSS contract.
 - Validation: Sass build, `tools/release/test-typography-contract.ps1` and
   `git diff --check`. Browser review remains human and separate.
+- Wave 4 EasyStud typography correction
+
+  - Date: 2026-08-31
+  - Lots: `EED-UI-2026-0038-RF5` and `EED-UI-2026-0054-RF1`.
+  - Scope: CCB-compatible contextual help controls, Group/Grouping accordion
+    counter density and scoped Administration operational copy convergence.
+  - Preservation: Participant reference, modal behavior, native controls,
+    Mass Import page identity/introduction and import logic.
+  - Validation: official Sass/AMD build and focused static/release contracts;
+    no runtime, cache, fixture or browser activity.

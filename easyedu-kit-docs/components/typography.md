@@ -13,7 +13,7 @@ allowing themes to remain the visual owner of the font family.
 - `type-section-title`: compact subsection heading.
 - `type-card-title`: repeated object or settings-card heading.
 - `type-control-label`: important field or action label.
-- `type-body`: ordinary administration copy.
+- `type-body`: ordinary explanatory administration copy.
 - `type-caption`: secondary metadata and help text.
 - `type-eyebrow`: short uppercase category label.
 
@@ -30,6 +30,11 @@ Shared utility controls use the regular weight for disclosure labels, Sort
 captions and selected Sort values. Result-count badges use the semibold weight
 to remain scannable without competing with headings. Consumers must use these
 roles consistently across views and responsive breakpoints.
+
+Operational administration descriptions that sit directly beside settings
+controls may use `type-caption`, just like compact Mass Import guidance. Keep
+page identity, authored introductions and section headings on their respective
+larger roles.
 
 ```scss
 .local-example {

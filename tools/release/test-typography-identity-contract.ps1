@@ -62,7 +62,7 @@ Assert-Contains 'Shared card title descender clearance' $kit 'line-height:\s*1\.
 
 Assert-Contains 'Administration page role' $source '#adminsettings > \.settingsform > h2\s*\{\s*@include easyedu\.type-page-identity;'
 Assert-Contains 'Administration section role' $source '\.formsettingheading h3,\s*\.local-groupimport-admin-settings__hero-copy h3\s*\{[^}]*@include easyedu\.type-section-title;'
-Assert-Contains 'Administration body role' $source '\.formsettingheading \.form-description,\s*\.local-groupimport-admin-settings__hero-copy p\s*\{\s*@include easyedu\.type-body;'
+Assert-Contains 'Administration operational copy role' $source '\.formsettingheading \.form-description,\s*\.local-groupimport-admin-settings__hero-copy p\s*\{\s*@include easyedu\.type-caption;'
 Assert-Contains 'Administration compact hint role' $source '\.local-groupimport-admin-settings__hint span\s*\{\s*@include easyedu\.type-ui-base;[^}]*font-size:\s*var\(--easyedu-font-size-control\);'
 Assert-Contains 'Administration subordinate field role' $source '\.local-groupimport-admin-settings__field-card h4\s*\{\s*@include easyedu\.type-control-label;'
 Assert-Contains 'Administration labels role' $source '\.form-label label\s*\{\s*@include easyedu\.type-control-label;'

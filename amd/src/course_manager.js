@@ -3670,7 +3670,7 @@ const renderFieldHelp = help => {
     // Keep the contextual-help control keyboard reachable. Its visual and
     // hover/focus behavior deliberately matches the accepted CCB Slideshow
     // question-mark control without importing another plugin at runtime.
-    return '<button type="button" class="btn btn-link p-0 icon-no-margin ' +
+    return '<button type="button" class="btn p-0 icon-no-margin ' +
         'local-groupimport-easystud-settings-modal__help" ' +
         'aria-label="' + escapeHtml(help) + '" data-easystud-hover-help="' + escapeHtml(help) + '">?</button>';
 };

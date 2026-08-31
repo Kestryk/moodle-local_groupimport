@@ -41,6 +41,9 @@ Must:
 - use only the shared regular, medium, semibold and strong weights for reusable
   administration chrome;
 - preserve plugin-owned wrapping, truncation and responsive layout rules.
+- use `type-caption` for compact operational explanations and native setting
+  descriptions when they accompany controls; reserve `type-body` for ordinary
+  explanatory copy that is intentionally more prominent.
 - use the shared mobile entity-switcher, context-sheet, card-menu and touch
   target contracts before adding plugin-local responsive surfaces;
 - keep all primary navigation destinations reachable in the compact rail and

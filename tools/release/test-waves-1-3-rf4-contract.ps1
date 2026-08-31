@@ -41,7 +41,7 @@ foreach ($needle in @(
 )) { Assert-Contains 'Group/Grouping semantic parity' $modal $needle }
 
 foreach ($needle in @(
-    '<button type="button" class="btn btn-link p-0 icon-no-margin ',
+    '<button type="button" class="btn p-0 icon-no-margin ',
     'local-groupimport-easystud-settings-modal__help',
     'aria-label="' ,
     'data-easystud-hover-help='

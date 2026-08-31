@@ -112,9 +112,13 @@
     @include easyedu.type-section-title;
   }
 
+  // Administration explanations are operational copy, like the accepted
+  // Mass Import paragraphs. Keep the page identity and headings unchanged,
+  // but use the compact caption role for section guidance and native setting
+  // descriptions so the form stays scannable.
   .formsettingheading .form-description,
   .local-groupimport-admin-settings__hero-copy p {
-    @include easyedu.type-body;
+    @include easyedu.type-caption;
   }
 
   .local-groupimport-admin-settings__hint span {
