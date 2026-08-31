@@ -12,11 +12,15 @@
 - Avoid reinserting the active card through pagination on each nested search
   input event without changing initialisation, Cancel, sorting or membership
   behavior.
+- Keep a draggable Group card temporarily non-draggable while one of its
+  interactive descendants owns focus or a pointer gesture, so native
+  double-click and mouse-drag text selection work inside nested search fields.
 
 #### Validation
 
-- Add a focused source/generated-AMD contract and document the managed preview
-  gate in `docs/eed-ui-2026-0072-nested-search-focus.md`.
+- Add a focused source/generated-AMD contract covering pagination and
+  interactive drag protection, and document the managed preview gate in
+  `docs/eed-ui-2026-0072-nested-search-focus.md`.
 
 ### EED-UI-2026-0071 - Additive Copy and Paste memberships - 2026-08-31
 

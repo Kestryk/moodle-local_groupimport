@@ -141,3 +141,16 @@
     Mass Import page identity/introduction and import logic.
   - Validation: official Sass/AMD build and focused static/release contracts;
     no runtime, cache, fixture or browser activity.
+
+## EED-UI-2026-0072-RF1 - Nested search mouse selection
+
+- Date: 2026-08-31
+- Cause: responsive refresh restored `draggable="true"` on a nested Group card
+  while its search input remained focused, allowing card drag to compete with
+  native double-click and mouse-drag text selection.
+- Correction: interactive descendants temporarily suspend their ancestor card
+  drag state; normal drag resumes after focus leaves the card control.
+- Preservation: UI 0072 filtering/focus behavior, Group drag from the card
+  surface, responsive drag suppression and membership data remain unchanged.
+- Validation: focused source/generated-AMD contract, canonical AMD build,
+  release validation and `git diff --check`; browser review remains separate.

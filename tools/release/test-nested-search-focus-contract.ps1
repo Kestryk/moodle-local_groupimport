@@ -20,7 +20,11 @@ $requiredSource = @(
     'const applyGroupMemberSearch = (root, options = {}) => {',
     'scheduleResponsiveUiRefresh(root, options);',
     'applyContainerGroupSearch(root, {pagination: false});',
-    'applyGroupMemberSearch(root, {pagination: false});'
+    'applyGroupMemberSearch(root, {pagination: false});',
+    'const dragInteractiveSelector =',
+    'disabled || hasFocusedDragControl(item)',
+    "root.addEventListener('focusin', guard, true);",
+    "root.addEventListener('focusout', event => {"
 )
 
 foreach ($needle in $requiredSource) {
@@ -48,6 +52,16 @@ foreach ($selector in @(
 $paginationBypasses = [regex]::Matches($build, 'pagination:!1').Count
 if ($paginationBypasses -lt 7) {
     throw 'Generated Course Manager does not contain both nested-search pagination bypasses.'
+}
+
+foreach ($needle in @(
+    '[contenteditable="true"]',
+    'document.activeElement',
+    'draggable'
+)) {
+    if (-not $build.Contains($needle)) {
+        throw "Generated Course Manager is missing interactive drag protection: $needle"
+    }
 }
 
 Write-Output 'EasyStud nested search focus static contract passed.'

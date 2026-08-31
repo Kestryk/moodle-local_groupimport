@@ -239,11 +239,23 @@ const isResponsiveDragSuppressed = () => {
         window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1024px)').matches;
 };
 
+const dragInteractiveSelector =
+    'button, a, input, textarea, select, form, [contenteditable="true"], .local-groupimport-easystud-selector';
+
+const isDragInteractiveTarget = target => {
+    return !!(target && target.closest && target.closest(dragInteractiveSelector));
+};
+
+const hasFocusedDragControl = item => {
+    const active = document.activeElement;
+    return !!(active && item.contains(active) && isDragInteractiveTarget(active));
+};
+
 const syncResponsiveDragAvailability = root => {
     const disabled = isResponsiveDragSuppressed();
     root.classList.toggle('local-groupimport-easystud--touch-drag-disabled', disabled);
     root.querySelectorAll('[data-easystud-user], [data-easystud-group-id]').forEach(item => {
-        item.setAttribute('draggable', disabled ? 'false' : 'true');
+        item.setAttribute('draggable', disabled || hasFocusedDragControl(item) ? 'false' : 'true');
     });
 };
 
@@ -254,11 +266,15 @@ const getGroupingDropIdForGroup = group => {
 
 const bindResponsiveDragGuard = root => {
     const guard = event => {
-        if (!isResponsiveDragSuppressed()) {
-            return;
-        }
         const card = event.target.closest('[data-easystud-user], [data-easystud-group-id]');
         if (!card || !root.contains(card)) {
+            return;
+        }
+        if (isDragInteractiveTarget(event.target)) {
+            card.setAttribute('draggable', 'false');
+            return;
+        }
+        if (!isResponsiveDragSuppressed()) {
             return;
         }
         syncResponsiveDragAvailability(root);
@@ -267,6 +283,13 @@ const bindResponsiveDragGuard = root => {
 
     root.addEventListener('pointerdown', guard, true);
     root.addEventListener('touchstart', guard, true);
+    root.addEventListener('focusin', guard, true);
+    root.addEventListener('focusout', event => {
+        if (!isDragInteractiveTarget(event.target)) {
+            return;
+        }
+        window.requestAnimationFrame(() => syncResponsiveDragAvailability(root));
+    }, true);
 };
 
 const getUserCopyFields = user => {

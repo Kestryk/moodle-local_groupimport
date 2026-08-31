@@ -25,6 +25,22 @@ This is a consumer-local lifecycle correction. It introduces no reusable
 component, visual token or UI Kit change, so the embedded component contracts
 remain unchanged.
 
+## RF1 - Mouse text selection inside nested Group cards
+
+Human Wave 8 review accepted continuous typing, Backspace, Paste, clear,
+focus/caret retention and live result updates. It also found that a search field
+inside a Group already placed in a Grouping could not select its typed text by
+double-click or mouse drag, although the same gestures worked in the Grouping
+search and in Groups without a Grouping.
+
+The nested Group card remains a draggable object. Responsive refresh was
+restoring `draggable="true"` even while a descendant input held focus, allowing
+the card drag contract to compete with native text selection. RF1 keeps a card
+non-draggable while any interactive descendant is focused or receives the
+initial pointer/touch gesture, then restores normal card drag availability
+after focus leaves. Dragging from the non-interactive card surface, responsive
+drag suppression, search filtering and membership behavior are unchanged.
+
 ## Validation
 
 Run from the plugin root:
@@ -35,7 +51,8 @@ Run from the plugin root:
 ```
 
 The focused static contract locks the input-event pagination bypass and the
-canonical generated AMD format. JavaScript syntax, the standard release
+interactive-control drag guard as well as the canonical generated AMD format.
+JavaScript syntax, the standard release
 validation and `git diff --check` remain required source gates. Runtime,
 cache, fixtures, preview and browser review are owned by the separate managed
 preview lane.
