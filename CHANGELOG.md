@@ -22,6 +22,23 @@
   contract, syntax, release and diff checks. Browser, cache and preview
   activity remain separately coordinated.
 
+### EED-UI-2026-0050-RF1 - Dynamic entity modal rehydration - 2026-08-31
+
+#### Fixed
+
+- Rebuild Participant group/grouping detail metadata from the current EasyStud
+  DOM after successful dynamic membership or entity mutations and immediately
+  before reopening details, without a page reload.
+- Keep Group and Grouping settings on their existing live-DOM reconstruction
+  path so all three entity modal families reopen with current names, counts and
+  relationships.
+
+#### Validation
+
+- Official Moodle AMD build, focused rehydration and complete AMD-format
+  contracts, JavaScript syntax and diff checks. Runtime, cache, fixture,
+  browser and preview validation remain separate.
+
 ### AMD runtime format repair - 2026-08-31
 
 #### Fixed

@@ -652,6 +652,91 @@ const setAdvancedAttributes = (element, data, type) => {
     }
 };
 
+/**
+ * Rebuild participant membership metadata from the live group/grouping DOM.
+ *
+ * Participant details are initially rendered as JSON attributes. Dynamic group
+ * and grouping mutations update the visible cards, so the cached JSON must be
+ * refreshed before a details modal is reopened.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ */
+const rehydrateParticipantMembershipDetails = root => {
+    if (!root) {
+        return;
+    }
+
+    const groups = new Map();
+    const groupings = new Map();
+    const memberships = new Map();
+    const groupingMemberships = new Map();
+
+    root.querySelectorAll('[data-easystud-grouping-id]').forEach(grouping => {
+        const groupingid = grouping.getAttribute('data-easystud-grouping-id') || '';
+        if (groupingid && !groupings.has(groupingid)) {
+            groupings.set(groupingid, getGroupingName(grouping));
+        }
+    });
+
+    root.querySelectorAll('[data-easystud-group-id]').forEach(group => {
+        const groupid = group.getAttribute('data-easystud-group-id') || '';
+        if (!groupid) {
+            return;
+        }
+        if (!groups.has(groupid)) {
+            groups.set(groupid, getGroupName(group));
+        }
+
+        const grouping = group.closest('[data-easystud-grouping-id]');
+        const groupingid = grouping ? (grouping.getAttribute('data-easystud-grouping-id') || '') : '';
+        if (groupingid) {
+            if (!groupingMemberships.has(groupid)) {
+                groupingMemberships.set(groupid, new Set());
+            }
+            groupingMemberships.get(groupid).add(groupingid);
+        }
+
+        group.querySelectorAll('[data-easystud-member-id]').forEach(member => {
+            const userid = member.getAttribute('data-easystud-member-id') || '';
+            if (!userid) {
+                return;
+            }
+            if (!memberships.has(userid)) {
+                memberships.set(userid, new Set());
+            }
+            memberships.get(userid).add(groupid);
+        });
+    });
+
+    const normaliseIds = ids => ids.map(id => /^\d+$/.test(id) ? Number(id) : id);
+    root.querySelectorAll('[data-easystud-user][data-user-id]').forEach(user => {
+        const userid = user.getAttribute('data-user-id') || '';
+        const groupids = Array.from(memberships.get(userid) || []);
+        const groupingids = Array.from(groupids.reduce((result, groupid) => {
+            (groupingMemberships.get(groupid) || []).forEach(groupingid => result.add(groupingid));
+            return result;
+        }, new Set()));
+
+        user.setAttribute('data-group-ids', groupids.join(','));
+        user.setAttribute('data-grouping-ids', groupingids.join(','));
+
+        const detail = user.getAttribute('data-user-detail');
+        if (!detail) {
+            return;
+        }
+        try {
+            const data = JSON.parse(detail);
+            data.groupids = normaliseIds(groupids);
+            data.groups = groupids.map(groupid => groups.get(groupid) || '').filter(Boolean);
+            data.groupingids = normaliseIds(groupingids);
+            data.groupings = groupingids.map(groupingid => groupings.get(groupingid) || '').filter(Boolean);
+            user.setAttribute('data-user-detail', JSON.stringify(data));
+        } catch (error) {
+            // Preserve the server-rendered detail payload if it is malformed.
+        }
+    });
+};
+
 const updateCatalogGroupingTags = (root, groupid) => {
     const groupingids = getGroupingIdsForGroup(root, groupid);
     const groupingnames = groupingids.map(groupingid => {
@@ -668,6 +753,7 @@ const updateCatalogGroupingTags = (root, groupid) => {
     });
     scheduleGroupGroupingOverflow(root);
     scheduleCompleteListAlignment(root);
+    rehydrateParticipantMembershipDetails(root);
 };
 
 const syncMaskedGroupingDescription = (group, container, masked, expanded) => {
@@ -2911,6 +2997,7 @@ const deleteGroupingElement = (root, groupingid) => {
         syncStructurePlaceholders(root);
         applyContainerGroupSearch(root);
         updateSelectionActions(root);
+        rehydrateParticipantMembershipDetails(root);
         requestGuideHighlightRefresh(root);
     };
     if (grouping) {
@@ -2920,6 +3007,7 @@ const deleteGroupingElement = (root, groupingid) => {
     syncStructurePlaceholders(root);
     applyContainerGroupSearch(root);
     updateSelectionActions(root);
+    rehydrateParticipantMembershipDetails(root);
 };
 
 const removeMembers = (root, courseId, members) => {
@@ -2971,6 +3059,7 @@ const removeMembers = (root, courseId, members) => {
                 syncGroupMembersState(groupcopy, getLabels(root));
             });
         });
+        rehydrateParticipantMembershipDetails(root);
         applyFilters(root);
         updateSelectionActions(root);
         return response;
@@ -3123,6 +3212,7 @@ const appendUsersToGroupCopies = (root, groupid, users, labels) => {
         });
         syncGroupMembersState(group, labels);
     });
+    rehydrateParticipantMembershipDetails(root);
     applyGroupMemberSearch(root);
 };
 
@@ -3999,6 +4089,7 @@ const applyAdvancedGroupUpdate = (root, data) => {
             input.value = data.rawname || data.name || '';
         }
     });
+    rehydrateParticipantMembershipDetails(root);
     scheduleGroupGroupingOverflow(root);
     requestGuideHighlightRefresh(root);
 };
@@ -4031,6 +4122,7 @@ const applyAdvancedGroupingUpdate = (root, data) => {
             updateCatalogGroupingTags(root, group.getAttribute('data-easystud-group-id'));
         }
     });
+    rehydrateParticipantMembershipDetails(root);
     scheduleGroupGroupingOverflow(root);
     requestGuideHighlightRefresh(root);
 };
@@ -6049,6 +6141,7 @@ const bindRenameForms = (root, courseId) => {
                 }
             }
 
+            rehydrateParticipantMembershipDetails(root);
             setRenameEditing(form, false);
 
             showNotification(root, response.message || '', 'success');
@@ -7957,6 +8050,7 @@ const bindParticipantModal = root => {
     };
 
     const openForUser = user => {
+        rehydrateParticipantMembershipDetails(root);
         const detail = user.getAttribute('data-user-detail');
         if (!detail) {
             return;

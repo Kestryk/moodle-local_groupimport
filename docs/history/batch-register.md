@@ -1,5 +1,18 @@
 # EasyStud batch register
 
+## EED-UI-2026-0050-RF1 - Dynamic entity modal rehydration
+
+- Date: 2026-08-31
+- Base: AMD-repaired cumulative EasyStud runtime source `13c4f31`.
+- Scope: recompute participant group/grouping filter attributes and cached
+  detail JSON from the live tree after AJAX mutations and before details open;
+  retain Group/Grouping live reconstruction.
+- Preservation: endpoints, permissions, transactions, notifications, modal
+  Motion and non-membership profile fields.
+- Validation: official Moodle AMD build, focused rehydration contract, complete
+  AMD runtime-format contract, syntax and `git diff --check`; no runtime or
+  browser scenario.
+
 ## Waves RF6 - AMD runtime format repair
 
 - Date: 2026-08-31
