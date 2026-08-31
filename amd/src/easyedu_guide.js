@@ -17,15 +17,15 @@ const DEFAULTS = {
   paths: {},
   unlockPaths: [],
   labels: {
-    close: 'Close',
-    next: 'Next',
-    previous: 'Previous',
-    start: 'Start guided path',
-    hint: 'Choose a step. The guide opens the right area and keeps this checklist visible.',
-    complete: 'Everything is ready. Return to the guide when you want to review another topic.',
-    guidedPath: 'Guided path',
-    visited: 'visited',
-    completeStepFirst: 'Complete "{$a}" first'
+    close: '',
+    next: '',
+    previous: '',
+    start: '',
+    hint: '',
+    complete: '',
+    guidedPath: '',
+    visited: '',
+    completeStepFirst: ''
   }
 };
 
@@ -1075,11 +1075,11 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
 
   if (title) {
     title.textContent = complete ?
-      (config.labels.complete || config.labels.guidedPath || 'Guided path') :
-      `${config.labels.guidedPath || 'Guided path'}: ${step.title || getPathLabel(pathName, config)}`;
+      (config.labels.complete || config.labels.guidedPath || '') :
+      `${config.labels.guidedPath || ''}: ${step.title || getPathLabel(pathName, config)}`;
   }
   if (subtitle) {
-    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.visited || 'visited'}`;
+    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.visited || ''}`;
   }
 };
 

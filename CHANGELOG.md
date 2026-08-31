@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+### EED-UI-2026-0069 - French localisation - 2026-08-31
+
+#### Fixed
+
+- Route dynamic EasyStud manager controls through server-provided Moodle
+  language strings instead of English JavaScript fallbacks, including empty
+  states, selection controls, group and grouping settings modals, Filepicker
+  text, notifications, sorting and action-overflow controls.
+- Localise Guide visual keyboard keys and creation examples, and keep Guide
+  runtime defaults empty until translated labels are supplied by its server
+  configuration.
+- Correct the French “Non renseigné” empty-value label while preserving the
+  English language pack and all interpolation contracts.
+
+#### Validation
+
+- Static language parity, placeholder parity, UTF-8/no-BOM/no-mojibake,
+  PHP/JavaScript syntax and generated-AMD checks are recorded in
+  docs/eed-ui-2026-0069-french-localisation.md. Runtime, cache, browser and
+  preview validation remain separately coordinated.
+
 ### Wave 4 RF5/RF1 - Group and Grouping help, counters and Administration copy - 2026-08-31
 
 #### Fixed

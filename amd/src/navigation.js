@@ -98,7 +98,7 @@ const enhanceParticipantsDropdown = (courseId, managerUrl, nativeParticipantsUrl
     nativeOption.setAttribute('role', 'option');
     nativeOption.setAttribute('data-value', nativeParticipantsUrl);
     nativeOption.setAttribute('data-local-groupimport-native-option', '1');
-    nativeOption.textContent = nativeParticipantsLabel || 'Enrolled users (Moodle)';
+    nativeOption.textContent = nativeParticipantsLabel || '';
     nativeOption.onclick = event => {
         event.preventDefault();
         window.location.href = nativeParticipantsUrl;

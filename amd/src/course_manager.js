@@ -581,7 +581,7 @@ const renderGroupGroupingTags = (container, groupingnames) => {
 
     const root = container.closest('.local-groupimport-easystud');
     const labels = root ? getLabels(root) : {};
-    const overflowLabel = labels.groupingoverflowlabel || '__count__ grouping(s)';
+    const overflowLabel = labels.groupingoverflowlabel || '';
     const shouldSummarise = groupingnames.length > 1 || (groupingnames[0] || '').length > 18;
     const summary = shouldSummarise ?
         overflowLabel.replace('__count__', groupingnames.length).replace('{$a}', groupingnames.length) :
@@ -778,7 +778,7 @@ const syncMaskedGroupingDescription = (group, container, masked, expanded) => {
     const names = Array.from(source.querySelectorAll('.local-groupimport-easystud-token--grouping'))
         .map(token => token.textContent.trim())
         .filter(Boolean);
-    description.textContent = (labels.groupings || 'Groupings') + ': ' + names.join(', ');
+    description.textContent = (labels.groupings || '') + ': ' + names.join(', ');
     description.hidden = expanded;
 };
 
@@ -883,7 +883,7 @@ const ensureTagToggle = (container, root) => {
         toggle.className = 'btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token';
         toggle.setAttribute('data-easystud-toggle-tags', '1');
         toggle.setAttribute('data-more-label', '+0');
-        toggle.setAttribute('data-less-label', (getLabels(root).showless || 'Less'));
+        toggle.setAttribute('data-less-label', getLabels(root).showless || '');
         container.appendChild(toggle);
     }
     return toggle;
@@ -1532,7 +1532,7 @@ const syncContainerGroupEmptyState = (root, list, query, visibleCount) => {
         filteredEmpty = document.createElement('div');
         filteredEmpty.className = 'local-groupimport-easystud-tree__empty local-groupimport-easystud-tree__empty--filtered';
         filteredEmpty.setAttribute('data-easystud-container-filter-empty', '1');
-        filteredEmpty.textContent = labels.noresultsfiltered || 'No results match the current filters.';
+        filteredEmpty.textContent = labels.noresultsfiltered || '';
     }
     placeManagedStateBeforeBottomPagination(list, filteredEmpty);
     filteredEmpty.hidden = !query || visibleCount > 0 || groups.length === 0;
@@ -1583,8 +1583,8 @@ const ensureGroupMemberSearchControls = (root, group) => {
     toggle.type = 'button';
     toggle.className = 'btn btn-link p-0 local-groupimport-easystud-group__member-search-button';
     toggle.setAttribute('data-easystud-group-member-search-toggle', groupid);
-    toggle.setAttribute('aria-label', labels.searchparticipantslabel || 'Search participants');
-    toggle.setAttribute('data-easystud-hover-help', labels.searchparticipantslabel || 'Search participants');
+    toggle.setAttribute('aria-label', labels.searchparticipantslabel || '');
+    toggle.setAttribute('data-easystud-hover-help', labels.searchparticipantslabel || '');
     toggle.innerHTML = '<span class="fa fa-search" aria-hidden="true"></span>';
 
     const mail = header.querySelector(':scope > .local-groupimport-easystud-group__mail-button');
@@ -1604,7 +1604,7 @@ const ensureGroupMemberSearchControls = (root, group) => {
                     '" data-easystud-group-member-search="' + groupid + '">' +
             '</label>' +
             '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-group-member-search-cancel="' +
-                groupid + '">' + (labels.cancel || 'Cancel') + '</button>' +
+                groupid + '">' + (labels.cancel || '') + '</button>' +
         '</div>';
     group.insertBefore(panel, members);
 };
@@ -1620,7 +1620,8 @@ const normaliseCardMenuButton = (button, root) => {
         button.setAttribute('aria-expanded', 'false');
     }
     if (!button.getAttribute('aria-label')) {
-        button.setAttribute('aria-label', root.getAttribute('data-easystud-mobile-card-actions') || 'Open actions');
+        button.setAttribute('aria-label',
+            root.getAttribute('data-easystud-mobile-card-actions') || getLabels(root).mobilecardactions || '');
     }
     const icon = button.querySelector(':scope > .local-groupimport-easystud-card-menu__icon.fa-bars');
     if (!icon || button.children.length !== 1) {
@@ -1667,7 +1668,7 @@ const ensureNestedGroupActionMenus = root => {
                 'local-groupimport-easystud-card-menu';
             toggle.setAttribute('data-easystud-group-actions-toggle', '1');
             toggle.setAttribute('aria-expanded', 'false');
-            toggle.setAttribute('aria-label', 'More actions');
+            toggle.setAttribute('aria-label', getLabels(root).moreactions || '');
             header.appendChild(toggle);
         }
         normaliseCardMenuButton(toggle, root);
@@ -1745,7 +1746,7 @@ const syncGroupMemberSearchEmptyState = (root, group, query, visibleCount) => {
         empty = document.createElement('li');
         empty.className = 'local-groupimport-easystud-tree__empty local-groupimport-easystud-tree__empty--filtered';
         empty.setAttribute('data-easystud-member-filter-empty', '1');
-        empty.textContent = labels.noresultsfiltered || 'No results match the current filters.';
+        empty.textContent = labels.noresultsfiltered || '';
         list.appendChild(empty);
     }
     empty.hidden = !query || visibleCount > 0;
@@ -2005,7 +2006,7 @@ const openParticipantMessageModal = (root, userids) => {
         return Promise.resolve();
     }
     if (typeof require !== 'function') {
-        showNotification(root, (getLabels(root).messagesendunavailable || 'Cannot send messages'), 'error');
+        showNotification(root, getLabels(root).messagesendunavailable || '', 'error');
         return Promise.resolve();
     }
     const stopWatchingMessageModal = watchNativeMessageModal();
@@ -2016,7 +2017,7 @@ const openParticipantMessageModal = (root, userids) => {
         require(['core_user/local/participants/bulkactions'], bulkactions => {
             if (!bulkactions || !bulkactions.showSendMessage) {
                 stopWatchingSoon();
-                reject(new Error(getLabels(root).messagesendunavailable || 'Cannot send messages'));
+                reject(new Error(getLabels(root).messagesendunavailable || ''));
                 return;
             }
             bulkactions.showSendMessage(ids)
@@ -2033,7 +2034,7 @@ const openParticipantMessageModal = (root, userids) => {
             reject(error);
         });
     }).catch(error => {
-        showNotification(root, error.message || (getLabels(root).messagesendunavailable || 'Cannot send messages'), 'error');
+        showNotification(root, error.message || getLabels(root).messagesendunavailable || '', 'error');
     });
 };
 
@@ -2590,7 +2591,7 @@ const bindMobileEntityViews = root => {
     syncViewportMode();
 };
 
-const ensurePanelActionOverflowControls = actions => {
+const ensurePanelActionOverflowControls = (root, actions) => {
     let toggle = actions.querySelector(':scope > [data-easystud-panel-actions-toggle]');
     let menu = actions.querySelector(':scope > [data-easystud-panel-actions-menu]');
 
@@ -2600,7 +2601,7 @@ const ensurePanelActionOverflowControls = actions => {
         toggle.className = 'btn btn-outline-secondary btn-sm local-groupimport-easystud__panel-actions-more';
         toggle.setAttribute('data-easystud-panel-actions-toggle', '1');
         toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'More actions');
+        toggle.setAttribute('aria-label', getLabels(root).moreactions || '');
         toggle.innerHTML = '<span class="local-groupimport-easystud-action-grip" aria-hidden="true"></span>';
         actions.appendChild(toggle);
     }
@@ -2636,7 +2637,7 @@ const cloneOverflowAction = (source, menu, toggle) => {
 
 const syncPanelActionOverflow = root => {
     root.querySelectorAll('.local-groupimport-easystud__panel-actions').forEach(actions => {
-        const {toggle, menu} = ensurePanelActionOverflowControls(actions);
+        const {toggle, menu} = ensurePanelActionOverflowControls(root, actions);
         const buttons = getPanelActionButtons(actions);
         const wasExpanded = toggle.getAttribute('aria-expanded') === 'true' && !menu.hidden;
 
@@ -2752,7 +2753,7 @@ let pendingActionCount = 0;
 const setActionBusyState = busy => {
     document.querySelectorAll('.local-groupimport-easystud').forEach(container => {
         const labels = JSON.parse(container.getAttribute('data-easystud-detail-labels') || '{}');
-        const label = labels.actioninprogress || 'Working...';
+        const label = labels.actioninprogress || '';
         const status = container.querySelector('[data-easystud-action-busy-status]');
         container.setAttribute('data-easystud-action-busy-label', label);
         container.classList.toggle('is-action-busy', busy);
@@ -2931,9 +2932,7 @@ const ensureGroupUnlinkButton = (root, group, groupingid) => {
         return;
     }
     const labels = getLabels(root);
-    const groupname = getGroupName(group);
-    const label = labels.removefromgroupinglabel || labels.removegroupfromgrouping ||
-        (groupname ? 'Remove ' + groupname + ' from this grouping' : 'Remove from this grouping');
+    const label = labels.removefromgroupinglabel || labels.removegroupfromgrouping || '';
     const button = createIconActionButton(
         'local-groupimport-easystud-group__unlink-button',
         'data-easystud-remove-from-grouping',
@@ -3126,7 +3125,7 @@ const normaliseMemberRemoveLabels = root => {
             return;
         }
 
-        const label = (labels.removeuser || 'Remove {name} from this group').replace('{name}', name.textContent.trim());
+        const label = (labels.removeuser || '').replace('{name}', name.textContent.trim());
         button.setAttribute('aria-label', label);
         button.setAttribute('title', label);
         button.setAttribute('data-easystud-hover-help', label);
@@ -3175,7 +3174,7 @@ const syncGroupMembersState = (group, labels) => {
         list.appendChild(empty);
     }
 
-    const template = labels.memberscounttemplate || '__count__ member(s)';
+    const template = labels.memberscounttemplate || '';
     badge.textContent = template.replace('__count__', members.length);
     group.setAttribute('data-easystud-advanced-count', badge.textContent);
     setCountBadgeState(badge, members.length, 'members');
@@ -3207,7 +3206,7 @@ const appendUsersToGroupCopies = (root, groupid, users, labels) => {
             if (!userid || list.querySelector('[data-easystud-member-id="' + userid + '"]')) {
                 return;
             }
-            const removelabel = (labels.removeuser || 'Remove {name} from this group').replace('{name}', fullname);
+            const removelabel = (labels.removeuser || '').replace('{name}', fullname);
             list.appendChild(createMemberItem(groupid, userid, fullname, removelabel, labels.selectionmode || ''));
         });
         syncGroupMembersState(group, labels);
@@ -3225,7 +3224,7 @@ const updateStructureSummary = root => {
 
     const groupings = root.querySelectorAll('[data-easystud-grouping-id]').length;
     const groups = root.querySelectorAll('[data-easystud-group-id]').length;
-    const template = labels.groupstructuresummarytemplate || '__groupings__ groupings, __groups__ groups';
+    const template = labels.groupstructuresummarytemplate || '';
     badge.textContent = template
         .replace('__groupings__', groupings)
         .replace('__groups__', groups);
@@ -3294,8 +3293,8 @@ const createGroupElement = (root, groupdata) => {
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
                     '<input type="text" name="name" class="form-control form-control-sm" aria-label="' + (labels.rename || '') + '">' +
-                    '<button type="submit" class="btn btn-sm btn-outline-secondary">' + (labels.save || 'Save') + '</button>' +
-                    '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + (labels.cancel || 'Cancel') + '</button>' +
+                    '<button type="submit" class="btn btn-sm btn-outline-secondary">' + (labels.save || '') + '</button>' +
+                    '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + (labels.cancel || '') + '</button>' +
                 '</div>' +
             '</form>' +
         '</div>' +
@@ -3310,7 +3309,7 @@ const createGroupElement = (root, groupdata) => {
                 '<button type="button" class="btn btn-sm btn-primary" data-easystud-add-group-emails="' + groupdata.id + '">' +
                     '<span class="fa fa-plus me-1" aria-hidden="true"></span><span>' + (labels.addemails || '') + '</span>' +
                 '</button>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-group-email="1">' + (labels.cancel || 'Cancel') + '</button>' +
+                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-group-email="1">' + (labels.cancel || '') + '</button>' +
             '</div>' +
             '<div class="local-groupimport-easystud-group-email__result" data-easystud-group-email-result="' + groupdata.id + '" aria-live="polite"></div>' +
         '</div>';
@@ -3336,7 +3335,7 @@ const createGroupElement = (root, groupdata) => {
                 if (!userid || list.querySelector('[data-easystud-member-id="' + userid + '"]')) {
                     return;
                 }
-                const removelabel = (labels.removeuser || 'Remove {name} from this group').replace('{name}', fullname);
+                const removelabel = (labels.removeuser || '').replace('{name}', fullname);
                 list.appendChild(createMemberItem(groupdata.id, userid, fullname, removelabel, labels.selectionmode || ''));
             });
         }
@@ -3396,8 +3395,8 @@ const createGroupingElement = (root, groupingdata) => {
                 '</button>' +
                 '<div class="local-groupimport-easystud-rename__edit" hidden>' +
                     '<input type="text" name="name" class="form-control form-control-sm" aria-label="' + (labels.rename || '') + '">' +
-                    '<button type="submit" class="btn btn-sm btn-outline-secondary">' + (labels.save || 'Save') + '</button>' +
-                    '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + (labels.cancel || 'Cancel') + '</button>' +
+                    '<button type="submit" class="btn btn-sm btn-outline-secondary">' + (labels.save || '') + '</button>' +
+                    '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + (labels.cancel || '') + '</button>' +
                 '</div>' +
             '</form>' +
         '</div>' +
@@ -3407,7 +3406,7 @@ const createGroupingElement = (root, groupingdata) => {
                     '<span class="fa fa-search" aria-hidden="true"></span>' +
                     '<input type="search" class="form-control" placeholder="' + (labels.searchgroupsplaceholder || '') + '" data-easystud-container-group-search="' + groupingdata.id + '">' +
                 '</label>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-container-search-cancel="' + groupingdata.id + '">' + (labels.cancel || 'Cancel') + '</button>' +
+                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-container-search-cancel="' + groupingdata.id + '">' + (labels.cancel || '') + '</button>' +
             '</div>' +
         '</div>' +
         '<div class="local-groupimport-easystud-group-email" data-easystud-grouping-groups-panel="' + groupingdata.id + '" hidden>' +
@@ -3416,7 +3415,7 @@ const createGroupingElement = (root, groupingdata) => {
                 '<button type="button" class="btn btn-sm btn-outline-primary" data-easystud-add-grouping-groups="' + groupingdata.id + '">' +
                     '<span class="fa fa-plus me-1" aria-hidden="true"></span><span>' + (labels.addgroups || '') + '</span>' +
                 '</button>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-grouping-groups="1">' + (labels.cancel || 'Cancel') + '</button>' +
+                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-grouping-groups="1">' + (labels.cancel || '') + '</button>' +
             '</div>' +
             '<div class="local-groupimport-easystud-group-email__result" data-easystud-grouping-groups-result="' + groupingdata.id + '" aria-live="polite"></div>' +
         '</div>' +
@@ -3496,7 +3495,7 @@ const ensureAdvancedSettingsButtons = root => {
             'local-groupimport-easystud-group__settings-button',
             'data-easystud-open-advanced-settings',
             group.getAttribute('data-easystud-group-id') || '',
-            labels.advancedsettings || 'Advanced settings',
+            labels.advancedsettings || '',
             'fa-cog'
         );
         button.setAttribute('data-easystud-advanced-target', 'group');
@@ -3513,7 +3512,7 @@ const ensureAdvancedSettingsButtons = root => {
             'local-groupimport-easystud-group__settings-button local-groupimport-easystud-grouping__settings-button',
             'data-easystud-open-advanced-settings',
             grouping.getAttribute('data-easystud-grouping-id') || '',
-            labels.advancedsettings || 'Advanced settings',
+            labels.advancedsettings || '',
             'fa-cog'
         );
         button.setAttribute('data-easystud-advanced-target', 'grouping');
@@ -3676,7 +3675,7 @@ const updateAdvancedFilePickerName = (root, input) => {
     const labels = getLabels(root);
     name.textContent = input.files && input.files.length ?
         input.files[0].name :
-        (labels.advancedsettingsnofile || 'No file selected');
+        (labels.advancedsettingsnofile || '');
 };
 
 const downloadTextFile = (filename, content, mimetype = 'text/csv;charset=utf-8') => {
@@ -3776,8 +3775,8 @@ const getAdvancedCountLabel = (root, item, isgroup) => {
         item.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]').length :
         item.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
     const template = isgroup ?
-        (labels.memberscounttemplate || (count === 1 ? '1 member' : count + ' members')) :
-        (labels.groupscounttemplate || (count === 1 ? '1 group' : count + ' groups'));
+        (labels.memberscounttemplate || '') :
+        (labels.groupscounttemplate || '');
     if (template.indexOf('__count__') === -1) {
         return template;
     }
@@ -3910,20 +3909,20 @@ const openAdvancedSettingsModal = (root, item) => {
     const labels = getLabels(root);
     const type = getAdvancedValue(item, 'type');
     const isgroup = type === 'group';
-    const title = getAdvancedValue(item, 'name') || (labels.advancedsettings || 'Advanced settings');
-    const notset = labels.advancedsettingsnotset || 'Not set';
+    const title = getAdvancedValue(item, 'name') || (labels.advancedsettings || '');
+    const notset = labels.advancedsettingsnotset || '';
     const nativeurl = getAdvancedValue(item, 'native-url');
     const picture = getAdvancedValue(item, 'picture');
     const count = getAdvancedCountLabel(root, item, isgroup);
-    const typeLabel = isgroup ? (labels.groupdetails || 'Group details') :
-        (labels.groupingdetails || 'Grouping details');
-    const pluginLabel = labels.pluginname || 'EasyStud';
+    const typeLabel = isgroup ? (labels.groupdetails || '') :
+        (labels.groupingdetails || '');
+    const pluginLabel = labels.pluginname || '';
     const icon = isgroup ? 'fa-users' : 'fa-layer-group';
     const memberRows = isgroup ? getAdvancedGroupMemberRows(root, item) : [];
     const groupGroupingRows = isgroup ? getAdvancedGroupGroupingRows(root, item) : [];
     const groupingGroupRows = isgroup ? [] : getAdvancedGroupingGroupRows(item);
-    const listTitle = isgroup ? (labels.advancedsettingsmembers || 'Members') : (labels.advancedsettingsgroups || 'Groups');
-    const relatedTitle = labels.groupings || 'Groupings';
+    const listTitle = isgroup ? (labels.advancedsettingsmembers || '') : (labels.advancedsettingsgroups || '');
+    const relatedTitle = labels.groupings || '';
     const safeTitle = title.toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '') || 'easystud';
 
     let modal = root.querySelector('[data-easystud-advanced-settings-modal]');
@@ -3951,7 +3950,7 @@ const openAdvancedSettingsModal = (root, item) => {
                 '</div>' +
                 '<button type="button" class="local-groupimport-easystud-modal__close" ' +
                     'data-easystud-close-advanced-settings="1" aria-label="' +
-                    escapeHtml(labels.close || 'Close') + '">' +
+                    escapeHtml(labels.close || '') + '">' +
                     '<span aria-hidden="true">&times;</span>' +
                 '</button>' +
             '</div>' +
@@ -3975,42 +3974,42 @@ const openAdvancedSettingsModal = (root, item) => {
                                     '</div>') +
                             '</div>' : '') +
                         '<div class="local-groupimport-easystud-settings-modal__grid">' +
-                            renderAdvancedInput(labels.advancedsettingsname || 'Name', 'name', getAdvancedValue(item, 'name')) +
-                            renderAdvancedInput(labels.advancedsettingsidnumber || 'ID number', 'idnumber',
+                            renderAdvancedInput(labels.advancedsettingsname || '', 'name', getAdvancedValue(item, 'name')) +
+                            renderAdvancedInput(labels.advancedsettingsidnumber || '', 'idnumber',
                                 getAdvancedValue(item, 'idnumber')) +
                             '<div class="local-groupimport-easystud-settings-modal__field local-groupimport-easystud-settings-modal__field--readonly">' +
-                                '<span>' + escapeHtml(isgroup ? (labels.advancedsettingsmembers || 'Members') :
-                                (labels.advancedsettingsgroups || 'Groups')) + '</span>' +
+                                '<span>' + escapeHtml(isgroup ? (labels.advancedsettingsmembers || '') :
+                                (labels.advancedsettingsgroups || '')) + '</span>' +
                                 '<strong>' + escapeHtml(count || notset) + '</strong>' +
                             '</div>' +
                             (isgroup ?
-                                renderAdvancedInput(labels.advancedsettingsenrolmentkey || 'Enrolment key',
+                                renderAdvancedInput(labels.advancedsettingsenrolmentkey || '',
                                     'enrolmentkey', '', 'password', labels.advancedsettingsenrolmentkeyhelp || '') :
                                 '<div class="local-groupimport-easystud-settings-modal__field local-groupimport-easystud-settings-modal__field--readonly">' +
-                                    '<span>' + escapeHtml(labels.advancedsettingsconfigdata || 'Configuration data') + '</span>' +
+                                    '<span>' + escapeHtml(labels.advancedsettingsconfigdata || '') + '</span>' +
                                     '<strong class="' + (!getAdvancedValue(item, 'config') ? 'is-empty' : '') + '">' +
                                         escapeHtml(getAdvancedValue(item, 'config') || notset) +
                                     '</strong>' +
                                 '</div>') +
                         '</div>' +
                     '</div>' +
-                    renderAdvancedTextarea(labels.advancedsettingsdescription || 'Description', 'description',
+                    renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
                         getAdvancedValue(item, 'raw-description')) +
                     '<div class="local-groupimport-easystud-settings-modal__lists">' +
                         (isgroup ?
                             renderAdvancedListSection(listTitle, memberRows, [
-                                {key: 'name', label: labels.advancedsettingsmembername || 'Name'},
-                                {key: 'email', label: labels.advancedsettingsmemberemail || 'Email'},
-                                {key: 'id', label: labels.advancedsettingsmemberid || 'ID'},
+                                {key: 'name', label: labels.advancedsettingsmembername || ''},
+                                {key: 'email', label: labels.advancedsettingsmemberemail || ''},
+                                {key: 'id', label: labels.advancedsettingsmemberid || ''},
                             ], 'easystud-' + safeTitle + '-members.csv', labels.advancedsettingsnomembers || '', 'members') +
                             renderAdvancedListSection(relatedTitle, groupGroupingRows, [
-                                {key: 'name', label: labels.advancedsettingsgroupingname || 'Grouping'},
-                                {key: 'id', label: labels.advancedsettingsgroupingid || 'ID'},
+                                {key: 'name', label: labels.advancedsettingsgroupingname || ''},
+                                {key: 'id', label: labels.advancedsettingsgroupingid || ''},
                             ], 'easystud-' + safeTitle + '-groupings.csv', labels.advancedsettingsnogroupings || '', 'groupings') :
                             renderAdvancedListSection(listTitle, groupingGroupRows, [
-                                {key: 'name', label: labels.advancedsettingsgroupname || 'Group'},
-                                {key: 'members', label: labels.advancedsettingsmembers || 'Members'},
-                                {key: 'id', label: labels.advancedsettingsgroupid || 'ID'},
+                                {key: 'name', label: labels.advancedsettingsgroupname || ''},
+                                {key: 'members', label: labels.advancedsettingsmembers || ''},
+                                {key: 'id', label: labels.advancedsettingsgroupid || ''},
                             ], 'easystud-' + safeTitle + '-groups.csv', labels.advancedsettingsnogroups || '', 'groups')) +
                     '</div>' +
                     (isgroup ?
@@ -4018,37 +4017,37 @@ const openAdvancedSettingsModal = (root, item) => {
                             '<div class="local-groupimport-easystud-settings-modal__filemanager">' +
                                 '<div class="local-groupimport-easystud-settings-modal__filemanager-title">' +
                                     '<span class="fa fa-file-image" aria-hidden="true"></span>' +
-                                    '<span>' + escapeHtml(labels.advancedsettingsimage || 'Group image') +
+                                    '<span>' + escapeHtml(labels.advancedsettingsimage || '') +
                                         renderFieldHelp(labels.advancedsettingsimagehelp || '') + '</span>' +
                                 '</div>' +
                                 '<label class="local-groupimport-easystud-settings-modal__filepicker">' +
                                     '<input type="file" name="imagefile" accept="image/*" data-easystud-advanced-file-input="1">' +
                                     '<span class="local-groupimport-easystud-settings-modal__filepicker-icon fa fa-cloud-upload-alt" aria-hidden="true"></span>' +
                                     '<span class="btn btn-secondary btn-sm">' +
-                                        escapeHtml(labels.advancedsettingschoosefile || 'Choose a file...') +
+                                        escapeHtml(labels.advancedsettingschoosefile || '') +
                                     '</span>' +
                                     '<span class="local-groupimport-easystud-settings-modal__filename" data-easystud-advanced-file-name>' +
-                                        escapeHtml(labels.advancedsettingsnofile || 'No file selected') +
+                                        escapeHtml(labels.advancedsettingsnofile || '') +
                                     '</span>' +
                                 '</label>' +
                             '</div>' +
                             '<label class="local-groupimport-easystud-toggle-check">' +
                                 '<input type="checkbox" name="deletepicture" value="1">' +
-                                '<span>' + escapeHtml(labels.deletepicture || 'Delete picture') + '</span>' +
+                                '<span>' + escapeHtml(labels.deletepicture || '') + '</span>' +
                             '</label>' +
                         '</div>' : '') +
                     '<div class="local-groupimport-easystud-modal__footer">' +
                         '<button type="submit" class="btn btn-primary">' +
                             '<span class="fa fa-save me-1" aria-hidden="true"></span>' +
-                            '<span>' + escapeHtml(labels.save || 'Save') + '</span>' +
+                            '<span>' + escapeHtml(labels.save || '') + '</span>' +
                         '</button>' +
                         '<button type="button" class="btn btn-outline-secondary" data-easystud-close-advanced-settings="1">' +
-                            escapeHtml(labels.cancel || 'Cancel') +
+                            escapeHtml(labels.cancel || '') +
                         '</button>' +
                         (nativeurl ?
                             '<a class="btn btn-outline-secondary" href="' + escapeHtml(nativeurl) + '">' +
                                 '<span class="fa fa-external-link-alt me-1" aria-hidden="true"></span>' +
-                                '<span>' + escapeHtml(labels.advancedsettingsnative || 'Edit in Moodle') + '</span>' +
+                                '<span>' + escapeHtml(labels.advancedsettingsnative || '') + '</span>' +
                             '</a>' : '') +
                     '</div>' +
                 '</form>' +
@@ -4354,7 +4353,7 @@ const getPagination = (list, inside, position) => {
             '<span class="local-groupimport-easystud-pagination__selection">' +
                 '<button type="button" class="btn btn-sm btn-outline-secondary local-groupimport-easystud-pagination__select" data-easystud-select-results="1">' +
                     '<span data-easystud-select-results-label>' +
-                        (labels.selectresults || 'Select results') +
+                        (labels.selectresults || '') +
                     '</span>' +
                 '</button>' +
                 '<span class="local-groupimport-easystud-pagination__count" data-easystud-list-count></span>' +
@@ -4368,16 +4367,16 @@ const getPagination = (list, inside, position) => {
             '</span>' +
             '<span class="local-groupimport-easystud-pagination__tools">' +
                 '<label class="local-groupimport-easystud-pagination__sort">' +
-                    '<span>' + (labels.sortitems || 'Sort') + '</span>' +
+                    '<span>' + (labels.sortitems || '') + '</span>' +
                     '<span class="local-groupimport-easystud-dropdown" data-easystud-list-sort-dropdown>' +
                         '<button type="button" class="local-groupimport-easystud-dropdown__button" data-easystud-list-sort-toggle aria-expanded="false">' +
-                            '<span data-easystud-list-sort-label>' + (labels.sortalpha || 'A-Z') + '</span>' +
+                            '<span data-easystud-list-sort-label>' + (labels.sortalpha || '') + '</span>' +
                             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
                         '</button>' +
                         '<span class="local-groupimport-easystud-dropdown__menu" data-easystud-list-sort-menu hidden>' +
-                            '<button type="button" data-easystud-list-sort-option="alpha">' + (labels.sortalpha || 'A-Z') + '</button>' +
-                            '<button type="button" data-easystud-list-sort-option="filled">' + (labels.sortfilledfirst || 'Filled first') + '</button>' +
-                            '<button type="button" data-easystud-list-sort-option="empty">' + (labels.sortemptyfirst || 'Empty first') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="alpha">' + (labels.sortalpha || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="filled">' + (labels.sortfilledfirst || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="empty">' + (labels.sortemptyfirst || '') + '</button>' +
                         '</span>' +
                     '</span>' +
                 '</label>' +
@@ -4471,15 +4470,15 @@ const getSortModeLabels = (root, list) => {
     const labels = getLabels(root);
     if (list && list.matches('[data-easystud-participant-list]')) {
         return {
-            alpha: labels.sortalpha || 'A-Z',
-            filled: labels.sortparticipantswithgroups || 'With group',
-            empty: labels.sortparticipantswithoutgroups || 'Without group',
+            alpha: labels.sortalpha || '',
+            filled: labels.sortparticipantswithgroups || '',
+            empty: labels.sortparticipantswithoutgroups || '',
         };
     }
     return {
-        alpha: labels.sortalpha || 'A-Z',
-        filled: labels.sortfilledfirst || 'Filled first',
-        empty: labels.sortemptyfirst || 'Empty first',
+        alpha: labels.sortalpha || '',
+        filled: labels.sortfilledfirst || '',
+        empty: labels.sortemptyfirst || '',
     };
 };
 
@@ -4523,15 +4522,15 @@ const updateResultSelectionControl = (root, list, config, select) => {
     if (!show) {
         select.removeAttribute('data-easystud-deselect-results');
         label.textContent = filtered ?
-            (labels.selectresults || 'Select results') :
-            (labels.selectall || 'Select all');
+            (labels.selectresults || '') :
+            (labels.selectall || '');
         return;
     }
     const allselected = items.every(item => item.classList.contains(selectedClass));
     select.setAttribute('data-easystud-deselect-results', allselected ? '1' : '0');
     label.textContent = allselected ?
-        (filtered ? (labels.deselectresults || 'Deselect results') : (labels.deselectall || 'Deselect all')) :
-        (filtered ? (labels.selectresults || 'Select results') : (labels.selectall || 'Select all'));
+        (filtered ? (labels.deselectresults || '') : (labels.deselectall || '')) :
+        (filtered ? (labels.selectresults || '') : (labels.selectall || ''));
 };
 
 // A selection only changes the select/deselect wording. Rebuilding every paginated list here delays card motion.
@@ -4564,7 +4563,7 @@ const updatePaginationMetaControls = (root, list, pagination, total, position) =
     }
     if (count) {
         const labels = getLabels(root);
-        const template = labels.listeditemscounttemplate || '__count__ item(s)';
+        const template = labels.listeditemscounttemplate || '';
         count.textContent = template.replace('__count__', String(total));
         count.hidden = !showCount;
         if (showCount) {
@@ -5098,10 +5097,10 @@ const openGroupDropModeModal = (root, oncopy, onmove) => {
                 '<p class="text-muted mb-0">' + (labels.groupdropmodedesc || '') + '</p>' +
                 '<div class="local-groupimport-easystud-modal__footer">' +
                     '<button type="button" class="btn btn-outline-secondary" data-easystud-choice-copy="1">' +
-                        (labels.groupdropcopy || 'Copy') +
+                        (labels.groupdropcopy || '') +
                     '</button>' +
                     '<button type="button" class="btn btn-primary" data-easystud-choice-move="1">' +
-                        (labels.groupdropmove || 'Move') +
+                        (labels.groupdropmove || '') +
                     '</button>' +
                 '</div>' +
             '</div>' +
@@ -5219,8 +5218,8 @@ const updateParticipantEmptyState = root => {
 
     const labels = getLabels(root);
     const message = users.length ?
-        (labels.noparticipantsfiltered || 'No participants match the current filters.') :
-        (list.getAttribute('data-empty-filtered-label') || labels.noparticipantsstate || 'No participants are available.');
+        (labels.noparticipantsfiltered || '') :
+        (list.getAttribute('data-empty-filtered-label') || labels.noparticipantsstate || '');
     const messageNode = state.querySelector('p');
     if (messageNode) {
         messageNode.textContent = message;
@@ -5244,11 +5243,11 @@ const syncManagedEmptyState = (root, list, selector, key) => {
     }
     placeManagedStateBeforeBottomPagination(list, state);
     if (items.length === 0 && (key === 'participant-groups' || key === 'structure-groups')) {
-        state.textContent = labels.nogroupsincourse || 'No groups exist in this course yet.';
+        state.textContent = labels.nogroupsincourse || '';
     } else if (key === 'structure-groupings' && items.length === 0) {
-        state.textContent = labels.nogroupingsincourse || labels.nogroupingsavailable || 'No groupings exist in this course yet.';
+        state.textContent = labels.nogroupingsincourse || labels.nogroupingsavailable || '';
     } else {
-        state.textContent = labels.noresultsfiltered || 'No results match the current filters.';
+        state.textContent = labels.noresultsfiltered || '';
     }
     state.hidden = visible;
 };
@@ -5385,7 +5384,7 @@ const renderMobileActionBar = (root, counts, activetype) => {
     }
 
     const labels = getLabels(root);
-    const template = labels.selectioncounttemplate || '__count__ selected';
+    const template = labels.selectioncounttemplate || '';
     summary.textContent = template.replace('__count__', String(total));
     bar.setAttribute('data-easystud-mobile-actions-type', activetype || '');
     buttons.innerHTML = '';
@@ -5465,7 +5464,7 @@ const updateSelectionActions = root => {
             frame.hidden = !hasSelection;
             const count = frame.querySelector('[data-easystud-clear-selection-count]');
             if (count) {
-                const template = labels.selectioncounttemplate || '__count__ selected';
+                const template = labels.selectioncounttemplate || '';
                 count.textContent = template.replace('__count__', String(
                     selectedUsers.length + selectedMembers.length + selectedGroups.length + selectedGroupings.length
                 ));
@@ -6173,7 +6172,7 @@ const ensureGroupEmailPanel = (group, groupid, labels) => {
                 '<span class="fa fa-plus me-1" aria-hidden="true"></span><span>' + (labels.addemails || '') + '</span>' +
             '</button>' +
             '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-group-email="1">' +
-                (labels.cancel || 'Cancel') +
+                (labels.cancel || '') +
             '</button>' +
         '</div>' +
         '<div class="local-groupimport-easystud-group-email__result" data-easystud-group-email-result="' +
@@ -6427,7 +6426,7 @@ const ensureInlinePanelCancelButtons = root => {
         cancel.type = 'button';
         cancel.className = 'btn btn-sm btn-outline-secondary';
         cancel.setAttribute('data-easystud-cancel-group-email', '1');
-        cancel.textContent = labels.cancel || 'Cancel';
+        cancel.textContent = labels.cancel || '';
         wrapper.appendChild(cancel);
     });
 
@@ -6448,7 +6447,7 @@ const ensureInlinePanelCancelButtons = root => {
         cancel.type = 'button';
         cancel.className = 'btn btn-sm btn-outline-secondary';
         cancel.setAttribute('data-easystud-cancel-grouping-groups', '1');
-        cancel.textContent = labels.cancel || 'Cancel';
+        cancel.textContent = labels.cancel || '';
         wrapper.appendChild(cancel);
     });
 };
@@ -6601,7 +6600,7 @@ const bindMoveModal = (root, courseId) => {
             const ungrouped = root.querySelector('.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__toggle');
             const ungroupedOption = document.createElement('option');
             ungroupedOption.value = '0';
-            ungroupedOption.textContent = ungrouped ? ungrouped.textContent.trim() : (labels.groupswithoutgrouping || 'Without grouping');
+            ungroupedOption.textContent = ungrouped ? ungrouped.textContent.trim() : (labels.groupswithoutgrouping || '');
             destination.insertBefore(ungroupedOption, destination.firstChild);
         }
 
@@ -6615,8 +6614,8 @@ const bindMoveModal = (root, courseId) => {
         help.textContent = body.getAttribute(type === 'participant' ? 'data-move-participants-help' : 'data-move-groups-help') || '';
         label.textContent = body.getAttribute(type === 'participant' ? 'data-move-participants-label' : 'data-move-groups-label') || '';
         confirmButton.textContent = selectedCount === 1 ?
-            (labels.moveconfirmone || 'Move selected item') :
-            (labels.moveconfirmmany || 'Move selected items');
+            (labels.moveconfirmone || '') :
+            (labels.moveconfirmmany || '');
         if (removeOriginWrap) {
             const selectedGroups = type === 'group' ? getSelectedItems(root, 'group') : [];
             removeOriginWrap.hidden = type !== 'group' || getGroupsWithGroupingMembership(root, selectedGroups).length === 0;
@@ -6631,8 +6630,8 @@ const bindMoveModal = (root, courseId) => {
         if (emptyState) {
             emptyState.hidden = hasDestination;
             emptyState.textContent = type === 'participant' ?
-                (labels.nomovegroupsavailable || 'No groups are available yet. Create a group before moving participants.') :
-                (labels.nomovegroupingsavailable || 'No groupings are available yet. Create a grouping before moving groups.');
+                (labels.nomovegroupsavailable || '') :
+                (labels.nomovegroupingsavailable || '');
         }
         showEasyStudModal(modal);
         if (hasDestination) {
@@ -8025,7 +8024,7 @@ const bindParticipantModal = root => {
                 '<ul>' + entries.map(value => '<li>' + escapeHtml(value) + '</li>').join('') + '</ul>' +
             '</div>' :
             '<div class="local-groupimport-easystud-detail__list-empty">' +
-                escapeHtml(labels.advancedsettingsnotset || 'Not set') +
+                escapeHtml(labels.advancedsettingsnotset || '') +
             '</div>';
         return '<details class="local-groupimport-easystud-detail__list local-groupimport-easystud-detail__list--' +
                 escapeHtml(modifier || 'default') + '" data-easystud-detail-list="1" open>' +
@@ -8062,7 +8061,7 @@ const bindParticipantModal = root => {
                     '<div class="local-groupimport-easystud-detail__avatar">' + (data.profileimage || '') + '</div>' +
                     '<div class="local-groupimport-easystud-detail__identity">' +
                         '<span class="local-groupimport-easystud-detail__identity-label">' +
-                            escapeHtml(labels.participantdetails || 'Participant') +
+                            escapeHtml(labels.participantdetails || '') +
                         '</span>' +
                         '<h4>' + escapeHtml(data.fullname || '') + '</h4>' +
                         (data.email ? '<p>' + escapeHtml(data.email) + '</p>' : '') +
@@ -8078,12 +8077,12 @@ const bindParticipantModal = root => {
                     renderParticipantField(labels.language || '', data.lang) +
                 '</div>' +
                 '<div class="local-groupimport-easystud-detail__lists">' +
-                    renderParticipantList(labels.roles || 'Roles', data.roles || [], 'roles') +
-                    renderParticipantList(labels.groups || 'Groups', data.groups || [], 'groups') +
-                    renderParticipantList(labels.groupings || 'Groupings', data.groupings || [], 'groupings') +
+                    renderParticipantList(labels.roles || '', data.roles || [], 'roles') +
+                    renderParticipantList(labels.groups || '', data.groups || [], 'groups') +
+                    renderParticipantList(labels.groupings || '', data.groupings || [], 'groupings') +
                 '</div>' +
                 (data.description ? '<details class="local-groupimport-easystud-detail__description" open>' +
-                    '<summary>' + escapeHtml(labels.advancedsettingsdescription || 'Description') + '</summary>' +
+                    '<summary>' + escapeHtml(labels.advancedsettingsdescription || '') + '</summary>' +
                     '<div>' + data.description + '</div>' +
                 '</details>' : '') +
                 (data.profileurl ? '<div class="local-groupimport-easystud-settings-modal__native">' +
