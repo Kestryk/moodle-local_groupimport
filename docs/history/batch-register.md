@@ -1,5 +1,20 @@
 # EasyStud batch register
 
+## EED-UI-2026-0072 - Nested card search focus
+
+- Date: 2026-08-31
+- Base: accepted additive Copy/Paste source `b9bf83d`.
+- Cause: nested Group and Grouping search input events scheduled pagination,
+  whose sort step reinserted the card containing the active field and discarded
+  browser focus/caret.
+- Correction: retain live filtering, counts, empty states and responsive
+  geometry while bypassing pagination only for nested search input events.
+- Preservation: initialisation, Cancel, sort order, membership data, responsive
+  behavior and all server transactions.
+- Validation: focused source/generated-AMD contract, complete AMD runtime-format
+  contract, JavaScript syntax, release validation and `git diff --check`; no
+  runtime, cache, fixture, preview or browser activity.
+
 ## EED-UI-2026-0050-RF1 - Dynamic entity modal rehydration
 
 - Date: 2026-08-31

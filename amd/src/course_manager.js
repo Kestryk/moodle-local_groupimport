@@ -1538,7 +1538,7 @@ const syncContainerGroupEmptyState = (root, list, query, visibleCount) => {
     filteredEmpty.hidden = !query || visibleCount > 0 || groups.length === 0;
 };
 
-const applyContainerGroupSearch = root => {
+const applyContainerGroupSearch = (root, options = {}) => {
     root.querySelectorAll('[data-easystud-container-group-list]').forEach(list => {
         const key = list.getAttribute('data-easystud-container-group-list') || '';
         const section = list.closest('.local-groupimport-easystud-tree__section');
@@ -1564,7 +1564,7 @@ const applyContainerGroupSearch = root => {
             window.requestAnimationFrame(() => syncGroupingGroupsCollapsible(section));
         }
     });
-    scheduleResponsiveUiRefresh(root);
+    scheduleResponsiveUiRefresh(root, options);
 };
 
 const ensureGroupMemberSearchControls = (root, group) => {
@@ -1752,7 +1752,7 @@ const syncGroupMemberSearchEmptyState = (root, group, query, visibleCount) => {
     empty.hidden = !query || visibleCount > 0;
 };
 
-const applyGroupMemberSearch = root => {
+const applyGroupMemberSearch = (root, options = {}) => {
     root.querySelectorAll('[data-easystud-group-id]').forEach(group => {
         ensureGroupMemberSearchControls(root, group);
         const groupid = group.getAttribute('data-easystud-group-id') || '';
@@ -1787,7 +1787,7 @@ const applyGroupMemberSearch = root => {
         syncGroupMembersCollapsible(group);
         scheduleGroupingResizeForGroup(group);
     });
-    scheduleResponsiveUiRefresh(root);
+    scheduleResponsiveUiRefresh(root, options);
 };
 
 const showNotification = (root, message, type) => {
@@ -7535,7 +7535,11 @@ const bindContainerGroupSearch = root => {
         if (!event.target.closest('[data-easystud-container-group-search]')) {
             return;
         }
-        applyContainerGroupSearch(root);
+        // Sorting re-inserts every card in its list. If the active search is
+        // inside one of those cards, that DOM move drops focus and the caret.
+        // The nested filter already updates its own results and empty state;
+        // keep the surrounding pagination order stable while the user types.
+        applyContainerGroupSearch(root, {pagination: false});
     });
     applyContainerGroupSearch(root);
 };
@@ -7601,7 +7605,10 @@ const bindGroupMemberSearch = root => {
         if (!event.target.closest('[data-easystud-group-member-search]')) {
             return;
         }
-        applyGroupMemberSearch(root);
+        // Keep the focused Group card in place while its members are filtered.
+        // Responsive sizing still refreshes, but pagination must not reinsert
+        // the active card on every character, Backspace, Paste or native clear.
+        applyGroupMemberSearch(root, {pagination: false});
     });
     applyGroupMemberSearch(root);
 };
