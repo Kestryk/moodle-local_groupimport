@@ -12734,6 +12734,7 @@
 }
 .local-groupimport-easystud-settings-modal__help {
   align-items: center;
+  appearance: none;
   background: transparent;
   border: 1px solid rgba(15, 108, 191, 0.35);
   border-radius: 999px;
@@ -12748,15 +12749,23 @@
   min-height: 1.15rem;
   min-width: 1.15rem;
   padding: 0;
-  text-decoration: none;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
   width: 1.15rem;
   margin-inline-start: 0.08rem;
 }
-.local-groupimport-easystud-settings-modal__help:hover, .local-groupimport-easystud-settings-modal__help:focus-visible {
+.local-groupimport-easystud-settings-modal__help:hover, .local-groupimport-easystud-settings-modal__help:active, .local-groupimport-easystud-settings-modal__help:focus, .local-groupimport-easystud-settings-modal__help:focus-visible {
   background: var(--easyedu-primary-soft);
   border-color: rgba(15, 108, 191, 0.35);
   color: var(--easyedu-primary-strong);
-  text-decoration: none;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+}
+.local-groupimport-easystud-settings-modal__help:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
 }
 .local-groupimport-easystud-settings-modal__filemanager-title > span:last-child {
   align-items: center;
@@ -12824,6 +12833,7 @@
   grid-template-columns: minmax(0, 1fr) auto auto;
   list-style: none;
   padding: 0.52rem 0.62rem;
+  gap: 0.7rem;
 }
 .local-groupimport-easystud-settings-modal__list-section summary:focus-visible {
   border-color: var(--easyedu-control-focus-border);
@@ -12871,13 +12881,15 @@
   transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;
   align-items: center;
   display: inline-flex;
-  font-size: var(--easyedu-font-size-caption);
+  font-size: 0.78rem;
   font-weight: var(--easyedu-font-weight-semibold);
   gap: 0.28rem;
   justify-self: end;
   max-width: min(12rem, 100%);
+  min-height: 1.45rem;
   min-width: 0;
   overflow: hidden;
+  padding: 0.16rem 0.54rem;
 }
 .local-groupimport-easystud-settings-modal__list-section summary > strong .local-groupimport-easystud-settings-modal__list-count-label {
   font-size: inherit;
@@ -19052,9 +19064,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-body);
-  line-height: var(--easyedu-line-height-body);
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__hint span {
   font-family: var(--easyedu-font-family-ui);
