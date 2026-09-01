@@ -3,6 +3,8 @@
 // Use this for custom plugin help bubbles when native browser `title` would
 // duplicate the information or provide too little styling control.
 
+@use "focus";
+
 @mixin tooltip-surface($long: false) {
   background:
     radial-gradient(circle at 1.2rem 0.6rem, var(--easyedu-tooltip-glow), transparent 5.5rem),
@@ -154,17 +156,58 @@
   }
 }
 
-@mixin help-icon {
+// Canonical contextual-help control, extracted from the first accepted CCB
+// Slideshow question-mark control. The consumer keeps its native button/link
+// semantics, accessible name and cursor; this mixin owns only geometry and
+// visual interaction states.
+@mixin contextual-help-control {
   align-items: center;
   background: var(--easyedu-primary-soft);
   border: 1px solid color-mix(in srgb, var(--easyedu-primary) 24%, #fff 76%);
   border-radius: 999px;
   color: var(--easyedu-primary);
   display: inline-flex;
+  flex: 0 0 1.15rem;
   font-size: 0.72rem;
-  font-weight: 800;
-  height: 1.35rem;
+  font-weight: 700;
+  height: 1.15rem;
   justify-content: center;
   line-height: 1;
-  width: 1.35rem;
+  max-height: 1.15rem;
+  max-width: 1.15rem;
+  min-height: 1.15rem;
+  min-width: 1.15rem;
+  padding: 0;
+  text-decoration: none;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+  width: 1.15rem;
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, #fff 28%);
+    border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%);
+    color: var(--easyedu-primary);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+}
+
+// Backward-compatible public name. Consumers migrate selectors separately;
+// the canonical geometry is nevertheless unique in the Kit.
+@mixin help-icon {
+  @include contextual-help-control;
 }

@@ -8,6 +8,7 @@ $reference = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'fixtures\ccb-sli
     ConvertFrom-Json
 $manager = Get-Content -LiteralPath (Join-Path $root 'amd\src\course_manager.js') -Raw
 $modal = Get-Content -LiteralPath (Join-Path $root 'scss\components\_settings-modal.scss') -Raw
+$tooltips = Get-Content -LiteralPath (Join-Path $root 'scss\easyedu\components\_tooltips.scss') -Raw
 $settings = Get-Content -LiteralPath (Join-Path $root 'settings.php') -Raw
 $manage = Get-Content -LiteralPath (Join-Path $root 'manage.php') -Raw
 $admin = Get-Content -LiteralPath (Join-Path $root 'scss\views\_admin-settings.scss') -Raw
@@ -21,9 +22,12 @@ function Assert-Literal([string]$label, [string]$contents, [string]$fragment) {
 }
 
 Assert-Literal 'CCB reference provenance' $reference.sourceCommit '201edafc0efa228c9784c44787b05ef83048f2de'
-Assert-Literal 'Help reference class prefix' $manager $reference.help.classList
-Assert-Literal 'Help reference diameter' $modal ("flex: 0 0 {0};" -f $reference.help.diameter)
-Assert-Literal 'Help reference font size' $modal ("font-size: {0};" -f $reference.help.fontSize)
+Assert-Literal 'Canonical Help mixin adoption' $modal '@include easyedu.contextual-help-control;'
+Assert-Literal 'Help reference diameter' $tooltips ("flex: 0 0 {0};" -f $reference.help.diameter)
+Assert-Literal 'Help reference font size' $tooltips ("font-size: {0};" -f $reference.help.fontSize)
+if ($manager.Contains($reference.help.classList)) {
+    throw 'EasyStud must not retain the historical cross-plugin CCB help class.'
+}
 Assert-Literal 'Toggle reference row class' $manager $reference.toggle.rowClass
 Assert-Literal 'Toggle reference button class' $manager $reference.toggle.buttonClass
 Assert-Literal 'Toggle hidden value' $manager ('type="' + $reference.toggle.inputType + '" name="deletepicture"')

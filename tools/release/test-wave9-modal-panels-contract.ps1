@@ -25,11 +25,9 @@ function Assert-NotContains {
 }
 
 Assert-Contains $manager 'class="btn btn-link p-0 icon-no-margin ' 'Contextual help must keep the accepted CCB Slideshow button structure.'
-Assert-Contains $manager 'local-course-banner-builder-help-dot ' 'Contextual help must carry the accepted reference class.'
 Assert-Contains $manager 'local-groupimport-easystud-settings-modal__help" ' 'Contextual help must retain the EasyStud behavior hook.'
-Assert-Contains $modal 'flex: 0 0 1.15rem;' 'Contextual help must keep the actual CCB Slideshow diameter.'
-Assert-Contains $modal 'text-decoration-line: none !important;' 'Contextual help must suppress theme hover underlines.'
-Assert-Contains $modal 'easyedu.ring($border-color: var(--easyedu-control-focus-border))' 'Contextual help must retain keyboard focus visibility.'
+Assert-Contains $modal '@include easyedu.contextual-help-control;' 'Contextual help must use the canonical Kit primitive.'
+Assert-NotContains $manager 'local-course-banner-builder-help-dot ' 'EasyStud contextual help must not retain a cross-plugin class.'
 
 Assert-Contains $manager 'local-groupimport-easystud-settings-modal__field--entity-count' 'Entity count fields must expose their semantic label mapping.'
 Assert-Contains $manager 'local-groupimport-easystud-settings-modal__field-label' 'Members and Groups count labels must expose the shared label hook.'

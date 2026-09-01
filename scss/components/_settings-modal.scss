@@ -296,50 +296,7 @@
   }
 
   &-settings-modal__help {
-    // Exact CCB Slideshow help-dot geometry and Bootstrap button structure.
-    // Keep this selector beside the reference class carried by the markup so
-    // theme link rules cannot turn the question mark back into an underlined
-    // text action.
-    & {
-      appearance: none;
-      align-items: center;
-      background: transparent;
-      border: 1px solid rgba(15, 108, 191, 0.35);
-      border-radius: 999px;
-      color: var(--easyedu-primary);
-      display: inline-flex;
-      flex: 0 0 1.15rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      height: 1.15rem !important;
-      justify-content: center;
-      line-height: 1;
-      margin: 0 0 0 0.08rem;
-      max-height: 1.15rem !important;
-      max-width: 1.15rem !important;
-      min-height: 1.15rem !important;
-      min-width: 1.15rem !important;
-      padding: 0 !important;
-      text-decoration: none !important;
-      text-decoration-line: none !important;
-      vertical-align: middle;
-      width: 1.15rem !important;
-    }
-
-    &:hover,
-    &:active,
-    &:focus,
-    &:focus-visible {
-      background: var(--easyedu-primary-soft) !important;
-      border-color: rgba(15, 108, 191, 0.35) !important;
-      color: var(--easyedu-primary-strong) !important;
-      text-decoration: none !important;
-      text-decoration-line: none !important;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-    }
+    @include easyedu.contextual-help-control;
   }
 
   &-settings-modal__filemanager-title > span:last-child {

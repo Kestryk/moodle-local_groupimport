@@ -12,7 +12,7 @@ plugin needs a consistent visual style and must avoid duplicated native browser
 }
 
 .my-help-icon {
-  @include easyedu.help-icon;
+  @include easyedu.contextual-help-control;
 }
 
 .my-custom-popover {
@@ -39,6 +39,20 @@ plugin needs a consistent visual style and must avoid duplicated native browser
   creates Moodle-like hover popovers in JavaScript. This keeps custom popovers
   visually aligned with EasyStud while preserving plugin-specific positioning
   logic.
+
+## Contextual-help control contract
+
+`contextual-help-control` is the canonical question-mark trigger extracted
+from the accepted first CCB Slideshow control. `help-icon` remains a compatible
+public alias; it does not define a second geometry.
+
+- The circle is exactly `1.15rem` and must not grow with surrounding text.
+- Hover and keyboard focus never underline the trigger.
+- `:focus-visible` keeps the shared EasyEdu focus ring.
+- The consumer owns the native element, accessible name, tooltip/popover
+  lifecycle and cursor semantics.
+- Do not add plugin-local width, border or hover overrides to reproduce a
+  larger question-mark variant.
 
 ## Import Contract
 

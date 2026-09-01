@@ -591,6 +591,26 @@ Must not:
   its compact presentation needs to change; preserve the markup and scope the
   alternate styling to the responsive breakpoint.
 
+## Contextual help
+
+Canonical files:
+
+- `scss/easyedu/components/_tooltips.scss`
+- `easyedu-kit-docs/components/tooltips.md`
+
+Must:
+
+- use `contextual-help-control` (or its compatible `help-icon` alias) for every
+  interactive question-mark trigger;
+- keep the accepted `1.15rem` circle, non-underlined hover/focus and shared
+  focus-visible ring;
+- preserve the consumer's accessible name, cursor and popover lifecycle.
+
+Must not:
+
+- create plugin-local question-mark sizes, borders or hover treatments;
+- use help text as the only accessible name of an icon-only trigger.
+
 Responsive plugin navigation may use `mobile-primary-nav-rail` or the
 `mobile-primary-nav-trigger` / `mobile-primary-nav-panel` /
 `mobile-primary-nav-backdrop` family. The off-canvas variant must preserve all
@@ -633,8 +653,8 @@ Must:
   modals;
 - use `settings-modal-filepicker` and `modal-file-drop-state` for image/file
   uploads.
-- use `help-tooltip` for contextual question-mark controls and keep theme link
-  decoration from replacing the shared hover/focus treatment;
+- use `contextual-help-control` for contextual question-mark controls and keep
+  theme link decoration from replacing the shared hover/focus treatment;
 - compose `toggle-check` with `slideshow-toggle-row` when an entity-modal image
   toggle must match the accepted CCB/Kit surface and Motion states;
 - keep entity-count field labels on `type-caption` with a deliberate

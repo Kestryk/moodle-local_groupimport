@@ -2,6 +2,15 @@
 
 ## 2026-09-01
 
+### EasyStud Wave 13 contextual help controls
+
+- Adopted the `EED-KIT-2026-0009` canonical `contextual-help-control` from
+  UI Kit source `f9d8247` for every interactive EasyStud question mark.
+- Removed the duplicated 1.15 rem modal styling, the unused 1.35 rem local
+  help-dot variant and the cross-plugin CCB class from EasyStud markup.
+- Preserved native button semantics, accessible names and the existing
+  hover/focus popover lifecycle for Enrollment-key and Group-image help.
+
 ### EasyStud Wave 12 Navigation and Guide surfaces
 
 - Adopted the bounded Navigation/Guide surface foundations from UI Kit

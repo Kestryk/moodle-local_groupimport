@@ -1,5 +1,23 @@
 # EasyStud batch register
 
+## Wave 13 - EED-UI-2026-0052
+
+- Date: 2026-09-01.
+- Base: cumulative Wave 12 source `a8f8398`.
+- Kit input: `EED-KIT-2026-0009` source `f9d8247`.
+- Scope: migrate every interactive EasyStud question-mark trigger to the
+  canonical contextual-help mixin and remove retired local/cross-plugin visual
+  variants.
+- Inventory: the Group settings modal exposes two non-empty question-mark
+  controls through `renderFieldHelp`: Enrollment key and Group image. Guide and
+  tutorial question icons are decorative, while other hover-help consumers are
+  action icons rather than question marks.
+- Preservation: native button semantics, `aria-label`, hover-help data,
+  popover lifecycle, Enrollment help copy and Group image toggle behavior.
+- Validation: official Sass and Course Manager AMD builds plus focused
+  positive/negative contracts; no runtime, cache, fixture, preview or browser
+  activity.
+
 ## Wave 11 - EED-UI-2026-0035-RF1 / 0045 dependency gate
 
 - Date: 2026-09-01.

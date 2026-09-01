@@ -4048,22 +4048,6 @@
   display: block;
   margin: 0;
 }
-.local-groupimport-easystud-help-dot {
-  align-items: center;
-  background: #f6fafc;
-  border: 1px solid #d6e2ec;
-  border-radius: 999px;
-  color: #52687d;
-  cursor: help;
-  display: inline-flex;
-  flex: 0 0 auto;
-  font-size: 0.72rem;
-  font-weight: 800;
-  height: 1.35rem;
-  justify-content: center;
-  line-height: 1;
-  width: 1.35rem;
-}
 
 .local-groupimport-easystud-tree {
   display: grid;
@@ -12811,42 +12795,42 @@
   white-space: nowrap;
 }
 .local-groupimport-easystud-settings-modal__help {
-  appearance: none;
   align-items: center;
-  background: transparent;
-  border: 1px solid rgba(15, 108, 191, 0.35);
+  background: var(--easyedu-primary-soft);
+  border: 1px solid color-mix(in srgb, var(--easyedu-primary) 24%, #fff 76%);
   border-radius: 999px;
   color: var(--easyedu-primary);
   display: inline-flex;
   flex: 0 0 1.15rem;
   font-size: 0.72rem;
   font-weight: 700;
-  height: 1.15rem !important;
+  height: 1.15rem;
   justify-content: center;
   line-height: 1;
-  margin: 0 0 0 0.08rem;
-  max-height: 1.15rem !important;
-  max-width: 1.15rem !important;
-  min-height: 1.15rem !important;
-  min-width: 1.15rem !important;
-  padding: 0 !important;
-  text-decoration: none !important;
-  text-decoration-line: none !important;
-  vertical-align: middle;
-  width: 1.15rem !important;
+  max-height: 1.15rem;
+  max-width: 1.15rem;
+  min-height: 1.15rem;
+  min-width: 1.15rem;
+  padding: 0;
+  text-decoration: none;
+  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
+  width: 1.15rem;
 }
-.local-groupimport-easystud-settings-modal__help:hover, .local-groupimport-easystud-settings-modal__help:active, .local-groupimport-easystud-settings-modal__help:focus, .local-groupimport-easystud-settings-modal__help:focus-visible {
-  background: var(--easyedu-primary-soft) !important;
-  border-color: rgba(15, 108, 191, 0.35) !important;
-  color: var(--easyedu-primary-strong) !important;
-  text-decoration: none !important;
-  text-decoration-line: none !important;
+.local-groupimport-easystud-settings-modal__help:hover, .local-groupimport-easystud-settings-modal__help:focus, .local-groupimport-easystud-settings-modal__help:focus-visible {
+  background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, #fff 28%);
+  border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%);
+  color: var(--easyedu-primary);
+  text-decoration: none;
 }
 .local-groupimport-easystud-settings-modal__help:focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-settings-modal__help:disabled, .local-groupimport-easystud-settings-modal__help[aria-disabled=true] {
+  cursor: not-allowed;
+  opacity: 0.62;
 }
 .local-groupimport-easystud-settings-modal__filemanager-title > span:last-child {
   align-items: center;

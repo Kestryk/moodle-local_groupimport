@@ -3795,9 +3795,9 @@ const renderFieldHelp = help => {
     if (!help) {
         return '';
     }
-    // Keep the exact accepted CCB Slideshow button structure and class on the
-    // shared EasyEdu consumer. The EasyStud hook only owns popover binding.
-    return '<button type="button" class="btn btn-link p-0 icon-no-margin local-course-banner-builder-help-dot ' +
+    // The EasyStud hook owns accessible naming and popover binding; the
+    // canonical UI Kit mixin owns all visual states.
+    return '<button type="button" class="btn btn-link p-0 icon-no-margin ' +
         'local-groupimport-easystud-settings-modal__help" ' +
         'aria-label="' + escapeHtml(help) + '" data-easystud-hover-help="' + escapeHtml(help) + '">?</button>';
 };
