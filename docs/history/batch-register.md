@@ -1,5 +1,13 @@
 # EasyStud batch register
 
+## Wave 10 RF1 - EED-UI-2026-0038-RF7 / 0034-RF2
+
+- Date: 2026-09-01.
+- Scope: exact CCB help/toggle parity, compact Enrollment-key help and unique
+  Administration identity.
+- Evidence: `docs/history/eed-ui-2026-wave10-rf1-exact-parity.md`.
+- State: source validated; managed preview and human review pending.
+
 ## Wave 10 - EED-UI-2026-0033-RF5 / 0034-RF1 / 0051-RF2
 
 - Date: 2026-08-31

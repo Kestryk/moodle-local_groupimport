@@ -21,6 +21,7 @@ function Assert-Contains([string]$label, [string]$text, [string]$pattern) {
 $entry = Read-RequiredFile 'scss/easystud.scss'
 $source = Read-RequiredFile 'scss/components/_typography-identity.scss'
 $adminsource = Read-RequiredFile 'scss/views/_admin-settings.scss'
+$settings = Read-RequiredFile 'settings.php'
 $kit = Read-RequiredFile 'scss/easyedu/components/_typography.scss'
 $kitcontract = Read-RequiredFile 'easyedu-kit-docs/ai/COMPONENT_CONTRACT.md'
 $css = Read-RequiredFile 'styles.css'
@@ -60,10 +61,10 @@ Assert-Contains 'Mass Import page title uses Kit identity role' $massimport "'cl
 Assert-Contains 'Mass Import section title uses Kit card role' $massimport "'class' => 'local-groupimport-import-card__title'"
 Assert-Contains 'Shared card title descender clearance' $kit 'line-height:\s*1\.35;'
 
-Assert-Contains 'Administration page role' $source '#adminsettings > \.settingsform > h2\s*\{\s*@include easyedu\.type-page-identity;'
-Assert-Contains 'Administration identity eyebrow role' $source '\.local-groupimport-admin-settings__page-eyebrow\s*\{\s*@include easyedu\.type-eyebrow;'
-Assert-Contains 'Administration identity title role' $source '\.local-groupimport-admin-settings__page-title\s*\{\s*@include easyedu\.type-page-identity;'
-Assert-Contains 'Administration identity description role' $source '\.local-groupimport-admin-settings__page-description\s*\{\s*@include easyedu\.type-body;'
+Assert-Contains 'Administration uses Mass Import eyebrow role' $settings 'local-groupimport-import__eyebrow local-groupimport-admin-settings__page-eyebrow'
+Assert-Contains 'Administration uses Mass Import title role' $settings 'local-groupimport-import__title local-groupimport-admin-settings__page-title'
+Assert-Contains 'Administration uses Mass Import description role' $settings 'local-groupimport-import__intro local-groupimport-admin-settings__page-description'
+Assert-Contains 'Duplicate native Administration identity is hidden' $adminsource '#adminsettings > \.settingsform > h2\s*\{\s*display:\s*none;'
 Assert-Contains 'Administration section role' $source '\.formsettingheading h3,\s*\.local-groupimport-admin-settings__hero-copy h3\s*\{[^}]*@include easyedu\.type-section-title;'
 Assert-Contains 'Administration operational copy role' $source '\.formsettingheading \.form-description,\s*\.local-groupimport-admin-settings__hero-copy p\s*\{\s*@include easyedu\.type-caption;'
 Assert-Contains 'Administration compact hint role' $source '\.local-groupimport-admin-settings__hint span\s*\{[^}]*@include easyedu\.type-caption;'

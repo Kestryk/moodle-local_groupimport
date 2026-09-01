@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-01
+
+### EasyStud Wave 10 RF1 exact parity
+
+- Replaced the Group image checkbox imitation with the accepted stateful CCB
+  toggle structure, labels, icons, accessibility state and Motion.
+- Matched Group/Grouping contextual help to the accepted circular CCB control
+  and shortened the localised Enrollment-key message.
+- Removed the duplicate Administration identity and reused the accepted Mass
+  Import identity roles.
+- Rebuilt Sass and Course Manager AMD outputs and added structural, negative
+  and reference-provenance contracts for the corrected controls.
+
 ## Unreleased
 
 ### Wave 10 - Administration identity, Skeleton and page order - 2026-08-31

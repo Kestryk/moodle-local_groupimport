@@ -216,6 +216,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     max-width: min(100%, 76rem);
   }
 
+  // Moodle prints the settings-page name as a direct H2. The custom identity
+  // immediately below now carries that same product name plus the dedicated
+  // Administration title and description, so retaining the native H2 produced
+  // the two visible EasyStud labels reported in Wave 10 review.
+  #adminsettings > .settingsform > h2 {
+    display: none;
+  }
+
   #admin-pageidentity {
     margin: 0 0 1.2rem;
 
@@ -226,25 +234,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__page-identity {
-    display: grid;
-    gap: 0.3rem;
-    padding-block: 0.15rem;
-  }
-
-  .local-groupimport-admin-settings__page-eyebrow {
-    color: var(--local-groupimport-easystud-primary);
     display: block;
-  }
-
-  .local-groupimport-admin-settings__page-title {
-    color: var(--easyedu-text);
-    margin: 0;
-  }
-
-  .local-groupimport-admin-settings__page-description {
-    color: var(--easyedu-text-muted);
-    margin: 0;
-    max-width: 58rem;
+    padding-block: 0.15rem;
   }
 
   .local-groupimport-admin-settings {

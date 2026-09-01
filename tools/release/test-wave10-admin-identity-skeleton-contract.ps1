@@ -31,6 +31,10 @@ $french = Read-RequiredFile 'lang\fr\local_groupimport.php'
 
 Assert-Contains 'Administration identity markup' $settings "'data-easystud-page-identity' => 'administration'"
 Assert-Contains 'Administration identity heading' $settings "'local_groupimport/pageidentity'"
+Assert-Contains 'Administration exact Mass Import eyebrow class' $settings 'local-groupimport-import__eyebrow local-groupimport-admin-settings__page-eyebrow'
+Assert-Contains 'Administration exact Mass Import title class' $settings 'local-groupimport-import__title local-groupimport-admin-settings__page-title'
+Assert-Contains 'Administration exact Mass Import description class' $settings 'local-groupimport-import__intro local-groupimport-admin-settings__page-description'
+Assert-Contains 'Administration duplicate native heading suppression' $adminstyles '#adminsettings > .settingsform > h2'
 Assert-Contains 'Administration identity title string' $english "`$string['adminpageidentitytitle']"
 Assert-Contains 'Administration identity description string' $english "`$string['adminpageidentitydescription']"
 Assert-Contains 'French Administration identity title string' $french "`$string['adminpageidentitytitle']"

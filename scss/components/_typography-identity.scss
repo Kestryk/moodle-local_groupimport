@@ -107,21 +107,8 @@
     @include easyedu.type-ui-base;
   }
 
-  #adminsettings > .settingsform > h2 {
-    @include easyedu.type-page-identity;
-  }
-
-  .local-groupimport-admin-settings__page-eyebrow {
-    @include easyedu.type-eyebrow;
-  }
-
-  .local-groupimport-admin-settings__page-title {
-    @include easyedu.type-page-identity;
-  }
-
-  .local-groupimport-admin-settings__page-description {
-    @include easyedu.type-body;
-  }
+  // Administration carries the exact Mass Import identity classes in its DOM.
+  // Do not create a parallel admin-specific typography implementation here.
 
   .formsettingheading h3,
   .local-groupimport-admin-settings__hero-copy h3 {

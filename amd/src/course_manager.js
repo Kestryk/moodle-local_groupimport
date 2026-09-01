@@ -3579,6 +3579,22 @@ const bindAdvancedSettings = root => {
     });
 
     root.addEventListener('click', event => {
+        const button = event.target.closest('[data-easystud-settings-toggle-button]');
+        if (!button || !root.contains(button)) {
+            return;
+        }
+        event.preventDefault();
+        const modal = button.closest('[data-easystud-advanced-settings-modal]');
+        const target = button.getAttribute('data-target-input') || '';
+        const input = modal && target ? modal.querySelector(target) : null;
+        if (!input) {
+            return;
+        }
+        input.value = input.value === '1' ? '0' : '1';
+        syncAdvancedSettingsToggleButton(button, input);
+    });
+
+    root.addEventListener('click', event => {
         const exportButton = event.target.closest('[data-easystud-settings-export]');
         if (!exportButton || !root.contains(exportButton)) {
             return;
@@ -3779,12 +3795,36 @@ const renderFieldHelp = help => {
     if (!help) {
         return '';
     }
-    // Keep the contextual-help control keyboard reachable. Its visual and
-    // hover/focus behavior deliberately matches the accepted CCB Slideshow
-    // question-mark control without importing another plugin at runtime.
-    return '<button type="button" class="btn p-0 icon-no-margin ' +
+    // Keep the exact accepted CCB Slideshow button structure and class on the
+    // shared EasyEdu consumer. The EasyStud hook only owns popover binding.
+    return '<button type="button" class="btn btn-link p-0 icon-no-margin local-course-banner-builder-help-dot ' +
         'local-groupimport-easystud-settings-modal__help" ' +
         'aria-label="' + escapeHtml(help) + '" data-easystud-hover-help="' + escapeHtml(help) + '">?</button>';
+};
+
+/**
+ * Synchronise an EasyStud entity-modal toggle with the accepted CCB button
+ * contract: hidden form value, pressed state, Bootstrap state classes, icon
+ * and visible label all change together.
+ *
+ * @param {HTMLElement} button Toggle button.
+ * @param {HTMLInputElement} input Hidden value submitted with the form.
+ */
+const syncAdvancedSettingsToggleButton = (button, input) => {
+    const enabled = input.value === '1';
+    button.classList.toggle('btn-primary', enabled);
+    button.classList.toggle('btn-outline-secondary', !enabled);
+    button.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    const icon = button.querySelector('i');
+    if (icon) {
+        icon.className = 'fa ' + (enabled ? 'fa-toggle-on' : 'fa-toggle-off') + ' me-2';
+    }
+    const label = button.querySelector('span');
+    if (label) {
+        label.textContent = enabled ?
+            (button.getAttribute('data-label-on') || '') :
+            (button.getAttribute('data-label-off') || '');
+    }
 };
 
 const getAdvancedCountLabel = (root, item, isgroup) => {
@@ -4057,10 +4097,26 @@ const openAdvancedSettingsModal = (root, item) => {
                                     '</span>' +
                                 '</label>' +
                             '</div>' +
-                            '<label class="local-groupimport-easystud-toggle-check">' +
-                                '<input type="checkbox" name="deletepicture" value="1">' +
-                                '<span>' + escapeHtml(labels.deletepicture || '') + '</span>' +
-                            '</label>' +
+                            '<div class="local-groupimport-easystud-settings-modal__image-toggle">' +
+                                '<div class="local-course-banner-builder-slideshow-text-title ' +
+                                        'local-groupimport-easystud-settings-modal__image-toggle-label">' +
+                                    escapeHtml(labels.deletepicture || '') +
+                                '</div>' +
+                                '<input type="hidden" name="deletepicture" value="0" ' +
+                                    'id="local-groupimport-easystud-deletepicture-toggle">' +
+                                '<div class="local-course-banner-builder-slideshow-toggle-button-row">' +
+                                    '<button type="button" class="btn local-course-banner-builder-slideshow-enable-button ' +
+                                            'local-groupimport-easystud-settings-modal__image-toggle-button btn-outline-secondary" ' +
+                                        'data-easystud-settings-toggle-button="1" ' +
+                                        'data-target-input="#local-groupimport-easystud-deletepicture-toggle" ' +
+                                        'data-label-on="' + escapeHtml(labels.enabled || '') + '" ' +
+                                        'data-label-off="' + escapeHtml(labels.disabled || '') + '" ' +
+                                        'aria-label="' + escapeHtml(labels.deletepicture || '') + '" aria-pressed="false">' +
+                                        '<i class="fa fa-toggle-off me-2" aria-hidden="true"></i>' +
+                                        '<span>' + escapeHtml(labels.disabled || '') + '</span>' +
+                                    '</button>' +
+                                '</div>' +
+                            '</div>' +
                         '</div>' : '') +
                     '<div class="local-groupimport-easystud-modal__footer">' +
                         '<button type="submit" class="btn btn-primary">' +

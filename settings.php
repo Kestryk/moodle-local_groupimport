@@ -246,17 +246,17 @@ if ($hassiteconfig) {
     $adminpageidentityhtml = html_writer::div(
         html_writer::span(
             get_string('easystudlabel', 'local_groupimport'),
-            'local-groupimport-admin-settings__page-eyebrow'
+            'local-groupimport-import__eyebrow local-groupimport-admin-settings__page-eyebrow'
         ) .
             html_writer::tag(
                 'h2',
                 get_string('adminpageidentitytitle', 'local_groupimport'),
-                ['class' => 'local-groupimport-admin-settings__page-title']
+                ['class' => 'local-groupimport-import__title local-groupimport-admin-settings__page-title']
             ) .
             html_writer::tag(
                 'p',
                 get_string('adminpageidentitydescription', 'local_groupimport'),
-                ['class' => 'local-groupimport-admin-settings__page-description']
+                ['class' => 'local-groupimport-import__intro local-groupimport-admin-settings__page-description']
             ),
         'local-groupimport-admin-settings__page-identity',
         ['data-easystud-page-identity' => 'administration']
