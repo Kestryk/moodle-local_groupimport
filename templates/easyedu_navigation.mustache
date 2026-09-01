@@ -81,36 +81,38 @@
             </button>
         </header>
 
-        <div class="easyedu-navigation__guide-slot" data-easyedu-navigation-guide-slot="1"></div>
+        <div class="easyedu-navigation__panel-scroll" data-easyedu-navigation-panel-scroll="1">
+            <div class="easyedu-navigation__guide-slot" data-easyedu-navigation-guide-slot="1"></div>
 
-        {{#hasitems}}
-        <div class="easyedu-navigation__sections">
-            {{#sections}}
-            <section class="easyedu-navigation__section" data-easyedu-navigation-section="{{id}}">
-                <h3 class="easyedu-navigation__section-title">{{label}}</h3>
-                <ul class="easyedu-navigation__items">
-                    {{#items}}
-                        {{> local_groupimport/easyedu_navigation_items }}
-                    {{/items}}
-                </ul>
-            </section>
-            {{/sections}}
-            {{#hasparticipantdropdown}}
-            <section
-                class="easyedu-navigation__section easyedu-navigation__section--participants"
-                data-easyedu-navigation-section="course-participants"
-            >
-                <h3 class="easyedu-navigation__section-title">{{participantnavigationlabel}}</h3>
-                <div
-                    class="easyedu-navigation__participant-links"
-                    data-easyedu-navigation-participant-links="1"
-                ></div>
-            </section>
-            {{/hasparticipantdropdown}}
+            {{#hasitems}}
+            <div class="easyedu-navigation__sections">
+                {{#sections}}
+                <section class="easyedu-navigation__section" data-easyedu-navigation-section="{{id}}">
+                    <h3 class="easyedu-navigation__section-title">{{label}}</h3>
+                    <ul class="easyedu-navigation__items">
+                        {{#items}}
+                            {{> local_groupimport/easyedu_navigation_items }}
+                        {{/items}}
+                    </ul>
+                </section>
+                {{/sections}}
+                {{#hasparticipantdropdown}}
+                <section
+                    class="easyedu-navigation__section easyedu-navigation__section--participants"
+                    data-easyedu-navigation-section="course-participants"
+                >
+                    <h3 class="easyedu-navigation__section-title">{{participantnavigationlabel}}</h3>
+                    <div
+                        class="easyedu-navigation__participant-links"
+                        data-easyedu-navigation-participant-links="1"
+                    ></div>
+                </section>
+                {{/hasparticipantdropdown}}
+            </div>
+            {{/hasitems}}
+            {{^hasitems}}
+            <p class="easyedu-navigation__empty">{{emptylabel}}</p>
+            {{/hasitems}}
         </div>
-        {{/hasitems}}
-        {{^hasitems}}
-        <p class="easyedu-navigation__empty">{{emptylabel}}</p>
-        {{/hasitems}}
     </aside>
 </div>

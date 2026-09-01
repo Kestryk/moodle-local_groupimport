@@ -1,5 +1,34 @@
 # EasyStud navigation integration
 
+## Kit Navigation/Guide surface adoption (`EED-UI-2026-0040`)
+
+EasyStud consumes the source-only Navigation/Guide foundations from UI Kit
+`EED-KIT-2026-0006` commit
+`e38d52f73c592944a13315762281b5e2415104a8`. The adoption is deliberately
+selective because the consumer retains established EasyStud composition and
+interaction adaptations.
+
+The shared changes are limited to:
+
+- Navigation labels inheriting the Moodle theme UI family and shared medium
+  weight, with shared title and eyebrow typography roles;
+- a neutral resting surface and border around the existing Guide launcher;
+- shared drawer surface tokens and a viewport-sized compact panel;
+- a fixed safe-area header plus an independently scrolling body containing the
+  existing Guide slot, destinations and participant links;
+- long compact-trigger label containment without changing the trigger's
+  accepted left-edge placement or hover expansion.
+
+The new `.easyedu-navigation__panel-scroll` wrapper changes containment only.
+It preserves the order, selectors and Mustache conditions of the existing
+Guide slot, destination sections and native participant-link projection.
+Routes, capabilities, labels, Guide copy, target keys, completion and
+persistence rules remain consumer-owned and unchanged.
+
+Navigation/Guide AMD, Skeleton markup/lifecycle and Mass Import behavior are
+also unchanged. Desktop/mobile appearance, drawer scrolling, focus return,
+RTL, reduced motion and forced colours require managed preview review.
+
 ## Fixed compact trigger placement (EED-NAV-2026-0010)
 
 The compact EasyStud navigation trigger is a fixed, left-edge half-pill. It

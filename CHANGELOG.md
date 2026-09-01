@@ -2,6 +2,17 @@
 
 ## 2026-09-01
 
+### EasyStud Wave 12 Navigation and Guide surfaces
+
+- Adopted the bounded Navigation/Guide surface foundations from UI Kit
+  `EED-KIT-2026-0006` at `e38d52f`.
+- Navigation labels now use the shared Moodle-theme typography roles, and the
+  Guide launcher has a neutral resting boundary.
+- The compact drawer keeps its safe-area header fixed while its existing Guide,
+  destination and participant content scrolls independently.
+- Routes, Guide copy and targets, AMD behavior, Skeleton lifecycle and product
+  actions remain unchanged.
+
 ### EasyStud Wave 11 action spacing
 
 - Reduced the remaining upper action icon/text gap and made the Moodle

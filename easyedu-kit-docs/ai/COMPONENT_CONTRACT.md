@@ -103,6 +103,27 @@ Must not:
 - mark the provisional component mandatory before consumer comparison and
   human approval.
 
+### Navigation and Guide surfaces (`EED-KIT-2026-0006`)
+
+Must:
+
+- keep the compact panel viewport-sized, with the safe-area header outside the
+  independently scrollable `.easyedu-navigation__panel-scroll` body;
+- use the shared drawer surface, border and shadow tokens;
+- inherit the Moodle UI family and use medium weight for destination labels;
+- contain long trigger labels in `.easyedu-navigation__trigger-label`;
+- keep a visible neutral Guide launcher boundary at rest and retain the shared
+  focus ring.
+
+Must not:
+
+- move or duplicate EasyStud destinations, participant links or Guide content
+  when adding the scroll-body wrapper;
+- change Guide targets, completion rules, persistence or Navigation/Guide AMD
+  lifecycle as part of visual-foundation adoption;
+- move the fixed header inside the scrolling body or reintroduce panel-level
+  scrolling.
+
 ## Shared keyboard focus
 
 Canonical files:

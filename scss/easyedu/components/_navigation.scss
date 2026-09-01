@@ -1,5 +1,6 @@
 @use "buttons";
 @use "responsive";
+@use "typography";
 
 // Canonical navigation composition for EasyEdu plugin surfaces.
 //
@@ -176,6 +177,11 @@
   [data-easyedu-navigation-desktop] .easyedu-navigation__item {
     @include buttons.admin-primary-nav-action;
 
+    & {
+      font-family: var(--easyedu-font-family-ui);
+      font-weight: var(--easyedu-font-weight-medium);
+    }
+
     // Match the established EasyStud admin rail: a plain Font Awesome glyph
     // in a fixed slot, followed by the label. The explicit slot keeps narrow
     // glyphs visually centred instead of letting their font metrics drift.
@@ -213,9 +219,12 @@
     background: color-mix(in srgb, var(--easyedu-card-border) 28%, var(--easyedu-surface) 72%);
     border: 1px solid var(--easyedu-card-border);
     border-radius: 0 999px 999px 0;
+    box-sizing: border-box;
     box-shadow: 0 0.125rem 0.25rem rgba(35, 53, 72, 0.16);
     color: var(--easyedu-primary-strong);
     display: inline-flex;
+    font-family: var(--easyedu-font-family-ui);
+    font-weight: var(--easyedu-font-weight-medium);
     gap: 0;
     inline-size: var(--easyedu-touch-target-min);
     inset-block-start: clamp(
@@ -293,7 +302,7 @@
 
   .easyedu-navigation__trigger-label {
     font-size: var(--easyedu-font-size-body);
-    font-weight: var(--easyedu-font-weight-strong);
+    font-weight: var(--easyedu-font-weight-medium);
     max-inline-size: 0;
     opacity: 0;
     overflow: hidden;
@@ -315,9 +324,18 @@
   .easyedu-navigation__panel {
     @include responsive.mobile-primary-nav-panel(var(--easyedu-navigation-layer-panel));
 
+    background: var(--easyedu-navigation-drawer-surface);
+    block-size: 100dvh;
     border: 0;
-    border-inline-end: 0.0625rem solid var(--easyedu-card-border);
+    border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border);
+    box-shadow: var(--easyedu-navigation-drawer-shadow);
+    gap: 0;
+    max-block-size: 100dvh;
     max-width: var(--easyedu-navigation-panel-max-width);
+    min-block-size: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+    padding: 0;
     width: var(--easyedu-navigation-panel-width);
 
     &[aria-hidden="true"] {
@@ -327,6 +345,18 @@
     &[aria-hidden="false"] {
       visibility: visible;
     }
+  }
+
+  .easyedu-navigation__panel-scroll {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-block-size: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0 0.8rem calc(0.8rem + env(safe-area-inset-bottom));
+    scrollbar-gutter: stable;
   }
 
   .easyedu-navigation__guide-slot,
@@ -441,19 +471,21 @@
   .easyedu-navigation__panel-header {
     align-items: center;
     background: var(--easyedu-surface);
+    border-bottom: 0.0625rem solid var(--easyedu-navigation-drawer-border);
     display: flex;
     flex: 0 0 auto;
     gap: 0.75rem;
     justify-content: space-between;
+    min-block-size: calc(var(--easyedu-touch-target-min) + 1rem + env(safe-area-inset-top));
+    padding: calc(0.5rem + env(safe-area-inset-top)) 1rem 0.5rem;
     position: sticky;
     top: 0;
     z-index: 1;
   }
 
   .easyedu-navigation__panel-title {
-    color: var(--easyedu-text);
-    font-size: var(--easyedu-font-size-section-title);
-    font-weight: var(--easyedu-font-weight-strong);
+    @include typography.type-section-title;
+
     margin: 0;
   }
 
@@ -476,9 +508,8 @@
   }
 
   .easyedu-navigation__section-title {
-    color: var(--easyedu-text-muted);
-    font-size: var(--easyedu-font-size-eyebrow);
-    font-weight: var(--easyedu-font-weight-strong);
+    @include typography.type-eyebrow;
+
     letter-spacing: 0.045em;
     margin: 0;
     text-transform: uppercase;
@@ -519,6 +550,11 @@
 
   .easyedu-navigation__panel .easyedu-navigation__item {
     @include responsive.mobile-navigation-link;
+
+    & {
+      font-family: var(--easyedu-font-family-ui);
+      font-weight: var(--easyedu-font-weight-medium);
+    }
 
     &[aria-disabled="true"],
     &:disabled {
@@ -624,7 +660,7 @@
   [dir="rtl"] & .easyedu-navigation__panel,
   &[dir="rtl"] .easyedu-navigation__panel {
     inset: 0 0 0 auto;
-    border-inline-end: 0.0625rem solid var(--easyedu-card-border);
+    border-inline-end: 0.0625rem solid var(--easyedu-navigation-drawer-border);
     transform: translateX(105%);
 
     &.is-open {
