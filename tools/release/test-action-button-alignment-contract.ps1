@@ -29,7 +29,11 @@ if ($template -match 'fa \{\{icon\}\} me-2') {
 }
 
 foreach ($needle in @(
-    '--easyedu-action-icon-gap: 0.45rem;',
+    '&__participant-navigation {',
+    '--easyedu-action-icon-gap: 0.35rem;',
+    'gap: var(--easyedu-action-icon-gap);',
+    '&::after {',
+    'margin-inline-start: 0;',
     '@include easyedu.action-button(small);',
     'margin-inline: 0 !important;',
     '[data-easystud-panel-actions-menu] .btn',
@@ -37,6 +41,15 @@ foreach ($needle in @(
 )) {
     if (-not $layout.Contains($needle) -and -not $controlTypography.Contains($needle)) {
         throw "Missing upper-action or More-actions contract: $needle"
+    }
+}
+
+foreach ($obsolete in @(
+    '--easyedu-action-icon-gap: 0.45rem;',
+    'gap: 0.6rem;'
+)) {
+    if ($layout.Contains($obsolete)) {
+        throw "Obsolete excessive upper-action spacing remains: $obsolete"
     }
 }
 
@@ -54,8 +67,11 @@ if (-not $responsive.Contains('&-mobile-actions__buttons') -or
 }
 
 foreach ($needle in @(
+    '.local-groupimport-easystud__participant-navigation',
+    'gap: var(--easyedu-action-icon-gap)',
+    'margin-inline-start: 0',
     '.local-groupimport-easystud__panel-actions',
-    '--easyedu-action-icon-gap: 0.45rem',
+    '--easyedu-action-icon-gap: 0.35rem',
     '.local-groupimport-easystud-settings-modal__native > .btn',
     '.local-groupimport-easystud-rename__edit .btn',
     '[data-easystud-panel-actions-menu] .btn'
@@ -63,6 +79,10 @@ foreach ($needle in @(
     if (-not $styles.Contains($needle)) {
         throw "Generated stylesheet is missing action-button alignment: $needle"
     }
+}
+
+if ($styles.Contains('--easyedu-action-icon-gap: 0.45rem')) {
+    throw 'Generated stylesheet still contains the rejected upper-action gap.'
 }
 
 if ($scenario -match 'manage\.php\?id=5' -or

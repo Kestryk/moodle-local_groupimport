@@ -535,6 +535,7 @@
   display: none;
 }
 .local-groupimport-easystud__participant-navigation {
+  --easyedu-action-icon-gap: 0.35rem;
   margin: 0.3rem 0 0.45rem;
 }
 .local-groupimport-easystud__participant-navigation .select-menu {
@@ -550,10 +551,13 @@
   font-family: inherit;
   font-size: 1.125rem;
   font-weight: 700;
-  gap: 0.6rem;
+  gap: var(--easyedu-action-icon-gap);
   min-height: 0;
   min-width: 0;
   padding: 0;
+}
+.local-groupimport-easystud__participant-navigation .select-menu > .dropdown-toggle::after {
+  margin-inline-start: 0;
 }
 .local-groupimport-easystud__navigation {
   margin: 0 0 1.05rem;
@@ -2535,7 +2539,7 @@
 }
 .local-groupimport-easystud__panel-actions {
   align-items: center;
-  --easyedu-action-icon-gap: 0.45rem;
+  --easyedu-action-icon-gap: 0.35rem;
   flex-wrap: nowrap;
   max-width: 100%;
   min-width: 0;

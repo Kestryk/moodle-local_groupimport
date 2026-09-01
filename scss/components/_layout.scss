@@ -41,6 +41,11 @@
   }
 
   &__participant-navigation {
+    // Keep the title/chevron rhythm on the same compact tier as the upper
+    // participant actions. Moodle's dropdown chevron already participates in
+    // the flex row, so its Bootstrap margin must not create a second gap.
+    --easyedu-action-icon-gap: 0.35rem;
+
     margin: 0.3rem 0 0.45rem;
 
     .select-menu {
@@ -57,10 +62,14 @@
       font-family: inherit;
       font-size: 1.125rem;
       font-weight: 700;
-      gap: 0.6rem;
+      gap: var(--easyedu-action-icon-gap);
       min-height: 0;
       min-width: 0;
       padding: 0;
+
+      &::after {
+        margin-inline-start: 0;
+      }
     }
   }
 
@@ -770,7 +779,7 @@
     // The Kit action-button owns the icon slot and its theme-overridable
     // separation. Keep the compact row quieter than its former Bootstrap
     // utility-margin plus gap combination.
-    --easyedu-action-icon-gap: 0.45rem;
+    --easyedu-action-icon-gap: 0.35rem;
     flex-wrap: nowrap;
     max-width: 100%;
     min-width: 0;

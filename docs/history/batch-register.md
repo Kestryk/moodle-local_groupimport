@@ -1,5 +1,19 @@
 # EasyStud batch register
 
+## Wave 11 - EED-UI-2026-0035-RF1 / 0045 dependency gate
+
+- Date: 2026-09-01.
+- Base: cumulative Wave 10 RF1 source `12f617a`.
+- Scope: one compact gap for the upper participant actions and the Moodle
+  `Simplified student management` title/chevron; accepted centring, hover,
+  focus, overflow and narrow behavior remain unchanged.
+- Dependency: UI 0045 needs an approved desktop contextual multi-action Kit
+  primitive. The existing one-action desktop sticky panel and mobile action
+  tray cannot be repurposed without violating their contracts.
+- Validation: official Sass build, focused positive/negative action-spacing
+  contract, plugin release validation and `git diff --check`; no runtime,
+  cache, fixture, preview or browser activity.
+
 ## Wave 10 RF1 - EED-UI-2026-0038-RF7 / 0034-RF2
 
 - Date: 2026-09-01.

@@ -23,6 +23,20 @@ navigation, modal ownership, card geometry or responsive routing.
   remain undecorated for hover, active and keyboard-focus states. Focus still
   comes from the existing visible focus treatment.
 
+## RF1 compact upper-action gap
+
+Human review accepted the original centring, hover, overflow and focus
+behaviour but found the remaining icon-to-label separation excessive. RF1 now
+uses one scoped `0.35rem` `--easyedu-action-icon-gap` for the upper participant
+actions and the Moodle `Simplified student management` title/chevron control.
+The native Bootstrap chevron margin is reset because the flex `gap` is the
+single spacing authority. The responsive More-actions clone keeps the source
+button structure and therefore inherits the same compact rhythm without a new
+interaction path.
+
+The layout-mode selector, lower card controls, destructive semantics, button
+heights and global Kit token are deliberately unchanged.
+
 ## Preserved controls
 
 More filters, Sort, A-Z and result counts keep the typography contract from
@@ -32,8 +46,9 @@ first three, and the accepted semibold weight for result counts.
 ## Validation boundary
 
 `tools/release/test-action-button-alignment-contract.ps1` checks the source
-adoption, menu no-underline protection and generated stylesheet. The focused
-authenticated review is
+adoption, compact shared value, removal of the rejected `0.45rem`/`0.6rem`
+values, native-chevron margin reset, menu no-underline protection and generated
+stylesheet. The focused authenticated review is
 `easystud-action-button-alignment.spec.js` / `EasyStud action controls keep
 shared alignment and restrained typography`. It checks the desktop and 768px
 action rows, detail/profile and inline rename action-button geometry, visible

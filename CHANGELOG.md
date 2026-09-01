@@ -2,6 +2,18 @@
 
 ## 2026-09-01
 
+### EasyStud Wave 11 action spacing
+
+- Reduced the remaining upper action icon/text gap and made the Moodle
+  `Simplified student management` title/chevron use the same compact spacing
+  as `Full details` / `Compact list`.
+- Removed the native chevron's duplicate margin while preserving centring,
+  hover, focus, overflow and narrow behavior.
+- Recorded `EED-UI-2026-0045` as blocked until the UI Kit supplies an approved
+  desktop contextual multi-action surface; no selection behavior changed.
+- Rebuilt Sass and extended the action-alignment contract with positive and
+  negative RF1 assertions.
+
 ### EasyStud Wave 10 RF1 exact parity
 
 - Replaced the Group image checkbox imitation with the accepted stateful CCB
