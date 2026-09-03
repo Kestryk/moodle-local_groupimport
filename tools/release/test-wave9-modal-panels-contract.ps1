@@ -36,10 +36,13 @@ Assert-Contains $modal '&-settings-modal__field--entity-count {' 'Entity count l
 Assert-Contains $modal '@include easyedu.type-caption;' 'Entity count labels and compact guidance must use the shared caption role.'
 Assert-Contains $modal 'gap: 0.32rem;' 'Entity count labels must retain visible label-to-value spacing.'
 
-Assert-Contains $manager 'local-course-banner-builder-slideshow-toggle-button-row' 'The Group image toggle must use the accepted CCB button-row DOM.'
-Assert-Contains $manager 'local-course-banner-builder-slideshow-enable-button ' 'The Group image toggle must use the accepted CCB button class.'
-Assert-Contains $manager 'syncAdvancedSettingsToggleButton(button, input)' 'The Group image toggle must synchronise its full interactive state.'
-Assert-Contains $modal 'background-color var(--easyedu-motion-normal)' 'The Group image toggle must visibly animate state changes.'
+Assert-Contains $manager 'type="checkbox" name="deletepicture" value="1"' 'The Group image toggle must keep native checkbox semantics.'
+Assert-Contains $manager 'data-easystud-settings-toggle-state="1"' 'The Group image toggle must expose its visible state label.'
+Assert-Contains $manager 'syncAdvancedSettingsToggle(toggle)' 'The Group image toggle must synchronise its visible state.'
+Assert-Contains $modal '@include easyedu.toggle-check;' 'The Group image toggle must consume the canonical Kit switch.'
+Assert-Contains $modal '@include easyedu.slideshow-toggle-row(var(--local-groupimport-easystud-group));' 'The Group image toggle must consume the accepted CCB row surface.'
+Assert-NotContains $manager 'local-course-banner-builder-slideshow-enable-button ' 'The rejected consumer-side CCB button imitation must stay removed.'
+Assert-NotContains $modal 'transform: rotate(180deg) scale(1.06);' 'The rejected consumer-owned toggle animation must stay removed.'
 Assert-Contains $typography '.local-groupimport-admin-settings__hint span {' 'Administration guidance must remain narrowly scoped to current green panels.'
 Assert-NotContains $typography (
     '.local-groupimport-admin-settings__hint span {' + [Environment]::NewLine + '    @include easyedu.type-ui-base;'

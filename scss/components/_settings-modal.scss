@@ -307,11 +307,23 @@
   }
 
   &-settings-modal__image-toggle {
-    align-content: center;
-    display: grid;
-    gap: 0.35rem;
-    justify-items: start;
+    // Exact shared Kit composition: no consumer-owned colour, transform or
+    // timing is added to the accepted CCB toggle surface.
+    @include easyedu.toggle-check;
+    @include easyedu.slideshow-toggle-row(var(--local-groupimport-easystud-group));
+
     min-width: 0;
+    width: 100%;
+
+    > span {
+      min-width: 0;
+    }
+
+    small {
+      color: var(--easyedu-text-muted);
+      font-size: inherit;
+      font-weight: var(--easyedu-font-weight-semibold);
+    }
   }
 
   &-settings-modal__image-toggle-label {
@@ -319,67 +331,6 @@
 
     color: #40566c;
     font-weight: var(--easyedu-font-weight-semibold);
-  }
-
-  &-settings-modal .local-course-banner-builder-slideshow-toggle-button-row {
-    align-items: center;
-    display: flex;
-    gap: 0.45rem;
-    min-height: 0;
-  }
-
-  &-settings-modal .local-course-banner-builder-slideshow-enable-button {
-    align-items: center;
-    display: inline-flex;
-    flex: 0 1 auto;
-    font-size: 0.84rem;
-    justify-content: center;
-    line-height: 1.2;
-    min-height: 1.9rem;
-    min-width: 0;
-    padding: 0.32rem 0.75rem;
-    transition:
-      background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
-      border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
-      box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease),
-      color var(--easyedu-motion-normal) var(--easyedu-motion-ease);
-    width: auto;
-
-    .fa {
-      font-size: 1.05rem;
-      line-height: 1;
-      transform: rotate(0deg) scale(1);
-      transition:
-        color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
-        transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
-    }
-
-    &.btn-primary {
-      background: color-mix(in srgb, var(--local-groupimport-easystud-group) 9%, #fff 91%);
-      border-color: color-mix(in srgb, var(--local-groupimport-easystud-group) 34%, #fff 66%);
-      color: color-mix(in srgb, var(--local-groupimport-easystud-group) 82%, var(--easyedu-text) 18%);
-
-      .fa {
-        color: var(--local-groupimport-easystud-group);
-        transform: rotate(180deg) scale(1.06);
-      }
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-    }
-
-    &:active .fa {
-      transform: scale(0.9);
-    }
-
-    .is-easyedu-motion-off & {
-      transition: none;
-
-      .fa {
-        transition: none;
-      }
-    }
   }
 
   &-settings-modal__lists {
@@ -956,9 +907,5 @@
       transition: none;
     }
 
-    &-settings-modal__image-toggle-button,
-    &-settings-modal__image-toggle-button .fa {
-      transition-duration: 0.01ms !important;
-    }
   }
 }

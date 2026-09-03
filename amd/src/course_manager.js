@@ -3579,19 +3579,17 @@ const bindAdvancedSettings = root => {
     });
 
     root.addEventListener('click', event => {
-        const button = event.target.closest('[data-easystud-settings-toggle-button]');
-        if (!button || !root.contains(button)) {
+        const trigger = event.target.closest('[data-easystud-advanced-file-trigger]');
+        if (!trigger || !root.contains(trigger)) {
             return;
         }
         event.preventDefault();
-        const modal = button.closest('[data-easystud-advanced-settings-modal]');
-        const target = button.getAttribute('data-target-input') || '';
-        const input = modal && target ? modal.querySelector(target) : null;
+        const filepicker = trigger.closest('.local-groupimport-easystud-settings-modal__filepicker');
+        const input = filepicker ? filepicker.querySelector('[data-easystud-advanced-file-input]') : null;
         if (!input) {
             return;
         }
-        input.value = input.value === '1' ? '0' : '1';
-        syncAdvancedSettingsToggleButton(button, input);
+        input.click();
     });
 
     root.addEventListener('click', event => {
@@ -3639,6 +3637,11 @@ const bindAdvancedSettings = root => {
     });
 
     root.addEventListener('change', event => {
+        const toggle = event.target.closest('[data-easystud-delete-picture-input]');
+        if (toggle && root.contains(toggle)) {
+            syncAdvancedSettingsToggle(toggle);
+            return;
+        }
         const input = event.target.closest('[data-easystud-advanced-file-input]');
         if (!input || !root.contains(input)) {
             return;
@@ -3804,27 +3807,20 @@ const renderFieldHelp = help => {
 };
 
 /**
- * Synchronise an EasyStud entity-modal toggle with the accepted CCB button
- * contract: hidden form value, pressed state, Bootstrap state classes, icon
- * and visible label all change together.
+ * Synchronise the visible state label of the canonical Kit checkbox toggle.
  *
- * @param {HTMLElement} button Toggle button.
- * @param {HTMLInputElement} input Hidden value submitted with the form.
+ * The browser owns checkbox semantics while the shared toggle-check and
+ * slideshow-toggle-row mixins own every visual and Motion state.
+ *
+ * @param {HTMLInputElement} input Checkbox submitted with the form.
  */
-const syncAdvancedSettingsToggleButton = (button, input) => {
-    const enabled = input.value === '1';
-    button.classList.toggle('btn-primary', enabled);
-    button.classList.toggle('btn-outline-secondary', !enabled);
-    button.setAttribute('aria-pressed', enabled ? 'true' : 'false');
-    const icon = button.querySelector('i');
-    if (icon) {
-        icon.className = 'fa ' + (enabled ? 'fa-toggle-on' : 'fa-toggle-off') + ' me-2';
-    }
-    const label = button.querySelector('span');
+const syncAdvancedSettingsToggle = input => {
+    const control = input.closest('.local-groupimport-easystud-settings-modal__image-toggle');
+    const label = control ? control.querySelector('[data-easystud-settings-toggle-state]') : null;
     if (label) {
-        label.textContent = enabled ?
-            (button.getAttribute('data-label-on') || '') :
-            (button.getAttribute('data-label-off') || '');
+        label.textContent = input.checked ?
+            (input.getAttribute('data-label-on') || '') :
+            (input.getAttribute('data-label-off') || '');
     }
 };
 
@@ -3838,12 +3834,11 @@ const syncAdvancedSettingsToggleButton = (button, input) => {
  */
 const resetAdvancedDeletePictureCommand = form => {
     const input = form.querySelector('[data-easystud-delete-picture-input]');
-    const button = form.querySelector('[data-easystud-delete-picture-command]');
-    if (!input || !button) {
+    if (!input) {
         return;
     }
-    input.value = '0';
-    syncAdvancedSettingsToggleButton(button, input);
+    input.checked = false;
+    syncAdvancedSettingsToggle(input);
 };
 
 const getAdvancedCountLabel = (root, item, isgroup) => {
@@ -4006,6 +4001,8 @@ const openAdvancedSettingsModal = (root, item) => {
     const listTitle = isgroup ? (labels.advancedsettingsmembers || '') : (labels.advancedsettingsgroups || '');
     const relatedTitle = labels.groupings || '';
     const safeTitle = title.toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '') || 'easystud';
+    const imageInputId = 'local-groupimport-easystud-group-image-' +
+        escapeHtml(item.getAttribute('data-easystud-group-id') || 'current');
 
     let modal = root.querySelector('[data-easystud-advanced-settings-modal]');
     if (modal) {
@@ -4105,39 +4102,35 @@ const openAdvancedSettingsModal = (root, item) => {
                                     '<span>' + escapeHtml(labels.advancedsettingsimage || '') +
                                         renderFieldHelp(labels.advancedsettingsimagehelp || '') + '</span>' +
                                 '</div>' +
-                                '<label class="local-groupimport-easystud-settings-modal__filepicker">' +
-                                    '<input type="file" name="imagefile" accept="image/*" data-easystud-advanced-file-input="1">' +
+                                '<div class="local-groupimport-easystud-settings-modal__filepicker">' +
+                                    '<input type="file" id="' + imageInputId + '" name="imagefile" accept="image/*" ' +
+                                        'data-easystud-advanced-file-input="1">' +
                                     '<span class="local-groupimport-easystud-settings-modal__filepicker-icon fa fa-cloud-upload-alt" aria-hidden="true"></span>' +
-                                    '<span class="btn btn-secondary btn-sm">' +
+                                    '<button type="button" class="btn btn-secondary btn-sm" ' +
+                                        'data-easystud-advanced-file-trigger="1" aria-controls="' + imageInputId + '">' +
                                         escapeHtml(labels.advancedsettingschoosefile || '') +
-                                    '</span>' +
+                                    '</button>' +
                                     '<span class="local-groupimport-easystud-settings-modal__filename" data-easystud-advanced-file-name>' +
                                         escapeHtml(labels.advancedsettingsnofile || '') +
                                     '</span>' +
-                                '</label>' +
-                            '</div>' +
-                            '<div class="local-groupimport-easystud-settings-modal__image-toggle">' +
-                                '<div class="local-course-banner-builder-slideshow-text-title ' +
-                                        'local-groupimport-easystud-settings-modal__image-toggle-label">' +
-                                    escapeHtml(labels.deletepicture || '') +
                                 '</div>' +
-                                '<input type="hidden" name="deletepicture" value="0" ' +
+                            '</div>' +
+                            '<label class="local-groupimport-easystud-settings-modal__image-toggle">' +
+                                '<input type="checkbox" name="deletepicture" value="1" ' +
                                     'data-easystud-delete-picture-input="1" ' +
-                                    'id="local-groupimport-easystud-deletepicture-toggle">' +
-                                '<div class="local-course-banner-builder-slideshow-toggle-button-row">' +
-                                    '<button type="button" class="btn local-course-banner-builder-slideshow-enable-button ' +
-                                            'local-groupimport-easystud-settings-modal__image-toggle-button btn-outline-secondary" ' +
-                                        'data-easystud-settings-toggle-button="1" ' +
-                                        'data-easystud-delete-picture-command="1" ' +
-                                        'data-target-input="#local-groupimport-easystud-deletepicture-toggle" ' +
+                                    'id="local-groupimport-easystud-deletepicture-toggle" ' +
                                         'data-label-on="' + escapeHtml(labels.enabled || '') + '" ' +
                                         'data-label-off="' + escapeHtml(labels.disabled || '') + '" ' +
-                                        'aria-label="' + escapeHtml(labels.deletepicture || '') + '" aria-pressed="false">' +
-                                        '<i class="fa fa-toggle-off me-2" aria-hidden="true"></i>' +
-                                        '<span>' + escapeHtml(labels.disabled || '') + '</span>' +
-                                    '</button>' +
-                                '</div>' +
-                            '</div>' +
+                                        'aria-label="' + escapeHtml(labels.deletepicture || '') + '">' +
+                                '<span>' +
+                                    '<strong class="local-groupimport-easystud-settings-modal__image-toggle-label">' +
+                                        escapeHtml(labels.deletepicture || '') +
+                                    '</strong>' +
+                                    '<small data-easystud-settings-toggle-state="1">' +
+                                        escapeHtml(labels.disabled || '') +
+                                    '</small>' +
+                                '</span>' +
+                            '</label>' +
                         '</div>' : '') +
                     '<div class="local-groupimport-easystud-modal__footer">' +
                         '<button type="submit" class="btn btn-primary">' +

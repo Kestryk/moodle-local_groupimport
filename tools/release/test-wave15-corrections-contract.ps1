@@ -75,16 +75,17 @@ if ($styles -notmatch '(?s)\.local-groupimport-easystud-settings-modal__help:hov
 # after successful Save and is not backed by preference storage.
 foreach ($fragment in @(
     'data-easystud-delete-picture-input="1"',
-    'data-easystud-delete-picture-command="1"',
+    'type="checkbox" name="deletepicture" value="1"',
+    'data-easystud-settings-toggle-state="1"',
     'const resetAdvancedDeletePictureCommand = form =>',
-    "input.value = '0';",
+    'input.checked = false;',
     'resetAdvancedDeletePictureCommand(form);'
 )) {
     Assert-Contains 'Delete picture command' $manager $fragment
 }
 foreach ($fragment in @(
     'data-easystud-delete-picture-input',
-    'data-easystud-delete-picture-command',
+    'data-easystud-settings-toggle-state',
     'resetAdvancedDeletePictureCommand'
 )) {
     Assert-Contains 'Generated Delete picture command' $managerBuild $fragment
@@ -93,13 +94,20 @@ if ($manager -match '(?is)deletepicture.{0,160}(localStorage|sessionStorage)') {
     throw 'Delete picture must not be persisted as a user preference.'
 }
 foreach ($fragment in @(
-    'min-height: 1.9rem;',
+    '@include easyedu.toggle-check;',
+    '@include easyedu.slideshow-toggle-row(var(--local-groupimport-easystud-group));',
     'min-width: 0;',
-    'font-size: 0.84rem;',
+    'width: 100%;'
+)) {
+    Assert-Contains 'Delete picture visual contract' $modal $fragment
+}
+foreach ($fragment in @(
+    'local-course-banner-builder-slideshow-enable-button ',
     'transform: rotate(180deg) scale(1.06);',
     'transition-duration: 0.01ms !important;'
 )) {
-    Assert-Contains 'Delete picture visual contract' $modal $fragment
+    Assert-Absent 'Rejected consumer toggle imitation' $manager $fragment
+    Assert-Absent 'Rejected consumer toggle animation' $modal $fragment
 }
 
 # UI 0040-RF1: desktop outer chrome stays transparent; only the compact row

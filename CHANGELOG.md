@@ -2,6 +2,16 @@
 
 ## 2026-09-03
 
+### EasyStud Wave 17 Group image RF9
+
+- Made the shared Group image Filepicker's visible Choose control a real
+  keyboard-operable button that directly opens its native file input, while
+  preserving drag/drop, filename feedback, multipart AJAX and Moodle image
+  processing.
+- Replaced the rejected consumer-authored Delete-picture animation and copied
+  CCB classes with the canonical Kit `toggle-check` plus
+  `slideshow-toggle-row` composition and native checkbox semantics.
+
 ### EasyStud Wave 15 corrections
 
 - Consumed UI Kit `1de3514` so the two Group-modal question marks retain the

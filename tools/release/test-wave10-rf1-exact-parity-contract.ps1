@@ -28,15 +28,16 @@ Assert-Literal 'Help reference font size' $tooltips ("font-size: {0} !important;
 if ($manager.Contains($reference.help.classList)) {
     throw 'EasyStud must not retain the historical cross-plugin CCB help class.'
 }
-Assert-Literal 'Toggle reference row class' $manager $reference.toggle.rowClass
-Assert-Literal 'Toggle reference button class' $manager $reference.toggle.buttonClass
-Assert-Literal 'Toggle hidden value' $manager ('type="' + $reference.toggle.inputType + '" name="deletepicture"')
-Assert-Literal 'Toggle pressed state' $manager $reference.toggle.pressedAttribute
-Assert-Literal 'Toggle enabled icon' $manager $reference.toggle.iconOn
-Assert-Literal 'Toggle disabled icon' $manager $reference.toggle.iconOff
-Assert-Literal 'Toggle reference height' $modal ("min-height: {0};" -f $reference.toggle.minimumHeight)
-Assert-Literal 'Toggle reference font size' $modal ("font-size: {0};" -f $reference.toggle.fontSize)
-Assert-Literal 'Toggle visible transition' $modal 'background-color var(--easyedu-motion-normal)'
+Assert-Literal 'Canonical toggle check' $modal '@include easyedu.toggle-check;'
+Assert-Literal 'Canonical Slideshow row' $modal '@include easyedu.slideshow-toggle-row(var(--local-groupimport-easystud-group));'
+Assert-Literal 'Toggle native checkbox' $manager 'type="checkbox" name="deletepicture" value="1"'
+Assert-Literal 'Toggle visible state' $manager 'data-easystud-settings-toggle-state="1"'
+if ($manager.Contains($reference.toggle.rowClass) -or $manager.Contains($reference.toggle.buttonClass)) {
+    throw 'EasyStud must consume the shared Kit mixins instead of copying CCB product classes.'
+}
+if ($modal.Contains('transform: rotate(180deg) scale(1.06);')) {
+    throw 'EasyStud must not restore the rejected consumer-owned toggle animation.'
+}
 
 Assert-Literal 'Admin Mass Import eyebrow class' $settings 'local-groupimport-import__eyebrow local-groupimport-admin-settings__page-eyebrow'
 Assert-Literal 'Admin Mass Import title class' $settings 'local-groupimport-import__title local-groupimport-admin-settings__page-title'

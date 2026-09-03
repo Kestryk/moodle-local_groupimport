@@ -53,7 +53,7 @@ if ($manager -notmatch '(?s)local-groupimport-easystud-modal__footer.*?data-easy
     throw 'Group/Grouping native Moodle action is not kept with Save and Cancel in the shared footer.'
 }
 
-if ($manager -notmatch 'name="imagefile" accept="image/\*" data-easystud-advanced-file-input="1"') {
+if ($manager -notmatch '(?s)name="imagefile" accept="image/\*".*?data-easystud-advanced-file-input="1"') {
     throw 'The existing Group image Filepicker boundary is missing.'
 }
 

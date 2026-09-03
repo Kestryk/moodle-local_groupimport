@@ -1,5 +1,20 @@
 # EasyStud batch register
 
+## Wave 17 RF9 - EED-UI-2026-0038-RF9
+
+- Date: 2026-09-03.
+- Base: cumulative Wave 15 source `8ec5eaf`.
+- Scope: replace the fragile nested-label Group image picker trigger with a
+  real button wired to the native file input; replace the rejected local
+  Delete-picture animation with the exact shared `toggle-check` and
+  `slideshow-toggle-row` composition.
+- Preservation: Kit filepicker surface, drag/drop, multipart AJAX,
+  `process_new_icon`, Save/Cancel transaction, contextual help, fields and
+  related-object lists.
+- Validation: official Sass and Course Manager AMD builds, focused RF9 and
+  legacy modal/AMD/release contracts, syntax and `git diff --check`; no
+  runtime, cache, fixture, preview or browser activity.
+
 ## Wave 15 - EED-UI-2026-0052-RF1 / 0038-RF8 / 0040-RF1
 
 - Date: 2026-09-03.
