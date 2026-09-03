@@ -362,6 +362,10 @@
   .easyedu-navigation__guide-slot,
   .easyedu-navigation__participant-slot { margin: 0.8rem 0 0; }
 
+  .easyedu-navigation__guide-slot:not(:empty) {
+    margin-block-end: 1rem;
+  }
+
   .easyedu-navigation__guide-slot:empty,
   .easyedu-navigation__participant-slot:empty { display: none; }
 
@@ -381,7 +385,7 @@
       var(--local-groupimport-easystud-guide-launcher-gradient);
     background-position: 0 0, 0 50%;
     background-size: 100% 100%, 190% 190%;
-    border: 1px solid rgba(255, 255, 255, 0.78);
+    border: 0.0625rem solid var(--easyedu-guide-launcher-resting-border);
     border-radius: var(--easyedu-control-radius);
     box-shadow: 0 0.24rem 0.62rem rgba(31, 68, 104, 0.14);
     color: var(--easyedu-identity-icon-color);

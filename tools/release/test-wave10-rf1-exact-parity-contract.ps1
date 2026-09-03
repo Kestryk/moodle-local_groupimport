@@ -23,8 +23,8 @@ function Assert-Literal([string]$label, [string]$contents, [string]$fragment) {
 
 Assert-Literal 'CCB reference provenance' $reference.sourceCommit '201edafc0efa228c9784c44787b05ef83048f2de'
 Assert-Literal 'Canonical Help mixin adoption' $modal '@include easyedu.contextual-help-control;'
-Assert-Literal 'Help reference diameter' $tooltips ("flex: 0 0 {0};" -f $reference.help.diameter)
-Assert-Literal 'Help reference font size' $tooltips ("font-size: {0};" -f $reference.help.fontSize)
+Assert-Literal 'Help reference diameter' $tooltips ("flex: 0 0 {0} !important;" -f $reference.help.diameter)
+Assert-Literal 'Help reference font size' $tooltips ("font-size: {0} !important;" -f $reference.help.fontSize)
 if ($manager.Contains($reference.help.classList)) {
     throw 'EasyStud must not retain the historical cross-plugin CCB help class.'
 }

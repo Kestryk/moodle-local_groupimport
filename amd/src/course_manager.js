@@ -3619,6 +3619,7 @@ const bindAdvancedSettings = root => {
         postFormAction(new FormData(form)).then(response => {
             if (response.group) {
                 applyAdvancedGroupUpdate(root, response.group);
+                resetAdvancedDeletePictureCommand(form);
             }
             if (response.grouping) {
                 applyAdvancedGroupingUpdate(root, response.grouping);
@@ -3797,7 +3798,7 @@ const renderFieldHelp = help => {
     }
     // The EasyStud hook owns accessible naming and popover binding; the
     // canonical UI Kit mixin owns all visual states.
-    return '<button type="button" class="btn btn-link p-0 icon-no-margin ' +
+    return '<button type="button" class="btn p-0 icon-no-margin ' +
         'local-groupimport-easystud-settings-modal__help" ' +
         'aria-label="' + escapeHtml(help) + '" data-easystud-hover-help="' + escapeHtml(help) + '">?</button>';
 };
@@ -3825,6 +3826,24 @@ const syncAdvancedSettingsToggleButton = (button, input) => {
             (button.getAttribute('data-label-on') || '') :
             (button.getAttribute('data-label-off') || '');
     }
+};
+
+/**
+ * Reset the destructive Delete picture command after a successful Save.
+ *
+ * The control represents one pending action for the current form submission;
+ * it is not a stored on/off preference.
+ *
+ * @param {HTMLFormElement} form Advanced Group settings form.
+ */
+const resetAdvancedDeletePictureCommand = form => {
+    const input = form.querySelector('[data-easystud-delete-picture-input]');
+    const button = form.querySelector('[data-easystud-delete-picture-command]');
+    if (!input || !button) {
+        return;
+    }
+    input.value = '0';
+    syncAdvancedSettingsToggleButton(button, input);
 };
 
 const getAdvancedCountLabel = (root, item, isgroup) => {
@@ -4103,11 +4122,13 @@ const openAdvancedSettingsModal = (root, item) => {
                                     escapeHtml(labels.deletepicture || '') +
                                 '</div>' +
                                 '<input type="hidden" name="deletepicture" value="0" ' +
+                                    'data-easystud-delete-picture-input="1" ' +
                                     'id="local-groupimport-easystud-deletepicture-toggle">' +
                                 '<div class="local-course-banner-builder-slideshow-toggle-button-row">' +
                                     '<button type="button" class="btn local-course-banner-builder-slideshow-enable-button ' +
                                             'local-groupimport-easystud-settings-modal__image-toggle-button btn-outline-secondary" ' +
                                         'data-easystud-settings-toggle-button="1" ' +
+                                        'data-easystud-delete-picture-command="1" ' +
                                         'data-target-input="#local-groupimport-easystud-deletepicture-toggle" ' +
                                         'data-label-on="' + escapeHtml(labels.enabled || '') + '" ' +
                                         'data-label-off="' + escapeHtml(labels.disabled || '') + '" ' +

@@ -161,42 +161,57 @@
 // semantics, accessible name and cursor; this mixin owns only geometry and
 // visual interaction states.
 @mixin contextual-help-control {
-  align-items: center;
-  background: var(--easyedu-primary-soft);
-  border: 1px solid color-mix(in srgb, var(--easyedu-primary) 24%, #fff 76%);
-  border-radius: 999px;
-  color: var(--easyedu-primary);
-  display: inline-flex;
-  flex: 0 0 1.15rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  height: 1.15rem;
-  justify-content: center;
-  line-height: 1;
-  max-height: 1.15rem;
-  max-width: 1.15rem;
-  min-height: 1.15rem;
-  min-width: 1.15rem;
-  padding: 0;
-  text-decoration: none;
+  align-items: center !important;
+  appearance: none !important;
+  background: var(--easyedu-primary-soft) !important;
+  border: 1px solid color-mix(in srgb, var(--easyedu-primary) 24%, #fff 76%) !important;
+  border-radius: 999px !important;
+  box-sizing: border-box;
+  color: var(--easyedu-primary) !important;
+  display: inline-flex !important;
+  flex: 0 0 1.15rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  height: 1.15rem !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  max-height: 1.15rem !important;
+  max-width: 1.15rem !important;
+  min-height: 1.15rem !important;
+  min-width: 1.15rem !important;
+  padding: 0 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
   transition:
     background-color var(--easyedu-motion-fast) ease,
     border-color var(--easyedu-motion-fast) ease,
     color var(--easyedu-motion-fast) ease,
     box-shadow var(--easyedu-motion-fast) ease;
-  width: 1.15rem;
+  vertical-align: middle !important;
+  width: 1.15rem !important;
 
   &:hover,
   &:focus,
   &:focus-visible {
-    background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, #fff 28%);
-    border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%);
-    color: var(--easyedu-primary);
-    text-decoration: none;
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, #fff 28%) !important;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 44%, #fff 56%) !important;
+    color: var(--easyedu-primary) !important;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
   }
 
   &:focus-visible {
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
+
+    // Contextual help is frequently composed with Moodle/Bootstrap `.btn` and
+    // legacy `.btn-link` utilities. Keep the shared ring authoritative even
+    // when those higher-specificity utilities publish their own focus paint.
+    border-color: var(--easyedu-control-focus-border) !important;
+    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+    outline: var(--easyedu-focus-outline-width) solid transparent !important;
+    outline-offset: var(--easyedu-focus-outline-offset) !important;
   }
 
   &:disabled,

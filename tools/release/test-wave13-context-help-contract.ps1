@@ -24,14 +24,15 @@ function Assert-Absent([string]$label, [string]$contents, [string]$fragment) {
 }
 
 Assert-Literal 'Kit canonical mixin' $tooltips '@mixin contextual-help-control {'
-Assert-Literal 'Kit canonical diameter' $tooltips 'flex: 0 0 1.15rem;'
-Assert-Literal 'Kit non-underlined interaction' $tooltips 'text-decoration: none;'
+Assert-Literal 'Kit canonical diameter' $tooltips 'flex: 0 0 1.15rem !important;'
+Assert-Literal 'Kit non-underlined interaction' $tooltips 'text-decoration: none !important;'
 Assert-Literal 'Kit shared focus ring' $tooltips '@include focus.ring($border-color: var(--easyedu-control-focus-border));'
 Assert-Literal 'EasyStud consumer mixin' $modal '@include easyedu.contextual-help-control;'
 Assert-Absent 'EasyStud local modal diameter' $modal 'height: 1.15rem !important;'
 Assert-Absent 'EasyStud retired local help dot' $forms '&-help-dot {'
 
-Assert-Literal 'Native help button' $manager '<button type="button" class="btn btn-link p-0 icon-no-margin '
+Assert-Literal 'Native help button' $manager '<button type="button" class="btn p-0 icon-no-margin '
+Assert-Absent 'Native help button link utility' $manager '<button type="button" class="btn btn-link p-0 icon-no-margin local-groupimport-easystud-settings-modal__help'
 Assert-Literal 'EasyStud help hook' $manager 'local-groupimport-easystud-settings-modal__help" '
 Assert-Literal 'Accessible help name' $manager "aria-label=`"' + escapeHtml(help) + '`" data-easystud-hover-help=`"' + escapeHtml(help) + '`">?</button>"
 Assert-Literal 'Enrollment help consumer' $manager 'labels.advancedsettingsenrolmentkeyhelp || '''

@@ -67,11 +67,22 @@ foreach ($contract in @(
 }
 
 foreach ($contract in @(
-    'background: var(--easyedu-guide-launcher-resting-surface)',
-    'border: 0.0625rem solid var(--easyedu-guide-launcher-resting-border)',
+    'align-items: center',
+    'background: transparent',
+    'border: 0',
+    'padding: 0',
     '@include focus.ring'
 )) {
     Assert-ContainsLiteral $guide $contract "Guide launcher surface is missing '$contract'."
+}
+
+foreach ($contract in @(
+    '.easyedu-navigation__guide-slot:not(:empty)',
+    'margin-block-end: 1rem',
+    'border: 0.0625rem solid var(--easyedu-guide-launcher-resting-border)',
+    '@include buttons.close-button'
+)) {
+    Assert-ContainsLiteral $navigation $contract "Responsive Guide/Close composition is missing '$contract'."
 }
 
 foreach ($contract in @(

@@ -48,11 +48,16 @@ public alias; it does not define a second geometry.
 
 - The circle is exactly `1.15rem` and must not grow with surrounding text.
 - Hover and keyboard focus never underline the trigger.
+- Native button appearance and Bootstrap button/link utilities must not change
+  its box, alignment, border or text decoration. The primitive therefore owns
+  the complete reset as well as its visual states.
 - `:focus-visible` keeps the shared EasyEdu focus ring.
 - The consumer owns the native element, accessible name, tooltip/popover
   lifecycle and cursor semantics.
 - Do not add plugin-local width, border or hover overrides to reproduce a
   larger question-mark variant.
+- Do not require a link-style class on a native button. If legacy markup still
+  carries one, the canonical reset must remain authoritative.
 
 ## Import Contract
 

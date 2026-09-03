@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-09-03
+
+### EasyStud Wave 15 corrections
+
+- Consumed UI Kit `1de3514` so the two Group-modal question marks retain the
+  exact 1.15 rem circle, centred glyph/focus and non-underlined states in the
+  final Moodle/Bootstrap cascade; removed the unnecessary `btn-link` utility.
+- Reduced `Delete picture` to its content-sized Slideshow proportions, retained
+  a visible state transition and made its pending value reset after successful
+  Save. Cancel still performs no request and the command is never persisted as
+  a preference.
+- Restored the transparent centred desktop Guide launcher while retaining a
+  bordered compact row, deliberate following-section clearance and the shared
+  Navigation Close hover/focus state.
+
 ## 2026-09-01
 
 ### EasyStud Wave 13 contextual help controls

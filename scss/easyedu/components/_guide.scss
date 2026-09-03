@@ -7,9 +7,9 @@
 @use "focus";
 
 @mixin guide-launcher-button {
-  align-items: start;
-  background: var(--easyedu-guide-launcher-resting-surface);
-  border: 0.0625rem solid var(--easyedu-guide-launcher-resting-border);
+  align-items: center;
+  background: transparent;
+  border: 0;
   border-radius: 0.9rem;
   color: #fff;
   display: inline-flex;
@@ -18,7 +18,7 @@
   min-height: 2.55rem;
   justify-content: center;
   line-height: 1;
-  padding: 0.16rem;
+  padding: 0;
   position: relative;
   text-decoration: none;
   transition: box-shadow 0.16s ease, transform 0.16s ease;
@@ -72,8 +72,8 @@
   }
 
   &:hover {
-    background: var(--easyedu-surface);
-    border-color: color-mix(in srgb, var(--easyedu-primary) 38%, var(--easyedu-card-border) 62%);
+    background: transparent;
+    border-color: transparent;
     box-shadow: none;
     color: var(--easyedu-accent);
     outline: 0;
@@ -82,8 +82,8 @@
   }
 
   &:focus {
-    background: var(--easyedu-surface);
-    border-color: var(--easyedu-control-focus-border);
+    background: transparent;
+    border-color: transparent;
     box-shadow: none;
     color: var(--easyedu-accent);
     outline: 0;

@@ -1,5 +1,21 @@
 # EasyStud batch register
 
+## Wave 15 - EED-UI-2026-0052-RF1 / 0038-RF8 / 0040-RF1
+
+- Date: 2026-09-03.
+- Base: cumulative Wave 13 source `e960204`.
+- Kit input: `EED-KIT-2026-0009-RF1` and `0006-RF1` source `1de3514`.
+- Scope: final-cascade ownership for the two Group-modal question marks;
+  content-sized, animated and one-shot `Delete picture`; breakpoint-specific
+  Guide launcher boundary/spacing with the shared Close state.
+- Preservation: help copy/popover lifecycle, upload behavior, Group save route,
+  Navigation routes/content/portal/scroll/focus lifecycle and global modal
+  Close migration.
+- Validation: official Sass and Course Manager AMD builds, focused Wave 15,
+  legacy Wave 4/9/10/13, Navigation/Guide, AMD-format and release contracts,
+  syntax and `git diff --check`; no runtime, cache, fixture, preview or browser
+  activity.
+
 ## Wave 13 - EED-UI-2026-0052
 
 - Date: 2026-09-01.

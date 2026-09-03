@@ -1,6 +1,6 @@
 # EasyStud navigation integration
 
-## Kit Navigation/Guide surface adoption (`EED-UI-2026-0040`)
+## Kit Navigation/Guide surface adoption (`EED-UI-2026-0040` / `0040-RF1`)
 
 EasyStud consumes the source-only Navigation/Guide foundations from UI Kit
 `EED-KIT-2026-0006` commit
@@ -12,7 +12,10 @@ The shared changes are limited to:
 
 - Navigation labels inheriting the Moodle theme UI family and shared medium
   weight, with shared title and eyebrow typography roles;
-- a neutral resting surface and border around the existing Guide launcher;
+- a transparent, centred desktop Guide outer control that leaves only the
+  established icon surface visible;
+- a neutral resting border and deliberate following-section gap on the compact
+  Guide row;
 - shared drawer surface tokens and a viewport-sized compact panel;
 - a fixed safe-area header plus an independently scrolling body containing the
   existing Guide slot, destinations and participant links;
@@ -28,6 +31,10 @@ persistence rules remain consumer-owned and unchanged.
 Navigation/Guide AMD, Skeleton markup/lifecycle and Mass Import behavior are
 also unchanged. Desktop/mobile appearance, drawer scrolling, focus return,
 RTL, reduced motion and forced colours require managed preview review.
+
+RF1 consumes the corrected Kit source `1de3514`. It changes only the launcher
+surface contract and reuses the existing shared Close hover/focus state. Routes,
+Guide content, body portal ownership, scrolling and focus return remain intact.
 
 ## Fixed compact trigger placement (EED-NAV-2026-0010)
 

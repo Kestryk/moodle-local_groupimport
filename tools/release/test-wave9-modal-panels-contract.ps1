@@ -24,7 +24,8 @@ function Assert-NotContains {
     }
 }
 
-Assert-Contains $manager 'class="btn btn-link p-0 icon-no-margin ' 'Contextual help must keep the accepted CCB Slideshow button structure.'
+Assert-Contains $manager 'class="btn p-0 icon-no-margin ' 'Contextual help must keep the accepted native button structure without btn-link.'
+Assert-NotContains $manager 'class="btn btn-link p-0 icon-no-margin local-groupimport-easystud-settings-modal__help' 'Contextual help must not restore Bootstrap btn-link.'
 Assert-Contains $manager 'local-groupimport-easystud-settings-modal__help" ' 'Contextual help must retain the EasyStud behavior hook.'
 Assert-Contains $modal '@include easyedu.contextual-help-control;' 'Contextual help must use the canonical Kit primitive.'
 Assert-NotContains $manager 'local-course-banner-builder-help-dot ' 'EasyStud contextual help must not retain a cross-plugin class.'

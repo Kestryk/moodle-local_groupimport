@@ -18,13 +18,15 @@ buttons with their own icons, not question marks. The retired
 
 ## Migration
 
-- Embedded only the required `EED-KIT-2026-0009` tooltip primitive and its
-  component contract from UI Kit source `f9d8247`.
+- Embedded only the required `EED-KIT-2026-0009` tooltip primitive and its RF1
+  cascade correction from UI Kit sources `f9d8247` and `1de3514`.
 - The EasyStud modal selector now includes
   `easyedu.contextual-help-control` directly; it no longer duplicates geometry,
   border, colour, hover, focus or disabled states.
 - Removed the foreign `local-course-banner-builder-help-dot` class and the
   unused local 1.35 rem help-dot variant.
+- Removed Bootstrap's `btn-link` utility from the two native help buttons; the
+  Kit reset also remains authoritative if legacy markup composes that utility.
 
 The native button, `aria-label`, `data-easystud-hover-help`, focus binding and
 popover creation/removal code are unchanged. Enrollment copy and the accepted

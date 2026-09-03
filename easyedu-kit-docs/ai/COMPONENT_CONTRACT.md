@@ -112,13 +112,16 @@ Must:
 - use the shared drawer surface, border and shadow tokens;
 - inherit the Moodle UI family and use medium weight for destination labels;
 - contain long trigger labels in `.easyedu-navigation__trigger-label`;
-- keep a visible neutral Guide launcher boundary at rest and retain the shared
-  focus ring.
+- keep the desktop Guide outer button transparent so its established icon stays
+  centred, and keep a visible neutral border plus section clearance on the
+  compact Guide row;
+- retain the shared focus ring and Close hover/focus treatment.
 
 Must not:
 
 - move or duplicate EasyStud destinations, participant links or Guide content
   when adding the scroll-body wrapper;
+- apply the compact Guide boundary to the desktop launcher;
 - change Guide targets, completion rules, persistence or Navigation/Guide AMD
   lifecycle as part of visual-foundation adoption;
 - move the fixed header inside the scrolling body or reintroduce panel-level
@@ -604,11 +607,14 @@ Must:
   interactive question-mark trigger;
 - keep the accepted `1.15rem` circle, non-underlined hover/focus and shared
   focus-visible ring;
+- keep the complete component reset authoritative against native, Bootstrap
+  and Moodle button/link declarations;
 - preserve the consumer's accessible name, cursor and popover lifecycle.
 
 Must not:
 
 - create plugin-local question-mark sizes, borders or hover treatments;
+- require a link-style utility on native contextual-help buttons;
 - use help text as the only accessible name of an icon-only trigger.
 
 Responsive plugin navigation may use `mobile-primary-nav-rail` or the
