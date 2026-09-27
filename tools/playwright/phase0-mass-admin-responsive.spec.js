@@ -161,6 +161,8 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         await expect(dataTable.locator('th').nth(1)).toHaveCSS('font-size', '11px');
         await expect(dataTable.locator('td').nth(2)).toHaveCSS('border-left-width', '0px');
         await expect(dataTable.locator('input[type="text"]').first()).toHaveCSS('height', '40px');
+        await expect(massRoot.locator('.local-groupimport-import-preview__actions button'))
+            .toHaveCSS('column-gap', '10.4px');
         await expectNoHorizontalOverflow(page);
         await captureScrollSeries(page, massRoot, testInfo, `phase0-preview-${viewport.name}`);
 

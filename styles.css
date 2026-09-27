@@ -19074,6 +19074,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: none;
   color: var(--easyedu-surface);
   display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
   font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
   justify-content: center;
   min-block-size: 2.35rem;
@@ -19102,6 +19103,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: none;
   color: var(--easyedu-surface);
   display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
   font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
   justify-content: center;
   min-block-size: 2.35rem;
@@ -19273,6 +19275,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: none;
   color: var(--easyedu-surface);
   display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
   font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
   justify-content: center;
   min-block-size: 2.35rem;
@@ -19375,6 +19378,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: none;
   color: var(--easyedu-surface);
   display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
   font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
   justify-content: center;
   min-block-size: 2.35rem;
@@ -19420,6 +19424,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: none;
   color: var(--easyedu-surface);
   display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
   font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
   justify-content: center;
   min-block-size: 2.35rem;
@@ -19454,6 +19459,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: none;
   color: var(--easyedu-surface);
   display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
   font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
   justify-content: center;
   min-block-size: 2.35rem;
