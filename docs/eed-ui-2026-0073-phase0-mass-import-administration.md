@@ -52,6 +52,25 @@ local weight scale remains for these two views.
 
 ### Visible convergence follow-up
 
+#### Class-first correction following human rejection
+
+The user rejected the visual approximation and local CSS approach. Initial
+Mass Import now consumes canonical `.easyedu-*` classes from
+`easyedu/_foundation-classes.scss` and `easyedu/adapters/_moodle-file-deposit.scss`.
+381 lines were removed from the view partial. These two imported modules must
+remain identical to Kit `068157504649d07b9f2ac1c54f0ec157f15f8fd9`.
+The product entry point emits them without style declarations; PHP supplies
+business content and preserves native form semantics. Inter is embedded from
+the Kit; the earlier theme-font/proxy decision is superseded for migrated
+Mass Import and Administration chrome, not authored user content.
+
+**Still incomplete:** preview/report/history/dialogue visual recipes and the
+rest of the legacy embedded Kit drift. Neither the whole plugin nor every
+Penpot state is 100% migrated. The measured initial composition excludes
+Penpot specimen headings and Moodle's own course header, which are not plugin
+components. Full fidelity needs remaining state comparisons and human review.
+
+
 The first pass was structural, not a complete Penpot visual migration. The
 2026-09-27 follow-up uses the initial Desktop Mass Import board
 `5daf2376-ada4-8014-8008-ad9c0e35b6c1` as measured evidence: 16px section

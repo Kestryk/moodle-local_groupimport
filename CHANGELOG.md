@@ -4,6 +4,13 @@
 
 ### EasyEdu Foundations Phase 0 - Mass Import and Administration
 
+- Replace initial Mass Import visual rules with public Foundations classes;
+  remove 381 local SCSS lines. Embed canonical Inter locally, match measured
+  heading weights/line heights, remove panel shadows and use the shared Moodle
+  deposit adapter with support, real picker and accepted-formats strip.
+- Record the remaining preview/report/dialogue migration as incomplete rather
+  than treating geometry checks as complete Penpot parity.
+
 - Correct the visible composition: 16px import section titles, body-size
   descriptions, 24px panel spacing, matching identification icon tiles and a
   solid native file-deposit surface from the Kit. Keep upload APIs unchanged.

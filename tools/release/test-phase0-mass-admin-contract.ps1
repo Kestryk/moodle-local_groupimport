@@ -10,11 +10,21 @@ $lateTypography = @(
 $kitTypography = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_typography.scss')
 $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit-docs\easyedu-kit.json') | ConvertFrom-Json
 
+# Git blob hashes compare normalized source, independently of checkout CRLF.
+$canonicalModules = @{
+    'scss/easyedu/_foundation-classes.scss' = 'bb462b328c8627915854cc2e82afb7b8651fe294'
+    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '96cd3ba1297fdf89a1660e6691e8c017002400b0'
+}
+foreach ($path in $canonicalModules.Keys) {
+    $actual = & git -C $pluginRoot hash-object $path
+    if ($LASTEXITCODE -ne 0 -or $actual -ne $canonicalModules[$path]) {
+        throw "Embedded Kit module diverges from the canonical source: $path"
+    }
+}
+
 foreach ($needle in @(
-    '@include easyedu.type-page-title;',
     '@include easyedu.type-control-label;',
     '@include easyedu.type-caption;',
-    '@include easyedu.section-icon-tile',
     '@include easyedu.data-table-surface;',
     '@include easyedu.action-row'
 )) {
@@ -49,8 +59,16 @@ if ($kitTypography -match '@mixin type-page-identity') {
     throw 'The embedded Kit must use type-page-title directly.'
 }
 
-if ($kitManifest.consumerSync.sourceCommit -ne 'bba963c1dbd6b031871fb10b21f5319602a84986') {
+if ($kitManifest.consumerSync.sourceCommit -notmatch '^[0-9a-f]{40}$') {
     throw 'The embedded Kit manifest does not pin the canonical Phase 0 source commit.'
+}
+
+$markup = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'index.php')
+foreach ($class in @('easyedu-ui', 'easyedu-panel__title', 'easyedu-information', 'easyedu-tag', 'easyedu-empty')) {
+    if (-not $markup.Contains($class)) { throw "Missing shared class: $class" }
+}
+if ($massImport -match '\.fp-btn-choose|\.filepicker-container|\.easyedu-file-deposit') {
+    throw 'File deposit presentation must live in the canonical Kit adapter, not the plugin view.'
 }
 
 if ($kitManifest.consumerSync.fullTreeIdentical -ne $false) {

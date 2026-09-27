@@ -1,0 +1,7 @@
+// Composition entry point only. These sources are byte-identical to the Kit.
+@use "../easyedu/foundation-classes" as foundations;
+@use "../easyedu/adapters/moodle-file-deposit" as moodleforms;
+
+@include foundations.foundation-font("[[font:local_groupimport|InterVariable.woff2]]");
+@include foundations.foundation-classes;
+@include moodleforms.moodle-file-deposit-classes;
