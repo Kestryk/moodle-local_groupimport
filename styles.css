@@ -16204,11 +16204,112 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   text-align: start;
 }
 .local-groupimport-import-form .filepicker-container {
+  border: 0;
+  display: block;
+  inset: auto;
+  overflow-wrap: anywhere;
+  position: static;
+}
+.local-groupimport-import-form .filepicker-filename > a {
   display: block;
   overflow-wrap: anywhere;
+  padding: 0.75rem;
+}
+.local-groupimport-import-form .filepicker-filelist .dndupload-target,
+.local-groupimport-import-form .filepicker-filelist.dndupload-over .dndupload-target {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  background: var(--easyedu-primary-soft);
+  border: 1px solid var(--easyedu-control-focus-border);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  inset: 0;
+  padding: 0.75rem;
 }
 .local-groupimport-import-form .fp-btn-choose {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
+  justify-content: center;
+  line-height: 1.2;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-control);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  color: var(--easyedu-primary);
   max-width: 100%;
+  min-width: min(10.5rem, 100%);
+  white-space: normal;
+}
+.local-groupimport-import-form .fp-btn-choose:hover, .local-groupimport-import-form .fp-btn-choose:focus-visible, .local-groupimport-import-form .fp-btn-choose[aria-expanded=true], .local-groupimport-import-form .fp-btn-choose[aria-pressed=true], .local-groupimport-import-form .fp-btn-choose.active, .local-groupimport-import-form .fp-btn-choose.is-active {
+  background: var(--easyedu-primary-soft);
+  border-color: var(--easyedu-control-focus-border);
+  color: var(--easyedu-primary-strong);
+  outline: 0;
+}
+.local-groupimport-import-form .fp-btn-choose:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-import-form .fp-btn-choose:disabled, .local-groupimport-import-form .fp-btn-choose[aria-disabled=true], .local-groupimport-import-form .fp-btn-choose.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+  transform: none;
+}
+.local-groupimport-import-form .fp-btn-choose .fa {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  min-inline-size: 1em;
+  margin-inline: 0;
+  width: 1em;
+}
+.local-groupimport-import-form .easyedu-file-deposit__control p {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  margin-block: 0.75rem 0.35rem;
+}
+.local-groupimport-import-form .easyedu-file-deposit__control .form-filetypes-descriptions {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  color: var(--easyedu-text-muted);
+}
+.local-groupimport-import-form .easyedu-file-deposit__control .form-filetypes-descriptions ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  margin: 0;
 }
 .local-groupimport-import-form [id^=filepicker-wrapper-] > div > span {
   font-family: var(--easyedu-font-family-ui);

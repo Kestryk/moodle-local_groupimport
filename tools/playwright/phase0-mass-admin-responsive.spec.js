@@ -6,7 +6,7 @@ const adminUrl = new URL('/admin/settings.php?section=local_groupimport', massIm
 const username = process.env.EASYEDU_MOODLE_USERNAME || 'Admin';
 const password = process.env.EASYEDU_MOODLE_PASSWORD || '';
 
-test.describe.configure({timeout: 180000});
+test.describe.configure({timeout: 300000});
 
 const login = async(page, url) => {
     await page.goto(url, {waitUntil: 'domcontentloaded'});
@@ -111,10 +111,29 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
             '.local-groupimport-import-fields__icon:visible, .easyedu-file-deposit__icon'
         ));
         await expect(massRoot.locator('.easyedu-file-deposit')).toBeVisible();
+        await expect(massRoot.locator('.fp-btn-choose')).toBeVisible({timeout: 60000});
         await expect(massRoot.locator('.local-groupimport-import-card__title').first())
             .toHaveCSS('font-size', '16px');
         await expectNoHorizontalOverflow(page);
         await captureScrollSeries(page, massRoot, testInfo, `phase0-mass-import-${viewport.name}`);
+
+        // Upload a draft and preview only: never execute an import or mutate
+        // course membership. The native filename must remain visible.
+        const transfer = await page.evaluateHandle(() => new DataTransfer());
+        await transfer.evaluate(data => data.items.add(new File([
+            'student;group;grouping\ntest.etudiant.01@example.com;Phase 0 preview;Phase 0 preview'
+        ], 'phase0-preview.csv', {type: 'text/csv'})));
+        await page.dispatchEvent('body', 'drop', {dataTransfer: transfer});
+        await transfer.dispose();
+        await expect(massRoot.locator('.filepicker-filename')).toContainText('phase0-preview.csv', {timeout: 30000});
+        await massRoot.locator('.easyedu-file-deposit').screenshot({
+            path: testInfo.outputPath(`phase0-file-present-${viewport.name}.png`),
+        });
+        await massRoot.locator('.local-groupimport-import-card--upload [type="submit"]').click();
+        await expect(massRoot).toHaveClass(/has-preview/, {timeout: 60000});
+        await expect(massRoot.locator('.local-groupimport-import-preview__table')).toBeVisible();
+        await expectNoHorizontalOverflow(page);
+        await captureScrollSeries(page, massRoot, testInfo, `phase0-preview-${viewport.name}`);
 
         await page.goto(adminUrl, {waitUntil: 'domcontentloaded'});
         const adminRoot = page.locator('#page-admin-setting-local_groupimport');
@@ -135,6 +154,7 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
             '.local-groupimport-admin-settings__hero > .fa:visible'
         ));
         await expectNoHorizontalOverflow(page);
-        await captureScrollSeries(page, adminRoot, testInfo, `phase0-administration-${viewport.name}`);
+        await captureScrollSeries(page, adminRoot.locator('#adminsettings'), testInfo,
+            `phase0-administration-${viewport.name}`);
     }
 });
