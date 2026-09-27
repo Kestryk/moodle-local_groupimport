@@ -279,14 +279,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     min-width: 0;
 
     h3 {
-      @include easyedu.type-section-title;
+      @include easyedu.type-panel-title;
 
       border: 0;
       margin: 0 0 0.35rem;
     }
 
     p {
-      @include easyedu.type-caption;
+      @include easyedu.type-body;
 
       margin: 0;
       max-width: 58rem;

@@ -45,6 +45,19 @@ class import_form extends \moodleform {
         $mform->addElement('hidden', 'id', $courseid);
         $mform->setType('id', PARAM_INT);
 
+        // Kit surface around the real Moodle picker: draft IDs, progress,
+        // replacement, keyboard access and validation remain Moodle-owned.
+        $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit'));
+        $mform->addElement('html', \html_writer::div(
+            \html_writer::span(
+                \html_writer::span('', 'fa fa-cloud-upload', ['aria-hidden' => 'true']),
+                'easyedu-file-deposit__icon', ['aria-hidden' => 'true']
+            ) . \html_writer::tag('h3', get_string('csvdropready', 'local_groupimport'),
+                ['class' => 'easyedu-file-deposit__title']),
+            'easyedu-file-deposit__heading'
+        ));
+        $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit__control'));
+
         // Import file.
         $mform->addElement(
             'filepicker',
@@ -54,6 +67,7 @@ class import_form extends \moodleform {
             ['accepted_types' => ['.csv', '.xls', '.xlsx']]
         );
         $mform->addRule('importfile', null, 'required', null, 'client');
+        $mform->addElement('html', \html_writer::end_div() . \html_writer::end_div());
 
         $submitlabel = $this->_customdata['submitlabel'] ?? get_string('previewimport', 'local_groupimport');
 

@@ -351,6 +351,12 @@ The canonical artifact-retention policy is
 
 ## Visual artifact policy
 
+The local-supervised Phase 0 responsive scenario covers 1440, 1024 and 390px.
+It records numbered overlapping viewport captures by scrolling Moodle's real
+inner scroll container. Review every numbered image; `fullPage` alone can
+miss everything below the first viewport in Boost. This scenario does not
+submit an import or save administration settings.
+
 All three launchers write Playwright output outside the Git worktree and
 register a manifest with the shared EasyEdu orchestration tooling:
 

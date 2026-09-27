@@ -5,8 +5,8 @@
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
-    "sourceCommit": "09f04aa08300cf6da300ed8a7fd4941bdbba98ef",
-    "canonicalScssTree": "92df6338e9ac3f3c40cb64381bc9506d81f36484",
+    "sourceCommit": "bba963c1dbd6b031871fb10b21f5319602a84986",
+    "canonicalScssTree": "aba9b01d166faf4e86b3762ecbf61e20ea27ff4f",
     "scope": "Mass Import and Administration Phase 0 subset",
     "fullTreeIdentical": false,
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"

@@ -25,7 +25,7 @@ foreach ($needle in @(
 
 foreach ($needle in @(
     '@include easyedu.type-ui-base;',
-    '@include easyedu.type-section-title;',
+    '@include easyedu.type-panel-title;',
     '@include easyedu.section-icon-tile',
     '@include easyedu.multi-select-list;',
     '@include easyedu.native-select-control;',
@@ -49,7 +49,7 @@ if ($kitTypography -match '@mixin type-page-identity') {
     throw 'The embedded Kit must use type-page-title directly.'
 }
 
-if ($kitManifest.consumerSync.sourceCommit -ne '09f04aa08300cf6da300ed8a7fd4941bdbba98ef') {
+if ($kitManifest.consumerSync.sourceCommit -ne 'bba963c1dbd6b031871fb10b21f5319602a84986') {
     throw 'The embedded Kit manifest does not pin the canonical Phase 0 source commit.'
 }
 

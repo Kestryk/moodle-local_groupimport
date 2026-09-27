@@ -14373,8 +14373,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
   color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-section-title);
-  font-weight: var(--easyedu-font-weight-semibold);
+  font-size: var(--easyedu-font-size-panel-title);
+  font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
   border: 0;
   margin: 0 0 0.35rem;
@@ -14383,9 +14383,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
   margin: 0;
   max-width: 58rem;
 }
@@ -15735,7 +15735,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import__grid {
   align-items: stretch;
   display: grid;
-  gap: 1.15rem;
+  gap: 1.5rem;
   grid-template-columns: minmax(21rem, 0.88fr) minmax(25rem, 1.12fr);
   transition: grid-template-columns var(--easyedu-motion-slow) var(--easyedu-motion-ease);
 }
@@ -15767,7 +15767,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   border-color: var(--easyedu-semantic-border-primary);
   min-width: 0;
   overflow: visible;
-  padding: 1rem;
+  padding: 1.5rem;
   transition: box-shadow var(--easyedu-motion-normal) ease;
 }
 .local-groupimport-import-card--results {
@@ -15851,8 +15851,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   align-items: flex-start;
   display: flex;
   gap: 0.75rem;
-  margin-bottom: 0.95rem;
-  padding-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  padding-top: 0;
 }
 .local-groupimport-import-card__header > .fa {
   align-items: center;
@@ -15944,18 +15944,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
   color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-control);
+  font-size: var(--easyedu-font-size-section-title);
   font-weight: var(--easyedu-font-weight-semibold);
-  line-height: 1.35;
-  margin: 0 0 0.2rem;
+  line-height: var(--easyedu-line-height-title);
+  margin: 0 0 0.75rem;
 }
 .local-groupimport-import-card__description {
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
   color: var(--local-groupimport-easystud-text-muted);
   margin: 0;
 }
@@ -15966,7 +15966,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: grid;
   gap: 0.7rem;
   margin: 0.65rem 0 1rem;
-  padding: 0.85rem;
+  padding: 1rem;
 }
 .local-groupimport-import.has-preview .local-groupimport-import-fields {
   gap: 0.45rem;
@@ -15986,11 +15986,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
   color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-control);
-  font-weight: var(--easyedu-font-weight-semibold);
-  line-height: 1.35;
+  font-size: var(--easyedu-font-size-card-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
   display: block;
-  margin-bottom: 0.22rem;
+  margin-block: 0.55rem 0.75rem;
 }
 .local-groupimport-import-fields__header p {
   font-family: var(--easyedu-font-family-ui);
@@ -16009,11 +16009,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-sizing: border-box;
   color: var(--easyedu-primary);
   display: inline-flex;
-  flex: 0 0 var(--easyedu-section-icon-size-compact);
-  height: var(--easyedu-section-icon-size-compact);
+  flex: 0 0 var(--easyedu-section-icon-size);
+  height: var(--easyedu-section-icon-size);
   justify-content: center;
   line-height: 1;
-  width: var(--easyedu-section-icon-size-compact);
+  width: var(--easyedu-section-icon-size);
 }
 .local-groupimport-import-fields__icon::before,
 .local-groupimport-import-fields__icon > .fa,
@@ -16056,11 +16056,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   background: #fff;
   border: 1px solid #cfe0ef;
   border-radius: 999px;
-  box-shadow: 0 0.12rem 0.32rem rgba(31, 42, 55, 0.04);
-  color: #38546d;
+  color: var(--easyedu-primary);
   display: inline-flex;
-  font-weight: var(--easyedu-font-weight-medium);
-  padding: 0.32rem 0.68rem;
+  font-weight: var(--easyedu-font-weight-semibold);
+  min-height: 1.5rem;
+  padding: 0.15rem 0.75rem;
   white-space: nowrap;
 }
 .local-groupimport-import-form .mform {
@@ -16088,12 +16088,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import-form .felement {
   min-width: 0;
 }
-.local-groupimport-import-form #fitem_id_importfile,
-.local-groupimport-import-form .fitem_fimportfile {
-  padding-bottom: 1rem;
-}
 .local-groupimport-import-form #fitem_id_importfile {
+  background: transparent;
+  border: 0;
   display: block;
+  margin: 0;
+  padding: 0;
 }
 .local-groupimport-import-form #fitem_id_importfile > .col-md-3,
 .local-groupimport-import-form #fitem_id_importfile > .col-md-9,
@@ -16104,17 +16104,121 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   width: 100%;
 }
 .local-groupimport-import-form #fitem_id_importfile .col-form-label {
-  padding-bottom: 0.7rem;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  padding: 0;
 }
 .local-groupimport-import-form #fitem_id_importfile .felement {
-  padding-top: 0.2rem;
+  padding: 0;
+}
+.local-groupimport-import-form .easyedu-file-deposit {
+  background: var(--easyedu-surface-soft);
+  border: 1px solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-radius-lg);
+  box-sizing: border-box;
+  min-inline-size: 0;
+  padding: 1rem;
+  margin-block-end: 1rem;
+}
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__heading {
+  align-items: start;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  margin-block-end: 0.75rem;
+}
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon {
+  align-items: center;
+  background: var(--easyedu-primary-soft);
+  border: 1px solid var(--easyedu-semantic-border-primary);
+  border-radius: var(--easyedu-section-icon-radius);
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 var(--easyedu-section-icon-size);
+  height: var(--easyedu-section-icon-size);
+  justify-content: center;
+  line-height: 1;
+  width: var(--easyedu-section-icon-size);
+  font-size: 1.25rem;
+}
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon::before,
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon > .fa,
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon > [aria-hidden=true] {
+  display: block;
+  line-height: 1;
+  max-height: 1em;
+  max-width: 1em;
+}
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon .fa {
+  margin: 0;
+  line-height: 1;
+}
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__title {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-panel-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+  color: var(--easyedu-text);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__control {
+  min-inline-size: 0;
+}
+.local-groupimport-import-form .easyedu-file-deposit:focus-within {
+  border-color: var(--easyedu-control-focus-border);
 }
 .local-groupimport-import-form #fitem_id_importfile .filepicker,
 .local-groupimport-import-form #fitem_id_importfile [id^=file_info_] {
   width: 100%;
 }
 .local-groupimport-import-form #fitem_id_importfile .filepicker {
-  padding-top: 0.45rem;
+  padding: 0;
+}
+.local-groupimport-import-form [id^=filepicker-wrapper-] {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.75rem;
+}
+.local-groupimport-import-form .dndupload-arrow {
+  display: none !important;
+}
+.local-groupimport-import-form .filepicker-container,
+.local-groupimport-import-form .dndupload-message {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  color: var(--easyedu-text-muted);
+  min-height: 0;
+  padding: 0.5rem;
+  text-align: start;
+}
+.local-groupimport-import-form .filepicker-container {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.local-groupimport-import-form .fp-btn-choose {
+  max-width: 100%;
+}
+.local-groupimport-import-form [id^=filepicker-wrapper-] > div > span {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  display: block;
+  margin-block-start: 0.5rem;
 }
 .local-groupimport-import-form .form-control,
 .local-groupimport-import-form .custom-select,
@@ -16139,11 +16243,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   border-radius: 0.85rem;
 }
 .local-groupimport-import-form .filepicker-filelist {
-  border-color: #d7e3ee;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.76);
-  margin: 1.05rem auto 0;
-  min-height: 10.75rem;
-  width: calc(100% - 0.75rem);
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-control-border);
+  box-shadow: none;
+  margin: 0;
+  min-height: 3rem;
+  width: 100%;
 }
 .local-groupimport-import-form .fp-btn-add,
 .local-groupimport-import-form .fp-toolbar,
@@ -16155,7 +16260,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .local-groupimport-import-form #fitem_id_importfile .fp-btn-choose,
 .local-groupimport-import-form #fitem_id_importfile [id^=filepicker-button-] {
-  margin-top: 0.65rem;
+  margin-top: 0;
 }
 .local-groupimport-import-form .fp-btn-add,
 .local-groupimport-import-form .btn-primary,
@@ -16261,14 +16366,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   gap: 0.55rem;
   justify-items: center;
   padding: 2rem 1rem;
+  min-height: 11.125rem;
 }
 .local-groupimport-import-empty p {
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
 }
 .local-groupimport-import-empty .fa {
   color: #8294a7;
