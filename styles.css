@@ -15800,6 +15800,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: grid;
   gap: 0.72rem;
   grid-auto-rows: max-content;
+  grid-template-columns: minmax(0, 1fr);
   height: 100%;
   justify-items: center;
   margin: 0;
@@ -19521,6 +19522,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     padding-inline: 0.75rem;
   }
 }
+.easyedu-ui .easyedu-form--deposit .mform {
+  margin: 0;
+  padding: 0;
+}
+.easyedu-ui .easyedu-form--deposit .mform .fdescription.required[aria-hidden=true] {
+  display: none;
+}
+
 .easyedu-ui .easyedu-file-deposit--moodle {
   background: var(--easyedu-deposit-surface);
   border: 0.0625rem solid var(--easyedu-deposit-border);
@@ -19675,7 +19684,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: none !important;
 }
 .easyedu-ui .easyedu-file-deposit--moodle .form-filetypes-descriptions,
-.easyedu-ui .easyedu-file-deposit--moodle .filepicker ~ p {
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker ~ p,
+.easyedu-ui .easyedu-file-deposit--moodle .felement > p {
   position: absolute;
   inline-size: 0.0625rem;
   block-size: 0.0625rem;

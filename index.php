@@ -1232,7 +1232,7 @@ echo html_writer::tag('div',
 );
 
 // Moodle form (with filepicker).
-echo html_writer::start_div('local-groupimport-import-form', [
+echo html_writer::start_div('local-groupimport-import-form easyedu-form--deposit', [
     'id' => 'local_groupimport-form',
     'data-local-groupimport-import-form' => '1',
 ]);

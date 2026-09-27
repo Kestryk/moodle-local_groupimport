@@ -4,6 +4,12 @@
 @use "../foundation-classes" as foundations;
 
 @mixin moodle-file-deposit-classes {
+  .easyedu-ui .easyedu-form--deposit .mform {
+    margin: 0;
+    padding: 0;
+    // This is the decorative required-note legend, not field validation.
+    .fdescription.required[aria-hidden="true"] { display: none; }
+  }
   .easyedu-ui .easyedu-file-deposit--moodle {
     background: var(--easyedu-deposit-surface);
     border: 0.0625rem solid var(--easyedu-deposit-border);
@@ -113,7 +119,8 @@
     // Keep native type descriptions accessible. The visible equivalent is
     // generated from the same allowed formats by the consuming form.
     .form-filetypes-descriptions,
-    .filepicker ~ p {
+    .filepicker ~ p,
+    .felement > p {
       position: absolute;
       inline-size: 0.0625rem;
       block-size: 0.0625rem;
