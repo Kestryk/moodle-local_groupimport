@@ -4,6 +4,9 @@
 
 ### EasyEdu Foundations Phase 0 - Mass Import and Administration
 
+- Consume shared classes for the preview table, notice, choices, status pills,
+  search toolbar and buttons; remove their local visual recipes as well.
+
 - Replace initial Mass Import visual rules with public Foundations classes;
   remove 381 local SCSS lines. Embed canonical Inter locally, match measured
   heading weights/line heights, remove panel shadows and use the shared Moodle
