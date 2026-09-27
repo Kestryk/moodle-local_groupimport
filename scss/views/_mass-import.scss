@@ -3,6 +3,7 @@
 .local-groupimport-import {
   @include easyedu.token-defaults;
   @include easyedu.groupimport-compat-tokens;
+  @include easyedu.type-ui-base;
 
   box-sizing: border-box;
   color: var(--local-groupimport-easystud-text);
@@ -10,6 +11,11 @@
   max-width: 100%;
   padding-inline: clamp(0.1rem, 0.8vw, 0.75rem);
   width: 100%;
+
+  // Operational chrome uses one compact baseline. Semantic headings and help
+  // text below opt into their named Kit roles.
+  font-size: var(--easyedu-font-size-control);
+  line-height: var(--easyedu-line-height-body);
 
   @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
 
@@ -283,26 +289,23 @@
   }
 
   &__eyebrow {
+    @include easyedu.type-eyebrow;
+
     color: var(--local-groupimport-easystud-primary);
     display: block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
     margin-bottom: 0.2rem;
-    text-transform: uppercase;
   }
 
   &__title {
-    color: var(--local-groupimport-easystud-text);
-    font-weight: 720;
-    letter-spacing: -0.02em;
+    @include easyedu.type-page-title;
+
     margin: 0 0 0.35rem;
   }
 
   &__intro {
+    @include easyedu.type-body;
+
     color: var(--local-groupimport-easystud-text-muted);
-    font-size: 0.96rem;
-    line-height: 1.45;
     margin: 0;
     max-width: 58rem;
   }
@@ -413,29 +416,16 @@
     padding-top: 0.25rem;
 
     > .fa {
-      align-items: center;
-      background: var(--local-groupimport-easystud-primary-soft);
-      border: 1px solid #d4e4f2;
-      border-radius: 0.75rem;
-      color: var(--local-groupimport-easystud-primary);
-      display: inline-flex;
-      flex: 0 0 auto;
-      height: 2.55rem;
-      justify-content: center;
-      line-height: 1;
-      width: 2.55rem;
-
-      &::before {
-        display: block;
-        line-height: 1;
-      }
+      @include easyedu.section-icon-tile;
     }
   }
 
   &-card--results &-card__header > .fa {
-    background: var(--local-groupimport-easystud-accent-soft);
-    border-color: #d4e7dc;
-    color: var(--local-groupimport-easystud-accent);
+    @include easyedu.section-icon-tile(
+      var(--local-groupimport-easystud-accent),
+      var(--local-groupimport-easystud-accent-soft),
+      var(--easyedu-semantic-border-success)
+    );
   }
 
   &-card__toggle {
@@ -487,15 +477,15 @@
   }
 
   &-card__title {
-    color: var(--local-groupimport-easystud-text);
-    font-weight: 700;
+    @include easyedu.type-control-label;
+
     margin: 0 0 0.2rem;
   }
 
   &-card__description {
+    @include easyedu.type-caption;
+
     color: var(--local-groupimport-easystud-text-muted);
-    font-size: 0.88rem;
-    line-height: 1.4;
     margin: 0;
   }
 
@@ -524,38 +514,24 @@
     min-width: 0;
 
     strong {
+      @include easyedu.type-control-label;
+
       display: block;
-      font-size: 0.95rem;
-      font-weight: 760;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
       margin-bottom: 0.22rem;
     }
 
     p {
+      @include easyedu.type-caption;
+
       color: var(--local-groupimport-easystud-text-muted);
-      font-size: 0.84rem;
-      line-height: 1.45;
     }
   }
 
   &-fields__icon {
-    align-items: center;
-    background: var(--local-groupimport-easystud-primary-soft);
-    border: 1px solid #d4e4f2;
-    border-radius: 0.75rem;
-    box-shadow: none;
-    color: var(--local-groupimport-easystud-primary);
-    display: inline-flex;
-    flex: 0 0 auto;
-    height: 2.2rem;
-    justify-content: center;
-    line-height: 1;
-    width: 2.2rem;
+    @include easyedu.section-icon-tile($size: compact);
 
     .fa {
       color: inherit;
-      font-size: 0.9rem;
       line-height: 1;
     }
   }
@@ -569,15 +545,16 @@
   }
 
   &-fields__label {
+    @include easyedu.type-caption;
+
     color: var(--local-groupimport-easystud-text-muted);
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0;
-    line-height: 1.35;
+    font-weight: var(--easyedu-font-weight-semibold);
     text-transform: none;
   }
 
   &-fields__tag {
+    @include easyedu.type-caption;
+
     align-items: center;
     background: #fff;
     border: 1px solid #cfe0ef;
@@ -585,9 +562,7 @@
     box-shadow: 0 0.12rem 0.32rem rgba(31, 42, 55, 0.04);
     color: #38546d;
     display: inline-flex;
-    font-size: 0.76rem;
-    font-weight: 680;
-    line-height: 1.2;
+    font-weight: var(--easyedu-font-weight-medium);
     padding: 0.32rem 0.68rem;
     white-space: nowrap;
   }
@@ -607,11 +582,9 @@
 
     .fitemtitle,
     .col-form-label {
+      @include easyedu.type-eyebrow;
+
       color: #5f7185;
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
     }
 
     .felement {
@@ -699,7 +672,7 @@
     .btn-primary,
     [type="submit"] {
       border-radius: 0.65rem;
-      font-weight: 650;
+      font-weight: var(--easyedu-font-weight-semibold);
     }
 
     .fitem_actionbuttons,
@@ -731,8 +704,9 @@
     .fdescription,
     .form-text,
     .fp-restrictions {
+      @include easyedu.type-caption;
+
       color: var(--local-groupimport-easystud-text-muted);
-      font-size: 0.8rem;
     }
   }
 
@@ -760,6 +734,10 @@
     justify-items: center;
     padding: 2rem 1rem;
 
+    p {
+      @include easyedu.type-caption;
+    }
+
     .fa {
       color: #8294a7;
       font-size: 1.35rem;
@@ -768,6 +746,10 @@
 
   &-report__title {
     @include easyedu.report-title;
+    @include easyedu.type-control-label;
+
+    color: var(--easyedu-text-muted);
+    text-transform: none;
   }
 
   &-report__title--success {
@@ -818,6 +800,10 @@
     .fa {
       color: #a46b12;
     }
+
+    p {
+      @include easyedu.type-caption;
+    }
   }
 
   &-preview__strategy {
@@ -845,10 +831,8 @@
   }
 
   &-preview__result-actions {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
+    @include easyedu.action-row;
+
     margin-top: 0.8rem;
   }
 
@@ -891,17 +875,15 @@
   }
 
   &-preview__table {
+    @include easyedu.data-table-surface;
+
     margin: 0;
 
     thead th {
-      background: #f4f7fb;
-      border-bottom-color: #dce6ef;
+      @include easyedu.stable-table-header;
+
       color: #5f7185;
-      font-size: 0.72rem;
-      font-weight: 760;
-      letter-spacing: 0.04em;
       position: sticky;
-      text-transform: uppercase;
       top: 0;
       z-index: 2;
     }
@@ -942,11 +924,7 @@
   }
 
   &-preview__actions {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    justify-content: flex-end;
+    @include easyedu.action-row;
 
     .btn {
       align-items: center;
@@ -1003,6 +981,10 @@
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+
+    h3 {
+      @include easyedu.type-modal-title;
+    }
   }
 
   &-modal__body {
@@ -1058,8 +1040,9 @@
   }
 
   &-history__desc {
+    @include easyedu.type-caption;
+
     color: var(--local-groupimport-easystud-text-muted);
-    font-size: 0.88rem;
     margin-bottom: 0.85rem;
   }
 
@@ -1068,8 +1051,9 @@
   }
 
   &-history__item-main span {
+    @include easyedu.type-caption;
+
     color: var(--local-groupimport-easystud-text-muted);
-    font-size: 0.78rem;
   }
 
   &-history__item-meta {
@@ -1151,6 +1135,8 @@
   }
 
   &-history__empty {
+    @include easyedu.type-caption;
+
     align-items: center;
     color: var(--local-groupimport-easystud-text-muted);
     display: flex;
@@ -1173,10 +1159,8 @@
   }
 
   &-modal__footer {
-    align-items: center;
-    display: flex;
-    gap: 0.65rem;
-    justify-content: flex-end;
+    @include easyedu.action-row($gap: 0.65rem);
+
     padding-top: 0.9rem;
   }
 
@@ -1216,12 +1200,13 @@
     }
 
     strong {
-      font-size: 1.1rem;
+      @include easyedu.type-section-title;
     }
 
     p {
+      @include easyedu.type-caption;
+
       color: var(--local-groupimport-easystud-text-muted);
-      line-height: 1.42;
     }
   }
 }

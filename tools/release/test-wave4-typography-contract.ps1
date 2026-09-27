@@ -7,6 +7,7 @@ $helpSource = Get-Content (Join-Path $root 'amd\src\course_manager.js') -Raw
 $modalSource = Get-Content (Join-Path $root 'scss\components\_settings-modal.scss') -Raw
 $kitHelpSource = Get-Content (Join-Path $root 'scss\easyedu\components\_tooltips.scss') -Raw
 $identitySource = Get-Content (Join-Path $root 'scss\components\_typography-identity.scss') -Raw
+$adminSource = Get-Content (Join-Path $root 'scss\views\_admin-settings.scss') -Raw
 $css = Get-Content (Join-Path $root 'styles.css') -Raw
 $failures = [System.Collections.Generic.List[string]]::new()
 
@@ -25,8 +26,8 @@ Assert-Contains $kitHelpSource '@include focus.ring($border-color: var(--easyedu
 Assert-Contains $modalSource 'min-height: 1.45rem;' 'Group/Grouping count pills must match Participant density.'
 Assert-Contains $modalSource 'gap: 0.7rem;' 'Group/Grouping count pills must have a clear title gap.'
 Assert-Contains $modalSource 'font-size: 0.78rem;' 'Group/Grouping count pills must use the Participant-sized compact label.'
-Assert-Contains $identitySource '.formsettingheading .form-description,' 'Administration descriptions must be explicitly mapped.'
-Assert-Contains $identitySource '@include easyedu.type-caption;' 'Administration operational descriptions must use the compact paragraph role.'
+Assert-Contains $adminSource '.local-groupimport-admin-settings__hero-copy' 'Administration descriptions must be owned by the Administration view.'
+Assert-Contains $adminSource '@include easyedu.type-caption;' 'Administration operational descriptions must use the compact paragraph role.'
 Assert-Contains $css '.local-groupimport-easystud-settings-modal__help' 'Generated CSS must include the contextual help control.'
 Assert-Contains $css 'text-decoration-line: none !important;' 'Generated CSS must preserve no-underline help controls.'
 Assert-Contains $css 'min-height: 1.45rem;' 'Generated CSS must include the compact count pill height.'

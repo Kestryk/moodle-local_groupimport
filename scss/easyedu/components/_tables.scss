@@ -18,17 +18,17 @@
   }
 
   th {
+    @include typography.type-eyebrow;
+
     background: var(--easyedu-table-header-bg);
     border-bottom: 1px solid var(--easyedu-table-row-border);
     color: var(--easyedu-text);
-    font-size: 0.76rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
     padding: 0.62rem 0.7rem;
-    text-transform: uppercase;
   }
 
   td {
+    @include typography.type-body;
+
     border-bottom: 1px solid var(--easyedu-table-row-border);
     color: var(--easyedu-text-muted);
     padding: 0.58rem 0.7rem;
@@ -60,18 +60,18 @@
   margin: 0;
 
   thead th {
+    @include typography.type-eyebrow;
+
     background:
       linear-gradient(110deg, color-mix(in srgb, var(--easyedu-primary-soft) 42%, #fff 58%),
         color-mix(in srgb, var(--easyedu-accent-soft) 20%, #fff 80%));
     border-bottom: 1px solid var(--easyedu-table-row-border);
     color: color-mix(in srgb, var(--easyedu-text) 88%, var(--easyedu-text-muted) 12%);
-    font-size: 0.78rem;
-    font-weight: 650;
-    letter-spacing: 0;
-    line-height: 1.25;
   }
 
   tbody td {
+    @include typography.type-body;
+
     border-bottom: 1px solid var(--easyedu-table-row-border);
     transition: background-color 150ms ease, border-color 150ms ease;
   }

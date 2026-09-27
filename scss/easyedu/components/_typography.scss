@@ -18,12 +18,6 @@
   line-height: var(--easyedu-line-height-title);
 }
 
-// Explicit page-identity alias for plugin view headings. It intentionally
-// resolves to the existing page-title role without adding a new size or weight.
-@mixin type-page-identity {
-  @include type-page-title;
-}
-
 @mixin type-modal-title {
   @include type-ui-base;
 

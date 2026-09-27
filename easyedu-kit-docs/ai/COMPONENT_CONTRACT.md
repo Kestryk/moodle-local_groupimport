@@ -52,9 +52,15 @@ Must:
 Must not:
 
 - introduce plugin-local title scales when a shared role exists;
+- create aliases for an existing role such as `type-page-title`;
 - use negative or decorative letter spacing;
 - apply administration roles to user-configurable banner, slideshow or authored
   preview content.
+
+Heading icon tiles and completion rows must also use the shared
+`section-icon-tile` and `action-row`/`admin-form-actions` contracts. Product
+selectors may place those primitives, but may not redefine their square,
+centring or typography.
 
 ## Balanced administration navigation
 

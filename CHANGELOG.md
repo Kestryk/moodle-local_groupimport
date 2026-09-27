@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-27
+
+### EasyEdu Foundations Phase 0 - Mass Import and Administration
+
+- Bound Mass Import and Administration directly to the shared Kit typography,
+  icon-tile, form, table, Skeleton and action-row primitives.
+- Removed their late product typography overrides and the redundant
+  `type-page-identity` alias; page titles now use `type-page-title` exactly.
+- Kept Student management, Guide, navigation and source-hierarchy tables out of
+  this implementation slice.
+
 ## 2026-09-03
 
 ### EasyStud Wave 17 Group image RF9

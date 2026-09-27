@@ -3,7 +3,9 @@ param()
 
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
-$source = Get-Content (Join-Path $root 'scss\components\_typography.scss') -Raw
+$studentSource = Get-Content (Join-Path $root 'scss\components\_typography.scss') -Raw
+$massImportSource = Get-Content (Join-Path $root 'scss\views\_mass-import.scss') -Raw
+$source = $studentSource + "`n" + $massImportSource
 $css = Get-Content (Join-Path $root 'styles.css') -Raw
 $failures = [System.Collections.Generic.List[string]]::new()
 
@@ -33,9 +35,9 @@ foreach ($sourceSelector in @(
     '&-grouping__name',
     '&__title',
     '&-card__title',
-    '&-fields__header strong',
-    '&-form .fitemtitle',
-    '&-preview__table thead th'
+    '&-fields__header',
+    '&-form',
+    '&-preview__table'
 )) {
     Assert-Contains $source $sourceSelector "Source contract is missing $sourceSelector."
 }
@@ -46,9 +48,9 @@ foreach ($role in @('type-page-title', 'type-panel-title', 'type-section-title',
 
 Assert-Contains $source 'easyedu.card-title' 'Entity cards do not consume the shared card-title component.'
 
-if ($source -notmatch '(?s)&-card__title\s*\{.*?@include easyedu\.type-control-label;' -or
-        $source -notmatch '(?s)&-fields__header strong\s*\{\s*@include easyedu\.type-control-label;' -or
-        $source -notmatch '(?s)&-form \.fitemtitle,\s*&-form \.col-form-label\s*\{\s*@include easyedu\.type-eyebrow;') {
+if ($massImportSource -notmatch '(?s)&-card__title\s*\{.*?@include easyedu\.type-control-label;' -or
+        $massImportSource -notmatch '(?s)&-fields__header\s*\{.*?strong\s*\{\s*@include easyedu\.type-control-label;' -or
+        $massImportSource -notmatch '(?s)&-form\s*\{.*?\.fitemtitle,\s*\.col-form-label\s*\{\s*@include easyedu\.type-eyebrow;') {
     $failures.Add('Mass Import visible title hierarchy does not use the compact Student Management tiers.')
 }
 

@@ -1,8 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.48",
+  "version": "0.4.49",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
+  "consumerSync": {
+    "batch": "EED-UI-2026-0073",
+    "sourceCommit": "09f04aa08300cf6da300ed8a7fd4941bdbba98ef",
+    "canonicalScssTree": "92df6338e9ac3f3c40cb64381bc9506d81f36484",
+    "scope": "Mass Import and Administration Phase 0 subset",
+    "fullTreeIdentical": false,
+    "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
+  },
   "packages": {
     "ai": {
       "path": "ai",
@@ -66,6 +74,10 @@
     "guideValidation": {
       "script": "scripts/test-guide-contract.ps1",
       "command": "powershell -ExecutionPolicy Bypass -File ./scripts/test-guide-contract.ps1"
+    },
+    "phase0MassAdministrationValidation": {
+      "script": "scripts/test-phase0-mass-admin-contract.ps1",
+      "command": "powershell -ExecutionPolicy Bypass -File ./scripts/test-phase0-mass-admin-contract.ps1"
     },
     "sync": {
       "script": "sync-easyedu-kit.ps1",
