@@ -157,6 +157,32 @@ After this correction, run `easystud-authenticated-20260927T181701424Z-27296`
 passed upload/preview and Administration geometry at 1440, 1024 and 390px.
 Screenshot inspection then found the missing icon-label gap on the import
 action; it was fixed in the canonical button recipe and added to assertions.
+Final focused run `easystud-authenticated-20260927T182100088Z-28420` passed
+against runtime `dd65d48ecc2a447e793fead85018c788d50799b1` (source
+`f880bcd1db4467d61e3852f07c203a2f582b3877`). The scenario checked actual
+draft upload and preview, cell borders, 40px editable controls, 10.4px icon-label
+gap, loaded Inter, responsive column counts and document containment for
+Mass Import and Administration. Desktop preview and mobile preview captures
+were inspected. No import, membership update or settings save was executed.
+Credentials were cleared and the runtime lease released. Selected external
+captures are retained in the run manifest; no evidence was deleted.
+
+### Remaining visual migration (not human accepted)
+
+- Replace the two wide preview summary strips with the measured Penpot
+  summary composition; preserve live counts and translated business labels.
+- Reconcile the collapsed upload rail, including its CSV caption, with the
+  accepted component geometry rather than adding product-local decoration.
+- Migrate report/history/rollback/modal recipes and verify their real populated
+  states, not only empty examples.
+- Finish Administration's public-class/native-form adapter: its current
+  responsive checks prove containment, not complete Penpot visual parity.
+- Recheck icon artwork, focus/disabled states and complete mobile table
+  navigation. The legacy embedded Kit differences remain explicitly deferred.
+
+Source/shared-module contracts and responsive geometry are separate from
+human visual acceptance. The scope is not complete and must not be reported
+as a 100% Penpot match based on this passing smoke scenario.
 
 
 Static Sass compilation and contract tests remain required in this batch.
