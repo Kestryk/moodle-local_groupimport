@@ -1,5 +1,18 @@
 # EasyStud batch register
 
+## Foundations Phase 0 - EED-UI-2026-0073
+
+- Date: 2026-09-27.
+- Base: EasyStud `088733383e586f5a625d21b62bb5f9889fabcc02` and UI Kit
+  `f5aa5f72df80d8ae2a2b00c9628fcffadc5e7f56`.
+- Scope: reconcile the embedded Kit subset used by Mass Import and
+  Administration, bind both views directly to canonical typography, forms,
+  tables, icon tiles, Skeletons and action rows, and rebuild generated CSS.
+- Excluded: Student management, Guide, navigation, source-hierarchy tables,
+  runtime/cache/fixture/browser activity and deployment.
+- Validation: canonical Kit strict audit and focused contracts, Dart Sass
+  compilation, focused EasyStud source/generated contracts and diff checks.
+
 ## Wave 17 RF9 - EED-UI-2026-0038-RF9
 
 - Date: 2026-09-03.

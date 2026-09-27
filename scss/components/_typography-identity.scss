@@ -1,15 +1,8 @@
-// EED-UI-2026-0034 EasyStud typography and identity adoption.
-//
-// This final consumer layer maps existing EasyStud chrome to the semantic
-// typography roles supplied by UI Kit 0005. It changes no layout or
-// interaction geometry, authored content, navigation behavior, responsive
-// breakpoint, loading lifecycle or interactive state.
+// Student Management identity typography remains here until that view receives
+// its own Kit migration. Mass Import and Administration now own their direct
+// semantic-role bindings in `views/`.
 @use "../easyedu" as easyedu;
 
-// Compact label role for the More filters disclosure. It deliberately aliases
-// the Kit eyebrow tier and preserves the existing compact letter spacing; the
-// alias gives future selectors one stable role without changing the toggle,
-// disclosure state or panel behaviour.
 @mixin type-more-filters-label {
   @include easyedu.type-eyebrow;
 
@@ -46,9 +39,6 @@
     color: var(--easyedu-text-muted);
   }
 
-  // More filters headings label a compact control cluster rather than a
-  // standalone form field. Keep their hierarchy aligned with the existing
-  // eyebrow treatment used by adjacent panel chrome at every viewport.
   &-advanced-filters &__filter-label {
     @include type-more-filters-label;
 
@@ -58,112 +48,5 @@
   &-modal__header h3,
   &-settings-modal__heading h3 {
     @include easyedu.type-modal-title;
-  }
-}
-
-.local-groupimport-import {
-  font-family: var(--easyedu-font-family-ui);
-
-  &__eyebrow {
-    @include easyedu.type-eyebrow;
-
-    color: var(--local-groupimport-easystud-primary);
-  }
-
-  &__title {
-    @include easyedu.type-page-identity;
-
-    margin-bottom: 0.35rem;
-  }
-
-  &__intro,
-  &-card__description {
-    @include easyedu.type-body;
-
-    color: var(--easyedu-text-muted);
-  }
-
-  &-card__title {
-    @include easyedu.type-card-title;
-  }
-
-  &-fields__header strong,
-  &-report__title {
-    @include easyedu.type-section-title;
-  }
-
-  &-form .fitemtitle,
-  &-form .col-form-label,
-  &-fields__label {
-    @include easyedu.type-control-label;
-  }
-}
-
-#page-admin-setting-local_groupimport {
-  // Keep the plugin typography inside the generated settings form. Applying
-  // this role to the page root also restyled unrelated page chrome and the
-  // Course Banner Builder banner rendered above Moodle administration.
-  #adminsettings {
-    @include easyedu.type-ui-base;
-  }
-
-  // Administration carries the exact Mass Import identity classes in its DOM.
-  // Do not create a parallel admin-specific typography implementation here.
-
-  .formsettingheading h3,
-  .local-groupimport-admin-settings__hero-copy h3 {
-    // Administration groups are compact operational sections. The stronger
-    // panel-title role made them compete with the page identity.
-    @include easyedu.type-section-title;
-  }
-
-  // Administration explanations are operational copy, like the accepted
-  // Mass Import paragraphs. Keep the page identity and headings unchanged,
-  // but use the compact caption role for section guidance and native setting
-  // descriptions so the form stays scannable.
-  .formsettingheading .form-description,
-  .local-groupimport-admin-settings__hero-copy p {
-    @include easyedu.type-caption;
-  }
-
-  .local-groupimport-admin-settings__hint span {
-    // Current green guidance panels keep their accepted shell. Only their
-    // operational body copy moves to the already accepted compact help role;
-    // KIT 0026 owns the future full panel-system migration.
-    @include easyedu.type-caption;
-  }
-
-  .local-groupimport-admin-settings__field-card h4 {
-    @include easyedu.type-control-label;
-
-    color: var(--easyedu-text-muted);
-    letter-spacing: 0;
-    text-transform: none;
-  }
-
-  .local-groupimport-admin-settings__hint strong {
-    @include easyedu.type-control-label;
-  }
-
-  #admin-alloweduserfields,
-  #admin-enablesimplifiedview,
-  #admin-enableanimations,
-  #admin-participantprimarybadgefield,
-  #admin-participantprimarybadgebgcolor,
-  #admin-participantprimarybadgetextcolor,
-  #admin-participantdetailfield1,
-  #admin-participantdetailfield2 {
-    .form-label label {
-      @include easyedu.type-control-label;
-    }
-  }
-
-  // Identifier chips are metadata in the explanatory panel, not headings.
-  // Keep their labels on the shared caption tier while leaving the native
-  // multiselect below untouched.
-  .local-groupimport-admin-settings__chip-label,
-  .local-groupimport-admin-settings__chip-key,
-  .local-groupimport-admin-settings__empty {
-    @include easyedu.type-caption;
   }
 }

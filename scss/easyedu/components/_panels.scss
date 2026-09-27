@@ -52,6 +52,44 @@
   min-width: 0;
 }
 
+// Stable icon tile used beside a section or card heading. The tile owns the
+// square and glyph centring; consumers provide the semantic colour pair and
+// keep the icon itself at its intrinsic aspect ratio.
+@mixin section-icon-tile(
+  $foreground: var(--easyedu-primary),
+  $surface: var(--easyedu-primary-soft),
+  $border: var(--easyedu-semantic-border-primary),
+  $size: regular
+) {
+  $tile-size: var(--easyedu-section-icon-size);
+
+  @if $size == compact {
+    $tile-size: var(--easyedu-section-icon-size-compact);
+  }
+
+  align-items: center;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: var(--easyedu-section-icon-radius);
+  box-sizing: border-box;
+  color: $foreground;
+  display: inline-flex;
+  flex: 0 0 $tile-size;
+  height: $tile-size;
+  justify-content: center;
+  line-height: 1;
+  width: $tile-size;
+
+  &::before,
+  > .fa,
+  > [aria-hidden="true"] {
+    display: block;
+    line-height: 1;
+    max-height: 1em;
+    max-width: 1em;
+  }
+}
+
 @mixin admin-section-panel {
   background: linear-gradient(
     180deg,

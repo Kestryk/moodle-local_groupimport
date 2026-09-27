@@ -201,11 +201,11 @@
 
 // Standard action row for Moodle admin forms. The right alignment follows
 // Moodle's completion flow; compact screens receive a full-width action.
-@mixin admin-form-actions {
+@mixin admin-form-actions($alignment: flex-end) {
   align-items: center;
   display: flex;
   gap: 0.55rem;
-  justify-content: flex-end;
+  justify-content: $alignment;
   margin-top: 1.25rem;
   padding-top: 1rem;
 
@@ -218,6 +218,16 @@
       width: 100%;
     }
   }
+}
+
+// Shared row geometry for view-level actions. It owns alignment and rhythm,
+// while each button keeps its Moodle semantics and EasyEdu button mixin.
+@mixin action-row($alignment: center, $gap: 0.55rem) {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+  justify-content: $alignment;
 }
 
 @mixin admin-primary-nav {

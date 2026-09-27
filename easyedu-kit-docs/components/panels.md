@@ -36,6 +36,14 @@ Panels are the large boxes that organise an EasyEdu management screen.
 .my-results-panel {
   @include easyedu.semantic-accent-panel(success);
 }
+
+.my-section-icon {
+  @include easyedu.section-icon-tile;
+}
+
+.my-compact-section-icon {
+  @include easyedu.section-icon-tile($size: compact);
+}
 ```
 
 ## Patterns
@@ -55,3 +63,5 @@ Panels are the large boxes that organise an EasyEdu management screen.
   `overflow: visible`. Do not recreate it with an unclipped `::before` element.
 - Keep plugin-specific layout, minimum heights and action menus outside the
   mixin. If menus must escape the panel, retain `overflow: visible` locally.
+- Use `section-icon-tile` for heading icons that must share one square and
+  centre line across views. Do not resize an icon glyph to fill the tile.

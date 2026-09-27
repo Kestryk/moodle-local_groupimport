@@ -54,6 +54,12 @@ For the portable kit details and mixin examples, see `easyedu/README.md`.
 
 ## Synchronising the embedded kit
 
+The embedded tree is reconciled in bounded batches. Its pinned source commit,
+canonical tree hash and current full-tree parity flag live in
+`easyedu-kit-docs/easyedu-kit.json`. Do not claim a complete Kit copy while
+`fullTreeIdentical` is `false`; follow the canonical drift ledger and preserve
+the explicitly deferred Student management, Guide and navigation files.
+
 Plugins remain independent for Moodle users, but maintainers can synchronise the
 shared kit into each plugin with:
 
@@ -61,8 +67,9 @@ shared kit into each plugin with:
 .\tools\sync-easyedu-kit.ps1 -TargetPluginRoots "C:\path\to\local\coursebannerbuilder"
 ```
 
-The script only replaces `scss/easyedu/`; plugin-specific component files are not
-touched.
+The script replaces `scss/easyedu/`; run it only after every deferred drift row
+has been promoted or moved out of the embedded tree. Plugin-specific component
+files are not touched.
 
 ## Compilation
 

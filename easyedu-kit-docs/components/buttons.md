@@ -243,8 +243,10 @@ destructive actions, whose glyphs are visually dense.
 
 - Primary validation/save: keep Moodle `btn btn-primary`, add
   `action-button(regular)`.
-- Final Moodle settings row: use `admin-form-actions`; do not attach the row to
-  the preceding setting and do not centre Save by default.
+- Final Moodle settings row: use `admin-form-actions`; pass `center` only when
+  the product composition explicitly uses a centred completion row.
+- View-level action groups: use `action-row`; buttons retain Moodle classes and
+  their semantic EasyEdu button mixin.
 - Secondary/cancel: keep `btn btn-outline-secondary`, add
   `action-button(regular)`.
 - Destructive action: keep `btn btn-outline-danger`, add

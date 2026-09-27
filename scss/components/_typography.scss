@@ -1,7 +1,6 @@
-// EED-UI-2026-0049: converge EasyStud chrome on the shared UI typography roles.
-// Keep this late in the entry point so responsive declarations cannot re-expand
-// titles or labels. User-entered content and Moodle form controls remain out of
-// scope.
+// Student Management typography remains late in the entry point until its own
+// migration slice. Mass Import and Administration declare the shared roles in
+// their owning view partials and do not depend on this compatibility layer.
 
 @use "../easyedu" as easyedu;
 
@@ -28,135 +27,11 @@
     text-transform: none;
   }
 
-  // Groups in a grouping and the dedicated Groups without grouping section
-  // share the same entity-card title role.
   &-group__name {
     @include easyedu.card-title(regular, var(--local-groupimport-easystud-group));
   }
 
   &-grouping__name {
     @include easyedu.card-title(container, var(--local-groupimport-easystud-grouping));
-  }
-}
-
-.local-groupimport-import {
-  @include easyedu.type-ui-base;
-
-  // Mass Import is an operational view like Student Management. Keep its
-  // ordinary copy on the compact control tier while preserving the accepted
-  // page introduction below.
-  font-size: var(--easyedu-font-size-control);
-  line-height: var(--easyedu-line-height-body);
-
-  // Moodle and legacy component selectors assign their own larger body size
-  // to several nested operational surfaces. Restate the compact UI baseline
-  // on those surfaces without touching the accepted page introduction.
-  &-card,
-  &-fields,
-  &-form,
-  &-summary,
-  &-report,
-  &-preview,
-  &-history,
-  &-modal {
-    font-size: var(--easyedu-font-size-control);
-    line-height: var(--easyedu-line-height-body);
-  }
-
-  &__header > .local-groupimport-import-navigation {
-    margin-top: 1rem;
-  }
-
-  &__title {
-    @include easyedu.type-page-title;
-
-    margin: 0 0 0.35rem;
-  }
-
-  &__intro {
-    @include easyedu.type-body;
-
-    color: var(--local-groupimport-easystud-text-muted);
-  }
-
-  &-card__description,
-  &-fields__header p,
-  &-empty p,
-  &-preview__notice p,
-  &-preview__reimport-alert p,
-  &-drop__panel p,
-  &-form .fdescription,
-  &-form .form-text,
-  &-form .fp-restrictions {
-    // Operational explanations use the existing shared caption role. The
-    // accepted page introduction above Navigation intentionally stays body.
-    @include easyedu.type-caption;
-
-    color: var(--local-groupimport-easystud-text-muted);
-  }
-
-  &-card__title {
-    // Mass Import cards are control panels, not entity cards. Reuse the
-    // compact control-title tier visible throughout Student Management.
-    @include easyedu.type-control-label;
-
-    margin: 0 0 0.2rem;
-  }
-
-  &-fields__header strong {
-    @include easyedu.type-control-label;
-
-    display: block;
-    letter-spacing: 0;
-    margin-bottom: 0.22rem;
-  }
-
-  &-fields__label {
-    @include easyedu.type-caption;
-
-    color: #5f7185;
-    font-weight: var(--easyedu-font-weight-semibold);
-  }
-
-  &-form .fitemtitle,
-  &-form .col-form-label {
-    @include easyedu.type-eyebrow;
-
-    color: #5f7185;
-  }
-
-  &-fields__tag {
-    @include easyedu.type-caption;
-
-    color: #38546d;
-    font-weight: var(--easyedu-font-weight-medium);
-  }
-
-  &-preview__table thead th {
-    @include easyedu.type-eyebrow;
-
-    color: #5f7185;
-  }
-
-  &-report__title {
-    @include easyedu.type-control-label;
-
-    color: var(--easyedu-text-muted);
-    margin: 1rem 0 0.45rem;
-    text-transform: none;
-  }
-
-  &-report__title--success {
-    color: #1f6748;
-  }
-
-  &-report__title--error {
-    color: var(--local-groupimport-easystud-danger);
-  }
-
-  &-history__desc,
-  &-history__empty,
-  &-history__item-main span {
-    @include easyedu.type-caption;
   }
 }
