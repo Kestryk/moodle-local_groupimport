@@ -4,6 +4,9 @@
 
 ### EasyEdu Foundations Phase 0 - Mass Import and Administration
 
+- Synchronize the canonical button icon-label gap and assert it in the
+  desktop/tablet/mobile preview scenario.
+
 - Opt the shared preview table out of Boost's legacy table decoration without
   adding CSS overrides; synchronize the Kit's native deposit copy correction.
 

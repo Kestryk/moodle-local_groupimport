@@ -59,7 +59,7 @@ The user rejected the visual approximation and local CSS approach. Initial
 Mass Import now consumes canonical `.easyedu-*` classes from
 `easyedu/_foundation-classes.scss` and `easyedu/adapters/_moodle-file-deposit.scss`.
 381 lines were removed from the view partial. These two imported modules must
-remain identical to Kit `72866ae5a0ea50434796296705cffb902c8cbd17`.
+remain identical to Kit `a59a251b3529116ad306b66ba22c1cf2c7d06778`.
 The third canonical module, `_data-classes.scss`, covers the preview table,
 notice, choice controls, search toolbar and status labels.
 The product entry point emits them without style declarations; PHP supplies
@@ -101,6 +101,10 @@ text and visible equivalent requirements strip. The responsive scenario saves
 the matched cascade JSON and a close-up table image before border assertions.
 The diagnostic run `easystud-authenticated-20260927T181328732Z-58172` failed
 before this correction; it is not passing evidence.
+After this correction, run `easystud-authenticated-20260927T181701424Z-27296`
+passed upload/preview and Administration geometry at 1440, 1024 and 390px.
+Screenshot inspection then found the missing icon-label gap on the import
+action; it was fixed in the canonical button recipe and added to assertions.
 
 
 Static Sass compilation and contract tests remain required in this batch.
