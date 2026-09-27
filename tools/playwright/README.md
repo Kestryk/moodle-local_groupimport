@@ -296,6 +296,20 @@ containment, the history modal, the Excel example download and the legacy-safe
 feature setting. Run it through the authenticated runner with its exact test
 title and one worker.
 
+### Phase 0 desktop and mobile composition
+
+`phase0-mass-admin-responsive.spec.js` / `Phase 0 Mass Import and
+Administration stay composed at desktop and 390px` is the read-only,
+local-supervised visual matrix for the Foundations Phase 0 consumer. It checks
+both pages at 1440 x 1000 and 390 x 844, requires the expected two-column to
+one-column recomposition, rejects horizontal overflow, checks the square
+centred section-icon tiles and writes four review captures. It does not change
+settings, imports or course fixtures.
+
+Run discovery first, then the exact one-test scenario through the saved-
+credential wrapper. When the spec belongs to a separate source worktree, pass
+that worktree's own `tools/playwright` directory through `-AllowedSpecRoot`.
+
 ### Focused Mass Import navigation
 
 `mass-import-navigation-audit.spec.js` is a read-only, single-test regression

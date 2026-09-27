@@ -10,6 +10,8 @@
   `type-page-identity` alias; page titles now use `type-page-title` exactly.
 - Kept Student management, Guide, navigation and source-hierarchy tables out of
   this implementation slice.
+- Added one supervised desktop/390 px browser scenario for Mass Import and
+  Administration composition, icon centring and horizontal containment.
 
 ## 2026-09-03
 

@@ -50,6 +50,28 @@ local weight scale remains for these two views.
 
 ## Validation boundary
 
-Static Sass compilation and contract tests are required in this batch. Browser,
-Moodle runtime, responsive visual and accessibility evidence remain a separate
-authorized validation step; they are not inferred from compilation.
+Static Sass compilation and contract tests remain required in this batch.
+The authorized Moodle 5.1 preview applied consumer commit
+`c8322c8323f01c6a95f858428c8137fdf1ba127d` as preview commit
+`75f8248824b01eb7b312c1baaeee5b1980e5fd4b` and purged caches.
+
+Focused authenticated browser evidence then passed:
+
+- Mass Import narrow containment at 390 px;
+- Administration real-content keyboard focus at desktop width;
+- `phase0-mass-admin-responsive.spec.js`, which compares Mass Import and
+  Administration at 1440 x 1000 and 390 x 844, requires the expected two-to-one
+  column recomposition, rejects horizontal overflow and checks square centred
+  section-icon tiles.
+
+The final responsive run is
+`easystud-authenticated-20260927T155039667Z-37956`; it contains four external
+review captures and completed with its credentials cleared, lease released and
+profile cleanup complete. The older cumulative Platform-wave scenario stopped
+before these pages because its unrelated Student Management fixture had no
+bottom Group pagination; that failure is not counted as Phase 0 evidence and
+was not retried unchanged.
+
+This is Moodle 5.1 runtime and responsive evidence only. It does not establish
+cross-version compatibility, accessibility completeness or human visual
+acceptance.
