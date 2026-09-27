@@ -141,6 +141,10 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         await massRoot.locator('.local-groupimport-import-card--upload [type="submit"]').click();
         await expect(massRoot).toHaveClass(/has-preview/, {timeout: 60000});
         await expect(massRoot.locator('.local-groupimport-import-preview__table')).toBeVisible();
+        const dataTable = massRoot.locator('.easyedu-data-table');
+        await expect(dataTable.locator('th').nth(1)).toHaveCSS('font-size', '11px');
+        await expect(dataTable.locator('td').nth(2)).toHaveCSS('border-left-width', '0px');
+        await expect(dataTable.locator('input[type="text"]').first()).toHaveCSS('height', '40px');
         await expectNoHorizontalOverflow(page);
         await captureScrollSeries(page, massRoot, testInfo, `phase0-preview-${viewport.name}`);
 

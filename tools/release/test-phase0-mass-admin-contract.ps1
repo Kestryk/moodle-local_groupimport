@@ -12,6 +12,7 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 
 # Git blob hashes compare normalized source, independently of checkout CRLF.
 $canonicalModules = @{
+    'scss/easyedu/_data-classes.scss' = '21c27c0d91cbe103e4fb0a0fcf38cae80d9f5b50'
     'scss/easyedu/_foundation-classes.scss' = 'bb462b328c8627915854cc2e82afb7b8651fe294'
     'scss/easyedu/adapters/_moodle-file-deposit.scss' = '38f2ccb4e680f001bef6cedc2ffddc5348e3d9e2'
 }
@@ -25,7 +26,6 @@ foreach ($path in $canonicalModules.Keys) {
 foreach ($needle in @(
     '@include easyedu.type-control-label;',
     '@include easyedu.type-caption;',
-    '@include easyedu.data-table-surface;',
     '@include easyedu.action-row'
 )) {
     if (-not $massImport.Contains($needle)) {

@@ -1176,7 +1176,7 @@ if ($preview !== null) {
         html_writer::tag('span', '', ['class' => 'fa fa-chevron-right', 'aria-hidden' => 'true']),
         [
             'type' => 'button',
-            'class' => 'btn btn-link p-0 local-groupimport-import-card__toggle',
+            'class' => 'easyedu-button easyedu-button--icon local-groupimport-import-card__toggle',
             'data-local-groupimport-upload-toggle' => '1',
             'data-expand-label' => get_string('expanduploadpanel', 'local_groupimport'),
             'data-collapse-label' => get_string('collapseuploadpanel', 'local_groupimport'),
@@ -1297,7 +1297,7 @@ if ($preview !== null) {
                 'class' => 'mb-0',
             ])
         ),
-        ['class' => 'local-groupimport-import-preview__notice']
+        ['class' => 'local-groupimport-import-preview__notice easyedu-notice']
     );
 
     if (!empty($preview['previousimport'])) {
@@ -1358,7 +1358,7 @@ if ($preview !== null) {
             'class' => 'easyedu-segmented-choice__legend',
         ]) . $strategybody,
         [
-            'class' => 'local-groupimport-import-preview__strategy easyedu-segmented-choice--contained',
+            'class' => 'local-groupimport-import-preview__strategy easyedu-segmented-choice--contained easyedu-choice',
         ]
     );
 
@@ -1366,7 +1366,7 @@ if ($preview !== null) {
         html_writer::tag('div',
             html_writer::tag('button', get_string('selectallrows', 'local_groupimport'), [
                 'type' => 'button',
-                'class' => 'btn btn-outline-primary btn-sm',
+                'class' => 'easyedu-button easyedu-button--neutral',
                 'data-local-groupimport-preview-toggle-all' => '1',
                 'data-select-all-label' => get_string('selectallrows', 'local_groupimport'),
                 'data-deselect-all-label' => get_string('deselectallrows', 'local_groupimport'),
@@ -1385,15 +1385,15 @@ if ($preview !== null) {
                 'data-local-groupimport-preview-search' => '1',
             ]),
             [
-                'class' => 'local-groupimport-import-preview__search-field',
+                'class' => 'local-groupimport-import-preview__search-field easyedu-search',
                 'aria-label' => get_string('previewsearchlabel', 'local_groupimport'),
             ]
         ),
-        ['class' => 'local-groupimport-import-preview__toolbar']
+        ['class' => 'local-groupimport-import-preview__toolbar easyedu-table-toolbar']
     );
 
     echo html_writer::start_tag('div', ['class' => 'local-groupimport-import-preview__table-wrap']);
-    echo html_writer::start_tag('table', ['class' => 'generaltable local-groupimport-import-preview__table']);
+    echo html_writer::start_tag('table', ['class' => 'easyedu-data-table local-groupimport-import-preview__table']);
     echo html_writer::tag('thead',
         html_writer::tag('tr',
             html_writer::tag('th', get_string('importpreviewinclude', 'local_groupimport')) .
@@ -1410,10 +1410,10 @@ if ($preview !== null) {
         $messages = $preview['messages'][$index] ?? [];
         $status = empty($messages)
             ? html_writer::tag('span', get_string('importpreviewready', 'local_groupimport'), [
-                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--ready',
+                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--ready easyedu-status',
             ])
             : html_writer::tag('span', implode(' ', array_map('s', $messages)), [
-                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--warning',
+                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--warning easyedu-status easyedu-status--warning',
             ]);
 
         echo html_writer::tag('tr',
@@ -1453,7 +1453,7 @@ if ($preview !== null) {
             ) .
             html_writer::tag('td', $status),
             [
-                'class' => empty($messages) ? '' : 'local-groupimport-import-preview__row--warning',
+                'class' => empty($messages) ? '' : 'local-groupimport-import-preview__row--warning is-warning',
                 'data-local-groupimport-preview-row' => '1',
             ]
         );
@@ -1476,11 +1476,11 @@ if ($preview !== null) {
         html_writer::tag('button',
             html_writer::tag('span', '', ['class' => 'fa fa-check', 'aria-hidden' => 'true']) .
             get_string('submitimport', 'local_groupimport'),
-            ['type' => 'submit', 'class' => 'btn btn-primary']
+            ['type' => 'submit', 'class' => 'easyedu-button']
         ) .
         html_writer::link(new moodle_url('/local/groupimport/index.php', ['id' => $course->id]),
             get_string('cancel', 'local_groupimport'),
-            ['class' => 'btn btn-outline-secondary']
+            ['class' => 'easyedu-button easyedu-button--neutral']
         ),
         ['class' => 'local-groupimport-import-preview__actions']
     );
