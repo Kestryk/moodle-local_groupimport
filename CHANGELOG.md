@@ -4,6 +4,12 @@
 
 ### EasyEdu Foundations Phase 0 - Mass Import and Administration
 
+- Correct the visible composition: 16px import section titles, body-size
+  descriptions, 24px panel spacing, matching identification icon tiles and a
+  solid native file-deposit surface from the Kit. Keep upload APIs unchanged.
+- Extend responsive evidence to 1024px and capture the actual Moodle scrolling
+  container in overlapping screenshots, not only its first screen.
+
 - Bound Mass Import and Administration directly to the shared Kit typography,
   icon-tile, form, table, Skeleton and action-row primitives.
 - Removed their late product typography overrides and the redundant

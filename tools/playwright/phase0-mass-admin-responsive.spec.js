@@ -43,6 +43,32 @@ const getColumnCount = locator => locator.evaluate(node =>
     getComputedStyle(node).gridTemplateColumns.split(' ').filter(Boolean).length
 );
 
+// Boost scrolls an inner page, so fullPage alone records only its first screen.
+// Capture the real scroll container in overlapping, unmodified viewports.
+const captureScrollSeries = async(page, root, testInfo, prefix) => {
+    const dimensions = await root.evaluate(node => {
+        let scroller = node;
+        while (scroller && !(scroller.scrollHeight > scroller.clientHeight + 2 &&
+            /auto|scroll/.test(getComputedStyle(scroller).overflowY))) {
+            scroller = scroller.parentElement;
+        }
+        scroller = scroller || document.scrollingElement;
+        scroller.dataset.phase0CaptureScroller = 'true';
+        return {height: scroller.clientHeight, total: scroller.scrollHeight};
+    });
+    const scroller = page.locator('[data-phase0-capture-scroller]');
+    const step = Math.max(1, dimensions.height - 120);
+    for (let offset = 0, index = 1; offset < dimensions.total; offset += step, index++) {
+        await scroller.evaluate((node, top) => { node.scrollTop = top; }, offset);
+        await page.screenshot({path: testInfo.outputPath(`${prefix}-${index}.png`)});
+        if (offset + dimensions.height >= dimensions.total) { break; }
+    }
+    await scroller.evaluate(node => {
+        node.scrollTop = 0;
+        delete node.dataset.phase0CaptureScroller;
+    });
+};
+
 const expectSquareCentredIcons = async locator => {
     const icons = await locator.evaluateAll(nodes => nodes.map(node => {
         const box = node.getBoundingClientRect();
@@ -65,6 +91,7 @@ const expectSquareCentredIcons = async locator => {
 test('Phase 0 Mass Import and Administration stay composed at desktop and 390px', async({page}, testInfo) => {
     const viewports = [
         {name: 'desktop', width: 1440, height: 1000, expectedColumns: 2},
+        {name: 'tablet-1024', width: 1024, height: 900, expectedColumns: 1, adminColumns: 2},
         {name: 'mobile-390', width: 390, height: 844, expectedColumns: 1},
     ];
 
@@ -81,13 +108,13 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
             .toBe(viewport.expectedColumns);
         await expectSquareCentredIcons(massRoot.locator(
             '.local-groupimport-import-card__header > .fa:visible, ' +
-            '.local-groupimport-import-fields__icon:visible'
+            '.local-groupimport-import-fields__icon:visible, .easyedu-file-deposit__icon'
         ));
+        await expect(massRoot.locator('.easyedu-file-deposit')).toBeVisible();
+        await expect(massRoot.locator('.local-groupimport-import-card__title').first())
+            .toHaveCSS('font-size', '16px');
         await expectNoHorizontalOverflow(page);
-        await page.screenshot({
-            path: testInfo.outputPath(`phase0-mass-import-${viewport.name}.png`),
-            fullPage: true,
-        });
+        await captureScrollSeries(page, massRoot, testInfo, `phase0-mass-import-${viewport.name}`);
 
         await page.goto(adminUrl, {waitUntil: 'domcontentloaded'});
         const adminRoot = page.locator('#page-admin-setting-local_groupimport');
@@ -98,18 +125,16 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         const fieldGrids = adminRoot.locator('.local-groupimport-admin-settings__field-grid:visible');
         await expect(fieldGrids.first()).toBeVisible();
         for (let index = 0; index < await fieldGrids.count(); index++) {
-            expect(await getColumnCount(fieldGrids.nth(index))).toBe(viewport.expectedColumns);
+            expect(await getColumnCount(fieldGrids.nth(index)))
+                .toBe(viewport.adminColumns || viewport.expectedColumns);
         }
         const hero = adminRoot.locator('.local-groupimport-admin-settings__hero:visible').first();
         await expect(hero).toBeVisible();
-        expect(await getColumnCount(hero)).toBe(viewport.expectedColumns);
+        expect(await getColumnCount(hero)).toBe(viewport.adminColumns || viewport.expectedColumns);
         await expectSquareCentredIcons(adminRoot.locator(
             '.local-groupimport-admin-settings__hero > .fa:visible'
         ));
         await expectNoHorizontalOverflow(page);
-        await page.screenshot({
-            path: testInfo.outputPath(`phase0-administration-${viewport.name}.png`),
-            fullPage: true,
-        });
+        await captureScrollSeries(page, adminRoot, testInfo, `phase0-administration-${viewport.name}`);
     }
 });

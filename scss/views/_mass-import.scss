@@ -323,7 +323,7 @@
   &__grid {
     align-items: stretch;
     display: grid;
-    gap: 1.15rem;
+    gap: 1.5rem;
     grid-template-columns: minmax(21rem, 0.88fr) minmax(25rem, 1.12fr);
     transition: grid-template-columns var(--easyedu-motion-slow) var(--easyedu-motion-ease);
   }
@@ -346,7 +346,7 @@
 
     min-width: 0;
     overflow: visible;
-    padding: 1rem;
+    padding: 1.5rem;
     transition: box-shadow var(--easyedu-motion-normal) ease;
   }
 
@@ -412,8 +412,8 @@
     align-items: flex-start;
     display: flex;
     gap: 0.75rem;
-    margin-bottom: 0.95rem;
-    padding-top: 0.25rem;
+    margin-bottom: 1.5rem;
+    padding-top: 0;
 
     > .fa {
       @include easyedu.section-icon-tile;
@@ -477,13 +477,13 @@
   }
 
   &-card__title {
-    @include easyedu.type-control-label;
+    @include easyedu.type-section-title;
 
-    margin: 0 0 0.2rem;
+    margin: 0 0 0.75rem;
   }
 
   &-card__description {
-    @include easyedu.type-caption;
+    @include easyedu.type-body;
 
     color: var(--local-groupimport-easystud-text-muted);
     margin: 0;
@@ -496,7 +496,7 @@
     display: grid;
     gap: 0.7rem;
     margin: 0.65rem 0 1rem;
-    padding: 0.85rem;
+    padding: 1rem;
   }
 
   &.has-preview &-fields {
@@ -514,10 +514,10 @@
     min-width: 0;
 
     strong {
-      @include easyedu.type-control-label;
+      @include easyedu.type-card-title;
 
       display: block;
-      margin-bottom: 0.22rem;
+      margin-block: 0.55rem 0.75rem;
     }
 
     p {
@@ -528,7 +528,7 @@
   }
 
   &-fields__icon {
-    @include easyedu.section-icon-tile($size: compact);
+    @include easyedu.section-icon-tile;
 
     .fa {
       color: inherit;
@@ -559,11 +559,11 @@
     background: #fff;
     border: 1px solid #cfe0ef;
     border-radius: 999px;
-    box-shadow: 0 0.12rem 0.32rem rgba(31, 42, 55, 0.04);
-    color: #38546d;
+    color: var(--easyedu-primary);
     display: inline-flex;
-    font-weight: var(--easyedu-font-weight-medium);
-    padding: 0.32rem 0.68rem;
+    font-weight: var(--easyedu-font-weight-semibold);
+    min-height: 1.5rem;
+    padding: 0.15rem 0.75rem;
     white-space: nowrap;
   }
 
@@ -591,13 +591,12 @@
       min-width: 0;
     }
 
-    #fitem_id_importfile,
-    .fitem_fimportfile {
-      padding-bottom: 1rem;
-    }
-
     #fitem_id_importfile {
+      background: transparent;
+      border: 0;
       display: block;
+      margin: 0;
+      padding: 0;
 
       > .col-md-3,
       > .col-md-9,
@@ -609,12 +608,23 @@
       }
 
       .col-form-label {
-        padding-bottom: 0.7rem;
+        // Retain the real label and required marker in the accessibility tree.
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        padding: 0;
       }
 
       .felement {
-        padding-top: 0.2rem;
+        padding: 0;
       }
+    }
+
+    .easyedu-file-deposit {
+      @include easyedu.file-deposit;
+      margin-block-end: 1rem;
     }
 
     #fitem_id_importfile .filepicker,
@@ -623,7 +633,43 @@
     }
 
     #fitem_id_importfile .filepicker {
-      padding-top: 0.45rem;
+      padding: 0;
+    }
+
+    [id^="filepicker-wrapper-"] {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.75rem;
+    }
+
+    // Preserve the actual drop target, selected-file link and progress nodes.
+    // Only the redundant native decorative arrow is suppressed.
+    .dndupload-arrow {
+      display: none !important;
+    }
+
+    .filepicker-container,
+    .dndupload-message {
+      @include easyedu.type-caption;
+      color: var(--easyedu-text-muted);
+      min-height: 0;
+      padding: 0.5rem;
+      text-align: start;
+    }
+
+    .filepicker-container {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .fp-btn-choose {
+      max-width: 100%;
+    }
+
+    [id^="filepicker-wrapper-"] > div > span {
+      @include easyedu.type-caption;
+      display: block;
+      margin-block-start: 0.5rem;
     }
 
     .form-control,
@@ -646,11 +692,12 @@
     }
 
     .filepicker-filelist {
-      border-color: #d7e3ee;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.76);
-      margin: 1.05rem auto 0;
-      min-height: 10.75rem;
-      width: calc(100% - 0.75rem);
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-control-border);
+      box-shadow: none;
+      margin: 0;
+      min-height: 3rem;
+      width: 100%;
     }
 
     .fp-btn-add,
@@ -665,7 +712,7 @@
 
     #fitem_id_importfile .fp-btn-choose,
     #fitem_id_importfile [id^="filepicker-button-"] {
-      margin-top: 0.65rem;
+      margin-top: 0;
     }
 
     .fp-btn-add,
@@ -733,9 +780,10 @@
     gap: 0.55rem;
     justify-items: center;
     padding: 2rem 1rem;
+    min-height: 11.125rem;
 
     p {
-      @include easyedu.type-caption;
+      @include easyedu.type-body;
     }
 
     .fa {
