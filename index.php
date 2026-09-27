@@ -1393,7 +1393,7 @@ if ($preview !== null) {
     );
 
     echo html_writer::start_tag('div', ['class' => 'local-groupimport-import-preview__table-wrap']);
-    echo html_writer::start_tag('table', ['class' => 'easyedu-data-table local-groupimport-import-preview__table']);
+    echo html_writer::start_tag('table', ['class' => 'table-reboot easyedu-data-table local-groupimport-import-preview__table']);
     echo html_writer::tag('thead',
         html_writer::tag('tr',
             html_writer::tag('th', get_string('importpreviewinclude', 'local_groupimport')) .

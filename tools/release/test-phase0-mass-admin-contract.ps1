@@ -14,7 +14,7 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 $canonicalModules = @{
     'scss/easyedu/_data-classes.scss' = '21c27c0d91cbe103e4fb0a0fcf38cae80d9f5b50'
     'scss/easyedu/_foundation-classes.scss' = 'bb462b328c8627915854cc2e82afb7b8651fe294'
-    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '38f2ccb4e680f001bef6cedc2ffddc5348e3d9e2'
+    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '09a334f28548f144dea94fcd4dc79984e3b42efb'
 }
 foreach ($path in $canonicalModules.Keys) {
     $actual = & git -C $pluginRoot hash-object $path
@@ -64,6 +64,9 @@ if ($kitManifest.consumerSync.sourceCommit -notmatch '^[0-9a-f]{40}$') {
 }
 
 $markup = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'index.php')
+if (-not $markup.Contains('table-reboot easyedu-data-table')) {
+    throw 'Kit tables must opt out of Moodle automatic table decoration.'
+}
 foreach ($class in @('easyedu-ui', 'easyedu-panel__title', 'easyedu-information', 'easyedu-tag', 'easyedu-empty')) {
     if (-not $markup.Contains($class)) { throw "Missing shared class: $class" }
 }

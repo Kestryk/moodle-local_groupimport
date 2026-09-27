@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const fs = require('node:fs');
 
 const massImportUrl = process.env.EASYEDU_MASS_IMPORT_URL || process.env.EASYEDU_MOODLE_URL ||
     'http://localhost/local/groupimport/index.php?id=5';
@@ -142,6 +143,21 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         await expect(massRoot).toHaveClass(/has-preview/, {timeout: 60000});
         await expect(massRoot.locator('.local-groupimport-import-preview__table')).toBeVisible();
         const dataTable = massRoot.locator('.easyedu-data-table');
+        fs.writeFileSync(testInfo.outputPath(`table-cascade-${viewport.name}.json`),
+            JSON.stringify(await dataTable.locator('td').nth(2).evaluate(node => {
+                const matched = [];
+                const visit = rules => Array.from(rules).forEach(rule => {
+                    if (rule.selectorText && node.matches(rule.selectorText)) {
+                        matched.push({selector: rule.selectorText, style: rule.style.cssText});
+                    }
+                    if (rule.cssRules) { visit(rule.cssRules); }
+                });
+                for (const sheet of document.styleSheets) {
+                    try { visit(sheet.cssRules); } catch (_) { /* Cross-origin sheets are unreadable. */ }
+                }
+                return {matched, inline: node.style.cssText, writingMode: getComputedStyle(node).writingMode};
+            }), null, 2));
+        await dataTable.screenshot({path: testInfo.outputPath(`table-detail-${viewport.name}.png`)});
         await expect(dataTable.locator('th').nth(1)).toHaveCSS('font-size', '11px');
         await expect(dataTable.locator('td').nth(2)).toHaveCSS('border-left-width', '0px');
         await expect(dataTable.locator('input[type="text"]').first()).toHaveCSS('height', '40px');

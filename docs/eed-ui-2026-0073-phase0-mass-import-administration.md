@@ -22,8 +22,9 @@ EasyEdu UI Kit SCSS <=> Penpot EasyEdu Foundations
                          +--> Mass Import / Administration placement adapters
 ```
 
-Penpot uses Inter as its visual proxy. Runtime uses the single
-`--easyedu-font-family-ui` contract and inherits Moodle's active theme font.
+Migrated surfaces use the Kit's bundled Inter through the single
+`--easyedu-font-family-ui` contract. Legacy non-migrated surfaces still inherit
+Moodle's active theme font.
 All headings are mapped to the named Kit roles; no product page-title alias or
 local weight scale remains for these two views.
 
@@ -58,7 +59,9 @@ The user rejected the visual approximation and local CSS approach. Initial
 Mass Import now consumes canonical `.easyedu-*` classes from
 `easyedu/_foundation-classes.scss` and `easyedu/adapters/_moodle-file-deposit.scss`.
 381 lines were removed from the view partial. These two imported modules must
-remain identical to Kit `068157504649d07b9f2ac1c54f0ec157f15f8fd9`.
+remain identical to Kit `72866ae5a0ea50434796296705cffb902c8cbd17`.
+The third canonical module, `_data-classes.scss`, covers the preview table,
+notice, choice controls, search toolbar and status labels.
 The product entry point emits them without style declarations; PHP supplies
 business content and preserves native form semantics. Inter is embedded from
 the Kit; the earlier theme-font/proxy decision is superseded for migrated
@@ -86,6 +89,19 @@ showed only the first viewport and must not be cited as full-page proof.
 Selected-file/preview behavior and human visual acceptance require their own
 results; compilation and geometry checks alone do not prove them.
 
+### Native theme boundary correction
+
+The 2026-09-27 browser check found that Boost's automatic table styling
+overrode cell border widths despite the new Kit table classes. The recorded
+matched cascade identified the four-`:not()` native selector, not a need for
+another local CSS layer. The consumer now opts out with Moodle's `table-reboot`
+class. The Kit Moodle adapter also suppresses the duplicated accepted-types
+paragraph adjacent to `filepicker-wrapper-*`, retaining the accessible native
+text and visible equivalent requirements strip. The responsive scenario saves
+the matched cascade JSON and a close-up table image before border assertions.
+The diagnostic run `easystud-authenticated-20260927T181328732Z-58172` failed
+before this correction; it is not passing evidence.
+
 
 Static Sass compilation and contract tests remain required in this batch.
 The authorized Moodle 5.1 preview applied consumer commit
@@ -101,7 +117,7 @@ Focused authenticated browser evidence then passed:
   column recomposition, rejects horizontal overflow and checks square centred
   section-icon tiles.
 
-The final responsive run is
+The earlier structural responsive run was
 `easystud-authenticated-20260927T155039667Z-37956`; it contains four external
 review captures and completed with its credentials cleared, lease released and
 profile cleanup complete. The older cumulative Platform-wave scenario stopped
