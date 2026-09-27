@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test');
 
-const massImportUrl = process.env.EASYEDU_MASS_IMPORT_URL ||
+const massImportUrl = process.env.EASYEDU_MASS_IMPORT_URL || process.env.EASYEDU_MOODLE_URL ||
     'http://localhost/local/groupimport/index.php?id=5';
 const adminUrl = new URL('/admin/settings.php?section=local_groupimport', massImportUrl).toString();
 const username = process.env.EASYEDU_MOODLE_USERNAME || 'Admin';

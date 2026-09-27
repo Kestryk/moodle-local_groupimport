@@ -367,6 +367,7 @@
     display: grid;
     gap: 0.72rem;
     grid-auto-rows: max-content;
+    grid-template-columns: minmax(0, 1fr);
     height: 100%;
     justify-items: center;
     margin: 0;
