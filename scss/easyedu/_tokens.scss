@@ -57,6 +57,21 @@
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;
 
+  // Foundations component colors, measured from accepted shared instances.
+  --easyedu-information-surface: linear-gradient(180deg, #f7fbff, #eef6fc);
+  --easyedu-metadata-border: #bcd9ff;
+  --easyedu-metadata-text: #1263ae;
+  --easyedu-secondary-text: #0b5ea8;
+  --easyedu-deposit-surface: #fbfdff;
+  --easyedu-deposit-border: #c8d6e3;
+  --easyedu-deposit-icon-surface: #eaf4fb;
+  --easyedu-deposit-icon-border: #c7dded;
+  --easyedu-deposit-title: #163b59;
+  --easyedu-deposit-text: #607487;
+  --easyedu-requirements-surface: #f3f8fc;
+  --easyedu-requirements-border: #d4e2ed;
+  --easyedu-requirements-title: #264861;
+
   // Typography. Keep the Moodle theme font as the single UI family and use a
   // deliberately short scale across independent EasyEdu plugins.
   --easyedu-font-family-ui: inherit;

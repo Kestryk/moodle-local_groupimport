@@ -1,0 +1,190 @@
+// Public, opt-in Foundations classes. No product IDs/selectors belong here.
+// Source measurements: EasyEdu Foundations components consumed by EasyStud
+// board 5daf2376-ada4-8014-8008-ad9c0e35b6c1. See docs/components/foundation-classes.md.
+@use "components/typography" as type;
+@use "components/panels";
+@use "components/focus";
+
+@mixin foundation-button($secondary: false) {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+  @if $secondary {
+    background: var(--easyedu-surface);
+    border-color: var(--easyedu-deposit-border);
+    border-radius: 0.58rem;
+    color: var(--easyedu-secondary-text);
+    font-size: 0.75rem;
+    min-block-size: 2rem;
+  }
+  &:hover {
+    @if $secondary { background: var(--easyedu-primary-soft); }
+    @else { background: var(--easyedu-primary-strong); }
+  }
+  &:focus-visible { @include focus.ring; }
+  &:disabled { background: var(--easyedu-surface-soft); color: var(--easyedu-text-muted); }
+}
+
+@mixin foundation-font($url) {
+  @font-face {
+    font-family: "EasyEdu Inter";
+    src: url($url) format("woff2");
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+  }
+}
+
+@mixin foundation-scope {
+    --easyedu-font-family-ui: "EasyEdu Inter", Inter, sans-serif;
+    --easyedu-line-height-title: 1.2;
+    --easyedu-line-height-body: 1.2;
+    font-family: var(--easyedu-font-family-ui);
+    font-optical-sizing: none;
+    font-synthesis: none;
+}
+
+@mixin foundation-classes {
+  .easyedu-ui { @include foundation-scope; }
+
+  .easyedu-ui .easyedu-page-title {
+    @include type.type-page-title;
+    margin: 0 0 0.875rem;
+  }
+  .easyedu-ui .easyedu-body {
+    @include type.type-body;
+    color: var(--easyedu-text-muted);
+    margin: 0;
+  }
+  .easyedu-ui .easyedu-caption {
+    @include type.type-caption;
+    line-height: 1.2;
+  }
+  .easyedu-ui .easyedu-form-note { margin: 1.25rem 0 0; }
+
+  .easyedu-ui .easyedu-panel {
+    @include panels.semantic-accent-panel;
+    background-image: var(--easyedu-semantic-rail-primary), var(--easyedu-semantic-panel-bg);
+    background-size: 100% 0.35rem, 100% 100%;
+    border-radius: 0.95rem;
+    box-shadow: none;
+    padding: 1.5rem;
+    min-inline-size: 0;
+  }
+  .easyedu-ui .easyedu-panel--success {
+    background-image: var(--easyedu-semantic-rail-success), var(--easyedu-semantic-panel-bg);
+    border-color: var(--easyedu-semantic-border-success);
+  }
+  .easyedu-ui .easyedu-panel__header {
+    align-items: start;
+    display: grid;
+    gap: 0 0.7rem;
+    grid-template-columns: 2.55rem minmax(0, 1fr) auto;
+    margin-block-end: 1.5rem;
+    min-block-size: 5.25rem;
+  }
+  .easyedu-ui .easyedu-panel__copy { min-inline-size: 0; }
+  .easyedu-ui .easyedu-panel__title {
+    @include type.type-section-title;
+    margin: 0.25rem 0 1rem;
+  }
+  .easyedu-ui .easyedu-panel__description {
+    @include type.type-body;
+    color: var(--easyedu-text-muted);
+    margin: 0;
+  }
+  .easyedu-ui .easyedu-icon-tile {
+    @include panels.section-icon-tile;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  .easyedu-ui .easyedu-icon-tile--success {
+    background: var(--easyedu-accent-soft);
+    border-color: var(--easyedu-semantic-border-success);
+    color: var(--easyedu-accent);
+  }
+
+  .easyedu-ui .easyedu-information {
+    background: var(--easyedu-information-surface);
+    border: 0.0625rem solid var(--easyedu-semantic-border-primary);
+    border-radius: 0.75rem;
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.875rem 1rem 1rem;
+    margin-block-end: 1rem;
+    min-inline-size: 0;
+  }
+  .easyedu-ui .easyedu-information__header {
+    display: grid;
+    gap: 0.375rem;
+    grid-template-columns: 2.55rem minmax(0, 1fr);
+  }
+  .easyedu-ui .easyedu-information__title {
+    @include type.type-card-title;
+    display: block;
+    margin: 0.6rem 0 0.75rem;
+  }
+  .easyedu-ui .easyedu-information__description {
+    @include type.type-caption;
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+  }
+  .easyedu-ui .easyedu-information__label {
+    @include type.type-caption;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .easyedu-ui .easyedu-tag-list { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .easyedu-ui .easyedu-tag {
+    align-items: center;
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-metadata-border);
+    border-radius: 62.4375rem;
+    color: var(--easyedu-metadata-text);
+    display: inline-flex;
+    font: 700 0.75rem/1.2 var(--easyedu-font-family-ui);
+    justify-content: center;
+    min-block-size: 1.5rem;
+    padding: 0.125rem 1.75rem;
+    max-inline-size: 100%;
+    overflow-wrap: anywhere;
+  }
+  .easyedu-ui .easyedu-button { @include foundation-button; }
+  .easyedu-ui .easyedu-button--secondary { @include foundation-button(true); }
+  .easyedu-ui .easyedu-empty {
+    align-content: center;
+    background: linear-gradient(180deg, var(--easyedu-deposit-surface), var(--easyedu-surface-soft));
+    border: 0.0625rem dashed var(--easyedu-control-border);
+    border-radius: 0.85rem;
+    color: var(--easyedu-text-muted);
+    display: grid;
+    gap: 1.5rem;
+    justify-items: center;
+    min-block-size: 11.125rem;
+    padding: 1.5rem;
+    text-align: center;
+    p { font: 500 0.875rem/1.2 var(--easyedu-font-family-ui); margin: 0; }
+    .fa { font-size: 1.25rem; margin: 0; }
+  }
+
+  // Actual narrow component reflow, not scaled-down desktop content.
+  @media (max-width: 40rem) {
+    .easyedu-ui .easyedu-panel { padding: 1rem; }
+    .easyedu-ui .easyedu-panel__header { min-block-size: 0; gap: 1rem; }
+    .easyedu-ui .easyedu-panel__copy { display: contents; }
+    .easyedu-ui .easyedu-panel__title { grid-column: 2; margin: 0; align-self: center; }
+    .easyedu-ui .easyedu-panel__description { grid-column: 1 / -1; }
+    .easyedu-ui .easyedu-panel__header > .easyedu-icon-tile { grid-row: 1; }
+    .easyedu-ui .easyedu-tag { padding-inline: 0.75rem; }
+  }
+}

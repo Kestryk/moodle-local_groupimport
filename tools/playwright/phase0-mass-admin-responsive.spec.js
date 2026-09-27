@@ -112,11 +112,15 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         ));
         await expect(massRoot.locator('.easyedu-file-deposit')).toBeVisible();
         await expect(massRoot.locator('.fp-btn-choose')).toBeVisible({timeout: 60000});
-        const nativeDrop = massRoot.locator('.filepicker-container');
-        await expect(nativeDrop).toHaveCSS('position', 'static');
-        await expect(nativeDrop).toHaveCSS('border-top-width', '0px');
-        await nativeDrop.scrollIntoViewIfNeeded();
-        await expect(massRoot.locator('.dndupload-message')).toBeInViewport();
+        await expect(massRoot.locator('.filepicker-container')).toBeHidden();
+        await expect(massRoot.locator('.easyedu-file-deposit__support')).toBeVisible();
+        await page.evaluate(() => document.fonts.load('600 16px "EasyEdu Inter"'));
+        expect(await page.evaluate(() => Array.from(document.fonts).some(font =>
+            font.family.includes('EasyEdu Inter') && font.status === 'loaded'))).toBe(true);
+        await expect(massRoot.locator('.easyedu-panel__title').first()).toHaveCSS('font-weight', '600');
+        await expect(massRoot.locator('.easyedu-panel__title').first()).toHaveCSS('line-height', '19.2px');
+        await expect(massRoot.locator('.easyedu-panel').first()).toHaveCSS('box-shadow', 'none');
+        await expect(massRoot.locator('.easyedu-file-deposit__title')).toHaveCSS('font-size', '17px');
         await expect(massRoot.locator('.local-groupimport-import-card__title').first())
             .toHaveCSS('font-size', '16px');
         await expectNoHorizontalOverflow(page);

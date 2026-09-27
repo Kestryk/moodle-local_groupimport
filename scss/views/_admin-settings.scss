@@ -4,6 +4,7 @@
 // keeps Moodle's native admin form controls and applies the EasyEdu visual
 // language around them so settings remain accessible and theme-overridable.
 @use "../easyedu" as easyedu;
+@use "../easyedu/foundation-classes" as foundations;
 
 // `local-groupimport-admin-settings-page--loading` is server-rendered even
 // without scripts. Moodle adds `jsenabled` only from its early body bootstrap,
@@ -64,6 +65,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
 
   #adminsettings {
+    @include foundations.foundation-scope;
     @include easyedu.type-ui-base;
   }
 

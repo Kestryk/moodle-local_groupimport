@@ -1,5 +1,12 @@
 # EasyEdu Component Contract
 
+File-deposit adapters must retain the real control, filename, validation and
+upload progress. An empty surface alone is not functional proof. Use the
+opt-in `file-deposit` shell for the solid large Foundations surface; do not
+change the legacy picker for unrelated consumers. Moodle theme CSS may follow
+plugin CSS: assert computed geometry (including the native inner drop target)
+and inspect empty/selected-file captures, not only the outer shell.
+
 This document defines reusable component contracts that agents must preserve
 when moving UI from one plugin to another.
 

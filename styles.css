@@ -279,6 +279,19 @@
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;
+  --easyedu-information-surface: linear-gradient(180deg, #f7fbff, #eef6fc);
+  --easyedu-metadata-border: #bcd9ff;
+  --easyedu-metadata-text: #1263ae;
+  --easyedu-secondary-text: #0b5ea8;
+  --easyedu-deposit-surface: #fbfdff;
+  --easyedu-deposit-border: #c8d6e3;
+  --easyedu-deposit-icon-surface: #eaf4fb;
+  --easyedu-deposit-icon-border: #c7dded;
+  --easyedu-deposit-title: #163b59;
+  --easyedu-deposit-text: #607487;
+  --easyedu-requirements-surface: #f3f8fc;
+  --easyedu-requirements-border: #d4e2ed;
+  --easyedu-requirements-title: #264861;
   --easyedu-font-family-ui: inherit;
   --easyedu-font-size-page-title: 1.25rem;
   --easyedu-font-size-modal-title: 1rem;
@@ -13857,6 +13870,19 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;
+  --easyedu-information-surface: linear-gradient(180deg, #f7fbff, #eef6fc);
+  --easyedu-metadata-border: #bcd9ff;
+  --easyedu-metadata-text: #1263ae;
+  --easyedu-secondary-text: #0b5ea8;
+  --easyedu-deposit-surface: #fbfdff;
+  --easyedu-deposit-border: #c8d6e3;
+  --easyedu-deposit-icon-surface: #eaf4fb;
+  --easyedu-deposit-icon-border: #c7dded;
+  --easyedu-deposit-title: #163b59;
+  --easyedu-deposit-text: #607487;
+  --easyedu-requirements-surface: #f3f8fc;
+  --easyedu-requirements-border: #d4e2ed;
+  --easyedu-requirements-title: #264861;
   --easyedu-font-family-ui: inherit;
   --easyedu-font-size-page-title: 1.25rem;
   --easyedu-font-size-modal-title: 1rem;
@@ -14100,6 +14126,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   z-index: 1047;
 }
 #page-admin-setting-local_groupimport #adminsettings {
+  --easyedu-font-family-ui: "EasyEdu Inter", Inter, sans-serif;
+  --easyedu-line-height-title: 1.2;
+  --easyedu-line-height-body: 1.2;
+  font-family: var(--easyedu-font-family-ui);
+  font-optical-sizing: none;
+  font-synthesis: none;
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
@@ -14904,6 +14936,19 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;
+  --easyedu-information-surface: linear-gradient(180deg, #f7fbff, #eef6fc);
+  --easyedu-metadata-border: #bcd9ff;
+  --easyedu-metadata-text: #1263ae;
+  --easyedu-secondary-text: #0b5ea8;
+  --easyedu-deposit-surface: #fbfdff;
+  --easyedu-deposit-border: #c8d6e3;
+  --easyedu-deposit-icon-surface: #eaf4fb;
+  --easyedu-deposit-icon-border: #c7dded;
+  --easyedu-deposit-title: #163b59;
+  --easyedu-deposit-text: #607487;
+  --easyedu-requirements-surface: #f3f8fc;
+  --easyedu-requirements-border: #d4e2ed;
+  --easyedu-requirements-title: #264861;
   --easyedu-font-family-ui: inherit;
   --easyedu-font-size-page-title: 1.25rem;
   --easyedu-font-size-modal-title: 1rem;
@@ -15552,27 +15597,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: block;
   margin-bottom: 0.2rem;
 }
-.local-groupimport-import__title {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-page-title);
-  font-weight: var(--easyedu-font-weight-strong);
-  line-height: var(--easyedu-line-height-title);
-  margin: 0 0 0.35rem;
-}
-.local-groupimport-import__intro {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-body);
-  line-height: var(--easyedu-line-height-body);
-  color: var(--local-groupimport-easystud-text-muted);
-  margin: 0;
-  max-width: 58rem;
-}
 .local-groupimport-import__header-actions {
   margin-top: 0.9rem;
   align-items: stretch;
@@ -15748,64 +15772,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import__grid {
   grid-template-columns: 4.85rem minmax(0, 1fr);
 }
-.local-groupimport-import-card {
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-border);
-  border-radius: calc(var(--easyedu-radius) + 0.2rem);
-  box-shadow: var(--easyedu-shadow);
-  min-width: 0;
-  overflow: visible;
-  position: relative;
-  background-color: var(--easyedu-semantic-panel-bg);
-  background-image: var(--easyedu-semantic-rail-primary);
-  background-position: left top;
-  background-repeat: no-repeat;
-  background-size: 100% 0.35rem;
-  box-shadow: var(--easyedu-shadow-soft);
-  overflow: visible;
-  position: relative;
-  border-color: var(--easyedu-semantic-border-primary);
-  min-width: 0;
-  overflow: visible;
-  padding: 1.5rem;
-  transition: box-shadow var(--easyedu-motion-normal) ease;
-}
-.local-groupimport-import-card--results {
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-border);
-  border-radius: calc(var(--easyedu-radius) + 0.2rem);
-  box-shadow: var(--easyedu-shadow);
-  min-width: 0;
-  overflow: visible;
-  position: relative;
-  background-color: var(--easyedu-semantic-panel-bg);
-  background-image: var(--easyedu-semantic-rail-success);
-  background-position: left top;
-  background-repeat: no-repeat;
-  background-size: 100% 0.35rem;
-  box-shadow: var(--easyedu-shadow-soft);
-  overflow: visible;
-  position: relative;
-  border-color: var(--easyedu-semantic-border-success);
-}
-.local-groupimport-import-card--upload {
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-border);
-  border-radius: calc(var(--easyedu-radius) + 0.2rem);
-  box-shadow: var(--easyedu-shadow);
-  min-width: 0;
-  overflow: visible;
-  position: relative;
-  background-color: var(--easyedu-semantic-panel-bg);
-  background-image: var(--easyedu-semantic-rail-primary);
-  background-position: left top;
-  background-repeat: no-repeat;
-  background-size: 100% 0.35rem;
-  box-shadow: var(--easyedu-shadow-soft);
-  overflow: visible;
-  position: relative;
-  border-color: var(--easyedu-semantic-border-primary);
-}
 .local-groupimport-import.has-preview .local-groupimport-import-card {
   min-height: min(72vh, 52rem);
 }
@@ -15847,57 +15813,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
-.local-groupimport-import-card__header {
-  align-items: flex-start;
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding-top: 0;
-}
-.local-groupimport-import-card__header > .fa {
-  align-items: center;
-  background: var(--easyedu-primary-soft);
-  border: 1px solid var(--easyedu-semantic-border-primary);
-  border-radius: var(--easyedu-section-icon-radius);
-  box-sizing: border-box;
-  color: var(--easyedu-primary);
-  display: inline-flex;
-  flex: 0 0 var(--easyedu-section-icon-size);
-  height: var(--easyedu-section-icon-size);
-  justify-content: center;
-  line-height: 1;
-  width: var(--easyedu-section-icon-size);
-}
-.local-groupimport-import-card__header > .fa::before,
-.local-groupimport-import-card__header > .fa > .fa,
-.local-groupimport-import-card__header > .fa > [aria-hidden=true] {
-  display: block;
-  line-height: 1;
-  max-height: 1em;
-  max-width: 1em;
-}
-.local-groupimport-import-card--results .local-groupimport-import-card__header > .fa {
-  align-items: center;
-  background: var(--local-groupimport-easystud-accent-soft);
-  border: 1px solid var(--easyedu-semantic-border-success);
-  border-radius: var(--easyedu-section-icon-radius);
-  box-sizing: border-box;
-  color: var(--local-groupimport-easystud-accent);
-  display: inline-flex;
-  flex: 0 0 var(--easyedu-section-icon-size);
-  height: var(--easyedu-section-icon-size);
-  justify-content: center;
-  line-height: 1;
-  width: var(--easyedu-section-icon-size);
-}
-.local-groupimport-import-card--results .local-groupimport-import-card__header > .fa::before,
-.local-groupimport-import-card--results .local-groupimport-import-card__header > .fa > .fa,
-.local-groupimport-import-card--results .local-groupimport-import-card__header > .fa > [aria-hidden=true] {
-  display: block;
-  line-height: 1;
-  max-height: 1em;
-  max-width: 1em;
-}
 .local-groupimport-import-card__toggle {
   align-items: center;
   background: #fff !important;
@@ -15938,470 +15853,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   position: sticky;
   top: 4.25rem;
   z-index: 2;
-}
-.local-groupimport-import-card__title {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-section-title);
-  font-weight: var(--easyedu-font-weight-semibold);
-  line-height: var(--easyedu-line-height-title);
-  margin: 0 0 0.75rem;
-}
-.local-groupimport-import-card__description {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-body);
-  line-height: var(--easyedu-line-height-body);
-  color: var(--local-groupimport-easystud-text-muted);
-  margin: 0;
-}
-.local-groupimport-import-fields {
-  background: linear-gradient(180deg, #f7fbff 0%, #eef6fc 100%);
-  border: 1px solid #d7e5f2;
-  border-radius: 0.85rem;
-  display: grid;
-  gap: 0.7rem;
-  margin: 0.65rem 0 1rem;
-  padding: 1rem;
-}
-.local-groupimport-import.has-preview .local-groupimport-import-fields {
-  gap: 0.45rem;
-  margin-bottom: 0.7rem;
-  padding: 0.7rem 0.8rem;
-}
-.local-groupimport-import-fields__header {
-  align-items: flex-start;
-  color: var(--local-groupimport-easystud-text);
-  display: grid;
-  gap: 0.72rem;
-  grid-template-columns: auto minmax(0, 1fr);
-  min-width: 0;
-}
-.local-groupimport-import-fields__header strong {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-card-title);
-  font-weight: var(--easyedu-font-weight-strong);
-  line-height: var(--easyedu-line-height-title);
-  display: block;
-  margin-block: 0.55rem 0.75rem;
-}
-.local-groupimport-import-fields__header p {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  color: var(--local-groupimport-easystud-text-muted);
-}
-.local-groupimport-import-fields__icon {
-  align-items: center;
-  background: var(--easyedu-primary-soft);
-  border: 1px solid var(--easyedu-semantic-border-primary);
-  border-radius: var(--easyedu-section-icon-radius);
-  box-sizing: border-box;
-  color: var(--easyedu-primary);
-  display: inline-flex;
-  flex: 0 0 var(--easyedu-section-icon-size);
-  height: var(--easyedu-section-icon-size);
-  justify-content: center;
-  line-height: 1;
-  width: var(--easyedu-section-icon-size);
-}
-.local-groupimport-import-fields__icon::before,
-.local-groupimport-import-fields__icon > .fa,
-.local-groupimport-import-fields__icon > [aria-hidden=true] {
-  display: block;
-  line-height: 1;
-  max-height: 1em;
-  max-width: 1em;
-}
-.local-groupimport-import-fields__icon .fa {
-  color: inherit;
-  line-height: 1;
-}
-.local-groupimport-import-fields__tags {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  min-width: 0;
-}
-.local-groupimport-import-fields__label {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  color: var(--local-groupimport-easystud-text-muted);
-  font-weight: var(--easyedu-font-weight-semibold);
-  text-transform: none;
-}
-.local-groupimport-import-fields__tag {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  align-items: center;
-  background: #fff;
-  border: 1px solid #cfe0ef;
-  border-radius: 999px;
-  color: var(--easyedu-primary);
-  display: inline-flex;
-  font-weight: var(--easyedu-font-weight-semibold);
-  min-height: 1.5rem;
-  padding: 0.15rem 0.75rem;
-  white-space: nowrap;
-}
-.local-groupimport-import-form .mform {
-  margin: 0;
-}
-.local-groupimport-import-form .fitem {
-  background: var(--local-groupimport-easystud-surface-soft);
-  border: 1px solid #e3eaf2;
-  border-radius: 0.85rem;
-  margin: 0 0 0.75rem;
-  padding: 0.75rem;
-}
-.local-groupimport-import-form .fitemtitle,
-.local-groupimport-import-form .col-form-label {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-eyebrow);
-  font-weight: var(--easyedu-font-weight-strong);
-  line-height: 1.3;
-  text-transform: uppercase;
-  color: #5f7185;
-}
-.local-groupimport-import-form .felement {
-  min-width: 0;
-}
-.local-groupimport-import-form #fitem_id_importfile {
-  background: transparent;
-  border: 0;
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-.local-groupimport-import-form #fitem_id_importfile > .col-md-3,
-.local-groupimport-import-form #fitem_id_importfile > .col-md-9,
-.local-groupimport-import-form #fitem_id_importfile .fitemtitle,
-.local-groupimport-import-form #fitem_id_importfile .felement {
-  flex: 0 0 100%;
-  max-width: 100%;
-  width: 100%;
-}
-.local-groupimport-import-form #fitem_id_importfile .col-form-label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  padding: 0;
-}
-.local-groupimport-import-form #fitem_id_importfile .felement {
-  padding: 0;
-}
-.local-groupimport-import-form .easyedu-file-deposit {
-  background: var(--easyedu-surface-soft);
-  border: 1px solid var(--easyedu-control-border);
-  border-radius: var(--easyedu-radius-lg);
-  box-sizing: border-box;
-  min-inline-size: 0;
-  padding: 1rem;
-  margin-block-end: 1rem;
-}
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__heading {
-  align-items: start;
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: auto minmax(0, 1fr);
-  margin-block-end: 0.75rem;
-}
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon {
-  align-items: center;
-  background: var(--easyedu-primary-soft);
-  border: 1px solid var(--easyedu-semantic-border-primary);
-  border-radius: var(--easyedu-section-icon-radius);
-  box-sizing: border-box;
-  color: var(--easyedu-primary);
-  display: inline-flex;
-  flex: 0 0 var(--easyedu-section-icon-size);
-  height: var(--easyedu-section-icon-size);
-  justify-content: center;
-  line-height: 1;
-  width: var(--easyedu-section-icon-size);
-  font-size: 1.25rem;
-}
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon::before,
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon > .fa,
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon > [aria-hidden=true] {
-  display: block;
-  line-height: 1;
-  max-height: 1em;
-  max-width: 1em;
-}
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__icon .fa {
-  margin: 0;
-  line-height: 1;
-}
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__title {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-panel-title);
-  font-weight: var(--easyedu-font-weight-strong);
-  line-height: var(--easyedu-line-height-title);
-  color: var(--easyedu-text);
-  margin: 0;
-  overflow-wrap: anywhere;
-}
-.local-groupimport-import-form .easyedu-file-deposit .easyedu-file-deposit__control {
-  min-inline-size: 0;
-}
-.local-groupimport-import-form .easyedu-file-deposit:focus-within {
-  border-color: var(--easyedu-control-focus-border);
-}
-.local-groupimport-import-form #fitem_id_importfile .filepicker,
-.local-groupimport-import-form #fitem_id_importfile [id^=file_info_] {
-  width: 100%;
-}
-.local-groupimport-import-form #fitem_id_importfile .filepicker {
-  padding: 0;
-}
-.local-groupimport-import-form [id^=filepicker-wrapper-] {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 0.75rem;
-}
-.local-groupimport-import-form .dndupload-arrow {
-  display: none !important;
-}
-.local-groupimport-import-form #fitem_id_importfile .filepicker-container,
-.local-groupimport-import-form #fitem_id_importfile .dndupload-message {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  color: var(--easyedu-text-muted);
-  min-height: 0;
-  padding: 0.5rem;
-  text-align: start;
-}
-.local-groupimport-import-form #fitem_id_importfile .filepicker-container {
-  border: 0;
-  display: block;
-  inset: auto;
-  overflow-wrap: anywhere;
-  position: static;
-}
-.local-groupimport-import-form .filepicker-filename > a {
-  display: block;
-  overflow-wrap: anywhere;
-  padding: 0.75rem;
-}
-.local-groupimport-import-form #fitem_id_importfile .filepicker-filelist .dndupload-target,
-.local-groupimport-import-form #fitem_id_importfile .filepicker-filelist.dndupload-over .dndupload-target {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  background: var(--easyedu-primary-soft);
-  border: 1px solid var(--easyedu-control-focus-border);
-  border-radius: var(--easyedu-control-radius);
-  box-shadow: none;
-  color: var(--easyedu-primary);
-  inset: 0;
-  padding: 0.75rem;
-}
-.local-groupimport-import-form .fp-btn-choose {
-  align-items: center;
-  display: inline-flex;
-  gap: var(--easyedu-action-icon-gap, 0.65rem);
-  justify-content: center;
-  line-height: 1.2;
-  font-size: 0.78rem;
-  min-height: 1.9rem;
-  min-width: 1.9rem;
-  padding: 0.22rem 0.5rem;
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-control);
-  font-weight: var(--easyedu-font-weight-semibold);
-  line-height: 1.35;
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-control-border);
-  border-radius: var(--easyedu-control-radius);
-  color: var(--easyedu-primary);
-  max-width: 100%;
-  min-width: min(10.5rem, 100%);
-  white-space: normal;
-}
-.local-groupimport-import-form .fp-btn-choose:hover, .local-groupimport-import-form .fp-btn-choose:focus-visible, .local-groupimport-import-form .fp-btn-choose[aria-expanded=true], .local-groupimport-import-form .fp-btn-choose[aria-pressed=true], .local-groupimport-import-form .fp-btn-choose.active, .local-groupimport-import-form .fp-btn-choose.is-active {
-  background: var(--easyedu-primary-soft);
-  border-color: var(--easyedu-control-focus-border);
-  color: var(--easyedu-primary-strong);
-  outline: 0;
-}
-.local-groupimport-import-form .fp-btn-choose:focus-visible {
-  border-color: var(--easyedu-control-focus-border);
-  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
-  outline: var(--easyedu-focus-outline-width) solid transparent;
-  outline-offset: var(--easyedu-focus-outline-offset);
-}
-.local-groupimport-import-form .fp-btn-choose:disabled, .local-groupimport-import-form .fp-btn-choose[aria-disabled=true], .local-groupimport-import-form .fp-btn-choose.disabled {
-  background: var(--easyedu-surface-soft);
-  border-color: var(--easyedu-card-border);
-  color: var(--easyedu-text-muted);
-  cursor: not-allowed;
-  opacity: 0.62;
-  pointer-events: none;
-  transform: none;
-}
-.local-groupimport-import-form .fp-btn-choose .fa {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  line-height: 1;
-  min-inline-size: 1em;
-  margin-inline: 0;
-  width: 1em;
-}
-.local-groupimport-import-form .easyedu-file-deposit__control p {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  margin-block: 0.75rem 0.35rem;
-}
-.local-groupimport-import-form .easyedu-file-deposit__control .form-filetypes-descriptions {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  color: var(--easyedu-text-muted);
-}
-.local-groupimport-import-form .easyedu-file-deposit__control .form-filetypes-descriptions ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.75rem;
-  margin: 0;
-}
-.local-groupimport-import-form [id^=filepicker-wrapper-] > div > span {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  display: block;
-  margin-block-start: 0.5rem;
-}
-.local-groupimport-import-form .form-control,
-.local-groupimport-import-form .custom-select,
-.local-groupimport-import-form .form-select,
-.local-groupimport-import-form select {
-  border-color: #d6e0ea;
-  border-radius: 0.72rem;
-  min-height: 2.35rem;
-}
-.local-groupimport-import-form .form-control:focus,
-.local-groupimport-import-form .custom-select:focus,
-.local-groupimport-import-form .form-select:focus,
-.local-groupimport-import-form select:focus {
-  border-color: var(--easyedu-control-focus-border);
-  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
-  outline: var(--easyedu-focus-outline-width) solid transparent;
-  outline-offset: var(--easyedu-focus-outline-offset);
-}
-.local-groupimport-import-form .filemanager,
-.local-groupimport-import-form .filepicker-filelist,
-.local-groupimport-import-form .fp-restrictions {
-  border-radius: 0.85rem;
-}
-.local-groupimport-import-form .filepicker-filelist {
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-control-border);
-  box-shadow: none;
-  margin: 0;
-  min-height: 3rem;
-  width: 100%;
-}
-.local-groupimport-import-form .fp-btn-add,
-.local-groupimport-import-form .fp-toolbar,
-.local-groupimport-import-form .filepicker .fp-navbar {
-  margin-bottom: 0.65rem;
-}
-.local-groupimport-import-form .fp-btn-add {
-  margin-top: 0.35rem;
-}
-.local-groupimport-import-form #fitem_id_importfile .fp-btn-choose,
-.local-groupimport-import-form #fitem_id_importfile [id^=filepicker-button-] {
-  margin-top: 0;
-}
-.local-groupimport-import-form .fp-btn-add,
-.local-groupimport-import-form .btn-primary,
-.local-groupimport-import-form [type=submit] {
-  border-radius: 0.65rem;
-  font-weight: var(--easyedu-font-weight-semibold);
-}
-.local-groupimport-import-form .fitem_actionbuttons,
-.local-groupimport-import-form .fitem.femptylabel {
-  background: transparent;
-  border: 0;
-  justify-content: center;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  padding-top: 0.4rem;
-  text-align: center;
-}
-.local-groupimport-import-form .fitem_actionbuttons .felement,
-.local-groupimport-import-form .fitem.femptylabel .felement,
-.local-groupimport-import-form .fitem_actionbuttons .form-inline,
-.local-groupimport-import-form .fitem.femptylabel .form-inline {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-.local-groupimport-import-form .fitem_actionbuttons .btn,
-.local-groupimport-import-form .fitem.femptylabel .btn,
-.local-groupimport-import-form [type=submit] {
-  min-width: 9.5rem;
-}
-.local-groupimport-import-form .fdescription,
-.local-groupimport-import-form .form-text,
-.local-groupimport-import-form .fp-restrictions {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text-muted);
-  font-size: var(--easyedu-font-size-caption);
-  line-height: 1.4;
-  color: var(--local-groupimport-easystud-text-muted);
 }
 .local-groupimport-import-summary {
   display: grid;
@@ -16450,36 +15901,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import-summary__item--error strong {
   font-size: 1.18rem;
   line-height: 1;
-}
-.local-groupimport-import-empty {
-  align-items: center;
-  background: linear-gradient(180deg, var(--easyedu-empty-bg-start) 0%, var(--easyedu-empty-bg-end) 100%);
-  border: 1px dashed var(--easyedu-empty-border);
-  border-radius: 0.85rem;
-  color: var(--easyedu-text-muted);
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  justify-content: center;
-  padding: 0.9rem 1rem;
-  text-align: center;
-  color: #617487;
-  gap: 0.55rem;
-  justify-items: center;
-  padding: 2rem 1rem;
-  min-height: 11.125rem;
-}
-.local-groupimport-import-empty p {
-  font-family: var(--easyedu-font-family-ui);
-  font-weight: var(--easyedu-font-weight-regular);
-  letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-body);
-  line-height: var(--easyedu-line-height-body);
-}
-.local-groupimport-import-empty .fa {
-  color: #8294a7;
-  font-size: 1.35rem;
 }
 .local-groupimport-import-report__title {
   font-family: var(--easyedu-font-family-ui);
@@ -19768,4 +19189,561 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   white-space: nowrap;
   font-size: calc(var(--easyedu-font-size-card-title) * 1.02);
   font-weight: var(--easyedu-font-weight-strong);
+}
+
+@font-face {
+  font-family: "EasyEdu Inter";
+  src: url("[[font:local_groupimport|InterVariable.woff2]]") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+.easyedu-ui {
+  --easyedu-font-family-ui: "EasyEdu Inter", Inter, sans-serif;
+  --easyedu-line-height-title: 1.2;
+  --easyedu-line-height-body: 1.2;
+  font-family: var(--easyedu-font-family-ui);
+  font-optical-sizing: none;
+  font-synthesis: none;
+}
+
+.easyedu-ui .easyedu-page-title {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-page-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+  margin: 0 0 0.875rem;
+}
+
+.easyedu-ui .easyedu-body {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
+  color: var(--easyedu-text-muted);
+  margin: 0;
+}
+
+.easyedu-ui .easyedu-caption {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  line-height: 1.2;
+}
+
+.easyedu-ui .easyedu-form-note {
+  margin: 1.25rem 0 0;
+}
+
+.easyedu-ui .easyedu-panel {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-border);
+  border-radius: calc(var(--easyedu-radius) + 0.2rem);
+  box-shadow: var(--easyedu-shadow);
+  min-width: 0;
+  overflow: visible;
+  position: relative;
+  background-color: var(--easyedu-semantic-panel-bg);
+  background-image: var(--easyedu-semantic-rail-primary);
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100% 0.35rem;
+  box-shadow: var(--easyedu-shadow-soft);
+  overflow: visible;
+  position: relative;
+  border-color: var(--easyedu-semantic-border-primary);
+  background-image: var(--easyedu-semantic-rail-primary), var(--easyedu-semantic-panel-bg);
+  background-size: 100% 0.35rem, 100% 100%;
+  border-radius: 0.95rem;
+  box-shadow: none;
+  padding: 1.5rem;
+  min-inline-size: 0;
+}
+
+.easyedu-ui .easyedu-panel--success {
+  background-image: var(--easyedu-semantic-rail-success), var(--easyedu-semantic-panel-bg);
+  border-color: var(--easyedu-semantic-border-success);
+}
+
+.easyedu-ui .easyedu-panel__header {
+  align-items: start;
+  display: grid;
+  gap: 0 0.7rem;
+  grid-template-columns: 2.55rem minmax(0, 1fr) auto;
+  margin-block-end: 1.5rem;
+  min-block-size: 5.25rem;
+}
+
+.easyedu-ui .easyedu-panel__copy {
+  min-inline-size: 0;
+}
+
+.easyedu-ui .easyedu-panel__title {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-section-title);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: var(--easyedu-line-height-title);
+  margin: 0.25rem 0 1rem;
+}
+
+.easyedu-ui .easyedu-panel__description {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
+  color: var(--easyedu-text-muted);
+  margin: 0;
+}
+
+.easyedu-ui .easyedu-icon-tile {
+  align-items: center;
+  background: var(--easyedu-primary-soft);
+  border: 1px solid var(--easyedu-semantic-border-primary);
+  border-radius: var(--easyedu-section-icon-radius);
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 var(--easyedu-section-icon-size);
+  height: var(--easyedu-section-icon-size);
+  justify-content: center;
+  line-height: 1;
+  width: var(--easyedu-section-icon-size);
+  font-size: 1.25rem;
+  margin: 0;
+}
+.easyedu-ui .easyedu-icon-tile::before,
+.easyedu-ui .easyedu-icon-tile > .fa,
+.easyedu-ui .easyedu-icon-tile > [aria-hidden=true] {
+  display: block;
+  line-height: 1;
+  max-height: 1em;
+  max-width: 1em;
+}
+
+.easyedu-ui .easyedu-icon-tile--success {
+  background: var(--easyedu-accent-soft);
+  border-color: var(--easyedu-semantic-border-success);
+  color: var(--easyedu-accent);
+}
+
+.easyedu-ui .easyedu-information {
+  background: var(--easyedu-information-surface);
+  border: 0.0625rem solid var(--easyedu-semantic-border-primary);
+  border-radius: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem 1rem;
+  margin-block-end: 1rem;
+  min-inline-size: 0;
+}
+
+.easyedu-ui .easyedu-information__header {
+  display: grid;
+  gap: 0.375rem;
+  grid-template-columns: 2.55rem minmax(0, 1fr);
+}
+
+.easyedu-ui .easyedu-information__title {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-card-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+  display: block;
+  margin: 0.6rem 0 0.75rem;
+}
+
+.easyedu-ui .easyedu-information__description {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+.easyedu-ui .easyedu-information__label {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.easyedu-ui .easyedu-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.easyedu-ui .easyedu-tag {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid var(--easyedu-metadata-border);
+  border-radius: 62.4375rem;
+  color: var(--easyedu-metadata-text);
+  display: inline-flex;
+  font: 700 0.75rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 1.5rem;
+  padding: 0.125rem 1.75rem;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+}
+
+.easyedu-ui .easyedu-button {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+}
+.easyedu-ui .easyedu-button:hover {
+  background: var(--easyedu-primary-strong);
+}
+.easyedu-ui .easyedu-button:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-button:disabled {
+  background: var(--easyedu-surface-soft);
+  color: var(--easyedu-text-muted);
+}
+
+.easyedu-ui .easyedu-button--secondary {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+  background: var(--easyedu-surface);
+  border-color: var(--easyedu-deposit-border);
+  border-radius: 0.58rem;
+  color: var(--easyedu-secondary-text);
+  font-size: 0.75rem;
+  min-block-size: 2rem;
+}
+.easyedu-ui .easyedu-button--secondary:hover {
+  background: var(--easyedu-primary-soft);
+}
+.easyedu-ui .easyedu-button--secondary:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-button--secondary:disabled {
+  background: var(--easyedu-surface-soft);
+  color: var(--easyedu-text-muted);
+}
+
+.easyedu-ui .easyedu-empty {
+  align-content: center;
+  background: linear-gradient(180deg, var(--easyedu-deposit-surface), var(--easyedu-surface-soft));
+  border: 0.0625rem dashed var(--easyedu-control-border);
+  border-radius: 0.85rem;
+  color: var(--easyedu-text-muted);
+  display: grid;
+  gap: 1.5rem;
+  justify-items: center;
+  min-block-size: 11.125rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+.easyedu-ui .easyedu-empty p {
+  font: 500 0.875rem/1.2 var(--easyedu-font-family-ui);
+  margin: 0;
+}
+.easyedu-ui .easyedu-empty .fa {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .easyedu-ui .easyedu-panel {
+    padding: 1rem;
+  }
+  .easyedu-ui .easyedu-panel__header {
+    min-block-size: 0;
+    gap: 1rem;
+  }
+  .easyedu-ui .easyedu-panel__copy {
+    display: contents;
+  }
+  .easyedu-ui .easyedu-panel__title {
+    grid-column: 2;
+    margin: 0;
+    align-self: center;
+  }
+  .easyedu-ui .easyedu-panel__description {
+    grid-column: 1/-1;
+  }
+  .easyedu-ui .easyedu-panel__header > .easyedu-icon-tile {
+    grid-row: 1;
+  }
+  .easyedu-ui .easyedu-tag {
+    padding-inline: 0.75rem;
+  }
+}
+.easyedu-ui .easyedu-file-deposit--moodle {
+  background: var(--easyedu-deposit-surface);
+  border: 0.0625rem solid var(--easyedu-deposit-border);
+  border-radius: 0.9rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  position: relative;
+  margin-block-end: 1.25rem;
+  min-inline-size: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__heading {
+  display: grid;
+  align-items: start;
+  gap: 0.95rem;
+  grid-template-columns: 2.55rem minmax(0, 1fr);
+  margin: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__icon {
+  border-radius: 1rem;
+  background: var(--easyedu-deposit-icon-surface);
+  border-color: var(--easyedu-deposit-icon-border);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__title {
+  color: var(--easyedu-deposit-title);
+  font: 700 1.0625rem/1.2 var(--easyedu-font-family-ui);
+  margin: 0.125rem 0 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__support {
+  color: var(--easyedu-deposit-text);
+  font: 500 0.75rem/1.2 var(--easyedu-font-family-ui);
+  margin: 0.375rem 0 1.25rem 3.5rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__requirements {
+  align-items: center;
+  background: var(--easyedu-requirements-surface);
+  border: 0.0625rem solid var(--easyedu-requirements-border);
+  border-radius: 0.75rem;
+  color: var(--easyedu-deposit-text);
+  display: flex;
+  flex-wrap: wrap;
+  font: 400 0.6875rem/1.2 var(--easyedu-font-family-ui);
+  gap: 0.5rem 1rem;
+  margin: 1rem 0.5rem 0;
+  min-block-size: 2.375rem;
+  padding: 0.625rem 0.875rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__requirements strong {
+  color: var(--easyedu-requirements-title);
+  font-size: 0.75rem;
+  margin-inline-end: 1rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .fitem {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .fitem > .col-form-label {
+  position: absolute;
+  inline-size: 0.0625rem;
+  block-size: 0.0625rem;
+  overflow: hidden;
+  clip-path: inset(50%);
+  padding: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .felement {
+  max-width: 100%;
+  width: 100%;
+  padding: 0;
+  min-width: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker {
+  padding: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle [id^=filepicker-wrapper-] {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.75rem;
+  padding-inline-start: 3.5rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+  background: var(--easyedu-surface);
+  border-color: var(--easyedu-deposit-border);
+  border-radius: 0.58rem;
+  color: var(--easyedu-secondary-text);
+  font-size: 0.75rem;
+  min-block-size: 2rem;
+  min-inline-size: min(10.5rem, 100%);
+  max-inline-size: 100%;
+  margin: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:hover {
+  background: var(--easyedu-primary-soft);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:disabled {
+  background: var(--easyedu-surface-soft);
+  color: var(--easyedu-text-muted);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker-filelist {
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid var(--easyedu-deposit-border);
+  border-radius: 0.6rem;
+  min-height: 2.5rem;
+  margin: 0;
+  width: 100%;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker-filelist:has(.filepicker-container) {
+  background: transparent;
+  border: 0;
+  min-height: 0;
+  height: 0;
+  overflow: visible;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker-container {
+  display: none;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker-filename > a {
+  display: block;
+  padding: 0.625rem;
+  overflow-wrap: anywhere;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker-filelist .dndupload-target,
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker-filelist.dndupload-over .dndupload-target {
+  inset: 0;
+  border: 0.0625rem solid var(--easyedu-control-focus-border);
+  border-radius: 0.6rem;
+  background: var(--easyedu-primary-soft);
+  box-shadow: none;
+  padding: 0.5rem;
+  font: 400 0.75rem/1.2 var(--easyedu-font-family-ui);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .dndupload-arrow {
+  display: none !important;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .form-filetypes-descriptions,
+.easyedu-ui .easyedu-file-deposit--moodle .filepicker ~ p {
+  position: absolute;
+  inline-size: 0.0625rem;
+  block-size: 0.0625rem;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.easyedu-ui .easyedu-file-deposit--moodle:focus-within {
+  border-color: var(--easyedu-control-focus-border);
+}
+
+.easyedu-ui .easyedu-form-actions .fitem {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.easyedu-ui .easyedu-form-actions .fitem_actionbuttons .felement,
+.easyedu-ui .easyedu-form-actions .femptylabel .felement,
+.easyedu-ui .easyedu-form-actions .femptylabel .form-inline {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.easyedu-ui .easyedu-form-actions [type=submit] {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+  min-inline-size: min(14rem, 100%);
+}
+.easyedu-ui .easyedu-form-actions [type=submit]:hover {
+  background: var(--easyedu-primary-strong);
+}
+.easyedu-ui .easyedu-form-actions [type=submit]:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-form-actions [type=submit]:disabled {
+  background: var(--easyedu-surface-soft);
+  color: var(--easyedu-text-muted);
+}
+
+@media (max-width: 40rem) {
+  .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__support {
+    margin-inline: 0;
+    margin-block-start: 1rem;
+  }
+  .easyedu-ui .easyedu-file-deposit--moodle [id^=filepicker-wrapper-] {
+    padding-inline: 0;
+  }
+  .easyedu-ui .easyedu-file-deposit--moodle [id^=filepicker-wrapper-] > div:first-child {
+    text-align: center;
+  }
+  .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__requirements {
+    align-items: start;
+    flex-direction: column;
+  }
 }
