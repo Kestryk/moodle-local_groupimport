@@ -9,9 +9,11 @@
   Administration, bind both views directly to canonical typography, forms,
   tables, icon tiles, Skeletons and action rows, and rebuild generated CSS.
 - Excluded: Student management, Guide, navigation, source-hierarchy tables,
-  runtime/cache/fixture/browser activity and deployment.
+  fixture mutation, release deployment and cross-version validation.
 - Validation: canonical Kit strict audit and focused contracts, Dart Sass
-  compilation, focused EasyStud source/generated contracts and diff checks.
+  compilation, focused EasyStud source/generated contracts and diff checks;
+  authorized Moodle 5.1 local preview with cache purge; focused desktop/390 px
+  authenticated browser matrix with external captures and complete cleanup.
 
 ## Wave 17 RF9 - EED-UI-2026-0038-RF9
 
