@@ -1,5 +1,9 @@
 # EasyEdu Component Contract
 
+Validated Penpot style belongs in canonical Kit classes. Inspect the matched
+browser cascade before adding overrides; use Moodle's `table-reboot` opt-out
+for Kit tables. Embedded modules must match their canonical source hashes.
+
 File-deposit adapters must retain the real control, filename, validation and
 upload progress. An empty surface alone is not functional proof. Use the
 opt-in `file-deposit` shell for the solid large Foundations surface; do not

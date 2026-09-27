@@ -4,6 +4,9 @@
 
 ### EasyEdu Foundations Phase 0 - Mass Import and Administration
 
+- Opt the shared preview table out of Boost's legacy table decoration without
+  adding CSS overrides; synchronize the Kit's native deposit copy correction.
+
 - Consume shared classes for the preview table, notice, choices, status pills,
   search toolbar and buttons; remove their local visual recipes as well.
 

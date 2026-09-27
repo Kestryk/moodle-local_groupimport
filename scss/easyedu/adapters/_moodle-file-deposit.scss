@@ -119,6 +119,7 @@
     // Keep native type descriptions accessible. The visible equivalent is
     // generated from the same allowed formats by the consuming form.
     .form-filetypes-descriptions,
+    [id^="filepicker-wrapper-"] ~ p,
     .filepicker ~ p,
     .felement > p {
       position: absolute;

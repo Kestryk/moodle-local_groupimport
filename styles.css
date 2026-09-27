@@ -19338,6 +19338,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: none !important;
 }
 .easyedu-ui .easyedu-file-deposit--moodle .form-filetypes-descriptions,
+.easyedu-ui .easyedu-file-deposit--moodle [id^=filepicker-wrapper-] ~ p,
 .easyedu-ui .easyedu-file-deposit--moodle .filepicker ~ p,
 .easyedu-ui .easyedu-file-deposit--moodle .felement > p {
   position: absolute;
