@@ -112,6 +112,11 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         ));
         await expect(massRoot.locator('.easyedu-file-deposit')).toBeVisible();
         await expect(massRoot.locator('.fp-btn-choose')).toBeVisible({timeout: 60000});
+        const nativeDrop = massRoot.locator('.filepicker-container');
+        await expect(nativeDrop).toHaveCSS('position', 'static');
+        await expect(nativeDrop).toHaveCSS('border-top-width', '0px');
+        await nativeDrop.scrollIntoViewIfNeeded();
+        await expect(massRoot.locator('.dndupload-message')).toBeInViewport();
         await expect(massRoot.locator('.local-groupimport-import-card__title').first())
             .toHaveCSS('font-size', '16px');
         await expectNoHorizontalOverflow(page);
