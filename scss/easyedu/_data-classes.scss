@@ -2,6 +2,7 @@
 // hierarchy tables. Business validation and row selection remain consumer-owned.
 @use "components/focus";
 @use "components/forms";
+@use "components/tables";
 @use "components/typography" as type;
 @use "foundation-classes" as foundation;
 
@@ -148,17 +149,14 @@
   }
   .easyedu-ui .easyedu-data-table tr.is-warning td { background: var(--easyedu-warning-soft); }
   .easyedu-ui .easyedu-status {
-    align-items: center;
+    @include tables.status-label-layout;
+
     background: var(--easyedu-accent-soft);
     border: 0.0625rem solid var(--easyedu-semantic-border-success);
     border-radius: 62.4375rem;
     color: var(--easyedu-accent);
-    display: inline-flex;
     font: 500 0.6875rem/1.2 var(--easyedu-font-family-ui);
-    justify-content: center;
-    min-height: 1.5rem;
     min-width: 5.5rem;
-    padding: 0.25rem 0.5rem;
   }
   .easyedu-ui .easyedu-status--warning {
     background: var(--easyedu-warning-soft);

@@ -206,6 +206,26 @@ const expectSquareCentredIcons = async locator => {
     }
 };
 
+const expectCentredStatusLabel = async locator => {
+    const geometry = await locator.evaluate(node => {
+        const box = node.getBoundingClientRect();
+        const cell = node.closest('td').getBoundingClientRect();
+        const style = getComputedStyle(node);
+        return {
+            centreDelta: Math.abs((box.left + box.width / 2) - (cell.left + cell.width / 2)),
+            paddingLeft: parseFloat(style.paddingLeft),
+            paddingRight: parseFloat(style.paddingRight),
+            textAlign: style.textAlign,
+            overflows: node.scrollWidth > node.clientWidth + 1,
+        };
+    });
+    expect(geometry.centreDelta).toBeLessThanOrEqual(1);
+    expect(geometry.paddingLeft).toBeGreaterThanOrEqual(12);
+    expect(geometry.paddingRight).toBeGreaterThanOrEqual(12);
+    expect(geometry.textAlign).toBe('center');
+    expect(geometry.overflows).toBe(false);
+};
+
 test('Phase 0 Mass Import and Administration stay composed at desktop and 390px', async({page}, testInfo) => {
     const viewports = [
         {name: 'desktop', width: 1440, height: 1000, expectedColumns: 2},
@@ -275,6 +295,7 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         await expect(dataTable.locator('th').nth(1)).toHaveCSS('font-size', '11px');
         await expect(dataTable.locator('td').nth(2)).toHaveCSS('border-left-width', '0px');
         await expect(dataTable.locator('input[type="text"]').first()).toHaveCSS('height', '40px');
+        await expectCentredStatusLabel(dataTable.locator('.easyedu-status').first());
         await expect(massRoot.locator('.local-groupimport-import-preview__actions button'))
             .toHaveCSS('column-gap', '10.4px');
         await expectNoHorizontalOverflow(page);

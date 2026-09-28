@@ -61,6 +61,13 @@ Tables are used for import previews, reports and dense administrative data.
 - `warning`: imported with warnings or already existing data.
 - `error`: cannot be imported without correction.
 
+Status labels use `status-label-layout`: short values remain compact, while
+multiline validation copy is centred horizontally and vertically with a 12px
+inline inset. The fit-content label centres itself in the owning cell, wraps
+long identifiers safely and never exceeds the cell's available inline size.
+Consumers must not remove this inset or restore start-aligned text for status
+messages.
+
 ## Accessibility
 
 Use real table markup for tabular data. Keep status colours paired with text or

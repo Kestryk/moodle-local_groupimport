@@ -120,6 +120,10 @@ Mass Import now consumes canonical `.easyedu-*` classes from
 remain identical to Kit `a59a251b3529116ad306b66ba22c1cf2c7d06778`.
 The third canonical module, `_data-classes.scss`, covers the preview table,
 notice, choice controls, search toolbar and status labels.
+Kit `f616103ccb77ff3cf170327b81784b6b1d829e3b` extends that shared table
+contract with centred fit-content status labels: wrapped validation messages
+keep a 12px inline inset, safe identifier wrapping and a centred position in
+the Status cell. Source-hierarchy and Layer-source tables remain unchanged.
 The product entry point emits them without style declarations; PHP supplies
 business content and preserves native form semantics. Inter is embedded from
 the Kit; the earlier theme-font/proxy decision is superseded for migrated
