@@ -15813,15 +15813,16 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   overflow: hidden;
   padding: 0.85rem 0.55rem;
 }
-.local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
+.local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
   opacity: 1;
   transform: translateX(0);
   transition: opacity var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease), transform var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease), visibility 0s linear;
   visibility: visible;
 }
-.local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile, .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
+.local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
   opacity: 0;
   pointer-events: none;
+  position: absolute;
   transform: translateX(-0.35rem);
   transition: opacity var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease), transform var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease), visibility 0s linear var(--easyedu-motion-layout);
   visibility: hidden;
@@ -15857,7 +15858,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   top: 4.25rem;
   z-index: 2;
 }
-.local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-card__header > div, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-fields, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-form, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
+.local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-card__header > div, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-fields, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-form, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
   transition: none;
 }
 .local-groupimport-import-summary {

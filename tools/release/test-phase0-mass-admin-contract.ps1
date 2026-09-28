@@ -31,12 +31,19 @@ foreach ($needle in @(
     '@include easyedu.type-control-label;',
     '@include easyedu.type-caption;',
     '@include easyedu.action-row',
-    '@include easyedu.layout-disclosure-transition(grid-template-columns);',
-    '&-card__header > .easyedu-icon-tile'
+    '@include easyedu.layout-disclosure-transition(grid-template-columns);'
 )) {
     if (-not $massImport.Contains($needle)) {
         throw "Mass Import is missing the direct Kit contract: $needle"
     }
+}
+
+if ($massImport -notmatch '(?s)&\.has-preview\.is-upload-collapsed &-card--upload &-fields,.*?&-card__header > div\s*\{.*?position:\s*absolute;') {
+    throw 'Collapsed Mass Import upload content must leave layout flow while the CSV identity remains visible.'
+}
+
+if ($massImport -match '(?s)&\.has-preview\.is-upload-collapsed.*?&-card__header > \.easyedu-icon-tile') {
+    throw 'Collapsed Mass Import upload rail must preserve its centred CSV identity icon.'
 }
 
 foreach ($needle in @(
