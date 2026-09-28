@@ -1551,7 +1551,7 @@ if ($preview !== null) {
                 ]),
                 html_writer::span('', 'fa fa-file-excel', ['aria-hidden' => 'true']) .
                     html_writer::span(get_string('importexportresults', 'local_groupimport')),
-                ['class' => 'btn btn-outline-primary local-groupimport-import__export-results']
+                ['class' => 'btn btn-outline-primary easyedu-action-with-icon local-groupimport-import__export-results']
             ),
             'local-groupimport-import-preview__result-actions'
         );
@@ -1592,7 +1592,7 @@ if (!empty($historyrecords)) {
                 ]),
                 html_writer::span('', 'fa fa-file-excel', ['aria-hidden' => 'true']) .
                     html_writer::span(get_string('importexportresults', 'local_groupimport')),
-                ['class' => 'btn btn-outline-secondary btn-sm local-groupimport-import-history__export']
+                ['class' => 'btn btn-outline-secondary btn-sm easyedu-action-with-icon local-groupimport-import-history__export']
             );
         } else {
             $historyactions .= html_writer::tag('span', get_string('importhistorylegacy', 'local_groupimport'), [

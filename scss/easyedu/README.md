@@ -108,6 +108,10 @@ Prefer generic `--easyedu-*` variables. Plugin-specific aliases such as
   variants.
 - `icon-button`: compact square icon buttons.
 - `action-button`: toolbar/action buttons.
+- `action-content`, `easyedu-action-with-icon`: canonical icon slot and label
+  spacing for actions whose semantic skin remains Moodle- or product-owned.
+- `layout-disclosure-transition`: one 320ms track transition for persistent
+  columns/regions; do not combine it with a second swap animation.
 - `dropdown-menu`: custom dropdown or overflow menus.
 - `modal-surface`: modal dialog shell.
 - `token-pill`: semantic labels.

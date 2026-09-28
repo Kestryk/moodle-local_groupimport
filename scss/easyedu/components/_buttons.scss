@@ -89,15 +89,16 @@
   }
 }
 
-@mixin action-button($size: regular) {
+// Shared geometry for every action that combines one icon and a translated
+// label. The parent owns spacing; glyph whitespace and product selectors do
+// not. This can be consumed independently from the semantic button skin.
+@mixin action-content($gap: var(--easyedu-action-icon-gap, 0.65rem)) {
   align-items: center;
+  column-gap: $gap;
   display: inline-flex;
-  gap: var(--easyedu-action-icon-gap, 0.65rem);
   justify-content: center;
   line-height: 1.2;
-  @include button-size($size);
-  @include control-state-transition;
-  @include button-interaction-states;
+  row-gap: 0.35rem;
 
   .fa,
   [class*=" fa-"] {
@@ -106,10 +107,17 @@
     flex: 0 0 auto;
     justify-content: center;
     line-height: 1;
-    min-inline-size: 1em;
     margin-inline: 0;
+    min-inline-size: 1em;
     width: 1em;
   }
+}
+
+@mixin action-button($size: regular) {
+  @include action-content;
+  @include button-size($size);
+  @include control-state-transition;
+  @include button-interaction-states;
 }
 
 @mixin close-button($size: regular) {

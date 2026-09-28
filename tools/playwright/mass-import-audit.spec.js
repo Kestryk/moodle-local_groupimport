@@ -337,12 +337,27 @@ test('previews a dropped file and keeps replacement controls usable', async({pag
 
     const exportAction = root.locator('.local-groupimport-import__export-results');
     if (await exportAction.count()) {
+        await expect(exportAction).toHaveClass(/easyedu-action-with-icon/);
         await expect(exportAction).toHaveCSS('display', 'inline-flex');
         const exportGap = await exportAction.evaluate(node => parseFloat(getComputedStyle(node).columnGap));
         expect(exportGap).toBeGreaterThanOrEqual(9);
+        const paintedGap = await exportAction.evaluate(node => {
+            const icon = node.querySelector('.fa');
+            const label = icon ? icon.nextElementSibling : null;
+            if (!icon || !label) {
+                return -1;
+            }
+            const iconBounds = icon.getBoundingClientRect();
+            const labelBounds = label.getBoundingClientRect();
+            return labelBounds.left - iconBounds.right;
+        });
+        expect(paintedGap).toBeGreaterThanOrEqual(9);
     }
 
     const toggle = root.locator('[data-local-groupimport-upload-toggle]');
+    const previewGrid = root.locator('.local-groupimport-import__grid');
+    await expect(previewGrid).toHaveCSS('transition-duration', '0.32s');
+    await expect(previewGrid).toHaveCSS('transition-timing-function', 'cubic-bezier(0.4, 0, 0.2, 1)');
     await expect(toggle).toHaveCSS('position', 'sticky');
     await expect(toggle).toHaveAttribute('data-local-groupimport-upload-toggle-bound', '1', {timeout: 15000});
     await toggle.click();

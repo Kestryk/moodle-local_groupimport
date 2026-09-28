@@ -364,19 +364,11 @@ const applyUploadCollapsed = (root, button, collapsed) => {
     }
 };
 
-const setUploadCollapsed = (root, button, collapsed, animate = false) => {
-    const mutate = () => applyUploadCollapsed(root, button, collapsed);
-    const uploadCard = root.querySelector('.local-groupimport-import-card--upload');
-    if (!animate || !uploadCard) {
-        mutate();
-        return Promise.resolve(true);
-    }
-    return Motion.swap(uploadCard, mutate, {
-        exit: false,
-        enterDuration: Motion.timing.slow,
-        distance: '0.15rem',
-        swapOpacity: 0.72,
-    });
+const setUploadCollapsed = (root, button, collapsed) => {
+    // The Kit layout-disclosure transition is the sole animation owner. A
+    // concurrent Motion.swap on the card makes the track change feel abrupt.
+    applyUploadCollapsed(root, button, collapsed);
+    return Promise.resolve(true);
 };
 
 const initUploadCollapse = root => {
@@ -399,7 +391,7 @@ const initUploadCollapse = root => {
     setUploadCollapsed(root, button, collapsed);
 
     button.addEventListener('click', () => {
-        setUploadCollapsed(root, button, !root.classList.contains('is-upload-collapsed'), true);
+        setUploadCollapsed(root, button, !root.classList.contains('is-upload-collapsed'));
     });
 };
 

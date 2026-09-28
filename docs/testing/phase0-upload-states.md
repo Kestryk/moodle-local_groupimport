@@ -14,6 +14,15 @@ not dropped or uploaded. Enter through the body first, then the deposit: the
 global veil must disappear without clearing the deposit highlight. Capture
 `phase0-dragover-<viewport>.png` before leaving the deposit.
 
+## Preview column disclosure and report actions
+
+The preview upload column uses one Kit-owned 320ms layout-disclosure
+transition. Do not combine it with `Motion.swap`: the grid boundary and its
+content must settle as one continuous movement, while reduced motion resolves
+the final state immediately. Current-report and history export links use
+`easyedu-action-with-icon`; assertions must measure the icon-to-label gap from
+painted bounds rather than trusting Font Awesome whitespace.
+
 ## Native draft upload
 
 The scenario dispatches the CSV draft through Moodle's `.filepicker-filelist`

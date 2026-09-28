@@ -704,6 +704,24 @@ Must not:
 - let a modal exceed the viewport because related lists are not collapsed into
   metadata sections;
 - restyle file pickers independently in each plugin.
+
+## Icon-label actions and layout disclosures
+
+Must:
+
+- use `action-content` or public `easyedu-action-with-icon` whenever a Moodle
+  or Kit action combines an icon with a translated label;
+- retain the `--easyedu-action-icon-gap` token and stable `1em` icon slot;
+- use `layout-disclosure-transition` and `--easyedu-motion-layout` for a
+  persistent column or region that changes track size in place;
+- preserve the shared motion-policy and `prefers-reduced-motion` path.
+
+Must not:
+
+- restore icon spacing with a product-only margin or rely on glyph whitespace;
+- reduce the shared gap for export/file actions;
+- layer `Motion.swap` or another geometry animation over a layout-disclosure
+  transition for the same state change.
 # Responsive compact-workspace contract
 
 - Preserve semantic identity rails at their desktop width; reserve horizontal

@@ -239,6 +239,11 @@ followed by raw text and do not rely on a glyph's intrinsic whitespace. The
 visual gap before the label. Do not reduce that gap locally for file/export or
 destructive actions, whose glyphs are visually dense.
 
+When Bootstrap or Moodle already owns the button skin, add the public
+`easyedu-action-with-icon` class instead of recreating the spacing in a product
+selector. It applies the same `action-content` primitive without changing the
+semantic colour, border or size of the existing button.
+
 ## Usage Guide
 
 - Primary validation/save: keep Moodle `btn btn-primary`, add
