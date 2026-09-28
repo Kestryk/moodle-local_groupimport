@@ -14,6 +14,17 @@ All empty, drag-over, danger and uploading action titles use `type-card-title`;
 their explanatory help uses `type-caption` with a 1.2 line height. Do not use
 panel-title sizing or semibold metadata styling for those two roles. Filenames,
 progress and file metadata remain separate data roles.
+Selected-file states must expose a linked type icon and a reachable remove
+action at every published size. Single-file and multiple-file zones are
+different native contracts: presentation never raises `maxfiles`, and every
+multi-file row owns its own removal action. A compact summary may additionally
+offer Remove all. Removal must update the host platform's real draft/input
+state, not only hide the filename.
+
+Buttons with an icon and label must consume the canonical action gap and fixed
+icon slot; agents must not repair touching glyphs with local margins or spaces.
+Pressed/selected/expanded state changes and checkbox changes use the shared
+subtle control transition and preserve reduced-motion behavior.
 
 This document defines reusable component contracts that agents must preserve
 when moving UI from one plugin to another.
