@@ -31,7 +31,8 @@ foreach ($needle in @(
     '@include easyedu.type-control-label;',
     '@include easyedu.type-caption;',
     '@include easyedu.action-row',
-    '@include easyedu.layout-disclosure-transition(grid-template-columns);'
+    '@include easyedu.layout-disclosure-transition(grid-template-columns);',
+    '&-card__header > .easyedu-icon-tile'
 )) {
     if (-not $massImport.Contains($needle)) {
         throw "Mass Import is missing the direct Kit contract: $needle"
