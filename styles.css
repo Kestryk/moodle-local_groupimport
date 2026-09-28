@@ -235,6 +235,11 @@
 .local-groupimport-easystud {
   color: var(--local-groupimport-easystud-text);
   margin: 1.5rem 0;
+  --easyedu-empty-border: #cdddea;
+  --easyedu-file-deposit-drag-over-surface: #edf6fc;
+  --easyedu-file-deposit-danger-surface: #fff4f2;
+  --easyedu-file-deposit-danger-border: #d96b63;
+  --easyedu-file-deposit-danger-title: #9b2c24;
   --easyedu-gap: 1rem;
   --easyedu-navigation-following-gap: 2.5rem;
   --easyedu-navigation-panel-width: 88vw;
@@ -254,11 +259,6 @@
   );
   --easyedu-navigation-guide-border: color-mix(in srgb, var(--easyedu-accent) 28%, var(--easyedu-card-border) 72%);
   --easyedu-navigation-guide-shadow: 0 0.4rem 1rem rgba(22, 45, 68, 0.12);
-  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
-  --easyedu-navigation-drawer-border: var(--easyedu-card-border);
-  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
-  --easyedu-guide-launcher-resting-surface: color-mix(in srgb, var(--easyedu-surface) 94%, var(--easyedu-primary-soft) 6%);
-  --easyedu-guide-launcher-resting-border: color-mix(in srgb, var(--easyedu-primary) 22%, var(--easyedu-card-border) 78%);
   --easyedu-radius: 0.75rem;
   --easyedu-radius-sm: 0.5rem;
   --easyedu-radius-lg: 1rem;
@@ -457,7 +457,6 @@
   --easyedu-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 8.2a3.45 3.45 0 1 0 0-6.9 3.45 3.45 0 0 0 0 6.9Zm0 1.45c-3.28 0-5.72 1.72-6.22 4.36-.08.42.25.79.68.79h11.08c.43 0 .76-.37.68-.79-.5-2.64-2.94-4.36-6.22-4.36Z'/%3E%3C/svg%3E");
   --easyedu-icon-group: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.2 7.35a2.85 2.85 0 1 0 0-5.7 2.85 2.85 0 0 0 0 5.7Zm5.25.55a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5ZM6.2 8.65c-2.9 0-5.05 1.65-5.48 4.05-.08.45.27.85.73.85h9.5c.46 0 .81-.4.73-.85-.43-2.4-2.58-4.05-5.48-4.05Zm5.25.55c-.42 0-.82.04-1.2.13 1.15.77 1.96 1.86 2.25 3.2h2.04c.47 0 .83-.42.72-.88-.36-1.55-1.81-2.45-3.81-2.45Z'/%3E%3C/svg%3E");
   --easyedu-icon-grouping: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm7 0h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1ZM6 9.3h4a1 1 0 0 1 1 1V13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2.7a1 1 0 0 1 1-1ZM4 7.3h1.2v1.1h5.6V7.3H12v2H8.6v-1H7.4v1H4v-2Z'/%3E%3C/svg%3E");
-  --easyedu-icon-ungrouped: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='4' r='2.1'/%3E%3Ccircle cx='12' cy='4' r='2.1'/%3E%3Ccircle cx='8' cy='12' r='2.1'/%3E%3C/svg%3E");
   --easyedu-drag-handle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Ccircle cx='2' cy='2' r='1.2'/%3E%3Ccircle cx='6' cy='2' r='1.2'/%3E%3Ccircle cx='2' cy='7' r='1.2'/%3E%3Ccircle cx='6' cy='7' r='1.2'/%3E%3Ccircle cx='2' cy='12' r='1.2'/%3E%3Ccircle cx='6' cy='12' r='1.2'/%3E%3C/svg%3E");
   --local-groupimport-easystud-gap: var(--easyedu-gap);
   --local-groupimport-easystud-radius: var(--easyedu-radius);
@@ -495,7 +494,6 @@
   --local-groupimport-easystud-icon-user: var(--easyedu-icon-user);
   --local-groupimport-easystud-icon-group: var(--easyedu-icon-group);
   --local-groupimport-easystud-icon-grouping: var(--easyedu-icon-grouping);
-  --local-groupimport-easystud-icon-ungrouped: var(--easyedu-icon-ungrouped);
   --local-groupimport-easystud-drag-handle: var(--easyedu-drag-handle);
 }
 .local-groupimport-easystud[data-easyedu-motion-policy=disabled], .local-groupimport-easystud.is-easyedu-motion-off {
@@ -13826,6 +13824,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 #page-admin-setting-local_groupimport {
+  --easyedu-empty-border: #cdddea;
+  --easyedu-file-deposit-drag-over-surface: #edf6fc;
+  --easyedu-file-deposit-danger-surface: #fff4f2;
+  --easyedu-file-deposit-danger-border: #d96b63;
+  --easyedu-file-deposit-danger-title: #9b2c24;
   --easyedu-gap: 1rem;
   --easyedu-navigation-following-gap: 2.5rem;
   --easyedu-navigation-panel-width: 88vw;
@@ -13845,11 +13848,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   );
   --easyedu-navigation-guide-border: color-mix(in srgb, var(--easyedu-accent) 28%, var(--easyedu-card-border) 72%);
   --easyedu-navigation-guide-shadow: 0 0.4rem 1rem rgba(22, 45, 68, 0.12);
-  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
-  --easyedu-navigation-drawer-border: var(--easyedu-card-border);
-  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
-  --easyedu-guide-launcher-resting-surface: color-mix(in srgb, var(--easyedu-surface) 94%, var(--easyedu-primary-soft) 6%);
-  --easyedu-guide-launcher-resting-border: color-mix(in srgb, var(--easyedu-primary) 22%, var(--easyedu-card-border) 78%);
   --easyedu-radius: 0.75rem;
   --easyedu-radius-sm: 0.5rem;
   --easyedu-radius-lg: 1rem;
@@ -14048,7 +14046,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 8.2a3.45 3.45 0 1 0 0-6.9 3.45 3.45 0 0 0 0 6.9Zm0 1.45c-3.28 0-5.72 1.72-6.22 4.36-.08.42.25.79.68.79h11.08c.43 0 .76-.37.68-.79-.5-2.64-2.94-4.36-6.22-4.36Z'/%3E%3C/svg%3E");
   --easyedu-icon-group: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.2 7.35a2.85 2.85 0 1 0 0-5.7 2.85 2.85 0 0 0 0 5.7Zm5.25.55a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5ZM6.2 8.65c-2.9 0-5.05 1.65-5.48 4.05-.08.45.27.85.73.85h9.5c.46 0 .81-.4.73-.85-.43-2.4-2.58-4.05-5.48-4.05Zm5.25.55c-.42 0-.82.04-1.2.13 1.15.77 1.96 1.86 2.25 3.2h2.04c.47 0 .83-.42.72-.88-.36-1.55-1.81-2.45-3.81-2.45Z'/%3E%3C/svg%3E");
   --easyedu-icon-grouping: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm7 0h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1ZM6 9.3h4a1 1 0 0 1 1 1V13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2.7a1 1 0 0 1 1-1ZM4 7.3h1.2v1.1h5.6V7.3H12v2H8.6v-1H7.4v1H4v-2Z'/%3E%3C/svg%3E");
-  --easyedu-icon-ungrouped: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='4' r='2.1'/%3E%3Ccircle cx='12' cy='4' r='2.1'/%3E%3Ccircle cx='8' cy='12' r='2.1'/%3E%3C/svg%3E");
   --easyedu-drag-handle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Ccircle cx='2' cy='2' r='1.2'/%3E%3Ccircle cx='6' cy='2' r='1.2'/%3E%3Ccircle cx='2' cy='7' r='1.2'/%3E%3Ccircle cx='6' cy='7' r='1.2'/%3E%3Ccircle cx='2' cy='12' r='1.2'/%3E%3Ccircle cx='6' cy='12' r='1.2'/%3E%3C/svg%3E");
   --local-groupimport-easystud-gap: var(--easyedu-gap);
   --local-groupimport-easystud-radius: var(--easyedu-radius);
@@ -14086,7 +14083,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --local-groupimport-easystud-icon-user: var(--easyedu-icon-user);
   --local-groupimport-easystud-icon-group: var(--easyedu-icon-group);
   --local-groupimport-easystud-icon-grouping: var(--easyedu-icon-grouping);
-  --local-groupimport-easystud-icon-ungrouped: var(--easyedu-icon-ungrouped);
   --local-groupimport-easystud-drag-handle: var(--easyedu-drag-handle);
 }
 #page-admin-setting-local_groupimport.is-action-busy::after {
@@ -14892,6 +14888,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .local-groupimport-import {
+  --easyedu-empty-border: #cdddea;
+  --easyedu-file-deposit-drag-over-surface: #edf6fc;
+  --easyedu-file-deposit-danger-surface: #fff4f2;
+  --easyedu-file-deposit-danger-border: #d96b63;
+  --easyedu-file-deposit-danger-title: #9b2c24;
   --easyedu-gap: 1rem;
   --easyedu-navigation-following-gap: 2.5rem;
   --easyedu-navigation-panel-width: 88vw;
@@ -14911,11 +14912,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   );
   --easyedu-navigation-guide-border: color-mix(in srgb, var(--easyedu-accent) 28%, var(--easyedu-card-border) 72%);
   --easyedu-navigation-guide-shadow: 0 0.4rem 1rem rgba(22, 45, 68, 0.12);
-  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
-  --easyedu-navigation-drawer-border: var(--easyedu-card-border);
-  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
-  --easyedu-guide-launcher-resting-surface: color-mix(in srgb, var(--easyedu-surface) 94%, var(--easyedu-primary-soft) 6%);
-  --easyedu-guide-launcher-resting-border: color-mix(in srgb, var(--easyedu-primary) 22%, var(--easyedu-card-border) 78%);
   --easyedu-radius: 0.75rem;
   --easyedu-radius-sm: 0.5rem;
   --easyedu-radius-lg: 1rem;
@@ -15114,7 +15110,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 8.2a3.45 3.45 0 1 0 0-6.9 3.45 3.45 0 0 0 0 6.9Zm0 1.45c-3.28 0-5.72 1.72-6.22 4.36-.08.42.25.79.68.79h11.08c.43 0 .76-.37.68-.79-.5-2.64-2.94-4.36-6.22-4.36Z'/%3E%3C/svg%3E");
   --easyedu-icon-group: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.2 7.35a2.85 2.85 0 1 0 0-5.7 2.85 2.85 0 0 0 0 5.7Zm5.25.55a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5ZM6.2 8.65c-2.9 0-5.05 1.65-5.48 4.05-.08.45.27.85.73.85h9.5c.46 0 .81-.4.73-.85-.43-2.4-2.58-4.05-5.48-4.05Zm5.25.55c-.42 0-.82.04-1.2.13 1.15.77 1.96 1.86 2.25 3.2h2.04c.47 0 .83-.42.72-.88-.36-1.55-1.81-2.45-3.81-2.45Z'/%3E%3C/svg%3E");
   --easyedu-icon-grouping: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm7 0h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1ZM6 9.3h4a1 1 0 0 1 1 1V13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2.7a1 1 0 0 1 1-1ZM4 7.3h1.2v1.1h5.6V7.3H12v2H8.6v-1H7.4v1H4v-2Z'/%3E%3C/svg%3E");
-  --easyedu-icon-ungrouped: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='4' r='2.1'/%3E%3Ccircle cx='12' cy='4' r='2.1'/%3E%3Ccircle cx='8' cy='12' r='2.1'/%3E%3C/svg%3E");
   --easyedu-drag-handle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Ccircle cx='2' cy='2' r='1.2'/%3E%3Ccircle cx='6' cy='2' r='1.2'/%3E%3Ccircle cx='2' cy='7' r='1.2'/%3E%3Ccircle cx='6' cy='7' r='1.2'/%3E%3Ccircle cx='2' cy='12' r='1.2'/%3E%3Ccircle cx='6' cy='12' r='1.2'/%3E%3C/svg%3E");
   --local-groupimport-easystud-gap: var(--easyedu-gap);
   --local-groupimport-easystud-radius: var(--easyedu-radius);
@@ -15152,7 +15147,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --local-groupimport-easystud-icon-user: var(--easyedu-icon-user);
   --local-groupimport-easystud-icon-group: var(--easyedu-icon-group);
   --local-groupimport-easystud-icon-grouping: var(--easyedu-icon-grouping);
-  --local-groupimport-easystud-icon-ungrouped: var(--easyedu-icon-ungrouped);
   --local-groupimport-easystud-drag-handle: var(--easyedu-drag-handle);
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
@@ -19166,8 +19160,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   border-radius: inherit;
   pointer-events: none;
   fill: none;
-  stroke: var(--easyedu-empty-border, #CDDDEA);
-  stroke-width: 2px;
+  stroke: var(--easyedu-empty-border);
+  stroke-width: 0.125rem;
   stroke-dasharray: 11 11;
 }
 
@@ -19409,7 +19403,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .easyedu-ui .easyedu-file-deposit--moodle.is-dragover::after, .easyedu-ui .easyedu-file-deposit--moodle:has(.filepicker-filelist.dndupload-over)::after {
   align-items: center;
-  background: var(--easyedu-file-deposit-drag-over-surface, #edf6fc);
+  background: var(--easyedu-file-deposit-drag-over-surface);
   border: 0.0625rem solid var(--easyedu-control-focus-border);
   border-radius: 0.6rem;
   color: var(--easyedu-deposit-title);
@@ -19426,9 +19420,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   z-index: 1;
 }
 .easyedu-ui .easyedu-file-deposit--moodle.is-danger.is-dragover::after, .easyedu-ui .easyedu-file-deposit--moodle.is-danger:has(.filepicker-filelist.dndupload-over)::after {
-  background: var(--easyedu-file-deposit-danger-surface, #fff4f2);
-  border-color: var(--easyedu-file-deposit-danger-border, #d96b63);
-  color: var(--easyedu-file-deposit-danger-title, #9b2c24);
+  background: var(--easyedu-file-deposit-danger-surface);
+  border-color: var(--easyedu-file-deposit-danger-border);
+  color: var(--easyedu-file-deposit-danger-title);
 }
 
 .easyedu-ui .easyedu-form-actions .fitem {
