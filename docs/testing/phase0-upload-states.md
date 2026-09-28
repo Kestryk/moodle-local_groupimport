@@ -53,7 +53,13 @@ the active runtime lease and a mutable user draft area.
 The supervised run `easystud-authenticated-20260928T073603038Z-58848` passed
 against runtime `3bbd07b` at desktop, tablet and 390px. Desktop and mobile
 uploading captures were inspected: filename, progress and chooser are separate.
-The additional global-to-local drag transition assertions require the next run.
+The strengthened run `easystud-authenticated-20260928T074244276Z-62256` also
+passed on runtime `3d43b45` (source `dbd09b8`, canonical Kit `9ca120f`). It
+checks global-to-local drag feedback and explicit progress/chooser separation
+at all three widths. Captures are in that run's external artifact directory;
+desktop/mobile uploading and drag-over evidence is pinned for 30 days.
+No actual import or administration save was executed. Exact product Penpot
+spacing and the linked uploading composition still await the EasyStud file.
 
 When holding a request, await the route callback with a polled counter (the
 request event can arrive first). Release and await the pending continuation
