@@ -1487,6 +1487,9 @@ if ($preview !== null) {
     echo html_writer::end_tag('form');
 } else if (empty($success) && empty($errors)) {
     echo html_writer::tag('div',
+        html_writer::tag('svg', html_writer::tag('rect', '', [
+            'width' => '100%', 'height' => '100%', 'rx' => '13.6',
+        ]), ['class' => 'easyedu-empty__boundary', 'aria-hidden' => 'true', 'focusable' => 'false']) .
         html_writer::tag('span', '', ['class' => 'fa fa-inbox', 'aria-hidden' => 'true']) .
         html_writer::tag('p', get_string('noresults', 'local_groupimport'), ['class' => 'mb-0']),
         ['class' => 'local-groupimport-import-empty easyedu-empty']

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-28
+
+- Consume the canonical native-upload layout and measured drag overlay, route
+  deposit drops through Moodle's own progress lifecycle, and use the shared
+  SVG empty-state boundary. Extend the browser scenario to hold a real native
+  draft upload while inspecting progress. Import execution remains excluded.
+
 ## 2026-09-27
 
 ### EasyEdu Foundations Phase 0 - Mass Import and Administration
