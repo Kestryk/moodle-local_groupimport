@@ -17,7 +17,14 @@ test('Mass Import column and chevron move together without jumps', async({page},
     const root = page.locator('#local-groupimport-import');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
     await root.locator('.fp-btn-choose').click();
-    await page.getByText('Upload a file', {exact: true}).click();
+    // Selecting the repository rebuilds its form asynchronously. Wait for that
+    // request before attaching a file to avoid filling the previous form.
+    await Promise.all([
+        page.waitForResponse(response => response.url().includes('/repository/repository_ajax.php?action=list'),
+            {timeout: 15000}),
+        page.getByText('Upload a file', {exact: true}).click(),
+    ]);
+    await expect(page.locator('.fp-upload-form input[type="file"]')).toHaveAttribute('name', 'repo_upload_file');
     await page.locator('.fp-upload-form input[type="file"]').setInputFiles({
         name: 'motion-preview.csv', mimeType: 'text/csv',
         buffer: Buffer.from('student;group;grouping\nunknown-animation-probe;Motion preview;Motion preview'),
@@ -68,7 +75,9 @@ test('Mass Import column and chevron move together without jumps', async({page},
         const intermediate = frames.filter(f => f.width > Math.min(first.width, last.width) + 8 &&
             f.width < Math.max(first.width, last.width) - 8);
         expect(intermediate.length, 'Column must genuinely interpolate across several frames').toBeGreaterThan(8);
-        expect(intermediate.at(-1).t - intermediate[0].t).toBeGreaterThan(250);
+        // The minimum rail clamps the final part of the interpolated fr track.
+        // Check visible movement separately from the full CSS timeline below.
+        expect(intermediate.at(-1).t - intermediate[0].t).toBeGreaterThan(200);
         for (let i = 1; i < frames.length; i++) {
             if (frames[i].t - frames[i - 1].t > 45) continue;
             expect(Math.abs(frames[i].y - frames[i - 1].y), 'Chevron must not jump vertically').toBeLessThan(15);
