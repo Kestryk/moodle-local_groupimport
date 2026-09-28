@@ -13,8 +13,8 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 # Git blob hashes compare normalized source, independently of checkout CRLF.
 $canonicalModules = @{
     'scss/easyedu/_data-classes.scss' = '21c27c0d91cbe103e4fb0a0fcf38cae80d9f5b50'
-    'scss/easyedu/_foundation-classes.scss' = '3e140b1cba3bdf5af84f6b1c8a1560a358185fc8'
-    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '32a896169fcefea8800ec7341b9d79e086650b33'
+    'scss/easyedu/_foundation-classes.scss' = '8cd2f7a80c92279891bf0924a454c44dd331aa7f'
+    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '71cfa861522e300ea0db555b8ff74e2a406a257a'
 }
 foreach ($path in $canonicalModules.Keys) {
     $actual = & git -C $pluginRoot hash-object $path

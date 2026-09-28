@@ -60,7 +60,7 @@ const expectContainedBy = async(locator, container) => {
     expect(box.y + box.height).toBeLessThanOrEqual(bounds.y + bounds.height + 1);
 };
 
-const exerciseDepositDragState = async(deposit, page) => {
+const exerciseDepositDragState = async(deposit, page, testInfo, viewportName) => {
     const transfer = await page.evaluateHandle(() => {
         const value = new DataTransfer();
         value.items.add(new File(['drag state only'], 'phase0-drag-probe.csv', {type: 'text/csv'}));
@@ -68,10 +68,17 @@ const exerciseDepositDragState = async(deposit, page) => {
     });
 
     try {
+        // Entering through the page must not leave its global veil over the
+        // local deposit feedback when the pointer reaches the native target.
+        const overlay = page.locator('[data-local-groupimport-drop-overlay]');
+        await page.locator('body').dispatchEvent('dragenter', {dataTransfer: transfer});
+        await expect(overlay).toBeVisible();
         await deposit.dispatchEvent('dragenter', {dataTransfer: transfer});
         await expect(deposit).toHaveClass(/is-dragover/);
+        await expect(overlay).toBeHidden();
         await deposit.dispatchEvent('dragover', {dataTransfer: transfer});
         await expect(deposit).toHaveClass(/is-dragover/);
+        await deposit.screenshot({path: testInfo.outputPath(`phase0-dragover-${viewportName}.png`)});
         await deposit.dispatchEvent('dragleave', {dataTransfer: transfer});
         await expect(deposit).not.toHaveClass(/is-dragover/);
     } finally {
@@ -96,12 +103,13 @@ const uploadDraftThroughNativeDrop = async(page, root, testInfo, viewportName, f
     let releaseUploadGate;
     let uploadGateTimer;
     let uploadRequestCount = 0;
+    let pendingRoute;
     const uploadGate = new Promise(resolve => { releaseUploadGate = resolve; });
     const uploadRoute = async route => {
         uploadRequestCount++;
         uploadGateTimer = setTimeout(releaseUploadGate, 10000);
-        await uploadGate;
-        await route.continue();
+        pendingRoute = uploadGate.then(() => route.continue());
+        await pendingRoute;
     };
     const uploadUrlMatcher = url => isMoodleDraftUpload(url);
     const uploadRequest = page.waitForRequest(request =>
@@ -118,7 +126,7 @@ const uploadDraftThroughNativeDrop = async(page, root, testInfo, viewportName, f
         const request = await uploadRequest;
         expect(request.method()).toBe('POST');
         expect(new URL(request.url()).searchParams.get('action')).toBe('upload');
-        expect(uploadRequestCount).toBe(1);
+        await expect.poll(() => uploadRequestCount).toBe(1);
 
         const progressRow = deposit.locator('.dndupload-progressbars > div')
             .filter({hasText: filename}).first();
@@ -130,11 +138,15 @@ const uploadDraftThroughNativeDrop = async(page, root, testInfo, viewportName, f
         await expectContainedBy(progressRow, deposit);
         await expectContainedBy(progressTrack, deposit);
         await expectContainedBy(chooseButton, deposit);
+        const progressBounds = await progressRow.boundingBox();
+        const chooseBounds = await chooseButton.boundingBox();
+        expect(chooseBounds.y).toBeGreaterThanOrEqual(progressBounds.y + progressBounds.height);
         await expectContainedBy(previewButton, uploadCard);
         await expect(previewButton).toBeDisabled();
         await deposit.screenshot({path: testInfo.outputPath(`phase0-uploading-${viewportName}.png`)});
     } finally {
         releaseUploadGate();
+        if (pendingRoute) { await pendingRoute; }
         if (uploadGateTimer) {
             clearTimeout(uploadGateTimer);
         }
@@ -232,7 +244,7 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
 
         // Verify the shared deposit drag state separately, then gate one native
         // Moodle draft upload long enough to capture its real progress surface.
-        await exerciseDepositDragState(massRoot.locator('.easyedu-file-deposit'), page);
+        await exerciseDepositDragState(massRoot.locator('.easyedu-file-deposit'), page, testInfo, viewport.name);
         const draftFilename = `phase0-preview-${viewport.name}.csv`;
         await uploadDraftThroughNativeDrop(page, massRoot, testInfo, viewport.name, draftFilename);
         await massRoot.locator('.easyedu-file-deposit').screenshot({

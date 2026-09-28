@@ -189,8 +189,8 @@
     border-radius: inherit;
     pointer-events: none;
     fill: none;
-    stroke: var(--easyedu-empty-border, #CDDDEA);
-    stroke-width: 2px;
+    stroke: var(--easyedu-empty-border);
+    stroke-width: 0.125rem;
     stroke-dasharray: 11 11;
   }
 

@@ -177,7 +177,7 @@
     &:has(.filepicker-filelist.dndupload-over) {
       &::after {
         align-items: center;
-        background: var(--easyedu-file-deposit-drag-over-surface, #edf6fc);
+        background: var(--easyedu-file-deposit-drag-over-surface);
         border: 0.0625rem solid var(--easyedu-control-focus-border);
         border-radius: 0.6rem;
         color: var(--easyedu-deposit-title);
@@ -198,9 +198,9 @@
     &.is-danger {
       &.is-dragover::after,
       &:has(.filepicker-filelist.dndupload-over)::after {
-        background: var(--easyedu-file-deposit-danger-surface, #fff4f2);
-        border-color: var(--easyedu-file-deposit-danger-border, #d96b63);
-        color: var(--easyedu-file-deposit-danger-title, #9b2c24);
+        background: var(--easyedu-file-deposit-danger-surface);
+        border-color: var(--easyedu-file-deposit-danger-border);
+        color: var(--easyedu-file-deposit-danger-title);
       }
     }
   }

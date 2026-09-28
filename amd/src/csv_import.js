@@ -542,16 +542,20 @@ export const init = (rootId) => {
         root.classList.add('is-file-dragging');
     };
 
-    const hideOverlay = () => {
-        deposit?.classList.remove('is-dragover');
+    const hideGlobalOverlay = () => {
         dragdepth = 0;
         overlay.hidden = true;
         overlay.setAttribute('aria-hidden', 'true');
         root.classList.remove('is-file-dragging');
     };
 
+    const hideOverlay = () => {
+        deposit?.classList.remove('is-dragover');
+        hideGlobalOverlay();
+    };
+
     window.addEventListener('dragenter', event => {
-        if (isDepositEvent(event)) { return; }
+        if (isDepositEvent(event)) { hideGlobalOverlay(); return; }
         if (!hasFiles(event)) {
             return;
         }
@@ -560,7 +564,7 @@ export const init = (rootId) => {
     });
 
     window.addEventListener('dragover', event => {
-        if (isDepositEvent(event)) { return; }
+        if (isDepositEvent(event)) { hideGlobalOverlay(); return; }
         if (!hasFiles(event)) {
             return;
         }
@@ -570,6 +574,7 @@ export const init = (rootId) => {
     });
 
     window.addEventListener('dragleave', event => {
+        if (isDepositEvent(event) && deposit.contains(event.relatedTarget)) { return; }
         if (!hasFiles(event)) {
             return;
         }
@@ -581,7 +586,7 @@ export const init = (rootId) => {
 
     window.addEventListener('drop', event => {
         // The native drop target owns its upload/progress lifecycle.
-        if (isDepositEvent(event)) { return; }
+        if (isDepositEvent(event)) { hideOverlay(); return; }
         if (routingdrop) {
             return;
         }

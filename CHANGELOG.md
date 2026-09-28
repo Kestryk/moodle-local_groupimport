@@ -2,6 +2,10 @@
 
 ## 2026-09-28
 
+- Pin shared deposit/empty-state colours to canonical Kit `9ca120f`, clear the
+  global drag veil when entering the deposit, and assert native progress/action
+  separation. Harden the intercepted-upload test's asynchronous cleanup.
+
 - Consume the canonical native-upload layout and measured drag overlay, route
   deposit drops through Moodle's own progress lifecycle, and use the shared
   SVG empty-state boundary. Extend the browser scenario to hold a real native
