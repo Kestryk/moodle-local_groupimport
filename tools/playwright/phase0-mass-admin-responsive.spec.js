@@ -44,6 +44,109 @@ const getColumnCount = locator => locator.evaluate(node =>
     getComputedStyle(node).gridTemplateColumns.split(' ').filter(Boolean).length
 );
 
+const isMoodleDraftUpload = url => {
+    const parsed = new URL(url);
+    return parsed.pathname.endsWith('/repository/repository_ajax.php') &&
+        parsed.searchParams.get('action') === 'upload';
+};
+
+const expectContainedBy = async(locator, container) => {
+    const [box, bounds] = await Promise.all([locator.boundingBox(), container.boundingBox()]);
+    expect(box).not.toBeNull();
+    expect(bounds).not.toBeNull();
+    expect(box.x).toBeGreaterThanOrEqual(bounds.x - 1);
+    expect(box.y).toBeGreaterThanOrEqual(bounds.y - 1);
+    expect(box.x + box.width).toBeLessThanOrEqual(bounds.x + bounds.width + 1);
+    expect(box.y + box.height).toBeLessThanOrEqual(bounds.y + bounds.height + 1);
+};
+
+const exerciseDepositDragState = async(deposit, page) => {
+    const transfer = await page.evaluateHandle(() => {
+        const value = new DataTransfer();
+        value.items.add(new File(['drag state only'], 'phase0-drag-probe.csv', {type: 'text/csv'}));
+        return value;
+    });
+
+    try {
+        await deposit.dispatchEvent('dragenter', {dataTransfer: transfer});
+        await expect(deposit).toHaveClass(/is-dragover/);
+        await deposit.dispatchEvent('dragover', {dataTransfer: transfer});
+        await expect(deposit).toHaveClass(/is-dragover/);
+        await deposit.dispatchEvent('dragleave', {dataTransfer: transfer});
+        await expect(deposit).not.toHaveClass(/is-dragover/);
+    } finally {
+        await transfer.dispose();
+    }
+};
+
+const uploadDraftThroughNativeDrop = async(page, root, testInfo, viewportName, filename) => {
+    const deposit = root.locator('.easyedu-file-deposit');
+    const filelist = deposit.locator('.filepicker-filelist');
+    const uploadCard = root.locator('.local-groupimport-import-card--upload');
+    const chooseButton = deposit.locator('.fp-btn-choose').first();
+    const previewButton = uploadCard.locator('[type="submit"]');
+    const transfer = await page.evaluateHandle(name => {
+        const value = new DataTransfer();
+        value.items.add(new File([
+            'student;group;grouping\ntest.etudiant.01@example.com;Phase 0 preview;Phase 0 preview'
+        ], name, {type: 'text/csv'}));
+        return value;
+    }, filename);
+
+    let releaseUploadGate;
+    let uploadGateTimer;
+    let uploadRequestCount = 0;
+    const uploadGate = new Promise(resolve => { releaseUploadGate = resolve; });
+    const uploadRoute = async route => {
+        uploadRequestCount++;
+        uploadGateTimer = setTimeout(releaseUploadGate, 10000);
+        await uploadGate;
+        await route.continue();
+    };
+    const uploadUrlMatcher = url => isMoodleDraftUpload(url);
+    const uploadRequest = page.waitForRequest(request =>
+        isMoodleDraftUpload(request.url()) && request.method() === 'POST', {timeout: 30000});
+
+    await page.route(uploadUrlMatcher, uploadRoute);
+    try {
+        // Send a native filepicker drop. Moodle owns this progress row and the
+        // draft upload request; this deliberately avoids EasyStud's body route.
+        await filelist.dispatchEvent('dragenter', {dataTransfer: transfer});
+        await filelist.dispatchEvent('dragover', {dataTransfer: transfer});
+        await filelist.dispatchEvent('drop', {dataTransfer: transfer});
+
+        const request = await uploadRequest;
+        expect(request.method()).toBe('POST');
+        expect(new URL(request.url()).searchParams.get('action')).toBe('upload');
+        expect(uploadRequestCount).toBe(1);
+
+        const progressRow = deposit.locator('.dndupload-progressbars > div')
+            .filter({hasText: filename}).first();
+        const progressTrack = progressRow.locator('.progress');
+        const progressBar = progressRow.locator('.progress-bar[role="progressbar"]');
+        await expect(progressRow).toBeVisible({timeout: 10000});
+        await expect(progressTrack).toBeVisible();
+        await expect(progressBar).toHaveAttribute('aria-valuenow', '0');
+        await expectContainedBy(progressRow, deposit);
+        await expectContainedBy(progressTrack, deposit);
+        await expectContainedBy(chooseButton, deposit);
+        await expectContainedBy(previewButton, uploadCard);
+        await expect(previewButton).toBeDisabled();
+        await deposit.screenshot({path: testInfo.outputPath(`phase0-uploading-${viewportName}.png`)});
+    } finally {
+        releaseUploadGate();
+        if (uploadGateTimer) {
+            clearTimeout(uploadGateTimer);
+        }
+        await page.unroute(uploadUrlMatcher, uploadRoute);
+        await transfer.dispose();
+    }
+
+    await expect(deposit.locator('.filepicker-filename'))
+        .toContainText(filename, {timeout: 30000});
+    await expect(deposit.locator('.dndupload-progressbars .progress-bar')).toHaveCount(0);
+};
+
 // Boost scrolls an inner page, so fullPage alone records only its first screen.
 // Capture the real scroll container in overlapping, unmodified viewports.
 const captureScrollSeries = async(page, root, testInfo, prefix) => {
@@ -127,15 +230,11 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
         await expectNoHorizontalOverflow(page);
         await captureScrollSeries(page, massRoot, testInfo, `phase0-mass-import-${viewport.name}`);
 
-        // Upload a draft and preview only: never execute an import or mutate
-        // course membership. The native filename must remain visible.
-        const transfer = await page.evaluateHandle(() => new DataTransfer());
-        await transfer.evaluate(data => data.items.add(new File([
-            'student;group;grouping\ntest.etudiant.01@example.com;Phase 0 preview;Phase 0 preview'
-        ], 'phase0-preview.csv', {type: 'text/csv'})));
-        await page.dispatchEvent('body', 'drop', {dataTransfer: transfer});
-        await transfer.dispose();
-        await expect(massRoot.locator('.filepicker-filename')).toContainText('phase0-preview.csv', {timeout: 30000});
+        // Verify the shared deposit drag state separately, then gate one native
+        // Moodle draft upload long enough to capture its real progress surface.
+        await exerciseDepositDragState(massRoot.locator('.easyedu-file-deposit'), page);
+        const draftFilename = `phase0-preview-${viewport.name}.csv`;
+        await uploadDraftThroughNativeDrop(page, massRoot, testInfo, viewport.name, draftFilename);
         await massRoot.locator('.easyedu-file-deposit').screenshot({
             path: testInfo.outputPath(`phase0-file-present-${viewport.name}.png`),
         });
