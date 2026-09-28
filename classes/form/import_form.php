@@ -49,6 +49,8 @@ class import_form extends \moodleform {
         // replacement, keyboard access and validation remain Moodle-owned.
         $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit easyedu-file-deposit--moodle', [
             'data-easyedu-drop-label' => get_string('csvdropready', 'local_groupimport'),
+            'data-easyedu-remove-label' => get_string('removeimportfile', 'local_groupimport'),
+            'data-easyedu-file-mode' => 'single',
         ]));
         $mform->addElement('html', \html_writer::div(
             \html_writer::span(
@@ -68,7 +70,7 @@ class import_form extends \moodleform {
             'importfile',
             get_string('importfile', 'local_groupimport'),
             null,
-            ['accepted_types' => ['.csv', '.xls', '.xlsx']]
+            ['accepted_types' => ['.csv', '.xls', '.xlsx'], 'maxfiles' => 1]
         );
         $mform->addRule('importfile', null, 'required', null, 'client');
         $mform->addElement('html', \html_writer::end_div());

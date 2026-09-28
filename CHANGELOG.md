@@ -2,6 +2,15 @@
 
 ## 2026-09-28
 
+- Consume the Foundations M/L selected-file contract in Mass Import: the
+  selected CSV/XLS/XLSX now shows its type and a real remove action that
+  deletes the Moodle user draft before clearing the native picker state.
+- Use shared motion for upload-panel disclosure, Select/Deselect state changes
+  and checkboxes; align generic table headers and consume the canonical button
+  icon gap for the annotated-report action.
+- Reduce preview notice paragraphs to the secondary caption role while page
+  and panel descriptions retain their larger body roles.
+
 - Consume the Foundations typography contract for large file-deposit action
   titles and help copy; keep filenames, upload progress and file metadata in
   their existing data roles.

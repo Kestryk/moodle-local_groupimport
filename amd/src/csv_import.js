@@ -214,7 +214,132 @@ const forwardDroppedFileToMoodle = (root, file) => {
     }
 };
 
-const setUploadCollapsed = (root, button, collapsed) => {
+const getFileTypeIcon = filename => {
+    const extension = (filename.split('.').pop() || '').toLowerCase();
+    if (extension === 'csv') {
+        return 'fa-file-csv';
+    }
+    if (extension === 'xls' || extension === 'xlsx') {
+        return 'fa-file-excel';
+    }
+    if (['gif', 'jpeg', 'jpg', 'png', 'svg', 'webp'].indexOf(extension) !== -1) {
+        return 'fa-file-image';
+    }
+    return 'fa-file';
+};
+
+const notifyFilePickerChange = picker => {
+    const elementId = picker && picker.options ? picker.options.elementid : null;
+    const element = elementId ? document.getElementById(elementId) : null;
+
+    if (window.M && M.form_filepicker && M.form_filepicker.instances && elementId &&
+            M.form_filepicker.instances[elementId]) {
+        M.form_filepicker.instances[elementId].fileadded = false;
+    }
+    if (window.M && M.form_filepicker && M.form_filepicker.Y && elementId) {
+        const yuiElement = M.form_filepicker.Y.one(`#${elementId}`);
+        if (yuiElement) {
+            yuiElement.simulate('change');
+            return;
+        }
+    }
+    if (element) {
+        element.dispatchEvent(new Event('change', {bubbles: true}));
+    }
+};
+
+const deleteSelectedFile = async(root, filename) => {
+    const picker = findFilePicker(root);
+    if (!picker || !filename || !window.M || !M.cfg || !M.cfg.sesskey || !picker.options.itemid) {
+        return false;
+    }
+
+    const parameters = new URLSearchParams({
+        action: 'delete',
+        sesskey: M.cfg.sesskey,
+        itemid: picker.options.itemid,
+        filepath: '/',
+        filename: filename,
+    });
+    const response = await fetch(`${M.cfg.wwwroot}/repository/draftfiles_ajax.php`, {
+        method: 'POST',
+        body: parameters,
+        credentials: 'same-origin',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+    });
+    if (!response.ok || !await response.json()) {
+        return false;
+    }
+
+    const filenameContainer = root.querySelector(`#file_info_${picker.clientId} .filepicker-filename`);
+    if (filenameContainer) {
+        filenameContainer.innerHTML = '<div class="dndupload-progressbars"></div>';
+    }
+    notifyFilePickerChange(picker);
+    return true;
+};
+
+const syncSelectedFileState = root => {
+    const deposit = root.querySelector('.easyedu-file-deposit--moodle');
+    if (!deposit) {
+        return;
+    }
+    const filenameContainer = deposit.querySelector('.filepicker-filename');
+    const anchor = filenameContainer ? filenameContainer.querySelector('a') : null;
+    if (!filenameContainer || !anchor) {
+        deposit.classList.remove('has-selected-file');
+        return;
+    }
+
+    const filename = anchor.textContent.trim();
+    let selected = anchor.closest('.easyedu-file-deposit__selected-file');
+    if (!selected) {
+        selected = document.createElement('span');
+        selected.className = 'easyedu-file-deposit__selected-file';
+        anchor.parentNode.insertBefore(selected, anchor);
+        selected.appendChild(anchor);
+    }
+
+    let typeIcon = anchor.querySelector('.easyedu-file-deposit__file-type');
+    if (!typeIcon) {
+        typeIcon = document.createElement('span');
+        typeIcon.setAttribute('aria-hidden', 'true');
+        anchor.insertBefore(typeIcon, anchor.firstChild);
+    }
+    typeIcon.className = `fa ${getFileTypeIcon(filename)} easyedu-file-deposit__file-type`;
+
+    let remove = selected.querySelector('.easyedu-file-deposit__remove');
+    if (!remove) {
+        remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'easyedu-file-deposit__remove';
+        remove.innerHTML = '<span class="fa fa-trash" aria-hidden="true"></span>';
+        selected.appendChild(remove);
+        remove.addEventListener('click', async() => {
+            remove.disabled = true;
+            if (!await deleteSelectedFile(root, filename)) {
+                remove.disabled = false;
+            }
+        });
+    }
+    remove.setAttribute('aria-label', deposit.dataset.easyeduRemoveLabel || 'Remove selected file');
+    deposit.classList.add('has-selected-file');
+};
+
+const initSelectedFileState = root => {
+    const deposit = root.querySelector('.easyedu-file-deposit--moodle');
+    if (!deposit || deposit.dataset.easyeduSelectedFileBound === '1') {
+        return;
+    }
+    deposit.dataset.easyeduSelectedFileBound = '1';
+    syncSelectedFileState(root);
+    new MutationObserver(() => syncSelectedFileState(root)).observe(deposit, {
+        childList: true,
+        subtree: true,
+    });
+};
+
+const applyUploadCollapsed = (root, button, collapsed) => {
     root.classList.toggle('is-upload-collapsed', collapsed);
 
     if (button) {
@@ -239,6 +364,21 @@ const setUploadCollapsed = (root, button, collapsed) => {
     }
 };
 
+const setUploadCollapsed = (root, button, collapsed, animate = false) => {
+    const mutate = () => applyUploadCollapsed(root, button, collapsed);
+    const uploadCard = root.querySelector('.local-groupimport-import-card--upload');
+    if (!animate || !uploadCard) {
+        mutate();
+        return Promise.resolve(true);
+    }
+    return Motion.swap(uploadCard, mutate, {
+        exit: false,
+        enterDuration: Motion.timing.slow,
+        distance: '0.15rem',
+        swapOpacity: 0.72,
+    });
+};
+
 const initUploadCollapse = root => {
     const button = root.querySelector('[data-local-groupimport-upload-toggle]');
     if (!button || button.dataset.localGroupimportUploadToggleBound === '1') {
@@ -259,7 +399,7 @@ const initUploadCollapse = root => {
     setUploadCollapsed(root, button, collapsed);
 
     button.addEventListener('click', () => {
-        setUploadCollapsed(root, button, !root.classList.contains('is-upload-collapsed'));
+        setUploadCollapsed(root, button, !root.classList.contains('is-upload-collapsed'), true);
     });
 };
 
@@ -285,17 +425,30 @@ const areRowsChecked = rows => {
     return checkboxes.length > 0 && checkboxes.every(checkbox => checkbox.checked);
 };
 
-const updateToggleButton = (button, rows) => {
+const updateToggleButton = (button, rows, animate = false) => {
     if (!button) {
         return;
     }
 
     const shouldDeselect = areRowsChecked(rows);
-    button.textContent = shouldDeselect ? button.dataset.deselectLabel : button.dataset.selectLabel;
-    button.classList.toggle('btn-outline-secondary', shouldDeselect);
-    button.classList.toggle('btn-outline-primary', !shouldDeselect);
-    button.dataset.previewNextAction = shouldDeselect ? 'deselect' : 'select';
-    button.disabled = rows.length === 0;
+    const nextAction = shouldDeselect ? 'deselect' : 'select';
+    const mutate = () => {
+        button.textContent = shouldDeselect ? button.dataset.deselectLabel : button.dataset.selectLabel;
+        button.classList.toggle('btn-outline-secondary', shouldDeselect);
+        button.classList.toggle('btn-outline-primary', !shouldDeselect);
+        button.dataset.previewNextAction = nextAction;
+        button.disabled = rows.length === 0;
+    };
+    if (animate && button.dataset.previewNextAction && button.dataset.previewNextAction !== nextAction) {
+        Motion.swap(button, mutate, {
+            exit: false,
+            enterDuration: Motion.timing.normal,
+            distance: '0.08rem',
+            swapOpacity: 0.68,
+        });
+        return;
+    }
+    mutate();
 };
 
 const initPreviewTools = root => {
@@ -310,7 +463,7 @@ const initPreviewTools = root => {
 
     const getVisibleRows = () => rows.filter(row => !row.hidden);
 
-    const updateRows = () => {
+    const updateRows = (animateToggle = false) => {
         const query = search.value.trim().toLowerCase();
         let visible = 0;
 
@@ -337,7 +490,7 @@ const initPreviewTools = root => {
             empty.hidden = visible !== 0;
         }
 
-        updateToggleButton(toggleAll, controlledRows);
+        updateToggleButton(toggleAll, controlledRows, animateToggle);
     };
 
     search.addEventListener('input', updateRows);
@@ -347,7 +500,7 @@ const initPreviewTools = root => {
         });
         const checkbox = row.querySelector('input[type="checkbox"][name^="rowenabled"]');
         if (checkbox) {
-            checkbox.addEventListener('change', updateRows);
+            checkbox.addEventListener('change', () => updateRows(true));
         }
     });
 
@@ -355,7 +508,7 @@ const initPreviewTools = root => {
         toggleAll.addEventListener('click', () => {
             const controlledRows = search.value.trim() === '' ? rows : getVisibleRows();
             setRowsChecked(controlledRows, toggleAll.dataset.previewNextAction !== 'deselect');
-            updateRows();
+            updateRows(true);
         });
     }
 
@@ -494,6 +647,7 @@ export const init = (rootId) => {
 
     Motion.init(root);
 
+    initSelectedFileState(root);
     initUploadCollapse(root);
     initPreviewTools(root);
     initHistoryModal(root);

@@ -9,6 +9,19 @@
 
 @use "focus";
 
+// Shared visual transition for controls whose semantic state changes in place
+// (pressed, selected, expanded or enabled). Consumers should not redefine a
+// local timing for these controls.
+@mixin control-state-transition($duration: var(--easyedu-motion-normal)) {
+  transition:
+    background-color $duration var(--easyedu-motion-ease),
+    border-color $duration var(--easyedu-motion-ease),
+    box-shadow $duration var(--easyedu-motion-ease),
+    color $duration var(--easyedu-motion-ease),
+    opacity $duration var(--easyedu-motion-ease),
+    transform $duration var(--easyedu-motion-ease);
+}
+
 @mixin button-size($size: regular) {
   @if $size == small {
     font-size: 0.78rem;
@@ -69,12 +82,7 @@
   justify-content: center;
   line-height: 1;
   @include button-size($size);
-  transition:
-    background-color var(--easyedu-motion-fast) ease,
-    border-color var(--easyedu-motion-fast) ease,
-    box-shadow var(--easyedu-motion-fast) ease,
-    color var(--easyedu-motion-fast) ease,
-    transform var(--easyedu-motion-fast) ease;
+  @include control-state-transition(var(--easyedu-motion-fast));
 
   &:focus-visible {
     @include focus.ring;
@@ -88,9 +96,11 @@
   justify-content: center;
   line-height: 1.2;
   @include button-size($size);
+  @include control-state-transition;
   @include button-interaction-states;
 
-  .fa {
+  .fa,
+  [class*=" fa-"] {
     align-items: center;
     display: inline-flex;
     flex: 0 0 auto;

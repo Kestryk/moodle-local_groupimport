@@ -257,6 +257,33 @@ test('downloads the styled Excel example', async({page}) => {
     expect(download.suggestedFilename().toLowerCase()).toMatch(/\.xlsx$/);
 });
 
+test('shows the selected file type and removes the native Moodle draft', async({page}) => {
+    await login(page);
+    await page.waitForFunction(() => window.M && M.form_filepicker && M.core_filepicker &&
+        Object.keys(M.core_filepicker.instances || {}).length > 0, null, {timeout: 15000});
+
+    const transfer = await page.evaluateHandle(() => {
+        const value = new DataTransfer();
+        value.items.add(new File([
+            'student;group;grouping\ntest.etudiant.01@example.com;Removal audit;Removal audit'
+        ], 'easyedu-removal-audit.csv', {type: 'text/csv'}));
+        return value;
+    });
+    await page.dispatchEvent('body', 'drop', {dataTransfer: transfer});
+
+    const deposit = page.locator('.easyedu-file-deposit--moodle');
+    const selected = deposit.locator('.easyedu-file-deposit__selected-file');
+    await expect(selected).toContainText('easyedu-removal-audit.csv', {timeout: 30000});
+    await expect(selected.locator('.easyedu-file-deposit__file-type')).toHaveClass(/fa-file-csv/);
+    await expect(selected.locator('.easyedu-file-deposit__remove')).toBeVisible();
+
+    await selected.locator('.easyedu-file-deposit__remove').click();
+    await expect(deposit.locator('.easyedu-file-deposit__selected-file')).toHaveCount(0, {timeout: 15000});
+    await expect(deposit.locator('.fp-btn-choose')).toBeVisible();
+    await expect(page.locator('.local-groupimport-import-card--upload [type="submit"]')).toBeDisabled();
+    await transfer.dispose();
+});
+
 test('previews a dropped file and keeps replacement controls usable', async({page}) => {
     await login(page);
     await page.waitForFunction(() => window.M && M.form_filepicker && M.core_filepicker &&
@@ -274,6 +301,8 @@ test('previews a dropped file and keeps replacement controls usable', async({pag
     await expect(page.locator('.filepicker-filename, [id^="file_info_"]')
         .filter({hasText: 'easyedu-audit.csv'}).first())
         .toBeVisible({timeout: 30000});
+    await expect(page.locator('.easyedu-file-deposit__file-type')).toHaveClass(/fa-file-csv/);
+    await expect(page.locator('.easyedu-file-deposit__remove')).toBeVisible();
 
     await Promise.all([
         page.waitForLoadState('domcontentloaded'),

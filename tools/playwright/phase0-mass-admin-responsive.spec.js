@@ -157,6 +157,8 @@ const uploadDraftThroughNativeDrop = async(page, root, testInfo, viewportName, f
     await expect(deposit.locator('.filepicker-filename'))
         .toContainText(filename, {timeout: 30000});
     await expect(deposit.locator('.dndupload-progressbars .progress-bar')).toHaveCount(0);
+    await expect(deposit.locator('.easyedu-file-deposit__file-type')).toHaveClass(/fa-file-csv/);
+    await expect(deposit.locator('.easyedu-file-deposit__remove')).toBeVisible();
 };
 
 // Boost scrolls an inner page, so fullPage alone records only its first screen.

@@ -678,6 +678,7 @@
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle:hover, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle:focus-visible, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle[aria-expanded=true], .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle[aria-pressed=true], .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle.active, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle.is-active {
   background: var(--easyedu-primary-soft);
@@ -700,7 +701,8 @@
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle .fa {
+.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle .fa,
+.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__participant-source .select-menu > .dropdown-toggle [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -878,6 +880,7 @@
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item:hover, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item:focus-visible, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item[aria-expanded=true], .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item[aria-pressed=true], .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item.active, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item.is-active {
   background: var(--easyedu-primary-soft);
@@ -900,7 +903,8 @@
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item .fa {
+.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item .fa,
+.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -989,6 +993,7 @@
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive:hover, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive:focus-visible, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive[aria-expanded=true], .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive[aria-pressed=true], .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive.active, .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive.is-active {
   background: var(--easyedu-primary-soft);
@@ -1011,7 +1016,8 @@
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive .fa {
+.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive .fa,
+.local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] .easyedu-navigation__item--destructive [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -1105,7 +1111,7 @@
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
-  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: color-mix(in srgb, var(--easyedu-card-border) 28%, var(--easyedu-surface) 72%);
   border: 1px solid var(--easyedu-card-border);
   border-radius: 0 999px 999px 0;
@@ -1353,7 +1359,7 @@
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
-  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-card-border);
   color: var(--easyedu-text-muted);
@@ -2475,6 +2481,7 @@
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher):hover, .local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher):focus-visible, .local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher)[aria-expanded=true], .local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher)[aria-pressed=true], .local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher).active, .local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher).is-active,
 .local-groupimport-easystud__header-actions > .easyedu-admin-primary-nav__actions > .btn:hover,
@@ -2508,7 +2515,9 @@
   transform: none;
 }
 .local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher) .fa,
-.local-groupimport-easystud__header-actions > .easyedu-admin-primary-nav__actions > .btn .fa {
+.local-groupimport-easystud__header-actions > .btn:not(.easyedu-guide__launcher) [class*=" fa-"],
+.local-groupimport-easystud__header-actions > .easyedu-admin-primary-nav__actions > .btn .fa,
+.local-groupimport-easystud__header-actions > .easyedu-admin-primary-nav__actions > .btn [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -2622,6 +2631,7 @@
   min-height: 1.9rem;
   min-width: 1.9rem;
   padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -2649,7 +2659,8 @@
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-easystud__panel-actions .btn .fa {
+.local-groupimport-easystud__panel-actions .btn .fa,
+.local-groupimport-easystud__panel-actions .btn [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -2685,7 +2696,7 @@
   min-height: 1.9rem;
   min-width: 1.9rem;
   padding: 0.22rem 0.5rem;
-  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: color-mix(in srgb, var(--easyedu-primary-soft) 62%, #fff 38%);
   border: 1px solid color-mix(in srgb, var(--easyedu-primary) 18%, #fff 82%);
   border-radius: 999px;
@@ -3466,7 +3477,7 @@
   box-shadow: 0 0.1rem 0.35rem rgba(31, 42, 55, 0.06);
   display: inline-flex;
   position: relative;
-  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   height: 1.15rem;
   width: 1.15rem;
   background: color-mix(in srgb, var(--easyedu-surface) 88%, var(--easyedu-surface-soft) 12%);
@@ -3484,7 +3495,7 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -58%) rotate(45deg) scale(0.8);
-  transition: opacity var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+  transition: opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   width: 0.28rem;
 }
 .local-groupimport-easystud-selector:hover .easyedu-selection-checkbox__ui, .local-groupimport-easystud-selector:hover > span {
@@ -3988,6 +3999,7 @@
   min-height: 1.9rem;
   min-width: 1.9rem;
   padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .local-groupimport-easystud-rename__edit .btn:hover, .local-groupimport-easystud-rename__edit .btn:focus-visible, .local-groupimport-easystud-rename__edit .btn[aria-expanded=true], .local-groupimport-easystud-rename__edit .btn[aria-pressed=true], .local-groupimport-easystud-rename__edit .btn.active, .local-groupimport-easystud-rename__edit .btn.is-active {
   background: var(--easyedu-primary-soft);
@@ -4010,7 +4022,8 @@
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-easystud-rename__edit .btn .fa {
+.local-groupimport-easystud-rename__edit .btn .fa,
+.local-groupimport-easystud-rename__edit .btn [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -4033,7 +4046,7 @@
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
-  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   display: inline-flex;
   flex: 0 0 auto;
   height: calc(1.5em + 0.75rem + 2px);
@@ -12370,6 +12383,7 @@
   min-height: 1.9rem;
   min-width: 1.9rem;
   padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   box-sizing: border-box;
   min-height: 2.25rem;
   padding-inline: 0.5rem;
@@ -12396,7 +12410,8 @@
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-easystud-settings-modal .local-groupimport-easystud-modal__footer > .btn .fa {
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-modal__footer > .btn .fa,
+.local-groupimport-easystud-settings-modal .local-groupimport-easystud-modal__footer > .btn [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -13201,6 +13216,7 @@
   min-height: 1.9rem;
   min-width: 1.9rem;
   padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   min-height: 2.25rem;
   white-space: nowrap;
 }
@@ -13225,7 +13241,8 @@
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-easystud-settings-modal__native > .btn .fa {
+.local-groupimport-easystud-settings-modal__native > .btn .fa,
+.local-groupimport-easystud-settings-modal__native > .btn [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -15666,6 +15683,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .local-groupimport-import__header-actions .btn:hover, .local-groupimport-import__header-actions .btn:focus-visible, .local-groupimport-import__header-actions .btn[aria-expanded=true], .local-groupimport-import__header-actions .btn[aria-pressed=true], .local-groupimport-import__header-actions .btn.active, .local-groupimport-import__header-actions .btn.is-active {
   background: var(--easyedu-primary-soft);
@@ -15688,7 +15706,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-import__header-actions .btn .fa {
+.local-groupimport-import__header-actions .btn .fa,
+.local-groupimport-import__header-actions .btn [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -15756,6 +15775,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   gap: 1.5rem;
   grid-template-columns: minmax(21rem, 0.88fr) minmax(25rem, 1.12fr);
   transition: grid-template-columns var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+  will-change: grid-template-columns;
 }
 .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import__grid, .easyedu-motion-disabled .local-groupimport-import__grid {
   transition: none;
@@ -15783,6 +15803,20 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   opacity: 0;
   pointer-events: none;
   position: absolute;
+  transform: translateX(-0.35rem);
+  visibility: hidden;
+}
+.local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease), visibility 0s linear;
+  visibility: visible;
+}
+.local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-0.35rem);
+  transition: opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease), visibility 0s linear var(--easyedu-motion-normal);
   visibility: hidden;
 }
 .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header {
@@ -15815,6 +15849,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   position: sticky;
   top: 4.25rem;
   z-index: 2;
+}
+.local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-card__header > div, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-fields, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-form, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
+  transition: none;
 }
 .local-groupimport-import-summary {
   display: grid;
@@ -16203,6 +16240,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-height: 1.9rem;
   min-width: 1.9rem;
   padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   flex: 0 1 auto;
   justify-content: center;
   text-align: center;
@@ -16228,7 +16266,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-import-history__actions .btn .fa {
+.local-groupimport-import-history__actions .btn .fa,
+.local-groupimport-import-history__actions .btn [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -16268,6 +16307,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-height: var(--easyedu-control-height);
   min-width: var(--easyedu-control-height);
   padding: 0.36rem 0.75rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   width: fit-content;
 }
 .local-groupimport-import__export-results:hover, .local-groupimport-import__export-results:focus-visible, .local-groupimport-import__export-results[aria-expanded=true], .local-groupimport-import__export-results[aria-pressed=true], .local-groupimport-import__export-results.active, .local-groupimport-import__export-results.is-active {
@@ -16291,7 +16331,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   pointer-events: none;
   transform: none;
 }
-.local-groupimport-import__export-results .fa {
+.local-groupimport-import__export-results .fa,
+.local-groupimport-import__export-results [class*=" fa-"] {
   align-items: center;
   display: inline-flex;
   flex: 0 0 auto;
@@ -17205,7 +17246,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     box-shadow: 0 0.1rem 0.35rem rgba(31, 42, 55, 0.06);
     display: inline-flex;
     position: relative;
-    transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+    transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
     height: 1.42rem;
     width: 1.42rem;
     background: color-mix(in srgb, var(--easyedu-surface) 88%, var(--easyedu-surface-soft) 12%);
@@ -17223,7 +17264,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     position: absolute;
     top: 50%;
     transform: translate(-50%, -58%) rotate(45deg) scale(0.8);
-    transition: opacity var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
+    transition: opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
     width: 0.28rem;
   }
   .local-groupimport-easystud-selector:hover .easyedu-selection-checkbox__ui, .local-groupimport-easystud-selector:hover > span {
@@ -17333,6 +17374,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     min-height: 1.9rem;
     min-width: 1.9rem;
     padding: 0.22rem 0.5rem;
+    transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
     align-items: center;
     display: inline-flex;
     flex: 0 0 auto;
@@ -17361,7 +17403,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     pointer-events: none;
     transform: none;
   }
-  .local-groupimport-easystud-mobile-actions__buttons .btn .fa {
+  .local-groupimport-easystud-mobile-actions__buttons .btn .fa,
+  .local-groupimport-easystud-mobile-actions__buttons .btn [class*=" fa-"] {
     align-items: center;
     display: inline-flex;
     flex: 0 0 auto;
@@ -19081,6 +19124,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+}
+.easyedu-ui .easyedu-button .fa,
+.easyedu-ui .easyedu-button [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
 }
 .easyedu-ui .easyedu-button:hover {
   background: var(--easyedu-primary-strong);
@@ -19110,12 +19165,24 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border-color: var(--easyedu-deposit-border);
   border-radius: 0.58rem;
   color: var(--easyedu-secondary-text);
   font-size: 0.75rem;
   min-block-size: 2rem;
+}
+.easyedu-ui .easyedu-button--secondary .fa,
+.easyedu-ui .easyedu-button--secondary [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
 }
 .easyedu-ui .easyedu-button--secondary:hover {
   background: var(--easyedu-primary-soft);
@@ -19335,6 +19402,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border-color: var(--easyedu-deposit-border);
   border-radius: 0.58rem;
@@ -19344,6 +19412,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: min(10.5rem, 100%);
   max-inline-size: 100%;
   margin: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose .fa,
+.easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
 }
 .easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:hover {
   background: var(--easyedu-primary-soft);
@@ -19387,6 +19466,90 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: block;
   padding: 0.625rem;
   overflow-wrap: anywhere;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__selected-file {
+  align-items: center;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(0, 1fr) 2rem;
+  min-inline-size: 0;
+  padding: 0.25rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__selected-file > a {
+  align-items: center;
+  color: var(--easyedu-deposit-title);
+  display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
+  min-block-size: 2rem;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  padding: 0.375rem 0.5rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__file-type {
+  align-items: center;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 1rem;
+  font-size: 1rem;
+  justify-content: center;
+  line-height: 1;
+  width: 1rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  background: var(--easyedu-surface);
+  border-color: var(--easyedu-deposit-border);
+  border-radius: 0.58rem;
+  color: var(--easyedu-secondary-text);
+  font-size: 0.75rem;
+  min-block-size: 2rem;
+  block-size: 2rem;
+  inline-size: 2rem;
+  min-block-size: 2rem;
+  min-inline-size: 2rem;
+  padding: 0;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove .fa,
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:hover {
+  background: var(--easyedu-primary-soft);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:disabled {
+  background: var(--easyedu-surface-soft);
+  color: var(--easyedu-text-muted);
+}
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:hover, .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:focus-visible {
+  background: var(--easyedu-danger-soft);
+  border-color: var(--easyedu-danger);
+  color: var(--easyedu-danger);
 }
 .easyedu-ui .easyedu-file-deposit--moodle .filepicker-filelist.dndupload-inprogress {
   block-size: auto;
@@ -19480,7 +19643,19 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   min-inline-size: min(14rem, 100%);
+}
+.easyedu-ui .easyedu-form-actions [type=submit] .fa,
+.easyedu-ui .easyedu-form-actions [type=submit] [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
 }
 .easyedu-ui .easyedu-form-actions [type=submit]:hover {
   background: var(--easyedu-primary-strong);
@@ -19526,9 +19701,21 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border-color: var(--easyedu-deposit-border);
   color: var(--easyedu-text);
+}
+.easyedu-ui .easyedu-button--neutral .fa,
+.easyedu-ui .easyedu-button--neutral [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
 }
 .easyedu-ui .easyedu-button--neutral:hover {
   background: var(--easyedu-primary-strong);
@@ -19561,6 +19748,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border-color: var(--easyedu-deposit-border);
   border-radius: 0.58rem;
@@ -19571,6 +19759,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 2rem;
   block-size: 2rem;
   padding: 0;
+}
+.easyedu-ui .easyedu-button--icon .fa,
+.easyedu-ui .easyedu-button--icon [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
 }
 .easyedu-ui .easyedu-button--icon:hover {
   background: var(--easyedu-primary-soft);
@@ -19626,10 +19825,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
   letter-spacing: 0;
-  color: var(--easyedu-text);
-  font-size: var(--easyedu-font-size-body);
-  line-height: var(--easyedu-line-height-body);
   color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  color: var(--easyedu-text-muted);
+  line-height: 1.2;
   margin: 0;
 }
 
@@ -19863,7 +20063,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-primary-strong);
   font: 700 0.6875rem/1.2 var(--easyedu-font-family-ui);
   height: 2.5rem;
+  text-align: start;
   text-transform: uppercase;
+  vertical-align: middle;
 }
 .easyedu-ui .easyedu-data-table td {
   background: var(--easyedu-surface);
@@ -19908,9 +20110,19 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .easyedu-ui .easyedu-data-table input[type=checkbox] {
   accent-color: var(--easyedu-primary);
+  filter: saturate(0.94);
   height: 1.125rem;
+  transform: scale(0.96);
+  transition: box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), filter var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   width: 1.125rem;
   vertical-align: middle;
+}
+.easyedu-ui .easyedu-data-table input[type=checkbox]:active {
+  transform: scale(0.92);
+}
+.easyedu-ui .easyedu-data-table input[type=checkbox]:checked {
+  filter: saturate(1);
+  transform: scale(1);
 }
 .easyedu-ui .easyedu-data-table input[type=checkbox]:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -19918,6 +20130,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   outline-offset: var(--easyedu-focus-outline-offset);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .easyedu-ui .easyedu-data-table input[type=checkbox] {
+    transition: none;
+  }
+}
 .easyedu-ui .easyedu-data-table tr.is-warning td {
   background: var(--easyedu-warning-soft);
 }

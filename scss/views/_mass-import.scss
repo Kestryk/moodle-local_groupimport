@@ -311,6 +311,7 @@
     gap: 1.5rem;
     grid-template-columns: minmax(21rem, 0.88fr) minmax(25rem, 1.12fr);
     transition: grid-template-columns var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+    will-change: grid-template-columns;
   }
 
   &.is-easyedu-motion-off &__grid,
@@ -351,6 +352,32 @@
     opacity: 0;
     pointer-events: none;
     position: absolute;
+    transform: translateX(-0.35rem);
+    visibility: hidden;
+  }
+
+  &.has-preview &-card--upload &-fields,
+  &.has-preview &-card--upload &-form,
+  &.has-preview &-card--upload &-card__header > div {
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      visibility 0s linear;
+    visibility: visible;
+  }
+
+  &.has-preview.is-upload-collapsed &-card--upload &-fields,
+  &.has-preview.is-upload-collapsed &-card--upload &-form,
+  &.has-preview.is-upload-collapsed &-card--upload &-card__header > div {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-0.35rem);
+    transition:
+      opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      visibility 0s linear var(--easyedu-motion-normal);
     visibility: hidden;
   }
 
@@ -390,6 +417,15 @@
     position: sticky;
     top: 4.25rem;
     z-index: 2;
+  }
+
+  &.is-easyedu-motion-off &-card--upload &-fields,
+  &.is-easyedu-motion-off &-card--upload &-form,
+  &.is-easyedu-motion-off &-card--upload &-card__header > div,
+  .easyedu-motion-disabled &-card--upload &-fields,
+  .easyedu-motion-disabled &-card--upload &-form,
+  .easyedu-motion-disabled &-card--upload &-card__header > div {
+    transition: none;
   }
 
 
