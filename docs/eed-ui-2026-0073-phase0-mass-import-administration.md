@@ -14,6 +14,26 @@ slices remain recorded in the canonical Phase 0 drift ledger.
 
 ## Lineage
 
+### Upload correction continuation — 2026-09-28
+
+Kit pin `79d273b` corrects native progress containment, cloud glyph layout,
+drop-state presentation and measured empty border dashes (11px/11px). Deposit
+events use Moodle native upload handling rather than starting a second XHR
+in the window-level route. Tests now hold the real draft request to inspect
+progress; body-only uploads do not prove that state.
+
+External-worktree AMD build: `node tools/release/build-csv-import-amd.js
+<moodle-build-root>`, using Moodle's Babel plugins and Terser without editing
+the shared build checkout. The direct Grunt invocation cannot resolve an
+external worktree's component name; it was not counted as a passing build.
+
+Foundations uploading component: `01e728c3-f1ef-80b3-8008-b455f30e0638`;
+Library host `01e728c3-f1ef-80b3-8008-b455cd0657f5`, Standard host
+`01e728c3-f1ef-80b3-8008-b45641fa2c5d`, linked Standard instance
+`01e728c3-f1ef-80b3-8008-b45697d257bb`. Readback/export completed;
+human acceptance and EasyStud project propagation remain pending.
+Description-to-navigation exact measurement awaits the EasyStud project.
+
 ```text
 EasyEdu UI Kit SCSS <=> Penpot EasyEdu Foundations
           |

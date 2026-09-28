@@ -31,6 +31,22 @@
       border-radius: 1rem;
       background: var(--easyedu-deposit-icon-surface);
       border-color: var(--easyedu-deposit-icon-border);
+      align-items: center;
+      display: inline-flex;
+      justify-content: center;
+
+      .fa {
+        align-items: center;
+        display: inline-flex;
+        flex: 0 0 auto;
+        justify-content: center;
+        line-height: 1;
+
+        &::before {
+          display: block;
+          line-height: 1;
+        }
+      }
     }
     .easyedu-file-deposit__title {
       color: var(--easyedu-deposit-title);
@@ -75,10 +91,22 @@
     .felement { max-width: 100%; width: 100%; padding: 0; min-width: 0; }
     .filepicker { padding: 0; }
     [id^="filepicker-wrapper-"] {
-      display: flex;
-      flex-direction: column-reverse;
+      display: grid;
       gap: 0.75rem;
+      grid-template-areas:
+        "status"
+        "action";
+      min-inline-size: 0;
       padding-inline-start: 3.5rem;
+
+      > div:first-child {
+        grid-area: action;
+        min-inline-size: 0;
+      }
+
+      > .filepicker-filelist {
+        grid-area: status;
+      }
     }
     .fp-btn-choose {
       @include foundations.foundation-button(true);
@@ -90,11 +118,15 @@
       background: var(--easyedu-surface);
       border: 0.0625rem solid var(--easyedu-deposit-border);
       border-radius: 0.6rem;
+      box-sizing: border-box;
       min-height: 2.5rem;
       margin: 0;
+      min-inline-size: 0;
       width: 100%;
     }
-    .filepicker-filelist:has(.filepicker-container) {
+    // Moodle retains .filepicker-container while it replaces its empty state
+    // with native progress bars. Only collapse the genuinely empty picker.
+    .filepicker-filelist:has(.filepicker-container):not(.dndupload-inprogress) {
       background: transparent;
       border: 0;
       min-height: 0;
@@ -104,7 +136,18 @@
     // Equivalent visible instructions are provided in __support; hide only
     // Moodle's duplicated empty visual, never filename/progress/error nodes.
     .filepicker-container { display: none; }
+    .filepicker-filename,
+    .dndupload-progressbars,
+    .form-control-feedback {
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+    }
     .filepicker-filename > a { display: block; padding: 0.625rem; overflow-wrap: anywhere; }
+    .filepicker-filelist.dndupload-inprogress {
+      block-size: auto;
+      min-block-size: 2.5rem;
+      overflow: visible;
+    }
     .filepicker-filelist .dndupload-target,
     .filepicker-filelist.dndupload-over .dndupload-target {
       inset: 0;
@@ -129,6 +172,37 @@
       clip-path: inset(50%);
     }
     &:focus-within { border-color: var(--easyedu-control-focus-border); }
+
+    &.is-dragover,
+    &:has(.filepicker-filelist.dndupload-over) {
+      &::after {
+        align-items: center;
+        background: var(--easyedu-file-deposit-drag-over-surface, #edf6fc);
+        border: 0.0625rem solid var(--easyedu-control-focus-border);
+        border-radius: 0.6rem;
+        color: var(--easyedu-deposit-title);
+        content: attr(data-easyedu-drop-label);
+        display: flex;
+        font: 700 1.0625rem/1.2 var(--easyedu-font-family-ui);
+        inset: 1rem;
+        justify-content: center;
+        opacity: 0.97;
+        padding: 1rem;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        z-index: 1;
+      }
+    }
+
+    &.is-danger {
+      &.is-dragover::after,
+      &:has(.filepicker-filelist.dndupload-over)::after {
+        background: var(--easyedu-file-deposit-danger-surface, #fff4f2);
+        border-color: var(--easyedu-file-deposit-danger-border, #d96b63);
+        color: var(--easyedu-file-deposit-danger-title, #9b2c24);
+      }
+    }
   }
 
   .easyedu-ui .easyedu-form-actions {

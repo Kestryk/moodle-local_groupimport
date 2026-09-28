@@ -509,6 +509,32 @@ export const init = (rootId) => {
 
     let dragdepth = 0;
     let routingdrop = false;
+    const deposit = root.querySelector('.easyedu-file-deposit');
+    const isDepositEvent = event => deposit && deposit.contains(event.target);
+
+    if (deposit) {
+        ['dragenter', 'dragover'].forEach(type => deposit.addEventListener(type, event => {
+            if (hasFiles(event)) {
+                event.preventDefault();
+                deposit.classList.add('is-dragover');
+            }
+        }));
+        deposit.addEventListener('dragleave', event => {
+            if (!deposit.contains(event.relatedTarget)) {
+                deposit.classList.remove('is-dragover');
+            }
+        });
+        deposit.addEventListener('drop', event => {
+            deposit.classList.remove('is-dragover');
+            if (hasFiles(event) && !event.target.closest('.filepicker-filelist')) {
+                const file = event.dataTransfer.files[0];
+                if (file) {
+                    event.preventDefault();
+                    forwardDroppedFileToMoodle(root, file);
+                }
+            }
+        });
+    }
 
     const showOverlay = () => {
         overlay.hidden = false;
@@ -517,6 +543,7 @@ export const init = (rootId) => {
     };
 
     const hideOverlay = () => {
+        deposit?.classList.remove('is-dragover');
         dragdepth = 0;
         overlay.hidden = true;
         overlay.setAttribute('aria-hidden', 'true');
@@ -524,6 +551,7 @@ export const init = (rootId) => {
     };
 
     window.addEventListener('dragenter', event => {
+        if (isDepositEvent(event)) { return; }
         if (!hasFiles(event)) {
             return;
         }
@@ -532,6 +560,7 @@ export const init = (rootId) => {
     });
 
     window.addEventListener('dragover', event => {
+        if (isDepositEvent(event)) { return; }
         if (!hasFiles(event)) {
             return;
         }
@@ -551,6 +580,8 @@ export const init = (rootId) => {
     });
 
     window.addEventListener('drop', event => {
+        // The native drop target owns its upload/progress lifecycle.
+        if (isDepositEvent(event)) { return; }
         if (routingdrop) {
             return;
         }
