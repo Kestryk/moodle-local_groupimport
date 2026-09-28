@@ -12,9 +12,11 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 
 # Git blob hashes compare normalized source, independently of checkout CRLF.
 $canonicalModules = @{
-    'scss/easyedu/_data-classes.scss' = '21c27c0d91cbe103e4fb0a0fcf38cae80d9f5b50'
-    'scss/easyedu/_foundation-classes.scss' = 'd2bf25fe6cdac3f85894f43868d546fe34c9df20'
-    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '0f31319f482353e5a092508917faf2aaf2d71ee7'
+    'scss/easyedu/_data-classes.scss' = '50cf1b6e982f21f61df8f920893b6b93adf655eb'
+    'scss/easyedu/_foundation-classes.scss' = '110e52c8f1b61fc079717b3c30d363ab2894f780'
+    'scss/easyedu/adapters/_moodle-file-deposit.scss' = 'c8f7f6bb8f30a07f43d2051e870bee6a8aab442f'
+    'scss/easyedu/components/_buttons.scss' = 'a128429a0d08617ce1f7dae984ecdb4eee74d60c'
+    'scss/easyedu/components/_forms.scss' = 'e5b87206d93240fe270ba664425449005744889d'
 }
 foreach ($path in $canonicalModules.Keys) {
     $actual = & git -C $pluginRoot hash-object $path
@@ -83,6 +85,16 @@ foreach ($class in @('easyedu-ui', 'easyedu-panel__title', 'easyedu-information'
 }
 if ($massImport -match '\.fp-btn-choose|\.filepicker-container|\.easyedu-file-deposit') {
     throw 'File deposit presentation must live in the canonical Kit adapter, not the plugin view.'
+}
+
+$importForm = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'classes\form\import_form.php')
+$importController = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'amd\src\csv_import.js')
+foreach ($needle in @('data-easyedu-remove-label', "'maxfiles' => 1")) {
+    if (-not $importForm.Contains($needle)) { throw "Missing selected-file contract: $needle" }
+}
+foreach ($needle in @('draftfiles_ajax.php', 'easyedu-file-deposit__file-type',
+        'easyedu-file-deposit__remove', 'Motion.swap(uploadCard', 'Motion.swap(button')) {
+    if (-not $importController.Contains($needle)) { throw "Missing selected-file/motion controller contract: $needle" }
 }
 
 if ($kitManifest.consumerSync.fullTreeIdentical -ne $false) {

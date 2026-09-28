@@ -130,6 +130,7 @@ $string['filedeposittitle'] = 'Drop your file here';
 $string['filedepositsupport'] = 'or browse files on your device';
 $string['filedepositformats'] = 'Accepted formats';
 $string['filedepositformatsdetail'] = 'CSV, XLS or XLSX · single file';
+$string['removeimportfile'] = 'Remove selected file';
 $string['previewnochanges'] = 'Previewing does not change any enrolment.';
 $string['csvdropsubtitle'] = 'Release the file, then confirm it in the Moodle file picker if needed.';
 $string['csvimportlink'] = 'EasyStud Mass Import';

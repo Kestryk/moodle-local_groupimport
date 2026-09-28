@@ -566,10 +566,10 @@
     display: inline-flex;
     position: relative;
     transition:
-      background-color var(--easyedu-motion-fast) ease,
-      border-color var(--easyedu-motion-fast) ease,
-      box-shadow var(--easyedu-motion-fast) ease,
-      transform var(--easyedu-motion-fast) ease;
+      background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 
     @if $size == large {
       height: 1.42rem;
@@ -599,8 +599,8 @@
       top: 50%;
       transform: translate(-50%, -58%) rotate(45deg) scale(0.8);
       transition:
-        opacity var(--easyedu-motion-fast) ease,
-        transform var(--easyedu-motion-fast) ease;
+        opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease),
+        transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
       width: 0.28rem;
     }
   }

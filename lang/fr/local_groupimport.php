@@ -127,6 +127,7 @@ $string['filedeposittitle'] = 'Déposez votre fichier ici';
 $string['filedepositsupport'] = 'ou parcourez les fichiers de votre appareil';
 $string['filedepositformats'] = 'Formats acceptés';
 $string['filedepositformatsdetail'] = 'CSV, XLS ou XLSX · fichier unique';
+$string['removeimportfile'] = 'Supprimer le fichier sélectionné';
 $string['previewnochanges'] = 'La prévisualisation ne modifie aucune inscription.';
 $string['csvdropsubtitle'] = 'Relâchez le fichier, puis confirmez-le dans le sélecteur Moodle si nécessaire.';
 $string['csvimportlink'] = 'Import massif EasyStud';

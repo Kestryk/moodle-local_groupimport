@@ -145,6 +145,50 @@
       overflow-wrap: anywhere;
     }
     .filepicker-filename > a { display: block; padding: 0.625rem; overflow-wrap: anywhere; }
+    .easyedu-file-deposit__selected-file {
+      align-items: center;
+      display: grid;
+      gap: 0.5rem;
+      grid-template-columns: minmax(0, 1fr) 2rem;
+      min-inline-size: 0;
+      padding: 0.25rem;
+
+      > a {
+        align-items: center;
+        color: var(--easyedu-deposit-title);
+        display: inline-flex;
+        gap: var(--easyedu-action-icon-gap, 0.65rem);
+        min-block-size: 2rem;
+        min-inline-size: 0;
+        overflow-wrap: anywhere;
+        padding: 0.375rem 0.5rem;
+      }
+    }
+    .easyedu-file-deposit__file-type {
+      align-items: center;
+      color: var(--easyedu-primary);
+      display: inline-flex;
+      flex: 0 0 1rem;
+      font-size: 1rem;
+      justify-content: center;
+      line-height: 1;
+      width: 1rem;
+    }
+    .easyedu-file-deposit__remove {
+      @include foundations.foundation-button(true);
+      block-size: 2rem;
+      inline-size: 2rem;
+      min-block-size: 2rem;
+      min-inline-size: 2rem;
+      padding: 0;
+
+      &:hover,
+      &:focus-visible {
+        background: var(--easyedu-danger-soft);
+        border-color: var(--easyedu-danger);
+        color: var(--easyedu-danger);
+      }
+    }
     .filepicker-filelist.dndupload-inprogress {
       block-size: auto;
       min-block-size: 2.5rem;

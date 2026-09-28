@@ -63,6 +63,24 @@ local weight scale remains for these two views.
 
 ## Implemented
 
+### Selected-file and control-state continuation — 2026-09-28
+
+Foundations `08.4.1` Library masters and their linked `08.4` Standard instances
+now show M/L selected-file type icons and linked remove actions. Large multiple
+states show one CSV/XLS/image type and remove action per row; compact multiple
+states show the three types plus Remove all. Mass Import deliberately remains a
+native Moodle single-file picker (`maxfiles = 1`), while the reusable family
+documents explicit multi-file consumers without enabling them automatically.
+
+The runtime decorates Moodle's selected filename without replacing its draft
+ID, progress or validation lifecycle. Removal calls Moodle's authenticated
+`draftfiles_ajax.php` delete action, then resets the native filepicker change
+state. Upload-panel disclosure and Select/Deselect label changes consume the
+shared Motion timings. Button icon slots/gaps, checkbox transition, preview
+notice caption sizing and generic table-header alignment are Kit-owned.
+Canonical Kit pin: `0a121f0b7c729c6f688b3d04542739de7aa5ebc1`;
+canonical SCSS tree: `ad55b04be6b89485ca91c1e98c1d2b43daeacc19`.
+
 - direct `type-page-title`, `type-section-title`, `type-control-label`,
   `type-body`, `type-caption` and `type-eyebrow` bindings;
 - one shared square/centred `section-icon-tile` for Mass Import and

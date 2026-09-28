@@ -4,6 +4,7 @@
 @use "components/typography" as type;
 @use "components/panels";
 @use "components/focus";
+@use "components/buttons";
 
 @mixin foundation-button($secondary: false) {
   align-items: center;
@@ -20,6 +21,19 @@
   padding: 0.5rem 1rem;
   text-align: center;
   white-space: normal;
+  @include buttons.control-state-transition;
+
+  .fa,
+  [class*=" fa-"] {
+    align-items: center;
+    display: inline-flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    line-height: 1;
+    margin-inline: 0;
+    min-inline-size: 1em;
+    width: 1em;
+  }
   @if $secondary {
     background: var(--easyedu-surface);
     border-color: var(--easyedu-deposit-border);
@@ -184,7 +198,7 @@
     p { font: 500 0.875rem/1.2 var(--easyedu-font-family-ui); margin: 0; }
     .fa { font-size: 1.25rem; margin: 0; }
   }
-  // Penpot's inner stroke uses 11px dashes, not the browser's dashed heuristic.
+  // Penpot's inner stroke uses fixed 11-unit dashes, not the browser's dashed heuristic.
   .easyedu-ui .easyedu-empty:has(> .easyedu-empty__boundary) { border: 0; }
   .easyedu-ui .easyedu-empty__boundary {
     position: absolute;
