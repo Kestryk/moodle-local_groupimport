@@ -78,3 +78,9 @@ fail-open `degraded` state. The bootstrap now checks the current attribute once
 immediately after observation; this preserves the degraded deadline for real
 failures and does not weaken the browser assertion that normal startup is
 `ready`.
+
+After that correction, supervised run
+`easystud-authenticated-20260928T081351958Z-25900` passed on runtime `c7d9b41`
+at desktop, tablet and 390px. It also asserts the measured 18px page-header
+gap. This is the final automated checkpoint for this correction lot; visual
+human acceptance remains pending.
