@@ -45,6 +45,11 @@ if ($massImport -notmatch '(?s)&\.has-preview\.is-upload-collapsed &-card--uploa
 if ($massImport -match '(?s)&\.has-preview\.is-upload-collapsed.*?&-card__header > \.easyedu-icon-tile') {
     throw 'Collapsed Mass Import upload rail must preserve its centred CSV identity icon.'
 }
+foreach ($phase in @('is-upload-collapsing', 'is-upload-expanding')) {
+    if (-not $massImport.Contains($phase)) {
+        throw "Mass Import is missing the staged disclosure phase: $phase"
+    }
+}
 
 foreach ($needle in @(
     '@include easyedu.type-ui-base;',
@@ -107,7 +112,8 @@ foreach ($needle in @('data-easyedu-remove-label', "'maxfiles' => 1")) {
     if (-not $importForm.Contains($needle)) { throw "Missing selected-file contract: $needle" }
 }
 foreach ($needle in @('draftfiles_ajax.php', 'easyedu-file-deposit__file-type',
-        'easyedu-file-deposit__remove', 'Motion.swap(button')) {
+        'easyedu-file-deposit__remove', 'Motion.swap(button', 'waitForTransition(content, ''opacity'')',
+        'waitForTransition(grid, ''grid-template-columns'')')) {
     if (-not $importController.Contains($needle)) { throw "Missing selected-file/motion controller contract: $needle" }
 }
 if ($importController.Contains('Motion.swap(uploadCard')) {

@@ -364,11 +364,90 @@ const applyUploadCollapsed = (root, button, collapsed) => {
     }
 };
 
-const setUploadCollapsed = (root, button, collapsed) => {
-    // The Kit layout-disclosure transition is the sole animation owner. A
-    // concurrent Motion.swap on the card makes the track change feel abrupt.
-    applyUploadCollapsed(root, button, collapsed);
-    return Promise.resolve(true);
+const parseCssTime = value => {
+    const time = String(value || '').trim();
+    if (time.endsWith('ms')) {
+        return parseFloat(time) || 0;
+    }
+    if (time.endsWith('s')) {
+        return (parseFloat(time) || 0) * 1000;
+    }
+    return 0;
+};
+
+const waitForTransition = (element, propertyName) => {
+    if (!element) {
+        return Promise.resolve(true);
+    }
+    const style = window.getComputedStyle(element);
+    const properties = style.transitionProperty.split(',').map(value => value.trim());
+    const durations = style.transitionDuration.split(',').map(parseCssTime);
+    const delays = style.transitionDelay.split(',').map(parseCssTime);
+    let maximum = 0;
+    properties.forEach((property, index) => {
+        if (property === propertyName || property === 'all') {
+            maximum = Math.max(maximum,
+                durations[index % durations.length] + delays[index % delays.length]);
+        }
+    });
+    if (maximum <= 0) {
+        return Promise.resolve(true);
+    }
+    return new Promise(resolve => {
+        let completed = false;
+        const finish = () => {
+            if (completed) {
+                return;
+            }
+            completed = true;
+            element.removeEventListener('transitionend', onEnd);
+            window.clearTimeout(timeout);
+            resolve(true);
+        };
+        const onEnd = event => {
+            if (event.target === element && event.propertyName === propertyName) {
+                finish();
+            }
+        };
+        const timeout = window.setTimeout(finish, maximum + 80);
+        element.addEventListener('transitionend', onEnd);
+    });
+};
+
+const clearUploadTransitionState = root => {
+    root.classList.remove('is-upload-collapsing', 'is-upload-expanding');
+};
+
+const setUploadCollapsed = async(root, button, collapsed, animate = false) => {
+    clearUploadTransitionState(root);
+    const current = root.classList.contains('is-upload-collapsed');
+    const grid = root.querySelector('.local-groupimport-import__grid');
+    const content = root.querySelector('.local-groupimport-import-card--upload .easyedu-panel__copy');
+
+    if (!animate || !Motion.isEnabled(root) || !grid || !content || current === collapsed) {
+        applyUploadCollapsed(root, button, collapsed);
+        return true;
+    }
+
+    if (collapsed) {
+        // Keep the expanded geometry while copy and fields fade. Only after
+        // they are visually absent may the grid contract to its compact rail.
+        root.classList.add('is-upload-collapsing');
+        await waitForTransition(content, 'opacity');
+        applyUploadCollapsed(root, button, true);
+        root.classList.remove('is-upload-collapsing');
+        await waitForTransition(grid, 'grid-template-columns');
+        return true;
+    }
+
+    // Keep content out of flow and transparent while the rail grows. Once the
+    // full track exists, restore layout participation and fade content in.
+    root.classList.add('is-upload-expanding');
+    applyUploadCollapsed(root, button, false);
+    await waitForTransition(grid, 'grid-template-columns');
+    root.classList.remove('is-upload-expanding');
+    await waitForTransition(content, 'opacity');
+    return true;
 };
 
 const initUploadCollapse = root => {
@@ -390,8 +469,17 @@ const initUploadCollapse = root => {
 
     setUploadCollapsed(root, button, collapsed);
 
-    button.addEventListener('click', () => {
-        setUploadCollapsed(root, button, !root.classList.contains('is-upload-collapsed'));
+    button.addEventListener('click', async() => {
+        if (button.dataset.localGroupimportUploadToggleBusy === '1') {
+            return;
+        }
+        button.dataset.localGroupimportUploadToggleBusy = '1';
+        try {
+            await setUploadCollapsed(root, button, !root.classList.contains('is-upload-collapsed'), true);
+        } finally {
+            delete button.dataset.localGroupimportUploadToggleBusy;
+            clearUploadTransitionState(root);
+        }
     });
 };
 

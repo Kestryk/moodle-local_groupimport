@@ -352,8 +352,8 @@
     opacity: 1;
     transform: translateX(0);
     transition:
-      opacity var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease),
-      transform var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease),
+      opacity var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-slow) var(--easyedu-motion-ease),
       visibility 0s linear;
     visibility: visible;
   }
@@ -366,10 +366,28 @@
     position: absolute;
     transform: translateX(-0.35rem);
     transition:
-      opacity var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease),
-      transform var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease),
-      visibility 0s linear var(--easyedu-motion-layout);
+      opacity var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+      visibility 0s linear var(--easyedu-motion-slow);
     visibility: hidden;
+  }
+
+  &.has-preview.is-upload-collapsing &-card--upload &-fields,
+  &.has-preview.is-upload-collapsing &-card--upload &-form,
+  &.has-preview.is-upload-collapsing &-card--upload &-card__header > div,
+  &.has-preview.is-upload-expanding &-card--upload &-fields,
+  &.has-preview.is-upload-expanding &-card--upload &-form,
+  &.has-preview.is-upload-expanding &-card--upload &-card__header > div {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-0.35rem);
+    visibility: visible;
+  }
+
+  &.has-preview.is-upload-expanding &-card--upload &-fields,
+  &.has-preview.is-upload-expanding &-card--upload &-form,
+  &.has-preview.is-upload-expanding &-card--upload &-card__header > div {
+    position: absolute;
   }
 
   &.has-preview &-card--upload &-card__header {

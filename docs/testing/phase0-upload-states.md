@@ -93,3 +93,12 @@ After that correction, supervised run
 at desktop, tablet and 390px. It also asserts the measured 18px page-header
 gap. This is the final automated checkpoint for this correction lot; visual
 human acceptance remains pending.
+
+The later preview-column correction uses explicit `is-upload-collapsing` and
+`is-upload-expanding` phases. Collapse keeps the expanded track while copy and
+fields fade, then runs the layout transition. Expansion holds content
+transparent and out of flow until the track reaches full width, then fades it
+in. The focused browser contract samples both intermediate phases, rejects a
+fully painted copy during track movement, and rechecks the compact CSV icon and
+Chevron centring. Static/build checks pass; the renewed authenticated browser
+and human visual checkpoints remain pending.

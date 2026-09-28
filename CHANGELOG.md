@@ -2,6 +2,11 @@
 
 ## 2026-09-28
 
+- Stage the preview CSV-column disclosure to prevent copy flashes: content
+  fades for 220ms before collapse, the 320ms track change then runs alone;
+  expansion restores the track before fading content back in. Reduced motion
+  remains immediate and the compact CSV rail geometry is preserved.
+
 - Replace the competing CSV-column swap/fade with the Kit's single 320ms
   layout-disclosure transition and preserve reduced-motion behavior. Apply the
   public icon-and-label action class to current-report and history exports so
