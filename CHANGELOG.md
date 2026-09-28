@@ -159,6 +159,10 @@
 
 ## Unreleased
 
+- Begin Student Management Foundations migration with shared responsive Inter
+  identity, flat semantic panels and balanced desktop columns. Existing card
+  contents, native navigation and membership actions remain unchanged.
+
 ### Wave 10 - Administration identity, Skeleton and page order - 2026-08-31
 
 #### Fixed

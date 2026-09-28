@@ -1,5 +1,5 @@
 <div
-    class="local-groupimport-easystud local-groupimport-easystud--booting{{#compactparticipantsdefault}} local-groupimport-easystud--compact-users{{/compactparticipantsdefault}}{{^animationsenabled}} is-easyedu-motion-off{{/animationsenabled}}"
+    class="easyedu-ui local-groupimport-easystud local-groupimport-easystud--booting{{#compactparticipantsdefault}} local-groupimport-easystud--compact-users{{/compactparticipantsdefault}}{{^animationsenabled}} is-easyedu-motion-off{{/animationsenabled}}"
     id="local-groupimport-easystud"
     data-easystud-loading-state="loading"
     data-easystud-course-id="{{courseid}}"
@@ -139,12 +139,13 @@
     {{/useeasyeduguide}}
 
     <div class="local-groupimport-easystud__header">
-        <div>
-            <span class="local-groupimport-easystud__eyebrow">{{eyebrow}}</span>
+        <div class="easyedu-page-header">
+          <div class="easyedu-workspace-identity">
+            <span class="easyedu-workspace-eyebrow">{{eyebrow}}</span>
             {{#navigation}}
                 {{#hasparticipantdropdown}}
                     <div
-                        class="local-groupimport-easystud__participant-navigation"
+                        class="easyedu-workspace-title-control"
                         data-easystud-participant-navigation="1"
                     >
                         {{#participantdropdown}}
@@ -153,7 +154,8 @@
                     </div>
                 {{/hasparticipantdropdown}}
             {{/navigation}}
-            <p class="local-groupimport-easystud__intro">{{description}}</p>
+            <p class="easyedu-workspace-description">{{description}}</p>
+          </div>
             <div class="local-groupimport-easystud__navigation">
                 {{#navigation}}
                     {{> local_groupimport/easyedu_navigation}}
@@ -210,11 +212,11 @@
     </div>
 
     <div class="local-groupimport-easystud__layout">
-        <div class="local-groupimport-easystud__panel local-groupimport-easystud__panel--participants card" data-easystud-participants-panel="1">
+        <div class="easyedu-workspace-panel local-groupimport-easystud__panel local-groupimport-easystud__panel--participants card" data-easystud-participants-panel="1">
             <div class="card-body">
                 <div class="local-groupimport-easystud__panel-heading">
                     <div class="local-groupimport-easystud__panel-title-wrap">
-                        <h3 class="h5 mb-0 local-groupimport-easystud__panel-title">{{participantstitle}}</h3>
+                        <h3 class="easyedu-workspace-panel-title local-groupimport-easystud__panel-title">{{participantstitle}}</h3>
                         <span class="local-groupimport-easystud__panel-badge">{{participantscountlabel}}</span>
                     </div>
                     <div class="local-groupimport-easystud__panel-actions">
@@ -706,11 +708,11 @@
             </div>
         </div>
 
-        <div class="local-groupimport-easystud__panel local-groupimport-easystud__panel--structure card" data-easystud-structure-panel="1">
+        <div class="easyedu-workspace-panel easyedu-workspace-panel--success local-groupimport-easystud__panel local-groupimport-easystud__panel--structure card" data-easystud-structure-panel="1">
             <div class="card-body">
                 <div class="local-groupimport-easystud__panel-heading">
                     <div class="local-groupimport-easystud__panel-title-wrap">
-                        <h3 class="h5 mb-0 local-groupimport-easystud__panel-title">{{groupstructuretitle}}</h3>
+                        <h3 class="easyedu-workspace-panel-title local-groupimport-easystud__panel-title">{{groupstructuretitle}}</h3>
                         <span class="local-groupimport-easystud__panel-badge local-groupimport-easystud__panel-badge--accent">{{groupstructuresummarylabel}}</span>
                     </div>
                     <div class="local-groupimport-easystud__panel-actions">
