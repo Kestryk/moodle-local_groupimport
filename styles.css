@@ -555,33 +555,8 @@
 .local-groupimport-easystud-card-menu, .local-groupimport-easystud-context-menu__header, .local-groupimport-easystud-context-backdrop {
   display: none;
 }
-.local-groupimport-easystud__participant-navigation {
-  --easyedu-action-icon-gap: 0.35rem;
-  margin: 0.3rem 0 0.45rem;
-}
-.local-groupimport-easystud__participant-navigation .select-menu {
-  max-width: 24rem;
-}
-.local-groupimport-easystud__participant-navigation .select-menu > .dropdown-toggle {
-  align-items: center;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  color: var(--local-groupimport-easystud-text);
-  display: inline-flex;
-  font-family: inherit;
-  font-size: 1.125rem;
-  font-weight: 700;
-  gap: var(--easyedu-action-icon-gap);
-  min-height: 0;
-  min-width: 0;
-  padding: 0;
-}
-.local-groupimport-easystud__participant-navigation .select-menu > .dropdown-toggle::after {
-  margin-inline-start: 0;
-}
 .local-groupimport-easystud__navigation {
-  margin: 0 0 1.05rem;
+  margin: 0;
   position: relative;
 }
 .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] {
@@ -2394,7 +2369,7 @@
   align-items: flex-start;
   display: block;
   gap: 1rem;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0;
 }
 .local-groupimport-easystud__eyebrow {
   color: var(--local-groupimport-easystud-primary);
@@ -2819,7 +2794,7 @@
   gap: 0.65rem;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   justify-items: center;
-  margin: calc(var(--easyedu-navigation-following-gap) + 0.35rem) 0 1.75rem;
+  margin: 1.5rem 0;
 }
 .local-groupimport-easystud__clear-selection-frame {
   align-items: stretch;
@@ -2926,8 +2901,8 @@
 .local-groupimport-easystud__layout {
   align-items: stretch;
   display: grid;
-  gap: 1.35rem;
-  grid-template-columns: minmax(23rem, 0.92fr) minmax(29rem, 1.38fr);
+  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .local-groupimport-easystud-tour-button {
   align-items: center;
@@ -2999,20 +2974,6 @@
   color: #2f7f62;
 }
 .local-groupimport-easystud__panel {
-  background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-border);
-  border-radius: calc(var(--easyedu-radius) + 0.2rem);
-  box-shadow: var(--easyedu-shadow);
-  min-width: 0;
-  overflow: visible;
-  position: relative;
-  background-color: #fff;
-  background-image: var(--local-groupimport-easystud-panel-rail), linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
-  background-position: left top, left top;
-  background-repeat: no-repeat;
-  background-size: 100% 0.35rem, 100% 100%;
-  border-radius: 1rem;
-  box-shadow: var(--local-groupimport-easystud-shadow-soft);
   height: clamp(42rem, 72vh, 64rem);
   overflow: visible;
   position: relative;
@@ -3024,15 +2985,6 @@
   flex: 1 1 auto;
   flex-direction: column;
   height: 100%;
-  padding: 1rem;
-}
-.local-groupimport-easystud__panel--participants {
-  --local-groupimport-easystud-panel-rail: linear-gradient(90deg, #0f6cbf 0%, #5b9bd8 100%);
-  border-color: #cddbed;
-}
-.local-groupimport-easystud__panel--structure {
-  --local-groupimport-easystud-panel-rail: linear-gradient(90deg, #1b7f5a 0%, #65a97f 100%);
-  border-color: #d8decf;
 }
 .local-groupimport-easystud__panel-heading {
   align-items: flex-start;
@@ -20260,5 +20212,93 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
   .easyedu-ui .easyedu-choice .easyedu-segmented-choice__options {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+.easyedu-ui .easyedu-workspace-identity {
+  min-inline-size: 0;
+}
+
+.easyedu-ui .easyedu-workspace-eyebrow {
+  color: var(--easyedu-primary);
+  display: block;
+  font: 700 0.875rem/1.2 var(--easyedu-font-family-ui);
+  letter-spacing: 0;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+}
+
+.easyedu-ui .easyedu-workspace-title-control {
+  margin: 0 0 0.75rem;
+  min-inline-size: 0;
+}
+.easyedu-ui .easyedu-workspace-title-control .select-menu {
+  max-inline-size: 100%;
+}
+.easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  color: var(--easyedu-text);
+  display: inline-flex;
+  font: 700 1.875rem/1.2 var(--easyedu-font-family-ui);
+  gap: var(--easyedu-action-icon-gap);
+  max-inline-size: 100%;
+  min-block-size: 0;
+  min-inline-size: 0;
+  padding: 0;
+  text-align: start;
+  white-space: normal;
+}
+.easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle::after {
+  flex: 0 0 auto;
+  margin-inline-start: 0;
+}
+
+.easyedu-ui .easyedu-workspace-description {
+  color: var(--easyedu-text-muted);
+  font: 400 1rem/1.5 var(--easyedu-font-family-ui);
+  margin: 0;
+  max-inline-size: 68.75rem;
+}
+
+.easyedu-ui .easyedu-workspace-panel {
+  background-color: var(--easyedu-surface);
+  background-image: var(--easyedu-semantic-rail-primary);
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 100% 0.25rem;
+  border: 0.0625rem solid var(--easyedu-border);
+  border-radius: 0.875rem;
+  box-shadow: none;
+  min-inline-size: 0;
+}
+.easyedu-ui .easyedu-workspace-panel > .card-body {
+  padding: 1.5rem 1.25rem;
+}
+
+.easyedu-ui .easyedu-workspace-panel--success {
+  background-image: var(--easyedu-semantic-rail-success);
+}
+
+.easyedu-ui .easyedu-workspace-panel-title {
+  color: var(--easyedu-text);
+  font: 700 1.375rem/1.5 var(--easyedu-font-family-ui);
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .easyedu-ui .easyedu-workspace-eyebrow {
+    font-size: 0.75rem;
+  }
+  .easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle {
+    font-size: 1.4375rem;
+  }
+  .easyedu-ui .easyedu-workspace-description {
+    font-size: 0.8125rem;
+  }
+  .easyedu-ui .easyedu-workspace-panel > .card-body {
+    padding: 1rem;
   }
 }

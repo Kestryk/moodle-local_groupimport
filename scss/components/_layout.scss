@@ -40,41 +40,8 @@
     display: none;
   }
 
-  &__participant-navigation {
-    // Keep the title/chevron rhythm on the same compact tier as the upper
-    // participant actions. Moodle's dropdown chevron already participates in
-    // the flex row, so its Bootstrap margin must not create a second gap.
-    --easyedu-action-icon-gap: 0.35rem;
-
-    margin: 0.3rem 0 0.45rem;
-
-    .select-menu {
-      max-width: 24rem;
-    }
-
-    .select-menu > .dropdown-toggle {
-      align-items: center;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      color: var(--local-groupimport-easystud-text);
-      display: inline-flex;
-      font-family: inherit;
-      font-size: 1.125rem;
-      font-weight: 700;
-      gap: var(--easyedu-action-icon-gap);
-      min-height: 0;
-      min-width: 0;
-      padding: 0;
-
-      &::after {
-        margin-inline-start: 0;
-      }
-    }
-  }
-
   &__navigation {
-    margin: 0 0 1.05rem;
+    margin: 0;
     @include easyedu.navigation-component(64rem, true);
   }
 
@@ -727,7 +694,7 @@
     align-items: flex-start;
     display: block;
     gap: 1rem;
-    margin-bottom: 1.1rem;
+    margin-bottom: 0;
   }
 
   &__eyebrow {
@@ -904,7 +871,7 @@
     gap: 0.65rem;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     justify-items: center;
-    margin: calc(var(--easyedu-navigation-following-gap) + 0.35rem) 0 1.75rem;
+    margin: 1.5rem 0;
   }
 
   &__clear-selection-frame {
@@ -991,8 +958,8 @@
   &__layout {
     align-items: stretch;
     display: grid;
-    gap: 1.35rem;
-    grid-template-columns: minmax(23rem, 0.92fr) minmax(29rem, 1.38fr);
+    gap: 2rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   &-tour-button {
@@ -1076,17 +1043,8 @@
   }
 
   &__panel {
-    @include easyedu.panel-shell;
-
-    background-color: #fff;
-    background-image:
-      var(--local-groupimport-easystud-panel-rail),
-      linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
-    background-position: left top, left top;
-    background-repeat: no-repeat;
-    background-size: 100% 0.35rem, 100% 100%;
-    border-radius: 1rem;
-    box-shadow: var(--local-groupimport-easystud-shadow-soft);
+    // Shared workspace classes own paint, radius and padding. This adapter
+    // retains only the existing scroll/height and product-state behaviour.
     height: clamp(42rem, 72vh, 64rem);
     overflow: visible;
     position: relative;
@@ -1101,21 +1059,8 @@
       flex: 1 1 auto;
       flex-direction: column;
       height: 100%;
-      padding: 1rem;
     }
 
-  }
-
-  &__panel--participants {
-    --local-groupimport-easystud-panel-rail: linear-gradient(90deg, #0f6cbf 0%, #5b9bd8 100%);
-
-    border-color: #cddbed;
-  }
-
-  &__panel--structure {
-    --local-groupimport-easystud-panel-rail: linear-gradient(90deg, #1b7f5a 0%, #65a97f 100%);
-
-    border-color: #d8decf;
   }
 
   &__panel-heading {
