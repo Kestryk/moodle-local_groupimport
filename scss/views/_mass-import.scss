@@ -348,7 +348,6 @@
 
   &.has-preview &-card--upload &-fields,
   &.has-preview &-card--upload &-form,
-  &.has-preview &-card--upload &-card__header > .easyedu-icon-tile,
   &.has-preview &-card--upload &-card__header > div {
     opacity: 1;
     transform: translateX(0);
@@ -361,10 +360,10 @@
 
   &.has-preview.is-upload-collapsed &-card--upload &-fields,
   &.has-preview.is-upload-collapsed &-card--upload &-form,
-  &.has-preview.is-upload-collapsed &-card--upload &-card__header > .easyedu-icon-tile,
   &.has-preview.is-upload-collapsed &-card--upload &-card__header > div {
     opacity: 0;
     pointer-events: none;
+    position: absolute;
     transform: translateX(-0.35rem);
     transition:
       opacity var(--easyedu-motion-layout) var(--easyedu-motion-disclosure-ease),
@@ -413,11 +412,9 @@
 
   &.is-easyedu-motion-off &-card--upload &-fields,
   &.is-easyedu-motion-off &-card--upload &-form,
-  &.is-easyedu-motion-off &-card--upload &-card__header > .easyedu-icon-tile,
   &.is-easyedu-motion-off &-card--upload &-card__header > div,
   .easyedu-motion-disabled &-card--upload &-fields,
   .easyedu-motion-disabled &-card--upload &-form,
-  .easyedu-motion-disabled &-card--upload &-card__header > .easyedu-icon-tile,
   .easyedu-motion-disabled &-card--upload &-card__header > div {
     transition: none;
   }
