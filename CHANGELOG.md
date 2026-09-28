@@ -2,6 +2,10 @@
 
 ## 2026-09-28
 
+- Keep the CSV identity anchored to the starting edge throughout preview
+  collapse, with only its final small inset adjustment animated. Avoid the
+  temporary centring inside the full-width collapsing column.
+
 - Synchronize the preview chevron position and rotation with the shared 560ms
   layout transition. Compatible grid tracks interpolate in both directions;
   the toggle keeps absolute positioning instead of jumping into sticky flow.
