@@ -12,7 +12,7 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 
 # Git blob hashes compare normalized source, independently of checkout CRLF.
 $canonicalModules = @{
-    'scss/easyedu/_data-classes.scss' = '50cf1b6e982f21f61df8f920893b6b93adf655eb'
+    'scss/easyedu/_data-classes.scss' = '14ca45c65aa149e2aa5806e72d0af9a85b470b39'
     'scss/easyedu/_foundation-classes.scss' = '3e9dacd1f923c948202f3882659a37de91a3f254'
     'scss/easyedu/_tokens.scss' = 'f92fb9ab6e4f3d5c7bea742a2e87ac6020150bcd'
     'scss/easyedu/adapters/_moodle-file-deposit.scss' = 'c8f7f6bb8f30a07f43d2051e870bee6a8aab442f'
@@ -75,6 +75,17 @@ if (($massImport + "`n" + $administration) -match 'font-weight:\s*[0-9]' -or
 
 if ($kitTypography -match '@mixin type-page-identity') {
     throw 'The embedded Kit must use type-page-title directly.'
+}
+
+$kitDataClasses = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\_data-classes.scss')
+$kitTables = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_tables.scss')
+foreach ($needle in @('margin-inline: auto;', 'padding: 0.375rem 0.75rem;', 'text-align: center;')) {
+    if (-not $kitTables.Contains($needle)) {
+        throw "The embedded multiline status-label geometry is missing: $needle"
+    }
+}
+if (-not $kitDataClasses.Contains('@include tables.status-label-layout;')) {
+    throw 'The embedded easyedu-status class must consume the canonical status-label layout.'
 }
 
 $kitForms = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_forms.scss')

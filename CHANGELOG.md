@@ -2,6 +2,10 @@
 
 ## 2026-09-28
 
+- Centre multiline preview Status labels in their cells and increase their
+  inline inset so validation messages and long identifiers no longer touch the
+  rounded border. Short statuses keep their compact fit-content width.
+
 - Stage the preview CSV-column disclosure to prevent copy flashes: content
   fades for 220ms before collapse, the 320ms track change then runs alone;
   expansion restores the track before fading content back in. Reduced motion
