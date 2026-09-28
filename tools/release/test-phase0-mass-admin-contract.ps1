@@ -42,7 +42,7 @@ if ($massImport -notmatch '(?s)&\.has-preview\.is-upload-collapsed &-card--uploa
     throw 'Collapsed Mass Import upload content must leave layout flow while the CSV identity remains visible.'
 }
 
-if ($massImport -match '(?s)&\.has-preview\.is-upload-collapsed.*?&-card__header > \.easyedu-icon-tile') {
+if ($massImport -match '(?s)&-card__header > \.easyedu-icon-tile\s*\{[^}]*?(?:opacity:\s*0|visibility:\s*hidden|display:\s*none)') {
     throw 'Collapsed Mass Import upload rail must preserve its centred CSV identity icon.'
 }
 foreach ($phase in @('is-upload-collapsing', 'is-upload-expanding')) {

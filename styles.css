@@ -15840,6 +15840,21 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header {
   margin-bottom: 0.65rem;
 }
+.local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile {
+  position: absolute;
+  inset-inline-start: 0.85rem;
+  top: 0.85rem;
+  transition-duration: var(--easyedu-motion-layout);
+  transition-property: inset-inline-start, top;
+  transition-timing-function: var(--easyedu-motion-disclosure-ease);
+}
+.local-groupimport-import.has-preview .local-groupimport-import-card--upload .easyedu-panel__copy {
+  grid-column: 2;
+}
+.local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile {
+  inset-inline-start: calc(1.15rem - 1px);
+  top: 1.1rem;
+}
 .local-groupimport-import.has-preview:not(.is-upload-collapsed) .local-groupimport-import-card--upload .local-groupimport-import-card__header {
   padding-inline-end: 2.7rem;
 }
@@ -15872,7 +15887,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   height: 100%;
   justify-items: center;
   margin: 0;
-  min-height: calc(min(72vh, 52rem) - 1.7rem);
   padding-top: 0.25rem;
   width: 100%;
 }
@@ -15887,7 +15901,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   inset-inline-end: 1.425rem;
 }
 @media (prefers-reduced-motion: reduce) {
-  .local-groupimport-import.has-preview .local-groupimport-import__grid, .local-groupimport-import.has-preview .local-groupimport-import-card__toggle, .local-groupimport-import.has-preview .local-groupimport-import-card__toggle .fa {
+  .local-groupimport-import.has-preview .local-groupimport-import__grid, .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile, .local-groupimport-import.has-preview .local-groupimport-import-card__toggle, .local-groupimport-import.has-preview .local-groupimport-import-card__toggle .fa {
     transition: none;
   }
 }

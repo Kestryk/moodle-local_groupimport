@@ -16,18 +16,13 @@ test('Mass Import column and chevron move together without jumps', async({page},
     }
     const root = page.locator('#local-groupimport-import');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
-    const transfer = await page.evaluateHandle(() => {
-        const data = new DataTransfer();
-        data.items.add(new File(['student;group;grouping\nunknown-animation-probe;Motion preview;Motion preview'],
-            'motion-preview.csv', {type: 'text/csv'}));
-        return data;
+    await root.locator('.fp-btn-choose').click();
+    await page.getByText('Upload a file', {exact: true}).click();
+    await page.locator('.fp-upload-form input[type="file"]').setInputFiles({
+        name: 'motion-preview.csv', mimeType: 'text/csv',
+        buffer: Buffer.from('student;group;grouping\nunknown-animation-probe;Motion preview;Motion preview'),
     });
-    const filelist = root.locator('.filepicker-filelist');
-    try {
-        await filelist.dispatchEvent('dragenter', {dataTransfer: transfer});
-        await filelist.dispatchEvent('dragover', {dataTransfer: transfer});
-        await filelist.dispatchEvent('drop', {dataTransfer: transfer});
-    } finally { await transfer.dispose(); }
+    await page.locator('.fp-upload-btn').click();
     await expect(root.locator('.filepicker-filename')).toContainText('motion-preview.csv', {timeout: 30000});
     await root.locator('.local-groupimport-import-card--upload [type="submit"]').click();
     await expect(root).toHaveClass(/has-preview/, {timeout: 60000});
@@ -41,12 +36,16 @@ test('Mass Import column and chevron move together without jumps', async({page},
             const grid = node.querySelector('.local-groupimport-import__grid');
             const copy = node.querySelector('.easyedu-panel__copy');
             const icon = button.querySelector('.fa');
+            const csv = card.querySelector('.easyedu-icon-tile');
             const frames = [];
             const start = performance.now();
             const sample = () => {
                 const b = button.getBoundingClientRect();
+                const c = card.getBoundingClientRect();
+                const identity = csv.getBoundingClientRect();
                 frames.push({t: performance.now() - start, width: card.getBoundingClientRect().width,
-                    x: b.x, y: b.y, rotation: getComputedStyle(icon).transform,
+                    x: b.x - c.x, y: b.y - c.y, csvX: identity.x - c.x,
+                    csvY: identity.y - c.y, rotation: getComputedStyle(icon).transform,
                     opacity: Number(getComputedStyle(copy).opacity),
                     collapsed: node.classList.contains('is-upload-collapsed'),
                     animations: grid.getAnimations().map(a => ({property: a.transitionProperty,
@@ -74,6 +73,7 @@ test('Mass Import column and chevron move together without jumps', async({page},
             if (frames[i].t - frames[i - 1].t > 45) continue;
             expect(Math.abs(frames[i].y - frames[i - 1].y), 'Chevron must not jump vertically').toBeLessThan(15);
             expect(Math.abs(frames[i].x - frames[i - 1].x), 'Chevron must follow the column smoothly').toBeLessThan(90);
+            expect(Math.abs(frames[i].csvX - frames[i - 1].csvX), 'CSV must remain on the starting edge').toBeLessThan(3);
         }
         const moving = frames.filter(f => f.animations.some(a => a.property === 'grid-template-columns'));
         expect(moving.length).toBeGreaterThan(8);
