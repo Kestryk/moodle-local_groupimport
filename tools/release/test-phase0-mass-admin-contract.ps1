@@ -14,7 +14,7 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 $canonicalModules = @{
     'scss/easyedu/_data-classes.scss' = '21c27c0d91cbe103e4fb0a0fcf38cae80d9f5b50'
     'scss/easyedu/_foundation-classes.scss' = 'd2bf25fe6cdac3f85894f43868d546fe34c9df20'
-    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '71cfa861522e300ea0db555b8ff74e2a406a257a'
+    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '0f31319f482353e5a092508917faf2aaf2d71ee7'
 }
 foreach ($path in $canonicalModules.Keys) {
     $actual = & git -C $pluginRoot hash-object $path
@@ -57,6 +57,17 @@ if (($massImport + "`n" + $administration) -match 'font-weight:\s*[0-9]' -or
 
 if ($kitTypography -match '@mixin type-page-identity') {
     throw 'The embedded Kit must use type-page-title directly.'
+}
+
+$kitForms = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_forms.scss')
+$depositAdapter = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\adapters\_moodle-file-deposit.scss')
+if ($kitForms -notmatch '(?s)\.easyedu-file-deposit__title\s*\{\s*@include typography\.type-card-title;' -or
+    $kitForms -notmatch '(?s)\.easyedu-file-deposit__support\s*\{\s*@include typography\.type-caption;\s*line-height: 1\.2;') {
+    throw 'The embedded file-deposit title/help roles diverge from Foundations.'
+}
+if ($depositAdapter -match 'font:\s*700\s+1\.0625rem/1\.2' -or
+    $depositAdapter -match 'font:\s*500\s+0\.75rem/1\.2') {
+    throw 'The embedded Moodle adapter restored legacy local deposit typography.'
 }
 
 if ($kitManifest.consumerSync.sourceCommit -notmatch '^[0-9a-f]{40}$') {

@@ -282,6 +282,13 @@ focus ring, selected option contrast or disabled state.
 }
 ```
 
+### Solid large file deposit
+
+The large native deposit shell uses `type-card-title` (15.68px / 700 / 1.2)
+for its action title and `type-caption` (12.16px / 400 / 1.2) for explanatory
+help. Default, hover, focus, drag, danger, disabled and uploading states keep
+those roles. File names, progress and metadata remain separate data roles.
+
 ## Colour picker
 
 Use this wrapper around a native `input[type="color"]` when a plugin needs a

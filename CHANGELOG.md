@@ -2,6 +2,10 @@
 
 ## 2026-09-28
 
+- Consume the Foundations typography contract for large file-deposit action
+  titles and help copy; keep filenames, upload progress and file metadata in
+  their existing data roles.
+
 - Close the loading-bootstrap readiness race where AMD could finish before the
   observer was attached and incorrectly leave Mass Import in degraded mode.
 
