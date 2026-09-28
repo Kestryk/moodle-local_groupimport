@@ -48,6 +48,10 @@ test('Student Management Foundations workspace desktop tablet and mobile', async
             expect(Math.abs(report.panels[0].h-report.panels[1].h)).toBeLessThan(2);
             expect(Math.abs(report.panels[0].w-report.panels[1].w)).toBeLessThan(2);
         }
-        await root.screenshot({path:testInfo.outputPath(`workspace-${width}.png`)});
+        // Moodle scrolls its page wrapper, not only the document. A screenshot
+        // of the oversized root can centre it and clip the header. Capture the
+        // real viewport after explicitly bringing the identity into view.
+        await root.locator('.local-groupimport-easystud__header').scrollIntoViewIfNeeded();
+        await page.screenshot({path:testInfo.outputPath(`workspace-${width}.png`)});
     }
 });

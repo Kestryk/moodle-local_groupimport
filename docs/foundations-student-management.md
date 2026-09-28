@@ -30,3 +30,27 @@ Navigation and layout-toggle spacing no longer accumulates three margins.
 No assertion of complete Student Management migration follows from this slice.
 Browser checks must inspect desktop, tablet and phone using real populated
 cards without submitting imports, memberships, messages or settings.
+
+## Verified first-slice evidence
+
+Canonical Kit `ce8a701`, consumer `374f88c`, Moodle 5.1 preview `8a9edf2`.
+Sass compilation and the pinned embedded-module contract passed. Authenticated
+run `easystud-authenticated-20260928T201728645Z-51068` passed at 1600, 768
+and 390px: Inter, 30px/23px title, no horizontal document overflow, equal
+desktop columns and no panel shadows. Desktop/mobile viewport captures were
+inspected; the earlier root capture clipped content because Moodle scrolls
+its page wrapper, so the preserved test now captures the actual viewport.
+Cleanup confirms cleared credentials and released runtime lease. No membership,
+message, import or settings mutation occurred. Human acceptance is pending.
+
+The cards and filters in these captures still use their existing implementation;
+the test proves only this shell slice. In particular compact participant names,
+filter density, mobile sorting and card action alignment need their own pass.
+
+## Execution-efficiency note
+
+Most avoidable work in this continuation came from the disclosure harness:
+viewport-relative measurements misread scroll anchoring, and repository form
+replacement required awaiting Moodle's URL `action=list` response. Preserve
+the corrected small test instead of repeating broad page audits. No reliable
+per-task token counter was available, so no token savings are claimed.
