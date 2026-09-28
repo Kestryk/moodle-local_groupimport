@@ -182,6 +182,7 @@
   }
   .easyedu-ui .easyedu-button { @include foundation-button; }
   .easyedu-ui .easyedu-button--secondary { @include foundation-button(true); }
+  .easyedu-ui .easyedu-action-with-icon { @include buttons.action-content; }
   .easyedu-ui .easyedu-empty {
     position: relative;
     align-content: center;

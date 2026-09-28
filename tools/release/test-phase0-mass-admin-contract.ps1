@@ -13,9 +13,11 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 # Git blob hashes compare normalized source, independently of checkout CRLF.
 $canonicalModules = @{
     'scss/easyedu/_data-classes.scss' = '50cf1b6e982f21f61df8f920893b6b93adf655eb'
-    'scss/easyedu/_foundation-classes.scss' = '110e52c8f1b61fc079717b3c30d363ab2894f780'
+    'scss/easyedu/_foundation-classes.scss' = '3e9dacd1f923c948202f3882659a37de91a3f254'
+    'scss/easyedu/_tokens.scss' = 'f92fb9ab6e4f3d5c7bea742a2e87ac6020150bcd'
     'scss/easyedu/adapters/_moodle-file-deposit.scss' = 'c8f7f6bb8f30a07f43d2051e870bee6a8aab442f'
-    'scss/easyedu/components/_buttons.scss' = 'a128429a0d08617ce1f7dae984ecdb4eee74d60c'
+    'scss/easyedu/components/_animations.scss' = '9dc31bb53c38984f8d69a1c06e9aec848208aa52'
+    'scss/easyedu/components/_buttons.scss' = '355a054392c9ece426a7e49fbfa99ba86f0124d8'
     'scss/easyedu/components/_forms.scss' = 'e5b87206d93240fe270ba664425449005744889d'
 }
 foreach ($path in $canonicalModules.Keys) {
@@ -28,7 +30,8 @@ foreach ($path in $canonicalModules.Keys) {
 foreach ($needle in @(
     '@include easyedu.type-control-label;',
     '@include easyedu.type-caption;',
-    '@include easyedu.action-row'
+    '@include easyedu.action-row',
+    '@include easyedu.layout-disclosure-transition(grid-template-columns);'
 )) {
     if (-not $massImport.Contains($needle)) {
         throw "Mass Import is missing the direct Kit contract: $needle"
@@ -83,6 +86,9 @@ if (-not $markup.Contains('table-reboot easyedu-data-table')) {
 foreach ($class in @('easyedu-ui', 'easyedu-panel__title', 'easyedu-information', 'easyedu-tag', 'easyedu-empty')) {
     if (-not $markup.Contains($class)) { throw "Missing shared class: $class" }
 }
+if (($markup.Split('easyedu-action-with-icon').Count - 1) -lt 2) {
+    throw 'Both report-export actions must consume the public icon-and-label class.'
+}
 if ($massImport -match '\.fp-btn-choose|\.filepicker-container|\.easyedu-file-deposit') {
     throw 'File deposit presentation must live in the canonical Kit adapter, not the plugin view.'
 }
@@ -93,8 +99,11 @@ foreach ($needle in @('data-easyedu-remove-label', "'maxfiles' => 1")) {
     if (-not $importForm.Contains($needle)) { throw "Missing selected-file contract: $needle" }
 }
 foreach ($needle in @('draftfiles_ajax.php', 'easyedu-file-deposit__file-type',
-        'easyedu-file-deposit__remove', 'Motion.swap(uploadCard', 'Motion.swap(button')) {
+        'easyedu-file-deposit__remove', 'Motion.swap(button')) {
     if (-not $importController.Contains($needle)) { throw "Missing selected-file/motion controller contract: $needle" }
+}
+if ($importController.Contains('Motion.swap(uploadCard')) {
+    throw 'Upload-column geometry must not stack Motion.swap over the Kit layout transition.'
 }
 
 if ($kitManifest.consumerSync.fullTreeIdentical -ne $false) {

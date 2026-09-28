@@ -101,6 +101,12 @@ canonical SCSS tree: `ad55b04be6b89485ca91c1e98c1d2b43daeacc19`.
 - loading readiness and fail-open JavaScript;
 - routes, permissions, translations and responsive breakpoints.
 
+The 2026-09-28 correction keeps that ownership boundary: the product toggles
+the upload-column state, while the canonical Kit owns its 320ms layout timing,
+disclosure easing and reduced-motion path. The same Kit version exposes
+`easyedu-action-with-icon`; both report-export links consume it instead of a
+product-specific icon margin or gap.
+
 ## Validation boundary
 
 ### Visible convergence follow-up

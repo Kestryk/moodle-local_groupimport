@@ -2,6 +2,11 @@
 
 ## 2026-09-28
 
+- Replace the competing CSV-column swap/fade with the Kit's single 320ms
+  layout-disclosure transition and preserve reduced-motion behavior. Apply the
+  public icon-and-label action class to current-report and history exports so
+  both keep the canonical icon slot and spacing.
+
 - Consume the Foundations M/L selected-file contract in Mass Import: the
   selected CSV/XLS/XLSX now shows its type and a real remove action that
   deletes the Moodle user draft before clearing the native picker state.

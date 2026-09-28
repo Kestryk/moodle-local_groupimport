@@ -175,6 +175,15 @@
   transition-timing-function: var(--easyedu-motion-ease);
 }
 
+// Use for a persistent layout region whose tracks change in place, such as a
+// collapsible side column. Keep one transition owner: consumers must not layer
+// a second enter/swap animation over the same geometry change.
+@mixin layout-disclosure-transition($properties...) {
+  transition-duration: var(--easyedu-motion-layout);
+  transition-property: $properties;
+  transition-timing-function: var(--easyedu-motion-disclosure-ease);
+}
+
 @mixin expandable-region {
   overflow: hidden;
   transition:
@@ -280,6 +289,8 @@
   }
 }
 
+// Bottom-end variant for persistent workspace actions. It preserves the
+// established EasyStud action feedback rather than turning it into a modal cue.
 @mixin action-busy-indicator-bottom-end($label-attribute: "data-easyedu-action-busy-label") {
   &.is-action-busy::after {
     animation: easyedu-busy-spin 0.8s linear infinite;
@@ -300,6 +311,7 @@
     width: 2.15rem;
     z-index: 1048;
   }
+
   &.is-action-busy::before {
     animation: easyedu-busy-label 1.45s ease-in-out infinite;
     background: #fff;

@@ -115,12 +115,20 @@ a second CSS animation.
 - `--easyedu-motion-fast: 100ms` for exits and micro-feedback;
 - `--easyedu-motion-normal: 160ms` for list entries and ordinary changes;
 - `--easyedu-motion-slow: 220ms` for disclosures and modal entrances;
+- `--easyedu-motion-layout: 320ms` for a persistent column or region whose
+  tracks resize in place;
 - `--easyedu-motion-ease: cubic-bezier(0.22, 1, 0.36, 1)` for spatial motion.
 - `--easyedu-motion-disclosure-ease: cubic-bezier(0.4, 0, 0.2, 1)` for
   measured height changes that must remain smooth in both directions.
 
-Themes may override the three duration tokens, but must not reactivate motion
+Themes may override the duration tokens, but must not reactivate motion
 when the server policy or operating-system preference disables it.
+
+Use `layout-disclosure-transition(...)` for in-place grid/flex track changes.
+It deliberately lasts longer than an ordinary control state so the user can
+follow the moving boundary. The layout transition is the only geometry owner:
+do not add `Motion.swap`, a second opacity entrance or a timeout around the
+same column change. Child content may fade with the same layout token.
 
 Measured disclosures may add at most `40ms` for unusually tall content. A
 selection handler must not rebuild pagination or sort complete lists before a
