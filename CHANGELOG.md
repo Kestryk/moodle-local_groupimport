@@ -2,6 +2,10 @@
 
 ## 2026-09-28
 
+- Synchronize the preview chevron position and rotation with the shared 560ms
+  layout transition. Compatible grid tracks interpolate in both directions;
+  the toggle keeps absolute positioning instead of jumping into sticky flow.
+
 - Centre multiline preview Status labels in their cells and increase their
   inline inset so validation messages and long identifiers no longer touch the
   rounded border. Short statuses keep their compact fit-content width.

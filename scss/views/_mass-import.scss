@@ -320,11 +320,11 @@
   }
 
   &.has-preview &__grid {
-    grid-template-columns: minmax(17rem, 0.62fr) minmax(33rem, 1.38fr);
+    grid-template-columns: minmax(4.85rem, 0.62fr) minmax(0, 1.38fr);
   }
 
   &.has-preview.is-upload-collapsed &__grid {
-    grid-template-columns: 4.85rem minmax(0, 1fr);
+    grid-template-columns: minmax(4.85rem, 0fr) minmax(0, 1.38fr);
   }
 
 
@@ -335,6 +335,7 @@
   }
 
   &.has-preview &-card--upload {
+    position: relative;
     padding: 0.85rem;
   }
 
@@ -394,6 +395,28 @@
     margin-bottom: 0.65rem;
   }
 
+  &.has-preview:not(.is-upload-collapsed) &-card--upload &-card__header {
+    padding-inline-end: 2.7rem;
+  }
+
+  &.has-preview &-card__toggle {
+    position: absolute;
+    top: 1.1rem;
+    inset-inline-end: 0.85rem;
+    margin: 0;
+    z-index: 2;
+    @include easyedu.layout-disclosure-transition(top, inset-inline-end);
+
+    .fa {
+      transform: rotate(0deg);
+      @include easyedu.layout-disclosure-transition(transform);
+    }
+  }
+
+  &.has-preview.is-upload-collapsed &-card__toggle .fa {
+    transform: rotate(180deg);
+  }
+
   &.has-preview.is-upload-collapsed &-card--upload &-card__header {
     align-content: start;
     align-items: start;
@@ -420,12 +443,23 @@
 
 
   &.has-preview.is-upload-collapsed &-card__toggle {
-    align-self: start;
-    justify-self: center;
-    margin-left: 0;
-    position: sticky;
     top: 4.25rem;
-    z-index: 2;
+    inset-inline-end: 1.425rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &.has-preview &__grid,
+    &.has-preview &-card__toggle,
+    &.has-preview &-card__toggle .fa {
+      transition: none;
+    }
+  }
+
+  &.is-easyedu-motion-off &-card__toggle,
+  &.is-easyedu-motion-off &-card__toggle .fa,
+  .easyedu-motion-disabled &-card__toggle,
+  .easyedu-motion-disabled &-card__toggle .fa {
+    transition: none;
   }
 
   &.is-easyedu-motion-off &-card--upload &-fields,

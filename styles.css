@@ -440,7 +440,7 @@
   --easyedu-motion-fast: 100ms;
   --easyedu-motion-normal: 160ms;
   --easyedu-motion-slow: 220ms;
-  --easyedu-motion-layout: 320ms;
+  --easyedu-motion-layout: 560ms;
   --easyedu-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --easyedu-motion-disclosure-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --easyedu-participant: #4873ad;
@@ -14056,7 +14056,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-motion-fast: 100ms;
   --easyedu-motion-normal: 160ms;
   --easyedu-motion-slow: 220ms;
-  --easyedu-motion-layout: 320ms;
+  --easyedu-motion-layout: 560ms;
   --easyedu-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --easyedu-motion-disclosure-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --easyedu-participant: #4873ad;
@@ -15122,7 +15122,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-motion-fast: 100ms;
   --easyedu-motion-normal: 160ms;
   --easyedu-motion-slow: 220ms;
-  --easyedu-motion-layout: 320ms;
+  --easyedu-motion-layout: 560ms;
   --easyedu-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --easyedu-motion-disclosure-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --easyedu-participant: #4873ad;
@@ -15795,15 +15795,16 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   transition: none;
 }
 .local-groupimport-import.has-preview .local-groupimport-import__grid {
-  grid-template-columns: minmax(17rem, 0.62fr) minmax(33rem, 1.38fr);
+  grid-template-columns: minmax(4.85rem, 0.62fr) minmax(0, 1.38fr);
 }
 .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import__grid {
-  grid-template-columns: 4.85rem minmax(0, 1fr);
+  grid-template-columns: minmax(4.85rem, 0fr) minmax(0, 1.38fr);
 }
 .local-groupimport-import.has-preview .local-groupimport-import-card {
   min-height: min(72vh, 52rem);
 }
 .local-groupimport-import.has-preview .local-groupimport-import-card--upload {
+  position: relative;
   padding: 0.85rem;
 }
 .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload {
@@ -15839,6 +15840,28 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header {
   margin-bottom: 0.65rem;
 }
+.local-groupimport-import.has-preview:not(.is-upload-collapsed) .local-groupimport-import-card--upload .local-groupimport-import-card__header {
+  padding-inline-end: 2.7rem;
+}
+.local-groupimport-import.has-preview .local-groupimport-import-card__toggle {
+  position: absolute;
+  top: 1.1rem;
+  inset-inline-end: 0.85rem;
+  margin: 0;
+  z-index: 2;
+  transition-duration: var(--easyedu-motion-layout);
+  transition-property: top, inset-inline-end;
+  transition-timing-function: var(--easyedu-motion-disclosure-ease);
+}
+.local-groupimport-import.has-preview .local-groupimport-import-card__toggle .fa {
+  transform: rotate(0deg);
+  transition-duration: var(--easyedu-motion-layout);
+  transition-property: transform;
+  transition-timing-function: var(--easyedu-motion-disclosure-ease);
+}
+.local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card__toggle .fa {
+  transform: rotate(180deg);
+}
 .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-card__header {
   align-content: start;
   align-items: start;
@@ -15860,12 +15883,16 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   overflow: hidden;
 }
 .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card__toggle {
-  align-self: start;
-  justify-self: center;
-  margin-left: 0;
-  position: sticky;
   top: 4.25rem;
-  z-index: 2;
+  inset-inline-end: 1.425rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .local-groupimport-import.has-preview .local-groupimport-import__grid, .local-groupimport-import.has-preview .local-groupimport-import-card__toggle, .local-groupimport-import.has-preview .local-groupimport-import-card__toggle .fa {
+    transition: none;
+  }
+}
+.local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card__toggle, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card__toggle .fa, .easyedu-motion-disabled .local-groupimport-import-card__toggle, .easyedu-motion-disabled .local-groupimport-import-card__toggle .fa {
+  transition: none;
 }
 .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-fields, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-form, .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import-card--upload .local-groupimport-import-card__header > div, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-fields, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-form, .easyedu-motion-disabled .local-groupimport-import-card--upload .local-groupimport-import-card__header > div {
   transition: none;

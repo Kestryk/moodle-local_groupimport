@@ -109,6 +109,15 @@ product-specific icon margin or gap.
 
 ## Validation boundary
 
+### Continuous column and chevron motion
+
+The follow-up replaces incompatible fixed/minmax grid endpoints with matching
+minmax tracks. The chevron keeps absolute positioning in both states, and its
+offset and stable glyph rotation share the Kit's 560ms spatial transition.
+The existing staged text fade is preserved. The dedicated
+`mass-import-disclosure-motion.spec.js` records frame-by-frame widths, control
+positions and transitions over four cycles and checks reduced motion.
+
 ### Visible convergence follow-up
 
 #### Class-first correction following human rejection

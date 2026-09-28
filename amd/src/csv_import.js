@@ -352,8 +352,9 @@ const applyUploadCollapsed = (root, button, collapsed) => {
             button.setAttribute('aria-label', label);
         }
         if (icon) {
-            icon.classList.toggle('fa-chevron-right', collapsed);
-            icon.classList.toggle('fa-chevron-left', !collapsed);
+            // Keep one glyph: CSS rotates it on the same clock as the column.
+            icon.classList.remove('fa-chevron-right');
+            icon.classList.add('fa-chevron-left');
         }
     }
 
