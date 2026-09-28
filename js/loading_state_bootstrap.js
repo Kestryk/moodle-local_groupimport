@@ -265,14 +265,19 @@
             }, 1500);
             reschedule();
         };
-        managerReadyObserver = new MutationObserver(function() {
+        var scheduleManagerReady = function() {
             if (managerReadyScheduled || root.getAttribute(readyAttribute) !== '1') {
                 return;
             }
             managerReadyScheduled = true;
             waitForVisualStability();
-        });
+        };
+        managerReadyObserver = new MutationObserver(scheduleManagerReady);
         managerReadyObserver.observe(root, {attributes: true, attributeFilter: [readyAttribute]});
+        // AMD can finish between the initial root scan and observer setup. Read
+        // the current value once so readiness is not lost when no later
+        // attribute mutation occurs.
+        scheduleManagerReady();
         timer = window.setTimeout(function() {
             transition('degraded', 'amd-timeout');
         }, failOpenDelay);

@@ -2,6 +2,9 @@
 
 ## 2026-09-28
 
+- Close the loading-bootstrap readiness race where AMD could finish before the
+  observer was attached and incorrectly leave Mass Import in degraded mode.
+
 - Consume the Kit page-header spacing measured from EasyStud Penpot (18px
   between introduction frame and navigation); remove the local block/gap rule.
 
