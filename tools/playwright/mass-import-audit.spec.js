@@ -360,10 +360,66 @@ test('previews a dropped file and keeps replacement controls usable', async({pag
     await expect(previewGrid).toHaveCSS('transition-timing-function', 'cubic-bezier(0.4, 0, 0.2, 1)');
     await expect(toggle).toHaveCSS('position', 'sticky');
     await expect(toggle).toHaveAttribute('data-local-groupimport-upload-toggle-bound', '1', {timeout: 15000});
-    await toggle.click();
+    const uploadCopy = root.locator('.local-groupimport-import-card--upload .easyedu-panel__copy');
+    const openingStart = await toggle.evaluate(button => {
+        button.click();
+        const container = button.closest('#local-groupimport-import');
+        const copy = container.querySelector('.local-groupimport-import-card--upload .easyedu-panel__copy');
+        const style = getComputedStyle(copy);
+        return {
+            expanding: container.classList.contains('is-upload-expanding'),
+            collapsed: container.classList.contains('is-upload-collapsed'),
+            opacity: parseFloat(style.opacity),
+            position: style.position,
+        };
+    });
+    expect(openingStart).toEqual({expanding: true, collapsed: false, opacity: 0, position: 'absolute'});
+    await expect(root).not.toHaveClass(/is-upload-expanding/, {timeout: 1500});
     await expect(root).not.toHaveClass(/is-upload-collapsed/);
+    await expect(uploadCopy).toHaveCSS('opacity', '1');
     await expect(root.locator('.local-groupimport-import-card--upload [type="submit"]')).toContainText(/replace file/i);
     await expectAccentRailsContained(root);
+
+    const closingStart = await toggle.evaluate(button => {
+        button.click();
+        const container = button.closest('#local-groupimport-import');
+        const copy = container.querySelector('.local-groupimport-import-card--upload .easyedu-panel__copy');
+        return {
+            collapsing: container.classList.contains('is-upload-collapsing'),
+            collapsed: container.classList.contains('is-upload-collapsed'),
+            position: getComputedStyle(copy).position,
+        };
+    });
+    expect(closingStart).toEqual({collapsing: true, collapsed: false, position: 'static'});
+    await page.waitForTimeout(80);
+    const closingOpacity = await uploadCopy.evaluate(node => parseFloat(getComputedStyle(node).opacity));
+    expect(closingOpacity).toBeGreaterThan(0);
+    expect(closingOpacity).toBeLessThan(1);
+    await expect(root).toHaveClass(/is-upload-collapsed/, {timeout: 1500});
+    await expect(root).not.toHaveClass(/is-upload-collapsing/, {timeout: 1500});
+    await expect(uploadCopy).toHaveCSS('position', 'absolute');
+    await expect(uploadCopy).toHaveCSS('visibility', 'hidden');
+    const compactRailAlignment = await root.locator('.local-groupimport-import-card--upload').evaluate(card => {
+        const icon = card.querySelector('.easyedu-icon-tile');
+        const toggleButton = card.querySelector('[data-local-groupimport-upload-toggle]');
+        const cardBounds = card.getBoundingClientRect();
+        const iconBounds = icon.getBoundingClientRect();
+        const toggleBounds = toggleButton.getBoundingClientRect();
+        const cardCenter = cardBounds.left + cardBounds.width / 2;
+        return {
+            iconDelta: Math.abs(iconBounds.left + iconBounds.width / 2 - cardCenter),
+            toggleDelta: Math.abs(toggleBounds.left + toggleBounds.width / 2 - cardCenter),
+            ordered: toggleBounds.top >= iconBounds.bottom,
+        };
+    });
+    expect(compactRailAlignment.iconDelta).toBeLessThanOrEqual(2);
+    expect(compactRailAlignment.toggleDelta).toBeLessThanOrEqual(2);
+    expect(compactRailAlignment.ordered).toBe(true);
+
+    await toggle.click();
+    await expect(root).not.toHaveClass(/is-upload-expanding/, {timeout: 1500});
+    await expect(root).not.toHaveClass(/is-upload-collapsed/);
+    await expect(uploadCopy).toHaveCSS('opacity', '1');
 
     const replacementTransfer = await page.evaluateHandle(() => new DataTransfer());
     await replacementTransfer.evaluate((transfer, content) => {
