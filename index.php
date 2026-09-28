@@ -1165,7 +1165,7 @@ echo html_writer::tag('div',
         ])
     ) .
     $navigationmarkup,
-    ['class' => 'local-groupimport-import__header']
+    ['class' => 'local-groupimport-import__header easyedu-page-header']
 );
 
 echo html_writer::start_div('local-groupimport-import__grid');

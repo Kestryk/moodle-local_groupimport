@@ -2,6 +2,9 @@
 
 ## 2026-09-28
 
+- Consume the Kit page-header spacing measured from EasyStud Penpot (18px
+  between introduction frame and navigation); remove the local block/gap rule.
+
 - Pin shared deposit/empty-state colours to canonical Kit `9ca120f`, clear the
   global drag veil when entering the deposit, and assert native progress/action
   separation. Harden the intercepted-upload test's asynchronous cleanup.

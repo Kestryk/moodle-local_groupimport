@@ -58,6 +58,12 @@
 @mixin foundation-classes {
   .easyedu-ui { @include foundation-scope; }
 
+  .easyedu-ui .easyedu-page-header {
+    display: grid;
+    gap: var(--easyedu-page-header-gap);
+    min-inline-size: 0;
+  }
+
   .easyedu-ui .easyedu-page-title {
     @include type.type-page-title;
     margin: 0 0 0.875rem;

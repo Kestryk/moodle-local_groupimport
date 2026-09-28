@@ -58,8 +58,13 @@ passed on runtime `3d43b45` (source `dbd09b8`, canonical Kit `9ca120f`). It
 checks global-to-local drag feedback and explicit progress/chooser separation
 at all three widths. Captures are in that run's external artifact directory;
 desktop/mobile uploading and drag-over evidence is pinned for 30 days.
-No actual import or administration save was executed. Exact product Penpot
-spacing and the linked uploading composition still await the EasyStud file.
+No actual import or administration save was executed. Product Penpot was then
+completed with desktop board `01e728c3-f1ef-80b3-8008-b5077a35e3e4`, containing
+linked instance `01e728c3-f1ef-80b3-8008-b5077b99bda5` of Foundations Uploading
+component `01e728c3-f1ef-80b3-8008-b455f30e0638`. Its descendants are contained
+after the product-width overrides. The measured introduction-to-navigation gap
+is 18px and is consumed through `.easyedu-page-header`. This is agent readback
+and export evidence; human visual acceptance remains separate.
 
 When holding a request, await the route callback with a polled counter (the
 request event can arrive first). Release and await the pending continuation
