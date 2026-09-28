@@ -37,9 +37,15 @@
   }
 
   .easyedu-file-deposit__title {
-    @include typography.type-panel-title;
+    @include typography.type-card-title;
     color: var(--easyedu-text);
     margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .easyedu-file-deposit__support {
+    @include typography.type-caption;
+    line-height: 1.2;
     overflow-wrap: anywhere;
   }
 

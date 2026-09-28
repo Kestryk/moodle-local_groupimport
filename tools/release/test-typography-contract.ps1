@@ -5,8 +5,13 @@ $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $studentSource = Get-Content (Join-Path $root 'scss\components\_typography.scss') -Raw
 $massImportSource = Get-Content (Join-Path $root 'scss\views\_mass-import.scss') -Raw
-$source = $studentSource + "`n" + $massImportSource
+$adminSource = Get-Content (Join-Path $root 'scss\views\_admin-settings.scss') -Raw
+$foundationSource = Get-Content (Join-Path $root 'scss\easyedu\_foundation-classes.scss') -Raw
+$depositSource = Get-Content (Join-Path $root 'scss\easyedu\adapters\_moodle-file-deposit.scss') -Raw
+$dataSource = Get-Content (Join-Path $root 'scss\easyedu\_data-classes.scss') -Raw
+$source = $studentSource + "`n" + $massImportSource + "`n" + $adminSource + "`n" + $foundationSource + "`n" + $depositSource + "`n" + $dataSource
 $css = Get-Content (Join-Path $root 'styles.css') -Raw
+$markup = Get-Content (Join-Path $root 'index.php') -Raw
 $failures = [System.Collections.Generic.List[string]]::new()
 
 function Assert-Contains {
@@ -19,11 +24,11 @@ foreach ($selector in @(
     '.local-groupimport-easystud-tree__section--ungrouped',
     '.local-groupimport-easystud-group__name',
     '.local-groupimport-easystud-grouping__name',
-    '.local-groupimport-import__title',
-    '.local-groupimport-import-card__title',
-    '.local-groupimport-import-fields__header strong',
-    '.local-groupimport-import-form .fitemtitle',
-    '.local-groupimport-import-preview__table thead th'
+    '.easyedu-ui .easyedu-page-title',
+    '.easyedu-ui .easyedu-panel__title',
+    '.easyedu-ui .easyedu-information__title',
+    '.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__title',
+    '.easyedu-ui .easyedu-data-table th'
 )) {
     Assert-Contains $css $selector "Generated CSS is missing $selector."
 }
@@ -33,25 +38,30 @@ foreach ($sourceSelector in @(
     '&-tree__section--ungrouped',
     '&-group__name',
     '&-grouping__name',
-    '&__title',
-    '&-card__title',
-    '&-fields__header',
-    '&-form',
-    '&-preview__table'
+    '.easyedu-ui .easyedu-page-title',
+    '.easyedu-ui .easyedu-panel__title',
+    '.easyedu-ui .easyedu-information__title',
+    '.easyedu-file-deposit__title',
+    '.easyedu-ui .easyedu-data-table'
 )) {
     Assert-Contains $source $sourceSelector "Source contract is missing $sourceSelector."
 }
 
-foreach ($role in @('type-page-title', 'type-panel-title', 'type-section-title', 'type-control-label', 'type-body', 'type-caption', 'type-eyebrow')) {
+foreach ($role in @('type-panel-title', 'type-section-title', 'type-control-label', 'type-body', 'type-caption', 'type-eyebrow')) {
     Assert-Contains $source "easyedu.$role" "Source contract does not consume $role."
 }
 
-Assert-Contains $source 'easyedu.card-title' 'Entity cards do not consume the shared card-title component.'
+Assert-Contains $foundationSource '@include type.type-page-title;' 'Canonical Foundations source does not consume type-page-title.'
 
-if ($massImportSource -notmatch '(?s)&-card__title\s*\{.*?@include easyedu\.type-control-label;' -or
-        $massImportSource -notmatch '(?s)&-fields__header\s*\{.*?strong\s*\{\s*@include easyedu\.type-control-label;' -or
-        $massImportSource -notmatch '(?s)&-form\s*\{.*?\.fitemtitle,\s*\.col-form-label\s*\{\s*@include easyedu\.type-eyebrow;') {
-    $failures.Add('Mass Import visible title hierarchy does not use the compact Student Management tiers.')
+Assert-Contains $source 'easyedu.card-title' 'Entity cards do not consume the shared card-title component.'
+Assert-Contains $markup 'local-groupimport-import__title easyedu-page-title' 'Mass Import does not bind its page title to the canonical Kit class.'
+Assert-Contains $markup 'local-groupimport-import__intro easyedu-body' 'Mass Import does not bind its introduction to the canonical Kit body class.'
+
+if ($foundationSource -notmatch '(?s)\.easyedu-ui \.easyedu-panel__title\s*\{\s*@include type\.type-section-title;' -or
+        $foundationSource -notmatch '(?s)\.easyedu-ui \.easyedu-information__title\s*\{\s*@include type\.type-card-title;' -or
+        $depositSource -notmatch '(?s)\.easyedu-file-deposit__title\s*\{\s*@include typography\.type-card-title;' -or
+        $depositSource -notmatch '(?s)\.easyedu-file-deposit__support\s*\{\s*@include typography\.type-caption;') {
+    $failures.Add('Mass Import visible title/help hierarchy does not consume the canonical Foundations roles.')
 }
 
 if ($failures.Count -gt 0) {

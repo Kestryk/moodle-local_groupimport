@@ -10,6 +10,10 @@ opt-in `file-deposit` shell for the solid large Foundations surface; do not
 change the legacy picker for unrelated consumers. Moodle theme CSS may follow
 plugin CSS: assert computed geometry (including the native inner drop target)
 and inspect empty/selected-file captures, not only the outer shell.
+All empty, drag-over, danger and uploading action titles use `type-card-title`;
+their explanatory help uses `type-caption` with a 1.2 line height. Do not use
+panel-title sizing or semibold metadata styling for those two roles. Filenames,
+progress and file metadata remain separate data roles.
 
 This document defines reusable component contracts that agents must preserve
 when moving UI from one plugin to another.

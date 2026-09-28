@@ -14,6 +14,19 @@ slices remain recorded in the canonical Phase 0 drift ledger.
 
 ## Lineage
 
+### File-deposit typography alignment — 2026-09-28
+
+Foundations Library and linked Standard instances now use `type-card-title`
+(15.68px / 700 / 1.2) for the large file-deposit action title and
+`type-caption` (12.16px / 400 / 1.2) for its explanatory sentence. Default,
+Hover, Focus-visible, Drag-over, Danger, Disabled and Uploading share the same
+roles. File names, progress and metadata remain distinct data roles.
+
+Canonical Kit pin `9dce7ae8c8b8f906ec8c5d16701da79961a7c696` removes the
+former hard-coded 17px/700 and 12px/500 pair from the Moodle adapter. EasyStud
+embeds the exact changed SCSS modules; product-Penpot propagation, Sass/runtime
+validation and human visual acceptance remain separate gates.
+
 ### Upload correction continuation — 2026-09-28
 
 Kit pin `79d273b` corrects native progress containment, cloud glyph layout,

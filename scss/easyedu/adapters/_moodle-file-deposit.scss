@@ -1,6 +1,7 @@
 // Moodle integration only. This adapter lives in the Kit and is identical in
 // every consumer. Moodle owns draft IDs, repositories, validation and progress.
 @use "../components/focus";
+@use "../components/typography";
 @use "../foundation-classes" as foundations;
 
 @mixin moodle-file-deposit-classes {
@@ -49,13 +50,14 @@
       }
     }
     .easyedu-file-deposit__title {
+      @include typography.type-card-title;
       color: var(--easyedu-deposit-title);
-      font: 700 1.0625rem/1.2 var(--easyedu-font-family-ui);
       margin: 0.125rem 0 0;
     }
     .easyedu-file-deposit__support {
+      @include typography.type-caption;
       color: var(--easyedu-deposit-text);
-      font: 500 0.75rem/1.2 var(--easyedu-font-family-ui);
+      line-height: 1.2;
       margin: 0.375rem 0 1.25rem 3.5rem;
     }
     .easyedu-file-deposit__requirements {
@@ -176,6 +178,8 @@
     &.is-dragover,
     &:has(.filepicker-filelist.dndupload-over) {
       &::after {
+        @include typography.type-card-title;
+
         align-items: center;
         background: var(--easyedu-file-deposit-drag-over-surface);
         border: 0.0625rem solid var(--easyedu-control-focus-border);
@@ -183,7 +187,6 @@
         color: var(--easyedu-deposit-title);
         content: attr(data-easyedu-drop-label);
         display: flex;
-        font: 700 1.0625rem/1.2 var(--easyedu-font-family-ui);
         inset: 1rem;
         justify-content: center;
         opacity: 0.97;
