@@ -152,13 +152,22 @@ Cover CSV and XLSX independently. Preview must not mutate course data. Validate:
 Restore tests are destructive and remain opt-in until the platform provisions a
 disposable database snapshot per run.
 
+### Local supervised mixed CSV
+
+`tests/fixtures/mass-import-mixed-course5.csv` covers the current Moodle 5.1
+course 5 with enabled username/email matching: existing and unknown accounts,
+existing and new destinations, one logical duplicate and missing required
+values. Its adjacent Markdown file records the expected preview result and the
+fixture-drift warning. Preview is non-mutating; confirmation remains manual and
+destructive to course memberships.
+
 ## Missing deterministic fixtures
 
 The following are not currently present and must be added before their tests
 become matrix gates:
 
-- canonical CSV and XLSX files containing valid, unknown, duplicate and
-  ambiguous identifiers;
+- portable CI CSV and XLSX files containing valid, unknown, duplicate and
+  ambiguous identifiers (the local course-5 CSV is not a portable CI fixture);
 - custom user profile fields configured as unique identifiers;
 - users with identical first or last names but different unique identifiers;
 - a capability matrix for manager, editing teacher, non-editing teacher and
