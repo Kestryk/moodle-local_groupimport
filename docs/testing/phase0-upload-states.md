@@ -71,3 +71,10 @@ request event can arrive first). Release and await the pending continuation
 before unregistering the route. Otherwise the test can fail with a false
 `Route is already handled` cleanup error. This is a test contract, not a
 product retry strategy. Browser success does not imply human Penpot acceptance.
+
+The next runtime reload exposed a bootstrap race: the AMD ready attribute could
+already be `1` before its MutationObserver was attached, leaving the page in the
+fail-open `degraded` state. The bootstrap now checks the current attribute once
+immediately after observation; this preserves the degraded deadline for real
+failures and does not weaken the browser assertion that normal startup is
+`ready`.
