@@ -78,7 +78,8 @@ ID, progress or validation lifecycle. Removal calls Moodle's authenticated
 state. Upload-panel disclosure and Select/Deselect label changes consume the
 shared Motion timings. Button icon slots/gaps, checkbox transition, preview
 notice caption sizing and generic table-header alignment are Kit-owned.
-Canonical Kit pin: `0a121f0b7c729c6f688b3d04542739de7aa5ebc1`;
+Canonical Kit implementation pin: `0a121f0b7c729c6f688b3d04542739de7aa5ebc1`;
+AI contract continuation: `b3e4d7dbe98be30371976da7ba885d7d18b5e3ed`;
 canonical SCSS tree: `ad55b04be6b89485ca91c1e98c1d2b43daeacc19`.
 
 - direct `type-page-title`, `type-section-title`, `type-control-label`,

@@ -5,7 +5,7 @@
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
-    "sourceCommit": "0a121f0b7c729c6f688b3d04542739de7aa5ebc1",
+    "sourceCommit": "b3e4d7dbe98be30371976da7ba885d7d18b5e3ed",
     "canonicalScssTree": "ad55b04be6b89485ca91c1e98c1d2b43daeacc19",
     "scope": "Mass Import and Administration Phase 0 subset",
     "fullTreeIdentical": false,
