@@ -240,6 +240,7 @@
   --easyedu-file-deposit-danger-surface: #fff4f2;
   --easyedu-file-deposit-danger-border: #d96b63;
   --easyedu-file-deposit-danger-title: #9b2c24;
+  --easyedu-page-header-gap: 1.125rem;
   --easyedu-gap: 1rem;
   --easyedu-navigation-following-gap: 2.5rem;
   --easyedu-navigation-panel-width: 88vw;
@@ -2252,9 +2253,13 @@
     padding: 0.3rem;
     width: 100%;
   }
+}
+@media (max-width: 1024px) {
   .local-groupimport-easystud__loading-view-toggle-item {
     height: var(--easyedu-touch-target-min);
   }
+}
+@media (max-width: 1024px) {
   .local-groupimport-easystud__loading-panel--structure {
     display: none;
   }
@@ -5125,7 +5130,7 @@
   overflow: visible;
   z-index: 36;
 }
-.local-groupimport-easystud-group:has(> .local-groupimport-easystud-group__members.is-expanded):not(.is-actions-menu-open):not(.is-sort-menu-open) {
+.local-groupimport-easystud-group:has(.local-groupimport-easystud-group__members.is-expanded):not(.is-actions-menu-open):not(.is-sort-menu-open) {
   z-index: 12;
 }
 .local-groupimport-easystud-group[data-easystud-user-drop].is-drop-target {
@@ -6401,12 +6406,18 @@
     grid-column: 3;
     justify-self: end;
   }
+}
+@media (max-width: 48rem) {
   .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__count {
     display: none;
   }
+}
+@media (max-width: 48rem) {
   .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__spacer {
     display: none;
   }
+}
+@media (max-width: 48rem) {
   .local-groupimport-easystud-settings-modal__grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -13829,6 +13840,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-file-deposit-danger-surface: #fff4f2;
   --easyedu-file-deposit-danger-border: #d96b63;
   --easyedu-file-deposit-danger-title: #9b2c24;
+  --easyedu-page-header-gap: 1.125rem;
   --easyedu-gap: 1rem;
   --easyedu-navigation-following-gap: 2.5rem;
   --easyedu-navigation-panel-width: 88vw;
@@ -14893,6 +14905,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-file-deposit-danger-surface: #fff4f2;
   --easyedu-file-deposit-danger-border: #d96b63;
   --easyedu-file-deposit-danger-title: #9b2c24;
+  --easyedu-page-header-gap: 1.125rem;
   --easyedu-gap: 1rem;
   --easyedu-navigation-following-gap: 2.5rem;
   --easyedu-navigation-panel-width: 88vw;
@@ -15573,9 +15586,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 .local-groupimport-import__header {
-  align-items: flex-start;
-  display: block;
-  gap: 1rem;
   margin-bottom: 1rem;
 }
 .local-groupimport-import__eyebrow {
@@ -17294,7 +17304,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     gap: 0.5rem;
     grid-template-columns: auto minmax(0, 1fr);
     left: 0.72rem;
-    max-width: calc(100vw - 0.72rem * 2);
+    max-width: calc(100vw - (0.72rem * 2));
     padding: 0.58rem;
     position: fixed;
     right: 0.72rem;
@@ -18854,6 +18864,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-family: var(--easyedu-font-family-ui);
   font-optical-sizing: none;
   font-synthesis: none;
+}
+
+.easyedu-ui .easyedu-page-header {
+  display: grid;
+  gap: var(--easyedu-page-header-gap);
+  min-inline-size: 0;
 }
 
 .easyedu-ui .easyedu-page-title {

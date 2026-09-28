@@ -227,6 +227,7 @@ test('Phase 0 Mass Import and Administration stay composed at desktop and 390px'
             '.local-groupimport-import-fields__icon:visible, .easyedu-file-deposit__icon'
         ));
         await expect(massRoot.locator('.easyedu-file-deposit')).toBeVisible();
+        await expect(massRoot.locator('.easyedu-page-header')).toHaveCSS('row-gap', '18px');
         await expect(massRoot.locator('.fp-btn-choose')).toBeVisible({timeout: 60000});
         await expect(massRoot.locator('.filepicker-container')).toBeHidden();
         await expect(massRoot.locator('.easyedu-file-deposit__support')).toBeVisible();
