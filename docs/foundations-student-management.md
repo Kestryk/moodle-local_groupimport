@@ -150,6 +150,32 @@ syntax checks pass. Runtime execution results will be recorded separately.
 
 ### Earlier workspace-shell evidence
 
+### Preview result — 2026-09-30
+
+User authorized resolution of the documentation-only cherry-pick conflict.
+The bounded resolution retained all added text; the final document exactly
+matches source commit `a946f70939e396dc4ea7608bacb4f45a3e33946c`.
+Runtime is clean at `3f21e8ccc24529c9bfe98ed5358a0f6bb60f5730` on
+`preview/moodle51/easystud-phase0-mass-admin`. Managed promotion records that
+source commit as applied; cache purge completed successfully.
+
+Focused authenticated run `easystud-authenticated-20260930T130015901Z-25220`
+FAILED at the desktop eye hover assertion: expected background
+`rgb(247, 251, 255)`, computed `rgba(0, 0, 0, 0)`. Desktop dimensions, icon
+slot centring, resting surfaces and horizontal-overflow assertions preceding
+that check passed. The desktop screenshot was inspected. Keyboard focus,
+tablet and mobile were not reached and are NOT validated. No unchanged retry
+or speculative CSS override was performed. Matched-cascade/hover-state
+diagnosis is still required; source inspection alone does not establish cause.
+
+Evidence is in the external EasyEdu authenticated artifact root under that run:
+`playwright.stdout.log`, `cleanup.json`, and
+`playwright-output/student-card-actions-found-84f7b-ns-across-responsive-widths/`
+(`card-actions-1600.png`, `card-actions-geometry.json`, `error-context.md`).
+Cleanup confirms credentials cleared, runtime lease released and owned child
+stopped. No fixture was requested. Existing files and all business data remain
+untouched. The preview is deployed but not visually accepted.
+
 Canonical Kit `ce8a701`, consumer `374f88c`, Moodle 5.1 preview `8a9edf2`.
 Sass compilation and the pinned embedded-module contract passed. Authenticated
 run `easystud-authenticated-20260928T201728645Z-51068` passed at 1600, 768
