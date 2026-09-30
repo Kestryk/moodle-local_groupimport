@@ -18,6 +18,12 @@ Artifacts: `card-actions-geometry.json`, `card-actions-1600.png`,
 Acceptance: icons centred, no resting circles or clipped controls, no horizontal
 overflow, keyboard focus visible and responsive action menus still available.
 
+The scenario saves `card-action-hover-cascade.json` with matched background
+rules and actual hover/hit-test state. State assertions remain failures but
+are soft so independent viewport evidence is still collected. Transparent
+paint checks require zero alpha, accepting Moodle's equivalent transparent
+white serialization. Do not weaken nontransparent hover/focus expectations.
+
 ## Authenticated Moodle 5.1 runner
 
 Authenticated EasyStud checks must use

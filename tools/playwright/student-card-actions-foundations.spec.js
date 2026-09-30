@@ -58,8 +58,10 @@ test('Student card direct actions match Foundations across responsive widths', a
             for (const item of family.items.filter(item => item.visible)) {
                 expect(Math.abs(item.box.w - 1.85 * report.rem), family.name).toBeLessThan(1);
                 expect(Math.abs(item.box.h - 1.85 * report.rem), family.name).toBeLessThan(1);
-                expect(item.background, family.name).toBe('rgba(0, 0, 0, 0)');
-                expect(item.border, family.name).toBe('rgba(0, 0, 0, 0)');
+                // Moodle's CSS optimizer may serialize transparent as white
+                // with zero alpha. RGB channels are irrelevant at zero alpha.
+                expect(item.background, family.name).toMatch(/^rgba\(\d+, \d+, \d+, 0\)$/);
+                expect(item.border, family.name).toMatch(/^rgba\(\d+, \d+, \d+, 0\)$/);
                 expect(item.icon, family.name).not.toBeNull();
                 expect(Math.abs(item.icon.x + item.icon.w / 2 - item.box.x - item.box.w / 2)).toBeLessThan(1);
                 expect(Math.abs(item.icon.y + item.icon.h / 2 - item.box.y - item.box.h / 2)).toBeLessThan(1);
