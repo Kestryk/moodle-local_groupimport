@@ -654,15 +654,7 @@
   }
 
   &-grouping__header {
-    @include easyedu.card-header-row;
-
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 0.5rem;
-    margin-bottom: 0.22rem;
-    min-height: 1.75rem;
-    min-width: 0;
-    padding-left: 2.55rem;
+    @include easyedu.selectable-card-header(container);
   }
 
   &-grouping__header.is-rename-editing {
@@ -968,16 +960,7 @@
   }
 
   &-group__header {
-    @include easyedu.card-header-row;
-
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 0.58rem;
-    margin-bottom: 0.32rem;
-    min-height: 1.95rem;
-    min-width: 0;
-    padding-left: 2.55rem;
-    position: relative;
+    @include easyedu.selectable-card-header;
 
     > .local-groupimport-easystud-group__name {
       flex: 1 1 auto;
@@ -1076,94 +1059,7 @@
   &-group__duplicate-button,
   &-group__member-search-button,
   &-group__settings-button {
-    align-items: center;
-    background: transparent;
-    border: 1px solid #d6e0db;
-    border-radius: 999px;
-    color: var(--local-groupimport-easystud-accent);
-    display: inline-flex;
-    flex: 0 0 auto;
-    height: 1.85rem;
-    justify-content: center;
-    width: 1.85rem;
-
-    &:hover,
-    &:focus {
-      background: #fff;
-      border-color: #b8cdbf;
-      color: #14583f;
-      text-decoration: none;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-    }
-
-    &:focus:not(:focus-visible) {
-      box-shadow: none;
-    }
-  }
-
-  &-group__duplicate-button {
-    border-color: #d8e2ed;
-    color: var(--local-groupimport-easystud-primary);
-
-    &:hover,
-    &:focus {
-      background: #f7fbff;
-      border-color: #bdd0e5;
-      color: var(--local-groupimport-easystud-primary-strong);
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-    }
-  }
-
-  &-group__member-search-button {
-    border-color: #d8e2ed;
-    color: var(--local-groupimport-easystud-primary);
-
-    &:hover,
-    &:focus {
-      background: #f7fbff;
-      border-color: #bdd0e5;
-      color: var(--local-groupimport-easystud-primary-strong);
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-    }
-
-    &.is-active {
-      background: #eaf4ff;
-      border-color: #b8d5ef;
-      color: var(--local-groupimport-easystud-primary-strong);
-    }
-  }
-
-  &-group__settings-button {
-    border-color: #d9e1e8;
-    color: #66788b;
-
-    &:hover,
-    &:focus {
-      background: #f8fafc;
-      border-color: #bdc9d5;
-      color: #40566c;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-    }
+    @include easyedu.card-direct-action;
   }
 
   &-group__unlink-button {

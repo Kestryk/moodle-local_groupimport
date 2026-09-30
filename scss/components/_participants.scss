@@ -250,16 +250,7 @@
   }
 
   &-user__headline {
-    align-items: center;
-    display: grid;
-    gap: 0.08rem 0.6rem;
-    grid-template-areas:
-      "identity action"
-      "email .";
-    grid-template-columns: minmax(0, 1fr) auto;
-    margin-bottom: 0.12rem;
-    min-height: 1.7rem;
-    width: 100%;
+    @include easyedu.person-card-headline;
   }
 
   &-user__headline-main {
@@ -283,33 +274,8 @@
   }
 
   &-user__detail-button {
-    align-items: center;
-    background: transparent;
-    border: 1px solid #d8e2ed;
-    border-radius: 999px;
-    color: var(--local-groupimport-easystud-primary);
-    display: inline-flex;
-    flex: 0 0 auto;
+    @include easyedu.card-direct-action;
     grid-area: action;
-    height: 1.7rem;
-    justify-content: center;
-    width: 1.7rem;
-
-    &:hover {
-      background: #fff;
-      border-color: #bdd0e5;
-      color: var(--local-groupimport-easystud-primary-strong);
-      text-decoration: none;
-    }
-
-    &:focus,
-    &:focus-visible {
-      background: #fff;
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      color: var(--local-groupimport-easystud-primary-strong);
-      text-decoration: none;
-    }
   }
 
   &-user__email {
@@ -323,25 +289,11 @@
   }
 
   &--compact-users &-user__headline {
-    align-items: center;
-    display: grid;
-    gap: 0.45rem;
-    grid-template-areas: "identity email action";
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    margin-bottom: 0;
-    min-width: 0;
+    @include easyedu.person-card-headline(compact);
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline {
-    align-items: center;
-    display: grid;
-    gap: 0.08rem 0.6rem;
-    grid-template-areas:
-      "identity action"
-      "email .";
-    grid-template-columns: minmax(0, 1fr) auto;
-    margin-bottom: 0.12rem;
-    width: 100%;
+    @include easyedu.person-card-headline(detailed, $min-height: null);
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__headline-main {
@@ -377,11 +329,9 @@
   &--compact-users &-user__detail-button {
     align-self: center;
     flex: 0 0 auto;
-    height: 1.7rem;
     grid-area: action;
     justify-self: end;
     margin-left: 0;
-    width: 1.7rem;
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected &-user__detail-button,

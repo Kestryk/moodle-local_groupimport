@@ -532,6 +532,20 @@ Must not:
 
 ## Cards and identity rails
 
+Use `card-direct-action` for the validated no-circle Direct icon family. Keep
+its stable icon slot and do not reintroduce per-action borders or colours in
+the consumer. Preserve native disabled semantics, accessible names and the
+existing responsive overflow routing; the visual mixin is not an event guard.
+
+Header-only migrations must preserve the source grid slots and the existing
+motion/controller paths. Use `person-card-headline(detailed|compact)` for
+person identity/email/action layouts and `selectable-card-header` for the
+checkbox-reserved object/container row. Retain consumer-owned responsive
+adapters. Compare the full generated consumer CSS before and after a pure
+extraction; do not substitute a linked Penpot instance or a compile-only check
+for visual approval. Preserve the 1.35 card-title line height needed for
+descenders; do not reintroduce the older 1.25 value through Kit synchronization.
+
 Canonical files:
 
 - `scss/easyedu/components/_cards.scss`

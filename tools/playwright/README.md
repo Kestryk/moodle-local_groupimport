@@ -1,5 +1,23 @@
 # EasyStud Playwright audits
 
+## Student card Foundations actions
+
+`student-card-actions-foundations.spec.js` is one `local-supervised` read-only
+scenario for a populated course, selected by the exact grep
+`Student card direct actions match Foundations across responsive widths`.
+Run with the saved-credentials wrapper and `-WaitForLease`, only after the
+candidate has been applied to the managed preview. It checks 1600/768/390px
+geometry, transparent resting actions, icon centring, hover, keyboard focus
+and existing responsive action visibility. It never activates a business
+action. Pressed/disabled states retain source-contract coverage; this scenario
+does not claim their runtime coverage or card animation coverage.
+
+Artifacts: `card-actions-geometry.json`, `card-actions-1600.png`,
+`card-actions-768.png`, `card-actions-390.png` and
+`card-actions-keyboard-focus.png` under the runner's external manifested output.
+Acceptance: icons centred, no resting circles or clipped controls, no horizontal
+overflow, keyboard focus visible and responsive action menus still available.
+
 ## Authenticated Moodle 5.1 runner
 
 Authenticated EasyStud checks must use

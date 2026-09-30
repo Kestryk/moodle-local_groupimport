@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-09-30
+
+- Apply the canonical Foundations Direct icon recipe to participant details and
+  group identifier-add/search/duplicate/settings actions. Remove legacy local
+  circular borders and colour variants. Preserve responsive visibility and
+  all existing card animations. Source candidate only, not yet deployed.
+
+- Consume canonical Kit header-layout recipes for detailed/compact/selected
+  participants, groups and groupings. Remove duplicated header geometry while
+  retaining the complete compiled stylesheet, existing action placement and
+  card animations. This source-only slice does not complete the remaining
+  Student Management migration or change the localhost preview.
+
 ## 2026-09-28
 
 - Keep the CSV identity anchored to the starting edge throughout preview
