@@ -131,6 +131,58 @@
   }
 }
 
+// Person identity, secondary email and persistent details action. Density is
+// chosen by the consumer's existing state, never by an internal breakpoint.
+// A null minimum lets a state adapter retain its inherited header height.
+@mixin person-card-headline($density: detailed, $min-height: 1.7rem) {
+  @if $density != detailed and $density != compact {
+    @error "person-card-headline expects detailed or compact.";
+  }
+
+  align-items: center;
+  display: grid;
+
+  @if $density == compact {
+    gap: 0.45rem;
+    grid-template-areas: "identity email action";
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    margin-bottom: 0;
+    min-width: 0;
+  } @else {
+    gap: 0.08rem 0.6rem;
+    grid-template-areas:
+      "identity action"
+      "email .";
+    grid-template-columns: minmax(0, 1fr) auto;
+    margin-bottom: 0.12rem;
+    min-height: $min-height;
+    width: 100%;
+  }
+}
+
+// Selectable object/container header with space reserved for the existing
+// overlay checkbox. Child semantics, rename state and mobile menus stay with
+// the consumer. Do not add clipping: menus may extend outside this row.
+@mixin selectable-card-header($density: regular) {
+  @if $density != regular and $density != container {
+    @error "selectable-card-header expects regular or container.";
+  }
+
+  @include card-header-row;
+
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: if($density == container, 0.5rem, 0.58rem);
+  margin-bottom: if($density == container, 0.22rem, 0.32rem);
+  min-height: if($density == container, 1.75rem, 1.95rem);
+  min-width: 0;
+  padding-left: 2.55rem;
+
+  @if $density == regular {
+    position: relative;
+  }
+}
+
 // Stable title line for object cards. The main slot owns truncation while the
 // terminal slot keeps count badges and actions aligned as details expand.
 @mixin card-title-row($gap: 0.55rem) {

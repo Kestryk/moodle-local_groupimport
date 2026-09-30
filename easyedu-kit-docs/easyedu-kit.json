@@ -7,8 +7,21 @@
     "batch": "EED-UI-2026-0073",
     "sourceCommit": "ce8a701bfd1a301778e3780577084f7df3cad393",
     "canonicalScssTree": "9e98c37e3c8a33a444c2c15117c055edd686a107",
-    "scope": "Mass Import and Administration Phase 0 subset plus Student Management workspace chrome",
+    "scope": "Mass Import and Administration Phase 0 subset plus Student Management workspace chrome and header layout recipes",
+    "studentHeaderExtraction": {
+      "status": "canonical source committed, consumer preview pending",
+      "sourceCommit": "d9e7a6ac425c2f3c9b5066bdfb00b44f94400e25",
+      "baseCommit": "ce8a701bfd1a301778e3780577084f7df3cad393",
+      "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
+    },
     "fullTreeIdentical": false,
+    "studentDirectActions": {
+      "status": "canonical source committed, consumer preview pending",
+      "sourceCommit": "d9e7a6ac425c2f3c9b5066bdfb00b44f94400e25",
+      "module": "scss/easyedu/components/_card-actions.scss",
+      "moduleBlob": "8eb641a622b1ec1ab48abcea0c8e71773cd9e211",
+      "penpotMain": "10fc9fee-0b8e-807e-8008-98ead919bfd2"
+    },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },
   "packages": {

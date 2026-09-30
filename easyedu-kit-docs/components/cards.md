@@ -5,6 +5,26 @@ layers, images, sources or any plugin-specific item.
 
 ## Mixins
 
+`card-direct-action` implements the canonical transparent-rest Direct icon
+family (1.85rem control, 0.95rem icon). Hover/focus/pressed/disabled are Kit-owned;
+responsive visibility, action handlers and grid placement remain local. See
+`docs/foundations-student-management.md` for source and live Penpot evidence.
+
+### Student Management header extraction
+
+The canonical Kit now owns `person-card-headline(detailed|compact)` with named
+`identity`, `email` and `action` slots, and `selectable-card-header(regular|container)`
+with reserved overlay-checkbox space. Use
+`person-card-headline(detailed, $min-height: null)` for a selected compact card
+that inherits its minimum header height. Preserve consumer-owned responsive
+rules, action placement and existing motion. These are layout-only recipes,
+not full card styling or a new behavior contract.
+
+See the canonical Kit `docs/components/cards.md` for examples and the consumer
+`docs/foundations-student-management.md` for exact scope and test evidence.
+The `consumerSync.studentHeaderExtraction` manifest entry identifies this
+uncommitted candidate separately from the previously pinned Kit commit.
+
 ```scss
 .my-card {
   @include easyedu.object-card(var(--easyedu-group));
