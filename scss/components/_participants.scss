@@ -274,8 +274,8 @@
   }
 
   &-user__detail-button {
-    @include easyedu.card-direct-action;
     grid-area: action;
+    @include easyedu.card-direct-action;
   }
 
   &-user__email {

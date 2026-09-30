@@ -152,6 +152,20 @@ syntax checks pass. Runtime execution results will be recorded separately.
 
 ### Preview result — 2026-09-30
 
+Follow-up diagnosis (user authorized continuation): run
+`easystud-authenticated-20260930T143020831Z-35428` recorded `:hover=true`, the
+pointer over the correct control and no inline override. Its matched CSS
+evidence shows later Bootstrap `.btn:hover` using `--bs-btn-hover-bg` after the
+equally specific Kit state rule. Desktop/tablet/mobile geometry completed;
+hover and focus border failed. The test remains failed, not waived.
+
+Canonical Kit fix `0c783026e075e4c3d513c50116dd95350e05e917` qualifies native
+`.btn` composition in the shared recipe. Module blob
+`c8a0540980702fc634dd8a83e766abc85270bf20` matches the embedded copy. No local
+`!important` override or animation change. Follow-up browser proof is pending.
+The test now saves `card-action-hover-cascade.json` and collects independent
+viewport results with soft assertions, retaining a failing exit on state errors.
+
 User authorized resolution of the documentation-only cherry-pick conflict.
 The bounded resolution retained all added text; the final document exactly
 matches source commit `a946f70939e396dc4ea7608bacb4f45a3e33946c`.

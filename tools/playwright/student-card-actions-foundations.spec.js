@@ -72,13 +72,41 @@ test('Student card direct actions match Foundations across responsive widths', a
         await page.screenshot({path:testInfo.outputPath(`card-actions-${width}.png`)});
         if (width === 1600) {
             await eye.hover();
-            await expect(eye).toHaveCSS('background-color', 'rgb(247, 251, 255)');
+            const hoverEvidence = await eye.evaluate(button => {
+                const matched = [];
+                const visit = rules => {
+                    for (const rule of rules) {
+                        if (rule.selectorText && button.matches(rule.selectorText)) {
+                            const background = rule.style.getPropertyValue('background');
+                            const backgroundColor = rule.style.getPropertyValue('background-color');
+                            if (background || backgroundColor) matched.push({selector:rule.selectorText,
+                                background, backgroundColor,
+                                priority:rule.style.getPropertyPriority('background') ||
+                                    rule.style.getPropertyPriority('background-color')});
+                        }
+                        if (rule.cssRules) visit(rule.cssRules);
+                    }
+                };
+                for (const sheet of document.styleSheets) {
+                    try { visit(sheet.cssRules); } catch (error) {
+                        matched.push({inaccessibleStylesheet:sheet.href, error:error.name});
+                    }
+                }
+                const box = button.getBoundingClientRect();
+                const target = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+                return {hover:button.matches(':hover'), background:getComputedStyle(button).backgroundColor,
+                    inlineStyle:button.getAttribute('style'), centreHit:button.contains(target), matched};
+            });
+            fs.writeFileSync(testInfo.outputPath('card-action-hover-cascade.json'), JSON.stringify(hoverEvidence, null, 2));
+            // Keep the requirement strict, but collect the remaining independent
+            // viewport checks even when this already-known hover check fails.
+            await expect.soft(eye).toHaveCSS('background-color', 'rgb(247, 251, 255)');
             await page.mouse.move(0, 0);
             // Establish keyboard modality without activating a business action.
             await page.keyboard.press('Tab');
             await eye.focus();
-            await expect(eye).toHaveCSS('border-top-color', 'rgb(138, 188, 227)');
-            expect(await eye.evaluate(button => getComputedStyle(button).boxShadow)).not.toBe('none');
+            await expect.soft(eye).toHaveCSS('border-top-color', 'rgb(138, 188, 227)');
+            expect.soft(await eye.evaluate(button => getComputedStyle(button).boxShadow)).not.toBe('none');
             await page.screenshot({path:testInfo.outputPath('card-actions-keyboard-focus.png')});
         }
     }

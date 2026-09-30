@@ -15,7 +15,7 @@ foreach ($name in $names) {
     $rule = ''
     foreach ($match in [regex]::Matches($css, '([^{}]+)\{([^{}]+)\}')) {
         $selectors = @($match.Groups[1].Value.Split(',') | ForEach-Object { $_.Trim() })
-        if ($selectors -contains $selector) { $rule = $match.Groups[2].Value; break }
+        if ($selectors -contains $selector) { $rule += $match.Groups[2].Value }
     }
     foreach ($declaration in @('border: 1px solid transparent;', 'height: 1.85rem;',
         'width: 1.85rem;', 'font-size: 0.95rem;', 'color: var(--easyedu-primary);')) {

@@ -3,68 +3,73 @@
 @use "focus";
 
 @mixin card-direct-action {
-  align-items: center;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  box-shadow: none;
-  box-sizing: border-box;
-  color: var(--easyedu-primary);
-  display: inline-flex;
-  flex: 0 0 auto;
-  font-size: 0.95rem;
-  height: 1.85rem;
-  justify-content: center;
-  line-height: 1;
-  padding: 0;
-  text-decoration: none;
-  width: 1.85rem;
-
-  > .fa,
-  > .icon {
+  // Moodle loads Bootstrap states after plugin CSS. Qualify native .btn
+  // composition in the shared recipe, rather than adding consumer !important.
+  &,
+  &.btn {
     align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: var(--easyedu-primary);
     display: inline-flex;
-    flex: 0 0 0.95rem;
-    font-size: inherit;
-    height: 0.95rem;
+    flex: 0 0 auto;
+    font-size: 0.95rem;
+    height: 1.85rem;
     justify-content: center;
     line-height: 1;
-    margin: 0;
-    width: 0.95rem;
-  }
-
-  &:hover,
-  &:focus-visible {
-    background: var(--easyedu-card-action-hover-bg, #f7fbff);
-    border-color: var(--easyedu-card-action-hover-border, #bdd0e5);
-    color: var(--easyedu-primary-strong);
+    padding: 0;
     text-decoration: none;
-  }
+    width: 1.85rem;
 
-  &:active,
-  &[aria-pressed="true"],
-  &[aria-expanded="true"],
-  &.is-active {
-    background: var(--easyedu-card-action-active-bg, #eaf4ff);
-    border-color: var(--easyedu-card-action-active-border, #b8d5ef);
-    color: var(--easyedu-primary-strong);
-  }
+    > .fa,
+    > .icon {
+      align-items: center;
+      display: inline-flex;
+      flex: 0 0 0.95rem;
+      font-size: inherit;
+      height: 0.95rem;
+      justify-content: center;
+      line-height: 1;
+      margin: 0;
+      width: 0.95rem;
+    }
 
-  &:focus-visible {
-    @include focus.ring($border-color: var(--easyedu-control-focus-border));
-  }
+    &:hover,
+    &:focus-visible {
+      background: var(--easyedu-card-action-hover-bg, #f7fbff);
+      border-color: var(--easyedu-card-action-hover-border, #bdd0e5);
+      color: var(--easyedu-primary-strong);
+      text-decoration: none;
+    }
 
-  &:focus:not(:focus-visible) {
-    box-shadow: none;
-  }
+    &:active,
+    &[aria-pressed="true"],
+    &[aria-expanded="true"],
+    &.is-active {
+      background: var(--easyedu-card-action-active-bg, #eaf4ff);
+      border-color: var(--easyedu-card-action-active-border, #b8d5ef);
+      color: var(--easyedu-primary-strong);
+    }
 
-  &:disabled,
-  &[aria-disabled="true"],
-  &.disabled {
-    background: var(--easyedu-card-action-disabled-bg, #f0f4f8);
-    border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);
-    color: var(--easyedu-card-action-disabled-color, #9aa9b8);
-    cursor: not-allowed;
-    opacity: 1;
+    &:focus-visible {
+      @include focus.ring($border-color: var(--easyedu-control-focus-border));
+    }
+
+    &:focus:not(:focus-visible) {
+      box-shadow: none;
+    }
+
+    &:disabled,
+    &[aria-disabled="true"],
+    &.disabled {
+      background: var(--easyedu-card-action-disabled-bg, #f0f4f8);
+      border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);
+      color: var(--easyedu-card-action-disabled-color, #9aa9b8);
+      cursor: not-allowed;
+      opacity: 1;
+    }
   }
 }
