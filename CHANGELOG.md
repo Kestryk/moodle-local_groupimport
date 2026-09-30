@@ -2,6 +2,10 @@
 
 ## 2026-09-30
 
+- Synchronize the canonical direct-action host compatibility fix: Moodle's
+  later Bootstrap states no longer replace hover/focus paint. No motion or
+  mobile action routing changes.
+
 - Apply the canonical Foundations Direct icon recipe to participant details and
   group identifier-add/search/duplicate/settings actions. Remove legacy local
   circular borders and colour variants. Preserve responsive visibility and
