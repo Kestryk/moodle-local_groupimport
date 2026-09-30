@@ -152,6 +152,26 @@ syntax checks pass. Runtime execution results will be recorded separately.
 
 ### Preview result — 2026-09-30
 
+Final focused verification: source `ed6c588` is served by clean runtime
+`10f3c86d69e4d62ad941b980bf8c0b2ef6525855`; cache purge succeeded. Run
+`easystud-authenticated-20260930T143615684Z-10648` PASSED at 1600/768/390px,
+including hover background and keyboard-focus border/ring. Desktop focus,
+tablet and mobile captures were inspected. Cleanup confirms credentials
+cleared, owned child stopped, no fixture requested and runtime lease released.
+The preceding run `20260930T143427129Z-30832` failed only because the test
+compared transparent black to transparent white; the assertion now checks
+zero alpha irrespective of RGB, without changing the visual contract.
+
+Evidence: external authenticated run folder, subdirectory
+`playwright-output/student-card-actions-found-84f7b-ns-across-responsive-widths/`:
+`card-actions-1600.png`, `card-actions-keyboard-focus.png`,
+`card-actions-768.png`, `card-actions-390.png`, `card-actions-geometry.json`
+and `card-action-hover-cascade.json`. No whole-view acceptance is implied.
+At 390px the existing name/email lane is highly truncated and Sort/pagination
+is dense; carry these into the next content/responsive pass rather than
+silently claiming complete mobile fidelity. Nested group visible states and
+runtime pressed/disabled coverage remain outside this focused scenario.
+
 Follow-up diagnosis (user authorized continuation): run
 `easystud-authenticated-20260930T143020831Z-35428` recorded `:hover=true`, the
 pointer over the correct control and no inline override. Its matched CSS
