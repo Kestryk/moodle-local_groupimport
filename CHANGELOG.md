@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Add a supervised participant-state audit at desktop, tablet and phone widths.
+  Record source-confirmed responsive selection behavior and the narrow name
+  lane without changing layout, motion or business data.
+
 - Consume canonical Card metadata recipes for participant fields and mobile
   stacked rows. Preserve the complete generated CSS, content and animations.
   Add a canonical-parity and optional full-CSS equality regression contract.
