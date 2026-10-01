@@ -1,5 +1,38 @@
 # Foundations Student Management migration
 
+## Latest checkpoint — 2026-10-01 / metadata extraction
+
+The five metadata recipes now live in canonical
+`scss/easyedu/components/_card-metadata.scss` and are consumed by the existing
+participant and mobile adapters. Module blob:
+`d3e0430f9c339c0b31f03508a8b53a1f2c42066f`. Roles, groups, groupings and custom
+fields retain all Mustache content and show-more controls. No template,
+JavaScript, motion, card geometry or generated asset change is needed.
+
+Live EasyStud Penpot readback found desktop metadata labels at 10px and mobile
+labels at 9px (0.625rem/0.5625rem); existing code remains 0.67rem. This is an
+explicit unresolved visual reconciliation, not a new approved font scale.
+The mobile Participants board still places Alice Martin and email on one
+line (108/124-unit text lanes), while selected Samira has email below.
+Do not switch all compact cards to two lines without checking the preserved
+height/reveal contract. Narrow-name readability and dense Sort/pagination
+remain open. Some nested mobile identifier-entry examples also remain in
+the board tree; visibility and source parity need their own audit.
+
+Source validation passed: canonical/embedded parity, public Sass API, five
+metadata adapters, existing header and direct-action contracts. Full compiled
+CSS before/after is identical after line-ending/final-newline normalization:
+`C3D7419CAEF23CE52C7DD22AF808858D5114BF599031DCB6E89D549127170523`.
+The pre-existing loading/layout Sass mixed-decls warning remains.
+
+```powershell
+./tools/release/test-student-card-metadata-contract.ps1 -KitRoot <kit-checkout> -BaselineSha256 C3D7419CAEF23CE52C7DD22AF808858D5114BF599031DCB6E89D549127170523
+```
+
+This slice is source-only. No new browser run, runtime promotion, cache purge,
+Penpot write or business-data mutation. Previous direct-action preview evidence
+below is historical, not proof of metadata/mobile visual completion.
+
 ## Scope and evidence boundary — 2026-09-28
 
 User authorized starting Student Management after the CSV disclosure correction.

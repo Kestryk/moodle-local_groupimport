@@ -15,6 +15,12 @@
       "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
     },
     "fullTreeIdentical": false,
+    "studentMetadataExtraction": {
+      "status": "source validated, CSS unchanged, visual reconciliation pending",
+      "sourceCommit": "d18196e9c8c36962460419959f04e7285539ef7c",
+      "module": "scss/easyedu/components/_card-metadata.scss",
+      "moduleBlob": "d3e0430f9c339c0b31f03508a8b53a1f2c42066f"
+    },
     "studentDirectActions": {
       "status": "canonical source committed, consumer preview pending",
       "sourceCommit": "0c783026e075e4c3d513c50116dd95350e05e917",

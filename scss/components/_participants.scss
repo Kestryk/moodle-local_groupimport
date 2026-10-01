@@ -340,10 +340,7 @@
   }
 
   &-user__meta {
-    align-items: center;
-    display: grid;
-    gap: 0.38rem;
-    margin-top: 0.5rem;
+    @include easyedu.card-metadata;
   }
 
   &--compact-users &-user__meta,
@@ -360,29 +357,15 @@
   }
 
   &-user__meta-group {
-    align-items: start;
-    display: grid;
-    gap: 0.55rem;
-    grid-template-columns: 5.25rem minmax(0, 1fr);
-    min-width: 0;
+    @include easyedu.card-metadata-row;
   }
 
   &-user__meta-label {
-    color: #627387;
-    font-size: 0.67rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    padding-top: 0.23rem;
-    text-transform: uppercase;
-    white-space: nowrap;
+    @include easyedu.card-metadata-label;
   }
 
   &-user__meta-tags {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    min-width: 0;
+    @include easyedu.card-metadata-values;
   }
 
 }

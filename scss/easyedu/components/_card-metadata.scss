@@ -1,0 +1,42 @@
+// Source-preserving metadata layout extracted from EasyStud participant cards.
+// Consumers own field contents, compact visibility, overflow disclosure and
+// breakpoints. Do not add motion or truncate the wrapping values here.
+@mixin card-metadata {
+  align-items: center;
+  display: grid;
+  gap: 0.38rem;
+  margin-top: 0.5rem;
+}
+
+@mixin card-metadata-row {
+  align-items: start;
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: 5.25rem minmax(0, 1fr);
+  min-width: 0;
+}
+
+// Apply at the consumer's existing breakpoint, after the base row recipe.
+@mixin card-metadata-row-stacked {
+  align-items: flex-start;
+  gap: 0.2rem;
+  grid-template-columns: 1fr;
+}
+
+@mixin card-metadata-label {
+  color: #627387;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding-top: 0.23rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@mixin card-metadata-values {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  min-width: 0;
+}

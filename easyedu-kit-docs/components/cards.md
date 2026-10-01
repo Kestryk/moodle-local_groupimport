@@ -1,5 +1,15 @@
 # Cards
 
+## Source-preserving metadata API
+
+Use `card-metadata`, `card-metadata-row`, `card-metadata-label`,
+`card-metadata-values`, and `card-metadata-row-stacked` from the public Kit.
+The stacked adapter belongs at the existing consumer mobile breakpoint.
+Content, token overflow/disclosure and density visibility remain consumer-owned.
+This extraction preserves current CSS; Penpot label-size differences are still
+pending reconciliation. Evidence and command:
+`docs/foundations-student-management.md` in the consuming plugin.
+
 Cards represent user-manipulable objects: participants, groups, groupings,
 layers, images, sources or any plugin-specific item.
 
