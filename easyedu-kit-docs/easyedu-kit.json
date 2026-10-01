@@ -25,7 +25,7 @@
       "sourceCommit": "dc73b7ceec07f0ac09a3539a941a582dbbb73221",
       "module": "scss/easyedu/components/_overlays.scss",
       "moduleBlob": "1127a63ff611b1fcf39beb025b92bedd17a9e4ac",
-      "status": "allowed-state native proof passed; danger behavior passed but inherited hidden rail corrected after screenshot inspection; final danger rendering proof pending"
+      "status": "allowed targets and empty-grouping participant refusal passed native desktop drag checks; final danger capture inspected; mobile/error coverage and human review deferred"
     },
     "studentListSortExtraction": {
       "sourceCommit": "42f7e79c14f0898a616b7f4eb9e34200282f74cd",

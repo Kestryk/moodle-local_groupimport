@@ -16,6 +16,11 @@ Technical checks and human visual acceptance remain separate.
 - [ ] Drag Single: moving outline/badge, source contents and rail, no stack/count.
 - [ ] Drag Multiple: same flair, two rear layers, inset `+N` extra-item counter.
 - [ ] Drag target allowed, incompatible/danger, error and cancelled states.
+
+  Technical desktop checkpoint: allowed Participant→Group / Group→Grouping
+  and participant refusal on empty Groupings pass in Single/Multiple.
+  Final danger capture inspected. Error messages and mobile alternatives remain
+  separate; this is not a human tick of the combined checklist item.
 - [ ] Context menus, sticky mobile actions and non-drag alternatives remain usable.
 
 ## Mass Import and administration
@@ -37,5 +42,7 @@ Participant/Group Single/Multiple, 1600px, native dragstart/dragend only; no dro
 Native inputs remain hidden, custom checkbox size/rounding matches the source.
 The first run passed its narrower assertions but screenshot inspection found
 the opacity defect; preserve that distinction, not just the final passing run.
-Danger-state implementation and
-whole-view/mobile coverage still need their own slices; do not tick them now.
+Allowed/empty-Grouping refusal run:
+`easystud-authenticated-20261001T192313452Z-43724`, preview `023fbee`.
+Native start/over/leave/end only, no drop or mutation. Remaining danger cases,
+error feedback and whole-view/mobile coverage still need their own slices.
