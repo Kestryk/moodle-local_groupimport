@@ -422,6 +422,23 @@ filter density, mobile sorting and card action alignment need their own pass.
 
 ## Execution-efficiency note
 
+### Mobile pagination source boundary — 2026-10-01
+
+Managed preview `f25a7c4` serves the shared narrow layout. Run
+`easystud-authenticated-20261001T120027082Z-33336` reached Participants at
+1600/768/390 and Groups at 390 with passing geometry, then failed a harness
+assumption that mobile Groupings also has pagination. `getPaginationConfigs`
+only includes groupings under desktop structure focus; `bindMobileEntityViews`
+clears that class. This is not a missing product feature. The supervised test
+now requires zero visible Groupings pagination bars. Corrected run
+`easystud-authenticated-20261001T121212215Z-39680` passes at 1600/768/390/320;
+Groups pagination and Groupings absence pass at both phone widths. Cleanup
+confirms credentials cleared, runtime lease released and no fixture mutation.
+The 320px Groups/menu capture was inspected. Penpot's recovery command timed
+out; hiding Groupings controls and restoring the saved card position remain
+unconfirmed until readback succeeds. No runtime
+JavaScript, card animation or membership data is modified.
+
 Most avoidable work in this continuation came from the disclosure harness:
 viewport-relative measurements misread scroll anchoring, and repository form
 replacement required awaiting Moodle's URL `action=list` response. Preserve
