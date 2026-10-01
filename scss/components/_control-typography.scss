@@ -1,17 +1,16 @@
-// Final consumer overrides for shared controls. These rules are deliberately
-// view-agnostic so every EasyStud surface uses the same restrained typography
-// and link treatment at desktop and responsive widths.
+@use "../easyedu" as easyedu;
+
+// Selector adapter only. Shared treatment lives in the canonical Kit;
+// preserve this final cascade position and the existing host compatibility.
 .local-groupimport-easystud {
   [data-easystud-advanced-filters-toggle],
   &-pagination__sort > span,
   [data-easystud-list-sort-dropdown] > &-dropdown__button {
-    font-family: inherit;
-    font-weight: var(--easyedu-font-weight-regular);
+    @include easyedu.control-regular-type;
   }
 
   &-pagination__count {
-    font-family: inherit;
-    font-weight: var(--easyedu-font-weight-semibold);
+    @include easyedu.control-count-type;
   }
 
   [data-easystud-card-menu],
@@ -20,13 +19,6 @@
   [data-easystud-context-action],
   &-group__actions-toggle,
   &-group__actions-menu .btn {
-    text-decoration: none !important;
-
-    &:hover,
-    &:active,
-    &:focus,
-    &:focus-visible {
-      text-decoration: none !important;
-    }
+    @include easyedu.action-text-treatment($legacy-priority: true);
   }
 }

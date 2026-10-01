@@ -1,5 +1,13 @@
 # EasyEdu Component Contract
 
+Utility controls use `control-regular-type`, `control-count-type` and
+`action-text-treatment`; consumers keep selector adapters, not duplicated
+font/decoration declarations. Preserve cascade placement and existing action
+states. The legacy-priority option only preserves a prior host override; do
+not apply it to content links or use it instead of a matched-cascade audit.
+Source-preserving migrations must pass full generated-CSS equality before
+claiming unchanged rendering. Penpot/whole-view acceptance remains separate.
+
 Narrow pagination candidates must retain control content, fonts and motion.
 Check peer separation and full-bar page centring plus open-menu containment
 at phone, tablet and desktop widths. Optional compiled fixtures must resolve

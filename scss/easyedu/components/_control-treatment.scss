@@ -1,0 +1,33 @@
+// Opt-in utility-control roles. Preserve each control's own size, layout,
+// state colour and motion; consumers supply only their semantic selectors.
+@mixin control-regular-type {
+  font-family: inherit;
+  font-weight: var(--easyedu-font-weight-regular);
+}
+
+@mixin control-count-type {
+  font-family: inherit;
+  font-weight: var(--easyedu-font-weight-semibold);
+}
+
+@mixin _action-decoration($legacy-priority) {
+  @if $legacy-priority {
+    text-decoration: none !important;
+  } @else {
+    text-decoration: none;
+  }
+}
+
+// Use only on action controls, never on ordinary content/help links.
+// The legacy option preserves an existing host override during extraction;
+// new consumers use the normal-priority default. It is not a blanket reset.
+@mixin action-text-treatment($legacy-priority: false) {
+  @include _action-decoration($legacy-priority);
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible {
+    @include _action-decoration($legacy-priority);
+  }
+}

@@ -15,12 +15,18 @@
       "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
     },
     "fullTreeIdentical": false,
+    "studentControlTreatment": {
+      "sourceCommit": "24df5ad11c6af6297e021fbe07eba57d9720bd2d",
+      "module": "scss/easyedu/components/_control-treatment.scss",
+      "moduleBlob": "722c312e6c7bcd8509f15bfb60c92350b411202b",
+      "status": "source parity and full generated CSS equality passed; preview evidence recorded in canonical batch"
+    },
     "studentNarrowPagination": {
       "sourceCommit": "473766100d53c8d01ad51d6ccf91ad7c9d9e9566",
       "module": "scss/easyedu/components/_pagination-responsive.scss",
       "foundationComponent": "005a9cd7-189f-802f-8008-b916a75b1f13",
       "foundationMain": "005a9cd7-189f-802f-8008-b916a4da74a7",
-      "status": "Standard/Library and three mobile product links published; managed preview pending"
+      "status": "managed 1600/768/390/320 preview passed; Participants and Groups mobile links active; Groupings pagination hidden by source contract"
     },
     "studentResponsiveTracksExperiment": {
       "status": "3:1 managed preview passed 1600/768/390; human review and Foundation documentation pending",
