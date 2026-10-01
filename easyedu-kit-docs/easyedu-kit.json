@@ -19,7 +19,7 @@
       "sourceCommit": "8b8d83f9ea71be1503a9a2de034e9e9b8e704e6a",
       "module": "scss/easyedu/components/_overlays.scss",
       "moduleBlob": "7917651d2ce9289dd9a54cad05204ce222fa0289",
-      "status": "moving flair implemented; first native drag run passed but screenshot revealed exposed checkbox; corrected opacity awaiting rerun; human review deferred"
+      "status": "moving flair and corrected control opacity verified by native dragstart/dragend at desktop; Single/Multiple and source checkbox geometry pass; human review deferred"
     },
     "studentListSortExtraction": {
       "sourceCommit": "42f7e79c14f0898a616b7f4eb9e34200282f74cd",
