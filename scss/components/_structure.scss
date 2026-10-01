@@ -1045,34 +1045,7 @@
   }
 
   &-group__unlink-button {
-    align-items: center;
-    background: transparent;
-    border: 1px solid #d8d1c7;
-    border-radius: 999px;
-    color: #6f6558;
-    display: inline-flex;
-    flex: 0 0 auto;
-    height: 1.85rem;
-    justify-content: center;
-    width: 1.85rem;
-
-    &:hover,
-    &:focus {
-      background: #fffaf2;
-      border-color: #cbb89f;
-      color: #775734;
-      text-decoration: none;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-    }
-
-    &:focus:not(:focus-visible) {
-      box-shadow: none;
-    }
+    @include easyedu.card-direct-action;
   }
 
   &-group__actions-toggle {

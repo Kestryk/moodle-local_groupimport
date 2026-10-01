@@ -66,40 +66,12 @@
   }
 
   &-rename__toggle {
-    align-items: center;
-    background: #fff;
-    border: 1px solid #d8e2ed;
-    border-radius: 0.6rem;
-    color: var(--local-groupimport-easystud-primary);
-    display: inline-flex;
-    height: 1.95rem;
-    justify-content: center;
-    text-decoration: none;
     transition:
       background-color var(--easyedu-motion-fast) ease,
       border-color var(--easyedu-motion-fast) ease,
       box-shadow var(--easyedu-motion-fast) ease,
       color var(--easyedu-motion-fast) ease;
-    width: 1.95rem;
-
-    &:hover {
-      background: #f7fbff;
-      border-color: #bdd0e5;
-      color: var(--local-groupimport-easystud-primary-strong);
-      text-decoration: none;
-    }
-
-    &:focus,
-    &:focus-visible {
-      background: #f7fbff;
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      // Moodle's later Bootstrap .btn-link focus rule otherwise replaces the
-      // shared ring with its inset halo.
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-      color: var(--local-groupimport-easystud-primary-strong);
-      text-decoration: none;
-    }
+    @include easyedu.card-direct-action;
   }
 
   &-rename__edit {

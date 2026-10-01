@@ -19,11 +19,20 @@ test('Student card direct actions match Foundations across responsive widths', a
     const root = page.locator('#local-groupimport-easystud');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
     const families = ['user__detail-button', 'group__mail-button', 'group__duplicate-button',
-        'group__member-search-button', 'group__settings-button', 'container-search__toggle'];
+        'group__member-search-button', 'group__settings-button', 'container-search__toggle',
+        'rename__toggle', 'group__unlink-button'];
     const reports = [];
     for (const width of [1600, 768, 390]) {
         await page.setViewportSize({width, height: 1100});
         await page.evaluate(() => document.fonts.ready);
+        if (width===1600) {
+            const grouping=root.locator('[data-easystud-grouping-id]:visible').filter({
+                has:page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
+            }).first();
+            const toggle=grouping.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
+            if (await toggle.getAttribute('aria-expanded')==='false') await toggle.click();
+            await expect(grouping.locator('.local-groupimport-easystud-group__unlink-button:visible').first()).toBeVisible();
+        }
         const eye = root.locator('.local-groupimport-easystud-user__detail-button:visible').first();
         await expect(eye).toBeVisible();
         await eye.scrollIntoViewIfNeeded();
@@ -81,6 +90,16 @@ test('Student card direct actions match Foundations across responsive widths', a
             await expect(search).toHaveCSS('background-color','rgb(234, 244, 255)');
             await search.click();
             await expect(search).not.toHaveClass(/is-active/);
+            for (const name of ['rename__toggle','group__unlink-button']) {
+                const button=root.locator('.local-groupimport-easystud-'+name+':visible').first();
+                await button.hover();
+                await expect(button).toHaveCSS('background-color','rgb(247, 251, 255)');
+                await page.keyboard.press('Tab');
+                await button.focus();
+                await expect(button).toHaveCSS('border-top-color','rgb(138, 188, 227)');
+                expect(await button.evaluate(n=>getComputedStyle(n).boxShadow)).not.toBe('none');
+                await page.evaluate(()=>document.activeElement?.blur());
+            }
             await eye.hover();
             const hoverEvidence = await eye.evaluate(button => {
                 const matched = [];

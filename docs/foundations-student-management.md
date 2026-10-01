@@ -1,5 +1,24 @@
 # Foundations Student Management migration
 
+## Remaining direct-action adapters — 2026-10-01
+
+Rename and Unlink now use the existing Foundations Direct icon family rather
+than their local white/brown skins. Rename keeps its original four fast-state
+transition declarations; neither command, form semantics, mobile routing nor
+card disclosure changes. Rename follows the canonical 29.6px slot instead of
+31.2px; Unlink stays 29.6px. Unlink is the existing remove-from-grouping command,
+not deletion of a Group. No new component, palette or icon was invented.
+The current Complete-view Penpot specimen omits these command instances:
+reusing the canonical family does not claim that this composition gap is fixed.
+Source-required Rename/Unlink instances remain queued for product propagation.
+Static source parity and unchanged CSS outside the eight migrated action
+families pass against the external pre-change baseline. Managed proof pending.
+
+Container search preceding slice: run
+`easystud-authenticated-20261001T192957591Z-44644` passes six-family geometry,
+icon centres, search hover/open/close, eye hover/focus and mobile visibility at
+1600/768/390 on preview `7b4a592`. No search submission or membership action.
+
 ## Container search action — 2026-10-01
 
 Live product readback identifies Search groups
