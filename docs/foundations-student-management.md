@@ -1,5 +1,35 @@
 # Foundations Student Management migration
 
+## Narrow pagination publication and integration — 2026-10-01
+
+The dedicated Penpot browser is reachable through Playwright. Foregrounding its
+tab and reopening its existing MCP button reconnects the relay after a file
+switch; no credential extraction, alternate profile or VAE browser operation.
+
+Foundations component `005a9cd7-189f-802f-8008-b916a75b1f13`, main
+`005a9cd7-189f-802f-8008-b916a4da74a7`, is published on `08.2.2` with
+320/390-width specimens, and linked twice on `08.2` in Standards section
+`005a9cd7-189f-802f-8008-b917d3c19320`. Existing Select all, Dropdown S and
+Pagination navigation controls are nested links. Dropdown compact dimensions
+are explicit source overrides, not a new skin. The page indicator has a 34
+canvas-pixel lane to prevent Inter proxy wrapping; its painted text remains
+centred. An initial export exposed wrapped page text and an upward chevron;
+both were corrected and the final linked export inspected. Descendant
+containment passes after text metrics settle; this is not human acceptance.
+
+Product page 03 receives three linked mobile top bars:
+`005a9cd7-189f-802f-8008-b918a45e7d8b` (Participants),
+`005a9cd7-189f-802f-8008-b918a5df79e5` (Groups),
+`005a9cd7-189f-802f-8008-b918a70f92a3` (Groupings).
+The old standalone participant Select all is hidden recoverably. Following
+content moves by measured 52.5/90.5 canvas pixels to preserve a 16px card gap;
+bottom pagination and existing card interiors/motion are unchanged.
+
+EasyStud consumes the exact canonical narrow placement module from Kit
+`4737661`. Only the adapter invokes the recipe; no local visual overrides or
+new JS/AMD/template behavior. Source build and managed preview checks follow;
+the previous temporary-browser proof is not deployment evidence.
+
 ## Narrow pagination investigation — 2026-10-01
 
 The served Participant top bar overlaps sorting and page controls by 26.578px

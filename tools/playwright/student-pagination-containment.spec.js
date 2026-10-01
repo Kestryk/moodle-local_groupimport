@@ -70,6 +70,45 @@ test('Student pagination controls remain separated across responsive widths', as
         await page.screenshot({path:testInfo.outputPath(`pagination-menu-${width}.png`)});
         await toggle.click();
         await expect(menu).toBeHidden();
+        if (width <= 390) {
+            for (const view of ['groups','groupings']) {
+                await root.locator(`[data-easystud-mobile-view="${view}"]`).click();
+                await expect(root).toHaveAttribute('data-easystud-mobile-view-active',view);
+                const visibleBars=root.locator('[data-easystud-pagination]:visible');
+                await expect(visibleBars.first()).toBeVisible();
+                const geometry=await visibleBars.evaluateAll(nodes=>nodes.map(n=>{
+                    const box=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};};
+                    const children=[...n.children].map(box).filter(b=>b.w&&b.h);
+                    const controls=n.querySelector('.local-groupimport-easystud-pagination__controls');
+                    return {bar:box(n),children,controls:box(controls)};
+                }));
+                reports.push({width,view,bars:geometry});
+                fs.writeFileSync(testInfo.outputPath('pagination-geometry.json'),JSON.stringify(reports,null,2));
+                for (const r of geometry) {
+                    expect.soft(Math.abs(r.controls.x+r.controls.w/2-r.bar.x-r.bar.w/2)).toBeLessThanOrEqual(1);
+                    for (const c of r.children) {
+                        expect.soft(c.x).toBeGreaterThanOrEqual(r.bar.x-1);
+                        expect.soft(c.x+c.w).toBeLessThanOrEqual(r.bar.x+r.bar.w+1);
+                    }
+                    for(let i=0;i<r.children.length;i++)for(let j=i+1;j<r.children.length;j++){
+                        const a=r.children[i],b=r.children[j];
+                        expect.soft(Math.min(Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x),
+                            Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y))).toBeLessThanOrEqual(1);
+                    }
+                }
+                const viewToggle=root.locator('[data-easystud-list-sort-toggle]:visible').first();
+                await viewToggle.click();
+                await expect(viewToggle).toHaveAttribute('aria-expanded','true');
+                const viewMenu=root.locator('[data-easystud-list-sort-menu]:visible').first();
+                const viewMenuBox=await viewMenu.boundingBox();
+                expect.soft(viewMenuBox.x).toBeGreaterThanOrEqual(0);
+                expect.soft(viewMenuBox.x+viewMenuBox.width).toBeLessThanOrEqual(width);
+                await page.screenshot({path:testInfo.outputPath(`pagination-${view}-${width}.png`)});
+                await viewToggle.click();
+            }
+            await root.locator('[data-easystud-mobile-view="participants"]').click();
+            await expect(root).toHaveAttribute('data-easystud-mobile-view-active','participants');
+        }
     }
     } finally {
         if (style) await style.evaluate(node => node.remove());
