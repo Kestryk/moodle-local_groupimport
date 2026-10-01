@@ -46,6 +46,24 @@
   }
 }
 
+// Normalized from the linked Foundations Plus / 20 glyph (13.5416px paint).
+// One background slot keeps the parent identity-rail pseudo-element available.
+$_drop-affordance-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%230b5ea8' d='M11.0415,4.271C11.0415,3.6948,10.5762,3.229,10,3.229C9.4238,3.229,8.9585,3.6948,8.9585,4.271L8.9585,8.9585L4.271,8.9585C3.6948,8.9585,3.229,9.4238,3.229,10C3.229,10.5762,3.6948,11.0415,4.271,11.0415L8.9585,11.0415L8.9585,15.729C8.9585,16.3052,9.4238,16.771,10,16.771C10.5762,16.771,11.0415,16.3052,11.0415,15.729L11.0415,11.0415L15.729,11.0415C16.3052,11.0415,16.771,10.5762,16.771,10C16.771,9.4238,16.3052,8.9585,15.729,8.9585L11.0415,8.9585L11.0415,4.271L11.0415,4.271'/%3E%3C/svg%3E");
+
+@mixin drop-affordance($size: 2.5rem) {
+  background-color: var(--easyedu-file-deposit-drag-over-surface);
+  background-image: var(--easyedu-drop-affordance-plus, #{$_drop-affordance-plus});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: $size * 0.5 $size * 0.5;
+  border: 1.5px solid var(--easyedu-control-focus-border);
+  border-radius: 50%;
+  box-shadow: none;
+  box-sizing: border-box;
+  height: $size;
+  width: $size;
+}
+
 @mixin insert-drop-target(
   $color: var(--easyedu-accent),
   $background-start: var(--easyedu-surface),
@@ -63,27 +81,17 @@
   transform: translateY(-1px);
 
   &::after {
-    align-items: center;
-    background: color-mix(in srgb, #{$color} 12%, transparent);
-    border: 1px solid color-mix(in srgb, #{$color} 20%, transparent);
-    border-radius: 999px;
-    color: $color;
-    content: "+";
+    @include drop-affordance;
+    content: "";
     display: inline-flex;
-    font-size: 1.45rem;
-    font-weight: 600;
-    height: 2.7rem;
-    justify-content: center;
     left: 50%;
-    line-height: 1;
     mask-image: none;
     opacity: 1;
-    padding-bottom: 0.12rem;
+    padding: 0;
     pointer-events: none;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 2.7rem;
     z-index: 4;
     -webkit-mask-image: none;
   }

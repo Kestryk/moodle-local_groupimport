@@ -21,6 +21,12 @@
       "moduleBlob": "7917651d2ce9289dd9a54cad05204ce222fa0289",
       "status": "moving flair and corrected control opacity verified by native dragstart/dragend at desktop; Single/Multiple and source checkbox geometry pass; human review deferred"
     },
+    "studentAllowedDrop": {
+      "sourceCommit": "dc9d3120cbd6107a5030ee526aa971fa9e90db7e",
+      "module": "scss/easyedu/components/_overlays.scss",
+      "moduleBlob": "5db6f471f45fd87f144c306ea41ed5673906be9b",
+      "status": "canonical source parity; native allowed-target browser proof pending; denied/danger excluded"
+    },
     "studentListSortExtraction": {
       "sourceCommit": "42f7e79c14f0898a616b7f4eb9e34200282f74cd",
       "module": "scss/easyedu/components/_menus.scss",

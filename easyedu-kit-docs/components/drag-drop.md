@@ -5,6 +5,19 @@ selection-based alternatives for keyboard and touch users.
 
 ## Mixins
 
+### Flat allowed-drop affordance
+
+`drop-affordance($size: 2.5rem)` renders the linked Foundations 40px circle
+with a centred proportional 20px SVG slot, 1.5px blue border and no glyph shadow.
+Its plus path is normalized from the linked product specimen
+`92c1c225-95fb-802e-8008-aeafea3eb9fc`, not a font character or new icon.
+`insert-drop-target` consumes it on `::after`, preserving the semantic
+container surface/rail/shadow and its identity-icon pseudo-element.
+Override `--easyedu-drop-affordance-plus` with a themed SVG image if needed;
+surface and border use existing shared deposit/focus tokens. Other consumers
+adopt this recipe only on their own explicit synchronization.
+Denied/danger targets are not implemented by this allowed-state recipe.
+
 Foundations moving previews use `drag-preview-moving-outline`,
 `drag-preview-moving-badge`, `drag-preview-moving-icon($mask)` and
 `drag-preview-count-placement`. Shared roles: 2px primary outline at 72%,

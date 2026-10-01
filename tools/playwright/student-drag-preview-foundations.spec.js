@@ -1,7 +1,7 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
-// Native dragstart/dragend only. Never drop or confirm a membership operation.
+// Native start/over/leave/end only. Never drop or confirm a membership operation.
 test('Drag previews match Foundations flair and multiple-only stacks', async({page}, testInfo) => {
     test.setTimeout(180000);
     await page.setViewportSize({width:1600,height:1100});
@@ -83,6 +83,31 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                 expect(report.checkboxHeight).toBe(sourceCheckbox.height);
                 expect(report.checkboxRadius).toBe(sourceCheckbox.radius);
                 await page.screenshot({path:testInfo.outputPath('drag-'+type+'-'+(multiple?'multiple':'single')+'.png')});
+                const target=root.locator(type==='participant'?'[data-easystud-user-drop]:visible':
+                    '[data-easystud-grouping-drop]:visible').first();
+                await target.scrollIntoViewIfNeeded();
+                const box=await target.boundingBox();
+                await target.dispatchEvent('dragover',{dataTransfer:transfer,
+                    clientX:box.x+box.width/2,clientY:box.y+box.height/2});
+                await expect(target).toHaveClass(/is-drop-target/);
+                const affordance=await target.evaluate(n=>{
+                    const s=getComputedStyle(n,'::after');
+                    return {width:s.width,height:s.height,image:s.backgroundImage,size:s.backgroundSize,
+                        position:s.backgroundPosition,border:s.borderTopWidth,shadow:s.boxShadow,content:s.content};
+                });
+                reports[reports.length-1].target=affordance;
+                fs.writeFileSync(testInfo.outputPath('drag-preview-foundations.json'),JSON.stringify(reports,null,2));
+                expect(affordance.width).toBe('40px');
+                expect(affordance.height).toBe('40px');
+                expect(affordance.size).toBe('20px 20px');
+                expect(affordance.position).toBe('50% 50%');
+                expect(affordance.border).toBe('1.5px');
+                expect(affordance.shadow).toBe('none');
+                expect(affordance.image).toContain('data:image/svg+xml');
+                expect(affordance.content).toBe('""');
+                await target.screenshot({path:testInfo.outputPath('target-'+type+'-'+(multiple?'multiple':'single')+'.png')});
+                await target.dispatchEvent('dragleave',{dataTransfer:transfer,relatedTarget:null});
+                await expect(target).not.toHaveClass(/is-drop-target/);
             } finally {
                 await source.dispatchEvent('dragend',{dataTransfer:transfer});
                 await transfer.dispose();
