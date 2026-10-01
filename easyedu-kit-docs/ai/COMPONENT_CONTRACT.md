@@ -1,5 +1,11 @@
 # EasyEdu Component Contract
 
+Related-person rows consume the canonical row, selection-slot, name-layout and
+removal recipes. Require complete generated CSS equality for ownership-only
+extraction. Preserve responsive geometry, faded extras, accessible commands
+and disclosure Motion. Foundation's 52px/32px row/action specimen is not yet
+reconciled with native density; do not silently resize or claim pixel parity.
+
 Student identity roles follow measured Foundations card mains: 14px/700
 #16324f titles; related-person names use 13px/600 in the same family. Shell
 density, semantic rails/badges and original disclosure Motion stay separate.

@@ -2,6 +2,15 @@
 
 ## 2026-10-01
 
+- Move related-person row, selection alignment, name lane and removal states
+  to canonical Cards recipes. Complete generated CSS remains unchanged;
+  preserve responsive density, native controls and all disclosure animations.
+- Add source pin/ownership and read-only responsive member-row checks;
+  Foundation/native density reconciliation and human review remain separate.
+
+- Verify inline resting/hover/keyboard roles and opaque mobile navigation in
+  controlled Moodle 5.1 preview. Keep native menu hit acceptance explicitly
+  failed at 390px because of the foreign CCB drawer overlay; do not waive it.
 - Complete native context-menu text-role consumption after the focused
   typography test exposed unchanged 14.4px/400 labels in that distinct path.
 - Remove the stacked generic Rename button skin; consume explicit Foundation

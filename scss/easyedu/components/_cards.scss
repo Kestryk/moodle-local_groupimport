@@ -221,13 +221,91 @@
 }
 
 // A related participant inside a Group is subordinate to the card identity,
-// but belongs to the same UI family. Consumer owns selection/removal/layout.
+// but belongs to the same UI family. Consumer owns selection/removal behavior.
 @mixin related-person-name {
   color: var(--easyedu-card-identity-title-color);
   font-family: var(--easyedu-font-family-ui);
   font-size: var(--easyedu-related-person-name-size);
   font-weight: var(--easyedu-font-weight-semibold);
   line-height: 1.35;
+}
+
+// Source-preserving row recipe extracted from EasyStud. These measured paints
+// and dimensions are deliberate component constants, not a new token scale.
+// Keep responsive density, faded extras and all disclosure Motion external.
+@mixin related-person-row {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  min-height: 2.25rem;
+  padding: 0.25rem 0.45rem 0.25rem 0.45rem;
+
+  &.is-selected {
+    background: #eef6fc;
+    border-color: #9fbddd;
+  }
+}
+
+@mixin related-person-selection-slot {
+  @include card-selection-slot;
+  margin-right: 0.1rem;
+}
+
+// Compose with related-person-name; preserve a shrinking, single-line lane
+// between the selection hit target and terminal removal action.
+@mixin related-person-name-layout {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin related-person-remove {
+  align-items: center;
+  background: #f8fbfe;
+  border-color: #cfdce8;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 0.1rem 0.3rem rgba(64, 92, 116, 0.08);
+  box-sizing: border-box;
+  color: #486985;
+  display: inline-grid;
+  flex: 0 0 auto;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 1.45rem;
+  line-height: 1;
+  place-items: center;
+  padding: 0 !important;
+  text-decoration: none !important;
+  width: 1.45rem;
+
+  span {
+    display: block;
+    line-height: 0.8;
+    margin-top: -0.05rem;
+  }
+
+  &:hover,
+  &:focus {
+    background: #eef5fb;
+    border-color: #adc4d8;
+    box-shadow: 0 0.2rem 0.45rem rgba(64, 92, 116, 0.12);
+    color: #294b68;
+    text-decoration: none !important;
+  }
+
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+    border-color: var(--easyedu-control-focus-border) !important;
+    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+  }
 }
 
 // Optional metadata placed beside a title. It must yield before the title or
