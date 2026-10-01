@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Replace the Grouping search toggle's local circular skin with the existing
+  Foundations Direct icon recipe. Keep placement, mobile routing, native
+  search panels and motion unchanged; cover hover/open state and icon centring.
+
 - Correct the Danger indicator's inherited hidden rail display after capture
   inspection; assert its rendered display in addition to dimensions/colors.
 

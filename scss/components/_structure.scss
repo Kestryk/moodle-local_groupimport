@@ -736,25 +736,7 @@
   }
 
   &-container-search__toggle {
-    align-items: center;
-    background: transparent;
-    border: 1px solid #d8e2ec;
-    border-radius: 999px;
-    color: #587089;
-    display: inline-flex;
-    flex: 0 0 auto;
-    height: 1.85rem;
-    justify-content: center;
-    width: 1.85rem;
-
-    &:hover,
-    &:focus,
-    &.is-active {
-      background: #eef5fb;
-      border-color: #adc4d8;
-      color: #294b68;
-      text-decoration: none;
-    }
+    @include easyedu.card-direct-action;
   }
 
   &-tree__section--ungrouped > &-container-search__toggle {

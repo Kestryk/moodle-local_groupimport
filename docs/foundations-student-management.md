@@ -1,5 +1,19 @@
 # Foundations Student Management migration
 
+## Container search action — 2026-10-01
+
+Live product readback identifies Search groups
+`cef95197-06bc-809e-8008-aede0d9d2b44` and Search ungrouped
+`cef95197-06bc-809e-8008-aede1cf90f99` as linked Direct icon instances,
+29.6px square with 15.2px icon slots. The consumer container-search toggle
+now calls the existing canonical `card-direct-action` instead of owning a
+separate local border/colour/focus recipe. No new Kit component or Penpot
+variant is necessary. Existing position/visibility, search lifecycle and
+inline-panel/disclosure animations remain unchanged.
+Static canonical/state checks pass; managed responsive browser proof pending.
+The six-family scenario adds the native search open/close state without typing
+or submitting data. Rename, unlink and overflow still require their own mapping.
+
 ## Flat allowed-drop affordance — 2026-10-01
 
 Final run `easystud-authenticated-20261001T192313452Z-43724` passes on clean
