@@ -1,13 +1,15 @@
 # Cards
 
-## Experimental responsive tracks — not accepted
+## Responsive name-priority tracks
 
-`person-card-responsive-tracks` is a WIP layout-only candidate. It changes
-the compact responsive identity/email ratio to 1.6:1 without altering action
-widths, breakpoints, height, content or motion. The first supervised 390px
-comparison FAILED its minimum readability-gain check: name width increased
-only from 37.453px to 42.25px. Do not deploy or treat this as a validated
-Foundation recipe. Investigate badge/identity allocation before promotion.
+`person-card-responsive-tracks` gives the compact responsive identity/email
+lanes a 3:1 ratio while preserving action width, breakpoints, height, content
+and motion. At 390px the sampled name with badge grows from 37.453px to
+54.547px; email remains 32.391px and the eye stays in place. A temporary
+browser comparison passed and its screenshot was inspected. This improves
+truncation; it does not guarantee every long name/email fits in a single row.
+The earlier 1.6:1 experiment failed. Foundations source documentation and
+human review of this new ratio remain pending.
 
 ## Source-preserving metadata API
 

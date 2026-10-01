@@ -2,5 +2,5 @@
 // Use only in the consumer's existing responsive compact-card selector.
 // This recipe owns no breakpoint, visibility, card height, action size or motion.
 @mixin person-card-responsive-tracks {
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr) auto;
 }

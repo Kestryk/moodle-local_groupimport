@@ -2,6 +2,11 @@
 
 ## Experimental name-priority comparison
 
+The refined 3:1 candidate passes the focused 390px comparison; the earlier
+failed 1.6:1 trial remains historical evidence. The participant metadata spec
+is the managed-preview follow-up at 1600/768/390 and asserts phone name/email
+space and eye separation. Partial names remain expected for long content.
+
 `student-mobile-name-priority.spec.js` is `local-supervised`, not a deployed
 preview test. Exact grep: `Compare canonical name-priority tracks against the
 served participant row`. It reads the candidate tracks from source-generated

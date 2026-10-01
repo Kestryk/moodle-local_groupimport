@@ -1,5 +1,27 @@
 # Foundations Student Management migration
 
+## Responsive name-priority correction — 2026-10-01
+
+Canonical Kit `a29dcc2655937b113f3932af594bc3c86aba3f65` revises the
+failed 1.6:1 trial to 3:1 identity/email tracks. Canonical and embedded module
+blob: `c46260faf9a98871d23eb9e3746a6be876fc2c99`. The generated CSS change
+remains one responsive grid declaration; no JS, template, action movement,
+content removal or motion modification. Detailed-state overrides remain later.
+
+Temporary-page comparison `easystud-authenticated-20261001T062130513Z-41764`
+PASSED: sampled name 37.453 -> 54.547px, identity lane 72 -> 97.172px,
+email 57.563 -> 32.391px, card height 45.969px unchanged, eye x=253.406px
+unchanged. Screenshot inspected. Long names still truncate in a single row;
+this is an allocation improvement, not a promise of fully visible names.
+Credentials cleared, lease released and owned child stopped. No fixture/data
+write. This supersedes the failed experiment's deployment prohibition for the
+3:1 correction only; managed runtime proof is still pending below.
+
+The preserved participant-state scenario now checks a >50px sampled name
+lane and >20px email at 390px, including separation from the eye, before and
+after temporary selection. Existing desktop/tablet containment checks remain.
+Foundations responsive recipe update stays queued for a connected source pass.
+
 ## WIP responsive-name experiment — not deployed
 
 User validated Penpot unified filters and centred selectors, then authorized
