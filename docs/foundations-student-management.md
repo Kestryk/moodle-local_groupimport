@@ -18,6 +18,13 @@ adds checkbox/name-centre gates and corrected fixture alignment. Injections
 are removed in finally. Runtime stays `c58f0d1`; no consumer SCSS, generated
 CSS, template, animation or business data changed. Tests remain exploratory.
 
+Geometry evidence is not normal-motion acceptance. The isolated fixture now
+uses a numeric 6rem compact maximum rather than `none`; before embedding it,
+run dedicated selected/unselected and disclosure transition regressions.
+
+Final numeric-endpoint run `easystud-authenticated-20261001T174755379Z-44640`
+passes the same four-width geometry comparison. No runtime promotion.
+
 ## 320px readability investigation — not deployed
 
 The enhanced metadata run exposes a residual 20.52px name lane at 320px
