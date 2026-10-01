@@ -5,6 +5,14 @@ selection-based alternatives for keyboard and touch users.
 
 ## Mixins
 
+Foundations moving previews use `drag-preview-moving-outline`,
+`drag-preview-moving-badge`, `drag-preview-moving-icon($mask)` and
+`drag-preview-count-placement`. Shared roles: 2px primary outline at 72%,
+26px moving badge, 12px/700 label, 6px gap and proportional 16px icon.
+Portal context supplies resolved workspace variables/font through the
+`--easyedu-drag-font-family` bridge. Decorative clones are inert/aria-hidden.
+Single has no layers/count; Multiple has two layers and `+N` extra items.
+
 ```scss
 .my-target.is-drop-target {
   @include easyedu.drop-target-overlay(var(--easyedu-group));

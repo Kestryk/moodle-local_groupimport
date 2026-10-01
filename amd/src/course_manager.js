@@ -196,6 +196,21 @@ const setStackedDragImage = (event, items, type) => {
     const rect = source.getBoundingClientRect();
     const preview = document.createElement('div');
     preview.className = 'local-groupimport-easystud-drag-preview local-groupimport-easystud-drag-preview--' + type;
+    // The fixed preview is portalled to body. Relay the workspace's resolved
+    // Kit/theme tokens instead of recreating visual values in plugin code.
+    const workspace = source.closest('#local-groupimport-easystud');
+    if (workspace) {
+        const theme = window.getComputedStyle(workspace);
+        preview.style.setProperty('--easyedu-drag-font-family', theme.fontFamily);
+        for (let index = 0; index < theme.length; index++) {
+            const property = theme[index];
+            if (property.startsWith('--easyedu-') || property.startsWith('--local-groupimport-')) {
+                preview.style.setProperty(property, theme.getPropertyValue(property));
+            }
+        }
+    }
+    preview.setAttribute('aria-hidden', 'true');
+    preview.setAttribute('inert', '');
     preview.style.width = Math.max(rect.width, 220) + 'px';
     preview.style.left = Math.max(event.clientX - 24, 0) + 'px';
     preview.style.top = Math.max(event.clientY - 18, 0) + 'px';
@@ -212,6 +227,16 @@ const setStackedDragImage = (event, items, type) => {
         input.checked = false;
     });
     preview.appendChild(card);
+
+    // Decorative movement state; its geometry belongs to the canonical Kit.
+    const moving = document.createElement('span');
+    moving.className = 'local-groupimport-easystud-drag-preview__moving';
+    const movingIcon = document.createElement('span');
+    movingIcon.className = 'local-groupimport-easystud-drag-preview__moving-icon';
+    const movingLabel = document.createElement('span');
+    movingLabel.textContent = workspace?.getAttribute('data-easystud-drag-moving-label') || '';
+    moving.append(movingIcon, movingLabel);
+    preview.appendChild(moving);
 
     if (items.length > 1) {
         preview.classList.add('has-stack');
