@@ -2,6 +2,9 @@
 
 ## 2026-10-01
 
+- Correct the Danger indicator's inherited hidden rail display after capture
+  inspection; assert its rendered display in addition to dimensions/colors.
+
 - Show the canonical Danger drop indicator when participants hover an already
   incompatible empty grouping. Clear feedback on leave/end and return to a
   valid Group; preserve native refusal and all membership endpoints.

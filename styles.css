@@ -5866,7 +5866,9 @@
   background-color: var(--easyedu-file-deposit-danger-surface);
   background-image: var(--easyedu-drop-affordance-danger, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23c9271e' d='M14.9023,6.569C15.3092,6.1621,15.3092,5.5013,14.9023,5.0944C14.4955,4.6875,13.8346,4.6875,13.4277,5.0944L10,8.5254L6.569,5.0977C6.1621,4.6908,5.5013,4.6908,5.0944,5.0977C4.6875,5.5045,4.6875,6.1654,5.0944,6.5723L8.5254,10L5.0977,13.431C4.6908,13.8379,4.6908,14.4987,5.0977,14.9056C5.5045,15.3125,6.1654,15.3125,6.5723,14.9056L10,11.4746L13.431,14.9023C13.8379,15.3092,14.4987,15.3092,14.9056,14.9023C15.3125,14.4955,15.3125,13.8346,14.9056,13.4277L11.4746,10L14.9023,6.569L14.9023,6.569'/%3E%3C/svg%3E"));
   border-color: var(--easyedu-file-deposit-danger-border);
+  bottom: auto;
   content: "";
+  display: block;
   left: 50%;
   mask-image: none;
   pointer-events: none;
