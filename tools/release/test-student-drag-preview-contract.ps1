@@ -8,6 +8,10 @@ if ($canonical.Replace("`r`n", "`n") -cne $embedded.Replace("`r`n", "`n")) {
     throw 'Embedded drag recipes differ from canonical source.'
 }
 $adapter = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/components/_interaction.scss')
+foreach ($needle in @('@include drop-affordance;', 'border: 1.5px solid var(--easyedu-control-focus-border)',
+    'background-size: $size * 0.5 $size * 0.5')) {
+    if (-not $canonical.Contains($needle)) { throw "Missing flat affordance contract: $needle" }
+}
 foreach ($recipe in @('drag-preview-moving-outline', 'drag-preview-moving-badge', 'drag-preview-count-placement')) {
     if (-not $adapter.Contains("@include easyedu.$recipe;")) { throw "Missing shared adapter: $recipe" }
 }

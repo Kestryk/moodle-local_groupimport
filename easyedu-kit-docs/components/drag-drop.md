@@ -16,7 +16,13 @@ container surface/rail/shadow and its identity-icon pseudo-element.
 Override `--easyedu-drop-affordance-plus` with a themed SVG image if needed;
 surface and border use existing shared deposit/focus tokens. Other consumers
 adopt this recipe only on their own explicit synchronization.
-Denied/danger targets are not implemented by this allowed-state recipe.
+The same family supports `drop-affordance($size, danger)`: linked xmark,
+danger surface/border tokens, no relief. Sizes 2/2.5/3rem match the linked
+S/M/L 32/40/48px specimens, with 16/20/24px icon slots.
+`denied-drop-target` applies the M danger indicator and a non-layout outline
+only to the hovered incompatible container. The consumer owns the eligibility
+predicate and clears the transient class on leave, cancellation and end.
+Never reject an eligible nested Group merely because its parent is a Grouping.
 
 Foundations moving previews use `drag-preview-moving-outline`,
 `drag-preview-moving-badge`, `drag-preview-moving-icon($mask)` and

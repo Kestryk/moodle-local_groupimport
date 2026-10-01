@@ -15,8 +15,24 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
     }
     const root=page.locator('#local-groupimport-easystud');
     await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    // CSS border widths snap to device pixels. Compare a declared 1.5px probe,
+    // not an impossible fractional computed width on DPR=1 Chromium.
+    const expectedBorder=await page.evaluate(()=>{
+        const probe=document.createElement('span');
+        probe.style.border='1.5px solid transparent';
+        document.body.appendChild(probe);
+        try { return getComputedStyle(probe).borderTopWidth; }
+        finally { probe.remove(); }
+    });
     const reports=[];
     for (const type of ['participant','group']) {
+        if (type==='participant' && !await root.locator('[data-easystud-user-drop]:visible').count()) {
+            const grouping=root.locator('[data-easystud-grouping-id]:visible').filter({
+                has:page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
+            }).first();
+            await grouping.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]').click();
+            await expect(root.locator('[data-easystud-user-drop]:visible').first()).toBeVisible({timeout:10000});
+        }
         if (type==='group') {
             await root.locator('[data-easystud-layout-mode="structure"]:visible').first().click();
         }
@@ -85,7 +101,8 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                 await page.screenshot({path:testInfo.outputPath('drag-'+type+'-'+(multiple?'multiple':'single')+'.png')});
                 const target=root.locator(type==='participant'?'[data-easystud-user-drop]:visible':
                     '[data-easystud-grouping-drop]:visible').first();
-                await target.scrollIntoViewIfNeeded();
+                await expect(target).toBeVisible({timeout:10000});
+                await target.scrollIntoViewIfNeeded({timeout:10000});
                 const box=await target.boundingBox();
                 await target.dispatchEvent('dragover',{dataTransfer:transfer,
                     clientX:box.x+box.width/2,clientY:box.y+box.height/2});
@@ -101,18 +118,61 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                 expect(affordance.height).toBe('40px');
                 expect(affordance.size).toBe('20px 20px');
                 expect(affordance.position).toBe('50% 50%');
-                expect(affordance.border).toBe('1.5px');
+                expect(affordance.border).toBe(expectedBorder);
                 expect(affordance.shadow).toBe('none');
                 expect(affordance.image).toContain('data:image/svg+xml');
                 expect(affordance.content).toBe('""');
-                await target.screenshot({path:testInfo.outputPath('target-'+type+'-'+(multiple?'multiple':'single')+'.png')});
+                // Hide only the decorative pointer-following preview for this
+                // target capture, otherwise it obscures the centred indicator.
+                await preview.evaluate(n=>{ n.style.visibility='hidden'; });
+                try {
+                    await target.screenshot({path:testInfo.outputPath('target-'+type+'-'+(multiple?'multiple':'single')+'.png')});
+                } finally {
+                    await preview.evaluate(n=>{ n.style.removeProperty('visibility'); });
+                }
                 await target.dispatchEvent('dragleave',{dataTransfer:transfer,relatedTarget:null});
                 await expect(target).not.toHaveClass(/is-drop-target/);
+                if (type==='participant') {
+                    const denied=root.locator('[data-easystud-grouping-id].is-user-drop-disabled:visible').first();
+                    await expect(denied).toBeVisible({timeout:10000});
+                    const accepted=await denied.evaluate((n,dt)=>{
+                        const event=new DragEvent('dragover',{bubbles:true,cancelable:true,dataTransfer:dt});
+                        n.dispatchEvent(event);
+                        return event.defaultPrevented;
+                    },transfer);
+                    expect(accepted).toBe(false);
+                    await expect(denied).toHaveClass(/is-drop-denied/);
+                    expect(await transfer.evaluate(dt=>dt.dropEffect)).toBe('none');
+                    const danger=await denied.evaluate(n=>{
+                        const s=getComputedStyle(n,'::after');
+                        return {width:s.width,height:s.height,surface:s.backgroundColor,
+                            border:s.borderTopColor,image:s.backgroundImage};
+                    });
+                    reports[reports.length-1].denied=danger;
+                    fs.writeFileSync(testInfo.outputPath('drag-preview-foundations.json'),JSON.stringify(reports,null,2));
+                    expect(danger.width).toBe('40px');
+                    expect(danger.height).toBe('40px');
+                    expect(danger.surface).toBe('rgb(255, 244, 242)');
+                    expect(danger.border).toBe('rgb(217, 107, 99)');
+                    expect(danger.image).toContain('c9271e');
+                    await preview.evaluate(n=>{ n.style.visibility='hidden'; });
+                    try {
+                        await denied.screenshot({path:testInfo.outputPath('target-denied-'+(multiple?'multiple':'single')+'.png')});
+                    } finally {
+                        await preview.evaluate(n=>{ n.style.removeProperty('visibility'); });
+                    }
+                    await target.dispatchEvent('dragover',{dataTransfer:transfer});
+                    await expect(denied).not.toHaveClass(/is-drop-denied/);
+                    await expect(target).toHaveClass(/is-drop-target/);
+                    await target.dispatchEvent('dragleave',{dataTransfer:transfer,relatedTarget:null});
+                }
             } finally {
-                await source.dispatchEvent('dragend',{dataTransfer:transfer});
-                await transfer.dispose();
-                await expect(preview).toHaveCount(0);
-                if (multiple) for (const selector of selectors) await selector.click();
+                if (!page.isClosed()) {
+                    await root.dispatchEvent('dragend',{dataTransfer:transfer});
+                    await transfer.dispose();
+                    await expect(preview).toHaveCount(0);
+                    if (multiple) for (const selector of selectors) await selector.click();
+                }
             }
         }
     }

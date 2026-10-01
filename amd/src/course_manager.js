@@ -6028,12 +6028,16 @@ const bindUserDragDrop = (root, courseId) => {
     let dragPreview = null;
     const labels = JSON.parse(root.getAttribute('data-easystud-detail-labels') || '{}');
     const emptyGroupingDropDisabledClass = 'is-user-drop-disabled';
+    const deniedDropClass = 'is-drop-denied';
 
     const syncEmptyGroupingDropState = enabled => {
         root.querySelectorAll('[data-easystud-grouping-id]').forEach(grouping => {
             const children = grouping.querySelector(':scope > .local-groupimport-easystud-tree__children');
             const hasgroups = !!(children && children.querySelector(':scope > [data-easystud-group-id]'));
             grouping.classList.toggle(emptyGroupingDropDisabledClass, enabled && !hasgroups);
+            if (!enabled) {
+                grouping.classList.remove(deniedDropClass);
+            }
         });
     };
 
@@ -6094,6 +6098,20 @@ const bindUserDragDrop = (root, courseId) => {
     root.addEventListener('dragover', event => {
         moveDragPreview(dragPreview, event);
         const dropTarget = event.target.closest('[data-easystud-user-drop]');
+        // Empty groupings cannot receive participants. Feedback mirrors the
+        // existing eligibility rule; it never turns them into valid targets.
+        const deniedTarget = draggedUsers.length && !dropTarget ?
+            event.target.closest('[data-easystud-grouping-id].' + emptyGroupingDropDisabledClass) : null;
+        root.querySelectorAll('.' + deniedDropClass).forEach(target => {
+            if (target !== deniedTarget) {
+                target.classList.remove(deniedDropClass);
+            }
+        });
+        if (deniedTarget && root.contains(deniedTarget)) {
+            deniedTarget.classList.add(deniedDropClass);
+            event.dataTransfer.dropEffect = 'none';
+            return;
+        }
         if (!draggedUsers.length || !dropTarget || !root.contains(dropTarget)) {
             return;
         }
@@ -6104,6 +6122,10 @@ const bindUserDragDrop = (root, courseId) => {
 
     root.addEventListener('dragleave', event => {
         const dropTarget = event.target.closest('[data-easystud-user-drop]');
+        const deniedTarget = event.target.closest('.' + deniedDropClass);
+        if (deniedTarget && !deniedTarget.contains(event.relatedTarget)) {
+            deniedTarget.classList.remove(deniedDropClass);
+        }
         if (dropTarget && !dropTarget.contains(event.relatedTarget)) {
             dropTarget.classList.remove(dropTargetClass);
         }

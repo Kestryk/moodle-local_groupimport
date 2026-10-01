@@ -797,6 +797,10 @@ Must not:
   context sheets, action trays and busy states.
 ## Responsive navigation and cards
 
+- Denied drag feedback is transient and derives from existing product eligibility.
+  Clear on leave/end; eligible nested targets take precedence. Shared recipes
+  own the flat indicator, not native drop acceptance or persistence.
+
 - Allowed insert targets use the shared flat SVG drop affordance, not a text
   plus. Keep receiving-card semantic rails and compatibility logic unchanged;
   one allowed-state appearance does not establish denied/danger coverage.

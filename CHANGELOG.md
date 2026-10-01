@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Show the canonical Danger drop indicator when participants hover an already
+  incompatible empty grouping. Clear feedback on leave/end and return to a
+  valid Group; preserve native refusal and all membership endpoints.
+
 - Consume the shared flat allowed-drop affordance for participant-to-group and
   group-to-grouping targets. Preserve native eligibility and container paint;
   extend supervised coverage through dragover/dragleave without any drop.
