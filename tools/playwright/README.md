@@ -1,5 +1,15 @@
 # EasyStud Playwright audits
 
+## Experimental name-priority comparison
+
+`student-mobile-name-priority.spec.js` is `local-supervised`, not a deployed
+preview test. Exact grep: `Compare canonical name-priority tracks against the
+served participant row`. It reads the candidate tracks from source-generated
+`styles.css`, injects a temporary stylesheet into the owned page, compares name
+width and removes it in `finally`. No runtime file or data is changed. The
+first run FAILED the name-width gain gate; do not waive it or call the
+candidate visually accepted. Rebuild source Sass before any new experiment.
+
 ## Participant metadata inspection
 
 `student-participant-metadata.spec.js` is a `local-supervised` scenario selected

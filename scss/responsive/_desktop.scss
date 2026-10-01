@@ -249,7 +249,7 @@
       align-items: center;
       display: grid;
       grid-template-areas: "identity email action";
-      grid-template-columns: minmax(4.5rem, 0.72fr) minmax(0, 1fr) auto;
+      @include easyedu.person-card-responsive-tracks;
       width: 100%;
     }
 

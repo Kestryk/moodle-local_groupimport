@@ -1,5 +1,32 @@
 # Foundations Student Management migration
 
+## WIP responsive-name experiment — not deployed
+
+User validated Penpot unified filters and centred selectors, then authorized
+continuing. A canonical `person-card-responsive-tracks` candidate changes only
+the identity/email grid ratio from 0.72:1 (72px minimum identity) to 1.6:1.
+Canonical and embedded module blob: `63b6df9be0cac6e9eb68a3d752a0c1df8319e11a`.
+Generated CSS differs by exactly that one declaration; no template, JS,
+content, breakpoint, card height or animation edits.
+
+Supervised run `easystud-authenticated-20261001T060748666Z-46584` FAILED:
+sampled name width rose from 37.453125 to 42.25px, below the requested >10px
+gain. Source spec `student-mobile-name-priority.spec.js` reads the compiled
+candidate declaration and temporarily injects only that declaration into the
+owned browser page. Its `finally` removes the stylesheet. No runtime files,
+cache or business data were changed. Remaining assertions and screenshot were
+not reached; do not claim containment or visual acceptance of this candidate.
+
+Cleanup confirms credentials cleared, lease released and owned child stopped.
+The failed run and its error context remain in the external authenticated
+artifact directory. Source header/action/metadata contracts and Sass compile
+passed, with the existing loading mixed-decls warning. The full-CSS equality
+record for metadata extraction remains historical, not applicable here.
+
+Do not preview-promote this WIP: next inspect how the primary badge and name
+share the identity lane, retaining email and actions. Merely increasing the
+grid ratio is insufficient at phone width. Foundation recipes are unchanged.
+
 ## Browser checkpoint — 2026-10-01 / participant states
 
 Read-only authenticated run `easystud-authenticated-20261001T052852195Z-37172`

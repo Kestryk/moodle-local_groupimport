@@ -1,5 +1,9 @@
 # EasyEdu Component Contract
 
+The experimental `person-card-responsive-tracks` recipe is NOT accepted:
+390px readability proof failed. Do not propagate it to Foundations or other
+consumers, or deploy its CSS, until an effective layout has visual evidence.
+
 Card metadata uses the canonical `card-metadata*` recipes. Preserve the
 consumer's field content, hidden-extra tokens, density visibility, breakpoint
 and motion. Source-preserving extraction is not Penpot visual acceptance:

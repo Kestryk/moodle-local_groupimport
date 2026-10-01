@@ -1,5 +1,14 @@
 # Cards
 
+## Experimental responsive tracks — not accepted
+
+`person-card-responsive-tracks` is a WIP layout-only candidate. It changes
+the compact responsive identity/email ratio to 1.6:1 without altering action
+widths, breakpoints, height, content or motion. The first supervised 390px
+comparison FAILED its minimum readability-gain check: name width increased
+only from 37.453px to 42.25px. Do not deploy or treat this as a validated
+Foundation recipe. Investigate badge/identity allocation before promotion.
+
 ## Source-preserving metadata API
 
 Use `card-metadata`, `card-metadata-row`, `card-metadata-label`,

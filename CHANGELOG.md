@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- WIP, not deployed: trial canonical name-priority tracks for responsive
+  participant cards. A temporary browser stylesheet gained only 4.8px of
+  name width and failed the readability gate; retain evidence for redesign.
+
 - Add a supervised participant-state audit at desktop, tablet and phone widths.
   Record source-confirmed responsive selection behavior and the narrow name
   lane without changing layout, motion or business data.
