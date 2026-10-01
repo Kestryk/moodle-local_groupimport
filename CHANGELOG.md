@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Verify the product Groupings mobile composition against source behavior:
+  hide extra pagination recoverably and restore the grouping card position.
+  Direct page-scoped readback, containment and focused PNG inspection pass.
+
 - Correct the pagination audit's Groupings assumption: mobile intentionally
   has no pagination because grouping pagination requires desktop structure
   focus. Preserve product behavior; assert absence rather than add controls.

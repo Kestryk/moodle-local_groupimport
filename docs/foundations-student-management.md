@@ -434,9 +434,13 @@ now requires zero visible Groupings pagination bars. Corrected run
 `easystud-authenticated-20261001T121212215Z-39680` passes at 1600/768/390/320;
 Groups pagination and Groupings absence pass at both phone widths. Cleanup
 confirms credentials cleared, runtime lease released and no fixture mutation.
-The 320px Groups/menu capture was inspected. Penpot's recovery command timed
-out; hiding Groupings controls and restoring the saved card position remain
-unconfirmed until readback succeeds. No runtime
+The 320px Groups/menu capture was inspected. Initial Penpot recovery timed out;
+subsequent direct page-scoped readback and focused PNG confirm Groupings top
+and footer pagination hidden recoverably, card restored to y=5094 and contained.
+Participants and Groups retain their linked Foundation pagination instances.
+Use `currentPage.getShapeById` for known IDs on this page rather than repeated
+global scans. This is a verified bounded recovery, not whole-view acceptance.
+No runtime
 JavaScript, card animation or membership data is modified.
 
 Most avoidable work in this continuation came from the disclosure harness:
