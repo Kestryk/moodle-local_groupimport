@@ -18,6 +18,13 @@ the pinned control-treatment contract separately checks canonical parity.
 This was a stale static test, not a product rendering failure.
 Native overflow/context-menu runtime coverage remains a separate next check.
 
+`student-context-menu-foundations.spec.js` is the focused local-supervised
+candidate: Participant/Group/Grouping at 1600/768/390; native right-click or
+existing 44px trigger, viewport and icon containment, bottom-sheet/backdrop,
+initial focus and Escape restoration. No command activated. Selection is
+restored as transient UI state. Registered in the Platform scenario registry;
+the run is not CI-deterministic until a seeded course fixture exists.
+
 ## Remaining direct-action adapters — 2026-10-01
 
 Rename and Unlink now use the existing Foundations Direct icon family rather

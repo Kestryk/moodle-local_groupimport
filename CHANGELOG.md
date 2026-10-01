@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Add a non-mutating responsive context-menu scenario for Participant, Group
+  and Grouping: native trigger/right-click, 44px targets, icon containment,
+  sheet/backdrop, initial focus and Escape restoration. Human review deferred.
+
 - Replace local desktop card-overflow paints with the canonical
   `card-overflow-trigger` call. Preserve all generated CSS and responsive
   44px hit targets, placement, routing and Motion. No new Penpot variant.
