@@ -16,7 +16,7 @@
     },
     "fullTreeIdentical": false,
     "studentResponsiveTracksExperiment": {
-      "status": "3:1 source and temporary browser comparison passed; managed preview pending",
+      "status": "3:1 managed preview passed 1600/768/390; human review and Foundation documentation pending",
       "sourceCommit": "a29dcc2655937b113f3932af594bc3c86aba3f65",
       "moduleBlob": "c46260faf9a98871d23eb9e3746a6be876fc2c99"
     },

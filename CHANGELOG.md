@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Validate the 3:1 responsive identity allocation in the Moodle 5.1 preview
+  at 1600/768/390px, selected and unselected; name/email remain contained,
+  with unchanged card-height behavior and no business-data mutations.
+
 - Improve responsive compact participant name space through the canonical
   3:1 identity/email recipe. Temporary browser comparison passes at 390px,
   with unchanged height and eye placement; managed preview is pending.
