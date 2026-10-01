@@ -93,7 +93,7 @@
     },
     "studentVisualRoles": {
       "sourceCommit": "de07379cbb271a9b71b51b7eec59320854fa0873",
-      "status": "resting roles and opaque mobile drawer passed; product member instances linked; native context label and full button states corrected after focused failures, follow-up proof pending",
+      "status": "final 1600/768/390 role, inline rest-hover-keyboard and opaque drawer proof passed; nine native menu type-centre-focus cases pass but overall test fails foreign CCB 390px icon occlusion; linked product member rows retain a density/export gap; human review deferred",
       "memberRowComponent": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
       "modules": {
         "_tokens.scss": "583ede19ab971813a1df7ae612ca64453e151455",

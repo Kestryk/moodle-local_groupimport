@@ -45,6 +45,14 @@ Technical checks and human visual acceptance remain separate.
 
 ## Evidence and remaining coverage
 
+Final roles/states: `easystud-authenticated-20261001T212924094Z-41672`
+passes on preview `2dc94de5`; whole-view capture inspected. Native context
+run `20261001T213015887Z-41920` passes typography/centres/focus in all nine
+cases, but its OVERALL result stays failed for three 390px foreign-overlay
+hit targets. No business data changed. Penpot has 12 linked member specimens;
+narrow/whole-card exports and 42px native versus 52px default density remain
+to reconcile after reconnect. None of these facts tick human acceptance.
+
 Narrow diagnostic: `easystud-authenticated-20261001T180425356Z-36668`.
 Native desktop member disclosure: `easystud-authenticated-20261001T180240745Z-42952`.
 Generated media lives under the approved external artifact root, never Git.

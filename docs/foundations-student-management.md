@@ -2,6 +2,33 @@
 
 ## Native state completion and recorded Penpot propagation — 2026-10-01
 
+Post-correction preview `2dc94de5` serves consumer `5cc773d` with Kit
+`de07379`; caches purged by the managed preview runner. Final role/state run
+`easystud-authenticated-20261001T212924094Z-41672` PASSES title/member roles,
+inline Add participants/groups and Rename Save/Cancel rest/hover/keyboard
+focus, parent icon gap/centres and opaque navigation at 768/390px.
+Whole-view PNG inspected; focus-colour data agrees with the actual tokens.
+The intermediate `20261001T212758839Z-28504` failure was a test normalisation
+gap (`#fff` versus computed RGB), not a product defect. The test now handles
+short and full hex; no further product change was made for that failure.
+
+Final native-menu run `20261001T213015887Z-41920` covers all nine cases.
+Every case passes 11.84px/700 Inter, viewport containment, icon centres,
+initial focus and Escape restoration. The OVERALL test remains FAILED:
+one icon in each 390px menu is occluded by the same foreign CCB/Moodle drawer
+button. Desktop/tablet hit checks pass. Phone Group PNG inspected; no CCB
+write, command execution or z-index inflation. Keep this strict assertion.
+Both final runs report credentials cleared, leases released, children stopped
+and no fixture or business mutation. Representative external PNGs pinned;
+retention dry-run only, zero deletions. Normal card Motion was not changed.
+
+Reusable scenarios remain local-supervised/live-data dependent, not CI-ready.
+Source/build/role/typography/card-header/sort/overflow/modal/AMD static checks
+pass. Kit audit still reports the same five warnings outside its older
+baseline; the pre-existing Sass mixed-declaration warning is retained.
+Full compatibility, 320px, RTL, zoom, forced-colors, all modal text, every
+button family and whole-view human acceptance are NOT inferred from this run.
+
 Resting-role proof `easystud-authenticated-20261001T211431487Z-40848`
 passes on preview `ae199225`: title/member roles, centred Add/Save/Cancel,
 opaque navigation at 768/390px and native Rename open/cancel. `rename-1600.png`
@@ -39,6 +66,14 @@ original component or business data was removed or changed.
 Platform planning-owner proposal: record the above proofs/failures, linked
 product specimens and remaining compact-density/export boundary in
 EED-UI-2026-0073. Existing shared planning/index changes remain untouched.
+
+Cost/efficiency note: no billing or token telemetry is available, so no usage
+or saving totals are claimed. Avoidable overhead in this slice came from
+combined/truncated reads, guessed older test paths, a global Penpot read that
+stalled, and colour-format assumptions causing repeat tests. Next pass should
+use known current-page IDs, discover paths with `rg --files`, read one bounded
+section, and normalise token formats before starting supervised browser work.
+Preserve these focused specs/evidence instead of repeating full-page discovery.
 
 ## Measured visual roles — 2026-10-01
 

@@ -27,8 +27,10 @@ test('Student visual roles match Foundations typography and surfaces', async({pa
             const style = getComputedStyle(n);
             const colour = name => {
                 const value = style.getPropertyValue(`--easyedu-${name}`).trim();
-                const hex = /^#([a-f0-9]{6})$/i.exec(value);
-                return hex ? `rgb(${[0, 2, 4].map(i => parseInt(hex[1].slice(i, i + 2), 16)).join(', ')})` : value;
+                const hex = /^#([a-f0-9]{3}|[a-f0-9]{6})$/i.exec(value);
+                const digits = hex && (hex[1].length === 3
+                    ? [...hex[1]].map(c => c + c).join('') : hex[1]);
+                return hex ? `rgb(${[0, 2, 4].map(i => parseInt(digits.slice(i, i + 2), 16)).join(', ')})` : value;
             };
             return {primary:colour('primary'), strong:colour('primary-strong'), soft:colour('primary-soft'),
                 surface:colour('surface')};
