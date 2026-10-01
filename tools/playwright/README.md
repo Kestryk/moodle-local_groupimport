@@ -1,5 +1,21 @@
 # EasyStud Playwright audits
 
+## Participant metadata inspection
+
+`student-participant-metadata.spec.js` is a `local-supervised` scenario selected
+by `Participant metadata retains contents and responsive containment`.
+It captures the first populated participant before/after temporary selection
+at 1600/768/390px, checks visible element containment, and records metadata
+row/token counts, typography, card height and name truncation. Selection is
+cleared at each width. Use the saved-credentials wrapper with `-WaitForLease`.
+No membership action or saved preference is changed. It does not assert
+complete business-content correctness, modal details or animation timing.
+
+Evidence: `participant-metadata.json` and six `participant-<width>-<state>.png`
+captures in the external manifested run directory. Mobile selection intentionally
+does not expand cards: `updateSelectionActions` requires
+`!isResponsiveWorkspace()` for single-participant expansion.
+
 ## Student card Foundations actions
 
 `student-card-actions-foundations.spec.js` is one `local-supervised` read-only

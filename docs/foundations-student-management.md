@@ -1,5 +1,36 @@
 # Foundations Student Management migration
 
+## Browser checkpoint — 2026-10-01 / participant states
+
+Read-only authenticated run `easystud-authenticated-20261001T052852195Z-37172`
+passed one scenario on runtime `10f3c86d69e4d62ad941b980bf8c0b2ef6525855`.
+No preview promotion was needed: the metadata source extraction preserves
+the served CSS. Six states cover unselected/selected at 1600/768/390px.
+Visible name/email/eye/metadata boxes remain horizontally inside the sampled
+card; the first participant retains four metadata rows in the DOM. Desktop
+selected and mobile selected screenshots were inspected.
+
+Important result: desktop selection grows the sampled card from 45.97px to
+191.81px; tablet/mobile selection keeps 45.97px. Source explicitly requires
+`selectedUsers.length === 1 && !isResponsiveWorkspace()` for expansion in
+`updateSelectionActions`. The Penpot mobile selected-expanded example is
+therefore NOT the actual selection behavior. Do not change runtime expansion
+or motion simply to imitate that drawing. Correct the composition or clearly
+separate a genuine detailed-view state once its trigger is verified.
+
+At 390px the sampled name has 37px available for 81px of text, versus the
+full 81px at desktop/tablet. This is a confirmed readability issue, not
+horizontal overflow. It remains open; this run is not full card acceptance.
+Business-content completeness and motion timing were not asserted.
+
+Artifacts live under the external authenticated run directory:
+`playwright-output/student-participant-metada-cce7a--and-responsive-containment/`.
+The JSON report records geometry, typography and token counts without copying
+identity strings. Cleanup confirms cleared credentials, released lease and
+stopped owned child, with no fixture requested. Retention dry-run protects this
+run and deletes zero files. Penpot suspended during browser work; no design
+mutation was attempted after that suspension.
+
 ## Latest checkpoint — 2026-10-01 / metadata extraction
 
 The five metadata recipes now live in canonical
