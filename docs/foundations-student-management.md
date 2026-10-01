@@ -1,5 +1,28 @@
 # Foundations Student Management migration
 
+## Latest served checkpoint — 2026-10-01
+
+Managed preview applied source through `55f3099` to runtime
+`6b3824fb8497c1959da6a835f78494a303220eb8`, on clean branch
+`preview/moodle51/easystud-phase0-mass-admin`. Cache purge succeeded.
+Authenticated run `easystud-authenticated-20261001T062511059Z-17208` PASSED
+the registered participant metadata scenario at 1600/768/390px, unselected
+and selected. The phone's sampled name now has 54.547px and email 32.391px;
+card height stays 45.969px. Desktop selected height remains 191.813px.
+The 390px selected capture was inspected: eye/menu, primary badge and tray
+remain present, and compact names retain more visible characters.
+
+This closes the bounded identity-track correction technically. It does not
+claim complete Student Management acceptance or full visibility of long names.
+Foundations responsive recipe documentation remains queued, along with the
+already human-accepted unified filters and centred view-selector instances.
+No source/AMD motion edit or membership/data action occurred.
+
+Artifacts: external authenticated run above, subdirectory
+`playwright-output/student-participant-metada-cce7a--and-responsive-containment/`,
+with six viewport screenshots and `participant-metadata.json`. Cleanup confirms
+credentials cleared, lease released, owned child stopped and no fixture requested.
+
 ## Responsive name-priority correction — 2026-10-01
 
 Canonical Kit `a29dcc2655937b113f3932af594bc3c86aba3f65` revises the
