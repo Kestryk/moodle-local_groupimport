@@ -1,5 +1,20 @@
 # Foundations Student Management migration
 
+## Filter-disclosure typography harmonization — 2026-10-01
+
+`filter-disclosure-type` is the single Kit label role: inherited Inter family,
+0.76rem (12.16px at the 16px root), regular weight, line-height 1.1. Forms
+wide/touch and the legacy responsive helper consume it without local font
+overrides. Foundations has 28 applicable labels across Standards, Library and
+card compositions; EasyStud has 25 linked instances on page 03. Existing
+component IDs, geometry and state paints are preserved. Penpot rollback data
+is stored on changed labels as `filterTypographyBefore`.
+
+The supervised `student-filter-typography.spec.js` verifies typography at
+1600/768/390/320, mobile entity views and normal-motion open/close transitions.
+It changes only ephemeral disclosure/view state, not memberships/settings.
+Browser proof and human acceptance remain separate from source parity.
+
 ## Utility-control ownership extraction — 2026-10-01
 
 The adapter `scss/components/_control-typography.scss` now calls canonical Kit

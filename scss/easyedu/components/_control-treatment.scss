@@ -10,6 +10,15 @@
   font-weight: var(--easyedu-font-weight-semibold);
 }
 
+// One utility-label role for wide and mobile filter disclosures. Dimensions,
+// colour, disclosure state and transition remain owned by their control shell.
+@mixin filter-disclosure-type {
+  font-family: inherit;
+  font-size: 0.76rem;
+  font-weight: var(--easyedu-font-weight-regular);
+  line-height: 1.1;
+}
+
 @mixin _action-decoration($legacy-priority) {
   @if $legacy-priority {
     text-decoration: none !important;

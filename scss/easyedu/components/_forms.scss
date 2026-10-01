@@ -11,6 +11,7 @@
 @use "focus";
 @use "panels";
 @use "typography";
+@use "control-treatment" as controls;
 
 // Solid large deposit surface from Foundations. The consumer keeps its native
 // upload control, validation and progress inside __control; no simulated input.
@@ -466,12 +467,9 @@
   border-radius: 999px;
   color: var(--easyedu-text-muted);
   display: inline-flex;
-  font-family: inherit;
-  font-size: 0.76rem;
-  font-weight: var(--easyedu-font-weight-regular);
+  @include controls.filter-disclosure-type;
   gap: 0.42rem;
   justify-content: center;
-  line-height: 1.1;
   min-width: 0;
   transition:
     background-color var(--easyedu-motion-fast) ease,
