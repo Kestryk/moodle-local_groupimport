@@ -10,9 +10,9 @@
     "scope": "Mass Import and Administration Phase 0 subset plus Student Management workspace chrome and header layout recipes",
     "studentHeaderExtraction": {
       "status": "header geometry preserved; measured identity role updated; browser proof recorded separately",
-      "sourceCommit": "5998fbc14879c627cf4e9633738dfa26cc0120d1",
+      "sourceCommit": "f38913c38fea9a67b9887efe8c34e89941028740",
       "baseCommit": "ce8a701bfd1a301778e3780577084f7df3cad393",
-      "cardModuleBlob": "518501f99384f3140ee36b6b47ad6d122728f6bf"
+      "cardModuleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09"
     },
     "fullTreeIdentical": false,
     "studentDragPreview": {
@@ -92,16 +92,23 @@
       "status": "native geometry/focus passed nine cases; stricter 390px icon-hit check exposes foreign CCB drawer occlusion; human acceptance deferred"
     },
     "studentVisualRoles": {
-      "sourceCommit": "de07379cbb271a9b71b51b7eec59320854fa0873",
+      "sourceCommit": "f38913c38fea9a67b9887efe8c34e89941028740",
       "status": "final 1600/768/390 role, inline rest-hover-keyboard and opaque drawer proof passed; nine native menu type-centre-focus cases pass but overall test fails foreign CCB 390px icon occlusion; linked product member rows retain a density/export gap; human review deferred",
       "memberRowComponent": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
       "modules": {
         "_tokens.scss": "583ede19ab971813a1df7ae612ca64453e151455",
         "_workspace-classes.scss": "7349f50c5cd5b688cb4c0fd2f1d50a56a0265762",
         "_foundation-classes.scss": "df3b9c8e0b8c46066812473ded272ea74f7cc2c0",
-        "components/_cards.scss": "518501f99384f3140ee36b6b47ad6d122728f6bf",
+        "components/_cards.scss": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
         "components/_menus.scss": "50619e7e17f5fc8be5ca3f8ae2e26c02267bbb16"
       }
+    },
+    "studentMemberRowExtraction": {
+      "sourceCommit": "f38913c38fea9a67b9887efe8c34e89941028740",
+      "module": "scss/easyedu/components/_cards.scss",
+      "moduleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
+      "baseConsumerCommit": "8296ffea3f1ca3f37b39df6a50170cdb5b21b1c5",
+      "status": "canonical source parity and complete CSS equality verified; native density and Motion unchanged; browser proof and Foundation density reconciliation tracked separately"
     },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },

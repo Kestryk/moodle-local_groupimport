@@ -1,5 +1,36 @@
 # Foundations Student Management migration
 
+## Related-person source-preserving extraction - 2026-10-01
+
+Canonical Kit `f38913c38fea9a67b9887efe8c34e89941028740` promotes four
+existing member-row recipes. `_structure.scss` now contains only calls for
+the row, selection slot, name lane and removal skin. No markup, AMD, business
+command, responsive density or disclosure timing changed. The entire compiled
+stylesheet equals the baseline at consumer `8296ffe` with the same Sass;
+`styles.css` therefore has no Git diff. This is ownership migration, not a
+new appearance or adoption of the larger Foundation Member-row specimen.
+
+Run `tools/release/test-student-member-row-contract.ps1 -KitRoot <checkout>
+-BaselineCss <pre-extraction-css>` for canonical blob parity, recipe-only
+adapters and full CSS equality. Public Kit API validation is
+`scripts/test-related-person-row-contract.ps1`. The baseline stays external
+under the EasyEdu `source-preserving/member-row-20261001` artifact directory.
+The unchanged Sass mixed-declaration warning remains outside this tranche.
+
+`tools/playwright/student-member-row-foundations.spec.js` is a preserved
+`local-supervised` scenario, NOT CI-ready: it needs an authenticated populated
+course, a native populated grouping, the saved-credentials wrapper and the
+GroupImport runtime lease. It measures name roles, selection/name/removal
+centres and containment at 1600/768/390, with native hover/keyboard focus.
+It never activates Remove or changes business data. Normal-motion disclosure
+is checked independently by the existing member-list focus regression.
+Browser execution/result is recorded below after controlled local preview.
+
+Platform planning-owner proposal: add this bounded extraction/proof to the
+existing migration lot; keep the 52px/32px design specimen versus native
+row/action-density gap, pending exports and foreign CCB overlay blocker open.
+Existing shared plan/state/index edits remain preserved, not staged here.
+
 ## Native state completion and recorded Penpot propagation — 2026-10-01
 
 Post-correction preview `2dc94de5` serves consumer `5cc773d` with Kit
