@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Consume the shared flat allowed-drop affordance for participant-to-group and
+  group-to-grouping targets. Preserve native eligibility and container paint;
+  extend supervised coverage through dragover/dragleave without any drop.
+
 - Correct the shared drag-preview opacity reset after screenshot inspection
   exposed a native checkbox above its custom control. Add browser assertions
   for hidden native inputs and checked/unchecked custom marks.

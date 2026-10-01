@@ -1,5 +1,17 @@
 # Foundations Student Management migration
 
+## Flat allowed-drop affordance — 2026-10-01
+
+Kit `dc9d312` replaces the legacy insert-target 43.2px font plus with the
+linked Foundations 40px circle, 20px SVG slot and 1.5px blue border. Normalized
+glyph paint is 13.5416px square, centred in the slot. Existing receiving-card
+gradient, semantic rail and shadows match the read-back Penpot target and stay
+unchanged. No AMD, eligibility, membership or animation change.
+The exact embedded overlays blob is `5db6f471f45fd87f144c306ea41ed5673906be9b`.
+Native dragover/dragleave assertions extend the preview scenario to Participant
+and Group allowed targets, Single/Multiple. Preview/browser proof pending;
+denied/danger, cancelled/error feedback and mobile drag coverage remain open.
+
 ## Foundations drag preview - implementation slice
 
 Penpot product page03 already includes linked Participant Single, Group Single

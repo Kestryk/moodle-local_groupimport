@@ -797,6 +797,10 @@ Must not:
   context sheets, action trays and busy states.
 ## Responsive navigation and cards
 
+- Allowed insert targets use the shared flat SVG drop affordance, not a text
+  plus. Keep receiving-card semantic rails and compatibility logic unchanged;
+  one allowed-state appearance does not establish denied/danger coverage.
+
 - Decorative drag previews must preserve descendant opacity: hide native
   checkbox inputs and unchecked marks exactly as in the source card. Never
   force all descendants opaque merely to reset the moving card itself.
