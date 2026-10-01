@@ -1,5 +1,31 @@
 # Foundations Student Management migration
 
+## Utility-control ownership extraction — 2026-10-01
+
+The adapter `scss/components/_control-typography.scss` now calls canonical Kit
+recipes instead of defining inherited font/weight and action-decoration rules.
+Only selector ownership remains in EasyStud. `control-regular-type` applies to
+More filters and Sort labels/values, `control-count-type` to counts, and
+`action-text-treatment` to action triggers/menu entries. Its explicit legacy
+priority preserves the previous rule; new consumers default to normal priority.
+No blanket link reset, new theme override, size, geometry or motion change.
+
+`tools/release/test-student-control-treatment-contract.ps1 -KitRoot <kit-root>
+-BaselineCss <external-baseline.css>` checks canonical source parity,
+selector-only adaptation and full file SHA256 equality. The complete generated
+CSS remains `2A5B83D3876FCF9AEB9C555916F2BA4DEE07CA277B70FDE802C534CE019CF79F`.
+Current source/served CSS also matches after checkout line-ending normalization.
+Sass retains its existing loading/layout mixed-declaration warning.
+
+This is source extraction, not a new visual acceptance or browser test. The
+existing Penpot designs do not need duplicate components; their documented
+typography must still be reconciled during later visual migration. No JS/AMD,
+Mustache, translations, membership data or runtime settings change, so no new
+functional workflow documentation is required. Canonical Kit source is
+`24df5ad11c6af6297e021fbe07eba57d9720bd2d`; module blob is
+`722c312e6c7bcd8509f15bfb60c92350b411202b`. Managed promotion results are
+recorded separately in the canonical batch, not inferred from this extraction.
+
 ## Narrow pagination publication and integration — 2026-10-01
 
 The dedicated Penpot browser is reachable through Playwright. Foregrounding its

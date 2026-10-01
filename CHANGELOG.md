@@ -2,6 +2,11 @@
 
 ## 2026-10-01
 
+- Replace plugin-owned control font/decoration declarations with canonical Kit
+  recipes. Keep selectors and final cascade position; generated CSS is exactly
+  unchanged. Add source-parity and full-CSS equality validation; no card-motion,
+  business behavior or new Penpot geometry in this ownership-only slice.
+
 - Verify the product Groupings mobile composition against source behavior:
   hide extra pagination recoverably and restore the grouping card position.
   Direct page-scoped readback, containment and focused PNG inspection pass.
