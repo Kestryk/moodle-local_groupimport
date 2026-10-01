@@ -1,5 +1,35 @@
 # Foundations Student Management migration
 
+## Narrow pagination investigation — 2026-10-01
+
+The served Participant top bar overlaps sorting and page controls by 26.578px
+at 390px. Desktop/tablet geometry passes in baseline run
+`easystud-authenticated-20261001T064307765Z-30520`. No blanket typography or
+theme defect was inferred: the 108.797px sort button plus caption occupies
+136.5px and overflows its equal side track.
+
+The canonical Kit candidate `pagination-narrow-layout` allocates selection and
+sorting to row 1, page controls centred on row 2, at `25rem` and below. Existing
+skin, font, DOM, behaviors and motion are untouched. Temporary-browser run
+`easystud-authenticated-20261001T064808840Z-42304` passes 1600/768/390/320,
+peer separation, full-bar page centring and open-menu containment. The 390
+default and 320 open-menu captures were inspected. This is NOT deployment or
+whole-view acceptance; only the sampled Participant top bar is covered.
+
+Evidence: external authenticated run above,
+`playwright-output/student-pagination-contain-cf505-ed-across-responsive-widths/`,
+with `pagination-geometry.json`, four default captures and four menu captures.
+Cleanup confirms credentials cleared, lease released and no fixture requested.
+The optional fixture is compiled from canonical Kit source and injected only
+for the test; it is removed in finally. Its missing-file validation now happens
+during test discovery, avoiding credential/lease acquisition for a missing build.
+The earlier harness-only missing-file run is retained, not product evidence.
+
+Penpot health check reports a frozen plugin tab. Foundations Standard/Library
+publication and linked product propagation remain required before consumer
+integration. The active Moodle preview is still `6b3824f`; no runtime stylesheet,
+cache, business data or card animation changed in this slice.
+
 ## Latest served checkpoint — 2026-10-01
 
 Managed preview applied source through `55f3099` to runtime

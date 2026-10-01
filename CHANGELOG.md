@@ -2,6 +2,11 @@
 
 ## 2026-10-01
 
+- Preserve a focused supervised pagination audit and canonical-candidate
+  comparison. Diagnose 390px peer overlap; temporary narrow layout passes
+  320/390/768/1600, centred pages and open-menu containment. Foundations
+  publication and consumer deployment remain pending; no runtime fix claimed.
+
 - Validate the 3:1 responsive identity allocation in the Moodle 5.1 preview
   at 1600/768/390px, selected and unselected; name/email remain contained,
   with unchanged card-height behavior and no business-data mutations.

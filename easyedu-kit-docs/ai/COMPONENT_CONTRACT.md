@@ -1,5 +1,11 @@
 # EasyEdu Component Contract
 
+Narrow pagination candidates must retain control content, fonts and motion.
+Check peer separation and full-bar page centring plus open-menu containment
+at phone, tablet and desktop widths. Optional compiled fixtures must resolve
+during Playwright test discovery before credentials/leases; temporary injection
+is not deployment. Publish the paired Foundation variant before consumer sync.
+
 Use `person-card-responsive-tracks` in the existing responsive compact header
 adapter. Its 3:1 lanes prioritize identity while preserving a visible secondary
 email and the existing action slot. Keep detailed-state overrides later in the
