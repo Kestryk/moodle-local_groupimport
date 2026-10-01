@@ -13690,9 +13690,6 @@
   transform: none !important;
   width: 100%;
 }
-.local-groupimport-easystud-drag-preview > [data-selectable-type] * {
-  opacity: 1 !important;
-}
 .local-groupimport-easystud-drag-preview--participant .local-groupimport-easystud-user__rail {
   background: var(--local-groupimport-easystud-participant);
   opacity: 1;

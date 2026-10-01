@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Correct the shared drag-preview opacity reset after screenshot inspection
+  exposed a native checkbox above its custom control. Add browser assertions
+  for hidden native inputs and checked/unchecked custom marks.
+
 - Consume Foundations drag-preview flair from the canonical Kit. Remove local
   participant ghost skin and counter overrides, relay workspace theme tokens
   to the body portal, and add a translated decorative Dragging indicator.

@@ -71,6 +71,10 @@ Single has no layers/count; Multiple has two layers and `+N` extra items.
 Use drag/drop as enhancement only. Always provide buttons or context menu
 actions for the same operation.
 
+Reset opacity only on the cloned front card, not every descendant. Native
+checkbox inputs and unchecked custom marks intentionally have zero opacity;
+forcing them visible corrupts the preview even when the source card is correct.
+
 Use `drop-target-overlay` when an item is dropped onto the target itself. Use
 `insert-drop-target` when the target represents a container that will receive the
 dragged item, such as a group receiving participants or a grouping receiving

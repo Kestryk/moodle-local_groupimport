@@ -565,6 +565,23 @@ filter density, mobile sorting and card action alignment need their own pass.
 
 ## Execution-efficiency note
 
+### Foundations drag-preview implementation — 2026-10-01
+
+Kit `dea2825`, consumer `33f7e92`, preview `819906f` implement the Penpot
+moving outline/badge and inset additional-item counter. Native dragstart/dragend
+run `easystud-authenticated-20261001T184004729Z-38420` passed Participant and
+Group Single/Multiple: 2px outline, Inter, 12px badge, 16px icon, two rear layers
+and `+1` only for two selected items. No drop or business-data mutation occurred.
+Credentials cleared, lease released, child stopped; no fixture was requested.
+
+Screenshot inspection then revealed exposed native checkbox inputs. The
+shared preview's blanket descendant opacity reset was the cause: hidden inputs
+and unchecked custom marks were forced visible. Kit `8b8d83f` now resets only
+the front card. The browser scenario adds hidden-input and checked-mark
+assertions. Corrected preview proof is pending, not inferred from the first run.
+Human visual acceptance is deferred to `foundations-review-checklist.md`.
+Allowed/denied target affordances and whole-view drag coverage remain separate.
+
 ### Mobile pagination source boundary — 2026-10-01
 
 Managed preview `f25a7c4` serves the shared narrow layout. Run
