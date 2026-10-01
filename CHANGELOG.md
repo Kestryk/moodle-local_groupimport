@@ -7,6 +7,8 @@
   preserve responsive density, native controls and all disclosure animations.
 - Add source pin/ownership and read-only responsive member-row checks;
   Foundation/native density reconciliation and human review remain separate.
+- Record the managed-preview documentary conflict after an omitted proof-only
+  predecessor. Source/static validation passes; browser proof is still pending.
 
 - Verify inline resting/hover/keyboard roles and opaque mobile navigation in
   controlled Moodle 5.1 preview. Keep native menu hit acceptance explicitly

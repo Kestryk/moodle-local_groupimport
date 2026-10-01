@@ -24,7 +24,47 @@ GroupImport runtime lease. It measures name roles, selection/name/removal
 centres and containment at 1600/768/390, with native hover/keyboard focus.
 It never activates Remove or changes business data. Normal-motion disclosure
 is checked independently by the existing member-list focus regression.
-Browser execution/result is recorded below after controlled local preview.
+Browser execution remains pending; no new browser acceptance is claimed.
+
+### Controlled preview stopped on documentary conflicts
+
+Promotion `20261001T215953Z` attempted pushed consumer `23d50e6` from clean
+runtime `2dc94de5`, then stopped on conflicts in `CHANGELOG.md` and
+`easyedu-kit-docs/easyedu-kit.json`. The serving checkout remains in an
+unfinished cherry-pick at that same HEAD; cache purge did NOT run and the
+runner released its preview/cache leases. The source worktrees remain clean
+and pushed. Do not retry, reset or discard the conflicted runtime automatically.
+
+Cause: the previous source proof-only commit `8296ffe` was intentionally not
+promoted, but `23d50e6` changes adjacent changelog/pin lines on top of it.
+There is no CSS or business-data conflict. Proposed owner-approved resolution:
+preserve both extraction and verified proof entries in the changelog; use the
+new canonical card source pin and final proof status in the manifest, retaining
+the explicit CCB hit-test failure. Preserve all other staged paths, continue
+only this exact cherry-pick, then use the managed cache-refresh gate and run
+the two focused member-row/disclosure scenarios. No automatic resolution,
+cache purge or authenticated browser was performed in this continuation.
+
+Discovery from the runtime wrapper passes exactly one new member-row test
+with the plain title grep. An anchored grep failed wrapper discovery, while
+no-credential direct CLI discovery passes; this is a runner invocation
+limitation, not browser proof. Invoke the wrapper from the runtime's existing
+Playwright installation, not the dependency-free source worktree. Discovery
+record `easystud-authenticated-20261001T220039150Z-31360` is discovery-only.
+
+Static checks PASS: public row/header APIs, canonical source/recipe ownership,
+complete stylesheet equality, visual roles, sort, overflow, typography, button
+alignment, Node syntax and Git whitespace. Kit audit still reports the same
+five out-of-baseline findings; its baseline was not changed. The pre-existing
+Sass mixed-declaration warning remains. No new screenshot exists for this
+tranche. Preserve the external baseline, promotion-failure record and earlier
+native visual evidence; no file or artifact was deleted.
+
+Efficiency follow-up: before promotion, compare the source parent against the
+runtime's applied commits. Include intervening proof-only commits in order,
+or prepare an explicitly based candidate, rather than omitting them solely
+because they do not change rendered CSS. Limit reads to known relevant
+sections to avoid truncated output. No billing/token savings are claimed.
 
 Platform planning-owner proposal: add this bounded extraction/proof to the
 existing migration lot; keep the 52px/32px design specimen versus native
