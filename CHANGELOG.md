@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Replace local list-sort trigger/option styles with canonical Kit calls,
+  preserving the complete generated CSS, routing, geometry and states.
+  Reconcile detailed Penpot participant metadata to the existing shared grid.
+
 - Harmonize More filters with Foundations through the canonical Kit recipe:
   desktop and mobile share 0.76rem / regular / 1.1. Preserve unified filter
   surfaces, hit areas and disclosure Motion; no plugin-local font override.

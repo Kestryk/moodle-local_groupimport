@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Compact sorting consumes canonical `list-sort-trigger` and
+`list-sort-option`. Keep selectors/placement/routing local; do not duplicate
+their visual declarations or claim a new Dropdown S design from extraction.
+Preserve full compiled CSS and existing card/disclosure animations.
+
 Filter disclosures use canonical `filter-disclosure-type` (0.76rem, regular,
 line-height 1.1) at every size. Do not add consumer-local font overrides or
 replace the existing Motion transitions; verify their transitional class in
