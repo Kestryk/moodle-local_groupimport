@@ -123,6 +123,8 @@ test('Student context menus preserve responsive geometry and focus', async({page
                         focusedItem:actions.some(n => n === document.activeElement),
                         overflow:document.documentElement.scrollWidth - document.documentElement.clientWidth,
                         items:actions.map(n => ({action:n.getAttribute('data-easystud-context-action'),
+                            type:{size:getComputedStyle(n).fontSize, weight:getComputedStyle(n).fontWeight,
+                                family:getComputedStyle(n).fontFamily, color:getComputedStyle(n).color},
                             box:box(n), icon:n.querySelector('.fa') ? box(n.querySelector('.fa')) : null,
                             iconHit:(() => {
                                 const icon = n.querySelector('.fa');
@@ -146,6 +148,9 @@ test('Student context menus preserve responsive geometry and focus', async({page
                 expect(report.box.y + report.box.h).toBeLessThanOrEqual(report.viewport.h + 1);
                 for (const item of report.items) {
                     expect(item.label).not.toBe('');
+                    expect(item.type.size).toBe('11.84px');
+                    expect(item.type.weight).toBe('700');
+                    expect(item.type.family).toContain('Inter');
                     expect(item.box.x).toBeGreaterThanOrEqual(report.box.x);
                     expect(item.box.x + item.box.w).toBeLessThanOrEqual(report.box.x + report.box.w + 1);
                     if (item.icon) {

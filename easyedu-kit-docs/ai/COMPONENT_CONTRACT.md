@@ -11,6 +11,10 @@ Native context menus reuse the Foundations More-item label role (11.84px/700)
 and opaque surface; command routing, permissions and touch geometry remain
 consumer-owned. Verify hit targets against foreign overlays independently.
 Never repair a cross-plugin layer leak by inflating Kit z-index defaults.
+The native context and overflow recipes must both include `action-menu-label`;
+sort options retain `menu-item` without this role. Foundation inline buttons
+own rest, hover and native focus paints; never stack the generic action-button
+skin under Rename. Audit keyboard focus and hovering separately from rest.
 
 Drag previews use canonical moving-outline/badge/icon recipes. Relay workspace
 theme variables and typography to the body portal; decoration is inert and

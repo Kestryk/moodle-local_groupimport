@@ -84,16 +84,9 @@
     width: auto;
   }
 
-  // Inline Save/Cancel controls sit beside the existing Edit trigger. Reuse
-  // the action-button primitive so text and any future icon stay centred
-  // without changing the rename form's submission or cancellation behaviour.
-  &-rename__edit .btn {
-    @include easyedu.action-button(small);
-
-    .fa {
-      margin-inline: 0 !important;
-    }
-  }
+  // Save/Cancel paints, geometry and states come from the compact Foundation
+  // roles in control-typography. Do not stack a generic action-button skin
+  // here: it competes on hover/focus while leaving the resting state correct.
 
   &-icon-button {
     @include easyedu.icon-button;

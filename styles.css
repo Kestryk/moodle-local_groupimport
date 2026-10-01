@@ -4017,54 +4017,6 @@
   min-width: 0;
   width: auto;
 }
-.local-groupimport-easystud-rename__edit .btn {
-  align-items: center;
-  column-gap: var(--easyedu-action-icon-gap, 0.65rem);
-  display: inline-flex;
-  justify-content: center;
-  line-height: 1.2;
-  row-gap: 0.35rem;
-  font-size: 0.78rem;
-  min-height: 1.9rem;
-  min-width: 1.9rem;
-  padding: 0.22rem 0.5rem;
-  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
-}
-.local-groupimport-easystud-rename__edit .btn .fa,
-.local-groupimport-easystud-rename__edit .btn [class*=" fa-"] {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  line-height: 1;
-  margin-inline: 0;
-  min-inline-size: 1em;
-  width: 1em;
-}
-.local-groupimport-easystud-rename__edit .btn:hover, .local-groupimport-easystud-rename__edit .btn:focus-visible, .local-groupimport-easystud-rename__edit .btn[aria-expanded=true], .local-groupimport-easystud-rename__edit .btn[aria-pressed=true], .local-groupimport-easystud-rename__edit .btn.active, .local-groupimport-easystud-rename__edit .btn.is-active {
-  background: var(--easyedu-primary-soft);
-  border-color: var(--easyedu-control-focus-border);
-  color: var(--easyedu-primary-strong);
-  outline: 0;
-}
-.local-groupimport-easystud-rename__edit .btn:focus-visible {
-  border-color: var(--easyedu-control-focus-border);
-  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
-  outline: var(--easyedu-focus-outline-width) solid transparent;
-  outline-offset: var(--easyedu-focus-outline-offset);
-}
-.local-groupimport-easystud-rename__edit .btn:disabled, .local-groupimport-easystud-rename__edit .btn[aria-disabled=true], .local-groupimport-easystud-rename__edit .btn.disabled {
-  background: var(--easyedu-surface-soft);
-  border-color: var(--easyedu-card-border);
-  color: var(--easyedu-text-muted);
-  cursor: not-allowed;
-  opacity: 0.62;
-  pointer-events: none;
-  transform: none;
-}
-.local-groupimport-easystud-rename__edit .btn .fa {
-  margin-inline: 0 !important;
-}
 .local-groupimport-easystud-icon-button {
   align-items: center;
   border-radius: var(--easyedu-control-radius);
@@ -13759,6 +13711,11 @@
   text-align: left;
   text-decoration: none;
   width: 100%;
+  color: #40566e;
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.74rem;
+  font-weight: var(--easyedu-font-weight-strong);
+  min-height: 2.25rem;
 }
 .local-groupimport-easystud-context-menu [role=menuitem] .fa,
 .local-groupimport-easystud-context-menu button .fa,
@@ -13799,6 +13756,13 @@
 .local-groupimport-easystud-context-menu a:disabled {
   cursor: not-allowed;
   opacity: 0.52;
+}
+.local-groupimport-easystud-context-menu [role=menuitem] .fa,
+.local-groupimport-easystud-context-menu button .fa,
+.local-groupimport-easystud-context-menu a .fa {
+  color: var(--easyedu-primary);
+  font-size: 1rem;
+  line-height: 1;
 }
 .local-groupimport-easystud-context-menu[hidden] {
   display: none;
@@ -18973,9 +18937,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.local-groupimport-easystud [data-easystud-add-group-emails]:focus,
+.local-groupimport-easystud [data-easystud-add-grouping-groups]:focus, .local-groupimport-easystud-rename__edit [type=submit]:focus {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
 .local-groupimport-easystud [data-easystud-add-group-emails]:hover,
 .local-groupimport-easystud [data-easystud-add-grouping-groups]:hover, .local-groupimport-easystud-rename__edit [type=submit]:hover {
   background: var(--easyedu-primary-strong);
+  color: var(--easyedu-surface);
 }
 .local-groupimport-easystud [data-easystud-add-group-emails]:focus-visible,
 .local-groupimport-easystud [data-easystud-add-grouping-groups]:focus-visible, .local-groupimport-easystud-rename__edit [type=submit]:focus-visible {
@@ -19034,10 +19004,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.local-groupimport-easystud [data-easystud-cancel-group-email]:focus,
+.local-groupimport-easystud [data-easystud-cancel-grouping-groups]:focus,
+.local-groupimport-easystud [data-easystud-rename-cancel]:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+}
 .local-groupimport-easystud [data-easystud-cancel-group-email]:hover,
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:hover,
 .local-groupimport-easystud [data-easystud-rename-cancel]:hover {
   background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary);
 }
 .local-groupimport-easystud [data-easystud-cancel-group-email]:focus-visible,
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:focus-visible,
@@ -19485,8 +19462,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.easyedu-ui .easyedu-button:focus {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
 .easyedu-ui .easyedu-button:hover {
   background: var(--easyedu-primary-strong);
+  color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-button:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -19532,8 +19514,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.easyedu-ui .easyedu-button--secondary:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-secondary-text);
+}
 .easyedu-ui .easyedu-button--secondary:hover {
   background: var(--easyedu-primary-soft);
+  color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-button--secondary:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -19792,8 +19779,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-secondary-text);
+}
 .easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:hover {
   background: var(--easyedu-primary-soft);
+  color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -19902,8 +19894,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-secondary-text);
+}
 .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:hover {
   background: var(--easyedu-primary-soft);
+  color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -20025,8 +20022,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.easyedu-ui .easyedu-form-actions [type=submit]:focus {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
 .easyedu-ui .easyedu-form-actions [type=submit]:hover {
   background: var(--easyedu-primary-strong);
+  color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-form-actions [type=submit]:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -20085,8 +20087,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.easyedu-ui .easyedu-button--neutral:focus {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
 .easyedu-ui .easyedu-button--neutral:hover {
   background: var(--easyedu-primary-strong);
+  color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-button--neutral:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -20139,8 +20146,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-inline-size: 1em;
   width: 1em;
 }
+.easyedu-ui .easyedu-button--icon:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-secondary-text);
+}
 .easyedu-ui .easyedu-button--icon:hover {
   background: var(--easyedu-primary-soft);
+  color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-button--icon:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);

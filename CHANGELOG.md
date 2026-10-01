@@ -2,6 +2,12 @@
 
 ## 2026-10-01
 
+- Complete native context-menu text-role consumption after the focused
+  typography test exposed unchanged 14.4px/400 labels in that distinct path.
+- Remove the stacked generic Rename button skin; consume explicit Foundation
+  hover/native-focus paints. Extend read-only tests to keyboard focus and hover.
+- Reconcile the action alignment contract with the already extracted workspace
+  title recipe, preserving its icon gap and generated-selector assertions.
 - Reconcile Student card title sizes/colours and related member-name text with
   Foundations. Keep card contents, layout tracks and validated animations.
 - Use shared compact Foundation Add/Save and Cancel skins and icon/text gap;
