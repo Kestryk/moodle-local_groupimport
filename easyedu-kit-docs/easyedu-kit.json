@@ -73,6 +73,11 @@
       "moduleBlob": "c8a0540980702fc634dd8a83e766abc85270bf20",
       "penpotMain": "10fc9fee-0b8e-807e-8008-98ead919bfd2"
     },
+    "containerSearchAction": {
+      "recipe": "card-direct-action",
+      "penpotInstance": "cef95197-06bc-809e-8008-aede0d9d2b44",
+      "status": "existing canonical recipe reused; source checks passed; responsive runtime proof pending"
+    },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },
   "packages": {

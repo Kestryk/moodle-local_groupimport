@@ -9,7 +9,7 @@ if ($local.Replace("`r`n", "`n") -cne $canonical.Replace("`r`n", "`n")) {
 }
 $css = Get-Content -Raw -LiteralPath (Join-Path $root 'styles.css')
 $names = @('user__detail-button', 'group__mail-button', 'group__duplicate-button',
-    'group__member-search-button', 'group__settings-button')
+    'group__member-search-button', 'group__settings-button', 'container-search__toggle')
 foreach ($name in $names) {
     $selector = '.local-groupimport-easystud-' + $name
     $rule = ''
@@ -45,7 +45,7 @@ if ($BaselineCss) {
         }).Trim()
     }
     if ((Without-ActionRules $css) -cne (Without-ActionRules $baseline)) {
-        throw 'CSS outside the five action families changed.'
+        throw 'CSS outside the migrated action families changed.'
     }
 }
-Write-Output 'PASS: five action families, measured states, canonical parity and bounded CSS scope.'
+Write-Output 'PASS: migrated action families, measured states, canonical parity and bounded CSS scope.'

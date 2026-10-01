@@ -19,7 +19,7 @@ test('Student card direct actions match Foundations across responsive widths', a
     const root = page.locator('#local-groupimport-easystud');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
     const families = ['user__detail-button', 'group__mail-button', 'group__duplicate-button',
-        'group__member-search-button', 'group__settings-button'];
+        'group__member-search-button', 'group__settings-button', 'container-search__toggle'];
     const reports = [];
     for (const width of [1600, 768, 390]) {
         await page.setViewportSize({width, height: 1100});
@@ -73,6 +73,14 @@ test('Student card direct actions match Foundations across responsive widths', a
         if (report.responsive) expect(report.menus).toBeGreaterThan(0);
         await page.screenshot({path:testInfo.outputPath(`card-actions-${width}.png`)});
         if (width === 1600) {
+            const search=root.locator('.local-groupimport-easystud-container-search__toggle:visible').first();
+            await search.hover();
+            await expect(search).toHaveCSS('background-color','rgb(247, 251, 255)');
+            await search.click();
+            await expect(search).toHaveClass(/is-active/);
+            await expect(search).toHaveCSS('background-color','rgb(234, 244, 255)');
+            await search.click();
+            await expect(search).not.toHaveClass(/is-active/);
             await eye.hover();
             const hoverEvidence = await eye.evaluate(button => {
                 const matched = [];
