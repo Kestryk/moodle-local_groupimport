@@ -67,10 +67,10 @@
       "moduleBlob": "d3e0430f9c339c0b31f03508a8b53a1f2c42066f"
     },
     "studentDirectActions": {
-      "status": "canonical source committed, consumer preview pending",
-      "sourceCommit": "0c783026e075e4c3d513c50116dd95350e05e917",
+      "status": "eight action families pass managed 1600/768/390 geometry and non-mutating native interaction checks; captures inspected, human acceptance deferred",
+      "sourceCommit": "35c9c5f5828db72b26860ccfb3a41759da33bb7e",
       "module": "scss/easyedu/components/_card-actions.scss",
-      "moduleBlob": "c8a0540980702fc634dd8a83e766abc85270bf20",
+      "moduleBlob": "132aa0f257812a6d9e8601f354c7731ed421453f",
       "penpotMain": "10fc9fee-0b8e-807e-8008-98ead919bfd2"
     },
     "containerSearchAction": {
@@ -81,7 +81,15 @@
     "remainingDirectActions": {
       "recipe": "card-direct-action",
       "families": ["rename__toggle", "group__unlink-button"],
-      "status": "canonical reuse and bounded CSS checks passed; runtime and product composition propagation pending"
+      "status": "canonical reuse, bounded CSS and managed responsive checks passed; product Rename/Unlink composition propagation pending",
+      "proofRun": "easystud-authenticated-20261001T193408313Z-42096"
+    },
+    "studentCardOverflow": {
+      "recipe": "card-overflow-trigger",
+      "sourceCommit": "35c9c5f5828db72b26860ccfb3a41759da33bb7e",
+      "moduleBlob": "132aa0f257812a6d9e8601f354c7731ed421453f",
+      "penpotMain": "16efa6a5-be95-808f-8008-98eb972325be",
+      "status": "source-preserving extraction; full consumer CSS equality and shared responsive 44px composition verified; native menu proof pending"
     },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },

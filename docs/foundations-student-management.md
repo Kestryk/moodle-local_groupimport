@@ -1,5 +1,23 @@
 # Foundations Student Management migration
 
+## Compact overflow recipe ownership — 2026-10-01
+
+The existing desktop Group/Grouping overflow trigger now calls canonical
+`card-overflow-trigger`. Live readback of Foundations main
+`16efa6a5-be95-808f-8008-98eb972325be` confirms 29.6px / 14.08px glyph / 6.4px
+radius. Product Grouping-more and Bulk-more instances use this same geometry.
+The mobile main retains the 44px hit target and 29.12px visual surface; its
+existing `mobile-card-menu-trigger` composition and transitions are untouched.
+No JS, command, layout or disclosure change. Full generated CSS is exactly
+equal to the pre-extraction baseline, not just equal outside this family.
+
+The older overflow/sort source contract initially failed because it expected
+font/underline literals in the consumer adapter after their earlier Kit
+extraction. It now checks the adapter calls and the shared declarations;
+the pinned control-treatment contract separately checks canonical parity.
+This was a stale static test, not a product rendering failure.
+Native overflow/context-menu runtime coverage remains a separate next check.
+
 ## Remaining direct-action adapters — 2026-10-01
 
 Rename and Unlink now use the existing Foundations Direct icon family rather
@@ -13,6 +31,15 @@ reusing the canonical family does not claim that this composition gap is fixed.
 Source-required Rename/Unlink instances remain queued for product propagation.
 Static source parity and unchanged CSS outside the eight migrated action
 families pass against the external pre-change baseline. Managed proof pending.
+
+Managed run `easystud-authenticated-20261001T193408313Z-42096` now passes
+all eight families at 1600/768/390 on preview `8da799c` (source `f0a893f`).
+Native Grouping disclosure reveals the Unlink command; Rename/Unlink receive
+hover and keyboard focus only, never activation. Search opens/closes natively.
+Desktop and mobile captures inspected; icon slots are centred and responsive
+routing remains intact. Cleanup complete; representative evidence pinned and
+retention dry-run has no deletion candidates. Human acceptance and the missing
+product Rename/Unlink composition instances remain deferred.
 
 Container search preceding slice: run
 `easystud-authenticated-20261001T192957591Z-44644` passes six-family geometry,

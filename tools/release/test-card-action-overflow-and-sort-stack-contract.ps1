@@ -6,6 +6,7 @@ $build = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'amd\build\course_
 $structure = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\components\_structure.scss')
 $responsive = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\responsive\_desktop.scss')
 $controlTypography = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\components\_control-typography.scss')
+$sharedControlTreatment = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\components\_control-treatment.scss')
 $tokens = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss\easyedu\_tokens.scss')
 
 $requiredSource = @(
@@ -80,9 +81,8 @@ foreach ($needle in @(
     '&-pagination__sort > span',
     '[data-easystud-list-sort-dropdown] > &-dropdown__button',
     '&-pagination__count',
-    'font-family: inherit;',
-    'font-weight: var(--easyedu-font-weight-regular);',
-    'font-weight: var(--easyedu-font-weight-semibold);'
+    '@include easyedu.control-regular-type;',
+    '@include easyedu.control-count-type;'
 )) {
     if (-not $controlTypography.Contains($needle)) {
         throw "Missing restrained controls typography contract: $needle"
@@ -94,13 +94,26 @@ foreach ($needle in @(
     '[data-easystud-panel-actions-toggle]',
     '[data-easystud-context-action]',
     '&-group__actions-menu .btn',
+    '@include easyedu.action-text-treatment($legacy-priority: true);'
+)) {
+    if (-not $controlTypography.Contains($needle)) {
+        throw "Missing transversal More-actions Kit adapter: $needle"
+    }
+}
+
+# Shared paint/typography was extracted earlier. Keep checking the actual
+# contract, not stale literals that no longer belong in the selector adapter.
+foreach ($needle in @(
+    'font-family: inherit;',
+    'font-weight: var(--easyedu-font-weight-regular);',
+    'font-weight: var(--easyedu-font-weight-semibold);',
     '&:hover,',
     '&:active,',
     '&:focus-visible',
     'text-decoration: none !important;'
 )) {
-    if (-not $controlTypography.Contains($needle)) {
-        throw "Missing transversal More-actions no-underline contract: $needle"
+    if (-not $sharedControlTreatment.Contains($needle)) {
+        throw "Missing shared More-actions treatment: $needle"
     }
 }
 
