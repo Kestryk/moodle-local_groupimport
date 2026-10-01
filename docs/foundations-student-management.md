@@ -2,6 +2,16 @@
 
 ## Flat allowed-drop affordance — 2026-10-01
 
+Final run `easystud-authenticated-20261001T192313452Z-43724` passes on clean
+preview `023fbee`, serving consumer `c6a4026` and Kit `dc73b7c`: allowed target
+geometry/paint and native refusal of empty Groupings, in Single/Multiple.
+Danger PNG inspected: 40px circle/xmark visible and centred, semantic rail and
+actions retained. Return to a valid nested Group clears the refusal state;
+dragend removes previews/transient states. No drop or membership mutation.
+Cleanup confirms credentials cleared, lease released and child stopped.
+Evidence pinned; retention dry-run has zero candidates/deletions. Mobile,
+move-failure messages and complete error-state coverage remain separate.
+
 Danger run `easystud-authenticated-20261001T191849868Z-38092` passed behavior,
 native refusal, dimensions and colors on preview `e6a9c5d`, but capture inspection
 found the indicator absent. The collapsed Grouping rail uses `::after` with
