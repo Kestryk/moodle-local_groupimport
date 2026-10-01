@@ -2,6 +2,13 @@
 
 ## Flat allowed-drop affordance — 2026-10-01
 
+Danger run `easystud-authenticated-20261001T191849868Z-38092` passed behavior,
+native refusal, dimensions and colors on preview `e6a9c5d`, but capture inspection
+found the indicator absent. The collapsed Grouping rail uses `::after` with
+`display:none`; the new recipe had not reset it. Kit `dc73b7c` adds explicit
+display and clears the rail's bottom inset. The test now asserts display too.
+This passing run is not visual acceptance; final rendering proof is pending.
+
 Allowed-state run `easystud-authenticated-20261001T191414061Z-42704` passes
 Participant/Group Single/Multiple on preview `726dcb0`; no drop or mutation,
 cleanup complete. Earlier `190811181Z-25960` failed because the harness never

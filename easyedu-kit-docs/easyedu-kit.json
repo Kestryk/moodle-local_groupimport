@@ -22,10 +22,10 @@
       "status": "moving flair and corrected control opacity verified by native dragstart/dragend at desktop; Single/Multiple and source checkbox geometry pass; human review deferred"
     },
     "studentAllowedDrop": {
-      "sourceCommit": "ef6bd6ebe401ad1dfaa54a043bc5fe2bd6b1babb",
+      "sourceCommit": "dc73b7ceec07f0ac09a3539a941a582dbbb73221",
       "module": "scss/easyedu/components/_overlays.scss",
-      "moduleBlob": "31eff498f72786f35cc8de8f3ee5304612cf89a7",
-      "status": "allowed-state native proof passed; matching danger recipe integrated; empty-grouping refusal proof pending"
+      "moduleBlob": "1127a63ff611b1fcf39beb025b92bedd17a9e4ac",
+      "status": "allowed-state native proof passed; danger behavior passed but inherited hidden rail corrected after screenshot inspection; final danger rendering proof pending"
     },
     "studentListSortExtraction": {
       "sourceCommit": "42f7e79c14f0898a616b7f4eb9e34200282f74cd",

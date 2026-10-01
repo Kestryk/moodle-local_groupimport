@@ -146,12 +146,13 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                     const danger=await denied.evaluate(n=>{
                         const s=getComputedStyle(n,'::after');
                         return {width:s.width,height:s.height,surface:s.backgroundColor,
-                            border:s.borderTopColor,image:s.backgroundImage};
+                            border:s.borderTopColor,image:s.backgroundImage,display:s.display};
                     });
                     reports[reports.length-1].denied=danger;
                     fs.writeFileSync(testInfo.outputPath('drag-preview-foundations.json'),JSON.stringify(reports,null,2));
                     expect(danger.width).toBe('40px');
                     expect(danger.height).toBe('40px');
+                    expect(danger.display).toBe('block');
                     expect(danger.surface).toBe('rgb(255, 244, 242)');
                     expect(danger.border).toBe('rgb(217, 107, 99)');
                     expect(danger.image).toContain('c9271e');
