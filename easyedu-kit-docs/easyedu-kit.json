@@ -15,6 +15,11 @@
       "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
     },
     "fullTreeIdentical": false,
+    "studentResponsiveTracksExperiment": {
+      "status": "WIP browser readability gate failed; do not deploy",
+      "sourceCommit": "2490c53736b9567268b396ef485b4b0b91298536",
+      "moduleBlob": "63b6df9be0cac6e9eb68a3d752a0c1df8319e11a"
+    },
     "studentMetadataExtraction": {
       "status": "source validated, CSS unchanged, visual reconciliation pending",
       "sourceCommit": "d18196e9c8c36962460419959f04e7285539ef7c",

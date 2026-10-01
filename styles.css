@@ -16860,7 +16860,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     align-items: center;
     display: grid;
     grid-template-areas: "identity email action";
-    grid-template-columns: minmax(4.5rem, 0.72fr) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
     width: 100%;
   }
   .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user__headline-main {
