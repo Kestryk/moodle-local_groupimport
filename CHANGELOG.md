@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Improve responsive compact participant name space through the canonical
+  3:1 identity/email recipe. Temporary browser comparison passes at 390px,
+  with unchanged height and eye placement; managed preview is pending.
+
 - WIP, not deployed: trial canonical name-priority tracks for responsive
   participant cards. A temporary browser stylesheet gained only 4.8px of
   name width and failed the readability gate; retain evidence for redesign.

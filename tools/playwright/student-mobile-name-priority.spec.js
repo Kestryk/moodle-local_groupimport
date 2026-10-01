@@ -23,6 +23,8 @@ test('Compare canonical name-priority tracks against the served participant row'
     const measure = () => card.evaluate(n => {
         const box = e => { const r=e.getBoundingClientRect(); return {x:r.x,y:r.y,w:r.width,h:r.height}; };
         return {card:box(n), name:box(n.querySelector('.local-groupimport-easystud-user__name')),
+            identity:box(n.querySelector('.local-groupimport-easystud-user__headline-main')),
+            badge:n.querySelector('.local-groupimport-easystud-user__primary-badge') ? box(n.querySelector('.local-groupimport-easystud-user__primary-badge')) : null,
             email:box(n.querySelector('.local-groupimport-easystud-user__email')),
             eye:box(n.querySelector('.local-groupimport-easystud-user__detail-button')),
             text:n.textContent, overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
@@ -36,6 +38,11 @@ test('Compare canonical name-priority tracks against the served participant row'
     const style = await page.addStyleTag({content:css});
     try {
         const after = await measure();
+        const evidence = {before:{...before},after:{...after}};
+        delete evidence.before.text;
+        delete evidence.after.text;
+        fs.writeFileSync(testInfo.outputPath('name-priority-comparison.json'),JSON.stringify(evidence,null,2));
+        await page.screenshot({path:testInfo.outputPath('name-priority-candidate-390.png')});
         expect(after.text).toBe(before.text);
         expect(after.name.w).toBeGreaterThan(before.name.w+10);
         expect(after.email.w).toBeGreaterThan(20);

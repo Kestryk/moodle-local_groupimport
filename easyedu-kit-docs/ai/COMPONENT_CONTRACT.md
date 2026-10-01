@@ -1,8 +1,10 @@
 # EasyEdu Component Contract
 
-The experimental `person-card-responsive-tracks` recipe is NOT accepted:
-390px readability proof failed. Do not propagate it to Foundations or other
-consumers, or deploy its CSS, until an effective layout has visual evidence.
+Use `person-card-responsive-tracks` in the existing responsive compact header
+adapter. Its 3:1 lanes prioritize identity while preserving a visible secondary
+email and the existing action slot. Keep detailed-state overrides later in the
+cascade. Never alter density motion or remove content to repair truncation.
+Record local-preview and Foundations verification separately.
 
 Card metadata uses the canonical `card-metadata*` recipes. Preserve the
 consumer's field content, hidden-extra tokens, density visibility, breakpoint

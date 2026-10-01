@@ -16,9 +16,9 @@
     },
     "fullTreeIdentical": false,
     "studentResponsiveTracksExperiment": {
-      "status": "WIP browser readability gate failed; do not deploy",
-      "sourceCommit": "2490c53736b9567268b396ef485b4b0b91298536",
-      "moduleBlob": "63b6df9be0cac6e9eb68a3d752a0c1df8319e11a"
+      "status": "3:1 source and temporary browser comparison passed; managed preview pending",
+      "sourceCommit": "a29dcc2655937b113f3932af594bc3c86aba3f65",
+      "moduleBlob": "c46260faf9a98871d23eb9e3746a6be876fc2c99"
     },
     "studentMetadataExtraction": {
       "status": "source validated, CSS unchanged, visual reconciliation pending",

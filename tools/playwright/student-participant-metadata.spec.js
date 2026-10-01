@@ -50,6 +50,11 @@ test('Participant metadata retains contents and responsive containment', async({
             fs.writeFileSync(testInfo.outputPath('participant-metadata.json'), JSON.stringify(reports,null,2));
             await page.screenshot({path:testInfo.outputPath(`participant-${width}-${selected ? 'selected' : 'compact'}.png`)});
             expect.soft(report.metadata.length).toBeGreaterThan(0);
+            if (width === 390) {
+                expect.soft(report.name.box.w, 'name remains readable beside its primary badge').toBeGreaterThan(50);
+                expect.soft(report.email.box.w, 'secondary email remains visible').toBeGreaterThan(20);
+                expect.soft(report.email.box.x + report.email.box.w).toBeLessThanOrEqual(report.eye.box.x);
+            }
             for (const element of [report.name,report.email,report.eye,
                 ...report.metadata.flatMap(row => [row.label,row.values])].filter(e => e.visible)) {
                 expect.soft(element.box.x).toBeGreaterThanOrEqual(report.card.x - 1);
