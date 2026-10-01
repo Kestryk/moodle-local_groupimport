@@ -191,9 +191,6 @@
   transform: none !important;
   width: 100%;
 
-  * {
-    opacity: 1 !important;
-  }
 }
 
 @mixin drag-preview-captured($rotation: -1deg) {

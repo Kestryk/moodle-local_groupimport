@@ -46,11 +46,16 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                     const moving=n.querySelector('.local-groupimport-easystud-drag-preview__moving');
                     const icon=n.querySelector('.local-groupimport-easystud-drag-preview__moving-icon');
                     const s=getComputedStyle(front), m=getComputedStyle(moving), i=getComputedStyle(icon);
+                    const input=front.querySelector('[data-easystud-selector-input]');
+                    const check=front.querySelector('.local-groupimport-easystud-selector__ui');
                     return {font:getComputedStyle(n).fontFamily,outline:s.outlineWidth,outlineColor:s.outlineColor,
                         movingFont:m.fontSize,movingWeight:m.fontWeight,movingGap:m.gap,
                         iconWidth:i.width,iconHeight:i.height,mask:i.maskImage,
                         stack:n.classList.contains('has-stack'),before:getComputedStyle(n,'::before').content,
-                        after:getComputedStyle(n,'::after').content};
+                        after:getComputedStyle(n,'::after').content,
+                        nativeCheckboxOpacity:getComputedStyle(input).opacity,
+                        customCheckOpacity:getComputedStyle(check,'::after').opacity,
+                        checked:input.checked};
                 });
                 reports.push({type,multiple,...report});
                 fs.writeFileSync(testInfo.outputPath('drag-preview-foundations.json'),JSON.stringify(reports,null,2));
@@ -65,6 +70,8 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                 expect(report.stack).toBe(multiple);
                 expect(report.before==='none').toBe(!multiple);
                 expect(report.after==='none').toBe(!multiple);
+                expect(report.nativeCheckboxOpacity).toBe('0');
+                expect(report.customCheckOpacity).toBe(report.checked?'1':'0');
                 await page.screenshot({path:testInfo.outputPath('drag-'+type+'-'+(multiple?'multiple':'single')+'.png')});
             } finally {
                 await source.dispatchEvent('dragend',{dataTransfer:transfer});

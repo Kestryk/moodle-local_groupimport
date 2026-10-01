@@ -797,6 +797,10 @@ Must not:
   context sheets, action trays and busy states.
 ## Responsive navigation and cards
 
+- Decorative drag previews must preserve descendant opacity: hide native
+  checkbox inputs and unchecked marks exactly as in the source card. Never
+  force all descendants opaque merely to reset the moving card itself.
+
 - Preserve desktop primary navigation as a dedicated DOM region when adding an
   off-canvas responsive alternative. Mobile classes must not own desktop nodes.
 - Compact navigation rows must not look like raw links and must retain active,
