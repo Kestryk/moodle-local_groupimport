@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-01
+
+- Consume canonical Card metadata recipes for participant fields and mobile
+  stacked rows. Preserve the complete generated CSS, content and animations.
+  Add a canonical-parity and optional full-CSS equality regression contract.
+
 ## 2026-09-30
 
 - Synchronize the canonical direct-action host compatibility fix: Moodle's

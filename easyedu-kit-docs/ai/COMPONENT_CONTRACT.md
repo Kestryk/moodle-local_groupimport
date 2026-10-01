@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Card metadata uses the canonical `card-metadata*` recipes. Preserve the
+consumer's field content, hidden-extra tokens, density visibility, breakpoint
+and motion. Source-preserving extraction is not Penpot visual acceptance:
+reconcile recorded label-size differences before introducing typography variants.
+
 Validated Penpot style belongs in canonical Kit classes. Inspect the matched
 browser cascade before adding overrides; use Moodle's `table-reboot` opt-out
 for Kit tables. Embedded modules must match their canonical source hashes.
