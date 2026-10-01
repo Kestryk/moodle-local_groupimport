@@ -15,6 +15,13 @@
       "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
     },
     "fullTreeIdentical": false,
+    "studentNarrowPagination": {
+      "sourceCommit": "473766100d53c8d01ad51d6ccf91ad7c9d9e9566",
+      "module": "scss/easyedu/components/_pagination-responsive.scss",
+      "foundationComponent": "005a9cd7-189f-802f-8008-b916a75b1f13",
+      "foundationMain": "005a9cd7-189f-802f-8008-b916a4da74a7",
+      "status": "Standard/Library and three mobile product links published; managed preview pending"
+    },
     "studentResponsiveTracksExperiment": {
       "status": "3:1 managed preview passed 1600/768/390; human review and Foundation documentation pending",
       "sourceCommit": "a29dcc2655937b113f3932af594bc3c86aba3f65",

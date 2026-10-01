@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Consume the Foundation-published narrow pagination layout below 25rem:
+  selection/sort stay above centred page controls, with no hidden action,
+  typography reduction or card-animation change. Managed preview pending.
+
 - Preserve a focused supervised pagination audit and canonical-candidate
   comparison. Diagnose 390px peer overlap; temporary narrow layout passes
   320/390/768/1600, centred pages and open-menu containment. Foundations

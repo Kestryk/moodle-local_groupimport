@@ -18726,6 +18726,32 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     width: 100%;
   }
 }
+@media (max-width: 25rem) {
+  .local-groupimport-easystud .local-groupimport-easystud-pagination {
+    column-gap: 0.5rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0.5rem;
+  }
+  .local-groupimport-easystud .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__selection {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+  .local-groupimport-easystud .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__tools {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+  .local-groupimport-easystud .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__controls {
+    grid-column: 1/-1;
+    grid-row: 2;
+    justify-self: center;
+  }
+  .local-groupimport-easystud .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__spacer {
+    display: none;
+  }
+}
+
 .local-groupimport-easystud [data-easystud-advanced-filters-toggle], .local-groupimport-easystud-pagination__sort > span, [data-easystud-list-sort-dropdown] > .local-groupimport-easystud-dropdown__button {
   font-family: inherit;
   font-weight: var(--easyedu-font-weight-regular);

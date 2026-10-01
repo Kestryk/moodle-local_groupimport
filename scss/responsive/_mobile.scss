@@ -1,5 +1,9 @@
 @use "../easyedu" as easyedu;
 
+// Shared narrow pagination placement is emitted last below the legacy
+// breakpoint adapters. Button styling, list behavior and card motion stay owned
+// by their existing recipes/controllers.
+
 @media (max-width: 768px) {
   .local-groupimport-easystud {
     &__header,
@@ -860,4 +864,13 @@
       width: 100%;
     }
   }
+}
+
+.local-groupimport-easystud .local-groupimport-easystud-pagination {
+  @include easyedu.pagination-narrow-layout(
+    $selection: ".local-groupimport-easystud-pagination__selection",
+    $controls: ".local-groupimport-easystud-pagination__controls",
+    $tools: ".local-groupimport-easystud-pagination__tools",
+    $spacer: ".local-groupimport-easystud-pagination__spacer"
+  );
 }
