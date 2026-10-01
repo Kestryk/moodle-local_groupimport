@@ -172,6 +172,36 @@ test('Compare readable narrow density without changing served styles', async({pa
                     expect(item.x+item.w).toBeLessThanOrEqual(after.card.x+after.card.w+1);
                     expect(item.y+item.h).toBeLessThanOrEqual(after.card.y+after.card.h+1);
                 }
+                const selector = card.locator(':scope > .local-groupimport-easystud-selector');
+                const transition = ()=>card.evaluate(n=>{
+                    const s=getComputedStyle(n);
+                    return {property:s.transitionProperty,duration:s.transitionDuration,easing:s.transitionTimingFunction};
+                });
+                const compactTransition = await transition();
+                await selector.click();
+                await expect(card).toHaveClass(/is-selected/);
+                await expect.poll(()=>card.evaluate(n=>n.getAnimations({subtree:true})
+                    .filter(a=>a.playState==='running'&&a.effect?.getTiming().iterations!==Infinity).length)).toBe(0);
+                const selected = await measure();
+                delete selected.text;
+                const detailed = await root.evaluate(n=>n.classList.contains('local-groupimport-easystud--single-participant-selected'));
+                reports.push({width,selected,detailed,transition:await transition()});
+                fs.writeFileSync(testInfo.outputPath('readable-narrow-density.json'),JSON.stringify(reports,null,2));
+                // Keep the selected card above the real sticky action sheet.
+                // Do not hide that product control just to obtain a clean capture.
+                await card.evaluate(n=>n.scrollIntoView({block:'center',behavior:'instant'}));
+                await page.screenshot({path:testInfo.outputPath('readable-narrow-density-320-selected.png')});
+                if (!detailed) {
+                    expect(selected.name.w).toBeGreaterThan(50);
+                    expect(selected.email.w).toBeGreaterThan(80);
+                    expect(selected.card.h).toBeCloseTo(after.card.h,0);
+                }
+                expect(await transition()).toEqual(compactTransition);
+                await selector.click();
+                await expect(card).not.toHaveClass(/is-selected/);
+                await expect.poll(()=>card.evaluate(n=>n.getAnimations({subtree:true})
+                    .filter(a=>a.playState==='running'&&a.effect?.getTiming().iterations!==Infinity).length)).toBe(0);
+                expect((await measure()).card.h).toBeCloseTo(after.card.h,0);
             } else {
                 // Ignore scroll anchoring; require identical card-local geometry.
                 const local = sample=>Object.fromEntries(Object.entries(sample).map(([key,value])=>{

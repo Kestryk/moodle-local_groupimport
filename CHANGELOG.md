@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Extend the isolated 320px comparison through selection/deselection, checking
+  retained readable widths, restored card height and unchanged transition
+  declarations. Preserve the source-defined detailed-density exception.
+
 - Add a read-only participant control-lane audit and a supervised readable
   narrow-density comparison. Use card-local geometry to avoid false changes
   from Moodle scroll anchoring. Four widths pass; the candidate is injected
