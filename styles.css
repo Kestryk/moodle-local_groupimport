@@ -253,6 +253,9 @@
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
+  --easyedu-navigation-drawer-border: var(--easyedu-border);
+  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
   --easyedu-navigation-guide-surface: linear-gradient(
     135deg,
     color-mix(in srgb, var(--easyedu-primary) 10%, var(--easyedu-surface) 90%) 0%,
@@ -277,6 +280,12 @@
   --easyedu-shadow-strong: 0 0.9rem 2.2rem rgba(31, 42, 55, 0.16);
   --easyedu-text: #1f2a37;
   --easyedu-text-muted: #5c6c7d;
+  --easyedu-workspace-title-color: #0f2f44;
+  --easyedu-workspace-description-color: #49657a;
+  --easyedu-workspace-panel-title-color: #12364d;
+  --easyedu-card-identity-title-color: #16324f;
+  --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-size: 0.8125rem;
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;
@@ -3688,15 +3697,15 @@
   font-size: var(--easyedu-font-size-card-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
-  color: var(--local-groupimport-easystud-participant);
+  color: var(--easyedu-card-identity-title-color);
   letter-spacing: -0.005em;
   line-height: 1.35;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: calc(var(--easyedu-font-size-card-title) * 0.92);
-  font-weight: var(--easyedu-font-weight-semibold);
+  font-size: var(--easyedu-card-identity-title-size);
+  font-weight: var(--easyedu-font-weight-strong);
   display: block;
 }
 .local-groupimport-easystud-user__primary-badge {
@@ -4812,14 +4821,14 @@
   font-size: var(--easyedu-font-size-card-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
-  color: var(--local-groupimport-easystud-ungrouped);
+  color: var(--easyedu-card-identity-title-color);
   letter-spacing: -0.005em;
   line-height: 1.35;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: calc(var(--easyedu-font-size-card-title) * 1.02);
+  font-size: var(--easyedu-card-identity-title-size);
   font-weight: var(--easyedu-font-weight-strong);
 }
 .local-groupimport-easystud-tree__section[data-easystud-grouping-drop].is-drop-target {
@@ -4943,15 +4952,15 @@
   font-size: var(--easyedu-font-size-card-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
-  color: var(--local-groupimport-easystud-group);
+  color: var(--easyedu-card-identity-title-color);
   letter-spacing: -0.005em;
   line-height: 1.35;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: var(--easyedu-font-size-card-title);
-  font-weight: var(--easyedu-font-weight-semibold);
+  font-size: var(--easyedu-card-identity-title-size);
+  font-weight: var(--easyedu-font-weight-strong);
 }
 .local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-group__name {
   padding-bottom: 0.08em;
@@ -4964,14 +4973,14 @@
   font-size: var(--easyedu-font-size-card-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
-  color: var(--local-groupimport-easystud-grouping);
+  color: var(--easyedu-card-identity-title-color);
   letter-spacing: -0.005em;
   line-height: 1.35;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: calc(var(--easyedu-font-size-card-title) * 1.02);
+  font-size: var(--easyedu-card-identity-title-size);
   font-weight: var(--easyedu-font-weight-strong);
 }
 .local-groupimport-easystud-tree__children {
@@ -5866,8 +5875,12 @@
   margin-right: 0.1rem;
 }
 .local-groupimport-easystud-member__name {
+  color: var(--easyedu-card-identity-title-color);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-related-person-name-size);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
   flex: 1 1 auto;
-  font-size: 0.86rem;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -13983,6 +13996,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
+  --easyedu-navigation-drawer-border: var(--easyedu-border);
+  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
   --easyedu-navigation-guide-surface: linear-gradient(
     135deg,
     color-mix(in srgb, var(--easyedu-primary) 10%, var(--easyedu-surface) 90%) 0%,
@@ -14007,6 +14023,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-shadow-strong: 0 0.9rem 2.2rem rgba(31, 42, 55, 0.16);
   --easyedu-text: #1f2a37;
   --easyedu-text-muted: #5c6c7d;
+  --easyedu-workspace-title-color: #0f2f44;
+  --easyedu-workspace-description-color: #49657a;
+  --easyedu-workspace-panel-title-color: #12364d;
+  --easyedu-card-identity-title-color: #16324f;
+  --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-size: 0.8125rem;
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;
@@ -15049,6 +15071,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
+  --easyedu-navigation-drawer-border: var(--easyedu-border);
+  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
   --easyedu-navigation-guide-surface: linear-gradient(
     135deg,
     color-mix(in srgb, var(--easyedu-primary) 10%, var(--easyedu-surface) 90%) 0%,
@@ -15073,6 +15098,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-shadow-strong: 0 0.9rem 2.2rem rgba(31, 42, 55, 0.16);
   --easyedu-text: #1f2a37;
   --easyedu-text-muted: #5c6c7d;
+  --easyedu-workspace-title-color: #0f2f44;
+  --easyedu-workspace-description-color: #49657a;
+  --easyedu-workspace-panel-title-color: #12364d;
+  --easyedu-card-identity-title-color: #16324f;
+  --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-size: 0.8125rem;
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;
@@ -18905,6 +18936,122 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 
+.local-groupimport-easystud [data-easystud-add-group-emails],
+.local-groupimport-easystud [data-easystud-add-grouping-groups], .local-groupimport-easystud-rename__edit [type=submit] {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: var(--easyedu-font-weight-strong);
+  min-block-size: 1.625rem;
+  padding: 0.25rem 0.65rem;
+}
+.local-groupimport-easystud [data-easystud-add-group-emails] .fa,
+.local-groupimport-easystud [data-easystud-add-group-emails] [class*=" fa-"],
+.local-groupimport-easystud [data-easystud-add-grouping-groups] .fa,
+.local-groupimport-easystud [data-easystud-add-grouping-groups] [class*=" fa-"], .local-groupimport-easystud-rename__edit [type=submit] .fa,
+.local-groupimport-easystud-rename__edit [type=submit] [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.local-groupimport-easystud [data-easystud-add-group-emails]:hover,
+.local-groupimport-easystud [data-easystud-add-grouping-groups]:hover, .local-groupimport-easystud-rename__edit [type=submit]:hover {
+  background: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud [data-easystud-add-group-emails]:focus-visible,
+.local-groupimport-easystud [data-easystud-add-grouping-groups]:focus-visible, .local-groupimport-easystud-rename__edit [type=submit]:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud [data-easystud-add-group-emails]:disabled,
+.local-groupimport-easystud [data-easystud-add-grouping-groups]:disabled, .local-groupimport-easystud-rename__edit [type=submit]:disabled {
+  background: var(--easyedu-surface-soft);
+  color: var(--easyedu-text-muted);
+}
+.local-groupimport-easystud [data-easystud-cancel-group-email],
+.local-groupimport-easystud [data-easystud-cancel-grouping-groups],
+.local-groupimport-easystud [data-easystud-rename-cancel] {
+  align-items: center;
+  background: var(--easyedu-primary);
+  border: 0.0625rem solid transparent;
+  border-radius: 0.72rem;
+  box-shadow: none;
+  color: var(--easyedu-surface);
+  display: inline-flex;
+  gap: var(--easyedu-action-icon-gap, 0.65rem);
+  font: 600 0.88rem/1.2 var(--easyedu-font-family-ui);
+  justify-content: center;
+  min-block-size: 2.35rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  white-space: normal;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  background: var(--easyedu-surface);
+  border-color: var(--easyedu-deposit-border);
+  border-radius: 0.58rem;
+  color: var(--easyedu-secondary-text);
+  font-size: 0.75rem;
+  min-block-size: 2rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: var(--easyedu-font-weight-strong);
+  min-block-size: 1.625rem;
+  padding: 0.25rem 0.65rem;
+  color: var(--easyedu-primary);
+}
+.local-groupimport-easystud [data-easystud-cancel-group-email] .fa,
+.local-groupimport-easystud [data-easystud-cancel-group-email] [class*=" fa-"],
+.local-groupimport-easystud [data-easystud-cancel-grouping-groups] .fa,
+.local-groupimport-easystud [data-easystud-cancel-grouping-groups] [class*=" fa-"],
+.local-groupimport-easystud [data-easystud-rename-cancel] .fa,
+.local-groupimport-easystud [data-easystud-rename-cancel] [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.local-groupimport-easystud [data-easystud-cancel-group-email]:hover,
+.local-groupimport-easystud [data-easystud-cancel-grouping-groups]:hover,
+.local-groupimport-easystud [data-easystud-rename-cancel]:hover {
+  background: var(--easyedu-primary-soft);
+}
+.local-groupimport-easystud [data-easystud-cancel-group-email]:focus-visible,
+.local-groupimport-easystud [data-easystud-cancel-grouping-groups]:focus-visible,
+.local-groupimport-easystud [data-easystud-rename-cancel]:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud [data-easystud-cancel-group-email]:disabled,
+.local-groupimport-easystud [data-easystud-cancel-grouping-groups]:disabled,
+.local-groupimport-easystud [data-easystud-rename-cancel]:disabled {
+  background: var(--easyedu-surface-soft);
+  color: var(--easyedu-text-muted);
+}
 .local-groupimport-easystud [data-easystud-advanced-filters-toggle], .local-groupimport-easystud-pagination__sort > span, [data-easystud-list-sort-dropdown] > .local-groupimport-easystud-dropdown__button {
   font-family: inherit;
   font-weight: var(--easyedu-font-weight-regular);
@@ -19055,15 +19202,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-size: var(--easyedu-font-size-card-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
-  color: var(--local-groupimport-easystud-group);
+  color: var(--easyedu-card-identity-title-color);
   letter-spacing: -0.005em;
   line-height: 1.35;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: var(--easyedu-font-size-card-title);
-  font-weight: var(--easyedu-font-weight-semibold);
+  font-size: var(--easyedu-card-identity-title-size);
+  font-weight: var(--easyedu-font-weight-strong);
 }
 .local-groupimport-easystud-grouping__name {
   font-family: var(--easyedu-font-family-ui);
@@ -19073,14 +19220,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-size: var(--easyedu-font-size-card-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
-  color: var(--local-groupimport-easystud-grouping);
+  color: var(--easyedu-card-identity-title-color);
   letter-spacing: -0.005em;
   line-height: 1.35;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: calc(var(--easyedu-font-size-card-title) * 1.02);
+  font-size: var(--easyedu-card-identity-title-size);
   font-weight: var(--easyedu-font-weight-strong);
 }
 
@@ -20428,7 +20575,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  color: var(--easyedu-text);
+  color: var(--easyedu-workspace-title-color);
   display: inline-flex;
   font: 700 1.875rem/1.2 var(--easyedu-font-family-ui);
   gap: var(--easyedu-action-icon-gap);
@@ -20445,7 +20592,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-workspace-description {
-  color: var(--easyedu-text-muted);
+  color: var(--easyedu-workspace-description-color);
   font: 400 1rem/1.5 var(--easyedu-font-family-ui);
   margin: 0;
   max-inline-size: 68.75rem;
@@ -20471,7 +20618,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-workspace-panel-title {
-  color: var(--easyedu-text);
+  color: var(--easyedu-workspace-panel-title-color);
   font: 700 1.375rem/1.5 var(--easyedu-font-family-ui);
   margin: 0;
 }

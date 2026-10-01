@@ -260,7 +260,7 @@
   }
 
   &-user__name {
-    @include easyedu.card-title(compact, var(--local-groupimport-easystud-participant));
+    @include easyedu.card-title(compact, var(--easyedu-card-identity-title-color));
 
     display: block;
   }

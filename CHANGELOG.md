@@ -2,6 +2,14 @@
 
 ## 2026-10-01
 
+- Reconcile Student card title sizes/colours and related member-name text with
+  Foundations. Keep card contents, layout tracks and validated animations.
+- Use shared compact Foundation Add/Save and Cancel skins and icon/text gap;
+  remove competing icon margin utilities in original and dynamic markup.
+- Restore opaque mobile drawer skin tokens; match context-menu label roles.
+- Preserve a role/surface browser scenario and strict foreign-overlay hit
+  diagnostic; distinguish menu geometry success from 390px CCB occlusion.
+
 - Correct responsive Group/Grouping overflow routing: the desktop listener
   no longer consumes the shared trigger before the existing mobile context
   sheet. Keep desktop-exclusive handling, commands and card Motion unchanged.

@@ -124,6 +124,14 @@ test('Student context menus preserve responsive geometry and focus', async({page
                         overflow:document.documentElement.scrollWidth - document.documentElement.clientWidth,
                         items:actions.map(n => ({action:n.getAttribute('data-easystud-context-action'),
                             box:box(n), icon:n.querySelector('.fa') ? box(n.querySelector('.fa')) : null,
+                            iconHit:(() => {
+                                const icon = n.querySelector('.fa');
+                                if (!icon) return null;
+                                const r = icon.getBoundingClientRect();
+                                const hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+                                return {inside:n.contains(hit), tag:hit?.tagName, classes:hit?.className,
+                                    zIndex:hit ? getComputedStyle(hit).zIndex : null};
+                            })(),
                             label:n.textContent.trim(), disabled:n.disabled})),
                     };
                 });
@@ -142,6 +150,7 @@ test('Student context menus preserve responsive geometry and focus', async({page
                     expect(item.box.x + item.box.w).toBeLessThanOrEqual(report.box.x + report.box.w + 1);
                     if (item.icon) {
                         expect(Math.abs(item.icon.y + item.icon.h / 2 - item.box.y - item.box.h / 2)).toBeLessThan(1);
+                        expect.soft(item.iconHit.inside, `${width}/${view}/${item.action}: icon hit target`).toBe(true);
                     }
                 }
                 await page.screenshot({path:testInfo.outputPath(`context-menu-${view}-${width}.png`)});

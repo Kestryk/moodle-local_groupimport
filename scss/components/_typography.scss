@@ -28,10 +28,10 @@
   }
 
   &-group__name {
-    @include easyedu.card-title(regular, var(--local-groupimport-easystud-group));
+    @include easyedu.card-title(regular, var(--easyedu-card-identity-title-color));
   }
 
   &-grouping__name {
-    @include easyedu.card-title(container, var(--local-groupimport-easystud-grouping));
+    @include easyedu.card-title(container, var(--easyedu-card-identity-title-color));
   }
 }

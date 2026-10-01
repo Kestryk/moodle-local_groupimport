@@ -1,5 +1,17 @@
 # EasyEdu Component Contract
 
+Student identity roles follow measured Foundations card mains: 14px/700
+#16324f titles; related-person names use 13px/600 in the same family. Shell
+density, semantic rails/badges and original disclosure Motion stay separate.
+Do not blindly shrink all copy: measured workspace 30/23px, panel 22px and
+description 16/13px roles retain their scale, with measured title colours.
+Compact Add/Save and Cancel use the shared Foundation button roles and gap,
+not Moodle's inherited text/button colours or glyph-margin utilities.
+Native context menus reuse the Foundations More-item label role (11.84px/700)
+and opaque surface; command routing, permissions and touch geometry remain
+consumer-owned. Verify hit targets against foreign overlays independently.
+Never repair a cross-plugin layer leak by inflating Kit z-index defaults.
+
 Drag previews use canonical moving-outline/badge/icon recipes. Relay workspace
 theme variables and typography to the body portal; decoration is inert and
 aria-hidden. Single has no rear layers/count; Multiple alone has two layers

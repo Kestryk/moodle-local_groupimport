@@ -1,5 +1,74 @@
 # Foundations Student Management migration
 
+## Measured visual roles — 2026-10-01
+
+Read-only role audit `easystud-authenticated-20261001T201831156Z-33364`
+on preview `f169de5` confirms Inter, but old card identities differ from
+Foundations: Participant 14.4256px/600, Group 15.68px/600 and Grouping
+15.9936px/700, each using a semantic title colour. The shared shell main
+`2b5216d9-06a9-80a1-8008-9cf47759bd2b` measures 14px/700 #16324f.
+The canonical recipe and selector-only colour bindings now match that role;
+rails and badges retain semantic colours. Workspace 30/23px, description
+16/13px and panel 22px match Penpot sizes and were NOT blindly reduced;
+their colour roles now match #0f2f44 / #49657a / #12364d.
+
+Member names previously inherited Moodle's body colour, 13.76px/400.
+The existing Foundations Member-row component is reused with a shared
+`related-person-name`: Inter, 13px/600, #16324f. Sixteen existing labels on
+Library 08.9.1, Standard 08.9 and Composition 09.5 were normalized; no new
+empty shell or duplicate family. Product composition propagation is separate.
+
+Add participants/groups and Rename Save/Cancel use compact Foundation
+primary/secondary button roles, 12px/700, parent-owned icon gap and vertical
+centring. Native save/add/cancel semantics, identifier resolution, responsive
+command availability and all card Motion remain intact. Remove the conflicting
+`me-1` glyph margins in the template and dynamic renderer, rebuild AMD/CSS.
+
+Mobile navigation background was transparent because three drawer skin tokens
+referenced by its canonical component were undefined. Restored shared opaque
+surface/border/shadow defaults; no z-index or navigation controller change.
+The first audit attempt failed only because its post-Escape locator required
+the old aria-hidden=false state; corrected to assert the stable panel node.
+The final verification waits for settled slide geometry, not merely visibility.
+
+Nine misplaced icon roots across the three active product desktop layout
+toggles were centred on their matching icon surfaces without resizing glyphs.
+The Foundations toggle main was already correct. Readback and focused desktop
+toggle PNG inspected. Library member-name readback confirms 13px/600 and
+centred painted text; its attempted PNG export stalled and was cancelled,
+so no isolated export acceptance is claimed. Managed post-change proof pending.
+
+Kit audit reports five warnings outside its old baseline. Those categories
+already exist in committed card-actions/metadata/menus/workspace sources;
+do not refresh the baseline merely to make this migration green. Generated
+Sass retains the pre-existing mixed-declaration warning in _layout.scss.
+
+## Native menu proof and foreign overlay boundary — 2026-10-01
+
+After responsive routing repair, run
+`easystud-authenticated-20261001T200131990Z-47764` passes all nine native
+Participant/Group/Grouping × 1600/768/390 geometry/focus/Escape cases. Phone
+and tablet sheet captures inspected. This is NOT full visual/hit acceptance:
+stricter run `easystud-authenticated-20261001T200456301Z-32408` fails icon
+hit tests in all three 390px contexts, although the menu geometry stays correct.
+
+The occluding Moodle drawer button is lifted by CCB's global rule in
+`local/course_banner_builder/scss/components/_native-banner-core.scss:3`:
+`.drawer-toggler`, `.drawer-left-toggle`, `.drawer-right-toggle` and
+`[data-region="drawer-toggle"]` receive `z-index:1200 !important`.
+The canonical context sheet uses 1071. No CCB source, fixture, business data
+or host drawer configuration changed. Required owner handoff: scope that CCB
+override to its actual banner/drawer boundary, then rerun the preserved icon
+hit check; do not start a Kit z-index arms race. Both runs cleaned credentials,
+leases and owned children. Initial unselected desktop right-click timing,
+RTL, zoom, reduced-motion menu coverage and human acceptance remain open.
+
+Platform planning-owner proposal for EED-UI-2026-0073: record these bounded
+source/Penpot/proof facts and the CCB occlusion boundary. Shared plan/state,
+index and multi-consumer batch were not edited without their owner handoff.
+No configured EasyStud workspace-snapshot profile exists (only a CCB transfer
+profile); pushed source readiness is not a formal multi-machine handoff.
+
 ## Responsive overflow routing — 2026-10-01
 
 Runs `easystud-authenticated-20261001T195418221Z-45696` and

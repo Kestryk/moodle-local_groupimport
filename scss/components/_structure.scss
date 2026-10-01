@@ -641,7 +641,7 @@
     }
 
     > span:last-child {
-      @include easyedu.card-title(container, var(--local-groupimport-easystud-ungrouped));
+      @include easyedu.card-title(container, var(--easyedu-card-identity-title-color));
     }
   }
 
@@ -707,7 +707,7 @@
   }
 
   &-group__name {
-    @include easyedu.card-title(regular, var(--local-groupimport-easystud-group));
+    @include easyedu.card-title(regular, var(--easyedu-card-identity-title-color));
   }
 
   &-tree__section--ungrouped &-group__name {
@@ -717,7 +717,7 @@
   }
 
   &-grouping__name {
-    @include easyedu.card-title(container, var(--local-groupimport-easystud-grouping));
+    @include easyedu.card-title(container, var(--easyedu-card-identity-title-color));
   }
 
   &-tree__children {
@@ -1290,8 +1290,8 @@
   }
 
   &-member__name {
+    @include easyedu.related-person-name;
     flex: 1 1 auto;
-    font-size: 0.86rem;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;

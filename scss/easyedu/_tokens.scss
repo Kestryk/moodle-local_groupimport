@@ -28,6 +28,11 @@
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  // Public drawer skin: referenced by navigation even outside a workflow.
+  // Keep this opaque; an unresolved custom property makes background initial.
+  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
+  --easyedu-navigation-drawer-border: var(--easyedu-border);
+  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
   --easyedu-navigation-guide-surface: linear-gradient(
     135deg,
     color-mix(in srgb, var(--easyedu-primary) 10%, var(--easyedu-surface) 90%) 0%,
@@ -54,6 +59,12 @@
   --easyedu-shadow-strong: 0 0.9rem 2.2rem rgba(31, 42, 55, 0.16);
   --easyedu-text: #1f2a37;
   --easyedu-text-muted: #5c6c7d;
+  --easyedu-workspace-title-color: #0f2f44;
+  --easyedu-workspace-description-color: #49657a;
+  --easyedu-workspace-panel-title-color: #12364d;
+  --easyedu-card-identity-title-color: #16324f;
+  --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-size: 0.8125rem;
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
   --easyedu-surface-strong: #edf3f8;

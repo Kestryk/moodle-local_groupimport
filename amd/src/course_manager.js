@@ -3355,7 +3355,7 @@ const createGroupElement = (root, groupdata) => {
             '<textarea class="form-control form-control-sm" rows="3" placeholder="' + (labels.pasteemailsplaceholder || '') + '" data-easystud-group-email-box="' + groupdata.id + '"></textarea>' +
             '<div class="local-groupimport-easystud-inline-actions">' +
                 '<button type="button" class="btn btn-sm btn-primary" data-easystud-add-group-emails="' + groupdata.id + '">' +
-                    '<span class="fa fa-plus me-1" aria-hidden="true"></span><span>' + (labels.addemails || '') + '</span>' +
+                    '<span class="fa fa-plus" aria-hidden="true"></span><span>' + (labels.addemails || '') + '</span>' +
                 '</button>' +
                 '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-group-email="1">' + (labels.cancel || '') + '</button>' +
             '</div>' +
@@ -3461,7 +3461,7 @@ const createGroupingElement = (root, groupingdata) => {
             '<textarea class="form-control form-control-sm" rows="3" placeholder="' + (labels.pastegroupsplaceholder || '') + '" data-easystud-grouping-groups-box="' + groupingdata.id + '"></textarea>' +
             '<div class="local-groupimport-easystud-inline-actions">' +
                 '<button type="button" class="btn btn-sm btn-outline-primary" data-easystud-add-grouping-groups="' + groupingdata.id + '">' +
-                    '<span class="fa fa-plus me-1" aria-hidden="true"></span><span>' + (labels.addgroups || '') + '</span>' +
+                    '<span class="fa fa-plus" aria-hidden="true"></span><span>' + (labels.addgroups || '') + '</span>' +
                 '</button>' +
                 '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-grouping-groups="1">' + (labels.cancel || '') + '</button>' +
             '</div>' +
@@ -6312,7 +6312,7 @@ const ensureGroupEmailPanel = (group, groupid, labels) => {
             (labels.pasteemailsplaceholder || '') + '" data-easystud-group-email-box="' + groupid + '"></textarea>' +
         '<div class="local-groupimport-easystud-inline-actions">' +
             '<button type="button" class="btn btn-sm btn-primary" data-easystud-add-group-emails="' + groupid + '">' +
-                '<span class="fa fa-plus me-1" aria-hidden="true"></span><span>' + (labels.addemails || '') + '</span>' +
+                '<span class="fa fa-plus" aria-hidden="true"></span><span>' + (labels.addemails || '') + '</span>' +
             '</button>' +
             '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-cancel-group-email="1">' +
                 (labels.cancel || '') +
