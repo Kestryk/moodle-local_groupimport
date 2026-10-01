@@ -54,14 +54,14 @@ test('Student filter typography and normal disclosure motion remain shared', asy
                 await expect(toggle).toHaveAttribute('aria-expanded','true');
                 await expect(panel).not.toHaveClass(/is-easyedu-disclosing/);
                 await expect(panel).toHaveAttribute('aria-hidden','false');
-                await page.screenshot({path:testInfo.outputPath(`filter-${width}-${view||'desktop'}-${key}.png`)});
+                await toggle.locator('..').screenshot({path:testInfo.outputPath(`filter-${width}-${view||'desktop'}-${key}.png`)});
                 await toggle.click();
                 await expect(panel).toHaveClass(/is-easyedu-disclosing/);
                 await expect(toggle).toHaveAttribute('aria-expanded','false');
                 await expect(panel).not.toHaveClass(/is-easyedu-disclosing/);
                 await expect(panel).toHaveAttribute('aria-hidden','true');
                 expect(await panel.evaluate(n=>n.inert)).toBe(true);
-                reports.push({width,view,key,...metrics,openMotion:true,closeMotion:true});
+                reports.push({viewportWidth:width,view,key,...metrics,openMotion:true,closeMotion:true});
                 fs.writeFileSync(testInfo.outputPath('filter-typography.json'),JSON.stringify(reports,null,2));
             }
         }
