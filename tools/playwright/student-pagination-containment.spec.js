@@ -75,6 +75,16 @@ test('Student pagination controls remain separated across responsive widths', as
                 await root.locator(`[data-easystud-mobile-view="${view}"]`).click();
                 await expect(root).toHaveAttribute('data-easystud-mobile-view-active',view);
                 const visibleBars=root.locator('[data-easystud-pagination]:visible');
+                // getPaginationConfigs only paginates groupings in desktop
+                // structure-focus mode. Mobile clears that focus class.
+                if (view === 'groupings') {
+                    await expect(visibleBars).toHaveCount(0);
+                    await expect(root.locator('[data-easystud-structure-panel]')).toBeVisible();
+                    reports.push({width,view,bars:[],pagination:'absent-by-source-contract'});
+                    fs.writeFileSync(testInfo.outputPath('pagination-geometry.json'),JSON.stringify(reports,null,2));
+                    await page.screenshot({path:testInfo.outputPath(`pagination-${view}-${width}.png`)});
+                    continue;
+                }
                 await expect(visibleBars.first()).toBeVisible();
                 const geometry=await visibleBars.evaluateAll(nodes=>nodes.map(n=>{
                     const box=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};};

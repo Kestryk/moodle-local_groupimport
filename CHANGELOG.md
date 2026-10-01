@@ -2,6 +2,11 @@
 
 ## 2026-10-01
 
+- Correct the pagination audit's Groupings assumption: mobile intentionally
+  has no pagination because grouping pagination requires desktop structure
+  focus. Preserve product behavior; assert absence rather than add controls.
+  The managed 1600/768/390/320 matrix passes; no card-motion change.
+
 - Consume the Foundation-published narrow pagination layout below 25rem:
   selection/sort stay above centred page controls, with no hidden action,
   typography reduction or card-animation change. Managed preview pending.
