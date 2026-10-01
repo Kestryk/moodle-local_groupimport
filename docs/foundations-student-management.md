@@ -2,6 +2,27 @@
 
 ## Flat allowed-drop affordance — 2026-10-01
 
+Allowed-state run `easystud-authenticated-20261001T191414061Z-42704` passes
+Participant/Group Single/Multiple on preview `726dcb0`; no drop or mutation,
+cleanup complete. Earlier `190811181Z-25960` failed because the harness never
+opened a Grouping to reveal the Group target; `191226898Z-8628` failed a
+fractional-border assertion. The shared authored border is 1.5px; its computed
+width snaps to device pixels, as specified in
+[CSS Backgrounds and Borders](https://drafts.csswg.org/css-backgrounds-3/#border-width).
+The corrected scenario compares a native 1.5px probe and retains a separate
+static authored-width contract. These failures are not silently waived.
+
+Kit `ef6bd6e` adds the paired Danger recipe from linked main
+`3a2df4fd-35b1-804c-8008-a5a396ce8d39`: normalized xmark, #c9271e glyph,
+#fff4f2 surface and #d96b63 border. Sizes S/M/L keep 32/40/48px circles with
+16/20/24px slots. The EasyStud adapter shows it only while participants hover
+an already disabled empty Grouping. Eligible nested Group targets take
+precedence; refusal does not preventDefault or enable dropping. Transient
+feedback clears on leave/end and return to an allowed Group. No endpoint,
+membership logic or disclosure animation changes. Danger browser proof pending.
+Target-only screenshots temporarily hide the decorative preview so the
+indicator is not covered; native drag state and target geometry remain intact.
+
 Kit `dc9d312` replaces the legacy insert-target 43.2px font plus with the
 linked Foundations 40px circle, 20px SVG slot and 1.5px blue border. Normalized
 glyph paint is 13.5416px square, centred in the slot. Existing receiving-card

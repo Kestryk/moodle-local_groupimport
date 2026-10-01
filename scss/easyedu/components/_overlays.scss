@@ -50,7 +50,9 @@
 // One background slot keeps the parent identity-rail pseudo-element available.
 $_drop-affordance-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%230b5ea8' d='M11.0415,4.271C11.0415,3.6948,10.5762,3.229,10,3.229C9.4238,3.229,8.9585,3.6948,8.9585,4.271L8.9585,8.9585L4.271,8.9585C3.6948,8.9585,3.229,9.4238,3.229,10C3.229,10.5762,3.6948,11.0415,4.271,11.0415L8.9585,11.0415L8.9585,15.729C8.9585,16.3052,9.4238,16.771,10,16.771C10.5762,16.771,11.0415,16.3052,11.0415,15.729L11.0415,11.0415L15.729,11.0415C16.3052,11.0415,16.771,10.5762,16.771,10C16.771,9.4238,16.3052,8.9585,15.729,8.9585L11.0415,8.9585L11.0415,4.271L11.0415,4.271'/%3E%3C/svg%3E");
 
-@mixin drop-affordance($size: 2.5rem) {
+$_drop-affordance-danger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23c9271e' d='M14.9023,6.569C15.3092,6.1621,15.3092,5.5013,14.9023,5.0944C14.4955,4.6875,13.8346,4.6875,13.4277,5.0944L10,8.5254L6.569,5.0977C6.1621,4.6908,5.5013,4.6908,5.0944,5.0977C4.6875,5.5045,4.6875,6.1654,5.0944,6.5723L8.5254,10L5.0977,13.431C4.6908,13.8379,4.6908,14.4987,5.0977,14.9056C5.5045,15.3125,6.1654,15.3125,6.5723,14.9056L10,11.4746L13.431,14.9023C13.8379,15.3092,14.4987,15.3092,14.9056,14.9023C15.3125,14.4955,15.3125,13.8346,14.9056,13.4277L11.4746,10L14.9023,6.569L14.9023,6.569'/%3E%3C/svg%3E");
+
+@mixin drop-affordance($size: 2.5rem, $state: allowed) {
   background-color: var(--easyedu-file-deposit-drag-over-surface);
   background-image: var(--easyedu-drop-affordance-plus, #{$_drop-affordance-plus});
   background-position: center;
@@ -62,6 +64,34 @@ $_drop-affordance-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
   box-sizing: border-box;
   height: $size;
   width: $size;
+
+  @if $state == danger {
+    background-color: var(--easyedu-file-deposit-danger-surface);
+    background-image: var(--easyedu-drop-affordance-danger, #{$_drop-affordance-danger});
+    border-color: var(--easyedu-file-deposit-danger-border);
+  }
+}
+
+// Use only while hovering a target that product logic already rejects.
+@mixin denied-drop-target {
+  filter: none;
+  opacity: 1;
+  outline: 1.5px solid var(--easyedu-file-deposit-danger-border);
+  outline-offset: -1.5px;
+  position: relative;
+
+  &::after {
+    @include drop-affordance(2.5rem, danger);
+    content: "";
+    left: 50%;
+    mask-image: none;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    -webkit-mask-image: none;
+  }
 }
 
 @mixin insert-drop-target(

@@ -1440,6 +1440,10 @@
     opacity: 1;
   }
 
+  &.is-dragging-participants &-tree__section.is-user-drop-disabled.is-drop-denied {
+    @include easyedu.denied-drop-target;
+  }
+
   &-inline-actions {
     align-items: center;
     display: flex;
