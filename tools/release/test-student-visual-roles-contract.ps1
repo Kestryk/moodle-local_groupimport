@@ -24,4 +24,14 @@ foreach ($recipe in @('foundation-button($density: compact)', 'foundation-button
 if ($adapter -match 'font-size\s*:|color\s*:|background\s*:|align-items\s*:') {
     throw 'Consumer role adapter must not own visual declarations.'
 }
+$menus = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/easyedu/components/_menus.scss')
+if (@([regex]::Matches($menus, '@include action-menu-label;')).Count -ne 2) {
+    throw 'Native context and overflow menus must both consume the common action label.'
+}
+$forms = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/components/_forms.scss')
+if ($forms.Contains('@include easyedu.action-button(small);')) { throw 'Competing Rename action skin.' }
+$foundation = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/easyedu/_foundation-classes.scss')
+foreach ($state in @('&:focus {', '&:hover {', '&:focus-visible { @include focus.ring; }')) {
+    if (-not $foundation.Contains($state)) { throw "Missing Foundation state: $state" }
+}
 Write-Output 'PASS: pinned Kit visual roles, opaque drawer defaults and selector-only adapters.'

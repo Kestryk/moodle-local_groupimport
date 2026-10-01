@@ -28,9 +28,9 @@
       "status": "allowed targets and empty-grouping participant refusal passed native desktop drag checks; final danger capture inspected; mobile/error coverage and human review deferred"
     },
     "studentListSortExtraction": {
-      "sourceCommit": "5998fbc14879c627cf4e9633738dfa26cc0120d1",
+      "sourceCommit": "de07379cbb271a9b71b51b7eec59320854fa0873",
       "module": "scss/easyedu/components/_menus.scss",
-      "moduleBlob": "6a30fe2f1c9976dd0b47f493fe9401626884d1af",
+      "moduleBlob": "50619e7e17f5fc8be5ca3f8ae2e26c02267bbb16",
       "status": "sort recipes unchanged; shared module additionally adopts measured context-menu typography; prior extraction equality is historical"
     },
     "studentControlTreatment": {
@@ -92,15 +92,15 @@
       "status": "native geometry/focus passed nine cases; stricter 390px icon-hit check exposes foreign CCB drawer occlusion; human acceptance deferred"
     },
     "studentVisualRoles": {
-      "sourceCommit": "5998fbc14879c627cf4e9633738dfa26cc0120d1",
-      "status": "paired Foundation member-name roles and product desktop toggle centres updated; managed visual proof pending",
+      "sourceCommit": "de07379cbb271a9b71b51b7eec59320854fa0873",
+      "status": "resting roles and opaque mobile drawer passed; product member instances linked; native context label and full button states corrected after focused failures, follow-up proof pending",
       "memberRowComponent": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
       "modules": {
         "_tokens.scss": "583ede19ab971813a1df7ae612ca64453e151455",
         "_workspace-classes.scss": "7349f50c5cd5b688cb4c0fd2f1d50a56a0265762",
-        "_foundation-classes.scss": "77aa2983b7ec9d382d675edf9bd129ff36f952be",
+        "_foundation-classes.scss": "df3b9c8e0b8c46066812473ded272ea74f7cc2c0",
         "components/_cards.scss": "518501f99384f3140ee36b6b47ad6d122728f6bf",
-        "components/_menus.scss": "6a30fe2f1c9976dd0b47f493fe9401626884d1af"
+        "components/_menus.scss": "50619e7e17f5fc8be5ca3f8ae2e26c02267bbb16"
       }
     },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"

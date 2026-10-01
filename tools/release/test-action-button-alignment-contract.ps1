@@ -17,6 +17,7 @@ $layout = Read-RequiredFile 'scss/components/_layout.scss'
 $forms = Read-RequiredFile 'scss/components/_forms.scss'
 $settingsModal = Read-RequiredFile 'scss/components/_settings-modal.scss'
 $controlTypography = Read-RequiredFile 'scss/components/_control-typography.scss'
+$workspace = Read-RequiredFile 'scss/easyedu/_workspace-classes.scss'
 $responsive = Read-RequiredFile 'scss/responsive/_desktop.scss'
 $styles = Read-RequiredFile 'styles.css'
 $scenario = Read-RequiredFile 'tools/playwright/easystud-action-button-alignment.spec.js'
@@ -29,7 +30,7 @@ if ($template -match 'fa \{\{icon\}\} me-2') {
 }
 
 foreach ($needle in @(
-    '&__participant-navigation {',
+    '.easyedu-ui .easyedu-workspace-title-control {',
     '--easyedu-action-icon-gap: 0.35rem;',
     'gap: var(--easyedu-action-icon-gap);',
     '&::after {',
@@ -39,7 +40,7 @@ foreach ($needle in @(
     '[data-easystud-panel-actions-menu] .btn',
     'text-decoration: none !important;'
 )) {
-    if (-not $layout.Contains($needle) -and -not $controlTypography.Contains($needle)) {
+    if (-not ($layout + $controlTypography + $workspace).Contains($needle)) {
         throw "Missing upper-action or More-actions contract: $needle"
     }
 }
@@ -53,11 +54,18 @@ foreach ($obsolete in @(
     }
 }
 
-foreach ($source in @($forms, $settingsModal)) {
+foreach ($source in @($settingsModal)) {
     if (-not $source.Contains('@include easyedu.action-button(small);') -or
             -not $source.Contains('margin-inline: 0 !important;')) {
-        throw 'Inline rename or native-profile action does not use the shared action-button contract.'
+        throw 'Native-profile action does not use the shared action-button contract.'
     }
+}
+
+foreach ($recipe in @('foundation-button($density: compact)', 'foundation-button($secondary: true, $density: compact)')) {
+    if (-not $controlTypography.Contains($recipe)) { throw "Missing inline Foundation role: $recipe" }
+}
+if ($forms.Contains('@include easyedu.action-button(small);')) {
+    throw 'Rename must not stack a conflicting generic action-button skin over its Foundation role.'
 }
 
 if (-not $responsive.Contains('&-mobile-actions__buttons') -or
@@ -67,13 +75,13 @@ if (-not $responsive.Contains('&-mobile-actions__buttons') -or
 }
 
 foreach ($needle in @(
-    '.local-groupimport-easystud__participant-navigation',
+    '.easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle',
     'gap: var(--easyedu-action-icon-gap)',
     'margin-inline-start: 0',
     '.local-groupimport-easystud__panel-actions',
     '--easyedu-action-icon-gap: 0.35rem',
     '.local-groupimport-easystud-settings-modal__native > .btn',
-    '.local-groupimport-easystud-rename__edit .btn',
+    '.local-groupimport-easystud-rename__edit [type=submit]',
     '[data-easystud-panel-actions-menu] .btn'
 )) {
     if (-not $styles.Contains($needle)) {

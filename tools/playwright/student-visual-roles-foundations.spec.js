@@ -19,6 +19,44 @@ test('Student visual roles match Foundations typography and surfaces', async({pa
     const root = page.locator('#local-groupimport-easystud');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout:60000});
     const reports = [];
+    const actionStates = async(panel, prefix) => {
+        const primary = panel.locator('button').first();
+        const secondary = panel.locator('button').last();
+        const states = [];
+        const palette = await panel.evaluate(n => {
+            const style = getComputedStyle(n);
+            const colour = name => {
+                const value = style.getPropertyValue(`--easyedu-${name}`).trim();
+                const hex = /^#([a-f0-9]{6})$/i.exec(value);
+                return hex ? `rgb(${[0, 2, 4].map(i => parseInt(hex[1].slice(i, i + 2), 16)).join(', ')})` : value;
+            };
+            return {primary:colour('primary'), strong:colour('primary-strong'), soft:colour('primary-soft'),
+                surface:colour('surface')};
+        });
+        for (const [name, button, hoverBackground, textColor] of [
+            ['primary', primary, palette.strong, palette.surface],
+            ['secondary', secondary, palette.soft, palette.primary],
+        ]) {
+            await button.hover();
+            await expect(button).toHaveCSS('background-color', hoverBackground);
+            states.push({name, state:'hover', ...(await measure(button))[0]});
+            expect.soft(states.at(-1).color, `${prefix}/${name} hover text`).toBe(textColor);
+            await page.mouse.move(0, 0);
+            // Keyboard modality before focus: do not treat pointer focus as
+            // proof of :focus-visible. No Add/Save command is activated.
+            await page.keyboard.press('Tab');
+            await button.focus();
+            await expect(button).toBeFocused();
+            await expect.soft(button).toHaveCSS('background-color', name === 'primary'
+                ? palette.primary : palette.surface);
+            states.push({name, state:'focus', ...(await measure(button))[0]});
+            expect.soft(states.at(-1).color, `${prefix}/${name} keyboard text`).toBe(textColor);
+            expect(await button.evaluate(n => n.matches(':focus-visible'))).toBe(true);
+            expect(await button.evaluate(n => getComputedStyle(n).boxShadow)).not.toBe('none');
+            await button.screenshot({path:testInfo.outputPath(`${prefix}-${name}-focus.png`)});
+        }
+        return states;
+    };
     const measure = async(locator) => locator.evaluateAll(nodes => nodes.filter(n => n.getClientRects().length).map(n => {
         const style = getComputedStyle(n);
         const box = e => {
@@ -38,6 +76,8 @@ test('Student visual roles match Foundations typography and surfaces', async({pa
             family:style.fontFamily, size:style.fontSize, weight:style.fontWeight,
             color:style.color, background:style.backgroundColor, lineHeight:style.lineHeight,
             display:style.display, alignItems:style.alignItems, gap:style.gap,
+            parent:box(n.parentElement),
+            hovered:n.matches(':hover'), focused:n === document.activeElement,
             icon:icon ? box(icon) : null, label:label ? box(label) : textBox,
             drawerSurface:style.getPropertyValue('--easyedu-navigation-drawer-surface').trim()};
     }));
@@ -62,6 +102,7 @@ test('Student visual roles match Foundations typography and surfaces', async({pa
         if (await disclosure.getAttribute('aria-expanded') === 'false') await disclosure.click();
         await expect(grouping.locator('.local-groupimport-easystud-member__name').first()).toBeVisible();
         const record = {width:1600, roles:{}, inline:{}};
+        reports.push(record);
         for (const [name, selector] of Object.entries(roles)) record.roles[name] = (await measure(root.locator(selector))).slice(0, 4);
         for (const role of ['participant', 'group', 'grouping']) {
             expect(record.roles[role].length, role).toBeGreaterThan(0);
@@ -101,10 +142,32 @@ test('Student visual roles match Foundations typography and surfaces', async({pa
                 expect(Math.abs(item.label.y + item.label.h / 2 - item.box.y - item.box.h / 2)).toBeLessThan(2);
             }
             await panel.screenshot({path:testInfo.outputPath(`inline-${kind}-1600.png`)});
+            record.inline[`${kind}States`] = await actionStates(panel, `inline-${kind}`);
             await panel.locator(cancelSelector).click();
         }
         await page.screenshot({path:testInfo.outputPath('visual-roles-1600.png')});
-        reports.push(record);
+        // Inspect native Rename only, never submit the form.
+        const rename = root.locator('[data-easystud-rename-toggle]:visible').first();
+        await rename.click();
+        const edit = root.locator('.local-groupimport-easystud-rename__edit:not([hidden])').first();
+        await expect(edit).toBeVisible();
+        // Opening Rename changes the header under the old pointer position.
+        // Assert resting roles after that preserved hover transition settles.
+        await page.mouse.move(0, 0);
+        await expect(edit.locator('[data-easystud-rename-cancel]')).toHaveCSS('color', 'rgb(15, 108, 191)');
+        record.rename = await measure(edit.locator('button'));
+        for (const item of record.rename) {
+            expect(item.size).toBe('12px');
+            expect(item.weight).toBe('700');
+            expect(item.alignItems).toBe('center');
+            expect(Math.abs(item.label.y + item.label.h / 2 - item.box.y - item.box.h / 2)).toBeLessThan(2);
+        }
+        expect(record.rename[0].background).toBe('rgb(15, 108, 191)');
+        expect(record.rename[0].color).toBe('rgb(255, 255, 255)');
+        expect(record.rename[1].color).toBe('rgb(15, 108, 191)');
+        await edit.screenshot({path:testInfo.outputPath('rename-1600.png')});
+        record.renameStates = await actionStates(edit, 'rename');
+        await edit.locator('[data-easystud-rename-cancel]').click();
         for (const width of [768, 390]) {
             await page.setViewportSize({width, height:1100});
             await root.locator('[data-easystud-mobile-view="groups"]').click();

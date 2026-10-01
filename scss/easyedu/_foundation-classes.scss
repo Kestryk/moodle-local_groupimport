@@ -52,9 +52,28 @@
   } @else if $density != regular {
     @error "foundation-button expects regular or compact density.";
   }
+  // Own the semantic paints in the native focus/hover cascade as well as at
+  // rest. Bootstrap :focus and generic action-button states must not turn a
+  // primary label dark or give a secondary Cancel another semantic colour.
+  &:focus {
+    @if $secondary {
+      background: var(--easyedu-surface);
+      @if $density == compact { color: var(--easyedu-primary); }
+      @else { color: var(--easyedu-secondary-text); }
+    } @else {
+      background: var(--easyedu-primary);
+      color: var(--easyedu-surface);
+    }
+  }
   &:hover {
-    @if $secondary { background: var(--easyedu-primary-soft); }
-    @else { background: var(--easyedu-primary-strong); }
+    @if $secondary {
+      background: var(--easyedu-primary-soft);
+      @if $density == compact { color: var(--easyedu-primary); }
+      @else { color: var(--easyedu-secondary-text); }
+    } @else {
+      background: var(--easyedu-primary-strong);
+      color: var(--easyedu-surface);
+    }
   }
   &:focus-visible { @include focus.ring; }
   &:disabled { background: var(--easyedu-surface-soft); color: var(--easyedu-text-muted); }

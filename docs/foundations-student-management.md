@@ -1,5 +1,45 @@
 # Foundations Student Management migration
 
+## Native state completion and recorded Penpot propagation — 2026-10-01
+
+Resting-role proof `easystud-authenticated-20261001T211431487Z-40848`
+passes on preview `ae199225`: title/member roles, centred Add/Save/Cancel,
+opaque navigation at 768/390px and native Rename open/cancel. `rename-1600.png`
+inspected. No form submitted; credentials, children and leases cleaned.
+
+Expanded checks expose two distinct gaps, not accepted regressions:
+
+- `20261001T211835222Z-38240`: context-menu labels remain 14.4px/400.
+  Kit `5998fbc` had updated overflow items only, although its documentation
+  described both. Kit `de07379` now includes the same `action-menu-label`
+  in both recipes. Sort options and mobile 44px hit targets are unchanged.
+- `20261001T212250818Z-32148`: Foundation focus inherits Bootstrap's primary
+  background; the first diagnostic also assumed the wrong secondary-hover
+  palette. The preserved scenario now resolves the actual Kit tokens. The
+  Foundation recipe owns native focus/hover paints explicitly and Rename no
+  longer stacks `action-button(small)` below that role. Source states and
+  original transitions remain distinct from post-change browser proof.
+
+The older action-alignment contract referenced a deleted product navigation
+selector. It now verifies the canonical workspace title recipe and generated
+selector, retaining gap/centering assertions instead of deleting the check.
+
+Recorded Penpot propagation adds 12 linked instances of existing Foundation
+Member-row `2a31d374-d2a1-80fd-8008-ac477e3402f9` to active Group specimens.
+Names reuse Inter 13px/600 #16324f; checkboxes/remove controls remain linked.
+Duplicate body count notes are hidden recoverably ONLY where a header count
+already exists; the other counts are retained. Readback confirms containment
+and linkage. Row `75ffc9c1-9374-805a-8008-b997728feae2` (522×52) was exported
+and inspected. The narrow 236×42 and whole-card exports are still pending.
+Default 52px versus native member-row 42px remains a density alignment gap,
+not claimed pixel equality. Broad reread stalled; the dedicated browser closed
+gracefully, but relaunch was refused by the environment. No other profile,
+original component or business data was removed or changed.
+
+Platform planning-owner proposal: record the above proofs/failures, linked
+product specimens and remaining compact-density/export boundary in
+EED-UI-2026-0073. Existing shared planning/index changes remain untouched.
+
 ## Measured visual roles — 2026-10-01
 
 Read-only role audit `easystud-authenticated-20261001T201831156Z-33364`
