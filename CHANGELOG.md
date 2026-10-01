@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Preserve a supervised, temporary narrow-card comparison scenario. The
+  first 320px candidate failed readability and is not deployed; existing
+  runtime styles, selection behavior and animations remain unchanged.
+
 - Replace local list-sort trigger/option styles with canonical Kit calls,
   preserving the complete generated CSS, routing, geometry and states.
   Reconcile detailed Penpot participant metadata to the existing shared grid.

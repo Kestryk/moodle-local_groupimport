@@ -1,5 +1,18 @@
 # Foundations Student Management migration
 
+## 320px readability investigation — not deployed
+
+The enhanced metadata run exposes a residual 20.52px name lane at 320px
+for the primary-badge participant (390px remains 54.55px). A temporary
+canonical two-row fixture was tested in `student-narrow-identity-candidate.spec.js`
+using external `EASYEDU_NARROW_PARTICIPANT_CANDIDATE_CSS`; it failed the
+explicit >50px name / >80px email gate. Actual candidate: name 34.20px,
+email 66.75px, height 52.80px versus 45.97px. No runtime stylesheet is modified;
+the injected style is removed in finally. No business data/fixture is changed.
+The 320px case therefore remains open, not accepted from containment alone.
+Next investigation must account for the primary badge, full checkbox/menu
+targets and terminal eye action together, preserving content and Motion.
+
 ## Compact sorting ownership and metadata reconciliation — 2026-10-01
 
 The sort trigger and option selectors now call canonical `list-sort-trigger`
