@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Filter disclosures use canonical `filter-disclosure-type` (0.76rem, regular,
+line-height 1.1) at every size. Do not add consumer-local font overrides or
+replace the existing Motion transitions; verify their transitional class in
+normal-motion mode after changes. Foundations/product links remain unchanged.
+
 Utility controls use `control-regular-type`, `control-count-type` and
 `action-text-treatment`; consumers keep selector adapters, not duplicated
 font/decoration declarations. Preserve cascade placement and existing action

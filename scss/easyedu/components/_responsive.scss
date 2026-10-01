@@ -1,6 +1,7 @@
 // Responsive helpers for EasyEdu plugin views.
 
 @use "focus";
+@use "control-treatment" as controls;
 
 @mixin responsive-stack($breakpoint: 52rem) {
   @media (max-width: $breakpoint) {
@@ -384,8 +385,7 @@
   border-radius: var(--easyedu-control-radius);
   color: var(--easyedu-text-muted);
   display: inline-flex;
-  font-size: 0.72rem;
-  font-weight: 650;
+  @include controls.filter-disclosure-type;
   gap: 0.32rem;
   justify-content: center;
   min-height: var(--easyedu-touch-target-min);

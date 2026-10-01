@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Harmonize More filters with Foundations through the canonical Kit recipe:
+  desktop and mobile share 0.76rem / regular / 1.1. Preserve unified filter
+  surfaces, hit areas and disclosure Motion; no plugin-local font override.
+
 - Replace plugin-owned control font/decoration declarations with canonical Kit
   recipes. Keep selectors and final cascade position; generated CSS is exactly
   unchanged. Add source-parity and full-CSS equality validation; no card-motion,

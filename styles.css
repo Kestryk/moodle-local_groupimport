@@ -3165,9 +3165,9 @@
   font-family: inherit;
   font-size: 0.76rem;
   font-weight: var(--easyedu-font-weight-regular);
+  line-height: 1.1;
   gap: 0.42rem;
   justify-content: center;
-  line-height: 1.1;
   min-width: 0;
   transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
   border-radius: var(--easyedu-control-radius);
@@ -5661,9 +5661,9 @@
   font-family: inherit;
   font-size: 0.76rem;
   font-weight: var(--easyedu-font-weight-regular);
+  line-height: 1.1;
   gap: 0.42rem;
   justify-content: center;
-  line-height: 1.1;
   min-width: 0;
   transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
   min-height: 2.1rem;
@@ -17128,9 +17128,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     font-family: inherit;
     font-size: 0.76rem;
     font-weight: var(--easyedu-font-weight-regular);
+    line-height: 1.1;
     gap: 0.42rem;
     justify-content: center;
-    line-height: 1.1;
     min-width: 0;
     transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
     min-height: 2.75rem;
@@ -18220,9 +18220,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     font-family: inherit;
     font-size: 0.76rem;
     font-weight: var(--easyedu-font-weight-regular);
+    line-height: 1.1;
     gap: 0.42rem;
     justify-content: center;
-    line-height: 1.1;
     min-width: 0;
     transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
     min-height: 2.75rem;

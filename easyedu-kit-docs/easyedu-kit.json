@@ -16,10 +16,19 @@
     },
     "fullTreeIdentical": false,
     "studentControlTreatment": {
-      "sourceCommit": "24df5ad11c6af6297e021fbe07eba57d9720bd2d",
+      "sourceCommit": "a5877239f8df947f1c754057429ec135e7d9b4f7",
       "module": "scss/easyedu/components/_control-treatment.scss",
-      "moduleBlob": "722c312e6c7bcd8509f15bfb60c92350b411202b",
-      "status": "source parity and full generated CSS equality passed; preview evidence recorded in canonical batch"
+      "moduleBlob": "2a685c726d175d4b4a02e5fee479137214199246",
+      "status": "canonical source parity; filter typography harmonized, previous extraction CSS-equality evidence remains historical"
+    },
+    "filterDisclosureTypography": {
+      "sourceCommit": "a5877239f8df947f1c754057429ec135e7d9b4f7",
+      "formsBlob": "c22f28fa9517e40e331c425d7ecbf1b2a68cdff2",
+      "responsiveBlob": "930457587d9c414e395db3496fd8321c633e466e",
+      "role": "0.76rem / regular / line-height 1.1 / inherited Inter",
+      "foundationWideComponent": "2a31d374-d2a1-80fd-8008-ac60c5933349",
+      "foundationMobileComponent": "5866ed4a-7d30-8093-8008-ac7a30a0fcae",
+      "status": "28 Foundation and 25 product trigger labels aligned; focused runtime verification recorded separately in canonical batch"
     },
     "studentNarrowPagination": {
       "sourceCommit": "473766100d53c8d01ad51d6ccf91ad7c9d9e9566",
