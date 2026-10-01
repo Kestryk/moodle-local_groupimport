@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Reuse the canonical Direct action for group/grouping Rename and group Unlink.
+  Remove their local focus overrides and brown unlink skin; preserve icon
+  semantics, native commands, rename transitions and responsive menu routing.
+
 - Replace the Grouping search toggle's local circular skin with the existing
   Foundations Direct icon recipe. Keep placement, mobile routing, native
   search panels and motion unchanged; cover hover/open state and icon centring.

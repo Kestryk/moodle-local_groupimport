@@ -76,7 +76,12 @@
     "containerSearchAction": {
       "recipe": "card-direct-action",
       "penpotInstance": "cef95197-06bc-809e-8008-aede0d9d2b44",
-      "status": "existing canonical recipe reused; source checks passed; responsive runtime proof pending"
+      "status": "existing canonical recipe reused; managed 1600/768/390 geometry and native search open/close proof passed"
+    },
+    "remainingDirectActions": {
+      "recipe": "card-direct-action",
+      "families": ["rename__toggle", "group__unlink-button"],
+      "status": "canonical reuse and bounded CSS checks passed; runtime and product composition propagation pending"
     },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },

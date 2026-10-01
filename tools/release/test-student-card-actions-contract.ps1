@@ -9,7 +9,8 @@ if ($local.Replace("`r`n", "`n") -cne $canonical.Replace("`r`n", "`n")) {
 }
 $css = Get-Content -Raw -LiteralPath (Join-Path $root 'styles.css')
 $names = @('user__detail-button', 'group__mail-button', 'group__duplicate-button',
-    'group__member-search-button', 'group__settings-button', 'container-search__toggle')
+    'group__member-search-button', 'group__settings-button', 'container-search__toggle',
+    'rename__toggle', 'group__unlink-button')
 foreach ($name in $names) {
     $selector = '.local-groupimport-easystud-' + $name
     $rule = ''

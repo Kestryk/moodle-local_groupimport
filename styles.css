@@ -3939,34 +3939,65 @@
   margin-top: 0;
 }
 .local-groupimport-easystud-rename__toggle {
-  align-items: center;
-  background: #fff;
-  border: 1px solid #d8e2ed;
-  border-radius: 0.6rem;
-  color: var(--local-groupimport-easystud-primary);
-  display: inline-flex;
-  height: 1.95rem;
-  justify-content: center;
-  text-decoration: none;
   transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;
-  width: 1.95rem;
 }
-.local-groupimport-easystud-rename__toggle:hover {
-  background: #f7fbff;
-  border-color: #bdd0e5;
-  color: var(--local-groupimport-easystud-primary-strong);
+.local-groupimport-easystud-rename__toggle, .local-groupimport-easystud-rename__toggle.btn {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.95rem;
+  height: 1.85rem;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  text-decoration: none;
+  width: 1.85rem;
+}
+.local-groupimport-easystud-rename__toggle > .fa,
+.local-groupimport-easystud-rename__toggle > .icon, .local-groupimport-easystud-rename__toggle.btn > .fa,
+.local-groupimport-easystud-rename__toggle.btn > .icon {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 0.95rem;
+  font-size: inherit;
+  height: 0.95rem;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  width: 0.95rem;
+}
+.local-groupimport-easystud-rename__toggle:hover, .local-groupimport-easystud-rename__toggle:focus-visible, .local-groupimport-easystud-rename__toggle.btn:hover, .local-groupimport-easystud-rename__toggle.btn:focus-visible {
+  background: var(--easyedu-card-action-hover-bg, #f7fbff);
+  border-color: var(--easyedu-card-action-hover-border, #bdd0e5);
+  color: var(--easyedu-primary-strong);
   text-decoration: none;
 }
-.local-groupimport-easystud-rename__toggle:focus, .local-groupimport-easystud-rename__toggle:focus-visible {
-  background: #f7fbff;
+.local-groupimport-easystud-rename__toggle:active, .local-groupimport-easystud-rename__toggle[aria-pressed=true], .local-groupimport-easystud-rename__toggle[aria-expanded=true], .local-groupimport-easystud-rename__toggle.is-active, .local-groupimport-easystud-rename__toggle.btn:active, .local-groupimport-easystud-rename__toggle.btn[aria-pressed=true], .local-groupimport-easystud-rename__toggle.btn[aria-expanded=true], .local-groupimport-easystud-rename__toggle.btn.is-active {
+  background: var(--easyedu-card-action-active-bg, #eaf4ff);
+  border-color: var(--easyedu-card-action-active-border, #b8d5ef);
+  color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-rename__toggle:focus-visible, .local-groupimport-easystud-rename__toggle.btn:focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
-  border-color: var(--easyedu-control-focus-border) !important;
-  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-  color: var(--local-groupimport-easystud-primary-strong);
-  text-decoration: none;
+}
+.local-groupimport-easystud-rename__toggle:focus:not(:focus-visible), .local-groupimport-easystud-rename__toggle.btn:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+.local-groupimport-easystud-rename__toggle:disabled, .local-groupimport-easystud-rename__toggle[aria-disabled=true], .local-groupimport-easystud-rename__toggle.disabled, .local-groupimport-easystud-rename__toggle.btn:disabled, .local-groupimport-easystud-rename__toggle.btn[aria-disabled=true], .local-groupimport-easystud-rename__toggle.btn.disabled {
+  background: var(--easyedu-card-action-disabled-bg, #f0f4f8);
+  border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);
+  color: var(--easyedu-card-action-disabled-color, #9aa9b8);
+  cursor: not-allowed;
+  opacity: 1;
 }
 .local-groupimport-easystud-rename__edit {
   align-items: center;
@@ -5409,34 +5440,63 @@
   cursor: not-allowed;
   opacity: 1;
 }
-.local-groupimport-easystud-group__unlink-button {
+.local-groupimport-easystud-group__unlink-button, .local-groupimport-easystud-group__unlink-button.btn {
   align-items: center;
   background: transparent;
-  border: 1px solid #d8d1c7;
+  border: 1px solid transparent;
   border-radius: 999px;
-  color: #6f6558;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
   display: inline-flex;
   flex: 0 0 auto;
+  font-size: 0.95rem;
   height: 1.85rem;
   justify-content: center;
+  line-height: 1;
+  padding: 0;
+  text-decoration: none;
   width: 1.85rem;
 }
-.local-groupimport-easystud-group__unlink-button:hover, .local-groupimport-easystud-group__unlink-button:focus {
-  background: #fffaf2;
-  border-color: #cbb89f;
-  color: #775734;
+.local-groupimport-easystud-group__unlink-button > .fa,
+.local-groupimport-easystud-group__unlink-button > .icon, .local-groupimport-easystud-group__unlink-button.btn > .fa,
+.local-groupimport-easystud-group__unlink-button.btn > .icon {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 0.95rem;
+  font-size: inherit;
+  height: 0.95rem;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  width: 0.95rem;
+}
+.local-groupimport-easystud-group__unlink-button:hover, .local-groupimport-easystud-group__unlink-button:focus-visible, .local-groupimport-easystud-group__unlink-button.btn:hover, .local-groupimport-easystud-group__unlink-button.btn:focus-visible {
+  background: var(--easyedu-card-action-hover-bg, #f7fbff);
+  border-color: var(--easyedu-card-action-hover-border, #bdd0e5);
+  color: var(--easyedu-primary-strong);
   text-decoration: none;
 }
-.local-groupimport-easystud-group__unlink-button:focus-visible {
+.local-groupimport-easystud-group__unlink-button:active, .local-groupimport-easystud-group__unlink-button[aria-pressed=true], .local-groupimport-easystud-group__unlink-button[aria-expanded=true], .local-groupimport-easystud-group__unlink-button.is-active, .local-groupimport-easystud-group__unlink-button.btn:active, .local-groupimport-easystud-group__unlink-button.btn[aria-pressed=true], .local-groupimport-easystud-group__unlink-button.btn[aria-expanded=true], .local-groupimport-easystud-group__unlink-button.btn.is-active {
+  background: var(--easyedu-card-action-active-bg, #eaf4ff);
+  border-color: var(--easyedu-card-action-active-border, #b8d5ef);
+  color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-group__unlink-button:focus-visible, .local-groupimport-easystud-group__unlink-button.btn:focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
-  border-color: var(--easyedu-control-focus-border) !important;
-  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
 }
-.local-groupimport-easystud-group__unlink-button:focus:not(:focus-visible) {
+.local-groupimport-easystud-group__unlink-button:focus:not(:focus-visible), .local-groupimport-easystud-group__unlink-button.btn:focus:not(:focus-visible) {
   box-shadow: none;
+}
+.local-groupimport-easystud-group__unlink-button:disabled, .local-groupimport-easystud-group__unlink-button[aria-disabled=true], .local-groupimport-easystud-group__unlink-button.disabled, .local-groupimport-easystud-group__unlink-button.btn:disabled, .local-groupimport-easystud-group__unlink-button.btn[aria-disabled=true], .local-groupimport-easystud-group__unlink-button.btn.disabled {
+  background: var(--easyedu-card-action-disabled-bg, #f0f4f8);
+  border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);
+  color: var(--easyedu-card-action-disabled-color, #9aa9b8);
+  cursor: not-allowed;
+  opacity: 1;
 }
 .local-groupimport-easystud-group__actions-toggle {
   align-items: center;
