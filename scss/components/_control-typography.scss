@@ -1,8 +1,21 @@
 @use "../easyedu" as easyedu;
+@use "../easyedu/foundation-classes" as foundations;
 
 // Selector adapter only. Shared treatment lives in the canonical Kit;
 // preserve this final cascade position and the existing host compatibility.
 .local-groupimport-easystud {
+  [data-easystud-add-group-emails],
+  [data-easystud-add-grouping-groups],
+  &-rename__edit [type="submit"] {
+    @include foundations.foundation-button($density: compact);
+  }
+
+  [data-easystud-cancel-group-email],
+  [data-easystud-cancel-grouping-groups],
+  [data-easystud-rename-cancel] {
+    @include foundations.foundation-button($secondary: true, $density: compact);
+  }
+
   [data-easystud-advanced-filters-toggle],
   &-pagination__sort > span,
   [data-easystud-list-sort-dropdown] > &-dropdown__button {

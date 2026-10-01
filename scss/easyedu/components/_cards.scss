@@ -214,16 +214,20 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  @if $density == compact {
-    font-size: calc(var(--easyedu-font-size-card-title) * 0.92);
-    font-weight: var(--easyedu-font-weight-semibold);
-  } @else if $density == container {
-    font-size: calc(var(--easyedu-font-size-card-title) * 1.02);
-    font-weight: var(--easyedu-font-weight-strong);
-  } @else {
-    font-size: var(--easyedu-font-size-card-title);
-    font-weight: var(--easyedu-font-weight-semibold);
-  }
+  // Density changes the shell, not identity typography. Foundations card
+  // mains share 14px/700; retain coloured rails/badges instead of title hues.
+  font-size: var(--easyedu-card-identity-title-size);
+  font-weight: var(--easyedu-font-weight-strong);
+}
+
+// A related participant inside a Group is subordinate to the card identity,
+// but belongs to the same UI family. Consumer owns selection/removal/layout.
+@mixin related-person-name {
+  color: var(--easyedu-card-identity-title-color);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-related-person-name-size);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
 }
 
 // Optional metadata placed beside a title. It must yield before the title or

@@ -6,7 +6,7 @@
 @use "components/focus";
 @use "components/buttons";
 
-@mixin foundation-button($secondary: false) {
+@mixin foundation-button($secondary: false, $density: regular) {
   align-items: center;
   background: var(--easyedu-primary);
   border: 0.0625rem solid transparent;
@@ -41,6 +41,16 @@
     color: var(--easyedu-secondary-text);
     font-size: 0.75rem;
     min-block-size: 2rem;
+  }
+  @if $density == compact {
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: var(--easyedu-font-weight-strong);
+    min-block-size: 1.625rem;
+    padding: 0.25rem 0.65rem;
+    @if $secondary { color: var(--easyedu-primary); }
+  } @else if $density != regular {
+    @error "foundation-button expects regular or compact density.";
   }
   &:hover {
     @if $secondary { background: var(--easyedu-primary-soft); }

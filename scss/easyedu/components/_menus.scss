@@ -115,6 +115,20 @@
   button,
   a {
     @include menu-item($size);
+
+    // Foundations More-item role. Geometry/touch targets and command routing
+    // remain with the menu/sheet shell, not a product-specific text override.
+    color: #40566e;
+    font-family: var(--easyedu-font-family-ui);
+    font-size: 0.74rem;
+    font-weight: var(--easyedu-font-weight-strong);
+    min-height: 2.25rem;
+
+    .fa {
+      color: var(--easyedu-primary);
+      font-size: 1rem;
+      line-height: 1;
+    }
   }
 }
 

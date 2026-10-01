@@ -9,10 +9,10 @@
     "canonicalScssTree": "9e98c37e3c8a33a444c2c15117c055edd686a107",
     "scope": "Mass Import and Administration Phase 0 subset plus Student Management workspace chrome and header layout recipes",
     "studentHeaderExtraction": {
-      "status": "canonical source committed, consumer preview pending",
-      "sourceCommit": "d9e7a6ac425c2f3c9b5066bdfb00b44f94400e25",
+      "status": "header geometry preserved; measured identity role updated; browser proof recorded separately",
+      "sourceCommit": "5998fbc14879c627cf4e9633738dfa26cc0120d1",
       "baseCommit": "ce8a701bfd1a301778e3780577084f7df3cad393",
-      "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
+      "cardModuleBlob": "518501f99384f3140ee36b6b47ad6d122728f6bf"
     },
     "fullTreeIdentical": false,
     "studentDragPreview": {
@@ -28,10 +28,10 @@
       "status": "allowed targets and empty-grouping participant refusal passed native desktop drag checks; final danger capture inspected; mobile/error coverage and human review deferred"
     },
     "studentListSortExtraction": {
-      "sourceCommit": "42f7e79c14f0898a616b7f4eb9e34200282f74cd",
+      "sourceCommit": "5998fbc14879c627cf4e9633738dfa26cc0120d1",
       "module": "scss/easyedu/components/_menus.scss",
-      "moduleBlob": "08e826005bdabef96955e5f693367ba3d131fa24",
-      "status": "canonical parity and full CSS equality passed; source-preserving compact sorting, not new Dropdown S visual acceptance"
+      "moduleBlob": "6a30fe2f1c9976dd0b47f493fe9401626884d1af",
+      "status": "sort recipes unchanged; shared module additionally adopts measured context-menu typography; prior extraction equality is historical"
     },
     "studentControlTreatment": {
       "sourceCommit": "a5877239f8df947f1c754057429ec135e7d9b4f7",
@@ -89,7 +89,19 @@
       "sourceCommit": "35c9c5f5828db72b26860ccfb3a41759da33bb7e",
       "moduleBlob": "132aa0f257812a6d9e8601f354c7731ed421453f",
       "penpotMain": "16efa6a5-be95-808f-8008-98eb972325be",
-      "status": "source-preserving extraction; full consumer CSS equality and shared responsive 44px composition verified; native menu proof pending"
+      "status": "native geometry/focus passed nine cases; stricter 390px icon-hit check exposes foreign CCB drawer occlusion; human acceptance deferred"
+    },
+    "studentVisualRoles": {
+      "sourceCommit": "5998fbc14879c627cf4e9633738dfa26cc0120d1",
+      "status": "paired Foundation member-name roles and product desktop toggle centres updated; managed visual proof pending",
+      "memberRowComponent": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
+      "modules": {
+        "_tokens.scss": "583ede19ab971813a1df7ae612ca64453e151455",
+        "_workspace-classes.scss": "7349f50c5cd5b688cb4c0fd2f1d50a56a0265762",
+        "_foundation-classes.scss": "77aa2983b7ec9d382d675edf9bd129ff36f952be",
+        "components/_cards.scss": "518501f99384f3140ee36b6b47ad6d122728f6bf",
+        "components/_menus.scss": "6a30fe2f1c9976dd0b47f493fe9401626884d1af"
+      }
     },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },

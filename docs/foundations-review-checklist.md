@@ -6,6 +6,12 @@ Technical checks and human visual acceptance remain separate.
 
 ## Student Management
 
+- [ ] Measured identity typography/colours, subordinate group-member names.
+- [ ] Compact Add/Save/Cancel labels, vertical icon/text centres and common gap.
+- [ ] Mobile drawer has an opaque surface after its opening transition.
+- [ ] Context menu labels match Foundations; foreign CCB drawer occlusion resolved.
+- [ ] All product layout-toggle glyphs stay inside their matching centred slots.
+
 - [ ] Workspace title/description/navigation spacing and centred view toggles.
 - [ ] More filters stays one unified block in desktop and mobile.
 - [ ] Participant, group and grouping headers: checkbox/title/badge/actions align.

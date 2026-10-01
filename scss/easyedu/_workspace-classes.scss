@@ -23,7 +23,7 @@
       border: 0;
       border-radius: 0;
       box-shadow: none;
-      color: var(--easyedu-text);
+      color: var(--easyedu-workspace-title-color);
       display: inline-flex;
       font: 700 1.875rem/1.2 var(--easyedu-font-family-ui);
       gap: var(--easyedu-action-icon-gap);
@@ -37,7 +37,7 @@
     }
   }
   .easyedu-ui .easyedu-workspace-description {
-    color: var(--easyedu-text-muted);
+    color: var(--easyedu-workspace-description-color);
     font: 400 1rem/1.5 var(--easyedu-font-family-ui);
     margin: 0;
     max-inline-size: 68.75rem;
@@ -58,7 +58,7 @@
     background-image: var(--easyedu-semantic-rail-success);
   }
   .easyedu-ui .easyedu-workspace-panel-title {
-    color: var(--easyedu-text);
+    color: var(--easyedu-workspace-panel-title-color);
     font: 700 1.375rem/1.5 var(--easyedu-font-family-ui);
     margin: 0;
   }
