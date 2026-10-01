@@ -2,6 +2,10 @@
 
 ## 2026-10-01
 
+- Correct responsive Group/Grouping overflow routing: the desktop listener
+  no longer consumes the shared trigger before the existing mobile context
+  sheet. Keep desktop-exclusive handling, commands and card Motion unchanged.
+
 - Add a non-mutating responsive context-menu scenario for Participant, Group
   and Grouping: native trigger/right-click, 44px targets, icon containment,
   sheet/backdrop, initial focus and Escape restoration. Human review deferred.

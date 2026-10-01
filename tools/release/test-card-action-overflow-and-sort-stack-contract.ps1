@@ -101,6 +101,10 @@ foreach ($needle in @(
     }
 }
 
+if ($source -notmatch 'const bindNestedGroupActionMenus = root => \{[\s\S]*?if \(toggle && root\.contains\(toggle\)\) \{(?:\s*//[^\r\n]*)*\s*if \(isResponsiveWorkspace\(\)\) \{\s*closeMenus\(null\);\s*return;\s*\}\s*event\.preventDefault\(\);') {
+    throw 'Responsive Group menu clicks must reach the shared context-sheet controller before desktop interception.'
+}
+
 # Shared paint/typography was extracted earlier. Keep checking the actual
 # contract, not stale literals that no longer belong in the selector adapter.
 foreach ($needle in @(

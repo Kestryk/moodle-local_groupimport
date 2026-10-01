@@ -21,6 +21,31 @@ test('Student context menus preserve responsive geometry and focus', async({page
     const menu = root.locator('[data-easystud-context-menu]');
     const backdrop = root.locator('[data-easystud-context-backdrop]');
     const reports = [];
+    await page.evaluate(() => {
+        const events = [];
+        const record = event => {
+            events.push({type:event.type, time:performance.now(), scroll:scrollY,
+                target:event.target?.tagName, classes:event.target?.className});
+            if (events.length > 60) events.shift();
+        };
+        const observedMenu = document.querySelector('[data-easystud-context-menu]');
+        const observer = new MutationObserver(() => {
+            events.push({type:'menu-hidden', hidden:observedMenu.hidden, time:performance.now(), scroll:scrollY});
+            if (events.length > 60) events.shift();
+        });
+        observer.observe(observedMenu, {attributes:true, attributeFilter:['hidden']});
+        for (const type of ['scroll', 'contextmenu', 'focusin']) document.addEventListener(type, record, true);
+        window.easyeduMenuAudit = {events, dispose:() => {
+            observer.disconnect();
+            for (const type of ['scroll', 'contextmenu', 'focusin']) document.removeEventListener(type, record, true);
+        }};
+    });
+    const clearSelection = async() => {
+        const selected = root.locator('.local-groupimport-easystud-selector:visible').filter({
+            has:page.locator('input[data-easystud-selector-input]:checked'),
+        });
+        while (await selected.count()) await selected.first().click();
+    };
     try {
         for (const width of [1600, 768, 390]) {
             await page.setViewportSize({width, height:1100});
@@ -44,6 +69,25 @@ test('Student context menus preserve responsive geometry and focus', async({page
                 const card = root.locator(`${selector}:visible`).first();
                 await expect(card).toBeVisible();
                 await card.scrollIntoViewIfNeeded();
+                // Native context preparation selects the card and may expand
+                // it. Separate settled-state menu geometry from that Motion:
+                // desktop intentionally closes menus on any scroll event.
+                const input = card.locator('input[data-easystud-selector-input]').first();
+                if (!await input.isChecked()) await input.locator('..').click();
+                const contextTarget = card.locator(':scope > .local-groupimport-easystud-user__main, ' +
+                    ':scope > .local-groupimport-easystud-group__header, ' +
+                    ':scope > .local-groupimport-easystud-grouping__header').first();
+                await contextTarget.scrollIntoViewIfNeeded();
+                let previous = '';
+                let stable = 0;
+                await expect.poll(async() => {
+                    const value = JSON.stringify(await card.evaluate(n => ({
+                        height:n.getBoundingClientRect().height, scroll:scrollY,
+                    })));
+                    stable = value === previous ? stable + 1 : 0;
+                    previous = value;
+                    return stable;
+                }, {timeout:10000, intervals:[100]}).toBeGreaterThanOrEqual(3);
                 let trigger;
                 if (responsive) {
                     trigger = card.locator(':scope > [data-easystud-card-menu], ' +
@@ -56,7 +100,9 @@ test('Student context menus preserve responsive geometry and focus', async({page
                     await trigger.click();
                     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
                 } else {
-                    await card.click({button:'right', position:{x:100, y:20}});
+                    // Target the native header, not a tall card whose automatic
+                    // centring can scroll after the context event is dispatched.
+                    await contextTarget.click({button:'right', position:{x:100, y:16}});
                 }
                 await expect(menu).toBeVisible();
                 if (responsive) {
@@ -108,13 +154,18 @@ test('Student context menus preserve responsive geometry and focus', async({page
                 }
                 // Selection is a transient UI state used by the native context
                 // controller. Restore it without issuing any business command.
-                const checked = root.locator('input[data-easystud-select-item]:checked:visible');
-                while (await checked.count()) await checked.first().uncheck();
+                await clearSelection();
             }
         }
     } finally {
+        fs.writeFileSync(testInfo.outputPath('context-menu-events.json'), JSON.stringify(
+            await page.evaluate(() => window.easyeduMenuAudit?.events || []), null, 2));
+        await page.screenshot({path:testInfo.outputPath('context-menu-final-state.png')});
         await page.keyboard.press('Escape');
-        const checked = root.locator('input[data-easystud-select-item]:checked:visible');
-        while (await checked.count()) await checked.first().uncheck();
+        await clearSelection();
+        await page.evaluate(() => {
+            window.easyeduMenuAudit?.dispose();
+            delete window.easyeduMenuAudit;
+        });
     }
 });
