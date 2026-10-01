@@ -1,5 +1,24 @@
 # Foundations Student Management migration
 
+## Narrow selection and native member disclosure - 2026-10-01
+
+Final supervised candidate run `easystud-authenticated-20261001T180425356Z-36668`
+passes four widths plus selection/deselection at 320px. Selected mobile cards
+remain compact and readable; the source-defined detailed single-participant
+exception is preserved. Transition property/duration/easing declarations match
+across selection and the unselected height is restored. The name stays a block
+so ellipsis works; shared experimental recipe owns its aligned line box.
+The selected screenshot centres the card above the real sticky actions sheet,
+without hiding or changing that product control. No served style is changed.
+
+Existing native member-list run `easystud-authenticated-20261001T180240745Z-42952`
+passes at 1440px: transitional `is-easyedu-disclosing` on open/close, collapsed
+member actions inert and outside Tab order, restoration on opening and focus
+returned to the toggle on closing. No membership mutation or fixture request.
+This proves the existing desktop disclosure, not every mobile/card animation.
+All runs complete cleanup. Paired Penpot 320px specimens and acceptance of the
+taller density remain pending; the candidate is not embedded or deployed.
+
 ## Readable narrow-card candidate - supervised only
 
 Read-only run `easystud-authenticated-20261001T173544066Z-30468` confirms the
