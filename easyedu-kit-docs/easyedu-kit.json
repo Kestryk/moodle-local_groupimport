@@ -15,6 +15,12 @@
       "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
     },
     "fullTreeIdentical": false,
+    "studentListSortExtraction": {
+      "sourceCommit": "42f7e79c14f0898a616b7f4eb9e34200282f74cd",
+      "module": "scss/easyedu/components/_menus.scss",
+      "moduleBlob": "08e826005bdabef96955e5f693367ba3d131fa24",
+      "status": "canonical parity and full CSS equality passed; source-preserving compact sorting, not new Dropdown S visual acceptance"
+    },
     "studentControlTreatment": {
       "sourceCommit": "a5877239f8df947f1c754057429ec135e7d9b4f7",
       "module": "scss/easyedu/components/_control-treatment.scss",

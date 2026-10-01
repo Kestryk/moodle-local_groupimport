@@ -1,5 +1,30 @@
 # Foundations Student Management migration
 
+## Compact sorting ownership and metadata reconciliation — 2026-10-01
+
+The sort trigger and option selectors now call canonical `list-sort-trigger`
+and `list-sort-option`, preserving all declarations and their cascade order.
+Placement, opening/closing, keyboard routing and permissions remain local.
+The complete generated CSS is byte-identical to its saved baseline:
+`A573A49150B053BBC717810CEC5D3A7DD5912D33CBECAAD25A87580B2430CD14`.
+Validate with `test-student-list-sort-contract.ps1 -KitRoot <kit>
+-BaselineCss <external-baseline.css>`. The new public recipes do not redefine
+every Dropdown S control or imply new human visual acceptance.
+
+Penpot product page 03: 20 visible detailed metadata labels across five cards
+now use Inter / 10.72px / 700 / 0.6432px tracking / #627387, a 84px label lane
+and 8.8px value gap. Sixty value surfaces/texts move together. All label
+painted bounds fit; compact phone cards and hidden archives remain unchanged.
+Foundations Detailed Participant Hover main and its Standards copy receive the
+same four-label role/grid. Original font/fill/width/value positions are stored
+as `metadataCanonicalBefore`. Full main PNG export timed out; do not infer
+visual acceptance from successful setters. Existing code already uses this
+metadata role, so no runtime CSS adjustment or card-animation change is needed.
+
+The metadata regression now covers 1600/768/390/320 and verifies visible
+labels' role/tracking plus desktop label/value gap, preserving selection and
+normal native animation settling. Browser results belong to the canonical batch.
+
 ## Filter-disclosure typography harmonization — 2026-10-01
 
 `filter-disclosure-type` is the single Kit label role: inherited Inter family,

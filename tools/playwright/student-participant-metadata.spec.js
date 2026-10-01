@@ -18,7 +18,7 @@ test('Participant metadata retains contents and responsive containment', async({
     const root = page.locator('#local-groupimport-easystud');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout:60000});
     const reports = [];
-    for (const width of [1600, 768, 390]) {
+    for (const width of [1600, 768, 390, 320]) {
         await page.setViewportSize({width, height:1100});
         await page.evaluate(() => document.fonts.ready);
         const card = root.locator('[data-easystud-user="1"]:visible').first();
@@ -36,7 +36,9 @@ test('Participant metadata retains contents and responsive containment', async({
             const report = await card.evaluate(n => {
                 const box = e => { const r = e.getBoundingClientRect(); return {x:r.x,y:r.y,w:r.width,h:r.height}; };
                 const measure = e => ({box:box(e),visible:!!e.getClientRects().length,
-                    font:getComputedStyle(e).fontSize, scrollWidth:e.scrollWidth,clientWidth:e.clientWidth});
+                    font:getComputedStyle(e).fontSize, weight:getComputedStyle(e).fontWeight,
+                    tracking:parseFloat(getComputedStyle(e).letterSpacing),
+                    scrollWidth:e.scrollWidth,clientWidth:e.clientWidth});
                 return {card:box(n),name:measure(n.querySelector('.local-groupimport-easystud-user__name')),
                     email:measure(n.querySelector('.local-groupimport-easystud-user__email')),
                     eye:measure(n.querySelector('.local-groupimport-easystud-user__detail-button')),
@@ -50,6 +52,15 @@ test('Participant metadata retains contents and responsive containment', async({
             fs.writeFileSync(testInfo.outputPath('participant-metadata.json'), JSON.stringify(reports,null,2));
             await page.screenshot({path:testInfo.outputPath(`participant-${width}-${selected ? 'selected' : 'compact'}.png`)});
             expect.soft(report.metadata.length).toBeGreaterThan(0);
+            for (const row of report.metadata.filter(row=>row.label.visible)) {
+                expect.soft(parseFloat(row.label.font)).toBeCloseTo(10.72,1);
+                expect.soft(row.label.weight).toBe('700');
+                expect.soft(row.label.tracking).toBeCloseTo(0.6432,2);
+                if (width > 1024) {
+                    expect.soft(row.label.box.w).toBeCloseTo(84,0);
+                    expect.soft(row.values.box.x-row.label.box.x-row.label.box.w).toBeCloseTo(8.8,1);
+                }
+            }
             if (width === 390) {
                 expect.soft(report.name.box.w, 'name remains readable beside its primary badge').toBeGreaterThan(50);
                 expect.soft(report.email.box.w, 'secondary email remains visible').toBeGreaterThan(20);
