@@ -2,6 +2,14 @@
 
 ## 2026-10-01
 
+- Replace local desktop card-overflow paints with the canonical
+  `card-overflow-trigger` call. Preserve all generated CSS and responsive
+  44px hit targets, placement, routing and Motion. No new Penpot variant.
+
+- Reconcile the older overflow/sort static contract with the previously
+  extracted Kit typography/decoration recipes; retain the original assertions
+  against shared declarations rather than requiring plugin-local styles.
+
 - Reuse the canonical Direct action for group/grouping Rename and group Unlink.
   Remove their local focus overrides and brown unlink skin; preserve icon
   semantics, native commands, rename transitions and responsive menu routing.

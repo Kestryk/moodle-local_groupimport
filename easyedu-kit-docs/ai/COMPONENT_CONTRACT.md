@@ -578,6 +578,12 @@ its stable icon slot and do not reintroduce per-action borders or colours in
 the consumer. Preserve native disabled semantics, accessible names and the
 existing responsive overflow routing; the visual mixin is not an event guard.
 
+Use `card-overflow-trigger` for the compact desktop Overflow trigger, not the
+raised toolbar `action-menu-trigger`. Retain `mobile-card-menu-trigger` as the
+44px responsive hit-area composition and preserve native menu routing/Motion.
+For a pure recipe extraction, require full consumer CSS equality; linked
+Penpot geometry and a passing build alone do not prove unchanged rendering.
+
 Header-only migrations must preserve the source grid slots and the existing
 motion/controller paths. Use `person-card-headline(detailed|compact)` for
 person identity/email/action layouts and `selectable-card-header` for the

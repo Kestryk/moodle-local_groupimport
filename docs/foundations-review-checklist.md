@@ -22,6 +22,12 @@ Technical checks and human visual acceptance remain separate.
   Final danger capture inspected. Error messages and mobile alternatives remain
   separate; this is not a human tick of the combined checklist item.
 - [ ] Context menus, sticky mobile actions and non-drag alternatives remain usable.
+- [ ] Direct card actions: eight families aligned; Rename/Unlink product instances.
+
+  Technical checkpoint: `easystud-authenticated-20261001T193408313Z-42096`
+  passes 1600/768/390 geometry, hover/focus and search open/close. Desktop and
+  mobile captures inspected. No command mutation. Product Rename/Unlink
+  instances remain to propagate; this does not tick human acceptance.
 
 ## Mass Import and administration
 
