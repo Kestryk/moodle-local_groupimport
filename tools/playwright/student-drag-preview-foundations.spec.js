@@ -29,6 +29,10 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
         for (const multiple of [false,true]) {
             if (multiple) for (const selector of selectors) await selector.click();
             await page.evaluate(()=>document.activeElement?.blur());
+            const sourceCheckbox=await source.locator(':scope > .local-groupimport-easystud-selector > span').evaluate(n=>{
+                const s=getComputedStyle(n);
+                return {width:s.width,height:s.height,radius:s.borderRadius,background:s.backgroundColor};
+            });
             const transfer=await page.evaluateHandle(()=>new DataTransfer());
             const preview=page.locator('.local-groupimport-easystud-drag-preview');
             try {
@@ -55,6 +59,9 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                         after:getComputedStyle(n,'::after').content,
                         nativeCheckboxOpacity:getComputedStyle(input).opacity,
                         customCheckOpacity:getComputedStyle(check,'::after').opacity,
+                        checkboxWidth:getComputedStyle(check).width,checkboxHeight:getComputedStyle(check).height,
+                        checkboxRadius:getComputedStyle(check).borderRadius,
+                        checkboxBackground:getComputedStyle(check).backgroundColor,
                         checked:input.checked};
                 });
                 reports.push({type,multiple,...report});
@@ -72,6 +79,9 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                 expect(report.after==='none').toBe(!multiple);
                 expect(report.nativeCheckboxOpacity).toBe('0');
                 expect(report.customCheckOpacity).toBe(report.checked?'1':'0');
+                expect(report.checkboxWidth).toBe(sourceCheckbox.width);
+                expect(report.checkboxHeight).toBe(sourceCheckbox.height);
+                expect(report.checkboxRadius).toBe(sourceCheckbox.radius);
                 await page.screenshot({path:testInfo.outputPath('drag-'+type+'-'+(multiple?'multiple':'single')+'.png')});
             } finally {
                 await source.dispatchEvent('dragend',{dataTransfer:transfer});

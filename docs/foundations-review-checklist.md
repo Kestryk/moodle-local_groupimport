@@ -31,5 +31,11 @@ Technical checks and human visual acceptance remain separate.
 Narrow diagnostic: `easystud-authenticated-20261001T180425356Z-36668`.
 Native desktop member disclosure: `easystud-authenticated-20261001T180240745Z-42952`.
 Generated media lives under the approved external artifact root, never Git.
-Add the final drag-preview run once executed. Danger-state implementation and
+Drag flair and control-opacity proof:
+`easystud-authenticated-20261001T185153936Z-4892`, on Moodle preview `f45e2f5`.
+Participant/Group Single/Multiple, 1600px, native dragstart/dragend only; no drop.
+Native inputs remain hidden, custom checkbox size/rounding matches the source.
+The first run passed its narrower assertions but screenshot inspection found
+the opacity defect; preserve that distinction, not just the final passing run.
+Danger-state implementation and
 whole-view/mobile coverage still need their own slices; do not tick them now.

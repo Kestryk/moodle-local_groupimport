@@ -582,6 +582,20 @@ assertions. Corrected preview proof is pending, not inferred from the first run.
 Human visual acceptance is deferred to `foundations-review-checklist.md`.
 Allowed/denied target affordances and whole-view drag coverage remain separate.
 
+Corrected Moodle preview `f45e2f5` serves consumer `e254532`, Kit `8b8d83f`.
+Run `easystud-authenticated-20261001T184936379Z-41280` passed the extended
+hidden-input/mark checks. Further run
+`easystud-authenticated-20261001T185153936Z-4892` also verifies custom checkbox
+width, height and radius against each source: 18.3906px square, 6.4px radius.
+Native input opacity is 0 in all four cases. No drop or membership change.
+Captures and computed geometry remain external; no human acceptance inferred.
+
+Page-scoped Penpot readback confirms the allowed insert specimen
+`92c1c225-95fb-802e-8008-aeafea3eb9f0` uses a linked 40px flat affordance:
+`#edf6fc` surface, 1.5px `#8abce3` stroke, 20px icon slot and blue plus.
+The old 43.2px font-plus recipe is still served on allowed targets and is the
+next source gap; do not claim it migrated with the moving-card flair.
+
 ### Mobile pagination source boundary — 2026-10-01
 
 Managed preview `f25a7c4` serves the shared narrow layout. Run
