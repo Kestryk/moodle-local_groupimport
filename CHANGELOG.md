@@ -2,6 +2,11 @@
 
 ## 2026-10-01
 
+- Add a read-only participant control-lane audit and a supervised readable
+  narrow-density comparison. Use card-local geometry to avoid false changes
+  from Moodle scroll anchoring. Four widths pass; the candidate is injected
+  only during the test and is not part of the served stylesheet.
+
 - Preserve a supervised, temporary narrow-card comparison scenario. The
   first 320px candidate failed readability and is not deployed; existing
   runtime styles, selection behavior and animations remain unchanged.
