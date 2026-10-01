@@ -6,6 +6,51 @@ const cssPath = process.env.EASYEDU_NARROW_PARTICIPANT_CANDIDATE_CSS;
 if (!cssPath) throw new Error('Set EASYEDU_NARROW_PARTICIPANT_CANDIDATE_CSS to the compiled canonical fixture.');
 const css = fs.readFileSync(cssPath,'utf8');
 
+// Read-only baseline audit: do not inject the rejected candidate or mutate data.
+test('Audit narrow participant control lanes without changing styles', async({page}, testInfo) => {
+    test.setTimeout(180000);
+    const url = new URL(process.env.EASYEDU_MOODLE_URL);
+    url.pathname = '/local/groupimport/manage.php';
+    await page.setViewportSize({width:320,height:1100});
+    await page.goto(url.toString());
+    if (page.url().includes('/login/')) {
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click();
+        await page.waitForURL(u=>!u.pathname.includes('/login/'));
+        await page.goto(url.toString());
+    }
+    const root = page.locator('#local-groupimport-easystud');
+    await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    const card = root.locator('[data-easystud-user="1"]:visible').first();
+    const reports = [];
+    for (const width of [320,390]) {
+        await page.setViewportSize({width,height:1100});
+        await page.evaluate(()=>document.fonts.ready);
+        await card.scrollIntoViewIfNeeded();
+        const report = await card.evaluate(n=>{
+            const measure = e=>{
+                if (!e) return null;
+                const r=e.getBoundingClientRect(), s=getComputedStyle(e);
+                return {x:r.x,y:r.y,w:r.width,h:r.height,display:s.display,
+                    paddingLeft:s.paddingLeft,paddingRight:s.paddingRight,gap:s.gap,
+                    gridColumns:s.gridTemplateColumns,maxWidth:s.maxWidth};
+            };
+            const pick = suffix=>measure(n.querySelector('.local-groupimport-easystud-'+suffix));
+            return {card:measure(n),headline:pick('user__headline'),identity:pick('user__headline-main'),
+                name:pick('user__name'),badge:pick('user__primary-badge'),email:pick('user__email'),
+                eye:pick('user__detail-button'),selection:pick('selector'),menu:pick('card-menu'),
+                overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
+        });
+        reports.push({width,...report});
+        fs.writeFileSync(testInfo.outputPath('participant-control-lanes.json'),JSON.stringify(reports,null,2));
+        await page.screenshot({path:testInfo.outputPath('participant-control-lanes-'+width+'.png')});
+        expect(report.overflow).toBeLessThanOrEqual(2);
+        expect(report.eye.w).toBeGreaterThan(0);
+        expect(report.selection.w).toBeGreaterThan(0);
+    }
+});
+
 test('Compare narrow participant identity without changing served styles', async({page}, testInfo) => {
     test.setTimeout(180000);
     const url = new URL(process.env.EASYEDU_MOODLE_URL);
@@ -58,8 +103,87 @@ test('Compare narrow participant identity without changing served styles', async
                     expect(e.y+e.h).toBeLessThanOrEqual(after.card.y+after.card.h+1);
                 }
             } else {
-                expect(after).toEqual(before);
+                // Moodle may scroll-anchor between samples. Compare local geometry,
+                // not the viewport origin of the entire card.
+                const local = sample=>Object.fromEntries(Object.entries(sample).map(([key,value])=>{
+                    if (key==='overflow') return [key,value];
+                    if (key==='card') return [key,{w:value.w,h:value.h}];
+                    return [key,{...value,x:value.x-sample.card.x,y:value.y-sample.card.y}];
+                }));
+                expect(local(after)).toEqual(local(before));
             }
         } finally { await style.evaluate(n=>n.remove()); }
+    }
+});
+
+test('Compare readable narrow density without changing served styles', async({page}, testInfo) => {
+    test.setTimeout(180000);
+    const url = new URL(process.env.EASYEDU_MOODLE_URL);
+    url.pathname = '/local/groupimport/manage.php';
+    await page.setViewportSize({width:320,height:1100});
+    await page.goto(url.toString());
+    if (page.url().includes('/login/')) {
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click();
+        await page.waitForURL(u=>!u.pathname.includes('/login/'));
+        await page.goto(url.toString());
+    }
+    const root = page.locator('#local-groupimport-easystud');
+    await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    const card = root.locator('[data-easystud-user="1"]:visible').first();
+    const measure = ()=>card.evaluate(n=>{
+        const box = e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height};};
+        const pick = suffix=>box(n.querySelector('.local-groupimport-easystud-'+suffix));
+        return {card:box(n),name:pick('user__name'),badge:pick('user__primary-badge'),
+            email:pick('user__email'),eye:pick('user__detail-button'),
+            selection:pick('selector'),menu:pick('card-menu'),text:n.textContent,
+            overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
+    });
+    const reports = [];
+    for (const width of [320,390,768,1600]) {
+        await page.setViewportSize({width,height:1100});
+        await page.evaluate(()=>document.fonts.ready);
+        await card.scrollIntoViewIfNeeded();
+        const before = await measure();
+        const style = await page.addStyleTag({content:css});
+        try {
+            // Existing density Motion is preserved; sample only its settled endpoint.
+            await page.waitForTimeout(900);
+            const after = await measure();
+            const sameContent = after.text===before.text;
+            delete before.text; delete after.text;
+            reports.push({width,before,after,sameContent});
+            fs.writeFileSync(testInfo.outputPath('readable-narrow-density.json'),JSON.stringify(reports,null,2));
+            await page.screenshot({path:testInfo.outputPath('readable-narrow-density-'+width+'.png')});
+            expect(sameContent).toBe(true);
+            expect(after.overflow).toBeLessThanOrEqual(2);
+            if (width===320) {
+                expect(after.name.w).toBeGreaterThan(50);
+                expect(after.email.w).toBeGreaterThan(80);
+                // Three text lines require a taller endpoint; duration/easing is unchanged.
+                expect(after.card.h-before.card.h).toBeLessThanOrEqual(50);
+                expect(Math.abs(after.eye.x-before.eye.x)).toBeLessThan(1);
+                const centre = item=>item.y+item.h/2;
+                expect(Math.abs(centre(after.name)-centre(after.eye))).toBeLessThan(1);
+                expect(Math.abs(centre(after.selection)-centre(after.eye))).toBeLessThan(1);
+                for (const item of [after.name,after.badge,after.email,after.eye,after.selection,after.menu]) {
+                    expect(item.x).toBeGreaterThanOrEqual(after.card.x-1);
+                    expect(item.x+item.w).toBeLessThanOrEqual(after.card.x+after.card.w+1);
+                    expect(item.y+item.h).toBeLessThanOrEqual(after.card.y+after.card.h+1);
+                }
+            } else {
+                // Ignore scroll anchoring; require identical card-local geometry.
+                const local = sample=>Object.fromEntries(Object.entries(sample).map(([key,value])=>{
+                    if (key==='overflow') return [key,value];
+                    if (key==='card') return [key,{w:value.w,h:value.h}];
+                    return [key,{...value,x:value.x-sample.card.x,y:value.y-sample.card.y}];
+                }));
+                expect(local(after)).toEqual(local(before));
+            }
+        } finally {
+            await style.evaluate(n=>n.remove());
+            await page.waitForTimeout(900);
+        }
     }
 });

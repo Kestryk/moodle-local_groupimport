@@ -1,5 +1,23 @@
 # Foundations Student Management migration
 
+## Readable narrow-card candidate - supervised only
+
+Read-only run `easystud-authenticated-20261001T173544066Z-30468` confirms the
+320px card reserves 61.6px left and 56px right, leaving 103.53px for its headline.
+Separate readable-density run `easystud-authenticated-20261001T174225409Z-44504`
+passes at 320/390/768/1600: name 66.75px and email 103.53px at 320px, complete
+primary badge, aligned name/checkbox/eye centres, unchanged wider card-local
+geometry and text contents. Height grows 45.97 -> 93.125px; no control or
+Motion is removed. This is not deployed or accepted: paired Foundation/Product
+320px specimens and acceptance of the taller density remain required.
+
+Comparison `20261001T173931972Z-44892` stopped at 390px on a harness error:
+viewport coordinates were compared during Moodle scroll anchoring. Local
+coordinate comparisons pass in `20261001T174054938Z-44536`; final run above
+adds checkbox/name-centre gates and corrected fixture alignment. Injections
+are removed in finally. Runtime stays `c58f0d1`; no consumer SCSS, generated
+CSS, template, animation or business data changed. Tests remain exploratory.
+
 ## 320px readability investigation — not deployed
 
 The enhanced metadata run exposes a residual 20.52px name lane at 320px
