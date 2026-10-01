@@ -7780,6 +7780,13 @@ const bindNestedGroupActionMenus = root => {
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-group-actions-toggle]');
         if (toggle && root.contains(toggle)) {
+            // The same native trigger serves desktop overflow and the mobile
+            // context sheet. Leave responsive clicks to bindContextMenu;
+            // otherwise this earlier listener consumes them behind the tray.
+            if (isResponsiveWorkspace()) {
+                closeMenus(null);
+                return;
+            }
             event.preventDefault();
             // This trigger also carries the generic card-menu hook so it can
             // open the responsive action sheet. At non-responsive widths the

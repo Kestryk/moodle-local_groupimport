@@ -1,5 +1,22 @@
 # Foundations Student Management migration
 
+## Responsive overflow routing — 2026-10-01
+
+Runs `easystud-authenticated-20261001T195418221Z-45696` and
+`easystud-authenticated-20261001T195707752Z-37448` reach desktop menus and the
+768px Participant sheet, then fail on the Group sheet. Capture/event inspection
+confirms that the Group trigger opens its local desktop menu behind the sticky
+selection tray. `bindNestedGroupActionMenus` registers before `bindContextMenu`
+and unconditionally stops immediate propagation, even at responsive widths.
+This is a real existing routing defect, separate from the earlier transient
+desktop measurement failure; full CSS equality excludes the new extraction.
+
+The desktop listener now closes its local menus and returns at the existing
+responsive breakpoint, allowing the already established shared context-sheet
+controller to handle the same trigger. Desktop exclusivity, commands, disabled
+states, card disclosures and Motion remain untouched. Generated AMD rebuilt.
+Static guard added; managed follow-up is pending. No business data changed.
+
 ## Compact overflow recipe ownership — 2026-10-01
 
 The existing desktop Group/Grouping overflow trigger now calls canonical
@@ -24,6 +41,16 @@ existing 44px trigger, viewport and icon containment, bottom-sheet/backdrop,
 initial focus and Escape restoration. No command activated. Selection is
 restored as transient UI state. Registered in the Platform scenario registry;
 the run is not CI-deterministic until a seeded course fixture exists.
+
+First menu run `easystud-authenticated-20261001T195120929Z-30776` stopped at
+desktop Participant: the visibility assertion passed but the subsequent
+snapshot had a zero-size hidden menu. Desktop intentionally closes on scroll;
+selection can expand the card and induce scroll anchoring. The geometry
+scenario now selects through the real checkbox first and waits for card
+height/scroll stability. Initial right-click selection-to-menu timing remains
+an explicit unproven case, not waived as a passing scenario. Cleanup restores
+selection through the real visible label, not a nonexistent checkbox selector.
+No product Motion or menu controller change in this investigation.
 
 ## Remaining direct-action adapters — 2026-10-01
 
