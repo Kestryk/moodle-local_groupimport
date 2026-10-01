@@ -1,5 +1,25 @@
 # Foundations Student Management migration
 
+## Foundations drag preview - implementation slice
+
+Penpot product page03 already includes linked Participant Single, Group Single
+and Group Multiple previews with a primary moving outline and Dragging badge.
+The plugin now consumes canonical `drag-preview-moving-outline`, moving-badge/
+icon and count-placement recipes. The old participant-specific gradient/shadow/
+radius and dark outside counter overrides are removed. Source card contents,
+semantic rails, root drag event flow and existing Motion are preserved.
+
+The body portal relays resolved workspace Kit/theme custom properties and font
+family; it does not invent replacement CSS values. Moving label uses Moodle's
+template string helper and English/French language strings. Decorative clone
+is inert/aria-hidden. Multi-selection count retains `+N` extra items, not total.
+The native-drag spec never sends drop or confirms a membership operation.
+Declared floor is Moodle5.1; no other-version executable compatibility is claimed.
+Official template reference: https://moodledev.io/docs/5.1/guides/templates
+
+Visual acceptance is deferred at the user's request. Track it in
+`foundations-review-checklist.md`; do not confuse technical proof with acceptance.
+
 ## Narrow selection and native member disclosure - 2026-10-01
 
 Final supervised candidate run `easystud-authenticated-20261001T180425356Z-36668`

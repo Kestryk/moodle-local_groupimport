@@ -15,6 +15,12 @@
       "cardModuleBlob": "886821d943874bfd9a0dcfa604650853c39dea72"
     },
     "fullTreeIdentical": false,
+    "studentDragPreview": {
+      "sourceCommit": "dea28254dc30df2e50672099eca7c433bf9e9006",
+      "module": "scss/easyedu/components/_overlays.scss",
+      "moduleBlob": "0fd6301a2ac2cbdd682de4858b856446ba2a2c2a",
+      "status": "canonical moving flair implemented; supervised dragstart/dragend proof pending; human review deferred"
+    },
     "studentListSortExtraction": {
       "sourceCommit": "42f7e79c14f0898a616b7f4eb9e34200282f74cd",
       "module": "scss/easyedu/components/_menus.scss",

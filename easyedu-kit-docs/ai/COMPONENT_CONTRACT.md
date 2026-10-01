@@ -1,5 +1,11 @@
 # EasyEdu Component Contract
 
+Drag previews use canonical moving-outline/badge/icon recipes. Relay workspace
+theme variables and typography to the body portal; decoration is inert and
+aria-hidden. Single has no rear layers/count; Multiple alone has two layers
+and an extra-item `+N` counter. Capture dragstart/dragend without dropping or
+changing memberships. Technical proof is separate from deferred visual review.
+
 Compact sorting consumes canonical `list-sort-trigger` and
 `list-sort-option`. Keep selectors/placement/routing local; do not duplicate
 their visual declarations or claim a new Dropdown S design from extraction.

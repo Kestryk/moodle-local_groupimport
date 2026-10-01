@@ -33,23 +33,8 @@
 
     > [data-selectable-type] {
       border-left-width: var(--local-groupimport-easystud-identity-border-width);
+      @include easyedu.drag-preview-moving-outline;
       @include easyedu.drag-preview-card;
-    }
-
-    &--participant > .local-groupimport-easystud-user {
-      background: linear-gradient(180deg, #fff 0%, #fbfdff 100%);
-      border: 1px solid rgba(72, 115, 173, 0.28);
-      border-left: var(--local-groupimport-easystud-identity-border-width) solid var(--local-groupimport-easystud-participant);
-      border-radius: 0.95rem;
-      box-shadow: 0 0.75rem 1.35rem rgba(31, 68, 104, 0.18);
-      min-height: 3.1rem;
-      opacity: 1 !important;
-      overflow: hidden;
-    }
-
-    &--participant > .local-groupimport-easystud-user,
-    &--participant > .local-groupimport-easystud-user * {
-      opacity: 1 !important;
     }
 
     &--participant .local-groupimport-easystud-user__rail {
@@ -81,15 +66,14 @@
 
   &-drag-preview__badge {
     @include easyedu.drag-preview-count-badge;
+    @include easyedu.drag-preview-count-placement;
+  }
 
-    background: #203244;
-    border-color: rgba(255, 255, 255, 0.96);
-    color: #fff;
-    opacity: 1;
-    position: absolute;
-    right: -0.65rem;
-    text-shadow: 0 1px 1px rgba(15, 23, 42, 0.28);
-    top: 0.62rem;
-    z-index: 5;
+  &-drag-preview__moving {
+    @include easyedu.drag-preview-moving-badge;
+  }
+
+  &-drag-preview__moving-icon {
+    @include easyedu.drag-preview-moving-icon(var(--local-groupimport-easystud-drag-handle));
   }
 }

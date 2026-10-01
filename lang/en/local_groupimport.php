@@ -123,6 +123,7 @@ $string['detailinstitution'] = 'Institution';
 $string['detaillanguage'] = 'Language';
 $string['detailusername'] = 'Username';
 $string['draghintparticipant'] = 'Drag or copy';
+$string['dragpreviewmoving'] = 'Dragging';
 $string['csvempty'] = 'The CSV file is empty.';
 $string['csvemptyfiledetail'] = 'Empty file';
 $string['csvdropready'] = 'Drop your import file here';

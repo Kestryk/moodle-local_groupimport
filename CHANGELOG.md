@@ -2,6 +2,11 @@
 
 ## 2026-10-01
 
+- Consume Foundations drag-preview flair from the canonical Kit. Remove local
+  participant ghost skin and counter overrides, relay workspace theme tokens
+  to the body portal, and add a translated decorative Dragging indicator.
+  Preserve native drag behavior, card contents and multiple-only stack rules.
+
 - Extend the isolated 320px comparison through selection/deselection, checking
   retained readable widths, restored card height and unchanged transition
   declarations. Preserve the source-defined detailed-density exception.

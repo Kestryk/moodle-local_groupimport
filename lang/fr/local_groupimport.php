@@ -120,6 +120,7 @@ $string['detailinstitution'] = 'Établissement';
 $string['detaillanguage'] = 'Langue';
 $string['detailusername'] = 'Nom d’utilisateur';
 $string['draghintparticipant'] = 'Glisser ou copier';
+$string['dragpreviewmoving'] = 'Déplacement';
 $string['csvempty'] = 'Le fichier CSV est vide.';
 $string['csvemptyfiledetail'] = 'Fichier vide';
 $string['csvdropready'] = 'Déposez votre fichier d’import ici';
