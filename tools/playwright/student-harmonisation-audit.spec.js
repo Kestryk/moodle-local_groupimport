@@ -133,7 +133,10 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
             await measure(preview, 'drag:' + type);
             await expect(preview.locator('input, button, textarea, select')).toHaveCount(0);
             await expect(preview.locator('.easyedu-drag-preview__summary')).toHaveCount(1);
-            expect((await preview.boundingBox()).width).toBeLessThanOrEqual(288);
+            await page.screenshot({path: testInfo.outputPath('drag-' + type + '.png')});
+            // The existing -1deg movement rotation expands the painted AABB.
+            // Measure the CSS layout width, not that rotated bounding box.
+            expect(await preview.evaluate(node => node.offsetWidth)).toBeLessThanOrEqual(288);
             records.push({label: 'drag-anatomy:' + type, ...(await preview.evaluate(node => ({
                 inputs: node.querySelectorAll('input').length, buttons: node.querySelectorAll('button').length,
                 detailChildren: node.querySelectorAll('.local-groupimport-easystud-user__details, [data-easystud-member-id]').length,
@@ -141,7 +144,6 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
                 movingMask: getComputedStyle(node.querySelector('.local-groupimport-easystud-drag-preview__moving-icon')).maskImage
             })))});
             save();
-            await page.screenshot({path: testInfo.outputPath('drag-' + type + '.png')});
         } finally {
             await source.dispatchEvent('dragend', {dataTransfer: transfer});
             await transfer.dispose();

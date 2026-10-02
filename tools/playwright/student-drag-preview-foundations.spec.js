@@ -67,7 +67,7 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                         iconWidth:i.width,iconHeight:i.height,mask:i.maskImage,
                         stack:n.classList.contains('has-stack'),before:getComputedStyle(n,'::before').content,
                         after:getComputedStyle(n,'::after').content,
-                        width:n.getBoundingClientRect().width,height:n.getBoundingClientRect().height,
+                        width:n.offsetWidth,height:n.offsetHeight,
                         controls:n.querySelectorAll('input, button, textarea, select').length,
                         title:front.querySelector('.easyedu-drag-preview__title').textContent,
                         identityMask:getComputedStyle(front.querySelector('.easyedu-drag-preview__identity')).maskImage};
