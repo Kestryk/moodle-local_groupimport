@@ -24,7 +24,11 @@
       "foundationDefault": "2a31d374-d2a1-80fd-8008-ac73e5451656",
       "foundationFilled": "2a31d374-d2a1-80fd-8008-ac73e92f4940",
       "scope": "Creation and Rename native single-line fields only; 17 active product instances now use real Foundation Text field M",
-      "status": "source/static and live Penpot checks; native browser proof pending, human review deferred; textarea not adopted"
+      "proofRun": "easystud-authenticated-20261002T055551558Z-34672",
+      "testedConsumer": "9f4c015909f858fb8ef19259bb7c9916fc607c42",
+      "testedRuntime": "6b8269ba4ccef09f200186f10573f4cd476e8d78",
+      "scenarioBlob": "0fdc4c65536784e3764953da05a82c67f0eaa4de",
+      "status": "source/static and live Penpot checks; native creation/Rename 1600/768/390 PASS with nine inspected captures and useful phone field width; human review deferred; textarea not adopted"
     },
     "studentInlineFeedback": {
       "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-02 - Native field bounded browser proof
+
+- Verify creation/Rename roles and keyboard focus at desktop/tablet/phone,
+  preserve transient names and Cancel, and inspect/pin nine editor/card captures.
+  Record useful-width protection, complete cleanup and prior failed evidence;
+  human checklist and multiline field adoption remain open.
+
 ## 2026-10-02 - Narrow native Rename readability
 
 - Reflow the open mobile Rename editor into a full-width field above Save/Cancel;

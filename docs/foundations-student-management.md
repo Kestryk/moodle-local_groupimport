@@ -2,6 +2,19 @@
 
 ## Native creation and Rename fields - 2026-10-02
 
+Final bounded proof: `easystud-authenticated-20261002T055551558Z-34672` PASS
+(44.6s), exactly one native non-mutating test, consumer `9f4c015`, runtime
+`6b8269b`, immutable spec `0fdc4c65536784e3764953da05a82c67f0eaa4de`.
+All nine PNGs (create, Rename editor and whole Group card at 1600/768/390)
+were inspected and pinned in the external manifested run. At 390px the Rename
+field is now 149.81px wide rather than 28px, with 44px height and unobscured
+Save/Cancel beneath it. Shared 14px Inter 400, value/placeholder roles,
+13px CSS insets, 11.52px radius, hover and blue focus/halo pass. Native keyboard
+routing, original name restoration and Cancel pass; no Create/Save submitted.
+Cleanup confirms cleared credentials, stopped owned child, released lease,
+no fixture request. Scoped retention dry-run deletes zero files, no errors.
+Human checklist remains unchecked; this is not whole Student-view acceptance.
+
 Run `easystud-authenticated-20261002T055329803Z-37296` is an automated PASS,
 not visual acceptance: six captured forms expose a real 390px Rename input
 compressed to 28px by the native three-column editor. Preserve this evidence.
@@ -95,13 +108,20 @@ and [5.1 release notes](https://moodledev.io/general/releases/5.1). No new Moodl
 API or cross-version executable compatibility claim. Static contract and native
 browser proof are recorded separately; human checklist stays unchecked.
 
-Next safe validation: freeze `student-text-fields-foundations.spec.js`, discover
-one test, promote the ordered pushed source after comparing prerequisite history,
-then check native creation and transient Rename at desktop/tablet/phone. Never
-submit creation or Save; preserve context routing, cancel and clear inputs.
+Next bounded task: reconcile multiline identifier Textareas with the actual
+Foundation masters, their native rows/resizing and Group/Grouping routing.
+Do not expand this single-line recipe into textarea or search wrappers.
 Platform planning-owner proposal: record this bounded canonical field adoption
-and retain textarea/native density/foreign CCB overlay as open; do not close the
+and browser proof; retain textarea/native density/foreign CCB overlay as open;
+do not close the
 Student continuation or take over shared plan/state/index files.
+
+Efficiency note: no numeric token telemetry was available. Extra iterations
+came from an omitted collapsed-parent precondition, a pseudo-style assertion
+without a placeholder, guessed paths and an insufficient width-only capture
+gate. Reuse native routing preconditions, resolve files before reading, keep
+bounded source/geometry summaries and inspect whole-card images before claiming
+visual success. Do not reduce validation or erase failed evidence to save cost.
 
 ## Inline identifier feedback and search Cancel - 2026-10-02
 
