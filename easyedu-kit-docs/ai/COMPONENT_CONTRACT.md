@@ -32,10 +32,15 @@ the 52px/32px design specimen versus native row/action gap; do not silently
 resize shared instances or report ownership transfer as pixel parity.
 
 Student identity roles follow measured Foundations card mains: 14px/700
-#16324f titles; related-person names use 13px/600 in the same family. Shell
+#264861 titles; related-person names use 13px/600 in the same family. Shell
 density, semantic rails/badges and original disclosure Motion stay separate.
-Do not blindly shrink all copy: measured workspace 30/23px, panel 22px and
-description 16/13px roles retain their scale, with measured title colours.
+The 2026-10-02 requested workspace hierarchy is 28/22px title, 20px panel and
+12px view labels; description remains 16/13px. This supersedes historical
+30/23px and 22px measurements only for the opt-in workspace. Do not blindly
+shrink every copy/control or change existing card disclosure Motion.
+Search/create presentation uses public workspace-control classes; templates
+retain native commands and contain no ordinary inline component paint. A plus
+must reuse the Foundation painted path without a rectangular SVG background.
 Compact Add/Save and Cancel use the shared Foundation button roles and gap,
 not Moodle's inherited text/button colours or glyph-margin utilities.
 Native context menus reuse the Foundations More-item label role (11.84px/700)

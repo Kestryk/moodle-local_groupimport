@@ -47,8 +47,11 @@ Technical checks and human visual acceptance remain separate.
 - [ ] Sorting and top/bottom pagination containment at desktop/tablet/mobile.
 - [ ] Narrow 320px density: readable selected/unselected cards; taller endpoint.
 - [ ] Native disclosure/focus and original animations retained.
-- [ ] Drag Single: moving outline/badge, source contents and rail, no stack/count.
+- [ ] Drag Single: compact identity/name summary, moving outline/badge and rail;
+  no controls, details, stack or count. Source card stays unchanged.
 - [ ] Drag Multiple: same flair, two rear layers, inset `+N` extra-item counter.
+- [ ] Quieter 28/22px workspace and 20px panel titles, 12px view labels;
+  softer card/member identity text, harmonised search/create fields and plus.
 - [ ] Drag target allowed, incompatible/danger, error and cancelled states.
 
   Technical desktop checkpoint: allowed Participant→Group / Group→Grouping

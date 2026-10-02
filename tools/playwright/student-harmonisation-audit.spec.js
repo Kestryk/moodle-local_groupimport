@@ -52,13 +52,39 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
         groupingTitle: '.local-groupimport-easystud-grouping__name:visible',
         createButton: '.local-groupimport-easystud-create .local-groupimport-easystud-icon-button:visible',
         createInput: '.local-groupimport-easystud-create input:visible',
-        searchInput: '.local-groupimport-easystud__search-input:visible',
+        searchInput: '.easyedu-search-field > input:visible',
+        searchWrapper: '.easyedu-search-field:visible',
         pagination: '.local-groupimport-easystud-pagination:visible',
         ungrouped: '.local-groupimport-easystud-tree__section--ungrouped:visible'
     };
     for (const width of [1600, 768, 390]) {
         await page.setViewportSize({width, height: 1100});
         await page.mouse.move(0, 0);
+        await page.evaluate(() => document.fonts.ready);
+        await expect(root.locator(styleSelectors.pageTitle)).toHaveCSS('font-size', width === 390 ? '22px' : '28px');
+        await expect(root.locator(styleSelectors.panelTitle).first()).toHaveCSS('font-size', '20px');
+        await expect(root.locator(styleSelectors.viewToggle).first()).toHaveCSS('font-size', '12px');
+        const search = root.locator(styleSelectors.searchInput).first();
+        await expect(search).toHaveCSS('font-size', '14px');
+        await expect(search).toHaveCSS('border-top-width', '0px');
+        await search.focus();
+        await expect(root.locator(styleSelectors.searchWrapper).first()).toHaveCSS('border-top-color', 'rgb(138, 188, 227)');
+        await search.blur();
+        const createButtons = root.locator(styleSelectors.createButton);
+        for (let index = 0; index < await createButtons.count(); index++) {
+            const button = createButtons.nth(index);
+            const mask = await button.locator('.fa-plus').evaluate(icon => {
+                const r = icon.getBoundingClientRect(), b = icon.parentElement.getBoundingClientRect();
+                return {mask: getComputedStyle(icon).maskImage, width: r.width, height: r.height,
+                    x: r.x + r.width / 2 - b.x - b.width / 2,
+                    y: r.y + r.height / 2 - b.y - b.height / 2,
+                    pseudo: getComputedStyle(icon, '::before').content};
+            });
+            expect(mask.mask).not.toBe('none');
+            expect(mask.width).toBe(16); expect(mask.height).toBe(16);
+            expect(Math.abs(mask.x)).toBeLessThan(1); expect(Math.abs(mask.y)).toBeLessThan(1);
+            expect(mask.pseudo).toBe('none');
+        }
         for (const [label, selector] of Object.entries(styleSelectors)) {
             const items = root.locator(selector);
             for (let index = 0; index < Math.min(await items.count(), 3); index++) {

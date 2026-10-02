@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-02 - Workspace hierarchy and native control harmonisation
+
+- Adopt Kit 0.4.52 public workspace roles: quieter page/column/view labels,
+  softer shared card/member name colour, one Search recipe and centred Create
+  mask from the existing Foundation plus path.
+- Remove consumer-owned search paint and creation-icon geometry. Native
+  template classes consume the Kit; filtering, submits, destinations and card
+  disclosure animations are unchanged. Full embedded-tree migration remains
+  incomplete; scoped canonical modules are pinned explicitly.
+- Preserve deferred human checklist and add focused role/focus/mask-centre
+  checks to the non-mutating desktop/tablet/mobile audit.
+
 ## 2026-10-02 - Compact drag and native action-dialog correction
 
 - Relay workspace theme/font to the body-level Moodle message portal, consume

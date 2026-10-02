@@ -39,7 +39,7 @@ test('Student Management Foundations workspace desktop tablet and mobile', async
         reports.push({width,...report});
         fs.writeFileSync(testInfo.outputPath('workspace-geometry.json'), JSON.stringify(reports,null,2));
         expect(report.font).toContain('EasyEdu Inter');
-        expect(report.titleSize).toBe(width === 390 ? 23 : 30);
+        expect(report.titleSize).toBe(width === 390 ? 22 : 28);
         expect(report.overflow).toBeLessThanOrEqual(2);
         expect(report.title.x + report.title.w).toBeLessThanOrEqual(report.root.x + report.root.w + 2);
         expect(report.participants).toBeGreaterThan(0);
