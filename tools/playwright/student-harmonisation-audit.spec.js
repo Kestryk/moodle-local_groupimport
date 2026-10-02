@@ -140,6 +140,17 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
             await measure(message, 'message:portal');
             await measure(message.locator('.modal-title'), 'message:title');
             await measure(message.locator('#bulk-message'), 'message:textarea');
+            if (width === 390) {
+                const anatomy = await message.evaluate(node => {
+                    const height = selector => node.querySelector(selector).getBoundingClientRect().height;
+                    return {content: height('.modal-content'), field: height('#bulk-message'),
+                        header: height('.modal-header'), footer: height('.modal-footer')};
+                });
+                // The phone body owns 16px above/below its one native field.
+                // A fixed 34rem shell must not create a large blank remainder.
+                expect(anatomy.content - anatomy.field - anatomy.header - anatomy.footer).toBeLessThan(40);
+                records.push({viewport: width, label: 'message:content-fit', ...anatomy}); save();
+            }
             const footerButtons = message.locator('.modal-footer button');
             for (let index = 0; index < await footerButtons.count(); index++) {
                 await measure(footerButtons.nth(index), 'message:button:' + index);

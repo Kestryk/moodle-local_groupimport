@@ -1,5 +1,10 @@
 # Modals
 
+The opt-in Moodle message adapter sizes phone dialogs to their native body and
+capped textarea, with a viewport maximum. Never combine a capped phone field
+with a fixed-height dialog: this leaves an unexplained blank region above the
+footer. Desktop sizing, async loading, focus trap and recipients remain native.
+
 EasyEdu modals use Moodle-compatible markup with a shared visual shell.
 
 ## Native message portal and action-dialog classes

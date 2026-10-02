@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.52",
+  "version": "0.4.53",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -26,11 +26,11 @@
       "status": "source/static candidate; paired Penpot and native proof recorded separately, human checklist open"
     },
     "studentCompactPortals": {
-      "sourceCommit": "0a93cdf923947e5e28e6cf909e4f43ed488249eb",
+      "sourceCommit": "f0a25fd11b2e7871222f85672ddf07eaeda86e87",
       "modules": {
         "scss/easyedu/components/_overlays.scss": "66208bc3618e3e002d33f9c3c7f907ecce155589",
         "scss/easyedu/_dialog-classes.scss": "b92a7013be9d9135bc69af77d2afc9cd0310b854",
-        "scss/easyedu/adapters/_moodle-message-dialog.scss": "451ed959effd8007774e89f54b905f2c39d992c7"
+        "scss/easyedu/adapters/_moodle-message-dialog.scss": "e22b0bb6e3d26dd58129761d68612735fa115c29"
       },
       "scope": "Compact entity preview, native message token bridge and Move dialog controls; original card disclosure Motion unchanged",
       "status": "source candidate; native and paired Penpot evidence recorded separately; human acceptance pending"

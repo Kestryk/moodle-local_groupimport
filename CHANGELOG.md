@@ -2,6 +2,10 @@
 
 ## 2026-10-02 - Workspace hierarchy and native control harmonisation
 
+- Fit the native phone message dialog to its content, removing the fixed-shell
+  blank area below its capped textarea. Retain viewport limits and desktop
+  sizing; add a focused content-anatomy regression assertion.
+
 - Adopt Kit 0.4.52 public workspace roles: quieter page/column/view labels,
   softer shared card/member name colour, one Search recipe and centred Create
   mask from the existing Foundation plus path.
