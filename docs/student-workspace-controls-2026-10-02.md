@@ -366,3 +366,46 @@ Managed preview remains the next gate: include source prerequisites `60cbf72`,
 run the immutable Clipboard candidate. Platform planning/crosswalk/registry
 files retain their existing owner; this consumer document is the exact portable
 handoff, not a claimed edit to those shared files. Checklist remains unchecked.
+
+## Final neutral-lookup local preview proof
+
+Managed promotion `20261002T205705Z.json` applies `60cbf72`, `66a5737`,
+`ce20e0f` and `2f58db3` in order to a clean expected runtime and purges caches.
+Preview `b8a3c0f74a942bc564722b7371d80691470a4a91` serves the candidate CSS blob
+`16847d1a6e2268cab3dd52eb8966f9d0bf972ea7`. No manual runtime copy or reset.
+
+Discovery selects exactly one candidate before authentication. Final run
+`easystud-authenticated-20261002T205725336Z-32120` passes at 1600/768/390:
+111 painted helper characters per width, all unobscured; modal root 1070 above
+navigation trigger 1064; neutral border/header, 1rem title, .8125rem helper;
+native six-row field rest/hover/keyboard focus, recognised/unknown live results,
+close and return to the opener. Three PNGs were inspected and pinned. Cleanup
+confirms credentials cleared, runtime lease released, owned child stopped and
+no fixture/business mutation. This supersedes the earlier Clipboard collision,
+not other modal/navigation interactions or full Student-view acceptance.
+
+Review folder: external `easystud/authenticated/<final run>/playwright-output/`
+`student-clipboard-foundati-27ef9-ultiline-and-lookup-results/`. Inspect
+`clipboard-390.png`, `clipboard-768.png`, `clipboard-1600.png` and geometry JSON.
+Penpot captures have their own manifest under
+`easystud/penpot/clipboard-neutral-20261002/`. Earlier failure evidence remains.
+
+Source gates rerun with explicit KitRoot: Clipboard and workspace contracts,
+Node syntax and diff checks pass. Source/scenario/generated blobs are unchanged
+during the run. Modal docs have the same normalized Git blob in Kit and consumer;
+the AI contracts retain repository-specific guards intentionally. No new
+SCSS/PHP/AMD or business logic changed in the publication/proof documentation.
+Moodle 4.5/5.2/5.3, sending/moving/importing, RTL, forced-colors and all states
+were not tested. No release/default-branch merge or human acceptance is claimed.
+
+Platform-owner proposal: update 0073/crosswalk/state/registry with paired lookup
+IDs, source `df19d75`, consumer `ce20e0f`/`2f58db3`, runtime `b8a3c0f`, final
+run and deferred human status. Shared dirty Platform files remain untouched.
+Next bounded visual slice: drag target Allowed/Denied/Danger, keeping original
+card disclosure Motion and existing drag/drop commands unchanged.
+
+Efficiency audit: no per-task token/billing telemetry is available. Avoidable
+cost came from broad output, unqualified hidden-descendant selection, missing
+test parameters and one slow MCP export. Prefer compact visible-anatomy reads,
+documented parameter names, and captured paint/readback after reflow; do not
+retry an unchanged timed-out export. Retention is inventory-only, no deletion.

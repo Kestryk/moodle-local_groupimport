@@ -11,14 +11,34 @@
     "penpotLinked": true,
     "technicalReadbackPassed": true,
     "humanVisualValidated": false,
-    "runtimeVerified": false,
+    "runtimeVerified": true,
     "allNativePaintMatched": false
   },
   "codePins": {
-    "kitDocumentation": "aa412228f4ea7e1c3c98f45bf9d80f58aa5284c7",
+    "kitDocumentation": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
     "kit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
     "consumer": "ce20e0f0fbad41cd22aa73e5c560e30122ead584",
     "baselineRuntime": "a364b0142ef4335eda5de110630499fa86477b28"
+  },
+  "runtimeProof": {
+    "runtimeHead": "b8a3c0f74a942bc564722b7371d80691470a4a91",
+    "run": "easystud-authenticated-20261002T205725336Z-32120",
+    "selectedTests": 1,
+    "result": "passed",
+    "viewports": [1600, 768, 390],
+    "helperCharactersPerViewport": 111,
+    "coveredHelperCharactersPerViewport": 0,
+    "modalLayer": 1070,
+    "navigationTriggerLayer": 1064,
+    "candidateScenarioBlob": "f2fa0e3de81e2dcd5a2f1252781e669510a148a3",
+    "candidateGeneratedCssBlob": "16847d1a6e2268cab3dd52eb8966f9d0bf972ea7",
+    "capturesInspectedAndPinned": ["clipboard-1600.png", "clipboard-768.png", "clipboard-390.png"],
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "businessMutation": false,
+    "scope": "Neutral Clipboard chrome, native field/result states, paint hit targets, close and opener focus return only"
   },
   "foundation": {
     "file": "40e06342-8830-80d6-8008-96572effc11c",
@@ -520,7 +540,7 @@
     "Native Close chrome still differs from the canonical source specimen",
     "All lookup, RTL and forced-colors states untested",
     "Result labels retain pre-existing Foundation token geometry; not a family-wide painted-centre audit",
-    "Post-promotion browser gate not run at this checkpoint"
+    "Scoped post-promotion proof passed; all-dialog and all-state coverage remain open"
   ],
   "preservation": "Whole previous Clipboard host cloned, hidden and blocked; old children hidden in place; no existing source main removed; hidden copied legacy anatomy retained."
 }

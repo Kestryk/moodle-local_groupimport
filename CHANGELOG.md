@@ -7,6 +7,11 @@
   Preserve the old specimen hidden. This Penpot/documentation checkpoint is
   not yet served and does not close the human checklist.
 
+- Apply the scoped neutral Clipboard candidate to local Moodle 5.1 and verify
+  1600/768/390 paint, controls and focus. The previous three covered mobile
+  helper characters are gone; all 111 sampled characters are unobscured.
+  Final captures inspected/pinned, cleanup complete, no business mutation.
+
 - Prepare a scoped Kit-owned modal layer and neutral Clipboard shell, with
   13px help and native six-row lookup/focus/Motion unchanged. Baseline mobile
   paint confirms three help characters covered by navigation. This source
