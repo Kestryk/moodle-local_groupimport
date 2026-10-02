@@ -1308,6 +1308,13 @@
     opacity: 1;
   }
 
+  // Native identifier boxes consume the multiline family, not a local skin.
+  // Keep rows, parsing, actions and disclosure Motion in their existing owners.
+  [data-easystud-group-email-box],
+  [data-easystud-grouping-groups-box] {
+    @include easyedu.foundation-textarea;
+  }
+
   &.is-dragging-participants &-tree__section.is-user-drop-disabled.is-drop-denied {
     @include easyedu.denied-drop-target;
   }

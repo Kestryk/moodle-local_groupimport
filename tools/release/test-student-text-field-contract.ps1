@@ -4,7 +4,7 @@ $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $manifest = Get-Content -Raw -LiteralPath (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') | ConvertFrom-Json
 $pin = $manifest.consumerSync.studentNativeTextFields
 foreach ($pair in @(@($pin.module, $pin.moduleBlob), @('scss/easyedu/_tokens.scss', $pin.tokensBlob),
-    @('scss/easyedu/_components.scss', $pin.exportsBlob))) {
+    @('scss/easyedu/_components.scss', $pin.exportsBlob), @($pin.paintModule, $pin.paintBlob))) {
     $embedded = & git -C $root hash-object $pair[0]
     $canonical = & git -C $KitRoot hash-object $pair[0]
     if ($LASTEXITCODE -ne 0 -or $embedded -ne $pair[1] -or $canonical -ne $embedded) {

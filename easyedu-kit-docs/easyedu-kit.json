@@ -16,11 +16,13 @@
     },
     "fullTreeIdentical": false,
     "studentNativeTextFields": {
-      "sourceCommit": "dc9b17d71984a4a6e69e1f2c31b81accc84c1b78",
+      "sourceCommit": "91b67a9b9e9782d98ccbb44812bc0ae94be120d5",
       "module": "scss/easyedu/components/_text-fields.scss",
-      "moduleBlob": "77b3ec0d44368c3df242793b598c56901233867e",
+      "moduleBlob": "6ed5feadfa22e28b2a1fd64685248e63469ed52d",
+      "paintModule": "scss/easyedu/components/_field-paint.scss",
+      "paintBlob": "15f22938e53dea778936e1211e4d20d76539db2d",
       "tokensBlob": "2662e6d7ec327624c80f1ac13dc220061308bc97",
-      "exportsBlob": "e5c7e0278c602cf42f8e60bf5332862c36b36d20",
+      "exportsBlob": "4c80e4365ec78a5ebb4166273c605bd8ee7632fd",
       "foundationDefault": "2a31d374-d2a1-80fd-8008-ac73e5451656",
       "foundationFilled": "2a31d374-d2a1-80fd-8008-ac73e92f4940",
       "scope": "Creation and Rename native single-line fields only; 17 active product instances now use real Foundation Text field M",
@@ -28,7 +30,18 @@
       "testedConsumer": "9f4c015909f858fb8ef19259bb7c9916fc607c42",
       "testedRuntime": "6b8269ba4ccef09f200186f10573f4cd476e8d78",
       "scenarioBlob": "0fdc4c65536784e3764953da05a82c67f0eaa4de",
-      "status": "source/static and live Penpot checks; native creation/Rename 1600/768/390 PASS with nine inspected captures and useful phone field width; human review deferred; textarea not adopted"
+      "status": "source/static and live Penpot checks; recorded native creation/Rename 1600/768/390 PASS with nine inspected captures; internal paint extracted without geometry changes, rerun pending; human review deferred"
+    },
+    "studentNativeTextareas": {
+      "sourceCommit": "91b67a9b9e9782d98ccbb44812bc0ae94be120d5",
+      "module": "scss/easyedu/components/_textareas.scss",
+      "moduleBlob": "f1c839377cfd06fe571201f2e604dc2304b59ac3",
+      "paintModule": "scss/easyedu/components/_field-paint.scss",
+      "paintBlob": "15f22938e53dea778936e1211e4d20d76539db2d",
+      "exportsBlob": "4c80e4365ec78a5ebb4166273c605bd8ee7632fd",
+      "foundationFilled": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
+      "scope": "Native Group/Grouping identifier boxes only, preserving rows and vertical resizing; Clipboard and message textarea not adopted",
+      "status": "source/static pending; product reflow and native browser proof pending; human review deferred"
     },
     "studentInlineFeedback": {
       "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",

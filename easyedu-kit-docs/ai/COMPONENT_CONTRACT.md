@@ -1,5 +1,13 @@
 # EasyEdu Component Contract
 
+Group/Grouping identifier boxes consume `foundation-textarea` only. Keep shared
+multiline paint/insets/minimum size in the canonical Kit and native rows,
+vertical resize, recognition parsing, announcements, actions and card Motion
+in their existing owners. Never blanket-style Clipboard/message textareas or
+unhide responsive/archived examples to demonstrate this family. Taller Penpot
+instances require genuine panel/card/column reflow, anchored footers and intact
+linked icon geometry; preserve the replaced local shapes hidden for rollback.
+
 Creation/Rename inputs consume `foundation-text-field` only. Shared field state
 paint and insets live in the canonical Kit; do not disguise Search components,
 reintroduce important local focus/radius rules or apply the single-line recipe

@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-02 - Foundation identifier Textarea adoption
+
+- Consume the separately named canonical multiline recipe for native
+  Group/Grouping identifier boxes only. Preserve rows, resizing, recognition,
+  commands and original Motion; share field paint without aliasing input
+  geometry. Clipboard/message textarea adoption remains separate.
+- Replace active product identifier specimens with existing Foundation mains
+  and reflow their panels, cards, columns and footers; preserve local originals
+  hidden and the seven previously hidden/archived specimens unchanged.
+  Native browser proof and deferred human acceptance are recorded separately.
+
 ## 2026-10-02 - Multiline field inventory checkpoint
 
 - Record all eighteen measured Foundation Textarea mains and twelve named
