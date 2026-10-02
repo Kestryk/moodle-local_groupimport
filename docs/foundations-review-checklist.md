@@ -6,6 +6,9 @@ Technical checks and human visual acceptance remain separate.
 
 ## Student Management
 
+- [ ] Real Foundation Text fields for creation/Rename; native focus, placeholder,
+  filled value and responsive hit geometry; no disguised Search instances.
+
 - [ ] Measured identity typography/colours, subordinate group-member names.
 - [ ] Compact Add/Save/Cancel labels, vertical icon/text centres and common gap.
 - [ ] Inline identifier results use shared Success/Error pills; recognised

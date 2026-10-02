@@ -1,5 +1,61 @@
 # Foundations Student Management migration
 
+## Native creation and Rename fields - 2026-10-02
+
+Scope card: this implementation window owns the existing Student consumer
+worktree and dedicated Kit branch under EED-UI-2026-0073. Includes the native
+creation/Rename input adapter, identical Kit field module/tokens/export, docs,
+static contract and one non-mutating local-supervised browser scenario. Excludes
+textarea, search, participant messaging, business commands, original card Motion,
+CCB, global checklist acceptance and shared Platform planning ownership.
+
+Live readback reconciles eighteen Text-field S/M/L masters in Foundations
+`08.4.1`: 32/38/48px heights, 12/14/14px Inter 400, line-height 1.2, 14px
+painted inline inset, 11.52px radius, six distinct explicit states. Kit
+`b5a9a076ce6e696f705ae756c0156df8fb4c56c1` now exports
+`foundation-text-field`; native controls no longer use a local forced-focus
+border/halo. Only creation and Rename consume it. No PHP, Mustache, AMD, parser,
+name, permission or submission change. Existing responsive minimum input hit
+geometry remains; the mobile local radius exception is removed.
+
+On product page `03`, nineteen disguised Search fields were inventoried.
+Seventeen on active boards now link the true Text-field M Default/Filled mains;
+the two hidden archived references are untouched. Root IDs, parents, positions,
+widths, 38px specimen heights, hidden flags and all text are preserved. Readback
+passes all seventeen links, 14px/400 roles, text containment and painted centre
+delta effectively zero. Four instances are intentionally hidden by current
+view composition. Desktop quick-create, mobile quick-create and Rename parent
+exports were inspected. Foundations mains were read, not modified or duplicated;
+paired Standard-page copy verification was not performed in this file.
+
+Baseline records remain in Penpot storage `studentTextFieldBefore20261002`;
+shared measured states in `genericFormsReadback20261002`. Restore by swapping
+the recorded Foundation Search component and restoring recorded geometry/text,
+never by detaching or recreating an accepted control. Product file/page IDs are
+`220f6449-533e-815b-8008-ad9958d032a1` /
+`92c1c225-95fb-802e-8008-ae9f13d0b0b9`. This is structural/agent visual proof,
+not deferred human acceptance or native responsive density equivalence.
+
+Named Textarea remains pending: its eighteen masters were read, but no textarea
+adapter or shared CSS was guessed. The native thick textarea focus remains an
+open separate task. Single-line creation/Rename field states never blanket-style
+search, import, admin or message controls. Kit strict audit retains the same
+five prior findings; no baseline update or clean global audit is claimed.
+
+The plugin floor remains Moodle 5.1 (`2025100600`). Relevant official sources:
+[CSS coding style](https://moodledev.io/general/development/policies/codingstyle/css)
+and [5.1 release notes](https://moodledev.io/general/releases/5.1). No new Moodle
+API or cross-version executable compatibility claim. Static contract and native
+browser proof are recorded separately; human checklist stays unchecked.
+
+Next safe validation: freeze `student-text-fields-foundations.spec.js`, discover
+one test, promote the ordered pushed source after comparing prerequisite history,
+then check native creation and transient Rename at desktop/tablet/phone. Never
+submit creation or Save; preserve context routing, cancel and clear inputs.
+Platform planning-owner proposal: record this bounded canonical field adoption
+and retain textarea/native density/foreign CCB overlay as open; do not close the
+Student continuation or take over shared plan/state/index files.
+
 ## Inline identifier feedback and search Cancel - 2026-10-02
 
 Final bounded proof: `easystud-authenticated-20261002T050512385Z-40496` PASS

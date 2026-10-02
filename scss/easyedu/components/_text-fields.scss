@@ -1,0 +1,75 @@
+// Native single-line fields measured from Foundations 08.4 / 08.4.1.
+// Apply to the input itself, never to a search wrapper or its adjacent actions.
+@use "focus";
+
+@mixin foundation-text-field($size: regular) {
+  $height: 2.375rem;
+  $font-size: 0.875rem;
+  $block-padding: 0.6rem;
+  @if $size == small {
+    $height: 2rem;
+    $font-size: 0.75rem;
+    $block-padding: 0.4875rem;
+  } @else if $size == large {
+    $height: 3rem;
+    $block-padding: 0.9125rem;
+  } @else if $size != regular {
+    @error "foundation-text-field expects small, regular or large.";
+  }
+
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-field-text);
+  font: 400 #{$font-size}/1.2 var(--easyedu-font-family-ui);
+  height: auto;
+  min-height: $height;
+  min-width: 0;
+  // Border plus padding gives the measured 0.875rem painted text inset.
+  padding: $block-padding 0.8125rem;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease,
+    box-shadow var(--easyedu-motion-fast) ease;
+
+  &::placeholder {
+    color: var(--easyedu-text-muted);
+    opacity: 1;
+  }
+
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    border-color: var(--easyedu-field-hover-border);
+  }
+
+  &:focus,
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  // Validation remains explicit and consumer-owned; :invalid would paint an
+  // untouched required input red. Retain a focus halo on an invalid field.
+  &[aria-invalid="true"] {
+    border-color: var(--easyedu-field-error-border);
+    color: var(--easyedu-field-error-text);
+
+    &::placeholder { color: var(--easyedu-field-error-text); }
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    background: var(--easyedu-field-disabled-surface);
+    border-color: var(--easyedu-control-border);
+    box-shadow: none;
+    color: var(--easyedu-field-disabled-text);
+    cursor: not-allowed;
+    opacity: 1;
+
+    &::placeholder { color: var(--easyedu-field-disabled-text); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}

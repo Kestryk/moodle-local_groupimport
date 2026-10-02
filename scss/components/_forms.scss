@@ -40,18 +40,7 @@
 
   &-create .form-control,
   &-rename .form-control {
-    min-width: 0;
-
-    &:focus,
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-    }
-
-    &:focus:not(:focus-visible) {
-      outline: 0;
-    }
+    @include easyedu.foundation-text-field;
   }
 
   &-rename {

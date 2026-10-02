@@ -1,0 +1,2920 @@
+{
+  "capturedOn": "2026-10-02",
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "sourceFields": [
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73e7dc382b",
+      "path": "EasyEdu / Forms / Text field / M",
+      "state": "Focus-visible",
+      "main": "2a31d374-d2a1-80fd-8008-ac73e6f35778",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 360,
+      "h": 38,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e7330a4c",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#8abce3",
+              "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "strokeColorRefId": "32eadb6d-165e-803e-8008-989589736072",
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            },
+            {
+              "strokeColor": "#0f6cbf",
+              "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "strokeColorRefId": "32eadb6d-165e-803e-8008-989540a567b4",
+              "strokeOpacity": 0.22,
+              "strokeStyle": "solid",
+              "strokeWidth": 2.88,
+              "strokeAlignment": "outer",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e77d26f8",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 332,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 1276,
+            "y": 6871.000000381464,
+            "width": 85.80000305175781,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74264dc340",
+      "path": "EasyEdu / Forms / Text field / L",
+      "state": "Focus-visible",
+      "main": "2a31d374-d2a1-80fd-8008-ac7425621792",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 420,
+      "h": 48,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac742595afaf",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 420,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#8abce3",
+              "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "strokeColorRefId": "32eadb6d-165e-803e-8008-989589736072",
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            },
+            {
+              "strokeColor": "#0f6cbf",
+              "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "strokeColorRefId": "32eadb6d-165e-803e-8008-989540a567b4",
+              "strokeOpacity": 0.22,
+              "strokeStyle": "solid",
+              "strokeWidth": 2.88,
+              "strokeAlignment": "outer",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac7425e8ce77",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": 2.1827872842550278e-11,
+          "w": 392,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 2236,
+            "y": 6876.000000381493,
+            "width": 85.80000305175781,
+            "height": 16.80000114440918
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac742ac5e590",
+      "path": "EasyEdu / Forms / Text field / L",
+      "state": "Error",
+      "main": "2a31d374-d2a1-80fd-8008-ac7429c565eb",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 420,
+      "h": 48,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac742a0427d6",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 420,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#b3261e",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac742a5fc93c",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": 2.1827872842550278e-11,
+          "w": 392,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#8e1b15",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Invalid value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 2236,
+            "y": 7188.000000381493,
+            "width": 82.2750015258789,
+            "height": 16.80000114440918
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73a297801a",
+      "path": "EasyEdu / Forms / Text field / S",
+      "state": "Hover",
+      "main": "2a31d374-d2a1-80fd-8008-ac73a1c12557",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 300,
+      "h": 32,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a1f89a0f",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#77a7d3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a243b258",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 272,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "12",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 316,
+            "y": 6764.399999999994,
+            "width": 73.5374984741211,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "path": "EasyEdu / Forms / Text field / M",
+      "state": "Default",
+      "main": "2a31d374-d2a1-80fd-8008-ac73e471e6de",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 360,
+      "h": 38,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e4a72aa5",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e4f11945",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 332,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 1276,
+            "y": 6663.000000381464,
+            "width": 85.80000305175781,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac7423a81f4d",
+      "path": "EasyEdu / Forms / Text field / L",
+      "state": "Default",
+      "main": "2a31d374-d2a1-80fd-8008-ac7422cda0ba",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 420,
+      "h": 48,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac7422fd0157",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 420,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac742351ea06",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": 2.1827872842550278e-11,
+          "w": 392,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 2236,
+            "y": 6668.000000381493,
+            "width": 85.80000305175781,
+            "height": 16.80000114440918
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73e687cb10",
+      "path": "EasyEdu / Forms / Text field / M",
+      "state": "Hover",
+      "main": "2a31d374-d2a1-80fd-8008-ac73e5add824",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 360,
+      "h": 38,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e5e28bd2",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#77a7d3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e62e6ccb",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 332,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 1276,
+            "y": 6767.000000381464,
+            "width": 85.80000305175781,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac7424f58749",
+      "path": "EasyEdu / Forms / Text field / L",
+      "state": "Hover",
+      "main": "2a31d374-d2a1-80fd-8008-ac742417af62",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 420,
+      "h": 48,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac74245209e2",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 420,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#77a7d3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac74249d1684",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": 2.1827872842550278e-11,
+          "w": 392,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 2236,
+            "y": 6772.000000381493,
+            "width": 85.80000305175781,
+            "height": 16.80000114440918
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73ea939467",
+      "path": "EasyEdu / Forms / Text field / M",
+      "state": "Disabled",
+      "main": "2a31d374-d2a1-80fd-8008-ac73e9a072aa",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 360,
+      "h": 38,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e9d90447",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#f0f4f8",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73ea2f19fb",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 332,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#9aa9b8",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 1276,
+            "y": 7079.000000381464,
+            "width": 85.80000305175781,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73a15be09e",
+      "path": "EasyEdu / Forms / Text field / S",
+      "state": "Default",
+      "main": "2a31d374-d2a1-80fd-8008-ac73a06dff45",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 300,
+      "h": 32,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a0acae77",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a0fcf22d",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 272,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "12",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 316,
+            "y": 6660.399999999994,
+            "width": 73.5374984741211,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73a55ebdb5",
+      "path": "EasyEdu / Forms / Text field / S",
+      "state": "Filled",
+      "main": "2a31d374-d2a1-80fd-8008-ac73a46a1704",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 300,
+      "h": 32,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a4a1104c",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a4f82c23",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 272,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#1e3448",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Example value",
+          "font": "Inter",
+          "size": "12",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 316,
+            "y": 6972.399999999994,
+            "width": 82.0625,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac7427c36c45",
+      "path": "EasyEdu / Forms / Text field / L",
+      "state": "Filled",
+      "main": "2a31d374-d2a1-80fd-8008-ac7426c6961a",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 420,
+      "h": 48,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac7427087634",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 420,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac7427603ecf",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": 2.1827872842550278e-11,
+          "w": 392,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#1e3448",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Example value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 2236,
+            "y": 6980.000000381493,
+            "width": 95.73750305175781,
+            "height": 16.80000114440918
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73e92f4940",
+      "path": "EasyEdu / Forms / Text field / M",
+      "state": "Filled",
+      "main": "2a31d374-d2a1-80fd-8008-ac73e84aa383",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 360,
+      "h": 38,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e87ec47d",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73e8ceedfd",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 332,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#1e3448",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Example value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 1276,
+            "y": 6975.000000381464,
+            "width": 95.73750305175781,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73ec032a64",
+      "path": "EasyEdu / Forms / Text field / M",
+      "state": "Error",
+      "main": "2a31d374-d2a1-80fd-8008-ac73eb11d94d",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 360,
+      "h": 38,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73eb44186e",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#b3261e",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73eb9d17ad",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": 2.1827872842550278e-11,
+          "w": 332,
+          "h": 38,
+          "fills": [
+            {
+              "fillColor": "#8e1b15",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Invalid value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 1276,
+            "y": 7183.000000381493,
+            "width": 82.2750015258789,
+            "height": 16.799999237060547
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73a3f55cd2",
+      "path": "EasyEdu / Forms / Text field / S",
+      "state": "Focus-visible",
+      "main": "2a31d374-d2a1-80fd-8008-ac73a30c18da",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 300,
+      "h": 32,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a344992a",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#8abce3",
+              "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "strokeColorRefId": "32eadb6d-165e-803e-8008-989589736072",
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            },
+            {
+              "strokeColor": "#0f6cbf",
+              "strokeColorRefFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "strokeColorRefId": "32eadb6d-165e-803e-8008-989540a567b4",
+              "strokeOpacity": 0.22,
+              "strokeStyle": "solid",
+              "strokeWidth": 2.88,
+              "strokeAlignment": "outer",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a395e20c",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 272,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "12",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 316,
+            "y": 6868.399999999994,
+            "width": 73.5374984741211,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73a6c0a1ed",
+      "path": "EasyEdu / Forms / Text field / S",
+      "state": "Disabled",
+      "main": "2a31d374-d2a1-80fd-8008-ac73a5d1c856",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 300,
+      "h": 32,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a604ca12",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#f0f4f8",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a65ce281",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 272,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#9aa9b8",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "12",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 316,
+            "y": 7076.399999999994,
+            "width": 73.5374984741211,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74294cbb86",
+      "path": "EasyEdu / Forms / Text field / L",
+      "state": "Disabled",
+      "main": "2a31d374-d2a1-80fd-8008-ac7428418db1",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 420,
+      "h": 48,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac74287f38ac",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 420,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#f0f4f8",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#c8d6e3",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac7428e01ba9",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": 2.1827872842550278e-11,
+          "w": 392,
+          "h": 48,
+          "fills": [
+            {
+              "fillColor": "#9aa9b8",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Enter a value",
+          "font": "Inter",
+          "size": "14",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 2236,
+            "y": 7084.000000381493,
+            "width": 85.80000305175781,
+            "height": 16.80000114440918
+          }
+        }
+      ]
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac73a8214887",
+      "path": "EasyEdu / Forms / Text field / S",
+      "state": "Error",
+      "main": "2a31d374-d2a1-80fd-8008-ac73a7315bd4",
+      "parent": "2a31d374-d2a1-80fd-8008-ac7392ed0c79",
+      "w": 300,
+      "h": 32,
+      "children": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a76a63f3",
+          "name": "Surface",
+          "type": "rectangle",
+          "x": 0,
+          "y": 0,
+          "w": 300,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [
+            {
+              "strokeColor": "#b3261e",
+              "strokeColorRefFile": null,
+              "strokeColorRefId": null,
+              "strokeOpacity": 1,
+              "strokeStyle": "solid",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "strokeCapStart": null,
+              "strokeCapEnd": null,
+              "strokeColorGradient": null,
+              "strokeImage": null
+            }
+          ],
+          "radii": [
+            11.52,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": []
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac73a7bbba3d",
+          "name": "Text",
+          "type": "text",
+          "x": 14,
+          "y": -7.275957614183426e-12,
+          "w": 272,
+          "h": 32,
+          "fills": [
+            {
+              "fillColor": "#8e1b15",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "strokes": [],
+          "radii": [
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "shadows": [],
+          "text": "Invalid value",
+          "font": "Inter",
+          "size": "12",
+          "weight": "400",
+          "lineHeight": "1.2",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 316,
+            "y": 7180.399999999994,
+            "width": 70.5250015258789,
+            "height": 15.200000762939453
+          }
+        }
+      ]
+    }
+  ],
+  "productBefore": [
+    {
+      "id": "103e019a-f5a8-8027-8008-b13972f37666",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Tablet / Groupings",
+      "boardId": "103e019a-f5a8-8027-8008-b13972f1abd3",
+      "parent": "103e019a-f5a8-8027-8008-b13972f375fd",
+      "x": 1832,
+      "y": 4852,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f3766a",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f3766b",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 10,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f3766c",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b133157aa1c7",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Mobile / Groupings",
+      "boardId": "103e019a-f5a8-8027-8008-b132b181db28",
+      "parent": "103e019a-f5a8-8027-8008-b1331542b655",
+      "x": 3608,
+      "y": 4922,
+      "w": 264,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b133157afa85",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 264,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b133157afa86",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.800000000000182,
+          "w": 240,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b133157afa87",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131fcf2aef1",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Desktop / Groups & groupings",
+      "boardId": "cef95197-06bc-809e-8008-aede91ff23f9",
+      "parent": "103e019a-f5a8-8027-8008-b131fb0a926c",
+      "x": 3870,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131fcf2aef2",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131fcf2aef3",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131fcf2aef4",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131e9151b6f",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Desktop / Complete view",
+      "boardId": "92c1c225-95fb-802e-8008-ae9f13f14484",
+      "parent": "103e019a-f5a8-8027-8008-b131e7ca3e3f",
+      "x": 1262,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131e9151b70",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131e9151b71",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131e9151b72",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999977
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132065a2609",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Tablet / Participants",
+      "boardId": "92c1c225-95fb-802e-8008-aeaca893efac",
+      "parent": "103e019a-f5a8-8027-8008-b1320518b795",
+      "x": 470,
+      "y": 5762,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132065a260a",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132065a260b",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 10,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132065a260c",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13971d62487",
+      "name": "Foundation / Text field / New group name",
+      "board": "ZZ — Archive / Student management / Tablet stacked reference",
+      "boardId": "103e019a-f5a8-8027-8008-b13971d59d95",
+      "parent": "103e019a-f5a8-8027-8008-b13971d5ee3b",
+      "x": 3016,
+      "y": 1382,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b13971d6248b",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13971d6248c",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 10,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13971d6248d",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.400000000000091
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b136bc288918",
+      "name": "Foundation / Text field / Rename group",
+      "board": "Student management — Interaction states",
+      "boardId": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+      "parent": "01e728c3-f1ef-80b3-8008-b5b32e867b5f",
+      "x": 5756,
+      "y": 3700,
+      "w": 230,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "Group A",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b136bc288919",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 230,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b136bc28891a",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 10,
+          "w": 206,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b136bc28891b",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.400000000000091
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131f055bc38",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Desktop / Participants & groups",
+      "boardId": "cef95197-06bc-809e-8008-aede62dfb91f",
+      "parent": "103e019a-f5a8-8027-8008-b131ee9aefe5",
+      "x": 2942,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f055bc39",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f055bc3a",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f055bc3b",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131f48027b6",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Desktop / Groups & groupings",
+      "boardId": "cef95197-06bc-809e-8008-aede91ff23f9",
+      "parent": "103e019a-f5a8-8027-8008-b131f43b46fc",
+      "x": 4288,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f48027b7",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f48042b2",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f48042b3",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131e80bf309",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Desktop / Complete view",
+      "boardId": "92c1c225-95fb-802e-8008-ae9f13f14484",
+      "parent": "103e019a-f5a8-8027-8008-b131e7ca3e3f",
+      "x": 928,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131e80bf30a",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131e80bf30b",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131e80bf30c",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999977
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132054d181e",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Tablet / Participants",
+      "boardId": "92c1c225-95fb-802e-8008-aeaca893efac",
+      "parent": "103e019a-f5a8-8027-8008-b1320518b795",
+      "x": 136,
+      "y": 5762,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132054d181f",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132054d1820",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 10,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132054d1821",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13971d62489",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "ZZ — Archive / Student management / Tablet stacked reference",
+      "boardId": "103e019a-f5a8-8027-8008-b13971d59d95",
+      "parent": "103e019a-f5a8-8027-8008-b13971d5ee3b",
+      "x": 3350,
+      "y": 1382,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b13971d62499",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13971d6249a",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 10,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13971d6249b",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.400000000000091
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b139727782ac",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Tablet / Groups",
+      "boardId": "103e019a-f5a8-8027-8008-b13972775dc1",
+      "parent": "103e019a-f5a8-8027-8008-b13972778241",
+      "x": 1318,
+      "y": 4852,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b139727782bc",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b139727782bd",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 10,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b139727782be",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131fb41b7d8",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Desktop / Groups & groupings",
+      "boardId": "cef95197-06bc-809e-8008-aede91ff23f9",
+      "parent": "103e019a-f5a8-8027-8008-b131fb0a926c",
+      "x": 3536,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131fb41b7d9",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131fb41b7da",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131fb41b7db",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13972f37668",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Tablet / Groupings",
+      "boardId": "103e019a-f5a8-8027-8008-b13972f1abd3",
+      "parent": "103e019a-f5a8-8027-8008-b13972f375fd",
+      "x": 1832,
+      "y": 4852,
+      "w": 612,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f37678",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f37679",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.800000000000182,
+          "w": 588,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f3767a",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132f4acd8db",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Mobile / Groups",
+      "boardId": "103e019a-f5a8-8027-8008-b132b11421dc",
+      "parent": "103e019a-f5a8-8027-8008-b132f45b5ce6",
+      "x": 3138,
+      "y": 4922,
+      "w": 264,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132f4acd8dc",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 264,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132f4acd8dd",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.800000000000182,
+          "w": 240,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132f4acd8de",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131f5bddc18",
+      "name": "Foundation / Text field / New grouping name",
+      "board": "Student management — Desktop / Groups & groupings",
+      "boardId": "cef95197-06bc-809e-8008-aede91ff23f9",
+      "parent": "103e019a-f5a8-8027-8008-b131f43b46fc",
+      "x": 4622,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New grouping name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f5bddc19",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f5bddc1a",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131f5bddc1b",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131ef42550b",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Desktop / Participants & groups",
+      "boardId": "cef95197-06bc-809e-8008-aede62dfb91f",
+      "parent": "103e019a-f5a8-8027-8008-b131ee9aefe5",
+      "x": 2608,
+      "y": 626,
+      "w": 282,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b131ef42550c",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 282,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131ef42550d",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.799999999999955,
+          "w": 258,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b131ef42550e",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b139727782aa",
+      "name": "Foundation / Text field / New group name",
+      "board": "Student management — Tablet / Groups",
+      "boardId": "103e019a-f5a8-8027-8008-b13972775dc1",
+      "parent": "103e019a-f5a8-8027-8008-b13972778241",
+      "x": 984,
+      "y": 4852,
+      "w": 612,
+      "h": 38,
+      "c": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "text": "New group name",
+      "children": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b139727782ae",
+          "type": "rectangle",
+          "name": "Surface",
+          "hidden": false,
+          "x": 0,
+          "y": 0,
+          "w": 612,
+          "h": 38
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b139727782af",
+          "type": "text",
+          "name": "Placeholder / Default",
+          "hidden": false,
+          "x": 12,
+          "y": 11.800000000000182,
+          "w": 588,
+          "h": 18
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b139727782b0",
+          "type": "board",
+          "name": "Icon — linked magnifying-glass / Default",
+          "hidden": true,
+          "x": 10.88000000000011,
+          "y": 14,
+          "w": 14.399999999999636,
+          "h": 14.399999999999636
+        }
+      ]
+    }
+  ],
+  "productAfter": [
+    {
+      "id": "103e019a-f5a8-8027-8008-b13972f37666",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        1832,
+        4852,
+        282,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b133157aa1c7",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        3608,
+        4922,
+        264,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131fcf2aef1",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        3870,
+        626,
+        282,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131e9151b6f",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        1262,
+        626,
+        282,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132065a2609",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        470,
+        5762,
+        282,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13971d62487",
+      "component": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "root": [
+        3016,
+        1382,
+        282,
+        38
+      ],
+      "text": "New group name",
+      "font": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "top",
+      "paintDelta": -1.800000011920929,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b136bc288918",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e92f4940",
+      "root": [
+        5756,
+        3700,
+        230,
+        38
+      ],
+      "text": "Group A",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131f055bc38",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        2942,
+        626,
+        282,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131f48027b6",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        4288,
+        626,
+        282,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131e80bf309",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        928,
+        626,
+        282,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132054d181e",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        136,
+        5762,
+        282,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13971d62489",
+      "component": "81455adb-6787-8068-8008-9cea25ab51f2",
+      "root": [
+        3350,
+        1382,
+        282,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "top",
+      "paintDelta": -1.800000011920929,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b139727782ac",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        1318,
+        4852,
+        282,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131fb41b7d8",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        3536,
+        626,
+        282,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13972f37668",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        1832,
+        4852,
+        612,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132f4acd8db",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        3138,
+        4922,
+        264,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131f5bddc18",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        4622,
+        626,
+        282,
+        38
+      ],
+      "text": "New grouping name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b131ef42550b",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        2608,
+        626,
+        282,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b139727782aa",
+      "component": "2a31d374-d2a1-80fd-8008-ac73e5451656",
+      "root": [
+        984,
+        4852,
+        611.9999999999999,
+        38
+      ],
+      "text": "New group name",
+      "font": "14",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": "center",
+      "paintDelta": -7.275957614183426e-12,
+      "contained": true
+    }
+  ]
+}
