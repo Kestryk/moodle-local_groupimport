@@ -1164,49 +1164,8 @@
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  &__search-field {
-    align-items: center;
-    background: #fff;
-    border: 1px solid #d6e0ea;
-    border-radius: 0.72rem;
-    display: flex;
-    gap: 0.55rem;
-    margin: 0;
-    min-width: 0;
-    padding: 0 0.8rem;
-    transition:
-      border-color var(--easyedu-motion-fast) ease,
-      box-shadow var(--easyedu-motion-fast) ease,
-      background-color var(--easyedu-motion-fast) ease;
-
-    &:focus-within {
-      background: #fff;
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-    }
-
-    .fa {
-      color: #6b7f93;
-      flex: 0 0 auto;
-      font-size: 0.9rem;
-    }
-
-    .form-control {
-      background: transparent;
-      border: 0;
-      flex: 1 1 auto;
-      box-shadow: none;
-      min-width: 0;
-      padding-left: 0;
-      padding-right: 0;
-      width: 100%;
-
-      &:focus {
-        border: 0;
-        box-shadow: none;
-        outline: 0;
-      }
-    }
-  }
+  // Search presentation is emitted by the canonical easyedu-search-field
+  // class. Consumer filters retain only layout, commands and visibility.
 
   &__filters-reset {
     align-self: stretch;

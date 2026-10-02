@@ -1,0 +1,116 @@
+// Opt-in workspace controls, not a global Bootstrap/Moodle restyle.
+// Native commands, filtering, labels and disclosure Motion remain consumer-owned.
+@use "foundation-classes" as foundations;
+@use "components/focus";
+
+@mixin workspace-control-classes {
+  .easyedu-ui .easyedu-workspace-view-switcher > button {
+    font: 650 var(--easyedu-workspace-view-label-size)/1.2 var(--easyedu-font-family-ui);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .easyedu-ui .easyedu-search-field {
+    align-items: center;
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-control-border);
+    border-radius: var(--easyedu-control-radius);
+    box-sizing: border-box;
+    display: flex;
+    gap: 0.55rem;
+    margin: 0;
+    min-block-size: 2.375rem;
+    min-inline-size: 0;
+    padding: 0 0.8125rem;
+    transition: border-color var(--easyedu-motion-fast) ease,
+      box-shadow var(--easyedu-motion-fast) ease;
+
+    > .fa {
+      align-items: center;
+      color: var(--easyedu-text-muted);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.9rem;
+      justify-content: center;
+      line-height: 1;
+      margin: 0;
+      inline-size: 0.9rem;
+    }
+
+    > input {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      color: var(--easyedu-field-text);
+      flex: 1 1 auto;
+      font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+      block-size: 2.25rem;
+      inline-size: 100%;
+      min-block-size: 0;
+      min-inline-size: 0;
+      padding: 0;
+
+      &::placeholder { color: var(--easyedu-text-muted); opacity: 1; }
+      &:focus { background: transparent; box-shadow: none; outline: 0; }
+    }
+    &:hover:not(:focus-within) { border-color: var(--easyedu-field-hover-border); }
+    &:focus-within { @include focus.ring($border-color: var(--easyedu-control-focus-border)); }
+    &:has(> input:disabled) {
+      background: var(--easyedu-field-disabled-surface);
+      border-color: var(--easyedu-control-border);
+      color: var(--easyedu-field-disabled-text);
+      > input, > .fa { color: var(--easyedu-field-disabled-text); }
+    }
+  }
+
+  .easyedu-ui .easyedu-create-icon-button {
+    @include foundations.foundation-button;
+    & {
+      block-size: 2.375rem;
+      inline-size: 2.375rem;
+      min-block-size: 2.375rem;
+      min-inline-size: 2.375rem;
+      border-radius: 0.5rem;
+      flex: 0 0 auto;
+      padding: 0;
+    }
+    &:hover, &:focus {
+      background: var(--easyedu-create-hover-surface);
+      border-color: var(--easyedu-create-hover-border);
+      color: var(--easyedu-surface);
+    }
+    &.easyedu-create-icon-button--secondary {
+      background: var(--easyedu-surface);
+      border-color: var(--easyedu-primary);
+      color: var(--easyedu-primary);
+      &:hover, &:focus { background: var(--easyedu-primary); color: var(--easyedu-surface); }
+      &:disabled { background: var(--easyedu-surface-soft); color: var(--easyedu-text-muted); }
+    }
+    &:disabled, &.easyedu-create-icon-button--secondary:disabled {
+      background: var(--easyedu-field-disabled-surface);
+      border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);
+      color: var(--easyedu-field-disabled-text);
+    }
+    > .fa-plus {
+      // Exact painted path of Foundations Control/plus, without SVG base-background
+      // or font-baseline offset. Retain the native accessible button label.
+      background: currentColor;
+      block-size: 1rem;
+      inline-size: 1rem;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='312.875 291.875 16.25 16.25'%3E%3Cpath d='M322.25 293.125C322.25 292.43359375 321.69140625 291.875 321 291.875C320.30859375 291.875 319.75 292.43359375 319.75 293.125L319.75 298.75L314.125 298.75C313.43359375 298.75 312.875 299.30859375 312.875 300C312.875 300.69140625 313.43359375 301.25 314.125 301.25L319.75 301.25L319.75 306.875C319.75 307.56640625 320.30859375 308.125 321 308.125C321.69140625 308.125 322.25 307.56640625 322.25 306.875L322.25 301.25L327.875 301.25C328.56640625 301.25 329.125 300.69140625 329.125 300C329.125 299.30859375 328.56640625 298.75 327.875 298.75L322.25 298.75Z'/%3E%3C/svg%3E") center / contain no-repeat;
+      &::before { content: none; }
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .easyedu-ui .easyedu-search-field,
+    .easyedu-ui .easyedu-create-icon-button {
+      min-block-size: 2.65rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .easyedu-ui .easyedu-search-field { transition: none; }
+  }
+}

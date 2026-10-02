@@ -4,6 +4,7 @@
 @use "../easyedu/adapters/moodle-file-deposit" as moodleforms;
 @use "../easyedu/data-classes" as data;
 @use "../easyedu/workspace-classes" as workspace;
+@use "../easyedu/workspace-control-classes" as workspaceControls;
 
 @include foundations.foundation-font("[[font:local_groupimport|InterVariable.woff2]]");
 @include foundations.foundation-classes;
@@ -11,3 +12,4 @@
 @include moodleforms.moodle-file-deposit-classes;
 @include data.data-classes;
 @include workspace.workspace-classes;
+@include workspaceControls.workspace-control-classes;

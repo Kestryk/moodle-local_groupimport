@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.51",
+  "version": "0.4.52",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -15,6 +15,16 @@
       "cardModuleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09"
     },
     "fullTreeIdentical": false,
+    "studentWorkspaceControls": {
+      "sourceCommit": "24d945e2252d1081d6f7a65daf5a7950daeff04b",
+      "modules": {
+        "scss/easyedu/_tokens.scss": "5a9de6841053c01544ba575e772596c5bfe52f8e",
+        "scss/easyedu/_workspace-classes.scss": "83d5f0a11820eb2b7100aa9ed9d3cd9a459cb773",
+        "scss/easyedu/_workspace-control-classes.scss": "31a19322faeda2226896777e6fe56aab87814254"
+      },
+      "scope": "Quieter workspace/card identity roles; native search/Create and view labels; no card disclosure Motion or business command change",
+      "status": "source/static candidate; paired Penpot and native proof recorded separately, human checklist open"
+    },
     "studentCompactPortals": {
       "sourceCommit": "0a93cdf923947e5e28e6cf909e4f43ed488249eb",
       "modules": {
@@ -31,7 +41,8 @@
       "moduleBlob": "6ed5feadfa22e28b2a1fd64685248e63469ed52d",
       "paintModule": "scss/easyedu/components/_field-paint.scss",
       "paintBlob": "6b0cc074953fc7a432dd3339bb476de19dd5c22c",
-      "tokensBlob": "2662e6d7ec327624c80f1ac13dc220061308bc97",
+      "tokensBlob": "5a9de6841053c01544ba575e772596c5bfe52f8e",
+      "tokensUpdateCommit": "24d945e2252d1081d6f7a65daf5a7950daeff04b",
       "exportsBlob": "4c80e4365ec78a5ebb4166273c605bd8ee7632fd",
       "foundationDefault": "2a31d374-d2a1-80fd-8008-ac73e5451656",
       "foundationFilled": "2a31d374-d2a1-80fd-8008-ac73e92f4940",
@@ -171,8 +182,8 @@
       "status": "final 1600/768/390 role, inline rest-hover-keyboard and opaque drawer proof passed; nine native menu type-centre-focus cases pass but overall test fails foreign CCB 390px icon occlusion; linked product member rows retain a density/export gap; human review deferred",
       "memberRowComponent": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
       "modules": {
-        "_tokens.scss": "2662e6d7ec327624c80f1ac13dc220061308bc97",
-        "_workspace-classes.scss": "7349f50c5cd5b688cb4c0fd2f1d50a56a0265762",
+        "_tokens.scss": "5a9de6841053c01544ba575e772596c5bfe52f8e",
+        "_workspace-classes.scss": "83d5f0a11820eb2b7100aa9ed9d3cd9a459cb773",
         "_foundation-classes.scss": "2d438071fef18225a2b56dc9b9ac05a0bda566bb",
         "components/_cards.scss": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
         "components/_menus.scss": "50619e7e17f5fc8be5ca3f8ae2e26c02267bbb16"

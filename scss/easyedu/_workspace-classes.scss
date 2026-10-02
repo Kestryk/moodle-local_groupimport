@@ -25,7 +25,7 @@
       box-shadow: none;
       color: var(--easyedu-workspace-title-color);
       display: inline-flex;
-      font: 700 1.875rem/1.2 var(--easyedu-font-family-ui);
+      font: 700 var(--easyedu-workspace-title-size)/1.2 var(--easyedu-font-family-ui);
       gap: var(--easyedu-action-icon-gap);
       max-inline-size: 100%;
       min-block-size: 0;
@@ -59,13 +59,13 @@
   }
   .easyedu-ui .easyedu-workspace-panel-title {
     color: var(--easyedu-workspace-panel-title-color);
-    font: 700 1.375rem/1.5 var(--easyedu-font-family-ui);
+    font: 700 var(--easyedu-workspace-panel-title-size)/1.5 var(--easyedu-font-family-ui);
     margin: 0;
   }
   @media (max-width: 40rem) {
     .easyedu-ui .easyedu-workspace-eyebrow { font-size: 0.75rem; }
     .easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle {
-      font-size: 1.4375rem;
+      font-size: var(--easyedu-workspace-title-size-narrow);
     }
     .easyedu-ui .easyedu-workspace-description { font-size: 0.8125rem; }
     .easyedu-ui .easyedu-workspace-panel > .card-body { padding: 1rem; }
