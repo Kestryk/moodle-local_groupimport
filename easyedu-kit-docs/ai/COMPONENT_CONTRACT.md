@@ -7,6 +7,12 @@ in their existing owners. Never blanket-style Clipboard/message textareas or
 unhide responsive/archived examples to demonstrate this family. Taller Penpot
 instances require genuine panel/card/column reflow, anchored footers and intact
 linked icon geometry; preserve the replaced local shapes hidden for rollback.
+Product action rows must follow the native captured order: full-width multiline
+field, shared Add/Cancel row, then recognition pills with distinct gaps. Do not
+omit Cancel or place the primary beside a multiline field merely to avoid
+reflow. If a linked composition forbids append, preserve its existing linked
+surface and change only the measured label role; hide an incomplete clone
+recoverably and record it instead of detaching/rebuilding the shared main.
 Resting hover must exclude focused and explicitly invalid fields in the Kit.
 Keep pointer-over-keyboard-focus checks in native input/textarea scenarios;
 do not compensate for specificity defects with a local focus paint.

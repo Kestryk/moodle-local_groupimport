@@ -1,0 +1,340 @@
+{
+  "schema": 1,
+  "date": "2026-10-02",
+  "batch": "EED-UI-2026-0073",
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "scope": "Two Grouping-add action rows and existing Ungrouped search Cancel label only",
+  "readback": [
+    {
+      "id": "cef95197-06bc-809e-8008-aee7b6f19b54",
+      "name": "Add groups / Recognition preview",
+      "x": 4276,
+      "y": 1434,
+      "width": 680,
+      "height": 300,
+      "children": [
+        {
+          "id": "cef95197-06bc-809e-8008-aee7b6f19b55",
+          "name": "Panel title",
+          "x": 20,
+          "y": 20,
+          "width": 420,
+          "height": 22.5
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee7b6f19b56",
+          "name": "Panel hint",
+          "x": 20,
+          "y": 48,
+          "width": 640,
+          "height": 32
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee7b6f19b5a",
+          "name": "EasyEdu / Feedback / Detected token / Success",
+          "x": 20,
+          "y": 260,
+          "width": 112,
+          "height": 24,
+          "component": "01c94d93-948c-803b-8008-9cef60be2363"
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee7b6f19b5b",
+          "name": "EasyEdu / Feedback / Detected token / Success",
+          "x": 140,
+          "y": 260,
+          "width": 104,
+          "height": 24,
+          "component": "01c94d93-948c-803b-8008-9cef60be2363"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba1e9fa1b0f5",
+          "name": "Foundation / Textarea M / Identifier values",
+          "x": 20,
+          "y": 84,
+          "width": 640,
+          "height": 112,
+          "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236b1b96e6",
+          "name": "Foundation / Primary S / Add groups",
+          "x": 20,
+          "y": 212,
+          "width": 120,
+          "height": 32,
+          "component": "761eab91-8390-80e8-8008-98c24d78f579"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236b57c7f6",
+          "name": "Foundation / Secondary S / Cancel",
+          "x": 152,
+          "y": 212,
+          "width": 88,
+          "height": 32,
+          "component": "761eab91-8390-80e8-8008-98c317ebe621"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236b92b850",
+          "name": "Action label / Add groups",
+          "x": 50,
+          "y": 212,
+          "width": 84,
+          "height": 32
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236bcb3b28",
+          "name": "Action label / Cancel",
+          "x": 152,
+          "y": 212,
+          "width": 88,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aee796b6049f",
+      "name": "Identifier recognition / Groups / Mixed result",
+      "x": 5200,
+      "y": 3196,
+      "width": 680,
+      "height": 300,
+      "children": [
+        {
+          "id": "cef95197-06bc-809e-8008-aee796b604a0",
+          "name": "Panel title",
+          "x": 20,
+          "y": 20,
+          "width": 420,
+          "height": 22.5
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee796b604a1",
+          "name": "Panel hint",
+          "x": 20,
+          "y": 48,
+          "width": 640,
+          "height": 32
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee796b604a5",
+          "name": "EasyEdu / Feedback / Detected token / Success",
+          "x": 20,
+          "y": 260,
+          "width": 112,
+          "height": 24,
+          "component": "01c94d93-948c-803b-8008-9cef60be2363"
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee796b604a6",
+          "name": "EasyEdu / Feedback / Detected token / Success",
+          "x": 140,
+          "y": 260,
+          "width": 104,
+          "height": 24,
+          "component": "01c94d93-948c-803b-8008-9cef60be2363"
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee797053172",
+          "name": "EasyEdu / Feedback / Detected token / Error",
+          "x": 252,
+          "y": 260,
+          "width": 132,
+          "height": 24,
+          "component": "01c94d93-948c-803b-8008-9cef617acbd9"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba1ebd53b18d",
+          "name": "Foundation / Textarea M / Identifier values",
+          "x": 20,
+          "y": 84,
+          "width": 640,
+          "height": 112,
+          "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236c5c878a",
+          "name": "Foundation / Primary S / Add groups",
+          "x": 20,
+          "y": 212,
+          "width": 120,
+          "height": 32,
+          "component": "761eab91-8390-80e8-8008-98c24d78f579"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236c9785a3",
+          "name": "Foundation / Secondary S / Cancel",
+          "x": 152,
+          "y": 212,
+          "width": 88,
+          "height": 32,
+          "component": "761eab91-8390-80e8-8008-98c317ebe621"
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236cd361f7",
+          "name": "Action label / Add groups",
+          "x": 50,
+          "y": 212,
+          "width": 84,
+          "height": 32
+        },
+        {
+          "id": "6d8cb67b-0321-8034-8008-ba236d35ba40",
+          "name": "Action label / Cancel",
+          "x": 152,
+          "y": 212,
+          "width": 88,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeaaa0f00d70",
+      "name": "Product / Group card / Inline member search / Open",
+      "x": 984,
+      "y": 1700,
+      "width": 560,
+      "height": 122,
+      "children": [
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa0f00d71",
+          "name": "Text",
+          "x": 24,
+          "y": 20,
+          "width": 512,
+          "height": 24,
+          "component": "2a31d374-d2a1-80fd-8008-ac5cf1020f2d"
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa0f00d72",
+          "name": "EasyEdu / Forms / Search field / M / Default",
+          "x": 24,
+          "y": 60,
+          "width": 384,
+          "height": 38,
+          "component": "81455adb-6787-8068-8008-9cea218710ef"
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa0f04b53",
+          "name": "EasyEdu / Buttons / Core action / Secondary / M",
+          "x": 432,
+          "y": 60,
+          "width": 104,
+          "height": 38,
+          "component": "761eab91-8390-80e8-8008-98c36f3db400"
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa0f08f46",
+          "name": "Text",
+          "x": 432,
+          "y": 60,
+          "width": 104,
+          "height": 38,
+          "component": "2a31d374-d2a1-80fd-8008-ac5cf1020f2d"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "activeTopBoards": 11,
+    "overlaps": [],
+    "newButtonDescendantOverflow": [],
+    "failedCloneHidden": "6d8cb67b-0321-8034-8008-ba236e4f009b",
+    "agentCanvasCheck": "Three screenshots inspected after restart, buttons/labels/pills aligned and separated",
+    "humanVisualAccepted": false,
+    "sourceCodeChanged": false,
+    "foundationMastersChanged": false
+  },
+  "evidence": {
+    "run": "identifier-actions-20261002-reconnect",
+    "artifactRoot": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/penpot/identifier-actions-20261002-reconnect",
+    "captures": [
+      "grouping-add.png",
+      "grouping-mixed.png",
+      "ungrouped-search.png"
+    ],
+    "exportLimitation": "Server-side direct shape export returned ResourceRequest timeout HTTP 500; owned CDP canvas screenshots used instead",
+    "compatibilityWarning": "MCP expects Penpot 2.17.0; connected Penpot 2.18.1; bounded readback and viewport API succeeded"
+  },
+  "rollback": {
+    "provenance": "Known original values from the pre-restart action correction; product-readback JSON retains the earlier field reflow. Not an intact pre-restart storage dump.",
+    "restoreFields": [
+      {
+        "id": "6d8cb67b-0321-8034-8008-ba1e9fa1b0f5",
+        "width": 476,
+        "height": 112
+      },
+      {
+        "id": "6d8cb67b-0321-8034-8008-ba1ebd53b18d",
+        "width": 476,
+        "height": 112
+      }
+    ],
+    "restoreOldActions": [
+      {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b59",
+        "x": 4786,
+        "y": 1536,
+        "width": 146,
+        "height": 36,
+        "hidden": false
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aee796b604a4",
+        "x": 5710,
+        "y": 3298,
+        "width": 146,
+        "height": 36,
+        "hidden": false
+      }
+    ],
+    "restorePills": [
+      {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b5a",
+        "x": 4296,
+        "y": 1658
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b5b",
+        "x": 4416,
+        "y": 1658
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aee796b604a5",
+        "x": 5220,
+        "y": 3420
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aee796b604a6",
+        "x": 5340,
+        "y": 3420
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aee797053172",
+        "x": 5220,
+        "y": 3456
+      }
+    ],
+    "hideCreated": [
+      "6d8cb67b-0321-8034-8008-ba236b1b96e6",
+      "6d8cb67b-0321-8034-8008-ba236b57c7f6",
+      "6d8cb67b-0321-8034-8008-ba236b92b850",
+      "6d8cb67b-0321-8034-8008-ba236bcb3b28",
+      "6d8cb67b-0321-8034-8008-ba236c5c878a",
+      "6d8cb67b-0321-8034-8008-ba236c9785a3",
+      "6d8cb67b-0321-8034-8008-ba236cd361f7",
+      "6d8cb67b-0321-8034-8008-ba236d35ba40"
+    ],
+    "searchLabel": {
+      "id": "92c1c225-95fb-802e-8008-aeaaa0f08f46",
+      "fontSize": 14,
+      "fontWeight": 400,
+      "fill": "#5d7287",
+      "fontFamily": "Inter",
+      "align": "center",
+      "verticalAlign": "center"
+    },
+    "instructions": "Restore field Surface width 476 and text width 448 with original 14px inset; restore originals and hide new linked roots/labels; keep failed orphan hidden. Never detach, delete, or rebuild shared mains."
+  }
+}

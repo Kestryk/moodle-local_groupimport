@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-02 - Product identifier action alignment
+
+- Reconcile the two Grouping-add product specimens with native below-field
+  Add/Cancel placement using existing linked Foundation controls; align their
+  recognition pills and correct the existing search Cancel label role.
+  Verify persistence after restart, zero board overlap and contained glyphs;
+  inspect/pin three canvas checkpoints with recoverable originals. No shared
+  main, plugin source, generated CSS/AMD or original card Motion change.
+
 ## 2026-10-02 - Foundation identifier Textarea adoption
 
 - Focused native Group/Grouping multiline proof and shared-input regression
