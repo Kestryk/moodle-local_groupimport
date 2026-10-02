@@ -27,7 +27,9 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  &__search-field--structure {
+  // Native visibility is consumer behavior, independent of the opt-in Search
+  // recipe's display:flex. Do not reveal structure-only filters in Complete.
+  &:not(&--structure-focus) &__search-field--structure {
     display: none;
   }
 
