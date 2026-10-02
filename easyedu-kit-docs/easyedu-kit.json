@@ -50,6 +50,23 @@
       "productActionProof": "identifier-actions-20261002-reconnect: three canvas captures inspected and pinned; Add/Cancel/pills aligned, 11 active boards without overlap; originals recoverable, human acceptance deferred",
       "status": "source/static and five linked product fields reflowed; 1600/768/390 native rest-hover-focus, multiline lookup, pills and Cancel PASS; seven captures inspected/pinned; human review deferred"
     },
+    "studentClipboardFields": {
+      "sourceCommit": "3693a1feb360bd58921e0fdd7df402cdeeae54bd",
+      "module": "scss/easyedu/components/_textareas.scss",
+      "moduleBlob": "f1c839377cfd06fe571201f2e604dc2304b59ac3",
+      "paintModule": "scss/easyedu/components/_field-paint.scss",
+      "paintBlob": "6b0cc074953fc7a432dd3339bb476de19dd5c22c",
+      "formsModule": "scss/easyedu/components/_forms.scss",
+      "formsBlob": "c22f28fa9517e40e331c425d7ecbf1b2a68cdff2",
+      "foundationDefault": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+      "productInstance": "cef95197-06bc-809e-8008-aeffd025d4c6",
+      "audit": "docs/testing/foundations-clipboard-message-audit-2026-10-02.json",
+      "generatedCssBlob": "e927973157cc552808e8c40cf45f2679c0ba90ff",
+      "scenarioBlob": "03611b70912a54e4b0bbd31e9af08e7b1f69770e",
+      "discoveryRun": "easystud-authenticated-20261002T122711701Z-33816",
+      "scope": "Existing Clipboard textarea and native lookup results only; six rows, parser, announcement and close unchanged; message portal excluded",
+      "status": "Sass and four source/pin contracts PASS; exactly one spec discovered, not executed. Source candidate only; native preview blocked on post-restart 5.1 database availability; human review deferred"
+    },
     "studentInlineFeedback": {
       "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",
       "formsModule": "scss/easyedu/components/_forms.scss",

@@ -1,5 +1,59 @@
 # Foundations Student Management migration
 
+## Clipboard field reconciliation - bounded source candidate 2026-10-02
+
+Scope card: P1 inside EED-UI-2026-0073, owned EasyStud source worktree only.
+Includes the existing Clipboard textarea's canonical M recipe and its native
+recognized/unknown result pills, source/static contracts, one local-supervised
+non-mutating scenario and this documentation. No new Foundation master is
+needed: page 04 already links Textarea M Default and Success/Error result pills.
+Keep six native rows, vertical resize, the original identifier parser, live
+announcement and close/focus behavior. Do not impose the specimen's 740px width
+or 112px minimum as a fixed native height. No modal-shell/header, navigation,
+Group/Grouping field, card Motion, business command or native message changes.
+Allowlist: `_modals.scss` textarea adapter; `_structure.scss` Clipboard-result
+adapter; generated `styles.css`; focused source/static scenario; existing
+consumer docs/checklist/changelog/AI contract/manifest and exact audit JSON.
+Platform registry/crosswalk updates remain bounded; shared planning not owned.
+
+Audit JSON: `docs/testing/foundations-clipboard-message-audit-2026-10-02.json`.
+Owned-CDP Clipboard canvas capture inspected and pinned as
+`clipboard-audit-20261002`, no Penpot modification or whole-modal parity claim.
+Native message is a distinct Moodle body portal with rows 10, flexible desktop
+height and a 176-256px non-resizable phone editor. Its theme/font propagation
+and native modal ownership require a separate paired audit; do not blanket
+apply the card/Clipboard adapter or remove native height/resize behavior.
+
+After the workstation restart, HTTP `/login/index.php` reports database
+connection failure: the 5.1 Apache is running, its MariaDB 3306 is not; separate
+4.5 MariaDB 3307 remains running. Starting the exact 5.1 process was rejected
+by execution policy before execution. No process/config/data changed, no
+lease acquired and no repeated blocked launch attempted. Native proof and
+promotion/cache remain gated on restored 5.1 database availability; source
+compilation/discovery are not runtime or human acceptance.
+
+Source checkpoint: Sass PASS (existing `_layout.scss:113` / `_loading.scss:257`
+mixed-declaration warning unchanged); Clipboard, Group/Grouping Textarea,
+single-line field and inline-feedback pin/adapter contracts PASS; spec Node
+syntax and `git diff --check` PASS. Generated CSS changes add exactly 81 lines
+under Clipboard field/result selectors, without changing existing declarations.
+CSS blob `e927973157cc552808e8c40cf45f2679c0ba90ff`; native AMD blob
+`741a385c819280c2f85c30ec8f2fe1ef47b78747` and Mustache remain unchanged.
+Clipboard spec blob `03611b70912a54e4b0bbd31e9af08e7b1f69770e`.
+Discovery `easystud-authenticated-20261002T122711701Z-33816` selects exactly
+one test, exit 0; it is deliberately discovery-only/incomplete, not a native
+PASS. Cleanup records no acquired lease or fixture request, child stopped and
+credentials cleared. Scoped retention dry-run candidates/deletions/errors zero.
+No preview promotion or cache purge is performed while the database is down.
+Future preview must include docs predecessors `fdc0e08`, `8fe7a64` and the
+Clipboard source commit in order from runtime `d0d4208`, never omit them.
+
+Declared Moodle floor stays 5.1 (`2025100600`); this candidate has no executed
+compatibility/browser claim. Official references consulted:
+[Moodle coding style](https://moodledev.io/general/development/policies/codingstyle)
+and [Sass module use](https://sass-lang.com/documentation/at-rules/use/).
+No new Moodle API or shared Kit recipe is introduced.
+
 ## Final multiline and shared-paint proof - 2026-10-02
 
 Canonical Kit `3693a1f`, consumer `b942004`, clean local Moodle 5.1 runtime
