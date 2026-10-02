@@ -15,6 +15,15 @@
       "cardModuleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09"
     },
     "fullTreeIdentical": false,
+    "studentInlineFeedback": {
+      "sourceCommit": "f38913c38fea9a67b9887efe8c34e89941028740",
+      "formsModule": "scss/easyedu/components/_forms.scss",
+      "formsBlob": "c22f28fa9517e40e331c425d7ecbf1b2a68cdff2",
+      "buttonsModule": "scss/easyedu/_foundation-classes.scss",
+      "buttonsBlob": "df3b9c8e0b8c46066812473ded272ea74f7cc2c0",
+      "scope": "Group/Grouping identifier-result success/error pills and inline container-search Cancel",
+      "status": "shared recipes consumed; browser and human review pending; generic field candidates not adopted"
+    },
     "studentDragPreview": {
       "sourceCommit": "8b8d83f9ea71be1503a9a2de034e9e9b8e704e6a",
       "module": "scss/easyedu/components/_overlays.scss",

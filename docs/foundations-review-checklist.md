@@ -8,6 +8,9 @@ Technical checks and human visual acceptance remain separate.
 
 - [ ] Measured identity typography/colours, subordinate group-member names.
 - [ ] Compact Add/Save/Cancel labels, vertical icon/text centres and common gap.
+- [ ] Inline identifier results use shared Success/Error pills; recognised
+  names, unknown identifiers and card metadata remain distinct.
+- [ ] Container-search Cancel matches the compact Foundation secondary action.
 - [ ] Mobile drawer has an opaque surface after its opening transition.
 - [ ] Context menu labels match Foundations; foreign CCB drawer occlusion resolved.
 - [ ] All product layout-toggle glyphs stay inside their matching centred slots.
