@@ -30,27 +30,10 @@
 
   &-drag-preview {
     @include easyedu.drag-preview-container;
-
-    > [data-selectable-type] {
-      border-left-width: var(--local-groupimport-easystud-identity-border-width);
-      @include easyedu.drag-preview-moving-outline;
-      @include easyedu.drag-preview-card;
-    }
-
-    &--participant .local-groupimport-easystud-user__rail {
-      background: var(--local-groupimport-easystud-participant);
-      opacity: 1;
-    }
+    @include easyedu.drag-preview-compact;
 
     &.is-captured {
       @include easyedu.drag-preview-captured;
-    }
-
-    .local-groupimport-easystud-selector,
-    .local-groupimport-easystud-group__members-toggle,
-    .local-groupimport-easystud-group__members-more,
-    button {
-      pointer-events: none;
     }
 
     &.has-stack {
@@ -74,6 +57,6 @@
   }
 
   &-drag-preview__moving-icon {
-    @include easyedu.drag-preview-moving-icon(var(--local-groupimport-easystud-drag-handle));
+    @include easyedu.drag-preview-moving-icon(var(--easyedu-drag-handle));
   }
 }

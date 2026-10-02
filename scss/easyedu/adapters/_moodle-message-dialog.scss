@@ -1,0 +1,110 @@
+// Opt-in skin for Moodle's core bulk-message portal. The caller decorates the
+// existing modal and relays resolved workspace tokens; Moodle owns its form,
+// events, focus trap, recipients, asynchronous body and sending behaviour.
+@use "../foundation-classes" as foundations;
+@use "../components/modals";
+@use "../components/textareas";
+@use "../components/typography";
+
+@mixin moodle-message-dialog {
+  @include foundations.foundation-scope;
+  @include modals.native-modal-loading;
+
+  .modal-dialog {
+    box-sizing: border-box;
+    height: min(58vh, 34rem);
+    max-height: calc(100dvh - 1rem);
+    max-width: min(48rem, calc(100vw - 2rem));
+    width: min(48rem, calc(100vw - 2rem));
+  }
+
+  .modal-content {
+    @include modals.context-modal-surface;
+    @include modals.context-modal-variant(primary);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .modal-header {
+    @include modals.modal-header;
+    flex: 0 0 auto;
+  }
+
+  .modal-title {
+    @include typography.type-modal-title;
+    color: var(--easyedu-card-identity-title-color);
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .modal-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 1rem;
+  }
+
+  .modal-body form,
+  .modal-body .form-group,
+  .modal-body .form-control-wrapper,
+  .modal-body .fitem,
+  .modal-body .felement,
+  .easyedu-message-dialog__field-wrap {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .easyedu-message-dialog__field-wrap { margin: 0; width: 100%; }
+
+  .modal-footer {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: var(--easyedu-action-icon-gap);
+    justify-content: center;
+    padding: 0.8rem 1rem;
+
+    .easyedu-button {
+      @include foundations.foundation-button($density: compact);
+      & { margin: 0; }
+    }
+    .easyedu-button--secondary { @include foundations.foundation-button($secondary: true, $density: compact); }
+  }
+
+  .easyedu-message-dialog__field {
+    @include textareas.foundation-textarea;
+    & {
+      flex: 1 1 auto;
+      height: 100%;
+      min-height: 12rem;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .modal-dialog {
+      height: min(34rem, calc(100dvh - 1rem));
+      margin: 0.5rem auto;
+      max-width: calc(100vw - 1rem);
+      width: calc(100vw - 1rem);
+    }
+    .modal-body form,
+    .easyedu-message-dialog__field-wrap { flex: 0 0 auto; }
+    .easyedu-message-dialog__field {
+      flex: 0 0 auto;
+      height: clamp(11rem, 30dvh, 16rem);
+      max-height: 16rem;
+      min-height: 11rem;
+      resize: none;
+    }
+  }
+}

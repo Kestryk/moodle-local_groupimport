@@ -1,5 +1,63 @@
 # Foundations Student Management migration
 
+## User correction scope - 2026-10-02, after database recovery
+
+Source correction candidate (Kit `0a93cdf`, 0.4.51): a real body-level message
+portal had system font and an empty `--easyedu-primary` in the authenticated
+1600px baseline. A shared runtime theme relay now serves both message and drag
+portals. Message chrome/field/footer lives in the canonical Kit adapter, not
+local repeated paint. Move consumes public title, select and centred actions.
+The compact preview creates identity/name only (288px maximum at 16px root),
+not a duplicate business card. Original disclosure/expand-all Motion is not
+changed. The missing Ungrouped icon referenced an undefined variable and now
+uses the existing canonical grouping identity.
+
+Static proof: Sass generation, named AMD build, consumer drag/message parity
+contracts, JS syntax and Kit compact-portals fixture. Known existing Sass
+mixed-declaration warning remains in the loading layout; this lot adds none.
+Baseline `easystud-authenticated-20261002T132846243Z-10504` failed at the mobile
+message selector after preserving desktop message/Move and three workspace
+captures. It is not a passing mobile/drag record. Its lease/child cleanup passed.
+The corrected audit reloads and selects in the actual mobile workspace.
+
+Still pending in this lot: paired Foundation mains/Library and product
+specimens, card-title contrast/scale, create plus optical alignment, search
+field geometry, pagination and context-menu completeness. These are not
+silently considered fixed by the portal changes. Human checklist stays open.
+The consumer remains a pinned subset (`fullTreeIdentical=false`); ordinary
+visual rules in the remaining legacy adapters have not all been extracted.
+`manage.mustache` also retains an existing primary profile-badge `style`
+binding for configured colour data; no ordinary component inline paint is
+added by this lot. Do not claim the whole plugin is class-only yet.
+
+P1 continuation of EED-UI-2026-0073. Owner: this source window, dedicated
+EasyStud `easystud-foundations-student-management-20260928` and canonical Kit
+`easyedu-ui-kit-phase0-mass-admin-20260927` worktrees. Penpot writes are serialized
+through the owned 9223 relay. Runtime promotion and non-mutating browser checks
+use the managed preview/credential/lease procedures. Shared Platform planning,
+index, batch and crosswalk files stay with their planning owner.
+
+Accepted scope, not completion claims: compact Participant/Group drag previews
+(identity retained, details/actions removed, Single without stack/count,
+Multiple with two rear layers and +N); native message-modal Kit/theme propagation
+and controls; Move participants/groups modal controls and product specimens;
+card-title contrast; missing Ungrouped identity icon; both creation-plus centres;
+adjacent search/creation geometry; reduced workspace/panel/view-title scale;
+pagination; shared-source ownership and Mustache inline-style audit.
+
+Keep original card disclosure/expand-all Motion, permissions, translations,
+selections, commands and data. Browser checks open/cancel only: no sending,
+creation, move, removal, drop or fixture mutation. This request explicitly
+changes the former full-content drag visual contract, not source-card contents.
+The grouped human checklist remains deferred and unchecked. Record each item
+separately as source, Penpot, native proof and human review; no whole-view
+harmonisation or 100% Kit-only claim before those checks.
+
+Database recovery evidence is external under the 20261002T124836Z recovery
+run. The 5.1 login recovered and 4.5 remained independent. The earlier
+Clipboard database blocker below is historical, not current; its source
+candidate still needs managed promotion and its own native proof.
+
 ## Clipboard field reconciliation - bounded source candidate 2026-10-02
 
 Scope card: P1 inside EED-UI-2026-0073, owned EasyStud source worktree only.

@@ -6,6 +6,18 @@ Technical checks and human visual acceptance remain separate.
 
 ## Student Management
 
+- [ ] Compact simplified Participant/Group drag previews: identity and title,
+  no card contents or action/selection controls, bounded footprint, no opaque
+  moving-icon square; Multiple only has rear layers and extra-item count.
+- [ ] Native message modal: inherited Kit font/tokens outside the workspace,
+  canonical textarea, header/body/footer, centred Send/Cancel and close action.
+- [ ] Move participants/groups dialogs: canonical destination/menu and actions,
+  source-complete Penpot specimens including origin option and empty state.
+- [ ] Creation + centred in solid/outline buttons; adjacent search/add fields
+  have coherent height/radius; Ungrouped identity icon remains visible.
+- [ ] Reduced workspace/column/view-title sizes and softer card-title contrast,
+  paired canonical Kit/Foundation and product/native coverage.
+
 - [ ] Clipboard canonical multiline field and recognized/unknown result pills,
   six native rows, lookup, resize, close/focus at desktop/tablet/mobile;
   source candidate only until the post-restart 5.1 database/test gate passes.

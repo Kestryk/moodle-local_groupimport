@@ -1,5 +1,6 @@
 // Shared modal shell styles.
 @use "../easyedu" as easyedu;
+@use "../easyedu/adapters/moodle-message-dialog" as messages;
 
 .local-groupimport-easystud {
   // Clipboard's multiline field already uses Textarea M in product Penpot.
@@ -142,129 +143,12 @@
 }
 
 .local-groupimport-easystud-message-modal {
-  @include easyedu.native-modal-loading(".loading-icon", var(--local-groupimport-easystud-primary));
+  // Native portal skin is copied verbatim from the canonical Kit. Only the
+  // existing consumer Motion state/selector is retained here.
+  @include messages.moodle-message-dialog;
 
   &.is-closing .local-groupimport-easystud-message-modal__dialog {
     animation: easyedu-modal-out var(--easyedu-motion-fast) ease both;
   }
 
-  .local-groupimport-easystud-message-modal__dialog {
-    background-color: var(--easyedu-surface, #fff);
-    box-sizing: border-box;
-    height: min(58vh, 34rem);
-    max-height: calc(100vh - 1rem);
-    max-height: calc(100dvh - 1rem);
-    max-width: min(48rem, calc(100vw - 2rem));
-    width: min(48rem, calc(100vw - 2rem));
-  }
-
-  .local-groupimport-easystud-message-modal__content {
-    @include easyedu.context-modal-surface;
-    @include easyedu.context-modal-variant(success);
-
-    background-color: var(--easyedu-surface, #fff);
-    border-color: var(--local-groupimport-easystud-border);
-    box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.24);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-height: 0;
-    overflow: hidden;
-  }
-
-  .modal-header {
-    flex: 0 0 auto;
-    padding: 0.9rem 1rem;
-  }
-
-  .modal-title {
-    color: #203244;
-    font-weight: 780;
-  }
-
-  .modal-body {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    max-height: 100%;
-    min-height: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    padding: 1.2rem;
-  }
-
-  &.is-loading .modal-body {
-    min-height: 15rem;
-  }
-
-  .modal-body form,
-  .modal-body .form-group,
-  .modal-body .form-control-wrapper,
-  .modal-body .fitem,
-  .modal-body .felement,
-  .local-groupimport-easystud-message-modal__textarea-wrap {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    min-height: 0;
-  }
-
-  .local-groupimport-easystud-message-modal__textarea-wrap {
-    margin: 0;
-    width: 100%;
-  }
-
-  .modal-footer {
-    flex: 0 0 auto;
-    padding: 0.8rem 1rem;
-  }
-
-  .local-groupimport-easystud-message-modal__textarea {
-    border-color: #cbdcea;
-    border-radius: 0.82rem;
-    display: block;
-    flex: 1 1 auto;
-    height: 100% !important;
-    min-height: 12rem;
-    resize: vertical;
-    transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
-    width: 100%;
-
-    &:focus {
-      @include easyedu.ring($border-color: #8abce3);
-    }
-  }
-
-  @media (max-width: 575.98px) {
-    .local-groupimport-easystud-message-modal__dialog {
-      height: min(34rem, calc(100vh - 1rem));
-      height: min(34rem, calc(100dvh - 1rem));
-      margin: 0.5rem auto;
-      max-height: calc(100vh - 1rem);
-      max-height: calc(100dvh - 1rem);
-      max-width: calc(100vw - 1rem);
-      width: calc(100vw - 1rem);
-    }
-
-    .modal-body {
-      padding: 0.9rem;
-    }
-
-    .modal-body form {
-      flex: 0 0 auto;
-    }
-
-    .local-groupimport-easystud-message-modal__textarea-wrap {
-      flex: 0 0 auto;
-    }
-
-    .local-groupimport-easystud-message-modal__textarea {
-      flex: 0 0 auto;
-      height: clamp(11rem, 30dvh, 16rem) !important;
-      max-height: 16rem;
-      min-height: 11rem;
-      resize: none;
-    }
-  }
 }

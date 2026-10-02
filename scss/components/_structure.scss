@@ -603,7 +603,8 @@
     --local-groupimport-easystud-ungrouped: #79506f;
     --local-groupimport-easystud-ungrouped-rail: #c7a9bf;
 
-    @include easyedu.identity-rail(var(--local-groupimport-easystud-icon-ungrouped));
+    // This is the grouping/container identity, not an undefined icon alias.
+    @include easyedu.identity-rail(var(--easyedu-icon-grouping));
 
     background: linear-gradient(180deg, #fefbfd 0%, #f7eef5 100%);
     border-color: #e5d4e0;

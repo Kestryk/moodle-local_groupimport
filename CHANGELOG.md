@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-02 - Compact drag and native action-dialog correction
+
+- Relay workspace theme/font to the body-level Moodle message portal, consume
+  the canonical message adapter and Foundation Textarea/actions, and centre
+  its footer. Preserve native recipients, loading, ten rows, events and Motion.
+- Replace full-card drag clones with a compact identity/name summary; preserve
+  movement badge and Multiple-only stack/count, and leave source cards intact.
+- Restore Groups without grouping identity from the existing grouping icon;
+  remove its undefined mask alias. Adopt public title/select/footer/button
+  roles in Move without changing destinations or commands.
+- Pin the three changed Kit modules byte-for-byte to 0a93cdf. Compilation and
+  source checks passed; native rendering and paired Penpot readbacks are
+  separate gates, not user acceptance. The baseline audit's mobile-selector
+  failure remains preserved, with a fresh mobile-load correction in the spec.
+
 ## 2026-10-02 - Clipboard field source candidate
 
 - Adopt existing Foundation Textarea M and detected Success/Error recipes

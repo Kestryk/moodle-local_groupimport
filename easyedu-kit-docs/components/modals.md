@@ -2,6 +2,31 @@
 
 EasyEdu modals use Moodle-compatible markup with a shared visual shell.
 
+## Native message portal and action-dialog classes
+
+Import `easyedu/adapters/moodle-message-dialog` and include its
+`moodle-message-dialog` recipe only on the decorated native modal root. Apply
+`easyedu-message-dialog__field` to the native textarea and `__field-wrap` to
+its existing wrapper; decorate footer buttons with `easyedu-button` and use
+`easyedu-button--secondary` on Cancel. The adapter owns chrome, Inter/modal
+roles, Textarea M, compact actions, centred footer and narrow reflow.
+
+Body-level portals do not inherit a consumer root's variables. Relay resolved
+`--easyedu-*` theme variables and the resolved UI font from the workspace.
+This runtime token bridge is not permission to add inline component paint.
+Preserve native recipients, rows, labels, focus trap, async loading and events.
+Opening/cancelling is proof of appearance, not proof of sending a message.
+
+`easyedu/dialog-classes` exposes `dialog-classes`: `easyedu-dialog-actions`,
+`easyedu-modal-title` and `easyedu-select` inside an `easyedu-ui` scope. The
+select keeps its native options and keyboard behavior and reuses Text field M
+paint/geometry. It is not a replacement custom dropdown controller.
+
+Compilation fixture: `examples/compact-drag-and-message.scss`. Static check:
+`powershell -File scripts/test-compact-portals-contract.ps1`. These checks do
+not replace the consumer's authenticated desktop/mobile captures or paired
+Penpot readbacks, and do not mark human acceptance.
+
 ## Mixins
 
 ```scss
@@ -199,12 +224,9 @@ with `modal-file-drop-state` and toggle the provided state class from plugin
 JavaScript.
 
 History actions remain real buttons and keep their semantic Bootstrap variant;
-`history-action` only standardises compact geometry. When a consumer presents
-multiple history actions together, place them in a wrapping action row and give
-each control the same compact action geometry, baseline and minimum height.
-At narrow widths, let the controls take a full row so labels remain readable.
-Use `history-state` for non-interactive status pills. Available state variants
-are `neutral`, `success` and `warning`.
+`history-action` only standardises compact geometry. Use `history-state` for
+non-interactive status pills. Available state variants are `neutral`, `success`
+and `warning`.
 
 ## Import Audit Checklist
 
