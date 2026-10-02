@@ -16,11 +16,11 @@
     },
     "fullTreeIdentical": false,
     "studentNativeTextFields": {
-      "sourceCommit": "91b67a9b9e9782d98ccbb44812bc0ae94be120d5",
+      "sourceCommit": "3693a1feb360bd58921e0fdd7df402cdeeae54bd",
       "module": "scss/easyedu/components/_text-fields.scss",
       "moduleBlob": "6ed5feadfa22e28b2a1fd64685248e63469ed52d",
       "paintModule": "scss/easyedu/components/_field-paint.scss",
-      "paintBlob": "15f22938e53dea778936e1211e4d20d76539db2d",
+      "paintBlob": "6b0cc074953fc7a432dd3339bb476de19dd5c22c",
       "tokensBlob": "2662e6d7ec327624c80f1ac13dc220061308bc97",
       "exportsBlob": "4c80e4365ec78a5ebb4166273c605bd8ee7632fd",
       "foundationDefault": "2a31d374-d2a1-80fd-8008-ac73e5451656",
@@ -33,15 +33,15 @@
       "status": "source/static and live Penpot checks; recorded native creation/Rename 1600/768/390 PASS with nine inspected captures; internal paint extracted without geometry changes, rerun pending; human review deferred"
     },
     "studentNativeTextareas": {
-      "sourceCommit": "91b67a9b9e9782d98ccbb44812bc0ae94be120d5",
+      "sourceCommit": "3693a1feb360bd58921e0fdd7df402cdeeae54bd",
       "module": "scss/easyedu/components/_textareas.scss",
       "moduleBlob": "f1c839377cfd06fe571201f2e604dc2304b59ac3",
       "paintModule": "scss/easyedu/components/_field-paint.scss",
-      "paintBlob": "15f22938e53dea778936e1211e4d20d76539db2d",
+      "paintBlob": "6b0cc074953fc7a432dd3339bb476de19dd5c22c",
       "exportsBlob": "4c80e4365ec78a5ebb4166273c605bd8ee7632fd",
       "foundationFilled": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
       "scope": "Native Group/Grouping identifier boxes only, preserving rows and vertical resizing; Clipboard and message textarea not adopted",
-      "status": "source/static pending; product reflow and native browser proof pending; human review deferred"
+      "status": "source/static and five linked product fields reflowed; native focused-under-pointer failed, canonical priority corrected; rerun pending, human review deferred"
     },
     "studentInlineFeedback": {
       "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",

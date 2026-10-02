@@ -7,6 +7,9 @@ in their existing owners. Never blanket-style Clipboard/message textareas or
 unhide responsive/archived examples to demonstrate this family. Taller Penpot
 instances require genuine panel/card/column reflow, anchored footers and intact
 linked icon geometry; preserve the replaced local shapes hidden for rollback.
+Resting hover must exclude focused and explicitly invalid fields in the Kit.
+Keep pointer-over-keyboard-focus checks in native input/textarea scenarios;
+do not compensate for specificity defects with a local focus paint.
 
 Creation/Rename inputs consume `foundation-text-field` only. Shared field state
 paint and insets live in the canonical Kit; do not disguise Search components,

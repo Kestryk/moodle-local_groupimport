@@ -19,7 +19,8 @@
     opacity: 1;
   }
 
-  &:hover:not(:disabled):not([aria-disabled="true"]) {
+  // Resting hover must never obscure keyboard focus or an explicit error.
+  &:hover:not(:disabled):not([aria-disabled="true"]):not(:focus):not(:focus-visible):not([aria-invalid="true"]) {
     border-color: var(--easyedu-field-hover-border);
   }
 

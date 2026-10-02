@@ -2,6 +2,9 @@
 
 ## 2026-10-02 - Foundation identifier Textarea adoption
 
+- Preserve the failed focused-under-pointer run and consume the canonical
+  state-priority correction; no local focus skin or geometry/Motion change.
+  Keep the native focus assertion and separate viewport/field-width evidence.
 - Consume the separately named canonical multiline recipe for native
   Group/Grouping identifier boxes only. Preserve rows, resizing, recognition,
   commands and original Motion; share field paint without aliasing input
