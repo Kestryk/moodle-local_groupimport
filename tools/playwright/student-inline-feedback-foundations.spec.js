@@ -110,7 +110,13 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
                 await cancel.click();
                 await expect(panel).toBeHidden();
                 await clearSelection();
-                if (kind === 'grouping') {
+                if (kind === 'grouping' && responsive) {
+                    // Source _mobile.scss intentionally hides this direct
+                    // search trigger in responsive Groupings. Do not force
+                    // click a hidden action or invent a mobile command.
+                    await expect(card.locator('[data-easystud-container-search-toggle]').first()).toBeHidden();
+                    reports.push({width, kind: 'container-search', exposure: 'hidden by native responsive contract'});
+                } else if (kind === 'grouping') {
                     await card.locator('[data-easystud-container-search-toggle]').first().click();
                     const search = card.locator('[data-easystud-container-search-panel]:visible').first();
                     const searchCancel = search.locator('[data-easystud-container-search-cancel]');
@@ -123,6 +129,7 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
                     await searchCancel.focus();
                     expect(await searchCancel.evaluate(n => n.matches(':focus-visible'))).toBe(true);
                     await expect(searchCancel).toHaveCSS('border-top-color', 'rgb(138, 188, 227)');
+                    expect(await searchCancel.evaluate(n => getComputedStyle(n).boxShadow)).not.toBe('none');
                     await search.screenshot({path: testInfo.outputPath(`inline-search-${width}.png`)});
                     await searchCancel.click();
                     await expect(search).toBeHidden();

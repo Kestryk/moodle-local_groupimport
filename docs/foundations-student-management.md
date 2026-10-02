@@ -20,6 +20,23 @@ button density/semantic paths; compilation contract passes. The identical
 single-module update is consumed here with no local focus-border workaround.
 Corrected browser verification remains pending until separately recorded.
 
+Verification scope correction: the initial scenario attempted to click the
+responsive Grouping direct-search trigger. `_mobile.scss:544-548` intentionally
+hides that action. The revised scenario asserts hiding at 768/390 and tests
+Cancel's native focus only where the original search can be opened on desktop;
+it does not force a hidden click, create a mobile command or weaken the shared
+border assertion. Both identifier-result families still require three widths.
+
+The declared plugin floor remains Moodle 5.1 (`2025100600`); only the authorized
+local 5.1 preview is exercised. No new Moodle API, PHP, template, parser or AMD
+change, and no 4.5/5.2/5.3 compatibility claim. Source/generated CSS and native
+focus are checked independently. Current Kit strict audit still reports the
+same five pre-existing new findings in workspace/card-actions/metadata/menus;
+its baseline is unchanged and no clean global-audit claim is made.
+Penpot MCP remains disconnected. Screenshot inspection also retains native
+textarea focus as a named-field-recipe reconciliation task, not a reason to
+invent a local input skin. Paired Foundation/Product readback remains pending.
+
 Scope: `scss/components/_structure.scss` maps only native Group/Grouping
 identifier-result hosts to the existing canonical `detected-token(success)`
 and `detected-token(error)` recipes. Their typography, semantic colours,
@@ -42,7 +59,10 @@ for recipe ownership, exact canonical pins and compiled selector scope.
 `tools/playwright/student-inline-feedback-foundations.spec.js` is a
 `local-supervised` candidate for a populated authenticated course: exercise
 native inline tools, type existing/unknown identifiers without submitting,
-measure Success/Error and search Cancel at 1600/768/390, then clear/cancel.
+measure Success/Error at 1600/768/390 and desktop search Cancel, then clear/cancel.
+The responsive Grouping direct search trigger is intentionally hidden by
+`_mobile.scss`; assert that native exposure instead of force-clicking it or
+creating a mobile action. This does not remove the responsive identifier tool.
 It never activates Add, Save, Remove, messaging or other business mutations.
 Browser execution is pending; all human checklist items stay unchecked.
 
