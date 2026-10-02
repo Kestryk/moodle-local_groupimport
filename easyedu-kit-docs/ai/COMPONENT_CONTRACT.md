@@ -6,6 +6,11 @@ reintroduce important local focus/radius rules or apply the single-line recipe
 to textarea/search wrappers. Preserve native commands and responsive hit targets.
 Canonical field focus owns value colour/surface too: a correct resting state
 and halo alone do not prevent Moodle's focus paint from overriding the value.
+Require useful native field width as well as height/containment: a contained
+28px input beside Save/Cancel is not visual success. Inspect whole-card crops;
+allow the native narrow editor grid to reflow without changing shared paint,
+commands or card Motion. Assert placeholder paint only when its native attribute
+exists, while explicitly retaining creation's required placeholder.
 
 Foundation-button keyboard focus must explicitly pass the shared focus-border
 token to `ring`. A visible halo is insufficient if the native outlined-control
