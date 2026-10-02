@@ -44,6 +44,52 @@ test('Student Clipboard consumes Foundation multiline and lookup results', async
             const modal = root.locator('[data-easystud-clipboard-modal]');
             await expect(modal).toBeVisible();
             await settle(modal);
+            // Inspect actual paint, including line fragments near the floating
+            // mobile navigation. A textarea-centre hit alone misses this defect.
+            const layering = await modal.evaluate(node => {
+                const describe = element => {
+                    const css = getComputedStyle(element);
+                    return {tag: element.tagName, classes: element.className,
+                        position: css.position, zIndex: css.zIndex, transform: css.transform,
+                        opacity: css.opacity, isolation: css.isolation, contain: css.contain};
+                };
+                const ancestors = element => {
+                    const result = [];
+                    for (; element; element = element.parentElement) result.push(describe(element));
+                    return result;
+                };
+                const help = node.querySelector('.local-groupimport-easystud-modal__body > p');
+                const walker = document.createTreeWalker(help, NodeFilter.SHOW_TEXT);
+                const fragments = [];
+                for (let text; (text = walker.nextNode());) {
+                    for (let i = 0; i < text.length; i++) {
+                        if (!text.textContent[i].trim()) continue;
+                        const range = document.createRange();
+                        range.setStart(text, i);
+                        range.setEnd(text, i + 1);
+                        for (const rect of range.getClientRects()) {
+                            const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
+                            fragments.push({x: rect.x, y: rect.y, width: rect.width, height: rect.height,
+                                unobscured: help.contains(hit), hit: hit ? describe(hit) : null});
+                        }
+                    }
+                }
+                const trigger = document.querySelector('[data-easyedu-navigation-open]');
+                const dialog = node.querySelector('.local-groupimport-easystud-modal__dialog');
+                const header = node.querySelector('.local-groupimport-easystud-modal__header');
+                return {modalAncestors: ancestors(node), triggerAncestors: ancestors(trigger),
+                    helpFragments: fragments, dialogBorder: getComputedStyle(dialog).borderTopColor,
+                    headerBackground: getComputedStyle(header).backgroundImage};
+            });
+            records.push({viewportWidth: width, layering});
+            expect(layering.helpFragments.length).toBeGreaterThan(0);
+            expect(layering.helpFragments.every(fragment => fragment.unobscured)).toBe(true);
+            expect(Number(layering.modalAncestors[0].zIndex)).toBeGreaterThan(Number(layering.triggerAncestors[0].zIndex));
+            expect(layering.dialogBorder).toBe('rgb(207, 224, 239)');
+            expect(layering.headerBackground).toBe('none');
+            await expect(modal.locator('h3')).toHaveCSS('font-size', '16px');
+            await expect(modal.locator('h3')).toHaveCSS('color', 'rgb(38, 72, 97)');
+            await expect(modal.locator('.easyedu-lookup-dialog__description')).toHaveCSS('font-size', '13px');
             const input = modal.locator('[data-easystud-paste-box]');
             await expect(input).toBeFocused();
             const measure = async state => {

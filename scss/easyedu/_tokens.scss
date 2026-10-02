@@ -28,6 +28,9 @@
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  // Dialogs opened by navigation must paint above its panel and trigger.
+  // Opt in on the actual fixed modal root, never just its inner surface.
+  --easyedu-modal-layer: calc(var(--easyedu-navigation-layer-panel) + 4);
   // Public drawer skin: referenced by navigation even outside a workflow.
   // Keep this opaque; an unresolved custom property makes background initial.
   --easyedu-navigation-drawer-surface: var(--easyedu-surface);

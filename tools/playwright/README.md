@@ -459,6 +459,13 @@ The canonical artifact-retention policy is
 
 ## Visual artifact policy
 
+The local-supervised Clipboard scenario additionally records fixed-root and
+navigation stacking ancestors plus painted helper-character hit targets.
+Candidate assertions require neutral lookup chrome and no covered help glyphs;
+the diagnostic baseline is not a post-fix pass. Keep normal Motion/navigation
+visible, native six rows, live lookup and close-focus routing; no business
+command is submitted. Penpot pairing precedes managed candidate promotion.
+
 The local-supervised Phase 0 responsive scenario covers 1440, 1024 and 390px.
 It records numbered overlapping viewport captures by scrolling Moodle's real
 inner scroll container. Review every numbered image; `fullPage` alone can

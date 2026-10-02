@@ -2,6 +2,12 @@
 
 ## 2026-10-02 - Workspace hierarchy and native control harmonisation
 
+- Prepare a scoped Kit-owned modal layer and neutral Clipboard shell, with
+  13px help and native six-row lookup/focus/Motion unchanged. Baseline mobile
+  paint confirms three help characters covered by navigation. This source
+  candidate is not served: paired Penpot publication and final browser proof
+  await the dedicated Penpot window reconnection.
+
 - Reconcile six native Move Penpot compositions with linked regular action
   families and shared desktop/narrow destination shells. Record populated
   native branch proof separately from static empty states and human review.

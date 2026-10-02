@@ -28,6 +28,12 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+For a modal/navigation collision, measure the fixed root, ancestor contexts
+and painted helper characters. Consume the canonical layer class on the root,
+not a consumer-only z-index or a raised child. A failed Penpot connection keeps
+paired publication and preview promotion pending; do not silently certify an
+unserved source candidate or close the human checklist.
+
 After a native control blur/focus, wait for its exact terminal CSS transition
 before measurement; do not remove normal motion or weaken expected paint.
 Use real responsive routes and existing course data for open/cancel audits.

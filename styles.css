@@ -253,6 +253,7 @@
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  --easyedu-modal-layer: calc(var(--easyedu-navigation-layer-panel) + 4);
   --easyedu-navigation-drawer-surface: var(--easyedu-surface);
   --easyedu-navigation-drawer-border: var(--easyedu-border);
   --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
@@ -14303,6 +14304,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  --easyedu-modal-layer: calc(var(--easyedu-navigation-layer-panel) + 4);
   --easyedu-navigation-drawer-surface: var(--easyedu-surface);
   --easyedu-navigation-drawer-border: var(--easyedu-border);
   --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
@@ -15390,6 +15392,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-navigation-layer-trigger: 1064;
   --easyedu-navigation-layer-backdrop: 1065;
   --easyedu-navigation-layer-panel: 1066;
+  --easyedu-modal-layer: calc(var(--easyedu-navigation-layer-panel) + 4);
   --easyedu-navigation-drawer-surface: var(--easyedu-surface);
   --easyedu-navigation-drawer-border: var(--easyedu-border);
   --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
@@ -20001,6 +20004,42 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     padding-inline: 0.75rem;
   }
 }
+.easyedu-ui .easyedu-modal-layer {
+  z-index: var(--easyedu-modal-layer);
+}
+
+.easyedu-ui .easyedu-lookup-dialog {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-modal-border);
+  border-radius: var(--easyedu-modal-radius);
+  box-shadow: var(--easyedu-modal-shadow);
+  overflow: hidden;
+}
+.easyedu-ui .easyedu-lookup-dialog {
+  inline-size: min(100%, 34rem);
+  max-inline-size: 34rem;
+}
+
+.easyedu-ui .easyedu-lookup-dialog__header {
+  background: var(--easyedu-surface);
+  border-block-end: 1px solid var(--easyedu-modal-border);
+}
+
+.easyedu-ui .easyedu-lookup-dialog__body {
+  background: var(--easyedu-surface);
+}
+
+.easyedu-ui .easyedu-lookup-dialog__description {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+}
+.easyedu-ui .easyedu-lookup-dialog__description {
+  color: var(--easyedu-text-muted);
+  font-size: 0.8125rem;
+  line-height: var(--easyedu-line-height-body);
+}
+
 .easyedu-ui .easyedu-dialog-actions {
   align-items: center;
   display: flex;

@@ -2,8 +2,36 @@
 // and consumer data hooks; this module changes presentation, not commands.
 @use "components/typography";
 @use "components/text-fields";
+@use "components/modals";
 
 @mixin dialog-classes {
+  .easyedu-ui .easyedu-modal-layer {
+    z-index: var(--easyedu-modal-layer);
+  }
+  // Lookup tools are neutral, not destructive confirmations. This public
+  // composition owns their chrome; the consumer keeps rows, parser and focus.
+  .easyedu-ui .easyedu-lookup-dialog {
+    @include modals.modal-surface;
+    & {
+      inline-size: min(100%, 34rem);
+      max-inline-size: 34rem;
+    }
+  }
+  .easyedu-ui .easyedu-lookup-dialog__header {
+    background: var(--easyedu-surface);
+    border-block-end: 1px solid var(--easyedu-modal-border);
+  }
+  .easyedu-ui .easyedu-lookup-dialog__body {
+    background: var(--easyedu-surface);
+  }
+  .easyedu-ui .easyedu-lookup-dialog__description {
+    @include typography.type-ui-base;
+    & {
+      color: var(--easyedu-text-muted);
+      font-size: 0.8125rem;
+      line-height: var(--easyedu-line-height-body);
+    }
+  }
   .easyedu-ui .easyedu-dialog-actions {
     align-items: center;
     display: flex;
