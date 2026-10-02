@@ -1,5 +1,64 @@
 # Foundations Student Management migration
 
+## Final multiline and shared-paint proof - 2026-10-02
+
+Canonical Kit `3693a1f`, consumer `b942004`, clean local Moodle 5.1 runtime
+`d0d4208`; generated CSS blob `2e925195ee58b9898f9d65595cad2a6805b9630a`.
+Native AMD blob `741a385c819280c2f85c30ec8f2fe1ef47b78747` remains unchanged.
+Preview promotion applies both source predecessors in order and purges caches.
+
+Multiline run `easystud-authenticated-20261002T071233529Z-36720` PASS,
+exactly one test (82.9s), immutable spec
+`53c8dd556428e018aa40dd9edd2cb54cfc31f999`. Native Group/Grouping routing,
+rest/hover/focused-under-pointer, Inter 14px/400, 112px height, top/inline
+insets, native rows/vertical-resize setting, recognition/unknown pills and
+Cancel pass at 1600/768/390. Phone usable field widths are 241.81/246.63px;
+all fields and pills stay inside their host and unobscured by sticky actions.
+Six multiline and one desktop search captures inspected and explicitly pinned.
+No Add/Save, import, settings, membership, message or fixture mutation.
+
+Single-line regression `easystud-authenticated-20261002T071449303Z-23760`
+PASS (33.2s), same consumer/runtime, unchanged spec
+`0fdc4c65536784e3764953da05a82c67f0eaa4de`. All nine creation/Rename/editor
+and whole-card captures inspected and pinned. Native original-name restoration
+and Cancel pass; 390px Rename retains useful field width and actions below it.
+Both runs finish with cleared credentials, stopped child and released lease.
+Scoped retention dry-runs preserve evidence, delete zero files and report no
+errors. The preceding focus failure is retained, not waived or overwritten.
+
+Exact product structural readback and rollback inventory:
+`docs/testing/foundations-textarea-product-readback-2026-10-02.json`, five
+correct linked M roots, top/left alignment and contained painted text; eleven
+active top boards, zero overlap; six visible desktop columns have equal paired
+heights and footer offsets of 60px for labels / 64px for arrows. Originals and
+seven earlier hidden/archived fields remain recoverable. Four focused product
+parent exports were inspected through direct page-scoped export; the fifth
+Group B parent was inspected in the preceding continuation. Linked-field
+containment/reflow passes, not whole-composition acceptance. Library/Standard-page paired verification is not
+implied. Human global checklist remains entirely deferred/unchecked.
+
+Next bounded reconciliation: audit Clipboard/message textarea consumers and
+their paired product/Foundation examples before adopting this family; do not
+apply a blanket plugin skin or claim whole-view/multiversion/accessibility
+acceptance. Shared Platform planning ownership stays untouched.
+
+Adjacent product fidelity gaps discovered in these exports, still pending:
+the two pre-existing standalone Grouping-add specimens retain a side action
+and omit Cancel, unlike the native captured action row below the field; the
+Ungrouped search Cancel keeps its older muted label. These are explicit next
+composition/control corrections, not a reason to repaint the Textarea main or
+claim all Student compositions match. Native command routing remains intact.
+
+Efficiency note: billing/quota telemetry is unavailable; no token or saving
+total is inferred. Limit readback to owned IDs and store large machine data
+directly through the patch tool. The generic shape export timed out; direct
+page-scoped export succeeded. Wake only the existing owned Penpot CDP tab;
+Playwright bring-to-front restores its heartbeat without reopening profiles.
+Keep immutable native tests, manifest/pin only inspected captures and use
+scoped retention dry-runs. Avoid broad repository inventories and unchanged
+export retries; no additional agent/worktree is warranted for this bounded
+validation tranche.
+
 ## Native multiline focus-under-pointer correction - 2026-10-02
 
 Run `easystud-authenticated-20261002T070802068Z-36316` FAILED at desktop
@@ -12,7 +71,8 @@ the canonical Kit, not a consumer override. Both public-family compilation
 contracts now check this exclusion. No commands, native Motion or field
 geometry change. Correct the report's viewport/field-width key collision only
 after owned-child exit; keep the focused-under-pointer assertion unchanged.
-The corrected native rerun remains pending, not waived.
+The corrected native rerun and shared-input regression pass above; this failed
+record remains preserved and does not count as acceptance.
 
 ## Multiline identifier adoption - 2026-10-02
 
@@ -53,12 +113,10 @@ Standard-page verification is not implied by product-file readback.
 Static contracts compile both field families; the strict Kit audit retains
 the same five prior findings, none in the new multiline/paint modules. Sass's
 existing layout/loading warning is not corrected in this slice. Moodle floor
-stays 5.1, local runtime proof pending; no unexecuted cross-version claim.
-Next proof freezes `student-textarea-foundations.spec.js`, discovers exactly
-one test and runs native Group/Grouping routing at 1600/768/390, value/placeholder,
-hover/focus/insets, resize/rows, recognition and Cancel. Never submit Add/Save.
-Re-run single-line creation/Rename after shared paint extraction. Human
-checklist stays unchecked even if static/browser proof passes.
+stays 5.1; only the focused local 5.1 runs above are executed, no unexecuted
+cross-version claim. Both immutable scenarios discover exactly one test;
+native multiline and creation/Rename checks pass. Human checklist stays
+unchecked despite these bounded source/browser proofs.
 
 ## Next multiline field reconciliation - read-only checkpoint 2026-10-02
 

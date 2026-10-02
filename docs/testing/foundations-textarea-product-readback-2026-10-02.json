@@ -1,0 +1,4342 @@
+{
+  "schemaVersion": 1,
+  "status": "structural-readback-not-human-acceptance",
+  "visualInspection": {
+    "method": "currentPage.getShapeById(id).export({type: png, scale: 1})",
+    "inspectedFocusedParents": [
+      "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+      "01e728c3-f1ef-80b3-8008-b5b224345b14",
+      "cef95197-06bc-809e-8008-aee7b6f19b54",
+      "cef95197-06bc-809e-8008-aee796b6049f"
+    ],
+    "priorContinuationInspectedParent": "cef95197-06bc-809e-8008-aff85c06681b",
+    "scope": "new linked Textarea, necessary surrounding reflow and containment; not whole-composition fidelity or human acceptance",
+    "adjacentResiduals": [
+      "Pre-existing standalone Grouping-add panels have side action placement and no Cancel example; native captured action row is below the field with Cancel.",
+      "Ungrouped search Cancel retains a muted label unlike the native compact secondary role."
+    ]
+  },
+  "readback": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "rows": [
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee7ce02f8f5",
+        "oldSurface": "cef95197-06bc-809e-8008-aee7ce02f8f4",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1e1354b111",
+        "panel": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "delta": 40,
+        "propagated": true,
+        "outerDelta": 40,
+        "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
+        "width": 490,
+        "height": 112,
+        "font": "14",
+        "align": "left",
+        "verticalAlign": "top",
+        "inset": [
+          14,
+          12.000000000029104
+        ],
+        "textBounds": {
+          "x": 2674,
+          "y": 1260.000000000029,
+          "width": 175.7624969482422,
+          "height": 50.400001525878906
+        },
+        "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+        "fieldContained": true,
+        "textContained": true,
+        "oldHidden": [
+          true,
+          true
+        ]
+      },
+      {
+        "oldText": "92c1c225-95fb-802e-8008-aeaaa12d5c71",
+        "oldSurface": "92c1c225-95fb-802e-8008-aeaaa1221514",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1e99186b27",
+        "panel": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "delta": 40,
+        "propagated": true,
+        "outerDelta": 40,
+        "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
+        "width": 520,
+        "height": 112,
+        "font": "14",
+        "align": "left",
+        "verticalAlign": "top",
+        "inset": [
+          14,
+          12.000000000029104
+        ],
+        "textBounds": {
+          "x": 1018,
+          "y": 1870.000000000029,
+          "width": 175.7624969482422,
+          "height": 50.400001525878906
+        },
+        "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+        "fieldContained": true,
+        "textContained": true,
+        "oldHidden": [
+          true,
+          true
+        ]
+      },
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee7b6f19b58",
+        "oldSurface": "cef95197-06bc-809e-8008-aee7b6f19b57",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1e9fa1b0f5",
+        "panel": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "delta": 28,
+        "propagated": true,
+        "outerDelta": 134,
+        "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
+        "width": 476,
+        "height": 112,
+        "font": "14",
+        "align": "left",
+        "verticalAlign": "top",
+        "inset": [
+          14,
+          12.000000000029104
+        ],
+        "textBounds": {
+          "x": 4310,
+          "y": 1530.000000000029,
+          "width": 54.337501525878906,
+          "height": 33.60000228881836
+        },
+        "text": "Group A\nGroup B",
+        "fieldContained": true,
+        "textContained": true,
+        "oldHidden": [
+          true,
+          true
+        ]
+      },
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee796b604a3",
+        "oldSurface": "cef95197-06bc-809e-8008-aee796b604a2",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1ebd53b18d",
+        "panel": "cef95197-06bc-809e-8008-aee796b6049f",
+        "delta": 28,
+        "propagated": true,
+        "outerDelta": 28,
+        "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
+        "width": 476,
+        "height": 112,
+        "font": "14",
+        "align": "left",
+        "verticalAlign": "top",
+        "inset": [
+          14,
+          12.000000000029104
+        ],
+        "textBounds": {
+          "x": 5234,
+          "y": 3292.000000000029,
+          "width": 105.6875,
+          "height": 50.400001525878906
+        },
+        "text": "Group A\nGroup B\nunknown-group",
+        "fieldContained": true,
+        "textContained": true,
+        "oldHidden": [
+          true,
+          true
+        ]
+      },
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee796502164",
+        "oldSurface": "cef95197-06bc-809e-8008-aee796502163",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1ec0663d16",
+        "panel": "cef95197-06bc-809e-8008-aee796502160",
+        "delta": 40,
+        "propagated": true,
+        "outerDelta": 40,
+        "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
+        "width": 592,
+        "height": 112,
+        "font": "14",
+        "align": "left",
+        "verticalAlign": "top",
+        "inset": [
+          14,
+          12.000000000029104
+        ],
+        "textBounds": {
+          "x": 5258,
+          "y": 2906.000000000029,
+          "width": 175.7624969482422,
+          "height": 50.400001525878906
+        },
+        "text": "alex.dupont@example.edu\nlea.martin\nID-10482; unknown-42",
+        "fieldContained": true,
+        "textContained": true,
+        "oldHidden": [
+          true,
+          true
+        ]
+      }
+    ],
+    "columns": [
+      {
+        "id": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Groups and groupings column",
+        "parent": "Product workspace",
+        "h": 1772,
+        "footer": [
+          {
+            "id": "92c1c225-95fb-802e-8008-aeaaa16143eb",
+            "name": "Pagination status",
+            "h": 22,
+            "offset": 59.999999999999545
+          },
+          {
+            "id": "92c1c225-95fb-802e-8008-aeaaa173f6eb",
+            "name": "Foundation / Pagination / Previous groups",
+            "h": 29.59999999999991,
+            "offset": 63.999999999999545
+          },
+          {
+            "id": "92c1c225-95fb-802e-8008-aeaaa17db4b3",
+            "name": "Foundation / Pagination / Next groups",
+            "h": 29.599999999999,
+            "offset": 63.999999999999545
+          }
+        ]
+      },
+      {
+        "id": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Participants column",
+        "parent": "Product workspace",
+        "h": 1772,
+        "footer": [
+          {
+            "id": "92c1c225-95fb-802e-8008-aea0b4076728",
+            "name": "Pagination status",
+            "h": 22,
+            "offset": 59.999999999999545
+          },
+          {
+            "id": "92c1c225-95fb-802e-8008-aea0b4165632",
+            "name": "Foundation / Pagination / Previous",
+            "h": 29.59999999999991,
+            "offset": 63.999999999999545
+          },
+          {
+            "id": "92c1c225-95fb-802e-8008-aea0b41f6a4f",
+            "name": "Foundation / Pagination / Next",
+            "h": 29.599999999997635,
+            "offset": 63.999999999999545
+          }
+        ]
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Group catalogue / Structure mode",
+        "parent": "Product workspace",
+        "h": 1384,
+        "footer": [
+          {
+            "id": "cef95197-06bc-809e-8008-aede933432a9",
+            "name": "Pagination status",
+            "h": 22,
+            "offset": 60
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede933432aa",
+            "name": "Foundation / Pagination / Previous groups",
+            "h": 29.600000000000364,
+            "offset": 64
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede933432ab",
+            "name": "Foundation / Pagination / Next groups",
+            "h": 29.600000000002183,
+            "offset": 63.99999999999977
+          }
+        ]
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Groups and groupings column",
+        "parent": "Product workspace",
+        "h": 1384,
+        "footer": [
+          {
+            "id": "cef95197-06bc-809e-8008-aede91ff5f49",
+            "name": "Pagination status",
+            "h": 22,
+            "offset": 60
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede91ff5f4a",
+            "name": "Foundation / Pagination / Previous groups",
+            "h": 29.600000000000364,
+            "offset": 64
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede91ff5f4b",
+            "name": "Foundation / Pagination / Next groups",
+            "h": 29.600000000002183,
+            "offset": 64
+          }
+        ]
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Participants column",
+        "parent": "Product workspace",
+        "h": 1140,
+        "footer": [
+          {
+            "id": "cef95197-06bc-809e-8008-aede62dfe951",
+            "name": "Pagination status",
+            "h": 22,
+            "offset": 60
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede62dfe952",
+            "name": "Foundation / Pagination / Previous",
+            "h": 29.600000000000364,
+            "offset": 64
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede62dfe953",
+            "name": "Foundation / Pagination / Next",
+            "h": 29.599999999998545,
+            "offset": 64
+          }
+        ]
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Groups and groupings column",
+        "parent": "Product workspace",
+        "h": 1140,
+        "footer": [
+          {
+            "id": "cef95197-06bc-809e-8008-aede62e01cf1",
+            "name": "Pagination status",
+            "h": 22,
+            "offset": 60
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede62e01cf2",
+            "name": "Foundation / Pagination / Previous groups",
+            "h": 29.600000000000364,
+            "offset": 64
+          },
+          {
+            "id": "cef95197-06bc-809e-8008-aede62e01cf3",
+            "name": "Foundation / Pagination / Next groups",
+            "h": 29.600000000001273,
+            "offset": 63.999999999999545
+          }
+        ]
+      }
+    ],
+    "topBoards": [
+      {
+        "id": "103e019a-f5a8-8027-8008-b132b11421dc",
+        "name": "Student management — Mobile / Groups",
+        "x": 3094,
+        "y": 4528,
+        "w": 390,
+        "h": 1320
+      },
+      {
+        "id": "92c1c225-95fb-802e-8008-aeaca893efac",
+        "name": "Student management — Tablet / Participants",
+        "x": 80,
+        "y": 4528,
+        "w": 768,
+        "h": 1400
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aede91ff23f9",
+        "name": "Student management — Desktop / Groups & groupings",
+        "x": 3440,
+        "y": 80,
+        "w": 1600,
+        "h": 1894.0000000000002
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeff230a002c",
+        "name": "Student management — Context menus and mobile navigation",
+        "x": 4034,
+        "y": 4528,
+        "w": 1500,
+        "h": 2110
+      },
+      {
+        "id": "92c1c225-95fb-802e-8008-ae9f13f14484",
+        "name": "Student management — Desktop / Complete view",
+        "x": 80,
+        "y": 80,
+        "w": 1600,
+        "h": 2290
+      },
+      {
+        "id": "103e019a-f5a8-8027-8008-b132b181db28",
+        "name": "Student management — Mobile / Groupings",
+        "x": 3564,
+        "y": 4528,
+        "w": 390,
+        "h": 1320
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeeaa9e3ad0d",
+        "name": "Student management — Mobile / Participants",
+        "x": 2624,
+        "y": 4528,
+        "w": 390,
+        "h": 1540
+      },
+      {
+        "id": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Student management — Interaction states",
+        "x": 5120,
+        "y": 80,
+        "w": 1120,
+        "h": 4367.999999999999
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aede62dfb91f",
+        "name": "Student management — Desktop / Participants & groups",
+        "x": 1760,
+        "y": 80,
+        "w": 1600,
+        "h": 1639.9999999999998
+      },
+      {
+        "id": "103e019a-f5a8-8027-8008-b13972775dc1",
+        "name": "Student management — Tablet / Groups",
+        "x": 928,
+        "y": 4528,
+        "w": 768,
+        "h": 1400
+      },
+      {
+        "id": "103e019a-f5a8-8027-8008-b13972f1abd3",
+        "name": "Student management — Tablet / Groupings",
+        "x": 1776,
+        "y": 4528,
+        "w": 768,
+        "h": 1350
+      }
+    ],
+    "overlaps": [],
+    "checkedAt": "2026-10-02"
+  },
+  "rollback": {
+    "shapes": {
+      "cef95197-06bc-809e-8008-aee7ce02f8f5": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f5",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Identifier values",
+        "x": 2674,
+        "y": 1260,
+        "w": 462,
+        "h": 48,
+        "hidden": false,
+        "text": "alex.dupont@example.edu\nlea.martin\nID-10482"
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f4": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f4",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Identifier input",
+        "x": 2660,
+        "y": 1248,
+        "w": 490,
+        "h": 72,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f1": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "parent": "cef95197-06bc-809e-8008-aff85c06681b",
+        "name": "Product / Group card / Add by identifier / Open",
+        "x": 2640,
+        "y": 1228,
+        "w": 530,
+        "h": 220,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f2": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f2",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Panel title",
+        "x": 2660,
+        "y": 1248,
+        "w": 420,
+        "h": 22.5,
+        "hidden": true,
+        "text": "Add students by identifier"
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f3": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f3",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Panel hint",
+        "x": 2660,
+        "y": 1276,
+        "w": 640,
+        "h": 32,
+        "hidden": true,
+        "text": "Username, email or configured unique ID. Recognised names appear below."
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f6": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f6",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Add identifiers",
+        "x": 3150,
+        "y": 1330,
+        "w": 146,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f7": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f7",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 2660,
+        "y": 1388,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f8": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f8",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 2780,
+        "y": 1388,
+        "w": 104,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7ce02f8f9": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f9",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 2892,
+        "y": 1388,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff85e60cadb": {
+        "id": "cef95197-06bc-809e-8008-aff85e60cadb",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Foundation / Primary S / Add students",
+        "x": 2660,
+        "y": 1336,
+        "w": 120,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff85efbc272": {
+        "id": "cef95197-06bc-809e-8008-aff85efbc272",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Foundation / Secondary S / Cancel",
+        "x": 2792,
+        "y": 1336,
+        "w": 88,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff85f5c95ba": {
+        "id": "cef95197-06bc-809e-8008-aff85f5c95ba",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Action label / Add students",
+        "x": 2690,
+        "y": 1336,
+        "w": 84,
+        "h": 32,
+        "hidden": false,
+        "text": "Add students"
+      },
+      "cef95197-06bc-809e-8008-aff85fffeacf": {
+        "id": "cef95197-06bc-809e-8008-aff85fffeacf",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Action label / Cancel",
+        "x": 2792,
+        "y": 1336,
+        "w": 88,
+        "h": 32,
+        "hidden": false,
+        "text": "Cancel"
+      },
+      "6d8cb67b-0321-8034-8008-ba1e1354b111": {
+        "id": "6d8cb67b-0321-8034-8008-ba1e1354b111",
+        "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "name": "Foundation / Textarea M / Identifier values",
+        "x": 2660,
+        "y": 1248,
+        "w": 490,
+        "h": 112,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff85c06681b": {
+        "id": "cef95197-06bc-809e-8008-aff85c06681b",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Product / Group card / Group B / Add by identifier open",
+        "x": 2616,
+        "y": 1094,
+        "w": 578,
+        "h": 382,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce3": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce3",
+        "parent": "cef95197-06bc-809e-8008-aff85c06681b",
+        "name": "Foundation / Group card / Group B / Selected / Open inline add",
+        "x": 2616,
+        "y": 1094,
+        "w": 578,
+        "h": 382,
+        "hidden": false
+      },
+      "75ffc9c1-9374-805a-8008-b99877e7502e": {
+        "id": "75ffc9c1-9374-805a-8008-b99877e7502e",
+        "parent": "cef95197-06bc-809e-8008-aff85c06681b",
+        "name": "Foundation / Member row / Samira Benali",
+        "x": 2656,
+        "y": 1172,
+        "w": 522,
+        "h": 52,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e06ec6": {
+        "id": "cef95197-06bc-809e-8008-aede62e06ec6",
+        "parent": "cef95197-06bc-809e-8008-aede62e01ce3",
+        "name": "Card surface",
+        "x": 2616,
+        "y": 1094,
+        "w": 578,
+        "h": 382,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e06ec7": {
+        "id": "cef95197-06bc-809e-8008-aede62e06ec7",
+        "parent": "cef95197-06bc-809e-8008-aede62e01ce3",
+        "name": "Identity rail",
+        "x": 2616,
+        "y": 1094,
+        "w": 20,
+        "h": 382,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e06ec8": {
+        "id": "cef95197-06bc-809e-8008-aede62e06ec8",
+        "parent": "cef95197-06bc-809e-8008-aede62e01ce3",
+        "name": "Linked identity icon",
+        "x": 2618,
+        "y": 1145,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e06ec9": {
+        "id": "cef95197-06bc-809e-8008-aede62e06ec9",
+        "parent": "cef95197-06bc-809e-8008-aede62e01ce3",
+        "name": "Title",
+        "x": 2688,
+        "y": 1116,
+        "w": 186,
+        "h": 24,
+        "hidden": false,
+        "text": "Group B"
+      },
+      "cef95197-06bc-809e-8008-aede62e06eca": {
+        "id": "cef95197-06bc-809e-8008-aede62e06eca",
+        "parent": "cef95197-06bc-809e-8008-aede62e01ce3",
+        "name": "Metadata",
+        "x": 2688,
+        "y": 1146,
+        "w": 316,
+        "h": 22,
+        "hidden": false,
+        "text": "8 members"
+      },
+      "cef95197-06bc-809e-8008-aede62e01cec": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cec",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Group card / New arrivals",
+        "x": 2640,
+        "y": 1512,
+        "w": 608,
+        "h": 172,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01ced": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ced",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Empty group message",
+        "x": 2676,
+        "y": 1496,
+        "w": 560,
+        "h": 30,
+        "hidden": true,
+        "text": "No student in this group yet."
+      },
+      "cef95197-06bc-809e-8008-aede62e01cee": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cee",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Add students to empty group",
+        "x": 2871,
+        "y": 1546,
+        "w": 170,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cef": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cef",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Inline member search",
+        "x": 2596,
+        "y": 1678,
+        "w": 680,
+        "h": 122,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf0": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf0",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Add students by identifiers",
+        "x": 2596,
+        "y": 1824,
+        "w": 680,
+        "h": 180,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf1": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf1",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Pagination status",
+        "x": 2596,
+        "y": 1506,
+        "w": 120,
+        "h": 22,
+        "hidden": false,
+        "text": "1–6 of 6"
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf2": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf2",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Pagination / Previous groups",
+        "x": 3180,
+        "y": 1502,
+        "w": 29.59999999999991,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf3": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf3",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Pagination / Next groups",
+        "x": 3220,
+        "y": 1502,
+        "w": 29.600000000000364,
+        "h": 29.600000000002183,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfb927": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb927",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb923",
+        "name": "Groups and groupings column",
+        "x": 2576,
+        "y": 466,
+        "w": 720,
+        "h": 1100,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01ccf": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ccf",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Semantic accent",
+        "x": 2576,
+        "y": 466,
+        "w": 720,
+        "h": 4,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd0": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd0",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Column title",
+        "x": 2600,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Groups"
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd1": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd1",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Column summary",
+        "x": 2600,
+        "y": 534,
+        "w": 520,
+        "h": 24,
+        "hidden": false,
+        "text": "6 groups · assign selected participants"
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd2": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd2",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Group filters / Collapsed",
+        "x": 2596,
+        "y": 694,
+        "w": 680,
+        "h": 174,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd3": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd3",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Select all groups",
+        "x": 2596,
+        "y": 900,
+        "w": 70.40000000000009,
+        "h": 25.920000000000073,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd4": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd4",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Selection summary",
+        "x": 2678,
+        "y": 903,
+        "w": 100,
+        "h": 22,
+        "hidden": false,
+        "text": "2 selected"
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd5": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd5",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Sort groups",
+        "x": 3124,
+        "y": 896,
+        "w": 152,
+        "h": 36,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd6": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd6",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Grouping card / Year 2026 / Open",
+        "x": 2596,
+        "y": 960,
+        "w": 680,
+        "h": 442,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd7": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd7",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Checkbox / Grouping / Checked",
+        "x": 2624,
+        "y": 988,
+        "w": 16,
+        "h": 16,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd8": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd8",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Search groups",
+        "x": 3040,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cd9": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cd9",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Add groups",
+        "x": 3096,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cda": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cda",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Grouping settings",
+        "x": 3152,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cdb": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cdb",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Grouping more",
+        "x": 3216,
+        "y": 985,
+        "w": 29.59999999999991,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cdc": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cdc",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Nested hierarchy rail",
+        "x": 2650,
+        "y": 1052,
+        "w": 2,
+        "h": 276,
+        "hidden": true
+      },
+      "01e728c3-f1ef-80b3-8008-b5b2157aab62": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b2157aab62",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Composition / Group card / Group A",
+        "x": 2616,
+        "y": 960,
+        "w": 578,
+        "h": 118,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce1": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce1",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Search members / Group A",
+        "x": 3120,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce2": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce2",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Group settings / Group A",
+        "x": 3168,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce4": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce4",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Checkbox / Group B / Checked",
+        "x": 2642,
+        "y": 1120,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce5": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce5",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Member count surface",
+        "x": 2886,
+        "y": 1118,
+        "w": 76,
+        "h": 20,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce6": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce6",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Member count label",
+        "x": 2886,
+        "y": 1118,
+        "w": 76,
+        "h": 20,
+        "hidden": false,
+        "text": "8 members"
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce7": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce7",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Search members / Group B",
+        "x": 3120,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce8": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce8",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Group settings / Group B",
+        "x": 3168,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01ce9": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ce9",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Grouping affordance",
+        "x": 2670,
+        "y": 1328,
+        "w": 560,
+        "h": 22,
+        "hidden": true,
+        "text": "Groups can be searched, added, reordered and removed without leaving the expanded grouping."
+      },
+      "cef95197-06bc-809e-8008-aede62e01cea": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cea",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Ungrouped groups / Open",
+        "x": 2596,
+        "y": 1426,
+        "w": 680,
+        "h": 306,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01ceb": {
+        "id": "cef95197-06bc-809e-8008-aede62e01ceb",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Search ungrouped",
+        "x": 3152,
+        "y": 1442,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf4": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf4",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Column header actions",
+        "x": 2596,
+        "y": 564,
+        "w": 680,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf5": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf5",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Chevron / Grouping expanded",
+        "x": 2654,
+        "y": 982,
+        "w": 24,
+        "h": 24,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf6": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf6",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Foundation / Chevron / Ungrouped expanded",
+        "x": 2630,
+        "y": 1447.999999999999,
+        "w": 24,
+        "h": 24,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf7": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf7",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Search groups / Linked direct action",
+        "x": 3115.2,
+        "y": 985.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf8": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf8",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Add groups / Linked direct action",
+        "x": 3148.7999999999997,
+        "y": 985.1999999999998,
+        "w": 29.59999999999991,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cf9": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cf9",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Grouping settings / Linked direct action",
+        "x": 3182.3999999999996,
+        "y": 985.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62e01cfc": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cfc",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Search members / Group B / Linked direct action",
+        "x": 3086.6000000000004,
+        "y": 1113.1999999999998,
+        "w": 29.59999999999991,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cfd": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cfd",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Group settings / Group B / Linked direct action",
+        "x": 3120.2,
+        "y": 1113.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62e01cfe": {
+        "id": "cef95197-06bc-809e-8008-aede62e01cfe",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Search ungrouped / Linked direct action",
+        "x": 3161.2,
+        "y": 1445.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "103e019a-f5a8-8027-8008-b131ee9aefe5": {
+        "id": "103e019a-f5a8-8027-8008-b131ee9aefe5",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb927",
+        "name": "Product / Quick create / both",
+        "x": 2596,
+        "y": 610,
+        "w": 680,
+        "h": 70,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe951": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe951",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Pagination status",
+        "x": 1844,
+        "y": 1506,
+        "w": 120,
+        "h": 22,
+        "hidden": false,
+        "text": "1–12 of 24"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe952": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe952",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Foundation / Pagination / Previous",
+        "x": 2428,
+        "y": 1502,
+        "w": 29.59999999999991,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe953": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe953",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Foundation / Pagination / Next",
+        "x": 2468,
+        "y": 1502,
+        "w": 29.59999999999991,
+        "h": 29.599999999999454,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfb926": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb926",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb923",
+        "name": "Participants column",
+        "x": 1824,
+        "y": 466,
+        "w": 720,
+        "h": 1100,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe934": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe934",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Semantic accent",
+        "x": 1824,
+        "y": 466,
+        "w": 720,
+        "h": 4,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe935": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe935",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Column title",
+        "x": 1848,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Participants"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe936": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe936",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Column summary",
+        "x": 1848,
+        "y": 534,
+        "w": 520,
+        "h": 24,
+        "hidden": false,
+        "text": "24 participants · 3 selected"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe937": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe937",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Foundation / Participant filters / Collapsed",
+        "x": 1844,
+        "y": 610,
+        "w": 680,
+        "h": 174,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe938": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe938",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Foundation / Select all",
+        "x": 1844,
+        "y": 816,
+        "w": 70.40000000000009,
+        "h": 25.920000000000073,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe939": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe939",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Selection summary",
+        "x": 1926,
+        "y": 819,
+        "w": 100,
+        "h": 22,
+        "hidden": false,
+        "text": "3 selected"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe93a": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe93a",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Foundation / Sort participants",
+        "x": 2372,
+        "y": 812,
+        "w": 152,
+        "h": 36,
+        "hidden": false
+      },
+      "01e728c3-f1ef-80b3-8008-b5b219a00d50": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b219a00d50",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Composition / Participant card / Alice Martin",
+        "x": 1844,
+        "y": 876,
+        "w": 680,
+        "h": 188,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe93f": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe93f",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "View participant details",
+        "x": 2452,
+        "y": 898,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62dfe940": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe940",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Role surface",
+        "x": 2348,
+        "y": 897,
+        "w": 86,
+        "h": 26,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62dfe941": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe941",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Role label",
+        "x": 2348,
+        "y": 897,
+        "w": 86,
+        "h": 26,
+        "hidden": true,
+        "text": "Teacher"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe942": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe942",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Group surface",
+        "x": 2066,
+        "y": 960,
+        "w": 88,
+        "h": 26,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62dfe943": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe943",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Group label",
+        "x": 2066,
+        "y": 960,
+        "w": 88,
+        "h": 26,
+        "hidden": true,
+        "text": "Group A"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe944": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe944",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Grouping surface",
+        "x": 2164,
+        "y": 960,
+        "w": 100,
+        "h": 26,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62dfe945": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe945",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Grouping label",
+        "x": 2164,
+        "y": 960,
+        "w": 100,
+        "h": 26,
+        "hidden": true,
+        "text": "Year 2026"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe946": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe946",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Participant details",
+        "x": 1970,
+        "y": 1002,
+        "w": 450,
+        "h": 22,
+        "hidden": true,
+        "text": "ID 10482 · Campus La Défense · Programme M1"
+      },
+      "01e728c3-f1ef-80b3-8008-b5b21bbbe5bf": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b21bbbe5bf",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Composition / Participant card / Samira Benali / Selected",
+        "x": 1844,
+        "y": 1080,
+        "w": 680,
+        "h": 188,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe94b": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe94b",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Role surface",
+        "x": 2348,
+        "y": 1101,
+        "w": 86,
+        "h": 26,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62dfe94c": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe94c",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Role label",
+        "x": 2348,
+        "y": 1101,
+        "w": 86,
+        "h": 26,
+        "hidden": true,
+        "text": "Student"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe94d": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe94d",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Group surface",
+        "x": 2066,
+        "y": 1164,
+        "w": 88,
+        "h": 26,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62dfe94e": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe94e",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Group label",
+        "x": 2066,
+        "y": 1164,
+        "w": 88,
+        "h": 26,
+        "hidden": true,
+        "text": "Group B"
+      },
+      "cef95197-06bc-809e-8008-aede62dfe94f": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe94f",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "View participant details / Samira",
+        "x": 2452,
+        "y": 1102,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede62dfe950": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe950",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Participant bulk actions",
+        "x": 1844,
+        "y": 1360,
+        "w": 680,
+        "h": 104,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfe954": {
+        "id": "cef95197-06bc-809e-8008-aede62dfe954",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Column header actions",
+        "x": 1844,
+        "y": 564,
+        "w": 680,
+        "h": 32,
+        "hidden": false
+      },
+      "01e728c3-f1ef-80b3-8008-b5b208784364": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b208784364",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb926",
+        "name": "Composition / Dedicated participant / Compact / Card",
+        "x": 1844,
+        "y": 1284,
+        "w": 680,
+        "h": 60,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfb923": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb923",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb91f",
+        "name": "Product workspace",
+        "x": 1792,
+        "y": 252,
+        "w": 1536,
+        "h": 1360,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfb924": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb924",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb923",
+        "name": "Foundation / Primary navigation / Student management",
+        "x": 1904,
+        "y": 300,
+        "w": 1312,
+        "h": 56,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfb925": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb925",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb923",
+        "name": "Foundation / Layout mode / participants",
+        "x": 2208,
+        "y": 380,
+        "w": 704,
+        "h": 62,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfb91f": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb91f",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Desktop / Participants & groups",
+        "x": 1760,
+        "y": 80,
+        "w": 1600,
+        "h": 1600,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede62dfb920": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb920",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb91f",
+        "name": "Eyebrow",
+        "x": 1808,
+        "y": 124,
+        "w": 265,
+        "h": 17,
+        "hidden": false,
+        "text": "EASYSTUD / STUDENT MANAGEMENT"
+      },
+      "cef95197-06bc-809e-8008-aede62dfb921": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb921",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb91f",
+        "name": "Page title",
+        "x": 1808,
+        "y": 154,
+        "w": 468,
+        "h": 36,
+        "hidden": false,
+        "text": "Simplified student management"
+      },
+      "cef95197-06bc-809e-8008-aede62dfb922": {
+        "id": "cef95197-06bc-809e-8008-aede62dfb922",
+        "parent": "cef95197-06bc-809e-8008-aede62dfb91f",
+        "name": "Page description",
+        "x": 1808,
+        "y": 202,
+        "w": 1100,
+        "h": 24,
+        "hidden": false,
+        "text": "Manage participants, groups and groupings from one structured workspace."
+      },
+      "92c1c225-95fb-802e-8008-aeaaa12d5c71": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa12d5c71",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Identifier values",
+        "x": 1018,
+        "y": 1870,
+        "w": 492,
+        "h": 48,
+        "hidden": false,
+        "text": "alex.dupont@example.edu\nlea.martin\nID-10482"
+      },
+      "92c1c225-95fb-802e-8008-aeaaa1221514": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa1221514",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Identifier input",
+        "x": 1004,
+        "y": 1858,
+        "w": 520,
+        "h": 72,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0fb2ad3": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "parent": "cef95197-06bc-809e-8008-aff757d1cea1",
+        "name": "Product / Group card / Add by identifier / Open",
+        "x": 984,
+        "y": 1838,
+        "w": 560,
+        "h": 210,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa10602c0": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa10602c0",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Panel title",
+        "x": 1004,
+        "y": 1858,
+        "w": 420,
+        "h": 22.5,
+        "hidden": true,
+        "text": "Add students by identifier"
+      },
+      "92c1c225-95fb-802e-8008-aeaaa115f7c5": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa115f7c5",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Panel hint",
+        "x": 1004,
+        "y": 1886,
+        "w": 640,
+        "h": 32,
+        "hidden": true,
+        "text": "Username, email or configured unique ID. Recognised names appear below."
+      },
+      "92c1c225-95fb-802e-8008-aeaaa13c1568": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa13c1568",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Add identifiers",
+        "x": 1494,
+        "y": 1940,
+        "w": 146,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aee782e67061": {
+        "id": "cef95197-06bc-809e-8008-aee782e67061",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 1004,
+        "y": 1996,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7833c55fc": {
+        "id": "cef95197-06bc-809e-8008-aee7833c55fc",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 1124,
+        "y": 1996,
+        "w": 104,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7838958b6": {
+        "id": "cef95197-06bc-809e-8008-aee7838958b6",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 1236,
+        "y": 1996,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff75b5429b9": {
+        "id": "cef95197-06bc-809e-8008-aff75b5429b9",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Foundation / Primary S / Add students",
+        "x": 1004,
+        "y": 1946,
+        "w": 120,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff75bb0b4f7": {
+        "id": "cef95197-06bc-809e-8008-aff75bb0b4f7",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Foundation / Secondary S / Cancel",
+        "x": 1136,
+        "y": 1946,
+        "w": 88,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff7b8e33422": {
+        "id": "cef95197-06bc-809e-8008-aff7b8e33422",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Action label / Add students",
+        "x": 1034,
+        "y": 1946,
+        "w": 84,
+        "h": 32,
+        "hidden": false,
+        "text": "Add students"
+      },
+      "cef95197-06bc-809e-8008-aff7b9aba197": {
+        "id": "cef95197-06bc-809e-8008-aff7b9aba197",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Action label / Cancel",
+        "x": 1136,
+        "y": 1946,
+        "w": 88,
+        "h": 32,
+        "hidden": false,
+        "text": "Cancel"
+      },
+      "6d8cb67b-0321-8034-8008-ba1e99186b27": {
+        "id": "6d8cb67b-0321-8034-8008-ba1e99186b27",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "name": "Foundation / Textarea M / Identifier values",
+        "x": 1004,
+        "y": 1858,
+        "w": 520,
+        "h": 112,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff757d1cea1": {
+        "id": "cef95197-06bc-809e-8008-aff757d1cea1",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b224345b14",
+        "name": "Product / Group card / New arrivals / Add by identifier open",
+        "x": 960,
+        "y": 1512,
+        "w": 608,
+        "h": 560,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa09834bc": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa09834bc",
+        "parent": "cef95197-06bc-809e-8008-aff757d1cea1",
+        "name": "Foundation / Group card / New arrivals / Open inline tools",
+        "x": 960,
+        "y": 1512,
+        "w": 608,
+        "h": 560,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0ba9140": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0ba9140",
+        "parent": "cef95197-06bc-809e-8008-aff757d1cea1",
+        "name": "Empty group message",
+        "x": 996,
+        "y": 1580,
+        "w": 560,
+        "h": 30,
+        "hidden": false,
+        "text": "No student in this group yet."
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0c80a5a": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0c80a5a",
+        "parent": "cef95197-06bc-809e-8008-aff757d1cea1",
+        "name": "Add students to empty group",
+        "x": 1191,
+        "y": 1630,
+        "w": 170,
+        "h": 36,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0f00d70": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0f00d70",
+        "parent": "cef95197-06bc-809e-8008-aff757d1cea1",
+        "name": "Product / Group card / Inline member search / Open",
+        "x": 984,
+        "y": 1700,
+        "w": 560,
+        "h": 122,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa09834bd": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa09834bd",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa09834bc",
+        "name": "Card surface",
+        "x": 960,
+        "y": 1512,
+        "w": 608,
+        "h": 560,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa09834be": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa09834be",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa09834bc",
+        "name": "Identity rail",
+        "x": 960,
+        "y": 1512,
+        "w": 20,
+        "h": 560,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa09834bf": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa09834bf",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa09834bc",
+        "name": "Linked identity icon",
+        "x": 962,
+        "y": 1590,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa09834c4": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa09834c4",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa09834bc",
+        "name": "Title",
+        "x": 1032,
+        "y": 1534,
+        "w": 345.99999999999955,
+        "h": 24,
+        "hidden": false,
+        "text": "New arrivals"
+      },
+      "92c1c225-95fb-802e-8008-aeaaa09834c5": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa09834c5",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa09834bc",
+        "name": "Metadata",
+        "x": 1032,
+        "y": 1564,
+        "w": 345.99999999999955,
+        "h": 22,
+        "hidden": false,
+        "text": "0 members"
+      },
+      "01e728c3-f1ef-80b3-8008-b5b224345b14": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b224345b14",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Composition / Ungrouped groups / Open",
+        "x": 916,
+        "y": 1426,
+        "w": 680,
+        "h": 670,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0579a16": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0579a16",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b224345b14",
+        "name": "Foundation / Ungrouped groups / Open",
+        "x": 916,
+        "y": 1426,
+        "w": 680,
+        "h": 670,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeab2af03f72": {
+        "id": "92c1c225-95fb-802e-8008-aeab2af03f72",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b224345b14",
+        "name": "Foundation / Chevron / Ungrouped expanded",
+        "x": 952,
+        "y": 1448,
+        "w": 24,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede1cf90f99": {
+        "id": "cef95197-06bc-809e-8008-aede1cf90f99",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b224345b14",
+        "name": "Search ungrouped / Linked direct action",
+        "x": 1550.3999999999999,
+        "y": 1445.2,
+        "w": 29.600000000000136,
+        "h": 29.59999999999991,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0579a17": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0579a17",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0579a16",
+        "name": "Card surface",
+        "x": 916,
+        "y": 1426,
+        "w": 680,
+        "h": 670,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0579a18": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0579a18",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0579a16",
+        "name": "Identity rail",
+        "x": 916,
+        "y": 1426,
+        "w": 20,
+        "h": 670,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0579a19": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0579a19",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0579a16",
+        "name": "Linked identity icon",
+        "x": 918,
+        "y": 1571,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa05b0c66": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa05b0c66",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0579a16",
+        "name": "Title",
+        "x": 984,
+        "y": 1448,
+        "w": 558.4000000000001,
+        "h": 24,
+        "hidden": false,
+        "text": "Groups without grouping"
+      },
+      "92c1c225-95fb-802e-8008-aeaaa05b6c05": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa05b6c05",
+        "parent": "92c1c225-95fb-802e-8008-aeaaa0579a16",
+        "name": "Metadata",
+        "x": 984,
+        "y": 1478,
+        "w": 421.99999999999955,
+        "h": 22,
+        "hidden": false,
+        "text": "1 group"
+      },
+      "92c1c225-95fb-802e-8008-aeaaa16143eb": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa16143eb",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Pagination status",
+        "x": 916,
+        "y": 2138.0000000000005,
+        "w": 120,
+        "h": 22,
+        "hidden": false,
+        "text": "1–6 of 6"
+      },
+      "92c1c225-95fb-802e-8008-aeaaa173f6eb": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa173f6eb",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Foundation / Pagination / Previous groups",
+        "x": 1500,
+        "y": 2134.0000000000005,
+        "w": 29.59999999999991,
+        "h": 29.59999999999991,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaa17db4b3": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa17db4b3",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Foundation / Pagination / Next groups",
+        "x": 1540.0000000000002,
+        "y": 2134.0000000000005,
+        "w": 29.600000000000364,
+        "h": 29.599999999999,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f99864164": {
+        "id": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "parent": "92c1c225-95fb-802e-8008-ae9f14127ed8",
+        "name": "Groups and groupings column",
+        "x": 896,
+        "y": 466,
+        "w": 720,
+        "h": 1732.0000000000005,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f99947815": {
+        "id": "92c1c225-95fb-802e-8008-ae9f99947815",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Semantic accent",
+        "x": 896,
+        "y": 466,
+        "w": 720,
+        "h": 4,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f99a003bc": {
+        "id": "92c1c225-95fb-802e-8008-ae9f99a003bc",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Column title",
+        "x": 920,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Groups and groupings"
+      },
+      "92c1c225-95fb-802e-8008-ae9f99af4f50": {
+        "id": "92c1c225-95fb-802e-8008-ae9f99af4f50",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Column summary",
+        "x": 920,
+        "y": 534,
+        "w": 520,
+        "h": 24,
+        "hidden": false,
+        "text": "6 groups · 2 groupings"
+      },
+      "92c1c225-95fb-802e-8008-ae9f99de1c6b": {
+        "id": "92c1c225-95fb-802e-8008-ae9f99de1c6b",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Foundation / Group filters / Collapsed",
+        "x": 916,
+        "y": 694,
+        "w": 680,
+        "h": 174,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaa9ecc399a": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9ecc399a",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Foundation / Select all groups",
+        "x": 916,
+        "y": 900,
+        "w": 70.39999999999998,
+        "h": 25.920000000000073,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaa9ed54a08": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9ed54a08",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Selection summary",
+        "x": 998,
+        "y": 903,
+        "w": 100,
+        "h": 22,
+        "hidden": false,
+        "text": "2 selected"
+      },
+      "92c1c225-95fb-802e-8008-aeaa9ef218e6": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9ef218e6",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Foundation / Sort groups",
+        "x": 1444,
+        "y": 896,
+        "w": 152,
+        "h": 36,
+        "hidden": false
+      },
+      "01e728c3-f1ef-80b3-8008-b5b221951782": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b221951782",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Composition / Grouping card / Year 2026 / Open",
+        "x": 916,
+        "y": 960,
+        "w": 680,
+        "h": 442,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaa9f353b28": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9f353b28",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Search groups",
+        "x": 1360,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaa9f482c75": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9f482c75",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Add groups",
+        "x": 1416,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaa9f59c371": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9f59c371",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Grouping settings",
+        "x": 1472,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaa9fb82eea": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9fb82eea",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Search members / Group A",
+        "x": 1440,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaa9fcbc1cb": {
+        "id": "92c1c225-95fb-802e-8008-aeaa9fcbc1cb",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Group settings / Group A",
+        "x": 1488,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaaa021d364": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa021d364",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Search members / Group B",
+        "x": 1440,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaaa0367d02": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa0367d02",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Group settings / Group B",
+        "x": 1488,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaaa082bc90": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa082bc90",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Search ungrouped",
+        "x": 1472,
+        "y": 1442,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aeaaeedacd74": {
+        "id": "92c1c225-95fb-802e-8008-aeaaeedacd74",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Column header actions",
+        "x": 916,
+        "y": 564,
+        "w": 680,
+        "h": 32,
+        "hidden": false
+      },
+      "103e019a-f5a8-8027-8008-b131e7ca3e3f": {
+        "id": "103e019a-f5a8-8027-8008-b131e7ca3e3f",
+        "parent": "92c1c225-95fb-802e-8008-ae9f99864164",
+        "name": "Product / Quick create / both",
+        "x": 916,
+        "y": 610,
+        "w": 680,
+        "h": 70,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aea0b4076728": {
+        "id": "92c1c225-95fb-802e-8008-aea0b4076728",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Pagination status",
+        "x": 164,
+        "y": 2138.0000000000005,
+        "w": 120,
+        "h": 22,
+        "hidden": false,
+        "text": "1–12 of 24"
+      },
+      "92c1c225-95fb-802e-8008-aea0b4165632": {
+        "id": "92c1c225-95fb-802e-8008-aea0b4165632",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Foundation / Pagination / Previous",
+        "x": 748,
+        "y": 2134.0000000000005,
+        "w": 29.600000000000023,
+        "h": 29.59999999999991,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aea0b41f6a4f": {
+        "id": "92c1c225-95fb-802e-8008-aea0b41f6a4f",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Foundation / Pagination / Next",
+        "x": 787.9999999999999,
+        "y": 2134.0000000000005,
+        "w": 29.600000000000136,
+        "h": 29.599999999999,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f993ab289": {
+        "id": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "parent": "92c1c225-95fb-802e-8008-ae9f14127ed8",
+        "name": "Participants column",
+        "x": 144,
+        "y": 466,
+        "w": 720,
+        "h": 1732.0000000000005,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f9952e3ce": {
+        "id": "92c1c225-95fb-802e-8008-ae9f9952e3ce",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Semantic accent",
+        "x": 144,
+        "y": 466,
+        "w": 720,
+        "h": 4,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f9962310c": {
+        "id": "92c1c225-95fb-802e-8008-ae9f9962310c",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Column title",
+        "x": 168,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Participants"
+      },
+      "92c1c225-95fb-802e-8008-ae9f99763823": {
+        "id": "92c1c225-95fb-802e-8008-ae9f99763823",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Column summary",
+        "x": 168,
+        "y": 534,
+        "w": 520,
+        "h": 24,
+        "hidden": false,
+        "text": "24 participants · 3 selected"
+      },
+      "92c1c225-95fb-802e-8008-ae9f99c1bc48": {
+        "id": "92c1c225-95fb-802e-8008-ae9f99c1bc48",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Foundation / Participant filters / Collapsed",
+        "x": 164,
+        "y": 610,
+        "w": 679.9999999999999,
+        "h": 174,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aea0b24c60c9": {
+        "id": "92c1c225-95fb-802e-8008-aea0b24c60c9",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Foundation / Select all",
+        "x": 164,
+        "y": 816,
+        "w": 70.39999999999998,
+        "h": 25.920000000000073,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aea0b2506c76": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2506c76",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Selection summary",
+        "x": 246,
+        "y": 819,
+        "w": 100,
+        "h": 22,
+        "hidden": false,
+        "text": "3 selected"
+      },
+      "92c1c225-95fb-802e-8008-aea0b25fa68f": {
+        "id": "92c1c225-95fb-802e-8008-aea0b25fa68f",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Foundation / Sort participants",
+        "x": 692,
+        "y": 812,
+        "w": 152,
+        "h": 36,
+        "hidden": false
+      },
+      "01e728c3-f1ef-80b3-8008-b5b216528a78": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b216528a78",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Composition / Participant card / Alice Martin",
+        "x": 164,
+        "y": 876,
+        "w": 680,
+        "h": 188,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aea0b2a3a08f": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2a3a08f",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "View participant details",
+        "x": 772,
+        "y": 898,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aea0b2b5588c": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2b5588c",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Role surface",
+        "x": 668,
+        "y": 897,
+        "w": 86,
+        "h": 26,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aea0b2bd4265": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2bd4265",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Role label",
+        "x": 668,
+        "y": 897,
+        "w": 86,
+        "h": 26,
+        "hidden": true,
+        "text": "Teacher"
+      },
+      "92c1c225-95fb-802e-8008-aea0b2c9ac61": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2c9ac61",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Group surface",
+        "x": 386,
+        "y": 960,
+        "w": 88,
+        "h": 26,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aea0b2dac3d1": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2dac3d1",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Group label",
+        "x": 386,
+        "y": 960,
+        "w": 88,
+        "h": 26,
+        "hidden": true,
+        "text": "Group A"
+      },
+      "92c1c225-95fb-802e-8008-aea0b2f1d08a": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2f1d08a",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Grouping surface",
+        "x": 484,
+        "y": 960,
+        "w": 100,
+        "h": 26,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aea0b2f98d3d": {
+        "id": "92c1c225-95fb-802e-8008-aea0b2f98d3d",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Grouping label",
+        "x": 484,
+        "y": 960,
+        "w": 100,
+        "h": 26,
+        "hidden": true,
+        "text": "Year 2026"
+      },
+      "92c1c225-95fb-802e-8008-aea0b304d7a1": {
+        "id": "92c1c225-95fb-802e-8008-aea0b304d7a1",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Participant details",
+        "x": 290,
+        "y": 1002,
+        "w": 450,
+        "h": 22,
+        "hidden": true,
+        "text": "ID 10482 · Campus La Défense · Programme M1"
+      },
+      "01e728c3-f1ef-80b3-8008-b5b2180b7b80": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b2180b7b80",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Composition / Participant card / Samira Benali / Selected",
+        "x": 164,
+        "y": 1080,
+        "w": 680,
+        "h": 188,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aea0b354b9f0": {
+        "id": "92c1c225-95fb-802e-8008-aea0b354b9f0",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Role surface",
+        "x": 668,
+        "y": 1101,
+        "w": 86,
+        "h": 26,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aea0b35dc56c": {
+        "id": "92c1c225-95fb-802e-8008-aea0b35dc56c",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Role label",
+        "x": 668,
+        "y": 1101,
+        "w": 86,
+        "h": 26,
+        "hidden": true,
+        "text": "Student"
+      },
+      "92c1c225-95fb-802e-8008-aea0b36b5447": {
+        "id": "92c1c225-95fb-802e-8008-aea0b36b5447",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Group surface",
+        "x": 386,
+        "y": 1164,
+        "w": 88,
+        "h": 26,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aea0b373f91e": {
+        "id": "92c1c225-95fb-802e-8008-aea0b373f91e",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Group label",
+        "x": 386,
+        "y": 1164,
+        "w": 88,
+        "h": 26,
+        "hidden": true,
+        "text": "Group B"
+      },
+      "92c1c225-95fb-802e-8008-aea0b3816de9": {
+        "id": "92c1c225-95fb-802e-8008-aea0b3816de9",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "View participant details / Samira",
+        "x": 772,
+        "y": 1102,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "92c1c225-95fb-802e-8008-aea0b3924d4a": {
+        "id": "92c1c225-95fb-802e-8008-aea0b3924d4a",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Participant bulk actions",
+        "x": 164,
+        "y": 1364,
+        "w": 680,
+        "h": 104,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeaaee15f0a1": {
+        "id": "92c1c225-95fb-802e-8008-aeaaee15f0a1",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Column header actions",
+        "x": 164,
+        "y": 564,
+        "w": 680,
+        "h": 32,
+        "hidden": false
+      },
+      "01e728c3-f1ef-80b3-8008-b5b207e1a552": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b207e1a552",
+        "parent": "92c1c225-95fb-802e-8008-ae9f993ab289",
+        "name": "Composition / Participant card / Compact",
+        "x": 164,
+        "y": 1284,
+        "w": 680,
+        "h": 60,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f14127ed8": {
+        "id": "92c1c225-95fb-802e-8008-ae9f14127ed8",
+        "parent": "92c1c225-95fb-802e-8008-ae9f13f14484",
+        "name": "Product workspace",
+        "x": 112,
+        "y": 252,
+        "w": 1535.9999999999998,
+        "h": 1970,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f2bf70fdb": {
+        "id": "92c1c225-95fb-802e-8008-ae9f2bf70fdb",
+        "parent": "92c1c225-95fb-802e-8008-ae9f14127ed8",
+        "name": "Foundation / Primary navigation / Student management",
+        "x": 224,
+        "y": 300,
+        "w": 1311.9999999999998,
+        "h": 56,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f2c1055da": {
+        "id": "92c1c225-95fb-802e-8008-ae9f2c1055da",
+        "parent": "92c1c225-95fb-802e-8008-ae9f14127ed8",
+        "name": "Foundation / Layout mode / Complete view",
+        "x": 528,
+        "y": 380,
+        "w": 704,
+        "h": 62,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f13f14484": {
+        "id": "92c1c225-95fb-802e-8008-ae9f13f14484",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Desktop / Complete view",
+        "x": 80,
+        "y": 80,
+        "w": 1600,
+        "h": 2250,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-ae9f13f74beb": {
+        "id": "92c1c225-95fb-802e-8008-ae9f13f74beb",
+        "parent": "92c1c225-95fb-802e-8008-ae9f13f14484",
+        "name": "Eyebrow",
+        "x": 128,
+        "y": 124,
+        "w": 265,
+        "h": 17,
+        "hidden": false,
+        "text": "EASYSTUD / STUDENT MANAGEMENT"
+      },
+      "92c1c225-95fb-802e-8008-ae9f14000e93": {
+        "id": "92c1c225-95fb-802e-8008-ae9f14000e93",
+        "parent": "92c1c225-95fb-802e-8008-ae9f13f14484",
+        "name": "Page title",
+        "x": 128,
+        "y": 154,
+        "w": 468,
+        "h": 36,
+        "hidden": false,
+        "text": "Simplified student management"
+      },
+      "92c1c225-95fb-802e-8008-ae9f14092c04": {
+        "id": "92c1c225-95fb-802e-8008-ae9f14092c04",
+        "parent": "92c1c225-95fb-802e-8008-ae9f13f14484",
+        "name": "Page description",
+        "x": 128,
+        "y": 202,
+        "w": 1100,
+        "h": 24,
+        "hidden": false,
+        "text": "Manage participants, groups and groupings from one structured workspace."
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b58": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b58",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "Identifier values",
+        "x": 4310,
+        "y": 1532,
+        "w": 430,
+        "h": 58,
+        "hidden": false,
+        "text": "Group A\nGroup B"
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b57": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b57",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "Identifier input",
+        "x": 4296,
+        "y": 1518,
+        "w": 476,
+        "h": 84,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b54": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Add groups / Recognition preview",
+        "x": 4276,
+        "y": 1434,
+        "w": 680,
+        "h": 272,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b55": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b55",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "Panel title",
+        "x": 4296,
+        "y": 1454,
+        "w": 420,
+        "h": 22.5,
+        "hidden": false,
+        "text": "Add groups to this grouping"
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b56": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b56",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "Panel hint",
+        "x": 4296,
+        "y": 1482,
+        "w": 640,
+        "h": 32,
+        "hidden": false,
+        "text": "Paste group names or supported group identifiers. Check the recognised names."
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b59": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b59",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "Add identifiers",
+        "x": 4786,
+        "y": 1536,
+        "w": 146,
+        "h": 36,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b5a": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b5a",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 4296,
+        "y": 1630,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b5b": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b5b",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 4416,
+        "y": 1630,
+        "w": 104,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b5c": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b5c",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 4528,
+        "y": 1630,
+        "w": 112,
+        "h": 24,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aee7b6f19b5d": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b5d",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "EasyEdu / Feedback / Detected token / Error",
+        "x": 4296,
+        "y": 1666,
+        "w": 132,
+        "h": 24,
+        "hidden": true
+      },
+      "6d8cb67b-0321-8034-8008-ba1e9fa1b0f5": {
+        "id": "6d8cb67b-0321-8034-8008-ba1e9fa1b0f5",
+        "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "name": "Foundation / Textarea M / Identifier values",
+        "x": 4296,
+        "y": 1518,
+        "w": 476,
+        "h": 112,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f48": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f48",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Add students by identifiers",
+        "x": 4276,
+        "y": 1824,
+        "w": 680,
+        "h": 180,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f49": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f49",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Pagination status",
+        "x": 4276,
+        "y": 1656,
+        "w": 120,
+        "h": 22,
+        "hidden": false,
+        "text": "1–6 of 6"
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f4a": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f4a",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Pagination / Previous groups",
+        "x": 4860,
+        "y": 1652,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f4b": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f4b",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Pagination / Next groups",
+        "x": 4900,
+        "y": 1652,
+        "w": 29.600000000000364,
+        "h": 29.600000000002183,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2401": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2401",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23fd",
+        "name": "Groups and groupings column",
+        "x": 4256,
+        "y": 466,
+        "w": 720,
+        "h": 1250,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f27": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f27",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Semantic accent",
+        "x": 4256,
+        "y": 466,
+        "w": 720,
+        "h": 4,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f28": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f28",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Column title",
+        "x": 4280,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": true,
+        "text": "Groupings"
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f29": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f29",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Column summary",
+        "x": 4280,
+        "y": 534,
+        "w": 520,
+        "h": 24,
+        "hidden": false,
+        "text": "2 groupings · organise groups"
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f2a": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f2a",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Group filters / Collapsed",
+        "x": 4276,
+        "y": 694,
+        "w": 680,
+        "h": 174,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f2b": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f2b",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Select all groups",
+        "x": 4276,
+        "y": 900,
+        "w": 70.39999999999964,
+        "h": 25.920000000000073,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f2c": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f2c",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Selection summary",
+        "x": 4358,
+        "y": 903,
+        "w": 100,
+        "h": 22,
+        "hidden": false,
+        "text": "2 selected"
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f2d": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f2d",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Sort groups",
+        "x": 4804,
+        "y": 896,
+        "w": 152,
+        "h": 36,
+        "hidden": false
+      },
+      "01e728c3-f1ef-80b3-8008-b5b222b0d356": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b222b0d356",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Composition / Grouping card / Year 2026 / Open",
+        "x": 4276,
+        "y": 960,
+        "w": 680,
+        "h": 442,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f30": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f30",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Search groups",
+        "x": 4720,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f31": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f31",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Add groups",
+        "x": 4776,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f32": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f32",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Grouping settings",
+        "x": 4832,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f39": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f39",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Search members / Group A",
+        "x": 4800,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f3a": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f3a",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Group settings / Group A",
+        "x": 4848,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f3f": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f3f",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Search members / Group B",
+        "x": 4800,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f40": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f40",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Group settings / Group B",
+        "x": 4848,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f42": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f42",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Ungrouped groups / Open",
+        "x": 4276,
+        "y": 1426,
+        "w": 680,
+        "h": 306,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f43": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f43",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Search ungrouped",
+        "x": 4832,
+        "y": 1442,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f44": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f44",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Group card / New arrivals",
+        "x": 4320,
+        "y": 1512,
+        "w": 608,
+        "h": 172,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f45": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f45",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Empty group message",
+        "x": 4356,
+        "y": 1580,
+        "w": 560,
+        "h": 30,
+        "hidden": true,
+        "text": "No student in this group yet."
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f46": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f46",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Add students to empty group",
+        "x": 4551,
+        "y": 1630,
+        "w": 170,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f47": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f47",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Inline member search",
+        "x": 4276,
+        "y": 1678,
+        "w": 680,
+        "h": 122,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f4c": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f4c",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Column header actions",
+        "x": 4276,
+        "y": 564,
+        "w": 680,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f4e": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f4e",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Foundation / Chevron / Ungrouped expanded",
+        "x": 4310,
+        "y": 1447.999999999999,
+        "w": 24,
+        "h": 23.99999999999818,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff5f56": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5f56",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Search ungrouped / Linked direct action",
+        "x": 4841.2,
+        "y": 1445.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aedf029f3f92": {
+        "id": "cef95197-06bc-809e-8008-aedf029f3f92",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Column title",
+        "x": 4280,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Groupings"
+      },
+      "cef95197-06bc-809e-8008-aedf02d29311": {
+        "id": "cef95197-06bc-809e-8008-aedf02d29311",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Groupings filter title",
+        "x": 4300,
+        "y": 710,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Groupings"
+      },
+      "103e019a-f5a8-8027-8008-b131f43b46fc": {
+        "id": "103e019a-f5a8-8027-8008-b131f43b46fc",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2401",
+        "name": "Product / Quick create / both",
+        "x": 4276,
+        "y": 610,
+        "w": 680,
+        "h": 70,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2466": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2466",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Pagination status",
+        "x": 3524,
+        "y": 1384,
+        "w": 120,
+        "h": 22,
+        "hidden": false,
+        "text": "1–12 of 24"
+      },
+      "cef95197-06bc-809e-8008-aede91ff2467": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2467",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Pagination / Previous",
+        "x": 4108,
+        "y": 1374,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2468": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2468",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Pagination / Next",
+        "x": 4148,
+        "y": 1374,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2400": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2400",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23fd",
+        "name": "Participants column",
+        "x": 3504,
+        "y": 466,
+        "w": 720,
+        "h": 1250,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff2449": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2449",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Semantic accent",
+        "x": 3504,
+        "y": 466,
+        "w": 720,
+        "h": 4,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff244a": {
+        "id": "cef95197-06bc-809e-8008-aede91ff244a",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Column title",
+        "x": 3528,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Participants"
+      },
+      "cef95197-06bc-809e-8008-aede91ff244b": {
+        "id": "cef95197-06bc-809e-8008-aede91ff244b",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Column summary",
+        "x": 3528,
+        "y": 534,
+        "w": 520,
+        "h": 24,
+        "hidden": false,
+        "text": "24 participants · 3 selected"
+      },
+      "cef95197-06bc-809e-8008-aede91ff244c": {
+        "id": "cef95197-06bc-809e-8008-aede91ff244c",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Participant filters / Collapsed",
+        "x": 3524,
+        "y": 610,
+        "w": 680,
+        "h": 174,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff244d": {
+        "id": "cef95197-06bc-809e-8008-aede91ff244d",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Select all",
+        "x": 3524,
+        "y": 816,
+        "w": 70.40000000000009,
+        "h": 25.920000000000073,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff244e": {
+        "id": "cef95197-06bc-809e-8008-aede91ff244e",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Selection summary",
+        "x": 3606,
+        "y": 819,
+        "w": 100,
+        "h": 22,
+        "hidden": false,
+        "text": "3 selected"
+      },
+      "cef95197-06bc-809e-8008-aede91ff244f": {
+        "id": "cef95197-06bc-809e-8008-aede91ff244f",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Sort participants",
+        "x": 4052,
+        "y": 812,
+        "w": 152,
+        "h": 36,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2450": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2450",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Participant card / Alice Martin",
+        "x": 3524,
+        "y": 876,
+        "w": 680,
+        "h": 188,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2451": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2451",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Checkbox / Alice",
+        "x": 3554,
+        "y": 904,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2452": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2452",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Avatar / Alice",
+        "x": 3586,
+        "y": 896,
+        "w": 52,
+        "h": 52,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2453": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2453",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Avatar initials",
+        "x": 3586,
+        "y": 896,
+        "w": 52,
+        "h": 52,
+        "hidden": false,
+        "text": "AM"
+      },
+      "cef95197-06bc-809e-8008-aede91ff2454": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2454",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "View participant details",
+        "x": 4132,
+        "y": 898,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff2455": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2455",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Role surface",
+        "x": 3650,
+        "y": 960,
+        "w": 86,
+        "h": 26,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2456": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2456",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Role label",
+        "x": 3650,
+        "y": 960,
+        "w": 86,
+        "h": 26,
+        "hidden": false,
+        "text": "Teacher"
+      },
+      "cef95197-06bc-809e-8008-aede91ff2457": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2457",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Group surface",
+        "x": 3746,
+        "y": 960,
+        "w": 88,
+        "h": 26,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2458": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2458",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Group label",
+        "x": 3746,
+        "y": 960,
+        "w": 88,
+        "h": 26,
+        "hidden": false,
+        "text": "Group A"
+      },
+      "cef95197-06bc-809e-8008-aede91ff2459": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2459",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Grouping surface",
+        "x": 3844,
+        "y": 960,
+        "w": 100,
+        "h": 26,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff245a": {
+        "id": "cef95197-06bc-809e-8008-aede91ff245a",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Grouping label",
+        "x": 3844,
+        "y": 960,
+        "w": 100,
+        "h": 26,
+        "hidden": false,
+        "text": "Year 2026"
+      },
+      "cef95197-06bc-809e-8008-aede91ff245b": {
+        "id": "cef95197-06bc-809e-8008-aede91ff245b",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Participant details",
+        "x": 3650,
+        "y": 1002,
+        "w": 450,
+        "h": 22,
+        "hidden": false,
+        "text": "ID 10482 · Campus La Défense · Programme M1"
+      },
+      "cef95197-06bc-809e-8008-aede91ff245c": {
+        "id": "cef95197-06bc-809e-8008-aede91ff245c",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Participant card / Samira Benali / Selected",
+        "x": 3524,
+        "y": 1080,
+        "w": 680,
+        "h": 142,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff245d": {
+        "id": "cef95197-06bc-809e-8008-aede91ff245d",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Foundation / Checkbox / Samira / Checked",
+        "x": 3554,
+        "y": 1108,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff245e": {
+        "id": "cef95197-06bc-809e-8008-aede91ff245e",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Avatar / Samira",
+        "x": 3586,
+        "y": 1100,
+        "w": 44,
+        "h": 44,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff245f": {
+        "id": "cef95197-06bc-809e-8008-aede91ff245f",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Avatar initials",
+        "x": 3586,
+        "y": 1100,
+        "w": 44,
+        "h": 44,
+        "hidden": false,
+        "text": "SB"
+      },
+      "cef95197-06bc-809e-8008-aede91ff2460": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2460",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Role surface",
+        "x": 3650,
+        "y": 1164,
+        "w": 86,
+        "h": 26,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2461": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2461",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Role label",
+        "x": 3650,
+        "y": 1164,
+        "w": 86,
+        "h": 26,
+        "hidden": false,
+        "text": "Student"
+      },
+      "cef95197-06bc-809e-8008-aede91ff2462": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2462",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Group surface",
+        "x": 3746,
+        "y": 1164,
+        "w": 88,
+        "h": 26,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2463": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2463",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Group label",
+        "x": 3746,
+        "y": 1164,
+        "w": 88,
+        "h": 26,
+        "hidden": false,
+        "text": "Group B"
+      },
+      "cef95197-06bc-809e-8008-aede91ff2464": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2464",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "View participant details / Samira",
+        "x": 4132,
+        "y": 1102,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede91ff2465": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2465",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Participant bulk actions",
+        "x": 3524,
+        "y": 1244,
+        "w": 680,
+        "h": 104,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff2469": {
+        "id": "cef95197-06bc-809e-8008-aede91ff2469",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "Column header actions",
+        "x": 3524,
+        "y": 564,
+        "w": 680,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff246a": {
+        "id": "cef95197-06bc-809e-8008-aede91ff246a",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "View participant details / Linked direct action",
+        "x": 4141.2,
+        "y": 901.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff246b": {
+        "id": "cef95197-06bc-809e-8008-aede91ff246b",
+        "parent": "cef95197-06bc-809e-8008-aede91ff2400",
+        "name": "View participant details / Samira / Linked direct action",
+        "x": 4141.2,
+        "y": 1105.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede933432a9": {
+        "id": "cef95197-06bc-809e-8008-aede933432a9",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Pagination status",
+        "x": 3524,
+        "y": 1656,
+        "w": 120,
+        "h": 22,
+        "hidden": false,
+        "text": "1–6 of 6"
+      },
+      "cef95197-06bc-809e-8008-aede933432aa": {
+        "id": "cef95197-06bc-809e-8008-aede933432aa",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Pagination / Previous groups",
+        "x": 4108,
+        "y": 1652,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede933432ab": {
+        "id": "cef95197-06bc-809e-8008-aede933432ab",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Pagination / Next groups",
+        "x": 4148,
+        "y": 1652,
+        "w": 29.600000000000364,
+        "h": 29.600000000002183,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede93343286": {
+        "id": "cef95197-06bc-809e-8008-aede93343286",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23fd",
+        "name": "Group catalogue / Structure mode",
+        "x": 3504,
+        "y": 466,
+        "w": 720,
+        "h": 1250,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede93343287": {
+        "id": "cef95197-06bc-809e-8008-aede93343287",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Semantic accent",
+        "x": 3504,
+        "y": 466,
+        "w": 720,
+        "h": 4,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede93343288": {
+        "id": "cef95197-06bc-809e-8008-aede93343288",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Column title",
+        "x": 3528,
+        "y": 498,
+        "w": 420,
+        "h": 33,
+        "hidden": false,
+        "text": "Groups"
+      },
+      "cef95197-06bc-809e-8008-aede93343289": {
+        "id": "cef95197-06bc-809e-8008-aede93343289",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Column summary",
+        "x": 3528,
+        "y": 534,
+        "w": 520,
+        "h": 24,
+        "hidden": false,
+        "text": "6 groups · select groups to organise"
+      },
+      "cef95197-06bc-809e-8008-aede9334328a": {
+        "id": "cef95197-06bc-809e-8008-aede9334328a",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Group filters / Collapsed",
+        "x": 3524,
+        "y": 694,
+        "w": 680,
+        "h": 174,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede9334328b": {
+        "id": "cef95197-06bc-809e-8008-aede9334328b",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Select all groups",
+        "x": 3524,
+        "y": 900,
+        "w": 70.40000000000009,
+        "h": 25.920000000000073,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede9334328c": {
+        "id": "cef95197-06bc-809e-8008-aede9334328c",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Selection summary",
+        "x": 3606,
+        "y": 903,
+        "w": 100,
+        "h": 22,
+        "hidden": false,
+        "text": "2 selected"
+      },
+      "cef95197-06bc-809e-8008-aede9334328d": {
+        "id": "cef95197-06bc-809e-8008-aede9334328d",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Sort groups",
+        "x": 4052,
+        "y": 896,
+        "w": 152,
+        "h": 36,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede9334328e": {
+        "id": "cef95197-06bc-809e-8008-aede9334328e",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Grouping card / Year 2026 / Open",
+        "x": 3524,
+        "y": 960,
+        "w": 680,
+        "h": 442,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede9334328f": {
+        "id": "cef95197-06bc-809e-8008-aede9334328f",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Checkbox / Grouping / Checked",
+        "x": 3552,
+        "y": 988,
+        "w": 16,
+        "h": 16,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede93343290": {
+        "id": "cef95197-06bc-809e-8008-aede93343290",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Search groups",
+        "x": 3968,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede93343291": {
+        "id": "cef95197-06bc-809e-8008-aede93343291",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Add groups",
+        "x": 4024,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede93343292": {
+        "id": "cef95197-06bc-809e-8008-aede93343292",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Grouping settings",
+        "x": 4080,
+        "y": 982,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede93343293": {
+        "id": "cef95197-06bc-809e-8008-aede93343293",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Grouping more",
+        "x": 4144,
+        "y": 985,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede93343294": {
+        "id": "cef95197-06bc-809e-8008-aede93343294",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Nested hierarchy rail",
+        "x": 3578,
+        "y": 1052,
+        "w": 2,
+        "h": 276,
+        "hidden": true
+      },
+      "01e728c3-f1ef-80b3-8008-b5b213902631": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b213902631",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Composition / Group card / Group A",
+        "x": 3544,
+        "y": 960,
+        "w": 578,
+        "h": 118,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede93343299": {
+        "id": "cef95197-06bc-809e-8008-aede93343299",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Search members / Group A",
+        "x": 4048,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede9334329a": {
+        "id": "cef95197-06bc-809e-8008-aede9334329a",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Group settings / Group A",
+        "x": 4096,
+        "y": 1070,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "01e728c3-f1ef-80b3-8008-b5b214304e7b": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b214304e7b",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Composition / Group card / Group B / Selected",
+        "x": 3544,
+        "y": 1094,
+        "w": 578,
+        "h": 118,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede9334329f": {
+        "id": "cef95197-06bc-809e-8008-aede9334329f",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Search members / Group B",
+        "x": 4048,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432a0": {
+        "id": "cef95197-06bc-809e-8008-aede933432a0",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Group settings / Group B",
+        "x": 4096,
+        "y": 1204,
+        "w": 42,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432a1": {
+        "id": "cef95197-06bc-809e-8008-aede933432a1",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Grouping affordance",
+        "x": 3598,
+        "y": 1328,
+        "w": 560,
+        "h": 22,
+        "hidden": true,
+        "text": "Groups can be searched, added, reordered and removed without leaving the expanded grouping."
+      },
+      "cef95197-06bc-809e-8008-aede933432a2": {
+        "id": "cef95197-06bc-809e-8008-aede933432a2",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Ungrouped groups / Open",
+        "x": 3524,
+        "y": 1426,
+        "w": 680,
+        "h": 306,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432a3": {
+        "id": "cef95197-06bc-809e-8008-aede933432a3",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Search ungrouped",
+        "x": 4080,
+        "y": 1442,
+        "w": 48,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432a4": {
+        "id": "cef95197-06bc-809e-8008-aede933432a4",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Group card / New arrivals",
+        "x": 3568,
+        "y": 1512,
+        "w": 608,
+        "h": 172,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432a5": {
+        "id": "cef95197-06bc-809e-8008-aede933432a5",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Empty group message",
+        "x": 3604,
+        "y": 1580,
+        "w": 560,
+        "h": 30,
+        "hidden": true,
+        "text": "No student in this group yet."
+      },
+      "cef95197-06bc-809e-8008-aede933432a6": {
+        "id": "cef95197-06bc-809e-8008-aede933432a6",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Add students to empty group",
+        "x": 3799,
+        "y": 1630,
+        "w": 170,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432a7": {
+        "id": "cef95197-06bc-809e-8008-aede933432a7",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Inline member search",
+        "x": 3524,
+        "y": 1678,
+        "w": 680,
+        "h": 122,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432a8": {
+        "id": "cef95197-06bc-809e-8008-aede933432a8",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Add students by identifiers",
+        "x": 3524,
+        "y": 1824,
+        "w": 680,
+        "h": 180,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432ac": {
+        "id": "cef95197-06bc-809e-8008-aede933432ac",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Column header actions",
+        "x": 3524,
+        "y": 564,
+        "w": 680,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede933432ad": {
+        "id": "cef95197-06bc-809e-8008-aede933432ad",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Chevron / Grouping expanded",
+        "x": 3582,
+        "y": 982,
+        "w": 24,
+        "h": 24,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432ae": {
+        "id": "cef95197-06bc-809e-8008-aede933432ae",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Foundation / Chevron / Ungrouped expanded",
+        "x": 3558,
+        "y": 1447.999999999999,
+        "w": 24,
+        "h": 23.99999999999909,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432af": {
+        "id": "cef95197-06bc-809e-8008-aede933432af",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Search groups / Linked direct action",
+        "x": 4043.2,
+        "y": 985.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432b0": {
+        "id": "cef95197-06bc-809e-8008-aede933432b0",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Add groups / Linked direct action",
+        "x": 4076.7999999999997,
+        "y": 985.1999999999998,
+        "w": 29.59999999999991,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432b1": {
+        "id": "cef95197-06bc-809e-8008-aede933432b1",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Grouping settings / Linked direct action",
+        "x": 4110.4,
+        "y": 985.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aede933432b6": {
+        "id": "cef95197-06bc-809e-8008-aede933432b6",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Search ungrouped / Linked direct action",
+        "x": 4089.2,
+        "y": 1445.1999999999998,
+        "w": 29.600000000000364,
+        "h": 29.600000000000364,
+        "hidden": true
+      },
+      "103e019a-f5a8-8027-8008-b131fb0a926c": {
+        "id": "103e019a-f5a8-8027-8008-b131fb0a926c",
+        "parent": "cef95197-06bc-809e-8008-aede93343286",
+        "name": "Product / Quick create / both",
+        "x": 3524,
+        "y": 610,
+        "w": 680,
+        "h": 70,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff23fd": {
+        "id": "cef95197-06bc-809e-8008-aede91ff23fd",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23f9",
+        "name": "Product workspace",
+        "x": 3472,
+        "y": 252,
+        "w": 1536,
+        "h": 1520,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff23fe": {
+        "id": "cef95197-06bc-809e-8008-aede91ff23fe",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23fd",
+        "name": "Foundation / Primary navigation / Student management",
+        "x": 3584,
+        "y": 300,
+        "w": 1312,
+        "h": 56,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff23ff": {
+        "id": "cef95197-06bc-809e-8008-aede91ff23ff",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23fd",
+        "name": "Foundation / Layout mode / structure",
+        "x": 3888,
+        "y": 380,
+        "w": 704,
+        "h": 62,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff23f9": {
+        "id": "cef95197-06bc-809e-8008-aede91ff23f9",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Desktop / Groups & groupings",
+        "x": 3440,
+        "y": 80,
+        "w": 1600,
+        "h": 1760,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aede91ff23fa": {
+        "id": "cef95197-06bc-809e-8008-aede91ff23fa",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23f9",
+        "name": "Eyebrow",
+        "x": 3488,
+        "y": 124,
+        "w": 265,
+        "h": 17,
+        "hidden": false,
+        "text": "EASYSTUD / STUDENT MANAGEMENT"
+      },
+      "cef95197-06bc-809e-8008-aede91ff23fb": {
+        "id": "cef95197-06bc-809e-8008-aede91ff23fb",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23f9",
+        "name": "Page title",
+        "x": 3488,
+        "y": 154,
+        "w": 468,
+        "h": 36,
+        "hidden": false,
+        "text": "Simplified student management"
+      },
+      "cef95197-06bc-809e-8008-aede91ff23fc": {
+        "id": "cef95197-06bc-809e-8008-aede91ff23fc",
+        "parent": "cef95197-06bc-809e-8008-aede91ff23f9",
+        "name": "Page description",
+        "x": 3488,
+        "y": 202,
+        "w": 1100,
+        "h": 24,
+        "hidden": false,
+        "text": "Manage participants, groups and groupings from one structured workspace."
+      },
+      "cef95197-06bc-809e-8008-aee796b604a3": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a3",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "Identifier values",
+        "x": 5234,
+        "y": 3254,
+        "w": 430,
+        "h": 58,
+        "hidden": false,
+        "text": "Group A\nGroup B\nunknown-group"
+      },
+      "cef95197-06bc-809e-8008-aee796b604a2": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a2",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "Identifier input",
+        "x": 5220,
+        "y": 3240,
+        "w": 476,
+        "h": 84,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796b6049f": {
+        "id": "cef95197-06bc-809e-8008-aee796b6049f",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Identifier recognition / Groups / Mixed result",
+        "x": 5200,
+        "y": 3156,
+        "w": 680,
+        "h": 272,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796b604a0": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a0",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "Panel title",
+        "x": 5220,
+        "y": 3176,
+        "w": 420,
+        "h": 22.5,
+        "hidden": false,
+        "text": "Add groups to this grouping"
+      },
+      "cef95197-06bc-809e-8008-aee796b604a1": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a1",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "Panel hint",
+        "x": 5220,
+        "y": 3204,
+        "w": 640,
+        "h": 32,
+        "hidden": false,
+        "text": "Paste group names or supported group identifiers. Check the recognised names."
+      },
+      "cef95197-06bc-809e-8008-aee796b604a4": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a4",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "Add identifiers",
+        "x": 5710,
+        "y": 3258,
+        "w": 146,
+        "h": 36,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796b604a5": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a5",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 5220,
+        "y": 3352,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796b604a6": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a6",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 5340,
+        "y": 3352,
+        "w": 104,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796b604a7": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a7",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 5452,
+        "y": 3352,
+        "w": 112,
+        "h": 24,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aee797053172": {
+        "id": "cef95197-06bc-809e-8008-aee797053172",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "EasyEdu / Feedback / Detected token / Error",
+        "x": 5220,
+        "y": 3388,
+        "w": 132,
+        "h": 24,
+        "hidden": false
+      },
+      "6d8cb67b-0321-8034-8008-ba1ebd53b18d": {
+        "id": "6d8cb67b-0321-8034-8008-ba1ebd53b18d",
+        "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+        "name": "Foundation / Textarea M / Identifier values",
+        "x": 5220,
+        "y": 3240,
+        "w": 476,
+        "h": 112,
+        "hidden": false
+      },
+      "103e019a-f5a8-8027-8008-b136b7f991c9": {
+        "id": "103e019a-f5a8-8027-8008-b136b7f991c9",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Additional DOM states",
+        "x": 5160,
+        "y": 3460,
+        "w": 1040,
+        "h": 760,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeab95c4c12c": {
+        "id": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Interaction states",
+        "x": 5120,
+        "y": 80,
+        "w": 1120,
+        "h": 4300,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeab95cee05a": {
+        "id": "92c1c225-95fb-802e-8008-aeab95cee05a",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Eyebrow",
+        "x": 5168,
+        "y": 124,
+        "w": 265,
+        "h": 17,
+        "hidden": false,
+        "text": "EASYSTUD / STUDENT MANAGEMENT"
+      },
+      "92c1c225-95fb-802e-8008-aeab95da1eae": {
+        "id": "92c1c225-95fb-802e-8008-aeab95da1eae",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Page title",
+        "x": 5168,
+        "y": 154,
+        "w": 547,
+        "h": 34,
+        "hidden": false,
+        "text": "Interaction states and product feedback"
+      },
+      "92c1c225-95fb-802e-8008-aeab95e996fd": {
+        "id": "92c1c225-95fb-802e-8008-aeab95e996fd",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Page description",
+        "x": 5168,
+        "y": 198,
+        "w": 980,
+        "h": 22.5,
+        "hidden": false,
+        "text": "Source-backed states kept separate from the canonical complete-view composition."
+      },
+      "92c1c225-95fb-802e-8008-aeab95f685d1": {
+        "id": "92c1c225-95fb-802e-8008-aeab95f685d1",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Filter states",
+        "x": 5160,
+        "y": 252,
+        "w": 1040,
+        "h": 820,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeab966dee33": {
+        "id": "92c1c225-95fb-802e-8008-aeab966dee33",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Card states",
+        "x": 5160,
+        "y": 1100,
+        "w": 1040,
+        "h": 430,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeab975bcaf2": {
+        "id": "92c1c225-95fb-802e-8008-aeab975bcaf2",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Menus and feedback",
+        "x": 5160,
+        "y": 1560,
+        "w": 1040,
+        "h": 510.0000000000009,
+        "hidden": false
+      },
+      "92c1c225-95fb-802e-8008-aeafe92d74d8": {
+        "id": "92c1c225-95fb-802e-8008-aeafe92d74d8",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Drag and drop / Error states",
+        "x": 5160,
+        "y": 2100,
+        "w": 1040,
+        "h": 560,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f17e05b3": {
+        "id": "cef95197-06bc-809e-8008-aff8f17e05b3",
+        "parent": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+        "name": "Interaction / Add by identifier / Inside group card",
+        "x": 5200,
+        "y": 2740,
+        "w": 680,
+        "h": 370,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796502164": {
+        "id": "cef95197-06bc-809e-8008-aee796502164",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Identifier values",
+        "x": 5258,
+        "y": 2906,
+        "w": 564,
+        "h": 48,
+        "hidden": false,
+        "text": "alex.dupont@example.edu\nlea.martin\nID-10482; unknown-42"
+      },
+      "cef95197-06bc-809e-8008-aee796502163": {
+        "id": "cef95197-06bc-809e-8008-aee796502163",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Identifier input",
+        "x": 5244,
+        "y": 2894,
+        "w": 592,
+        "h": 72,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796502160": {
+        "id": "cef95197-06bc-809e-8008-aee796502160",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Product / Group card / Identifier recognition / Mixed result",
+        "x": 5224,
+        "y": 2874,
+        "w": 632,
+        "h": 210,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796502161": {
+        "id": "cef95197-06bc-809e-8008-aee796502161",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Panel title",
+        "x": 5244,
+        "y": 2894,
+        "w": 420,
+        "h": 22.5,
+        "hidden": true,
+        "text": "Add students by identifier"
+      },
+      "cef95197-06bc-809e-8008-aee796502162": {
+        "id": "cef95197-06bc-809e-8008-aee796502162",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Panel hint",
+        "x": 5244,
+        "y": 2922,
+        "w": 640,
+        "h": 32,
+        "hidden": true,
+        "text": "Username, email or configured unique ID. Recognised names appear below."
+      },
+      "cef95197-06bc-809e-8008-aee796502165": {
+        "id": "cef95197-06bc-809e-8008-aee796502165",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Add identifiers",
+        "x": 5734,
+        "y": 2976,
+        "w": 146,
+        "h": 36,
+        "hidden": true
+      },
+      "cef95197-06bc-809e-8008-aee796502166": {
+        "id": "cef95197-06bc-809e-8008-aee796502166",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 5244,
+        "y": 3034,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796502167": {
+        "id": "cef95197-06bc-809e-8008-aee796502167",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 5364,
+        "y": 3034,
+        "w": 104,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee796502168": {
+        "id": "cef95197-06bc-809e-8008-aee796502168",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "EasyEdu / Feedback / Detected token / Success",
+        "x": 5476,
+        "y": 3034,
+        "w": 112,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aee7967e81ba": {
+        "id": "cef95197-06bc-809e-8008-aee7967e81ba",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "EasyEdu / Feedback / Detected token / Error",
+        "x": 5596,
+        "y": 3034,
+        "w": 116,
+        "h": 24,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f43b0883": {
+        "id": "cef95197-06bc-809e-8008-aff8f43b0883",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Foundation / Primary S / Add students",
+        "x": 5244,
+        "y": 2982,
+        "w": 120,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f5089cb7": {
+        "id": "cef95197-06bc-809e-8008-aff8f5089cb7",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Foundation / Secondary S / Cancel",
+        "x": 5376,
+        "y": 2982,
+        "w": 88,
+        "h": 32,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f5940313": {
+        "id": "cef95197-06bc-809e-8008-aff8f5940313",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Action label / Add students",
+        "x": 5274,
+        "y": 2982,
+        "w": 84,
+        "h": 32,
+        "hidden": false,
+        "text": "Add students"
+      },
+      "cef95197-06bc-809e-8008-aff8f669de57": {
+        "id": "cef95197-06bc-809e-8008-aff8f669de57",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Action label / Cancel",
+        "x": 5376,
+        "y": 2982,
+        "w": 88,
+        "h": 32,
+        "hidden": false,
+        "text": "Cancel"
+      },
+      "6d8cb67b-0321-8034-8008-ba1ec0663d16": {
+        "id": "6d8cb67b-0321-8034-8008-ba1ec0663d16",
+        "parent": "cef95197-06bc-809e-8008-aee796502160",
+        "name": "Foundation / Textarea M / Identifier values",
+        "x": 5244,
+        "y": 2894,
+        "w": 592,
+        "h": 112,
+        "hidden": false
+      },
+      "01e728c3-f1ef-80b3-8008-b5b2202e4d6b": {
+        "id": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "parent": "cef95197-06bc-809e-8008-aff8f17e05b3",
+        "name": "Composition / Group card / Group A / Add by identifier open",
+        "x": 5200,
+        "y": 2740,
+        "w": 680,
+        "h": 370,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f22319d1": {
+        "id": "cef95197-06bc-809e-8008-aff8f22319d1",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Foundation / Group card / Group A / Add by identifier open",
+        "x": 5200,
+        "y": 2740,
+        "w": 680,
+        "h": 370,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-afff3bc4b47a": {
+        "id": "cef95197-06bc-809e-8008-afff3bc4b47a",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Header parity / Foundation / Checkbox / Group A",
+        "x": 5239.52,
+        "y": 2766,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-afff3bda6815": {
+        "id": "cef95197-06bc-809e-8008-afff3bda6815",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Header parity / Member count surface",
+        "x": 5706.799999999999,
+        "y": 2764,
+        "w": 82,
+        "h": 20,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-afff3bf851ff": {
+        "id": "cef95197-06bc-809e-8008-afff3bf851ff",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Header parity / Member count label",
+        "x": 5706.799999999999,
+        "y": 2764,
+        "w": 82,
+        "h": 20,
+        "hidden": false,
+        "text": "12 members"
+      },
+      "cef95197-06bc-809e-8008-afff3c0ebf55": {
+        "id": "cef95197-06bc-809e-8008-afff3c0ebf55",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Header parity / Search members / Group A / Linked direct action",
+        "x": 5796.799999999999,
+        "y": 2759.2,
+        "w": 29.600000000000364,
+        "h": 29.59999999999991,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-afff3c27cf9f": {
+        "id": "cef95197-06bc-809e-8008-afff3c27cf9f",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Header parity / Group settings / Group A / Linked direct action",
+        "x": 5834.4,
+        "y": 2759.2,
+        "w": 29.600000000000364,
+        "h": 29.59999999999991,
+        "hidden": false
+      },
+      "75ffc9c1-9374-805a-8008-b9980a742507": {
+        "id": "75ffc9c1-9374-805a-8008-b9980a742507",
+        "parent": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+        "name": "Foundation / Member row / Alice Martin",
+        "x": 5240,
+        "y": 2794,
+        "w": 624,
+        "h": 52,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f22319d2": {
+        "id": "cef95197-06bc-809e-8008-aff8f22319d2",
+        "parent": "cef95197-06bc-809e-8008-aff8f22319d1",
+        "name": "Card surface",
+        "x": 5200,
+        "y": 2740,
+        "w": 680,
+        "h": 370,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f22319d3": {
+        "id": "cef95197-06bc-809e-8008-aff8f22319d3",
+        "parent": "cef95197-06bc-809e-8008-aff8f22319d1",
+        "name": "Identity rail",
+        "x": 5200,
+        "y": 2740,
+        "w": 20,
+        "h": 370,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f22319d4": {
+        "id": "cef95197-06bc-809e-8008-aff8f22319d4",
+        "parent": "cef95197-06bc-809e-8008-aff8f22319d1",
+        "name": "Linked identity icon",
+        "x": 5202,
+        "y": 2791,
+        "w": 16,
+        "h": 16,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aff8f22319d5": {
+        "id": "cef95197-06bc-809e-8008-aff8f22319d5",
+        "parent": "cef95197-06bc-809e-8008-aff8f22319d1",
+        "name": "Title",
+        "x": 5272,
+        "y": 2762,
+        "w": 422.7999999999993,
+        "h": 24,
+        "hidden": false,
+        "text": "Group A"
+      },
+      "cef95197-06bc-809e-8008-aff8f22319d6": {
+        "id": "cef95197-06bc-809e-8008-aff8f22319d6",
+        "parent": "cef95197-06bc-809e-8008-aff8f22319d1",
+        "name": "Metadata",
+        "x": 5278,
+        "y": 2792,
+        "w": 310,
+        "h": 22,
+        "hidden": true,
+        "text": "12 members"
+      },
+      "92c1c225-95fb-802e-8008-aeaca893efac": {
+        "id": "92c1c225-95fb-802e-8008-aeaca893efac",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Tablet / Participants",
+        "x": 80,
+        "y": 4460,
+        "w": 768,
+        "h": 1400,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aeeaa9e3ad0d": {
+        "id": "cef95197-06bc-809e-8008-aeeaa9e3ad0d",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Mobile / Participants",
+        "x": 2624,
+        "y": 4460,
+        "w": 390,
+        "h": 1540,
+        "hidden": false
+      },
+      "cef95197-06bc-809e-8008-aeff230a002c": {
+        "id": "cef95197-06bc-809e-8008-aeff230a002c",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Context menus and mobile navigation",
+        "x": 4034,
+        "y": 4460,
+        "w": 1500,
+        "h": 2110,
+        "hidden": false
+      },
+      "103e019a-f5a8-8027-8008-b132b11421dc": {
+        "id": "103e019a-f5a8-8027-8008-b132b11421dc",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Mobile / Groups",
+        "x": 3094,
+        "y": 4460,
+        "w": 390,
+        "h": 1320,
+        "hidden": false
+      },
+      "103e019a-f5a8-8027-8008-b132b181db28": {
+        "id": "103e019a-f5a8-8027-8008-b132b181db28",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Mobile / Groupings",
+        "x": 3564,
+        "y": 4460,
+        "w": 390,
+        "h": 1320,
+        "hidden": false
+      },
+      "103e019a-f5a8-8027-8008-b13972775dc1": {
+        "id": "103e019a-f5a8-8027-8008-b13972775dc1",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Tablet / Groups",
+        "x": 928,
+        "y": 4460,
+        "w": 768,
+        "h": 1400,
+        "hidden": false
+      },
+      "103e019a-f5a8-8027-8008-b13972f1abd3": {
+        "id": "103e019a-f5a8-8027-8008-b13972f1abd3",
+        "parent": "00000000-0000-0000-0000-000000000000",
+        "name": "Student management — Tablet / Groupings",
+        "x": 1776,
+        "y": 4460,
+        "w": 768,
+        "h": 1350,
+        "hidden": false
+      }
+    },
+    "created": [
+      "6d8cb67b-0321-8034-8008-ba1e1354b111",
+      "6d8cb67b-0321-8034-8008-ba1e99186b27",
+      "6d8cb67b-0321-8034-8008-ba1e9fa1b0f5",
+      "6d8cb67b-0321-8034-8008-ba1ebd53b18d",
+      "6d8cb67b-0321-8034-8008-ba1ec0663d16"
+    ],
+    "replacements": [
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee7ce02f8f5",
+        "oldSurface": "cef95197-06bc-809e-8008-aee7ce02f8f4",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1e1354b111",
+        "panel": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+        "delta": 40,
+        "propagated": true,
+        "outerDelta": 40
+      },
+      {
+        "oldText": "92c1c225-95fb-802e-8008-aeaaa12d5c71",
+        "oldSurface": "92c1c225-95fb-802e-8008-aeaaa1221514",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1e99186b27",
+        "panel": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+        "delta": 40,
+        "propagated": true,
+        "outerDelta": 40
+      },
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee7b6f19b58",
+        "oldSurface": "cef95197-06bc-809e-8008-aee7b6f19b57",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1e9fa1b0f5",
+        "panel": "cef95197-06bc-809e-8008-aee7b6f19b54",
+        "delta": 28,
+        "propagated": true,
+        "outerDelta": 134
+      },
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee796b604a3",
+        "oldSurface": "cef95197-06bc-809e-8008-aee796b604a2",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1ebd53b18d",
+        "panel": "cef95197-06bc-809e-8008-aee796b6049f",
+        "delta": 28,
+        "propagated": true,
+        "outerDelta": 28
+      },
+      {
+        "oldText": "cef95197-06bc-809e-8008-aee796502164",
+        "oldSurface": "cef95197-06bc-809e-8008-aee796502163",
+        "newRoot": "6d8cb67b-0321-8034-8008-ba1ec0663d16",
+        "panel": "cef95197-06bc-809e-8008-aee796502160",
+        "delta": 40,
+        "propagated": true,
+        "outerDelta": 40
+      }
+    ]
+  }
+}

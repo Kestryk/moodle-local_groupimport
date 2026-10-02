@@ -2,6 +2,10 @@
 
 ## 2026-10-02 - Foundation identifier Textarea adoption
 
+- Focused native Group/Grouping multiline proof and shared-input regression
+  pass at 1600/768/390. Inspect/pin seven plus nine captures, record cleanup,
+  exact tested source/spec/runtime and preserve the prior focus failure.
+  Store product readback/rollback; global human checklist stays unchecked.
 - Preserve the failed focused-under-pointer run and consume the canonical
   state-priority correction; no local focus skin or geometry/Motion change.
   Keep the native focus assertion and separate viewport/field-width evidence.
