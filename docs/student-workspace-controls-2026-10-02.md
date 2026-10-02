@@ -6,7 +6,7 @@ Kit `24d945e` owns the shared workspace controls; Kit `f0a25fd` (0.4.53)
 also owns the current content-fit native message adapter. Embedded
 modules are byte-identical; `fullTreeIdentical=false` remains intentional.
 The whole legacy plugin has not yet been converted into class-only templates.
-Kit documentation checkpoint `690ba3f` maps the paired Penpot components;
+Kit documentation checkpoint `e8e2aab` maps the paired Penpot components;
 it does not change the pinned SCSS or generated assets.
 
 ## Implemented source
@@ -118,8 +118,10 @@ no unmanifested captures or another window's artifacts were removed.
 
 ## Remaining implementation and rollback
 
-Continue Move dialogs, then Clipboard/native responsive routing and remaining
-component-family parity from the unchecked checklist. Product Create heads,
+Move's six linked specimens and native populated branches now have the later
+proof below. Correct the Clipboard phone navigation/help overlap next, then
+continue responsive routing and component-family parity from the unchecked
+checklist. Product Create heads,
 all source composition overrides, asynchronous message failure/sending and
 whole-view cross-version/mobile/RTL/forced-colors checks are not closed by this
 lot. Original card/disclosure Motion is unchanged. Full-tree parity is still
@@ -161,3 +163,106 @@ to refresh before concluding a newly published component is missing.
 Preserve one focused native audit for the changed
 roles, with discovery before loading credentials. No agents were spawned in
 this continuation and no shared worktree/runtime ownership was expanded.
+
+## Later checkpoint: native Move and Clipboard
+
+This checkpoint changes Penpot, documentation and test source only. Kit SCSS
+stays at `f0a25fd`, consumer visuals at `0deb382`, served by the unchanged
+clean preview `a364b014`. No generated asset, PHP, AMD, template, cache or
+business data changed. It supersedes the earlier pending Move anatomy and
+Clipboard database-blocked statements for the bounded checks below, not the
+remaining native-paint/human gates.
+
+Move's existing desktop participants/groups specimens now use linked neutral
+Foundation destination-action shells and regular Primary/Secondary actions.
+Four narrow specimens cover participants, groups with an unchecked optional
+Remove-from-origin checkbox, no groups and no groupings. Native title/help,
+destination label/select and centred icon-free footer are represented. Empty
+destinations hide label/select and use the exact linked Disabled Primary.
+All subcomponents stay in their dedicated Foundation Library families; product
+local mains remain zero. Existing whole desktop backups stay hidden/blocked
+recoverably on page 04, not claimed moved to Archive.
+
+Foundation Library 08.2.1 and Standard 08.2 have ten regular action states,
+with intrinsic label widths, source-backed colours and palette references.
+Ten fingerprints match; label centre error is <= .5 canvas unit. The two
+neutral 09.2.1/09.2 shells and linked 09.2 specimens also match recursively.
+The six product Move specimens have zero painted-text lane overflows and zero
+visible top-level board overlap. All visible component IDs resolve to the
+Foundation catalogue, including expanded Disabled variants. Source sizes and
+explicit legacy-chrome differences are documented in the mirrored modal contract.
+
+Paired readback and exact IDs:
+`docs/testing/student-native-move-penpot-2026-10-02.json`.
+Do not equate this structural proof with pixel-perfect code/Penpot parity.
+Close chrome, legacy shell border/shadow and origin-checkbox paint still differ.
+OS-open select decoration, plural actions, business submit/results, asynchronous
+states, RTL, forced-colors and whole-view coverage are not certified.
+
+### Native tests and limits
+
+- `easystud-authenticated-20261002T183714504Z-31732`: PASS, six Move
+  open/cancel cases at 1600/390, including an existing group in a grouping.
+  Inspect `move-native.json`, `move-groups-in-grouping-1600.png` and
+  `move-groups-390.png`. No move confirmed or empty course fixture created;
+  empty destinations have source/static/Penpot proof only.
+- `easystud-authenticated-20261002T185415434Z-42396`: PASS for Clipboard
+  field/rest/hover/focus, recognised/unknown pills, containment and close/focus
+  restoration at 1600/768/390. Inspect `clipboard-geometry.json` and the three
+  `clipboard-<width>.png` captures. No Add/Save/send/OS-clipboard command.
+  This is **not a whole-dialog visual pass**: the 390px capture shows a floating
+  navigation trigger overlapping help. Do not hide the trigger to pass a capture.
+  Modal source layer 1050 versus shared trigger 1064 is a source-backed stacking
+  lead; computed stacking ancestors and help hit targets must confirm the cause
+  before a shared Kit correction. Legacy danger-tinted Clipboard chrome also
+  remains to reconcile with the neutral product specimen.
+
+Both final `cleanup.json` records confirm credentials cleared, lease released,
+owned child stopped and no fixture requested. The first Clipboard failure,
+`easystud-authenticated-20261002T185205374Z-44280`, remains preserved: it sampled
+the border midway through the normal-motion blur transition. The harness now
+waits for the exact terminal rest/focus colour; motion is not disabled and
+expected paint is not loosened.
+
+Native run roots are below `easystud/authenticated/<run-id>` in the approved
+local artifacts root. Final Penpot checkpoints are below
+`easystud/penpot/student-compact-20261002`: the Library/Standard
+`foundation-native-action-*-final.png`, regular-actions viewport checkpoints,
+and `product-native-move-{desktop,narrow,empty}-final.png`. Full regular-family
+PNG export was inspected through MCP; viewport files are focused checkpoints,
+not a claim to show the complete five-state matrix simultaneously.
+Registration pins final evidence alongside the earlier pins; retention is
+dry-run only. No material was deleted.
+
+The final namespaced retention report is `retention-20261002T200226Z.json`:
+937 expired-media candidates across the broader namespace, zero deletions.
+This is an inventory, not deletion authority. Twelve Penpot checkpoints,
+two native Move captures and all three Clipboard captures are pinned; earlier
+retained evidence stays pinned.
+
+### Durable owner handoff and next step
+
+Platform owner: add these exact source/readback/run IDs to 0073,
+source-to-Penpot crosswalk, state and scenario registry without ticking human
+acceptance. Register `student-move-dialog-audit.spec.js` as local-supervised,
+EasyStud/QA, existing authenticated populated course/runtime lease required;
+Docker/CI reuse needs deterministic non-production fixtures. Clipboard remains
+local-supervised under the same restrictions. Shared dirty planning files are
+preserved; this portable row proposal is not a claimed Platform registry update.
+
+Next priority: measured mobile modal/navigation layering and neutral Clipboard
+chrome, then Create heads and remaining unchecked families. Keep original card
+and disclosure animations. Human checklist is still deferred; nothing must be
+opened or answered now. Preview promotion is unnecessary for docs/test-only
+changes; include their predecessors on the next visual promotion. Pushed source
+does not constitute a verified workspace snapshot or production release.
+
+Efficiency note: repeated wrong-workdir/path guesses and broad reads still cost
+avoidable calls; use resolved worktree roots and exact `rg --files` matches.
+Newly copied Penpot text can return the desired characters while painting an
+old label; a measured resize/reflow restoring the original lane and growType
+fixed the cache discrepancy, whereas repeated character toggles did not.
+Verify painted bounds and captures after reflow. Nested product resets/swaps
+can restore generic parent copy: replace only the exact linked action in an
+ordinary host and preserve the whole superseded action. Per-task token/billing
+telemetry is unavailable; no quota-saving figure is asserted.

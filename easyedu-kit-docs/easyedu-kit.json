@@ -33,8 +33,11 @@
         "scss/easyedu/adapters/_moodle-message-dialog.scss": "e22b0bb6e3d26dd58129761d68612735fa115c29"
       },
       "scope": "Compact entity preview, native message token bridge and Move dialog controls; original card disclosure Motion unchanged",
-      "status": "native open/cancel and compact drag proof PASS; paired Foundation/product message specimens and Multiple-only stack verified; Move Penpot/paint and human gates open",
-      "penpotReadback": "docs/testing/student-native-message-penpot-2026-10-02.json"
+      "status": "native open/cancel and compact drag proof PASS; paired message and six linked Move specimens verified; empty Move branches are static/Penpot only; exact native paint and human gates open",
+      "penpotReadback": "docs/testing/student-native-message-penpot-2026-10-02.json",
+      "movePenpotReadback": "docs/testing/student-native-move-penpot-2026-10-02.json",
+      "moveProofRun": "easystud-authenticated-20261002T183714504Z-31732",
+      "moveScenarioBlob": "f67845c39a7f9e7891577782fe043e19604a660f"
     },
     "studentNativeTextFields": {
       "sourceCommit": "3693a1feb360bd58921e0fdd7df402cdeeae54bd",
@@ -83,11 +86,16 @@
       "foundationDefault": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
       "productInstance": "cef95197-06bc-809e-8008-aeffd025d4c6",
       "audit": "docs/testing/foundations-clipboard-message-audit-2026-10-02.json",
-      "generatedCssBlob": "e927973157cc552808e8c40cf45f2679c0ba90ff",
-      "scenarioBlob": "03611b70912a54e4b0bbd31e9af08e7b1f69770e",
+      "candidateGeneratedCssBlob": "e927973157cc552808e8c40cf45f2679c0ba90ff",
+      "generatedCssBlob": "95991be0de3afeed3169e81f29dca293e14d75b7",
+      "scenarioBlob": "7805d4aaebe534f79f8fce77c00fad74da140330",
       "discoveryRun": "easystud-authenticated-20261002T122711701Z-33816",
       "scope": "Existing Clipboard textarea and native lookup results only; six rows, parser, announcement and close unchanged; message portal excluded",
-      "status": "Sass and four source/pin contracts PASS; exactly one spec discovered, not executed. Source candidate only; native preview blocked on post-restart 5.1 database availability; human review deferred"
+      "proofRun": "easystud-authenticated-20261002T185415434Z-42396",
+      "testedConsumer": "0deb3825efd44e4c354d527f28456a0ae41011c3",
+      "testedRuntime": "a364b0142ef4335eda5de110630499fa86477b28",
+      "nativeReadback": "docs/testing/student-native-move-penpot-2026-10-02.json",
+      "status": "Native 1600/768/390 field/result/close/focus control PASS with complete cleanup; whole-dialog visual pass withheld for the 390 floating-navigation/help overlap; legacy Clipboard chrome and human review remain open"
     },
     "studentInlineFeedback": {
       "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",

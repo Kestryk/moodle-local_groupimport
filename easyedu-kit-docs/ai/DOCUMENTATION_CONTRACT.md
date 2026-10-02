@@ -25,3 +25,23 @@ changelog updates, AI-contract decisions, checks run and skipped, evidence,
 risks, cleanup, rollback notes and the next step. Git remains authoritative;
 Syncthing and future BookStack/design/automation integrations are secondary
 publishing or transport layers only.
+
+## Native-dialog and visual-proof guardrails
+
+After a native control blur/focus, wait for its exact terminal CSS transition
+before measurement; do not remove normal motion or weaken expected paint.
+Use real responsive routes and existing course data for open/cancel audits.
+Do not create empty data to certify a no-destination specimen.
+
+An API text override can report new characters while cached paint still shows
+an old label. Recompute the measured text layout while preserving the lane and
+growType, then read painted bounds and inspect the capture. Never infer pixel
+parity from a component link. Expand variant definitions when a Library listing
+exposes only its first member.
+
+Do not reset a nested product action merely to select Disabled: it can restore
+generic parent business copy. Use the exact linked state in an ordinary host,
+hide only the whole superseded action and re-read all visible content. A
+control test PASS is not a whole-dialog visual PASS if a capture reveals a
+floating navigation/help overlap. Preserve the defect and diagnose stacking;
+never hide native chrome merely to obtain clean evidence.

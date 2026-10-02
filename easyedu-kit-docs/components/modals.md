@@ -64,6 +64,57 @@ Compilation fixture: `examples/compact-drag-and-message.scss`. Static check:
 not replace the consumer's authenticated desktop/mobile captures or paired
 Penpot readbacks, and do not mark human acceptance.
 
+### Native destination-action specimens (2026-10-02)
+
+The existing regular `foundation-button` recipe now has its own paired
+08.2 Standard / 08.2.1 Library family:
+`EasyEdu / Buttons / Foundation action / Regular`, Primary and Secondary,
+each Default/Hover/Focus-visible/Disabled/Pressed. Primary uses .88rem at
+600, 2.35rem minimum height and .72rem radius. Secondary uses .75rem at 600,
+2rem minimum height and .58rem radius. Both keep 1rem inline padding plus
+border and the shared control-state transition. Width is intrinsic to the
+label, not a fixed button token. Pressed adds no invented scale. All solid
+surface, label and focus-border/ring paints use linked source palette roles.
+Default IDs: `db59201c-3dd6-8004-8008-babe0d7923f8` and
+`724138fb-4a17-80dc-8008-babe45e05c1b`; compact Message actions are unchanged.
+
+09.2 Standard / 09.2.1 Library additionally expose neutral bounded shells:
+
+- `EasyEdu / Modals / Native destination action / Desktop`,
+  `d0b01e4e-5e95-8062-8008-babf5ad09eeb`: 42rem wide.
+- `EasyEdu / Modals / Native destination action / Narrow`,
+  `d0b01e4e-5e95-8062-8008-babf63999247`: measured 22.138671875rem
+  at a 24.375rem viewport. This is native source equivalence, not a new
+  fixed mobile-width token.
+
+Both use a 1rem/700 title, .9375rem regular help/field label, linked Text
+field M closed-select paint at 2.375rem high, and centred regular actions
+with the existing .65rem gap. Do not add an eyebrow, header icon or custom
+dropdown chevron to the native action anatomy. Options and keyboard/focus
+behavior stay with the native select; OS-open decoration is not certified.
+
+EasyStud owns participant/group help, destination labels/options, plural
+button copy, the conditional unchecked Remove-from-origin checkbox and
+no-destination states. Compose optional content in the product host without
+detaching the shared shell. No destination hides label/select and disables
+Move; do not manufacture course data to claim runtime coverage.
+
+Source-equivalent heights, using 1rem = 16px only for the labelled canvas
+reading: Desktop 16.125rem / 258px, or 18.4375rem / 295px with origin;
+Narrow 17.53125rem / 280.5px, or 19.84375rem / 317.5px with origin.
+They are measured examples; content, wrapping and viewport remain authoritative.
+The 167px primary canvas lane rounds an intrinsic 166.4375px native label
+measurement upward to avoid a two-line Penpot wrap; it is not a CSS minimum.
+
+Six native open/cancel cases passed at 1600/390, including selected groups
+already in a grouping. The two empty-destination product examples have
+source/static/Penpot proof only. Regular ten-state Standard/Library fingerprints
+match, and painted label centres differ by at most .5 canvas unit. Exact
+native close chrome, shell border/shadow, origin-checkbox paint, all runtime
+states, sending/moving commands, RTL and forced-colors remain open. These
+specimens retain the canonical Kit modal chrome rather than silently copying
+legacy consumer overrides. No SCSS/release pin changed in this documentation lot.
+
 ## Mixins
 
 ```scss

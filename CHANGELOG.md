@@ -2,6 +2,14 @@
 
 ## 2026-10-02 - Workspace hierarchy and native control harmonisation
 
+- Reconcile six native Move Penpot compositions with linked regular action
+  families and shared desktop/narrow destination shells. Record populated
+  native branch proof separately from static empty states and human review.
+- Preserve the focused Move spec and final Clipboard control proof. Wait for
+  terminal native field transitions in the harness; record the remaining
+  phone navigation/help overlap instead of claiming a whole-dialog visual pass.
+  This checkpoint changes tests/docs/Penpot only, not served assets or data.
+
 - Record final supervised 1600/768/390 native PASS and cleanup. Propagate linked
   Foundation compact-action/native-message sources to the two existing product
   message specimens, preserve originals and reflow dialogue tiles without

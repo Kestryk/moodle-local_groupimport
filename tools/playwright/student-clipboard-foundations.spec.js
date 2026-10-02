@@ -79,12 +79,16 @@ test('Student Clipboard consumes Foundation multiline and lookup results', async
             };
             await input.evaluate(node => node.blur());
             await page.mouse.move(0, 0);
+            // Normal-motion field paint transitions after blur. Assert the
+            // terminal state before measuring; do not disable its animation.
+            await expect(input).toHaveCSS('border-top-color', 'rgb(200, 214, 227)');
             const rest = await measure('rest');
             expect(rest.border).toBe('rgb(200, 214, 227)');
             await input.hover();
             await expect(input).toHaveCSS('border-top-color', 'rgb(119, 167, 211)');
             await page.keyboard.press('Tab');
             await input.focus();
+            await expect(input).toHaveCSS('border-top-color', 'rgb(138, 188, 227)');
             const focus = await measure('keyboard-focus-under-pointer');
             expect(focus.focusVisible).toBe(true);
             expect(focus.border).toBe('rgb(138, 188, 227)');

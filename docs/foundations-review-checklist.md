@@ -76,6 +76,20 @@ Technical checks and human visual acceptance remain separate.
 
 ## Evidence and remaining coverage
 
+Later Move checkpoint: six linked product states use regular shared actions
+and neutral native destination shells. Ten regular Standard/Library states and
+two shell fingerprints match; native six-case run
+`easystud-authenticated-20261002T183714504Z-31732` passes at 1600/390.
+No-destination branches are static/Penpot only. See the Move JSON readback
+and modal contract for close/shell/checkbox paint gaps.
+
+Clipboard field/results run `easystud-authenticated-20261002T185415434Z-42396`
+passes 1600/768/390 controls, with cleanup. Whole-dialog visual acceptance is
+still open: a floating navigation trigger covers help at 390. The failed
+mid-transition field-sampling run is retained and the harness now waits for
+terminal paint. Human items remain unchecked; this does not validate all cards,
+menus, actions or mobile overlays.
+
 Workspace/native portal technical checkpoint:
 `easystud-authenticated-20261002T171159560Z-11724` passes on runtime `a364b014`
 through source `0deb382`, Kit 0.4.53, at 1600/768/390. Message phone body fits
