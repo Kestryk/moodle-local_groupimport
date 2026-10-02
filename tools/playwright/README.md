@@ -1,5 +1,37 @@
 # EasyStud Playwright audits
 
+## Native Move and Clipboard branches
+
+`student-move-dialog-audit.spec.js` is local-supervised, EasyStud/QA. Exact
+grep: `Student move dialogs preserve native participant and group branches`.
+It uses existing authenticated course participants/groups and records six
+open/cancel cases at 1600/390, including an existing grouped group. It inspects
+native destinations, the conditional unchecked origin checkbox, completed
+normal-motion geometry, title/select roles and centred footer. It does not
+confirm moves or manufacture empty data. Evidence: `move-native.json` and
+six `move-<branch>-<width>.png` captures. Empty-state source/Penpot examples
+do not imply runtime proof.
+
+`student-clipboard-foundations.spec.js` is local-supervised, EasyStud/QA.
+Exact grep: `Student Clipboard consumes Foundation multiline and lookup results`.
+It records rest/hover/focus, native rows/resize, recognised/unknown results and
+close/focus restoration at 1600/768/390. It performs lookup only: no enrollment,
+Add, Save, send or OS-clipboard mutation. Keep normal motion; wait for exact
+terminal CSS paint after blur/focus before measuring. Evidence:
+`clipboard-geometry.json` and three `clipboard-<width>.png` captures.
+Field/token checks do not certify the whole dialog: the current 390px capture
+shows a floating navigation trigger overlapping help. Preserve that evidence;
+extend help/stacking hit-target checks before claiming the defect fixed.
+
+Use the saved-credentials wrapper with `-AllowedSpecRoot` when the versioned
+spec lives in the owned source worktree rather than the serving checkout.
+First use `-DiscoveryOnly` and confirm exactly one test; then use
+`-WaitForLease` with a bounded timeout. Do not edit the spec until owned-child
+exit and cleanup are recorded. Media stays in the external manifested run.
+CI/Docker reuse requires a deterministic disposable course and native harness;
+neither spec is currently a mandatory CI gate. Shared registry rows are proposed
+to the Platform owner, not silently written into another window's dirty file.
+
 ## Student harmonisation and compact portals
 
 `student-harmonisation-audit.spec.js` is `local-supervised`, read-only business
