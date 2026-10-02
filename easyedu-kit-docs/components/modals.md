@@ -63,6 +63,14 @@ heads are Foundation-linked. Hidden legacy source anatomy remains recoverable.
 Exact native Close chrome, every lookup state, RTL, forced-colors and human
 acceptance are not certified by linkage or these two specimens.
 
+EasyStud supervised run `easystud-authenticated-20261002T205725336Z-32120`
+passes at 1600/768/390 on preview `b8a3c0f`. It verifies 111 helper character
+centres unobscured at each width, fixed-root 1070 above trigger 1064, neutral
+border/header, title/helper roles, field rest/hover/focus, recognised/unknown
+tokens and opener focus return. Three final captures were inspected and pinned.
+No business command or fixture ran; cleanup is complete. This is local Moodle
+5.1 technical evidence, not human acceptance, release or full state coverage.
+
 ## Native message portal and action-dialog classes
 
 Import `easyedu/adapters/moodle-message-dialog` and include its

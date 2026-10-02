@@ -90,6 +90,12 @@ the previous host is preserved hidden. See the neutral-lookup JSON readback.
 Baseline run `20261002T201951972Z-46704` confirms three covered helper
 characters at 390; post-promotion proof remains pending. No human item is ticked.
 
+Final scoped proof: `easystud-authenticated-20261002T205725336Z-32120` passes
+at 1600/768/390 on runtime `b8a3c0f`; 111 helper characters unobscured at each
+width, neutral chrome/title/help roles, field states, results and focus return.
+Three captures inspected/pinned and cleanup complete; no fixture/business
+command. This supersedes the overlap for Clipboard only. Human items stay open.
+
 Clipboard field/results run `easystud-authenticated-20261002T185415434Z-42396`
 passes 1600/768/390 controls, with cleanup. Whole-dialog visual acceptance is
 still open: a floating navigation trigger covers help at 390. The failed
