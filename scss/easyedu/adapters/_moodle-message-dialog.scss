@@ -92,11 +92,15 @@
 
   @media (max-width: 36rem) {
     .modal-dialog {
-      height: min(34rem, calc(100dvh - 1rem));
+      // A capped field must not leave a fixed-height blank body below it.
+      // Size the phone dialog to its native content; keep the viewport limit.
+      height: auto;
       margin: 0.5rem auto;
       max-width: calc(100vw - 1rem);
       width: calc(100vw - 1rem);
     }
+    .modal-content { height: auto; max-height: calc(100dvh - 1rem); }
+    .modal-body { flex: 0 1 auto; }
     .modal-body form,
     .easyedu-message-dialog__field-wrap { flex: 0 0 auto; }
     .easyedu-message-dialog__field {

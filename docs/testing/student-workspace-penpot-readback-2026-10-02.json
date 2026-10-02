@@ -1,0 +1,1388 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "roles": [
+    {
+      "board": "92c1c225-95fb-802e-8008-ae9f13f14484",
+      "name": "Student management — Desktop / Complete view",
+      "changes": [
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f14000e93",
+          "n": "Page title",
+          "before": {
+            "fs": "30",
+            "c": "#0f2f44"
+          },
+          "after": {
+            "fs": "28",
+            "c": "#0f2f44"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f2c10f453",
+          "n": "Layout mode / M / selected / participants / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f2c112322",
+          "n": "Layout mode / M / selected / complete / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#075da8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#075da8"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f2c1141f9",
+          "n": "Layout mode / M / selected / structure / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f9962310c",
+          "n": "Column title",
+          "before": {
+            "fs": "22",
+            "c": "#12364d"
+          },
+          "after": {
+            "fs": "20",
+            "c": "#12364d"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aea0b26cbd83",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aea0b31310bb",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b130f64d1a23",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f99a003bc",
+          "n": "Column title",
+          "before": {
+            "fs": "22",
+            "c": "#12364d"
+          },
+          "after": {
+            "fs": "20",
+            "c": "#12364d"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaa9efd234b",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaa9f7e2674",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b99772901948",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaa9fe07217",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b9980b875df6",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa05b0c66",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa09834c4",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "cef95197-06bc-809e-8008-aede91ff23f9",
+      "name": "Student management — Desktop / Groups & groupings",
+      "changes": [
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff23fb",
+          "n": "Page title",
+          "before": {
+            "fs": "30",
+            "c": "#0f2f44"
+          },
+          "after": {
+            "fs": "28",
+            "c": "#0f2f44"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff2431",
+          "n": "Layout mode / M / selected / participants / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#526f89"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526f89"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff2435",
+          "n": "Layout mode / M / selected / complete / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#526f89"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526f89"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff2439",
+          "n": "Layout mode / M / selected / structure / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#0067b8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#0067b8"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff5f79",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff5f9e",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b9981340c6c8",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff5fb4",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b998086b1283",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aedf029f3f92",
+          "n": "Column title",
+          "before": {
+            "fs": "22",
+            "c": "#12364d"
+          },
+          "after": {
+            "fs": "20",
+            "c": "#12364d"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede93343288",
+          "n": "Column title",
+          "before": {
+            "fs": "22",
+            "c": "#12364d"
+          },
+          "after": {
+            "fs": "20",
+            "c": "#12364d"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede93344c9b",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b998120b8b5a",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede93344cb1",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b9987d24ebe2",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "cef95197-06bc-809e-8008-aede62dfb91f",
+      "name": "Student management — Desktop / Participants & groups",
+      "changes": [
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfb921",
+          "n": "Page title",
+          "before": {
+            "fs": "30",
+            "c": "#0f2f44"
+          },
+          "after": {
+            "fs": "28",
+            "c": "#0f2f44"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfe91c",
+          "n": "Layout mode / M / selected / participants / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#0067b8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#0067b8"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfe920",
+          "n": "Layout mode / M / selected / complete / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#526f89"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526f89"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfe924",
+          "n": "Layout mode / M / selected / structure / label",
+          "before": {
+            "fs": "14.08",
+            "c": "#526f89"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526f89"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfe935",
+          "n": "Column title",
+          "before": {
+            "fs": "22",
+            "c": "#12364d"
+          },
+          "after": {
+            "fs": "20",
+            "c": "#12364d"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfe979",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfe989",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13487141e52",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62e01cd0",
+          "n": "Column title",
+          "before": {
+            "fs": "22",
+            "c": "#12364d"
+          },
+          "after": {
+            "fs": "20",
+            "c": "#12364d"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62e06eb3",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b9980fa05b97",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62e06ec9",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b99877e790d4",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+      "name": "Student management — Interaction states",
+      "changes": [
+        {
+          "id": "92c1c225-95fb-802e-8008-aeab96afd873",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeab96d0e1aa",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeab9708a62c",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeab972de07e",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeab974f6649",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeafe972067a",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeafe9a239fd",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeafe9ff84dd",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aff8f22319d5",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b9980a74250a",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b136bb38e73d",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "92c1c225-95fb-802e-8008-aeaca893efac",
+      "name": "Student management — Tablet / Participants",
+      "changes": [
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaca8b87adb",
+          "n": "Page title",
+          "before": {
+            "fs": "26",
+            "c": "#0f2f44"
+          },
+          "after": {
+            "fs": "28",
+            "c": "#0f2f44"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaca8f2938f",
+          "n": "Layout mode / S / selected / participants / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#075da8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#075da8"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaca8f29398",
+          "n": "Layout mode / S / selected / complete / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaca8f2ddcb",
+          "n": "Layout mode / S / selected / structure / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaca98e3504",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13496663346",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "cef95197-06bc-809e-8008-aeeaa9e3ad0d",
+      "name": "Student management — Mobile / Participants",
+      "changes": [
+        {
+          "id": "cef95197-06bc-809e-8008-aeeaaaa3a7ce",
+          "n": "Layout mode / S / selected / participants / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#075da8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#075da8"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeeaaaa4a64b",
+          "n": "Layout mode / S / selected / complete / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeeaaaa58a3c",
+          "n": "Layout mode / S / selected / structure / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeeac9557d80",
+          "n": "Title",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeeac9d0457b",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "cef95197-06bc-809e-8008-aeff230a002c",
+      "name": "Student management — Context menus and mobile navigation",
+      "changes": [
+        {
+          "id": "2d389252-c5b4-8070-8008-b013b406570b",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "2d389252-c5b4-8070-8008-b013b62c0f00",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "103e019a-f5a8-8027-8008-b132b11421dc",
+      "name": "Student management — Mobile / Groups",
+      "changes": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b11421ef",
+          "n": "Layout mode / S / selected / participants / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b11421f3",
+          "n": "Layout mode / S / selected / complete / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#075da8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#075da8"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b11421f7",
+          "n": "Layout mode / S / selected / structure / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b114724c",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b9987a7d6d66",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3be973b5d32",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b9980d62fe7b",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "103e019a-f5a8-8027-8008-b132b181db28",
+      "name": "Student management — Mobile / Groupings",
+      "changes": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b181db3b",
+          "n": "Layout mode / S / selected / participants / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b181db3f",
+          "n": "Layout mode / S / selected / complete / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b181db43",
+          "n": "Layout mode / S / selected / structure / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#075da8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#075da8"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b1822f64",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b1822f6d",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "75ffc9c1-9374-805a-8008-b99809507afd",
+          "n": "Member name",
+          "before": {
+            "fs": "13",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "13",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13386512d1b",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "103e019a-f5a8-8027-8008-b13972775dc1",
+      "name": "Student management — Tablet / Groups",
+      "changes": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972775dc3",
+          "n": "Page title",
+          "before": {
+            "fs": "26",
+            "c": "#0f2f44"
+          },
+          "after": {
+            "fs": "28",
+            "c": "#0f2f44"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972775dd3",
+          "n": "Layout mode / S / selected / participants / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972775dd7",
+          "n": "Layout mode / S / selected / complete / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#075da8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#075da8"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972775ddb",
+          "n": "Layout mode / S / selected / structure / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972778282",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b1397277828e",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    },
+    {
+      "board": "103e019a-f5a8-8027-8008-b13972f1abd3",
+      "name": "Student management — Tablet / Groupings",
+      "changes": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f1abd5",
+          "n": "Page title",
+          "before": {
+            "fs": "26",
+            "c": "#0f2f44"
+          },
+          "after": {
+            "fs": "28",
+            "c": "#0f2f44"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f1dfe4",
+          "n": "Layout mode / S / selected / participants / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f1dfe8",
+          "n": "Layout mode / S / selected / complete / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#526c86"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#526c86"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f1dfec",
+          "n": "Layout mode / S / selected / structure / label",
+          "before": {
+            "fs": "12.4",
+            "c": "#075da8"
+          },
+          "after": {
+            "fs": "12",
+            "c": "#075da8"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f37620",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f3762c",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b13972f37635",
+          "n": "Title",
+          "before": {
+            "fs": "14",
+            "c": "#16324f"
+          },
+          "after": {
+            "fs": "14",
+            "c": "#264861"
+          }
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "id": "92c1c225-95fb-802e-8008-ae9f99c1bc4a",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 188,
+      "y": 668,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-ae9f99de1c6d",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 940,
+      "y": 752,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeaaa0f00d72",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 1008,
+      "y": 1760,
+      "w": 384,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede91ff5f58",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 4300,
+      "y": 752,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede933432b8",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 3548,
+      "y": 752,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede62dfe958",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 1868,
+      "y": 668,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede62e01d00",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 2620,
+      "y": 752,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeab961f3c8c",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 5224,
+      "y": 402,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeab964d4145",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 5224,
+      "y": 762,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeaca95ad11b",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 148,
+      "y": 4962,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aeeb81e71019",
+      "n": "EasyEdu / Forms / Search field / Responsive / Default",
+      "x": 2668,
+      "y": 4982,
+      "w": 302,
+      "h": 42.399999999999636,
+      "p": "EasyEdu / Forms / Search field / Responsive",
+      "component": "81455adb-6787-8068-8008-9cea25ab51f2"
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132b1147230",
+      "n": "EasyEdu / Forms / Search field / Responsive / Default",
+      "x": 3138,
+      "y": 5066,
+      "w": 302,
+      "h": 42.399999999999636,
+      "p": "EasyEdu / Forms / Search field / Responsive",
+      "component": "81455adb-6787-8068-8008-9cea25ab51f2"
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132b1822f3f",
+      "n": "EasyEdu / Forms / Search field / Responsive / Default",
+      "x": 3608,
+      "y": 5066,
+      "w": 302,
+      "h": 42.399999999999636,
+      "p": "EasyEdu / Forms / Search field / Responsive",
+      "component": "81455adb-6787-8068-8008-9cea25ab51f2"
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13972778249",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 996,
+      "y": 5056,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13972778295",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 996,
+      "y": 5622,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b13972f37605",
+      "n": "EasyEdu / Forms / Search field / M / Default",
+      "x": 1844,
+      "y": 5056,
+      "w": 504,
+      "h": 38,
+      "p": "EasyEdu / Forms / Search field / M",
+      "component": "81455adb-6787-8068-8008-9cea218710ef"
+    }
+  ],
+  "drag": [
+    {
+      "id": "92c1c225-95fb-802e-8008-aeafe972066b",
+      "component": "7e927229-8147-803f-8008-9dda4749d66a"
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeafe9a1fd10",
+      "component": "b278fa65-0838-80ba-8008-9dde19da5679"
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeafe9ff06dd",
+      "component": "7e927229-8147-803f-8008-9dda47538297"
+    }
+  ]
+}

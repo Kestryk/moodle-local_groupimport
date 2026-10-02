@@ -7212,10 +7212,17 @@
 }
 @media (max-width: 36rem) {
   .local-groupimport-easystud-message-modal .modal-dialog {
-    height: min(34rem, 100dvh - 1rem);
+    height: auto;
     margin: 0.5rem auto;
     max-width: calc(100vw - 1rem);
     width: calc(100vw - 1rem);
+  }
+  .local-groupimport-easystud-message-modal .modal-content {
+    height: auto;
+    max-height: calc(100dvh - 1rem);
+  }
+  .local-groupimport-easystud-message-modal .modal-body {
+    flex: 0 1 auto;
   }
   .local-groupimport-easystud-message-modal .modal-body form,
   .local-groupimport-easystud-message-modal .easyedu-message-dialog__field-wrap {
