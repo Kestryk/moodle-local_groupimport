@@ -17,6 +17,7 @@
     "fullTreeIdentical": false,
     "studentLookupDialogs": {
       "sourceCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
+      "documentationCommit": "aa412228f4ea7e1c3c98f45bf9d80f58aa5284c7",
       "modules": {
         "scss/easyedu/_tokens.scss": "7c67bbaa70136b0dadbedf6a32a8fb6b1c0f77f5",
         "scss/easyedu/_dialog-classes.scss": "4430f1b9343a99b0736ee2173df5731aeb7689f7",
@@ -26,7 +27,8 @@
       "baselineRun": "easystud-authenticated-20261002T201951972Z-46704",
       "candidateGeneratedCssBlob": "16847d1a6e2268cab3dd52eb8966f9d0bf972ea7",
       "candidateScenarioBlob": "f2fa0e3de81e2dcd5a2f1252781e669510a148a3",
-      "status": "WIP source/static only; paired Foundation Standard/Library and product publication pending Penpot reconnect; not served and no post-change browser proof"
+      "penpotReadback": "docs/testing/student-neutral-lookup-penpot-2026-10-02.json",
+      "status": "Paired Foundation Standard/Library and linked product Desktop/Narrow verified; not yet served; post-promotion browser proof and human acceptance pending"
     },
     "studentWorkspaceControls": {
       "sourceCommit": "24d945e2252d1081d6f7a65daf5a7950daeff04b",

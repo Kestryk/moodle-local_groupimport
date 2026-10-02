@@ -2,6 +2,11 @@
 
 ## 2026-10-02 - Workspace hierarchy and native control harmonisation
 
+- Add paired Foundation neutral-lookup sources and linked Desktop/Narrow
+  Clipboard compositions with measured help/field spacing and wrapping results.
+  Preserve the old specimen hidden. This Penpot/documentation checkpoint is
+  not yet served and does not close the human checklist.
+
 - Prepare a scoped Kit-owned modal layer and neutral Clipboard shell, with
   13px help and native six-row lookup/focus/Motion unchanged. Baseline mobile
   paint confirms three help characters covered by navigation. This source
