@@ -9,6 +9,10 @@ and native Message at desktop/mobile, then starts/ends Participant/Group drag.
 It never confirms, sends, drops, creates, removes or changes fixtures. Native
 portal font/tokens, centred footer and compact non-interactive anatomy are
 asserted. Evidence: `harmonisation-native.json` and named external PNGs.
+The responsive switcher is the real native entity-view switcher, not a hidden
+desktop layout toggle. Phone Message also asserts that content minus header,
+footer and capped textarea leaves under 40px, preventing a fixed-shell blank
+region. Original normal-motion card transitions are not disabled by this audit.
 Use the saved-credentials wrapper with `-WaitForLease`; run only after the
 managed candidate promotion. Failed runs are preserved, not overwritten.
 

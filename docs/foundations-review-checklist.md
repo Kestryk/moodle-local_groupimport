@@ -76,6 +76,17 @@ Technical checks and human visual acceptance remain separate.
 
 ## Evidence and remaining coverage
 
+Workspace/native portal technical checkpoint:
+`easystud-authenticated-20261002T171159560Z-11724` passes on runtime `a364b014`
+through source `0deb382`, Kit 0.4.53, at 1600/768/390. Message phone body fits
+its field without the former fixed-shell gap. Paired Foundation Standard/Library
+and product Desktop/Narrow message specimens use linked compact actions;
+11 active Student boards have updated role readbacks. Final message/Move/drag
+captures inspected and pinned, cleanup complete, no business mutation.
+See `docs/student-workspace-controls-2026-10-02.md` and the paired JSON readback.
+Move Penpot anatomy, native-close/header paint, untested states and human
+acceptance stay open. No checklist item is ticked from automation.
+
 Inline lookup final run `easystud-authenticated-20261002T050512385Z-40496`
 passes six Group/Grouping previews at 1600/768/390, recognised/unknown labels,
 shared typography/colours/padding, containment and unobscured paint hits.

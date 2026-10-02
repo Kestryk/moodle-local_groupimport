@@ -22,6 +22,38 @@ This runtime token bridge is not permission to add inline component paint.
 Preserve native recipients, rows, labels, focus trap, async loading and events.
 Opening/cancelling is proof of appearance, not proof of sending a message.
 
+### Paired Foundations specimens (2026-10-02)
+
+The adapter's native anatomy is now represented by linked components in
+Foundations, not by a generic settings dialog with added To/Message labels:
+
+- `EasyEdu / Modals / Native message portal / Desktop`, component
+  `db59201c-3dd6-8004-8008-bab0f942bdc9`: 48rem wide, desktop example height
+  34rem (768 x 544px canvas equivalence). Runtime height remains viewport-bound.
+- `EasyEdu / Modals / Native message portal / Narrow`, component
+  `db59201c-3dd6-8004-8008-bab0fa00d117`: 23.375rem wide at a 24.375rem viewport
+  (374px shell at 390px); the example is 24.6875rem / 395px high. Runtime height
+  fits content and can differ with viewport height, recipients or wrapping.
+- Both use the existing linked Textarea M, a 1rem / 16px title, and the paired
+  `EasyEdu / Buttons / Native portal compact` Primary/Secondary state families
+  in 08.2 Standards and 08.2.1 Library. Default component IDs are
+  `db59201c-3dd6-8004-8008-baad74eeb767` and
+  `db59201c-3dd6-8004-8008-baad9e9d12b0` respectively.
+
+Compact density represents the existing shared `foundation-button` recipe:
+1.625rem / 26px minimum height, Inter .75rem / 12px at 700, .5rem / 8px radius,
+.65rem / 10.4px inline padding plus border. It is not a scaled M button.
+Default, Hover, Focus-visible, Disabled and Pressed are represented; Pressed
+does not add an unimplemented scaling effect. Dialog instances retain linked
+controls and override business labels only. Standards examples live beside
+the Library sources in their proper pages; product examples inherit them.
+
+These readbacks verify provider IDs, typography, centres and containment,
+not pixel-perfect native chrome. Moodle's native close control/focus indicator
+and the radial header highlight remain native/paint reconciliation points.
+Sending, async failure, long recipient labels, RTL and forced-colors are not
+certified by the focused open/cancel test. Human checklist remains open.
+
 `easyedu/dialog-classes` exposes `dialog-classes`: `easyedu-dialog-actions`,
 `easyedu-modal-title` and `easyedu-select` inside an `easyedu-ui` scope. The
 select keeps its native options and keyboard behavior and reuses Text field M

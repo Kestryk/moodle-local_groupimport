@@ -2,6 +2,11 @@
 
 ## 2026-10-02 - Workspace hierarchy and native control harmonisation
 
+- Record final supervised 1600/768/390 native PASS and cleanup. Propagate linked
+  Foundation compact-action/native-message sources to the two existing product
+  message specimens, preserve originals and reflow dialogue tiles without
+  overlap. Human review, Move Penpot and exact native-paint gates stay open.
+
 - Fit the native phone message dialog to its content, removing the fixed-shell
   blank area below its capped textarea. Retain viewport limits and desktop
   sizing; add a focused content-anatomy regression assertion.
