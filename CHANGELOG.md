@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-02 - Multiline field inventory checkpoint
+
+- Record all eighteen measured Foundation Textarea mains and twelve named
+  product identifier-value specimens (five active, seven hidden/archived).
+  Document the required genuine panel reflow before adoption. No textarea,
+  Library main, command or card animation changed; native implementation remains
+  the next bounded task, not a claimed completed component.
+
 ## 2026-10-02 - Native field bounded browser proof
 
 - Verify creation/Rename roles and keyboard focus at desktop/tablet/phone,

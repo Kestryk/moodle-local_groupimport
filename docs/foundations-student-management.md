@@ -1,5 +1,35 @@
 # Foundations Student Management migration
 
+## Next multiline field reconciliation - read-only checkpoint 2026-10-02
+
+Live Foundations readback covers eighteen Textarea masters: S/M/L heights
+5.5/7/8.75rem (88/112/140px source equivalence), Inter 400 at 0.75/0.875/0.875rem,
+line-height 1.2, logical painted inline/top insets 0.875/0.75rem, control radius
+0.72rem. Rest/value/placeholder and Hover/Focus-visible/Error/Disabled roles
+match the measured single-line field palette; this does not make the input
+recipe suitable for a multiline control. No named generic Textarea recipe
+currently exists: the Kit's token-input wrapper is a different component.
+
+Exact source/product inventory:
+`docs/testing/foundations-textarea-penpot-inventory-2026-10-02.json`.
+On product page 03, all twelve text shapes named `Identifier values` are
+inventoried with ancestor exposure: five active, seven hidden/archived. The
+active fields are local rectangles plus 13px text, not Foundation Textarea
+instances. Three surfaces are 72px high and two 84px high; adopting the measured
+M field requires genuine panel/card reflow, not shrinking a linked 112px root
+or hiding overflow. Preserve recognition examples, action rows, result labels,
+column equality and board separation. Never unhide the seven native-hidden or
+archived examples merely to manufacture coverage.
+
+Next implementation scope remains within the approved Student continuation:
+publish a separately named canonical Textarea recipe with measured size/state
+roles; preserve native rows, vertical resize, lookup parsing, focus/cancel,
+responsive action routing and original disclosure Motion; replace the five
+active product specimens using existing Foundation mains and reflow their
+consumers before native adoption. Audit other Clipboard/message textareas
+separately instead of applying a blanket skin. This inventory is not a new
+Library component, native implementation, browser proof or human acceptance.
+
 ## Native creation and Rename fields - 2026-10-02
 
 Final bounded proof: `easystud-authenticated-20261002T055551558Z-34672` PASS
