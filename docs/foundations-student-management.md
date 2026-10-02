@@ -42,12 +42,22 @@ their paired product/Foundation examples before adopting this family; do not
 apply a blanket plugin skin or claim whole-view/multiversion/accessibility
 acceptance. Shared Platform planning ownership stays untouched.
 
-Adjacent product fidelity gaps discovered in these exports, still pending:
-the two pre-existing standalone Grouping-add specimens retain a side action
-and omit Cancel, unlike the native captured action row below the field; the
-Ungrouped search Cancel keeps its older muted label. These are explicit next
-composition/control corrections, not a reason to repaint the Textarea main or
-claim all Student compositions match. Native command routing remains intact.
+Adjacent product action corrections verified after the browser restart:
+both Grouping-add specimens now have a 640px-wide field, linked Primary S
+Add groups and Secondary S Cancel below it (16px field/action gap, 12px peer
+gap), then one recognition-pill row separated by 16px. Ungrouped search Cancel
+retains its linked 104 x 38px surface and adopts the compact 12px/700 blue
+label. Originals and the failed append clone stay hidden/recoverable; source
+mains, native commands and all plugin/generated assets are unchanged.
+Exact current readback and known pre-change rollback values are in
+`docs/testing/foundations-identifier-actions-readback-2026-10-02.json`.
+Three owned-CDP canvas checkpoints were inspected and pinned under run
+`identifier-actions-20261002-reconnect`; the scoped retention dry-run protects
+all three and deletes nothing. Eleven active top boards have zero overlap;
+new linked button descendants do not overflow. The server export returned
+HTTP 500/ResourceRequest timeout, so canvas screenshots provide the visual
+checkpoint, not a successful export claim. The MCP's 2.17/2.18 version warning
+remains recorded. Whole-composition and human acceptance stay deferred.
 
 Efficiency note: billing/quota telemetry is unavailable; no token or saving
 total is inferred. Limit readback to owned IDs and store large machine data

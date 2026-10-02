@@ -46,6 +46,8 @@
       "testedRuntime": "d0d42089a94441e92291148f19adcbf642d8e4f0",
       "scenarioBlob": "53c8dd556428e018aa40dd9edd2cb54cfc31f999",
       "productReadback": "docs/testing/foundations-textarea-product-readback-2026-10-02.json",
+      "productActionReadback": "docs/testing/foundations-identifier-actions-readback-2026-10-02.json",
+      "productActionProof": "identifier-actions-20261002-reconnect: three canvas captures inspected and pinned; Add/Cancel/pills aligned, 11 active boards without overlap; originals recoverable, human acceptance deferred",
       "status": "source/static and five linked product fields reflowed; 1600/768/390 native rest-hover-focus, multiline lookup, pills and Cancel PASS; seven captures inspected/pinned; human review deferred"
     },
     "studentInlineFeedback": {

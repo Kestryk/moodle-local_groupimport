@@ -18,6 +18,8 @@ Technical checks and human visual acceptance remain separate.
 - [ ] Inline identifier results use shared Success/Error pills; recognised
   names, unknown identifiers and card metadata remain distinct.
 - [ ] Container-search Cancel matches the compact Foundation secondary action.
+- [ ] Product Grouping-add examples: full-width field, linked Add/Cancel below,
+  separated recognition pills; originals retained and native actions unchanged.
 - [ ] Mobile drawer has an opaque surface after its opening transition.
 - [ ] Context menu labels match Foundations; foreign CCB drawer occlusion resolved.
 - [ ] All product layout-toggle glyphs stay inside their matching centred slots.
