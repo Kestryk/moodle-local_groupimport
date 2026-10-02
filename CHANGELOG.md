@@ -2,6 +2,10 @@
 
 ## 2026-10-02
 
+- Correct shared field focus value/surface ownership after native Moodle focus
+  displaced the resting colour. Retain the failed run and unchanged assertion;
+  do not add a plugin-specific focus patch or claim a premature browser PASS.
+
 - Consume the measured Foundation single-line field recipe for creation/Rename;
   remove local important focus paint and the mobile radius exception. Preserve
   native actions/Motion, responsive hit geometry and the separate textarea gap.
