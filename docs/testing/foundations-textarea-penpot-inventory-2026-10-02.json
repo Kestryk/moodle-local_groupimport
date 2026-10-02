@@ -1,0 +1,1072 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-02",
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "status": "read-only inventory; no textarea adoption or human acceptance",
+  "source": [
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac7480f32767",
+      "main": "2a31d374-d2a1-80fd-8008-ac747fda5248",
+      "path": "EasyEdu / Forms / Textarea / S",
+      "state": "Filled",
+      "width": 520,
+      "height": 88,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "12",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#1e3448"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac747dd8fdcf",
+      "main": "2a31d374-d2a1-80fd-8008-ac747cdfaf34",
+      "path": "EasyEdu / Forms / Textarea / S",
+      "state": "Hover",
+      "width": 520,
+      "height": 88,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#77a7d3",
+      "font": "Inter",
+      "size": "12",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74c6899d5b",
+      "main": "2a31d374-d2a1-80fd-8008-ac74c581268e",
+      "path": "EasyEdu / Forms / Textarea / M",
+      "state": "Disabled",
+      "width": 600,
+      "height": 112,
+      "radius": 11.52,
+      "background": "#f0f4f8",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#9aa9b8"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74c3a0128b",
+      "main": "2a31d374-d2a1-80fd-8008-ac74c2b4d179",
+      "path": "EasyEdu / Forms / Textarea / M",
+      "state": "Focus-visible",
+      "width": 600,
+      "height": 112,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#8abce3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac747c620032",
+      "main": "2a31d374-d2a1-80fd-8008-ac747b659e9f",
+      "path": "EasyEdu / Forms / Textarea / S",
+      "state": "Default",
+      "width": 520,
+      "height": 88,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "12",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "f5233124-51fb-805e-8008-ac75017624d2",
+      "main": "f5233124-51fb-805e-8008-ac750081732d",
+      "path": "EasyEdu / Forms / Textarea / L",
+      "state": "Hover",
+      "width": 680,
+      "height": 140,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#77a7d3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "f5233124-51fb-805e-8008-ac750469b3d9",
+      "main": "f5233124-51fb-805e-8008-ac7503661a2f",
+      "path": "EasyEdu / Forms / Textarea / L",
+      "state": "Filled",
+      "width": 680,
+      "height": 140,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#1e3448"
+    },
+    {
+      "component": "f5233124-51fb-805e-8008-ac75077cfae9",
+      "main": "f5233124-51fb-805e-8008-ac750664ea5c",
+      "path": "EasyEdu / Forms / Textarea / L",
+      "state": "Error",
+      "width": 680,
+      "height": 140,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#b3261e",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#8e1b15"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac747f5d750b",
+      "main": "2a31d374-d2a1-80fd-8008-ac747e5e5da9",
+      "path": "EasyEdu / Forms / Textarea / S",
+      "state": "Focus-visible",
+      "width": 520,
+      "height": 88,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#8abce3",
+      "font": "Inter",
+      "size": "12",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74829092f7",
+      "main": "2a31d374-d2a1-80fd-8008-ac74817859fc",
+      "path": "EasyEdu / Forms / Textarea / S",
+      "state": "Disabled",
+      "width": 520,
+      "height": 88,
+      "radius": 11.52,
+      "background": "#f0f4f8",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "12",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#9aa9b8"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74c23b5724",
+      "main": "2a31d374-d2a1-80fd-8008-ac74c145ffb1",
+      "path": "EasyEdu / Forms / Textarea / M",
+      "state": "Hover",
+      "width": 600,
+      "height": 112,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#77a7d3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "f5233124-51fb-805e-8008-ac750011ed2b",
+      "main": "f5233124-51fb-805e-8008-ac74ff21f674",
+      "path": "EasyEdu / Forms / Textarea / L",
+      "state": "Default",
+      "width": 680,
+      "height": 140,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "f5233124-51fb-805e-8008-ac7505e538c9",
+      "main": "f5233124-51fb-805e-8008-ac7504e0dcb9",
+      "path": "EasyEdu / Forms / Textarea / L",
+      "state": "Disabled",
+      "width": 680,
+      "height": 140,
+      "radius": 11.52,
+      "background": "#f0f4f8",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#9aa9b8"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74c8073ffd",
+      "main": "2a31d374-d2a1-80fd-8008-ac74c703bd1b",
+      "path": "EasyEdu / Forms / Textarea / M",
+      "state": "Error",
+      "width": 600,
+      "height": 112,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#b3261e",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#8e1b15"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac748415291d",
+      "main": "2a31d374-d2a1-80fd-8008-ac74830d1c73",
+      "path": "EasyEdu / Forms / Textarea / S",
+      "state": "Error",
+      "width": 520,
+      "height": 88,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#b3261e",
+      "font": "Inter",
+      "size": "12",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#8e1b15"
+    },
+    {
+      "component": "f5233124-51fb-805e-8008-ac7502ef6eac",
+      "main": "f5233124-51fb-805e-8008-ac7501f43419",
+      "path": "EasyEdu / Forms / Textarea / L",
+      "state": "Focus-visible",
+      "width": 680,
+      "height": 140,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#8abce3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
+      "main": "2a31d374-d2a1-80fd-8008-ac74c4161268",
+      "path": "EasyEdu / Forms / Textarea / M",
+      "state": "Filled",
+      "width": 600,
+      "height": 112,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#1e3448"
+    },
+    {
+      "component": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+      "main": "2a31d374-d2a1-80fd-8008-ac74c001aced",
+      "path": "EasyEdu / Forms / Textarea / M",
+      "state": "Default",
+      "width": 600,
+      "height": 112,
+      "radius": 11.52,
+      "background": "#ffffff",
+      "border": "#c8d6e3",
+      "font": "Inter",
+      "size": "14",
+      "weight": "400",
+      "lineHeight": "1.2",
+      "align": "left",
+      "verticalAlign": "top",
+      "inset": {
+        "x": 14,
+        "y": 12.000000000029104
+      },
+      "textColor": "#5c6c7d"
+    }
+  ],
+  "product": [
+    {
+      "id": "103e019a-f5a8-8027-8008-b132b06afe81",
+      "name": "Identifier values",
+      "parent": "103e019a-f5a8-8027-8008-b132b06afe74",
+      "ancestors": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b06afe81",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b06afe74",
+          "name": "Product / Mobile group card / Add by identifier / Open",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b06a9a58",
+          "name": "Product / Mobile group card / Group B / Add by identifier open",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b06a5d84",
+          "name": "Groups & groupings / Mobile",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b06a5d7c",
+          "name": "ZZ — Archive / Student management / Mobile stacked reference",
+          "hidden": true
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": false,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+      "textBox": {
+        "x": 28,
+        "y": 28,
+        "w": 192,
+        "h": 48
+      },
+      "surface": {
+        "id": "103e019a-f5a8-8027-8008-b132b06afe80",
+        "w": 216,
+        "h": 72
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aee7ce02f8f5",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aee7ce02f8f5",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee7ce02f8f1",
+          "name": "Product / Group card / Add by identifier / Open",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aff85c06681b",
+          "name": "Product / Group card / Group B / Add by identifier open",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfb927",
+          "name": "Groups and groupings column",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfb923",
+          "name": "Product workspace",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfb91f",
+          "name": "Student management — Desktop / Participants & groups",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": true,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+      "textBox": {
+        "x": 34,
+        "y": 32,
+        "w": 462,
+        "h": 48
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aee7ce02f8f4",
+        "w": 490,
+        "h": 72
+      }
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132b1822fa2",
+      "name": "Identifier values",
+      "parent": "103e019a-f5a8-8027-8008-b132b1822f95",
+      "ancestors": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b1822fa2",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b1822f95",
+          "name": "Product / Mobile group card / Add by identifier / Open",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b1822f4a",
+          "name": "Product / Mobile group card / Group B / Add by identifier open",
+          "hidden": true
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b181db30",
+          "name": "Groups & groupings / Mobile",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b181db28",
+          "name": "Student management — Mobile / Groupings",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": false,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+      "textBox": {
+        "x": 28,
+        "y": 28,
+        "w": 192,
+        "h": 48
+      },
+      "surface": {
+        "id": "103e019a-f5a8-8027-8008-b132b1822fa1",
+        "w": 216,
+        "h": 72
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede93344cfb",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aede933432a8",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aede93344cfb",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede933432a8",
+          "name": "Add students by identifiers",
+          "hidden": true
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede93343286",
+          "name": "Group catalogue / Structure mode",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff23fd",
+          "name": "Product workspace",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff23f9",
+          "name": "Student management — Desktop / Groups & groupings",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": false,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin",
+      "textBox": {
+        "x": 34,
+        "y": 98,
+        "w": 430,
+        "h": 40
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aede93344cfa",
+        "w": 476,
+        "h": 72
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede62e06f13",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aede62e01cf0",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aede62e06f13",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62e01cf0",
+          "name": "Add students by identifiers",
+          "hidden": true
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfb927",
+          "name": "Groups and groupings column",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfb923",
+          "name": "Product workspace",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede62dfb91f",
+          "name": "Student management — Desktop / Participants & groups",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": false,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin",
+      "textBox": {
+        "x": 34,
+        "y": 98,
+        "w": 430,
+        "h": 40
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aede62e06f12",
+        "w": 476,
+        "h": 72
+      }
+    },
+    {
+      "id": "92c1c225-95fb-802e-8008-aeaaa12d5c71",
+      "name": "Identifier values",
+      "parent": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+      "ancestors": [
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa12d5c71",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeaaa0fb2ad3",
+          "name": "Product / Group card / Add by identifier / Open",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aff757d1cea1",
+          "name": "Product / Group card / New arrivals / Add by identifier open",
+          "hidden": false
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b5b224345b14",
+          "name": "Composition / Ungrouped groups / Open",
+          "hidden": false
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f99864164",
+          "name": "Groups and groupings column",
+          "hidden": false
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f14127ed8",
+          "name": "Product workspace",
+          "hidden": false
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-ae9f13f14484",
+          "name": "Student management — Desktop / Complete view",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": true,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+      "textBox": {
+        "x": 34,
+        "y": 32,
+        "w": 492,
+        "h": 48
+      },
+      "surface": {
+        "id": "92c1c225-95fb-802e-8008-aeaaa1221514",
+        "w": 520,
+        "h": 72
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aee7b6f19b58",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aee7b6f19b54",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aee7b6f19b58",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee7b6f19b54",
+          "name": "Add groups / Recognition preview",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff2401",
+          "name": "Groups and groupings column",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff23fd",
+          "name": "Product workspace",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff23f9",
+          "name": "Student management — Desktop / Groups & groupings",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": true,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "Group A\nGroup B",
+      "textBox": {
+        "x": 34,
+        "y": 98,
+        "w": 430,
+        "h": 58
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aee7b6f19b57",
+        "w": 476,
+        "h": 84
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede91ff5ffe",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aede91ff5f48",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff5ffe",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff5f48",
+          "name": "Add students by identifiers",
+          "hidden": true
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff2401",
+          "name": "Groups and groupings column",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff23fd",
+          "name": "Product workspace",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aede91ff23f9",
+          "name": "Student management — Desktop / Groups & groupings",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": false,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin",
+      "textBox": {
+        "x": 34,
+        "y": 98,
+        "w": 430,
+        "h": 40
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aede91ff5ffd",
+        "w": 476,
+        "h": 72
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aee796b604a3",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aee796b6049f",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aee796b604a3",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee796b6049f",
+          "name": "Identifier recognition / Groups / Mixed result",
+          "hidden": false
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+          "name": "Student management — Interaction states",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": true,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "Group A\nGroup B\nunknown-group",
+      "textBox": {
+        "x": 34,
+        "y": 98,
+        "w": 430,
+        "h": 58
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aee796b604a2",
+        "w": 476,
+        "h": 84
+      }
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b132b114a777",
+      "name": "Identifier values",
+      "parent": "103e019a-f5a8-8027-8008-b132b114a76a",
+      "ancestors": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b114a777",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b114a76a",
+          "name": "Product / Mobile group card / Add by identifier / Open",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b114723b",
+          "name": "ARCHIVE / Mobile group card / Add by identifier open / source action state",
+          "hidden": true
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b11421e4",
+          "name": "Groups & groupings / Mobile",
+          "hidden": false
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b132b11421dc",
+          "name": "Student management — Mobile / Groups",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": false,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+      "textBox": {
+        "x": 28,
+        "y": 28,
+        "w": 192,
+        "h": 48
+      },
+      "surface": {
+        "id": "103e019a-f5a8-8027-8008-b132b114a776",
+        "w": 216,
+        "h": 72
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aeebb5897795",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aeebb5897791",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aeebb5897795",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeebb5897791",
+          "name": "Product / Mobile group card / Add by identifier / Open",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aff7d7345cf7",
+          "name": "Product / Mobile group card / Group B / Add by identifier open",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeebb4722619",
+          "name": "Groups & groupings / Mobile",
+          "hidden": true
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeeaa9e3ad0d",
+          "name": "Student management — Mobile / Participants",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": false,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin\nID-10482",
+      "textBox": {
+        "x": 28,
+        "y": 28,
+        "w": 192,
+        "h": 48
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aeebb5897794",
+        "w": 216,
+        "h": 72
+      }
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aee796502164",
+      "name": "Identifier values",
+      "parent": "cef95197-06bc-809e-8008-aee796502160",
+      "ancestors": [
+        {
+          "id": "cef95197-06bc-809e-8008-aee796502164",
+          "name": "Identifier values",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee796502160",
+          "name": "Product / Group card / Identifier recognition / Mixed result",
+          "hidden": false
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b5b2202e4d6b",
+          "name": "Composition / Group card / Group A / Add by identifier open",
+          "hidden": false
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aff8f17e05b3",
+          "name": "Interaction / Add by identifier / Inside group card",
+          "hidden": false
+        },
+        {
+          "id": "92c1c225-95fb-802e-8008-aeab95c4c12c",
+          "name": "Student management — Interaction states",
+          "hidden": false
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000000",
+          "name": "Root Frame",
+          "hidden": false
+        }
+      ],
+      "active": true,
+      "font": "Inter",
+      "size": "13",
+      "weight": "400",
+      "align": "left",
+      "verticalAlign": null,
+      "text": "alex.dupont@example.edu\nlea.martin\nID-10482; unknown-42",
+      "textBox": {
+        "x": 34,
+        "y": 32,
+        "w": 564,
+        "h": 48
+      },
+      "surface": {
+        "id": "cef95197-06bc-809e-8008-aee796502163",
+        "w": 592,
+        "h": 72
+      }
+    }
+  ]
+}
