@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Creation/Rename inputs consume `foundation-text-field` only. Shared field state
+paint and insets live in the canonical Kit; do not disguise Search components,
+reintroduce important local focus/radius rules or apply the single-line recipe
+to textarea/search wrappers. Preserve native commands and responsive hit targets.
+
 Foundation-button keyboard focus must explicitly pass the shared focus-border
 token to `ring`. A visible halo is insufficient if the native outlined-control
 border remains grey. Verify border and halo on primary/secondary regular/compact

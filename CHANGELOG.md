@@ -2,6 +2,13 @@
 
 ## 2026-10-02
 
+- Consume the measured Foundation single-line field recipe for creation/Rename;
+  remove local important focus paint and the mobile radius exception. Preserve
+  native actions/Motion, responsive hit geometry and the separate textarea gap.
+- Replace seventeen active product Penpot disguised Search fields with existing
+  linked Text-field M Default/Filled variants, preserving content/root geometry;
+  keep two archived references and deferred human checklist acceptance intact.
+
 - Verify native Group/Grouping lookup labels and unobscured paint at desktop,
   tablet and phone, plus desktop search Cancel blue focus border/halo. Inspect
   and retain seven final captures; keep human acceptance and field gaps open.
