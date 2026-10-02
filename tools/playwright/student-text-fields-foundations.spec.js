@@ -76,7 +76,20 @@ test('Student creation and Rename consume Foundation native text fields', async(
             await create.fill('');
             await create.evaluate(n => n.blur());
 
+            // Native groups can all be inside collapsed Groupings. Open the
+            // populated grouping normally, as in the inline-feedback scenario;
+            // never force hidden card actions or change the fixture.
+            if (width > 1024 && await root.locator('[data-easystud-group-id]:visible').count() === 0) {
+                const populated = root.locator('[data-easystud-grouping-id]:visible').filter({
+                    has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]'),
+                }).first();
+                await expect(populated).toBeVisible({timeout: 15000});
+                const toggle = populated.locator(':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
+                if (await toggle.getAttribute('aria-expanded') === 'false') await toggle.click();
+                await settle(populated);
+            }
             const card = root.locator('[data-easystud-group-id]:visible').first();
+            await expect(card).toBeVisible({timeout: 15000});
             await card.evaluate(n => n.scrollIntoView({block: 'center', behavior: 'instant'}));
             await settle(card);
             if (width <= 1024) {
