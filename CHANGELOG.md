@@ -2,6 +2,12 @@
 
 ## 2026-10-02
 
+- Consume the published shared Success/Error detected-token recipes for inline
+  Group/Grouping lookup results, without recolouring card metadata badges.
+- Bring inline container-search Cancel into the compact Foundation button
+  family. Preserve lookup, native actions, card containment and existing Motion;
+  browser proof and deferred human acceptance remain separate.
+
 - Recover the two user-approved documentary conflicts in the local preview,
   retaining the canonical source pin and prior proof/failure records. Complete
   the cherry-pick and refresh caches; no rendered CSS or business data changed.

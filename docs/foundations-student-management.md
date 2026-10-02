@@ -1,5 +1,38 @@
 # Foundations Student Management migration
 
+## Inline identifier feedback and search Cancel - 2026-10-02
+
+Scope: `scss/components/_structure.scss` maps only native Group/Grouping
+identifier-result hosts to the existing canonical `detected-token(success)`
+and `detected-token(error)` recipes. Their typography, semantic colours,
+border and padding now come from the published Forms/Feedback family at
+Foundations `08.4` / `08.4.1` (`EasyEdu / Feedback / Detected token`). Card
+role/group/grouping metadata, result text, parser, `aria-live`, empty-result
+geometry and card-owned placement remain unchanged. Inline container-search
+Cancel also consumes the existing compact Foundation secondary-button recipe.
+
+Canonical modules are unchanged and exactly pinned in `studentInlineFeedback`.
+This is bounded visual adoption, not source-preserving CSS equality, whole-view
+parity, new field publication or human acceptance. The generic Text field /
+Textarea Penpot candidates still lack reconciled named Kit recipes: do not
+style them by guessing at a screenshot. Live Penpot was unavailable during
+this source slice; use the recorded crosswalk and verify product instances
+after reconnection. No new shared component is created in the product project.
+
+Run `tools/release/test-student-inline-feedback-contract.ps1 -KitRoot <checkout>`
+for recipe ownership, exact canonical pins and compiled selector scope.
+`tools/playwright/student-inline-feedback-foundations.spec.js` is a
+`local-supervised` candidate for a populated authenticated course: exercise
+native inline tools, type existing/unknown identifiers without submitting,
+measure Success/Error and search Cancel at 1600/768/390, then clear/cancel.
+It never activates Add, Save, Remove, messaging or other business mutations.
+Browser execution is pending; all human checklist items stay unchecked.
+
+Platform planning-owner proposal: record this slice under the active approved
+Student continuation of EED-UI-2026-0073; retain the generic field-family,
+Foundation/native row-density and foreign CCB drawer gaps as open. No shared
+plan/state/index file is taken over by this implementation window.
+
 ## Preview recovery completed - 2026-10-02
 
 The user authorized correction of the two documentary conflicts. Under the

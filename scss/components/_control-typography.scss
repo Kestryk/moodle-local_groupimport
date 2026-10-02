@@ -12,6 +12,7 @@
 
   [data-easystud-cancel-group-email],
   [data-easystud-cancel-grouping-groups],
+  [data-easystud-container-search-cancel],
   [data-easystud-rename-cancel] {
     @include foundations.foundation-button($secondary: true, $density: compact);
   }

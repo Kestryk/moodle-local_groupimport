@@ -1394,6 +1394,20 @@
     color: #687789;
   }
 
+  // Identifier lookup feedback is the published Forms/Feedback family, not
+  // card metadata. Scope the recipe to result hosts so role/group/grouping
+  // badges and the original lookup/announcement behavior remain unchanged.
+  [data-easystud-group-email-result],
+  [data-easystud-grouping-groups-result] {
+    .local-groupimport-easystud-token--valid {
+      @include easyedu.detected-token(success);
+    }
+
+    .local-groupimport-easystud-token--invalid {
+      @include easyedu.detected-token(error);
+    }
+  }
+
   &-tags-toggle {
     align-items: center;
     border-radius: 999px !important;

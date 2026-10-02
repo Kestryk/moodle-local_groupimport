@@ -6023,6 +6023,34 @@
   border-color: #dde5ec;
   color: #687789;
 }
+.local-groupimport-easystud [data-easystud-group-email-result] .local-groupimport-easystud-token--valid,
+.local-groupimport-easystud [data-easystud-grouping-groups-result] .local-groupimport-easystud-token--valid {
+  align-items: center;
+  background: var(--easyedu-success-soft);
+  border: 1px solid #c7e3d1;
+  border-radius: 999px;
+  color: var(--easyedu-success);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  min-height: 1.45rem;
+  padding: 0.16rem 0.54rem;
+}
+.local-groupimport-easystud [data-easystud-group-email-result] .local-groupimport-easystud-token--invalid,
+.local-groupimport-easystud [data-easystud-grouping-groups-result] .local-groupimport-easystud-token--invalid {
+  align-items: center;
+  background: var(--easyedu-danger-soft);
+  border: 1px solid #efc5c5;
+  border-radius: 999px;
+  color: var(--easyedu-danger);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  min-height: 1.45rem;
+  padding: 0.16rem 0.54rem;
+}
 .local-groupimport-easystud-tags-toggle {
   align-items: center;
   border-radius: 999px !important;
@@ -18960,6 +18988,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .local-groupimport-easystud [data-easystud-cancel-group-email],
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups],
+.local-groupimport-easystud [data-easystud-container-search-cancel],
 .local-groupimport-easystud [data-easystud-rename-cancel] {
   align-items: center;
   background: var(--easyedu-primary);
@@ -18993,6 +19022,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-easystud [data-easystud-cancel-group-email] [class*=" fa-"],
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups] .fa,
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups] [class*=" fa-"],
+.local-groupimport-easystud [data-easystud-container-search-cancel] .fa,
+.local-groupimport-easystud [data-easystud-container-search-cancel] [class*=" fa-"],
 .local-groupimport-easystud [data-easystud-rename-cancel] .fa,
 .local-groupimport-easystud [data-easystud-rename-cancel] [class*=" fa-"] {
   align-items: center;
@@ -19006,18 +19037,21 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .local-groupimport-easystud [data-easystud-cancel-group-email]:focus,
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:focus,
+.local-groupimport-easystud [data-easystud-container-search-cancel]:focus,
 .local-groupimport-easystud [data-easystud-rename-cancel]:focus {
   background: var(--easyedu-surface);
   color: var(--easyedu-primary);
 }
 .local-groupimport-easystud [data-easystud-cancel-group-email]:hover,
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:hover,
+.local-groupimport-easystud [data-easystud-container-search-cancel]:hover,
 .local-groupimport-easystud [data-easystud-rename-cancel]:hover {
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-primary);
 }
 .local-groupimport-easystud [data-easystud-cancel-group-email]:focus-visible,
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:focus-visible,
+.local-groupimport-easystud [data-easystud-container-search-cancel]:focus-visible,
 .local-groupimport-easystud [data-easystud-rename-cancel]:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
@@ -19025,6 +19059,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .local-groupimport-easystud [data-easystud-cancel-group-email]:disabled,
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:disabled,
+.local-groupimport-easystud [data-easystud-container-search-cancel]:disabled,
 .local-groupimport-easystud [data-easystud-rename-cancel]:disabled {
   background: var(--easyedu-surface-soft);
   color: var(--easyedu-text-muted);
