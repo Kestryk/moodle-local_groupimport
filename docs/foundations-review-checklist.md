@@ -83,6 +83,12 @@ two shell fingerprints match; native six-case run
 No-destination branches are static/Penpot only. See the Move JSON readback
 and modal contract for close/shell/checkbox paint gaps.
 
+Pending source checkpoint (2026-10-02): Clipboard neutral shell and public
+modal/navigation layer. Baseline run `20261002T201951972Z-46704` confirms three
+covered helper characters at 390; source/static validation is not runtime proof.
+Dedicated Penpot browser reconnection is required for paired publication before
+promotion. No human acceptance item is ticked.
+
 Clipboard field/results run `easystud-authenticated-20261002T185415434Z-42396`
 passes 1600/768/390 controls, with cleanup. Whole-dialog visual acceptance is
 still open: a floating navigation trigger covers help at 390. The failed

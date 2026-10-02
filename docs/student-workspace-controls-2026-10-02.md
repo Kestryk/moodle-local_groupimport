@@ -266,3 +266,70 @@ Verify painted bounds and captures after reflow. Nested product resets/swaps
 can restore generic parent copy: replace only the exact linked action in an
 ordinary host and preserve the whole superseded action. Per-task token/billing
 telemetry is unavailable; no quota-saving figure is asserted.
+
+## Source checkpoint: Clipboard layering and neutral chrome
+
+P1 continuation of EED-UI-2026-0073: Kit owns the fixed-root layer and neutral
+lookup composition; EasyStud only calls public classes in its existing
+Clipboard template. Other dialogs, card Motion, business commands and shared
+Platform planning files are excluded. Full-tree parity remains false.
+
+Baseline `easystud-authenticated-20261002T201951972Z-46704` on clean preview
+`a364b014` passes existing controls but records **three covered helper
+characters at 390px**, zero at 768/1600. The fixed modal measures 1050; the
+responsive trigger 1064. Recorded ancestors show no additional transform,
+opacity or isolation on the modal path. Captured paint confirms the collision.
+This is diagnostic evidence, not a post-fix PASS. Cleanup confirms credentials
+cleared, lease released, owned child stopped and no fixture/business command.
+
+Evidence under external `easystud/authenticated/<baseline run>/playwright-output/`
+`student-clipboard-foundati-27ef9-ultiline-and-lookup-results/`:
+`clipboard-geometry.json` and pinned `clipboard-390.png`. The candidate scenario
+adds unobscured helper-character centres, root ordering, neutral border/header,
+16px title and 13px help to existing field/result/close/focus checks. Its source
+blob `f2fa0e3de81e2dcd5a2f1252781e669510a148a3` has not run on the candidate.
+
+Kit WIP `df19d750abd4642cd40f896d83f1414dfaff1bcd` / 0.4.54 exposes
+`easyedu-modal-layer` and `easyedu-lookup-dialog` with header/body/description
+roles. The layer uses the navigation-panel token plus four (default 1070),
+not an inner-dialog z-index patch. Chrome reuses modal-surface and white paint.
+Native 34rem cap, six rows, parser, live results and focus/close/Motion remain.
+No plugin-local skin or ordinary inline style added. Three canonical modules
+are byte-identical; current hashes and historical pin updates are in the
+consumer manifest. CSS is compiled, not hand-edited.
+
+Static gates pass: Kit compact-portal compile contract; consumer Clipboard,
+workspace, native Text-field and message-portal contracts; Node syntax and diff
+checks. Sass reports the existing mixed-declarations warning in `_layout.scss:113`.
+Moodle floor remains 5.1; no PHP/AMD/API change or cross-version certification.
+References: [Moodle coding style](https://moodledev.io/general/development/policies/codingstyle)
+and [MDN stacking contexts](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Positioned_layout/Stacking_context).
+
+**Paired Penpot publication is pending.** No Penpot mutation ran in this
+continuation. Last successful read confirmed desktop Clipboard host
+`cef95197-06bc-809e-8008-aeffacefdf24` and linked textarea
+`cef95197-06bc-809e-8008-aeffd025d4c6`. Dedicated CDP 9223 froze after switching
+files. Its exact owned browser closed gracefully; the environment rejected
+relaunch. No other profile closed, no profile replaced or bypass attempted.
+User was asked to relaunch the existing profile and connect Foundations.
+
+Resume with paired neutral lookup Library/Standard specimens, then linked
+product Desktop/Narrow and painted readback. Only then run managed preview
+promotion, including `60cbf72` and `66a5737` predecessors in order, candidate
+commit and cache gate. Runtime stays clean at `a364b014`, with no cache/data
+write here. Stronger assertions are candidate-only, not expected to pass on
+this unchanged baseline. No release/deployment or human acceptance claimed.
+
+Platform owner: record baseline, WIP and Penpot/preview boundary in
+0073/crosswalk/state/registry. Shared dirty planning files are preserved;
+this portable proposal is not a claimed registry update. Checklist remains
+unchecked and pushed WIP is not a verified workspace snapshot.
+
+Efficiency: wrong headings/roots and broad output caused avoidable retries;
+use discovered paths/anchors, current-page Penpot lookup and wait for shell
+completion before MCP. No billing/token measurement is available. Retention
+is dry-run only; an expiry inventory does not authorise deletion.
+
+Final retention inventory: `retention-20261002T203051Z.json`, dry-run, 937
+candidates, zero deletions/errors. Baseline 390px defect capture is pinned;
+earlier retained evidence remains unchanged. No workspace/runtime cleanup ran.

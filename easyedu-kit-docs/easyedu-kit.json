@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.53",
+  "version": "0.4.54",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -15,13 +15,27 @@
       "cardModuleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09"
     },
     "fullTreeIdentical": false,
+    "studentLookupDialogs": {
+      "sourceCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
+      "modules": {
+        "scss/easyedu/_tokens.scss": "7c67bbaa70136b0dadbedf6a32a8fb6b1c0f77f5",
+        "scss/easyedu/_dialog-classes.scss": "4430f1b9343a99b0736ee2173df5731aeb7689f7",
+        "scss/easyedu/components/_modals.scss": "c5b494cdd99c898b7dd2df0ed193490517fdb201"
+      },
+      "scope": "Neutral Clipboard chrome and opt-in fixed-root ordering above shared navigation; native rows, lookup, close and Motion unchanged",
+      "baselineRun": "easystud-authenticated-20261002T201951972Z-46704",
+      "candidateGeneratedCssBlob": "16847d1a6e2268cab3dd52eb8966f9d0bf972ea7",
+      "candidateScenarioBlob": "f2fa0e3de81e2dcd5a2f1252781e669510a148a3",
+      "status": "WIP source/static only; paired Foundation Standard/Library and product publication pending Penpot reconnect; not served and no post-change browser proof"
+    },
     "studentWorkspaceControls": {
       "sourceCommit": "24d945e2252d1081d6f7a65daf5a7950daeff04b",
       "modules": {
-        "scss/easyedu/_tokens.scss": "5a9de6841053c01544ba575e772596c5bfe52f8e",
+        "scss/easyedu/_tokens.scss": "7c67bbaa70136b0dadbedf6a32a8fb6b1c0f77f5",
         "scss/easyedu/_workspace-classes.scss": "83d5f0a11820eb2b7100aa9ed9d3cd9a459cb773",
         "scss/easyedu/_workspace-control-classes.scss": "31a19322faeda2226896777e6fe56aab87814254"
       },
+      "tokensUpdateCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
       "scope": "Quieter workspace/card identity roles; native search/Create and view labels; no card disclosure Motion or business command change",
       "status": "focused 1600/768/390 native role/Search/Create proof PASS; 11 product boards and paired source readbacks recorded; full paint and human checklist open"
     },
@@ -29,9 +43,10 @@
       "sourceCommit": "f0a25fd11b2e7871222f85672ddf07eaeda86e87",
       "modules": {
         "scss/easyedu/components/_overlays.scss": "66208bc3618e3e002d33f9c3c7f907ecce155589",
-        "scss/easyedu/_dialog-classes.scss": "b92a7013be9d9135bc69af77d2afc9cd0310b854",
+        "scss/easyedu/_dialog-classes.scss": "4430f1b9343a99b0736ee2173df5731aeb7689f7",
         "scss/easyedu/adapters/_moodle-message-dialog.scss": "e22b0bb6e3d26dd58129761d68612735fa115c29"
       },
+      "dialogClassesUpdateCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
       "scope": "Compact entity preview, native message token bridge and Move dialog controls; original card disclosure Motion unchanged",
       "status": "native open/cancel and compact drag proof PASS; paired message and six linked Move specimens verified; empty Move branches are static/Penpot only; exact native paint and human gates open",
       "penpotReadback": "docs/testing/student-native-message-penpot-2026-10-02.json",
@@ -45,8 +60,8 @@
       "moduleBlob": "6ed5feadfa22e28b2a1fd64685248e63469ed52d",
       "paintModule": "scss/easyedu/components/_field-paint.scss",
       "paintBlob": "6b0cc074953fc7a432dd3339bb476de19dd5c22c",
-      "tokensBlob": "5a9de6841053c01544ba575e772596c5bfe52f8e",
-      "tokensUpdateCommit": "24d945e2252d1081d6f7a65daf5a7950daeff04b",
+      "tokensBlob": "7c67bbaa70136b0dadbedf6a32a8fb6b1c0f77f5",
+      "tokensUpdateCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
       "exportsBlob": "4c80e4365ec78a5ebb4166273c605bd8ee7632fd",
       "foundationDefault": "2a31d374-d2a1-80fd-8008-ac73e5451656",
       "foundationFilled": "2a31d374-d2a1-80fd-8008-ac73e92f4940",

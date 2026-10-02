@@ -3,6 +3,14 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $manifest = Get-Content -Raw -LiteralPath (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') | ConvertFrom-Json
 $pin = $manifest.consumerSync.studentClipboardFields
+$dialogPin = $manifest.consumerSync.studentLookupDialogs
+foreach ($entry in $dialogPin.modules.PSObject.Properties) {
+    $embedded = & git -C $root hash-object $entry.Name
+    $canonical = & git -C $KitRoot hash-object $entry.Name
+    if ($LASTEXITCODE -ne 0 -or $embedded -ne $entry.Value -or $canonical -ne $embedded) {
+        throw "Lookup dialog source pin drift: $($entry.Name)"
+    }
+}
 foreach ($pair in @(@($pin.module, $pin.moduleBlob), @($pin.paintModule, $pin.paintBlob),
     @($pin.formsModule, $pin.formsBlob))) {
     $embedded = & git -C $root hash-object $pair[0]
@@ -25,6 +33,14 @@ foreach ($pair in @(@('valid', 'success'), @('invalid', 'error'))) {
     }
 }
 $template = Get-Content -Raw -LiteralPath (Join-Path $root 'templates/manage.mustache')
+$clipboard = [regex]::Match($template, '(?s)<div\s+class="[^"]*easyedu-modal-layer"\s+data-easystud-clipboard-modal="1".*?(?=\n    <div\s+class="local-groupimport-easystud-modal")')
+foreach ($role in @('easyedu-lookup-dialog', 'easyedu-lookup-dialog__header',
+    'easyedu-lookup-dialog__body', 'easyedu-lookup-dialog__description', 'easyedu-modal-title')) {
+    if (-not $clipboard.Success -or -not $clipboard.Value.Contains($role)) { throw "Missing lookup class role: $role" }
+}
+if ($clipboard.Value.Contains('modal__dialog--confirm') -or $clipboard.Value -match '\bstyle=') {
+    throw 'Clipboard must use neutral public classes, not danger chrome or inline paint.'
+}
 $textarea = [regex]::Matches($template, '(?s)<textarea\b[^>]*data-easystud-paste-box[^>]*>')
 if ($textarea.Count -ne 1 -or $textarea[0].Value -notmatch 'rows="6"') { throw 'Native Clipboard rows/instance count changed.' }
 if ($template -notmatch '(?s)data-easystud-paste-results="1"[^>]*aria-live="polite"') { throw 'Native Clipboard announcement missing.' }

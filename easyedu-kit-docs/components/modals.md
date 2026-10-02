@@ -7,6 +7,30 @@ footer. Desktop sizing, async loading, focus trap and recipients remain native.
 
 EasyEdu modals use Moodle-compatible markup with a shared visual shell.
 
+## Neutral lookup tools and navigation layering
+
+Include `dialog-classes` from `easyedu/dialog-classes`. On a plugin-owned fixed
+modal root under `.easyedu-ui`, opt in with `easyedu-modal-layer`. The public
+`--easyedu-modal-layer` defaults to the navigation-panel layer plus four
+(1070 with the default panel at 1066). This orders the dialog above navigation,
+not above every possible portal. The consumer must verify ancestor stacking
+contexts; this class cannot escape a transformed or isolated low-level parent.
+Native Moodle body portals retain their own root/focus owner.
+
+For identifier lookup, use `easyedu-lookup-dialog` on the surface and
+`easyedu-lookup-dialog__header`, `__body`, `__description` on its existing
+children, plus `easyedu-modal-title` on the title. This composes the shared
+neutral modal surface: white body/header, modal border/radius/shadow, a capped
+34rem width, 16px title and 13px regular muted helper text. No destructive
+confirmation tint, invented action footer or new close behaviour is added.
+Keep native fields, rows, lookup announcements and entrance/exit Motion.
+Penpot and browser evidence are separate gates; the compile fixture validates
+public classes without emitting global `.modal` or product selectors.
+
+The 0.4.54 source checkpoint is compile-validated, not a release or visual
+acceptance. Paired Foundation Standard/Library publication, product linkage
+and post-promotion browser proof remain pending until Penpot reconnects.
+
 ## Native message portal and action-dialog classes
 
 Import `easyedu/adapters/moodle-message-dialog` and include its

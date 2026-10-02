@@ -2251,16 +2251,16 @@
     {{/useeasyeduguide}}
 
     <div
-        class="local-groupimport-easystud-modal"
+        class="local-groupimport-easystud-modal easyedu-modal-layer"
         data-easystud-clipboard-modal="1"
         hidden
         role="dialog"
         aria-modal="true"
         aria-labelledby="local-groupimport-easystud-clipboard-title"
     >
-        <div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-modal__dialog--confirm">
-            <div class="local-groupimport-easystud-modal__header">
-                <h3 id="local-groupimport-easystud-clipboard-title" class="h5 mb-0">{{clipboardlabel}}</h3>
+        <div class="local-groupimport-easystud-modal__dialog easyedu-lookup-dialog">
+            <div class="local-groupimport-easystud-modal__header easyedu-lookup-dialog__header">
+                <h3 id="local-groupimport-easystud-clipboard-title" class="easyedu-modal-title">{{clipboardlabel}}</h3>
                 <button
                     type="button"
                     class="local-groupimport-easystud-modal__close"
@@ -2270,8 +2270,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="local-groupimport-easystud-modal__body">
-                <p class="text-muted">{{clipboarddesc}}</p>
+            <div class="local-groupimport-easystud-modal__body easyedu-lookup-dialog__body">
+                <p class="easyedu-lookup-dialog__description">{{clipboarddesc}}</p>
                 <textarea
                     class="form-control"
                     rows="6"
