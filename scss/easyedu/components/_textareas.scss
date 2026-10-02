@@ -1,0 +1,28 @@
+// Native multiline fields measured from the eighteen Foundations masters.
+// Apply to the textarea itself. Width and native rows remain consumer-owned.
+@use "field-paint";
+
+@mixin foundation-textarea($size: regular) {
+  $height: 7rem;
+  $font-size: 0.875rem;
+  @if $size == small {
+    $height: 5.5rem;
+    $font-size: 0.75rem;
+  } @else if $size == large {
+    $height: 8.75rem;
+  } @else if $size != regular {
+    @error "foundation-textarea expects small, regular or large.";
+  }
+
+  display: block;
+  font: 400 #{$font-size}/1.2 var(--easyedu-font-family-ui);
+  height: auto;
+  min-height: $height;
+  min-width: 0;
+  // Border plus padding gives the measured top/inline painted insets.
+  padding: 0.6875rem 0.8125rem;
+  resize: vertical;
+  text-align: start;
+
+  @include field-paint.paint;
+}

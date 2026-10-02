@@ -6,6 +6,10 @@ Technical checks and human visual acceptance remain separate.
 
 ## Student Management
 
+- [ ] Foundation Textareas for Group/Grouping identifier additions; multiline
+  values, recognition, focus, vertical resize and native responsive routing;
+  reflowed panels/cards, equal columns and bottom-anchored pagination.
+
 - [ ] Real Foundation Text fields for creation/Rename; native focus, placeholder,
   filled value and responsive hit geometry; no disguised Search instances.
 

@@ -1,5 +1,51 @@
 # Foundations Student Management migration
 
+## Multiline identifier adoption - 2026-10-02
+
+Scope card: the existing EED-UI-2026-0073 Student continuation owns the dedicated
+Kit and EasyStud worktrees, native Group/Grouping identifier textarea adapters,
+five active product specimens, their necessary layout reflow, source pins,
+contracts/docs and one non-mutating local-supervised scenario. Excludes
+Clipboard/message controls, search, parsing, commands, capabilities, fixtures,
+native card Motion, hidden/archived specimen adoption and global human acceptance.
+Shared Platform planning/index/batch ownership remains separate; the precise
+implementation/proof proposal is recorded here rather than taking those files.
+
+Kit `91b67a9` exports `foundation-textarea` in S/M/L with the measured eighteen
+masters' minimum size/type/insets and explicit states. Shared internal
+`_field-paint.scss` removes state duplication without applying single-line
+geometry to a multiline field. The input contract still passes. Consumer
+adoption is one recipe on the two identifier-box attributes; native `rows=3`,
+vertical resizing, recognition, focus, announcements, Cancel and the original
+AMD remain. No PHP/Mustache/AMD/business mutation or local textarea skin.
+
+Five active Penpot identifier fields use the existing Foundation M Filled main
+`2a31d374-d2a1-80fd-8008-ac74c50a190c`, 112px high/14px Inter 400, with 14/12px
+inline/top source-equivalent insets. Text/content/widths are retained. Replaced
+rectangles/text remain hidden for rollback; seven previously hidden/archived
+identifier specimens remain unadopted. Source mains/Library are not repainted
+or duplicated. Panels/actions/results and containing card surfaces/identity
+rails grow without scaling their icons. Desktop columns stay equal; pagination
+is anchored to the column bottom. The Groups & groupings column also repairs
+its existing panel/footer overlap. Interaction siblings reflow and the entire
+responsive board row moves down 68px to retain board separation.
+
+Penpot rollback storage: `studentTextareaReflowRollback20261002` captures old
+geometry/visibility and newly instantiated root IDs; restore the former values
+and hide new instances, never detach/rebuild accepted mains. Exact versioned
+readback is recorded separately after layout verification. Paired Foundation
+Standard-page verification is not implied by product-file readback.
+
+Static contracts compile both field families; the strict Kit audit retains
+the same five prior findings, none in the new multiline/paint modules. Sass's
+existing layout/loading warning is not corrected in this slice. Moodle floor
+stays 5.1, local runtime proof pending; no unexecuted cross-version claim.
+Next proof freezes `student-textarea-foundations.spec.js`, discovers exactly
+one test and runs native Group/Grouping routing at 1600/768/390, value/placeholder,
+hover/focus/insets, resize/rows, recognition and Cancel. Never submit Add/Save.
+Re-run single-line creation/Rename after shared paint extraction. Human
+checklist stays unchecked even if static/browser proof passes.
+
 ## Next multiline field reconciliation - read-only checkpoint 2026-10-02
 
 Live Foundations readback covers eighteen Textarea masters: S/M/L heights

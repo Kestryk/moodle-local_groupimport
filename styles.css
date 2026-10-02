@@ -3932,17 +3932,17 @@
   gap: 0.45rem;
 }
 .local-groupimport-easystud-create .form-control, .local-groupimport-easystud-rename .form-control {
+  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  height: auto;
+  min-height: 2.375rem;
+  min-width: 0;
+  padding: 0.6rem 0.8125rem;
   background: var(--easyedu-surface);
   border: 0.0625rem solid var(--easyedu-control-border);
   border-radius: var(--easyedu-control-radius);
   box-shadow: none;
   box-sizing: border-box;
   color: var(--easyedu-field-text);
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
-  height: auto;
-  min-height: 2.375rem;
-  min-width: 0;
-  padding: 0.6rem 0.8125rem;
   transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
 }
 .local-groupimport-easystud-create .form-control::placeholder, .local-groupimport-easystud-rename .form-control::placeholder {
@@ -5952,6 +5952,73 @@
 }
 .local-groupimport-easystud.is-dragging-participants .local-groupimport-easystud-group[data-easystud-user-drop], .local-groupimport-easystud.is-dragging-groups [data-easystud-grouping-drop] {
   opacity: 1;
+}
+.local-groupimport-easystud [data-easystud-group-email-box],
+.local-groupimport-easystud [data-easystud-grouping-groups-box] {
+  display: block;
+  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  height: auto;
+  min-height: 7rem;
+  min-width: 0;
+  padding: 0.6875rem 0.8125rem;
+  resize: vertical;
+  text-align: start;
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-field-text);
+  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
+}
+.local-groupimport-easystud [data-easystud-group-email-box]::placeholder,
+.local-groupimport-easystud [data-easystud-grouping-groups-box]::placeholder {
+  color: var(--easyedu-text-muted);
+  opacity: 1;
+}
+.local-groupimport-easystud [data-easystud-group-email-box]:hover:not(:disabled):not([aria-disabled=true]),
+.local-groupimport-easystud [data-easystud-grouping-groups-box]:hover:not(:disabled):not([aria-disabled=true]) {
+  border-color: var(--easyedu-field-hover-border);
+}
+.local-groupimport-easystud [data-easystud-group-email-box]:focus, .local-groupimport-easystud [data-easystud-group-email-box]:focus-visible,
+.local-groupimport-easystud [data-easystud-grouping-groups-box]:focus,
+.local-groupimport-easystud [data-easystud-grouping-groups-box]:focus-visible {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-field-text);
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud [data-easystud-group-email-box][aria-invalid=true],
+.local-groupimport-easystud [data-easystud-grouping-groups-box][aria-invalid=true] {
+  border-color: var(--easyedu-field-error-border);
+  color: var(--easyedu-field-error-text);
+}
+.local-groupimport-easystud [data-easystud-group-email-box][aria-invalid=true]::placeholder,
+.local-groupimport-easystud [data-easystud-grouping-groups-box][aria-invalid=true]::placeholder {
+  color: var(--easyedu-field-error-text);
+}
+.local-groupimport-easystud [data-easystud-group-email-box]:disabled, .local-groupimport-easystud [data-easystud-group-email-box][aria-disabled=true],
+.local-groupimport-easystud [data-easystud-grouping-groups-box]:disabled,
+.local-groupimport-easystud [data-easystud-grouping-groups-box][aria-disabled=true] {
+  background: var(--easyedu-field-disabled-surface);
+  border-color: var(--easyedu-control-border);
+  box-shadow: none;
+  color: var(--easyedu-field-disabled-text);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.local-groupimport-easystud [data-easystud-group-email-box]:disabled::placeholder, .local-groupimport-easystud [data-easystud-group-email-box][aria-disabled=true]::placeholder,
+.local-groupimport-easystud [data-easystud-grouping-groups-box]:disabled::placeholder,
+.local-groupimport-easystud [data-easystud-grouping-groups-box][aria-disabled=true]::placeholder {
+  color: var(--easyedu-field-disabled-text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .local-groupimport-easystud [data-easystud-group-email-box],
+  .local-groupimport-easystud [data-easystud-grouping-groups-box] {
+    transition: none;
+  }
 }
 .local-groupimport-easystud.is-dragging-participants .local-groupimport-easystud-tree__section.is-user-drop-disabled.is-drop-denied {
   filter: none;
