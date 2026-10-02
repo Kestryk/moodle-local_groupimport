@@ -2,6 +2,27 @@
 
 ## Inline identifier feedback and search Cancel - 2026-10-02
 
+Final bounded proof: `easystud-authenticated-20261002T050512385Z-40496` PASS
+(38.9s), exactly one authenticated test on preview `9a08974`, consumer `5ab1a6c`,
+loaded spec blob `50e411c1fa5dc95349c0e876b8275be69176ca16`. The spec remained
+unchanged throughout. Both Group and Grouping native lookup previews pass at
+1600/768/390: recognised names, explicit unknown text, 0.78rem/700 labels,
+canonical semantic colours, symmetric 0.54rem insets, host containment and
+unobscured token-centre hit tests. Desktop search Cancel has the shared role,
+native keyboard focus, canonical blue border and halo. Responsive Grouping
+direct search remains intentionally hidden. Original card/inline Motion and
+business commands were not changed or submitted.
+
+All seven final PNGs are inspected, pinned in the external run manifest and
+clear of the native sticky tray. Prior failures and the covered tablet crop
+remain preserved; geometry PASS alone was not treated as visual proof.
+Cleanup confirms credentials cleared, owned child stopped, lease released and
+no fixture requested. Scoped retention dry-runs delete zero files, with no
+errors. No course/membership/message/import/settings mutation, production
+deployment or human checklist acceptance. The source-only AI guard, changelog,
+pins, scenario registry and this protocol are updated. The generic field-family,
+native/Foundation row-density, foreign CCB drawer and live Penpot gates remain.
+
 Run `easystud-authenticated-20261002T045807293Z-30900` passed the corrected
 desktop focus and 1600/768 result roles, then timed out on that intentionally
 hidden tablet search trigger. It remains FAILED. It loaded the earlier spec
@@ -14,7 +35,7 @@ hiding on preview `3ce2a445` (26.2s). Phone captures are clean. One earlier
 tablet Group crop is covered by the real sticky selection tray and is NOT
 accepted visual evidence. The revised scenario centres the panel by native
 scrolling, retains that tray and strictly checks token-centre paint hits before
-capture. Final unobscured-capture verification is still pending.
+capture. The final bounded proof above supersedes that pending capture gate.
 
 Source `9c59563` and integration `d5d4c07` were promoted after the dedicated
 six-path documentary/test prerequisite bridge `7d422ac`. Preview `0fe7e86`
@@ -32,7 +53,7 @@ so the emitted focus-visible rule set the halo only. No assertion is waived.
 Kit `1cfc0cf` supplies the canonical blue focus-border token to all four public
 button density/semantic paths; compilation contract passes. The identical
 single-module update is consumed here with no local focus-border workaround.
-Corrected browser verification remains pending until separately recorded.
+The final bounded proof above supersedes that pending corrected-browser gate.
 
 Verification scope correction: the initial scenario attempted to click the
 responsive Grouping direct-search trigger. `_mobile.scss:544-548` intentionally
@@ -60,7 +81,8 @@ role/group/grouping metadata, result text, parser, `aria-live`, empty-result
 geometry and card-owned placement remain unchanged. Inline container-search
 Cancel also consumes the existing compact Foundation secondary-button recipe.
 
-Canonical modules are unchanged and exactly pinned in `studentInlineFeedback`.
+The Forms module is unchanged; the shared button module includes the canonical
+focus-border correction. Both are exactly pinned in `studentInlineFeedback`.
 This is bounded visual adoption, not source-preserving CSS equality, whole-view
 parity, new field publication or human acceptance. The generic Text field /
 Textarea Penpot candidates still lack reconciled named Kit recipes: do not
@@ -78,7 +100,16 @@ The responsive Grouping direct search trigger is intentionally hidden by
 `_mobile.scss`; assert that native exposure instead of force-clicking it or
 creating a mobile action. This does not remove the responsive identifier tool.
 It never activates Add, Save, Remove, messaging or other business mutations.
-Browser execution is pending; all human checklist items stay unchecked.
+The final bounded browser proof is recorded above; all human checklist items
+stay unchecked. Long-identifier, 320px/RTL/zoom, forced-colours and complete
+whole-view coverage are not inferred from these short focused specimens.
+
+Efficiency note: no token/billing telemetry is available, so no numerical quota
+saving is claimed. Keep one focused scenario per slice, inspect native action
+exposure before scheduling it, freeze its source during execution and reconcile
+owned prerequisites before promotion. The second failed run spent its timeout
+waiting on a deliberately hidden control; that waste is explicitly corrected
+by the revised exposure assertion, not hidden in a final PASS-only report.
 
 Platform planning-owner proposal: record this slice under the active approved
 Student continuation of EED-UI-2026-0073; retain the generic field-family,

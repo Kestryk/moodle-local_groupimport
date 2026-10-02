@@ -22,7 +22,11 @@
       "buttonsModule": "scss/easyedu/_foundation-classes.scss",
       "buttonsBlob": "2d438071fef18225a2b56dc9b9ac05a0bda566bb",
       "scope": "Group/Grouping identifier-result success/error pills and inline container-search Cancel",
-      "status": "shared recipes consumed; initial desktop feedback passes but native focus-border failed; canonical fix applied, corrected browser run and human review pending; generic field candidates not adopted"
+      "proofRun": "easystud-authenticated-20261002T050512385Z-40496",
+      "testedConsumer": "5ab1a6ccdba518261f3228d158dbd18cc3c48d9d",
+      "testedRuntime": "9a08974a6302bd5ad92b5e906caec6307aa676c1",
+      "scenarioBlob": "50e411c1fa5dc95349c0e876b8275be69176ca16",
+      "status": "1600/768/390 native lookup roles, containment and unobscured paint pass; desktop search Cancel keyboard-focus border/halo pass; responsive direct search stays hidden; human review deferred, generic field candidates not adopted"
     },
     "studentDragPreview": {
       "sourceCommit": "8b8d83f9ea71be1503a9a2de034e9e9b8e704e6a",
