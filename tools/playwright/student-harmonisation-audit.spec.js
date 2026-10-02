@@ -105,6 +105,10 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
             await expect(message).toHaveClass(/easyedu-message-dialog/);
             await expect(message.locator('.modal-title')).toHaveCSS('font-size', '16px');
             await expect(message.locator('.modal-footer')).toHaveCSS('justify-content', 'center');
+            const cancel = message.locator('.modal-footer .easyedu-button--secondary');
+            await expect(cancel).toHaveCount(1);
+            await expect(cancel).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+            await expect(cancel).toHaveCSS('color', 'rgb(0, 116, 204)');
             expect(await message.evaluate(node => getComputedStyle(node)
                 .getPropertyValue('--easyedu-primary').trim())).not.toBe('');
             await measure(message, 'message:portal');
