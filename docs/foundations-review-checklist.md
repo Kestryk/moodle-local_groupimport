@@ -20,7 +20,7 @@ Technical checks and human visual acceptance remain separate.
 
 - [ ] Clipboard canonical multiline field and recognized/unknown result pills,
   six native rows, lookup, resize, close/focus at desktop/tablet/mobile;
-  source candidate only until the post-restart 5.1 database/test gate passes.
+  scoped 5.1 technical proof passed; human acceptance remains deferred.
 
 - [ ] Foundation Textareas for Group/Grouping identifier additions; multiline
   values, recognition, focus, vertical resize and native responsive routing;

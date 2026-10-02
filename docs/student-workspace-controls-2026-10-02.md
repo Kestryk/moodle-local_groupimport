@@ -409,3 +409,38 @@ cost came from broad output, unqualified hidden-descendant selection, missing
 test parameters and one slow MCP export. Prefer compact visible-anatomy reads,
 documented parameter names, and captured paint/readback after reflow; do not
 retry an unchanged timed-out export. Retention is inventory-only, no deletion.
+
+### Continuation audit and operational boundary
+
+The suggested drag-target implementation was stale: current canonical and
+embedded `_overlays.scss` share blob `66208bc3618e3e002d33f9c3c7f907ecce155589`.
+They already implement the 2.5rem flat allowed plus and refused xmark; the
+consumer ledger also records earlier desktop Allowed/Denied proof. Do not
+recreate these controls. The current candidate still hides its decorative
+pointer-following preview for target-only captures; future paint certification
+should additionally preserve realistic foreground visibility. Drag is suppressed
+at <=1024px, coarse pointer or hover-none; audit mobile selection/action routes
+instead of promising native mobile drag. No drag scenario ran in this tranche.
+
+Next actual implementation slice: source-complete Participant detail and
+Group/Grouping advanced dialogs. `manage.mustache` still uses `h5 mb-0` for
+Participant and Delete; `openAdvancedSettingsModal` emits Group/Grouping title,
+forms, lists/counts/CSV, group image/file selection/delete-picture option and
+Save/Cancel/native-link footer with legacy classes. Audit both branches before
+mapping public Kit roles; do not turn read-only Participant into an editing
+dialog, lose conditional data or send Save/Delete. All original disclosures and
+Motion remain excluded from rewrites. New runtime scenarios need the bounded
+named preview/test gate; the Clipboard PASS does not certify these dialogs.
+
+The local `easystud-moodle51` status profile still names an older preview branch,
+so its helper classifies this clean active lane as `unmanaged-preview` despite
+the recorded managed promotion and applied commits. No profile was changed;
+report exact branch/HEAD/record, not a false profile-health certification.
+Two focused retention dry runs cover the new authenticated and Penpot evidence:
+`retention-20261002T210348Z.json` / `retention-20261002T210349Z.json` in their
+respective run folders. Each has one protected manifest, zero candidates,
+unmanaged files, deletions or errors. The over-broad global inventory was stopped
+only after matching its owned PID, command and creation time; it produced no
+complete report and deleted no media. No unrelated process stopped.
+No verified transfer snapshot was created; pushed clean branches are not a
+claim of complete multi-machine transfer readiness.
