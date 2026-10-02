@@ -54,6 +54,7 @@ test('Student creation and Rename consume Foundation native text fields', async(
         expect(record.contained).toBe(true);
         expect(record.unobscured).toBe(true);
         expect(record.height).toBeGreaterThanOrEqual(38);
+        expect(record.width).toBeGreaterThanOrEqual(128);
         return record;
     };
     try {
@@ -114,6 +115,18 @@ test('Student creation and Rename consume Foundation native text fields', async(
             if (width <= 1024) expect(renamed.height).toBeGreaterThanOrEqual(44);
             await input.fill(`${original} transient`);
             await edit.screenshot({path: testInfo.outputPath(`rename-${width}.png`)});
+            await card.screenshot({path: testInfo.outputPath(`rename-card-${width}.png`)});
+            if (width === 390) {
+                const fieldBox = await input.boundingBox();
+                for (const action of await edit.locator('button').all()) {
+                    const actionBox = await action.boundingBox();
+                    expect(actionBox.y).toBeGreaterThanOrEqual(fieldBox.y + fieldBox.height);
+                    expect(await action.evaluate(n => {
+                        const r = n.getBoundingClientRect();
+                        return n.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
+                    })).toBe(true);
+                }
+            }
             await input.fill(original);
             await edit.locator('[data-easystud-rename-cancel]').click();
             await expect(edit).toBeHidden();

@@ -495,6 +495,17 @@
 // letting the existing wrapping header place the action in its own flow slot.
 // Wider responsive layouts retain their established one-line arrangement.
 @media (max-width: 25rem) {
+  // A narrow inline editor cannot fit a readable field plus two touch actions
+  // on one line. Reflow only its native grid; keep the Foundation field/button
+  // recipes and the card's closed header/disclosure geometry unchanged.
+  .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-rename__edit:not([hidden]) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    > .form-control {
+      grid-column: 1 / -1;
+    }
+  }
+
   .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-tree__children > .local-groupimport-easystud-group > .local-groupimport-easystud-group__header > [data-easystud-group-actions-toggle][data-easystud-card-menu] {
     margin-left: auto;
     position: static;

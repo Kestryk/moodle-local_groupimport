@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-02 - Narrow native Rename readability
+
+- Reflow the open mobile Rename editor into a full-width field above Save/Cancel;
+  preserve shared control paint, native commands and original card Motion.
+  The preceding automated PASS exposed a 28px field on visual inspection, so
+  add useful-width/full-card/action-hit checks rather than declaring acceptance.
+
 ## 2026-10-02 - Native field placeholder audit precondition
 
 - Preserve failed native run `easystud-authenticated-20261002T055202640Z-25848`.

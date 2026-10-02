@@ -2,6 +2,17 @@
 
 ## Native creation and Rename fields - 2026-10-02
 
+Run `easystud-authenticated-20261002T055329803Z-37296` is an automated PASS,
+not visual acceptance: six captured forms expose a real 390px Rename input
+compressed to 28px by the native three-column editor. Preserve this evidence.
+The narrow consumer grid now places the field across both columns and keeps
+Save/Cancel underneath with native touch targets. Only open-editor reflow changes;
+Foundation field/button paint, commands, closed headers and original Motion do
+not. Strengthen the immutable next scenario with minimum useful field width,
+full-card captures and phone action ordering/unobscured hit assertions. No
+global checklist acceptance or Foundation main change is implied by this native
+responsive geometry correction.
+
 Run `easystud-authenticated-20261002T055202640Z-25848` remains FAILED and
 preserved. Native desktop creation and Rename value/focus geometry pass;
 the harness incorrectly asserted placeholder paint on Rename, whose original
