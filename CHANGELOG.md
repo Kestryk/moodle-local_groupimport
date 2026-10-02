@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-02
+
+- Recover the two user-approved documentary conflicts in the local preview,
+  retaining the canonical source pin and prior proof/failure records. Complete
+  the cherry-pick and refresh caches; no rendered CSS or business data changed.
+- Verify member-row roles/alignment at desktop/tablet/phone and original
+  desktop disclosure/focus transitions. Keep Foundation density, cross-plugin
+  overlay and human acceptance gaps explicit; pin four external captures.
+- Require relevant documentary/test/pin predecessors in the ordered preview
+  sequence rather than skipping them because their changes are non-visual.
+
 ## 2026-10-01
 
 - Move related-person row, selection alignment, name lane and removal states
@@ -7,6 +18,8 @@
   preserve responsive density, native controls and all disclosure animations.
 - Add source pin/ownership and read-only responsive member-row checks;
   Foundation/native density reconciliation and human review remain separate.
+- Record the managed-preview documentary conflict after an omitted proof-only
+  predecessor. Source/static validation passes; browser proof is still pending.
 
 - Verify inline resting/hover/keyboard roles and opaque mobile navigation in
   controlled Moodle 5.1 preview. Keep native menu hit acceptance explicitly
