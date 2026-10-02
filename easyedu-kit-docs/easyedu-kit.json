@@ -26,11 +26,11 @@
       "foundationDefault": "2a31d374-d2a1-80fd-8008-ac73e5451656",
       "foundationFilled": "2a31d374-d2a1-80fd-8008-ac73e92f4940",
       "scope": "Creation and Rename native single-line fields only; 17 active product instances now use real Foundation Text field M",
-      "proofRun": "easystud-authenticated-20261002T055551558Z-34672",
-      "testedConsumer": "9f4c015909f858fb8ef19259bb7c9916fc607c42",
-      "testedRuntime": "6b8269ba4ccef09f200186f10573f4cd476e8d78",
+      "proofRun": "easystud-authenticated-20261002T071449303Z-23760",
+      "testedConsumer": "b942004d24c5efd35b5130f29719b9e48f8cbb52",
+      "testedRuntime": "d0d42089a94441e92291148f19adcbf642d8e4f0",
       "scenarioBlob": "0fdc4c65536784e3764953da05a82c67f0eaa4de",
-      "status": "source/static and live Penpot checks; recorded native creation/Rename 1600/768/390 PASS with nine inspected captures; internal paint extracted without geometry changes, rerun pending; human review deferred"
+      "status": "shared-paint regression PASS at 1600/768/390: native creation/Rename roles, focus and useful width; nine captures inspected and pinned; human review deferred"
     },
     "studentNativeTextareas": {
       "sourceCommit": "3693a1feb360bd58921e0fdd7df402cdeeae54bd",
@@ -41,7 +41,12 @@
       "exportsBlob": "4c80e4365ec78a5ebb4166273c605bd8ee7632fd",
       "foundationFilled": "2a31d374-d2a1-80fd-8008-ac74c50a190c",
       "scope": "Native Group/Grouping identifier boxes only, preserving rows and vertical resizing; Clipboard and message textarea not adopted",
-      "status": "source/static and five linked product fields reflowed; native focused-under-pointer failed, canonical priority corrected; rerun pending, human review deferred"
+      "proofRun": "easystud-authenticated-20261002T071233529Z-36720",
+      "testedConsumer": "b942004d24c5efd35b5130f29719b9e48f8cbb52",
+      "testedRuntime": "d0d42089a94441e92291148f19adcbf642d8e4f0",
+      "scenarioBlob": "53c8dd556428e018aa40dd9edd2cb54cfc31f999",
+      "productReadback": "docs/testing/foundations-textarea-product-readback-2026-10-02.json",
+      "status": "source/static and five linked product fields reflowed; 1600/768/390 native rest-hover-focus, multiline lookup, pills and Cancel PASS; seven captures inspected/pinned; human review deferred"
     },
     "studentInlineFeedback": {
       "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",
