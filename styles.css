@@ -3953,6 +3953,8 @@
   border-color: var(--easyedu-field-hover-border);
 }
 .local-groupimport-easystud-create .form-control:focus, .local-groupimport-easystud-create .form-control:focus-visible, .local-groupimport-easystud-rename .form-control:focus, .local-groupimport-easystud-rename .form-control:focus-visible {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-field-text);
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;

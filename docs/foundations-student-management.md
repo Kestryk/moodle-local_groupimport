@@ -2,6 +2,15 @@
 
 ## Native creation and Rename fields - 2026-10-02
 
+First native run `easystud-authenticated-20261002T054359732Z-43452` is FAILED,
+not waived: desktop resting field meets the measured 14px/400 role, 38px height,
+13px CSS insets, radius and containment; native focus keeps the blue border and
+halo but Moodle's `.form-control:focus` replaces the value colour with
+rgb(29,33,37). Loaded immutable spec `0fb54bbe188f77fd8a7b2a7627fc3bbeb195fe69`,
+source `d6aeb25`, preview `6e80071`; no Create/Save or fixture mutation. Cleanup
+complete. Kit `dc9b17d` corrects its own focus colour/surface, not a plugin rule.
+The same spec/assertion remains unchanged for the corrected native rerun.
+
 Scope card: this implementation window owns the existing Student consumer
 worktree and dedicated Kit branch under EED-UI-2026-0073. Includes the native
 creation/Rename input adapter, identical Kit field module/tokens/export, docs,

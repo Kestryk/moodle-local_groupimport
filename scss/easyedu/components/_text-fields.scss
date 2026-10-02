@@ -45,6 +45,8 @@
 
   &:focus,
   &:focus-visible {
+    background: var(--easyedu-surface);
+    color: var(--easyedu-field-text);
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
   }
 
