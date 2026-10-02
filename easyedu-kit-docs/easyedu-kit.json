@@ -108,7 +108,9 @@
       "module": "scss/easyedu/components/_cards.scss",
       "moduleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
       "baseConsumerCommit": "8296ffea3f1ca3f37b39df6a50170cdb5b21b1c5",
-      "status": "canonical source parity and complete CSS equality verified; native density and Motion unchanged; browser proof and Foundation density reconciliation tracked separately"
+      "status": "canonical source parity and complete CSS equality verified; 1600/768/390 row-role, centre, containment and keyboard proof plus native desktop disclosure regression passed; original density and Motion unchanged; Foundation density reconciliation and human review remain pending",
+      "proofRun": "easystud-authenticated-20261002T041025264Z-44664",
+      "disclosureProofRun": "easystud-authenticated-20261002T041123913Z-45996"
     },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },

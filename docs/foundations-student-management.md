@@ -1,5 +1,51 @@
 # Foundations Student Management migration
 
+## Preview recovery completed - 2026-10-02
+
+The user authorized correction of the two documentary conflicts. Under the
+shared preview and GroupImport runtime leases, only the conflict markers and
+obsolete manifest status were resolved. Both extraction and prior native-proof
+entries were retained. The manifest equals requested source `23d50e6`;
+all other staged changes were preserved. Continuing that exact cherry-pick
+created local preview `020cf4cf28b8f5007e04cd3a441f2c28a512d823`, clean,
+with no unfinished cherry-pick and no CSS/AMD or business-data change.
+
+Managed refresh record `20261002T041001Z` records the source commit as already
+present and confirms the post-resolution cache purge. The namespace status
+is active on the correct branch/HEAD. The generic `easystud-moodle51` profile
+still expects the older `preview/moodle51/easystud-ui-2026-0022` branch, so
+its helper reports `managedPreview=false` despite the current promotion
+record. That pre-existing profile mismatch was not silently reconfigured;
+the current record, clean Git state and exact candidate are verified directly.
+
+Focused authenticated browser checks PASS on that recovered product revision:
+
+- `easystud-authenticated-20261002T041025264Z-44664`: related-person roles,
+  selection/name/removal centres and containment at 1600/768/390; desktop
+  hover, keyboard focus at each width and native accessible removal labels.
+  Row heights remain 42px desktop and 37.59375px tablet/phone, removal
+  23.1875px square; typography remains Inter 13px/600 #16324f. Three focused
+  PNGs inspected; they show the native focused-control tooltip, not resting
+  whole-view coverage or Foundation 52px/32px density acceptance.
+- `easystud-authenticated-20261002T041123913Z-45996`: existing 1440px nested
+  member disclosure regression, normal-motion transitional
+  `is-easyedu-disclosing`, hidden extras outside keyboard focus, restored
+  controls after opening and toggle focus after closing. Viewport PNG inspected.
+
+Both runs selected exactly one test, cleared process-local credentials,
+released leases, stopped owned children and requested no fixture. Remove,
+Save, import, messaging and membership mutations were not activated.
+Canonical pins/recipe ownership and complete CSS equality still pass.
+The CSS Git blob is identical between runtime and source (`a6225fda7c7b`).
+Four PNGs are pinned in external manifests; retention dry-runs find zero
+candidates/errors and delete nothing. No production deployment, global
+visual acceptance, 320px/RTL/zoom or mobile disclosure proof is inferred.
+
+The earlier failed promotion below is preserved as history, not an active
+runtime blocker. Shared Platform planning/index files remain owned by their
+existing window; proposal: record this recovery and its bounded proofs,
+without closing the Foundation/native density or foreign CCB overlay gaps.
+
 ## Related-person source-preserving extraction - 2026-10-01
 
 Canonical Kit `f38913c38fea9a67b9887efe8c34e89941028740` promotes four
@@ -24,7 +70,48 @@ GroupImport runtime lease. It measures name roles, selection/name/removal
 centres and containment at 1600/768/390, with native hover/keyboard focus.
 It never activates Remove or changes business data. Normal-motion disclosure
 is checked independently by the existing member-list focus regression.
-Browser execution/result is recorded below after controlled local preview.
+Browser execution remains pending; no new browser acceptance is claimed.
+
+### Controlled preview stopped on documentary conflicts
+
+Promotion `20261001T215953Z` attempted pushed consumer `23d50e6` from clean
+runtime `2dc94de5`, then stopped on conflicts in `CHANGELOG.md` and
+`easyedu-kit-docs/easyedu-kit.json`. At that failed checkpoint the serving
+checkout had an unfinished cherry-pick at that same HEAD; cache purge did NOT run and the
+runner released its preview/cache leases. The source worktrees remain clean
+and pushed. Do not retry, reset or discard the conflicted runtime automatically.
+
+Cause: the previous source proof-only commit `8296ffe` was intentionally not
+promoted, but `23d50e6` changes adjacent changelog/pin lines on top of it.
+There is no CSS or business-data conflict. Proposed owner-approved resolution:
+preserve both extraction and verified proof entries in the changelog; use the
+new canonical card source pin and final proof status in the manifest, retaining
+the explicit CCB hit-test failure. Preserve all other staged paths, continue
+only this exact cherry-pick, then use the managed cache-refresh gate and run
+the two focused member-row/disclosure scenarios. No automatic resolution,
+cache purge or authenticated browser was performed before the user's recovery
+approval. The 2026-10-02 recovery above supersedes that blocked state.
+
+Discovery from the runtime wrapper passes exactly one new member-row test
+with the plain title grep. An anchored grep failed wrapper discovery, while
+no-credential direct CLI discovery passes; this is a runner invocation
+limitation, not browser proof. Invoke the wrapper from the runtime's existing
+Playwright installation, not the dependency-free source worktree. Discovery
+record `easystud-authenticated-20261001T220039150Z-31360` is discovery-only.
+
+Static checks PASS: public row/header APIs, canonical source/recipe ownership,
+complete stylesheet equality, visual roles, sort, overflow, typography, button
+alignment, Node syntax and Git whitespace. Kit audit still reports the same
+five out-of-baseline findings; its baseline was not changed. The pre-existing
+Sass mixed-declaration warning remains. No new screenshot exists for this
+tranche. Preserve the external baseline, promotion-failure record and earlier
+native visual evidence; no file or artifact was deleted.
+
+Efficiency follow-up: before promotion, compare the source parent against the
+runtime's applied commits. Include intervening proof-only commits in order,
+or prepare an explicitly based candidate, rather than omitting them solely
+because they do not change rendered CSS. Limit reads to known relevant
+sections to avoid truncated output. No billing/token savings are claimed.
 
 Platform planning-owner proposal: add this bounded extraction/proof to the
 existing migration lot; keep the 52px/32px design specimen versus native
@@ -32,6 +119,33 @@ row/action-density gap, pending exports and foreign CCB overlay blocker open.
 Existing shared plan/state/index edits remain preserved, not staged here.
 
 ## Native state completion and recorded Penpot propagation — 2026-10-01
+
+Post-correction preview `2dc94de5` serves consumer `5cc773d` with Kit
+`de07379`; caches purged by the managed preview runner. Final role/state run
+`easystud-authenticated-20261001T212924094Z-41672` PASSES title/member roles,
+inline Add participants/groups and Rename Save/Cancel rest/hover/keyboard
+focus, parent icon gap/centres and opaque navigation at 768/390px.
+Whole-view PNG inspected; focus-colour data agrees with the actual tokens.
+The intermediate `20261001T212758839Z-28504` failure was a test normalisation
+gap (`#fff` versus computed RGB), not a product defect. The test now handles
+short and full hex; no further product change was made for that failure.
+
+Final native-menu run `20261001T213015887Z-41920` covers all nine cases.
+Every case passes 11.84px/700 Inter, viewport containment, icon centres,
+initial focus and Escape restoration. The OVERALL test remains FAILED:
+one icon in each 390px menu is occluded by the same foreign CCB/Moodle drawer
+button. Desktop/tablet hit checks pass. Phone Group PNG inspected; no CCB
+write, command execution or z-index inflation. Keep this strict assertion.
+Both final runs report credentials cleared, leases released, children stopped
+and no fixture or business mutation. Representative external PNGs pinned;
+retention dry-run only, zero deletions. Normal card Motion was not changed.
+
+Reusable scenarios remain local-supervised/live-data dependent, not CI-ready.
+Source/build/role/typography/card-header/sort/overflow/modal/AMD static checks
+pass. Kit audit still reports the same five warnings outside its older
+baseline; the pre-existing Sass mixed-declaration warning is retained.
+Full compatibility, 320px, RTL, zoom, forced-colors, all modal text, every
+button family and whole-view human acceptance are NOT inferred from this run.
 
 Resting-role proof `easystud-authenticated-20261001T211431487Z-40848`
 passes on preview `ae199225`: title/member roles, centred Add/Save/Cancel,
@@ -70,6 +184,14 @@ original component or business data was removed or changed.
 Platform planning-owner proposal: record the above proofs/failures, linked
 product specimens and remaining compact-density/export boundary in
 EED-UI-2026-0073. Existing shared planning/index changes remain untouched.
+
+Cost/efficiency note: no billing or token telemetry is available, so no usage
+or saving totals are claimed. Avoidable overhead in this slice came from
+combined/truncated reads, guessed older test paths, a global Penpot read that
+stalled, and colour-format assumptions causing repeat tests. Next pass should
+use known current-page IDs, discover paths with `rg --files`, read one bounded
+section, and normalise token formats before starting supervised browser work.
+Preserve these focused specs/evidence instead of repeating full-page discovery.
 
 ## Measured visual roles — 2026-10-01
 
