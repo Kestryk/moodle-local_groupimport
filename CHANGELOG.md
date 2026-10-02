@@ -2,6 +2,10 @@
 
 ## 2026-10-02
 
+- Fix the focused field-test precondition by opening a populated Grouping
+  normally when all Groups are folded; retain original disclosure Motion and
+  failed diagnostic evidence, without forcing hidden card actions.
+
 - Correct shared field focus value/surface ownership after native Moodle focus
   displaced the resting colour. Retain the failed run and unchanged assertion;
   do not add a plugin-specific focus patch or claim a premature browser PASS.

@@ -2,6 +2,23 @@
 
 ## Native creation and Rename fields - 2026-10-02
 
+Corrected-kit run `easystud-authenticated-20261002T054617639Z-34692` confirms
+the desktop focus value/surface fix but remains FAILED: all course Groups were
+inside collapsed Groupings, and the new harness waited for a visible Group
+without opening its native parent. That is a harness exposure mistake, not a
+reason to change product visibility. After owned-child exit/complete cleanup,
+the scenario now opens a populated Grouping through its normal disclosure (the
+same precondition as the existing inline-feedback scenario), then requires a
+visible card with a bounded wait. No force click, hidden-style override,
+fixture change or weakened role assertion. Preserve the earlier source blob
+and desktop creation capture; this record is not global acceptance.
+
+The dedicated Penpot Chrome tab was resumed successfully through its existing
+CDP target-activation endpoint, followed by live MCP file/page health readback.
+No new process/profile, authentication export, other-window target or policy
+bypass. Use the configured dedicated profile/port only; do not relaunch or touch
+another agent's browser because this tab lost its heartbeat.
+
 First native run `easystud-authenticated-20261002T054359732Z-43452` is FAILED,
 not waived: desktop resting field meets the measured 14px/400 role, 38px height,
 13px CSS insets, radius and containment; native focus keeps the blue border and
