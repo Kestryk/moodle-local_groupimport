@@ -2,6 +2,10 @@
 
 ## 2026-10-02
 
+- Align the read-only inline-feedback scenario with native responsive action
+  exposure: keep mobile Grouping direct search hidden, audit its desktop Cancel
+  focus, and retain Group/Grouping identifier feedback checks at all widths.
+
 - Correct the shared Foundation keyboard-focus border after the native search
   Cancel test found grey: the Kit explicitly supplies the blue border token,
   without a plugin override. Preserve the first failed browser checkpoint.
