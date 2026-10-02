@@ -1,0 +1,918 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-02T17:48:03Z",
+  "batch": "EED-UI-2026-0073",
+  "scope": "Paired native message / compact actions, Standard identity/search roles and compact preview cardinality. Human acceptance remains open.",
+  "lineage": "Canonical Kit -> EasyEdu Foundations -> EasyStud product -> local preview",
+  "kitSource": "f0a25fd11b2e7871222f85672ddf07eaeda86e87",
+  "consumerTestedSource": "0deb3825efd44e4c354d527f28456a0ae41011c3",
+  "runtime": "a364b0142ef4335eda5de110630499fa86477b28",
+  "nativeRun": "easystud-authenticated-20261002T171159560Z-11724",
+  "nativeStatus": "passed",
+  "nativePhoneAnatomy": {
+    "content": 394.78125,
+    "field": 256,
+    "header": 52.1875,
+    "footer": 52.59375
+  },
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false
+  },
+  "foundations": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "compactButtons": {
+      "libraryPage": "761eab91-8390-80e8-8008-98c15b0c9c59",
+      "standardPage": "d0d0680d-7d36-80da-8008-97a6a59dd440",
+      "host": "db59201c-3dd6-8004-8008-baad12710ec7",
+      "standardHost": "db59201c-3dd6-8004-8008-bab06d6ed339",
+      "components": [
+        {
+          "id": "db59201c-3dd6-8004-8008-baad74eeb767",
+          "main": "db59201c-3dd6-8004-8008-baad63bfd9b0",
+          "state": "Default",
+          "secondary": false
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baad75c37169",
+          "main": "db59201c-3dd6-8004-8008-baad753538a0",
+          "state": "Hover",
+          "secondary": false
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baad76a22281",
+          "main": "db59201c-3dd6-8004-8008-baad760ab660",
+          "state": "Focus-visible",
+          "secondary": false
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baad776d4350",
+          "main": "db59201c-3dd6-8004-8008-baad76ea59b6",
+          "state": "Disabled",
+          "secondary": false
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baad7831644a",
+          "main": "db59201c-3dd6-8004-8008-baad779bc174",
+          "state": "Pressed",
+          "secondary": false
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baad9e9d12b0",
+          "main": "db59201c-3dd6-8004-8008-baad9e4e948d",
+          "state": "Default",
+          "secondary": true
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baad9f46f61f",
+          "main": "db59201c-3dd6-8004-8008-baad9ed0b075",
+          "state": "Hover",
+          "secondary": true
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baad9fe3874c",
+          "main": "db59201c-3dd6-8004-8008-baad9f83580b",
+          "state": "Focus-visible",
+          "secondary": true
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baada0734577",
+          "main": "db59201c-3dd6-8004-8008-baada00b7a46",
+          "state": "Disabled",
+          "secondary": true
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-baada10f0f65",
+          "main": "db59201c-3dd6-8004-8008-baada0b09924",
+          "state": "Pressed",
+          "secondary": true
+        }
+      ],
+      "geometry": {
+        "minimumHeight": 26,
+        "fontSize": 12,
+        "fontWeight": 700,
+        "radius": 8,
+        "inlinePaddingPlusBorder": 11.4
+      },
+      "standardInstances": [
+        {
+          "id": "db59201c-3dd6-8004-8008-bab06e5cd4f2",
+          "component": "db59201c-3dd6-8004-8008-baad74eeb767",
+          "state": "Default"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab06eb2d13c",
+          "component": "db59201c-3dd6-8004-8008-baad75c37169",
+          "state": "Hover"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab06efae5aa",
+          "component": "db59201c-3dd6-8004-8008-baad76a22281",
+          "state": "Focus-visible"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab06f52801f",
+          "component": "db59201c-3dd6-8004-8008-baad776d4350",
+          "state": "Disabled"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab06f9fc766",
+          "component": "db59201c-3dd6-8004-8008-baad7831644a",
+          "state": "Pressed"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab070c60d51",
+          "component": "db59201c-3dd6-8004-8008-baad9e9d12b0",
+          "state": "Default"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab07148bb39",
+          "component": "db59201c-3dd6-8004-8008-baad9f46f61f",
+          "state": "Hover"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab071ba4a6e",
+          "component": "db59201c-3dd6-8004-8008-baad9fe3874c",
+          "state": "Focus-visible"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab0723d162c",
+          "component": "db59201c-3dd6-8004-8008-baada0734577",
+          "state": "Disabled"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab072bf3f40",
+          "component": "db59201c-3dd6-8004-8008-baada10f0f65",
+          "state": "Pressed"
+        }
+      ]
+    },
+    "nativeMessage": {
+      "host": "db59201c-3dd6-8004-8008-bab0c6901984",
+      "standardHost": "db59201c-3dd6-8004-8008-bab11ecf52da",
+      "mains": [
+        {
+          "id": "db59201c-3dd6-8004-8008-bab0f942bdc9",
+          "main": "db59201c-3dd6-8004-8008-bab0e3ca94ea",
+          "narrow": false,
+          "field": "db59201c-3dd6-8004-8008-bab0b0960149",
+          "primary": "db59201c-3dd6-8004-8008-bab0f9212bb9",
+          "secondary": "db59201c-3dd6-8004-8008-bab0f91abc30"
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab0fa00d117",
+          "main": "db59201c-3dd6-8004-8008-bab0e6bcd242",
+          "narrow": true,
+          "field": "db59201c-3dd6-8004-8008-bab0e8e23ffd",
+          "primary": "db59201c-3dd6-8004-8008-bab0f9e42ef9",
+          "secondary": "db59201c-3dd6-8004-8008-bab0f9dc4123"
+        }
+      ],
+      "readback": [
+        {
+          "id": "db59201c-3dd6-8004-8008-bab0f942bdc9",
+          "main": "db59201c-3dd6-8004-8008-bab0e3ca94ea",
+          "narrow": false,
+          "field": "db59201c-3dd6-8004-8008-bab0b0960149",
+          "primary": "db59201c-3dd6-8004-8008-bab0f9212bb9",
+          "secondary": "db59201c-3dd6-8004-8008-bab0f91abc30",
+          "width": 768.0000000000001,
+          "height": 544,
+          "buttons": [
+            {
+              "id": "db59201c-3dd6-8004-8008-bab0f91abc30",
+              "w": 63.80000000000001,
+              "h": 26,
+              "component": "db59201c-3dd6-8004-8008-baad9e9d12b0",
+              "x": 259.00000000000006,
+              "y": 504.4000000000001,
+              "text": [
+                {
+                  "characters": "Cancel",
+                  "size": "12",
+                  "weight": "700",
+                  "align": "center",
+                  "verticalAlign": "center",
+                  "textBounds": {
+                    "x": 382.4000000000001,
+                    "y": 2849.4,
+                    "width": 40.78750228881836,
+                    "height": 15.199999809265137
+                  }
+                }
+              ]
+            },
+            {
+              "id": "db59201c-3dd6-8004-8008-bab0f9212bb9",
+              "w": 175.79999999999995,
+              "h": 26,
+              "component": "db59201c-3dd6-8004-8008-baad74eeb767",
+              "x": 333.20000000000005,
+              "y": 504.4000000000001,
+              "text": [
+                {
+                  "characters": "Send message to 1 person",
+                  "size": "12",
+                  "weight": "700",
+                  "align": "center",
+                  "verticalAlign": "center",
+                  "textBounds": {
+                    "x": 456.6,
+                    "y": 2849.4,
+                    "width": 152.6125030517578,
+                    "height": 15.199999809265137
+                  }
+                }
+              ]
+            }
+          ],
+          "leaks": []
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab0fa00d117",
+          "main": "db59201c-3dd6-8004-8008-bab0e6bcd242",
+          "narrow": true,
+          "field": "db59201c-3dd6-8004-8008-bab0e8e23ffd",
+          "primary": "db59201c-3dd6-8004-8008-bab0f9e42ef9",
+          "secondary": "db59201c-3dd6-8004-8008-bab0f9dc4123",
+          "width": 374,
+          "height": 395,
+          "buttons": [
+            {
+              "id": "db59201c-3dd6-8004-8008-bab0f9dc4123",
+              "w": 63.799999999999955,
+              "h": 26,
+              "component": "db59201c-3dd6-8004-8008-baad9e9d12b0",
+              "x": 62,
+              "y": 355.4000000000001,
+              "text": [
+                {
+                  "characters": "Cancel",
+                  "size": "12",
+                  "weight": "700",
+                  "align": "center",
+                  "verticalAlign": "center",
+                  "textBounds": {
+                    "x": 1113.4,
+                    "y": 2700.4,
+                    "width": 40.78750228881836,
+                    "height": 15.199999809265137
+                  }
+                }
+              ]
+            },
+            {
+              "id": "db59201c-3dd6-8004-8008-bab0f9e42ef9",
+              "w": 175.79999999999995,
+              "h": 26,
+              "component": "db59201c-3dd6-8004-8008-baad74eeb767",
+              "x": 136.20000000000005,
+              "y": 355.4000000000001,
+              "text": [
+                {
+                  "characters": "Send message to 1 person",
+                  "size": "12",
+                  "weight": "700",
+                  "align": "center",
+                  "verticalAlign": "center",
+                  "textBounds": {
+                    "x": 1187.6,
+                    "y": 2700.4,
+                    "width": 152.6125030517578,
+                    "height": 15.199999809265137
+                  }
+                }
+              ]
+            }
+          ],
+          "leaks": []
+        }
+      ],
+      "standardInstances": [
+        {
+          "id": "db59201c-3dd6-8004-8008-bab11fd7aa9a",
+          "component": "db59201c-3dd6-8004-8008-bab0f942bdc9",
+          "narrow": false
+        },
+        {
+          "id": "db59201c-3dd6-8004-8008-bab1205e8920",
+          "component": "db59201c-3dd6-8004-8008-bab0fa00d117",
+          "narrow": true
+        }
+      ]
+    },
+    "dragStandardCardinality": [
+      {
+        "id": "b278fa65-0838-80ba-8008-9ddb678ff6b3",
+        "component": "7e927229-8147-803f-8008-9dda4749d66a",
+        "provider": "40e06342-8830-80d6-8008-96572effc11c",
+        "width": 288,
+        "height": 96,
+        "rear": 0,
+        "count": 0,
+        "titleColor": [
+          {
+            "fillColor": "#264861",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "b278fa65-0838-80ba-8008-9dde30cb5fc6",
+        "component": "b278fa65-0838-80ba-8008-9dde19da5679",
+        "provider": "40e06342-8830-80d6-8008-96572effc11c",
+        "width": 288,
+        "height": 96,
+        "rear": 0,
+        "count": 0,
+        "titleColor": [
+          {
+            "fillColor": "#264861",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "id": "b278fa65-0838-80ba-8008-9ddb67bf3fc9",
+        "component": "7e927229-8147-803f-8008-9dda47538297",
+        "provider": "40e06342-8830-80d6-8008-96572effc11c",
+        "width": 288,
+        "height": 96,
+        "rear": 2,
+        "count": 1,
+        "titleColor": [
+          {
+            "fillColor": "#264861",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ],
+    "memberStandards": {
+      "changed": [
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c6726a1b",
+          "text": "Admin User",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c6c17e73",
+          "text": "Admin User",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c6c17e7e",
+          "text": "Test01 Etudiant",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c6c1a3b4",
+          "text": "Test02 Etudiant",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c6ef759c",
+          "text": "Admin User",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c6efdb73",
+          "text": "Admin User",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c6f089af",
+          "text": "Test01 Etudiant",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        },
+        {
+          "id": "2a31d374-d2a1-80fd-8008-ac52c75c3039",
+          "text": "Test06 Etudiant",
+          "size": "13",
+          "color": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "component": "2a31d374-d2a1-80fd-8008-ac477e3402f9"
+        }
+      ],
+      "pendingOld": 0
+    },
+    "searchAndModeStandards": {
+      "search": [
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb57a1de5a",
+          "component": "81455adb-6787-8068-8008-9cea218710ef",
+          "w": 320,
+          "h": 38,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb57d8c77c",
+          "component": "81455adb-6787-8068-8008-9cea21ef8342",
+          "w": 320,
+          "h": 38,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb58149d0a",
+          "component": "81455adb-6787-8068-8008-9cea228947c6",
+          "w": 320,
+          "h": 38,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb5862e8bd",
+          "component": "81455adb-6787-8068-8008-9cea2388620e",
+          "w": 320,
+          "h": 38,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb58a7cef8",
+          "component": "81455adb-6787-8068-8008-9cea2484b1af",
+          "w": 320,
+          "h": 38,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb5912ce3e",
+          "component": "81455adb-6787-8068-8008-9cea25ab51f2",
+          "w": 320,
+          "h": 42.40000000000009,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb595644c4",
+          "component": "81455adb-6787-8068-8008-9cea26a351da",
+          "w": 320,
+          "h": 42.40000000000009,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb59a28711",
+          "component": "81455adb-6787-8068-8008-9cea280f0151",
+          "w": 320,
+          "h": 42.40000000000009,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb59ec086a",
+          "component": "81455adb-6787-8068-8008-9cea291fa9b3",
+          "w": 320,
+          "h": 42.40000000000009,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "01c94d93-948c-803b-8008-9ceb5a2a8a07",
+          "component": "81455adb-6787-8068-8008-9cea2a7d975d",
+          "w": 320,
+          "h": 42.40000000000009,
+          "labels": [
+            {
+              "size": "14",
+              "align": "left",
+              "verticalAlign": "center"
+            }
+          ]
+        }
+      ],
+      "mode": [
+        {
+          "id": "cef95197-06bc-809e-8008-aee946d416b0",
+          "component": "cef95197-06bc-809e-8008-aee8e7f7f8c1",
+          "labels": [
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee9470a5413",
+          "component": "cef95197-06bc-809e-8008-aee8f97d8980",
+          "labels": [
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee94728c984",
+          "component": "cef95197-06bc-809e-8008-aee8fd847d78",
+          "labels": [
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            }
+          ]
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aee94748db2c",
+          "component": "cef95197-06bc-809e-8008-aee9019d1d10",
+          "labels": [
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            },
+            {
+              "size": "12",
+              "align": "center",
+              "verticalAlign": "center"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "message": [
+      {
+        "id": "cef95197-06bc-809e-8008-aeffad4806e5",
+        "name": "Send a message — native desktop",
+        "width": 820,
+        "height": 544,
+        "shell": {
+          "id": "cef95197-06bc-809e-8008-aeffad54179b",
+          "component": "db59201c-3dd6-8004-8008-bab0f942bdc9",
+          "provider": "40e06342-8830-80d6-8008-96572effc11c",
+          "w": 768.0000000000001,
+          "h": 544
+        },
+        "title": {
+          "characters": "Send message to 1 person",
+          "size": "16",
+          "weight": "700",
+          "fill": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ]
+        },
+        "buttons": [
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18d36388e",
+            "component": "db59201c-3dd6-8004-8008-baad9e9d12b0",
+            "w": 63.80000000000001,
+            "h": 26,
+            "text": "Cancel"
+          },
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18d36f955",
+            "component": "db59201c-3dd6-8004-8008-baad74eeb767",
+            "w": 175.79999999999995,
+            "h": 26,
+            "text": "Send message to 1 person"
+          }
+        ],
+        "textLeaks": [],
+        "extraLabels": []
+      },
+      {
+        "id": "01e728c3-f1ef-80b3-8008-b400db6681ee",
+        "name": "Student management — Dialogues / Mobile / Send message",
+        "width": 500,
+        "height": 630,
+        "shell": {
+          "id": "01e728c3-f1ef-80b3-8008-b400db6681f1",
+          "component": "db59201c-3dd6-8004-8008-bab0fa00d117",
+          "provider": "40e06342-8830-80d6-8008-96572effc11c",
+          "w": 374,
+          "h": 395
+        },
+        "title": {
+          "characters": "Send message to 1 person",
+          "size": "16",
+          "weight": "700",
+          "fill": [
+            {
+              "fillColor": "#264861",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ]
+        },
+        "buttons": [
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18fbb19eb",
+            "component": "db59201c-3dd6-8004-8008-baad9e9d12b0",
+            "w": 63.80000000000018,
+            "h": 26,
+            "text": "Cancel"
+          },
+          {
+            "id": "db59201c-3dd6-8004-8008-bab18fbbf9da",
+            "component": "db59201c-3dd6-8004-8008-baad74eeb767",
+            "w": 175.80000000000018,
+            "h": 26,
+            "text": "Send message to 1 person"
+          }
+        ],
+        "textLeaks": [],
+        "extraLabels": []
+      }
+    ],
+    "backups": [
+      {
+        "source": "cef95197-06bc-809e-8008-aeffad4806e5",
+        "backup": "db59201c-3dd6-8004-8008-bab18a7ed9b2"
+      },
+      {
+        "source": "01e728c3-f1ef-80b3-8008-b400db6681ee",
+        "backup": "db59201c-3dd6-8004-8008-bab18ad68254"
+      }
+    ],
+    "arrangement": {
+      "parent": "cef95197-06bc-809e-8008-aeff9ace0b46",
+      "boards": [
+        {
+          "id": "cef95197-06bc-809e-8008-aeffabe6811a",
+          "name": "Move participants",
+          "x": 112,
+          "y": 210,
+          "w": 820,
+          "h": 460.0000000000001
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffac420076",
+          "name": "Move groups",
+          "x": 992,
+          "y": 210,
+          "w": 820,
+          "h": 460.0000000000001
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffac97c825",
+          "name": "Delete selected groups",
+          "x": 112,
+          "y": 730,
+          "w": 820,
+          "h": 340
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffacefdf24",
+          "name": "Clipboard tools",
+          "x": 992,
+          "y": 730,
+          "w": 820,
+          "h": 360
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffad4806e5",
+          "name": "Send a message — native desktop",
+          "x": 112,
+          "y": 1130,
+          "w": 820,
+          "h": 544
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffada5eafe",
+          "name": "Participant details",
+          "x": 992,
+          "y": 1130,
+          "w": 820,
+          "h": 980
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffadfb0281",
+          "name": "Group advanced settings",
+          "x": 112,
+          "y": 1734,
+          "w": 820,
+          "h": 1180
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffae533daf",
+          "name": "Grouping advanced settings",
+          "x": 992,
+          "y": 2170,
+          "w": 820,
+          "h": 800
+        }
+      ],
+      "overlaps": []
+    }
+  },
+  "externalMedia": {
+    "nativeRoot": "easystud/authenticated/easystud-authenticated-20261002T171159560Z-11724",
+    "penpotRoot": "easystud/penpot/student-compact-20261002",
+    "penpotInspected": [
+      "foundation-standard-group-multiple.png",
+      "foundation-compact-actions.png",
+      "foundation-native-message-narrow.png",
+      "product-native-message-narrow.png",
+      "product-native-message-desktop-final.png"
+    ]
+  },
+  "remaining": [
+    "Move Penpot native anatomy and footer/select roles",
+    "Exact native close chrome / radial header paint",
+    "Create states inset-focus and pressed parity",
+    "Product Create heads and remaining composition overrides",
+    "Sending / async failure / long recipient wrapping / RTL / forced-colors / cross-version coverage",
+    "Whole embedded-tree and class-only legacy consumer migration",
+    "Human checklist and formal machine snapshot handoff"
+  ]
+}

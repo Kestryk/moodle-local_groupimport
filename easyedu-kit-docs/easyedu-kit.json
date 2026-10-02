@@ -23,7 +23,7 @@
         "scss/easyedu/_workspace-control-classes.scss": "31a19322faeda2226896777e6fe56aab87814254"
       },
       "scope": "Quieter workspace/card identity roles; native search/Create and view labels; no card disclosure Motion or business command change",
-      "status": "source/static candidate; paired Penpot and native proof recorded separately, human checklist open"
+      "status": "focused 1600/768/390 native role/Search/Create proof PASS; 11 product boards and paired source readbacks recorded; full paint and human checklist open"
     },
     "studentCompactPortals": {
       "sourceCommit": "f0a25fd11b2e7871222f85672ddf07eaeda86e87",
@@ -33,7 +33,8 @@
         "scss/easyedu/adapters/_moodle-message-dialog.scss": "e22b0bb6e3d26dd58129761d68612735fa115c29"
       },
       "scope": "Compact entity preview, native message token bridge and Move dialog controls; original card disclosure Motion unchanged",
-      "status": "source candidate; native and paired Penpot evidence recorded separately; human acceptance pending"
+      "status": "native open/cancel and compact drag proof PASS; paired Foundation/product message specimens and Multiple-only stack verified; Move Penpot/paint and human gates open",
+      "penpotReadback": "docs/testing/student-native-message-penpot-2026-10-02.json"
     },
     "studentNativeTextFields": {
       "sourceCommit": "3693a1feb360bd58921e0fdd7df402cdeeae54bd",
