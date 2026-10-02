@@ -2,6 +2,24 @@
 
 ## Inline identifier feedback and search Cancel - 2026-10-02
 
+Source `9c59563` and integration `d5d4c07` were promoted after the dedicated
+six-path documentary/test prerequisite bridge `7d422ac`. Preview `0fe7e86`
+records both ordered commits and the cache purge (`20261002T045330Z`); no
+cherry-pick conflict, reset, merge or business-data change. The unrelated
+workspace-spec differences were deliberately excluded. The integration branch
+retains provenance to source `32d5226` and the original feature commit.
+
+First native run `easystud-authenticated-20261002T045355098Z-42712` is FAILED,
+not globally passed: both 1600px result families meet the shared 0.78rem/700
+role, semantic paints and 0.54rem symmetric inset, but search Cancel keyboard
+focus retains the native grey border (rgb(106,115,123)). The source cause is
+precise: `foundation-button` called `ring` without its optional border token,
+so the emitted focus-visible rule set the halo only. No assertion is waived.
+Kit `1cfc0cf` supplies the canonical blue focus-border token to all four public
+button density/semantic paths; compilation contract passes. The identical
+single-module update is consumed here with no local focus-border workaround.
+Corrected browser verification remains pending until separately recorded.
+
 Scope: `scss/components/_structure.scss` maps only native Group/Grouping
 identifier-result hosts to the existing canonical `detected-token(success)`
 and `detected-token(error)` recipes. Their typography, semantic colours,
