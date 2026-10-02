@@ -25,6 +25,10 @@ if ($controls -notmatch '(?s)\[data-easystud-container-search-cancel\],\s*\[data
     throw 'Search Cancel is not in the shared compact secondary family.'
 }
 $css = Get-Content -Raw -LiteralPath (Join-Path $root 'styles.css')
+$focus = [regex]::Match($css, '(?s)\[data-easystud-container-search-cancel\]:focus-visible[^}]+\}')
+if (-not $focus.Success -or -not $focus.Value.Contains('border-color: var(--easyedu-control-focus-border);')) {
+    throw 'Compiled search Cancel lacks the canonical blue keyboard-focus border.'
+}
 foreach ($resultHost in @('group-email-result', 'grouping-groups-result')) {
     foreach ($state in @('valid', 'invalid')) {
         $selector = ".local-groupimport-easystud [data-easystud-$resultHost] .local-groupimport-easystud-token--$state"

@@ -75,7 +75,9 @@
       color: var(--easyedu-surface);
     }
   }
-  &:focus-visible { @include focus.ring; }
+  &:focus-visible {
+    @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
   &:disabled { background: var(--easyedu-surface-soft); color: var(--easyedu-text-muted); }
 }
 

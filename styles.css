@@ -18977,6 +18977,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .local-groupimport-easystud [data-easystud-add-group-emails]:focus-visible,
 .local-groupimport-easystud [data-easystud-add-grouping-groups]:focus-visible, .local-groupimport-easystud-rename__edit [type=submit]:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -19053,6 +19054,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:focus-visible,
 .local-groupimport-easystud [data-easystud-container-search-cancel]:focus-visible,
 .local-groupimport-easystud [data-easystud-rename-cancel]:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -19506,6 +19508,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-button:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -19558,6 +19561,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-button--secondary:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -19823,6 +19827,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -19938,6 +19943,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -20066,6 +20072,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-form-actions [type=submit]:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -20131,6 +20138,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-button--neutral:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
@@ -20190,6 +20198,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-button--icon:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);

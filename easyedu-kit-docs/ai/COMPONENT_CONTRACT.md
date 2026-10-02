@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Foundation-button keyboard focus must explicitly pass the shared focus-border
+token to `ring`. A visible halo is insufficient if the native outlined-control
+border remains grey. Verify border and halo on primary/secondary regular/compact
+paths; consumers must not add a local focus paint to compensate.
+
 Related-person rows consume the canonical row, selection-slot, name-layout and
 removal recipes. Require complete generated CSS equality for ownership-only
 extraction. Preserve responsive geometry, faded extras, accessible commands

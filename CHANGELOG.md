@@ -2,6 +2,10 @@
 
 ## 2026-10-02
 
+- Correct the shared Foundation keyboard-focus border after the native search
+  Cancel test found grey: the Kit explicitly supplies the blue border token,
+  without a plugin override. Preserve the first failed browser checkpoint.
+
 - Consume the published shared Success/Error detected-token recipes for inline
   Group/Grouping lookup results, without recolouring card metadata badges.
 - Bring inline container-search Cancel into the compact Foundation button

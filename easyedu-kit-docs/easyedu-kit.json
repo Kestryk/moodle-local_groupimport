@@ -16,13 +16,13 @@
     },
     "fullTreeIdentical": false,
     "studentInlineFeedback": {
-      "sourceCommit": "f38913c38fea9a67b9887efe8c34e89941028740",
+      "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",
       "formsModule": "scss/easyedu/components/_forms.scss",
       "formsBlob": "c22f28fa9517e40e331c425d7ecbf1b2a68cdff2",
       "buttonsModule": "scss/easyedu/_foundation-classes.scss",
-      "buttonsBlob": "df3b9c8e0b8c46066812473ded272ea74f7cc2c0",
+      "buttonsBlob": "2d438071fef18225a2b56dc9b9ac05a0bda566bb",
       "scope": "Group/Grouping identifier-result success/error pills and inline container-search Cancel",
-      "status": "shared recipes consumed; browser and human review pending; generic field candidates not adopted"
+      "status": "shared recipes consumed; initial desktop feedback passes but native focus-border failed; canonical fix applied, corrected browser run and human review pending; generic field candidates not adopted"
     },
     "studentDragPreview": {
       "sourceCommit": "8b8d83f9ea71be1503a9a2de034e9e9b8e704e6a",
@@ -101,13 +101,13 @@
       "status": "native geometry/focus passed nine cases; stricter 390px icon-hit check exposes foreign CCB drawer occlusion; human acceptance deferred"
     },
     "studentVisualRoles": {
-      "sourceCommit": "f38913c38fea9a67b9887efe8c34e89941028740",
+      "sourceCommit": "1cfc0cf7828de6181bff932f88f9918bd635c19e",
       "status": "final 1600/768/390 role, inline rest-hover-keyboard and opaque drawer proof passed; nine native menu type-centre-focus cases pass but overall test fails foreign CCB 390px icon occlusion; linked product member rows retain a density/export gap; human review deferred",
       "memberRowComponent": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
       "modules": {
         "_tokens.scss": "583ede19ab971813a1df7ae612ca64453e151455",
         "_workspace-classes.scss": "7349f50c5cd5b688cb4c0fd2f1d50a56a0265762",
-        "_foundation-classes.scss": "df3b9c8e0b8c46066812473ded272ea74f7cc2c0",
+        "_foundation-classes.scss": "2d438071fef18225a2b56dc9b9ac05a0bda566bb",
         "components/_cards.scss": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
         "components/_menus.scss": "50619e7e17f5fc8be5ca3f8ae2e26c02267bbb16"
       }
