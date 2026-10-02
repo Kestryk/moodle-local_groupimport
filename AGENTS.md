@@ -62,6 +62,12 @@ must remain in the external manifested run directory.
 
 ## K3.1 Navigation Skeleton consumers
 
+The selected Playwright source spec must remain immutable until its owned
+child has exited and cleanup is recorded. Diagnose from the loaded source
+revision/blob, not an excerpt re-read after editing the file. Capture visibility
+is independent of geometry: keep native sticky actions, scroll normally and
+check paint hit targets; never hide overlays merely to obtain a passing image.
+
 Treat the embedded K3.1 Navigation Skeleton as mandatory for every EasyStud
 view that renders real `easyedu_navigation` markup. Its compact one-line frame,
 decorative Guide-start circle and one internal cue stay `aria-hidden`,

@@ -75,6 +75,9 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
                 await expect(result.locator('.local-groupimport-easystud-token--valid')).toHaveText(
                     kind === 'group' ? knownName : knownGroup);
                 await expect(result.locator('.local-groupimport-easystud-token--invalid')).toHaveText(unknown);
+                // Native scrolling, not a style override: keep the real sticky
+                // selection tray but centre the specimen clear of its paint.
+                await panel.evaluate(node => node.scrollIntoView({block: 'center', behavior: 'instant'}));
                 await settle(card);
                 const record = await result.evaluate(node => {
                     const box = element => {
@@ -84,13 +87,16 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
                     return {host: box(node), rem: parseFloat(getComputedStyle(document.documentElement).fontSize),
                         tokens: [...node.children].map(token => {
                             const s = getComputedStyle(token);
-                            return {box: box(token), text: token.textContent, color: s.color,
+                            const r = token.getBoundingClientRect();
+                            const hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+                            return {box: box(token), unobscured: token.contains(hit), text: token.textContent, color: s.color,
                                 background: s.backgroundColor, border: s.borderTopColor, size: s.fontSize,
                                 weight: s.fontWeight, paddingLeft: s.paddingLeft, paddingRight: s.paddingRight};
                         })};
                 });
                 reports.push({width, kind, ...record});
                 for (const token of record.tokens) {
+                    expect(token.unobscured, `${width}/${kind} token paint not covered by sticky actions`).toBe(true);
                     expect(parseFloat(token.size)).toBeCloseTo(.78 * record.rem, 2);
                     expect(token.weight).toBe('700');
                     expect(parseFloat(token.paddingLeft)).toBeCloseTo(.54 * record.rem, 2);

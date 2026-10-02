@@ -2,6 +2,20 @@
 
 ## Inline identifier feedback and search Cancel - 2026-10-02
 
+Run `easystud-authenticated-20261002T045807293Z-30900` passed the corrected
+desktop focus and 1600/768 result roles, then timed out on that intentionally
+hidden tablet search trigger. It remains FAILED. It loaded the earlier spec
+blob `ecdb8a67487caa5ea4c08ef3e2857fd844c2901c`; its stack excerpt was re-read
+after the file had been edited, so that excerpt is not the executed source.
+The following run used committed `b472fc6` / blob `28e6e3a272e732ccec56a391ebb61531d2ed4033`
+without changes during execution: `easystud-authenticated-20261002T050212991Z-40800`
+passes all six lookup families, desktop search focus and responsive trigger
+hiding on preview `3ce2a445` (26.2s). Phone captures are clean. One earlier
+tablet Group crop is covered by the real sticky selection tray and is NOT
+accepted visual evidence. The revised scenario centres the panel by native
+scrolling, retains that tray and strictly checks token-centre paint hits before
+capture. Final unobscured-capture verification is still pending.
+
 Source `9c59563` and integration `d5d4c07` were promoted after the dedicated
 six-path documentary/test prerequisite bridge `7d422ac`. Preview `0fe7e86`
 records both ordered commits and the cache purge (`20261002T045330Z`); no

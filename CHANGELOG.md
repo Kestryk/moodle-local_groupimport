@@ -2,6 +2,10 @@
 
 ## 2026-10-02
 
+- Separate successful responsive lookup geometry from capture visibility:
+  retain the real selection tray, scroll normally and assert unobscured token
+  centres. Preserve earlier failed/covered evidence and immutable-run sources.
+
 - Align the read-only inline-feedback scenario with native responsive action
   exposure: keep mobile Grouping direct search hidden, audit its desktop Cancel
   focus, and retain Group/Grouping identifier feedback checks at all widths.
