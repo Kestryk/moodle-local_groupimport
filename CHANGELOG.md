@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-02 - Native field placeholder audit precondition
+
+- Preserve failed native run `easystud-authenticated-20261002T055202640Z-25848`.
+  Assert placeholder paint only on controls with a native placeholder attribute;
+  Rename intentionally has none. Creation retains its mandatory placeholder
+  assertion. No product or value/focus/geometry assertion change.
+
 ## 2026-10-02
 
 - Fix the focused field-test precondition by opening a populated Grouping

@@ -2,6 +2,16 @@
 
 ## Native creation and Rename fields - 2026-10-02
 
+Run `easystud-authenticated-20261002T055202640Z-25848` remains FAILED and
+preserved. Native desktop creation and Rename value/focus geometry pass;
+the harness incorrectly asserted placeholder paint on Rename, whose original
+Mustache input has a value but no placeholder attribute. Chromium returns the
+value colour for that unpainted pseudo-style. After complete cleanup, record the
+actual placeholder attribute and assert its muted colour only when present;
+creation still explicitly requires its original placeholder. Do not add a
+placeholder, change the product or weaken value/focus/geometry assertions to
+satisfy this irrelevant pseudo-style check.
+
 Corrected-kit run `easystud-authenticated-20261002T054617639Z-34692` confirms
 the desktop focus value/surface fix but remains FAILED: all course Groups were
 inside collapsed Groupings, and the new harness waited for a visible Group

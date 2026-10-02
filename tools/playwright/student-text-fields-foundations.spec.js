@@ -33,7 +33,8 @@ test('Student creation and Rename consume Foundation native text fields', async(
             const r = n.getBoundingClientRect(), host = n.parentElement.getBoundingClientRect();
             const hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
             return {size: s.fontSize, weight: s.fontWeight, family: s.fontFamily, color: s.color,
-                placeholder: p.color, radius: s.borderTopLeftRadius, border: s.borderTopColor,
+                placeholder: p.color, placeholderText: n.getAttribute('placeholder'),
+                radius: s.borderTopLeftRadius, border: s.borderTopColor,
                 shadow: s.boxShadow, padding: [s.paddingLeft, s.paddingRight],
                 height: r.height, width: r.width, unobscured: n.contains(hit),
                 contained: r.x >= host.x - 1 && r.right <= host.right + 1,
@@ -44,7 +45,10 @@ test('Student creation and Rename consume Foundation native text fields', async(
         expect(record.weight).toBe('400');
         expect(record.family).toContain('Inter');
         expect(record.color).toBe('rgb(30, 52, 72)');
-        expect(record.placeholder).toBe('rgb(92, 108, 125)');
+        // Rename has a native value but no placeholder attribute. Chromium's
+        // synthetic pseudo-style is not painted placeholder evidence there.
+        if (record.placeholderText !== null) expect(record.placeholder).toBe('rgb(92, 108, 125)');
+        if (label.startsWith('create-')) expect(record.placeholderText).toBeTruthy();
         expect(parseFloat(record.radius)).toBeCloseTo(11.52, 2);
         expect(record.padding).toEqual(['13px', '13px']);
         expect(record.contained).toBe(true);
