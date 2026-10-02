@@ -1,5 +1,19 @@
 # Foundations Student Management migration
 
+## Native multiline focus-under-pointer correction - 2026-10-02
+
+Run `easystud-authenticated-20261002T070802068Z-36316` FAILED at desktop
+keyboard focus with the pointer still over the field: hover border
+`rgb(119,167,211)` replaced focus blue `rgb(138,188,227)`, although the halo
+and value role were correct. The common helper's resting-hover selector had
+higher specificity. Preserve this evidence and complete cleanup; exclude
+focused/focus-visible and explicitly invalid controls from resting hover in
+the canonical Kit, not a consumer override. Both public-family compilation
+contracts now check this exclusion. No commands, native Motion or field
+geometry change. Correct the report's viewport/field-width key collision only
+after owned-child exit; keep the focused-under-pointer assertion unchanged.
+The corrected native rerun remains pending, not waived.
+
 ## Multiline identifier adoption - 2026-10-02
 
 Scope card: the existing EED-UI-2026-0073 Student continuation owns the dedicated

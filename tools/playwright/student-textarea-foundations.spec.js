@@ -83,7 +83,7 @@ test('Student identifier Textareas consume Foundation multiline fields', async({
                             height: r.height, width: r.width, contained: r.x >= host.x - 1 && r.right <= host.right + 1,
                             unobscured: n.contains(hit), focusVisible: n.matches(':focus-visible')};
                     });
-                    fields.push({width, kind, label, ...field});
+                    fields.push({viewportWidth: width, kind, label, ...field});
                     expect(field.tag).toBe('TEXTAREA');
                     expect(field.rows).toBe(3);
                     expect(field.size).toBe('14px');
