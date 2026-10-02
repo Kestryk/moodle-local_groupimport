@@ -2,6 +2,10 @@
 
 ## 2026-10-02
 
+- Verify native Group/Grouping lookup labels and unobscured paint at desktop,
+  tablet and phone, plus desktop search Cancel blue focus border/halo. Inspect
+  and retain seven final captures; keep human acceptance and field gaps open.
+
 - Separate successful responsive lookup geometry from capture visibility:
   retain the real selection tray, scroll normally and assert unobscured token
   centres. Preserve earlier failed/covered evidence and immutable-run sources.

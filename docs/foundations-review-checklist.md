@@ -48,6 +48,14 @@ Technical checks and human visual acceptance remain separate.
 
 ## Evidence and remaining coverage
 
+Inline lookup final run `easystud-authenticated-20261002T050512385Z-40496`
+passes six Group/Grouping previews at 1600/768/390, recognised/unknown labels,
+shared typography/colours/padding, containment and unobscured paint hits.
+Desktop search Cancel blue-border/halo keyboard focus passes; native responsive
+direct search remains hidden. Seven final PNGs inspected/pinned, no command or
+fixture mutation; original Motion unchanged. Initial focus-border failure and
+covered/hidden-trigger diagnostics remain preserved. No human item is ticked.
+
 Preview recovery 2026-10-02: runtime `020cf4c` is clean and caches refreshed.
 Member-row run `easystud-authenticated-20261002T041025264Z-44664` passes
 1600/768/390 role/centre/containment and keyboard checks. Normal-motion nested
