@@ -439,8 +439,10 @@ report exact branch/HEAD/record, not a false profile-health certification.
 Two focused retention dry runs cover the new authenticated and Penpot evidence:
 `retention-20261002T210348Z.json` / `retention-20261002T210349Z.json` in their
 respective run folders. Each has one protected manifest, zero candidates,
-unmanaged files, deletions or errors. The over-broad global inventory was stopped
-only after matching its owned PID, command and creation time; it produced no
-complete report and deleted no media. No unrelated process stopped.
+unmanaged files, deletions or errors. The over-broad global inventory completed
+normally before the bounded stop guard matched; no process was stopped. Its
+`retention-20261002T210408Z.json` reports 1432 manifests, 2504 candidates,
+600 protected entries, 772 unmanaged media, zero deletions/errors. This is an
+inventory, not deletion authority. Prefer run-scoped inventories for iteration.
 No verified transfer snapshot was created; pushed clean branches are not a
 claim of complete multi-machine transfer readiness.
