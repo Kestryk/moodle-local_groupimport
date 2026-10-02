@@ -1,5 +1,51 @@
 # Foundations Student Management migration
 
+## Preview recovery completed - 2026-10-02
+
+The user authorized correction of the two documentary conflicts. Under the
+shared preview and GroupImport runtime leases, only the conflict markers and
+obsolete manifest status were resolved. Both extraction and prior native-proof
+entries were retained. The manifest equals requested source `23d50e6`;
+all other staged changes were preserved. Continuing that exact cherry-pick
+created local preview `020cf4cf28b8f5007e04cd3a441f2c28a512d823`, clean,
+with no unfinished cherry-pick and no CSS/AMD or business-data change.
+
+Managed refresh record `20261002T041001Z` records the source commit as already
+present and confirms the post-resolution cache purge. The namespace status
+is active on the correct branch/HEAD. The generic `easystud-moodle51` profile
+still expects the older `preview/moodle51/easystud-ui-2026-0022` branch, so
+its helper reports `managedPreview=false` despite the current promotion
+record. That pre-existing profile mismatch was not silently reconfigured;
+the current record, clean Git state and exact candidate are verified directly.
+
+Focused authenticated browser checks PASS on that recovered product revision:
+
+- `easystud-authenticated-20261002T041025264Z-44664`: related-person roles,
+  selection/name/removal centres and containment at 1600/768/390; desktop
+  hover, keyboard focus at each width and native accessible removal labels.
+  Row heights remain 42px desktop and 37.59375px tablet/phone, removal
+  23.1875px square; typography remains Inter 13px/600 #16324f. Three focused
+  PNGs inspected; they show the native focused-control tooltip, not resting
+  whole-view coverage or Foundation 52px/32px density acceptance.
+- `easystud-authenticated-20261002T041123913Z-45996`: existing 1440px nested
+  member disclosure regression, normal-motion transitional
+  `is-easyedu-disclosing`, hidden extras outside keyboard focus, restored
+  controls after opening and toggle focus after closing. Viewport PNG inspected.
+
+Both runs selected exactly one test, cleared process-local credentials,
+released leases, stopped owned children and requested no fixture. Remove,
+Save, import, messaging and membership mutations were not activated.
+Canonical pins/recipe ownership and complete CSS equality still pass.
+The CSS Git blob is identical between runtime and source (`a6225fda7c7b`).
+Four PNGs are pinned in external manifests; retention dry-runs find zero
+candidates/errors and delete nothing. No production deployment, global
+visual acceptance, 320px/RTL/zoom or mobile disclosure proof is inferred.
+
+The earlier failed promotion below is preserved as history, not an active
+runtime blocker. Shared Platform planning/index files remain owned by their
+existing window; proposal: record this recovery and its bounded proofs,
+without closing the Foundation/native density or foreign CCB overlay gaps.
+
 ## Related-person source-preserving extraction - 2026-10-01
 
 Canonical Kit `f38913c38fea9a67b9887efe8c34e89941028740` promotes four
@@ -30,8 +76,8 @@ Browser execution remains pending; no new browser acceptance is claimed.
 
 Promotion `20261001T215953Z` attempted pushed consumer `23d50e6` from clean
 runtime `2dc94de5`, then stopped on conflicts in `CHANGELOG.md` and
-`easyedu-kit-docs/easyedu-kit.json`. The serving checkout remains in an
-unfinished cherry-pick at that same HEAD; cache purge did NOT run and the
+`easyedu-kit-docs/easyedu-kit.json`. At that failed checkpoint the serving
+checkout had an unfinished cherry-pick at that same HEAD; cache purge did NOT run and the
 runner released its preview/cache leases. The source worktrees remain clean
 and pushed. Do not retry, reset or discard the conflicted runtime automatically.
 
@@ -43,7 +89,8 @@ new canonical card source pin and final proof status in the manifest, retaining
 the explicit CCB hit-test failure. Preserve all other staged paths, continue
 only this exact cherry-pick, then use the managed cache-refresh gate and run
 the two focused member-row/disclosure scenarios. No automatic resolution,
-cache purge or authenticated browser was performed in this continuation.
+cache purge or authenticated browser was performed before the user's recovery
+approval. The 2026-10-02 recovery above supersedes that blocked state.
 
 Discovery from the runtime wrapper passes exactly one new member-row test
 with the plain title grep. An anchored grep failed wrapper discovery, while

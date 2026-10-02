@@ -90,6 +90,13 @@ Use the platform read-only branch report helper before handoff and use
 `-WaitForLease` for an occupied runtime. Never reset, clean, stash, merge or
 rebase another window's dirty worktree.
 
+Before selecting commits for a preview, compare their owned predecessors with
+the runtime's recorded applied commits. Include relevant documentation, test
+and source-pin prerequisites in order; do not omit them solely because they
+are non-visual. Preserve unrelated commits outside the requested scope. After
+an authorized conflict recovery, verify the exact cherry-pick, clean runtime
+and unchanged generated assets before the managed cache-refresh/test gate.
+
 Every response must end with:
 
 ```text
