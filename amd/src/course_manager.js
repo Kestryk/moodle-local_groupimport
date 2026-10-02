@@ -1930,7 +1930,9 @@ const decorateNativeMessageModalNode = node => {
     }
     node.querySelectorAll('.modal-footer button').forEach(button => {
         button.classList.add('easyedu-button');
-        button.classList.toggle('easyedu-button--secondary', button.getAttribute('data-action') === 'hide');
+        const isCancel = ['cancel', 'hide'].includes(button.getAttribute('data-action')) ||
+            button.classList.contains('btn-secondary');
+        button.classList.toggle('easyedu-button--secondary', isCancel);
     });
     if (textarea || node.getAttribute('data-easystud-message-animation-played') === '1') {
         replayNativeMessageModalAnimation(node);
