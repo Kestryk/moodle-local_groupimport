@@ -46,7 +46,7 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
     const styleSelectors = {
         pageTitle: '.easyedu-workspace-title-control .dropdown-toggle',
         panelTitle: '.easyedu-workspace-panel-title',
-        viewToggle: '[data-easystud-layout-mode]:visible',
+        viewToggle: '.easyedu-workspace-view-switcher > button:visible',
         participantTitle: '.local-groupimport-easystud-user__name:visible',
         groupTitle: '.local-groupimport-easystud-group__name:visible',
         groupingTitle: '.local-groupimport-easystud-grouping__name:visible',

@@ -3890,7 +3890,7 @@
   gap: 0.65rem;
   grid-template-columns: minmax(0, 1fr);
 }
-.local-groupimport-easystud__search-field--structure {
+.local-groupimport-easystud:not(.local-groupimport-easystud--structure-focus) .local-groupimport-easystud__search-field--structure {
   display: none;
 }
 .local-groupimport-easystud-create, .local-groupimport-easystud-rename {
