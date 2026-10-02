@@ -1,5 +1,22 @@
 # EasyStud Playwright audits
 
+## Student harmonisation and compact portals
+
+`student-harmonisation-audit.spec.js` is `local-supervised`, read-only business
+scope. Exact grep: `Student harmonisation records native controls dialogs and
+drag anatomy`. It records 1600/768/390 workspace typography, opens/cancels Move
+and native Message at desktop/mobile, then starts/ends Participant/Group drag.
+It never confirms, sends, drops, creates, removes or changes fixtures. Native
+portal font/tokens, centred footer and compact non-interactive anatomy are
+asserted. Evidence: `harmonisation-native.json` and named external PNGs.
+Use the saved-credentials wrapper with `-WaitForLease`; run only after the
+managed candidate promotion. Failed runs are preserved, not overwritten.
+
+The focused `student-drag-preview-foundations.spec.js` retains four
+Single/Multiple Participant/Group cases, allowed/denied target start/over/end
+and cleanup. Its former full-clone checkbox expectation is superseded by the
+user-requested compact identity/title preview (zero controls, at most 288px).
+
 ## Experimental name-priority comparison
 
 The refined 3:1 candidate passes the focused 390px comparison; the earlier

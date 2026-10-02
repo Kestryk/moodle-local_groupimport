@@ -1,0 +1,23 @@
+// Public class roles for action dialogs. Preserve the native select/options
+// and consumer data hooks; this module changes presentation, not commands.
+@use "components/typography";
+@use "components/text-fields";
+
+@mixin dialog-classes {
+  .easyedu-ui .easyedu-dialog-actions {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--easyedu-action-icon-gap);
+    justify-content: center;
+  }
+  .easyedu-ui .easyedu-modal-title {
+    @include typography.type-modal-title;
+    color: var(--easyedu-card-identity-title-color);
+    margin: 0;
+  }
+  .easyedu-ui .easyedu-select {
+    @include text-fields.foundation-text-field;
+    & { padding-inline-end: 2.25rem; }
+  }
+}

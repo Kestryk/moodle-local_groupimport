@@ -1,49 +1,35 @@
 # EasyEdu Component Contract
 
-Group/Grouping identifier boxes and the separately audited Clipboard field
-consume `foundation-textarea` only. Keep shared
-multiline paint/insets/minimum size in the canonical Kit and native rows,
-vertical resize, recognition parsing, announcements, actions and card Motion
-in their existing owners. Clipboard preserves native six rows and its
-`detected-token` lookup-result family; only its own two data attributes are
-adapted. The native message body portal is NOT adopted by this scope: audit
-theme/font propagation, flexible height and mobile resize before changing it.
-Never blanket-style other textareas or
-unhide responsive/archived examples to demonstrate this family. Taller Penpot
-instances require genuine panel/card/column reflow, anchored footers and intact
-linked icon geometry; preserve the replaced local shapes hidden for rollback.
-Product action rows must follow the native captured order: full-width multiline
-field, shared Add/Cancel row, then recognition pills with distinct gaps. Do not
-omit Cancel or place the primary beside a multiline field merely to avoid
-reflow. If a linked composition forbids append, preserve its existing linked
-surface and change only the measured label role; hide an incomplete clone
-recoverably and record it instead of detaching/rebuilding the shared main.
-Resting hover must exclude focused and explicitly invalid fields in the Kit.
-Keep pointer-over-keyboard-focus checks in native input/textarea scenarios;
-do not compensate for specificity defects with a local focus paint.
+Native Text fields use `foundation-text-field` on the input itself. Measure
+the actual eighteen Foundations S/M/L masters before reconciliation; do not
+reuse Search-field wrappers with hidden icons. Keep filled/placeholder roles,
+explicit aria-invalid Error, native disabled and blue focus border/halo in
+the Kit, without important overrides. Textarea and multi-select remain separate
+families. Consumer labels, commands and established responsive hit targets stay.
+Field focus must own its surface and value color as well as the blue border
+and halo: native `.form-control:focus` can otherwise override the resting role.
+Resting field hover must exclude focus/focus-visible and explicit aria-invalid
+states. Verify focused-under-pointer paint; selector specificity must not let
+hover replace the keyboard-focus or error border in either field family.
 
-Creation/Rename inputs consume `foundation-text-field` only. Shared field state
-paint and insets live in the canonical Kit; do not disguise Search components,
-reintroduce important local focus/radius rules or apply the single-line recipe
-to textarea/search wrappers. Preserve native commands and responsive hit targets.
-Canonical field focus owns value colour/surface too: a correct resting state
-and halo alone do not prevent Moodle's focus paint from overriding the value.
-Require useful native field width as well as height/containment: a contained
-28px input beside Save/Cancel is not visual success. Inspect whole-card crops;
-allow the native narrow editor grid to reflow without changing shared paint,
-commands or card Motion. Assert placeholder paint only when its native attribute
-exists, while explicitly retaining creation's required placeholder.
+Multiline controls use `foundation-textarea`, never the input mixin or the
+token-input wrapper. Its separate S/M/L minimum geometry preserves native
+rows/vertical resizing and shares only internal field paint. Consumers must
+reflow panels/cards when adopting a taller linked specimen, preserve original
+lookup/cancel/Motion and keep source-hidden/archived examples hidden. Re-test
+both public field families when `_field-paint.scss` changes.
 
 Foundation-button keyboard focus must explicitly pass the shared focus-border
 token to `ring`. A visible halo is insufficient if the native outlined-control
 border remains grey. Verify border and halo on primary/secondary regular/compact
 paths; consumers must not add a local focus paint to compensate.
 
-Related-person rows consume the canonical row, selection-slot, name-layout and
-removal recipes. Require complete generated CSS equality for ownership-only
-extraction. Preserve responsive geometry, faded extras, accessible commands
-and disclosure Motion. Foundation's 52px/32px row/action specimen is not yet
-reconciled with native density; do not silently resize or claim pixel parity.
+Related-person rows use the public row, selection-slot, name-layout and removal
+recipes. Keep source-preserving extraction separate from Foundation density
+adoption: compare complete generated consumer CSS, retain responsive geometry,
+selection/removal semantics, faded extras and native disclosure Motion. Document
+the 52px/32px design specimen versus native row/action gap; do not silently
+resize shared instances or report ownership transfer as pixel parity.
 
 Student identity roles follow measured Foundations card mains: 14px/700
 #16324f titles; related-person names use 13px/600 in the same family. Shell
@@ -61,21 +47,38 @@ sort options retain `menu-item` without this role. Foundation inline buttons
 own rest, hover and native focus paints; never stack the generic action-button
 skin under Rename. Audit keyboard focus and hovering separately from rest.
 
-Drag previews use canonical moving-outline/badge/icon recipes. Relay workspace
-theme variables and typography to the body portal; decoration is inert and
-aria-hidden. Single has no rear layers/count; Multiple alone has two layers
-and an extra-item `+N` counter. Capture dragstart/dragend without dropping or
-changing memberships. Technical proof is separate from deferred visual review.
+Drag previews use the Foundations moving-outline/badge/icon recipes, not
+consumer-local skin declarations. Portalled previews relay resolved Kit/theme
+variables and typography; decoration is inert and aria-hidden. Single has no
+rear layer or count. Multiple alone receives two layers and an extra-item `+N`
+counter. Test dragstart/dragend without dropping or changing memberships.
 
-Compact sorting consumes canonical `list-sort-trigger` and
-`list-sort-option`. Keep selectors/placement/routing local; do not duplicate
-their visual declarations or claim a new Dropdown S design from extraction.
-Preserve full compiled CSS and existing card/disclosure animations.
+Narrow compact candidates must cover both selected and unselected states.
+Do not equate `is-selected` with detailed density: the consumer determines
+that distinction. Keep name ellipsis on a block; align its line box with the
+terminal action via the shared readable-name recipe, not flex text layout.
 
-Filter disclosures use canonical `filter-disclosure-type` (0.76rem, regular,
-line-height 1.1) at every size. Do not add consumer-local font overrides or
-replace the existing Motion transitions; verify their transitional class in
-normal-motion mode after changes. Foundations/product links remain unchanged.
+`person-card-narrow-readable-tracks` / `person-card-narrow-readable-identity`
+are experimental, unused recipes. The supervised 320px fixture passes geometry
+at a 93.125px compact endpoint; do not embed before paired Foundation/Product
+publication and acceptance. Preserve 44px selection/menu targets and existing
+density/disclosure Motion. Wider geometry must remain unchanged.
+
+`person-card-narrow-tracks` is an unused failed candidate, not an adopted
+responsive variant. The 320px readability gate failed; keep its fixture as
+diagnostic evidence. Do not apply it to consumers or claim Foundation parity
+until the slot layout is revised, verified and published on paired pages.
+
+Compact list sorting uses `list-sort-trigger` and `list-sort-option`, with
+consumer-only selectors/placement/routing. Migration of established visuals
+must pass full compiled-CSS equality. These recipes do not redefine all
+Dropdown S variants; keep source-preserving and visual-acceptance claims apart.
+
+Filter disclosures use `filter-disclosure-type` in both forms and responsive
+helpers: inherited family, 0.76rem, regular weight, line-height 1.1. Foundations
+desktop/mobile variants and their product instances must use the same role.
+Preserve geometry, state paints and consumer-owned Motion during typography
+harmonization; verify normal-motion transitional states separately.
 
 Utility controls use `control-regular-type`, `control-count-type` and
 `action-text-treatment`; consumers keep selector adapters, not duplicated
@@ -85,11 +88,10 @@ not apply it to content links or use it instead of a matched-cascade audit.
 Source-preserving migrations must pass full generated-CSS equality before
 claiming unchanged rendering. Penpot/whole-view acceptance remains separate.
 
-Narrow pagination candidates must retain control content, fonts and motion.
-Check peer separation and full-bar page centring plus open-menu containment
-at phone, tablet and desktop widths. Optional compiled fixtures must resolve
-during Playwright test discovery before credentials/leases; temporary injection
-is not deployment. Publish the paired Foundation variant before consumer sync.
+Narrow pagination is an opt-in `pagination-narrow-layout` composition, not a
+consumer-local font reduction or hidden action. Preserve the existing DOM,
+keyboard routing and controls. Confirm paired Foundation publication before
+consumer promotion; keep candidate browser evidence separate from deployment.
 
 Use `person-card-responsive-tracks` in the existing responsive compact header
 adapter. Its 3:1 lanes prioritize identity while preserving a visible secondary
@@ -102,16 +104,19 @@ consumer's field content, hidden-extra tokens, density visibility, breakpoint
 and motion. Source-preserving extraction is not Penpot visual acceptance:
 reconcile recorded label-size differences before introducing typography variants.
 
-Validated Penpot style belongs in canonical Kit classes. Inspect the matched
-browser cascade before adding overrides; use Moodle's `table-reboot` opt-out
-for Kit tables. Embedded modules must match their canonical source hashes.
+Validated Penpot style must live in canonical Kit classes/recipes. Consumers
+add the public classes and retain only data/behavior/composition, never edit
+embedded Kit files independently or patch visual differences with local CSS.
+An incomplete legacy migration must be labelled incomplete. Font, weight,
+line-height, color and spacing must be compared to actual Penpot values.
+Before overriding host-theme styles, inspect the matched browser cascade and
+use the host's documented neutral opt-out when available (Moodle tables:
+`table-reboot`). A source declaration alone is not proof of the computed style.
 
 File-deposit adapters must retain the real control, filename, validation and
 upload progress. An empty surface alone is not functional proof. Use the
 opt-in `file-deposit` shell for the solid large Foundations surface; do not
-change the legacy picker for unrelated consumers. Moodle theme CSS may follow
-plugin CSS: assert computed geometry (including the native inner drop target)
-and inspect empty/selected-file captures, not only the outer shell.
+change the legacy picker for unrelated consumers.
 All empty, drag-over, danger and uploading action titles use `type-card-title`;
 their explanatory help uses `type-caption` with a 1.2 line height. Do not use
 panel-title sizing or semibold metadata styling for those two roles. Filenames,
@@ -133,6 +138,13 @@ when moving UI from one plugin to another.
 
 ## Inverse visual audit
 
+Native message/drag portals outside a workspace must receive its resolved Kit
+theme and font. Do not introduce hard-coded portal colours in JavaScript.
+Compact drag previews contain only non-interactive identity/title roles;
+never copy source ids, fields, menus or expanded lists. Single has no stack or
+count; Multiple has two rear layers and an upper-right extra-item count.
+Sending, moving or dropping is not authorized by a visual capture scenario.
+
 When a consuming plugin has a more complete visual result than the kit, audit
 the rendered plugin and promote the reusable finish into the canonical kit
 before copying it to another plugin.
@@ -153,6 +165,35 @@ Must not:
 - move crop, resize, drag/drop or sticky-preview behaviour into visual mixins;
 - hide action menus by applying unreviewed clipping to their parent surface.
 
+## Draggable table rows
+
+Canonical files:
+
+- `scss/easyedu/components/_tables.scss`;
+- `docs/components/tables.md`;
+- `docs/components/drag-drop.md`.
+
+Must:
+
+- apply `object-row-cells` only to a semantic `<tr>` whose existing cells stay
+  in normal table flow;
+- use the selected, draggable, native drag-source, drop-target and locked
+  mixins only for plugin-owned states that already exist;
+- preserve `draggable`, ids, `data-*`, DOM order, columns, table layout,
+  overflow ownership and keyboard/touch reorder alternatives;
+- keep native drag sources visible with `object-row-cells-drag-source` when
+  the browser uses the live row as its drag image;
+- retain the system-visible forced-colors outline and reduced-motion behaviour;
+- preserve intrinsic table width or a plugin-owned scroll shell at 200% zoom.
+
+Must not:
+
+- apply `object-card` or `drag-source-placeholder` to a native draggable
+  table row;
+- use row-state paint to change padding, dimensions, positioning, transforms
+  or `table-layout`;
+- use a grab cursor or drag affordance on a row that is not draggable.
+
 For guide visual parity, also use `ai/GUIDE_PARITY_CHECKLIST.md`. That checklist
 is mandatory when a guide implementation is compared with EasyStud, Course
 Banner Builder or another plugin using the same guide kit.
@@ -164,14 +205,9 @@ Must:
 - inherit the active Moodle theme font through `--easyedu-font-family-ui`;
 - use the shared typography roles for page, modal, panel, section, card,
   control, body, caption and eyebrow text;
-- use `type-page-identity` for plugin view identity headings; it is an alias of
-  `type-page-title` and does not introduce a local scale;
 - use only the shared regular, medium, semibold and strong weights for reusable
   administration chrome;
 - preserve plugin-owned wrapping, truncation and responsive layout rules.
-- use `type-caption` for compact operational explanations and native setting
-  descriptions when they accompany controls; reserve `type-body` for ordinary
-  explanatory copy that is intentionally more prominent.
 - use the shared mobile entity-switcher, context-sheet, card-menu and touch
   target contracts before adding plugin-local responsive surfaces;
 - keep all primary navigation destinations reachable in the compact rail and
@@ -220,10 +256,8 @@ Must:
 - render desktop and compact wrappers through the same item partial;
 - keep stable item IDs, URLs, labels, icons, hierarchy and current state;
 - synchronize `aria-expanded`, `aria-hidden`, `hidden`, `inert` and focus;
-- keep the compact trigger fixed at the logical inline edge and near the visual
-  viewport centre; do not re-position it from scroll-sensitive Moodle or
-  participant geometry. A documented phone breakpoint may use the smallest
-  stable offset required to clear a centred native control;
+- keep the compact trigger below the measured Moodle navigation control, with
+  a documented fallback when that control is absent;
 - use logical properties, RTL behavior, reduced motion and forced colors;
 - keep releases, deployments and human visual approval separate from code
   completion.
@@ -236,30 +270,6 @@ Must not:
   controller;
 - mark the provisional component mandatory before consumer comparison and
   human approval.
-
-### Navigation and Guide surfaces (`EED-KIT-2026-0006`)
-
-Must:
-
-- keep the compact panel viewport-sized, with the safe-area header outside the
-  independently scrollable `.easyedu-navigation__panel-scroll` body;
-- use the shared drawer surface, border and shadow tokens;
-- inherit the Moodle UI family and use medium weight for destination labels;
-- contain long trigger labels in `.easyedu-navigation__trigger-label`;
-- keep the desktop Guide outer button transparent so its established icon stays
-  centred, and keep a visible neutral border plus section clearance on the
-  compact Guide row;
-- retain the shared focus ring and Close hover/focus treatment.
-
-Must not:
-
-- move or duplicate EasyStud destinations, participant links or Guide content
-  when adding the scroll-body wrapper;
-- apply the compact Guide boundary to the desktop launcher;
-- change Guide targets, completion rules, persistence or Navigation/Guide AMD
-  lifecycle as part of visual-foundation adoption;
-- move the fixed header inside the scrolling body or reintroduce panel-level
-  scrolling.
 
 ## Shared keyboard focus
 
@@ -381,6 +391,13 @@ Use the shared `highlightStyle` option for visual variants such as
 
 Must:
 
+- when Guide is composed inside shared Navigation, use the optional
+  `easyedu_navigation_guide` bridge to portal the complete Guide root under
+  `document.body` and project only launcher buttons into desktop/compact slots;
+- close compact Navigation and focus its trigger before forwarding Guide open,
+  so dialog close restores focus outside the inert panel;
+- preserve resolved `--easyedu-*` tokens across the portal and restore the
+  original DOM and inline token values during bridge teardown;
 - keep ancestors of the fixed guide modal free of `transform`, `filter`,
   `perspective`, `contain: paint` or equivalent containing-block rules;
 - keep launcher wrappers from creating a stacking context above Moodle-native
@@ -391,6 +408,13 @@ Must:
 - reverse horizontal keyboard and rail movement in RTL;
 - use safe-area insets and a bounded `vh`/`dvh` bottom-sheet layout on narrow
   or short viewports;
+- keep the compact modal title and close action on one header row; use a
+  single-column slide and a separate full-width show-in-interface action row
+  so icon/action controls do not compress translated content;
+- use balanced compact header slots to centre the compass/title/subtitle group,
+  place footer actions above the Step label, centre compact slide and
+  guided-path copy, and reflow learning flows vertically with top identity
+  accents and downward arrows;
 - keep guided-panel header and actions reachable while only the step region
   owns constrained-height scrolling;
 - ignore hidden or detached targets and clear an active highlight when its
@@ -404,6 +428,9 @@ Must:
 
 Must not:
 
+- move the complete Guide root into a transformed responsive panel;
+- clone Guide modal, checklist, highlight or progression state to create a
+  compact launcher;
 - centre or animate a launcher by transforming a root that also contains the
   fixed modal;
 - leave focus inside hidden dialog content or restore it when the workflow
@@ -592,6 +619,90 @@ Must not:
 - show only a generic title in the minimized checklist.
 - close or hide the checklist when a guided highlight auto-hides.
 
+## Loading and skeletons
+
+Canonical files:
+
+- `scss/easyedu/components/_loading.scss`
+- `docs/components/loading.md`
+
+Must:
+
+- render decorative, non-focusable skeleton markup before interactive startup;
+- use `skeleton-surface` with either the direct or overlay shimmer primitive;
+- use `skeleton-stack` for regular, top-aligned rows and measure gap bounds in
+  the consumer browser contract;
+- use `skeleton-section-inline-accent` once for each main Skeleton section;
+  it must paint only `border-inline-start`, which reverses correctly in RTL;
+- keep any localised section title outside the decorative Skeleton body, use
+  `skeleton-section-heading`, `skeleton-section-icon-slot` and
+  `skeleton-section-title` for its aligned blue-token template, and keep its
+  icon decorative/non-focusable;
+- use `skeleton-section-navigation-gap` only between explanatory copy and a
+  non-interactive navigation-shaped placeholder;
+- use `skeleton-section-frame` for a non-animated principal frame and
+  `skeleton-cue-stack` only for its internal decorative cues; apply
+  `skeleton-section-compact` only inside a consumer-owned narrow-width rule;
+- use `skeleton-structural-container-frame` only for a large structural
+  left/right page container; it alone may expose the distinct block-start
+  accent, while internal cards retain `skeleton-section-inline-accent`;
+- release deliberately held test resources in `finally` before the product's
+  fail-open deadline;
+- keep reduced-motion and forced-colours surfaces useful without animation;
+- keep page geometry, readiness and fail-open timing explicitly consumer-owned.
+
+Must not:
+
+- expose real buttons, menus or fields while their handlers are still settling;
+- copy EasyStud panel counts, offsets or fixture timing into another plugin;
+- combine page skeleton geometry with the bottom-end action-busy indicator;
+- weaken a measured loading-to-ready movement limit to make a test pass;
+- use focusable controls or meaningful copy inside an `aria-hidden` skeleton.
+- use a top or physical left/right section border, focusable icon or real navigation
+  control to imitate the K2 Skeleton template.
+- use a structural-container frame or any Skeleton border around an interactive
+  view toggle/selector.
+- animate a principal frame or use Kit compact density to impose a consumer
+  breakpoint, page geometry or loading lifecycle.
+
+## Navigation Skeleton
+
+Canonical files:
+
+- `scss/easyedu/components/_navigation-skeleton.scss`;
+- `docs/components/navigation-skeleton.md`.
+
+Must:
+
+- apply `navigation-skeleton-frame` only to the large, decorative outer frame;
+- use `navigation-skeleton-compact-frame`,
+  `navigation-skeleton-guide-start-cue` and
+  `navigation-skeleton-single-line` with one `navigation-skeleton-compact-cue`
+  for every view with real navigation;
+- apply `navigation-skeleton-cue` or `navigation-skeleton-cue-overlay` only
+  to internal decorative marks, labels, icons or rows;
+- retain `navigation-skeleton-cue-stack` only for source compatibility; it is
+  a non-wrapping row and is not the canonical one-line composition;
+- keep markup `aria-hidden`, non-focusable and independent of the real
+  Navigation lifecycle;
+- retain the Kit-provided RTL reversal, reduced-motion stop and forced-colors
+  contrast behavior;
+- preserve product-owned count, responsive offset, readiness and fail-open
+  policy; K3.1 owns only the compact one-line Skeleton frame density.
+
+Must not:
+
+- apply direct or overlay shimmer to the outer navigation frame;
+- recreate navigation destinations, controls or meaningful status copy inside
+  the decorative skeleton;
+- override logical cue alignment, RTL direction, reduced-motion or
+  forced-colors safeguards in a consumer;
+- import CCB selectors, dimensions or Slideshow composition into a consumer.
+- create a focusable Guide-start circle, animate the compact frame or omit the
+  canonical Navigation Skeleton from a view that has real navigation.
+- render two textual cue rows or put a Skeleton frame/border around a view
+  toggle/selector.
+
 ## Compact action menus
 
 Canonical files:
@@ -748,29 +859,6 @@ Must not:
   its compact presentation needs to change; preserve the markup and scope the
   alternate styling to the responsive breakpoint.
 
-## Contextual help
-
-Canonical files:
-
-- `scss/easyedu/components/_tooltips.scss`
-- `easyedu-kit-docs/components/tooltips.md`
-
-Must:
-
-- use `contextual-help-control` (or its compatible `help-icon` alias) for every
-  interactive question-mark trigger;
-- keep the accepted `1.15rem` circle, non-underlined hover/focus and shared
-  focus-visible ring;
-- keep the complete component reset authoritative against native, Bootstrap
-  and Moodle button/link declarations;
-- preserve the consumer's accessible name, cursor and popover lifecycle.
-
-Must not:
-
-- create plugin-local question-mark sizes, borders or hover treatments;
-- require a link-style utility on native contextual-help buttons;
-- use help text as the only accessible name of an icon-only trigger.
-
 Responsive plugin navigation may use `mobile-primary-nav-rail` or the
 `mobile-primary-nav-trigger` / `mobile-primary-nav-panel` /
 `mobile-primary-nav-backdrop` family. The off-canvas variant must preserve all
@@ -813,12 +901,6 @@ Must:
   modals;
 - use `settings-modal-filepicker` and `modal-file-drop-state` for image/file
   uploads.
-- use `contextual-help-control` for contextual question-mark controls and keep
-  theme link decoration from replacing the shared hover/focus treatment;
-- compose `toggle-check` with `slideshow-toggle-row` when an entity-modal image
-  toggle must match the accepted CCB/Kit surface and Motion states;
-- keep entity-count field labels on `type-caption` with a deliberate
-  label-to-value gap.
 
 Must not:
 

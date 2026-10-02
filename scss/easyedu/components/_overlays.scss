@@ -355,6 +355,45 @@ $_drop-affordance-danger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.or
   -webkit-mask-size: contain;
 }
 
+// Compact, non-interactive entity summary. Do not clone a source card's detail
+// DOM into this surface: form controls, avatars and expanded lists belong to
+// the source, not the decorative cursor preview. Geometry is viewport bounded.
+@mixin drag-preview-compact {
+  inline-size: min(18rem, calc(100vw - 3rem));
+
+  .easyedu-drag-preview__summary {
+    --easyedu-drag-identity: var(--easyedu-participant-rail);
+    --easyedu-drag-identity-icon: var(--easyedu-icon-user);
+    @include drag-preview-surface(var(--easyedu-drag-identity));
+    @include drag-preview-moving-outline;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    min-block-size: 4.5rem;
+    padding: 1.125rem 2.75rem 0.875rem 0.75rem;
+  }
+
+  &.easyedu-drag-preview--group .easyedu-drag-preview__summary {
+    --easyedu-drag-identity: var(--easyedu-group-rail);
+    --easyedu-drag-identity-icon: var(--easyedu-icon-group);
+  }
+
+  .easyedu-drag-preview__identity {
+    @include drag-preview-moving-icon(var(--easyedu-drag-identity-icon));
+    color: var(--easyedu-drag-identity);
+  }
+
+  .easyedu-drag-preview__title {
+    color: var(--easyedu-card-identity-title-color);
+    font: 600 0.875rem/1.3 var(--easyedu-font-family-ui);
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
 @mixin drag-preview-count-placement {
   background: var(--easyedu-drag-count-bg, #0b5ea8);
   position: absolute;

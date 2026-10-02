@@ -24,13 +24,26 @@ only to the hovered incompatible container. The consumer owns the eligibility
 predicate and clears the transient class on leave, cancellation and end.
 Never reject an eligible nested Group merely because its parent is a Grouping.
 
-Foundations moving previews use `drag-preview-moving-outline`,
-`drag-preview-moving-badge`, `drag-preview-moving-icon($mask)` and
-`drag-preview-count-placement`. Shared roles: 2px primary outline at 72%,
-26px moving badge, 12px/700 label, 6px gap and proportional 16px icon.
-Portal context supplies resolved workspace variables/font through the
-`--easyedu-drag-font-family` bridge. Decorative clones are inert/aria-hidden.
-Single has no layers/count; Multiple has two layers and `+N` extra items.
+### Foundations moving state
+
+Apply `drag-preview-moving-outline` to the cloned front card. Add a decorative
+moving badge with `drag-preview-moving-badge` and its proportion-preserving
+16px `drag-preview-moving-icon($mask)`. The linked Foundations specimen uses
+a 2px primary outline at 72% opacity, a 26px badge, 12px/700 text and a 6px
+icon/text gap. The label is translated by the consumer and may grow naturally.
+The portal relays the workspace's resolved Kit/theme variables and font family;
+`--easyedu-drag-font-family` is its font bridge. Do not invent portal skin values.
+
+Use `drag-preview-count-placement` for the upper-right, inset multiple badge.
+Single has no rear layers and no count; Multiple has two rear layers and `+N`
+for the extra objects. A compact entity preview uses `drag-preview-compact`:
+an 18rem (288px at the normative root) viewport-bounded summary with semantic
+identity and a truncated title. Do not clone expanded details or controls.
+Use `.easyedu-drag-preview--group` for the Group identity; Participant is the
+default. Consumers retain the source card unchanged and relay its theme.
+Decorative previews must be inert/aria-hidden; actual drag commands and keyboard/
+touch alternatives stay with the plugin. Do not drop or mutate memberships just
+to capture the moving state.
 
 ```scss
 .my-target.is-drop-target {
@@ -78,6 +91,10 @@ Single has no layers/count; Multiple has two layers and `+N` extra items.
   @include easyedu.drag-source-placeholder;
 }
 
+.my-table-row.is-dragging {
+  @include easyedu.object-row-cells-drag-source(var(--easyedu-primary));
+}
+
 .my-column.is-visually-disabled-but-still-observed {
   @include easyedu.drag-disabled-zone(0.42, 0.18, 0.72, false);
 }
@@ -106,6 +123,10 @@ selected cards.
 When using a custom fixed preview, apply `drag-source-placeholder` to every
 source item being dragged so the original list keeps its spacing while the
 preview follows the pointer.
+
+For native `<tr>` reordering, use the `object-row-cells` family documented in
+`tables.md`. Its drag-source state intentionally keeps the live row visible and
+therefore must not be replaced with `drag-source-placeholder`.
 
 Use `modal-file-drop-state` on dialogs that accept file drops anywhere inside
 the modal. The plugin JavaScript should only toggle the state class while a

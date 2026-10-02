@@ -45,10 +45,6 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
         for (const multiple of [false,true]) {
             if (multiple) for (const selector of selectors) await selector.click();
             await page.evaluate(()=>document.activeElement?.blur());
-            const sourceCheckbox=await source.locator(':scope > .local-groupimport-easystud-selector > span').evaluate(n=>{
-                const s=getComputedStyle(n);
-                return {width:s.width,height:s.height,radius:s.borderRadius,background:s.backgroundColor};
-            });
             const transfer=await page.evaluateHandle(()=>new DataTransfer());
             const preview=page.locator('.local-groupimport-easystud-drag-preview');
             try {
@@ -62,23 +58,19 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                 const label=await root.getAttribute('data-easystud-drag-moving-label');
                 await expect(preview.locator('.local-groupimport-easystud-drag-preview__moving')).toHaveText(label);
                 const report=await preview.evaluate(n=>{
-                    const front=n.querySelector('.local-groupimport-easystud-drag-preview__card');
+                    const front=n.querySelector('.easyedu-drag-preview__summary');
                     const moving=n.querySelector('.local-groupimport-easystud-drag-preview__moving');
                     const icon=n.querySelector('.local-groupimport-easystud-drag-preview__moving-icon');
                     const s=getComputedStyle(front), m=getComputedStyle(moving), i=getComputedStyle(icon);
-                    const input=front.querySelector('[data-easystud-selector-input]');
-                    const check=front.querySelector('.local-groupimport-easystud-selector__ui');
                     return {font:getComputedStyle(n).fontFamily,outline:s.outlineWidth,outlineColor:s.outlineColor,
                         movingFont:m.fontSize,movingWeight:m.fontWeight,movingGap:m.gap,
                         iconWidth:i.width,iconHeight:i.height,mask:i.maskImage,
                         stack:n.classList.contains('has-stack'),before:getComputedStyle(n,'::before').content,
                         after:getComputedStyle(n,'::after').content,
-                        nativeCheckboxOpacity:getComputedStyle(input).opacity,
-                        customCheckOpacity:getComputedStyle(check,'::after').opacity,
-                        checkboxWidth:getComputedStyle(check).width,checkboxHeight:getComputedStyle(check).height,
-                        checkboxRadius:getComputedStyle(check).borderRadius,
-                        checkboxBackground:getComputedStyle(check).backgroundColor,
-                        checked:input.checked};
+                        width:n.getBoundingClientRect().width,height:n.getBoundingClientRect().height,
+                        controls:n.querySelectorAll('input, button, textarea, select').length,
+                        title:front.querySelector('.easyedu-drag-preview__title').textContent,
+                        identityMask:getComputedStyle(front.querySelector('.easyedu-drag-preview__identity')).maskImage};
                 });
                 reports.push({type,multiple,...report});
                 fs.writeFileSync(testInfo.outputPath('drag-preview-foundations.json'),JSON.stringify(reports,null,2));
@@ -93,11 +85,11 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
                 expect(report.stack).toBe(multiple);
                 expect(report.before==='none').toBe(!multiple);
                 expect(report.after==='none').toBe(!multiple);
-                expect(report.nativeCheckboxOpacity).toBe('0');
-                expect(report.customCheckOpacity).toBe(report.checked?'1':'0');
-                expect(report.checkboxWidth).toBe(sourceCheckbox.width);
-                expect(report.checkboxHeight).toBe(sourceCheckbox.height);
-                expect(report.checkboxRadius).toBe(sourceCheckbox.radius);
+                expect(report.controls).toBe(0);
+                expect(report.width).toBeLessThanOrEqual(288);
+                expect(report.height).toBeLessThanOrEqual(90);
+                expect(report.title).not.toBe('');
+                expect(report.identityMask).not.toBe('none');
                 await page.screenshot({path:testInfo.outputPath('drag-'+type+'-'+(multiple?'multiple':'single')+'.png')});
                 const target=root.locator(type==='participant'?'[data-easystud-user-drop]:visible':
                     '[data-easystud-grouping-drop]:visible').first();

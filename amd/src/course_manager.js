@@ -187,45 +187,51 @@ const getBlankDragImage = () => {
     return blank;
 };
 
+// Portals live outside the EasyStud root. Relay resolved public theme tokens,
+// not hard-coded component paint, so native dialogs and drag previews share
+// the same Kit theme. Their ordinary geometry stays in canonical SCSS.
+const relayWorkspaceTheme = (workspace, portal) => {
+    if (!workspace || !portal) {
+        return;
+    }
+    const theme = window.getComputedStyle(workspace);
+    for (let index = 0; index < theme.length; index++) {
+        const property = theme[index];
+        if (property.startsWith('--easyedu-') || property.startsWith('--local-groupimport-')) {
+            portal.style.setProperty(property, theme.getPropertyValue(property));
+        }
+    }
+    portal.style.setProperty('--easyedu-font-family-ui', theme.fontFamily);
+    portal.style.setProperty('--easyedu-drag-font-family', theme.fontFamily);
+};
+
 const setStackedDragImage = (event, items, type) => {
     if (!event.dataTransfer || !items.length) {
         return null;
     }
 
     const source = items[0];
-    const rect = source.getBoundingClientRect();
     const preview = document.createElement('div');
-    preview.className = 'local-groupimport-easystud-drag-preview local-groupimport-easystud-drag-preview--' + type;
+    preview.className = 'local-groupimport-easystud-drag-preview easyedu-drag-preview easyedu-drag-preview--' + type;
     // The fixed preview is portalled to body. Relay the workspace's resolved
     // Kit/theme tokens instead of recreating visual values in plugin code.
     const workspace = source.closest('#local-groupimport-easystud');
-    if (workspace) {
-        const theme = window.getComputedStyle(workspace);
-        preview.style.setProperty('--easyedu-drag-font-family', theme.fontFamily);
-        for (let index = 0; index < theme.length; index++) {
-            const property = theme[index];
-            if (property.startsWith('--easyedu-') || property.startsWith('--local-groupimport-')) {
-                preview.style.setProperty(property, theme.getPropertyValue(property));
-            }
-        }
-    }
+    relayWorkspaceTheme(workspace, preview);
     preview.setAttribute('aria-hidden', 'true');
     preview.setAttribute('inert', '');
-    preview.style.width = Math.max(rect.width, 220) + 'px';
     preview.style.left = Math.max(event.clientX - 24, 0) + 'px';
     preview.style.top = Math.max(event.clientY - 18, 0) + 'px';
 
-    const card = source.cloneNode(true);
-    card.classList.remove(draggingClass, selectedClass, disabledSelectionClass, dropTargetClass);
-    card.classList.add('local-groupimport-easystud-drag-preview__card');
-    card.removeAttribute('id');
-    card.querySelectorAll('[id]').forEach(node => node.removeAttribute('id'));
-    card.querySelectorAll('input, textarea, select, button').forEach(control => {
-        control.setAttribute('tabindex', '-1');
-    });
-    card.querySelectorAll('[data-easystud-selector-input]').forEach(input => {
-        input.checked = false;
-    });
+    const card = document.createElement('div');
+    card.className = 'easyedu-drag-preview__summary';
+    const identity = document.createElement('span');
+    identity.className = 'easyedu-drag-preview__identity';
+    const title = document.createElement('span');
+    title.className = 'easyedu-drag-preview__title';
+    const sourceTitle = source.querySelector(type === 'participant' ?
+        '.local-groupimport-easystud-user__name' : '.local-groupimport-easystud-group__name');
+    title.textContent = sourceTitle?.textContent.trim() || '';
+    card.append(identity, title);
     preview.appendChild(card);
 
     // Decorative movement state; its geometry belongs to the canonical Kit.
@@ -1885,7 +1891,8 @@ const decorateNativeMessageModalNode = node => {
         return null;
     }
 
-    node.classList.add('local-groupimport-easystud-message-modal', 'is-open');
+    node.classList.add('local-groupimport-easystud-message-modal', 'easyedu-ui', 'easyedu-message-dialog', 'is-open');
+    relayWorkspaceTheme(document.getElementById('local-groupimport-easystud'), node);
     node.classList.toggle('is-loading', !node.querySelector('#bulk-message'));
 
     const dialog = node.querySelector('.modal-dialog');
@@ -1898,13 +1905,13 @@ const decorateNativeMessageModalNode = node => {
     }
     const textarea = node.querySelector('#bulk-message');
     if (textarea) {
-        textarea.classList.add('local-groupimport-easystud-message-modal__textarea');
+        textarea.classList.add('local-groupimport-easystud-message-modal__textarea', 'easyedu-message-dialog__field');
         textarea.setAttribute('rows', '10');
         textarea.removeAttribute('data-auto-rows');
         textarea.removeAttribute('data-max-rows');
         const wrapper = textarea.closest('p, .form-group, .mb-3');
         if (wrapper) {
-            wrapper.classList.add('local-groupimport-easystud-message-modal__textarea-wrap');
+            wrapper.classList.add('local-groupimport-easystud-message-modal__textarea-wrap', 'easyedu-message-dialog__field-wrap');
         }
         node.classList.remove('is-loading');
         if (node.easystudMessageContentObserver) {
@@ -1921,6 +1928,10 @@ const decorateNativeMessageModalNode = node => {
             node.easystudMessageContentObserver.observe(node, {childList: true, subtree: true});
         }
     }
+    node.querySelectorAll('.modal-footer button').forEach(button => {
+        button.classList.add('easyedu-button');
+        button.classList.toggle('easyedu-button--secondary', button.getAttribute('data-action') === 'hide');
+    });
     if (textarea || node.getAttribute('data-easystud-message-animation-played') === '1') {
         replayNativeMessageModalAnimation(node);
     }
