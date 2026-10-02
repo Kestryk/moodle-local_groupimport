@@ -34,6 +34,11 @@ not a consumer-only z-index or a raised child. A failed Penpot connection keeps
 paired publication and preview promotion pending; do not silently certify an
 unserved source candidate or close the human checklist.
 
+For source-preserving modal copies, qualify text/field lookups by semantic
+name, provider and effective visible ancestry. Hidden legacy fields may share
+the same provider or font size. Verify the actual painted helper and field in
+a later readback, and keep their business content and spacing source-backed.
+
 After a native control blur/focus, wait for its exact terminal CSS transition
 before measurement; do not remove normal motion or weaken expected paint.
 Use real responsive routes and existing course data for open/cancel audits.

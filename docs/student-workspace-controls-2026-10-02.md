@@ -333,3 +333,36 @@ is dry-run only; an expiry inventory does not authorise deletion.
 Final retention inventory: `retention-20261002T203051Z.json`, dry-run, 937
 candidates, zero deletions/errors. Baseline 390px defect capture is pinned;
 earlier retained evidence remains unchanged. No workspace/runtime cleanup ran.
+
+## Paired neutral-lookup checkpoint after reconnection
+
+This supersedes the prior Penpot-reconnection blocker, not the baseline defect
+or deferred human acceptance. Foundations 09.2.1 Library now publishes neutral
+Desktop/Narrow lookup sources; 09.2 Standards consumes linked copies. Recursive
+visible fingerprints match. The full Standard export was inspected and Library
+caption paint was separately reflowed/read back. See the paired module contract.
+
+EasyStud page 04 uses those sources for the existing Desktop Clipboard host
+and a Narrow mobile composition at x3100/y80. Both have native business help,
+linked Textarea M with three example values, linked Close and recognised/unknown
+result tokens. The longer mobile helper uses a three-line lane with a 1rem gap
+before the field; results wrap inside the neutral surface. No header icon,
+eyebrow, Add/Save footer, local component main or competing shared library.
+The whole former host is cloned, hidden and blocked; superseded children remain
+hidden in place. Visible descendants and the new mobile board have no bounds
+escape or page collision. These are measured specimens, not fixed runtime heights.
+
+Readback: `docs/testing/student-neutral-lookup-penpot-2026-10-02.json`.
+Readable Desktop/Narrow browser captures were inspected under external
+`easystud/penpot/clipboard-neutral-20261002/`. The product MCP export timed out
+once; no repeated export or ambiguous mutation. Native Close chrome, token-family
+optical centring, full lookup states, RTL, forced-colors and human review remain
+explicit gaps. Selecting the first provider/font-size match initially targeted
+hidden legacy descendants; semantic effective-visibility selection and later
+paint readback corrected the visible specimens. No business code changed here.
+
+Managed preview remains the next gate: include source prerequisites `60cbf72`,
+`66a5737`, `ce20e0f` and this documentation checkpoint in order, then purge and
+run the immutable Clipboard candidate. Platform planning/crosswalk/registry
+files retain their existing owner; this consumer document is the exact portable
+handoff, not a claimed edit to those shared files. Checklist remains unchecked.

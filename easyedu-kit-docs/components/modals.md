@@ -27,9 +27,41 @@ Keep native fields, rows, lookup announcements and entrance/exit Motion.
 Penpot and browser evidence are separate gates; the compile fixture validates
 public classes without emitting global `.modal` or product selectors.
 
-The 0.4.54 source checkpoint is compile-validated, not a release or visual
-acceptance. Paired Foundation Standard/Library publication, product linkage
-and post-promotion browser proof remain pending until Penpot reconnects.
+The 0.4.54 source checkpoint is compile-validated, not a release or human
+acceptance. Paired Foundation publication and linked EasyStud Desktop/Narrow
+composition readbacks are recorded below. Post-promotion browser proof is a
+separate consumer gate.
+
+### Paired neutral-lookup specimens (2026-10-02)
+
+`EasyEdu / Modals / Neutral lookup` is published on 09.2.1 Library and consumed
+by linked copies on 09.2 Standards:
+
+- Desktop component `c937b22a-fc4d-8004-8008-bada37621049`, main
+  `c937b22a-fc4d-8004-8008-bada35334524`: 34rem wide, 20rem example height.
+- Narrow component `c937b22a-fc4d-8004-8008-bada55f324a5`, main
+  `c937b22a-fc4d-8004-8008-bada5485bb85`: measured 22.138671875rem wide at a
+  24.375rem viewport, 20rem example height. This is responsive source equivalence,
+  not a new fixed phone-width token.
+
+Canvas readings use 1rem = 16px: widths 544/354.21875px. Both expose a 1rem/700
+identity title, .8125rem/400 helper at 1.45 line height, existing linked Textarea
+M and linked Close. Neutral chrome retains modal border/radius/shadow; there is
+no header icon, eyebrow or invented footer. Standard/Library recursive visible
+fingerprints match. The full Standard export was inspected; the Library caption
+paint was reflowed and checked separately.
+
+The consumer owns business wording, native six rows, parser, live results,
+focus and Motion. EasyStud's longer helper uses a three-line Narrow lane and
+retains a 1rem helper-to-field gap; result tokens wrap inside the surface.
+The textarea remains 7.798828125rem / 124.78125px high in the measured example.
+Content and viewport, not the catalogue height, determine runtime height.
+
+Consumer evidence: `docs/testing/student-neutral-lookup-penpot-2026-10-02.json`.
+The product has no local component mains; all modal, field, Close and result
+heads are Foundation-linked. Hidden legacy source anatomy remains recoverable.
+Exact native Close chrome, every lookup state, RTL, forced-colors and human
+acceptance are not certified by linkage or these two specimens.
 
 ## Native message portal and action-dialog classes
 

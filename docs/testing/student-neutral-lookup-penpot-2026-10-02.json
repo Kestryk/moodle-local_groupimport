@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-02",
+  "batch": "EED-UI-2026-0073",
+  "measurementUnits": {
+    "normative": "rem",
+    "penpot": "canvas reading equivalence only; 1rem = 16px"
+  },
+  "status": {
+    "sourceMapped": true,
+    "penpotLinked": true,
+    "technicalReadbackPassed": true,
+    "humanVisualValidated": false,
+    "runtimeVerified": false,
+    "allNativePaintMatched": false
+  },
+  "codePins": {
+    "kitDocumentation": "aa412228f4ea7e1c3c98f45bf9d80f58aa5284c7",
+    "kit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
+    "consumer": "ce20e0f0fbad41cd22aa73e5c560e30122ead584",
+    "baselineRuntime": "a364b0142ef4335eda5de110630499fa86477b28"
+  },
+  "foundation": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryPage": "81455adb-6787-8068-8008-9ce6186bf6ef",
+    "standardPage": "2b150968-5877-802e-8008-97c286173199",
+    "libraryHost": "c937b22a-fc4d-8004-8008-bad9f652b8f3",
+    "standardHost": "c937b22a-fc4d-8004-8008-badafa41c3bc",
+    "pairs": [
+      {
+        "main": "c937b22a-fc4d-8004-8008-bada35334524",
+        "component": "c937b22a-fc4d-8004-8008-bada37621049",
+        "copy": "c937b22a-fc4d-8004-8008-badafbc74291",
+        "visibleFingerprintMatches": true,
+        "width": 544,
+        "height": 320
+      },
+      {
+        "main": "c937b22a-fc4d-8004-8008-bada5485bb85",
+        "component": "c937b22a-fc4d-8004-8008-bada55f324a5",
+        "copy": "c937b22a-fc4d-8004-8008-badafceaa145",
+        "visibleFingerprintMatches": true,
+        "width": 354.21875,
+        "height": 320
+      }
+    ]
+  },
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "desktopHost": "cef95197-06bc-809e-8008-aeffacefdf24",
+    "mobileHost": "c937b22a-fc4d-8004-8008-badc5c0ea0fd",
+    "backup": "c937b22a-fc4d-8004-8008-badc3ab777ad",
+    "backupHidden": true,
+    "localMainCount": 0,
+    "entries": [
+      {
+        "variant": "desktop",
+        "modal": {
+          "id": "c937b22a-fc4d-8004-8008-badc3b6195b1",
+          "name": "Clipboard — Foundation Neutral lookup / Desktop",
+          "type": "board",
+          "x": 1130,
+          "y": 738,
+          "width": 544,
+          "height": 320,
+          "componentId": "c937b22a-fc4d-8004-8008-bada37621049",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c"
+        },
+        "title": {
+          "id": "c937b22a-fc4d-8004-8008-badc3b62831f",
+          "name": "header title",
+          "type": "text",
+          "x": 1147,
+          "y": 761,
+          "width": 464,
+          "height": 20,
+          "componentId": "c937b22a-fc4d-8004-8008-bada37621049",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "text": "Clipboard tools",
+          "fontSize": "16",
+          "fontWeight": "700",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 1147,
+            "y": 761.4000000059605,
+            "width": 118.5625,
+            "height": 19.200000762939453
+          }
+        },
+        "help": {
+          "id": "c937b22a-fc4d-8004-8008-badc3b7eee7f",
+          "name": "Lookup description",
+          "type": "text",
+          "x": 1147,
+          "y": 818.3999999999942,
+          "width": 510,
+          "height": 37.69999999999982,
+          "componentId": "c937b22a-fc4d-8004-8008-bada37621049",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "text": "Paste user identifiers to check which ones match enrolled course participants. Unrecognised identifiers are highlighted in red.",
+          "fontSize": "13",
+          "fontWeight": "400",
+          "align": "left",
+          "verticalAlign": "top",
+          "textBounds": {
+            "x": 1147,
+            "y": 819.2000000119151,
+            "width": 484.1625061035156,
+            "height": 34.85000151395798
+          }
+        },
+        "field": {
+          "id": "c937b22a-fc4d-8004-8008-badc3b8247e8",
+          "name": "Linked Textarea M / six-row lookup",
+          "type": "board",
+          "x": 1147,
+          "y": 872.0999999999999,
+          "width": 510,
+          "height": 124.78125000000045,
+          "componentId": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "children": [
+            {
+              "id": "c937b22a-fc4d-8004-8008-badc3b82b34d",
+              "name": "Surface",
+              "type": "rectangle",
+              "x": 1147,
+              "y": 872.0999999999999,
+              "width": 510,
+              "height": 124.78125000000045,
+              "componentId": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+              "providerFile": "40e06342-8830-80d6-8008-96572effc11c"
+            },
+            {
+              "id": "c937b22a-fc4d-8004-8008-badc3b82d0b7",
+              "name": "Text",
+              "type": "text",
+              "x": 1161,
+              "y": 884.1000000000295,
+              "width": 482,
+              "height": 100.78125,
+              "componentId": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+              "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "text": "alex.dupont@example.edu\nlea.martin\nunknown-user",
+              "fontSize": "14",
+              "fontWeight": "400",
+              "align": "left",
+              "verticalAlign": "top",
+              "textBounds": {
+                "x": 1161,
+                "y": 884.1000000000295,
+              "width": 175.7624969482422,
+                "height": 50.400001525878906
+              }
+            }
+          ]
+        },
+        "close": {
+          "id": "c937b22a-fc4d-8004-8008-badc3b77e3ff",
+          "name": "INSTANCE — Core action / Modal close",
+          "type": "board",
+          "x": 1625,
+          "y": 755,
+          "width": 30.40000000000009,
+          "height": 30.40000000000009,
+          "componentId": "761eab91-8390-80e8-8008-98c317ebe621",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c"
+        },
+        "results": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b4030109cf00",
+            "name": "Clipboard result — recognised / Alex Dupont",
+            "type": "board",
+            "x": 1147,
+            "y": 1012.88125,
+            "width": 104,
+            "height": 23.199999999999704,
+            "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+            "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "children": [
+              {
+                "id": "01e728c3-f1ef-80b3-8008-b403010a2c6a",
+                "name": "Token label / Success",
+                "type": "text",
+                "x": 1157,
+                "y": 1016.98125,
+                "width": 84,
+                "height": 15.000000000000227,
+                "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+                "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "text": "Alex Dupont",
+                "fontSize": "12.48",
+                "fontWeight": "700",
+                "align": "center",
+                "verticalAlign": "center",
+                "textBounds": {
+                  "x": 1161.6375002861023,
+                  "y": 1016.1937499761582,
+                  "width": 74.72500610351562,
+                  "height": 15.200000762939453
+                }
+              }
+            ]
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b403012c4aab",
+            "name": "Clipboard result — recognised / Léa Martin",
+            "type": "board",
+            "x": 1263,
+            "y": 1012.88125,
+            "width": 104,
+            "height": 23.199999999999704,
+            "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+            "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "children": [
+              {
+                "id": "01e728c3-f1ef-80b3-8008-b403012c4aac",
+                "name": "Token label / Success",
+                "type": "text",
+                "x": 1273,
+                "y": 1016.98125,
+                "width": 84,
+                "height": 15.000000000000227,
+                "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+                "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "text": "Léa Martin",
+                "fontSize": "12.48",
+                "fontWeight": "700",
+                "align": "center",
+                "verticalAlign": "center",
+                "textBounds": {
+                  "x": 1282.625,
+                  "y": 1016.1937499761582,
+                  "width": 64.73750305175781,
+                  "height": 15.200000762939453
+                }
+              }
+            ]
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b403014dae78",
+            "name": "Clipboard result — unrecognised / unknown-user",
+            "type": "board",
+            "x": 1379,
+            "y": 1012.88125,
+            "width": 112,
+            "height": 23.199999999999704,
+            "componentId": "01c94d93-948c-803b-8008-9cef617acbd9",
+            "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "children": [
+              {
+                "id": "01e728c3-f1ef-80b3-8008-b403014e08ea",
+                "name": "Token label / Error",
+                "type": "text",
+                "x": 1389,
+                "y": 1016.98125,
+                "width": 92,
+                "height": 15.000000000000227,
+                "componentId": "01c94d93-948c-803b-8008-9cef617acbd9",
+                "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "text": "unknown-user",
+                "fontSize": "12.48",
+                "fontWeight": "700",
+                "align": "center",
+                "verticalAlign": "center",
+                "textBounds": {
+                  "x": 1390.2375000715256,
+                  "y": 1016.1937499761582,
+                  "width": 89.5250015258789,
+                  "height": 15.200000762939453
+                }
+              }
+            ]
+          }
+        ],
+        "gapHelpField": 16.00000000000591,
+        "overflow": []
+      },
+      {
+        "variant": "mobile",
+        "modal": {
+          "id": "c937b22a-fc4d-8004-8008-badc5d45dd39",
+          "name": "Clipboard — Foundation Neutral lookup / Narrow",
+          "type": "board",
+          "x": 3172.890625,
+          "y": 144,
+          "width": 354.21875,
+          "height": 366.93124999999986,
+          "componentId": "c937b22a-fc4d-8004-8008-bada55f324a5",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c"
+        },
+        "title": {
+          "id": "c937b22a-fc4d-8004-8008-badc5d47dc2b",
+          "name": "header title",
+          "type": "text",
+          "x": 3189.890625,
+          "y": 167,
+          "width": 274.21875,
+          "height": 20,
+          "componentId": "c937b22a-fc4d-8004-8008-bada55f324a5",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "text": "Clipboard tools",
+          "fontSize": "16",
+          "fontWeight": "700",
+          "align": "left",
+          "verticalAlign": "center",
+          "textBounds": {
+            "x": 3189.890625,
+            "y": 167.40000000596046,
+            "width": 118.5625,
+            "height": 19.200000762939453
+          }
+        },
+        "help": {
+          "id": "c937b22a-fc4d-8004-8008-badc5d62f822",
+          "name": "Lookup description",
+          "type": "text",
+          "x": 3189.890625,
+          "y": 224.39999999999418,
+          "width": 320.21875,
+          "height": 56.55000000000001,
+          "componentId": "c937b22a-fc4d-8004-8008-bada55f324a5",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "text": "Paste user identifiers to check which ones match enrolled course participants. Unrecognised identifiers are highlighted in red.",
+          "fontSize": "13",
+          "fontWeight": "400",
+          "align": "left",
+          "verticalAlign": "top",
+          "textBounds": {
+            "x": 3189.890625,
+            "y": 225.2000000119151,
+            "width": 305.125,
+            "height": 53.69999998807907
+          }
+        },
+        "field": {
+          "id": "c937b22a-fc4d-8004-8008-badc5d6671d1",
+          "name": "Linked Textarea M / six-row lookup",
+          "type": "board",
+          "x": 3189.890625,
+          "y": 296.95,
+          "width": 320.21875,
+          "height": 124.78125000000045,
+          "componentId": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+          "children": [
+            {
+              "id": "c937b22a-fc4d-8004-8008-badc5d66843c",
+              "name": "Surface",
+              "type": "rectangle",
+              "x": 3189.890625,
+              "y": 296.95,
+              "width": 320.21875,
+              "height": 124.78125000000045,
+              "componentId": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+              "providerFile": "40e06342-8830-80d6-8008-96572effc11c"
+            },
+            {
+              "id": "c937b22a-fc4d-8004-8008-badc5d66ce96",
+              "name": "Text",
+              "type": "text",
+              "x": 3203.890625,
+              "y": 308.95000000002955,
+              "width": 292.21875,
+              "height": 100.78125,
+              "componentId": "2a31d374-d2a1-80fd-8008-ac74c0d7302a",
+              "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+              "text": "alex.dupont@example.edu\nlea.martin\nunknown-user",
+              "fontSize": "14",
+              "fontWeight": "400",
+              "align": "left",
+              "verticalAlign": "top",
+              "textBounds": {
+                "x": 3203.890625,
+                "y": 308.95000000002955,
+              "width": 175.7624969482422,
+                "height": 50.400001525878906
+              }
+            }
+          ]
+        },
+        "close": {
+          "id": "c937b22a-fc4d-8004-8008-badc5d57ea03",
+          "name": "INSTANCE — Core action / Modal close",
+          "type": "board",
+          "x": 3478.109375,
+          "y": 161,
+          "width": 30.40000000000009,
+          "height": 30.40000000000009,
+          "componentId": "761eab91-8390-80e8-8008-98c317ebe621",
+          "providerFile": "40e06342-8830-80d6-8008-96572effc11c"
+        },
+        "results": [
+          {
+            "id": "c937b22a-fc4d-8004-8008-badc5f0cbac2",
+            "name": "Clipboard result — recognised / Alex Dupont",
+            "type": "board",
+            "x": 3189.890625,
+            "y": 437.73124999999993,
+            "width": 104,
+            "height": 23.199999999999704,
+            "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+            "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "children": [
+              {
+                "id": "c937b22a-fc4d-8004-8008-badc5f0cbac3",
+                "name": "Token label / Success",
+                "type": "text",
+                "x": 3199.890625,
+                "y": 441.83124999999995,
+                "width": 84,
+                "height": 15.000000000000227,
+                "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+                "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "text": "Alex Dupont",
+                "fontSize": "12.48",
+                "fontWeight": "700",
+                "align": "center",
+                "verticalAlign": "center",
+                "textBounds": {
+                  "x": 3204.5281252861023,
+                  "y": 441.0437499761581,
+                  "width": 74.72500610351562,
+                  "height": 15.200000762939453
+                }
+              }
+            ]
+          },
+          {
+            "id": "c937b22a-fc4d-8004-8008-badc5fa9956a",
+            "name": "Clipboard result — recognised / Léa Martin",
+            "type": "board",
+            "x": 3305.890625,
+            "y": 437.73124999999993,
+            "width": 104,
+            "height": 23.199999999999704,
+            "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+            "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "children": [
+              {
+                "id": "c937b22a-fc4d-8004-8008-badc5fa9956b",
+                "name": "Token label / Success",
+                "type": "text",
+                "x": 3315.890625,
+                "y": 441.83124999999995,
+                "width": 84,
+                "height": 15.000000000000227,
+                "componentId": "01c94d93-948c-803b-8008-9cef60be2363",
+                "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "text": "Léa Martin",
+                "fontSize": "12.48",
+                "fontWeight": "700",
+                "align": "center",
+                "verticalAlign": "center",
+                "textBounds": {
+                  "x": 3325.515625,
+                  "y": 441.0437499761581,
+                  "width": 64.73750305175781,
+                  "height": 15.200000762939453
+                }
+              }
+            ]
+          },
+          {
+            "id": "c937b22a-fc4d-8004-8008-badc602e6aec",
+            "name": "Clipboard result — unrecognised / unknown-user",
+            "type": "board",
+            "x": 3189.890625,
+            "y": 469.73124999999993,
+            "width": 112,
+            "height": 23.199999999999704,
+            "componentId": "01c94d93-948c-803b-8008-9cef617acbd9",
+            "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+            "children": [
+              {
+                "id": "c937b22a-fc4d-8004-8008-badc602e6aed",
+                "name": "Token label / Error",
+                "type": "text",
+                "x": 3199.890625,
+                "y": 473.83124999999995,
+                "width": 92,
+                "height": 15.000000000000227,
+                "componentId": "01c94d93-948c-803b-8008-9cef617acbd9",
+                "providerFile": "40e06342-8830-80d6-8008-96572effc11c",
+                "text": "unknown-user",
+                "fontSize": "12.48",
+                "fontWeight": "700",
+                "align": "center",
+                "verticalAlign": "center",
+                "textBounds": {
+                  "x": 3201.1281250715256,
+                  "y": 473.0437499761581,
+                  "width": 89.5250015258789,
+                  "height": 15.200000762939453
+                }
+              }
+            ]
+          }
+        ],
+        "gapHelpField": 16.000000000005798,
+        "overflow": []
+      }
+    ]
+  },
+  "evidence": {
+    "externalRun": "easystud/penpot/clipboard-neutral-20261002",
+    "files": [
+      "foundation-neutral-lookup-standard.png",
+      "foundation-neutral-lookup-library.png",
+      "easystud-clipboard-desktop.png",
+      "easystud-clipboard-mobile.png"
+    ],
+    "inspection": "Full Standard MCP export inspected; Library caption bounds and browser capture; product Desktop/Narrow browser captures inspected at readable zoom. Product MCP export timed out once; no repeated mutation/export.",
+    "mobilePageCollisions": []
+  },
+  "gaps": [
+    "No human acceptance",
+    "Native Close chrome still differs from the canonical source specimen",
+    "All lookup, RTL and forced-colors states untested",
+    "Result labels retain pre-existing Foundation token geometry; not a family-wide painted-centre audit",
+    "Post-promotion browser gate not run at this checkpoint"
+  ],
+  "preservation": "Whole previous Clipboard host cloned, hidden and blocked; old children hidden in place; no existing source main removed; hidden copied legacy anatomy retained."
+}
