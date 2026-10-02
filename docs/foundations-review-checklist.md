@@ -6,6 +6,10 @@ Technical checks and human visual acceptance remain separate.
 
 ## Student Management
 
+- [ ] Clipboard canonical multiline field and recognized/unknown result pills,
+  six native rows, lookup, resize, close/focus at desktop/tablet/mobile;
+  source candidate only until the post-restart 5.1 database/test gate passes.
+
 - [ ] Foundation Textareas for Group/Grouping identifier additions; multiline
   values, recognition, focus, vertical resize and native responsive routing;
   reflowed panels/cards, equal columns and bottom-anchored pagination.

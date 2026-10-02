@@ -1415,6 +1415,18 @@
     }
   }
 
+  // Clipboard recognition shares the published lookup-result family without
+  // repainting role, group, grouping or other card metadata tokens.
+  [data-easystud-paste-results] {
+    .local-groupimport-easystud-token--valid {
+      @include easyedu.detected-token(success);
+    }
+
+    .local-groupimport-easystud-token--invalid {
+      @include easyedu.detected-token(error);
+    }
+  }
+
   &-tags-toggle {
     align-items: center;
     border-radius: 999px !important;

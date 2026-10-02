@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-02 - Clipboard field source candidate
+
+- Adopt existing Foundation Textarea M and detected Success/Error recipes
+  for the native Clipboard field/results only. Keep six rows, resize, parser,
+  announcements, close/focus and original card Motion. Add source/pin checks
+  and a preserved focused non-mutating scenario. Native browser proof and
+  local promotion are blocked by the stopped 5.1 database after restart;
+  message portal and whole-modal shell adoption remain separate.
+
 ## 2026-10-02 - Product identifier action alignment
 
 - Reconcile the two Grouping-add product specimens with native below-field

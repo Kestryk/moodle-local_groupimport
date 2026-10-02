@@ -1,9 +1,14 @@
 # EasyEdu Component Contract
 
-Group/Grouping identifier boxes consume `foundation-textarea` only. Keep shared
+Group/Grouping identifier boxes and the separately audited Clipboard field
+consume `foundation-textarea` only. Keep shared
 multiline paint/insets/minimum size in the canonical Kit and native rows,
 vertical resize, recognition parsing, announcements, actions and card Motion
-in their existing owners. Never blanket-style Clipboard/message textareas or
+in their existing owners. Clipboard preserves native six rows and its
+`detected-token` lookup-result family; only its own two data attributes are
+adapted. The native message body portal is NOT adopted by this scope: audit
+theme/font propagation, flexible height and mobile resize before changing it.
+Never blanket-style other textareas or
 unhide responsive/archived examples to demonstrate this family. Taller Penpot
 instances require genuine panel/card/column reflow, anchored footers and intact
 linked icon geometry; preserve the replaced local shapes hidden for rollback.

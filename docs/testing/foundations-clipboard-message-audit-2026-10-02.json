@@ -1,0 +1,179 @@
+{
+  "schema": 1,
+  "date": "2026-10-02",
+  "batch": "EED-UI-2026-0073",
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+  "fields": [
+    {
+      "id": "cef95197-06bc-809e-8008-aeffd025d4c6",
+      "name": "EasyEdu / Forms / Textarea / M / Default — clipboard live preview",
+      "w": 740,
+      "h": 112,
+      "children": [
+        {
+          "id": "cef95197-06bc-809e-8008-aeffd025d4c7",
+          "name": "Surface",
+          "type": "rectangle",
+          "w": 740,
+          "h": 112,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ]
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffd026330b",
+          "name": "Text",
+          "type": "text",
+          "w": 712,
+          "h": 88,
+          "fontSize": "14",
+          "align": "left",
+          "verticalAlign": "top",
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "text": "Example identifier: email, username, idnumber or configured profile field"
+        }
+      ]
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aeffd07d88f2",
+      "name": "EasyEdu / Forms / Textarea / M / Default",
+      "w": 740,
+      "h": 112,
+      "children": [
+        {
+          "id": "cef95197-06bc-809e-8008-aeffd07d88f3",
+          "name": "Surface",
+          "type": "rectangle",
+          "w": 740,
+          "h": 112,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ]
+        },
+        {
+          "id": "cef95197-06bc-809e-8008-aeffd07dc549",
+          "name": "Text",
+          "type": "text",
+          "w": 712,
+          "h": 88,
+          "fontSize": "14",
+          "align": "left",
+          "verticalAlign": "top",
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "text": "Write your message…"
+        }
+      ]
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b400dbb41c30",
+      "name": "EasyEdu / Forms / Textarea / M / Default — mobile native message",
+      "w": 372,
+      "h": 179.99999999999977,
+      "children": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b400dbb41c31",
+          "name": "Surface",
+          "type": "rectangle",
+          "w": 372,
+          "h": 180,
+          "fills": [
+            {
+              "fillColor": "#ffffff",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ]
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b400dbb41c32",
+          "name": "Text",
+          "type": "text",
+          "w": 344,
+          "h": 150,
+          "fontSize": "14",
+          "align": "left",
+          "verticalAlign": "top",
+          "fills": [
+            {
+              "fillColor": "#5c6c7d",
+              "fillOpacity": 1,
+              "fillColorGradient": null,
+              "fillColorRefFile": null,
+              "fillColorRefId": null,
+              "fillImage": null
+            }
+          ],
+          "text": "Write your message…"
+        }
+      ]
+    }
+  ],
+  "clipboard": {
+    "owner": "Existing native Clipboard dialog inside the EasyStud root",
+    "selector": "[data-easystud-paste-box]",
+    "rows": 6,
+    "resize": "vertical",
+    "fieldRecipe": "foundation-textarea(regular)",
+    "resultRecipe": "detected-token(success|error)",
+    "announcement": "Existing aria-live polite, unchanged",
+    "parser": "Existing renderIdentifierPreview with whitespace/comma/semicolon/pipe separator, unchanged",
+    "penpotMutation": false,
+    "sourceOnlyUntilRuntimeRestored": true,
+    "canvasEvidence": "clipboard-audit-20261002/clipboard-penpot.png"
+  },
+  "message": {
+    "owner": "Moodle native bulk-message body portal, separate from Clipboard/root",
+    "selector": ".local-groupimport-easystud-message-modal__textarea",
+    "rows": 10,
+    "desktopGeometry": "flexible, height100%, min192px, resizevertical",
+    "phoneGeometry": "clamp176px30dvh256px, resizenone",
+    "status": "Not adopted; audit font/theme variables and native modal before implementation",
+    "sourceMutation": false
+  },
+  "runtimeGate": {
+    "runtime": "Moodle 5.1",
+    "httpError": "Database connection failed",
+    "port3306": "not listening",
+    "port3307": "Moodle4.5 database listening; untouched",
+    "startAttempt": "Execution rejected before command ran; no bypass attempted",
+    "authenticatedRun": false,
+    "promotion": false,
+    "cachePurge": false
+  }
+}
