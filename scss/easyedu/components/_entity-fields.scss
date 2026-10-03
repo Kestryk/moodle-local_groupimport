@@ -1,0 +1,95 @@
+// Source-preserving metadata fields for read-only details and entity settings.
+// These recipes do not own data, validation, grid placement or modal Motion.
+// Caption-case corrections stay opt-in; legacy settings-modal-field is unchanged.
+@use "focus";
+@use "modals";
+@use "typography";
+
+@mixin entity-field-caption($inline: false) {
+  @include typography.type-caption;
+
+  @if $inline { align-items: center; }
+  color: #62788e;
+  @if $inline { display: inline-flex; }
+  font-weight: var(--easyedu-font-weight-semibold);
+  @if $inline { gap: 0.32rem; }
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+@mixin entity-field-value($empty-state: false) {
+  @include typography.type-body;
+
+  color: #263b4f;
+  font-size: var(--easyedu-font-size-control);
+  font-weight: var(--easyedu-font-weight-regular);
+  min-width: 0;
+  overflow-wrap: anywhere;
+
+  @if $empty-state {
+    &.is-empty {
+      color: #8a9bad;
+      font-weight: var(--easyedu-font-weight-regular);
+    }
+  }
+}
+
+@mixin entity-settings-field {
+  @include modals.settings-modal-field;
+
+  // Preserve legacy selector specificity while adopting quiet sentence case.
+  > span,
+  > span:first-child {
+    @include entity-field-caption($inline: true);
+  }
+
+  > strong {
+    @include entity-field-value($empty-state: true);
+  }
+
+  .form-control {
+    background: #fbfdff;
+    border-color: #cfdfeb;
+    border-radius: 0.68rem;
+    font-size: 0.86rem;
+    min-height: 2rem;
+
+    &:focus {
+      @include focus.ring($border-color: #86b7e0);
+    }
+  }
+}
+
+@mixin entity-readonly-field {
+  background: #f5f9fc;
+
+  strong {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d8e5ef;
+    border-radius: 999px;
+    display: inline-flex;
+    justify-self: start;
+    min-height: 1.62rem;
+    padding: 0.2rem 0.55rem;
+  }
+}
+
+@mixin entity-detail-field {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid #d9e7f1;
+  border-radius: 0.86rem;
+  box-shadow: 0 0.18rem 0.5rem rgba(31, 68, 104, 0.045);
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+  padding: 0.52rem 0.64rem;
+
+  > span {
+    @include entity-field-caption;
+  }
+
+  > strong {
+    @include entity-field-value;
+  }
+}

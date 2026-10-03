@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "date": "2026-10-03",
+  "humanVisualValidated": false,
+  "source": {
+    "testedKitCommit": "b451ee0a01ee8b1052a625603c006eb3a064d9b8",
+    "consumerCommits": ["347e40737f688df62c7eb412b3e9180490e87a68", "660840ea1b77419b5a470458e179af10ff879fc7"],
+    "generatedCssBlob": "c7b7945a536938555cbc77a917d3eb8df69be7e4",
+    "managerBuildBlob": "4aa62c607b0413f5c3fa5c3fb03082179394f4ae",
+    "additiveFieldExtraction": "docs/student-entity-field-extraction-2026-10-03.md"
+  },
+  "runtime": {
+    "profile": "easystud-moodle51",
+    "branch": "preview/moodle51/easystud-phase0-mass-admin",
+    "testedHead": "eb417860500d83f882e9980e8e147d39b9612b27",
+    "managedPreview": true,
+    "cleanAtVerification": true,
+    "cacheRefreshed": true,
+    "production": false
+  },
+  "evidenceRoot": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated",
+  "scopedRuns": [
+    {
+      "family": "native destructive confirmations",
+      "runId": "easystud-authenticated-20261003T061803868Z-43748",
+      "status": "passed",
+      "cases": 6,
+      "widths": [1600, 768, 390],
+      "scope": "Existing populated Groups/Groupings, desktop entry then resize, localized nonempty warning, matched regular right-end Cancel/Confirm; Cancel only",
+      "agentCapturesInspected": 6,
+      "pinnedMedia": 6
+    },
+    {
+      "family": "workspace",
+      "runId": "easystud-authenticated-20261003T062011070Z-11888",
+      "status": "passed",
+      "cases": 3,
+      "widths": [1600, 768, 390],
+      "scope": "Typography, Search/Create, native mobile selector and equal desktop panels; geometry proof not whole-view visual acceptance",
+      "agentCapturesInspected": 3,
+      "pinnedMedia": 3
+    },
+    {
+      "family": "compact drag and targets",
+      "runId": "easystud-authenticated-20261003T062058121Z-18920",
+      "status": "passed",
+      "cases": 4,
+      "scope": "Participant/Group Single/Multiple 288x72 identity-only previews, Single no stack/count, Multiple two rear cards/count; allowed/denied feedback. Start/over/leave/end only, no drop",
+      "agentCapturesInspected": 10,
+      "pinnedMedia": 10,
+      "captureCaveat": "Following decorative preview temporarily hidden only for target capture; native sticky overlays unchanged; all ten images individually inspected"
+    },
+    {
+      "family": "native Message",
+      "runId": "easystud-authenticated-20261003T062151934Z-40016",
+      "status": "passed",
+      "cases": 3,
+      "widths": [1600, 768, 390],
+      "scope": "Native open/Cancel, compact matched right-end footer, responsive content fit. No message sent; foreign narrow sticky icon overlap remains separate",
+      "agentCapturesInspected": 3,
+      "pinnedMedia": 3
+    },
+    {
+      "family": "native pagination",
+      "runId": "easystud-authenticated-20261003T063143396Z-23384",
+      "status": "passed",
+      "cases": 6,
+      "widths": [1600, 390],
+      "scope": "Four desktop list owners plus native mobile Participants/Groups, keyboard Next/Previous, First/Last source visibility, bottom-owned no-gap placement/containment; native mobile Groupings has no pagination",
+      "agentCapturesInspected": 6,
+      "pinnedMedia": 6
+    }
+  ],
+  "cleanup": {
+    "allFiveRunsCredentialsCleared": true,
+    "allFiveRunsLeaseReleased": true,
+    "allFiveRunsOwnedChildStopped": true,
+    "fixturesRequested": false,
+    "businessMutationsPerformed": false,
+    "scopedRetentionDryRuns": true,
+    "mediaDeleted": 0
+  },
+  "retainedFailures": [
+    {"runId": "easystud-authenticated-20261003T061339992Z-48352", "cause": "Candidate selected a hidden entity clone; native populated predicate retained"},
+    {"runId": "easystud-authenticated-20261003T061522587Z-48468", "cause": "Product JS warning payload missing; fixed in 660840e, not corruption"},
+    {"runId": "easystud-authenticated-20261003T062309217Z-49580", "cause": "Old global-controls measurement excluded decorative icons, so no actual alignment defect proved and pagination was not reached"},
+    {"runId": "easystud-authenticated-20261003T063044415Z-50924", "cause": "Candidate attempted flat Groups catalogue in Complete instead of native Participants & Groups; route corrected without source/UI change"}
+  ],
+  "remaining": [
+    "Full entity bodies/public-class migration; member-row Foundation density and all product compositions",
+    "Penpot quiet field caption palette differs from runtime; confirmation helper line-height 1.2 vs source 1.45",
+    "Foreign CCB sticky icons overlap narrow body/description edges; not hidden or patched in this lot",
+    "Copy/Move choice is source/Penpot-only; real drop, Save, Send, Confirm, upload/export and fixtures not authorized for this audit",
+    "All-state translations/RTL/forced-colours and deferred combined human checklist"
+  ]
+}

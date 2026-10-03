@@ -2,7 +2,8 @@
 
 Batch `EED-UI-2026-0073`. Verified against the serving Moodle 5.1 plugin's clean
 branch `preview/moodle51/easystud-phase0-mass-admin`, HEAD
-tested asset checkpoint `62fe6ff136b3cd037507c4bef9e9799ede908b8d`. Later
+current tested checkpoint `eb417860500d83f882e9980e8e147d39b9612b27`.
+Historical 21-modal proof remains at its recorded `62fe6ff` asset checkpoint. Later
 documentation-only promotions may advance HEAD without changing those assets.
 This is a local preview, not production
 or global human acceptance. Source worktrees and current footer gate are listed
@@ -13,6 +14,13 @@ The complete quoted user request is tracked in
 source, Penpot propagation, scoped runtime proof and human acceptance separate.
 
 ## Already applied to the local preview
+
+Fresh current scoped proof: `testing/student-completion-preview-2026-10-03.json`.
+Native warnings now reach the JS payload; six destructive dialogs passed.
+Workspace, compact drag Single/Multiple/targets and native Message were rechecked.
+Six native paginated-list owners passed keyboard Next/Previous and bottom gap
+zero, with mobile Groupings pagination correctly absent. These are scoped
+technical checks, not a new human or full-plugin visual acceptance.
 
 | Family | Changes already present | Runtime commit/evidence anchor |
 | --- | --- | --- |
@@ -72,9 +80,13 @@ Do not mistake a Penpot update, compiled CSS or source commit for served preview
 - New destructive-confirmation and neutral Copy/Move-choice source now use
   public classes; five Danger states, four Foundation modal pairs and six native
   product specimens are published. Sixteen Workspace Create states and twelve
-  inherited field/action compositions are reconciled. Fresh managed promotion
-  and native confirmation proof remain pending; prior 21 cases certify only
-  their historical assets. See the completion queue and its pinned readbacks.
+  inherited field/action compositions are reconciled. Managed promotion and
+  six fresh native confirmation cases pass; prior 21 cases keep their historical
+  assets. Helper line-height, destructive/Close anatomy and human review remain.
+- Body-field paint has been extracted unchanged to canonical Kit `0e1466d`;
+  complete CSS stays byte-identical. Managed extraction promotion/fresh field
+  assertions are next. Product captions still differ from runtime in palette;
+  `student-entity-field-extraction-2026-10-03.md` records exact IDs and boundaries.
 - Reconcile remaining Foundation member-row density/export gaps and propagate
   complete responsive product compositions without changing native behaviour.
 - Complete all-state translation/RTL/forced-colours, stacking and error checks,

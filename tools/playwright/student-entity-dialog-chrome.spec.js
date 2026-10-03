@@ -36,6 +36,39 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
         await expect(modal.locator('.easyedu-entity-dialog__eyebrow')).toHaveCSS('font-size', '10px');
         await expect(modal.locator('.easyedu-entity-dialog__icon')).toHaveCSS('width', '32px');
         await expect(modal.locator('.easyedu-entity-dialog__icon')).toHaveCSS('color', 'rgb(15, 108, 191)');
+        const fields = await modal.locator('.local-groupimport-easystud-detail__field:visible, ' +
+            '.local-groupimport-easystud-settings-modal__field:visible').evaluateAll(nodes => nodes.map(node => {
+                const box = node.getBoundingClientRect();
+                const measure = child => {
+                    if (!child) return null;
+                    const css = getComputedStyle(child), rect = child.getBoundingClientRect();
+                    return {font: css.fontFamily, size: css.fontSize, color: css.color, weight: css.fontWeight,
+                        contained: rect.left >= box.left - 1 && rect.right <= box.right + 1};
+                };
+                return {caption: measure(node.querySelector(':scope > span')),
+                    value: measure(node.querySelector(':scope > strong')),
+                    control: measure(node.querySelector('.form-control'))};
+            }));
+        expect(fields.length, 'Native metadata/editing fields must remain present').toBeGreaterThan(0);
+        for (const field of fields) {
+            if (field.caption) {
+                expect(field.caption.font).toContain('Inter');
+                expect(field.caption.color).toBe('rgb(98, 120, 142)');
+                expect(field.caption.weight).toBe('600');
+                expect(field.caption.contained).toBe(true);
+            }
+            if (field.value) {
+                expect(field.value.font).toContain('Inter');
+                expect(field.value.size).toBe('14.08px');
+                expect(field.value.weight).toBe('400');
+                expect(field.value.contained).toBe(true);
+            }
+            if (field.control) {
+                expect(field.control.size).toBe('13.76px');
+                expect(field.control.contained).toBe(true);
+            }
+        }
+        records.push({kind, width, bodyFieldRecipes: fields});
         await modal.locator('.easyedu-entity-dialog').screenshot({path: testInfo.outputPath(kind + '-' + width + '-entry.png')});
         const actions = modal.locator('.easyedu-entity-dialog__actions');
         if (await actions.count()) await actions.scrollIntoViewIfNeeded();

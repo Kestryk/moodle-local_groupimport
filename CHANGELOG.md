@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-03 - Native completion proof and body-field extraction
+
+- Record fresh scoped preview proof: six native confirmations, workspace at
+  three widths, four compact drag identities/targets, three native Message
+  footers and six bottom-owned paginated lists with keyboard navigation.
+  Preserve failed diagnostic runs, native mobile Groupings absence and foreign
+  narrow-overlay gaps. Human checklist remains open; no business writes.
+- Extract editable/readonly/detail field paint to the canonical entity-fields
+  module. All 12,973 emitted CSS sequences and the CSS Git blob remain unchanged.
+  Native fields, selectors, layout, focus and Motion are preserved. Document
+  remaining public-class, body-list/image and Penpot caption palette work.
+  Managed source promotion and extended field browser proof are next.
+
 ## 2026-10-03 - Student Management completion queue (candidate)
 
 - Record every remaining user request with separate source, Penpot, preview

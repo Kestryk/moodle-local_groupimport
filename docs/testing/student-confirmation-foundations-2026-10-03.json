@@ -486,7 +486,8 @@
   ],
   "humanVisualValidated": false,
   "parityExceptions": [
-    "Destructive radial highlight/body gradient and native Close anatomy require final full-body reconciliation."
+    "Destructive radial highlight/body gradient and native Close anatomy require final full-body reconciliation.",
+    "Description line-height is 1.45 in source versus the current approximately 1.2 Penpot specimen. Full pixel parity is not certified."
   ],
   "readbackDate": "2026-10-03",
   "exportsInspected": {

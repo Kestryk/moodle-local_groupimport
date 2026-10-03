@@ -1,5 +1,26 @@
 # Modals
 
+## Source-preserving entity fields (2026-10-03)
+
+The opt-in `components/_entity-fields.scss` API centralises the existing
+detail/settings recipes without changing the legacy `settings-modal-field`.
+Use `entity-settings-field` for editable fields, `entity-readonly-field` for
+the readonly modifier and `entity-detail-field` for metadata. Shared
+`entity-field-caption($inline: false)` and `entity-field-value($empty-state:
+false)` retain quiet sentence-case labels and regular values.
+
+Consumers still own field selection, conditional forms, grid placement, native
+data hooks and Motion. No CSS is emitted merely by forwarding these mixins.
+This extraction does not yet make the entire entity body class-only: metadata
+lists, image/CSV anatomy and Close remain separate work. Do not change other
+consumers by editing the legacy field default to match this opt-in recipe.
+
+Compile `examples/entity-fields.scss` and run
+`scripts/test-entity-fields-contract.ps1`. EasyStud additionally compares the
+complete emitted CSS with the external pre-extraction baseline. This establishes
+source preservation, not new Penpot/human pixel acceptance. Existing product
+captions still need palette/density reconciliation with their canonical sources.
+
 ## Neutral and destructive confirmation roles
 
 Emit `dialog-classes` and apply `easyedu-modal-layer` to the native fixed root.

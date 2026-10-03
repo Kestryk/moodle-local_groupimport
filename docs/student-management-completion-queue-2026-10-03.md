@@ -23,16 +23,16 @@ stays deferred to the combined checklist; automation never ticks it.
 
 | ID | Verified current implementation | Remaining work |
 | --- | --- | --- |
-| SM-01 | Move destinations/right-end actions served; six linked examples | Migrate legacy destructive confirmation and Copy/Move-choice actions; preserve semantics |
+| SM-01 | Move/right-end actions and canonical confirmations served; six native destructive cases PASS, neutral Copy/Move source/Penpot complete | Preserve native semantics; remaining body/Close/helper-line-height and all-state parity |
 | SM-02 | Native Message field/type/compact actions/phone fit served | Complete source-backed chrome and sending/error specimens; no real send |
-| SM-03 | Shared card titles `#264861`; header/action geometry migrated | Extract remaining shared surfaces/borders/shadows without drift; reconcile all Penpot states |
-| SM-04 | Ungrouped uses defined canonical grouping icon | Replace obsolete test expectation; verify actual mask, centre and containment |
-| SM-05 | Transparent shared Create-plus mask centred/tested | Propagate all product Create controls from their exact Foundation source |
+| SM-03 | Shared card titles `#264861`; twelve canonical paint states extracted with identical emitted CSS | Reconcile all Penpot states and remaining body families |
+| SM-04 | Ungrouped defined grouping icon; corrected source gate PASS | Human full-view visual check remains open |
+| SM-05 | Sixteen Foundation states and twelve linked matching-height transparent Create-plus controls | Retain source/library/product readbacks; combined human review |
 | SM-06 | Search/Create heights/radius/type harmonised in Kit | Audit adjacent fields and complete product coverage |
-| SM-07 | Compact 288px drag identity; Single has no rear/count | Preserve cards/Motion; verify foreground, Multiple stack, drop states and non-drag mobile routes |
+| SM-07 | Four native compact 288x72 identities and allowed/denied feedback PASS; Single no rear/count, Multiple-only stack | Non-drag mobile routes/all-state and human validation; no real drop performed |
 | SM-08 | Workspace 28/22px, panel 20px, view labels 12px served | Verify remaining headings and product roles; remove duplicate type overrides |
-| SM-09 | Shared narrow pagination and bottom alignment served | Check all native paginated lists; preserve mobile Groupings absence |
-| SM-10 | Migrated families use canonical Kit modules | Extract remaining reusable visual rules; document minimal layout/behavior/data adapters and dynamic-colour/noscript exceptions |
+| SM-09 | Four desktop and two mobile list owners: bottom gap zero, keyboard Next/Previous PASS; native mobile Groupings absence verified | Wider translated/all-state matrices and combined human review |
+| SM-10 | Migrated families use canonical Kit; source-preserving body field recipes extracted | Managed field-source promotion; remaining public-class/body/list/image adapters and dynamic-colour/noscript exceptions |
 
 ## Ordered execution and acceptance gates
 
@@ -99,6 +99,29 @@ assets. Failed runs and backups remain recoverable.
   change; both failures and successful cleanup are preserved, not a preview PASS.
 
 ## Portable Platform-owner update proposal
+
+Current executed proof at managed runtime `eb41786` is pinned in
+`testing/student-completion-preview-2026-10-03.json`: 6 native confirmations,
+3 workspace widths, 4 compact drag identities plus target feedback, 3 Message
+cases and 6 native paginated-list owners. Captures inspected and pinned; no
+fixtures, business writes or media deletion. Human acceptance remains false.
+
+The global-controls legacy failure did not prove an alignment defect: its
+measurement omitted decorative icons. The new pagination candidate initially
+used Complete instead of Participants & Groups for the flat catalogue; that
+failed run is preserved. Correct native routing then passed without UI changes.
+
+Canonical field extraction `0e1466d` removes duplicated editable/readonly/detail
+paint while preserving all 12,973 CSS sequences and the exact CSS blob. Its
+managed promotion/fresh body-field check follows; remaining local lists/images,
+public-class migration and Penpot field-caption palette are explicitly open.
+
+Propose `student-pagination-native-preview.spec.js`, exact test `Student native
+pagination remains bottom-owned and keyboard reachable`, local-supervised;
+four desktop lists and mobile Participants/Groups, existing populated data,
+keyboard only, no fixture, native mobile Groupings pagination absent. Preserve
+normal Motion and overlays. Propose the entity-field assertion extension with
+its new immutable source blob; do not retire valuable historical candidates.
 
 Canonical planning/registry files are shared and dirty, so this window does
 not edit them. Proposed registry addition: `student-confirmation-footer-preview.spec.js`,

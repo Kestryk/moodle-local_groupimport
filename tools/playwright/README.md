@@ -549,3 +549,21 @@ Use exact single-test discovery, the saved-credentials wrapper and runtime
 lease. Keep the loaded spec immutable until cleanup completes; failed evidence
 is retained. Scenario registry update is proposed in the completion queue for
 the shared Platform owner, not written into that owner's dirty files.
+
+## Native pagination - 2026-10-03
+
+`student-pagination-native-preview.spec.js` is **local-supervised**. One test
+uses existing paginated Participant, Participant Groups, Catalog Groups and
+Grouping lists. It checks bottom-owned placement, containment, source-backed
+First/Last visibility and keyboard Next/Previous. Native mobile Participants
+and Groups are included; mobile Groupings must have no pagination, as in source.
+No fixtures or write requests are allowed. Normal Motion and sticky UI stay
+visible. Run exact single-test discovery and the supervised wrapper first.
+This focused scenario does not replace or certify `global-controls-pagination`;
+its failed decorative-icon measurement remains preserved for separate repair.
+
+The entity-dialog candidate also checks extracted field caption/value/control
+typography and containment at each native/resized width. Field-recipe proof is
+not full-body parity: images, metadata lists, CSV and Close remain separate.
+Preserve its pre-extraction runs; use the new immutable scenario blob after the
+managed source promotion rather than claiming old runs tested new source.
