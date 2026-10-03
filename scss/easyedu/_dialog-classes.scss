@@ -38,7 +38,8 @@
   .easyedu-ui .easyedu-entity-dialog {
     @include modals.modal-surface;
   }
-  .easyedu-ui .easyedu-entity-dialog__header {
+  .easyedu-ui .easyedu-entity-dialog__header,
+  .easyedu-ui .easyedu-confirmation-dialog__header {
     align-items: center;
     background: var(--easyedu-modal-header-bg);
     border-block-end: 0.0625rem solid var(--easyedu-modal-border);
@@ -86,7 +87,8 @@
       text-transform: uppercase;
     }
   }
-  .easyedu-ui .easyedu-entity-dialog__body {
+  .easyedu-ui .easyedu-entity-dialog__body,
+  .easyedu-ui .easyedu-confirmation-dialog__body {
     background: var(--easyedu-surface);
   }
   .easyedu-ui .easyedu-entity-dialog__actions {
@@ -100,6 +102,28 @@
   }
   .easyedu-ui .easyedu-dialog-actions {
     @include foundations.foundation-dialog-actions;
+  }
+  // A Copy/Move choice is neutral. Destructive paint is an explicit modifier,
+  // never inferred from the reusable confirmation dimensions or a data hook.
+  .easyedu-ui .easyedu-confirmation-dialog {
+    @include modals.confirmation-modal;
+  }
+  .easyedu-ui .easyedu-confirmation-dialog--danger {
+    @include modals.destructive-confirmation-modal;
+  }
+  .easyedu-ui .easyedu-dialog-description {
+    @include typography.type-ui-base;
+    & {
+      color: var(--easyedu-text-muted);
+      font-size: 0.8125rem;
+      line-height: var(--easyedu-line-height-body);
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+  .easyedu-ui .easyedu-confirmation-dialog__actions {
+    @include foundations.foundation-dialog-actions;
+    & { margin-block-start: 1rem; }
   }
   .easyedu-ui .easyedu-modal-title {
     @include typography.type-modal-title;

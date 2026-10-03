@@ -3,12 +3,14 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $ledger = Get-Content -Raw -LiteralPath (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') | ConvertFrom-Json
 $pin = $ledger.consumerSync.studentModalFooters
+$successor = $ledger.consumerSync.studentCompletion20261003
 $proof = Get-Content -Raw -LiteralPath (Join-Path $root $pin.penpotReadback) | ConvertFrom-Json
 foreach ($module in $pin.modules.PSObject.Properties) {
     $embedded = & git -C $root hash-object $module.Name
     $canonical = & git -C $KitRoot hash-object $module.Name
-    if ($LASTEXITCODE -ne 0 -or $embedded -ne $canonical -or $embedded -ne $module.Value -or
-        $proof.source.modules.($module.Name) -ne $embedded) { throw "Canonical footer module/pin drift: $($module.Name)" }
+    $currentPin = if ($successor.modules.($module.Name)) { $successor.modules.($module.Name) } else { $module.Value }
+    if ($LASTEXITCODE -ne 0 -or $embedded -ne $canonical -or $embedded -ne $currentPin -or
+        $proof.source.modules.($module.Name) -ne $module.Value) { throw "Canonical current or historical footer module/pin drift: $($module.Name)" }
 }
 $css = & git -C $root hash-object styles.css
 foreach ($module in $pin.browserCandidates.PSObject.Properties) {
@@ -24,7 +26,8 @@ $template = Get-Content -Raw -LiteralPath (Join-Path $root 'templates/manage.mus
 if ($template -notmatch 'class="local-groupimport-easystud-modal easyedu-modal-layer"\s+data-easystud-move-modal="1"') {
     throw 'Move must consume the canonical modal layer on its fixed root.'
 }
-if ($css -ne $pin.generatedCssBlob -or $css -ne $proof.source.generatedCssBlob) { throw 'Footer generated CSS pin drift.' }
+$currentCss = if ($successor.generatedCssBlob) { $successor.generatedCssBlob } else { $pin.generatedCssBlob }
+if ($css -ne $currentCss -or $pin.generatedCssBlob -ne $proof.source.generatedCssBlob) { throw 'Current or historical footer generated CSS pin drift.' }
 if ($proof.foundations.pairs.Count -ne 4 -or $proof.product.destination.Count -ne 6 -or
     $proof.product.message.Count -ne 2 -or $proof.product.entity.Count -ne 3) { throw 'Incomplete recorded footer coverage.' }
 foreach ($pair in $proof.foundations.pairs) {
@@ -52,4 +55,4 @@ if ($proof.product.entity[0].buttons.Count -ne 1 -or
     $proof.product.entity[0].buttons[0].label -ne 'Open native Moodle profile') { throw 'Readonly Participant gained editing actions.' }
 & (Join-Path $KitRoot 'scripts/test-modal-footer-contract.ps1')
 if ($LASTEXITCODE -ne 0) { throw 'Canonical footer compile contract failed.' }
-Write-Output 'PASS: exact footer source/CSS pins, recorded four paired Foundations and eleven product readbacks. Source/recorded evidence only; not a fresh browser or human PASS.'
+Write-Output 'PASS: exact current source/CSS pins, preserved historical four paired Foundations and eleven product readbacks. Historical readback is not proof of the successor CSS, fresh browser or human PASS.'

@@ -1,5 +1,24 @@
 # Modals
 
+## Neutral and destructive confirmation roles
+
+Emit `dialog-classes` and apply `easyedu-modal-layer` to the native fixed root.
+Use `easyedu-confirmation-dialog` on the surface, `__header`, `__body`,
+`easyedu-modal-title`, `easyedu-dialog-description` and `__actions` on its
+existing anatomy. The shared header is 64px minimum; description is Inter
+13px and wraps. Actions are right-end/wrapping regular density.
+
+A Copy/Move choice is neutral. For deletion only, add
+`easyedu-confirmation-dialog--danger` plus `easyedu-modal__header`/`__body`
+to select the existing destructive shell. Its action uses
+`easyedu-button easyedu-button--danger`; Cancel uses `--secondary`.
+Do not infer risk from a narrow dialog or apply a destructive class to a
+neutral choice. Preserve native callbacks, options, focus and Motion.
+
+`scripts/test-confirmation-dialog-contract.ps1` certifies compiled anatomy,
+matched dimensions and semantic focus/hover/disabled, not runtime or human
+acceptance. The 2026-10-03 earlier modal browser proof remains historical.
+
 ## EasyStud local preview checkpoint - 2026-10-03
 
 Canonical chrome/footer source `cd9b56e` is now consumed by EasyStud's controlled

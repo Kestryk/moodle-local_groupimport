@@ -1,0 +1,40 @@
+// Source-preserving paints for identity cards. Consumers own DOM predicates,
+// density, dimensions and Motion; this module contains no product selectors.
+// Kinds describe anatomy, not Moodle entities: person, object, container,
+// unassigned. See docs/components/cards.md for the original source checkpoint.
+@use "sass:map";
+
+$identity-card-paints: (
+  person: (
+    rest: (border-top-color: #d6e5f2, border-right-color: #d6e5f2, border-bottom-color: #d6e5f2),
+    hover: (background: #fbfdff, border-color: #cadbea, box-shadow: 0 0.42rem 0.9rem rgba(31, 42, 55, 0.07), transform: translateY(-1px)),
+    selected: (border-color: #8aa6c9, box-shadow: 0 0.55rem 1rem rgba(72, 115, 173, 0.16))
+  ),
+  object: (
+    rest: (background: linear-gradient(180deg, #f9fbfd 0%, #f4f8fb 100%), border: 1px solid #d7e5dc, border-radius: 0.8rem, box-shadow: 0 0.18rem 0.6rem rgba(31, 42, 55, 0.05)),
+    hover: (background: linear-gradient(180deg, #fbfdfc 0%, #f5faf7 100%), border-color: #cbded2, box-shadow: 0 0.42rem 0.9rem rgba(31, 42, 55, 0.07), transform: translateY(-1px)),
+    selected: (border-color: #82ae97, box-shadow: 0 0.55rem 1rem rgba(41, 114, 77, 0.17))
+  ),
+  container: (
+    rest: (background: linear-gradient(180deg, #fff 0%, #f7fafc 100%), border-color: #d7e0e8),
+    expanded: (background: linear-gradient(180deg, #fff 0%, #f7fafc 100%), box-shadow: 0 0.42rem 0.9rem -0.28rem rgba(106, 127, 152, 0.18)),
+    selected: (border-color: #9eb0c2, box-shadow: 0 0.56rem 1.05rem rgba(106, 127, 152, 0.17)),
+    expanded-selected: (background: #edf2f7, border-color: #9eb0c2, box-shadow: 0 0.5rem 1rem -0.24rem rgba(106, 127, 152, 0.22))
+  ),
+  unassigned: (
+    rest: (background: linear-gradient(180deg, #fefbfd 0%, #f7eef5 100%), border-color: #e5d4e0, border-radius: 0.95rem),
+    expanded: (background: linear-gradient(180deg, #fdfafd 0%, #f2e5ef 100%), border-color: #d7bcd0, box-shadow: 0 0.42rem 0.9rem -0.28rem rgba(111, 67, 100, 0.18))
+  )
+);
+
+// Paint only: callers retain their identity rail and selected surface tokens.
+// No automatic :focus-within/:has selectors: nested focus must not repaint a
+// parent incorrectly. Use card-focus-context on the native owning predicate.
+@mixin identity-card-paint($kind, $state: rest) {
+  @if not map.has-key($identity-card-paints, $kind, $state) {
+    @error "Unsupported identity-card-paint kind/state: #{$kind}/#{$state}.";
+  }
+  @each $property, $value in map.get($identity-card-paints, $kind, $state) {
+    #{$property}: $value;
+  }
+}

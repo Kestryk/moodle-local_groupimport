@@ -5217,24 +5217,24 @@ const openConfirmModal = (root, message, onconfirm) => {
 const openGroupDropModeModal = (root, oncopy, onmove) => {
     const labels = getLabels(root);
     const modal = document.createElement('div');
-    modal.className = 'local-groupimport-easystud-modal';
+    modal.className = 'local-groupimport-easystud-modal easyedu-modal-layer';
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     modal.innerHTML =
-        '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-modal__dialog--confirm">' +
-            '<div class="local-groupimport-easystud-modal__header">' +
-                '<h3 class="h5 mb-0">' + (labels.groupdropmode || '') + '</h3>' +
+        '<div class="local-groupimport-easystud-modal__dialog easyedu-confirmation-dialog">' +
+            '<div class="local-groupimport-easystud-modal__header easyedu-confirmation-dialog__header">' +
+                '<h3 class="easyedu-modal-title">' + (labels.groupdropmode || '') + '</h3>' +
                 '<button type="button" class="local-groupimport-easystud-modal__close" data-easystud-choice-close="1">' +
                     '<span aria-hidden="true">&times;</span>' +
                 '</button>' +
             '</div>' +
-            '<div class="local-groupimport-easystud-modal__body">' +
-                '<p class="text-muted mb-0">' + (labels.groupdropmodedesc || '') + '</p>' +
-                '<div class="local-groupimport-easystud-modal__footer">' +
-                    '<button type="button" class="btn btn-outline-secondary" data-easystud-choice-copy="1">' +
+            '<div class="local-groupimport-easystud-modal__body easyedu-confirmation-dialog__body">' +
+                '<p class="easyedu-dialog-description">' + (labels.groupdropmodedesc || '') + '</p>' +
+                '<div class="local-groupimport-easystud-modal__footer easyedu-confirmation-dialog__actions">' +
+                    '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-choice-copy="1">' +
                         (labels.groupdropcopy || '') +
                     '</button>' +
-                    '<button type="button" class="btn btn-primary" data-easystud-choice-move="1">' +
+                    '<button type="button" class="easyedu-button" data-easystud-choice-move="1">' +
                         (labels.groupdropmove || '') +
                     '</button>' +
                 '</div>' +

@@ -1,5 +1,110 @@
 # Cards
 
+## Source-preserving identity surfaces
+
+`identity-card-paint($kind, $state: rest)` centralises twelve existing painted
+states from EasyStud source checkpoint `6f5871a`. Kinds describe reusable
+anatomy: `person` and `object` provide rest/hover/selected; `container` provides
+rest/expanded/selected/expanded-selected; `unassigned` provides rest/expanded.
+It emits paint declarations only, with no DOM, dimensions or Motion rewrite.
+Consumers retain identity rail/selected-surface tokens and native predicates.
+Focus remains `card-focus-context` on the correct owning selector: focusing
+a nested child must not repaint its parent. Selected+expanded+focused ordering
+must remain native. This is incremental extraction, not whole-card migration.
+
+EasyStud's `test-student-card-surface-contract.ps1` verifies canonical copies
+and can compare all emitted selector/property value sequences against an
+extraction baseline. The 2026-10-03 extraction preserved 12,973 sequences.
+This proves compiled equivalence, not a new browser or human visual PASS.
+
+## Identity and related-person typography
+
+Foundations shell main `2b5216d9-06a9-80a1-8008-9cf47759bd2b` measures
+14px/700, #16324f. `card-title` uses this one identity size for compact,
+regular and container shells; density is not a second font scale. Consumers
+bind the shared `--easyedu-card-identity-title-color`; semantic identity colour
+remains on rails and badges. Keep all existing header tracks and Motion.
+
+`related-person-name` is the subordinate member role: Inter, 13px/600,
+#16324f, line-height 1.35. Foundations existing Member-row main
+`2a31d374-d2a1-80fd-8008-ac477de8f7f0` is reused, not duplicated. Apply
+the role to participant names inside groups, without changing their contents,
+selection/removal behavior or disclosure. Paired Library/Standard/Composition
+labels were updated on 2026-10-01; product propagation and browser proof are
+separate gates.
+
+## Related-person row ownership (source-preserving)
+
+`related-person-row`, `related-person-selection-slot`,
+`related-person-name-layout` and `related-person-remove` centralize the existing
+EasyStud member-row skin. Compose the name layout with `related-person-name`:
+
+```scss
+.member { @include easyedu.related-person-row; }
+.member > .selector { @include easyedu.related-person-selection-slot; }
+.member__name {
+  @include easyedu.related-person-name;
+  @include easyedu.related-person-name-layout;
+}
+.member__remove { @include easyedu.related-person-remove; }
+```
+
+The row keeps its 2.25rem minimum, 0.25rem/0.45rem padding and 0.5rem gap.
+The selection slot keeps the existing card-checkbox recipe; removal is a
+1.45rem square with the existing hover, native focus and keyboard ring.
+The `span` inside the named removal button carries the existing minus glyph;
+this extraction does not replace it with an SVG or change its command.
+The literal row/removal paints are documented source component constants,
+not additional semantic tokens. Run
+`scripts/test-related-person-row-contract.ps1` through the public Sass API.
+
+Consumer adapters must emit identical complete CSS with the same Sass version.
+Responsive density, member extras/fades, selection routing, accessible names,
+permissions and disclosure Motion remain consumer-owned. No global CSS class,
+new animation, 44px touch-target claim or density normalization is introduced.
+Foundations' existing 52px Member-row specimen and its 32px removal surface
+remain distinct from the native EasyStud density/action size. Paired design
+alignment and pending whole-card exports must be resolved before claiming
+pixel parity; ownership extraction is not design acceptance.
+
+## Narrow participant investigation (not adopted)
+
+Selection-inclusive comparison `easystud-authenticated-20261001T180425356Z-36668`
+passes the four-width geometry gates, selected 320px readability, unchanged
+selection transition declarations and restoration of compact height. This is
+still experimental: paired Penpot publication/acceptance remain pending.
+
+The readable adapter also covers selected compact cards unless the product
+enters its dedicated single-participant detailed density. Selection must not
+restore the rejected narrow name/email lanes. `person-card-narrow-readable-name`
+keeps block ellipsis and aligns its line box with the action height. Never use
+flex display just to centre a truncating text node. These recipes remain unused.
+
+A separate experimental readable-density fixture stacks name/badge and lets
+email span both headline columns below. At 320px: name 66.75px, email 103.53px,
+card height 93.125px. Checkbox/name/eye centres align; neither 44px selection/
+menu targets nor existing Motion are reduced. Supervised comparison passes
+320/390/768/1600, preserving wider card-local geometry and all text contents.
+This remains **not adopted**: publish paired Foundation/Product specimens and
+obtain visual acceptance for the taller endpoint before embedding. The failed
+first fixture is retained separately.
+
+The diagnostic adapter keeps a numeric 6rem compact maximum, not `none`,
+so a future density collapse retains an interpolable endpoint. Normal-motion
+selection/disclosure behavior still needs its dedicated regression before
+adoption: endpoint geometry alone is not animation acceptance.
+
+Final numeric-endpoint comparison:
+`easystud-authenticated-20261001T174755379Z-44640` passes all four widths.
+
+At 320px the established compact row with primary badge leaves only 20.52px
+for the sampled name. The opt-in `person-card-narrow-tracks` fixture moves
+email below identity without changing font or Motion. Temporary comparison
+failed: name becomes 34.20px and email 66.75px, below 50/80px gates; card grows
+45.97 -> 52.80px. This is not a validated narrow control or consumer recipe.
+Do not deploy it before reworking identity/badge/action-slot allocation and
+publishing paired Foundation specimens. The existing 3:1 layout stays active.
+
 ## Responsive name-priority tracks
 
 `person-card-responsive-tracks` gives the compact responsive identity/email
@@ -11,40 +116,99 @@ truncation; it does not guarantee every long name/email fits in a single row.
 The earlier 1.6:1 experiment failed. Foundations source documentation and
 human review of this new ratio remain pending.
 
-## Source-preserving metadata API
-
-Use `card-metadata`, `card-metadata-row`, `card-metadata-label`,
-`card-metadata-values`, and `card-metadata-row-stacked` from the public Kit.
-The stacked adapter belongs at the existing consumer mobile breakpoint.
-Content, token overflow/disclosure and density visibility remain consumer-owned.
-This extraction preserves current CSS; Penpot label-size differences are still
-pending reconciliation. Evidence and command:
-`docs/foundations-student-management.md` in the consuming plugin.
-
 Cards represent user-manipulable objects: participants, groups, groupings,
 layers, images, sources or any plugin-specific item.
 
 ## Mixins
 
-`card-direct-action` implements the canonical transparent-rest Direct icon
-family (1.85rem control, 0.95rem icon). Hover/focus/pressed/disabled are Kit-owned;
-responsive visibility, action handlers and grid placement remain local. See
-`docs/foundations-student-management.md` for source and live Penpot evidence.
+### Card metadata (source-preserving extraction)
 
-### Student Management header extraction
+`card-metadata`, `card-metadata-row`, `card-metadata-label` and
+`card-metadata-values` centralize the existing participant metadata grid.
+Use `card-metadata-row-stacked` on the same row at the consumer's existing
+mobile breakpoint. The default label lane is 5.25rem; values wrap in the
+remaining space. Label typography remains 0.67rem/700 with 0.06em tracking.
 
-The canonical Kit now owns `person-card-headline(detailed|compact)` with named
-`identity`, `email` and `action` slots, and `selectable-card-header(regular|container)`
-with reserved overlay-checkbox space. Use
-`person-card-headline(detailed, $min-height: null)` for a selected compact card
-that inherits its minimum header height. Preserve consumer-owned responsive
-rules, action placement and existing motion. These are layout-only recipes,
-not full card styling or a new behavior contract.
+```scss
+.person__meta { @include easyedu.card-metadata; }
+.person__meta-row { @include easyedu.card-metadata-row; }
+.person__meta-label { @include easyedu.card-metadata-label; }
+.person__meta-values { @include easyedu.card-metadata-values; }
+// Inside the consumer's existing mobile media query:
+.person__meta-row { @include easyedu.card-metadata-row-stacked; }
+```
 
-See the canonical Kit `docs/components/cards.md` for examples and the consumer
-`docs/foundations-student-management.md` for exact scope and test evidence.
-The `consumerSync.studentHeaderExtraction` manifest entry identifies this
-uncommitted candidate separately from the previously pinned Kit commit.
+Roles, groups, groupings and custom-field content, token semantics, hidden
+extras, the show-more control and density visibility remain consumer-owned.
+These recipes add no clipping, animation, breakpoint or global CSS class.
+The 2026-10-01 active detailed EasyStud specimens now use the same 0.67rem
+label, 0.06em tracking, #627387 paint and 5.25rem lane, with a 0.55rem gap
+before values. Five product cards and the paired Foundation Detailed
+Participant Library/Standard specimens were reconciled. Compact mobile
+selection remains compact; hidden archives were not migrated. Readback passes,
+but the full Foundation card export timed out; visual closure is not inferred
+from geometry alone. Preserve this distinction before promoting the tranche.
+
+### Direct card actions
+
+Moodle can load `.btn:hover` and `.btn:focus-visible` after plugin styles.
+The shared recipe emits both the plain selector and its `.btn` composition
+so these host rules cannot erase the canonical hover/focus paint. Consumers
+must not repair this with local specificity or `!important`.
+
+`card-direct-action` owns the Foundations Direct icon recipe (Library main
+`10fc9fee-0b8e-807e-8008-98ead919bfd2`, read through the connected library on
+2026-09-30). Its border-box is 1.85rem square, the icon slot 0.95rem, with a
+transparent rest surface and border. Hover uses #f7fbff/#bdd0e5; pressed uses
+#eaf4ff/#b8d5ef. Keyboard focus uses the shared focus ring. Disabled uses
+#f0f4f8/#d7e1ea/#9aa9b8 at full opacity, matching this specific specimen.
+The optional `--easyedu-card-action-*` custom properties override these paints.
+Primary and strong icon colours use existing shared tokens.
+
+```scss
+.person__details { @include easyedu.card-direct-action; grid-area: action; }
+.object__search { @include easyedu.card-direct-action; }
+```
+
+Use a real named button and preserve the existing click handler. `aria-disabled`
+is paint only: the consumer remains responsible for preventing activation.
+Do not use this desktop action as a replacement for the existing 2.75rem touch
+overflow trigger. The recipe owns neither visibility, grid placement nor motion.
+No filled circle appears at rest. Font icons keep their native glyph proportions
+inside the centred slot; this is not a claim of SVG/Font Awesome glyph parity.
+
+### Source-preserving Student Management headers
+
+`person-card-headline(detailed|compact)` composes the existing `identity`,
+`email` and `action` grid slots. The detailed variant puts secondary metadata
+below the identity; compact keeps it between identity and the terminal action.
+Use `person-card-headline(detailed, $min-height: null)` when a selected compact
+card inherits its header minimum from its base rule. Keep the action in its
+named slot; do not position it against the expanding body.
+
+`selectable-card-header(regular|container)` reserves the established checkbox
+space for an object or expandable container header. These recipes do not own
+paint, contents, responsive breakpoints, action visibility, menus or motion.
+They intentionally preserve the existing physical left inset during this
+extraction; this is not a claim of new RTL coverage. The existing
+`card-title-row` remains appropriate for two-slot generic cards.
+
+```scss
+.person__headline { @include easyedu.person-card-headline; }
+.compact .person__headline { @include easyedu.person-card-headline(compact); }
+.compact .person.is-selected .person__headline {
+  @include easyedu.person-card-headline(detailed, $min-height: null);
+}
+.group__header { @include easyedu.selectable-card-header; }
+.container__header { @include easyedu.selectable-card-header(container); }
+```
+
+Run `./scripts/test-card-header-contract.ps1` to compile all five variants via
+the public Sass entry point. Consumer geometry extraction must also compare the
+complete compiled stylesheet before/after, using the same Sass version.
+Header recipes must not add clipping or modify disclosure/density animations.
+
+### Object-card primitives
 
 ```scss
 .my-card {
@@ -80,6 +244,10 @@ uncommitted candidate separately from the previously pinned Kit commit.
 
 .my-card__selector {
   @include easyedu.card-selection-slot(overlay);
+}
+
+.my-card:focus-within {
+  @include easyedu.card-focus-context(var(--easyedu-card-shadow));
 }
 
 .my-container-card__disclosure {
@@ -160,6 +328,10 @@ uncommitted candidate separately from the previously pinned Kit commit.
   complete related-object list.
 - `density-transition`: shared transition timing for cards that switch between
   compact and detailed density.
+- `card-focus-context($base-shadow)`: contained `:focus-within` context for an
+  identity-rail or dense card. It preserves the card elevation without
+  extending a halo into the leading rail/gutter; the focused child keeps the
+  normal outer `focus.ring`.
 - `card-title-row`: stable two-column title line with a flexible identity slot
   and a terminal count/action slot.
 - `card-title-main`: aligns the title and optional title-line context while
@@ -251,6 +423,28 @@ Preview lists must pair their visible transition state with a real reveal
 button. Keep `aria-expanded` synchronized on the button and, when useful, on the
 preview list itself.
 
+## Responsive layout integrity
+
+Cards must keep separate zones for primary content, secondary metadata and
+actions. An action must never overlap the title, hide metadata, shrink the
+intended touch target or create unmanaged horizontal overflow.
+
+Prefer explicit layout contracts:
+
+- use Grid or Flex with `minmax(0, 1fr)` for the content zone;
+- reserve terminal action zones before positioning actions;
+- make secondary metadata yield through ellipsis, wrapping or summary pills;
+- move dense secondary information into a details row or disclosure at narrow
+  breakpoints.
+
+Removing visible information is a last resort. If a plugin hides a value on
+small screens, the value must remain available through a documented alternate
+path such as details, a disclosure, modal, tooltip or contextual action.
+
+This rule is a design contract, not a new primitive. Do not create a one-off
+mixin for a single EasyStud case; promote a primitive only when the same layout
+pressure appears in several consumers.
+
 ## Import Audit Checklist
 
 - Object cards use an identity rail token for their object type: participant,
@@ -274,6 +468,12 @@ preview list itself.
   local font scales or weights for participant, object and container titles.
 - Count badges and actions stay in `card-title-actions`; optional context yields
   before it can push those controls onto another line.
+- Responsive cards preserve distinct content, metadata and action zones; they
+  reorganize or summarize content before actions can overlap or reduce touch
+  targets.
+- A card `:focus-within` treatment is contextual only. Use
+  `card-focus-context` where an external parent halo would collide with a
+  rail/gutter, and retain the ordinary outer focus ring on the child control.
 - Expandable title lines use one native button with `aria-expanded` and
   `aria-controls`; the chevron is not a separate action.
 - Selection controls use `card-selection-slot` together with the form
@@ -301,6 +501,22 @@ need pointer feedback but cannot be dragged. Apply it only inside
 translation under `prefers-reduced-motion`.
 
 ## Terminal actions and expanding details
+
+### Direct and overflow actions
+
+`card-direct-action` owns the shared Direct icon states. Use
+`card-overflow-trigger` for the existing desktop Overflow trigger: 1.85rem
+square, 0.88rem glyph and 0.4rem radius. It reproduces the source desktop
+declarations; it is not the raised `action-menu-trigger` toolbar family.
+Foundations main `16efa6a5-be95-808f-8008-98eb972325be` and product Grouping
+more/Bulk more instances preserve this compact geometry.
+
+Compose the existing `mobile-card-menu-trigger` at responsive breakpoints;
+retain its 44px touch target, centred 29.12px visual surface and Motion.
+Consumers own placement, disclosure, focus restoration, command routing and
+permission checks. Never shrink the hit target to the visible glyph. This
+ownership extraction requires exact full consumer CSS equality, not only a
+successful Sass build; no new animation or Penpot variant is introduced.
 
 When a card header contains a persistent action such as a details button,
 reserve a terminal action slot and keep it anchored to the card. Expanding

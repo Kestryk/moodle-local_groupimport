@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-10-03 - Student Management completion queue (candidate)
+
+- Record every remaining user request with separate source, Penpot, preview
+  and deferred human gates. Repair the obsolete Ungrouped source contract;
+  current icon/title/focus remain unchanged, not replaced by a missing alias.
+- Consume canonical neutral Copy/Move and destructive confirmation roles,
+  matched regular actions and shared modal layer. Remove legacy Bootstrap
+  skins and the destructive choice tint; native callbacks/Motion unchanged.
+- Transfer twelve identity-card paints unchanged to the canonical Kit. All
+  12,973 emitted selector/property sequences match the extraction baseline.
+- Publish paired Foundation confirmations, regular Danger states and sixteen
+  Workspace Create states. Propagate six native confirmation specimens and
+  twelve matching-height Create controls to EasyStud; archive old controls.
+- Check actual painted label/Plus centres and native wording, not just linked
+  root alignment. Both confirmation hosts and the product board are exported.
+- Preserve old modal proof/pins as historical; successor pins do not silently
+  certify themselves against prior browser runs. No production/data mutation.
+
 ## 2026-10-03 - Prepared modal tranche applied to local preview
 
 - Commit/push and managed Moodle 5.1 promotion/cache are complete for canonical

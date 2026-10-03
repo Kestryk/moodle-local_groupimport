@@ -534,3 +534,18 @@ all captures outside Git; retain failed evidence rather than weaken assertions.
 See `docs/student-entity-dialog-chrome-2026-10-02.md` for the source inventory,
 paired Penpot IDs, current discovery result and remaining parity gates. The
 original body styles and generic Close action are not certified by this slice.
+
+## Conditional confirmations - 2026-10-03
+
+`student-confirmation-footer-preview.spec.js` is **local-supervised**. Its one
+test opens the native conditional Delete dialog on existing populated Group
+and Grouping data, cancels, and checks matched right-end actions at
+1600/768/390px. Entry is desktop followed by resize, not a new mobile route.
+A request guard blocks non-GET GroupImport requests. Never click Confirm or
+create a fixture to satisfy the populated-entity predicate. Neutral Copy/Move
+choice remains source/Penpot-only because a real drop is outside this audit.
+
+Use exact single-test discovery, the saved-credentials wrapper and runtime
+lease. Keep the loaded spec immutable until cleanup completes; failed evidence
+is retained. Scenario registry update is proposed in the completion queue for
+the shared Platform owner, not written into that owner's dirty files.

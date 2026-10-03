@@ -23,6 +23,12 @@ destructive cleanup as a transfer mechanism.
 
 ## Before creating or changing UI
 
+For native confirmation/choice dialogs, risk is explicit: neutral Copy/Move
+must not inherit destructive chrome. Use the matched public footer recipe,
+including the Danger action; disabled remains neutral. Preserve existing
+callbacks and Motion. Extraction-only identity surfaces require a whole-CSS
+selector/property equivalence check, not a claimed visual improvement.
+
 1. Inspect the kit first:
    - `docs/component-matrix.md`
    - `docs/components/`
@@ -54,15 +60,13 @@ Avoid:
 - applying standard nav/action button styles to the guide launcher;
 - admin navigation labels that wrap onto two lines instead of using the kit
   non-wrapping rail.
-- a Skeleton de navigation K3 interactif, focalisable ou exposé aux lecteurs
-  d'ecran : il reste decoratif (`aria-hidden="true"`) et ne remplace jamais la
-  navigation Moodle reelle.
-- des accents Skeleton superieurs sur les cartes K3 : employer l'accent
-  logique `border-inline-start` pour conserver le RTL natif.
-- une Navigation Skeleton locale a deux rangees : employer le cadre K3.1
-  compact a une seule ligne, le cercle Guide et un seul cue interne.
-- une bordure Skeleton sur un toggle/selecteur de vue : ce controle ne recoit
-  ni cadre de carte ni cadre structural.
+- separate desktop and compact navigation item sources;
+- responsive JavaScript that parses or clones rendered desktop navigation.
+- a local Skeleton for a view with real navigation; use the canonical one-line
+  `navigation-skeleton-compact-frame`, Guide-start cue and single internal cue
+  from `docs/components/navigation-skeleton.md` instead.
+- applying a Skeleton card or structural-container frame to an interactive
+  view toggle/selector. A view toggle receives no Skeleton border.
 
 ## Required update set for reusable changes
 
@@ -76,6 +80,11 @@ When adding or changing a reusable component, update all relevant parts:
 - component matrix if the component family changes;
 - changelog;
 - AI contract if the behaviour is fragile or often misimplemented.
+
+For navigation, use `docs/components/navigation.md`, the normalized
+server-prepared context and the shared item partial. A consumer migration must
+carry its canonical `EED-*` batch ID and update the EasyEdu Platform
+evolution-history record before completion is reported.
 
 ## Moodle constraints
 

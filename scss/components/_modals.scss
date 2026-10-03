@@ -61,21 +61,6 @@
     animation: easyedu-modal-out var(--easyedu-motion-fast) ease both;
   }
 
-  &-modal__dialog--confirm {
-    border-color: #f1d0c7;
-    max-width: 34rem;
-    overflow: hidden;
-  }
-
-  &-modal__dialog--confirm &-modal__header {
-    background: linear-gradient(180deg, #fff7f4 0%, #fff 100%);
-    border-bottom-color: #f2d8d0;
-  }
-
-  &-modal__dialog--confirm &-modal__body {
-    background: linear-gradient(180deg, #fff 0%, #fffaf8 100%);
-  }
-
   &-modal__dialog--user {
     @include easyedu.context-modal-surface(
       ".local-groupimport-easystud-modal__header",

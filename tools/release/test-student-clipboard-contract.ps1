@@ -7,7 +7,9 @@ $dialogPin = $manifest.consumerSync.studentLookupDialogs
 foreach ($entry in $dialogPin.modules.PSObject.Properties) {
     $embedded = & git -C $root hash-object $entry.Name
     $canonical = & git -C $KitRoot hash-object $entry.Name
-    if ($LASTEXITCODE -ne 0 -or $embedded -ne $entry.Value -or $canonical -ne $embedded) {
+    $successor = $manifest.consumerSync.studentCompletion20261003.modules.($entry.Name)
+    $currentPin = if ($successor) { $successor } else { $entry.Value }
+    if ($LASTEXITCODE -ne 0 -or $embedded -ne $currentPin -or $canonical -ne $embedded) {
         throw "Lookup dialog source pin drift: $($entry.Name)"
     }
 }
@@ -33,7 +35,7 @@ foreach ($pair in @(@('valid', 'success'), @('invalid', 'error'))) {
     }
 }
 $template = Get-Content -Raw -LiteralPath (Join-Path $root 'templates/manage.mustache')
-$clipboard = [regex]::Match($template, '(?s)<div\s+class="[^"]*easyedu-modal-layer"\s+data-easystud-clipboard-modal="1".*?(?=\n    <div\s+class="local-groupimport-easystud-modal")')
+$clipboard = [regex]::Match($template, '(?s)<div\s+class="[^"]*easyedu-modal-layer"\s+data-easystud-clipboard-modal="1".*?(?=\n    <div\s+class="local-groupimport-easystud-modal\b)')
 foreach ($role in @('easyedu-lookup-dialog', 'easyedu-lookup-dialog__header',
     'easyedu-lookup-dialog__body', 'easyedu-lookup-dialog__description', 'easyedu-modal-title')) {
     if (-not $clipboard.Success -or -not $clipboard.Value.Contains($role)) { throw "Missing lookup class role: $role" }

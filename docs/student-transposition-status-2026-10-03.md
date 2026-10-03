@@ -8,6 +8,10 @@ This is a local preview, not production
 or global human acceptance. Source worktrees and current footer gate are listed
 in `student-modal-footers-2026-10-03.md`. The human checklist remains unchecked.
 
+The complete quoted user request is tracked in
+`student-management-completion-queue-2026-10-03.md`. This queue explicitly keeps
+source, Penpot propagation, scoped runtime proof and human acceptance separate.
+
 ## Already applied to the local preview
 
 | Family | Changes already present | Runtime commit/evidence anchor |
@@ -65,10 +69,12 @@ Do not mistake a Penpot update, compiled CSS or source commit for served preview
 - Continue full entity-modal bodies: settings fields, conditional image/help,
   metadata/list/counts/CSV and native Close anatomy; source completeness is not
   full Foundation style parity.
-- Migrate the remaining legacy destructive-confirmation and Copy/Move-choice
-  footer controls to the public recipe with their own semantic palette/Penpot
-  evidence. They still use legacy Bootstrap classes, unlike this tranche's
-  native Destination, Message and entity-settings pairs.
+- New destructive-confirmation and neutral Copy/Move-choice source now use
+  public classes; five Danger states, four Foundation modal pairs and six native
+  product specimens are published. Sixteen Workspace Create states and twelve
+  inherited field/action compositions are reconciled. Fresh managed promotion
+  and native confirmation proof remain pending; prior 21 cases certify only
+  their historical assets. See the completion queue and its pinned readbacks.
 - Reconcile remaining Foundation member-row density/export gaps and propagate
   complete responsive product compositions without changing native behaviour.
 - Complete all-state translation/RTL/forced-colours, stacking and error checks,

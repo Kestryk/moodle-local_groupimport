@@ -2318,16 +2318,16 @@
     </div>
 
     <div
-        class="local-groupimport-easystud-modal"
+        class="local-groupimport-easystud-modal easyedu-modal-layer"
         data-easystud-confirm-modal="1"
         hidden
         role="dialog"
         aria-modal="true"
         aria-labelledby="local-groupimport-easystud-confirm-title"
     >
-        <div class="local-groupimport-easystud-modal__dialog">
-            <div class="local-groupimport-easystud-modal__header">
-                <h3 id="local-groupimport-easystud-confirm-title" class="h5 mb-0">{{deleteconfirmationtitle}}</h3>
+        <div class="local-groupimport-easystud-modal__dialog easyedu-confirmation-dialog easyedu-confirmation-dialog--danger">
+            <div class="local-groupimport-easystud-modal__header easyedu-confirmation-dialog__header easyedu-modal__header">
+                <h3 id="local-groupimport-easystud-confirm-title" class="easyedu-modal-title">{{deleteconfirmationtitle}}</h3>
                 <button
                     type="button"
                     class="local-groupimport-easystud-modal__close"
@@ -2337,11 +2337,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="local-groupimport-easystud-modal__body">
-                <p class="text-muted mb-0" data-easystud-confirm-modal-message="1"></p>
-                <div class="local-groupimport-easystud-modal__footer">
-                    <button type="button" class="btn btn-outline-secondary" data-easystud-close-confirm-modal="1">{{cancellabel}}</button>
-                    <button type="button" class="btn btn-danger" data-easystud-confirm-modal-submit="1">{{confirmlabel}}</button>
+            <div class="local-groupimport-easystud-modal__body easyedu-confirmation-dialog__body easyedu-modal__body">
+                <p class="easyedu-dialog-description" data-easystud-confirm-modal-message="1"></p>
+                <div class="local-groupimport-easystud-modal__footer easyedu-confirmation-dialog__actions">
+                    <button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-close-confirm-modal="1">{{cancellabel}}</button>
+                    <button type="button" class="easyedu-button easyedu-button--danger" data-easystud-confirm-modal-submit="1">{{confirmlabel}}</button>
                 </div>
             </div>
         </div>

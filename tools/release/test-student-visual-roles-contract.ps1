@@ -5,7 +5,9 @@ $manifest = Get-Content -Raw -LiteralPath (Join-Path $root 'easyedu-kit-docs/eas
 foreach ($entry in $manifest.consumerSync.studentVisualRoles.modules.PSObject.Properties) {
     $relative = 'scss/easyedu/' + $entry.Name
     $embedded = & git -C $root hash-object $relative
-    if ($LASTEXITCODE -ne 0 -or $embedded -ne $entry.Value) { throw "Unpinned module: $relative" }
+    $successor = $manifest.consumerSync.studentCompletion20261003.modules.$relative
+    $currentPin = if ($successor) { $successor } else { $entry.Value }
+    if ($LASTEXITCODE -ne 0 -or $embedded -ne $currentPin) { throw "Unpinned current module: $relative" }
     $canonical = & git -C $KitRoot hash-object $relative
     if ($LASTEXITCODE -ne 0 -or $canonical -ne $embedded) { throw "Canonical drift: $relative" }
 }
