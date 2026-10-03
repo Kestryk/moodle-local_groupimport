@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-03 - Selected-member transfer service (source candidate)
+
+- Prepare a capability-checked atomic membership transfer, preserving unrelated
+  memberships and checking native add failures and managed removal restrictions.
+- Add isolated in-memory control-flow checks and six native PHPUnit candidates.
+  Only lint and isolated doubles pass; native DB tests, action wiring, Penpot
+  states and preview promotion remain open. No course data was changed.
+
 ## 2026-10-03 - Searchable Move destination local preview
 
 - Serve the canonical Kit chooser after paired Foundations/EasyStud publication

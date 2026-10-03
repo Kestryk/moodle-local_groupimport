@@ -1,5 +1,17 @@
 # EasyEdu Component Contract
 
+## Selected-member transfer gate (SM-11)
+
+Membership business logic belongs in the consumer service, not Kit paint or
+controllers. Use explicit source Group/User pairs and one guarded atomic call.
+Validate all pairs and component-managed removal policy; native add returning
+false must never remove the origin. Preserve unrelated memberships, same-group
+no-op and native API side effects. Isolated transaction/API doubles prove only
+logic, never Moodle DB/events or permission to mutate course data during an
+open/Cancel audit. Endpoint login/sesskey and equal ID-array lengths precede UI
+wiring. Preserve disclosure Motion; publish shared source/product controls
+before preview promotion.
+
 Searchable single-choice destinations consume the canonical Kit controller
 and `searchable-choice-classes`. Keep native values, data hooks, option
 availability and submit commands intact. Deduplicate destination IDs across
