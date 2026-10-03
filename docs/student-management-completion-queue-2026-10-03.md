@@ -85,6 +85,18 @@ assets. Failed runs and backups remain recoverable.
 - Canonical Kit checkpoint `b451ee0a01ee8b1052a625603c006eb3a064d9b8` is committed/pushed.
   Exact owned-file snapshots are external, hash verified and recoverable.
   Managed preview and fresh native proof are the next gate, not yet a PASS.
+- Managed source `347e407` is applied to clean Moodle 5.1 `923524b`, cache
+  refresh complete. First confirmation run `easystud-authenticated-20261003T061339992Z-48352`
+  failed before opening: it selected an entity from a hidden layout clone.
+  Cleanup completed with lease released, credentials cleared, child stopped,
+  no fixture. Correct the candidate to select effective-visible native cards;
+  keep the populated predicate and all action/paint assertions unchanged.
+- Second run `easystud-authenticated-20261003T061522587Z-48468` reached the
+  dialog but found missing JS warning keys. DOM snapshot confirms an empty
+  paragraph. `manage.php` defined both localized strings only in template
+  context, not `$detaillabels`. Forward the existing strings to JS, guard that
+  actual payload and require nonempty native text before opening. No action/API
+  change; both failures and successful cleanup are preserved, not a preview PASS.
 
 ## Portable Platform-owner update proposal
 

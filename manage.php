@@ -318,6 +318,8 @@ function local_groupimport_build_manage_template_data(
         'groupdropmove' => get_string('groupdropmove', 'local_groupimport'),
         'cancel' => get_string('cancel'),
         'close' => get_string('closebuttontitle'),
+        'confirmdeletegroups' => get_string('confirmdeletegroups', 'local_groupimport'),
+        'confirmdeletegroupings' => get_string('confirmdeletegroupings', 'local_groupimport'),
         'selectall' => get_string('selectall', 'local_groupimport'),
         'deselectall' => get_string('deselectall', 'local_groupimport'),
         'selectresults' => get_string('selectresults', 'local_groupimport'),

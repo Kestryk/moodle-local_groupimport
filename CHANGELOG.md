@@ -18,6 +18,16 @@
 - Preserve old modal proof/pins as historical; successor pins do not silently
   certify themselves against prior browser runs. No production/data mutation.
 
+## 2026-10-03 - Native conditional confirmation text binding
+
+- Forward existing localized Group/Grouping deletion warnings into the JS
+  label payload. They were template context entries only, so native conditional
+  confirmation rendered an empty paragraph. No endpoint, permission, selection
+  predicate or delete operation changed. Add source/runtime guards for nonempty
+  localized text and effective-visible native entity selection.
+- Retain both failed runs and cleanup records. New runtime proof remains a
+  separate gate; no Confirm, fixture, Send, Save or real drop is performed.
+
 ## 2026-10-03 - Prepared modal tranche applied to local preview
 
 - Commit/push and managed Moodle 5.1 promotion/cache are complete for canonical
