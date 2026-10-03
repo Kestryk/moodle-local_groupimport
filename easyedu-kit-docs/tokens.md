@@ -22,6 +22,8 @@ are the primary contract for Moodle theme overrides.
 - Brand: `--easyedu-primary`, `--easyedu-accent`.
 - Semantic state: success, danger, warning, info.
 - Object identity: participant, group, grouping.
+- Related-person identity: `--easyedu-related-person-name-color` keeps members
+  within an object card quieter than the owning card title.
 - Surface: page, card, panel, subtle backgrounds.
 - Border and focus: card borders, control borders, focus rings.
 - Radius and shadow.

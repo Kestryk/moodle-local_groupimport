@@ -292,6 +292,7 @@
   --easyedu-create-hover-border: #0c5699;
   --easyedu-card-identity-title-color: #264861;
   --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-color: #49657a;
   --easyedu-related-person-name-size: 0.8125rem;
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
@@ -5758,7 +5759,7 @@
   margin-right: 0.1rem;
 }
 .local-groupimport-easystud-member__name {
-  color: var(--easyedu-card-identity-title-color);
+  color: var(--easyedu-related-person-name-color);
   font-family: var(--easyedu-font-family-ui);
   font-size: var(--easyedu-related-person-name-size);
   font-weight: var(--easyedu-font-weight-semibold);
@@ -14165,6 +14166,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-create-hover-border: #0c5699;
   --easyedu-card-identity-title-color: #264861;
   --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-color: #49657a;
   --easyedu-related-person-name-size: 0.8125rem;
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;
@@ -15275,6 +15277,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-create-hover-border: #0c5699;
   --easyedu-card-identity-title-color: #264861;
   --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-color: #49657a;
   --easyedu-related-person-name-size: 0.8125rem;
   --easyedu-surface: #fff;
   --easyedu-surface-soft: #f7f9fc;

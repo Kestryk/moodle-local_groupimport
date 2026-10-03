@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-03 - Group member visual hierarchy
+
+- Give participant names nested inside Group cards a quieter shared colour role
+  than their owning card titles, without changing typography, geometry, actions
+  or disclosure Motion.
+
 ## 2026-10-03 - Restricted UI Kit distribution
 
 - Record the SCSS-only public Kit export contract while keeping internal agent,
