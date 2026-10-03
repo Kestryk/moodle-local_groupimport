@@ -1656,7 +1656,8 @@ const ensureGroupMemberSearchControls = (root, group) => {
     panel.hidden = true;
     panel.innerHTML =
         '<div class="local-groupimport-easystud-container-search__row">' +
-            '<label class="local-groupimport-easystud__search-field local-groupimport-easystud-container-search__field" aria-label="' +
+            '<label class="local-groupimport-easystud__search-field local-groupimport-easystud-container-search__field ' +
+                'easyedu-search-field" aria-label="' +
                 (labels.searchparticipantslabel || '') + '">' +
                 '<span class="fa fa-search" aria-hidden="true"></span>' +
                 '<input type="search" class="form-control" placeholder="' + (labels.searchparticipants || '') +
