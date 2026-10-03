@@ -51,7 +51,13 @@ accepted under EED-UI-2026-0073. They are not certified by earlier visual runs.
 | SM-16 | P1 / Kit-first | Lighter coherent Skeleton cues, soft entrance and continuous low-contrast shimmer, Foundation/Product publication then Kit/consumer proof. Keep structural frames static, readiness/fail-open unchanged and reduced-motion supported. |
 | SM-17 | P1 / Kit-first | Common More-filters hover/focus treatment on desktop/mobile, retaining the single contained filter block and original disclosure Motion. |
 
-Current tranche: SM-12 searchable destination primitive. SM-11 requires a
+SM-12 is served in managed local preview with nine native non-mutating cases
+passing; paired Foundations Standard/Library and eight EasyStud compositions
+are recorded in `docs/student-searchable-destinations-2026-10-03.md`. SM-13
+matched density/right-end footer passes in those nine cases. Human review stays
+open; this does not complete SM-11/14/15/16/17.
+
+Next tranche: SM-11 selected-member actions. SM-11 requires a
 separate membership transaction/API gate; inspection confirms removal exists
 but selected-member Move does not. SM-14 reuses the choice primitive after its
 single-choice gate. No actual move/remove/send is authorised by a visual audit.

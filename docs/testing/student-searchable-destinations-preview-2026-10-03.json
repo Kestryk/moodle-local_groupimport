@@ -1,0 +1,418 @@
+{
+  "runId": "easystud-authenticated-20261003T094813479Z-42564",
+  "status": "passed",
+  "selectedTests": 1,
+  "testExitCode": 0,
+  "runnerExitCode": 0,
+  "timedOut": false,
+  "startedAtUtc": "2026-10-03T09:48:13.5032208Z",
+  "finishedAtUtc": "2026-10-03T09:49:53.6985108Z",
+  "cleanup": {
+    "schemaVersion": 1,
+    "runId": "easystud-authenticated-20261003T094813479Z-42564",
+    "credentialsCleared": true,
+    "leaseAcquired": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureSetupCompleted": false,
+    "fixtureCleanupComplete": true,
+    "fixtureCleanupError": null,
+    "profileExternal": true
+  },
+  "runtimeCommit": "431dbfc48779cde111dbd6a535f55a7fcdbf05cb",
+  "cases": [
+    {
+      "viewport": 1600,
+      "branch": "participants",
+      "kind": "participants",
+      "originVisible": false,
+      "originChecked": false
+    },
+    {
+      "viewport": 1600,
+      "branch": "groups",
+      "kind": "groups",
+      "originVisible": false,
+      "originChecked": false
+    },
+    {
+      "viewport": 1600,
+      "branch": "groups-in-grouping",
+      "kind": "groups",
+      "originVisible": true,
+      "originChecked": false
+    },
+    {
+      "viewport": 768,
+      "branch": "participants",
+      "kind": "participants",
+      "originVisible": false,
+      "originChecked": false
+    },
+    {
+      "viewport": 768,
+      "branch": "groups",
+      "kind": "groups",
+      "originVisible": false,
+      "originChecked": false
+    },
+    {
+      "viewport": 768,
+      "branch": "groups-in-grouping",
+      "kind": "groups",
+      "originVisible": true,
+      "originChecked": false
+    },
+    {
+      "viewport": 390,
+      "branch": "participants",
+      "kind": "participants",
+      "originVisible": false,
+      "originChecked": false
+    },
+    {
+      "viewport": 390,
+      "branch": "groups",
+      "kind": "groups",
+      "originVisible": false,
+      "originChecked": false
+    },
+    {
+      "viewport": 390,
+      "branch": "groups-in-grouping",
+      "kind": "groups",
+      "originVisible": true,
+      "originChecked": false
+    }
+  ],
+  "footers": [
+    {
+      "viewport": 1600,
+      "branch": "participants",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 934.671875,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 1111.5,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 1600,
+      "branch": "groups",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 934.671875,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 1111.5,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 1600,
+      "branch": "groups-in-grouping",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 934.671875,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 1111.5,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 768,
+      "branch": "participants",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 518.671875,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 695.5,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 768,
+      "branch": "groups",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 518.671875,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 695.5,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 768,
+      "branch": "groups-in-grouping",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 518.671875,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 695.5,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 390,
+      "branch": "participants",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 170.78125,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 347.609375,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 390,
+      "branch": "groups",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 170.78125,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 347.609375,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    },
+    {
+      "viewport": 390,
+      "branch": "groups-in-grouping",
+      "footerPair": {
+        "buttons": [
+          {
+            "right": 170.78125,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "right": 347.609375,
+            "height": 37.59375,
+            "font": "14.08px",
+            "weight": "600",
+            "radius": "11.52px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      }
+    }
+  ],
+  "sourceCommit": "afccee267b6316c450142ca734a0c239b487c2c7",
+  "kitCommit": "3b56e419f82427a8d019a7e9bef6e801986a2266",
+  "assets": {
+    "css": "efa5065c8ddfbd69f3434313f7aef5628dd39c14",
+    "courseManager": "60cd1f58f2f43da83a96134bdeefd48c13c66b8e",
+    "choice": "e5760ec8329d707295f16eb55ad196a3f570a76d"
+  },
+  "sourceScenarioBlob": "4f977a85d9f33cd85d93c102f4663c3e6703c4ed",
+  "businessWrite": false,
+  "fixtureMutation": false,
+  "humanAccepted": false,
+  "scope": "Native open/search/select/Cancel only. Nine cases; never confirm Move or removal. Original business handler/template/AJAX/Motion unchanged."
+}

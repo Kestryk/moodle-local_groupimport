@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-03 - Searchable Move destination local preview
+
+- Serve the canonical Kit chooser after paired Foundations/EasyStud publication
+  and verified source snapshots. Nine native non-mutating responsive cases pass;
+  preserve memberships, native Move confirmation and original Motion.
+- Record corrected linked glyph paint, the immutable scenario/source/asset pins,
+  captures and lease/credential cleanup. Human checklist remains deferred.
+
 ## 2026-10-03 - Searchable Move destinations (source candidate)
 
 - Consume the canonical searchable-choice Kit recipe/controller for participant
