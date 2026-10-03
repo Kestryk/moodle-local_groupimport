@@ -8,7 +8,8 @@
     "studentMoreFilters20261003": {
       "sourceCommit": "7c4118166d1914df05aa8335e47bed786ebb2669",
       "consumerBehaviorBaseline": "d0083b54f07d7cd5324ae7cc8da978e14cd91f13",
-      "status": "Five Wide and five Touch Foundation pairs and sixteen product controls read back; source/isolated gates pass. Native preview pending, human acceptance false.",
+      "status": "Served local preview; quiet hover, focus and original open/close disclosure Motion pass at 1600/768/390. Human acceptance remains false.",
+      "currentPreviewProof": "docs/testing/student-more-filters-preview-2026-10-03.json",
       "foundationReadback": "docs/testing/student-more-filters-foundations-2026-10-03.json",
       "productReadback": "docs/testing/student-more-filters-product-2026-10-03.json",
       "documentation": "docs/student-more-filters-2026-10-03.md",
@@ -16,7 +17,7 @@
       "nativeScenario": "student-more-filters-preview.spec.js",
       "nativeScenarioBlob": "5a83b5a9096d136543e6873dc3ce97eaf036a320",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "modules": {
         "scss/easyedu/components/_forms.scss": "8477732168e30865e80eafd872ae07d23d83ac2e",
         "scss/easyedu/components/_responsive.scss": "3bda7230124e5c9627406aeba8bcfff16f68be71",

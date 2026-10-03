@@ -47,7 +47,17 @@ is local-supervised under the `easystud-filter-panel-geometry` family. It uses
 existing data, blocks business POST, opens/closes without modifying membership,
 and observes the original normal-motion transition, ARIA and inert states.
 Clean pushed preview/cache/saved-credentials lease is required before running.
-Native proof remains pending until a successor evidence record is written.
+Native source `21d8588` was applied by queue `20261003T125514Z-12c4f12f06`,
+runtime `785d2458`, with cache refresh. Run
+`easystud-authenticated-20261003T125612349Z-13384` passes at 1600/768/390:
+12.16px type, 6.72px gap, native 33.59375/44/44px heights, quiet hover,
+shared keyboard ring and both original transitional Motion phases. Final ARIA
+and inert states are correct. Six hover/expanded crops are inspected and pinned
+in its external manifest; retention dry-run has zero deletion candidates.
+Business POST and page errors are zero; no fixture is requested. Credentials,
+owned child and lease are cleaned. The successor record is
+`testing/student-more-filters-preview-2026-10-03.json`; it does not replace
+historical SM-14 proof or certify every filter/card state or human acceptance.
 
 ## Portable Platform-owner update
 

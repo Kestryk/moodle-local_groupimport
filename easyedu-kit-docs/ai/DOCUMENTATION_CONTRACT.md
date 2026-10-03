@@ -28,6 +28,12 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+More-filters native proof must record both normal-motion transitional phases,
+not only final visibility. Preserve shared Touch density and the single unified
+filter block; inherited labels and actual icon paint require settled readback.
+The 2026-10-03 SM-17 successor proves three-width hover/focus/open-close only,
+not all-role fixtures, reduced-motion browser paths or human acceptance.
+
 An entity-metadata extraction must retain hidden CSV tables, the full-summary
 focus target, legacy weights and original Motion/scroll/state ownership.
 Record exact compiled CSS identity separately from public-class adoption or

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-03 - More-filters local preview
+
+- Inspect and pin native hover/expanded captures at desktop, tablet and phone
+  widths. Shared type/gap/height, keyboard focus and original opening/closing
+  Motion pass; no business POST, fixture or page error. Cleanup is complete.
+- Record immutable source/runtime pins separately from human acceptance and
+  remaining whole-board toolbar, Skeleton and extra-role work.
+
 ## 2026-10-03 - More-filters shared hover and touch (source checkpoint)
 
 - Consume the canonical calm hover/regular border and shared legacy-mobile
