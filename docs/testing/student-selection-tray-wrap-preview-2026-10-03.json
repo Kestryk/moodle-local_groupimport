@@ -1,0 +1,2249 @@
+{
+  "run": "easystud-authenticated-20261003T171316885Z-47392",
+  "kitCommit": "69a93cf228e966a939c980ae0f0342ed820cfb2b",
+  "sourceCommit": "2bf5ba800b3a4769151a54f8d608218bdf4f9eb6",
+  "runtimeHead": "f4290a78c2fc6ef7ff3d561afdbc98f13b1166c1",
+  "specBlob": "888b8a6098c9bc5e73ada8cd114ae5465ee7d036",
+  "humanAccepted": false,
+  "nativeTransferVerified": false,
+  "cleanup": {
+    "schemaVersion": 1,
+    "runId": "easystud-authenticated-20261003T171316885Z-47392",
+    "credentialsCleared": true,
+    "leaseAcquired": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureSetupCompleted": false,
+    "fixtureCleanupComplete": true,
+    "fixtureCleanupError": null,
+    "profileExternal": true
+  },
+  "native": {
+    "records": [
+      {
+        "width": 390,
+        "type": "participant",
+        "view": "participants",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 44.390625,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 62.453125,
+              "y": 1007.625,
+              "width": 99.0625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 62.453125,
+                "y": 1006.625,
+                "width": 99.0625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 203.875,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 221.9375,
+              "y": 1007.625,
+              "width": 118.25,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 221.9375,
+                "y": 1006.625,
+                "width": 118.25,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 133.3125,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 151.375,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 151.375,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 331.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "participant",
+        "view": "participants",
+        "count": 2,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "2 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 44.390625,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 62.453125,
+              "y": 1007.625,
+              "width": 99.0625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 62.453125,
+                "y": 1006.625,
+                "width": 99.0625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 203.875,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 221.9375,
+              "y": 1007.625,
+              "width": 118.25,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 221.9375,
+                "y": 1006.625,
+                "width": 118.25,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 133.3125,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 151.375,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 151.375,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 331.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "member",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-members]",
+            "text": "Move member(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 42.609375,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 60.671875,
+              "y": 1007.625,
+              "width": 102.640625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 60.671875,
+                "y": 1006.625,
+                "width": 102.640625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-members]",
+            "text": "Remove member(s)",
+            "icon": "fa fa-user-minus",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 204.140625,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 222.203125,
+              "y": 1007.625,
+              "width": 117.734375,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 222.203125,
+                "y": 1006.625,
+                "width": 117.734375,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 44.390625,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 62.453125,
+              "y": 1051.9375,
+              "width": 99.0625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 62.453125,
+                "y": 1050.9375,
+                "width": 99.0625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 217.859375,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 235.921875,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 235.921875,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 49.828125,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 67.890625,
+              "y": 1007.625,
+              "width": 88.1875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 67.890625,
+                "y": 1006.625,
+                "width": 88.1875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 216.234375,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 234.296875,
+              "y": 1007.625,
+              "width": 93.53125,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 234.296875,
+                "y": 1006.625,
+                "width": 93.53125,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 133.3125,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 151.375,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 151.375,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 331.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "requireMembership": true,
+        "detailsSourceExists": false,
+        "groupHasMembership": true,
+        "frame": {
+          "x": 11.515625,
+          "y": 958.4375,
+          "width": 351.96875,
+          "height": 130.046875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 968.703125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 49.828125,
+              "y": 1008.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 67.890625,
+              "y": 1006.9375,
+              "width": 88.1875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 67.890625,
+                "y": 1005.9375,
+                "width": 88.1875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 994.9375,
+              "width": 162.359375,
+              "height": 38.96875
+            }
+          },
+          {
+            "selector": "[data-easystud-remove-selected-groups-from-groupings]",
+            "text": "Remove from groupings",
+            "icon": "fa fa-unlink",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 199.859375,
+              "y": 1008.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 217.921875,
+              "y": 999.453125,
+              "width": 126.296875,
+              "height": 29.9375
+            },
+            "lines": [
+              {
+                "x": 241.09375,
+                "y": 998.453125,
+                "width": 79.953125,
+                "height": 15
+              },
+              {
+                "x": 250.515625,
+                "y": 1013.421875,
+                "width": 61.09375,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 994.9375,
+              "width": 162.359375,
+              "height": 38.96875
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 47.15625,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 65.21875,
+              "y": 1051.9375,
+              "width": 93.53125,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 65.21875,
+                "y": 1050.9375,
+                "width": 93.53125,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 217.859375,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 235.921875,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 235.921875,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "grouping",
+        "view": "groupings",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 1004.125,
+          "width": 351.96875,
+          "height": 84.359375
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 1014.390625,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-delete-selected-groupings]",
+            "text": "Delete grouping(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 37.796875,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 55.859375,
+              "y": 1051.9375,
+              "width": 112.25,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 55.859375,
+                "y": 1050.9375,
+                "width": 112.25,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 217.859375,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 235.921875,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 235.921875,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 190.859375,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "participant",
+        "view": "participants",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 138.890625,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 156.953125,
+              "y": 1007.625,
+              "width": 99.0625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 156.953125,
+                "y": 1006.625,
+                "width": 99.0625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 487.375,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 505.4375,
+              "y": 1007.625,
+              "width": 118.25,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 505.4375,
+                "y": 1006.625,
+                "width": 118.25,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 322.3125,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 340.375,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 340.375,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 709.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "participant",
+        "view": "participants",
+        "count": 2,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "2 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 138.890625,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 156.953125,
+              "y": 1007.625,
+              "width": 99.0625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 156.953125,
+                "y": 1006.625,
+                "width": 99.0625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 487.375,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 505.4375,
+              "y": 1007.625,
+              "width": 118.25,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 505.4375,
+                "y": 1006.625,
+                "width": 118.25,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 322.3125,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 340.375,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 340.375,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 709.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "member",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-members]",
+            "text": "Move member(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 137.109375,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 155.171875,
+              "y": 1007.625,
+              "width": 102.640625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 155.171875,
+                "y": 1006.625,
+                "width": 102.640625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-members]",
+            "text": "Remove member(s)",
+            "icon": "fa fa-user-minus",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 487.640625,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 505.703125,
+              "y": 1007.625,
+              "width": 117.734375,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 505.703125,
+                "y": 1006.625,
+                "width": 117.734375,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 138.890625,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 156.953125,
+              "y": 1051.9375,
+              "width": 99.0625,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 156.953125,
+                "y": 1050.9375,
+                "width": 99.0625,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 501.359375,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 519.421875,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 519.421875,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 144.328125,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 162.390625,
+              "y": 1007.625,
+              "width": 88.1875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 162.390625,
+                "y": 1006.625,
+                "width": 88.1875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 499.734375,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 517.796875,
+              "y": 1007.625,
+              "width": 93.53125,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 517.796875,
+                "y": 1006.625,
+                "width": 93.53125,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 322.3125,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 340.375,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 340.375,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 709.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "requireMembership": true,
+        "detailsSourceExists": false,
+        "groupHasMembership": true,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 144.328125,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 162.390625,
+              "y": 1007.625,
+              "width": 88.1875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 162.390625,
+                "y": 1006.625,
+                "width": 88.1875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-remove-selected-groups-from-groupings]",
+            "text": "Remove from groupings",
+            "icon": "fa fa-unlink",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 474.40625,
+              "y": 1008.859375,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 492.46875,
+              "y": 1007.625,
+              "width": 144.1875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 492.46875,
+                "y": 1006.625,
+                "width": 144.1875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 141.65625,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 159.71875,
+              "y": 1051.9375,
+              "width": 93.53125,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 159.71875,
+                "y": 1050.9375,
+                "width": 93.53125,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 501.359375,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 519.421875,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 519.421875,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "grouping",
+        "view": "groupings",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 1004.125,
+          "width": 729.96875,
+          "height": 84.359375
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 1014.390625,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-delete-selected-groupings]",
+            "text": "Delete grouping(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 132.296875,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 150.359375,
+              "y": 1051.9375,
+              "width": 112.25,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 150.359375,
+                "y": 1050.9375,
+                "width": 112.25,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "whiteSpace": "normal",
+            "padding": [
+              3.52,
+              8,
+              3.52,
+              8
+            ],
+            "border": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "lineHeight": 14.976,
+            "iconRect": {
+              "x": 501.359375,
+              "y": 1053.171875,
+              "width": 12.46875,
+              "height": 12.484375
+            },
+            "labelRect": {
+              "x": 519.421875,
+              "y": 1051.9375,
+              "width": 90.296875,
+              "height": 14.96875
+            },
+            "lines": [
+              {
+                "x": 519.421875,
+                "y": 1050.9375,
+                "width": 90.296875,
+                "height": 15
+              }
+            ],
+            "rect": {
+              "x": 379.859375,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      }
+    ],
+    "blocked": []
+  }
+}

@@ -1,0 +1,729 @@
+{
+  "kitVersion": "0.4.65",
+  "kitCommit": "69a93cf228e966a939c980ae0f0342ed820cfb2b",
+  "sourceCommit": "2bf5ba800b3a4769151a54f8d608218bdf4f9eb6",
+  "runtimeHead": "f4290a78c2fc6ef7ff3d561afdbc98f13b1166c1",
+  "specBlob": "623ab97be2f8f5dcd8226fc3c98d76d2cd9cdfd1",
+  "run": "easystud-authenticated-20261003T171633397Z-49108",
+  "humanAccepted": false,
+  "nativeTransferVerified": false,
+  "cleanupVerified": true,
+  "native": {
+    "records": [
+      {
+        "width": 1600,
+        "entry": "toolbar",
+        "toolbar": [
+          {
+            "text": "Delete group(s)",
+            "x": 92,
+            "y": 958.234375,
+            "w": 129.59375,
+            "h": 30.390625,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": true
+          },
+          {
+            "text": "Delete grouping(s)",
+            "x": 229.59375,
+            "y": 958.234375,
+            "w": 148.3125,
+            "h": 30.390625,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": true
+          },
+          {
+            "text": "Move member(s)",
+            "x": 385.90625,
+            "y": 958.234375,
+            "w": 138.703125,
+            "h": 30.390625,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Remove member(s)",
+            "x": 532.609375,
+            "y": 958.234375,
+            "w": 153.796875,
+            "h": 30.390625,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Move group(s)",
+            "x": 694.40625,
+            "y": 958.234375,
+            "w": 124.25,
+            "h": 30.390625,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": true
+          },
+          {
+            "text": "Remove from groupings",
+            "x": 826.65625,
+            "y": 958.234375,
+            "w": 180.25,
+            "h": 30.390625,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": true
+          },
+          {
+            "text": "",
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "font": "13.125px",
+            "gap": "normal",
+            "disabled": false
+          }
+        ]
+      },
+      {
+        "width": 1600,
+        "styleProof": [
+          {
+            "text": "Delete group(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(247, 249, 252)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "0.62",
+            "gap": "5.6px",
+            "height": 30.390625,
+            "textCentreDelta": -0.9921875,
+            "glyphCentreDelta": 0,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Delete grouping(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(247, 249, 252)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "0.62",
+            "gap": "5.6px",
+            "height": 30.390625,
+            "textCentreDelta": -0.9921875,
+            "glyphCentreDelta": 0,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Move member(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(15, 108, 191)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 30.390625,
+            "textCentreDelta": -0.9921875,
+            "glyphCentreDelta": 0,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Remove member(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(161, 43, 43)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 30.390625,
+            "textCentreDelta": -0.9921875,
+            "glyphCentreDelta": 0,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Move group(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(247, 249, 252)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "0.62",
+            "gap": "5.6px",
+            "height": 30.390625,
+            "textCentreDelta": -0.9921875,
+            "glyphCentreDelta": 0,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Remove from groupings",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(247, 249, 252)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "0.62",
+            "gap": "5.6px",
+            "height": 30.390625,
+            "textCentreDelta": -0.9921875,
+            "glyphCentreDelta": 0,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          }
+        ]
+      },
+      {
+        "width": 1600,
+        "entry": "toolbar",
+        "identity": {
+          "user": "2",
+          "group": "356"
+        },
+        "options": 36,
+        "pair": {
+          "buttons": [
+            {
+              "height": 37.59375,
+              "right": 934.671875,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            },
+            {
+              "height": 37.59375,
+              "right": 1111.5,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            }
+          ],
+          "rightDelta": 0
+        },
+        "groupRowKept": true
+      },
+      {
+        "width": 1600,
+        "entry": "context",
+        "identity": {
+          "user": "2",
+          "group": "356"
+        },
+        "options": 36,
+        "pair": {
+          "buttons": [
+            {
+              "height": 37.59375,
+              "right": 934.671875,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            },
+            {
+              "height": 37.59375,
+              "right": 1111.5,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            }
+          ],
+          "rightDelta": 0
+        },
+        "groupRowKept": true
+      },
+      {
+        "width": 768,
+        "entry": "toolbar",
+        "toolbar": [
+          {
+            "text": "Move member(s)",
+            "x": 21.78125,
+            "y": 996.3125,
+            "w": 351.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Remove member(s)",
+            "x": 379.859375,
+            "y": 996.3125,
+            "w": 351.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Send a message",
+            "x": 21.78125,
+            "y": 1040.625,
+            "w": 351.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Clear selection",
+            "x": 379.859375,
+            "y": 1040.625,
+            "w": 351.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "styleProof": [
+          {
+            "text": "Move member(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(15, 108, 191)",
+            "color": "rgb(255, 255, 255)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Remove member(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(161, 43, 43)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Send a message",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Clear selection",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "entry": "toolbar",
+        "identity": {
+          "user": "2",
+          "group": "356"
+        },
+        "options": 36,
+        "pair": {
+          "buttons": [
+            {
+              "height": 37.59375,
+              "right": 518.671875,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            },
+            {
+              "height": 37.59375,
+              "right": 695.5,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            }
+          ],
+          "rightDelta": 0
+        },
+        "groupRowKept": true
+      },
+      {
+        "width": 768,
+        "entry": "context",
+        "identity": {
+          "user": "2",
+          "group": "356"
+        },
+        "options": 36,
+        "pair": {
+          "buttons": [
+            {
+              "height": 37.59375,
+              "right": 518.671875,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            },
+            {
+              "height": 37.59375,
+              "right": 695.5,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            }
+          ],
+          "rightDelta": 0
+        },
+        "groupRowKept": true
+      },
+      {
+        "width": 390,
+        "entry": "toolbar",
+        "toolbar": [
+          {
+            "text": "Move member(s)",
+            "x": 21.78125,
+            "y": 996.3125,
+            "w": 162.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Remove member(s)",
+            "x": 190.859375,
+            "y": 996.3125,
+            "w": 162.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Send a message",
+            "x": 21.78125,
+            "y": 1040.625,
+            "w": 162.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          },
+          {
+            "text": "Clear selection",
+            "x": 190.859375,
+            "y": 1040.625,
+            "w": 162.359375,
+            "h": 37.59375,
+            "font": "12.48px",
+            "gap": "5.6px",
+            "disabled": false
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "styleProof": [
+          {
+            "text": "Move member(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(15, 108, 191)",
+            "color": "rgb(255, 255, 255)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Remove member(s)",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(161, 43, 43)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Send a message",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          },
+          {
+            "text": "Clear selection",
+            "font": "\"EasyEdu Inter\", Inter, sans-serif",
+            "size": "12.48px",
+            "weight": "600",
+            "radius": "11.52px",
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(92, 108, 125)",
+            "opacity": "1",
+            "gap": "5.6px",
+            "height": 37.59375,
+            "textCentreDelta": -0.984375,
+            "glyphCentreDelta": -0.0078125,
+            "palette": {
+              "surface": "#fff",
+              "disabled": "#f7f9fc"
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "entry": "toolbar",
+        "identity": {
+          "user": "2",
+          "group": "356"
+        },
+        "options": 36,
+        "pair": {
+          "buttons": [
+            {
+              "height": 37.59375,
+              "right": 170.78125,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            },
+            {
+              "height": 37.59375,
+              "right": 347.609375,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            }
+          ],
+          "rightDelta": 0
+        },
+        "groupRowKept": true
+      },
+      {
+        "width": 390,
+        "entry": "context",
+        "identity": {
+          "user": "2",
+          "group": "356"
+        },
+        "options": 36,
+        "pair": {
+          "buttons": [
+            {
+              "height": 37.59375,
+              "right": 170.78125,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            },
+            {
+              "height": 37.59375,
+              "right": 347.609375,
+              "font": "14.08px",
+              "padding": [
+                "8px",
+                "16px",
+                "8px",
+                "16px"
+              ]
+            }
+          ],
+          "rightDelta": 0
+        },
+        "groupRowKept": true
+      }
+    ],
+    "blocked": [],
+    "phases": [
+      {
+        "width": 1600,
+        "entry": "toolbar",
+        "startedAtUtc": "2026-10-03T17:16:35.478Z",
+        "state": "completed",
+        "navigationMs": 16278,
+        "readyMs": 17354,
+        "completedMs": 19840
+      },
+      {
+        "width": 1600,
+        "entry": "context",
+        "startedAtUtc": "2026-10-03T17:16:55.319Z",
+        "state": "completed",
+        "navigationMs": 3429,
+        "readyMs": 5020,
+        "completedMs": 6619
+      },
+      {
+        "width": 768,
+        "entry": "toolbar",
+        "startedAtUtc": "2026-10-03T17:17:01.940Z",
+        "state": "completed",
+        "navigationMs": 3489,
+        "readyMs": 5111,
+        "completedMs": 7175
+      },
+      {
+        "width": 768,
+        "entry": "context",
+        "startedAtUtc": "2026-10-03T17:17:09.116Z",
+        "state": "completed",
+        "navigationMs": 3241,
+        "readyMs": 4835,
+        "completedMs": 6488
+      },
+      {
+        "width": 390,
+        "entry": "toolbar",
+        "startedAtUtc": "2026-10-03T17:17:15.606Z",
+        "state": "completed",
+        "navigationMs": 3776,
+        "readyMs": 5461,
+        "completedMs": 7683
+      },
+      {
+        "width": 390,
+        "entry": "context",
+        "startedAtUtc": "2026-10-03T17:17:23.291Z",
+        "state": "completed",
+        "navigationMs": 3866,
+        "readyMs": 5489,
+        "completedMs": 7170
+      }
+    ]
+  }
+}

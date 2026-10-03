@@ -53,7 +53,21 @@ paint bounds inside horizontal padding, explicit icon/text gap and centres,
 and row height calculated from actual wrapped lines. Invoke through the
 saved-credential runner, exactly-one-test discovery, bounded watchdog and
 `-WaitForLease`; never edit the loaded candidate until the child exits.
-Native successor is pending until its served assets, run and cleanup exist.
+Served source `2bf5ba8` at clean runtime `f4290a7`, with managed cache
+refresh. Run `easystud-authenticated-20261003T171316885Z-47392` passes all
+twelve routing/painted-padding cases in 54.3s. Short actions remain 37.59375px;
+the phone's long-label row is 38.96875px and its frame 130.046875px. Both
+first-row neighbours stretch, text wraps, and icon/label fit inside padding.
+No business POST, fixture or data change; credential/child/lease cleanup passes.
+Immutable successor: `testing/student-selection-tray-wrap-preview-2026-10-03.json`.
+
+Member toolbar/context regression
+`easystud-authenticated-20261003T171633397Z-49108` also passes all six
+1600/768/390 open/search/Cancel cases, semantic paint and matching footers.
+Proof: `testing/student-selection-tray-wrap-member-preview-2026-10-03.json`.
+The first regression discovery used the wrong test title and stopped before
+credential/runtime acquisition; the corrected exact title discovers one test.
+This is not a product failure or an actual transfer proof.
 
 ## Foundations and product propagation
 
@@ -75,8 +89,38 @@ stubs are hidden recoverably, not deleted. Providers/IDs and paint readback:
 This initial containment/centre readback needs the same long-label padding
 successor; it is not complete long-label or whole-viewport acceptance.
 
+The successor is now published in both pages: long-label hosts
+`37222e98-689a-801a-8008-bbf64a1d8a95` (Library) and
+`37222e98-689a-801a-8008-bbf658f4f74b` (Standard), with phone/tablet ordinary
+instances of the same shared whole-tray provider. Two recursive fingerprints
+match; sixteen actions pass padding, typography, wrapped row-height and painted
+centring checks. The reference phone long-label row is 38.992px, frame130.112px;
+rounding differs from native fractional layout, not from the source formula.
+The sixteen controls are ordinary usage, not sixteen new Library masters.
+`testing/student-selection-tray-wrap-foundations-2026-10-03.json`.
+
+All forty-six controls across the fourteen current product trays also pass
+padding/centres. The two narrow grouped-group examples wrap the long label and
+stretch their first row; tablet labels remain on one line.
+`testing/student-selection-tray-wrap-product-2026-10-03.json`.
+Standard and product controls were privately inspected in captures; the
+floating editor toolbar obscures part of the product heading, so that capture
+is not a complete heading/whole-view visual proof.
+
 Private media is manifested below EasyEdu/artifacts, never in Git. Inspect
 captures privately; the user does not need intermediate capture approval.
-Global human checklist stays unchecked. Remaining gates: flexible long-label
-paired/product publication, native painted fit, whole-view sticky positioning,
+Global human checklist stays unchecked. Remaining gates: whole-view sticky positioning,
 translated/all-state coverage, isolated real transfer proof and human review.
+
+## Iteration-cost / durable method
+
+Use the actual API `File.saveVersion`, current Sass mixin and exact discovered
+test title, not guessed names. Repeated Sass selector blocks must be evaluated
+in source order; the independent recipe's final block contains the tray
+minimum/wrapping. Wake the owned editor immediately before each MCP batch.
+Library label overrides may still paint old text: use a positive measured
+reference width, re-read after settling, never resize from stale short bounds.
+Moving a button also moves children; set final child coordinates explicitly
+instead of applying the same delta twice. Use `zoomIntoView` for complete
+board capture, then register/pin media and inspect a dry-run only.
+No reliable token telemetry is exposed; no numeric saving is claimed.

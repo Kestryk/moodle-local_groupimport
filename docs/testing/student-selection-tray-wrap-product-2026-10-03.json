@@ -1,0 +1,1257 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "board": "37222e98-689a-801a-8008-bbed2afcc015",
+  "trays": [
+    {
+      "id": "37222e98-689a-801a-8008-bbed2f6745d7",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed2f681354",
+          "label": "37222e98-689a-801a-8008-bbed30624896",
+          "icon": "37222e98-689a-801a-8008-bbed3062d385",
+          "text": "Send a message",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed2f6aa2e4",
+          "label": "37222e98-689a-801a-8008-bbed31ebc83e",
+          "icon": "37222e98-689a-801a-8008-bbed31ec01b6",
+          "text": "Move participant(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed2f6e7cb2",
+          "label": "37222e98-689a-801a-8008-bbed2f6e86d0",
+          "icon": "37222e98-689a-801a-8008-bbed2f6eed7e",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed2f70b034",
+          "hidden": true
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed3824fdef",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed38251b22",
+          "label": "37222e98-689a-801a-8008-bbed38251b23",
+          "icon": "37222e98-689a-801a-8008-bbed38251b24",
+          "text": "Move member(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed3825701a",
+          "label": "37222e98-689a-801a-8008-bbed3825701b",
+          "icon": "37222e98-689a-801a-8008-bbed3825701c",
+          "text": "Remove member(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed3825fea5",
+          "label": "37222e98-689a-801a-8008-bbed3825fea6",
+          "icon": "37222e98-689a-801a-8008-bbed3825fea7",
+          "text": "Send a message",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed38260141",
+          "label": "37222e98-689a-801a-8008-bbed38260142",
+          "icon": "37222e98-689a-801a-8008-bbed38265869",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed408dbe13",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed408df800",
+          "label": "37222e98-689a-801a-8008-bbed408df801",
+          "icon": "37222e98-689a-801a-8008-bbed408df802",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed408e5b04",
+          "label": "37222e98-689a-801a-8008-bbed408e5b05",
+          "icon": "37222e98-689a-801a-8008-bbed408e5b06",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed408eabad",
+          "label": "37222e98-689a-801a-8008-bbed408eabae",
+          "icon": "37222e98-689a-801a-8008-bbed408eabaf",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed408f0c64",
+          "hidden": true
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed4832a824",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed4832a826",
+          "label": "37222e98-689a-801a-8008-bbed4832a827",
+          "icon": "37222e98-689a-801a-8008-bbed4832a828",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed4832cf31",
+          "label": "37222e98-689a-801a-8008-bbed4b3495e2",
+          "icon": "37222e98-689a-801a-8008-bbed4b3495e3",
+          "text": "Remove from groupings",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed48332794",
+          "label": "37222e98-689a-801a-8008-bbed4d5a9f51",
+          "icon": "37222e98-689a-801a-8008-bbed4d5ae85c",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed48334a64",
+          "label": "37222e98-689a-801a-8008-bbed48334a65",
+          "icon": "37222e98-689a-801a-8008-bbed48334a66",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed595dfa6e",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed595dfa70",
+          "label": "37222e98-689a-801a-8008-bbed5a552fc7",
+          "icon": "37222e98-689a-801a-8008-bbed5a552fc8",
+          "text": "Delete grouping(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed595e234e",
+          "label": "37222e98-689a-801a-8008-bbed5ba4c7ca",
+          "icon": "37222e98-689a-801a-8008-bbed5ba4c7cb",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed595e52a5",
+          "hidden": true
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed595e52ad",
+          "hidden": true
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed63430e8b",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed63430e8d",
+          "label": "37222e98-689a-801a-8008-bbed647cce49",
+          "icon": "37222e98-689a-801a-8008-bbed647cce4a",
+          "text": "Send a message",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed6343ca3f",
+          "label": "37222e98-689a-801a-8008-bbed65f6c5d4",
+          "icon": "37222e98-689a-801a-8008-bbed65f6c5d5",
+          "text": "Move participant(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed63443a65",
+          "label": "37222e98-689a-801a-8008-bbed63443a66",
+          "icon": "37222e98-689a-801a-8008-bbed634445fd",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed6344969a",
+          "hidden": true
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed6bdc238c",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed6bdc238e",
+          "label": "37222e98-689a-801a-8008-bbed6bdc238f",
+          "icon": "37222e98-689a-801a-8008-bbed6bdc2390",
+          "text": "Move member(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed6bdc5aa7",
+          "label": "37222e98-689a-801a-8008-bbed6bdc5aa8",
+          "icon": "37222e98-689a-801a-8008-bbed6bdc5aa9",
+          "text": "Remove member(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed6bdca548",
+          "label": "37222e98-689a-801a-8008-bbed6bdca549",
+          "icon": "37222e98-689a-801a-8008-bbed6bdca54a",
+          "text": "Send a message",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed6bdcfa59",
+          "label": "37222e98-689a-801a-8008-bbed6bdcfa5a",
+          "icon": "37222e98-689a-801a-8008-bbed6bdcfa5b",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed741a1fc0",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed741a1fc2",
+          "label": "37222e98-689a-801a-8008-bbed741a1fc3",
+          "icon": "37222e98-689a-801a-8008-bbed741a1fc4",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed741a6b1d",
+          "label": "37222e98-689a-801a-8008-bbed741a6b1e",
+          "icon": "37222e98-689a-801a-8008-bbed741a6b1f",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed741a9aff",
+          "label": "37222e98-689a-801a-8008-bbed741a9b00",
+          "icon": "37222e98-689a-801a-8008-bbed741a9b01",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed741aeb11",
+          "hidden": true
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed7b241963",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed7b241965",
+          "label": "37222e98-689a-801a-8008-bbed7b241966",
+          "icon": "37222e98-689a-801a-8008-bbed7b241967",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed7b248fce",
+          "label": "37222e98-689a-801a-8008-bbed7cf9541d",
+          "icon": "37222e98-689a-801a-8008-bbed7cf9a3e4",
+          "text": "Remove from groupings",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed7b24efe8",
+          "label": "37222e98-689a-801a-8008-bbed7e78c9db",
+          "icon": "37222e98-689a-801a-8008-bbed7e793be6",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed7b255f6d",
+          "label": "37222e98-689a-801a-8008-bbed7b255f6e",
+          "icon": "37222e98-689a-801a-8008-bbed7b255f6f",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbed841cd75d",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbed841cd75f",
+          "label": "37222e98-689a-801a-8008-bbed851a03f7",
+          "icon": "37222e98-689a-801a-8008-bbed851a4758",
+          "text": "Delete grouping(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed841d3686",
+          "label": "37222e98-689a-801a-8008-bbed867d08e2",
+          "icon": "37222e98-689a-801a-8008-bbed867d5b50",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed841d5a56",
+          "hidden": true
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbed841d9422",
+          "hidden": true
+        }
+      ],
+      "count": 2
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbedd4321b23",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbedd4321b25",
+          "label": "37222e98-689a-801a-8008-bbedd551bf69",
+          "icon": "37222e98-689a-801a-8008-bbedd551bf6a",
+          "text": "Send a message",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbedd4327389",
+          "label": "37222e98-689a-801a-8008-bbedd6d127c2",
+          "icon": "37222e98-689a-801a-8008-bbedd6d14840",
+          "text": "Move participant(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbedd432b58e",
+          "label": "37222e98-689a-801a-8008-bbedd432b58f",
+          "icon": "37222e98-689a-801a-8008-bbedd432b590",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbedd432cdd8",
+          "hidden": true
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbeddcd41ac2",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbeddcd41ac4",
+          "label": "37222e98-689a-801a-8008-bbedddeeb5c0",
+          "icon": "37222e98-689a-801a-8008-bbedddeeb5c1",
+          "text": "Send a message",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbeddcd44ead",
+          "label": "37222e98-689a-801a-8008-bbeddf6d51e8",
+          "icon": "37222e98-689a-801a-8008-bbeddf6db792",
+          "text": "Move participant(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbeddcd4fa41",
+          "label": "37222e98-689a-801a-8008-bbeddcd4fa42",
+          "icon": "37222e98-689a-801a-8008-bbeddcd4fa43",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbeddcd4fa49",
+          "hidden": true
+        }
+      ],
+      "count": 3
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7043cf5a5",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "count": 2,
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbd7043d994c",
+          "label": "37222e98-689a-801a-8008-bbd7043d994d",
+          "icon": "37222e98-689a-801a-8008-bbd7043dd877",
+          "text": "Move member(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbd7043eef7f",
+          "label": "37222e98-689a-801a-8008-bbd7043f06c6",
+          "icon": "37222e98-689a-801a-8008-bbd7043f5679",
+          "text": "Remove member(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbd704405b12",
+          "label": "37222e98-689a-801a-8008-bbd704405b13",
+          "icon": "37222e98-689a-801a-8008-bbd704408b0e",
+          "text": "Send a message",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbd70442413f",
+          "label": "37222e98-689a-801a-8008-bbd70442fdd8",
+          "icon": "37222e98-689a-801a-8008-bbd704432532",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbedebd9955c",
+      "provider": "37222e98-689a-801a-8008-bbd427f72e42",
+      "commands": [
+        {
+          "button": "37222e98-689a-801a-8008-bbedebd9eeb2",
+          "label": "37222e98-689a-801a-8008-bbedebd9eeb3",
+          "icon": "37222e98-689a-801a-8008-bbedebd9eeb4",
+          "text": "Move group(s)",
+          "role": "Primary solid",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbedebda078e",
+          "label": "37222e98-689a-801a-8008-bbededc8580e",
+          "icon": "37222e98-689a-801a-8008-bbededc8580f",
+          "text": "Remove from groupings",
+          "role": "Neutral outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbedebda790b",
+          "label": "37222e98-689a-801a-8008-bbedef27d4de",
+          "icon": "37222e98-689a-801a-8008-bbedef27d4df",
+          "text": "Delete group(s)",
+          "role": "Danger outline",
+          "hidden": false
+        },
+        {
+          "button": "37222e98-689a-801a-8008-bbedebda8f16",
+          "label": "37222e98-689a-801a-8008-bbedebda8f17",
+          "icon": "37222e98-689a-801a-8008-bbedebda8f18",
+          "text": "Clear selection",
+          "role": "Neutral outline",
+          "hidden": false
+        }
+      ],
+      "count": 2
+    }
+  ],
+  "controls": [
+    {
+      "tray": "37222e98-689a-801a-8008-bbed2f6745d7",
+      "button": "37222e98-689a-801a-8008-bbed2f681354",
+      "text": "Send a message",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 22.598749999999995,
+      "labelRight": 22.598749999999995,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -2.7284841053187847e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed2f6745d7",
+      "button": "37222e98-689a-801a-8008-bbed2f6aa2e4",
+      "text": "Move participant(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 13.004999999999939,
+      "labelRight": 13.004999999999995,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -2.7284841053187847e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed2f6745d7",
+      "button": "37222e98-689a-801a-8008-bbed2f6e7cb2",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 111.51625076293945,
+      "labelRight": 111.51625076293942,
+      "frameGap": 5.599999999999994,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed3824fdef",
+      "button": "37222e98-689a-801a-8008-bbed38251b22",
+      "text": "Move member(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 20.804999237060542,
+      "labelRight": 20.804999237060542,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed3824fdef",
+      "button": "37222e98-689a-801a-8008-bbed3825701a",
+      "text": "Remove member(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 13.267500762939505,
+      "labelRight": 13.267500762939562,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed3824fdef",
+      "button": "37222e98-689a-801a-8008-bbed3825fea5",
+      "text": "Send a message",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 22.598749999999995,
+      "labelRight": 22.598749999999995,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed3824fdef",
+      "button": "37222e98-689a-801a-8008-bbed38260141",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 26.986250762939505,
+      "labelRight": 26.986250762939562,
+      "frameGap": 5.60000000000008,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed408dbe13",
+      "button": "37222e98-689a-801a-8008-bbed408df800",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 28.036249999999995,
+      "labelRight": 28.036249999999995,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed408dbe13",
+      "button": "37222e98-689a-801a-8008-bbed408e5b04",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 25.361250762939505,
+      "labelRight": 25.361250762939562,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed408dbe13",
+      "button": "37222e98-689a-801a-8008-bbed408eabad",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 111.51625076293945,
+      "labelRight": 111.51625076293942,
+      "frameGap": 5.599999999999994,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed4832a824",
+      "button": "37222e98-689a-801a-8008-bbed4832a826",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": false,
+      "iconLeft": 28.036249999999995,
+      "labelRight": 28.036249999999995,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": 0.004000476837063616,
+      "iconCentreDelta": -9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed4832a824",
+      "button": "37222e98-689a-801a-8008-bbed4832cf31",
+      "text": "Remove from groupings",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": true,
+      "iconLeft": 9,
+      "labelRight": 30.58499313354497,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": 0.005249988079413015,
+      "iconCentreDelta": -9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed4832a824",
+      "button": "37222e98-689a-801a-8008-bbed48332794",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 25.36125076293945,
+      "labelRight": 25.36125076293945,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed4832a824",
+      "button": "37222e98-689a-801a-8008-bbed48334a64",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 26.986250762939505,
+      "labelRight": 26.986250762939562,
+      "frameGap": 5.60000000000008,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed595dfa6e",
+      "button": "37222e98-689a-801a-8008-bbed595dfa70",
+      "text": "Delete grouping(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999998545,
+      "wrapped": false,
+      "iconLeft": 16.01124847412109,
+      "labelRight": 16.01124847412109,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.861015673261136e-7,
+      "iconCentreDelta": -1.8189894035458565e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed595dfa6e",
+      "button": "37222e98-689a-801a-8008-bbed595e234e",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999998545,
+      "wrapped": false,
+      "iconLeft": 26.98625076293945,
+      "labelRight": 26.98625076293939,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.861015673261136e-7,
+      "iconCentreDelta": -1.8189894035458565e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed63430e8b",
+      "button": "37222e98-689a-801a-8008-bbed63430e8d",
+      "text": "Send a message",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 117.09875,
+      "labelRight": 117.09875000000011,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -2.7284841053187847e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed63430e8b",
+      "button": "37222e98-689a-801a-8008-bbed6343ca3f",
+      "text": "Move participant(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 107.50500000000011,
+      "labelRight": 107.50500000000011,
+      "frameGap": 5.599999999999909,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -2.7284841053187847e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed63430e8b",
+      "button": "37222e98-689a-801a-8008-bbed63443a65",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 300.51625076293953,
+      "labelRight": 300.5162507629394,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed6bdc238c",
+      "button": "37222e98-689a-801a-8008-bbed6bdc238e",
+      "text": "Move member(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 115.30499923706054,
+      "labelRight": 115.30499923706031,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed6bdc238c",
+      "button": "37222e98-689a-801a-8008-bbed6bdc5aa7",
+      "text": "Remove member(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 107.76750076293933,
+      "labelRight": 107.76750076293933,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed6bdc238c",
+      "button": "37222e98-689a-801a-8008-bbed6bdca548",
+      "text": "Send a message",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 117.09875,
+      "labelRight": 117.09875,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed6bdc238c",
+      "button": "37222e98-689a-801a-8008-bbed6bdcfa59",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 121.48625076293933,
+      "labelRight": 121.48625076293933,
+      "frameGap": 5.600000000000136,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed741a1fc0",
+      "button": "37222e98-689a-801a-8008-bbed741a1fc2",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 122.53625,
+      "labelRight": 122.53624999999988,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed741a1fc0",
+      "button": "37222e98-689a-801a-8008-bbed741a6b1d",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 119.86125076293933,
+      "labelRight": 119.86125076293933,
+      "frameGap": 5.600000000000136,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed741a1fc0",
+      "button": "37222e98-689a-801a-8008-bbed741a9aff",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 300.51625076293953,
+      "labelRight": 300.5162507629394,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed7b241963",
+      "button": "37222e98-689a-801a-8008-bbed7b241965",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 122.53625,
+      "labelRight": 122.53624999999988,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed7b241963",
+      "button": "37222e98-689a-801a-8008-bbed7b248fce",
+      "text": "Remove from groupings",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999998545,
+      "wrapped": false,
+      "iconLeft": 94.54249847412098,
+      "labelRight": 94.54249847412098,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.861015673261136e-7,
+      "iconCentreDelta": -1.8189894035458565e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed7b241963",
+      "button": "37222e98-689a-801a-8008-bbed7b24efe8",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 119.86125076293945,
+      "labelRight": 119.86125076293933,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -2.7284841053187847e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed7b241963",
+      "button": "37222e98-689a-801a-8008-bbed7b255f6d",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 121.48625076293933,
+      "labelRight": 121.48625076293933,
+      "frameGap": 5.600000000000136,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed841cd75d",
+      "button": "37222e98-689a-801a-8008-bbed841cd75f",
+      "text": "Delete grouping(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999998545,
+      "wrapped": false,
+      "iconLeft": 110.51124847412109,
+      "labelRight": 110.51124847412109,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.861015673261136e-7,
+      "iconCentreDelta": -1.8189894035458565e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbed841cd75d",
+      "button": "37222e98-689a-801a-8008-bbed841d3686",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999998545,
+      "wrapped": false,
+      "iconLeft": 121.48625076293933,
+      "labelRight": 121.48625076293933,
+      "frameGap": 5.600000000000136,
+      "textCentreDelta": -2.861015673261136e-7,
+      "iconCentreDelta": -1.8189894035458565e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbedd4321b23",
+      "button": "37222e98-689a-801a-8008-bbedd4321b25",
+      "text": "Send a message",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 22.598749999999654,
+      "labelRight": 22.59875000000011,
+      "frameGap": 5.599999999999909,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbedd4321b23",
+      "button": "37222e98-689a-801a-8008-bbedd4327389",
+      "text": "Move participant(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 13.00500000000011,
+      "labelRight": 13.00500000000011,
+      "frameGap": 5.599999999999909,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbedd4321b23",
+      "button": "37222e98-689a-801a-8008-bbedd432b58e",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 111.51625076293976,
+      "labelRight": 111.51625076293976,
+      "frameGap": 5.599999999999909,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbeddcd41ac2",
+      "button": "37222e98-689a-801a-8008-bbeddcd41ac4",
+      "text": "Send a message",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 117.09874999999997,
+      "labelRight": 117.09874999999994,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbeddcd41ac2",
+      "button": "37222e98-689a-801a-8008-bbeddcd44ead",
+      "text": "Move participant(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 107.50500000000017,
+      "labelRight": 107.505,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbeddcd41ac2",
+      "button": "37222e98-689a-801a-8008-bbeddcd4fa41",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 300.5162507629395,
+      "labelRight": 300.51625076293953,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbd7043cf5a5",
+      "button": "37222e98-689a-801a-8008-bbd7043d994c",
+      "text": "Move member(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 20.804999237060542,
+      "labelRight": 20.804999237060542,
+      "frameGap": 5.599999999999994,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbd7043cf5a5",
+      "button": "37222e98-689a-801a-8008-bbd7043eef7f",
+      "text": "Remove member(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 13.267500762939449,
+      "labelRight": 13.267500762939449,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -2.7284841053187847e-12,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbd7043cf5a5",
+      "button": "37222e98-689a-801a-8008-bbd704405b12",
+      "text": "Send a message",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 22.598749999999995,
+      "labelRight": 22.598749999999995,
+      "frameGap": 5.600000000000023,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbd7043cf5a5",
+      "button": "37222e98-689a-801a-8008-bbd70442413f",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 26.98625076293945,
+      "labelRight": 26.98625076293939,
+      "frameGap": 5.599999999999966,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": -9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbedebd9955c",
+      "button": "37222e98-689a-801a-8008-bbedebd9eeb2",
+      "text": "Move group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": false,
+      "iconLeft": 28.03625000000011,
+      "labelRight": 28.03625000000011,
+      "frameGap": 5.599999999999454,
+      "textCentreDelta": 0.004000476837063616,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbedebd9955c",
+      "button": "37222e98-689a-801a-8008-bbedebda078e",
+      "text": "Remove from groupings",
+      "font": "12.48",
+      "weight": "600",
+      "height": 38.99200000000019,
+      "wrapped": true,
+      "iconLeft": 9,
+      "labelRight": 30.58499313354514,
+      "frameGap": 5.600000000000364,
+      "textCentreDelta": 0.005249988079413015,
+      "iconCentreDelta": 0,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbedebd9955c",
+      "button": "37222e98-689a-801a-8008-bbedebda790b",
+      "text": "Delete group(s)",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.599999999999454,
+      "wrapped": false,
+      "iconLeft": 25.361250762939562,
+      "labelRight": 25.36125076294047,
+      "frameGap": 5.599999999999454,
+      "textCentreDelta": -2.8610202207346447e-7,
+      "iconCentreDelta": -4.547473508864641e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd345719953"
+    },
+    {
+      "tray": "37222e98-689a-801a-8008-bbedebd9955c",
+      "button": "37222e98-689a-801a-8008-bbedebda8f16",
+      "text": "Clear selection",
+      "font": "12.48",
+      "weight": "600",
+      "height": 37.600000000000364,
+      "wrapped": false,
+      "iconLeft": 26.986250762939562,
+      "labelRight": 26.986250762939562,
+      "frameGap": 5.600000000000364,
+      "textCentreDelta": -2.8610247682081535e-7,
+      "iconCentreDelta": 9.094947017729282e-13,
+      "overflow": false,
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807"
+    }
+  ],
+  "version": {
+    "label": "Responsive selection trays — long labels retain padding and row stretch",
+    "createdAt": "2026-10-03T17:26:46.089Z"
+  },
+  "humanAccepted": false,
+  "wholeViewportStickyParity": false
+}
