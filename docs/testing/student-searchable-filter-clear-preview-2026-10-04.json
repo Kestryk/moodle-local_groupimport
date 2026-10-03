@@ -1,0 +1,22 @@
+{
+  "runId": "easystud-authenticated-20261003T235744575Z-47956",
+  "status": "passed",
+  "generatedAtUtc": "2026-10-03T23:58:33.6962614Z",
+  "kitVersion": "0.4.76",
+  "kitCommit": "d38c00e",
+  "sourceCommit": "e725de8",
+  "runtimeCommit": "1b6103c",
+  "records": [
+    {"width": 1600, "size": [28, 28], "centreDelta": [0, 0], "contained": true},
+    {"width": 768, "size": [36, 36], "centreDelta": [0, 0], "contained": true},
+    {"width": 390, "size": [36, 36], "centreDelta": [0, 0], "contained": true}
+  ],
+  "nativeSelectionCleared": true,
+  "hiddenFilteredSelectionsCleared": true,
+  "panelRemainsOpen": true,
+  "searchFocusRestored": true,
+  "blockedBusinessRequests": [],
+  "fixtureRequested": false,
+  "penpotPropagated": false,
+  "humanAccepted": false
+}
