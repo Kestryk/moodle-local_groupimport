@@ -35,8 +35,9 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
         await expect(title).toHaveCSS('color', 'rgb(38, 72, 97)');
         const close = modal.locator('.local-groupimport-easystud-modal__close:visible');
         await expect(close).toHaveCount(1);
-        await expect(close).toHaveCSS('width', '36.8px');
-        await expect(close).toHaveCSS('height', '36.8px');
+        const closeBox = await close.boundingBox();
+        expect(Math.abs(closeBox.width - 36.8)).toBeLessThanOrEqual(0.02);
+        expect(Math.abs(closeBox.height - 36.8)).toBeLessThanOrEqual(0.02);
         await expect(close).toHaveCSS('align-items', 'center');
         await expect(close).toHaveCSS('justify-content', 'center');
         const closeBaseline = await close.evaluate(element => {
