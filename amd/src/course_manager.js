@@ -7252,6 +7252,7 @@ const bindContextMenu = (root, courseId) => {
                 const action = button.getAttribute('data-easystud-context-action');
                 if ([
                     'participant-open-details',
+                    'group-search-members',
                     'group-paste-emails',
                     'group-add-copied-users',
                     'group-focus-rename',
@@ -7577,6 +7578,12 @@ const bindContextMenu = (root, courseId) => {
         } else if (action === 'clear-selection') {
             clearSelection(root, contextType);
             updateSelectionActions(root);
+        } else if (action === 'group-search-members') {
+            ensureGroupMemberSearchControls(root, target);
+            const searchToggle = target.querySelector('[data-easystud-group-member-search-toggle]');
+            if (searchToggle) {
+                searchToggle.click();
+            }
         } else if (action === 'group-paste-emails') {
             const groupid = target.getAttribute('data-easystud-group-id');
             const panel = ensureGroupEmailPanel(target, groupid, getLabels(root));

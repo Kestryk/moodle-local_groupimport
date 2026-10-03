@@ -4,6 +4,7 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $source = Get-Content -LiteralPath (Join-Path $root 'amd/src/course_manager.js') -Raw
 $build = Get-Content -LiteralPath (Join-Path $root 'amd/build/course_manager.min.js') -Raw
+$manage = Get-Content -LiteralPath (Join-Path $root 'manage.php') -Raw
 $spec = Get-Content -LiteralPath (Join-Path $root 'tools/playwright/student-group-member-search-preview.spec.js') -Raw
 
 foreach ($needle in @(
@@ -16,6 +17,9 @@ foreach ($needle in @(
     'data-easystud-member-filter-empty'
 )) {
     if (!$source.Contains($needle)) { throw "Group member search source contract missing: $needle" }
+}
+if (!$manage.Contains("'group-search-members'") -or !$manage.Contains("get_string('searchparticipantslabel'")) {
+    throw 'Responsive context menu does not expose the existing member-search label.'
 }
 foreach ($needle in @(
     'data-easystud-group-member-search-toggle',

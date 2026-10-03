@@ -60,8 +60,8 @@ test('Group member search reuses the canonical field and filters only its owning
                 '> [data-easystud-group-actions-toggle]:visible').first();
             await expect(menuToggle).toBeVisible();
             await menuToggle.click();
-            searchToggle = group.locator(':scope > .local-groupimport-easystud-group__header ' +
-                '[data-easystud-group-actions-menu] [data-easystud-group-member-search-toggle]:visible').first();
+            searchToggle = root.locator('[data-easystud-context-menu] ' +
+                '[data-easystud-context-action="group-search-members"]:visible').first();
         }
         await expect(searchToggle).toBeVisible();
         await searchToggle.click();
