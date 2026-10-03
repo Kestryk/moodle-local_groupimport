@@ -9,6 +9,9 @@
 - Consume Kit 0.4.65 long-label wrapping: preserve the icon gap and padding
   instead of clipping Remove-from-groupings. Add painted-content checks; the
   previous frame-only proof does not certify long-label fit.
+- The successor passes twelve native paint/routing and six member/modal cases;
+  paired phone/tablet Foundation examples and forty-six product controls pass.
+  No business POST or fixture; complete cleanup. Human/sticky-view gates stay open.
 
 ## 2026-10-03 - Selection tray native density proof
 

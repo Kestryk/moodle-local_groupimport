@@ -17,8 +17,10 @@ See `student-selection-actions-2026-10-03.md` and the original transfer document
 Conditional routing now has twelve non-mutating native cases at 390/768.
 Paired Foundation 2/3/4-action usage and fourteen product trays replace old
 stubs recoverably. The frame-only run exposes long-label clipping on capture;
-Kit 0.4.65 wraps labels within padding. Its painted-content successor and
-whole-view sticky placement are distinct gates. See
+Kit 0.4.65 wraps labels within padding. Its twelve native painted-content cases
+and six member toolbar/context regressions now pass; paired long-label usage
+and forty-six product actions pass readback. Whole-view sticky placement stays
+separate. See
 `student-selection-tray-routing-2026-10-03.md`; human acceptance stays open.
 
 ## Scope and ownership
