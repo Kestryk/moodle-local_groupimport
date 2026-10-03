@@ -231,6 +231,7 @@ $string['moveconfirmone'] = 'Move selected item';
 $string['moveconfirmmany'] = 'Move selected items';
 $string['movegroupremoveorigin'] = 'Remove from the original grouping';
 $string['movedestinationgroup'] = 'Destination group';
+$string['searchdestination'] = 'Search destinations';
 $string['movedestinationgrouping'] = 'Destination grouping';
 $string['movedialoggroups'] = 'Choose the grouping that should receive the selected groups.';
 $string['movedialogparticipants'] = 'Choose the group that should receive the selected participants.';

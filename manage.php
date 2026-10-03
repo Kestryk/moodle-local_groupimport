@@ -299,6 +299,7 @@ function local_groupimport_build_manage_template_data(
         'nogroupsavailable' => get_string('nogroupsavailable', 'local_groupimport'),
         'nogroupsincourse' => get_string('nogroupsincourse', 'local_groupimport'),
         'searchgroupslabel' => get_string('searchgroupslabel', 'local_groupimport'),
+        'searchdestination' => get_string('searchdestination', 'local_groupimport'),
         'searchgroupsplaceholder' => get_string('searchgroups', 'local_groupimport'),
         'searchparticipantslabel' => get_string('searchparticipantslabel', 'local_groupimport'),
         'searchparticipants' => get_string('searchparticipants', 'local_groupimport'),

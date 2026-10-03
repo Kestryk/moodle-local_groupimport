@@ -223,6 +223,7 @@ $string['moveconfirm'] = 'Déplacer les éléments sélectionnés';
 $string['moveconfirmone'] = 'Déplacer l’élément sélectionné';
 $string['moveconfirmmany'] = 'Déplacer les éléments sélectionnés';
 $string['movedestinationgroup'] = 'Groupe de destination';
+$string['searchdestination'] = 'Rechercher une destination';
 $string['movedestinationgrouping'] = 'Groupement de destination';
 $string['movedialoggroups'] = 'Choisissez le groupement qui recevra les groupes sélectionnés.';
 $string['movedialogparticipants'] = 'Choisissez le groupe qui recevra les participants sélectionnés.';

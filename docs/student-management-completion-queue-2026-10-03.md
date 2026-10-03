@@ -36,6 +36,27 @@ stays deferred to the combined checklist; automation never ticks it.
 
 ## Ordered execution and acceptance gates
 
+### Reintroduced request: selected members, searchable choices and loading
+
+The duplicated user prompt is deduplicated below; all seven requests remain
+accepted under EED-UI-2026-0073. They are not certified by earlier visual runs.
+
+| ID | Priority / owner | Scope and next gate |
+| --- | --- | --- |
+| SM-11 | P1 / this Kit-EasyStud window | Top selected-member Move/Remove actions and equivalent context actions. Remove means group membership only. Implement an atomic source-to-destination transfer preserving unrelated memberships; never certify it with an add-then-remove browser sequence. |
+| SM-12 | P1 / this Kit-EasyStud window | Reusable searchable destination chooser for participant/group Move; themed option list, deduplicated responsive copies, keyboard and focus-return checks. Foundation Standard/Library and product modal publication precede preview. |
+| SM-13 | P1 / this Kit-EasyStud window | Matched Move/Cancel height and padding, inline-end footer. Translated label widths remain adaptive; preserve the already published canonical footer, verify fresh geometry. |
+| SM-14 | P1 / this Kit-EasyStud window | Searchable themed multiselections for expanded Group/Grouping filters, including both catalogues. Preserve selected values while searching and native filter/reset behavior. |
+| SM-15 | P1 / this window, dedicated fixture lease | User explicitly requests additional local course-5 test roles. Inspect native role/fixture APIs first, record exact owned role IDs and rollback; no production mutation or elevated grants to real users. This is the sole exception to the earlier no-fixture boundary. |
+| SM-16 | P1 / Kit-first | Lighter coherent Skeleton cues, soft entrance and continuous low-contrast shimmer, Foundation/Product publication then Kit/consumer proof. Keep structural frames static, readiness/fail-open unchanged and reduced-motion supported. |
+| SM-17 | P1 / Kit-first | Common More-filters hover/focus treatment on desktop/mobile, retaining the single contained filter block and original disclosure Motion. |
+
+Current tranche: SM-12 searchable destination primitive. SM-11 requires a
+separate membership transaction/API gate; inspection confirms removal exists
+but selected-member Move does not. SM-14 reuses the choice primitive after its
+single-choice gate. No actual move/remove/send is authorised by a visual audit.
+The local fixture request is separate from browser-open/cancel proof.
+
 1. Reconcile the stale Ungrouped contract before using it as a gate.
 2. Complete native confirmation/choice actions and catalogue publication.
 3. Transfer unchanged card/entity-body recipes to Kit; rebuild source CSS and

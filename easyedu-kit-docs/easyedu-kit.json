@@ -1,10 +1,34 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.58",
+  "version": "0.4.59",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentSearchableDestinations20261003": {
+      "sourceCommit": "3b56e419f82427a8d019a7e9bef6e801986a2266",
+      "status": "Paired source candidate; fresh native preview proof pending. Historical proofs below remain pinned to their own assets.",
+      "documentation": "docs/student-searchable-destinations-2026-10-03.md",
+      "foundationReadback": "docs/testing/student-searchable-destinations-foundations-2026-10-03.json",
+      "foundationPaintRevision": "docs/testing/student-searchable-destinations-foundations-revision-2026-10-03.json",
+      "productReadback": "docs/testing/student-searchable-destinations-product-2026-10-03.json",
+      "productPaintRevision": "docs/testing/student-searchable-destinations-paint-revision-2026-10-03.json",
+      "nativeScenario": "student-move-dialog-audit.spec.js",
+      "nativeScenarioBlob": "4f977a85d9f33cd85d93c102f4663c3e6703c4ed",
+      "isolatedRun": "searchable-choice-20261003-f",
+      "modules": {
+        "amd/src/searchable_choices.js": "6b5b0f7cb49d2dd114a0379e4c9b69a774e48a19",
+        "scss/easyedu/components/_searchable-choices.scss": "69a603dec61ee3bd09b11062c5fa615eb6c778ce",
+        "scss/easyedu/_components.scss": "98ac9dc0b1e304031ff3679f845ee3a282806a27",
+        "scss/easyedu/_dialog-classes.scss": "da19ed5fd931022e3e4087a3b72ca0e91ce88e79"
+      },
+      "generatedCssBlob": "efa5065c8ddfbd69f3434313f7aef5628dd39c14",
+      "courseManagerSourceBlob": "e6a11e0ccd291c63fcdb377c7292c6581a66edcc",
+      "courseManagerAmdBlob": "60cd1f58f2f43da83a96134bdeefd48c13c66b8e",
+      "choiceAmdBlob": "e5760ec8329d707295f16eb55ad196a3f570a76d",
+      "nativeBusinessBaseline": "57b83d70a20d8db135a6ff4cd94773360a6f32c1",
+      "humanAccepted": false
+    },
     "sourceCommit": "ce8a701bfd1a301778e3780577084f7df3cad393",
     "canonicalScssTree": "9e98c37e3c8a33a444c2c15117c055edd686a107",
     "scope": "Mass Import and Administration Phase 0 subset plus Student Management workspace chrome and header layout recipes",

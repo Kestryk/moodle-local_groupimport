@@ -3,9 +3,11 @@
 @use "components/typography";
 @use "components/text-fields";
 @use "components/modals";
+@use "components/searchable-choices" as choices;
 @use "foundation-classes" as foundations;
 
 @mixin dialog-classes {
+  @include choices.searchable-choice-classes;
   .easyedu-ui .easyedu-modal-layer {
     z-index: var(--easyedu-modal-layer);
   }
