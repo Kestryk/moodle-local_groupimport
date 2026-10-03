@@ -1,0 +1,15 @@
+{
+  "runId": "easystud-authenticated-20261003T230457691Z-49096",
+  "viewports": [
+    {"width": 1600, "total": 21, "filtered": 1, "selectedIds": ["3"]},
+    {"width": 768, "total": 21, "filtered": 1, "selectedIds": ["3"]},
+    {"width": 390, "total": 21, "filtered": 1, "selectedIds": ["3"]}
+  ],
+  "blockedRequests": [],
+  "pageErrors": [],
+  "fixtureRequested": false,
+  "credentialsCleared": true,
+  "leaseReleased": true,
+  "ownedChildStopped": true,
+  "humanAccepted": false
+}

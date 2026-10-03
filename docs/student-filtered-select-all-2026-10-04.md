@@ -16,5 +16,12 @@ server command or membership mutation is part of this UI state transition.
 
 ## Evidence status
 
-Consumer source and generated AMD remain to be built and checked. The managed
-native sequence and human acceptance remain open in the combined checklist.
+Consumer source and generated AMD pass their static contract. Managed run
+`easystud-authenticated-20261003T230457691Z-49096` verified the native sequence
+at 1600/768/390 px against the existing 21-participant course: global select,
+group filter, filtered deselect, filtered select, filtered deselect and filtered
+reselect. Only the one matching participant remained selected in each viewport;
+there was no blocked request, page error or fixture. Human acceptance remains
+open in the combined checklist.
+
+Durable proof: `docs/testing/student-filtered-select-all-preview-2026-10-04.json`.
