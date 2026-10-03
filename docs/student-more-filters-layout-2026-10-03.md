@@ -31,8 +31,14 @@ contract pass. Managed run
 1600/768/390 px: the disclosure measures 33.59/44/44 px, retains the 12.16 px
 label and 6.72 px icon gap, and completes both disclosure directions. No
 business request or fixture ran; cleanup cleared credentials and released the
-lease. Paired Foundation/Product Penpot publication and human acceptance remain
-open.
+lease. Foundations now publishes linked Toggle Off/On, Reset
+Rest/Hover/Focus-visible and More Filters Wide/Touch components. The Standard
+board and EasyStud desktop/mobile catalogue composition instantiate those
+components; settled readback keeps every shape contained and the visual export
+was inspected. Human acceptance remains open.
+
+Penpot evidence is recorded in
+`docs/testing/student-more-filters-layout-penpot-2026-10-04.json`.
 
 ## Safety
 
