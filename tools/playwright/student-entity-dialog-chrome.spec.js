@@ -104,25 +104,23 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
             await expect(opener).toBeFocused();
 
             for (const kind of ['group', 'grouping']) {
-                if (width <= 1024) {
-                    await root.locator('[data-easystud-mobile-view="' + (kind === 'group' ? 'groups' : 'groupings') + '"]:visible').click();
-                } else {
-                    await root.locator('[data-easystud-layout-mode="structure"]:visible').click();
-                }
+                // These existing full-card settings have a native desktop
+                // entry, not the assumed responsive context-sheet command.
+                // Resize an actually opened modal; this proves responsive
+                // chrome/body geometry, not a mobile settings entry point.
+                await ready(1600);
+                await root.locator('[data-easystud-layout-mode="structure"]:visible').click();
                 const item = root.locator('[data-easystud-advanced-type="' + kind + '"]:visible').first();
                 await expect(item, 'Existing course entity required; no manufactured fixtures').toBeVisible();
                 const header = item.locator(':scope > .local-groupimport-easystud-group__header, ' +
                     ':scope > .local-groupimport-easystud-grouping__header');
                 const direct = header.locator(':scope > [data-easystud-open-advanced-settings]:visible');
-                if (await direct.count()) {
-                    await direct.click();
-                } else {
-                    const menu = item.locator(':scope > [data-easystud-card-menu]:visible');
-                    if (await menu.count()) await menu.first().click();
-                    else await header.locator(':scope > [data-easystud-group-actions-toggle]:visible').click();
-                    await root.locator('[data-easystud-context-menu] [data-easystud-context-action="group-open-advanced-settings"]:visible').click();
-                }
+                await expect(direct).toBeVisible();
+                await direct.click();
                 const modal = root.locator('[data-easystud-advanced-settings-modal]');
+                await expect(modal).toBeVisible();
+                await page.setViewportSize({width, height: 1100});
+                records.push({kind, width, entryWidth: 1600, proof: 'native desktop open then responsive resize; not mobile entry'});
                 await expect(modal.locator('[name="action"]')).toHaveValue(kind === 'group' ? 'updategroupadvanced' : 'updategroupingadvanced');
                 for (const name of ['name', 'idnumber', 'description']) await expect(modal.locator('[name="' + name + '"]')).toHaveCount(1);
                 await expect(modal.locator('[data-easystud-settings-list-section]')).toHaveCount(kind === 'group' ? 2 : 1);

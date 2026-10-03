@@ -122,6 +122,17 @@ The bounded correction remembers the real trigger and restores it after the
 existing exit completes, including backdrop Close. It changes no shared style
 or animation and retains the failure/assertion. Fresh preview proof is pending.
 
+The follow-up run `easystud-authenticated-20261003T025134893Z-26428` verifies
+Participant focus at desktop/tablet and desktop Group/Grouping geometry, but
+times out looking for a mobile settings command that the existing full-card
+sheet does not expose. Native source `canOpenAdvancedSettingsFromContext`
+deliberately excludes full cards retaining the direct settings node and excludes
+Grouping. The scenario must not invent a route or click hidden controls.
+The corrected regression uses the real desktop gear then resizes the open
+Group/Grouping modal to 768/390. Responsive geometry is distinct from mobile
+entry coverage, which remains a documented product gap. Both failures and
+complete cleanup records stay retained; no full suite PASS is inferred.
+
 ## Efficiency
 
 No per-task token/billing telemetry is available. Avoidable cost came from a

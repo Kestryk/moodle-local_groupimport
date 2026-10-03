@@ -1,5 +1,18 @@
 # EasyStud Playwright audits
 
+## Entity modal entry and responsive geometry
+
+`student-entity-dialog-chrome.spec.js` is local-supervised, EasyStud/QA; exact
+grep: `Student entity dialogs preserve conditional content and Foundation chrome`.
+Participant opens through the real eye at 1600/768/390, then Close restores its
+focus. Group/Grouping settings open through their existing desktop gear at
+1600; the open native modal is resized to 768/390 to verify responsive chrome,
+conditional body and action geometry. This is NOT proof of a mobile settings
+entry. The full-card native responsive sheet does not expose the originally
+assumed settings command; the failed 20261003T025134893Z run is retained.
+No hidden click, manufactured mobile command, Save, upload or CSV export.
+Evidence: `entity-dialog-chrome.json` and nine named entity/width PNGs.
+
 ## Focused Message footer preview
 
 `student-message-footer-preview.spec.js` is local-supervised, EasyStud/QA.
