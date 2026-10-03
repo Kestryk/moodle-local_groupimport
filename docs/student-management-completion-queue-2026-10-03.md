@@ -69,8 +69,10 @@ six isolated-Moodle PHPUnit cases are versioned but not executed. The guarded
 endpoint and top/context/mobile action bindings are now source candidates;
 three isolated DOM scenarios pass, with original Motion/CSS and legacy command
 bodies retained. Product transfer dialogs are published and agent-inspected.
-New runtime promotion/native open-cancel proof and remaining action specimens
-are next; no native data-changing transfer has been tested. See
+Source `d465b1e` is now served on clean runtime `7604a088`; six native top/context
+open/search/Cancel cases at 1600/768/390 pass with matching footer density and
+no business POST. Remaining whole-board action specimens and real isolated
+transfer integration are open; no native data-changing transfer was tested. See
 `docs/student-selected-members-transfer-2026-10-03.md` for precise proof/gaps.
 
 1. Reconcile the stale Ungrouped contract before using it as a gate.

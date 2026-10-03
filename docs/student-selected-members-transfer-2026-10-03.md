@@ -1,7 +1,8 @@
 # Selected Group members — atomic transfer candidate
 
-SM-11 / EED-UI-2026-0073. Source candidate now includes endpoint and actions;
-not yet served or a native integration PASS. The human checklist stays open.
+SM-11 / EED-UI-2026-0073. Endpoint/actions are served in local preview. Six
+native non-mutating UI cases pass; real transfer integration and the human
+checklist remain open. Do not confuse open/Cancel with a tested transfer.
 
 ## Existing behavior and native constraints
 
@@ -76,6 +77,27 @@ Keep separate existing Participant/Group commands and original Motion.
 
 ## Next gates
 
+Local preview record `20261003T104515Z` applied source service `8d78b5e` then
+UI `d465b1e`, with managed cache purge, on clean runtime `7604a088`. Successor
+native run `easystud-authenticated-20261003T104923798Z-43444` passes six cases:
+top toolbar/context actions at 1600/768/390, search/no-result/value retention,
+Cancel/mobile focus return, equal footer height/padding and zero business POST.
+Nine records include real action-bar geometry and six dialog cases. Distinct
+menu/dialog/action-bar captures replace the earlier colliding PNG filenames.
+Two dialog captures, the desktop/mobile bars and mobile menu were inspected.
+Credential cleanup, lease release and owned-child exit are all recorded true;
+fixtureRequested is false. No role fixture, transfer, remove or send was invoked.
+See `docs/testing/student-selected-members-preview-2026-10-03.json`.
+
+Failed native run `easystud-authenticated-20261003T104541791Z-21856` is retained.
+The original row-wide click auto-scrolled after opening the desktop menu; native
+menus intentionally close on scroll. The successor completes normal scrolling
+before right-clicking the actual name; it does not bypass dismissal or hide
+chrome. Initial corrected PASS `...T104729408Z-12760` is retained too.
+Page-03 Member context specimen now includes a linked Foundation More-item and
+the canonical arrow vector before Remove from group. Remaining whole-board
+toolbar/sticky selected-member specimens still require source-backed coverage.
+
 1. Native isolated transaction/managed-membership failure tests.
 2. Fresh native top/context/sticky-mobile open/search/Cancel proof and paired
    footer geometry; do not confirm a transfer during the visual audit.
@@ -87,7 +109,7 @@ Keep separate existing Participant/Group commands and original Motion.
 No new UI/private SCSS/Mustache style is introduced by this service. Platform
 owner proposal: keep the isolated PHP scenario ci-reusable logic proof separate
 from native fixture tests. SM-12/13 scoped preview PASS remains historical fact;
-SM-11 service is a source candidate, not completed UI.
+SM-11 UI preview is scoped proof, not completed all-state/transfer validation.
 
 ## Reproducible checks and handoff
 

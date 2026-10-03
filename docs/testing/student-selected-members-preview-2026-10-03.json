@@ -1,0 +1,418 @@
+{
+  "runId": "easystud-authenticated-20261003T104923798Z-43444",
+  "status": "passed",
+  "runtimeCommit": "7604a0882e66db64f003117c1985d70eec588e22",
+  "sourceCommit": "d465b1e160214984adfe2425078bf599c45d79ab",
+  "scenarioBlob": "0039f589a8418bc38421df4efccd963c30702908",
+  "cases": [
+    {
+      "width": 1600,
+      "entry": "toolbar",
+      "toolbar": [
+        {
+          "text": "Delete group(s)",
+          "x": 92,
+          "y": 958.234375,
+          "w": 127.734375,
+          "h": 30.390625,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": true
+        },
+        {
+          "text": "Delete grouping(s)",
+          "x": 227.734375,
+          "y": 958.234375,
+          "w": 145.78125,
+          "h": 30.390625,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": true
+        },
+        {
+          "text": "Move member(s)",
+          "x": 381.515625,
+          "y": 958.234375,
+          "w": 136.59375,
+          "h": 30.390625,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Remove member(s)",
+          "x": 526.109375,
+          "y": 958.234375,
+          "w": 151.375,
+          "h": 30.390625,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Move group(s)",
+          "x": 685.484375,
+          "y": 958.234375,
+          "w": 122.484375,
+          "h": 30.390625,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": true
+        },
+        {
+          "text": "Remove from groupings",
+          "x": 815.96875,
+          "y": 958.234375,
+          "w": 177.25,
+          "h": 30.390625,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": true
+        },
+        {
+          "text": "",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "width": 1600,
+      "entry": "toolbar",
+      "identity": {
+        "user": "2",
+        "group": "356"
+      },
+      "options": 36,
+      "pair": {
+        "buttons": [
+          {
+            "height": 37.59375,
+            "right": 934.671875,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "height": 37.59375,
+            "right": 1111.5,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      },
+      "groupRowKept": true
+    },
+    {
+      "width": 1600,
+      "entry": "context",
+      "identity": {
+        "user": "2",
+        "group": "356"
+      },
+      "options": 36,
+      "pair": {
+        "buttons": [
+          {
+            "height": 37.59375,
+            "right": 934.671875,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "height": 37.59375,
+            "right": 1111.5,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      },
+      "groupRowKept": true
+    },
+    {
+      "width": 768,
+      "entry": "toolbar",
+      "toolbar": [
+        {
+          "text": "Move member(s)",
+          "x": 21.78125,
+          "y": 996.3125,
+          "w": 351.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Remove member(s)",
+          "x": 379.859375,
+          "y": 996.3125,
+          "w": 351.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Send a message",
+          "x": 21.78125,
+          "y": 1040.625,
+          "w": 351.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Clear selection",
+          "x": 379.859375,
+          "y": 1040.625,
+          "w": 351.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "entry": "toolbar",
+      "identity": {
+        "user": "2",
+        "group": "356"
+      },
+      "options": 36,
+      "pair": {
+        "buttons": [
+          {
+            "height": 37.59375,
+            "right": 518.671875,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "height": 37.59375,
+            "right": 695.5,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      },
+      "groupRowKept": true
+    },
+    {
+      "width": 768,
+      "entry": "context",
+      "identity": {
+        "user": "2",
+        "group": "356"
+      },
+      "options": 36,
+      "pair": {
+        "buttons": [
+          {
+            "height": 37.59375,
+            "right": 518.671875,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "height": 37.59375,
+            "right": 695.5,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      },
+      "groupRowKept": true
+    },
+    {
+      "width": 390,
+      "entry": "toolbar",
+      "toolbar": [
+        {
+          "text": "Move member(s)",
+          "x": 21.78125,
+          "y": 996.3125,
+          "w": 162.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Remove member(s)",
+          "x": 190.859375,
+          "y": 996.3125,
+          "w": 162.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Send a message",
+          "x": 21.78125,
+          "y": 1040.625,
+          "w": 162.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        },
+        {
+          "text": "Clear selection",
+          "x": 190.859375,
+          "y": 1040.625,
+          "w": 162.359375,
+          "h": 37.59375,
+          "font": "12.48px",
+          "gap": "5.6px",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "entry": "toolbar",
+      "identity": {
+        "user": "2",
+        "group": "356"
+      },
+      "options": 36,
+      "pair": {
+        "buttons": [
+          {
+            "height": 37.59375,
+            "right": 170.78125,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "height": 37.59375,
+            "right": 347.609375,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      },
+      "groupRowKept": true
+    },
+    {
+      "width": 390,
+      "entry": "context",
+      "identity": {
+        "user": "2",
+        "group": "356"
+      },
+      "options": 36,
+      "pair": {
+        "buttons": [
+          {
+            "height": 37.59375,
+            "right": 170.78125,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          },
+          {
+            "height": 37.59375,
+            "right": 347.609375,
+            "font": "14.08px",
+            "padding": [
+              "8px",
+              "16px",
+              "8px",
+              "16px"
+            ]
+          }
+        ],
+        "rightDelta": 0
+      },
+      "groupRowKept": true
+    }
+  ],
+  "blockedWrites": [],
+  "cleanup": {
+    "schemaVersion": 1,
+    "runId": "easystud-authenticated-20261003T104923798Z-43444",
+    "credentialsCleared": true,
+    "leaseAcquired": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureSetupCompleted": false,
+    "fixtureCleanupComplete": true,
+    "fixtureCleanupError": null,
+    "profileExternal": true
+  },
+  "humanAccepted": false,
+  "nativeTransferVerified": false,
+  "failedRunRetained": "easystud-authenticated-20261003T104541791Z-21856",
+  "supersededPassedRun": "easystud-authenticated-20261003T104729408Z-12760",
+  "menuCaptureCaveatResolved": "Distinct member-menu PNGs, dialog PNGs and desktop/mobile action-bar PNGs; inspected."
+}
