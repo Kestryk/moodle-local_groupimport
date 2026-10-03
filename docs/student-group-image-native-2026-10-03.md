@@ -22,3 +22,10 @@ chooser proof or persisted Moodle file-area proof. After native geometry is
 known, publish only missing image/file compositions in paired Foundations and
 linked EasyStud page 04; do not duplicate the already canonical filepicker.
 The human checklist stays open.
+
+The first supervised execution stopped on a test-only outer-box assumption:
+the icon tile is 32px including its 1px border, while CSS `left/top: 50%`
+correctly resolves to 15px in the 30px content box. No product assertion before
+that point failed and no POST occurred. The successor measures the actual
+content-box centre; preserve the failed run as diagnostic evidence rather than
+misclassifying it as a visual regression.
