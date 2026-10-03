@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-03 - Selection action native proof and tray-height correction
+
+- Record six passing native typography/palette/open-search-Cancel cases and
+  complete non-mutating cleanup; keep global human acceptance open.
+- Retain the uncovered 30.4px tray geometry gap in that proof. Consume canonical
+  Kit 0.4.64 selector-specificity correction and require explicit height checks
+  in the successor candidate. No commands, card Motion or data changes.
+
 ## 2026-10-03 - Compact selection actions source and shared publication
 
 - Consume canonical Kit 0.4.63 compact/tray actions through public classes;

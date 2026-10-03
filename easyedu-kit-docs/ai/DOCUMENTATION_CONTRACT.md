@@ -7,6 +7,9 @@ normalize CRLF/LF without weakening the CSS declaration/order gate. Penpot
 linked text bounds can be stale: read back after settling, check painted text
 and icon geometry, and qualify selected entity types before enabling actions.
 Do not wrap a toolbar whose native resolver uses the More menu.
+Assert actual desktop/tray height as well as font and palette. A density
+modifier must match the semantic role's specificity; historical typography-only
+proof must remain explicitly scoped when a geometry gap is found afterward.
 
 This portable contract applies to every AI agent working on EasyStud. The
 canonical wording is maintained in the EasyEdu platform repository under
