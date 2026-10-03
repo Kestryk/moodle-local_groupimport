@@ -19,6 +19,13 @@ foreach ($role in @('easyedu-confirmation-dialog--danger', 'easyedu-confirmation
     if (-not $confirm.Contains($role)) { throw "Missing native confirmation role/hook: $role" }
 }
 $source = Get-Content -Raw -LiteralPath (Join-Path $root 'amd/src/course_manager.js')
+$page = Get-Content -Raw -LiteralPath (Join-Path $root 'manage.php')
+$labels = [regex]::Match($page, '(?s)\$detaillabels\s*=\s*\[.*?\n    \];').Value
+foreach ($key in @('confirmdeletegroups', 'confirmdeletegroupings')) {
+    if (-not $labels.Contains("'$key' => get_string('$key', 'local_groupimport')")) {
+        throw "Native confirmation string missing from the JS label payload: $key"
+    }
+}
 $choice = [regex]::Match($source, '(?s)const openGroupDropModeModal =.*?(?=const getSelectionInput =)').Value
 foreach ($needle in @('easyedu-modal-layer', 'easyedu-confirmation-dialog', 'easyedu-modal-title',
     'easyedu-dialog-description', 'easyedu-confirmation-dialog__actions', 'easyedu-button--secondary',

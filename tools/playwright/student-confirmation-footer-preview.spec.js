@@ -25,6 +25,10 @@ test('Student conditional confirmations retain native content and matched action
                     await page.goto(process.env.EASYEDU_MOODLE_URL);
                 }
                 await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
+                const labels = JSON.parse(await root.getAttribute('data-easystud-detail-labels'));
+                const nativeDescription = labels['confirmdelete' + kind];
+                expect(typeof nativeDescription, 'Native localized warning must reach the JS payload').toBe('string');
+                expect(nativeDescription.trim().length).toBeGreaterThan(0);
                 const guard = async route => {
                     if (route.request().method() !== 'GET') {
                         blockedWrites.push({kind, width, method: route.request().method()});
@@ -38,18 +42,22 @@ test('Student conditional confirmations retain native content and matched action
                 try {
                     await root.locator('[data-easystud-layout-mode="both"]:visible').click();
                     const selector = kind === 'groups' ? '[data-easystud-group-id]' : '[data-easystud-grouping-id]';
-                    const candidates = root.locator(selector);
-                    const index = await candidates.evaluateAll((nodes, entityKind) => nodes.findIndex(node =>
+                    const candidates = root.locator(selector + ':visible');
+                    const populatedIndex = () => candidates.evaluateAll((nodes, entityKind) => nodes.findIndex(node =>
                         entityKind === 'groups' ? !!node.querySelector('[data-easystud-member-id]') :
                             node.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length > 0), kind);
-                    expect(index, 'Existing populated entity required; never create a fixture or click an empty Delete').toBeGreaterThanOrEqual(0);
-                    const entity = candidates.nth(index);
-                    if (!await entity.isVisible()) {
-                        const groupingId = await entity.evaluate(node => node.closest('[data-easystud-grouping-id]')?.getAttribute('data-easystud-grouping-id'));
-                        expect(groupingId).toBeTruthy();
-                        const parent = root.locator('[data-easystud-grouping-id="' + groupingId + '"]').first();
+                    let index = await populatedIndex();
+                    if (kind === 'groups' && index < 0) {
+                        const parent = root.locator('[data-easystud-grouping-id]:visible').filter({
+                            has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
+                        }).first();
+                        await expect(parent).toBeVisible();
                         await parent.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]').click();
+                        await expect(candidates.first()).toBeVisible();
+                        index = await populatedIndex();
                     }
+                    expect(index, 'Existing visible populated entity required; never create a fixture or click an empty Delete').toBeGreaterThanOrEqual(0);
+                    const entity = candidates.nth(index);
                     await expect(entity).toBeVisible();
                     // Recheck the exact predicate used by bindBulkActions before opening.
                     expect(await entity.evaluate((node, entityKind) => entityKind === 'groups' ?
@@ -74,8 +82,7 @@ test('Student conditional confirmations retain native content and matched action
                     await expect(title).toHaveCSS('font-weight', '700');
                     const description = modal.locator('[data-easystud-confirm-modal-message]');
                     await expect(description).toHaveCSS('font-size', '13px');
-                    const labels = JSON.parse(await root.getAttribute('data-easystud-detail-labels'));
-                    await expect(description).toHaveText(labels['confirmdelete' + kind]);
+                    await expect(description).toHaveText(nativeDescription);
                     const footer = modal.locator('.easyedu-confirmation-dialog__actions');
                     const geometry = await footer.evaluate(node => {
                         const row = node.getBoundingClientRect();
