@@ -1,10 +1,22 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.71",
+  "version": "0.4.72",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentMoreFiltersLayout20261003": {
+      "kitCommit": "df4e9d2",
+      "status": "Kit 0.4.72 source candidate: public More Filters, labelled toggle and compact Reset roles with a coherent catalogue action row. Managed native preview, paired Penpot publication and human acceptance remain open.",
+      "documentation": "docs/student-more-filters-layout-2026-10-03.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "modules": {
+        "scss/easyedu/_foundation-classes.scss": "292419e90fb12146797517d14af7f3f71552b1aa",
+        "scss/easyedu/components/_buttons.scss": "5223d644fc83ae36a7c8c54d4f8c86ea4fda6a55",
+        "scss/easyedu/components/_forms.scss": "7a49e5f2fe13976779183dcf79e9bfa4833111e7"
+      }
+    },
     "studentMessageModalCompletion20261003": {
       "kitCommit": "5851a0f",
       "status": "Kit 0.4.71 served: canonical border-box compact header Close with explicit native glyph, non-resizable message field and quiet unboxed async spinner. Managed native open/Cancel proof passes at 1600/768/390; paired Foundation/Product Loading, Sending and Error specimens are published. Human acceptance remains open.",

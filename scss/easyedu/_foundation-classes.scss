@@ -5,6 +5,7 @@
 @use "components/panels";
 @use "components/focus";
 @use "components/buttons";
+@use "components/forms";
 
 @mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false) {
   @if $secondary and $danger {
@@ -272,6 +273,9 @@
     // Match the semantic-role selector specificity; touch density must win.
     @include buttons.selection-action-tray-density;
   }
+  .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
+  .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
+  .easyedu-ui .easyedu-filter-disclosure { @include forms.filter-disclosure-trigger(wide); }
   .easyedu-ui .easyedu-empty {
     position: relative;
     align-content: center;

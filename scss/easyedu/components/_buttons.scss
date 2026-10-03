@@ -196,6 +196,20 @@
   }
 }
 
+// Compact neutral reset used inside filter panels. It intentionally shares the
+// selection-action interaction contract while keeping reset-specific sizing.
+@mixin filter-reset {
+  @include selection-action(neutral);
+
+  & {
+    align-self: center;
+    justify-content: center;
+    min-height: 2.05rem;
+    padding: 0.32rem 0.7rem;
+    width: auto;
+  }
+}
+
 @mixin close-button($size: small) {
   @include icon-button($size);
 
