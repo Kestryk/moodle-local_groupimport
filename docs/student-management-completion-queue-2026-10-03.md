@@ -96,7 +96,9 @@ assets. Failed runs and backups remain recoverable.
 - SM-17 Kit 0.4.61 unifies quiet hover and legacy mobile delegation. Five Wide
   and five Touch Foundation pairs and sixteen visible EasyStud controls pass
   settled geometry/paint checks; original native behavior/Motion is unchanged.
-  Native preview is pending; see `student-more-filters-2026-10-03.md`.
+  Native hover/focus and original opening/closing Motion now pass at 1600/768/390
+  in `easystud-authenticated-20261003T125612349Z-13384`; no data writes or
+  fixture. See `student-more-filters-2026-10-03.md`. Human acceptance is open.
 - SM-14 shares Kit 0.4.60 single/multiple search/lifecycle/paint; canonical
   inherited-font longhands fix the actual field-density fallback. Six paired
   Foundations states and contained EasyStud Desktop/Mobile compositions are
@@ -107,7 +109,8 @@ assets. Failed runs and backups remain recoverable.
   selection/search/reset cases and the mobile role-search fallback pass in
   `easystud-authenticated-20261003T123356784Z-14216`. Captures inspected/pinned,
   no business POST/fixture; cleanup complete. SM-15 extra roles, SM-16 Skeleton,
-  SM-17 hover/touch catalogue and SM-11 whole-board toolbar remain open.
+  SM-17 subsequently passed its focused native gate; SM-11 whole-board toolbar
+  remains open. This historical SM-14 entry does not certify SM-17 itself.
 - Queue recorded; no request is complete merely because it is listed.
 - First task: reconcile Ungrouped icon/focus source gate.
 - Ungrouped source gate reconciled and PASS. It now checks the defined

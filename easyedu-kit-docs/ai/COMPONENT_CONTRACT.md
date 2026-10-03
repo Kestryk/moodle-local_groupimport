@@ -17,7 +17,10 @@ and `searchable-choice-classes`. Keep native values, data hooks, option
 availability and submit commands intact. Deduplicate destination IDs across
 responsive layout copies. Search never clears a selection; Escape closes only
 the choice panel before the dialog. Do not reuse `easyedu-choice`, which already
-belongs to segmented choices. Multiple-filter enhancement is still pending.
+belongs to segmented choices. Multiple filters now share the same canonical
+choice controller: native selection remains authoritative, search never clears
+selected values, Reset refreshes both native and enhanced state. Native SM-14
+proof is scoped to six cases; large-role fixtures remain a separate gate.
 
 Native Text fields use `foundation-text-field` on the input itself. Measure
 the actual eighteen Foundations S/M/L masters before reconciliation; do not
