@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Selected-member action adapters (source candidate)
+
+- Connect explicit frozen Group/User selections to one guarded transfer command;
+  add equivalent top, context and sticky mobile Move member(s) entry points.
+- Reuse the Kit searchable chooser and paired end-aligned modal footer, preserve
+  existing Move branches/Motion/CSS, and publish linked product dialog examples.
+- Pass isolated actual-controller DOM checks; native transfer DB integration
+  and supervised preview/UI proof remain open. Human checklist is deferred.
+
 ## 2026-10-03 - Selected-member transfer service (source candidate)
 
 - Prepare a capability-checked atomic membership transfer, preserving unrelated

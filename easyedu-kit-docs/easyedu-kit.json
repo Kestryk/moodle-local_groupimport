@@ -5,6 +5,26 @@
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentSelectedMembers20261003": {
+      "status": "Source candidate: endpoint/action wiring and isolated tests passed; local preview, native transfer DB proof and human acceptance pending.",
+      "documentation": "docs/student-selected-members-transfer-2026-10-03.md",
+      "penpotReadback": "docs/testing/student-selected-members-penpot-2026-10-03.json",
+      "isolatedRun": "member-transfer-20261003-c",
+      "nativeScenario": "student-member-actions-preview.spec.js",
+      "historicalSearchOnlyRevision": "afccee267b6316c450142ca734a0c239b487c2c7",
+      "humanAccepted": false,
+      "nativeTransferVerified": false,
+      "modules": {
+        "amd/src/course_manager.js": "68fa3dd49d6bccf9206225c349b04a3a6f5a9f06",
+        "amd/build/course_manager.min.js": "539401e8ffbc7b41b738b8d4cbe6e3d4ddef6f3e",
+        "amd/src/member_selection.js": "1192b6975fedc6aaa90472b8b3b4c0948d01920f",
+        "amd/build/member_selection.min.js": "fa2a4df6b5e914a0f6e9e0c05a2f5d0bc421662c",
+        "classes/service/membership_transfer.php": "924118ad7e371b118f1e03771b9d9d78924ee3af",
+        "ajax.php": "b96a52736cbb327d0bbf230c4ebb9105dc878920",
+        "templates/manage.mustache": "c4da7e3699b5ceb37d9baed519565438c6bae7f7",
+        "tools/playwright/student-member-actions-preview.spec.js": "16e1162ae9636d15fcb6224d9d3f2372196b1306"
+      }
+    },
     "studentSearchableDestinations20261003": {
       "sourceCommit": "3b56e419f82427a8d019a7e9bef6e801986a2266",
       "status": "Served managed local preview; nine native open/search/select/Cancel cases pass at 1600/768/390. Human checklist and business transfer proof remain open.",

@@ -852,6 +852,13 @@ function local_groupimport_build_manage_template_data(
                 'attribute' => 'data-easystud-delete-selected-groupings="1"',
             ],
             [
+                'icon' => 'fa-arrow-right',
+                'label' => get_string('moveselectedmembers', 'local_groupimport'),
+                'class' => 'btn btn-outline-primary btn-sm',
+                'attribute' => 'data-easystud-move-selected-members="1"',
+                'disabled' => true,
+            ],
+            [
                 'icon' => 'fa-user-minus',
                 'label' => get_string('deletemembersselection', 'local_groupimport'),
                 'class' => 'btn btn-outline-danger btn-sm',
@@ -876,6 +883,13 @@ function local_groupimport_build_manage_template_data(
                 'label' => get_string('deletegroupsselection', 'local_groupimport'),
                 'class' => 'btn btn-outline-danger btn-sm',
                 'attribute' => 'data-easystud-delete-selected-groups="1"',
+            ],
+            [
+                'icon' => 'fa-arrow-right',
+                'label' => get_string('moveselectedmembers', 'local_groupimport'),
+                'class' => 'btn btn-outline-primary btn-sm',
+                'attribute' => 'data-easystud-move-selected-members="1"',
+                'disabled' => true,
             ],
             [
                 'icon' => 'fa-user-minus',
@@ -907,6 +921,7 @@ function local_groupimport_build_manage_template_data(
         'participantdetailstitle' => get_string('participantdetails', 'local_groupimport'),
         'movedialogtitle' => get_string('movedialogtitle', 'local_groupimport'),
         'movedialogparticipants' => get_string('movedialogparticipants', 'local_groupimport'),
+        'movedialogmembers' => get_string('movedialogmembers', 'local_groupimport'),
         'movedialoggroups' => get_string('movedialoggroups', 'local_groupimport'),
         'movedestinationgroup' => get_string('movedestinationgroup', 'local_groupimport'),
         'movedestinationgrouping' => get_string('movedestinationgrouping', 'local_groupimport'),
@@ -2378,6 +2393,12 @@ function local_groupimport_build_context_actions_template_data(
             'contexts' => 'grouping',
             'icon' => 'fa-copy',
             'label' => get_string('contextcopygroupingname', 'local_groupimport'),
+        ],
+        'member-move-selected' => [
+            'contexts' => 'member',
+            'icon' => 'fa-arrow-right',
+            'label' => get_string('contextmovemember', 'local_groupimport'),
+            'multilabel' => get_string('contextmoveselectedmembers', 'local_groupimport'),
         ],
         'remove-member' => [
             'contexts' => 'member',
