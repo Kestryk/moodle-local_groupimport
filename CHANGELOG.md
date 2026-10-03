@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-03 - Searchable multiple filters local preview
+
+- Serve the paired Kit/controller/field-density candidate through the managed
+  local preview and cache gate. Six native search/selection/reset cases at
+  1600/768/390 pass, including both desktop catalogues and mobile role fallback.
+- Inspect and pin six control captures; no page error, business POST or fixture.
+  Preserve source/native/human boundaries and original filtering/API/Motion.
+
 ## 2026-10-03 - Searchable multiple filters (source checkpoint)
 
 - Replace native multiple-select presentation with the shared Kit searchable

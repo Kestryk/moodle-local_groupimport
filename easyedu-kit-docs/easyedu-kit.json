@@ -8,14 +8,15 @@
     "studentSearchableMultiple20261003": {
       "sourceCommit": "df067f8f571c965a38bcbf941e7194c8a6035b72",
       "historicalConsumerBaseline": "f27f88dbf30843b4d10d85e12b35e47228c5d2a3",
-      "status": "Paired Foundations/Product publication and isolated gates pass; native preview pending. Not a release or human acceptance.",
+      "status": "Served local preview; six native selection/search/reset cases and mobile role fallback pass at 1600/768/390. Not a release or human acceptance.",
+      "currentPreviewProof": "docs/testing/student-searchable-multiple-preview-2026-10-03.json",
       "documentation": "docs/student-searchable-filters-2026-10-03.md",
       "foundationReadback": "docs/testing/student-searchable-multiple-foundations-2026-10-03.json",
       "productReadback": "docs/testing/student-searchable-multiple-product-2026-10-03.json",
       "isolatedRun": "searchable-multiple-20261003-c",
       "nativeScenario": "student-searchable-filters-preview.spec.js",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "modules": {
         "amd/src/searchable_choices.js": "37405b256170a545dd93651aebb284d13512e7d2",
         "scss/easyedu/components/_searchable-choices.scss": "c45580226c532bf6a6521743f44a0d1a31c7f38a",

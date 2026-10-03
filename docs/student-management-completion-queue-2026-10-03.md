@@ -99,6 +99,11 @@ assets. Failed runs and backups remain recoverable.
   published, source/isolated gates pass. Native preview is still a separate
   pending gate; see `student-searchable-filters-2026-10-03.md`. Original
   filtering/Move/API/Motion and mobile visibility remain unchanged.
+- SM-14 candidate is now served at clean preview `cae152ae`; six native
+  selection/search/reset cases and the mobile role-search fallback pass in
+  `easystud-authenticated-20261003T123356784Z-14216`. Captures inspected/pinned,
+  no business POST/fixture; cleanup complete. SM-15 extra roles, SM-16 Skeleton,
+  SM-17 hover/touch catalogue and SM-11 whole-board toolbar remain open.
 - Queue recorded; no request is complete merely because it is listed.
 - First task: reconcile Ungrouped icon/focus source gate.
 - Ungrouped source gate reconciled and PASS. It now checks the defined

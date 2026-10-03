@@ -55,7 +55,16 @@ workspaces`. It is a proposed focused extension of the registered
 source, managed promotion/cache and the saved-credentials wrapper with explicit
 source-spec root and runtime lease. Discovery selected exactly one test.
 No fixture, business POST, enrolment change or actual Move/Remove/Send is used.
-Native preview remains pending until a successor evidence record says otherwise.
+Managed source `6e8a2a7` is served at clean runtime `cae152ae`, with cache refresh
+completed. Run `easystud-authenticated-20261003T123356784Z-14216` passes six
+selection/search/reset cases at 1600/768/390, both desktop group catalogues,
+original OR predicate parity and the native mobile role-search fallback.
+Triggers measure 14px with 38px Desktop/44px touch height. Six native control
+captures were inspected and pinned; page errors and business POSTs are zero.
+Owned child stopped, lease released and credentials cleared; no fixture.
+Evidence: `testing/student-searchable-multiple-preview-2026-10-03.json`.
+Full-block/card/Motion runtime parity, many-role fixture and human acceptance
+remain separate; static unchanged Motion is not fresh animation proof.
 
 External evidence: `EasyEdu/artifacts/kit/searchable-multiple-20261003-c` and
 `EasyEdu/artifacts/penpot/multiple-filters-20261003` (Standard `standard-b.png`,
