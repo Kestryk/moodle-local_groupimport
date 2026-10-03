@@ -40,6 +40,15 @@ no-match retention, exact original OR filtering, reset and containment at
 changes are the only authorised business mutations for this test. Credentials
 stay process-local; only hashes, fixture IDs and QA labels are recorded.
 Native proof and dense Penpot composition publication remain pending.
+First native run `easystud-authenticated-20261003T134332397Z-42960` failed
+in the test candidate: its unqualified DOM count included two correctly hidden
+pre-existing roles after search. The shared controller deliberately retains
+those rows/options. The successor counts matching visible rows; all native
+selection, no-match, predicate, reset and geometry assertions remain. The
+immutable failure is pinned in `testing/student-role-density-preview-failure-2026-10-03.json`.
+Both leases/credentials/child and all twelve roles/three users were cleaned up;
+the helper's original relationship-hash equality returned true. Future manifests
+also persist the detailed post-cleanup hashes. No UI/source-mode change is needed.
 Human checklist stays open; no release or production deployment is involved.
 
 ## Platform-owner proposal and recovery

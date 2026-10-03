@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-03 - Dense-role native candidate correction
+
+- Count matching visible role rows, not the retained hidden DOM options, during
+  search. Preserve the failed immutable run and complete fixture/lease cleanup.
+- Persist detailed post-cleanup relationship hashes in subsequent manifests;
+  no additional paint, mode or business behavior changes.
+
 ## 2026-10-03 - Dense role filter source candidate
 
 - Keep quick role buttons for up to six choices; reuse the existing searchable

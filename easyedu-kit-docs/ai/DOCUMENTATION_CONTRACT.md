@@ -139,6 +139,10 @@ deleted-user tombstones/audit events; never purify them with broad SQL deletes.
 Historical source gates allow a future mode-only patch through an explicit
 successor that reconstructs and compares the original controller, not a blanket
 exception for all generated or JavaScript files.
+Search intentionally hides nonmatching rows without deleting native options.
+Count visibility-qualified matches in browser checks, keep selections independent
+of that count and preserve failed immutable evidence. Persist fixture cleanup
+hashes alongside ownership IDs, not only a passing browser result.
 Forwarded sticky-mobile clicks must return focus to the real visible button,
 not its CSS-hidden desktop source. Historical search-only whole-file gates stay
 pinned; use an explicit successor to preserve old Participant/Group commands,

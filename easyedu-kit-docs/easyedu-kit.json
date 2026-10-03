@@ -12,12 +12,15 @@
       "documentation": "docs/student-role-density-2026-10-03.md",
       "humanAccepted": false,
       "nativePreviewVerified": false,
+      "historicalFailedSpecBlob": "f48298179375bb473f888330123eda6df4e6b453",
+      "historicalFailedFixtureBlob": "eb6694c46000ea7691c47f348f8928af70f179ff",
+      "failedPreviewProof": "docs/testing/student-role-density-preview-failure-2026-10-03.json",
       "modules": {
         "amd/src/course_manager.js": "217d571414e89506ad1b6c779b135ce65dd8d205",
         "amd/build/course_manager.min.js": "c0c6baf7801e7da79b98cf036e812529c4f88c74",
         "amd/build/course_manager.min.js.map": "0f9fae8f353e874fcdc0391caff551e89227bf5f",
-        "tools/playwright/student-role-density-preview.spec.js": "f48298179375bb473f888330123eda6df4e6b453",
-        "tools/playwright/easystud-role-density-fixture.php": "eb6694c46000ea7691c47f348f8928af70f179ff"
+        "tools/playwright/student-role-density-preview.spec.js": "f57cbcf2a270105430cd473c636a1308b654ac21",
+        "tools/playwright/easystud-role-density-fixture.php": "fbe04ecd3176cec6d59f44bf15dd72d126865a8e"
       }
     },
     "studentSoftLoading20261003": {

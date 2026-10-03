@@ -170,6 +170,10 @@ twelve-role/three-nologin-user fixture has separate runtime/fixture leases,
 transactional setup and pre-existing relationship hash checks. Native proof
 and source-backed dense composition publication remain pending. See
 `student-role-density-2026-10-03.md`; no permanent permissions or human acceptance.
+The first native candidate counted fourteen retained DOM rows instead of twelve
+visible QA matches. Cleanup/relationship hash equality passed; both leases
+released. Correct the visibility-qualified test only and preserve immutable
+run `easystud-authenticated-20261003T134332397Z-42960`; native proof stays pending.
 
 SM-16 first native run failed because its candidate expected the secondary soft
 token on a primary cue. Preserve run `easystud-authenticated-20261003T132641614Z-4696`
