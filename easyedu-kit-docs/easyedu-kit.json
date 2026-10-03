@@ -7,10 +7,11 @@
     "batch": "EED-UI-2026-0073",
     "studentMoreFiltersLayout20261003": {
       "kitCommit": "6c5aba1",
-      "status": "Kit 0.4.73 source candidate: public More Filters, labelled toggle and compact Reset roles with a coherent catalogue action row; the low-specificity disclosure default preserves responsive touch density. Managed native preview, paired Penpot publication and human acceptance remain open.",
+      "status": "Kit 0.4.73 served: public More Filters, labelled toggle and compact Reset roles with a coherent catalogue action row; the low-specificity disclosure default preserves responsive touch density. Managed native preview passes at 1600/768/390. Paired Penpot publication and human acceptance remain open.",
       "documentation": "docs/student-more-filters-layout-2026-10-03.md",
+      "currentPreviewProof": "docs/testing/student-more-filters-layout-preview-2026-10-03.json",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "modules": {
         "scss/easyedu/_foundation-classes.scss": "5d8c374c14e7fb7e0c88489d93baae5f65244a9e",
         "scss/easyedu/components/_buttons.scss": "5223d644fc83ae36a7c8c54d4f8c86ea4fda6a55",

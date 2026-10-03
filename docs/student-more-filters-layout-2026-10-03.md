@@ -26,9 +26,13 @@ Moodle pass exposed an order-dependent specificity defect: the wide public
 class overrode the consumer's canonical touch-density adapter at 390 px. Kit
 0.4.73 lowers only that public default selector's specificity; no local paint
 override was added. The consumer Sass build and focused source/generated
-contract pass. Fresh managed Moodle proof and paired Foundation/Product Penpot
-publication remain pending. Human acceptance remains open in the combined
-checklist.
+contract pass. Managed run
+`easystud-authenticated-20261003T215244587Z-15616` then passed at
+1600/768/390 px: the disclosure measures 33.59/44/44 px, retains the 12.16 px
+label and 6.72 px icon gap, and completes both disclosure directions. No
+business request or fixture ran; cleanup cleared credentials and released the
+lease. Paired Foundation/Product Penpot publication and human acceptance remain
+open.
 
 ## Safety
 
