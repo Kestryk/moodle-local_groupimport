@@ -8112,6 +8112,22 @@ const bindAdvancedFilters = root => {
         });
     };
 
+    const pointerHandledControls = new WeakSet();
+    const activateAdvancedFilters = control => {
+        const key = control.getAttribute('data-easystud-advanced-filters-toggle') ||
+            control.getAttribute('data-easystud-advanced-filters-more');
+        const panel = root.querySelector('[data-easystud-advanced-filters="' + key + '"]');
+        if (!panel || control.offsetParent === null) {
+            return false;
+        }
+        toggleAdvancedFilters(key);
+        emitGuidedCompletion(root, 2);
+        scheduleResponsiveUiRefresh(root);
+        animateCompleteListAlignment(root);
+        scheduleCompleteListAlignment(root);
+        return true;
+    };
+
     root.addEventListener('pointerdown', event => {
         const control = event.target.closest('[data-easystud-advanced-filters-toggle], ' +
             '[data-easystud-advanced-filters-more]');
@@ -8123,8 +8139,30 @@ const bindAdvancedFilters = root => {
         const panel = root.querySelector('[data-easystud-advanced-filters="' + key + '"]');
         if (panel && control.offsetParent !== null) {
             // Close nested overlays before focus leaves them. Their focusout
-            // lifecycle may otherwise consume the first pointer click.
-            closeChoicesWithin(panel);
+            // lifecycle may otherwise move the parent before pointerup and
+            // consume the click. Complete that pointer activation here.
+            if (closeChoicesWithin(panel) > 0) {
+                event.preventDefault();
+                if (activateAdvancedFilters(control)) {
+                    pointerHandledControls.add(control);
+                }
+            }
+        }
+    });
+
+    root.addEventListener('pointerup', event => {
+        const control = event.target.closest('[data-easystud-advanced-filters-toggle], ' +
+            '[data-easystud-advanced-filters-more]');
+        if (control && pointerHandledControls.has(control)) {
+            window.setTimeout(() => pointerHandledControls.delete(control), 0);
+        }
+    });
+
+    root.addEventListener('pointercancel', event => {
+        const control = event.target.closest('[data-easystud-advanced-filters-toggle], ' +
+            '[data-easystud-advanced-filters-more]');
+        if (control) {
+            pointerHandledControls.delete(control);
         }
     });
 
@@ -8134,16 +8172,11 @@ const bindAdvancedFilters = root => {
             return;
         }
         event.preventDefault();
-        const key = control.getAttribute('data-easystud-advanced-filters-toggle') ||
-            control.getAttribute('data-easystud-advanced-filters-more');
-        const panel = root.querySelector('[data-easystud-advanced-filters="' + key + '"]');
-        if (panel && control.offsetParent !== null) {
-            toggleAdvancedFilters(key);
-            emitGuidedCompletion(root, 2);
-            scheduleResponsiveUiRefresh(root);
-            animateCompleteListAlignment(root);
-            scheduleCompleteListAlignment(root);
+        if (pointerHandledControls.has(control)) {
+            pointerHandledControls.delete(control);
+            return;
         }
+        activateAdvancedFilters(control);
     });
 
     root.querySelectorAll('[data-easystud-advanced-filters]').forEach(panel => {
