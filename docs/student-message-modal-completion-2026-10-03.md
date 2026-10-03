@@ -31,9 +31,22 @@ corrects. No message was entered or sent and no fixture was created.
 
 Static Kit contracts pass for the compact portal, canonical Close and SCSS-only
 distribution. The consumer Sass build passes with the existing unrelated
-mixed-declarations warning. Managed post-change Moodle proof and Penpot
-Loading/Sending/Error publication remain pending. Human acceptance remains in
-the combined checklist.
+mixed-declarations warning.
+
+Managed post-change run
+`easystud-authenticated-20261003T203950810Z-39292` passes the single guarded
+scenario at 1600, 768 and 390px. At every width the Close is a 30.39px
+border-box flex control with centred 20px glyph; the message field has no
+resize grip; both footer actions are 26px high, unobscured and contained with
+zero right-edge drift. The phone capture was inspected after restoring the
+explicit glyph. The scenario selected one existing participant, opened the
+native dialog and used Cancel only. It issued no Send, created no fixture and
+completed with credentials cleared, lease released and owned child stopped.
+
+The proof record is
+`docs/testing/student-message-modal-completion-preview-2026-10-03.json`.
+Penpot Loading/Sending/Error publication remains pending. Human acceptance
+remains in the combined checklist.
 
 ## Safety and rollback
 

@@ -7,10 +7,11 @@
     "batch": "EED-UI-2026-0073",
     "studentMessageModalCompletion20261003": {
       "kitCommit": "5851a0f",
-      "status": "Kit 0.4.71 source candidate: canonical border-box compact header Close with explicit native glyph, non-resizable message field and quiet unboxed async spinner. Penpot state publication, managed native preview and human acceptance remain open.",
+      "status": "Kit 0.4.71 served: canonical border-box compact header Close with explicit native glyph, non-resizable message field and quiet unboxed async spinner. Managed native open/Cancel proof passes at 1600/768/390; Penpot state publication and human acceptance remain open.",
       "documentation": "docs/student-message-modal-completion-2026-10-03.md",
+      "currentPreviewProof": "docs/testing/student-message-modal-completion-preview-2026-10-03.json",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "modules": {
         "scss/easyedu/adapters/_moodle-message-dialog.scss": "9d60ba532746c45c0739247c74c4fde5ab8731b0",
         "scss/easyedu/components/_modals.scss": "7cecd579aab56d1703518218616ddce0e138dad4",

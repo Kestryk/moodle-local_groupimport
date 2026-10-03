@@ -305,9 +305,11 @@ acceptance status.
 - SM-22 is implemented in Kit, Foundation, product Penpot and Moodle 5.1. The
   managed responsive proof passes at 1600/768/390; human acceptance remains
   deliberately open.
-- SM-21 has a Kit/consumer source candidate at Kit 0.4.69. Its post-change
-  native proof and paired Penpot Loading/Sending/Error specimens remain the
-  next gates. No message may be sent during validation.
+- SM-21 is served at Kit 0.4.71. Its guarded native open/Cancel scenario passes
+  at 1600/768/390 with the visible compact Close, non-resizable field and
+  matched footer; no message was sent and no fixture was created. Paired
+  Penpot Loading/Sending/Error specimens and human acceptance are the next
+  gates.
 
 ### Dependency order
 
