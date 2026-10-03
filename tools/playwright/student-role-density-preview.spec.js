@@ -44,7 +44,8 @@ test('Many role filters stay searchable and contained at every width', async ({p
         await trigger.click();
         const search = host.getByRole('searchbox');
         await search.fill('QA:');
-        await expect(host.locator('[aria-pressed]')).toHaveCount(12);
+        // Search keeps all native options in DOM and hides only nonmatching rows.
+        await expect(host.locator('[aria-pressed]:visible')).toHaveCount(12);
         for (const option of options.slice(0, 2)) {
             await search.fill(option.label);
             await host.getByRole('button', {name: option.label, exact: true}).click();

@@ -98,7 +98,7 @@ function density_cleanup(array $manifest): array {
     }
     $after = density_baseline((int)$manifest['courseId'], (int)$manifest['contextId']);
     $complete = $after === $manifest['baseline'];
-    return ['complete' => $complete, 'preExistingRelationshipsUnchanged' => $complete,
+    return ['complete' => $complete, 'preExistingRelationshipsUnchanged' => $complete, 'baselineAfter' => $after,
         'roleIds' => $manifest['roleIds'], 'userIds' => $manifest['userIds'],
         'note' => 'Native deleted-user tombstones and audit events intentionally remain.'];
 }
@@ -110,6 +110,8 @@ if ($options['action'] === 'cleanup') {
     }
     $manifest = json_decode(file_get_contents($manifestpath), true, 512, JSON_THROW_ON_ERROR);
     $cleanup = density_cleanup($manifest);
+    $manifest['cleanup'] = $cleanup;
+    density_manifest($manifestpath, $manifest);
     echo json_encode($cleanup, JSON_UNESCAPED_SLASHES) . "\n";
     exit($cleanup['complete'] ? 0 : 1);
 }
