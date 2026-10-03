@@ -13,6 +13,9 @@ foreach ($required in @('export const closeChoicesWithin', "container.querySelec
 if ($managerSource -notmatch '(?s)else \{\s*closeChoicesWithin\(panel\);\s*setAdvancedFilterAccessibility\(panel, false\)') {
     throw 'More Filters collapse does not close nested choices before making the panel inert.'
 }
+if ($managerSource -notmatch "(?s)root\.addEventListener\('pointerdown'.*?closeChoicesWithin\(panel\);") {
+    throw 'Pointer users do not close nested choices before the parent toggle click.'
+}
 if (-not $choiceBuild.Contains('closeChoicesWithin') -or -not $managerBuild.Contains('closeChoicesWithin')) {
     throw 'Generated AMD does not contain the nested choice closure contract.'
 }

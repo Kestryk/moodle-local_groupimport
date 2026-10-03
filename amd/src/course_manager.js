@@ -8112,6 +8112,22 @@ const bindAdvancedFilters = root => {
         });
     };
 
+    root.addEventListener('pointerdown', event => {
+        const control = event.target.closest('[data-easystud-advanced-filters-toggle], ' +
+            '[data-easystud-advanced-filters-more]');
+        if (!control || !root.contains(control) || control.getAttribute('aria-expanded') !== 'true') {
+            return;
+        }
+        const key = control.getAttribute('data-easystud-advanced-filters-toggle') ||
+            control.getAttribute('data-easystud-advanced-filters-more');
+        const panel = root.querySelector('[data-easystud-advanced-filters="' + key + '"]');
+        if (panel && control.offsetParent !== null) {
+            // Close nested overlays before focus leaves them. Their focusout
+            // lifecycle may otherwise consume the first pointer click.
+            closeChoicesWithin(panel);
+        }
+    });
+
     root.addEventListener('click', event => {
         const control = event.target.closest('[data-easystud-advanced-filters-toggle], [data-easystud-advanced-filters-more]');
         if (!control || !root.contains(control)) {

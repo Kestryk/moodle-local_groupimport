@@ -7,6 +7,12 @@ consume the first attempt to close its enclosing More Filters panel. Kit
 0.4.74 exports `closeChoicesWithin(container)`. EasyStud invokes it before the
 parent panel becomes inert and starts its existing collapse Motion.
 
+For pointer input, the enclosing control closes its nested overlay during
+`pointerdown`, before the browser moves focus and dispatches the parent
+`click`. Keyboard activation keeps the same `click` collapse path. This event
+order prevents the nested focusout lifecycle from consuming the first pointer
+action.
+
 The helper is scoped to enhanced native selects inside the supplied panel. It
 does not change selected options, rebuild the catalogue, install a global
 outside-click listener, submit a form or issue a request. The accepted More
