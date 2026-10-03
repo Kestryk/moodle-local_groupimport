@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "scope": "SM-21 paired Foundation and EasyStud message-modal asynchronous states",
+  "humanAccepted": false,
+  "foundations": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "page": "2b150968-5877-802e-8008-97c286173199",
+    "pageName": "09.2 — Compositions / modal shells",
+    "host": {
+      "id": "11206fb4-1be0-8047-8008-bc2893464514",
+      "name": "Native message portal — Loading, Sending and Error",
+      "x": 80,
+      "y": 7890,
+      "width": 2940,
+      "height": 700
+    },
+    "states": [
+      {"name": "Loading", "modal": "11206fb4-1be0-8047-8008-bc2893a4b3ae"},
+      {"name": "Sending", "modal": "11206fb4-1be0-8047-8008-bc2894200128"},
+      {"name": "Error", "modal": "11206fb4-1be0-8047-8008-bc28947fa9fb"}
+    ],
+    "visualExportInspected": true
+  },
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "pageName": "04 — Dialogues et modales",
+    "states": [
+      {"id": "11206fb4-1be0-8047-8008-bc2655ff7f98", "name": "Message modal — Loading", "x": 80, "y": 9100, "width": 820, "height": 544},
+      {"id": "11206fb4-1be0-8047-8008-bc265801f089", "name": "Message modal — Sending", "x": 940, "y": 9100, "width": 820, "height": 544},
+      {"id": "11206fb4-1be0-8047-8008-bc2659b95dea", "name": "Message modal — Error", "x": 1800, "y": 9100, "width": 820, "height": 544}
+    ]
+  },
+  "lineage": {
+    "modalDesktop": "db59201c-3dd6-8004-8008-bab0f942bdc9",
+    "busyStatus": "81455adb-6787-8068-8008-9ce42575b040",
+    "dangerToast": "5866ed4a-7d30-8093-8008-ac7867052238",
+    "provider": "40e06342-8830-80d6-8008-96572effc11c"
+  },
+  "readback": {
+    "modalWidth": 768,
+    "modalHeight": 544,
+    "busyWidth": 236.4,
+    "busyHeight": 34.4,
+    "toastWidth": 420,
+    "toastHeight": 84,
+    "loadingAndSendingActionsOpacity": 0.48,
+    "linkedComponentsPreserved": true,
+    "overlapsDetected": false
+  },
+  "limitations": [
+    "These are visual state compositions; Moodle still owns message delivery and asynchronous business behavior.",
+    "No message was sent during Penpot or browser validation.",
+    "Human acceptance remains deferred to the combined checklist."
+  ]
+}

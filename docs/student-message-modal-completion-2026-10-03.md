@@ -45,8 +45,16 @@ completed with credentials cleared, lease released and owned child stopped.
 
 The proof record is
 `docs/testing/student-message-modal-completion-preview-2026-10-03.json`.
-Penpot Loading/Sending/Error publication remains pending. Human acceptance
-remains in the combined checklist.
+
+Foundation page `09.2 — Compositions / modal shells` and EasyStud page
+`04 — Dialogues et modales` now contain paired Loading, Sending and Error
+compositions. They reuse the linked native-message portal, shared busy status
+and shared danger toast; Loading/Sending retain linked compact actions with a
+disabled visual state. The Foundation host export was inspected and product
+geometry/component lineage was read back. See
+`docs/testing/student-message-modal-states-penpot-2026-10-03.json`.
+
+Human acceptance remains in the combined checklist.
 
 ## Safety and rollback
 
