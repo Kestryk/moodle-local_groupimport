@@ -4,7 +4,8 @@
 
 SM-21 completes the visual contract of Moodle's native bulk-message portal
 without replacing its form or sending behavior. The source candidate consumes
-EasyEdu UI Kit `0.4.69` (`411d6d7`).
+EasyEdu UI Kit `0.4.70` (`6da5316`). The successor corrects the native painted
+Close from 32.4px to the intended 30.4px border box.
 
 The shared adapter now:
 

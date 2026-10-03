@@ -2,7 +2,7 @@
 
 ## 2026-10-03 - Native message modal completion
 
-- Consume Kit `0.4.69` for the canonical compact header Close, non-resizable
+- Consume Kit `0.4.70` for the canonical border-box compact header Close, non-resizable
   message textarea and quiet unboxed async loader.
 - Preserve Moodle recipients, focus trap, native Send/Cancel routing and the
   accepted EasyEdu modal Motion; supervised proof must never send a message.

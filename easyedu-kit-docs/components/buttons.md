@@ -275,7 +275,8 @@ semantic colour, border or size of the existing button.
   `action-menu-trigger-icon`.
 - Modal close action: use `close-button`; do not leave a raw `x` link. Its
   default `1.9rem` square is the code counterpart of the linked Foundation
-  `Core action / Secondary / S` component used in modal headers.
+  `Core action / Secondary / S` component used in modal headers. The published
+  size is the painted border box, including its one-pixel border.
 - Admin view switchers: use `admin-primary-nav` and
   `admin-primary-nav-action`; never let labels wrap onto two lines.
 - Status/action rows inside an admin view: use `admin-secondary-actions` and

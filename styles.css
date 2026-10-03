@@ -1362,6 +1362,7 @@
   transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-card-border);
+  box-sizing: border-box;
   color: var(--easyedu-text-muted);
   height: 1.9rem;
   min-height: 1.9rem;
@@ -6862,6 +6863,7 @@
   transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-card-border);
+  box-sizing: border-box;
   color: var(--easyedu-text-muted);
   height: 1.9rem;
   min-height: 1.9rem;
@@ -6989,6 +6991,7 @@
   transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-card-border);
+  box-sizing: border-box;
   color: var(--easyedu-text-muted);
   height: 1.9rem;
   min-height: 1.9rem;

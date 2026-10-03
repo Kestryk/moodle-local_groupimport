@@ -1,20 +1,21 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.69",
+  "version": "0.4.70",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
     "studentMessageModalCompletion20261003": {
-      "kitCommit": "411d6d7",
-      "status": "Kit 0.4.69 source candidate: canonical compact header Close, non-resizable message field and quiet unboxed async spinner. Penpot state publication, managed native preview and human acceptance remain open.",
+      "kitCommit": "6da5316",
+      "status": "Kit 0.4.70 source candidate: canonical border-box compact header Close, non-resizable message field and quiet unboxed async spinner. Penpot state publication, managed native preview and human acceptance remain open.",
       "documentation": "docs/student-message-modal-completion-2026-10-03.md",
       "humanAccepted": false,
       "nativePreviewVerified": false,
       "modules": {
         "scss/easyedu/adapters/_moodle-message-dialog.scss": "8b5fd5a36cacd72e01213db74e6b2933988c0acc",
         "scss/easyedu/components/_modals.scss": "7cecd579aab56d1703518218616ddce0e138dad4",
-        "styles.css": "0190093272aae1c9969e80be3711063f11d88759"
+        "scss/easyedu/components/_buttons.scss": "152b1e3354a95bdda33d3d6ae144ba0470a24b5f",
+        "styles.css": "b82cda9c35c9a2eaead18029c5121f6eda0d9531"
       }
     },
     "studentRelatedPersonHierarchy20261003": {
