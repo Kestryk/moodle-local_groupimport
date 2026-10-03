@@ -4,15 +4,19 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$pin = (Get-Content -LiteralPath (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') -Raw |
-    ConvertFrom-Json).consumerSync.studentEntityFieldsExtraction
+$ledger = Get-Content -LiteralPath (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') -Raw | ConvertFrom-Json
+$pin = $ledger.consumerSync.studentEntityFieldsExtraction
 if ($null -eq $pin -or @($pin.modules.PSObject.Properties).Count -ne 2) {
     throw 'Entity field canonical source pins are missing.'
 }
 foreach ($entry in $pin.modules.PSObject.Properties) {
     $embedded = & git -C $root hash-object $entry.Name
     $canonical = & git -C $KitRoot hash-object $entry.Name
-    if ($LASTEXITCODE -ne 0 -or $embedded -ne $canonical -or $embedded -ne $entry.Value) {
+    # Metadata exports are additive; preserve the historical field module pins.
+    $expectedPin = if ($ledger.consumerSync.studentEntityMetadataExtraction.modules.($entry.Name)) {
+        $ledger.consumerSync.studentEntityMetadataExtraction.modules.($entry.Name)
+    } else { $entry.Value }
+    if ($LASTEXITCODE -ne 0 -or $embedded -ne $canonical -or $embedded -ne $expectedPin) {
         throw "Entity field canonical module/pin drift: $($entry.Name)"
     }
 }

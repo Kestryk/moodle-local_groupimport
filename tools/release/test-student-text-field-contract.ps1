@@ -8,7 +8,9 @@ foreach ($pair in @(@($pin.module, $pin.moduleBlob), @('scss/easyedu/_tokens.scs
     $embedded = & git -C $root hash-object $pair[0]
     $canonical = & git -C $KitRoot hash-object $pair[0]
     # New opt-in exports are additive; retain the historical field proof pin.
-    $expectedPin = if ($pair[0] -eq 'scss/easyedu/_components.scss' -and
+    $expectedPin = if ($manifest.consumerSync.studentEntityMetadataExtraction.modules.($pair[0])) {
+        $manifest.consumerSync.studentEntityMetadataExtraction.modules.($pair[0])
+    } elseif ($pair[0] -eq 'scss/easyedu/_components.scss' -and
         $manifest.consumerSync.studentEntityFieldsExtraction.modules.($pair[0])) {
         $manifest.consumerSync.studentEntityFieldsExtraction.modules.($pair[0])
     } else { $pair[1] }

@@ -1,5 +1,56 @@
 # Modals
 
+## Entity-field Penpot catalogue (2026-10-03)
+
+Foundations publishes twelve linked Regular/Narrow resting specimens at
+`08.4` Standard host `a301101d-ddc2-807b-8008-bb6dd6dc6194` and
+`08.4.1` Library host `a301101d-ddc2-807b-8008-bb6b608ca7c5`.
+Detail, optional empty detail, readonly count/empty, editable and textarea
+use the opt-in `_entity-fields.scss` recipes; generic Text-field masters
+and other consumers are unchanged. Recursive fingerprints, all four radii,
+painted text containment and provider links match for all twelve pairs.
+
+Caption, value and editing roles are Inter 12.16/600/#62788E,
+14.08/400/#263B4F and 13.76/400 respectively; readonly empty uses #8A9BAD.
+Widths 378/324 illustrate density, not a fixed native responsive grid.
+Textarea rows/height and optional empty detail are composition examples,
+not changed native data or field sizing. Source focus #86B7E0 remains an
+explicit legacy exception to the general #8ABCE3 palette; no all-state claim.
+
+EasyStud page 04 consumes seventeen linked fields in Participant/Group/Grouping.
+Its `docs/testing/student-entity-fields-penpot-2026-10-03.json` records exact
+providers, painted bounds, recoverable originals and external captures.
+Product raster export failed; editor viewport captures were inspected without
+reloading or closing an unsaved tab. This resolves the caption palette for
+these specimens only, not metadata-list publication or human acceptance.
+
+## Source-preserving entity metadata (2026-10-03)
+
+`components/_entity-metadata.scss` is an opt-in presentation API for native
+details/settings. The settings and readonly-detail recipes are intentionally
+distinct: they retain their accepted density, count limits and scroll height.
+Generic `metadata-*` defaults remain compatible with other consumers.
+
+Use the `entity-metadata-*` title/count/count-label/chevron/scroll/primary/meta/
+chip/semantic recipes for settings lists. `entity-detail-list-*` provides the
+readonly list surface, summary, summary end, scroll content and empty state;
+`entity-detail-description-*` retains the separate description disclosure.
+Semantic roles are `members`, `roles`, `groups` and `groupings`; invalid roles
+fail compilation. They do not change entity eligibility or business meaning.
+
+Consumers retain selectors, native summary/ul/li/table markup, counts, conditional
+fields, localized values, export handlers, hidden CSV tables, responsive grids
+and disclosure predicates/controller. The complete summary owns focus. Keep
+surface overflow visible and clipping on the nested scroll region. Existing
+chevron timing is transferred unchanged, while reduced-motion/state rotation
+remain in their original consumer adapters.
+
+Compile `examples/entity-metadata.scss` and run
+`scripts/test-entity-metadata-contract.ps1`. Extraction requires exact emitted
+consumer CSS identity, not only a compile PASS. This is not a class-only body
+or a new Penpot/human visual acceptance. Legacy 650/720/760 weights and the
+uppercase CSV header are preserved pending source-backed visual reconciliation.
+
 ## Source-preserving entity fields (2026-10-03)
 
 The opt-in `components/_entity-fields.scss` API centralises the existing
