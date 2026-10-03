@@ -1,10 +1,17 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.66",
+  "version": "0.4.67",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "restrictedDistribution20261003": {
+      "kitCommit": "b43f819",
+      "status": "SCSS-only public Kit exporter and EasyStud archive privacy gates pass; no runtime or visual behavior changed.",
+      "documentation": "docs/kit-restricted-distribution-2026-10-03.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false
+    },
     "studentModalClose20261003": {
       "kitCommit": "b2f9cb67ca14f8c203c1b24018f6d531fce6a9c1",
       "sourceCandidateCommit": "2b34aa84aa1fc8e1fbe2852e031aeb5117011a1e",

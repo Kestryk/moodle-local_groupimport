@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-03 - Restricted UI Kit distribution
+
+- Record the SCSS-only public Kit export contract while keeping internal agent,
+  audit and documentation sources private.
+- Exclude the optional Navigation development kit from customer archives and
+  strengthen release validation against private agent paths and non-SCSS Kit
+  entries.
+
 ## 2026-10-03 - Shared modal Close adoption
 
 - Replace the stale generated-only local Close skin with the canonical Kit
