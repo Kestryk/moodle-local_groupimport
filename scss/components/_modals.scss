@@ -121,6 +121,12 @@
     padding: 1rem;
   }
 
+  // One shared Close anatomy for Participant, Group, Grouping, Move and
+  // choice dialogs. Accessible naming and dismissal routing stay native.
+  &-modal__close {
+    @include easyedu.close-button;
+  }
+
   &-move-modal__empty {
     margin: 0.7rem 0 0;
   }

@@ -1941,35 +1941,4 @@
     margin-top: 1rem;
   }
 
-  &-modal__close {
-    align-items: center;
-    appearance: none;
-    background: #f7f9fc;
-    border: 1px solid #dce6ef;
-    border-radius: 0.62rem;
-    color: var(--local-groupimport-easystud-text);
-    cursor: pointer;
-    display: inline-flex;
-    font-size: 1.05rem;
-    height: 2rem;
-    justify-content: center;
-    line-height: 1;
-    min-width: 2rem;
-    padding: 0;
-    transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.16s ease;
-    width: 2rem;
-
-    &:hover,
-    &:focus {
-      background: #eef4fa;
-      border-color: #bfd0e2;
-      color: var(--local-groupimport-easystud-primary);
-      text-decoration: none;
-      transform: translateY(-1px);
-    }
-
-    &:focus-visible {
-      @include easyedu.ring($border-color: #bfd0e2);
-    }
-  }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-03 - Shared modal Close adoption
+
+- Replace the stale generated-only local Close skin with the canonical Kit
+  `close-button` mixin on the common modal selector.
+- Preserve every native aria label, close route, focus restoration and modal
+  Motion; this change owns paint and geometry only.
+
 ## 2026-10-03 - Group image proof and linked preview family
 
 - Pass the non-submitting image picker/drop/toggle audit at 1600/768/390 and
