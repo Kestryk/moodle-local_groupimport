@@ -133,6 +133,15 @@ Group/Grouping modal to 768/390. Responsive geometry is distinct from mobile
 entry coverage, which remains a documented product gap. Both failures and
 complete cleanup records stay retained; no full suite PASS is inferred.
 
+The corrected entity matrix `easystud-authenticated-20261003T025610546Z-50032`
+passes nine geometry/content cases. The initial narrow screenshot keeps its
+native scrolling body, so some actions are below the visible body at entry.
+Extend the audit to scroll normally to the action row and assert every button
+centre is unobscured and in the viewport, with separate entry/footer captures.
+This does not change a scroll container or hide a sticky control. A foreign
+CCB trigger remains visible in some narrow entry captures; body-wide overlay
+acceptance stays open even when this tranche's header/footer targets pass.
+
 ## Efficiency
 
 No per-task token/billing telemetry is available. Avoidable cost came from a

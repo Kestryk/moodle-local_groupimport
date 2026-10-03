@@ -11,7 +11,10 @@ conditional body and action geometry. This is NOT proof of a mobile settings
 entry. The full-card native responsive sheet does not expose the originally
 assumed settings command; the failed 20261003T025134893Z run is retained.
 No hidden click, manufactured mobile command, Save, upload or CSV export.
-Evidence: `entity-dialog-chrome.json` and nine named entity/width PNGs.
+Evidence: `entity-dialog-chrome.json`, nine initial `*-entry.png` captures and
+nine named entity/width footer-visible PNGs. Scroll the native body normally
+to the actions before asserting visible, unobscured button centres; never hide
+sticky navigation or infer visibility from horizontal geometry alone.
 
 ## Focused Message footer preview
 
