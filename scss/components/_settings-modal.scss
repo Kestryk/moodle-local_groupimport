@@ -24,77 +24,8 @@
     padding: 0.72rem 0.85rem 0.82rem;
   }
 
-  &-settings-modal &-modal__footer {
-    align-items: center;
-    border-top: 1px solid #e5edf3;
-    display: flex;
-    gap: 0.55rem;
-    justify-content: flex-end;
-    margin-top: 0.72rem;
-    min-width: 0;
-    padding-top: 0.72rem;
-
-    > .btn {
-      @include easyedu.action-button(small);
-
-      // Participant's native-profile action is the accepted modal-action
-      // reference. Keep all Group/Grouping footer actions on that same box.
-      box-sizing: border-box;
-      min-height: 2.25rem;
-      padding-inline: 0.5rem;
-      white-space: nowrap;
-    }
-  }
-
-  &-settings-modal__header {
-    background: var(--easyedu-modal-header-success-bg);
-    border-bottom-color: #d8e7f1;
-    padding: 0.78rem 0.95rem;
-  }
-
-  &-settings-modal__dialog--grouping &-settings-modal__header {
-    background:
-      radial-gradient(circle at 4.5rem 1.6rem, color-mix(in srgb, var(--easyedu-grouping) 14%, transparent), transparent 8rem),
-      linear-gradient(135deg, #f8fbff 0%, #f2f6f9 100%);
-  }
-
-  &-settings-modal__heading {
-    @include easyedu.settings-modal-heading;
-
-    h3 {
-      color: #21364a;
-    }
-  }
-
-  &-settings-modal__icon {
-    @include easyedu.modal-header-icon(var(--local-groupimport-easystud-group));
-
-    box-shadow: 0 0.28rem 0.72rem rgba(31, 68, 104, 0.12);
-    font-size: 0.95rem;
-    position: relative;
-
-    &::before {
-      left: 50%;
-      line-height: 1;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-
-  &-settings-modal__dialog--grouping &-settings-modal__icon {
-    color: var(--local-groupimport-easystud-grouping);
-  }
-
-  &-modal__dialog--user &-settings-modal__icon {
-    color: var(--local-groupimport-easystud-primary);
-  }
-
-  &-settings-modal__eyebrow {
-    @include easyedu.settings-modal-eyebrow;
-
-    color: #60778d;
-  }
+  // Shared entity chrome/actions are public Kit classes. Keep only the
+  // product's native content, dimensions, conditional forms and disclosure.
 
   &-settings-modal__intro {
     background: #f7fafc;
@@ -499,29 +430,6 @@
     @include easyedu.metadata-empty;
   }
 
-  &-settings-modal__native {
-    align-items: center;
-    border-top: 1px solid #e5edf3;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 0.72rem;
-    min-width: 0;
-    padding-top: 0.72rem;
-  }
-
-  // The native Moodle-profile link is an action, not body copy. It therefore
-  // uses the same centred icon/label contract as the upper EasyStud actions.
-  &-settings-modal__native > .btn {
-    @include easyedu.action-button(small);
-
-    min-height: 2.25rem;
-    white-space: nowrap;
-
-    .fa {
-      margin-inline: 0 !important;
-    }
-  }
-
   &-settings-modal__filepicker-icon {
     background: #eef5fb;
     border: 1px solid #d2e2ef;
@@ -891,14 +799,6 @@
       grid-template-columns: auto minmax(0, 1fr) auto;
     }
 
-    &-settings-modal &-modal__footer {
-      align-items: stretch;
-      flex-wrap: wrap;
-
-      > .btn {
-        flex: 1 1 auto;
-      }
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {

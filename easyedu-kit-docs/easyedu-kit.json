@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.54",
+  "version": "0.4.55",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -15,12 +15,41 @@
       "cardModuleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09"
     },
     "fullTreeIdentical": false,
+    "studentModalFooters": {
+      "sourceBaseCommit": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
+      "sourceCommit": "cd9b56e6389c58e6bff609c0fad0fa2ad6825fe6",
+      "modules": {
+        "scss/easyedu/_foundation-classes.scss": "90c09595d954c299c3f7273a57eec09bafe80a6d",
+        "scss/easyedu/_dialog-classes.scss": "dcb1e6393304e0deca56dc976f383fcdf1256540",
+        "scss/easyedu/adapters/_moodle-message-dialog.scss": "399ce8afd30f8e8f24453b95bbaf9ca789269687"
+      },
+      "generatedCssBlob": "ef489ccc40b8d95e24a0650a3bc5dbef83455c41",
+      "browserCandidates": {
+        "entity": "5c5516972b654a02de50494efbb217c21aceb5f0",
+        "move": "f4bceb7906c1e3513830ff737306718f7d2bfe2a",
+        "message": "8216fd95b9fc17dd15b9eb9c0daa67e2f268d5f5"
+      },
+      "scope": "Right-aligned wrapping native modal footer actions; equal paired typography/minimum height/radius/padding, adaptive label widths. Regular Destination/entity; compact Message retained. Card/inline controls and Motion unchanged.",
+      "penpotReadback": "docs/testing/student-modal-footers-penpot-2026-10-03.json",
+      "status": "Source/Penpot candidate, four Standard/Library matches and eleven product compositions read back; not served in runtime 333b753; managed preview/browser and human validation pending"
+    },
+    "studentEntityDialogs": {
+      "sourceBaseCommit": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
+      "sourceCommit": "cd9b56e6389c58e6bff609c0fad0fa2ad6825fe6",
+      "modules": {
+        "scss/easyedu/_dialog-classes.scss": "dcb1e6393304e0deca56dc976f383fcdf1256540"
+      },
+      "scope": "Shared Participant/Group/Grouping header, root layer and right-aligned matched regular native actions only; conditional body and disclosure Motion preserved",
+      "penpotReadback": "docs/testing/student-entity-dialog-chrome-penpot-2026-10-02.json",
+      "footerReadback": "docs/testing/student-modal-footers-penpot-2026-10-03.json",
+      "status": "Source candidate and paired header publication; new local runtime promotion/test and human acceptance pending"
+    },
     "studentLookupDialogs": {
       "sourceCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
       "documentationCommit": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
       "modules": {
         "scss/easyedu/_tokens.scss": "7c67bbaa70136b0dadbedf6a32a8fb6b1c0f77f5",
-        "scss/easyedu/_dialog-classes.scss": "4430f1b9343a99b0736ee2173df5731aeb7689f7",
+        "scss/easyedu/_dialog-classes.scss": "dcb1e6393304e0deca56dc976f383fcdf1256540",
         "scss/easyedu/components/_modals.scss": "c5b494cdd99c898b7dd2df0ed193490517fdb201"
       },
       "scope": "Neutral Clipboard chrome and opt-in fixed-root ordering above shared navigation; native rows, lookup, close and Motion unchanged",
@@ -30,6 +59,7 @@
       "penpotReadback": "docs/testing/student-neutral-lookup-penpot-2026-10-02.json",
       "proofRun": "easystud-authenticated-20261002T205725336Z-32120",
       "previewRuntime": "b8a3c0f74a942bc564722b7371d80691470a4a91",
+      "additiveDialogClassesCandidate": "studentEntityDialogs/studentModalFooters; lookup declarations unchanged; prior preview proof remains pinned to its recorded CSS blob",
       "status": "Paired Foundation Standard/Library and linked product Desktop/Narrow verified; scoped local 1600/768/390 browser proof PASS including no helper occlusion; all-state and human acceptance remain open"
     },
     "studentWorkspaceControls": {
@@ -47,8 +77,8 @@
       "sourceCommit": "f0a25fd11b2e7871222f85672ddf07eaeda86e87",
       "modules": {
         "scss/easyedu/components/_overlays.scss": "66208bc3618e3e002d33f9c3c7f907ecce155589",
-        "scss/easyedu/_dialog-classes.scss": "4430f1b9343a99b0736ee2173df5731aeb7689f7",
-        "scss/easyedu/adapters/_moodle-message-dialog.scss": "e22b0bb6e3d26dd58129761d68612735fa115c29"
+        "scss/easyedu/_dialog-classes.scss": "dcb1e6393304e0deca56dc976f383fcdf1256540",
+        "scss/easyedu/adapters/_moodle-message-dialog.scss": "399ce8afd30f8e8f24453b95bbaf9ca789269687"
       },
       "dialogClassesUpdateCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",
       "scope": "Compact entity preview, native message token bridge and Move dialog controls; original card disclosure Motion unchanged",
@@ -56,6 +86,7 @@
       "penpotReadback": "docs/testing/student-native-message-penpot-2026-10-02.json",
       "movePenpotReadback": "docs/testing/student-native-move-penpot-2026-10-02.json",
       "moveProofRun": "easystud-authenticated-20261002T183714504Z-31732",
+      "additiveModalFooterCandidate": "studentModalFooters; old Message/Move proofs certify their recorded centred footer assets only, not the current right-aligned source candidate",
       "moveScenarioBlob": "f67845c39a7f9e7891577782fe043e19604a660f"
     },
     "studentNativeTextFields": {
@@ -121,7 +152,9 @@
       "formsModule": "scss/easyedu/components/_forms.scss",
       "formsBlob": "c22f28fa9517e40e331c425d7ecbf1b2a68cdff2",
       "buttonsModule": "scss/easyedu/_foundation-classes.scss",
-      "buttonsBlob": "2d438071fef18225a2b56dc9b9ac05a0bda566bb",
+      "buttonsBlob": "90c09595d954c299c3f7273a57eec09bafe80a6d",
+      "previousProofButtonsBlob": "2d438071fef18225a2b56dc9b9ac05a0bda566bb",
+      "additiveModalFooterCandidate": "studentModalFooters; default compact inline button geometry unchanged; historical proof remains pinned to previousProofButtonsBlob",
       "scope": "Group/Grouping identifier-result success/error pills and inline container-search Cancel",
       "proofRun": "easystud-authenticated-20261002T050512385Z-40496",
       "testedConsumer": "5ab1a6ccdba518261f3228d158dbd18cc3c48d9d",
@@ -209,10 +242,15 @@
       "sourceCommit": "b5a9a076ce6e696f705ae756c0156df8fb4c56c1",
       "status": "final 1600/768/390 role, inline rest-hover-keyboard and opaque drawer proof passed; nine native menu type-centre-focus cases pass but overall test fails foreign CCB 390px icon occlusion; linked product member rows retain a density/export gap; human review deferred",
       "memberRowComponent": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
-      "modules": {
+      "previousProofModules": {
         "_tokens.scss": "5a9de6841053c01544ba575e772596c5bfe52f8e",
+        "_foundation-classes.scss": "2d438071fef18225a2b56dc9b9ac05a0bda566bb"
+      },
+      "additiveCurrentModuleCandidates": "Lookup layer tokens are already served; current Foundation footer helper is a source candidate. Historical proof keeps previousProofModules and its original runtime, not a new all-state PASS.",
+      "modules": {
+        "_tokens.scss": "7c67bbaa70136b0dadbedf6a32a8fb6b1c0f77f5",
         "_workspace-classes.scss": "83d5f0a11820eb2b7100aa9ed9d3cd9a459cb773",
-        "_foundation-classes.scss": "2d438071fef18225a2b56dc9b9ac05a0bda566bb",
+        "_foundation-classes.scss": "90c09595d954c299c3f7273a57eec09bafe80a6d",
         "components/_cards.scss": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
         "components/_menus.scss": "50619e7e17f5fc8be5ca3f8ae2e26c02267bbb16"
       }

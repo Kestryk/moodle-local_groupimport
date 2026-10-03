@@ -30,13 +30,13 @@ test('Student move dialogs preserve native participant and group branches', asyn
         })});
         save();
     };
-    for (const width of [1600, 390]) {
+    for (const width of [1600, 768, 390]) {
         for (const branch of ['participants', 'groups', 'groups-in-grouping']) {
             const kind = branch === 'participants' ? branch : 'groups';
             await page.setViewportSize({width, height: 1100});
             await ready(); // Each context starts with native selection cleared.
             if (kind === 'groups') {
-                const toggle = width === 390 ? '[data-easystud-mobile-view="groups"]:visible' :
+                const toggle = width <= 1024 ? '[data-easystud-mobile-view="groups"]:visible' :
                     '[data-easystud-layout-mode="structure"]:visible';
                 await root.locator(toggle).first().click();
                 if (!await root.locator('[data-easystud-group-id]:visible').count()) {
@@ -58,7 +58,7 @@ test('Student move dialogs preserve native participant and group branches', asyn
             await expect(item).toBeVisible();
             await item.locator('[data-easystud-selector-input]').first().evaluate(input => input.click());
             const action = '[data-easystud-move-selected-' + kind + ']';
-            const trigger = width === 390 ? root.locator('[data-easystud-mobile-action-trigger="' + action + '"]:visible').first() :
+            const trigger = width <= 1024 ? root.locator('[data-easystud-mobile-action-trigger="' + action + '"]:visible').first() :
                 root.locator(action + ':visible').first();
             await expect(trigger).toBeEnabled();
             await trigger.click();
@@ -71,7 +71,29 @@ test('Student move dialogs preserve native participant and group branches', asyn
             await expect(select).toBeFocused();
             await expect(select).toHaveClass(/easyedu-select/);
             await expect(dialog.locator('h3')).toHaveCSS('font-size', '16px');
-            await expect(dialog.locator('.easyedu-dialog-actions')).toHaveCSS('justify-content', 'center');
+            const footer = dialog.locator('.easyedu-dialog-actions');
+            await expect(footer).toHaveCSS('justify-content', 'flex-end');
+            const pair = await footer.evaluate(node => {
+                const row = node.getBoundingClientRect(), css = getComputedStyle(node);
+                const buttons = [...node.children].map(button => {
+                    const r = button.getBoundingClientRect(), s = getComputedStyle(button);
+                    return {right: r.right, height: r.height, font: s.fontSize, weight: s.fontWeight,
+                        radius: s.borderTopLeftRadius, padding: [s.paddingTop, s.paddingRight, s.paddingBottom, s.paddingLeft]};
+                });
+                return {buttons, rightDelta: Math.abs(Math.max(...buttons.map(b => b.right)) -
+                    row.right + parseFloat(css.paddingRight))};
+            });
+            expect(pair.buttons).toHaveLength(2);
+            expect(pair.rightDelta).toBeLessThanOrEqual(1);
+            expect(Math.abs(pair.buttons[0].height - pair.buttons[1].height)).toBeLessThanOrEqual(1);
+            for (const button of pair.buttons) {
+                expect(button.height).toBeGreaterThanOrEqual(37);
+                expect(button.font).toBe('14.08px');
+                expect(button.weight).toBe('600');
+                expect(button.radius).toBe(pair.buttons[0].radius);
+                expect(button.padding).toEqual(pair.buttons[0].padding);
+            }
+            records.push({viewport: width, branch, footerPair: pair});
             const options = await select.locator('option').evaluateAll(nodes => nodes.map(n => ({value: n.value, label: n.textContent})));
             const origin = dialog.locator('[data-easystud-move-origin-wrap]');
             records.push({viewport: width, kind, branch, options, originVisible: await origin.isVisible(),

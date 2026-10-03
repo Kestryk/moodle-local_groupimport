@@ -130,7 +130,23 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
             await expect(message).not.toHaveClass(/is-loading/);
             await expect(message).toHaveClass(/easyedu-message-dialog/);
             await expect(message.locator('.modal-title')).toHaveCSS('font-size', '16px');
-            await expect(message.locator('.modal-footer')).toHaveCSS('justify-content', 'center');
+            await expect(message.locator('.modal-footer')).toHaveCSS('justify-content', 'flex-end');
+            const messagePair = await message.locator('.modal-footer').evaluate(node => {
+                const row = node.getBoundingClientRect(), css = getComputedStyle(node);
+                const buttons = [...node.querySelectorAll(':scope > .easyedu-button, :scope > .easyedu-button--secondary')]
+                    .map(button => { const r = button.getBoundingClientRect(), s = getComputedStyle(button);
+                        return {height: r.height, right: r.right, fontSize: s.fontSize, fontWeight: s.fontWeight}; });
+                return {buttons, rightDelta: Math.abs(Math.max(...buttons.map(b => b.right)) -
+                    row.right + parseFloat(css.paddingRight))};
+            });
+            expect(messagePair.buttons).toHaveLength(2);
+            expect(messagePair.rightDelta).toBeLessThanOrEqual(1);
+            expect(Math.abs(messagePair.buttons[0].height - messagePair.buttons[1].height)).toBeLessThanOrEqual(1);
+            for (const button of messagePair.buttons) {
+                expect(button.fontSize).toBe('12px');
+                expect(button.fontWeight).toBe('700');
+            }
+            records.push({viewport: width, role: 'message:footer-pair', ...messagePair});
             const cancel = message.locator('.modal-footer .easyedu-button--secondary');
             await expect(cancel).toHaveCount(1);
             await expect(cancel).toHaveCSS('background-color', 'rgb(255, 255, 255)');

@@ -1,15 +1,27 @@
 # EasyStud Playwright audits
 
+## Focused Message footer preview
+
+`student-message-footer-preview.spec.js` is local-supervised, EasyStud/QA.
+Exact grep: `Student native message footer preserves paired geometry and responsive body`.
+It records the native message dialog at 1600/768/390, paired compact button
+geometry, right alignment, unobscured targets and phone content fit. It uses
+existing participants, opens and cancels only: no Send, fixtures or drag.
+Evidence: `message-footer-geometry.json` and three `message-footer-<width>.png`
+captures. Use the saved-credentials wrapper, one discovery test before auth,
+external allowed source root and a bounded lease wait. Human acceptance remains
+separate. Platform registry entries are proposals to its owner, not shared edits.
+
 ## Native Move and Clipboard branches
 
 `student-move-dialog-audit.spec.js` is local-supervised, EasyStud/QA. Exact
 grep: `Student move dialogs preserve native participant and group branches`.
-It uses existing authenticated course participants/groups and records six
-open/cancel cases at 1600/390, including an existing grouped group. It inspects
+It uses existing authenticated course participants/groups and records nine
+open/cancel cases at 1600/768/390, including an existing grouped group. It inspects
 native destinations, the conditional unchecked origin checkbox, completed
-normal-motion geometry, title/select roles and centred footer. It does not
+normal-motion geometry, title/select roles and right-aligned matched footer. It does not
 confirm moves or manufacture empty data. Evidence: `move-native.json` and
-six `move-<branch>-<width>.png` captures. Empty-state source/Penpot examples
+nine `move-<branch>-<width>.png` captures. Empty-state source/Penpot examples
 do not imply runtime proof.
 
 `student-clipboard-foundations.spec.js` is local-supervised, EasyStud/QA.
@@ -39,7 +51,7 @@ scope. Exact grep: `Student harmonisation records native controls dialogs and
 drag anatomy`. It records 1600/768/390 workspace typography, opens/cancels Move
 and native Message at desktop/mobile, then starts/ends Participant/Group drag.
 It never confirms, sends, drops, creates, removes or changes fixtures. Native
-portal font/tokens, centred footer and compact non-interactive anatomy are
+portal font/tokens, right-aligned matched footer and compact non-interactive anatomy are
 asserted. Evidence: `harmonisation-native.json` and named external PNGs.
 The responsive switcher is the real native entity-view switcher, not a hidden
 desktop layout toggle. Phone Message also asserts that content minus header,
@@ -491,3 +503,18 @@ manifest containing the status and generated media. The shared retention tool
 is dry-run by default; unmanifested legacy captures are inventory-only and
 must not be deleted automatically. Read the canonical policy before pruning:
 `<EASYEDU_PLATFORM_ROOT>\docs\development\playwright-artifact-retention.md`.
+
+## Entity dialog chrome candidate - 2026-10-02
+
+`student-entity-dialog-chrome.spec.js` is **local-supervised**, not a CI pass.
+Its one test opens Participant, Group and Grouping at 1600/768/390 using existing
+course data, checks preserved conditional controls/lists and canonical chrome,
+then closes/cancels. No Save, upload, export, native navigation or fixture writes.
+Use the saved-credentials wrapper, the source spec root, exact test-name grep
+and `-DiscoveryOnly` first. Discovery is not authenticated runtime proof.
+The source stays immutable until the owned child exits and cleanup is recorded.
+Named preview/test authority is required before the authenticated run. Preserve
+all captures outside Git; retain failed evidence rather than weaken assertions.
+See `docs/student-entity-dialog-chrome-2026-10-02.md` for the source inventory,
+paired Penpot IDs, current discovery result and remaining parity gates. The
+original body styles and generic Close action are not certified by this slice.

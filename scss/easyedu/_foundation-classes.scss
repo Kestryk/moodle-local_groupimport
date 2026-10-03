@@ -6,7 +6,7 @@
 @use "components/focus";
 @use "components/buttons";
 
-@mixin foundation-button($secondary: false, $density: regular) {
+@mixin foundation-button($secondary: false, $density: regular, $matched-size: false) {
   align-items: center;
   background: var(--easyedu-primary);
   border: 0.0625rem solid transparent;
@@ -37,10 +37,12 @@
   @if $secondary {
     background: var(--easyedu-surface);
     border-color: var(--easyedu-deposit-border);
-    border-radius: 0.58rem;
     color: var(--easyedu-secondary-text);
-    font-size: 0.75rem;
-    min-block-size: 2rem;
+    @if not $matched-size {
+      border-radius: 0.58rem;
+      font-size: 0.75rem;
+      min-block-size: 2rem;
+    }
   }
   @if $density == compact {
     border-radius: 0.5rem;
@@ -79,6 +81,30 @@
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
   }
   &:disabled { background: var(--easyedu-surface-soft); color: var(--easyedu-text-muted); }
+}
+
+// Dialog action pairs share density, not width: translations may have different
+// lengths. Keep compact card/inline controls outside this opt-in footer recipe.
+@mixin foundation-dialog-actions($density: regular) {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--easyedu-action-icon-gap);
+  justify-content: flex-end;
+
+  > .easyedu-button,
+  > .easyedu-button--secondary {
+    @include foundation-button($density: $density, $matched-size: true);
+    & {
+      box-sizing: border-box;
+      margin: 0;
+      max-inline-size: 100%;
+      text-decoration: none;
+    }
+  }
+  > .easyedu-button--secondary {
+    @include foundation-button($secondary: true, $density: $density, $matched-size: true);
+  }
 }
 
 @mixin foundation-font($url) {

@@ -7,6 +7,70 @@ footer. Desktop sizing, async loading, focus trap and recipients remain native.
 
 EasyEdu modals use Moodle-compatible markup with a shared visual shell.
 
+## Modal action-row contract (2026-10-03)
+
+`foundation-dialog-actions($density: regular)` is the common footer recipe.
+It aligns actions to the inline end (right in the current LTR examples), wraps
+when needed and keeps the canonical 0.65rem icon/action gap. Primary and
+secondary controls share font, minimum height, padding and radius within the
+same footer. Regular pairs use 0.88rem/600, 2.35rem minimum height and .72rem
+radius; native Message preserves compact .75rem/700, 1.625rem and .5rem.
+Widths follow translated labels, not an equal-width or fixed mobile token.
+The secondary semantic palette remains secondary. No change applies to
+unrelated card/inline actions or the default generic Secondary specimen.
+
+The public `easyedu-dialog-actions` and `easyedu-entity-dialog__actions` roles
+consume the regular recipe; the native Message adapter consumes compact.
+Keep existing footer anatomy, business order, commands, focus and Motion.
+Source test: `scripts/test-modal-footer-contract.ps1`. Consumer readback:
+`docs/testing/student-modal-footers-penpot-2026-10-03.json`: four existing
+Foundation Standard/Library pairs and eleven linked product compositions.
+This supersedes their centred footer records, not the historical browser
+proofs. New runtime promotion/open-cancel and human gates remain pending.
+
+## Entity detail and settings chrome
+
+Use `easyedu-modal-layer` on the fixed root, `easyedu-entity-dialog` on
+the existing surface and `easyedu-entity-dialog__header`, `__heading`,
+`__icon`, `__eyebrow`, `__body` on the existing semantic children. The title
+uses `easyedu-modal-title`: 1rem/700 in the shared identity-title colour.
+The header retains the canonical soft gradient, a 4rem minimum height,
+1.25rem inline padding, a 2rem icon tile and .75rem heading gap. The eyebrow
+is .625rem/700. Body content and responsive dialog dimensions remain owned
+by the consumer; these roles do not impose a new field or disclosure layout.
+
+Use `easyedu-entity-dialog__actions` for right-aligned, wrapping actions with the
+shared icon gap. Save uses regular `easyedu-button`, Cancel/native links use
+regular `easyedu-button--secondary`; apply `easyedu-action-with-icon` when
+the source action actually has an icon. Do not invent a Cancel icon or retain
+Bootstrap margin utility spacing between icon and label. Optional native links
+keep their real URL and are omitted when the source has none.
+
+Read-only Participant detail must not gain a Save/Cancel editing footer.
+Its optional native-profile action can use the same right-aligned action-row role.
+Group-specific image, enrolment key and delete-picture control, Grouping
+configuration, counted exportable lists and all original Motion/focus/commands
+remain consumer-owned. This is chrome migration, not full body-style parity.
+The 0.4.55 checkpoint requires paired Penpot and a separately authorised
+read-only open/cancel browser gate; compile success is not runtime acceptance.
+
+Paired Penpot publication for this chrome checkpoint uses Foundations file
+`40e06342-8830-80d6-8008-96572effc11c`: Standard page
+`2b150968-5877-802e-8008-97c286173199`, Library page
+`81455adb-6787-8068-8008-9ce6186bf6ef`. Entity-header Desktop component is
+`c937b22a-fc4d-8004-8008-bae32deee79a`; Narrow is
+`c937b22a-fc4d-8004-8008-bae3711770b7`. Both are header-only, retain hidden
+legacy body/footer recoverably, and do not modify the original Shell M main.
+Standard copies match the visible Library anatomy including actual Inter
+family, fills and geometry; three EasyStud desktop headers remain linked.
+The product actions retain linked regular Primary/Secondary sources with a
+10.4px icon-box-to-label gap and right-aligned rows. Body styles, generic Close
+action and complete responsive product compositions remain separate gates.
+Portable evidence: consumer
+`docs/testing/student-entity-dialog-chrome-penpot-2026-10-02.json` and
+`docs/student-entity-dialog-chrome-2026-10-02.md`. Agent inspection and source
+contracts do not imply human approval or a new Moodle preview.
+
 ## Neutral lookup tools and navigation layering
 
 Include `dialog-classes` from `easyedu/dialog-classes`. On a plugin-owned fixed
@@ -78,7 +142,7 @@ Import `easyedu/adapters/moodle-message-dialog` and include its
 `easyedu-message-dialog__field` to the native textarea and `__field-wrap` to
 its existing wrapper; decorate footer buttons with `easyedu-button` and use
 `easyedu-button--secondary` on Cancel. The adapter owns chrome, Inter/modal
-roles, Textarea M, compact actions, centred footer and narrow reflow.
+roles, Textarea M, matched compact actions, right-aligned footer and narrow reflow.
 
 Body-level portals do not inherit a consumer root's variables. Relay resolved
 `--easyedu-*` theme variables and the resolved UI font from the workspace.
@@ -152,7 +216,7 @@ Default IDs: `db59201c-3dd6-8004-8008-babe0d7923f8` and
   fixed mobile-width token.
 
 Both use a 1rem/700 title, .9375rem regular help/field label, linked Text
-field M closed-select paint at 2.375rem high, and centred regular actions
+field M closed-select paint at 2.375rem high, and right-aligned matched regular actions
 with the existing .65rem gap. Do not add an eyebrow, header icon or custom
 dropdown chevron to the native action anatomy. Options and keyboard/focus
 behavior stay with the native select; OS-open decoration is not certified.
