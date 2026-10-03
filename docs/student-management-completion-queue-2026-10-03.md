@@ -135,6 +135,17 @@ assets. Failed runs and backups remain recoverable.
   no business POST/fixture; cleanup complete. SM-15 extra roles, SM-16 Skeleton,
   SM-17 subsequently passed its focused native gate; SM-11 whole-board toolbar
   remains open. This historical SM-14 entry does not certify SM-17 itself.
+- Ordered backlog item 17 is covered by the existing SM-11 top Structure
+  Move-member action and equivalent context command. Its stale whole-file hash
+  gate now asserts the routing and atomic service contracts without rejecting
+  legitimate later controller changes. Human acceptance and real isolated
+  transfer integration remain open.
+- Ordered backlog item 18 is served at runtime `a440584`: the Group-card member
+  search consumes the canonical search field and is reachable from the
+  responsive card action menu. Managed run
+  `easystud-authenticated-20261003T233009655Z-46664` passes at 1600/768/390 with
+  zero business requests. Product Penpot propagation and human acceptance stay
+  open; see `student-group-member-search-2026-10-04.md`.
 - Queue recorded; no request is complete merely because it is listed.
 - First task: reconcile Ungrouped icon/focus source gate.
 - Ungrouped source gate reconciled and PASS. It now checks the defined
