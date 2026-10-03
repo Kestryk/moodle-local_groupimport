@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-03 - Soft-loading local preview proof
+
+- Verify canonical quiet loading paint and unchanged native appearance/exit/entry
+  at desktop, tablet and phone widths; no business POST, fixture or page error.
+- Pin three inspected captures and immutable source/runtime/cleanup evidence.
+  Keep whole-route geometry/compositions and human acceptance explicitly open.
+
 ## 2026-10-03 - Soft-loading native candidate correction
 
 - Preserve the failed native run and cleanup. Correct its secondary-versus-primary

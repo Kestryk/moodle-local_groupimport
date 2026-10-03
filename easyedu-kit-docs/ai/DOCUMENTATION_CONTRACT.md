@@ -37,6 +37,9 @@ When a native colour assertion fails, resolve the actual cue recipe and token
 role before changing paint or expectations. Preserve the failed immutable spec
 and cleanup; a corrected test must still assert exact painted colour, distinct
 token roles and the original lifecycle, not just internal variable equality.
+Native loading element captures certify neither whole-page parity nor all
+descendant containment. Record native lifecycle and source/isolated palette
+checks separately from full-route Penpot composition and geometry gates.
 
 More-filters native proof must record both normal-motion transitional phases,
 not only final visibility. Preserve shared Touch density and the single unified

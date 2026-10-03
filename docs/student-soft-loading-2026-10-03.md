@@ -49,7 +49,18 @@ in `finally` before the eight-second fail-open. No loading-root reset, artificia
 business entry, non-GET GroupImport command or fixture is allowed. Existing
 readiness/exit/entry/inert states and responsive containment must pass after
 release. The source scenario must stay immutable while its child executes.
-Native proof remains a separate pending gate until recorded.
+Native successor run `easystud-authenticated-20261003T133140640Z-34072`
+passes at 1600/768/390 against served runtime `fffad46` with refreshed caches:
+actual primary cue, distinct soft token, 320ms entrance, 3.2s sweep, static
+frames/two-pixel rails, root containment/nonfocusable cues and both original
+native exit/entry phases. Ready/ARIA/inert final states pass, with no page
+error, non-GET GroupImport command or fixture. Cleanup is complete. Native
+proof: `testing/student-soft-loading-preview-2026-10-03.json`; all three external
+captures are inspected and pinned. These element captures are not full-page
+parity: the native long reserved loading area/floating navigation remain, and
+desktop edges need separate descendant/full-composition geometry verification.
+Mass Import/Administration native lifecycle and complete route compositions are
+still separate pending gates.
 The first native run `easystud-authenticated-20261003T132641614Z-4696`
 failed on a candidate error, not a colour regression: it expected the secondary
 soft role on the primary cue. Source explicitly passes the primary #E8EFF5.
