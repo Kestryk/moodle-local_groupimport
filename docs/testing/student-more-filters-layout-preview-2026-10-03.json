@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "batch": "SM-30",
+  "runId": "easystud-authenticated-20261003T215244587Z-15616",
+  "result": "passed",
+  "selectedTests": 1,
+  "viewports": [1600, 768, 390],
+  "moreFiltersHeightPx": {
+    "1600": 33.59375,
+    "768": 44,
+    "390": 44
+  },
+  "fontSizePx": 12.16,
+  "iconTextGapPx": 6.72,
+  "openingAndClosingMotionObserved": true,
+  "blockedBusinessRequests": [],
+  "pageErrors": [],
+  "fixtureRequested": false,
+  "credentialsCleared": true,
+  "leaseReleased": true,
+  "ownedChildStopped": true,
+  "artifactRoot": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261003T215244587Z-15616",
+  "humanAccepted": false
+}

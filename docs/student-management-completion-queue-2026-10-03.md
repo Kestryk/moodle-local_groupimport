@@ -313,8 +313,9 @@ acceptance status.
 - SM-30 has a Kit 0.4.73/source candidate: More Filters, Toggle and Reset now
   consume public Kit roles; the catalogue choice spans the first row and the
   Toggle/Reset pair shares the second. The public disclosure default now stays
-  below responsive touch adapters in specificity. Managed preview and paired
-  Penpot proof remain open.
+  below responsive touch adapters in specificity. Managed preview passes at
+  1600/768/390 with 44 px touch density at responsive widths. Paired Penpot
+  proof and human acceptance remain open.
 
 ### Dependency order
 
