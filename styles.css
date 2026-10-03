@@ -6899,17 +6899,17 @@
 }
 .local-groupimport-easystud-message-modal .modal-body .loading-icon {
   align-items: center;
-  background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--easyedu-primary) 12%, transparent), transparent 3.8rem), linear-gradient(180deg, #fbfdff 0%, #f3f8fc 100%);
-  border: 1px solid var(--easyedu-modal-border);
-  border-radius: 1rem;
-  box-shadow: 0 0.45rem 1.25rem rgba(31, 68, 104, 0.1);
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: none;
   color: var(--easyedu-primary);
   display: inline-flex;
-  height: 4rem;
+  height: 3rem;
   justify-content: center;
   margin: 0;
   position: relative;
-  width: 4rem;
+  width: 3rem;
 }
 .local-groupimport-easystud-message-modal .modal-body .loading-icon .icon,
 .local-groupimport-easystud-message-modal .modal-body .loading-icon .fa,
@@ -6973,6 +6973,52 @@
   justify-content: space-between;
   padding: 1rem 1.15rem;
   flex: 0 0 auto;
+}
+.local-groupimport-easystud-message-modal .modal-header [data-action=hide],
+.local-groupimport-easystud-message-modal .modal-header .close,
+.local-groupimport-easystud-message-modal .modal-header .btn-close {
+  align-items: center;
+  border-radius: var(--easyedu-control-radius);
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  color: var(--easyedu-text-muted);
+  height: 1.9rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0;
+  width: 1.9rem;
+}
+.local-groupimport-easystud-message-modal .modal-header [data-action=hide]:focus-visible,
+.local-groupimport-easystud-message-modal .modal-header .close:focus-visible,
+.local-groupimport-easystud-message-modal .modal-header .btn-close:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-message-modal .modal-header [data-action=hide]:hover, .local-groupimport-easystud-message-modal .modal-header [data-action=hide]:focus-visible,
+.local-groupimport-easystud-message-modal .modal-header .close:hover,
+.local-groupimport-easystud-message-modal .modal-header .close:focus-visible,
+.local-groupimport-easystud-message-modal .modal-header .btn-close:hover,
+.local-groupimport-easystud-message-modal .modal-header .btn-close:focus-visible {
+  background: var(--easyedu-danger-soft);
+  border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);
+  color: var(--easyedu-danger);
+}
+.local-groupimport-easystud-message-modal .modal-header [data-action=hide],
+.local-groupimport-easystud-message-modal .modal-header .close,
+.local-groupimport-easystud-message-modal .modal-header .btn-close {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  margin: 0;
+  opacity: 1;
 }
 .local-groupimport-easystud-message-modal .modal-title {
   font-family: var(--easyedu-font-family-ui);
@@ -7260,6 +7306,7 @@
   flex: 1 1 auto;
   height: 100%;
   min-height: 12rem;
+  resize: none;
   width: 100%;
 }
 @media (max-width: 36rem) {

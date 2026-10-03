@@ -92,19 +92,17 @@
 
   .modal-body #{$loading-selector} {
     align-items: center;
-    background:
-      radial-gradient(circle at 50% 42%, color-mix(in srgb, #{$color} 12%, transparent), transparent 3.8rem),
-      linear-gradient(180deg, #fbfdff 0%, #f3f8fc 100%);
-    border: 1px solid var(--easyedu-modal-border);
-    border-radius: 1rem;
-    box-shadow: 0 0.45rem 1.25rem rgba(31, 68, 104, 0.1);
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    box-shadow: none;
     color: $color;
     display: inline-flex;
-    height: 4rem;
+    height: 3rem;
     justify-content: center;
     margin: 0;
     position: relative;
-    width: 4rem;
+    width: 3rem;
 
     .icon,
     .fa,
