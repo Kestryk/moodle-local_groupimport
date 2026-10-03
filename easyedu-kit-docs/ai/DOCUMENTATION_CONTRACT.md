@@ -131,6 +131,14 @@ one guarded server transaction, not browser add-then-remove. Keep native APIs
 and their false/error handling; test doubles are not native DB/cache/hook proof.
 The local visual scenario must block POST and use open/search/Cancel only. Extra
 test roles and real transfer fixtures require separate bounded fixture gates.
+Dense-role fixtures must own both active-runtime and fixture-write leases,
+use new nologin users and namespaced capability-free roles only, persist IDs
+before mutation proceeds and verify exact ownership before cleanup. Compare
+pre-existing course/role relationship hashes after native cleanup. Keep native
+deleted-user tombstones/audit events; never purify them with broad SQL deletes.
+Historical source gates allow a future mode-only patch through an explicit
+successor that reconstructs and compares the original controller, not a blanket
+exception for all generated or JavaScript files.
 Forwarded sticky-mobile clicks must return focus to the real visible button,
 not its CSS-hidden desktop source. Historical search-only whole-file gates stay
 pinned; use an explicit successor to preserve old Participant/Group commands,

@@ -4402,7 +4402,9 @@ const updateRoleFilterMode = root => {
     toggle.hidden = false;
     select.hidden = true;
 
-    const shouldFallback = window.innerWidth < 768;
+    // Keep quick role chips for a short catalogue; dense catalogues reuse Kit search.
+    const roleChoiceCount = Array.from(select.options).filter(option => option.value && !option.disabled).length;
+    const shouldFallback = window.innerWidth < 768 || roleChoiceCount > 6;
     toggle.hidden = shouldFallback;
     const choice = filterChoiceControllers.get(select);
     if (choice) {

@@ -5,6 +5,21 @@
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentRoleDensity20261003": {
+      "sourceCommit": "0b491e404e84ad611d83404fde6f1f33fff265c3",
+      "consumerBehaviorBaseline": "c57d325d72dfe6d87a8b230caf60de0f7b3eb18a",
+      "status": "Source candidate: up to six quick roles; larger catalogues reuse the canonical searchable multiple choice. Temporary local twelve-role fixture/native proof and dense Penpot publication pending.",
+      "documentation": "docs/student-role-density-2026-10-03.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "modules": {
+        "amd/src/course_manager.js": "217d571414e89506ad1b6c779b135ce65dd8d205",
+        "amd/build/course_manager.min.js": "c0c6baf7801e7da79b98cf036e812529c4f88c74",
+        "amd/build/course_manager.min.js.map": "0f9fae8f353e874fcdc0391caff551e89227bf5f",
+        "tools/playwright/student-role-density-preview.spec.js": "f48298179375bb473f888330123eda6df4e6b453",
+        "tools/playwright/easystud-role-density-fixture.php": "eb6694c46000ea7691c47f348f8928af70f179ff"
+      }
+    },
     "studentSoftLoading20261003": {
       "sourceCommit": "0b491e404e84ad611d83404fde6f1f33fff265c3",
       "consumerBehaviorBaseline": "dce0c39e88c1512809df28daba5074dd89081600",
