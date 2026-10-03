@@ -9,7 +9,10 @@ Technical checks and human visual acceptance remain separate.
 - [ ] Participant/Group/Grouping detail/settings chrome: shared Inter title,
   icon/eyebrow, right-aligned matched native actions and normal open/close; source-complete
   conditional content. Shared headers and three desktop product specimens
-  updated; 1600/768/390 browser candidate prepared, not yet executed. Body
+  updated; 9 scoped 1600/768/390 cases pass in the current local preview. Native
+  Participant entry/focus is verified; Group/Grouping use desktop open then
+  resize, not an invented mobile menu command. Native body scrolling exposes
+  all action centres. Body
   styling, complete responsive product compositions and human acceptance open.
 
 - [ ] Compact simplified Participant/Group drag previews: identity and title,
@@ -21,7 +24,10 @@ Technical checks and human visual acceptance remain separate.
   source-complete Penpot specimens including origin option and empty state.
 - [ ] Modal footer pairs: same font/height/padding/radius, adaptive translated
   width and right-aligned wrapping. Four paired Foundation / eleven product
-  readbacks recorded 2026-10-03; new local preview/native proof still pending.
+  readbacks recorded 2026-10-03; current local preview has 9 entity + 9 Move +
+  3 Message cases PASS and 21 inspected final captures. Evidence:
+  `testing/student-modal-preview-2026-10-03.json`. Human tick remains deferred;
+  foreign CCB body-edge overlaps and all-state/body parity are separate gaps.
 - [ ] Creation + centred in solid/outline buttons; adjacent search/add fields
   have coherent height/radius; Ungrouped identity icon remains visible.
 - [ ] Reduced workspace/column/view-title sizes and softer card-title contrast,

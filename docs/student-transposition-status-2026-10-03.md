@@ -2,7 +2,9 @@
 
 Batch `EED-UI-2026-0073`. Verified against the serving Moodle 5.1 plugin's clean
 branch `preview/moodle51/easystud-phase0-mass-admin`, HEAD
-`333b7539932749b354b1070350412cc33b6d29bb`. This is a local preview, not production
+tested asset checkpoint `62fe6ff136b3cd037507c4bef9e9799ede908b8d`. Later
+documentation-only promotions may advance HEAD without changing those assets.
+This is a local preview, not production
 or global human acceptance. Source worktrees and current footer gate are listed
 in `student-modal-footers-2026-10-03.md`. The human checklist remains unchecked.
 
@@ -21,8 +23,9 @@ in `student-modal-footers-2026-10-03.md`. The human checklist remains unchecked.
 | Drag/drop | Compact identity-only Participant/Group preview, flair, stack/count only for Multiple; allowed and danger/incompatible feedback | `819906f`, `099ff4f`, `726dcb0`, `e6a9c5d`, `023fbee` |
 | Inline addition / recognition | Canonical create/Rename fields, multiline identifiers, Success/Error pills, Add/Cancel colours/spacing/focus | `6e80071`, `60850e7`, `6b8269b`, `c4adda4`, `0fe7e86`, `6cda39f` |
 | Group-member names | Shared related-person typography role with original density/Motion preserved | `020cf4c`; technical source/native proof exists, Foundation density/export reconciliation remains |
-| Native Message | Inherited Kit font/token bridge, canonical field/Cancel and content-fit phone body | `099ff4f`, `da77e61`, `a364b01`; the NEW right-aligned footer is not served yet |
+| Native Message | Inherited Kit font/token bridge, canonical field/Cancel, content-fit phone body and matched right-aligned compact footer | `099ff4f`, `da77e61`, `a364b01`; new scoped 1600/768/390 proof `easystud-authenticated-20261003T030220435Z-42504` |
 | Move / Clipboard | Native destination controls/options and neutral lookup/layer above navigation; source-complete Penpot states | Prior Move proof `easystud-authenticated-20261002T183714504Z-31732`; Clipboard `2dc2725`, final recorded proof `cbcc372` / `easystud-authenticated-20261002T205725336Z-32120` |
+| Current Move / entity chrome / modal actions | Canonical shared entity header/layer and matched regular footers; Participant return focus; Move root above navigation | Source `f938c9c`, `6fea670`, `c4c095e`; current entity/Move/Message proof in `testing/student-modal-preview-2026-10-03.json`, 21 scoped cases PASS |
 
 The commits above are serving-history anchors, not one fresh test of every
 family today. Saved browser runs certify their own asset revisions and limited
@@ -31,27 +34,34 @@ suite failed a foreign CCB drawer icon occlusion at 390px; do not call that whol
 suite green. Empty Move states have static/Penpot, not manufactured runtime,
 coverage. Mobile commands preserve native routing and sticky actions.
 
-## Prepared in source / Penpot, not yet served
+## Newly applied source / Penpot tranche
 
 - Participant/Group/Grouping entity chrome: shared title/eyebrow/icon/header,
   modal-root layer, class-only header/action adoption and duplicate local chrome
   removal. Conditional Group image/enrolment key/delete-picture, Grouping
   configuration, readonly Participant, counts/CSV/native URLs remain.
-- Current modal footer correction: right-aligned, matching paired density for
+- Current modal footer correction is served: right-aligned, matching paired density for
   six Destination, two Message and three entity specimens; four Foundation
   Standard/Library pairs match. Source CSS is rebuilt; source and saved readback
-  checks pass. Exact managed-preview/browser and human gates remain pending.
-- Source-complete browser candidates for entity, Move and Message open/cancel;
-  no Save, send, move confirmation, uploads or fixture changes are intended.
+  checks pass. Managed source promotion/cache and 21 scoped browser cases pass;
+  the human checklist remains open.
+- Participant native eye opens at all three widths; Group/Grouping desktop
+  gear opens the modal before resize to 768/390. This is responsive geometry,
+  NOT proof of a missing native mobile settings entry. Long bodies scroll
+  normally to visible, unobscured actions. Move has 9 native branch/width cases;
+  Message has 3 native open/Cancel cases. No Save, send, move confirmation,
+  uploads or fixture changes ran.
 
 Current evidence: `testing/student-modal-footers-penpot-2026-10-03.json`.
+Runtime evidence: `testing/student-modal-preview-2026-10-03.json`.
 Historical header evidence: `testing/student-entity-dialog-chrome-penpot-2026-10-02.json`.
 Do not mistake a Penpot update, compiled CSS or source commit for served preview.
 
 ## Remaining work, not a complete class-only claim
 
-- Apply the owned candidate through the authorised managed local-preview gate,
-  then inspect actual native open/cancel geometry at desktop/tablet/phone.
+- Preserve the completed scoped preview proof; mobile Group/Grouping settings
+  entry and foreign CCB sticky-trigger overlap over narrow body edges remain
+  separate product/integration gaps, not an invented route or full visual PASS.
 - Continue full entity-modal bodies: settings fields, conditional image/help,
   metadata/list/counts/CSV and native Close anatomy; source completeness is not
   full Foundation style parity.
