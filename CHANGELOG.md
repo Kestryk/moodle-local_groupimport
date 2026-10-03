@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-03 - Soft-loading native candidate correction
+
+- Preserve the failed native run and cleanup. Correct its secondary-versus-primary
+  cue expectation from actual source; independently assert both canonical roles.
+- Keep all Motion, containment and native lifecycle checks. No UI, generated
+  asset, business data or human-acceptance claim changes in this test-only repair.
+
 ## 2026-10-03 - Soft loading (source checkpoint)
 
 - Consume canonical Kit 0.4.62 quiet rails/cues, seamless 3.2s sweep and

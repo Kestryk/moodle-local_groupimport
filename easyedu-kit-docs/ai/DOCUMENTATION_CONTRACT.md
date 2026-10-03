@@ -33,6 +33,10 @@ non-Skeleton Motion. Compare painted loop endpoints and interruptible appearance
 separately from native lifecycle. Hold native initialization GETs only within a
 bounded supervised gate, release in finally and never manufacture loading state
 or hide real overlays to obtain a capture. Preserve historical asset pins.
+When a native colour assertion fails, resolve the actual cue recipe and token
+role before changing paint or expectations. Preserve the failed immutable spec
+and cleanup; a corrected test must still assert exact painted colour, distinct
+token roles and the original lifecycle, not just internal variable equality.
 
 More-filters native proof must record both normal-motion transitional phases,
 not only final visibility. Preserve shared Touch density and the single unified

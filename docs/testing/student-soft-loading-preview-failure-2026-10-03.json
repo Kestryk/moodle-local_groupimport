@@ -1,0 +1,21 @@
+{
+  "batch": "EED-UI-2026-0073",
+  "runId": "easystud-authenticated-20261003T132641614Z-4696",
+  "consumerRevision": "4ed019f55b8e9009b49102bc9879a4d577fdd74b",
+  "runtimeRevision": "e5c535f8965b0fcb13d638be10eec6f8705ec382",
+  "kitRevision": "0b491e404e84ad611d83404fde6f1f33fff265c3",
+  "specBlob": "cb885078c6b09e7ab0b0bcd7770b6449cad26985",
+  "status": "failed",
+  "failure": "The candidate expected secondary soft #F3F6FA on the primary cue, which correctly painted #E8EFF5.",
+  "sourceEvidence": "scss/components/_layout.scss __loading-surface passes --local-groupimport-easystud-loading-surface, aliased to canonical --easyedu-loading-surface #E8EFF5.",
+  "scope": "First width failed before screenshots and native exit checks; no lifecycle PASS.",
+  "repair": "Correct the exact primary paint expectation and independently assert both primary and soft token roles. All appearance, shimmer, frame, containment, nonfocusable and native lifecycle assertions remain.",
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureCleanupComplete": true
+  },
+  "humanVisualValidated": false
+}

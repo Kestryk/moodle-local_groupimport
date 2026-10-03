@@ -163,6 +163,12 @@ assets. Failed runs and backups remain recoverable.
 
 ## Portable Platform-owner update proposal
 
+SM-16 first native run failed because its candidate expected the secondary soft
+token on a primary cue. Preserve run `easystud-authenticated-20261003T132641614Z-4696`
+and immutable source blob; cleanup passed. Source-backed test correction asserts
+both roles without changing UI assets or relaxing lifecycle/containment checks.
+Fresh native proof remains pending. See `student-soft-loading-2026-10-03.md`.
+
 Current next increment: opt-in entity metadata/count/chip/CSV/description paint
 comes from canonical Kit recipes, removing 205 net local SCSS lines while
 preserving the complete CSS and native controller/Mustache/Motion. Field

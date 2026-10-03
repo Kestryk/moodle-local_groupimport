@@ -50,6 +50,13 @@ business entry, non-GET GroupImport command or fixture is allowed. Existing
 readiness/exit/entry/inert states and responsive containment must pass after
 release. The source scenario must stay immutable while its child executes.
 Native proof remains a separate pending gate until recorded.
+The first native run `easystud-authenticated-20261003T132641614Z-4696`
+failed on a candidate error, not a colour regression: it expected the secondary
+soft role on the primary cue. Source explicitly passes the primary #E8EFF5.
+The successor asserts both distinct tokens and actual primary paint; all other
+assertions remain. Original immutable failure and successful cleanup are pinned
+in `testing/student-soft-loading-preview-failure-2026-10-03.json`. No native
+PASS is inferred from this diagnosis; no UI source or course data is changed.
 Human acceptance remains deferred; this is not a release.
 
 ## Portable Platform-owner proposal
