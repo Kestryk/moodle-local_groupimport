@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.56",
+  "version": "0.4.57",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -17,12 +17,13 @@
     "fullTreeIdentical": false,
     "studentCompletion20261003": {
       "sourceCommit": "b451ee0a01ee8b1052a625603c006eb3a064d9b8",
-      "status": "Source candidate; historical modal/browser evidence retained, new preview and human checklist pending",
+      "status": "Served managed local preview; fresh scoped confirmation/workspace/drag/Message/pagination proof recorded separately. Human checklist and full-body/all-state parity remain open.",
+      "currentPreviewProof": "docs/testing/student-completion-preview-2026-10-03.json",
       "queue": "docs/student-management-completion-queue-2026-10-03.md",
       "modules": {
         "scss/easyedu/_foundation-classes.scss": "59e43dcca004853333da8546a7079e30670f99ba",
         "scss/easyedu/_dialog-classes.scss": "d3cda40ca18f32736b038365bc5ab9e270c61120",
-        "scss/easyedu/_components.scss": "2d98d3bf17a458c5e7a19e6ba47b6c0f0ba0f273",
+        "scss/easyedu/_components.scss": "e0a4095ed13c9f2745ece23a3bf2acb8e861bc90",
         "scss/easyedu/components/_identity-card-surfaces.scss": "e5cd258d4a876c6d57e48d6d27970e5b1a96a422"
       },
       "generatedCssBlob": "c7b7945a536938555cbc77a917d3eb8df69be7e4",
@@ -37,6 +38,21 @@
         "unchanged": true,
         "proof": "compiled comparison before and after extraction only, no fresh browser or human PASS"
       }
+    },
+    "studentEntityFieldsExtraction": {
+      "sourceCommit": "0e1466d2f9ecb7087c59c8b831207f78d8390d3d",
+      "consumerBaseCommit": "660840ea1b77419b5a470458e179af10ff879fc7",
+      "modules": {
+        "scss/easyedu/_components.scss": "e0a4095ed13c9f2745ece23a3bf2acb8e861bc90",
+        "scss/easyedu/components/_entity-fields.scss": "856b660320140982af0fc2091a3adbf1233e66ed"
+      },
+      "scope": "Source-preserving caption/value/editable/readonly/detail recipes. Product keeps native data, selectors, layout, conditional fields and Motion.",
+      "generatedCssBlob": "c7b7945a536938555cbc77a917d3eb8df69be7e4",
+      "emittedPropertySequencesCompared": 12973,
+      "compiledCssUnchanged": true,
+      "documentation": "docs/student-entity-field-extraction-2026-10-03.md",
+      "status": "Pushed canonical Kit; consumer extraction static-ready, managed preview pending. Full-body class adoption and Penpot palette/density remain open.",
+      "humanVisualValidated": false
     },
     "studentModalFooters": {
       "sourceBaseCommit": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",

@@ -7,7 +7,12 @@ foreach ($pair in @(@($pin.module, $pin.moduleBlob), @('scss/easyedu/_tokens.scs
     @('scss/easyedu/_components.scss', $pin.exportsBlob), @($pin.paintModule, $pin.paintBlob))) {
     $embedded = & git -C $root hash-object $pair[0]
     $canonical = & git -C $KitRoot hash-object $pair[0]
-    if ($LASTEXITCODE -ne 0 -or $embedded -ne $pair[1] -or $canonical -ne $embedded) {
+    # New opt-in exports are additive; retain the historical field proof pin.
+    $expectedPin = if ($pair[0] -eq 'scss/easyedu/_components.scss' -and
+        $manifest.consumerSync.studentEntityFieldsExtraction.modules.($pair[0])) {
+        $manifest.consumerSync.studentEntityFieldsExtraction.modules.($pair[0])
+    } else { $pair[1] }
+    if ($LASTEXITCODE -ne 0 -or $embedded -ne $expectedPin -or $canonical -ne $embedded) {
         throw "Text-field pin drift: $($pair[0])"
     }
 }

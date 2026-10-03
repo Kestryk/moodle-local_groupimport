@@ -80,50 +80,7 @@
   }
 
   &-settings-modal__field {
-    @include easyedu.settings-modal-field;
-
-    // The embedded settings-modal-field primitive still has a stronger
-    // `span:first-child` legacy selector. Match it explicitly so Group and
-    // Grouping labels resolve to the accepted Participant caption role.
-    > span,
-    > span:first-child {
-      @include easyedu.type-caption;
-
-      align-items: center;
-      color: #62788e;
-      display: inline-flex;
-      font-weight: var(--easyedu-font-weight-semibold);
-      gap: 0.32rem;
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    > strong {
-      @include easyedu.type-body;
-
-      color: #263b4f;
-      font-size: var(--easyedu-font-size-control);
-      font-weight: var(--easyedu-font-weight-regular);
-      min-width: 0;
-      overflow-wrap: anywhere;
-
-      &.is-empty {
-        color: #8a9bad;
-        font-weight: var(--easyedu-font-weight-regular);
-      }
-    }
-
-    .form-control {
-      background: #fbfdff;
-      border-color: #cfdfeb;
-      border-radius: 0.68rem;
-      font-size: 0.86rem;
-      min-height: 2rem;
-
-      &:focus {
-        @include easyedu.ring($border-color: #86b7e0);
-      }
-    }
+    @include easyedu.entity-settings-field;
   }
 
   &-settings-modal__field--wide {
@@ -131,18 +88,7 @@
   }
 
   &-settings-modal__field--readonly {
-    background: #f5f9fc;
-
-    strong {
-      align-items: center;
-      background: #fff;
-      border: 1px solid #d8e5ef;
-      border-radius: 999px;
-      display: inline-flex;
-      justify-self: start;
-      min-height: 1.62rem;
-      padding: 0.2rem 0.55rem;
-    }
+    @include easyedu.entity-readonly-field;
   }
 
   &-settings-modal__field--entity-count {
@@ -152,12 +98,7 @@
     gap: 0.32rem;
 
     > .local-groupimport-easystud-settings-modal__field-label {
-      @include easyedu.type-caption;
-
-      color: #62788e;
-      font-weight: var(--easyedu-font-weight-semibold);
-      letter-spacing: 0;
-      text-transform: none;
+      @include easyedu.entity-field-caption;
     }
   }
 
@@ -564,33 +505,7 @@
   }
 
   &-detail__field {
-    background: rgba(255, 255, 255, 0.86);
-    border: 1px solid #d9e7f1;
-    border-radius: 0.86rem;
-    box-shadow: 0 0.18rem 0.5rem rgba(31, 68, 104, 0.045);
-    display: grid;
-    gap: 0.22rem;
-    min-width: 0;
-    padding: 0.52rem 0.64rem;
-
-    > span {
-      @include easyedu.type-caption;
-
-      color: #62788e;
-      font-weight: var(--easyedu-font-weight-semibold);
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    > strong {
-      @include easyedu.type-body;
-
-      color: #263b4f;
-      font-size: var(--easyedu-font-size-control);
-      font-weight: var(--easyedu-font-weight-regular);
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
+    @include easyedu.entity-detail-field;
   }
 
   &-detail__lists {

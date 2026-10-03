@@ -28,6 +28,13 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+Source-preserving body extraction must keep a hash-verified pre-extraction CSS
+snapshot outside Git and compare the entire emitted selector/property sequence
+set. Preserve specificity, readonly/empty branches, conditional content and
+Motion. Opt-in Kit recipes must not change legacy defaults for other consumers.
+Record remaining public-class adoption and Penpot palette/density differences;
+unchanged CSS is not a fresh full-body visual or human acceptance.
+
 Native open/cancel audits also assert return focus on the actual trigger.
 Restore it in the completed modal-exit callback, never before Motion hides the
 dialog or after a cancelled exit. Keep the failed run and its immutable source
