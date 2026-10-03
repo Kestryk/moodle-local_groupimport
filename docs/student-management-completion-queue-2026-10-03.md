@@ -93,6 +93,12 @@ assets. Failed runs and backups remain recoverable.
 
 ## Execution log
 
+- SM-16 source adopts Kit 0.4.62 softer loading and removes local paint values.
+  Twelve existing paired Foundation providers and isolated pixel-loop/fade/mode
+  checks pass. Thirty-nine linked product samples propagate and fit; whole-route
+  loading compositions and native loading remain separate gates.
+  See `student-soft-loading-2026-10-03.md`. No roles or memberships changed.
+
 - SM-17 Kit 0.4.61 unifies quiet hover and legacy mobile delegation. Five Wide
   and five Touch Foundation pairs and sixteen visible EasyStud controls pass
   settled geometry/paint checks; original native behavior/Motion is unchanged.

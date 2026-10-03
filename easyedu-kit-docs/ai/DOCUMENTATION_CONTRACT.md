@@ -28,6 +28,12 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+Skeleton source proof must retain loading bootstraps, fail-open, cue counts and
+non-Skeleton Motion. Compare painted loop endpoints and interruptible appearance
+separately from native lifecycle. Hold native initialization GETs only within a
+bounded supervised gate, release in finally and never manufacture loading state
+or hide real overlays to obtain a capture. Preserve historical asset pins.
+
 More-filters native proof must record both normal-motion transitional phases,
 not only final visibility. Preserve shared Touch density and the single unified
 filter block; inherited labels and actual icon paint require settled readback.

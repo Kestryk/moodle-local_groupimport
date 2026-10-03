@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-03 - Soft loading (source checkpoint)
+
+- Consume canonical Kit 0.4.62 quiet rails/cues, seamless 3.2s sweep and
+  interruptible 320ms appearance in Student Management, Mass Import and admin.
+- Remove private palette/shimmer while preserving real loading lifecycle,
+  native markup, responsive counts/geometry and original interactive-card Motion.
+- Reconcile twelve Foundation pairs and thirty-nine linked product examples;
+  correct five mobile example overflows. Isolated loop/fade/static-mode gates
+  pass; native preview, whole-route compositions and human checklist are separate.
+
 ## 2026-10-03 - More-filters local preview
 
 - Inspect and pin native hover/expanded captures at desktop, tablet and phone

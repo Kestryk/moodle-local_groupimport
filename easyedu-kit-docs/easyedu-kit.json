@@ -1,10 +1,32 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.61",
+  "version": "0.4.62",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentSoftLoading20261003": {
+      "sourceCommit": "0b491e404e84ad611d83404fde6f1f33fff265c3",
+      "consumerBehaviorBaseline": "dce0c39e88c1512809df28daba5074dd89081600",
+      "status": "Twelve Foundation pairs, thirty-nine contained linked product specimens and isolated loop/fade checks pass. Native preview and whole-route loading compositions pending; human acceptance false.",
+      "productReadback": "docs/testing/student-soft-loading-product-2026-10-03.json",
+      "documentation": "docs/student-soft-loading-2026-10-03.md",
+      "foundationReadback": "docs/testing/student-soft-loading-foundations-2026-10-03.json",
+      "isolatedRun": "loading-soft-20261003-c",
+      "nativeScenario": "student-soft-loading-preview.spec.js",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "modules": {
+        "scss/easyedu/_tokens.scss": "903328965387286c0c5955f805943959ed271a3b",
+        "scss/easyedu/components/_loading.scss": "fc4f30b58666be46d126d1bb03817302ab324d11",
+        "scss/easyedu/components/_animations.scss": "3111923198ef5c8ff739bcc764ca2714a1ec6465",
+        "scss/components/_layout.scss": "763ef4193dea4a02aa7c969cd09ba162e7d73556",
+        "scss/views/_mass-import.scss": "78b588615c0b5cccc2dd0779eb80dfbf244adc42",
+        "scss/views/_admin-settings.scss": "fdd5af70f6244765760596eca4e2017c7d889fcd",
+        "styles.css": "2e5d6e664791b6e8bebffeff5ce1ae807517e24c",
+        "tools/playwright/student-soft-loading-preview.spec.js": "cb885078c6b09e7ab0b0bcd7770b6449cad26985"
+      }
+    },
     "studentMoreFilters20261003": {
       "sourceCommit": "7c4118166d1914df05aa8335e47bed786ebb2669",
       "consumerBehaviorBaseline": "d0083b54f07d7cd5324ae7cc8da978e14cd91f13",
