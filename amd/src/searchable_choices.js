@@ -70,6 +70,15 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     chevron.className = 'fa fa-chevron-down';
     chevron.setAttribute('aria-hidden', 'true');
     trigger.append(summary, chevron);
+    const clear = multiple ? document.createElement('button') : null;
+    if (clear) {
+        clear.type = 'button';
+        clear.className = 'easyedu-searchable-choice__clear';
+        const clearIcon = document.createElement('span');
+        clearIcon.className = 'fa fa-times';
+        clearIcon.setAttribute('aria-hidden', 'true');
+        clear.append(clearIcon);
+    }
     const panel = document.createElement('div');
     panel.id = `${id}-panel`;
     panel.className = 'easyedu-searchable-choice__panel';
@@ -91,7 +100,11 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     empty.setAttribute('role', 'status');
     empty.hidden = true;
     panel.append(searchLabel, list, empty);
-    host.append(trigger, panel);
+    host.append(trigger);
+    if (clear) {
+        host.append(clear);
+    }
+    host.append(panel);
     const originalLabels = [...select.labels];
     const originalHidden = select.hidden;
     let rows = [];
@@ -110,6 +123,11 @@ const enhanceNativeSelect = (select, labels, multiple) => {
             (options[0] ? options[0].textContent : '');
         trigger.setAttribute('aria-label', `${labels.label}: ${summary.textContent}`);
         trigger.disabled = select.disabled || !select.options.length;
+        if (clear) {
+            clear.hidden = options.length === 0;
+            clear.disabled = select.disabled;
+            clear.setAttribute('aria-label', labels.clear || labels.none || labels.label);
+        }
         rows.forEach(row => {
             row.button.disabled = select.disabled || row.option.disabled ||
                 (row.option.parentElement.tagName === 'OPTGROUP' && row.option.parentElement.disabled);
@@ -177,6 +195,24 @@ const enhanceNativeSelect = (select, labels, multiple) => {
         search.focus();
     });
     search.addEventListener('input', filter);
+    if (clear) {
+        clear.addEventListener('click', () => {
+            const selected = [...select.selectedOptions];
+            if (!selected.length) {
+                return;
+            }
+            selected.forEach(option => {
+                option.selected = false;
+            });
+            select.dispatchEvent(new Event('change', {bubbles: true}));
+            syncValue();
+            if (panel.hidden) {
+                trigger.focus();
+            } else {
+                search.focus();
+            }
+        });
+    }
     host.addEventListener('keydown', event => {
         if (event.key === 'Escape' && !panel.hidden) {
             event.preventDefault();
@@ -196,7 +232,7 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     select.hidden = true;
     originalLabels.forEach(label => { label.htmlFor = trigger.id; });
     const controller = {
-        host, trigger, refresh, close,
+        host, trigger, clear, refresh, close,
         destroy: () => {
             select.removeEventListener('change', syncValue);
             originalLabels.forEach(label => { label.htmlFor = select.id; });

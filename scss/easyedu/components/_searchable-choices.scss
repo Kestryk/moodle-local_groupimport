@@ -34,6 +34,33 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .easyedu-ui .easyedu-searchable-choice--multiple .easyedu-searchable-choice__trigger {
+    padding-inline-end: 4.75rem;
+  }
+  .easyedu-ui .easyedu-searchable-choice__clear {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: var(--easyedu-text-muted);
+    cursor: pointer;
+    display: inline-flex;
+    block-size: 1.75rem;
+    inline-size: 1.75rem;
+    inset-block-start: 0.3125rem;
+    inset-inline-end: 2.375rem;
+    justify-content: center;
+    padding: 0;
+    position: absolute;
+    z-index: 1;
+    &:hover:not(:disabled) {
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary-strong);
+    }
+    &:focus-visible { @include focus.ring; }
+    &:disabled { color: var(--easyedu-field-disabled-text); cursor: not-allowed; }
+    .fa { color: currentColor; line-height: 1; margin: 0; }
+  }
   // In-flow disclosure: cannot escape a modal's scrolling body or narrow panel.
   .easyedu-ui .easyedu-searchable-choice__panel {
     background: var(--easyedu-surface);
@@ -98,5 +125,11 @@
     .easyedu-ui .easyedu-searchable-choice__trigger,
     .easyedu-ui .easyedu-searchable-choice__option { min-block-size: 2.75rem; }
     .easyedu-ui .easyedu-searchable-choice__list { max-block-size: 11rem; }
+    .easyedu-ui .easyedu-searchable-choice__clear {
+      block-size: 2.25rem;
+      inline-size: 2.25rem;
+      inset-block-start: 0.25rem;
+      inset-inline-end: 2.5rem;
+    }
   }
 }

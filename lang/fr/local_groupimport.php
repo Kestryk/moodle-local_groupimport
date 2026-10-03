@@ -233,6 +233,7 @@ $string['searchfilteroptions'] = 'Rechercher une option';
 $string['nofilteroptions'] = 'Aucune option correspondante';
 $string['filterany'] = 'Tous';
 $string['filterselectioncount'] = '{$a} sélectionnés';
+$string['clearfilterselection'] = 'Effacer la sélection du filtre';
 $string['movedestinationgrouping'] = 'Groupement de destination';
 $string['movedialoggroups'] = 'Choisissez le groupement qui recevra les groupes sélectionnés.';
 $string['movedialogparticipants'] = 'Choisissez le groupe qui recevra les participants sélectionnés.';
