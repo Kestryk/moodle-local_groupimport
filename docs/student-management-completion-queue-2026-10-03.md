@@ -14,7 +14,7 @@ stays deferred to the combined checklist; automation never ticks it.
   cache and authenticated checks. No data-changing commands.
 - Includes: source-backed card/modal appearance, fields/actions, Kit extraction,
   Foundation Standard/Library and EasyStud propagation, responsive proof/docs.
-- Excludes: original Motion rewrites, business APIs, real Send/Save/move/drop,
+- Excludes: original Motion rewrites, unrelated business APIs, real Send/Save/move/drop,
   CCB source, shared guided visits, production and dirty shared Platform files.
 - Dependency: UI Kit → Foundations → EasyStud Penpot → plugin. Preserve native
   conditional contents, accessibility and command/data hooks.
@@ -62,6 +62,12 @@ separate membership transaction/API gate; inspection confirms removal exists
 but selected-member Move does not. SM-14 reuses the choice primitive after its
 single-choice gate. No actual move/remove/send is authorised by a visual audit.
 The local fixture request is separate from browser-open/cancel proof.
+
+SM-11 service is prepared with delegated transaction, native capability and
+membership restrictions. PHP lint and isolated transaction/API doubles pass;
+six isolated-Moodle PHPUnit cases are versioned but not executed. No endpoint,
+UI binding or new runtime deployment yet. See
+`docs/student-selected-members-transfer-2026-10-03.md` for precise proof/gaps.
 
 1. Reconcile the stale Ungrouped contract before using it as a gate.
 2. Complete native confirmation/choice actions and catalogue publication.
