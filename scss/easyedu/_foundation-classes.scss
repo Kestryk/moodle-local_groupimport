@@ -275,6 +275,9 @@
   }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
+  @media (max-width: 52rem) {
+    .easyedu-ui .easyedu-toggle-check { min-height: var(--easyedu-touch-target-min); }
+  }
   // Keep the public default below product breakpoint adapters in specificity.
   // A consumer may legitimately promote the same control to the touch recipe
   // without adding an override or relying on stylesheet order.

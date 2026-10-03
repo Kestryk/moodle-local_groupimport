@@ -1,12 +1,13 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.74",
+  "version": "0.4.75",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
     "studentMoveOriginCheckbox20261004": {
-      "status": "EasyStud consumer candidate: the Move group origin option consumes the canonical Kit toggle-check while retaining its native checkbox and business hook. Managed native proof, product Penpot propagation and human acceptance remain open.",
+      "kitCommit": "d0e6afc",
+      "status": "Kit 0.4.75 consumer candidate: the Move group origin option consumes the canonical toggle-check, including the shared responsive 44px hit target, while retaining its native checkbox and business hook. Managed native proof, product Penpot propagation and human acceptance remain open.",
       "documentation": "docs/student-move-origin-checkbox-2026-10-04.md",
       "humanAccepted": false,
       "nativePreviewVerified": false,
