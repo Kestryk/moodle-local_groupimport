@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Modal-header Close uses one canonical compact geometry: `close-button` maps to
+the linked Foundation `Core action / Secondary / S` component at `1.9rem`
+square. Do not resize it in a consumer or publish another Close family. Native
+open/cancel proof must also assert centred glyph paint, semantic danger hover,
+completed exit Motion and focus restoration to the surviving real opener.
+
 Tray geometry checks include painted label and icon bounds inside horizontal
 padding, not only the outer button frame. Long labels wrap in the canonical
 tray-density recipe; flex-row neighbours retain equal height. Preserve a

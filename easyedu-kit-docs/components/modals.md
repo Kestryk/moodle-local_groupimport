@@ -568,7 +568,10 @@ Use this checklist before recreating a modal locally:
   default spinner when the modal body resolves asynchronously.
 - The header icon uses `modal-header-icon`; the icon must be centred both
   visually and by line-height.
-- Close controls use `close-button`; do not leave raw `x` links.
+- Close controls use `close-button`; do not leave raw `x` links. The default
+  modal-header control is the compact `1.9rem` square mapped to Foundation
+  `Core action / Secondary / S`; the consumer owns only its accessible label
+  and dismissal/focus-return routing.
 - Field groups use `settings-modal-field` and short labels; longer Moodle help
   text belongs in a help icon/tooltip.
 - Related-object lists use `metadata-section`, `metadata-scroll-list`,

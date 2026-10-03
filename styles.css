@@ -1354,19 +1354,19 @@
   display: inline-flex;
   justify-content: center;
   line-height: 1;
-  font-size: 0.88rem;
-  min-height: var(--easyedu-control-height);
-  min-width: var(--easyedu-control-height);
-  padding: 0.36rem 0.75rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
   transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-card-border);
   color: var(--easyedu-text-muted);
-  height: 2.3rem;
-  min-height: 2.3rem;
-  min-width: 2.3rem;
+  height: 1.9rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
   padding: 0;
-  width: 2.3rem;
+  width: 1.9rem;
 }
 .local-groupimport-easystud__navigation .easyedu-navigation__close:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -6854,19 +6854,19 @@
   display: inline-flex;
   justify-content: center;
   line-height: 1;
-  font-size: 0.88rem;
-  min-height: var(--easyedu-control-height);
-  min-width: var(--easyedu-control-height);
-  padding: 0.36rem 0.75rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
   transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-card-border);
   color: var(--easyedu-text-muted);
-  height: 2.3rem;
-  min-height: 2.3rem;
-  min-width: 2.3rem;
+  height: 1.9rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
   padding: 0;
-  width: 2.3rem;
+  width: 1.9rem;
 }
 .local-groupimport-easystud-modal__close:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
