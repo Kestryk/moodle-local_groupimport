@@ -2,7 +2,8 @@
 
 Batch `EED-UI-2026-0073`. Verified against the serving Moodle 5.1 plugin's clean
 branch `preview/moodle51/easystud-phase0-mass-admin`, HEAD
-current tested checkpoint `eb417860500d83f882e9980e8e147d39b9612b27`.
+current scoped-test checkpoint `eb417860500d83f882e9980e8e147d39b9612b27`;
+source-preserving field promotion is served at `b3d3a41` with identical CSS/AMD.
 Historical 21-modal proof remains at its recorded `62fe6ff` asset checkpoint. Later
 documentation-only promotions may advance HEAD without changing those assets.
 This is a local preview, not production
@@ -84,8 +85,9 @@ Do not mistake a Penpot update, compiled CSS or source commit for served preview
   six fresh native confirmation cases pass; prior 21 cases keep their historical
   assets. Helper line-height, destructive/Close anatomy and human review remain.
 - Body-field paint has been extracted unchanged to canonical Kit `0e1466d`;
-  complete CSS stays byte-identical. Managed extraction promotion/fresh field
-  assertions are next. Product captions still differ from runtime in palette;
+  complete CSS stays byte-identical. Managed extraction promotion/cache is
+  complete; nine fresh field/content/footer cases pass at 1600/768/390. Product
+  captions still differ in palette/density;
   `student-entity-field-extraction-2026-10-03.md` records exact IDs and boundaries.
 - Reconcile remaining Foundation member-row density/export gaps and propagate
   complete responsive product compositions without changing native behaviour.

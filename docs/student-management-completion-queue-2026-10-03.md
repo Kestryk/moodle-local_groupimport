@@ -32,7 +32,7 @@ stays deferred to the combined checklist; automation never ticks it.
 | SM-07 | Four native compact 288x72 identities and allowed/denied feedback PASS; Single no rear/count, Multiple-only stack | Non-drag mobile routes/all-state and human validation; no real drop performed |
 | SM-08 | Workspace 28/22px, panel 20px, view labels 12px served | Verify remaining headings and product roles; remove duplicate type overrides |
 | SM-09 | Four desktop and two mobile list owners: bottom gap zero, keyboard Next/Previous PASS; native mobile Groupings absence verified | Wider translated/all-state matrices and combined human review |
-| SM-10 | Migrated families use canonical Kit; source-preserving body field recipes extracted | Managed field-source promotion; remaining public-class/body/list/image adapters and dynamic-colour/noscript exceptions |
+| SM-10 | Canonical Kit field recipes served at b3d3a41, unchanged CSS/AMD; nine native/resized field cases PASS | Remaining public-class/body/list/image adapters, Penpot field palette/density and dynamic-colour/noscript exceptions |
 
 ## Ordered execution and acceptance gates
 
@@ -112,8 +112,9 @@ used Complete instead of Participants & Groups for the flat catalogue; that
 failed run is preserved. Correct native routing then passed without UI changes.
 
 Canonical field extraction `0e1466d` removes duplicated editable/readonly/detail
-paint while preserving all 12,973 CSS sequences and the exact CSS blob. Its
-managed promotion/fresh body-field check follows; remaining local lists/images,
+paint while preserving all 12,973 CSS sequences and the exact CSS blob. Managed
+promotion/cache at clean runtime `b3d3a41` is complete; nine fresh body-field
+cases PASS, final captures inspected. Remaining local lists/images,
 public-class migration and Penpot field-caption palette are explicitly open.
 
 Propose `student-pagination-native-preview.spec.js`, exact test `Student native
