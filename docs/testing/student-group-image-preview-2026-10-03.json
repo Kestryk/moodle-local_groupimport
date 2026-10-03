@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "runId": "easystud-authenticated-20261003T182824502Z-44648",
+  "sourceCommit": "bbef201eeeff73af9a2754d840e97da6a00a4345",
+  "runtimeCommit": "64e430d575fe3e5a2d203f311e775dc4345ee5cc",
+  "status": "passed",
+  "selectedTests": 1,
+  "widths": [1600, 768, 390],
+  "assertions": {
+    "inMemoryChooseAndDrop": true,
+    "filenameFeedback": true,
+    "previewAndFilepickerContained": true,
+    "uploadTilePx": 32,
+    "uploadGlyphCenteredInContentBox": true,
+    "dragOverPaint": true,
+    "pendingDeleteStateChanges": true,
+    "pluginBusinessPostCount": 0
+  },
+  "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true, "fixtureRequested": false, "fixtureCleanupComplete": true},
+  "captures": {"count": 3, "inspected": true, "pinnedUntilUtc": "2026-11-02T18:42:42.0760873Z"},
+  "diagnosticPredecessor": {"runId": "easystud-authenticated-20261003T182629126Z-6252", "classification": "test-only outer-box centre assumption", "productFailure": false},
+  "limits": ["No operating-system chooser proof.", "No Save or persisted Moodle file-area proof.", "Human checklist remains open."]
+}

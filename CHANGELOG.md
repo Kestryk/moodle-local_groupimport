@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Group image proof and linked preview family
+
+- Pass the non-submitting image picker/drop/toggle audit at 1600/768/390 and
+  pin three inspected captures with complete cleanup.
+- Add only the missing Empty/Present Tall/Compact image-preview family; reuse
+  the existing Settings picker, modal drop and toggle components.
+- Replace the product-local placeholder with a linked preview and publish the
+  complete page-04 composition. Human validation remains open.
+
 ## 2026-10-03 - Group image native audit candidate
 
 - Add a non-submitting 1600/768/390 audit for image selection, drag/drop,

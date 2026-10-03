@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "foundations": {
+    "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryHostId": "fcb98309-36c1-8004-8008-bc06b6c7ae7f",
+    "standardHostId": "fcb98309-36c1-8004-8008-bc072fd6f91a",
+    "componentIds": ["fcb98309-36c1-8004-8008-bc06b847a049", "fcb98309-36c1-8004-8008-bc06b90e6290", "fcb98309-36c1-8004-8008-bc06bad9490f", "fcb98309-36c1-8004-8008-bc06bced6f70"],
+    "variants": ["Tall Empty", "Compact Empty", "Tall Present", "Compact Present"],
+    "filepickerDuplicated": false,
+    "savedVersion": "Group image preview — paired tall and compact"
+  },
+  "product": {
+    "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+    "pageId": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "boardId": "fcb98309-36c1-8004-8008-bc07bb1ecdce",
+    "replacedLocalShapeId": "cef95197-06bc-809e-8008-af352a66c220",
+    "replacementLinkedShapeId": "fcb98309-36c1-8004-8008-bc07bacb4475",
+    "localComponentMasters": 0,
+    "cardContainmentFailures": 0,
+    "savedVersion": "Group image — linked preview, picker and pending delete states"
+  },
+  "readback": {"geometryPassed": true, "predecessorArchivedRecoverably": true, "finalExportTimedOut": true, "humanVisualValidated": false}
+}

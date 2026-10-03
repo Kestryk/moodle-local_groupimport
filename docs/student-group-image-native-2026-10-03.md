@@ -29,3 +29,26 @@ correctly resolves to 15px in the 30px content box. No product assertion before
 that point failed and no POST occurred. The successor measures the actual
 content-box centre; preserve the failed run as diagnostic evidence rather than
 misclassifying it as a visual regression.
+
+## Verified result and publication
+
+Successor run `easystud-authenticated-20261003T182824502Z-44648` passes all
+three widths. Filename replacement, drag-over paint, the 32px centred upload
+tile, ellipsis at 390px, preview/filepicker containment and Enabled/Disabled
+pending-delete labels pass. Three captures were inspected and pinned through
+2026-11-02; cleanup is complete and no business POST occurred. Proof:
+`testing/student-group-image-preview-2026-10-03.json`.
+
+Foundations already contained the full Settings modal file picker state family,
+modal drop surface and Classic toggle. No duplicate was created. Only the
+missing shared image-preview family was added: Empty/Present in Tall/Compact.
+The paired Library/Standard hosts use ordinary linked instances. EasyStud page
+04 archives its old local placeholder recoverably, replaces it with the linked
+Tall/Empty component and adds a composition combining the existing picker and
+toggle states. The product still has zero local component masters and all four
+composition cards contain their descendants. IDs:
+`testing/student-group-image-penpot-2026-10-03.json`.
+
+The final Penpot PNG export timed out after the settled readback; it was not
+retried unchanged. Geometry is verified, but human visual acceptance remains
+open in the later global checklist.
