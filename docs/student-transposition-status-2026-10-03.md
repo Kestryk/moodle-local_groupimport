@@ -94,8 +94,17 @@ runtime service and deferred human acceptance remain separate gates; see
 - Body-field paint has been extracted unchanged to canonical Kit `0e1466d`;
   complete CSS stays byte-identical. Managed extraction promotion/cache is
   complete; nine fresh field/content/footer cases pass at 1600/768/390. Product
-  captions still differ in palette/density;
+  page-04 captions were subsequently reconciled in twelve Foundation pairs and
+  seventeen linked product fields; other states/compositions remain open.
   `student-entity-field-extraction-2026-10-03.md` records exact IDs and boundaries.
+
+- Metadata recipes from Kit `8250198` are served via consumer `bc47d49` at
+  tested runtime `775c251`, with unchanged CSS/AMD and nine fresh native/resized
+  field/content/footer cases. This is source-preserving ownership transfer,
+  not metadata-list style normalization or full-body public-class adoption.
+  Readback, inspected captures, scope and cleanup are pinned in
+  `student-entity-metadata-extraction-2026-10-03.md` and
+  `testing/student-completion-preview-2026-10-03.json`.
 - Reconcile remaining Foundation member-row density/export gaps and propagate
   complete responsive product compositions without changing native behaviour.
 - Complete all-state translation/RTL/forced-colours, stacking and error checks,

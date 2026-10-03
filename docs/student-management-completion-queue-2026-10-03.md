@@ -32,7 +32,7 @@ stays deferred to the combined checklist; automation never ticks it.
 | SM-07 | Four native compact 288x72 identities and allowed/denied feedback PASS; Single no rear/count, Multiple-only stack | Non-drag mobile routes/all-state and human validation; no real drop performed |
 | SM-08 | Workspace 28/22px, panel 20px, view labels 12px served | Verify remaining headings and product roles; remove duplicate type overrides |
 | SM-09 | Four desktop and two mobile list owners: bottom gap zero, keyboard Next/Previous PASS; native mobile Groupings absence verified | Wider translated/all-state matrices and combined human review |
-| SM-10 | Canonical Kit field recipes served at b3d3a41, unchanged CSS/AMD; nine native/resized field cases PASS | Remaining public-class/body/list/image adapters, Penpot field palette/density and dynamic-colour/noscript exceptions |
+| SM-10 | Canonical field/metadata recipes served at 775c251, unchanged CSS/AMD; nine fresh native/resized field cases PASS; twelve Foundation pairs and seventeen page-04 field roles reconciled | Remaining public-class/body/list/image adapters, other Penpot states/compositions and dynamic-colour/noscript exceptions |
 
 ## Ordered execution and acceptance gates
 
@@ -123,7 +123,17 @@ Canonical field extraction `0e1466d` removes duplicated editable/readonly/detail
 paint while preserving all 12,973 CSS sequences and the exact CSS blob. Managed
 promotion/cache at clean runtime `b3d3a41` is complete; nine fresh body-field
 cases PASS, final captures inspected. Remaining local lists/images,
-public-class migration and Penpot field-caption palette are explicitly open.
+public-class migration and other field states/compositions remain explicitly
+open. The seventeen page-04 field-caption/provider corrections are now recorded
+in `testing/student-entity-fields-penpot-2026-10-03.json`.
+
+Metadata Kit `8250198` / consumer `bc47d49` is now served at tested clean
+runtime `775c251`, retaining exact CSS/AMD. Nine fresh native/resized
+field/content/footer cases pass in `easystud-authenticated-20261003T082721987Z-6420`;
+nine final captures inspected, eighteen pinned, all cleanup gates pass.
+The next increment is metadata-list/count/chip catalogue reconciliation, followed
+by native Group image/file composition. Legacy weights, public-class bodies,
+foreign CCB narrow overlays and global human acceptance remain open.
 
 Propose `student-pagination-native-preview.spec.js`, exact test `Student native
 pagination remains bottom-owned and keyboard reachable`, local-supervised;

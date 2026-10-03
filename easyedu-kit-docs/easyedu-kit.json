@@ -58,7 +58,9 @@
       "scope": "Source-preserving entity metadata titles/counts/chips/semantic variants, scroll/CSV, detail lists and descriptions. Native content, selectors, grids, commands and Motion remain unchanged.",
       "documentation": "docs/student-entity-metadata-extraction-2026-10-03.md",
       "pairedFieldReadback": "docs/testing/student-entity-fields-penpot-2026-10-03.json",
-      "status": "Source/build proof; managed preview promotion pending. No fresh browser or all-body Penpot/human acceptance.",
+      "status": "Canonical source and exact CSS preservation verified. Managed local preview/cache at 775c251 and nine native/resized field/content/footer cases passed. Twelve Foundation pairs and seventeen page-04 fields linked; lists/all-state/class-only body and human acceptance remain separate.",
+      "proofRun": "easystud-authenticated-20261003T082721987Z-6420",
+      "runtimeProof": "docs/testing/student-completion-preview-2026-10-03.json",
       "humanVisualValidated": false
     },
     "studentEntityFieldsExtraction": {

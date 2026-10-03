@@ -20,6 +20,54 @@
     "production": false
   },
   "evidenceRoot": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated",
+  "metadataExtractionPreview": {
+    "kitCommit": "82501989fdf28a10b2c2bcdd496c527da4b58d39",
+    "consumerCommit": "bc47d49272b0009ec6b074efbd89b651551f06b6",
+    "testedRuntimeHead": "775c2516fc91e970701d32cd1200e6e687bbb734",
+    "scenarioBlob": "09b2eea5b96f49fc470e4005968a575f3d58ba9f",
+    "runId": "easystud-authenticated-20261003T082721987Z-6420",
+    "status": "passed",
+    "modalCases": 9,
+    "widths": [
+      1600,
+      768,
+      390
+    ],
+    "scope": "Native Participant eye; Group/Grouping desktop open then responsive resize. Field roles/content/containment, retained lists and matched right-end/wrapping actions. Native Close/Cancel only; no invented mobile settings entry.",
+    "generatedCssBlob": "c7b7945a536938555cbc77a917d3eb8df69be7e4",
+    "managerBuildBlob": "4aa62c607b0413f5c3fa5c3fb03082179394f4ae",
+    "generatedCssUnchanged": true,
+    "nativeControllerMustacheMotionUnchanged": true,
+    "fieldCases": {
+      "participantVisibleFields": 4,
+      "groupVisibleFields": 5,
+      "groupingVisibleFields": 5
+    },
+    "agentFinalCapturesInspected": 9,
+    "pinnedMedia": 18,
+    "cleanup": {
+      "credentialsCleared": true,
+      "leaseReleased": true,
+      "ownedChildStopped": true,
+      "fixtureRequested": false
+    },
+    "retentionDryRun": {
+      "manifestsFound": 1,
+      "candidateCount": 0,
+      "deletedCount": 0,
+      "protectedCount": 18,
+      "unmanagedCount": 0,
+      "errors": []
+    },
+    "penpotFieldReadback": "docs/testing/student-entity-fields-penpot-2026-10-03.json",
+    "limits": [
+      "Not all-state or whole-body visual acceptance.",
+      "Existing empty Group, populated Participant and Grouping exercised; no data manufactured.",
+      "Foreign CCB sticky trigger overlaps narrow body/footer edges; tested action centres remain clear. Do not hide overlays.",
+      "Native image/file/Close, list publication/legacy weights, responsive entry and class-only body migration remain open."
+    ],
+    "humanVisualValidated": false
+  },
   "fieldExtractionPreview": {
     "kitCommit": "0e1466d2f9ecb7087c59c8b831207f78d8390d3d",
     "consumerCommit": "6a549b6aae5803768e26edadf1c70440f6ad14a3",

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-03 - Entity metadata managed preview checkpoint
+
+- Promote the pushed extraction through the managed Moodle 5.1 local queue
+  and refresh caches. CSS/AMD and native controllers remain unchanged.
+- Pass nine native/resized entity-field/content/footer cases at 1600/768/390;
+  inspect final captures, pin eighteen PNGs and verify credentials/lease/child
+  cleanup with no fixture or business write. Keep historical proof intact.
+- Keep native image/file, metadata-list catalogue/legacy weights, class-only
+  bodies, foreign narrow overlays and the combined human checklist open.
+
 ## 2026-10-03 - Entity-field Penpot reconciliation
 
 - Replace seventeen page-04 Participant/Group/Grouping fields with linked

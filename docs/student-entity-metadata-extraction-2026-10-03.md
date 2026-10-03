@@ -38,6 +38,31 @@ assets; they are not relabelled as a fresh metadata-browser or Penpot-list PASS.
 Foreign CCB overlays, full translated/RTL/forced-colour states, image/file/Close,
 public-class migration and the global human checklist remain open.
 
+## Managed local preview and fresh field regression
+
+Kit `8250198` and consumer `bc47d49` are committed/pushed on their owned
+branches. Managed promotion/cache is complete at clean runtime `775c251`.
+Discovery selected exactly one immutable scenario (blob `09b2eea`), then
+`easystud-authenticated-20261003T082721987Z-6420` passed nine native/resized
+Participant/Group/Grouping cases at 1600/768/390. Caption/value/control roles,
+native conditional content/lists, paired/wrapping actions and Participant
+return focus remain verified. This does not test a new mobile settings entry.
+
+All nine final captures were inspected; all eighteen PNGs are pinned.
+Credentials/lease/owned-child cleanup passed; no fixtures or business writes.
+Scoped retention dry-run: eighteen protected, zero candidates/deletions/errors.
+The existing Group is empty, Participant/Grouping lists are populated; do not
+infer every populated Group state from these cases. CSS/AMD remain unchanged.
+Foreign CCB sticky controls still overlap narrow body/footer edges, though
+tested action centres remain clear. Image/file/Close and whole-body/all-state
+parity remain pending. Exact historical/new proof:
+`testing/student-completion-preview-2026-10-03.json`.
+
+Next scoped increment: catalogue the source-backed metadata lists/counts/chips
+in Foundations and EasyStud, then adapt the native Group image/file composition
+using existing shared controls without changing its Moodle file/data contracts.
+Combined human acceptance stays deferred; no human action is needed now.
+
 ## Penpot field reconciliation (separate from list extraction)
 
 Foundations 08.4/08.4.1 now carries twelve shared Regular/Narrow field specimens:
