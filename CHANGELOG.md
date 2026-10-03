@@ -4,6 +4,8 @@
 
 - Replace the stale generated-only local Close skin with the canonical Kit
   `close-button` mixin on the common modal selector.
+- Consume Kit `0.4.66`: the default Close is the linked Foundation
+  `Core action / Secondary / S` control at `1.9rem`, not a local modal size.
 - Preserve every native aria label, close route, focus restoration and modal
   Motion; this change owns paint and geometry only.
 

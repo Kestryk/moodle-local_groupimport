@@ -273,24 +273,36 @@ semantic colour, border or size of the existing button.
 - Square icon action: use `icon-button`, always include an accessible label.
 - Dense overflow trigger: use `action-menu-trigger(small)` with
   `action-menu-trigger-icon`.
-- Modal close action: use `close-button`; do not leave a raw `x` link.
+- Modal close action: use `close-button`; do not leave a raw `x` link. Its
+  default `1.9rem` square is the code counterpart of the linked Foundation
+  `Core action / Secondary / S` component used in modal headers.
 - Admin view switchers: use `admin-primary-nav` and
   `admin-primary-nav-action`; never let labels wrap onto two lines.
 - Status/action rows inside an admin view: use `admin-secondary-actions` and
   `admin-secondary-action`.
 
-## Disabled Actions
+## Compact selection actions
 
-### Compact selection actions
+`selection-action($tone: primary, $solid: false, $tray: false)` is the shared
+skin for list selection toolbars and the sticky responsive action tray. Use
+`.foundation-selection-action` with native `btn-outline-primary`,
+`btn-outline-secondary`, `btn-outline-danger` or `btn-primary` semantics.
+Add `.foundation-selection-action--tray` only for the responsive tray.
 
-Use the canonical `selection-action` recipe through `.foundation-selection-action`
-with native outline/solid semantic classes. `.foundation-selection-action--tray`
-adds the responsive 2.35rem minimum height; compact uses 0.78rem Inter/600,
-1.9rem minimum height, the shared control radius and 0.35rem icon gap. Products
-own eligibility, counts, command routing and the native More resolver. Overflow
-menu clones remove the button class; danger hover remains red and disabled
-becomes neutral. See `docs/student-selection-actions-2026-10-03.md` in the
-consumer for paired publication and separate native/human proof boundaries.
+The compact contract is 0.78rem Inter/600, 1.9rem minimum height, the canonical
+control radius and a 0.35rem icon-slot/label gap. Tray height is 2.35rem; label
+width remains adaptive. This deliberate dense-toolbar gap does not change the
+larger shared gap used by export/file actions. Native focus preserves the rest
+palette; keyboard focus adds the shared blue border and semantic ring. Danger
+hover remains red, and disabled becomes neutral rather than red.
+
+Foundations publishes four roles x five states, plus the four-action tray, in
+paired Standard and Library boards. Products supply icons, translated labels,
+counts, selection eligibility and the existing overflow resolver. Overflow
+menu clones remove the selection-action class so menu rows keep menu paint;
+do not wrap a six-action toolbar or alter commands/Motion to repair density.
+
+### Disabled selection controls
 
 Disabled buttons should remain visually understandable but clearly unavailable.
 On small screens, prefer hiding unavailable contextual actions rather than
