@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-10-03 - Conditional selection trays and long labels
+
+- Verify twelve native selection-routing cases at 390/768, including grouped
+  and ungrouped groups; retain source command eligibility and block business POST.
+- Pair shared two/three/four-action Foundation usage and fourteen linked
+  EasyStud trays, archiving old stubs recoverably. Global human review stays open.
+- Consume Kit 0.4.65 long-label wrapping: preserve the icon gap and padding
+  instead of clipping Remove-from-groupings. Add painted-content checks; the
+  previous frame-only proof does not certify long-label fit.
+
+## 2026-10-03 - Selection tray native density proof
+
+- Verify 30.4px compact / 37.6px touch density at 1600/768/390, including
+  native toolbar/context open-search-Cancel, semantic paint and matched footers.
+- Preserve the predecessor's global timeout and complete cleanup. Record
+  phase timings with a bounded 240s test / 300s watchdog; keep 60s readiness,
+  all assertions and the non-mutating guard. Human acceptance remains deferred.
+
 ## 2026-10-03 - Selection action native proof and tray-height correction
 
 - Record six passing native typography/palette/open-search-Cancel cases and

@@ -1,0 +1,971 @@
+{
+  "schemaVersion": 1,
+  "runtimeCommit": "9bb911944eed17c90c4eb6e36c0c017a1731263f",
+  "sourceCommit": "d4b01ead15c9fc8ab13f640f0c635739701f86cd",
+  "specBlob": "505d31c57469609a0e211ec92218f3c3488e3b2d",
+  "kitVersion": "0.4.64",
+  "humanAccepted": false,
+  "nativeMembershipTransferVerified": false,
+  "scope": "Twelve non-mutating native selection cases at 390/768; participants single/multiple, members, groups ungrouped/grouped, groupings",
+  "failedPredecessor": {
+    "runId": "easystud-authenticated-20261003T161150560Z-49232",
+    "reason": "Candidate assumed a selected-participant Details command not emitted by the current native template; correct capability/source-presence expectation, not UI.",
+    "cleanupComplete": true
+  },
+  "run": {
+    "schemaVersion": 1,
+    "projectNamespace": "easystud",
+    "runId": "easystud-authenticated-20261003T161746342Z-38916",
+    "status": "passed",
+    "discoveryOnly": false,
+    "selectedTests": 1,
+    "testExitCode": 0,
+    "runnerExitCode": 0,
+    "timedOut": false,
+    "startedAtUtc": "2026-10-03T16:17:46.3667314Z",
+    "finishedAtUtc": "2026-10-03T16:18:18.6615563Z",
+    "failure": null
+  },
+  "cleanup": {
+    "schemaVersion": 1,
+    "runId": "easystud-authenticated-20261003T161746342Z-38916",
+    "credentialsCleared": true,
+    "leaseAcquired": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureSetupCompleted": false,
+    "fixtureCleanupComplete": true,
+    "fixtureCleanupError": null,
+    "profileExternal": true
+  },
+  "native": {
+    "records": [
+      {
+        "width": 390,
+        "type": "participant",
+        "view": "participants",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 331.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "participant",
+        "view": "participants",
+        "count": 2,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "2 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 331.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "member",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-members]",
+            "text": "Move member(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-members]",
+            "text": "Remove member(s)",
+            "icon": "fa fa-user-minus",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 331.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "requireMembership": true,
+        "detailsSourceExists": false,
+        "groupHasMembership": true,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 351.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-remove-selected-groups-from-groupings]",
+            "text": "Remove from groupings",
+            "icon": "fa fa-unlink",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 996.3125,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "type": "grouping",
+        "view": "groupings",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 1004.125,
+          "width": 351.96875,
+          "height": 84.359375
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 1014.390625,
+          "width": 331.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-delete-selected-groupings]",
+            "text": "Delete grouping(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 190.859375,
+              "y": 1040.625,
+              "width": 162.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "participant",
+        "view": "participants",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 709.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "participant",
+        "view": "participants",
+        "count": 2,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "2 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-move-selected-participants]",
+            "text": "Move participant(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 709.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "member",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-members]",
+            "text": "Move member(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-members]",
+            "text": "Remove member(s)",
+            "icon": "fa fa-user-minus",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-message-selected-participants]",
+            "text": "Send a message",
+            "icon": "fa fa-comment-dots",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 709.4375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "group",
+        "view": "groups",
+        "count": 1,
+        "requireMembership": true,
+        "detailsSourceExists": false,
+        "groupHasMembership": true,
+        "frame": {
+          "x": 11.515625,
+          "y": 959.8125,
+          "width": 729.96875,
+          "height": 128.671875
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 970.078125,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-move-selected-groups]",
+            "text": "Move group(s)",
+            "icon": "fa fa-arrow-right",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-primary",
+            "color": "rgb(255, 255, 255)",
+            "background": "rgb(15, 108, 191)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-remove-selected-groups-from-groupings]",
+            "text": "Remove from groupings",
+            "icon": "fa fa-unlink",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 996.3125,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-delete-selected-groups]",
+            "text": "Delete group(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "type": "grouping",
+        "view": "groupings",
+        "count": 1,
+        "detailsSourceExists": false,
+        "groupHasMembership": false,
+        "frame": {
+          "x": 11.515625,
+          "y": 1004.125,
+          "width": 729.96875,
+          "height": 84.359375
+        },
+        "summary": {
+          "x": 21.78125,
+          "y": 1014.390625,
+          "width": 709.4375,
+          "height": 18.234375
+        },
+        "summaryText": "1 selected",
+        "actions": [
+          {
+            "selector": "[data-easystud-delete-selected-groupings]",
+            "text": "Delete grouping(s)",
+            "icon": "fa fa-trash",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-danger",
+            "color": "rgb(161, 43, 43)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 21.78125,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          },
+          {
+            "selector": "[data-easystud-clear-all-selection]",
+            "text": "Clear selection",
+            "icon": "fa fa-times-circle",
+            "classes": "btn btn-sm foundation-selection-action foundation-selection-action--tray btn-outline-secondary",
+            "color": "rgb(92, 108, 125)",
+            "background": "rgb(255, 255, 255)",
+            "font": "12.48px",
+            "weight": "600",
+            "gap": "5.6px",
+            "rect": {
+              "x": 379.859375,
+              "y": 1040.625,
+              "width": 351.359375,
+              "height": 37.59375
+            }
+          }
+        ]
+      }
+    ],
+    "blocked": []
+  }
+}

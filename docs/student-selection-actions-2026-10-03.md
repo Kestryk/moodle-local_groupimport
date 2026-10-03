@@ -78,7 +78,23 @@ specificity to match the semantic roles. Penpot already shows the correct
 candidate adds an explicit 30.4px desktop / 37.6px tray assertion. Historical
 assets/evidence stay immutable; new served height proof is a separate gate.
 
+The successor is served at clean runtime `9bb9119`. Run
+`easystud-authenticated-20261003T160255517Z-43276` passes all six cases,
+including actual 30.390625px desktop / 37.59375px tray heights. The native
+per-page readiness assertions remain 60s. An earlier run exhausted its global
+180s budget after the desktop cases, before four readiness polls on the next
+page; preserve it as a failed run, not a measured 60s readiness failure.
+The successor records navigation/readiness/completion timings and uses a
+bounded 240s total budget under the unchanged 300s runner watchdog. It completed
+in 68s; no UI lifecycle or assertion was bypassed. Cleanup and the blocked-POST
+guard pass. Proof: `testing/student-selection-tray-preview-2026-10-03.json`.
+
 ## Platform-owner proposal and remaining gates
+
+The source-backed conditional tray continuation, paired 2/3/4-action usage
+and fourteen product consumers are recorded in
+`student-selection-tray-routing-2026-10-03.md`. Its long-label successor is
+separate from the historical height/typography runs.
 
 Reconcile these provider IDs, source pins and paired/product readbacks into the
 shared source/Penpot crosswalk and EED-UI-2026-0073 history. Register this native
