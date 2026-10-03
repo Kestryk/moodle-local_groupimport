@@ -262,6 +262,7 @@
     },
     "studentEntityMetadataCatalogue20261003": {
       "sourceCandidateCommit": "f9b21a4c61d2bcdd5477b3efd84bdf9063e4905f",
+      "documentationCommit": "35813f294495edba58e1fb8c2707e0bc84898331",
       "runtimeCommit": "55b1e1ed53459d79eb1b759a14a24c4f5fd3b944",
       "scope": "Native Participant/Group/Grouping metadata counts, chips, populated and empty disclosure lists; paired Foundations Library/Standard publication and linked EasyStud page-04 compositions.",
       "modules": {
