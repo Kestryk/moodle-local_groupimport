@@ -144,11 +144,16 @@
 
     @keyframes easyedu-skeleton-shimmer {
       from {
-        background-position: 110% 0;
+        background-position: 180% 0;
       }
       to {
-        background-position: -110% 0;
+        background-position: -180% 0;
       }
+    }
+
+    @keyframes easyedu-skeleton-appear {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     @keyframes easyedu-demo-cursor-click {

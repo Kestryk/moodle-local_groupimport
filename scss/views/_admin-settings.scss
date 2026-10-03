@@ -83,6 +83,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     display: none;
     gap: 1rem;
     padding: 0.5rem 0.25rem 1rem;
+    @include easyedu.loading-appearance;
   }
 
   .local-groupimport-admin-settings__loading-header {
@@ -172,8 +173,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   .local-groupimport-admin-settings__loading-surface {
     @include easyedu.skeleton-surface($radius: 0.68rem);
     @include easyedu.skeleton-shimmer-direct(
-      $animation-name: local-groupimport-easystud-loading-shimmer-v4,
-      $duration: 2s
+      $duration: var(--easyedu-loading-shimmer-duration)
     );
   }
 

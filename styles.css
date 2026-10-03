@@ -365,18 +365,24 @@
   --easyedu-empty-bg-start: #fbfdff;
   --easyedu-empty-bg-end: #f6f9fc;
   --easyedu-empty-border: #cdddea;
-  --easyedu-loading-surface: #dce7f0;
-  --easyedu-loading-highlight: #edf3f7;
-  --easyedu-loading-border: #cfdee9;
-  --easyedu-loading-shimmer-soft: rgba(255, 255, 255, 0.16);
-  --easyedu-loading-shimmer-highlight: rgba(255, 255, 255, 0.52);
+  --easyedu-loading-surface: #e8eff5;
+  --easyedu-loading-surface-soft: #f3f6fa;
+  --easyedu-loading-surface-strong: #dbe7f0;
+  --easyedu-loading-frame-surface: #fbfcfe;
+  --easyedu-loading-highlight: #f6f9fc;
+  --easyedu-loading-border: #dee7ef;
+  --easyedu-loading-shimmer-soft: rgba(255, 255, 255, 0.1);
+  --easyedu-loading-shimmer-highlight: rgba(255, 255, 255, 0.28);
   --easyedu-loading-radius: 0.72rem;
   --easyedu-loading-stack-gap: 0.9rem;
-  --easyedu-loading-shimmer-duration: 2s;
+  --easyedu-loading-shimmer-duration: 3.2s;
+  --easyedu-loading-appearance-duration: 320ms;
   --easyedu-loading-reveal-duration: 180ms;
   --easyedu-loading-section-accent: var(--easyedu-primary);
-  --easyedu-loading-section-border-width: 0.1875rem;
-  --easyedu-loading-section-surface: var(--easyedu-loading-surface);
+  --easyedu-loading-section-rail-accent: #aacbe5;
+  --easyedu-loading-success-rail-accent: #b4d3bf;
+  --easyedu-loading-section-border-width: 0.125rem;
+  --easyedu-loading-section-surface: var(--easyedu-loading-frame-surface);
   --easyedu-loading-section-border: var(--easyedu-loading-border);
   --easyedu-loading-section-radius: var(--easyedu-loading-radius);
   --easyedu-loading-section-stack-gap: var(--easyedu-loading-stack-gap);
@@ -386,7 +392,7 @@
   --easyedu-loading-section-compact-icon-slot-size: 1.25rem;
   --easyedu-loading-section-compact-heading-gap: 0.5rem;
   --easyedu-loading-section-compact-navigation-gap: 0.75rem;
-  --easyedu-loading-container-accent: var(--easyedu-loading-section-accent);
+  --easyedu-loading-container-accent: var(--easyedu-loading-section-rail-accent);
   --easyedu-loading-container-border-width: var(--easyedu-loading-section-border-width);
   --easyedu-loading-container-surface: var(--easyedu-loading-section-surface);
   --easyedu-loading-container-border: var(--easyedu-loading-section-border);
@@ -551,14 +557,6 @@
   }
 }
 
-@keyframes local-groupimport-easystud-loading-shimmer-v4 {
-  from {
-    background-position: -110% 0;
-  }
-  to {
-    background-position: 110% 0;
-  }
-}
 .local-groupimport-easystud {
   position: relative;
 }
@@ -1674,6 +1672,7 @@
   display: grid;
 }
 .local-groupimport-easystud.is-easystud-loading-skeleton-exiting .local-groupimport-easystud__loading-skeleton {
+  animation: none;
   opacity: 0;
   pointer-events: none;
 }
@@ -1696,14 +1695,14 @@
   opacity: 1;
 }
 .local-groupimport-easystud__loading-skeleton {
-  --local-groupimport-easystud-loading-surface: #dce7f0;
-  --local-groupimport-easystud-loading-surface-soft: #edf3f7;
-  --local-groupimport-easystud-loading-surface-strong: #cbdbe7;
-  --local-groupimport-easystud-loading-border: #cfdee9;
-  --local-groupimport-easystud-loading-radius: 0.72rem;
-  --local-groupimport-easystud-loading-gap: 0.7rem;
-  --local-groupimport-easystud-loading-shimmer-duration: 2s;
-  --local-groupimport-easystud-loading-shimmer-highlight: rgba(255, 255, 255, 0.5);
+  --local-groupimport-easystud-loading-surface: var(--easyedu-loading-surface);
+  --local-groupimport-easystud-loading-surface-soft: var(--easyedu-loading-surface-soft);
+  --local-groupimport-easystud-loading-surface-strong: var(--easyedu-loading-surface-strong);
+  --local-groupimport-easystud-loading-border: var(--easyedu-loading-border);
+  --local-groupimport-easystud-loading-radius: var(--easyedu-loading-radius);
+  --local-groupimport-easystud-loading-gap: var(--easyedu-loading-stack-gap);
+  --local-groupimport-easystud-loading-shimmer-duration: var(--easyedu-loading-shimmer-duration);
+  --local-groupimport-easystud-loading-shimmer-highlight: var(--easyedu-loading-shimmer-highlight);
   background: transparent;
   border: 0;
   box-sizing: border-box;
@@ -1721,6 +1720,17 @@
 @media (prefers-reduced-motion: reduce) {
   .local-groupimport-easystud__loading-skeleton {
     transition-duration: 0.001ms;
+  }
+}
+.local-groupimport-easystud__loading-skeleton {
+  animation: easyedu-skeleton-appear var(--easyedu-loading-appearance-duration) var(--easyedu-motion-ease, ease) backwards;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-easystud__loading-skeleton, .is-easyedu-motion-off .local-groupimport-easystud__loading-skeleton {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .local-groupimport-easystud__loading-skeleton {
+    animation: none;
   }
 }
 .local-groupimport-easystud__loading-header {
@@ -1766,8 +1776,8 @@
 }
 .local-groupimport-easystud__loading-surface::after {
   animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;
-  background-image: linear-gradient(108deg, transparent 30%, rgba(255, 255, 255, 0.16) 42%, var(--local-groupimport-easystud-loading-shimmer-highlight) 50%, rgba(255, 255, 255, 0.16) 58%, transparent 70%);
-  background-position: -110% 0;
+  background-image: linear-gradient(108deg, transparent 30%, var(--easyedu-loading-shimmer-soft) 42%, var(--local-groupimport-easystud-loading-shimmer-highlight) 50%, var(--easyedu-loading-shimmer-soft) 58%, transparent 70%);
+  background-position: 180% 0;
   background-repeat: no-repeat;
   background-size: 190% 100%;
   border-radius: inherit;
@@ -1775,6 +1785,9 @@
   inset: 0;
   pointer-events: none;
   position: absolute;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-easystud__loading-surface::after, .is-easyedu-motion-off .local-groupimport-easystud__loading-surface::after {
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .local-groupimport-easystud__loading-surface::after {
@@ -1797,7 +1810,7 @@
   margin-block-start: var(--easyedu-loading-section-navigation-gap);
 }
 .local-groupimport-easystud__loading-navigation-frame {
-  background: #f4f8fb;
+  background: var(--easyedu-loading-frame-surface);
   border: 0.0625rem solid var(--local-groupimport-easystud-loading-border);
   border-radius: 1rem;
   display: block;
@@ -1812,7 +1825,7 @@
   }
 }
 .local-groupimport-easystud__loading-navigation-frame {
-  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-accent);
+  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
 }
 @media (forced-colors: active) {
   .local-groupimport-easystud__loading-navigation-frame {
@@ -1845,8 +1858,8 @@
 }
 .local-groupimport-easystud__loading-navigation-guide::after {
   animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;
-  background-image: linear-gradient(108deg, transparent 30%, rgba(255, 255, 255, 0.16) 42%, var(--local-groupimport-easystud-loading-shimmer-highlight) 50%, rgba(255, 255, 255, 0.16) 58%, transparent 70%);
-  background-position: -110% 0;
+  background-image: linear-gradient(108deg, transparent 30%, var(--easyedu-loading-shimmer-soft) 42%, var(--local-groupimport-easystud-loading-shimmer-highlight) 50%, var(--easyedu-loading-shimmer-soft) 58%, transparent 70%);
+  background-position: 180% 0;
   background-repeat: no-repeat;
   background-size: 190% 100%;
   border-radius: inherit;
@@ -1854,6 +1867,9 @@
   inset: 0;
   pointer-events: none;
   position: absolute;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-easystud__loading-navigation-guide::after, .is-easyedu-motion-off .local-groupimport-easystud__loading-navigation-guide::after {
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .local-groupimport-easystud__loading-navigation-guide::after {
@@ -1891,8 +1907,8 @@
 }
 .local-groupimport-easystud__loading-navigation-cue::after {
   animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;
-  background-image: linear-gradient(108deg, transparent 30%, rgba(255, 255, 255, 0.16) 42%, var(--local-groupimport-easystud-loading-shimmer-highlight) 50%, rgba(255, 255, 255, 0.16) 58%, transparent 70%);
-  background-position: -110% 0;
+  background-image: linear-gradient(108deg, transparent 30%, var(--easyedu-loading-shimmer-soft) 42%, var(--local-groupimport-easystud-loading-shimmer-highlight) 50%, var(--easyedu-loading-shimmer-soft) 58%, transparent 70%);
+  background-position: 180% 0;
   background-repeat: no-repeat;
   background-size: 190% 100%;
   border-radius: inherit;
@@ -1900,6 +1916,9 @@
   inset: 0;
   pointer-events: none;
   position: absolute;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-easystud__loading-navigation-cue::after, .is-easyedu-motion-off .local-groupimport-easystud__loading-navigation-cue::after {
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .local-groupimport-easystud__loading-navigation-cue::after {
@@ -1928,7 +1947,7 @@
   min-width: 0;
 }
 .local-groupimport-easystud__loading-panel {
-  background: #f9fbfd;
+  background: var(--easyedu-loading-frame-surface);
   border: 0.0625rem solid var(--local-groupimport-easystud-loading-border);
   border-radius: 1rem;
   display: block;
@@ -1966,7 +1985,7 @@
   grid-auto-rows: max-content;
 }
 .local-groupimport-easystud__loading-panel--participants {
-  border-block-start: var(--easyedu-loading-container-border-width) solid #6c9fc9;
+  border-block-start: var(--easyedu-loading-container-border-width) solid var(--easyedu-loading-container-accent);
 }
 @media (forced-colors: active) {
   .local-groupimport-easystud__loading-panel--participants {
@@ -1977,7 +1996,7 @@
   display: none;
 }
 .local-groupimport-easystud__loading-panel--structure {
-  border-block-start: var(--easyedu-loading-container-border-width) solid #78a78d;
+  border-block-start: var(--easyedu-loading-container-border-width) solid var(--easyedu-loading-success-rail-accent);
 }
 @media (forced-colors: active) {
   .local-groupimport-easystud__loading-panel--structure {
@@ -1998,8 +2017,8 @@
   width: min(58%, 12rem);
 }
 .local-groupimport-easystud__loading-search-filter-region {
-  background: #f3f7fa;
-  border: 0.0625rem solid #dbe6ee;
+  background: var(--easyedu-loading-frame-surface);
+  border: 0.0625rem solid var(--easyedu-loading-border);
   border-radius: var(--local-groupimport-easystud-loading-radius);
   display: block;
   min-width: 0;
@@ -2013,7 +2032,7 @@
   }
 }
 .local-groupimport-easystud__loading-search-filter-region {
-  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-accent);
+  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
 }
 @media (forced-colors: active) {
   .local-groupimport-easystud__loading-search-filter-region {
@@ -2032,7 +2051,7 @@
   padding: 0.7rem;
 }
 .local-groupimport-easystud__loading-search {
-  background: #f7fafc;
+  background: var(--easyedu-loading-surface-soft);
   grid-column: 1/-1;
   height: 2.55rem;
 }
@@ -2051,8 +2070,8 @@
   min-width: 0;
 }
 .local-groupimport-easystud__loading-participant-card {
-  background: #fff;
-  border: 0.0625rem solid #dbe5ed;
+  background: var(--easyedu-loading-frame-surface);
+  border: 0.0625rem solid var(--easyedu-loading-border);
   border-radius: 0.68rem;
   display: block;
   min-width: 0;
@@ -2066,7 +2085,7 @@
   }
 }
 .local-groupimport-easystud__loading-participant-card {
-  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-accent);
+  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
 }
 @media (forced-colors: active) {
   .local-groupimport-easystud__loading-participant-card {
@@ -2090,8 +2109,8 @@
   gap: 0.65rem;
 }
 .local-groupimport-easystud__loading-structure-card {
-  background: #fff;
-  border: 0.0625rem solid #d9e4dc;
+  background: var(--easyedu-loading-frame-surface);
+  border: 0.0625rem solid var(--easyedu-loading-border);
   border-radius: 0.68rem;
   display: block;
   min-width: 0;
@@ -2105,7 +2124,7 @@
   }
 }
 .local-groupimport-easystud__loading-structure-card {
-  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-accent);
+  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
 }
 @media (forced-colors: active) {
   .local-groupimport-easystud__loading-structure-card {
@@ -2136,7 +2155,7 @@
 }
 .local-groupimport-easystud__loading-view-toggle {
   box-sizing: border-box;
-  box-shadow: 0 0.38rem 0.8rem rgba(31, 68, 104, 0.08);
+  box-shadow: none;
   display: grid;
   gap: 0.38rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -14119,6 +14138,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loa
 }
 
 body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport.is-easystud-loading-skeleton-exiting [data-easystud-loading-skeleton] {
+  animation: none;
   opacity: 0;
   pointer-events: none;
 }
@@ -14279,18 +14299,24 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-empty-bg-start: #fbfdff;
   --easyedu-empty-bg-end: #f6f9fc;
   --easyedu-empty-border: #cdddea;
-  --easyedu-loading-surface: #dce7f0;
-  --easyedu-loading-highlight: #edf3f7;
-  --easyedu-loading-border: #cfdee9;
-  --easyedu-loading-shimmer-soft: rgba(255, 255, 255, 0.16);
-  --easyedu-loading-shimmer-highlight: rgba(255, 255, 255, 0.52);
+  --easyedu-loading-surface: #e8eff5;
+  --easyedu-loading-surface-soft: #f3f6fa;
+  --easyedu-loading-surface-strong: #dbe7f0;
+  --easyedu-loading-frame-surface: #fbfcfe;
+  --easyedu-loading-highlight: #f6f9fc;
+  --easyedu-loading-border: #dee7ef;
+  --easyedu-loading-shimmer-soft: rgba(255, 255, 255, 0.1);
+  --easyedu-loading-shimmer-highlight: rgba(255, 255, 255, 0.28);
   --easyedu-loading-radius: 0.72rem;
   --easyedu-loading-stack-gap: 0.9rem;
-  --easyedu-loading-shimmer-duration: 2s;
+  --easyedu-loading-shimmer-duration: 3.2s;
+  --easyedu-loading-appearance-duration: 320ms;
   --easyedu-loading-reveal-duration: 180ms;
   --easyedu-loading-section-accent: var(--easyedu-primary);
-  --easyedu-loading-section-border-width: 0.1875rem;
-  --easyedu-loading-section-surface: var(--easyedu-loading-surface);
+  --easyedu-loading-section-rail-accent: #aacbe5;
+  --easyedu-loading-success-rail-accent: #b4d3bf;
+  --easyedu-loading-section-border-width: 0.125rem;
+  --easyedu-loading-section-surface: var(--easyedu-loading-frame-surface);
   --easyedu-loading-section-border: var(--easyedu-loading-border);
   --easyedu-loading-section-radius: var(--easyedu-loading-radius);
   --easyedu-loading-section-stack-gap: var(--easyedu-loading-stack-gap);
@@ -14300,7 +14326,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-loading-section-compact-icon-slot-size: 1.25rem;
   --easyedu-loading-section-compact-heading-gap: 0.5rem;
   --easyedu-loading-section-compact-navigation-gap: 0.75rem;
-  --easyedu-loading-container-accent: var(--easyedu-loading-section-accent);
+  --easyedu-loading-container-accent: var(--easyedu-loading-section-rail-accent);
   --easyedu-loading-container-border-width: var(--easyedu-loading-section-border-width);
   --easyedu-loading-container-surface: var(--easyedu-loading-section-surface);
   --easyedu-loading-container-border: var(--easyedu-loading-section-border);
@@ -14501,6 +14527,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   gap: 1rem;
   padding: 0.5rem 0.25rem 1rem;
 }
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton {
+  animation: easyedu-skeleton-appear var(--easyedu-loading-appearance-duration) var(--easyedu-motion-ease, ease) backwards;
+}
+[data-easyedu-motion-policy=disabled] #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton, .is-easyedu-motion-off #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-skeleton {
+    animation: none;
+  }
+}
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-header {
   display: grid;
   gap: 0.55rem;
@@ -14545,7 +14582,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {
-  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-accent);
+  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
 }
 @media (forced-colors: active) {
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-form-row {
@@ -14593,7 +14630,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {
-  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-accent);
+  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
 }
 @media (forced-colors: active) {
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-overview {
@@ -14634,9 +14671,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {
-  animation: local-groupimport-easystud-loading-shimmer-v4 2s linear infinite;
-  background: linear-gradient(90deg, var(--easyedu-loading-surface) 0%, var(--easyedu-loading-highlight) 48%, var(--easyedu-loading-surface) 100%);
-  background-size: 220% 100%;
+  animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;
+  background-color: var(--easyedu-loading-surface);
+  background-image: linear-gradient(90deg, transparent 30%, var(--easyedu-loading-highlight) 50%, transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 190% 100%;
+}
+[data-easyedu-motion-policy=disabled] #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface, .is-easyedu-motion-off #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-surface {
@@ -15367,18 +15409,24 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-empty-bg-start: #fbfdff;
   --easyedu-empty-bg-end: #f6f9fc;
   --easyedu-empty-border: #cdddea;
-  --easyedu-loading-surface: #dce7f0;
-  --easyedu-loading-highlight: #edf3f7;
-  --easyedu-loading-border: #cfdee9;
-  --easyedu-loading-shimmer-soft: rgba(255, 255, 255, 0.16);
-  --easyedu-loading-shimmer-highlight: rgba(255, 255, 255, 0.52);
+  --easyedu-loading-surface: #e8eff5;
+  --easyedu-loading-surface-soft: #f3f6fa;
+  --easyedu-loading-surface-strong: #dbe7f0;
+  --easyedu-loading-frame-surface: #fbfcfe;
+  --easyedu-loading-highlight: #f6f9fc;
+  --easyedu-loading-border: #dee7ef;
+  --easyedu-loading-shimmer-soft: rgba(255, 255, 255, 0.1);
+  --easyedu-loading-shimmer-highlight: rgba(255, 255, 255, 0.28);
   --easyedu-loading-radius: 0.72rem;
   --easyedu-loading-stack-gap: 0.9rem;
-  --easyedu-loading-shimmer-duration: 2s;
+  --easyedu-loading-shimmer-duration: 3.2s;
+  --easyedu-loading-appearance-duration: 320ms;
   --easyedu-loading-reveal-duration: 180ms;
   --easyedu-loading-section-accent: var(--easyedu-primary);
-  --easyedu-loading-section-border-width: 0.1875rem;
-  --easyedu-loading-section-surface: var(--easyedu-loading-surface);
+  --easyedu-loading-section-rail-accent: #aacbe5;
+  --easyedu-loading-success-rail-accent: #b4d3bf;
+  --easyedu-loading-section-border-width: 0.125rem;
+  --easyedu-loading-section-surface: var(--easyedu-loading-frame-surface);
   --easyedu-loading-section-border: var(--easyedu-loading-border);
   --easyedu-loading-section-radius: var(--easyedu-loading-radius);
   --easyedu-loading-section-stack-gap: var(--easyedu-loading-stack-gap);
@@ -15388,7 +15436,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-loading-section-compact-icon-slot-size: 1.25rem;
   --easyedu-loading-section-compact-heading-gap: 0.5rem;
   --easyedu-loading-section-compact-navigation-gap: 0.75rem;
-  --easyedu-loading-container-accent: var(--easyedu-loading-section-accent);
+  --easyedu-loading-container-accent: var(--easyedu-loading-section-rail-accent);
   --easyedu-loading-container-border-width: var(--easyedu-loading-section-border-width);
   --easyedu-loading-container-surface: var(--easyedu-loading-section-surface);
   --easyedu-loading-container-border: var(--easyedu-loading-section-border);
@@ -15582,6 +15630,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: none !important;
 }
 .local-groupimport-import.is-easystud-loading-skeleton-exiting > [data-easystud-loading-skeleton] {
+  animation: none;
   opacity: 0;
   pointer-events: none;
 }
@@ -15618,6 +15667,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     transition-duration: 0.001ms;
   }
 }
+.local-groupimport-import__loading-skeleton {
+  animation: easyedu-skeleton-appear var(--easyedu-loading-appearance-duration) var(--easyedu-motion-ease, ease) backwards;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-import__loading-skeleton, .is-easyedu-motion-off .local-groupimport-import__loading-skeleton {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .local-groupimport-import__loading-skeleton {
+    animation: none;
+  }
+}
 .local-groupimport-import__loading-header {
   box-sizing: border-box;
   display: grid;
@@ -15643,8 +15703,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .local-groupimport-import__loading-surface {
   animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;
-  background: linear-gradient(90deg, var(--easyedu-loading-surface) 0%, var(--easyedu-loading-highlight) 48%, var(--easyedu-loading-surface) 100%);
-  background-size: 220% 100%;
+  background-color: var(--easyedu-loading-surface);
+  background-image: linear-gradient(90deg, transparent 30%, var(--easyedu-loading-highlight) 50%, transparent 70%);
+  background-repeat: no-repeat;
+  background-size: 190% 100%;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-import__loading-surface, .is-easyedu-motion-off .local-groupimport-import__loading-surface {
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .local-groupimport-import__loading-surface {
@@ -15664,8 +15729,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   margin-block-start: var(--easyedu-loading-section-navigation-gap);
 }
 .local-groupimport-import__loading-navigation-frame {
-  background: #f7fbff;
-  border: 0.0625rem solid #cfdee9;
+  background: var(--easyedu-loading-frame-surface);
+  border: 0.0625rem solid var(--easyedu-loading-border);
   border-radius: 1rem;
   display: block;
   min-width: 0;
@@ -15679,7 +15744,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 .local-groupimport-import__loading-navigation-frame {
-  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-accent);
+  border-inline-start: var(--easyedu-loading-section-border-width) solid var(--easyedu-loading-section-rail-accent);
 }
 @media (forced-colors: active) {
   .local-groupimport-import__loading-navigation-frame {
@@ -15713,7 +15778,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import__loading-navigation-guide::after {
   animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;
   background-image: linear-gradient(108deg, transparent 30%, var(--easyedu-loading-shimmer-soft) 42%, var(--easyedu-loading-shimmer-highlight) 50%, var(--easyedu-loading-shimmer-soft) 58%, transparent 70%);
-  background-position: -110% 0;
+  background-position: 180% 0;
   background-repeat: no-repeat;
   background-size: 190% 100%;
   border-radius: inherit;
@@ -15721,6 +15786,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   inset: 0;
   pointer-events: none;
   position: absolute;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-import__loading-navigation-guide::after, .is-easyedu-motion-off .local-groupimport-import__loading-navigation-guide::after {
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .local-groupimport-import__loading-navigation-guide::after {
@@ -15759,7 +15827,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import__loading-navigation-cue::after {
   animation: easyedu-skeleton-shimmer var(--easyedu-loading-shimmer-duration) linear infinite;
   background-image: linear-gradient(108deg, transparent 30%, var(--easyedu-loading-shimmer-soft) 42%, var(--easyedu-loading-shimmer-highlight) 50%, var(--easyedu-loading-shimmer-soft) 58%, transparent 70%);
-  background-position: -110% 0;
+  background-position: 180% 0;
   background-repeat: no-repeat;
   background-size: 190% 100%;
   border-radius: inherit;
@@ -15767,6 +15835,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   inset: 0;
   pointer-events: none;
   position: absolute;
+}
+[data-easyedu-motion-policy=disabled] .local-groupimport-import__loading-navigation-cue::after, .is-easyedu-motion-off .local-groupimport-import__loading-navigation-cue::after {
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce), (forced-colors: active) {
   .local-groupimport-import__loading-navigation-cue::after {
@@ -15808,8 +15879,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   width: 8.8rem;
 }
 .local-groupimport-import__loading-card {
-  background: #f7fbff;
-  border: 0.0625rem solid #cfdee9;
+  background: var(--easyedu-loading-frame-surface);
+  border: 0.0625rem solid var(--easyedu-loading-border);
   border-radius: 1rem;
   display: block;
   min-width: 0;
@@ -18025,10 +18096,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 @keyframes easyedu-skeleton-shimmer {
   from {
-    background-position: 110% 0;
+    background-position: 180% 0;
   }
   to {
-    background-position: -110% 0;
+    background-position: -180% 0;
+  }
+}
+@keyframes easyedu-skeleton-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 @keyframes easyedu-demo-cursor-click {

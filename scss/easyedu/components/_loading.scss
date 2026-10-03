@@ -30,7 +30,7 @@
 // Compose with skeleton-surface for the inline-start accent of each principal
 // Skeleton section. Logical properties place it on the correct side in RTL.
 @mixin skeleton-section-inline-accent(
-  $color: var(--easyedu-loading-section-accent),
+  $color: var(--easyedu-loading-section-rail-accent),
   $width: var(--easyedu-loading-section-border-width)
 ) {
   & {
@@ -65,7 +65,7 @@
 // Deprecated name retained for source compatibility. It deliberately paints
 // the inline-start accent; K3 does not permit a top Skeleton accent.
 @mixin skeleton-section-top-border(
-  $color: var(--easyedu-loading-section-accent),
+  $color: var(--easyedu-loading-section-rail-accent),
   $width: var(--easyedu-loading-section-border-width)
 ) {
   @include skeleton-section-inline-accent($color, $width);
@@ -77,7 +77,7 @@
   $surface: var(--easyedu-loading-section-surface),
   $border: var(--easyedu-loading-section-border),
   $radius: var(--easyedu-loading-section-radius),
-  $accent: var(--easyedu-loading-section-accent),
+  $accent: var(--easyedu-loading-section-rail-accent),
   $accent-width: var(--easyedu-loading-section-border-width)
 ) {
   @include skeleton-surface($surface, $border, $radius);
@@ -190,13 +190,20 @@
 ) {
   & {
     animation: $animation-name $duration linear infinite;
-    background: linear-gradient(
+    background-color: $surface;
+    background-image: linear-gradient(
       90deg,
-      $surface 0%,
-      $highlight 48%,
-      $surface 100%
+      transparent 30%,
+      $highlight 50%,
+      transparent 70%
     );
-    background-size: 220% 100%;
+    background-repeat: no-repeat;
+    background-size: 190% 100%;
+  }
+
+  [data-easyedu-motion-policy="disabled"] &,
+  .is-easyedu-motion-off & {
+    animation: none;
   }
 
   @media (prefers-reduced-motion: reduce), (forced-colors: active) {
@@ -221,7 +228,7 @@
       $soft 58%,
       transparent 70%
     );
-    background-position: -110% 0;
+    background-position: 180% 0;
     background-repeat: no-repeat;
     background-size: 190% 100%;
     border-radius: inherit;
@@ -229,6 +236,11 @@
     inset: 0;
     pointer-events: none;
     position: absolute;
+  }
+
+  [data-easyedu-motion-policy="disabled"] &::after,
+  .is-easyedu-motion-off &::after {
+    animation: none;
   }
 
   @media (prefers-reduced-motion: reduce), (forced-colors: active) {
@@ -249,6 +261,23 @@
   }
 }
 
+// Fade only the decorative loading root, not individual frames or live cards.
+// Readiness and the outgoing/content handoff stay owned by the consumer.
+@mixin loading-appearance {
+  & {
+    animation: easyedu-skeleton-appear var(--easyedu-loading-appearance-duration) var(--easyedu-motion-ease, ease) backwards;
+  }
+
+  [data-easyedu-motion-policy="disabled"] &,
+  .is-easyedu-motion-off & {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce), (forced-colors: active) {
+    & { animation: none; }
+  }
+}
+
 @mixin loading-opacity-transition($duration: var(--easyedu-loading-reveal-duration)) {
   & {
     transition: opacity $duration var(--easyedu-motion-ease, ease);
@@ -261,6 +290,7 @@
 
 @mixin loading-opacity-hidden {
   & {
+    animation: none;
     opacity: 0;
     pointer-events: none;
   }

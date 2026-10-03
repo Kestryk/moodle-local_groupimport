@@ -1,0 +1,128 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "standardPage": "d0d0680d-7d36-80da-8008-97a6a5b5b9d6",
+  "libraryPage": "81455adb-6787-8068-8008-9ce40b87e999",
+  "pairs": [
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac7927fd26c6",
+      "path": "EasyEdu / Loading / Skeleton bar / S",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac7927dd8343",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a3970d9",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac792823ad27",
+      "path": "EasyEdu / Loading / Skeleton bar / S",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac792811081a",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a46009a",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac79286bffd5",
+      "path": "EasyEdu / Loading / Skeleton bar / M",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac7928487fe1",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a543ffe",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac792891f8bd",
+      "path": "EasyEdu / Loading / Skeleton bar / M",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac79287e00a0",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a601226",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac7928ce5bfd",
+      "path": "EasyEdu / Loading / Skeleton bar / L",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac7928b2412c",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a6b2143",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac7928f1449a",
+      "path": "EasyEdu / Loading / Skeleton bar / L",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac7928df0baa",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a747266",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac7929908f55",
+      "path": "EasyEdu / Loading / Skeleton Card",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac79290dd76e",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a7e29fc",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac7929ea08ce",
+      "path": "EasyEdu / Loading / Skeleton Card",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac7929a0faee",
+      "copy": "5866ed4a-7d30-8093-8008-ac797a909d4a",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac792a9e49c7",
+      "path": "EasyEdu / Loading / Skeleton Table row",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac792a0a0a33",
+      "copy": "5866ed4a-7d30-8093-8008-ac797aa08b68",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac792afca9e3",
+      "path": "EasyEdu / Loading / Skeleton Table row",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac792ab093cc",
+      "copy": "5866ed4a-7d30-8093-8008-ac797ab3c3bd",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac792b80c9c4",
+      "path": "EasyEdu / Loading / Skeleton Stack",
+      "state": "Shimmer midpoint",
+      "main": "5866ed4a-7d30-8093-8008-ac792b1cd715",
+      "copy": "5866ed4a-7d30-8093-8008-ac797ac40aa6",
+      "fingerprintMatch": true,
+      "overflow": []
+    },
+    {
+      "provider": "5866ed4a-7d30-8093-8008-ac792bd98d05",
+      "path": "EasyEdu / Loading / Skeleton Stack",
+      "state": "Reduced motion",
+      "main": "5866ed4a-7d30-8093-8008-ac792b940204",
+      "copy": "5866ed4a-7d30-8093-8008-ac797ad2a510",
+      "fingerprintMatch": true,
+      "overflow": []
+    }
+  ],
+  "changes": {
+    "frame": "#FBFCFE",
+    "cue": "#E8EFF5",
+    "highlight": "#F6F9FC",
+    "border": "#DEE7EF",
+    "rail": "#AACBE5",
+    "railPx": 2,
+    "shimmerMs": 3200,
+    "appearanceMs": 320,
+    "readableTitleRetained": true
+  },
+  "hiddenLegacyRetained": true,
+  "humanAccepted": false
+}

@@ -1,18 +1,6 @@
 // Layout, navigation, panels and filters.
 @use "../easyedu" as easyedu;
 
-@keyframes local-groupimport-easystud-loading-shimmer-v4 {
-  from {
-    background-position: -110% 0;
-  }
-
-  to {
-    background-position: 110% 0;
-  }
-}
-
-
-
 .local-groupimport-easystud {
   position: relative;
 
@@ -118,14 +106,15 @@
   }
 
   &__loading-skeleton {
-    --local-groupimport-easystud-loading-surface: #dce7f0;
-    --local-groupimport-easystud-loading-surface-soft: #edf3f7;
-    --local-groupimport-easystud-loading-surface-strong: #cbdbe7;
-    --local-groupimport-easystud-loading-border: #cfdee9;
-    --local-groupimport-easystud-loading-radius: 0.72rem;
-    --local-groupimport-easystud-loading-gap: 0.7rem;
-    --local-groupimport-easystud-loading-shimmer-duration: 2s;
-    --local-groupimport-easystud-loading-shimmer-highlight: rgba(255, 255, 255, 0.5);
+    // Compatibility aliases resolve to the Kit; no private loading palette.
+    --local-groupimport-easystud-loading-surface: var(--easyedu-loading-surface);
+    --local-groupimport-easystud-loading-surface-soft: var(--easyedu-loading-surface-soft);
+    --local-groupimport-easystud-loading-surface-strong: var(--easyedu-loading-surface-strong);
+    --local-groupimport-easystud-loading-border: var(--easyedu-loading-border);
+    --local-groupimport-easystud-loading-radius: var(--easyedu-loading-radius);
+    --local-groupimport-easystud-loading-gap: var(--easyedu-loading-stack-gap);
+    --local-groupimport-easystud-loading-shimmer-duration: var(--easyedu-loading-shimmer-duration);
+    --local-groupimport-easystud-loading-shimmer-highlight: var(--easyedu-loading-shimmer-highlight);
 
     background: transparent;
     border: 0;
@@ -138,6 +127,7 @@
     min-width: 0;
     padding: 0.45rem 0 0;
     @include easyedu.loading-opacity-transition(320ms);
+    @include easyedu.loading-appearance;
   }
 
   &__loading-header {
@@ -182,7 +172,7 @@
   &__loading-surface {
     @include easyedu.navigation-skeleton-cue-overlay(
       $surface: var(--local-groupimport-easystud-loading-surface),
-      $soft: rgba(255, 255, 255, 0.16),
+      $soft: var(--easyedu-loading-shimmer-soft),
       $highlight: var(--local-groupimport-easystud-loading-shimmer-highlight),
       $radius: var(--local-groupimport-easystud-loading-radius)
     );
@@ -194,7 +184,7 @@
 
   &__loading-navigation-frame {
     @include easyedu.navigation-skeleton-compact-frame(
-      $surface: #f4f8fb,
+      $surface: var(--easyedu-loading-frame-surface),
       $border: var(--local-groupimport-easystud-loading-border),
       $radius: 1rem
     );
@@ -203,7 +193,7 @@
   &__loading-navigation-guide {
     @include easyedu.navigation-skeleton-guide-start-cue(
       $surface: var(--local-groupimport-easystud-loading-surface),
-      $soft: rgba(255, 255, 255, 0.16),
+      $soft: var(--easyedu-loading-shimmer-soft),
       $highlight: var(--local-groupimport-easystud-loading-shimmer-highlight)
     );
   }
@@ -215,7 +205,7 @@
   &__loading-navigation-cue {
     @include easyedu.navigation-skeleton-compact-cue(
       $surface: var(--local-groupimport-easystud-loading-surface),
-      $soft: rgba(255, 255, 255, 0.16),
+      $soft: var(--easyedu-loading-shimmer-soft),
       $highlight: var(--local-groupimport-easystud-loading-shimmer-highlight),
       $radius: var(--local-groupimport-easystud-loading-radius)
     );
@@ -234,7 +224,7 @@
 
   &__loading-panel {
     @include easyedu.skeleton-structural-container-frame(
-      $surface: #f9fbfd,
+      $surface: var(--easyedu-loading-frame-surface),
       $border: var(--local-groupimport-easystud-loading-border),
       $radius: 1rem
     );
@@ -250,12 +240,12 @@
   }
 
   &__loading-panel--participants {
-    @include easyedu.skeleton-structural-container-block-accent($color: #6c9fc9);
+    @include easyedu.skeleton-structural-container-block-accent;
   }
 
   &__loading-panel--structure {
     display: none;
-    @include easyedu.skeleton-structural-container-block-accent($color: #78a78d);
+    @include easyedu.skeleton-structural-container-block-accent($color: var(--easyedu-loading-success-rail-accent));
   }
 
   &__loading-panel-header,
@@ -279,8 +269,8 @@
 
   &__loading-search-filter-region {
     @include easyedu.skeleton-section-frame(
-      $surface: #f3f7fa,
-      $border: #dbe6ee,
+      $surface: var(--easyedu-loading-frame-surface),
+      $border: var(--easyedu-loading-border),
       $radius: var(--local-groupimport-easystud-loading-radius)
     );
 
@@ -295,7 +285,7 @@
   }
 
   &__loading-search {
-    background: #f7fafc;
+    background: var(--easyedu-loading-surface-soft);
     grid-column: 1 / -1;
     height: 2.55rem;
   }
@@ -319,8 +309,8 @@
 
   &__loading-participant-card {
     @include easyedu.skeleton-section-frame(
-      $surface: #fff,
-      $border: #dbe5ed,
+      $surface: var(--easyedu-loading-frame-surface),
+      $border: var(--easyedu-loading-border),
       $radius: 0.68rem
     );
 
@@ -342,8 +332,8 @@
 
   &__loading-structure-card {
     @include easyedu.skeleton-section-frame(
-      $surface: #fff,
-      $border: #d9e4dc,
+      $surface: var(--easyedu-loading-frame-surface),
+      $border: var(--easyedu-loading-border),
       $radius: 0.68rem
     );
 
@@ -378,7 +368,7 @@
       // This mirrors the real view selector's footprint but is not a Skeleton
       // frame: a selector must never receive a card or structural border.
       box-sizing: border-box;
-      box-shadow: 0 0.38rem 0.8rem rgba(31, 68, 104, 0.08);
+      box-shadow: none;
       display: grid;
       gap: 0.38rem;
       grid-template-columns: repeat(3, minmax(0, 1fr));

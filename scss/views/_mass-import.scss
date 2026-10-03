@@ -59,6 +59,7 @@
     min-width: 0;
     padding-block: 0.45rem 0.9rem;
     @include easyedu.loading-opacity-transition(180ms);
+    @include easyedu.loading-appearance;
   }
 
   &__loading-header {
@@ -90,8 +91,8 @@
 
   &__loading-navigation-frame {
     @include easyedu.navigation-skeleton-compact-frame(
-      $surface: #f7fbff,
-      $border: #cfdee9,
+      $surface: var(--easyedu-loading-frame-surface),
+      $border: var(--easyedu-loading-border),
       $radius: 1rem
     );
   }
@@ -138,8 +139,8 @@
 
   &__loading-card {
     @include easyedu.skeleton-structural-container-frame(
-      $surface: #f7fbff,
-      $border: #cfdee9,
+      $surface: var(--easyedu-loading-frame-surface),
+      $border: var(--easyedu-loading-border),
       $radius: 1rem
     );
 
