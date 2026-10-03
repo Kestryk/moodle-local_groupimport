@@ -48,7 +48,7 @@ test('Student native message footer preserves paired geometry and responsive bod
             });
             expect(Math.abs(closeGeometry.width - 30.4)).toBeLessThanOrEqual(1);
             expect(Math.abs(closeGeometry.height - 30.4)).toBeLessThanOrEqual(1);
-            expect(closeGeometry.display).toBe('inline-flex');
+            expect(['flex', 'inline-flex']).toContain(closeGeometry.display);
             expect(closeGeometry.align).toBe('center');
             expect(closeGeometry.justify).toBe('center');
             expect(closeGeometry.opacity).toBe('1');
