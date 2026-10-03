@@ -1,0 +1,1157 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "board": "c403923b-827e-80b7-8008-bbcc39a95da4",
+  "kitVersion": "0.4.63",
+  "humanAccepted": false,
+  "version": {
+    "label": "Selection action shared providers — 40 desktop and mobile controls",
+    "date": "2026-10-03T15:13:52.204Z"
+  },
+  "controls": [
+    {
+      "id": "37222e98-689a-801a-8008-bbd6e843f098",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 112,
+      "y": 9032,
+      "width": 134.07999999999998,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 139.07999999999998,
+        "y": 9039.599999618531,
+        "width": 93.5374984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000001382
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999966
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd6e9a87e11",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete grouping(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 254.08000000000004,
+      "y": 9032,
+      "width": 150.07999999999998,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 281.16,
+        "y": 9039.599999618531,
+        "width": 112.23750305175781,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000001382
+      ],
+      "iconInside": true,
+      "iconGap": 5.60000000000008
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd6eae60bb7",
+      "provider": "c403923b-827e-80b7-8008-bbd3426ca4bb",
+      "text": "Move member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 412.15999999999997,
+      "y": 9032,
+      "width": 140.07999999999998,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 439.24000000000007,
+        "y": 9039.599999618531,
+        "width": 102.65000152587885,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.60000000000008
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd6ec9e5026",
+      "provider": "c403923b-827e-80b7-8008-bbd345719953",
+      "text": "Remove member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 560.24,
+      "y": 9032,
+      "width": 155.08000000000004,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 587.32,
+        "y": 9039.599999618531,
+        "width": 117.7249984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-98921e1b61b0",
+      "iconSize": [
+        12.480000000000018,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd6eee26ae9",
+      "provider": "37222e98-689a-801a-8008-bbd3eee3c056",
+      "text": "Move group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 723.3199999999999,
+      "y": 9032,
+      "width": 126.08000000000004,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 750.4,
+        "y": 9039.599999618531,
+        "width": 88.1875,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd6f166b340",
+      "provider": "37222e98-689a-801a-8008-bbd3efa8eae4",
+      "text": "Remove from groupings",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 857.3999999999999,
+      "y": 9032,
+      "width": 182.08000000000015,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 884.4799999999999,
+        "y": 9039.599999618531,
+        "width": 144.17500305175793,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989113bd8dfc",
+      "iconSize": [
+        12.480000000000018,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7043d994c",
+      "provider": "c403923b-827e-80b7-8008-bbd346b9408e",
+      "text": "Move member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 132.79999999999995,
+      "y": 9184,
+      "width": 162.36,
+      "height": 37.600000000000364,
+      "hidden": false,
+      "paint": {
+        "x": 171.01999999999995,
+        "y": 9195.200000095367,
+        "width": 102.65000152587893,
+        "height": 15.199999809265137
+      },
+      "paintedCentreDelta": -9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999966
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7043eef7f",
+      "provider": "c403923b-827e-80b7-8008-bbd345719953",
+      "text": "Remove member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 301.88,
+      "y": 9184,
+      "width": 162.36,
+      "height": 37.600000000000364,
+      "hidden": false,
+      "paint": {
+        "x": 332.6,
+        "y": 9195.200000095367,
+        "width": 117.7249984741211,
+        "height": 15.199999809265137
+      },
+      "paintedCentreDelta": -9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-98921e1b61b0",
+      "iconSize": [
+        12.480000000000018,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd704405b12",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Send a message",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 132.79999999999995,
+      "y": 9228.32,
+      "width": 162.36,
+      "height": 37.600000000000364,
+      "hidden": false,
+      "paint": {
+        "x": 171.01999999999998,
+        "y": 9239.520000095366,
+        "width": 99.0625,
+        "height": 15.199999809265137
+      },
+      "paintedCentreDelta": -9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9891fc059544",
+      "iconSize": [
+        12.47999999999999,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd70442413f",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Clear selection",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 301.88,
+      "y": 9228.32,
+      "width": 162.36,
+      "height": 37.600000000000364,
+      "hidden": false,
+      "paint": {
+        "x": 342.1,
+        "y": 9239.520000095366,
+        "width": 90.2874984741211,
+        "height": 15.199999809265137
+      },
+      "paintedCentreDelta": -9.094947017729282e-13,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-988f81ba407e",
+      "iconSize": [
+        12.480000000000018,
+        12.479999999999563
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd74c83f7e8",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 916,
+      "y": 564.8,
+      "width": 134.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 943.08,
+        "y": 572.39999961853,
+        "width": 93.53749847412098,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd74d067feb",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete grouping(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 1060.08,
+      "y": 564.8,
+      "width": 150.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 1087.1599999999999,
+        "y": 572.39999961853,
+        "width": 112.23750305175781,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd74e2168c1",
+      "provider": "37222e98-689a-801a-8008-bbd3eee3c056",
+      "text": "Move member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 1220.1599999999999,
+      "y": 564.8,
+      "width": 140.08000000000015,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 1247.2399999999998,
+        "y": 572.39999961853,
+        "width": 102.6500015258789,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd74d6d7931",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Remove member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 1370.2399999999998,
+      "y": 564.8,
+      "width": 155.08000000000015,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 1397.3199999999997,
+        "y": 572.39999961853,
+        "width": 117.7249984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-98921e1b61b0",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd74dc5d71b",
+      "provider": "c403923b-827e-80b7-8008-bbd3426ca4bb",
+      "text": "Move group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 1535.3199999999997,
+      "y": 564.8,
+      "width": 126.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 1562.3999999999994,
+        "y": 572.39999961853,
+        "width": 88.1875,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999682
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7aee12578",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Remove from groupings",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 1535.3199999999997,
+      "y": 564.8,
+      "width": 182.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 1562.3999999999996,
+        "y": 572.39999961853,
+        "width": 144.1750030517578,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989113bd8dfc",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a3c128d5",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 3524,
+      "y": 564.8,
+      "width": 134.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 3551.08,
+        "y": 572.39999961853,
+        "width": 93.5374984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a4599a3e",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete grouping(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 3668.08,
+      "y": 564.8,
+      "width": 150.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 3695.16,
+        "y": 572.39999961853,
+        "width": 112.23750305175781,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a4dd64e2",
+      "provider": "37222e98-689a-801a-8008-bbd3eee3c056",
+      "text": "Move member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 3828.16,
+      "y": 564.8,
+      "width": 140.07999999999947,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 3855.24,
+        "y": 572.39999961853,
+        "width": 102.6500015258789,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a55d814f",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Remove member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 3978.24,
+      "y": 564.8,
+      "width": 155.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 4005.3199999999997,
+        "y": 572.39999961853,
+        "width": 117.7249984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-98921e1b61b0",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a617bcbc",
+      "provider": "c403923b-827e-80b7-8008-bbd3426ca4bb",
+      "text": "Move group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4143.32,
+      "y": 564.8,
+      "width": 126.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 4170.4,
+        "y": 572.39999961853,
+        "width": 88.1875,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.479999999999563,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000364
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a6b3f485",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Remove from groupings",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4143.32,
+      "y": 564.8,
+      "width": 182.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 4170.4,
+        "y": 572.39999961853,
+        "width": 144.1750030517578,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989113bd8dfc",
+      "iconSize": [
+        12.479999999999563,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000364
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a74f38b3",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4276,
+      "y": 564.8,
+      "width": 134.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 4303.08,
+        "y": 572.39999961853,
+        "width": 93.5374984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.479999999999563,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000364
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a81421b6",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete grouping(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4420.08,
+      "y": 564.8,
+      "width": 150.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 4447.16,
+        "y": 572.39999961853,
+        "width": 112.23750305175781,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.479999999999563,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000364
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a8cf01d0",
+      "provider": "37222e98-689a-801a-8008-bbd3eee3c056",
+      "text": "Move member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4580.16,
+      "y": 564.8,
+      "width": 140.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 4607.24,
+        "y": 572.39999961853,
+        "width": 102.6500015258789,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000473,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999454
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7a96fef4a",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Remove member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4730.24,
+      "y": 564.8,
+      "width": 155.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 4757.32,
+        "y": 572.39999961853,
+        "width": 117.7249984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-98921e1b61b0",
+      "iconSize": [
+        12.479999999999563,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000364
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7aa1bb14a",
+      "provider": "c403923b-827e-80b7-8008-bbd3426ca4bb",
+      "text": "Move group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4895.32,
+      "y": 564.8,
+      "width": 126.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 4922.4,
+        "y": 572.39999961853,
+        "width": 88.1875,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000473,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999454
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7aac7e0cb",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Remove from groupings",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 4895.32,
+      "y": 564.8,
+      "width": 182.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 4922.4,
+        "y": 572.39999961853,
+        "width": 144.1750030517578,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989113bd8dfc",
+      "iconSize": [
+        12.479999999999563,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000364
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7ab4974cf",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 2596,
+      "y": 564.8,
+      "width": 134.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 2623.08,
+        "y": 572.39999961853,
+        "width": 93.5374984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7abf4013a",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Delete grouping(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 2740.08,
+      "y": 564.8,
+      "width": 150.08000000000038,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 2767.16,
+        "y": 572.39999961853,
+        "width": 112.23750305175781,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989154158a58",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7ac9abf8c",
+      "provider": "37222e98-689a-801a-8008-bbd3eee3c056",
+      "text": "Move member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 2900.16,
+      "y": 564.8,
+      "width": 140.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 2927.24,
+        "y": 572.39999961853,
+        "width": 102.6500015258789,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7ad233385",
+      "provider": "37222e98-689a-801a-8008-bbd3f0d80012",
+      "text": "Remove member(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 3050.24,
+      "y": 564.8,
+      "width": 155.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 3077.3199999999997,
+        "y": 572.39999961853,
+        "width": 117.7249984741211,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-98921e1b61b0",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7adb1bee7",
+      "provider": "c403923b-827e-80b7-8008-bbd3426ca4bb",
+      "text": "Move group(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 3215.3199999999997,
+      "y": 564.8,
+      "width": 126.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 3242.3999999999996,
+        "y": 572.39999961853,
+        "width": 88.1875,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd7ae48903b",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Remove from groupings",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 3215.3199999999997,
+      "y": 564.8,
+      "width": 182.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": true,
+      "paint": {
+        "x": 3242.3999999999996,
+        "y": 572.39999961853,
+        "width": 144.1750030517578,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": 0,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-989113bd8dfc",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd8b6c8085b",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Full details",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 164,
+      "y": 564.8,
+      "width": 110.07999999999998,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 191.07999999999998,
+        "y": 572.3999995470044,
+        "width": 64.42500305175781,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": -7.152561920520384e-8,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890de51b624",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999966
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd8b77b5ff7",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Send a message",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 284.08,
+      "y": 564.8,
+      "width": 140.08000000000004,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 311.16,
+        "y": 572.3999995470044,
+        "width": 99.0625,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": -7.152561920520384e-8,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9891fc059544",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd8b81ed0d1",
+      "provider": "c403923b-827e-80b7-8008-bbd3426ca4bb",
+      "text": "Move participant(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 434.15999999999997,
+      "y": 564.8,
+      "width": 164.08000000000004,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 461.24000000000007,
+        "y": 572.3999995470044,
+        "width": 118.24999999999994,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": -7.152561920520384e-8,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.600000000000023
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd8b8f44c83",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Full details",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 1844,
+      "y": 564.8,
+      "width": 110.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 1871.08,
+        "y": 572.3999995470044,
+        "width": 64.42500305175781,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": -7.152561920520384e-8,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890de51b624",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd8b9b47509",
+      "provider": "c403923b-827e-80b7-8008-bbd343f71807",
+      "text": "Send a message",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 1964.08,
+      "y": 564.8,
+      "width": 140.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 1991.1599999999999,
+        "y": 572.3999995470044,
+        "width": 99.0625,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": -7.152561920520384e-8,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9891fc059544",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000018
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    },
+    {
+      "id": "37222e98-689a-801a-8008-bbd8ba692921",
+      "provider": "c403923b-827e-80b7-8008-bbd3426ca4bb",
+      "text": "Move participant(s)",
+      "font": "Inter",
+      "size": "12.48",
+      "weight": "600",
+      "x": 2114.16,
+      "y": 564.8,
+      "width": 164.07999999999993,
+      "height": 30.399999999999636,
+      "hidden": false,
+      "paint": {
+        "x": 2141.24,
+        "y": 572.3999995470044,
+        "width": 118.25,
+        "height": 15.200000762939453
+      },
+      "paintedCentreDelta": -7.152561920520384e-8,
+      "textContained": true,
+      "iconProvider": "32eadb6d-165e-803e-8008-9890dc97af62",
+      "iconSize": [
+        12.480000000000018,
+        12.480000000000473
+      ],
+      "iconInside": true,
+      "iconGap": 5.599999999999909
+    }
+  ],
+  "bars": [
+    {
+      "id": "92c1c225-95fb-802e-8008-aeaaeedacd74",
+      "visible": 4,
+      "overflow": 2
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede933432ac",
+      "visible": 4,
+      "overflow": 2
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede91ff5f4c",
+      "visible": 4,
+      "overflow": 2
+    },
+    {
+      "id": "cef95197-06bc-809e-8008-aede62e01cf4",
+      "visible": 4,
+      "overflow": 2
+    }
+  ],
+  "tray": "37222e98-689a-801a-8008-bbd7043cf5a5",
+  "failures": []
+}

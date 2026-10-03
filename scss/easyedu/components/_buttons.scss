@@ -8,6 +8,7 @@
 // --easyedu-control-radius, --easyedu-control-height.
 
 @use "focus";
+@use "sass:list";
 
 // Shared visual transition for controls whose semantic state changes in place
 // (pressed, selected, expanded or enabled). Consumers should not redefine a
@@ -118,6 +119,74 @@
   @include button-size($size);
   @include control-state-transition;
   @include button-interaction-states;
+}
+
+// Compact selection actions in list toolbars and their responsive action tray.
+// Palette is explicit so native Bootstrap focus/hover cannot replace the
+// semantic role. Keep overflow/routing/selection ownership in the consumer.
+@mixin selection-action($tone: primary, $solid: false, $tray: false) {
+  @if not list.index((primary, neutral, danger), $tone) {
+    @error "selection-action expects primary, neutral or danger.";
+  }
+  $ink: var(--easyedu-primary);
+  $soft: var(--easyedu-primary-soft);
+  $strong: var(--easyedu-primary-strong);
+  $ring: var(--easyedu-focus-ring);
+  @if $tone == neutral {
+    $ink: var(--easyedu-text-muted);
+  } @else if $tone == danger {
+    $ink: var(--easyedu-danger);
+    $soft: var(--easyedu-danger-soft);
+    $strong: var(--easyedu-danger);
+    $ring: var(--easyedu-focus-ring-danger);
+  }
+  @include action-content(0.35rem);
+  @include button-size(small);
+  @include control-state-transition;
+  & {
+    background: var(--easyedu-surface);
+    border: 1px solid $ink;
+    border-radius: var(--easyedu-control-radius);
+    box-shadow: none;
+    color: $ink;
+    font-family: var(--easyedu-font-family-ui);
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @if $solid {
+    & { background: $ink; color: var(--easyedu-surface); }
+  }
+  @if $tray {
+    & { min-height: 2.35rem; }
+  }
+  &:focus {
+    background: var(--easyedu-surface);
+    color: $ink;
+    @if $solid { background: $ink; color: var(--easyedu-surface); }
+  }
+  &:hover,
+  &:active,
+  &[aria-pressed="true"] {
+    background: $soft;
+    color: $strong;
+    @if $solid { background: $strong; color: var(--easyedu-surface); }
+  }
+  &:focus-visible {
+    @include focus.ring($color: $ring, $border-color: var(--easyedu-control-focus-border));
+  }
+  &:disabled,
+  &[aria-disabled="true"],
+  &.disabled {
+    background: var(--easyedu-surface-soft);
+    border-color: var(--easyedu-card-border);
+    box-shadow: none;
+    color: var(--easyedu-text-muted);
+    cursor: not-allowed;
+    opacity: 0.62;
+    pointer-events: none;
+  }
 }
 
 @mixin close-button($size: regular) {

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Compact selection actions source and shared publication
+
+- Consume canonical Kit 0.4.63 compact/tray actions through public classes;
+  remove duplicate private action paint and preserve overflow menu row styles.
+- Pair twenty Foundation states and propagate forty product action controls,
+  preserving command eligibility, equal columns and bottom-owned pagination.
+- Static source/CSS gates pass; native preview and global human checklist remain
+  separate. Endpoint, membership data and original card/disclosure Motion are unchanged.
+
 ## 2026-10-03 - Selected-member action routing composition
 
 - Add a focused Penpot desktop toolbar and four-action mobile tray using linked

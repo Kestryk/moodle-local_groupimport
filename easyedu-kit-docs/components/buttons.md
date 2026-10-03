@@ -267,6 +267,17 @@ semantic colour, border or size of the existing button.
 
 ## Disabled Actions
 
+### Compact selection actions
+
+Use the canonical `selection-action` recipe through `.foundation-selection-action`
+with native outline/solid semantic classes. `.foundation-selection-action--tray`
+adds the responsive 2.35rem minimum height; compact uses 0.78rem Inter/600,
+1.9rem minimum height, the shared control radius and 0.35rem icon gap. Products
+own eligibility, counts, command routing and the native More resolver. Overflow
+menu clones remove the button class; danger hover remains red and disabled
+becomes neutral. See `docs/student-selection-actions-2026-10-03.md` in the
+consumer for paired publication and separate native/human proof boundaries.
+
 Disabled buttons should remain visually understandable but clearly unavailable.
 On small screens, prefer hiding unavailable contextual actions rather than
 showing many disabled buttons.

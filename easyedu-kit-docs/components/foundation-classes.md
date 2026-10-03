@@ -1,5 +1,12 @@
 # Foundations class API
 
+Selection toolbars opt in through `.foundation-selection-action`; their native
+Bootstrap semantic class selects the primary outline, neutral outline, danger
+outline or primary solid role. `.foundation-selection-action--tray` adds only
+the 2.35rem responsive minimum height. The `selection-action` recipe owns font,
+radius, icon gap, rest/hover/focus/pressed/disabled paint. Products own selection
+and command routing; no group/member rule belongs in the Kit.
+
 Destructive label actions opt in through `easyedu-button--danger` or
 `foundation-button($danger: true)`. They retain regular Core Action geometry
 and the existing Danger palette `#a12b2b`, including hover/focus; disabled
