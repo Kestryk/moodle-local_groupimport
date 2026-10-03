@@ -672,9 +672,7 @@
       @include easyedu.mobile-action-tray-buttons;
 
       .btn {
-        // The tray keeps its compact mobile gap, while action-button owns the
-        // icon/text centring shared with the upper desktop action rows.
-        @include easyedu.action-button(small);
+        // Shared public selection actions own appearance and typography.
         @include easyedu.mobile-action-tray-button;
       }
     }

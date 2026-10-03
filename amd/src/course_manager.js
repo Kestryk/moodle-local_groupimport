@@ -2689,6 +2689,7 @@ const getPanelActionButtons = actions => {
 const cloneOverflowAction = (source, menu, toggle) => {
     const clone = source.cloneNode(true);
     clone.classList.remove(panelActionOverflowClass);
+    clone.classList.remove('foundation-selection-action');
     clone.removeAttribute('id');
     clone.addEventListener('click', event => {
         event.preventDefault();
@@ -5578,7 +5579,8 @@ const renderMobileActionBar = (root, counts, activetype) => {
         const isdanger = source.classList.contains('btn-outline-danger') || source.classList.contains('btn-danger');
         const isprimary = source.classList.contains('btn-primary') || source.classList.contains('btn-outline-primary');
         button.type = 'button';
-        button.className = 'btn btn-sm ' + (isdanger ? 'btn-outline-danger' : (isprimary ? 'btn-primary' : 'btn-outline-secondary'));
+        button.className = 'btn btn-sm foundation-selection-action foundation-selection-action--tray ' +
+            (isdanger ? 'btn-outline-danger' : (isprimary ? 'btn-primary' : 'btn-outline-secondary'));
         button.setAttribute('data-easystud-mobile-action-trigger', action.selector);
         const icon = getButtonIcon(source);
         if (icon) {

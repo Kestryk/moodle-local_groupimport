@@ -745,32 +745,9 @@
   }
 
   &__panel-actions .btn {
-    // Reuse the shared action-button contract for every top-panel action.
-    // It owns icon/text centring in normal and disabled states without
-    // changing the panel's action semantics or responsive routing.
-    @include easyedu.action-button(small);
-
-    align-items: center;
-    display: inline-flex;
+    // Public Foundation selection actions own type, paint and icon spacing.
+    // Only the toolbar's overflow track belongs to this workspace adapter.
     flex: 0 0 auto;
-    justify-content: center;
-    line-height: 1.2;
-
-    .fa {
-      align-items: center;
-      display: inline-flex;
-      justify-content: center;
-      line-height: 1;
-      margin-inline: 0 !important;
-    }
-  }
-
-  &__panel-actions .btn:disabled,
-  &__panel-actions .btn.disabled {
-    background: #f8fafc;
-    border-color: #e4ebf2;
-    color: #9aa9b8;
-    opacity: 1;
   }
 
   &__panel-action--overflow-hidden {

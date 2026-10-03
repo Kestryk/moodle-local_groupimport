@@ -2643,67 +2643,7 @@
   position: relative;
 }
 .local-groupimport-easystud__panel-actions .btn {
-  align-items: center;
-  column-gap: var(--easyedu-action-icon-gap, 0.65rem);
-  display: inline-flex;
-  justify-content: center;
-  line-height: 1.2;
-  row-gap: 0.35rem;
-  font-size: 0.78rem;
-  min-height: 1.9rem;
-  min-width: 1.9rem;
-  padding: 0.22rem 0.5rem;
-  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
-  align-items: center;
-  display: inline-flex;
   flex: 0 0 auto;
-  justify-content: center;
-  line-height: 1.2;
-}
-.local-groupimport-easystud__panel-actions .btn .fa,
-.local-groupimport-easystud__panel-actions .btn [class*=" fa-"] {
-  align-items: center;
-  display: inline-flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  line-height: 1;
-  margin-inline: 0;
-  min-inline-size: 1em;
-  width: 1em;
-}
-.local-groupimport-easystud__panel-actions .btn:hover, .local-groupimport-easystud__panel-actions .btn:focus-visible, .local-groupimport-easystud__panel-actions .btn[aria-expanded=true], .local-groupimport-easystud__panel-actions .btn[aria-pressed=true], .local-groupimport-easystud__panel-actions .btn.active, .local-groupimport-easystud__panel-actions .btn.is-active {
-  background: var(--easyedu-primary-soft);
-  border-color: var(--easyedu-control-focus-border);
-  color: var(--easyedu-primary-strong);
-  outline: 0;
-}
-.local-groupimport-easystud__panel-actions .btn:focus-visible {
-  border-color: var(--easyedu-control-focus-border);
-  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
-  outline: var(--easyedu-focus-outline-width) solid transparent;
-  outline-offset: var(--easyedu-focus-outline-offset);
-}
-.local-groupimport-easystud__panel-actions .btn:disabled, .local-groupimport-easystud__panel-actions .btn[aria-disabled=true], .local-groupimport-easystud__panel-actions .btn.disabled {
-  background: var(--easyedu-surface-soft);
-  border-color: var(--easyedu-card-border);
-  color: var(--easyedu-text-muted);
-  cursor: not-allowed;
-  opacity: 0.62;
-  pointer-events: none;
-  transform: none;
-}
-.local-groupimport-easystud__panel-actions .btn .fa {
-  align-items: center;
-  display: inline-flex;
-  justify-content: center;
-  line-height: 1;
-  margin-inline: 0 !important;
-}
-.local-groupimport-easystud__panel-actions .btn:disabled, .local-groupimport-easystud__panel-actions .btn.disabled {
-  background: #f8fafc;
-  border-color: #e4ebf2;
-  color: #9aa9b8;
-  opacity: 1;
 }
 .local-groupimport-easystud__panel-action--overflow-hidden {
   display: none !important;
@@ -17839,54 +17779,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
   .local-groupimport-easystud-mobile-actions__buttons .btn {
     align-items: center;
-    column-gap: var(--easyedu-action-icon-gap, 0.65rem);
-    display: inline-flex;
-    justify-content: center;
-    line-height: 1.2;
-    row-gap: 0.35rem;
-    font-size: 0.78rem;
-    min-height: 1.9rem;
-    min-width: 1.9rem;
-    padding: 0.22rem 0.5rem;
-    transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
-    align-items: center;
     display: inline-flex;
     flex: 0 0 auto;
     gap: 0.35rem;
     min-height: 2.35rem;
     white-space: nowrap;
-  }
-  .local-groupimport-easystud-mobile-actions__buttons .btn .fa,
-  .local-groupimport-easystud-mobile-actions__buttons .btn [class*=" fa-"] {
-    align-items: center;
-    display: inline-flex;
-    flex: 0 0 auto;
-    justify-content: center;
-    line-height: 1;
-    margin-inline: 0;
-    min-inline-size: 1em;
-    width: 1em;
-  }
-  .local-groupimport-easystud-mobile-actions__buttons .btn:hover, .local-groupimport-easystud-mobile-actions__buttons .btn:focus-visible, .local-groupimport-easystud-mobile-actions__buttons .btn[aria-expanded=true], .local-groupimport-easystud-mobile-actions__buttons .btn[aria-pressed=true], .local-groupimport-easystud-mobile-actions__buttons .btn.active, .local-groupimport-easystud-mobile-actions__buttons .btn.is-active {
-    background: var(--easyedu-primary-soft);
-    border-color: var(--easyedu-control-focus-border);
-    color: var(--easyedu-primary-strong);
-    outline: 0;
-  }
-  .local-groupimport-easystud-mobile-actions__buttons .btn:focus-visible {
-    border-color: var(--easyedu-control-focus-border);
-    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
-    outline: var(--easyedu-focus-outline-width) solid transparent;
-    outline-offset: var(--easyedu-focus-outline-offset);
-  }
-  .local-groupimport-easystud-mobile-actions__buttons .btn:disabled, .local-groupimport-easystud-mobile-actions__buttons .btn[aria-disabled=true], .local-groupimport-easystud-mobile-actions__buttons .btn.disabled {
-    background: var(--easyedu-surface-soft);
-    border-color: var(--easyedu-card-border);
-    color: var(--easyedu-text-muted);
-    cursor: not-allowed;
-    opacity: 0.62;
-    pointer-events: none;
-    transform: none;
   }
   .local-groupimport-easystud--participant-focus .local-groupimport-easystud__participant-content {
     grid-template-columns: 1fr;
@@ -19925,6 +19822,258 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   margin-inline: 0;
   min-inline-size: 1em;
   width: 1em;
+}
+
+.easyedu-ui .foundation-selection-action {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+}
+.easyedu-ui .foundation-selection-action .fa,
+.easyedu-ui .foundation-selection-action [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.easyedu-ui .foundation-selection-action {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.easyedu-ui .foundation-selection-action:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+}
+.easyedu-ui .foundation-selection-action:hover, .easyedu-ui .foundation-selection-action:active, .easyedu-ui .foundation-selection-action[aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+}
+.easyedu-ui .foundation-selection-action:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .foundation-selection-action:disabled, .easyedu-ui .foundation-selection-action[aria-disabled=true], .easyedu-ui .foundation-selection-action.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.easyedu-ui .foundation-selection-action.btn-outline-secondary {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-secondary .fa,
+.easyedu-ui .foundation-selection-action.btn-outline-secondary [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.easyedu-ui .foundation-selection-action.btn-outline-secondary {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-text-muted);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.easyedu-ui .foundation-selection-action.btn-outline-secondary:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-text-muted);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-secondary:hover, .easyedu-ui .foundation-selection-action.btn-outline-secondary:active, .easyedu-ui .foundation-selection-action.btn-outline-secondary[aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-secondary:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-secondary:disabled, .easyedu-ui .foundation-selection-action.btn-outline-secondary[aria-disabled=true], .easyedu-ui .foundation-selection-action.btn-outline-secondary.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.easyedu-ui .foundation-selection-action.btn-outline-danger {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-danger .fa,
+.easyedu-ui .foundation-selection-action.btn-outline-danger [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.easyedu-ui .foundation-selection-action.btn-outline-danger {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-danger);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-danger);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.easyedu-ui .foundation-selection-action.btn-outline-danger:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-danger);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-danger:hover, .easyedu-ui .foundation-selection-action.btn-outline-danger:active, .easyedu-ui .foundation-selection-action.btn-outline-danger[aria-pressed=true] {
+  background: var(--easyedu-danger-soft);
+  color: var(--easyedu-danger);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-danger:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring-danger);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .foundation-selection-action.btn-outline-danger:disabled, .easyedu-ui .foundation-selection-action.btn-outline-danger[aria-disabled=true], .easyedu-ui .foundation-selection-action.btn-outline-danger.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.easyedu-ui .foundation-selection-action.btn-primary {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+}
+.easyedu-ui .foundation-selection-action.btn-primary .fa,
+.easyedu-ui .foundation-selection-action.btn-primary [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.easyedu-ui .foundation-selection-action.btn-primary {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.easyedu-ui .foundation-selection-action.btn-primary {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
+.easyedu-ui .foundation-selection-action.btn-primary:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
+.easyedu-ui .foundation-selection-action.btn-primary:hover, .easyedu-ui .foundation-selection-action.btn-primary:active, .easyedu-ui .foundation-selection-action.btn-primary[aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+  background: var(--easyedu-primary-strong);
+  color: var(--easyedu-surface);
+}
+.easyedu-ui .foundation-selection-action.btn-primary:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .foundation-selection-action.btn-primary:disabled, .easyedu-ui .foundation-selection-action.btn-primary[aria-disabled=true], .easyedu-ui .foundation-selection-action.btn-primary.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.easyedu-ui .foundation-selection-action--tray {
+  min-height: 2.35rem;
 }
 
 .easyedu-ui .easyedu-empty {

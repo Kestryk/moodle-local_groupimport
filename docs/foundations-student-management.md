@@ -1537,3 +1537,12 @@ viewport-relative measurements misread scroll anchoring, and repository form
 replacement required awaiting Moodle's URL `action=list` response. Preserve
 the corrected small test instead of repeating broad page audits. No reliable
 per-task token counter was available, so no token savings are claimed.
+
+### Compact selection toolbar and mobile tray — 2026-10-03
+
+Kit 0.4.63 supplies the public selection-action recipe. Two native template loops
+and the sticky mobile adapter consume it; overflow clones retain menu paint.
+Twenty paired Foundation states and forty product action controls are published
+with source-only baseline/CSS gates. Preview proof and global human checklist
+remain separate. See `student-selection-actions-2026-10-03.md` for exact lineage,
+readbacks, test candidate and remaining mobile/whole-view boundaries.

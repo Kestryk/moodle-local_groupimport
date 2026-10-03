@@ -1,10 +1,32 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.62",
+  "version": "0.4.63",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentSelectionActions20261003": {
+      "kitCommit": "2612e0d54f8797d604433054a37c0af9b51adcdc",
+      "consumerBehaviorBaseline": "efbad079a4f9595fd15db6153e7bca5a62b05781",
+      "status": "Canonical compact/tray action paint and paired shared publication; static source/CSS checks pass. Native preview and human acceptance are separate pending gates.",
+      "foundationReadback": "docs/testing/student-selection-actions-foundations-2026-10-03.json",
+      "productReadback": "docs/testing/student-selection-actions-product-2026-10-03.json",
+      "documentation": "docs/student-selection-actions-2026-10-03.md",
+      "nativeScenario": "student-selection-action-style-preview.spec.js",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "nativeTransferVerified": false,
+      "modules": {
+        "scss/easyedu/components/_buttons.scss": "89a823efa46205170c65aba9ffaf519a0e1233ff",
+        "scss/easyedu/_foundation-classes.scss": "4bb596ec1d9dc9ffb88d9771a53e5474fc5917e0",
+        "templates/manage.mustache": "b57b25b7220c60c56676ac62081239e8dc62f8b8",
+        "amd/src/course_manager.js": "87e9719d78ce2692c0323eba0766a87018645ac2",
+        "amd/build/course_manager.min.js": "674060415fe67ffebe6e3b7cf63755f2d489d158",
+        "amd/build/course_manager.min.js.map": "d5d8e67fa966efb0c30146f4275e4f7b27ed2056",
+        "styles.css": "1cd1292e6cff28294eaefb8e4030cecb045bfe3c",
+        "tools/playwright/student-selection-action-style-preview.spec.js": "70b72fa44a82a299b18374af47ed4234b2610c79"
+      }
+    },
     "studentRoleDensity20261003": {
       "sourceCommit": "0b491e404e84ad611d83404fde6f1f33fff265c3",
       "kitUsageDocumentationCommit": "4de57c0818a1f90ed2353485564ea9db1796741d",

@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Selection toolbars use the canonical opt-in selection-action class, including
+the native mobile tray. Remove the class from overflow menu clones. Keep the
+full controller/template baseline comparison after exact class-only adapters;
+normalize CRLF/LF without weakening the CSS declaration/order gate. Penpot
+linked text bounds can be stale: read back after settling, check painted text
+and icon geometry, and qualify selected entity types before enabling actions.
+Do not wrap a toolbar whose native resolver uses the More menu.
+
 This portable contract applies to every AI agent working on EasyStud. The
 canonical wording is maintained in the EasyEdu platform repository under
 `AI/DOCUMENTATION_CONTRACT.md`.
