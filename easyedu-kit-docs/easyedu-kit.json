@@ -661,6 +661,27 @@
         "tools/release/test-student-group-member-search-contract.ps1": "0862e6a9215160e340f0572b30c170fbb68a2d41"
       }
     },
+    "studentSearchableFilterClear20261004": {
+      "kitVersion": "0.4.76",
+      "kitCommit": "d38c00e",
+      "sourceCommit": "e725de8",
+      "runtimeCommit": "1b6103c",
+      "status": "Managed 1600/768/390 preview passed; Foundation/Product Penpot publication and human acceptance remain open.",
+      "currentPreviewProof": "docs/testing/student-searchable-filter-clear-preview-2026-10-04.json",
+      "documentation": "docs/student-searchable-filter-clear-2026-10-04.md",
+      "proofRun": "easystud-authenticated-20261003T235744575Z-47956",
+      "penpotPropagated": false,
+      "humanAccepted": false,
+      "modules": {
+        "amd/src/course_manager.js": "8a11543e9b468d415efbcfc0f4225acd6ecf39b8",
+        "amd/src/searchable_choices.js": "e49e1b4ce597e644824d45c85fc7aca957c5db80",
+        "amd/build/searchable_choices.min.js": "c3dcde1cff1fa2b1e4ba5db88814f66d9204353b",
+        "scss/easyedu/components/_searchable-choices.scss": "9f8d54c9c39c50e950f74d6365e908abc9f4aab5",
+        "styles.css": "7b8a2ac72053e5eabb567950de8dc741b35ecfda",
+        "manage.php": "6050b30b254e41978f5bbb57bf55b873a3d55151",
+        "tools/playwright/student-searchable-filter-clear-preview.spec.js": "8757c1df14e0ea105c14ede3269b124fcc5f27d1"
+      }
+    },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },
   "packages": {

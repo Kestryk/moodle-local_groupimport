@@ -146,6 +146,12 @@ assets. Failed runs and backups remain recoverable.
   `easystud-authenticated-20261003T233009655Z-46664` passes at 1600/768/390 with
   zero business requests. Product Penpot propagation and human acceptance stay
   open; see `student-group-member-search-2026-10-04.md`.
+- Ordered backlog item 19 is served from Kit 0.4.76 on runtime `1b6103c`.
+  Searchable multiple filters expose a localized clear-all control which clears
+  hidden native selections and preserves the open search lifecycle. Managed run
+  `easystud-authenticated-20261003T235744575Z-47956` passes at 1600/768/390 with
+  zero business requests. Penpot publication and human acceptance remain open;
+  see `student-searchable-filter-clear-2026-10-04.md`.
 - Queue recorded; no request is complete merely because it is listed.
 - First task: reconcile Ungrouped icon/focus source gate.
 - Ungrouped source gate reconciled and PASS. It now checks the defined
