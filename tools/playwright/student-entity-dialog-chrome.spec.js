@@ -36,6 +36,10 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
         await expect(modal.locator('.easyedu-entity-dialog__eyebrow')).toHaveCSS('font-size', '10px');
         await expect(modal.locator('.easyedu-entity-dialog__icon')).toHaveCSS('width', '32px');
         await expect(modal.locator('.easyedu-entity-dialog__icon')).toHaveCSS('color', 'rgb(15, 108, 191)');
+        await modal.locator('.easyedu-entity-dialog').screenshot({path: testInfo.outputPath(kind + '-' + width + '-entry.png')});
+        const actions = modal.locator('.easyedu-entity-dialog__actions');
+        if (await actions.count()) await actions.scrollIntoViewIfNeeded();
+        await settle(modal);
         const geometry = await modal.evaluate(element => {
             const surface = element.querySelector('.easyedu-entity-dialog'), r = surface.getBoundingClientRect();
             const header = element.querySelector('.easyedu-entity-dialog__header');
@@ -45,12 +49,14 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
             const row = actionRow?.getBoundingClientRect();
             const buttons = [...(actionRow?.children || [])].map(button => {
                 const b = button.getBoundingClientRect(), css = getComputedStyle(button);
+                const hit = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
                 const icon = button.querySelector('.fa'), label = button.querySelector('span:not(.fa)');
                 const i = icon?.getBoundingClientRect(), l = label?.getBoundingClientRect();
                 return {text: button.textContent.trim(), type: button.getAttribute('type'),
                     href: button.getAttribute('href'), color: css.color, gap: css.gap,
                     x: b.x, right: b.right, y: b.y, height: b.height, fontSize: css.fontSize,
                     minHeight: css.minHeight, radius: css.borderTopLeftRadius,
+                    unobscured: button.contains(hit), withinViewport: b.y >= 0 && b.bottom <= innerHeight,
                     iconLabelCenter: i && l ? Math.abs(i.y + i.height / 2 - l.y - l.height / 2) : null,
                     iconLabelGap: i && l ? l.x - i.right : null};
             });
@@ -73,6 +79,8 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
         expect(geometry.headerHeight).toBeGreaterThanOrEqual(64);
         expect(geometry.actionRightDelta).toBeLessThanOrEqual(1);
         for (const button of geometry.buttons) {
+            expect(button.unobscured).toBe(true);
+            expect(button.withinViewport).toBe(true);
             expect(button.fontSize).toBe('14.08px');
             expect(parseFloat(button.minHeight)).toBeGreaterThanOrEqual(37);
             if (button.iconLabelCenter !== null) {
