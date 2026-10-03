@@ -20,7 +20,7 @@ test('Student member rows retain their canonical skin across responsive widths',
     const root = page.locator('#local-groupimport-easystud');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
     const grouping = root.locator('[data-easystud-grouping-id]:visible').filter({
-        has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]'),
+        has: page.locator('[data-easystud-member-id]'),
     }).first();
     const disclosure = grouping.locator(':scope > .local-groupimport-easystud-grouping__header ' +
         '[data-easystud-collapse-toggle]');
@@ -31,7 +31,15 @@ test('Student member rows retain their canonical skin across responsive widths',
             await page.setViewportSize({width, height: 1100});
             if (width < 1600) await root.locator('[data-easystud-mobile-view="groups"]').click();
             await page.evaluate(() => document.fonts.ready);
-            const member = root.locator('[data-easystud-member-id]:visible:not(.is-collapsed)').first();
+            const populatedGroup = root.locator('[data-easystud-group-id]:visible').filter({
+                has: page.locator('[data-easystud-member-id]'),
+            }).first();
+            await expect(populatedGroup).toBeVisible();
+            const membersToggle = populatedGroup.locator('[data-easystud-group-members-toggle]');
+            if (await membersToggle.isVisible() && await membersToggle.getAttribute('aria-expanded') === 'false') {
+                await membersToggle.click();
+            }
+            const member = populatedGroup.locator('[data-easystud-member-id]:visible:not(.is-collapsed)').first();
             await expect(member).toBeVisible();
             await member.scrollIntoViewIfNeeded();
             // Wait for native layout/disclosure to settle before measuring.
