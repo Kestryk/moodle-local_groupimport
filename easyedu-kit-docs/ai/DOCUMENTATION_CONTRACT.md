@@ -124,3 +124,10 @@ the enhancement after modifying native options. Keep native mobile visibility
 rules and filtering predicates unchanged. Record successor asset pins without
 rewriting historical Move/member proof. Verify font longhands with the inherited
 theme-family token; an isolated HTML PASS is not Moodle cascade/icon proof.
+
+More-filters wide/compact/touch use one canonical paint recipe. Read settled
+painted text/glyph bounds and paired containment after a shared-library update,
+not only provider IDs. A UI click timeout may already have applied the update:
+inspect the current banner/editor state before retrying. Preserve normal-motion
+expand/collapse, inert and ARIA behavior; source paint-only extraction cannot
+claim runtime transition proof.
