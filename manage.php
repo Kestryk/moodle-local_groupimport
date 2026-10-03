@@ -2328,6 +2328,11 @@ function local_groupimport_build_context_actions_template_data(
             'label' => get_string('contextcopyuserid', 'local_groupimport'),
             'multilabel' => get_string('contextcopyselecteduserids', 'local_groupimport'),
         ],
+        'group-search-members' => [
+            'contexts' => 'group',
+            'icon' => 'fa-search',
+            'label' => get_string('searchparticipantslabel', 'local_groupimport'),
+        ],
         'group-paste-emails' => [
             'contexts' => 'group',
             'icon' => 'fa-envelope-open-text',
