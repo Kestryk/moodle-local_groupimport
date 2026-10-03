@@ -3,6 +3,36 @@
 Batch: `EED-UI-2026-0073`. This candidate continues the entity-header tranche
 in `student-entity-dialog-chrome-2026-10-02.md`; it does not certify body parity.
 
+## Current local preview result
+
+The prepared tranche is committed, pushed and applied through the managed
+Moodle 5.1 preview, cache purged. Final scoped checks PASS: nine entity, nine
+Move and three native Message cases at 1600/768/390. Agent inspection covers
+21 final modal captures; 30 entry/final images are pinned across three manifests.
+All three scoped retention dry-runs protect the runs, with zero candidates,
+unmanaged files, deletions or errors. Credentials cleared, child stopped and
+lease released after each run; no Save, Send, move confirmation or fixtures.
+
+Machine-readable source/assets/runtime/scenario/failure record:
+`testing/student-modal-preview-2026-10-03.json`. Tested runtime is `62fe6ff`,
+consumer source `d73f218`, canonical Kit implementation `cd9b56e` and Kit
+documentation `8448c74`. Later doc-only promotion advances Git HEAD, not the
+tested CSS/AMD/template assets. Three shared modules have identical Git blobs
+in Kit, consumer and runtime; raw runtime bytes differ only in checkout CRLF/LF.
+Do not claim raw runtime-byte equality or full-tree/class-only migration.
+
+Participant opens through the real eye at all sizes. Group/Grouping settings
+open through their real desktop gear, then resize; native mobile entry remains
+separate. Long bodies scroll normally before footer hit-target assertions.
+Participant return focus and Move help/navigation ordering are corrected without
+changing existing Motion. Foreign CCB triggers remain visible over some narrow
+body edges; whole-body overlap, full settings/body styles, remaining legacy
+footers and all-state compatibility remain open. The human checklist stays
+unchecked, as requested; no action is needed from the user now.
+
+The sections below retain the chronological pre-promotion and failure evidence;
+their earlier "pending" permission/status statements are historical.
+
 ## Result and cause
 
 Destination, entity-settings/detail and native Message action rows align to
@@ -159,6 +189,23 @@ command, visual source or density. Do not generalise selectors from a header
 to a footer without reading the actual native template.
 
 ## Efficiency
+
+This preview used eight focused authenticated invocations: three failures
+preserved for diagnosis, two initial partial proofs and three final proofs.
+Avoidable runs came from assuming a mobile settings route and guessing a
+footer Close selector. Read the actual native template/visibility rules first;
+separate entry from responsive geometry, assert short bounded preconditions,
+scroll to hit targets and inspect captures before extending a PASS. Route
+errors in the wrapper were caught before credentials/lease; specs are relative
+to AllowedSpecRoot. Raw EOL inequality is not a SCSS divergence: compare Git
+blobs and record EOL separately. Full cost/token telemetry is unavailable.
+
+Code-recovery bundles were verified and restored to matching immutable Git
+HEAD/tree and clean checkouts; initial raw file comparison differed on line
+endings. They are bounded Git-code backups, not workspace-v3 snapshots or a
+cross-machine READY handoff. Shared Platform batch/crosswalk/plan/state files
+remain owned by their planning window; portable update proposal is in the
+machine-readable preview record. No shared dirty file or evidence was deleted.
 
 No per-task token/billing telemetry is available. Avoidable cost came from a
 guessed Sass entry, mistaken read-directory, lost plugin-storage helpers after

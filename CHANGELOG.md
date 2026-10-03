@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-03 - Prepared modal tranche applied to local preview
+
+- Commit/push and managed Moodle 5.1 promotion/cache are complete for canonical
+  entity chrome and matched right-aligned Destination/entity/Message footers.
+  Regular/compact densities, translated widths and conditional bodies remain.
+- Fix Participant Close return focus after the existing Motion exit and place
+  Move above native navigation through the existing Kit root-layer class.
+- Final focused browser proof: 9 entity, 9 Move and 3 Message cases PASS at
+  1600/768/390; 21 final modal captures inspected, 30 media files pinned, three
+  scoped retention dry-runs with no deletion. Failed runs are retained.
+- Record native-entry vs resized-modal coverage separately. No Save, Send,
+  move confirmation or fixtures; full body/class migration, foreign CCB narrow
+  overlays and human checklist remain open. Not production or a release.
+  Evidence: `docs/testing/student-modal-preview-2026-10-03.json`.
+
 ## 2026-10-03 - Move modal stacking
 
 - The first nine Move cases passed geometry, but their narrow capture exposed

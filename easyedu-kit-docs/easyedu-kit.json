@@ -18,6 +18,8 @@
     "studentModalFooters": {
       "sourceBaseCommit": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
       "sourceCommit": "cd9b56e6389c58e6bff609c0fad0fa2ad6825fe6",
+      "documentationCommit": "8448c74589e79f92cd6d0aafd154bed21ad3f7b1",
+      "currentPreviewProof": "docs/testing/student-modal-preview-2026-10-03.json",
       "modules": {
         "scss/easyedu/_foundation-classes.scss": "90c09595d954c299c3f7273a57eec09bafe80a6d",
         "scss/easyedu/_dialog-classes.scss": "dcb1e6393304e0deca56dc976f383fcdf1256540",
@@ -31,7 +33,7 @@
       },
       "scope": "Right-aligned wrapping native modal footer actions; equal paired typography/minimum height/radius/padding, adaptive label widths. Regular Destination/entity; compact Message retained. Card/inline controls and Motion unchanged.",
       "penpotReadback": "docs/testing/student-modal-footers-penpot-2026-10-03.json",
-      "status": "Source/Penpot candidate, four Standard/Library matches and eleven product compositions read back; not served in runtime 333b753; managed preview/browser and human validation pending"
+      "status": "Served in managed local preview; 9 entity, 9 Move and 3 Message cases pass at 1600/768/390 with 21 inspected captures. Human checklist, body-wide/foreign-overlay and all-state parity remain open. Historical Penpot and prior browser pins preserved."
     },
     "studentEntityDialogs": {
       "sourceBaseCommit": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
@@ -42,7 +44,8 @@
       "scope": "Shared Participant/Group/Grouping header, root layer and right-aligned matched regular native actions only; conditional body and disclosure Motion preserved",
       "penpotReadback": "docs/testing/student-entity-dialog-chrome-penpot-2026-10-02.json",
       "footerReadback": "docs/testing/student-modal-footers-penpot-2026-10-03.json",
-      "status": "Source candidate and paired header publication; new local runtime promotion/test and human acceptance pending"
+      "currentPreviewProof": "docs/testing/student-modal-preview-2026-10-03.json",
+      "status": "Shared header/layer/actions served; nine scoped responsive chrome/body-content/visible-action cases pass and Participant native return focus passes. Group/Grouping desktop open then resize is not mobile entry proof. Full body style and human acceptance remain open."
     },
     "studentLookupDialogs": {
       "sourceCommit": "df19d750abd4642cd40f896d83f1414dfaff1bcd",

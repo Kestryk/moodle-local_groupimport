@@ -1,5 +1,27 @@
 # Modals
 
+## EasyStud local preview checkpoint - 2026-10-03
+
+Canonical chrome/footer source `cd9b56e` is now consumed by EasyStud's controlled
+Moodle 5.1 preview; the earlier candidate notes are historical. The product
+records `docs/testing/student-modal-preview-2026-10-03.json`: nine entity, nine
+Move and three native Message cases pass at 1600/768/390. Actions remain
+right-aligned with equal paired font/height/padding/radius and adaptive widths.
+Regular Destination/entity and compact Message densities remain distinct.
+
+Consume `easyedu-modal-layer` on the fixed root, not on an inner surface, so
+native navigation cannot cover modal help. Participant Close restores its real
+trigger after the existing Motion exit. Native templates, options, commands,
+conditional bodies, disclosure and focus remain product-owned.
+
+Participant opens natively at all three sizes. Group/Grouping settings use
+their native desktop gear and then resize: responsive paint proof is not a
+mobile entry claim. Scroll long native bodies normally to inspect footer hit
+targets, never hide sticky controls. The shared source is Git-content-identical
+in Kit/consumer/runtime; runtime checkout line endings differ (CRLF/LF), not
+SCSS rules. Full body style parity, foreign CCB overlays, all states and human
+acceptance remain open. This is not a production release or complete migration.
+
 The opt-in Moodle message adapter sizes phone dialogs to their native body and
 capped textarea, with a viewport maximum. Never combine a capped phone field
 with a fixed-height dialog: this leaves an unexplained blank region above the
