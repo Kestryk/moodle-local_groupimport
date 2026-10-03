@@ -1,5 +1,16 @@
 # EasyEdu Component Extraction Matrix
 
+Entity metadata source checkpoint 0.4.58 adds opt-in list/count/semantic/CSV and
+readonly summary/empty/description recipes. EasyStud removes 205 net local SCSS
+lines with exact compiled CSS preservation. Public-class adoption, legacy weight
+normalization and paired Foundation/product publication remain separate gates.
+
+Entity fields now have twelve resting Standard/Library pairs at Foundations
+08.4/08.4.1, with matching recursive geometry/paint and seventeen linked
+EasyStud page-04 fields. The scoped caption/value/editing reconciliation is
+recorded in the consumer readback; metadata lists, focus exceptions, native
+responsive compositions and human acceptance remain open.
+
 Modal footers: regular Destination/entity and compact native Message share
 right-aligned, wrapping `foundation-dialog-actions` with matched paired
 geometry. Four Foundation Standard/Library pairs and eleven EasyStud hosts

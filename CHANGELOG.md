@@ -1,5 +1,27 @@
 # Changelog
 
+## 2026-10-03 - Entity-field Penpot reconciliation
+
+- Replace seventeen page-04 Participant/Group/Grouping fields with linked
+  Foundations specimens; preserve hidden originals. Publish twelve shared
+  Standard/Library resting variants and verify source-backed roles, all four
+  radii, providers and painted text containment.
+- Add a versioned structural readback and snapshot gate. Save/pin six inspected
+  owned-editor captures outside Git; preserve full raster export failures.
+  No all-state, all-page or human acceptance claim.
+
+## 2026-10-03 - Entity metadata ownership and shared Penpot fields
+
+- Transfer list titles/counts/chips/semantic variants, scroll/hidden CSV,
+  readonly summaries/empty/description styles to the canonical Kit. Remove
+  205 net local SCSS lines; complete CSS, DOM/controller and Motion stay unchanged.
+- Publish twelve Foundations field Standard/Library pairs and seventeen linked
+  fields in the three page-04 entity modals, preserving old specimens hidden.
+  Align enrolment-key help and fit readonly count capsules to their text.
+- Add compile/extraction/readback gates and explicit additive source pins.
+  Whole-body class adoption, list visual parity, legacy weights and the global
+  human checklist remain open. No release or production deployment.
+
 ## 2026-10-03 - Native completion proof and body-field extraction
 
 - Record fresh scoped preview proof: six native confirmations, workspace at

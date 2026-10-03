@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.57",
+  "version": "0.4.58",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -38,6 +38,28 @@
         "unchanged": true,
         "proof": "compiled comparison before and after extraction only, no fresh browser or human PASS"
       }
+    },
+    "studentEntityMetadataExtraction": {
+      "sourceCommit": "82501989fdf28a10b2c2bcdd496c527da4b58d39",
+      "consumerBaseCommit": "e18d6b83faa27b3c16e9f88e9a3fafd8f8a42f65",
+      "modules": {
+        "scss/easyedu/_components.scss": "bbd4902fe6af3215fd3f24fdaa7e8bf8c3df5ab2",
+        "scss/easyedu/components/_entity-metadata.scss": "16f9c79c6a2f8a0d3965e66e73ebd6c295db65d2"
+      },
+      "unchangedNativeSources": {
+        "amd/src/course_manager.js": "29316919fb4183bf8e4454a3e98b8b8b9ce5e911",
+        "templates/manage.mustache": "ff82011e41b34b47ea4356dc6b08da2cb69d52bb",
+        "amd/src/motion.js": "3ecbd088a82bf7b91a003dfcbf22035f5cc715d2"
+      },
+      "generatedCssBlob": "c7b7945a536938555cbc77a917d3eb8df69be7e4",
+      "compiledCssUnchanged": true,
+      "emittedPropertySequencesCompared": 12973,
+      "localScssNetLinesRemoved": 205,
+      "scope": "Source-preserving entity metadata titles/counts/chips/semantic variants, scroll/CSV, detail lists and descriptions. Native content, selectors, grids, commands and Motion remain unchanged.",
+      "documentation": "docs/student-entity-metadata-extraction-2026-10-03.md",
+      "pairedFieldReadback": "docs/testing/student-entity-fields-penpot-2026-10-03.json",
+      "status": "Source/build proof; managed preview promotion pending. No fresh browser or all-body Penpot/human acceptance.",
+      "humanVisualValidated": false
     },
     "studentEntityFieldsExtraction": {
       "sourceCommit": "0e1466d2f9ecb7087c59c8b831207f78d8390d3d",

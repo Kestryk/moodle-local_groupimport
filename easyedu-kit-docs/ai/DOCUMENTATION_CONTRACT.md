@@ -28,6 +28,16 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+An entity-metadata extraction must retain hidden CSV tables, the full-summary
+focus target, legacy weights and original Motion/scroll/state ownership.
+Record exact compiled CSS identity separately from public-class adoption or
+Penpot list publication. Inspect settled editor state after a write timeout
+before retrying; never duplicate or discard an unknown partial write.
+
+Preserve this consumer's native-dialog guardrails when importing a canonical
+AI-contract addition. Apply an explicit additive adaptation instead of replacing
+the consumer contract wholesale with a differently scoped Kit document.
+
 Source-preserving body extraction must keep a hash-verified pre-extraction CSS
 snapshot outside Git and compare the entire emitted selector/property sequence
 set. Preserve specificity, readonly/empty branches, conditional content and

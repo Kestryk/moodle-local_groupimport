@@ -100,6 +100,14 @@ assets. Failed runs and backups remain recoverable.
 
 ## Portable Platform-owner update proposal
 
+Current next increment: opt-in entity metadata/count/chip/CSV/description paint
+comes from canonical Kit recipes, removing 205 net local SCSS lines while
+preserving the complete CSS and native controller/Mustache/Motion. Field
+reconciliation publishes twelve matched Foundation pairs and seventeen linked
+product fields; original specimens remain recoverable. Saved evidence and
+remaining exceptions: `student-entity-metadata-extraction-2026-10-03.md` and
+`testing/student-entity-fields-penpot-2026-10-03.json`. Human checklist stays open.
+
 Current executed proof at managed runtime `eb41786` is pinned in
 `testing/student-completion-preview-2026-10-03.json`: 6 native confirmations,
 3 workspace widths, 4 compact drag identities plus target feedback, 3 Message

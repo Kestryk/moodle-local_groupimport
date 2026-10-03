@@ -72,6 +72,13 @@ Do not mistake a Penpot update, compiled CSS or source commit for served preview
 
 ## Remaining work, not a complete class-only claim
 
+Latest metadata increment centralizes list/count/chip/scroll/CSV/description
+paint without changing the complete generated CSS or native data/Motion.
+Twelve shared field pairs and seventeen product fields resolve the page-04
+caption mismatch. Source ownership, inherited geometry, capture inspection,
+runtime service and deferred human acceptance remain separate gates; see
+`student-entity-metadata-extraction-2026-10-03.md` for exact boundaries.
+
 - Preserve the completed scoped preview proof; mobile Group/Grouping settings
   entry and foreign CCB sticky-trigger overlap over narrow body edges remain
   separate product/integration gaps, not an invented route or full visual PASS.

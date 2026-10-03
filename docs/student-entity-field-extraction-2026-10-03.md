@@ -47,7 +47,7 @@ The extended entity scenario is pinned separately at
 successor while preserving the historical scenario/readback pin. A stale source
 pin failure was caught and repaired, not bypassed by removing an assertion.
 
-## Penpot differences explicitly still open
+## Historical Penpot mismatch (superseded for the seventeen page-04 fields)
 
 Live product Participant specimen `cef95197-06bc-809e-8008-aeffada5eafe`, page
 `cef95197-06bc-809e-8008-aeff9a955b2c`, retains six Inter 12px caption examples.
@@ -60,6 +60,13 @@ Standard/Library and every consuming body before declaring pixel parity.
 Further work: public-class adoption, image/file/CSV controls and metadata-list
 recipes, generic Close, member-row catalogue density, full translated/RTL/
 forced-colour states. Human global checklist remains unchecked.
+
+The subsequent field reconciliation publishes twelve paired Foundations
+specimens and seventeen linked product fields, resolving their quiet-caption
+palette/role difference. See `student-entity-metadata-extraction-2026-10-03.md`
+and `testing/student-entity-fields-penpot-2026-10-03.json`. Original samples are
+hidden/recoverable. Source focus and illustrative textarea density remain
+explicit exceptions, and metadata source transfer is not list pixel parity.
 
 ## Efficiency notes
 

@@ -8,7 +8,9 @@ $proof = Get-Content -Raw -LiteralPath (Join-Path $root $pin.penpotReadback) | C
 foreach ($module in $pin.modules.PSObject.Properties) {
     $embedded = & git -C $root hash-object $module.Name
     $canonical = & git -C $KitRoot hash-object $module.Name
-    $currentPin = if ($successor.modules.($module.Name)) { $successor.modules.($module.Name) } else { $module.Value }
+    $currentPin = if ($ledger.consumerSync.studentEntityMetadataExtraction.modules.($module.Name)) {
+        $ledger.consumerSync.studentEntityMetadataExtraction.modules.($module.Name)
+    } elseif ($successor.modules.($module.Name)) { $successor.modules.($module.Name) } else { $module.Value }
     if ($LASTEXITCODE -ne 0 -or $embedded -ne $canonical -or $embedded -ne $currentPin -or
         $proof.source.modules.($module.Name) -ne $module.Value) { throw "Canonical current or historical footer module/pin drift: $($module.Name)" }
 }

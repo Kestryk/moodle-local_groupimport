@@ -224,45 +224,19 @@
       gap: 0.7rem;
 
       > .local-groupimport-easystud-settings-modal__list-title {
-        @include easyedu.type-control-label;
-
-        font-weight: var(--easyedu-font-weight-semibold);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include easyedu.entity-metadata-title;
       }
 
       > strong {
-        @include easyedu.count-badge(#edf7f1, #cfe3d6, #225842);
-
-        align-items: center;
-        display: inline-flex;
-        font-size: 0.78rem;
-        font-weight: var(--easyedu-font-weight-semibold);
-        gap: 0.28rem;
-        justify-self: end;
-        max-width: min(12rem, 100%);
-        min-height: 1.45rem;
-        min-width: 0;
-        overflow: hidden;
-        padding: 0.16rem 0.54rem;
+        @include easyedu.entity-metadata-count;
 
         .local-groupimport-easystud-settings-modal__list-count-label {
-          font-size: inherit;
-          font-weight: inherit;
-          max-width: 8.5rem;
-          min-width: 0;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+          @include easyedu.entity-metadata-count-label;
         }
       }
 
       > .local-groupimport-easystud-settings-modal__disclosure-chevron {
-        color: #607487;
-        font-size: 0.72rem;
-        justify-self: start;
-        transition: transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+        @include easyedu.entity-metadata-chevron;
       }
 
     }
@@ -273,98 +247,31 @@
   }
 
   &-settings-modal__list-scroll {
-    @include easyedu.metadata-scroll-list;
-
-    min-width: 0;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-
-    table {
-      border-collapse: collapse;
-      font-size: 0.78rem;
-      width: 100%;
-
-      &[hidden] {
-        display: none !important;
-      }
-    }
-
-    th,
-    td {
-      border-bottom: 1px solid #edf2f6;
-      padding: 0.38rem 0.55rem;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      background: #f5f9fc;
-      color: #607487;
-      font-size: 0.68rem;
-      font-weight: 760;
-      letter-spacing: 0.04em;
-      position: sticky;
-      text-transform: uppercase;
-      top: 0;
-      z-index: 1;
-    }
+    @include easyedu.entity-metadata-scroll;
   }
 
   &-settings-modal__list-item-primary {
-    color: #334b61;
-    font-size: 0.84rem;
-    font-weight: 650;
-    min-width: 0;
-    overflow-wrap: anywhere;
+    @include easyedu.entity-metadata-primary;
   }
 
   &-settings-modal__list-item-meta {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    min-width: 0;
+    @include easyedu.entity-metadata-meta;
   }
 
   &-settings-modal__list-item-chip {
-    @include easyedu.metadata-item-chip;
-    @include easyedu.type-caption;
-
-    font-weight: var(--easyedu-font-weight-semibold);
-
-    > span:first-child {
-      @include easyedu.type-caption;
-
-      color: inherit;
-      font-weight: inherit;
-      letter-spacing: 0;
-      text-transform: none;
-    }
-
-    > span:last-child {
-      min-width: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+    @include easyedu.entity-metadata-chip;
   }
 
   &-settings-modal__list-section--members &-settings-modal__list-item-chip {
-    background: #eef6fc;
-    border-color: #c9deef;
-    color: #2f5f89;
+    @include easyedu.entity-metadata-semantic(members);
   }
 
   &-settings-modal__list-section--groups &-settings-modal__list-item-chip {
-    background: #eaf6ef;
-    border-color: #c5e2d0;
-    color: #2e6f4b;
+    @include easyedu.entity-metadata-semantic(groups);
   }
 
   &-settings-modal__list-section--groupings &-settings-modal__list-item-chip {
-    background: #f0edf8;
-    border-color: #dacdf0;
-    color: #6b4a91;
+    @include easyedu.entity-metadata-semantic(groupings);
   }
 
   &-settings-modal__list-empty {
@@ -516,81 +423,29 @@
   }
 
   &-detail__list {
-    background: #fbfdff;
-    border: 1px solid #d9e7f1;
-    border-radius: 0.9rem;
-    overflow: visible;
+    @include easyedu.entity-detail-list-surface;
 
     summary {
-      align-items: center;
-      cursor: pointer;
-      display: grid;
-      gap: 0.55rem;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      list-style: none;
-      padding: 0.52rem 0.62rem;
-
-      &:focus-visible {
-        @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      }
-
-      &:focus:not(:focus-visible) {
-        outline: 0;
-      }
-
-      &::-webkit-details-marker {
-        display: none;
-      }
+      @include easyedu.entity-detail-list-summary;
 
       > .local-groupimport-easystud-detail__list-title {
-        @include easyedu.type-control-label;
-
-        font-weight: var(--easyedu-font-weight-semibold);
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include easyedu.entity-metadata-title($detail: true);
       }
 
       .local-groupimport-easystud-detail__list-summary-end {
-        align-items: center;
-        display: inline-flex;
-        gap: 0.48rem;
-        justify-self: end;
-        min-width: 0;
+        @include easyedu.entity-detail-list-summary-end;
       }
 
       strong {
-        align-items: center;
-        background: #f6f8fa;
-        border: 1px solid #d8e0e8;
-        border-radius: 999px;
-        color: #6d7f91;
-        display: inline-flex;
-        font-size: var(--easyedu-font-size-caption);
-        font-weight: var(--easyedu-font-weight-semibold);
-        gap: 0.28rem;
-        line-height: 1.2;
-        max-width: 9.5rem;
-        max-inline-size: 100%;
-        min-width: 0;
-        overflow: hidden;
-        padding: 0.18rem 0.5rem;
+        @include easyedu.entity-metadata-count($detail: true);
 
         span:last-child {
-          max-width: 6.5rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+          @include easyedu.entity-metadata-count-label($detail: true);
         }
       }
 
       .local-groupimport-easystud-detail__list-chevron {
-        color: #607487;
-        flex: 0 0 auto;
-        font-size: 0.72rem;
-        justify-self: start;
-        transition: transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+        @include easyedu.entity-metadata-chevron($detail: true);
       }
     }
   }
@@ -602,94 +457,34 @@
   }
 
   &-detail__list--roles summary strong {
-    background: #e7f2ff;
-    border-color: #bfd8f4;
-    color: #245d92;
+    @include easyedu.entity-metadata-semantic(roles);
   }
 
   &-detail__list--groups summary strong {
-    background: #eaf6ef;
-    border-color: #c5e2d0;
-    color: #2e6f4b;
+    @include easyedu.entity-metadata-semantic(groups);
   }
 
   &-detail__list--groupings summary strong {
-    background: #f0edf8;
-    border-color: #dacdf0;
-    color: #6b4a91;
+    @include easyedu.entity-metadata-semantic(groupings);
   }
 
   &-detail__list-scroll {
-    border-top: 1px solid #e5edf4;
-    max-height: 8.5rem;
-    min-width: 0;
-    overflow: auto;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-
-    ul {
-      display: grid;
-      gap: 0.28rem;
-      list-style: none;
-      margin: 0;
-      padding: 0.52rem;
-    }
-
-    li {
-      background: #fff;
-      border: 1px solid #e3ecf4;
-      border-radius: 0.62rem;
-      color: #334b61;
-      font-size: 0.8rem;
-      font-weight: 600;
-      min-width: 0;
-      overflow-wrap: anywhere;
-      padding: 0.34rem 0.48rem;
-    }
+    @include easyedu.entity-detail-list-scroll;
   }
 
   &-detail__list-empty {
-    border-top: 1px solid #e5edf4;
-    color: #71869b;
-    font-size: 0.8rem;
-    padding: 0.65rem;
-    text-align: center;
+    @include easyedu.entity-detail-list-empty;
   }
 
   &-detail__description {
-    background: #fbfdff;
-    border: 1px solid #d9e7f1;
-    border-radius: 0.9rem;
-    overflow: visible;
+    @include easyedu.entity-detail-list-surface;
 
     summary {
-      color: #40566c;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 720;
-      list-style: none;
-      padding: 0.52rem 0.62rem;
-
-      &:focus-visible {
-        @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      }
-
-      &:focus:not(:focus-visible) {
-        outline: 0;
-      }
-
-      &::-webkit-details-marker {
-        display: none;
-      }
+      @include easyedu.entity-detail-description-summary;
     }
 
     > div {
-      border-top: 1px solid #e5edf4;
-      color: #40566c;
-      font-size: 0.84rem;
-      max-height: 9rem;
-      overflow: auto;
-      padding: 0.65rem;
+      @include easyedu.entity-detail-description-content;
     }
   }
 
