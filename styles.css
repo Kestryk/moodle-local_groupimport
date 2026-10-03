@@ -20239,6 +20239,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   opacity: 0.62;
 }
 
+@media (max-width: 52rem) {
+  .easyedu-ui .easyedu-toggle-check {
+    min-height: var(--easyedu-touch-target-min);
+  }
+}
 .easyedu-ui :where(.easyedu-filter-disclosure) {
   align-items: center;
   background: transparent;
