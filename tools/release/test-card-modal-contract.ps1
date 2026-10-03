@@ -40,7 +40,11 @@ foreach ($needle in @(
     'Motion.collapse(content',
     'Motion.expand(content',
     'details.open = false;',
-    'local-groupimport-easystud-modal__footer'
+    'local-groupimport-easystud-modal__footer',
+    'const openForUser = (user, trigger) =>',
+    'participantReturnFocus = trigger;',
+    'const closeParticipantModal = () => hideEasyStudModal(modal, () =>',
+    'participantReturnFocus.focus({preventScroll: true});'
 )) {
     if (-not $manager.Contains($needle)) {
         throw "Missing participant/modal action contract: $needle"

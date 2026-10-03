@@ -28,6 +28,11 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+Native open/cancel audits also assert return focus on the actual trigger.
+Restore it in the completed modal-exit callback, never before Motion hides the
+dialog or after a cancelled exit. Keep the failed run and its immutable source
+revision; repair the source rather than deleting or weakening the assertion.
+
 Modal footer pairs align to the inline end and share density through the
 canonical `foundation-dialog-actions` recipe, not a consumer CSS override.
 Preserve adaptive translated widths, secondary palette and native Message

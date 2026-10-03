@@ -8177,6 +8177,7 @@ const bindParticipantModal = root => {
     const close = root.querySelector('[data-easystud-close-user-modal]');
     const openSelected = root.querySelector('[data-easystud-open-selected-user]');
     const labels = JSON.parse(root.getAttribute('data-easystud-detail-labels') || '{}');
+    let participantReturnFocus = null;
     if (!modal || !body || !close) {
         return;
     }
@@ -8222,13 +8223,14 @@ const bindParticipantModal = root => {
         });
     };
 
-    const openForUser = user => {
+    const openForUser = (user, trigger) => {
         rehydrateParticipantMembershipDetails(root);
         const detail = user.getAttribute('data-user-detail');
         if (!detail) {
             return;
         }
         const data = JSON.parse(detail);
+        participantReturnFocus = trigger;
         body.innerHTML =
             '<div class="local-groupimport-easystud-detail">' +
                 '<div class="local-groupimport-easystud-detail__hero">' +
@@ -8277,7 +8279,7 @@ const bindParticipantModal = root => {
         }
         const user = root.querySelector('[data-easystud-user][data-user-id="' + button.getAttribute('data-easystud-open-user') + '"]');
         if (user) {
-            openForUser(user);
+            openForUser(user, button);
         }
     });
 
@@ -8285,17 +8287,23 @@ const bindParticipantModal = root => {
         openSelected.addEventListener('click', () => {
             const selected = getSelectedItems(root, 'participant');
             if (selected.length === 1) {
-                openForUser(selected[0]);
+                openForUser(selected[0], openSelected);
             }
         });
     }
 
-    close.addEventListener('click', () => {
-        hideEasyStudModal(modal);
+    // Restore the actual native trigger after, not during, the existing exit.
+    // A cancelled exit must not move focus behind a still-open dialog.
+    const closeParticipantModal = () => hideEasyStudModal(modal, () => {
+        if (participantReturnFocus && participantReturnFocus.isConnected) {
+            participantReturnFocus.focus({preventScroll: true});
+        }
+        participantReturnFocus = null;
     });
+    close.addEventListener('click', closeParticipantModal);
     modal.addEventListener('click', event => {
         if (event.target === modal) {
-            hideEasyStudModal(modal);
+            closeParticipantModal();
         }
     });
 };

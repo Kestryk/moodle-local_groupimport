@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-03 - Participant detail focus restoration
+
+- The first managed entity-dialog run verified the desktop header/footer but
+  exposed missing return focus after Participant Close. Preserve this failed
+  run (`easystud-authenticated-20261003T010619880Z-13084`), not a full PASS.
+- Remember the real eye/selected-detail trigger and restore it only after the
+  existing exit finishes. Backdrop Close shares the same path; cancelled exits
+  do not move focus behind an open dialog. No visual recipe or Motion changed.
+- Rebuild the AMD source/bundle and extend the source regression contract.
+  Responsive/native browser verification follows in the managed preview.
+
 ## 2026-10-03 - Matched right-aligned modal footers (candidate)
 
 - Consume the identical Kit footer recipe for native Destination/entity and
