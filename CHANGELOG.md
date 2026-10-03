@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Group image native audit candidate
+
+- Add a non-submitting 1600/768/390 audit for image selection, drag/drop,
+  filename feedback, preview/file-row containment and delete-picture state.
+- Reuse the existing Kit image preview, settings filepicker, modal drop and
+  toggle recipes; do not create another filepicker family.
+- Block plugin business POST and keep persisted image/file-area proof and human
+  validation as separate gates.
+
 ## 2026-10-03 - Native entity metadata catalogue audit candidate
 
 - Add a non-mutating nine-case Participant/Group/Grouping list/count/chip audit,
