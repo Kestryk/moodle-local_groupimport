@@ -255,7 +255,10 @@ Import `easyedu/adapters/moodle-message-dialog` and include its
 `easyedu-message-dialog__field` to the native textarea and `__field-wrap` to
 its existing wrapper; decorate footer buttons with `easyedu-button` and use
 `easyedu-button--secondary` on Cancel. The adapter owns chrome, Inter/modal
-roles, Textarea M, matched compact actions, right-aligned footer and narrow reflow.
+roles, a non-resizable Textarea M, the canonical compact header Close, matched
+compact actions, right-aligned footer and narrow reflow. Its asynchronous
+loading state uses the shared unboxed spinner: do not restore the former radial
+halo, framed tile or drop shadow.
 
 Body-level portals do not inherit a consumer root's variables. Relay resolved
 `--easyedu-*` theme variables and the resolved UI font from the workspace.

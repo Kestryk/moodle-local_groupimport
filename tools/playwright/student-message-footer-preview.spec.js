@@ -38,6 +38,20 @@ test('Student native message footer preserves paired geometry and responsive bod
                     .map(a => a.finished.catch(() => undefined)));
             });
             await expect(modal.locator('.modal-title')).toHaveCSS('font-size', '16px');
+            await expect(modal.locator('#bulk-message')).toHaveCSS('resize', 'none');
+            const close = modal.locator('.modal-header [data-action="hide"], .modal-header .close, .modal-header .btn-close').first();
+            await expect(close).toBeVisible();
+            const closeGeometry = await close.evaluate(button => {
+                const r = button.getBoundingClientRect(), s = getComputedStyle(button);
+                return {width: r.width, height: r.height, display: s.display,
+                    align: s.alignItems, justify: s.justifyContent, opacity: s.opacity};
+            });
+            expect(Math.abs(closeGeometry.width - 30.4)).toBeLessThanOrEqual(1);
+            expect(Math.abs(closeGeometry.height - 30.4)).toBeLessThanOrEqual(1);
+            expect(closeGeometry.display).toBe('inline-flex');
+            expect(closeGeometry.align).toBe('center');
+            expect(closeGeometry.justify).toBe('center');
+            expect(closeGeometry.opacity).toBe('1');
             const footer = modal.locator('.modal-footer');
             await expect(footer).toHaveCSS('justify-content', 'flex-end');
             const geometry = await modal.evaluate(element => {
@@ -56,7 +70,7 @@ test('Student native message footer preserves paired geometry and responsive bod
                     row.right + parseFloat(getComputedStyle(footer).paddingRight)),
                 anatomy: {content: r.height, field: height('#bulk-message'), header: height('.modal-header'), footer: row.height}};
             });
-            records.push({width, ...geometry});
+            records.push({width, close: closeGeometry, ...geometry});
             expect(geometry.x).toBeGreaterThanOrEqual(-1);
             expect(geometry.right).toBeLessThanOrEqual(width + 1);
             expect(geometry.buttons).toHaveLength(2);

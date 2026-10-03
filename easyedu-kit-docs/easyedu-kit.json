@@ -1,17 +1,29 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.68",
+  "version": "0.4.69",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentMessageModalCompletion20261003": {
+      "kitCommit": "411d6d7",
+      "status": "Kit 0.4.69 source candidate: canonical compact header Close, non-resizable message field and quiet unboxed async spinner. Penpot state publication, managed native preview and human acceptance remain open.",
+      "documentation": "docs/student-message-modal-completion-2026-10-03.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "modules": {
+        "scss/easyedu/adapters/_moodle-message-dialog.scss": "8b5fd5a36cacd72e01213db74e6b2933988c0acc",
+        "scss/easyedu/components/_modals.scss": "7cecd579aab56d1703518218616ddce0e138dad4",
+        "styles.css": "0190093272aae1c9969e80be3711063f11d88759"
+      }
+    },
     "studentRelatedPersonHierarchy20261003": {
       "kitCommit": "2263171",
-      "status": "Kit 0.4.68 and paired Foundation/Product Penpot publication: 42px rows, 13px/600 #49657a names and centred checkbox/remove lanes. Native preview and human acceptance remain pending; PNG export timed out.",
+      "status": "Kit 0.4.68 and paired Foundation/Product Penpot publication: 42px rows, 13px/600 #49657a names and centred checkbox/remove lanes. Managed native proof passes at 1600/768/390; human acceptance remains pending and the Penpot PNG export timed out.",
       "documentation": "docs/student-member-row-hierarchy-2026-10-03.md",
       "penpotReadback": "docs/testing/student-member-row-hierarchy-penpot-2026-10-03.json",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "modules": {
         "scss/easyedu/_tokens.scss": "1f48be5e309d68e52ddca3ff4165d25aa4b5c086",
         "scss/easyedu/components/_cards.scss": "3d97ef36205cecc5d385fc5bb7f9bf85fa7d3be0",

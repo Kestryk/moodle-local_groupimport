@@ -298,6 +298,17 @@ acceptance status.
 | SM-37 | Desktop sticky Clear selection | Redesign the sticky action in Foundation/Product Penpot and Kit/native code so it matches selection-action surfaces and cannot cover lists, pagination or Navigation. |
 | SM-38 | Previously open completion work | Continue member/body public-class migration, adjacent fields, context menus, compact drag previews, pagination, typography/icon alignment, responsive compositions and the deferred combined checklist. |
 
+### Current execution checkpoint
+
+- SM-18 is implemented, statically verified and pushed: public Kit/plugin
+  archives expose supported SCSS without internal agent or audit material.
+- SM-22 is implemented in Kit, Foundation, product Penpot and Moodle 5.1. The
+  managed responsive proof passes at 1600/768/390; human acceptance remains
+  deliberately open.
+- SM-21 has a Kit/consumer source candidate at Kit 0.4.69. Its post-change
+  native proof and paired Penpot Loading/Sending/Error specimens remain the
+  next gates. No message may be sent during validation.
+
 ### Dependency order
 
 1. SM-18 defines the public/private package boundary before further Kit

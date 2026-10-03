@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-03 - Native message modal completion
+
+- Consume Kit `0.4.69` for the canonical compact header Close, non-resizable
+  message textarea and quiet unboxed async loader.
+- Preserve Moodle recipients, focus trap, native Send/Cancel routing and the
+  accepted EasyEdu modal Motion; supervised proof must never send a message.
+
 ## 2026-10-03 - Group member visual hierarchy
 
 - Give participant names nested inside Group cards a quieter shared colour role

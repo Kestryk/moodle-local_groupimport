@@ -6,6 +6,12 @@ square. Do not resize it in a consumer or publish another Close family. Native
 open/cancel proof must also assert centred glyph paint, semantic danger hover,
 completed exit Motion and focus restoration to the surviving real opener.
 
+Moodle native message portals use that same Close control, a non-resizable
+Foundation textarea and the shared unboxed modal spinner. Do not reintroduce a
+radial blue halo, framed loading tile or drop shadow around the spinner. Keep
+native async loading, recipients, focus trap and Send behavior product-owned;
+visual proof opens and cancels only.
+
 Tray geometry checks include painted label and icon bounds inside horizontal
 padding, not only the outer button frame. Long labels wrap in the canonical
 tray-density recipe; flex-row neighbours retain equal height. Preserve a

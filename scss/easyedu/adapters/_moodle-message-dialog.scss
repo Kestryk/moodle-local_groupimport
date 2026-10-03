@@ -2,6 +2,7 @@
 // existing modal and relays resolved workspace tokens; Moodle owns its form,
 // events, focus trap, recipients, asynchronous body and sending behaviour.
 @use "../foundation-classes" as foundations;
+@use "../components/buttons";
 @use "../components/modals";
 @use "../components/textareas";
 @use "../components/typography";
@@ -31,6 +32,18 @@
   .modal-header {
     @include modals.modal-header;
     flex: 0 0 auto;
+  }
+
+  .modal-header [data-action="hide"],
+  .modal-header .close,
+  .modal-header .btn-close {
+    @include buttons.close-button;
+    & {
+      flex: 0 0 auto;
+      font-size: 1rem;
+      margin: 0;
+      opacity: 1;
+    }
   }
 
   .modal-title {
@@ -78,6 +91,7 @@
       flex: 1 1 auto;
       height: 100%;
       min-height: 12rem;
+      resize: none;
       width: 100%;
     }
   }
