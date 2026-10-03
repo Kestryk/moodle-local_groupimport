@@ -93,6 +93,12 @@ assets. Failed runs and backups remain recoverable.
 
 ## Execution log
 
+- SM-14 shares Kit 0.4.60 single/multiple search/lifecycle/paint; canonical
+  inherited-font longhands fix the actual field-density fallback. Six paired
+  Foundations states and contained EasyStud Desktop/Mobile compositions are
+  published, source/isolated gates pass. Native preview is still a separate
+  pending gate; see `student-searchable-filters-2026-10-03.md`. Original
+  filtering/Move/API/Motion and mobile visibility remain unchanged.
 - Queue recorded; no request is complete merely because it is listed.
 - First task: reconcile Ungrouped icon/focus source gate.
 - Ungrouped source gate reconciled and PASS. It now checks the defined

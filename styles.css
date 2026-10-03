@@ -3900,7 +3900,10 @@
   gap: 0.45rem;
 }
 .local-groupimport-easystud-create .form-control, .local-groupimport-easystud-rename .form-control {
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: 2.375rem;
   min-width: 0;
@@ -19915,7 +19918,10 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .easyedu-ui .easyedu-searchable-choice {
   min-inline-size: 0;
   position: relative;
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
   color: var(--easyedu-field-text);
 }
 .easyedu-ui .easyedu-searchable-choice [hidden] {
@@ -19923,7 +19929,10 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-searchable-choice__trigger {
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: 2.375rem;
   min-width: 0;
@@ -20799,7 +20808,10 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-select {
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: 2.375rem;
   min-width: 0;

@@ -9,7 +9,7 @@ const root = path.resolve(__dirname, '../..');
 const source = fs.readFileSync(path.join(root, 'amd/src/searchable_choices.js'), 'utf8');
 if (!source.includes('export const enhanceSelect =')) throw new Error('Unexpected Kit choice module.');
 const wrapped = 'define("local_groupimport/searchable_choices", [], function() {\n' +
-    source.replace('export const enhanceSelect =', 'const enhanceSelect =') + '\nreturn {enhanceSelect};\n});';
+    source.replace(/export const /g, 'const ') + '\nreturn {enhanceSelect, enhanceMultipleSelect};\n});';
 const filename = 'searchable_choices.min.js';
 terser.minify({'../src/searchable_choices.js': wrapped}, {
     compress: true, mangle: false, sourceMap: {filename, url: `${filename}.map`},

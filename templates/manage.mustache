@@ -262,7 +262,7 @@
                             <div class="local-groupimport-easystud-advanced-filters" data-easystud-advanced-filters="participants">
                                 <div class="local-groupimport-easystud__filters-grid">
                                     <div class="local-groupimport-easystud__filter-group local-groupimport-easystud__filter-group--roles">
-                                        <span class="local-groupimport-easystud__filter-label">{{rolesfilterlabel}}</span>
+                                        <label class="local-groupimport-easystud__filter-label" for="local-groupimport-role-filter">{{rolesfilterlabel}}</label>
                                         <div class="local-groupimport-easystud__role-toggle-wrap" data-easystud-role-toggle-wrap="1">
                                             <div class="local-groupimport-easystud__role-toggle" data-easystud-role-toggle="1">
                                                 {{#rolefilterchoices}}
@@ -275,6 +275,7 @@
                                                 {{/rolefilterchoices}}
                                             </div>
                                             <select
+                                                id="local-groupimport-role-filter"
                                                 class="form-select custom-select local-groupimport-easystud__role-select"
                                                 data-easystud-role-filter="1"
                                                 name="rolefilter"

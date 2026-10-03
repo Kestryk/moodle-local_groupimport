@@ -17,7 +17,7 @@ const terser = require(path.join(path.resolve(terserPackageRoot), 'terser'));
 
 const source = fs.readFileSync(sourcePath, 'utf8');
 const motionImport = "import * as Motion from './motion';";
-const choicesImport = "import {enhanceSelect} from './searchable_choices';";
+const choicesImport = "import {enhanceSelect, enhanceMultipleSelect} from './searchable_choices';";
 const membersImport = "import {snapshotMemberPairs} from './member_selection';";
 if (!source.includes(motionImport) || !source.includes(choicesImport) ||
         !source.includes(membersImport) || !source.includes('export const init =')) {
@@ -26,7 +26,7 @@ if (!source.includes(motionImport) || !source.includes(choicesImport) ||
 
 const namedSource = source
     .replace(motionImport, '')
-    .replace(choicesImport, 'const {enhanceSelect} = Choices;')
+    .replace(choicesImport, 'const {enhanceSelect, enhanceMultipleSelect} = Choices;')
     .replace(membersImport, 'const {snapshotMemberPairs} = MemberSelection;')
     .replace('export const init =', 'const init =');
 const wrappedSource = `define("${moduleName}", ["local_groupimport/motion", "local_groupimport/searchable_choices", ` +

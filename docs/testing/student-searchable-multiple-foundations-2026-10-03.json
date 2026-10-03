@@ -1,0 +1,156 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "standardPage": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+  "libraryPage": "81455adb-6787-8068-8008-9ce9b711604d",
+  "libraryHost": "a301101d-ddc2-807b-8008-bb9f387ba588",
+  "standardHost": "a301101d-ddc2-807b-8008-bb9fa3d2feda",
+  "humanVisualValidated": false,
+  "pairs": [
+    {
+      "state": "Open",
+      "source": "a301101d-ddc2-807b-8008-bb863a8a5472",
+      "main": "a301101d-ddc2-807b-8008-bb9f51c3cbdc",
+      "provider": "a301101d-ddc2-807b-8008-bb9f51fafbcd",
+      "copy": "a301101d-ddc2-807b-8008-bb9fa461b2a8",
+      "paired": true,
+      "overflow": [],
+      "paintOverflow": [],
+      "fonts": [
+        "Inter 14"
+      ],
+      "bounds": {
+        "x": 488,
+        "y": 16646,
+        "width": 360,
+        "height": 224
+      },
+      "checks": [
+        {
+          "right": 14,
+          "x": 810,
+          "y": 16751,
+          "h": 24
+        },
+        {
+          "right": 14,
+          "x": 810,
+          "y": 16791,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "state": "Closed",
+      "source": "a301101d-ddc2-807b-8008-bb871ebb30f3",
+      "main": "a301101d-ddc2-807b-8008-bb9f58f48c94",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "copy": "a301101d-ddc2-807b-8008-bb9fa47d2605",
+      "paired": true,
+      "overflow": [],
+      "paintOverflow": [],
+      "fonts": [
+        "Inter 14"
+      ],
+      "bounds": {
+        "x": 104,
+        "y": 16646,
+        "width": 359.9999999999999,
+        "height": 38
+      },
+      "checks": []
+    },
+    {
+      "state": "No results",
+      "source": "a301101d-ddc2-807b-8008-bb8735c0b7a1",
+      "main": "a301101d-ddc2-807b-8008-bb9f595a0a6c",
+      "provider": "a301101d-ddc2-807b-8008-bb9f597dfc6f",
+      "copy": "a301101d-ddc2-807b-8008-bb9fa48e1120",
+      "paired": true,
+      "overflow": [],
+      "paintOverflow": [],
+      "fonts": [
+        "Inter 14"
+      ],
+      "bounds": {
+        "x": 872,
+        "y": 16646,
+        "width": 360,
+        "height": 158
+      },
+      "checks": []
+    },
+    {
+      "state": "Responsive",
+      "source": "a301101d-ddc2-807b-8008-bb874a26c246",
+      "main": "a301101d-ddc2-807b-8008-bb9f6a614f33",
+      "provider": "a301101d-ddc2-807b-8008-bb9f6a93cc2b",
+      "copy": "a301101d-ddc2-807b-8008-bb9fa4a426b0",
+      "paired": true,
+      "overflow": [],
+      "paintOverflow": [],
+      "fonts": [
+        "Inter 14"
+      ],
+      "bounds": {
+        "x": 1256,
+        "y": 16646,
+        "width": 324,
+        "height": 248
+      },
+      "checks": [
+        {
+          "right": 14,
+          "x": 1542,
+          "y": 16760,
+          "h": 24
+        },
+        {
+          "right": 14,
+          "x": 1542,
+          "y": 16806,
+          "h": 24
+        }
+      ]
+    },
+    {
+      "state": "Focus-visible",
+      "source": "a301101d-ddc2-807b-8008-bb871ebb30f3",
+      "main": "a301101d-ddc2-807b-8008-bb9f89178423",
+      "provider": "a301101d-ddc2-807b-8008-bb9f892f1537",
+      "copy": "a301101d-ddc2-807b-8008-bb9fa50b63ec",
+      "paired": true,
+      "overflow": [],
+      "paintOverflow": [],
+      "fonts": [
+        "Inter 14"
+      ],
+      "bounds": {
+        "x": 104,
+        "y": 16946,
+        "width": 359.9999999999999,
+        "height": 38
+      },
+      "checks": []
+    },
+    {
+      "state": "Disabled",
+      "source": "a301101d-ddc2-807b-8008-bb871ebb30f3",
+      "main": "a301101d-ddc2-807b-8008-bb9f8a7a5689",
+      "provider": "a301101d-ddc2-807b-8008-bb9f8a8fdf00",
+      "copy": "a301101d-ddc2-807b-8008-bb9fa51c25b2",
+      "paired": true,
+      "overflow": [],
+      "paintOverflow": [],
+      "fonts": [
+        "Inter 14"
+      ],
+      "bounds": {
+        "x": 488,
+        "y": 16946,
+        "width": 360,
+        "height": 38
+      },
+      "checks": []
+    }
+  ]
+}

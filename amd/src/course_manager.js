@@ -22,7 +22,7 @@
  */
 
 import * as Motion from './motion';
-import {enhanceSelect} from './searchable_choices';
+import {enhanceSelect, enhanceMultipleSelect} from './searchable_choices';
 import {snapshotMemberPairs} from './member_selection';
 
 const selectedClass = 'is-selected';
@@ -36,6 +36,7 @@ const hoverPopoverClass = 'local-groupimport-easystud-hover-popover';
 const panelActionOverflowClass = 'local-groupimport-easystud__panel-action--overflow-hidden';
 const guideRefreshEvent = 'easyedu:guide-refresh-highlight';
 const responsiveWorkspaceQuery = '(max-width: 1024px)';
+const filterChoiceControllers = new WeakMap();
 
 const isResponsiveWorkspace = () => {
     return !!(window.matchMedia && window.matchMedia(responsiveWorkspaceQuery).matches);
@@ -4403,7 +4404,44 @@ const updateRoleFilterMode = root => {
 
     const shouldFallback = window.innerWidth < 768;
     toggle.hidden = shouldFallback;
-    select.hidden = !shouldFallback;
+    const choice = filterChoiceControllers.get(select);
+    if (choice) {
+        select.hidden = true;
+        choice.host.hidden = !shouldFallback;
+        if (!shouldFallback) {
+            choice.close();
+        }
+    } else {
+        select.hidden = !shouldFallback;
+    }
+};
+
+// Product hooks/values remain native; shared Kit owns choice markup and paint.
+const bindSearchableFilters = root => {
+    const labels = getLabels(root);
+    root.querySelectorAll('[data-easystud-role-filter], [data-easystud-group-filter], ' +
+        '[data-easystud-grouping-filter], [data-easystud-catalog-grouping-filter]').forEach(select => {
+        const role = select.matches('[data-easystud-role-filter]');
+        const groups = select.matches('[data-easystud-group-filter]');
+        const choice = enhanceMultipleSelect(select, {
+            label: role ? labels.roles : groups ? labels.groups : labels.groupings,
+            search: labels.searchfilteroptions,
+            empty: labels.nofilteroptions,
+            none: labels.filterany,
+            count: labels.filterselectioncount,
+        });
+        filterChoiceControllers.set(select, choice);
+        if (role) {
+            choice.host.hidden = true;
+        }
+    });
+};
+
+const refreshFilterChoice = select => {
+    const choice = select && filterChoiceControllers.get(select);
+    if (choice) {
+        choice.refresh();
+    }
 };
 
 const resetFilters = root => {
@@ -4440,6 +4478,7 @@ const resetFilters = root => {
         button.classList.remove('active', 'btn-primary');
         button.classList.add('btn-outline-secondary');
     });
+    [roleControl, groupControl, groupingControl].forEach(refreshFilterChoice);
 };
 
 const getPaginationConfigs = root => {
@@ -5102,6 +5141,7 @@ const applyFilters = (root, options = {}) => {
 };
 
 const bindFilters = root => {
+    bindSearchableFilters(root);
     const roleSelect = root.querySelector('[data-easystud-role-filter]');
     const groupSelect = root.querySelector('[data-easystud-group-filter]');
     const groupingSelect = root.querySelector('[data-easystud-grouping-filter]');
@@ -5151,6 +5191,7 @@ const bindFilters = root => {
             });
             syncRoleFilterState(root);
             applyFilters(root);
+            refreshFilterChoice(roleSelect);
             updateRoleFilterMode(root);
             emitGuidedCompletion(root, 2);
         });
@@ -7731,6 +7772,7 @@ const bindCatalogFilters = root => {
                 Array.from(select.options).forEach(option => {
                     option.selected = false;
                 });
+                refreshFilterChoice(select);
             }
             if (toggle) {
                 toggle.checked = false;

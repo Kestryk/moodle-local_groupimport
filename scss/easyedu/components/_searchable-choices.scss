@@ -7,7 +7,10 @@
   .easyedu-ui .easyedu-searchable-choice {
     min-inline-size: 0;
     position: relative;
-    font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+    font-family: var(--easyedu-font-family-ui);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.2;
     color: var(--easyedu-field-text);
 
     [hidden] { display: none; }

@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-03 - Searchable multiple filters (source checkpoint)
+
+- Replace native multiple-select presentation with the shared Kit searchable
+  choice in Group/Grouping filters and both group catalogues; retain native
+  selection/filter/reset and mobile role-fallback/grouping visibility rules.
+- Fix inherited text-field/choice density in the canonical SCSS, then copy it
+  byte-identically. No private paint, inline Mustache style, command or Motion
+  override is added. Single Move chooser still uses the shared controller.
+- Publish six paired Foundations states and linked contained EasyStud filter
+  compositions; source and isolated three-width gates pass. Native preview and
+  the deferred human checklist remain separate, not yet a global parity claim.
+
 ## 2026-10-03 - Selected-member local UI preview
 
 - Promote source service/action adapters in dependency order and refresh the
