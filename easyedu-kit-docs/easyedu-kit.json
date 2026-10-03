@@ -50,8 +50,10 @@
       "generatedCssBlob": "c7b7945a536938555cbc77a917d3eb8df69be7e4",
       "emittedPropertySequencesCompared": 12973,
       "compiledCssUnchanged": true,
+      "browserCandidates": {"entity": "09b2eea5b96f49fc470e4005968a575f3d58ba9f"},
       "documentation": "docs/student-entity-field-extraction-2026-10-03.md",
-      "status": "Pushed canonical Kit; consumer extraction static-ready, managed preview pending. Full-body class adoption and Penpot palette/density remain open.",
+      "status": "Canonical Kit/consumer pushed and served at managed Moodle 5.1 b3d3a41 with unchanged CSS/AMD. Nine native/resized modal field cases pass at 1600/768/390; final captures inspected. Full-body class adoption, Penpot palette/density, foreign overlay and human checklist remain open.",
+      "currentPreviewProof": "docs/testing/student-completion-preview-2026-10-03.json",
       "humanVisualValidated": false
     },
     "studentModalFooters": {

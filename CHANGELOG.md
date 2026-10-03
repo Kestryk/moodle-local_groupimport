@@ -11,7 +11,11 @@
   module. All 12,973 emitted CSS sequences and the CSS Git blob remain unchanged.
   Native fields, selectors, layout, focus and Motion are preserved. Document
   remaining public-class, body-list/image and Penpot caption palette work.
-  Managed source promotion and extended field browser proof are next.
+  Managed source promotion/cache and nine extended native/resized field cases
+  pass at 1600/768/390; nine final captures inspected, eighteen media pinned.
+  Source pin gates retain old proof while tracking the explicit new scenario.
+  Native conditional content/focus preserved; foreign overlay/body-wide and
+  human acceptance remain open. No Save, Send, Confirm, drop or fixture writes.
 
 ## 2026-10-03 - Student Management completion queue (candidate)
 

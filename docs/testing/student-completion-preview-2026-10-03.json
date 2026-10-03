@@ -20,6 +20,28 @@
     "production": false
   },
   "evidenceRoot": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated",
+  "fieldExtractionPreview": {
+    "kitCommit": "0e1466d2f9ecb7087c59c8b831207f78d8390d3d",
+    "consumerCommit": "6a549b6aae5803768e26edadf1c70440f6ad14a3",
+    "testedRuntimeHead": "b3d3a415a0f8bcfdc6bec494aa49a660cb8382ba",
+    "scenarioBlob": "09b2eea5b96f49fc470e4005968a575f3d58ba9f",
+    "runId": "easystud-authenticated-20261003T065918964Z-32192",
+    "status": "passed",
+    "modalCases": 9,
+    "widths": [1600, 768, 390],
+    "scope": "Participant read-only native eye; Group/Grouping desktop settings opened then resized. Field caption/value/control typography and containment; original conditional fields/lists, footer and Participant return focus. Native close/cancel only",
+    "caption": {"font": "Inter", "size": "12.16px", "color": "#62788E", "weight": 600},
+    "value": {"font": "Inter", "size": "14.08px", "weight": 400},
+    "editableControlSize": "13.76px",
+    "generatedCssBlobUnchanged": true,
+    "managerBuildBlobUnchanged": true,
+    "finalAgentCapturesInspected": 9,
+    "pinnedMedia": 18,
+    "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true, "fixtureRequested": false},
+    "retentionDryRun": {"deleted": 0, "eligible": 0, "errors": 0},
+    "remainingVisualGap": "Foreign CCB sticky trigger overlaps narrow modal body/footer edges in captures, though tested action centres remain clear. Image/file, lists/CSV/Close and Penpot body parity are not certified",
+    "humanVisualValidated": false
+  },
   "scopedRuns": [
     {
       "family": "native destructive confirmations",

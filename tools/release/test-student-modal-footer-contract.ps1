@@ -20,7 +20,11 @@ foreach ($module in $pin.browserCandidates.PSObject.Properties) {
         'message' { 'student-message-footer-preview.spec.js' }
     }
     $actual = & git -C $root hash-object ("tools/playwright/$name")
-    if ($actual -ne $module.Value) { throw "Current scenario pin drift: $name" }
+    # The body-field extension has its own pin; historical footer proof stays immutable.
+    $currentScenario = if ($ledger.consumerSync.studentEntityFieldsExtraction.browserCandidates.($module.Name)) {
+        $ledger.consumerSync.studentEntityFieldsExtraction.browserCandidates.($module.Name)
+    } else { $module.Value }
+    if ($actual -ne $currentScenario) { throw "Current scenario pin drift: $name" }
 }
 $template = Get-Content -Raw -LiteralPath (Join-Path $root 'templates/manage.mustache')
 if ($template -notmatch 'class="local-groupimport-easystud-modal easyedu-modal-layer"\s+data-easystud-move-modal="1"') {
