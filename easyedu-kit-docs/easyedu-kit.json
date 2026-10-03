@@ -260,6 +260,25 @@
       "runtimeProof": "docs/testing/student-completion-preview-2026-10-03.json",
       "humanVisualValidated": false
     },
+    "studentEntityMetadataCatalogue20261003": {
+      "sourceCandidateCommit": "f9b21a4c61d2bcdd5477b3efd84bdf9063e4905f",
+      "runtimeCommit": "55b1e1ed53459d79eb1b759a14a24c4f5fd3b944",
+      "scope": "Native Participant/Group/Grouping metadata counts, chips, populated and empty disclosure lists; paired Foundations Library/Standard publication and linked EasyStud page-04 compositions.",
+      "modules": {
+        "scss/easyedu/components/_entity-metadata.scss": "16f9c79c6a2f8a0d3965e66e73ebd6c295db65d2",
+        "scss/components/_settings-modal.scss": "3800705d0b3c39a6919dbda57d3cf1133fc04ae7",
+        "amd/src/course_manager.js": "87e9719d78ce2692c0323eba0766a87018645ac2",
+        "templates/manage.mustache": "b57b25b7220c60c56676ac62081239e8dc62f8b8",
+        "amd/src/motion.js": "3ecbd088a82bf7b91a003dfcbf22035f5cc715d2",
+        "styles.css": "eb5f9ba57245b6c9acaaa77b312c6f56f595f153"
+      },
+      "proofRun": "easystud-authenticated-20261003T173718909Z-36552",
+      "runtimeProof": "docs/testing/student-entity-metadata-preview-2026-10-03.json",
+      "penpotReadback": "docs/testing/student-entity-metadata-penpot-2026-10-03.json",
+      "documentation": "docs/student-entity-metadata-native-2026-10-03.md",
+      "status": "Nine native cases pass; nine Foundation components are paired and linked into four EasyStud compositions with no overflow. Source 650 is retained; Penpot-only mapping is 600. Human visual validation remains open.",
+      "humanVisualValidated": false
+    },
     "studentEntityFieldsExtraction": {
       "sourceCommit": "0e1466d2f9ecb7087c59c8b831207f78d8390d3d",
       "consumerBaseCommit": "660840ea1b77419b5a470458e179af10ff879fc7",

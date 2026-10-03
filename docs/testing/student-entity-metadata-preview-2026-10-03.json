@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "runId": "easystud-authenticated-20261003T173718909Z-36552",
+  "sourceCandidateCommit": "f9b21a4c61d2bcdd5477b3efd84bdf9063e4905f",
+  "runtimeCommit": "55b1e1ed53459d79eb1b759a14a24c4f5fd3b944",
+  "status": "passed",
+  "selectedTests": 1,
+  "cases": 9,
+  "widths": [1600, 768, 390],
+  "entities": {
+    "participant": {
+      "lists": {"Roles": 1, "Groups": 6, "Groupings": 4},
+      "emptyState": null
+    },
+    "group": {
+      "lists": {"Members": 1, "Groupings": 0},
+      "emptyState": "This group is not assigned to any grouping yet."
+    },
+    "grouping": {
+      "lists": {"Groups": 1},
+      "emptyState": null
+    }
+  },
+  "geometry": {
+    "detailCount": {"fontPx": 12.16, "weight": 600, "heightPx": 22.328125},
+    "settingsCount": {"fontPx": 12.48, "weight": 600, "heightPx": 25.8125},
+    "detailEntry": {"fontPx": 12.8, "weight": 600},
+    "settingsPrimary": {"fontPx": 13.44, "sourceWeight": 650},
+    "chip": {"fontPx": 12.16, "weight": 600}
+  },
+  "assertions": {
+    "visibleEntriesOrNativeEmptyState": true,
+    "semanticCountsAndChips": true,
+    "hiddenCsvTablesRemainHidden": true,
+    "contentContainedAtAllWidths": true,
+    "normalMotionDisclosureObserved": true,
+    "pluginBusinessPostCount": 0
+  },
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureCleanupComplete": true
+  },
+  "artifacts": {
+    "root": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261003T173718909Z-36552",
+    "pinnedScreenshots": 9,
+    "retentionUntilUtc": "2026-11-02T18:12:58.2286887Z",
+    "destructiveRetentionApplied": false
+  },
+  "limits": [
+    "Group and Grouping are opened through the native desktop entry before resize; this is not proof of a separate mobile entry.",
+    "No Save, CSV export, upload, transfer or membership mutation was executed.",
+    "Human visual acceptance and the global checklist remain open."
+  ]
+}
