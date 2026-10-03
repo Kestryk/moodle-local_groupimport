@@ -46,6 +46,8 @@ test('Student Skeleton softly appears and keeps native loading lifecycle', async
                 const rect = node.getBoundingClientRect();
                 return {animation: loading.animationName, appearance: loading.animationDuration,
                     duration: pseudo.animationDuration, cueColor: getComputedStyle(cue).backgroundColor,
+                    cueToken: loading.getPropertyValue('--easyedu-loading-surface').trim(),
+                    softToken: loading.getPropertyValue('--easyedu-loading-surface-soft').trim(),
                     border: outer.borderTopColor, railWidth: outer.borderTopWidth, frameAnimation: outer.animationName,
                     cardRail: cardStyle.borderInlineStartColor, cardWidth: cardStyle.borderInlineStartWidth,
                     x: rect.x, right: rect.right, viewport: innerWidth,
@@ -53,7 +55,11 @@ test('Student Skeleton softly appears and keeps native loading lifecycle', async
             });
             expect(proof.animation).toBe('easyedu-skeleton-appear');
             expect(proof.appearance).toBe('0.32s'); expect(proof.duration).toBe('3.2s');
-            expect(proof.cueColor).toBe('rgb(243, 246, 250)');
+            // __loading-surface uses the primary cue, not the secondary soft role.
+            // Assert both token roles as well as actual paint, never only a token link.
+            expect(proof.cueToken.toLowerCase()).toBe('#e8eff5');
+            expect(proof.softToken.toLowerCase()).toBe('#f3f6fa');
+            expect(proof.cueColor).toBe('rgb(232, 239, 245)');
             expect(proof.frameAnimation).toBe('none'); expect(proof.railWidth).toBe('2px');
             expect(proof.cardWidth).toBe('2px'); expect(proof.cardRail).toBe('rgb(170, 203, 229)');
             expect(proof.x).toBeGreaterThanOrEqual(0); expect(proof.right).toBeLessThanOrEqual(width + 1);

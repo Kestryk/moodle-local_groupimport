@@ -14,6 +14,8 @@
       "foundationReadback": "docs/testing/student-soft-loading-foundations-2026-10-03.json",
       "isolatedRun": "loading-soft-20261003-c",
       "nativeScenario": "student-soft-loading-preview.spec.js",
+      "historicalFailedSpecBlob": "cb885078c6b09e7ab0b0bcd7770b6449cad26985",
+      "failedPreviewProof": "docs/testing/student-soft-loading-preview-failure-2026-10-03.json",
       "humanAccepted": false,
       "nativePreviewVerified": false,
       "modules": {
@@ -24,7 +26,7 @@
         "scss/views/_mass-import.scss": "78b588615c0b5cccc2dd0779eb80dfbf244adc42",
         "scss/views/_admin-settings.scss": "fdd5af70f6244765760596eca4e2017c7d889fcd",
         "styles.css": "2e5d6e664791b6e8bebffeff5ce1ae807517e24c",
-        "tools/playwright/student-soft-loading-preview.spec.js": "cb885078c6b09e7ab0b0bcd7770b6449cad26985"
+        "tools/playwright/student-soft-loading-preview.spec.js": "7b05053d8a51cf9b55af209081412795859ef366"
       }
     },
     "studentMoreFilters20261003": {
