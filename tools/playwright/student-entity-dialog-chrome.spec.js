@@ -33,6 +33,47 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
         const title = modal.locator('.easyedu-modal-title');
         await expect(title).toHaveCSS('font-size', '16px');
         await expect(title).toHaveCSS('color', 'rgb(38, 72, 97)');
+        const close = modal.locator('.local-groupimport-easystud-modal__close:visible');
+        await expect(close).toHaveCount(1);
+        await expect(close).toHaveCSS('width', '36.8px');
+        await expect(close).toHaveCSS('height', '36.8px');
+        await expect(close).toHaveCSS('align-items', 'center');
+        await expect(close).toHaveCSS('justify-content', 'center');
+        const closeBaseline = await close.evaluate(element => {
+            const css = getComputedStyle(element), rect = element.getBoundingClientRect();
+            const glyph = element.querySelector('.fa, [aria-hidden="true"]')?.getBoundingClientRect();
+            return {
+                background: css.backgroundColor,
+                color: css.color,
+                glyphCenterDeltaX: glyph ? Math.abs(glyph.x + glyph.width / 2 - rect.x - rect.width / 2) : null,
+                glyphCenterDeltaY: glyph ? Math.abs(glyph.y + glyph.height / 2 - rect.y - rect.height / 2) : null,
+            };
+        });
+        if (closeBaseline.glyphCenterDeltaX !== null) {
+            expect(closeBaseline.glyphCenterDeltaX).toBeLessThanOrEqual(1);
+            expect(closeBaseline.glyphCenterDeltaY).toBeLessThanOrEqual(1);
+        }
+        await close.hover();
+        const closeHover = await close.evaluate(element => {
+            const css = getComputedStyle(element);
+            const probe = document.createElement('span');
+            probe.style.color = 'var(--easyedu-danger)';
+            probe.style.backgroundColor = 'var(--easyedu-danger-soft)';
+            element.append(probe);
+            const probeCss = getComputedStyle(probe);
+            const result = {
+                background: css.backgroundColor,
+                color: css.color,
+                expectedBackground: probeCss.backgroundColor,
+                expectedColor: probeCss.color,
+            };
+            probe.remove();
+            return result;
+        });
+        expect(closeHover.background).not.toBe(closeBaseline.background);
+        expect(closeHover.background).toBe(closeHover.expectedBackground);
+        expect(closeHover.color).toBe(closeHover.expectedColor);
+        records.push({kind, width, closeBaseline, closeHover});
         await expect(modal.locator('.easyedu-entity-dialog__eyebrow')).toHaveCSS('font-size', '10px');
         await expect(modal.locator('.easyedu-entity-dialog__icon')).toHaveCSS('width', '32px');
         await expect(modal.locator('.easyedu-entity-dialog__icon')).toHaveCSS('color', 'rgb(15, 108, 191)');
@@ -168,8 +209,9 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
                 await expect(modal.locator('[name="enrolmentkey"], [name="imagefile"], [name="deletepicture"]')).toHaveCount(kind === 'group' ? 3 : 0);
                 await expect(modal.locator('.easyedu-entity-dialog__actions [type="submit"]')).toHaveCSS('color', 'rgb(255, 255, 255)');
                 await inspect(modal, kind, width);
-                await modal.locator('.easyedu-entity-dialog__actions [data-easystud-close-advanced-settings]').click();
+                await modal.locator('.local-groupimport-easystud-modal__close').click();
                 await expect(modal).toHaveCount(0);
+                await expect(direct).toBeFocused();
             }
         }
         expect(errors).toEqual([]);
