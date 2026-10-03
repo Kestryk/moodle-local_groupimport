@@ -7,10 +7,11 @@
     "batch": "EED-UI-2026-0073",
     "studentNestedFilterClosure20261004": {
       "kitCommit": "7599e6c",
-      "status": "Kit 0.4.74 source candidate: collapsing More Filters explicitly closes active searchable choices inside the panel in the same user action, without changing native values or issuing requests. Generated AMD, managed native proof and human acceptance remain open.",
+      "status": "Kit 0.4.74 served: collapsing More Filters explicitly closes active searchable choices inside the panel in the same user action, without changing native values or issuing requests. Generated AMD and nine managed native cycles pass at 1600/768/390; human acceptance remains open.",
       "documentation": "docs/student-nested-filter-closure-2026-10-04.md",
+      "currentPreviewProof": "docs/testing/student-nested-filter-close-preview-2026-10-04.json",
       "humanAccepted": false,
-      "nativePreviewVerified": false
+      "nativePreviewVerified": true
     },
     "studentMoreFiltersLayout20261003": {
       "kitCommit": "6c5aba1",
