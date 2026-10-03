@@ -1,7 +1,7 @@
 // Responsive helpers for EasyEdu plugin views.
 
 @use "focus";
-@use "control-treatment" as controls;
+@use "forms";
 
 @mixin responsive-stack($breakpoint: 52rem) {
   @media (max-width: $breakpoint) {
@@ -379,29 +379,7 @@
 }
 
 @mixin mobile-filter-disclosure-trigger {
-  align-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: var(--easyedu-control-radius);
-  color: var(--easyedu-text-muted);
-  display: inline-flex;
-  @include controls.filter-disclosure-type;
-  gap: 0.32rem;
-  justify-content: center;
-  min-height: var(--easyedu-touch-target-min);
-  padding: 0.32rem 0.5rem;
-
-  &:hover,
-  &:focus-visible,
-  &[aria-expanded="true"] {
-    background: var(--easyedu-primary-soft);
-    color: var(--easyedu-primary-strong);
-    outline: 0;
-  }
-
-  &:focus-visible {
-    @include focus.ring;
-  }
+  @include forms.filter-disclosure-trigger(touch);
 }
 
 @mixin mobile-context-backdrop($z-index: 1070) {

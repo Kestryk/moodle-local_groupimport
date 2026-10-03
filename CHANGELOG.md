@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-03 - More-filters shared hover and touch (source checkpoint)
+
+- Consume the canonical calm hover/regular border and shared legacy-mobile
+  delegation, with no plugin paint patch. Rebuilt CSS changes only four hover
+  rules; all controller, template, API and original Motion bytes are retained.
+- Reconcile five Wide/five Touch Foundation pairs and sixteen visible EasyStud
+  controls; measure actual painted text/chevron gap and centres after settling.
+- Source and isolated gates pass; native preview and human checklist remain
+  separate. No fixture or business command is run by this source increment.
+
 ## 2026-10-03 - Searchable multiple filters local preview
 
 - Serve the paired Kit/controller/field-density candidate through the managed

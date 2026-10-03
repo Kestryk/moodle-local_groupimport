@@ -492,8 +492,8 @@
   }
 
   &:hover {
-    background: color-mix(in srgb, var(--easyedu-primary-soft) 58%, transparent 42%);
-    border-color: color-mix(in srgb, var(--easyedu-primary) 18%, transparent 82%);
+    background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, var(--easyedu-surface) 28%);
+    border-color: var(--easyedu-control-border);
     color: var(--easyedu-primary-strong);
   }
 

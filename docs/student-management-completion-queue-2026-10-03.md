@@ -93,6 +93,10 @@ assets. Failed runs and backups remain recoverable.
 
 ## Execution log
 
+- SM-17 Kit 0.4.61 unifies quiet hover and legacy mobile delegation. Five Wide
+  and five Touch Foundation pairs and sixteen visible EasyStud controls pass
+  settled geometry/paint checks; original native behavior/Motion is unchanged.
+  Native preview is pending; see `student-more-filters-2026-10-03.md`.
 - SM-14 shares Kit 0.4.60 single/multiple search/lifecycle/paint; canonical
   inherited-font longhands fix the actual field-density fallback. Six paired
   Foundations states and contained EasyStud Desktop/Mobile compositions are
