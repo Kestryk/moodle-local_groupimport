@@ -459,6 +459,14 @@
   toggle recipes; do not create another filepicker family.
 - Block plugin business POST and keep persisted image/file-area proof and human
   validation as separate gates.
+## 2026-10-03 - Entity metadata native proof and paired catalogue
+
+- Pass nine native Participant/Group/Grouping list, count, chip and empty-state
+  cases at 1600/768/390 with no business POST and complete cleanup.
+- Publish nine canonical Foundation metadata components with ordinary linked
+  Standard instances; retain source 650 and map it to supported Penpot 600 only.
+- Link the family into four EasyStud page-04 compositions and correct their
+  containment. Human validation and the global checklist remain open.
 
 ## 2026-10-03 - Native entity metadata catalogue audit candidate
 
