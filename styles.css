@@ -20239,7 +20239,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   opacity: 0.62;
 }
 
-.easyedu-ui .easyedu-filter-disclosure {
+.easyedu-ui :where(.easyedu-filter-disclosure) {
   align-items: center;
   background: transparent;
   border: 1px solid transparent;
@@ -20259,23 +20259,23 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.42rem 0.68rem;
   width: 100%;
 }
-.easyedu-ui .easyedu-filter-disclosure:hover {
+.easyedu-ui :where(.easyedu-filter-disclosure):hover {
   background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, var(--easyedu-surface) 28%);
   border-color: var(--easyedu-control-border);
   color: var(--easyedu-primary-strong);
 }
-.easyedu-ui .easyedu-filter-disclosure:focus-visible {
+.easyedu-ui :where(.easyedu-filter-disclosure):focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
 }
-.easyedu-ui .easyedu-filter-disclosure[aria-expanded=true], .easyedu-ui .easyedu-filter-disclosure.is-expanded {
+.easyedu-ui :where(.easyedu-filter-disclosure)[aria-expanded=true], .easyedu-ui :where(.easyedu-filter-disclosure).is-expanded {
   background: var(--easyedu-primary-soft);
   border-color: color-mix(in srgb, var(--easyedu-primary) 24%, transparent 76%);
   color: var(--easyedu-primary-strong);
 }
-.easyedu-ui .easyedu-filter-disclosure:disabled, .easyedu-ui .easyedu-filter-disclosure[aria-disabled=true] {
+.easyedu-ui :where(.easyedu-filter-disclosure):disabled, .easyedu-ui :where(.easyedu-filter-disclosure)[aria-disabled=true] {
   background: transparent;
   border-color: transparent;
   color: var(--easyedu-text-subtle);
