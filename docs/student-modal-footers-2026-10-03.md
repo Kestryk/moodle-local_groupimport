@@ -142,6 +142,14 @@ This does not change a scroll container or hide a sticky control. A foreign
 CCB trigger remains visible in some narrow entry captures; body-wide overlay
 acceptance stays open even when this tranche's header/footer targets pass.
 
+The first nine Move cases `easystud-authenticated-20261003T025711797Z-13952`
+pass paired geometry/options, but the narrow image exposes the native EasyStud
+navigation trigger over help. The Move fixed root was missing the existing
+public `easyedu-modal-layer`, unlike entity/Clipboard. Add that class only and
+assert its layer plus painted leading help characters in the browser candidate.
+Do not fix stacking on an inner surface or hide the trigger. Prior geometry
+proof stays recorded as partial visual evidence, not whole-modal acceptance.
+
 ## Efficiency
 
 No per-task token/billing telemetry is available. Avoidable cost came from a

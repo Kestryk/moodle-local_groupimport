@@ -64,6 +64,17 @@ test('Student move dialogs preserve native participant and group branches', asyn
             await trigger.click();
             const dialog = root.locator('[data-easystud-move-modal]');
             await expect(dialog).toBeVisible();
+            await expect(dialog).toHaveCSS('z-index', '1070');
+            const helpPaint = await dialog.locator('[data-easystud-move-modal-help]').evaluate(element => {
+                const text = element.firstChild;
+                if (!text || text.nodeType !== Node.TEXT_NODE) return false;
+                const range = document.createRange();
+                range.setStart(text, 0);
+                range.setEnd(text, Math.min(text.length, 4));
+                const r = range.getBoundingClientRect();
+                return element.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2));
+            });
+            expect(helpPaint, 'Native navigation must not cover the beginning of modal help').toBe(true);
             // Measure the completed normal-motion shell, not an opening scale.
             await dialog.locator('.local-groupimport-easystud-modal__dialog').evaluate(node =>
                 Promise.all(node.getAnimations().map(animation => animation.finished.catch(() => {}))));
