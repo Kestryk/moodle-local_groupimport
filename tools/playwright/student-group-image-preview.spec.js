@@ -133,8 +133,10 @@ test('Group image picker preserves shared preview drop and toggle geometry', asy
         expect(geometry.filename.right).toBeLessThanOrEqual(geometry.filepicker.right + .5);
         expect(geometry.icon.width).toBeCloseTo(32, 0);
         expect(geometry.icon.height).toBeCloseTo(32, 0);
-        expect(geometry.iconPseudo.left).toBe('16px');
-        expect(geometry.iconPseudo.top).toBe('16px');
+        // The 32px outer tile has a 1px border, so 50% of its 30px content
+        // box is 15px. Validate that painted centre instead of the outer half.
+        expect(parseFloat(geometry.iconPseudo.left)).toBeCloseTo((geometry.icon.width - 2) / 2, 1);
+        expect(parseFloat(geometry.iconPseudo.top)).toBeCloseTo((geometry.icon.height - 2) / 2, 1);
 
         records.push({width, chosenName, droppedName: `dropped-group-${width}.png`,
             enabledLabel, disabledLabel, dragPaint, geometry});
