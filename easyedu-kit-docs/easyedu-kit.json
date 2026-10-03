@@ -8,7 +8,8 @@
     "studentSoftLoading20261003": {
       "sourceCommit": "0b491e404e84ad611d83404fde6f1f33fff265c3",
       "consumerBehaviorBaseline": "dce0c39e88c1512809df28daba5074dd89081600",
-      "status": "Twelve Foundation pairs, thirty-nine contained linked product specimens and isolated loop/fade checks pass. Native preview and whole-route loading compositions pending; human acceptance false.",
+      "status": "Served local preview; native Student loading paint and original exit/entry lifecycle pass at 1600/768/390. Whole-route compositions and human acceptance remain open.",
+      "currentPreviewProof": "docs/testing/student-soft-loading-preview-2026-10-03.json",
       "productReadback": "docs/testing/student-soft-loading-product-2026-10-03.json",
       "documentation": "docs/student-soft-loading-2026-10-03.md",
       "foundationReadback": "docs/testing/student-soft-loading-foundations-2026-10-03.json",
@@ -17,7 +18,7 @@
       "historicalFailedSpecBlob": "cb885078c6b09e7ab0b0bcd7770b6449cad26985",
       "failedPreviewProof": "docs/testing/student-soft-loading-preview-failure-2026-10-03.json",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "modules": {
         "scss/easyedu/_tokens.scss": "903328965387286c0c5955f805943959ed271a3b",
         "scss/easyedu/components/_loading.scss": "fc4f30b58666be46d126d1bb03817302ab324d11",
