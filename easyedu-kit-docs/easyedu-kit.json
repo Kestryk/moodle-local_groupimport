@@ -1,13 +1,13 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.75",
+  "version": "0.4.76",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
     "studentMoveOriginCheckbox20261004": {
       "kitCommit": "d0e6afc",
-      "status": "Kit 0.4.75 served: the Move group origin option consumes the canonical toggle-check, including the shared responsive 44px hit target, while retaining its native checkbox and business hook. Managed open/Cancel proof passes at 1600/768/390; product Penpot propagation and human acceptance remain open.",
+      "status": "Kit 0.4.76 candidate: searchable multiple filters gain the shared localized clear-all control. The prior Move-group toggle runtime proof remains valid; clear-all consumer preview, Penpot propagation and human acceptance are tracked separately.",
       "documentation": "docs/student-move-origin-checkbox-2026-10-04.md",
       "currentPreviewProof": "docs/testing/student-move-origin-checkbox-preview-2026-10-04.json",
       "humanAccepted": false,

@@ -241,6 +241,7 @@ $string['searchfilteroptions'] = 'Search options';
 $string['nofilteroptions'] = 'No matching options';
 $string['filterany'] = 'Any';
 $string['filterselectioncount'] = '{$a} selected';
+$string['clearfilterselection'] = 'Clear filter selection';
 $string['movedestinationgrouping'] = 'Destination grouping';
 $string['movedialoggroups'] = 'Choose the grouping that should receive the selected groups.';
 $string['movedialogparticipants'] = 'Choose the group that should receive the selected participants.';

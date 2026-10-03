@@ -304,6 +304,7 @@ function local_groupimport_build_manage_template_data(
         'nofilteroptions' => get_string('nofilteroptions', 'local_groupimport'),
         'filterany' => get_string('filterany', 'local_groupimport'),
         'filterselectioncount' => get_string('filterselectioncount', 'local_groupimport', '__count__'),
+        'clearfilterselection' => get_string('clearfilterselection', 'local_groupimport'),
         'searchgroupsplaceholder' => get_string('searchgroups', 'local_groupimport'),
         'searchparticipantslabel' => get_string('searchparticipantslabel', 'local_groupimport'),
         'searchparticipants' => get_string('searchparticipants', 'local_groupimport'),

@@ -4441,6 +4441,7 @@ const bindSearchableFilters = root => {
             empty: labels.nofilteroptions,
             none: labels.filterany,
             count: labels.filterselectioncount,
+            clear: labels.clearfilterselection,
         });
         filterChoiceControllers.set(select, choice);
         if (role) {
