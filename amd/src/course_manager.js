@@ -1555,7 +1555,9 @@ const applyStructureSearch = (root, options = {}) => {
         const hasGroups = getGroupsInGrouping(grouping).length > 0;
         const matchesOccupancy = occupancyValue === 'all' ||
             (occupancyValue === 'filled' && hasGroups) || (occupancyValue === 'empty' && !hasGroups);
-        grouping.hidden = !matchesSearchText(grouping, groupingQuery) || !matchesOccupancy;
+        const filterhidden = !matchesSearchText(grouping, groupingQuery) || !matchesOccupancy;
+        grouping.setAttribute('data-easystud-grouping-filter-hidden', filterhidden ? '1' : '0');
+        grouping.hidden = filterhidden;
     });
     syncFilteredEmptyStates(root);
     if (options.pagination !== false) {
@@ -4619,9 +4621,15 @@ const hasActiveListFilters = (root, list) => {
     return false;
 };
 
+const isItemFilteredOut = item => item.hasAttribute('data-easystud-filter-hidden') ||
+    item.getAttribute('data-easystud-catalog-filter-hidden') === '1' ||
+    item.getAttribute('data-easystud-catalog-search-hidden') === '1' ||
+    item.getAttribute('data-easystud-structure-search-hidden') === '1' ||
+    item.getAttribute('data-easystud-grouping-filter-hidden') === '1';
+
 const getSelectableResultItems = (list, config) => {
     return Array.from(list.children).filter(item => {
-        if (!item.matches(config.selector)) {
+        if (!item.matches(config.selector) || isItemFilteredOut(item)) {
             return false;
         }
         return !item.hidden || item.getAttribute('data-easystud-page-hidden') === '1';
@@ -4821,7 +4829,7 @@ const syncPagination = root => {
 
         Array.from(list.querySelectorAll('[data-easystud-page-hidden="1"]')).forEach(item => {
             item.removeAttribute('data-easystud-page-hidden');
-            if (!item.hasAttribute('data-easystud-filter-hidden')) {
+            if (!isItemFilteredOut(item)) {
                 item.hidden = false;
             }
         });
