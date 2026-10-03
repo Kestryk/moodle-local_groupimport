@@ -3617,7 +3617,7 @@ const bindAdvancedSettings = root => {
             return;
         }
         event.preventDefault();
-        openAdvancedSettingsModal(root, item);
+        openAdvancedSettingsModal(root, item, button);
     });
 
     root.addEventListener('click', event => {
@@ -4024,7 +4024,7 @@ const renderAdvancedListSection = (title, rows, columns, exportname, emptylabel,
     '</details>';
 };
 
-const openAdvancedSettingsModal = (root, item) => {
+const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
     const labels = getLabels(root);
     const type = getAdvancedValue(item, 'type');
     const isgroup = type === 'group';
@@ -4193,9 +4193,15 @@ const openAdvancedSettingsModal = (root, item) => {
             '</div>' +
         '</div>';
 
+    const closeModal = () => hideEasyStudModal(modal, () => {
+        modal.remove();
+        if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
+            returnFocus.focus({preventScroll: true});
+        }
+    });
     modal.addEventListener('click', event => {
         if (event.target === modal || event.target.closest('[data-easystud-close-advanced-settings]')) {
-            modal.remove();
+            closeModal();
         }
     });
     root.appendChild(modal);
@@ -7221,23 +7227,6 @@ const bindContextMenu = (root, courseId) => {
         return !!header && !header.querySelector(':scope > [data-easystud-open-advanced-settings]');
     };
 
-    const restoreContextFocusAfterAdvancedSettingsClose = opener => {
-        const modal = root.querySelector('[data-easystud-advanced-settings-modal]');
-        if (!modal || !opener) {
-            return;
-        }
-        modal.addEventListener('click', event => {
-            if (event.target !== modal && !event.target.closest('[data-easystud-close-advanced-settings]')) {
-                return;
-            }
-            window.setTimeout(() => {
-                if (document.contains(opener)) {
-                    opener.focus({preventScroll: true});
-                }
-            }, 0);
-        });
-    };
-
     const setVisibleActions = (type, target) => {
         const items = getContextItems(type, target);
         menu.querySelectorAll('[data-easystud-context-action]').forEach(button => {
@@ -7616,8 +7605,7 @@ const bindContextMenu = (root, courseId) => {
             }
         } else if (action === 'group-open-advanced-settings') {
             const opener = document.activeElement;
-            openAdvancedSettingsModal(root, target);
-            restoreContextFocusAfterAdvancedSettingsClose(opener);
+            openAdvancedSettingsModal(root, target, opener);
         } else if (action === 'copy-group-name') {
             copyText(getContextItems('group', target).map(group => getGroupName(group)).filter(Boolean).join('\n'));
         } else if (action === 'group-move-selected') {
