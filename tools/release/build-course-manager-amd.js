@@ -18,15 +18,19 @@ const terser = require(path.join(path.resolve(terserPackageRoot), 'terser'));
 const source = fs.readFileSync(sourcePath, 'utf8');
 const motionImport = "import * as Motion from './motion';";
 const choicesImport = "import {enhanceSelect} from './searchable_choices';";
-if (!source.includes(motionImport) || !source.includes('export const init =')) {
+const membersImport = "import {snapshotMemberPairs} from './member_selection';";
+if (!source.includes(motionImport) || !source.includes(choicesImport) ||
+        !source.includes(membersImport) || !source.includes('export const init =')) {
     throw new Error('The course manager AMD source does not contain its expected Motion import and init export.');
 }
 
 const namedSource = source
     .replace(motionImport, '')
     .replace(choicesImport, 'const {enhanceSelect} = Choices;')
+    .replace(membersImport, 'const {snapshotMemberPairs} = MemberSelection;')
     .replace('export const init =', 'const init =');
-const wrappedSource = `define("${moduleName}", ["local_groupimport/motion", "local_groupimport/searchable_choices"], function(Motion, Choices) {\n` +
+const wrappedSource = `define("${moduleName}", ["local_groupimport/motion", "local_groupimport/searchable_choices", ` +
+    `"local_groupimport/member_selection"], function(Motion, Choices, MemberSelection) {\n` +
     `${namedSource}\nreturn {init: init};\n});`;
 
 terser.minify(

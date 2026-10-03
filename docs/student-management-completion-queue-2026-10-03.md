@@ -65,8 +65,12 @@ The local fixture request is separate from browser-open/cancel proof.
 
 SM-11 service is prepared with delegated transaction, native capability and
 membership restrictions. PHP lint and isolated transaction/API doubles pass;
-six isolated-Moodle PHPUnit cases are versioned but not executed. No endpoint,
-UI binding or new runtime deployment yet. See
+six isolated-Moodle PHPUnit cases are versioned but not executed. The guarded
+endpoint and top/context/mobile action bindings are now source candidates;
+three isolated DOM scenarios pass, with original Motion/CSS and legacy command
+bodies retained. Product transfer dialogs are published and agent-inspected.
+New runtime promotion/native open-cancel proof and remaining action specimens
+are next; no native data-changing transfer has been tested. See
 `docs/student-selected-members-transfer-2026-10-03.md` for precise proof/gaps.
 
 1. Reconcile the stale Ungrouped contract before using it as a gate.

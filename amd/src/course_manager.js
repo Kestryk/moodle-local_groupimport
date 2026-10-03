@@ -23,6 +23,7 @@
 
 import * as Motion from './motion';
 import {enhanceSelect} from './searchable_choices';
+import {snapshotMemberPairs} from './member_selection';
 
 const selectedClass = 'is-selected';
 const disabledSelectionClass = 'is-selection-disabled';
@@ -5496,7 +5497,11 @@ const renderMobileActionBar = (root, counts, activetype) => {
             '[data-easystud-move-selected-participants]'
         );
     } else if (activetype === 'member') {
-        actionSelectors.push('[data-easystud-message-selected-participants]', '[data-easystud-delete-selected-members]');
+        actionSelectors.push(
+            '[data-easystud-move-selected-members]',
+            '[data-easystud-delete-selected-members]',
+            '[data-easystud-message-selected-participants]'
+        );
     } else if (activetype === 'group') {
         actionSelectors.push(
             '[data-easystud-move-selected-groups]',
@@ -5627,6 +5632,10 @@ const updateSelectionActions = root => {
     });
 
     root.querySelectorAll('[data-easystud-delete-selected-members]').forEach(button => {
+        button.disabled = selectedMembers.length === 0;
+    });
+
+    root.querySelectorAll('[data-easystud-move-selected-members]').forEach(button => {
         button.disabled = selectedMembers.length === 0;
     });
 
@@ -6701,6 +6710,7 @@ const bindMoveModal = (root, courseId) => {
     const modal = root.querySelector('[data-easystud-move-modal]');
     const openParticipants = root.querySelectorAll('[data-easystud-move-selected-participants]');
     const openGroups = root.querySelectorAll('[data-easystud-move-selected-groups]');
+    const openMembers = root.querySelectorAll('[data-easystud-move-selected-members]');
     const closeButtons = root.querySelectorAll('[data-easystud-close-move-modal]');
     const confirmButton = root.querySelector('[data-easystud-confirm-move]');
     const destination = root.querySelector('[data-easystud-move-destination]');
@@ -6717,6 +6727,9 @@ const bindMoveModal = (root, courseId) => {
     }
 
     let contextType = '';
+    let memberSnapshot = [];
+    let memberBusy = false;
+    let returnFocus = null;
     const chooserLabels = () => ({
         label: label.textContent,
         search: labels.searchdestination || labels.searchgroupslabel || '',
@@ -6725,17 +6738,37 @@ const bindMoveModal = (root, courseId) => {
     const chooser = enhanceSelect(destination, chooserLabels());
 
     const closeModal = () => {
+        // Cancel cannot undo an atomic command already in flight.
+        if (memberBusy) {
+            return;
+        }
         chooser.close();
         hideEasyStudModal(modal, () => {
             contextType = '';
+            memberSnapshot = [];
+            if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
+                returnFocus.focus({preventScroll: true});
+            }
+            returnFocus = null;
         });
+    };
+
+    const setMemberBusy = busy => {
+        memberBusy = busy;
+        modal.setAttribute('aria-busy', String(busy));
+        closeButtons.forEach(button => {
+            button.disabled = busy;
+        });
+        destination.disabled = busy;
+        chooser.refresh(chooserLabels());
+        confirmButton.disabled = busy || !destination.options.length;
     };
 
     const buildOptions = type => {
         destination.innerHTML = '';
         let hasDestination = false;
 
-        if (type === 'participant') {
+        if (type === 'participant' || type === 'member') {
             const seen = new Set();
             root.querySelectorAll('[data-easystud-tree] [data-easystud-group-id]').forEach(group => {
                 const value = group.getAttribute('data-easystud-group-id') || '';
@@ -6778,12 +6811,30 @@ const bindMoveModal = (root, courseId) => {
         return hasDestination;
     };
 
-    const openModal = type => {
+    const openModal = (type, members = [], opener = document.activeElement) => {
+        if (memberBusy) {
+            return;
+        }
+        if (type === 'member') {
+            try {
+                memberSnapshot = snapshotMemberPairs(root, members);
+            } catch (error) {
+                showNotification(root, labels.ajaxerror || '', 'danger');
+                return;
+            }
+            if (!memberSnapshot.length) {
+                return;
+            }
+        }
+        returnFocus = opener;
         contextType = type;
-        const selectedCount = type === 'participant' ? getSelectedItems(root, 'participant').length :
+        const selectedCount = type === 'member' ? memberSnapshot.length : type === 'participant' ?
+            getSelectedItems(root, 'participant').length :
             getSelectedItems(root, 'group').length;
-        help.textContent = body.getAttribute(type === 'participant' ? 'data-move-participants-help' : 'data-move-groups-help') || '';
-        label.textContent = body.getAttribute(type === 'participant' ? 'data-move-participants-label' : 'data-move-groups-label') || '';
+        help.textContent = body.getAttribute(type === 'member' ? 'data-move-members-help' :
+            type === 'participant' ? 'data-move-participants-help' : 'data-move-groups-help') || '';
+        label.textContent = body.getAttribute(type === 'participant' || type === 'member' ?
+            'data-move-participants-label' : 'data-move-groups-label') || '';
         confirmButton.textContent = selectedCount === 1 ?
             (labels.moveconfirmone || '') :
             (labels.moveconfirmmany || '');
@@ -6803,7 +6854,7 @@ const bindMoveModal = (root, courseId) => {
         label.hidden = !hasDestination;
         if (emptyState) {
             emptyState.hidden = hasDestination;
-            emptyState.textContent = type === 'participant' ?
+            emptyState.textContent = type === 'participant' || type === 'member' ?
                 (labels.nomovegroupsavailable || '') :
                 (labels.nomovegroupingsavailable || '');
         }
@@ -6819,6 +6870,15 @@ const bindMoveModal = (root, courseId) => {
 
     openGroups.forEach(button => button.addEventListener('click', () => openModal('group')));
 
+    openMembers.forEach(button => button.addEventListener('click', () => {
+        // Mobile actions forward a click to a hidden desktop source; retain the real focused trigger.
+        openModal('member', getSelectedItems(root, 'member'),
+            document.activeElement === document.body ? button : document.activeElement);
+    }));
+    root.addEventListener('easystud:move-members', event => {
+        openModal('member', event.detail?.members || [], event.detail?.opener);
+    });
+
     closeButtons.forEach(button => {
         button.addEventListener('click', closeModal);
     });
@@ -6829,11 +6889,64 @@ const bindMoveModal = (root, courseId) => {
         }
     });
 
+    modal.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            event.stopPropagation();
+            closeModal();
+        }
+    });
+
     confirmButton.addEventListener('click', () => {
         const value = destination.value;
         if (!contextType || !value) {
             return;
         }
+
+        // SM-11 member transfer begin. One immutable selection, one native transaction.
+        if (contextType === 'member') {
+            if (memberBusy || !memberSnapshot.length || !getGroupElementsById(root, value).length) {
+                return;
+            }
+            const pairs = memberSnapshot;
+            chooser.close();
+            setMemberBusy(true);
+            postAction({
+                courseid: courseId,
+                action: 'movemembers',
+                destinationid: value,
+                groupids: pairs.map(pair => pair.groupid),
+                userids: pairs.map(pair => pair.userid),
+            }).then(response => {
+                const users = [...new Map(pairs.map(pair => [pair.userid, {
+                    id: pair.userid, fullname: pair.fullname,
+                }])).values()];
+                appendUsersToGroupCopies(root, value, users, labels);
+                pairs.forEach(pair => {
+                    if (pair.groupid === value) {
+                        return;
+                    }
+                    getGroupElementsById(root, pair.groupid).forEach(group => {
+                        group.querySelectorAll('[data-easystud-member-id="' + pair.userid + '"]').forEach(member => {
+                            member.remove();
+                        });
+                        syncGroupMembersState(group, labels);
+                    });
+                });
+                rehydrateParticipantMembershipDetails(root);
+                applyFilters(root);
+                setMemberBusy(false);
+                closeModal();
+                clearSelectionState(root);
+                updateSelectionActions(root);
+                showNotification(root, response.message || '', 'success');
+            }).catch(() => {
+                setMemberBusy(false);
+                showNotification(root, labels.ajaxerror || '', 'danger');
+            });
+            return;
+        }
+        // SM-11 member transfer end. Existing Participant/Group commands below are preserved.
 
         if (contextType === 'participant') {
             const users = getSelectedItems(root, 'participant');
@@ -7382,6 +7495,7 @@ const bindContextMenu = (root, courseId) => {
         const action = button.getAttribute('data-easystud-context-action');
         const contextType = context.type;
         const target = context.target;
+        const contextOpener = returnFocus;
         hideMenu();
 
         if (action === 'copy-participant-field') {
@@ -7521,6 +7635,11 @@ const bindContextMenu = (root, courseId) => {
         } else if (action === 'copy-grouping-name') {
             const name = target.querySelector('.local-groupimport-easystud-grouping__name');
             copyText(name ? name.textContent : '');
+        } else if (action === 'member-move-selected') {
+            root.dispatchEvent(new CustomEvent('easystud:move-members', {detail: {
+                members: getContextItems('member', target),
+                opener: contextOpener || target.querySelector('[data-easystud-selector-input]'),
+            }}));
         } else if (action === 'remove-member') {
             const members = getContextItems('member', target);
             removeMembers(root, courseId, members).then(response => {

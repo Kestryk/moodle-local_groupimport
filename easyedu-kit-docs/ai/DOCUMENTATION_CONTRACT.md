@@ -105,3 +105,14 @@ hide only the whole superseded action and re-read all visible content. A
 control test PASS is not a whole-dialog visual PASS if a capture reveals a
 floating navigation/help overlap. Preserve the defect and diagnose stacking;
 never hide native chrome merely to obtain clean evidence.
+
+Selected-member transfer snapshots explicit Group/User pairs at modal opening;
+deduplicate responsive copies without expanding to unrelated memberships. Use
+one guarded server transaction, not browser add-then-remove. Keep native APIs
+and their false/error handling; test doubles are not native DB/cache/hook proof.
+The local visual scenario must block POST and use open/search/Cancel only. Extra
+test roles and real transfer fixtures require separate bounded fixture gates.
+Forwarded sticky-mobile clicks must return focus to the real visible button,
+not its CSS-hidden desktop source. Historical search-only whole-file gates stay
+pinned; use an explicit successor to preserve old Participant/Group commands,
+Kit assets and Motion while adding the member-specific endpoint and helper.

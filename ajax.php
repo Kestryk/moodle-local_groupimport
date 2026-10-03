@@ -464,6 +464,28 @@ try {
             'added' => $added,
             'existing' => $existing,
         ]);
+    } else if ($action === 'movemembers') {
+        if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
+            throw new moodle_exception('invaliddata', 'error');
+        }
+        $destinationid = required_param('destinationid', PARAM_INT);
+        $groupids = array_values(required_param_array('groupids', PARAM_INT));
+        $userids = array_values(required_param_array('userids', PARAM_INT));
+        if (!$groupids || count($groupids) !== count($userids)) {
+            throw new moodle_exception('invaliddata', 'error');
+        }
+        $members = [];
+        foreach ($groupids as $index => $groupid) {
+            $members[] = ['groupid' => $groupid, 'userid' => $userids[$index]];
+        }
+        $result = \local_groupimport\service\membership_transfer::move_members(
+            (int)$course->id,
+            $destinationid,
+            $members
+        );
+        $response = array_merge($response, $result);
+        $response['success'] = true;
+        $response['message'] = get_string('membersmovedsummary', 'local_groupimport', (object)$result);
     } else if ($action === 'addemails') {
         global $DB;
 
