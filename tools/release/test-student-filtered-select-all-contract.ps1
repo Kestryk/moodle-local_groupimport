@@ -10,7 +10,9 @@ foreach ($required in @(
     "item.getAttribute('data-easystud-structure-search-hidden') === '1'",
     "item.getAttribute('data-easystud-grouping-filter-hidden') === '1'",
     'if (!item.matches(config.selector) || isItemFilteredOut(item))',
-    'if (!isItemFilteredOut(item))'
+    'if (!isItemFilteredOut(item))',
+    'if (deselect && hasActiveListFilters(root, list))',
+    'clearSelection(root, type)'
 )) {
     if (-not $source.Contains($required)) { throw "Missing filtered result contract: $required" }
 }
@@ -20,4 +22,4 @@ if (-not $source.Contains("grouping.setAttribute('data-easystud-grouping-filter-
 if (-not $build.Contains('isItemFilteredOut')) {
     throw 'Generated course_manager AMD does not contain the filtered selection contract.'
 }
-Write-Host 'PASS: select-results excludes every explicitly filtered entity while retaining off-page matches.'
+Write-Host 'PASS: filtered deselect clears stale global scope and select-results excludes filtered-out entities.'

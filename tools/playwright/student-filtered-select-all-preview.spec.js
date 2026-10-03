@@ -48,15 +48,10 @@ test('Select results targets only the current filtered set after clearing a glob
         ).first();
         await expect(selectResults).toBeVisible();
 
-        // Reproduce the prior global state, then explicitly clear it.
+        // Reproduce the prior global state before narrowing the result set.
         await selectResults.click();
         await expect.poll(() => users.evaluateAll(nodes => nodes.filter(node =>
             node.classList.contains('is-selected')).length)).toBe(total);
-        const clear = root.locator('[data-easystud-clear-all-selection]:visible').first();
-        await expect(clear).toBeVisible();
-        await clear.click();
-        await expect.poll(() => users.evaluateAll(nodes => nodes.filter(node =>
-            node.classList.contains('is-selected')).length)).toBe(0);
 
         const more = root.locator('[data-easystud-advanced-filters-toggle="participants"]:visible').first();
         if (await more.getAttribute('aria-expanded') !== 'true') {
@@ -79,6 +74,8 @@ test('Select results targets only the current filtered set after clearing a glob
         await choice.locator('.easyedu-searchable-choice__trigger').click();
         await choice.getByRole('searchbox').fill(candidate.text);
         await choice.getByRole('button', {name: candidate.text, exact: true}).click();
+        await choice.getByRole('searchbox').press('Escape');
+        await expect(choice.locator('.easyedu-searchable-choice__trigger')).toHaveAttribute('aria-expanded', 'false');
 
         const expectedIds = await users.evaluateAll(nodes => nodes
             .filter(node => !node.hasAttribute('data-easystud-filter-hidden'))
@@ -86,6 +83,20 @@ test('Select results targets only the current filtered set after clearing a glob
         expect(expectedIds.length).toBe(candidate.count);
         expect(expectedIds.length).toBeLessThan(total);
         await expect(selectResults.locator('[data-easystud-select-results-label]')).toContainText(/result/i);
+
+        // Deselect results after filtering must also clear the selected entities
+        // hidden from the former unfiltered global selection.
+        await expect(selectResults).toHaveAttribute('data-easystud-deselect-results', '1');
+        await selectResults.click();
+        await expect.poll(() => users.evaluateAll(nodes => nodes.filter(node =>
+            node.classList.contains('is-selected')).length)).toBe(0);
+        const beforeSelect = {
+            action: await selectResults.getAttribute('data-easystud-deselect-results'),
+            label: await selectResults.locator('[data-easystud-select-results-label]').innerText(),
+        };
+        records.push({width, phase: 'before-filtered-select', expected: expectedIds.length, beforeSelect});
+        save();
+        await expect(selectResults).toHaveAttribute('data-easystud-deselect-results', '0');
 
         await selectResults.click();
         const selectedIds = await users.evaluateAll(nodes => nodes

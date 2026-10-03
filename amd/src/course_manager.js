@@ -5042,7 +5042,14 @@ const bindPagination = root => {
                 return;
             }
             const deselect = button.getAttribute('data-easystud-deselect-results') === '1';
-            items.forEach(item => setItemSelected(item, !deselect));
+            if (deselect && hasActiveListFilters(root, list)) {
+                // A prior unfiltered Select all may leave selected entities
+                // outside the current result set. Deselect results establishes
+                // a clean filtered scope before the next Select results action.
+                clearSelection(root, type);
+            } else {
+                items.forEach(item => setItemSelected(item, !deselect));
+            }
             if (deselect && type === 'grouping') {
                 collapseAllGroupings(root);
             }
