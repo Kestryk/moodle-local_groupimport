@@ -27,7 +27,7 @@
       "browserCandidates": {
         "entity": "62dfca706babcc964c205417b6bc9c32a6211fea",
         "move": "6ded4c911b5dc2a5c878896f3722b3f6862fed46",
-        "message": "8216fd95b9fc17dd15b9eb9c0daa67e2f268d5f5"
+        "message": "0477a44d09361f22b13f74ab276d8d7b0eebad8c"
       },
       "scope": "Right-aligned wrapping native modal footer actions; equal paired typography/minimum height/radius/padding, adaptive label widths. Regular Destination/entity; compact Message retained. Card/inline controls and Motion unchanged.",
       "penpotReadback": "docs/testing/student-modal-footers-penpot-2026-10-03.json",

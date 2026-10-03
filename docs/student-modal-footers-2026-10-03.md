@@ -150,6 +150,14 @@ assert its layer plus painted leading help characters in the browser candidate.
 Do not fix stacking on an inner surface or hide the trigger. Prior geometry
 proof stays recorded as partial visual evidence, not whole-modal acceptance.
 
+Focused Message run `easystud-authenticated-20261003T025831819Z-41496` verifies
+the desktop paired paint/targets, then fails on an incorrect test-only Close
+selector (`hide` in the footer). Moodle's actual `core/modal_save_cancel`
+template uses `cancel`; `hide` is the header Close. Correct the footer selector,
+keep the failure and verify all three sizes. This changes no native Message
+command, visual source or density. Do not generalise selectors from a header
+to a footer without reading the actual native template.
+
 ## Efficiency
 
 No per-task token/billing telemetry is available. Avoidable cost came from a
