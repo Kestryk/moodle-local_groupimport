@@ -74,7 +74,8 @@ foreach ($needle in @('updategroupadvanced', 'updategroupingadvanced', "'name'",
 foreach ($needle in @('data.username', 'data.idnumber', 'data.institution', 'data.department',
     'data.city', 'data.country', 'data.lang', 'data.roles', 'data.groups', 'data.groupings',
     'data.description', 'data.profileurl', 'bindParticipantDetailLists(body)', 'showEasyStudModal(modal)',
-    'hideEasyStudModal(modal)', 'easyedu-entity-dialog__actions')) {
+    'hideEasyStudModal(modal, () =>', 'participantReturnFocus.focus({preventScroll: true});',
+    'closeParticipantModal();', 'easyedu-entity-dialog__actions')) {
     if (-not $participant.Contains($needle)) { throw "Lost read-only Participant content: $needle" }
 }
 if ($participant -match 'type="submit"|labels\.save|labels\.cancel') { throw 'Read-only Participant gained editing actions.' }

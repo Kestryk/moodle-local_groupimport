@@ -96,8 +96,6 @@ records. Technical/modal contract, changelogs and AI rules are updated in the
 two owned repositories; language strings, PHP/version and AMD changes are not
 applicable to this SCSS-only correction (prior entity AMD candidate preserved).
 
-## Efficiency
-
 ## Authorised preview continuation
 
 The user subsequently authorised publishing all owned prepared source and
@@ -113,6 +111,16 @@ tablet. Each uses existing data, open/cancel only and normal Motion. Current
 scenario blobs are pinned in `consumerSync.studentModalFooters.browserCandidates`;
 the original Penpot checkpoint retains its historical scenario revisions.
 Runtime/browser outcomes will be recorded separately after managed promotion.
+
+The initial promotion applied source `f938c9c38f176edda5162e145bcbf194d315118b`
+at runtime `b6067f4f09521e285b7a0abbc81ce2a7329cdade`, cache purged. The first
+entity test (`easystud-authenticated-20261003T010619880Z-13084`) passed desktop
+Participant geometry/content checks but failed native return focus after Close.
+Cleanup released the lease and cleared credentials; no Save/Send/fixtures ran.
+Source inspection confirms Participant lacked a trigger/restore callback.
+The bounded correction remembers the real trigger and restores it after the
+existing exit completes, including backdrop Close. It changes no shared style
+or animation and retains the failure/assertion. Fresh preview proof is pending.
 
 ## Efficiency
 
