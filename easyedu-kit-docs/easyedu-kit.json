@@ -7,7 +7,8 @@
     "batch": "EED-UI-2026-0073",
     "studentSearchableDestinations20261003": {
       "sourceCommit": "3b56e419f82427a8d019a7e9bef6e801986a2266",
-      "status": "Paired source candidate; fresh native preview proof pending. Historical proofs below remain pinned to their own assets.",
+      "status": "Served managed local preview; nine native open/search/select/Cancel cases pass at 1600/768/390. Human checklist and business transfer proof remain open.",
+      "currentPreviewProof": "docs/testing/student-searchable-destinations-preview-2026-10-03.json",
       "documentation": "docs/student-searchable-destinations-2026-10-03.md",
       "foundationReadback": "docs/testing/student-searchable-destinations-foundations-2026-10-03.json",
       "foundationPaintRevision": "docs/testing/student-searchable-destinations-foundations-revision-2026-10-03.json",

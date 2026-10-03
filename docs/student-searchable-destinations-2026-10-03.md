@@ -42,7 +42,16 @@ are unchanged. Open/closed fields and matched footer heights are recorded.
   Moodle icons, theme cascade or full dialog layout.
 - Native candidate discovery selects one test. Use the runtime wrapper (its
   installed toolchain), not a source checkout missing node_modules. Promotion
-  and fresh runtime proof remain to be recorded, not inferred.
+  and fresh runtime proof are now recorded in the successor preview JSON.
+- Managed source `afccee267b6316c450142ca734a0c239b487c2c7` is served at
+  runtime `431dbfc48779cde111dbd6a535f55a7fcdbf05cb`, after cache refresh.
+  Run `easystud-authenticated-20261003T094813479Z-42564` passes one immutable
+  scenario containing nine native cases (Participant/Group/Group-in-grouping
+  at 1600/768/390). Painted desktop and phone captures were inspected; field,
+  option, footer geometry and inner Escape/focus behavior pass. Original Move
+  confirmation semantics, AJAX, Mustache and Motion remain unchanged. No real
+  Move/remove/send or fixture write occurred; no all-state/human acceptance.
+  Owned browser child stopped, runtime lease released and credentials cleared.
 - SM-11/14/15/16/17 remain in the completion queue. No fixture role, removal,
   movement or send has been executed by this tranche. Combined checklist open.
 
@@ -50,6 +59,7 @@ are unchanged. Open/closed fields and matched footer heights are recorded.
 
 - `docs/testing/student-searchable-destinations-foundations-2026-10-03.json`
 - `docs/testing/student-searchable-destinations-product-2026-10-03.json`
+- `docs/testing/student-searchable-destinations-preview-2026-10-03.json`
 - External Kit run `EasyEdu/artifacts/kit/searchable-choice-20261003-d`.
 - Successor isolated run `EasyEdu/artifacts/kit/searchable-choice-20261003-f`
   additionally checks the accessible trigger name includes the selected value.
