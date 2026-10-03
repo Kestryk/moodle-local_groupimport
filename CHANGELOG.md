@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Dense role filter source candidate
+
+- Keep quick role buttons for up to six choices; reuse the existing searchable
+  multiple-choice Kit component for larger catalogues at every width.
+- Add fifty isolated mode cases and a separately leased temporary twelve-role,
+  three-nologin-user local fixture with exact ownership/relationship cleanup.
+- Paint, templates, original filtering/business commands and Motion are unchanged.
+  Native proof, dense Penpot publication and human acceptance remain separate.
+
 ## 2026-10-03 - Soft-loading local preview proof
 
 - Verify canonical quiet loading paint and unchanged native appearance/exit/entry

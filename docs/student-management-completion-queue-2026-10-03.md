@@ -163,6 +163,14 @@ assets. Failed runs and backups remain recoverable.
 
 ## Portable Platform-owner update proposal
 
+SM-15 source candidate adds only role-count mode selection: up to six quick
+buttons, dense catalogue uses unchanged Kit search at every width. Fifty mode
+cases and an exact soft-loading successor guard are supplied. A temporary local
+twelve-role/three-nologin-user fixture has separate runtime/fixture leases,
+transactional setup and pre-existing relationship hash checks. Native proof
+and source-backed dense composition publication remain pending. See
+`student-role-density-2026-10-03.md`; no permanent permissions or human acceptance.
+
 SM-16 first native run failed because its candidate expected the secondary soft
 token on a primary cue. Preserve run `easystud-authenticated-20261003T132641614Z-4696`
 and immutable source blob; cleanup passed. Source-backed test correction asserts
