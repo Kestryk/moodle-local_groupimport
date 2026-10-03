@@ -44,6 +44,24 @@ The tray surface is constrained to the viewport width. In stacked mode, action
 buttons wrap to a second row instead of creating horizontal scrolling, which is
 safer for translated labels and dense Moodle action sets.
 
+Use the shared compact action class inside an `easyedu-ui` ancestor:
+`btn btn-sm foundation-selection-action foundation-selection-action--tray`,
+plus the appropriate native semantic `btn-*` class. Its minimum height is
+2.35rem; long labels may grow a row while preserving icon gap and horizontal
+padding. Do not treat the minimum as a fixed height.
+
+The current two-column usage catalogue covers two, three and four enabled
+actions. Two occupy one row; three fill two rows with the last action stretching
+across the second row; four occupy two complete rows. At 16px root, short-label
+specimens measure about 84.4px / 128.72px including summary, gaps and frame.
+These are reference measurements, not fixed CSS heights. Viewport/scrollbar
+width, translated labels and safe areas remain adaptive.
+
+Consumers resolve command eligibility from their native source controls and
+selected entity type. Omit unavailable actions; do not invent a tray Details
+command when only a card-specific Details control exists. Neither routing nor
+membership semantics belong in the shared visual component.
+
 Desktop selection feedback should use `sticky-selection-panel` from
 `components/panels.md`. On touch screens, prefer this mobile tray and hide
 duplicate desktop recovery actions so the interface has only one obvious action

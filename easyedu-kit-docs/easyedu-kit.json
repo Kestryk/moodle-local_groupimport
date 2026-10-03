@@ -1,22 +1,42 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.64",
+  "version": "0.4.65",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
-    "studentSelectionTray20261003": {
-      "kitCommit": "d8dd0ee8c36007779b62ea60a804a6f7b2967eff",
+    "studentSelectionLabelWrap20261003": {
+      "kitCommit": "69a93cf228e966a939c980ae0f0342ed820cfb2b",
       "consumerBehaviorBaseline": "efbad079a4f9595fd15db6153e7bca5a62b05781",
-      "status": "Explicit 0.4.64 successor: restore published 37.6px tray height at semantic-role specificity; native height assertion added. Preview pending.",
-      "historicalTypographyProof": "docs/testing/student-selection-actions-preview-2026-10-03.json",
+      "status": "Canonical long-label tray wrapping and painted-content successor candidate; native execution pending. Prior routing/frame proof stays scoped.",
+      "historicalRoutingProof": "docs/testing/student-selection-tray-routing-preview-2026-10-03.json",
+      "foundationReadback": "docs/testing/student-selection-tray-foundations-2026-10-03.json",
+      "productReadback": "docs/testing/student-selection-tray-product-2026-10-03.json",
+      "documentation": "docs/student-selection-tray-routing-2026-10-03.md",
+      "nativeScenario": "student-selection-tray-routing-preview.spec.js",
       "humanAccepted": false,
       "nativePreviewVerified": false,
       "nativeTransferVerified": false,
       "modules": {
+        "scss/easyedu/_foundation-classes.scss": "174eabda24d55e87da46c08d975d813645b8eca9",
+        "scss/easyedu/components/_buttons.scss": "c92864bbfa90d35b5d7d55e328b85347a1eb26f2",
+        "styles.css": "eb5f9ba57245b6c9acaaa77b312c6f56f595f153",
+        "tools/playwright/student-selection-tray-routing-preview.spec.js": "888b8a6098c9bc5e73ada8cd114ae5465ee7d036"
+      }
+    },
+    "studentSelectionTray20261003": {
+      "kitCommit": "d8dd0ee8c36007779b62ea60a804a6f7b2967eff",
+      "consumerBehaviorBaseline": "efbad079a4f9595fd15db6153e7bca5a62b05781",
+      "status": "Served 0.4.64: six native toolbar/context cases pass, including actual 30.4px desktop and 37.6px tray height. Historical timeout retained; human acceptance and real transfer remain pending.",
+      "historicalTypographyProof": "docs/testing/student-selection-actions-preview-2026-10-03.json",
+      "currentPreviewProof": "docs/testing/student-selection-tray-preview-2026-10-03.json",
+      "humanAccepted": false,
+      "nativePreviewVerified": true,
+      "nativeTransferVerified": false,
+      "modules": {
         "scss/easyedu/_foundation-classes.scss": "110c3c7bfe74c6c883985b806f8622edf2f7ee4d",
         "styles.css": "d4d63ab1ed5d7bcf04def0c5f417ae7a8d2500c7",
-        "tools/playwright/student-selection-action-style-preview.spec.js": "9d86150a20fb1efe96b78cf2914960bc0d42fe28"
+        "tools/playwright/student-selection-action-style-preview.spec.js": "623ab97be2f8f5dcd8226fc3c98d76d2cd9cdfd1"
       }
     },
     "studentSelectionActions20261003": {

@@ -76,6 +76,20 @@ states.
 
 ## Sizes
 
+Compact selection toolbars opt into `selection-action` through the public
+`foundation-selection-action` class inside an `easyedu-ui` root. Keep the
+native semantic `btn-*` classes: primary outline, neutral outline, danger
+outline or primary solid. The Small density is 1.9rem (30.4px at 16px root),
+with UI-family/600/0.78rem text and a component-owned 0.35rem icon gap.
+
+Add `foundation-selection-action--tray` for the responsive tray, or use
+`selection-action($tray: true)`. Both delegate to the same
+`selection-action-tray-density` recipe: **minimum** 2.35rem and normal white
+space. Long labels wrap within the original horizontal padding; adjacent
+actions stretch to the same row height. Never clip text or push the icon into
+the border to retain a fixed height. Short labels remain 37.6px high.
+Desktop overflow menu clones must not keep this button skin.
+
 Use the same size names across buttons, menus and form controls.
 
 | Size | Intended usage |

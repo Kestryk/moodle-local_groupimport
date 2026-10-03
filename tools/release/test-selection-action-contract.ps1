@@ -4,7 +4,9 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $baseline = 'efbad079a4f9595fd15db6153e7bca5a62b05781'
 $manifest = Get-Content -Raw (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') | ConvertFrom-Json
-$pin = if ($manifest.consumerSync.studentSelectionTray20261003) {
+$pin = if ($manifest.consumerSync.studentSelectionLabelWrap20261003) {
+    $manifest.consumerSync.studentSelectionLabelWrap20261003
+} elseif ($manifest.consumerSync.studentSelectionTray20261003) {
     $manifest.consumerSync.studentSelectionTray20261003
 } else { $manifest.consumerSync.studentSelectionActions20261003 }
 if (!$pin -or $pin.consumerBehaviorBaseline -ne $baseline -or $pin.humanAccepted -or $pin.nativeTransferVerified) {

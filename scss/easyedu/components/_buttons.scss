@@ -121,6 +121,13 @@
   @include button-interaction-states;
 }
 
+// Tray labels may wrap while their icon and horizontal padding stay intact.
+// The minimum is shared; flex-row stretch keeps adjacent action heights equal.
+@mixin selection-action-tray-density {
+  min-height: 2.35rem;
+  white-space: normal;
+}
+
 // Compact selection actions in list toolbars and their responsive action tray.
 // Palette is explicit so native Bootstrap focus/hover cannot replace the
 // semantic role. Keep overflow/routing/selection ownership in the consumer.
@@ -159,7 +166,7 @@
     & { background: $ink; color: var(--easyedu-surface); }
   }
   @if $tray {
-    & { min-height: 2.35rem; }
+    & { @include selection-action-tray-density; }
   }
   &:focus {
     background: var(--easyedu-surface);

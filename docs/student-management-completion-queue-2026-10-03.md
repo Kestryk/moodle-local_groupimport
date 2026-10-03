@@ -7,12 +7,19 @@ stays deferred to the combined checklist; automation never ticks it.
 
 SM-11 continuation: focused selected-member action routing is now published on
 page 03 (board `c403923b-827e-80b7-8008-bbcc39a95da4`) with inspected capture and
-settled geometry readback. Whole-view toolbar/sticky propagation, paired compact
-semantic Foundation states are now published, along with forty shared product
-action controls. Six native typography/action-routing cases pass; a measured
-tray-height gap has an explicit Kit successor and fresh gate. Remaining sticky
+settled geometry readback. Paired compact semantic Foundation states are now
+published, along with forty shared product action controls. Six native
+typography/action-routing cases pass; the explicit Kit 0.4.64 successor now
+passes the actual desktop/touch-height gate as well. Remaining sticky
 view propagation, isolated transfer tests and human acceptance stay open.
 See `student-selection-actions-2026-10-03.md` and the original transfer document.
+
+Conditional routing now has twelve non-mutating native cases at 390/768.
+Paired Foundation 2/3/4-action usage and fourteen product trays replace old
+stubs recoverably. The frame-only run exposes long-label clipping on capture;
+Kit 0.4.65 wraps labels within padding. Its painted-content successor and
+whole-view sticky placement are distinct gates. See
+`student-selection-tray-routing-2026-10-03.md`; human acceptance stays open.
 
 ## Scope and ownership
 

@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Tray geometry checks include painted label and icon bounds inside horizontal
+padding, not only the outer button frame. Long labels wrap in the canonical
+tray-density recipe; flex-row neighbours retain equal height. Preserve a
+frame-only PASS as scoped evidence if captures later reveal paint overflow.
+After a Penpot icon swap, reapply its absolute-layout override and normalize
+descendants from the master dimensions. Never resize text from zero/stale
+painted bounds. Publish the same long-label usage in Standard and Library.
+
 Selection toolbars use the canonical opt-in selection-action class, including
 the native mobile tray. Remove the class from overflow menu clones. Keep the
 full controller/template baseline comparison after exact class-only adapters;
@@ -10,6 +18,10 @@ Do not wrap a toolbar whose native resolver uses the More menu.
 Assert actual desktop/tray height as well as font and palette. A density
 modifier must match the semantic role's specificity; historical typography-only
 proof must remain explicitly scoped when a geometry gap is found afterward.
+When a multi-case native test times out, distinguish the global deadline from
+its individual readiness assertion. Preserve the failure and cleanup, record
+per-case navigation/readiness/completion timings and keep each assertion's
+timeout unchanged. A bounded harness budget correction is not a UI fix.
 
 This portable contract applies to every AI agent working on EasyStud. The
 canonical wording is maintained in the EasyEdu platform repository under

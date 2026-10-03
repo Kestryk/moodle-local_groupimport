@@ -3,10 +3,13 @@ const fs = require('node:fs');
 
 // local-supervised: existing group rows; open/search/Cancel only. Block every business POST.
 test('Selection action styles match Foundations at desktop tablet and mobile', async ({page}, testInfo) => {
-    test.setTimeout(180000);
-    const records = [], blocked = [];
+    // Six cases share one authenticated, supervised run. Keep each readiness
+    // assertion at 60s; allow bounded cold-start/login time without hiding a
+    // genuine per-page loading failure. The runner watchdog remains 300s.
+    test.setTimeout(240000);
+    const records = [], blocked = [], phases = [];
     const root = page.locator('#local-groupimport-easystud');
-    const save = () => fs.writeFileSync(testInfo.outputPath('member-actions-native.json'), JSON.stringify({records,blocked},null,2));
+    const save = () => fs.writeFileSync(testInfo.outputPath('member-actions-native.json'), JSON.stringify({records,blocked,phases},null,2));
     await page.emulateMedia({reducedMotion:'no-preference'});
     await page.route('**/local/groupimport/**', async route => {
         if (route.request().method() !== 'GET') {
@@ -15,6 +18,9 @@ test('Selection action styles match Foundations at desktop tablet and mobile', a
     });
     for (const width of [1600,768,390]) {
         for (const entry of ['toolbar','context']) {
+            const started = Date.now();
+            const phase = {width,entry,startedAtUtc:new Date(started).toISOString(),state:'navigating'};
+            phases.push(phase);save();
             await page.setViewportSize({width,height:1100});
             await page.goto(process.env.EASYEDU_MOODLE_URL);
             if (page.url().includes('/login/')) {
@@ -24,7 +30,9 @@ test('Selection action styles match Foundations at desktop tablet and mobile', a
                 await page.waitForURL(url=>!url.pathname.includes('/login/'));
                 await page.goto(process.env.EASYEDU_MOODLE_URL);
             }
+            phase.navigationMs=Date.now()-started;phase.state='awaiting-ready';save();
             await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+            phase.readyMs=Date.now()-started;phase.state='checking';save();
             const mode=width<=1024?'[data-easystud-mobile-view="groups"]:visible':'[data-easystud-layout-mode="structure"]:visible';
             await root.locator(mode).first().click();
             const member=root.locator('[data-easystud-member-id]:visible').first();
@@ -129,7 +137,8 @@ test('Selection action styles match Foundations at desktop tablet and mobile', a
             if(trigger) await expect(trigger).toBeFocused();
             const kept=root.locator('[data-easystud-group-id="'+identity.group+'"] [data-easystud-member-id="'+identity.user+'"]:visible');
             expect(await kept.count()).toBeGreaterThan(0);
-            records.push({width,entry,identity,options:options.length,pair,groupRowKept:true});save();
+            records.push({width,entry,identity,options:options.length,pair,groupRowKept:true});
+            phase.completedMs=Date.now()-started;phase.state='completed';save();
         }
     }
     expect(blocked,'Open/search/Cancel must not invoke a business command').toEqual([]);save();
