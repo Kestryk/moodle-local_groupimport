@@ -26,7 +26,7 @@
       "generatedCssBlob": "ef489ccc40b8d95e24a0650a3bc5dbef83455c41",
       "browserCandidates": {
         "entity": "62dfca706babcc964c205417b6bc9c32a6211fea",
-        "move": "f4bceb7906c1e3513830ff737306718f7d2bfe2a",
+        "move": "6ded4c911b5dc2a5c878896f3722b3f6862fed46",
         "message": "8216fd95b9fc17dd15b9eb9c0daa67e2f268d5f5"
       },
       "scope": "Right-aligned wrapping native modal footer actions; equal paired typography/minimum height/radius/padding, adaptive label widths. Regular Destination/entity; compact Message retained. Card/inline controls and Motion unchanged.",

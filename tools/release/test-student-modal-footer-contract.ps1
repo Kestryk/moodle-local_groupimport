@@ -11,6 +11,19 @@ foreach ($module in $pin.modules.PSObject.Properties) {
         $proof.source.modules.($module.Name) -ne $embedded) { throw "Canonical footer module/pin drift: $($module.Name)" }
 }
 $css = & git -C $root hash-object styles.css
+foreach ($module in $pin.browserCandidates.PSObject.Properties) {
+    $name = switch ($module.Name) {
+        'entity' { 'student-entity-dialog-chrome.spec.js' }
+        'move' { 'student-move-dialog-audit.spec.js' }
+        'message' { 'student-message-footer-preview.spec.js' }
+    }
+    $actual = & git -C $root hash-object ("tools/playwright/$name")
+    if ($actual -ne $module.Value) { throw "Current scenario pin drift: $name" }
+}
+$template = Get-Content -Raw -LiteralPath (Join-Path $root 'templates/manage.mustache')
+if ($template -notmatch 'class="local-groupimport-easystud-modal easyedu-modal-layer"\s+data-easystud-move-modal="1"') {
+    throw 'Move must consume the canonical modal layer on its fixed root.'
+}
 if ($css -ne $pin.generatedCssBlob -or $css -ne $proof.source.generatedCssBlob) { throw 'Footer generated CSS pin drift.' }
 if ($proof.foundations.pairs.Count -ne 4 -or $proof.product.destination.Count -ne 6 -or
     $proof.product.message.Count -ne 2 -or $proof.product.entity.Count -ne 3) { throw 'Incomplete recorded footer coverage.' }

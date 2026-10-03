@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Move modal stacking
+
+- The first nine Move cases passed geometry, but their narrow capture exposed
+  the native EasyStud navigation trigger over the description. Consume the
+  existing public `easyedu-modal-layer` on the fixed Move root, as for entity
+  and Clipboard dialogs; no new z-index or consumer paint.
+- Extend the native open/cancel audit with root layer and actual first help
+  characters' hit targets. Preserve earlier captures; no move is confirmed.
+
 ## 2026-10-03 - Participant detail focus restoration
 
 - The first managed entity-dialog run verified the desktop header/footer but
