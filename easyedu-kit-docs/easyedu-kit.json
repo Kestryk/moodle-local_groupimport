@@ -6,7 +6,8 @@
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
     "studentSelectedMembers20261003": {
-      "status": "Source candidate: endpoint/action wiring and isolated tests passed; local preview, native transfer DB proof and human acceptance pending.",
+      "status": "Served local preview: six native top/context open/search/Cancel cases pass at 1600/768/390. Actual transfer DB integration and human acceptance remain pending.",
+      "currentPreviewProof": "docs/testing/student-selected-members-preview-2026-10-03.json",
       "documentation": "docs/student-selected-members-transfer-2026-10-03.md",
       "penpotReadback": "docs/testing/student-selected-members-penpot-2026-10-03.json",
       "isolatedRun": "member-transfer-20261003-c",
@@ -22,7 +23,7 @@
         "classes/service/membership_transfer.php": "924118ad7e371b118f1e03771b9d9d78924ee3af",
         "ajax.php": "b96a52736cbb327d0bbf230c4ebb9105dc878920",
         "templates/manage.mustache": "c4da7e3699b5ceb37d9baed519565438c6bae7f7",
-        "tools/playwright/student-member-actions-preview.spec.js": "16e1162ae9636d15fcb6224d9d3f2372196b1306"
+        "tools/playwright/student-member-actions-preview.spec.js": "0039f589a8418bc38421df4efccd963c30702908"
       }
     },
     "studentSearchableDestinations20261003": {

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-03 - Selected-member local UI preview
+
+- Promote source service/action adapters in dependency order and refresh the
+  managed local cache. Six native top/context open/search/Cancel cases pass at
+  desktop/tablet/phone widths without sending a business POST.
+- Keep failed scrolling/capture evidence; fix the supervised target and unique
+  artifact names, not native menu dismissal. Record cleanup and current pins.
+- Native transfer DB integration, whole-board publication and human checklist
+  remain separate pending gates; no memberships or course data were changed.
+
 ## 2026-10-03 - Selected-member action adapters (source candidate)
 
 - Connect explicit frozen Group/User selections to one guarded transfer command;

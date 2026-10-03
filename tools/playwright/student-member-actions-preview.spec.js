@@ -37,15 +37,32 @@ test('Selected group members expose themed move actions without modifying member
             if (entry==='toolbar') {
                 trigger=width<=1024?root.locator('[data-easystud-mobile-action-trigger="'+action+'"]:visible').first():
                     root.locator(action+':visible').first();
-                await expect(trigger).toBeEnabled(); await trigger.click();
+                await expect(trigger).toBeEnabled();
+                const actionLane=trigger.locator('..');
+                records.push({width,entry,toolbar:await actionLane.evaluate(node=>[...node.querySelectorAll('button')].map(n=>{
+                    const r=n.getBoundingClientRect(),s=getComputedStyle(n);
+                    return {text:n.textContent.trim(),x:r.x,y:r.y,w:r.width,h:r.height,font:s.fontSize,gap:s.gap,disabled:n.disabled};
+                }))});save();
+                await actionLane.screenshot({path:testInfo.outputPath(`member-action-bar-${width}.png`)});
+                await trigger.click();
             } else {
-                await member.click({button:'right'});
+                // Native desktop menus intentionally close on scroll. Finish real scrolling
+                // before right-clicking the name; don't let click auto-scroll dismiss it.
+                await member.scrollIntoViewIfNeeded();
+                const name=member.locator('.local-groupimport-easystud-member__name');
+                await name.scrollIntoViewIfNeeded();
+                await page.evaluate(()=>new Promise(resolve=>{
+                    let timer; const finish=()=>{window.removeEventListener('scroll',onScroll,true);resolve();};
+                    const onScroll=()=>{clearTimeout(timer);timer=setTimeout(finish,180);};
+                    window.addEventListener('scroll',onScroll,true);onScroll();
+                }));
+                await name.click({button:'right'});
                 const menu=root.locator('[data-easystud-context-menu]');
                 await expect(menu).toBeVisible();
                 const item=menu.locator('[data-easystud-context-action="member-move-selected"]');
                 await expect(item).toBeVisible();
                 await expect(menu.locator('[data-easystud-context-action="remove-member"]')).toBeVisible();
-                await menu.screenshot({path:testInfo.outputPath(`member-context-${width}.png`)});
+                await menu.screenshot({path:testInfo.outputPath(`member-menu-${width}.png`)});
                 await item.click();
             }
             const dialog=root.locator('[data-easystud-move-modal]');
