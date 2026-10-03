@@ -5,6 +5,13 @@
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentMoveOriginCheckbox20261004": {
+      "status": "EasyStud consumer candidate: the Move group origin option consumes the canonical Kit toggle-check while retaining its native checkbox and business hook. Managed native proof, product Penpot propagation and human acceptance remain open.",
+      "documentation": "docs/student-move-origin-checkbox-2026-10-04.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "penpotLinked": false
+    },
     "studentFilteredSelectAll20261004": {
       "status": "EasyStud consumer served: filtered Deselect results clears stale global selection and Select results retains matching off-page entities while excluding participant, catalogue, structure or grouping filter exclusions. Managed native proof passes at 1600/768/390; human acceptance remains open.",
       "documentation": "docs/student-filtered-select-all-2026-10-04.md",

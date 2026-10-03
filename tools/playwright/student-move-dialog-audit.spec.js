@@ -152,6 +152,31 @@ test('Student move dialogs preserve native participant and group branches', asyn
             if (kind === 'groups') { expect(options[0].value).toBe('0'); }
             else { await expect(origin).toBeHidden(); }
             if (branch === 'groups-in-grouping') { await expect(origin).toBeVisible(); }
+            if (branch === 'groups-in-grouping') {
+                await expect(origin).toHaveClass(/easyedu-toggle-check/);
+                const originPaint = await origin.evaluate(label => {
+                    const input = label.querySelector('input');
+                    const text = label.querySelector('span');
+                    const labelStyle = getComputedStyle(label);
+                    const track = getComputedStyle(text, '::before');
+                    return {
+                        height: label.getBoundingClientRect().height,
+                        gap: labelStyle.gap,
+                        fontSize: labelStyle.fontSize,
+                        inputType: input.type,
+                        trackWidth: track.width,
+                        trackHeight: track.height,
+                    };
+                });
+                expect(originPaint.height).toBeGreaterThanOrEqual(width <= 576 ? 44 : 38);
+                expect(originPaint.inputType).toBe('checkbox');
+                expect(originPaint.trackWidth).toBe('27.52px');
+                expect(originPaint.trackHeight).toBe('15.2px');
+                await origin.locator('input').focus();
+                await expect(origin.locator('input')).toBeFocused();
+                expect(await origin.evaluate(label => getComputedStyle(label).boxShadow)).not.toBe('none');
+                records.push({viewport: width, branch, originPaint, canonicalToggle: true});
+            }
             for (const [role, selector] of Object.entries({shell: '.local-groupimport-easystud-modal__dialog',
                 header: '.local-groupimport-easystud-modal__header', title: 'h3',
                 body: '.local-groupimport-easystud-modal__body', help: '[data-easystud-move-modal-help]',
