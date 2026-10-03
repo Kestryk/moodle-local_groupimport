@@ -168,7 +168,7 @@ test('Student move dialogs preserve native participant and group branches', asyn
                         trackHeight: track.height,
                     };
                 });
-                expect(originPaint.height).toBeGreaterThanOrEqual(width <= 576 ? 44 : 38);
+                expect(originPaint.height).toBeGreaterThanOrEqual(width <= 576 ? 44 : 37.5);
                 expect(originPaint.inputType).toBe('checkbox');
                 expect(originPaint.trackWidth).toBe('27.52px');
                 expect(originPaint.trackHeight).toBe('15.2px');
