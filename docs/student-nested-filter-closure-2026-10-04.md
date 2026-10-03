@@ -20,7 +20,12 @@ Filters animation, ARIA state and focus-visible treatment remain unchanged.
 
 ## Evidence status
 
-Kit source and package contracts pass. Consumer source, generated AMD and the
-repeatable native sequence — open More Filters, open the multiple picker, click
-More Filters once — remain to be built and verified at 1600/768/390 px. Human
-acceptance remains open in the combined checklist.
+Kit source/package contracts and the generated consumer AMD pass. Managed run
+`easystud-authenticated-20261003T223352684Z-32348` repeated the native sequence
+three times at each of 1600/768/390 px: open More Filters, open the multiple
+picker, click More Filters once. All nine cycles closed both disclosures, with
+no blocked request, page error or fixture. Human acceptance remains open in the
+combined checklist.
+
+Durable runtime proof:
+`docs/testing/student-nested-filter-close-preview-2026-10-04.json`.
