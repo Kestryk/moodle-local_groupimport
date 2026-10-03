@@ -308,8 +308,8 @@ acceptance status.
 - SM-21 is served at Kit 0.4.71. Its guarded native open/Cancel scenario passes
   at 1600/768/390 with the visible compact Close, non-resizable field and
   matched footer; no message was sent and no fixture was created. Paired
-  Penpot Loading/Sending/Error specimens and human acceptance are the next
-  gates.
+  Foundation/Product Loading, Sending and Error specimens are published with
+  shared linked components. Human acceptance remains the next gate.
 
 ### Dependency order
 

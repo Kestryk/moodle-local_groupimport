@@ -7,9 +7,10 @@
     "batch": "EED-UI-2026-0073",
     "studentMessageModalCompletion20261003": {
       "kitCommit": "5851a0f",
-      "status": "Kit 0.4.71 served: canonical border-box compact header Close with explicit native glyph, non-resizable message field and quiet unboxed async spinner. Managed native open/Cancel proof passes at 1600/768/390; Penpot state publication and human acceptance remain open.",
+      "status": "Kit 0.4.71 served: canonical border-box compact header Close with explicit native glyph, non-resizable message field and quiet unboxed async spinner. Managed native open/Cancel proof passes at 1600/768/390; paired Foundation/Product Loading, Sending and Error specimens are published. Human acceptance remains open.",
       "documentation": "docs/student-message-modal-completion-2026-10-03.md",
       "currentPreviewProof": "docs/testing/student-message-modal-completion-preview-2026-10-03.json",
+      "penpotReadback": "docs/testing/student-message-modal-states-penpot-2026-10-03.json",
       "humanAccepted": false,
       "nativePreviewVerified": true,
       "modules": {
