@@ -5,9 +5,18 @@ const fs = require('node:fs');
 // Never confirm a move, change memberships, manufacture empty data or submit.
 test('Student move dialogs preserve native participant and group branches', async ({page}, testInfo) => {
     test.setTimeout(150000);
-    const records = [];
+    const records = [], blockedWrites = [];
     const save = () => fs.writeFileSync(testInfo.outputPath('move-native.json'), JSON.stringify(records, null, 2));
     const root = page.locator('#local-groupimport-easystud');
+    await page.emulateMedia({reducedMotion: 'no-preference'});
+    await page.route('**/local/groupimport/**', async route => {
+        if (route.request().method() !== 'GET') {
+            blockedWrites.push({method:route.request().method()});
+            await route.abort('blockedbyclient');
+        } else {
+            await route.continue();
+        }
+    });
     const ready = async () => {
         await page.goto(process.env.EASYEDU_MOODLE_URL);
         if (page.url().includes('/login/')) {
@@ -79,7 +88,10 @@ test('Student move dialogs preserve native participant and group branches', asyn
             await dialog.locator('.local-groupimport-easystud-modal__dialog').evaluate(node =>
                 Promise.all(node.getAnimations().map(animation => animation.finished.catch(() => {}))));
             const select = dialog.locator('[data-easystud-move-destination]');
-            await expect(select).toBeFocused();
+            const chooser = dialog.locator('.easyedu-searchable-choice');
+            const choiceTrigger = chooser.locator('.easyedu-searchable-choice__trigger');
+            await expect(select).toBeHidden();
+            await expect(choiceTrigger).toBeFocused();
             await expect(select).toHaveClass(/easyedu-select/);
             await expect(dialog.locator('h3')).toHaveCSS('font-size', '16px');
             const footer = dialog.locator('.easyedu-dialog-actions');
@@ -111,13 +123,39 @@ test('Student move dialogs preserve native participant and group branches', asyn
                 originChecked: await dialog.locator('[data-easystud-move-remove-origin]').isChecked(),
                 confirmLabel: await dialog.locator('[data-easystud-confirm-move]').textContent()});
             expect(options.length).toBeGreaterThan(0);
+            expect(new Set(options.map(option => option.value)).size, 'responsive duplicates must not duplicate choices')
+                .toBe(options.length);
+            const selectedBeforeSearch = await select.inputValue();
+            await choiceTrigger.click();
+            const search = chooser.getByRole('searchbox');
+            await expect(search).toBeFocused();
+            await search.fill('__no_matching_destination__');
+            await expect(chooser.getByRole('status')).toBeVisible();
+            await expect(select).toHaveValue(selectedBeforeSearch);
+            await search.press('Escape');
+            await expect(dialog).toBeVisible();
+            await expect(choiceTrigger).toBeFocused();
+            await choiceTrigger.click();
+            await search.fill(options[options.length - 1].label);
+            const option = chooser.getByRole('button', {name:options[options.length - 1].label, exact:true});
+            await expect(option).toHaveCount(1);
+            await option.click();
+            await expect(select).toHaveValue(options[options.length - 1].value);
+            await expect(choiceTrigger).toBeFocused();
+            await expect(dialog).toBeVisible();
+            // Destination selection is local only; never confirm a membership command.
+            await choiceTrigger.click();
+            await page.evaluate(() => document.fonts.ready);
+            await dialog.locator('.local-groupimport-easystud-modal__dialog').screenshot({path:
+                testInfo.outputPath('move-choices-' + branch + '-' + width + '.png')});
+            await search.press('Escape');
             if (kind === 'groups') { expect(options[0].value).toBe('0'); }
             else { await expect(origin).toBeHidden(); }
             if (branch === 'groups-in-grouping') { await expect(origin).toBeVisible(); }
             for (const [role, selector] of Object.entries({shell: '.local-groupimport-easystud-modal__dialog',
                 header: '.local-groupimport-easystud-modal__header', title: 'h3',
                 body: '.local-groupimport-easystud-modal__body', help: '[data-easystud-move-modal-help]',
-                label: '[data-easystud-move-modal-label]', select: '[data-easystud-move-destination]',
+                label: '[data-easystud-move-modal-label]', select: '.easyedu-searchable-choice__trigger',
                 footer: '.easyedu-dialog-actions', cancel: '.easyedu-button--secondary', confirm: '[data-easystud-confirm-move]'})) {
                 await measure(dialog.locator(selector), branch + ':' + role);
             }
@@ -128,5 +166,6 @@ test('Student move dialogs preserve native participant and group branches', asyn
             await expect(dialog).toBeHidden();
         }
     }
+    expect(blockedWrites, 'Open/search/select/cancel must never submit a membership command').toEqual([]);
     save();
 });

@@ -1,0 +1,99 @@
+// Opt-in native-select enhancement. Content/selection remain consumer-owned.
+@use "text-fields";
+@use "forms";
+@use "focus";
+
+@mixin searchable-choice-classes {
+  .easyedu-ui .easyedu-searchable-choice {
+    min-inline-size: 0;
+    position: relative;
+    font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+    color: var(--easyedu-field-text);
+
+    [hidden] { display: none; }
+  }
+  .easyedu-ui .easyedu-searchable-choice__trigger {
+    @include text-fields.foundation-text-field;
+    & {
+      align-items: center;
+      display: flex;
+      gap: 0.75rem;
+      inline-size: 100%;
+      justify-content: space-between;
+      text-align: start;
+      text-decoration: none;
+    }
+    .fa { color: var(--easyedu-primary); flex: 0 0 1rem; }
+  }
+  .easyedu-ui .easyedu-searchable-choice__summary {
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  // In-flow disclosure: cannot escape a modal's scrolling body or narrow panel.
+  .easyedu-ui .easyedu-searchable-choice__panel {
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid var(--easyedu-control-border);
+    border-radius: var(--easyedu-control-radius);
+    margin-block-start: 0.5rem;
+    padding: 0.5rem;
+  }
+  .easyedu-ui .easyedu-searchable-choice__search {
+    @include forms.search-field;
+    & { min-block-size: 2.375rem; }
+    input {
+      background: transparent;
+      color: var(--easyedu-field-text);
+      font: inherit;
+      inline-size: 100%;
+      min-block-size: 2.25rem;
+    }
+    .fa { inline-size: 0.9rem; line-height: 1; }
+  }
+  .easyedu-ui .easyedu-searchable-choice__list {
+    display: grid;
+    gap: 0.125rem;
+    margin-block-start: 0.375rem;
+    max-block-size: 12rem;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .easyedu-ui .easyedu-searchable-choice__option {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 0.5rem;
+    color: var(--easyedu-field-text);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    gap: 0.75rem;
+    inline-size: 100%;
+    justify-content: space-between;
+    min-block-size: 2.375rem;
+    padding: 0.5rem 0.625rem;
+    text-align: start;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+
+    &:hover:not(:disabled), &:focus-visible, &[aria-pressed="true"] {
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary-strong);
+    }
+    &:focus-visible { @include focus.ring; }
+    &:disabled { color: var(--easyedu-field-disabled-text); cursor: not-allowed; }
+    .fa { color: var(--easyedu-primary); flex: 0 0 1rem; line-height: 1; }
+  }
+  .easyedu-ui .easyedu-searchable-choice__empty {
+    color: var(--easyedu-text-muted);
+    line-height: var(--easyedu-line-height-body);
+    margin: 0;
+    padding: 0.75rem 0.625rem;
+  }
+  @media (max-width: 48rem) {
+    .easyedu-ui .easyedu-searchable-choice__trigger,
+    .easyedu-ui .easyedu-searchable-choice__option { min-block-size: 2.75rem; }
+    .easyedu-ui .easyedu-searchable-choice__list { max-block-size: 11rem; }
+  }
+}

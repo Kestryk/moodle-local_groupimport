@@ -22,6 +22,7 @@
  */
 
 import * as Motion from './motion';
+import {enhanceSelect} from './searchable_choices';
 
 const selectedClass = 'is-selected';
 const disabledSelectionClass = 'is-selection-disabled';
@@ -6716,8 +6717,15 @@ const bindMoveModal = (root, courseId) => {
     }
 
     let contextType = '';
+    const chooserLabels = () => ({
+        label: label.textContent,
+        search: labels.searchdestination || labels.searchgroupslabel || '',
+        empty: labels.noresultsfiltered || '',
+    });
+    const chooser = enhanceSelect(destination, chooserLabels());
 
     const closeModal = () => {
+        chooser.close();
         hideEasyStudModal(modal, () => {
             contextType = '';
         });
@@ -6744,9 +6752,15 @@ const bindMoveModal = (root, courseId) => {
             return hasDestination;
         }
 
+        const seen = new Set();
         root.querySelectorAll('[data-easystud-grouping-id]').forEach(grouping => {
+            const value = grouping.getAttribute('data-easystud-grouping-id') || '';
+            if (!value || seen.has(value)) {
+                return;
+            }
+            seen.add(value);
             const option = document.createElement('option');
-            option.value = grouping.getAttribute('data-easystud-grouping-id') || '';
+            option.value = value;
             const name = grouping.querySelector('.local-groupimport-easystud-grouping__name');
             option.textContent = name ? name.textContent.trim() : '';
             destination.appendChild(option);
@@ -6781,8 +6795,11 @@ const bindMoveModal = (root, courseId) => {
             removeOrigin.checked = false;
         }
         const hasDestination = buildOptions(type);
+        chooser.refresh(chooserLabels());
+        chooser.host.hidden = !hasDestination;
         confirmButton.disabled = !hasDestination;
-        destination.hidden = !hasDestination;
+        // The native select remains the authoritative value/no-JS fallback.
+        destination.hidden = true;
         label.hidden = !hasDestination;
         if (emptyState) {
             emptyState.hidden = hasDestination;
@@ -6792,7 +6809,7 @@ const bindMoveModal = (root, courseId) => {
         }
         showEasyStudModal(modal);
         if (hasDestination) {
-            destination.focus();
+            chooser.trigger.focus();
         } else if (emptyState) {
             emptyState.focus();
         }

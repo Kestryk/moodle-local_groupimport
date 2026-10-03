@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-03 - Searchable Move destinations (source candidate)
+
+- Consume the canonical searchable-choice Kit recipe/controller for participant
+  and Group Move, deduplicating Grouping IDs across responsive layouts.
+- Publish four Foundations Standard/Library states and eight linked product
+  closed/open desktop/mobile compositions. Retain old fields hidden and the two
+  no-destination examples unchanged; keep the matched right-aligned footer.
+- Add isolated search/keyboard/native-value gates and a non-mutating native
+  modal candidate. AJAX, template, confirmation commands and Motion are unchanged.
+- Record all seven reintroduced requests. Selected-member transfer, multiple
+  filters, test roles, Skeleton and More-filters hover remain open.
+
 ## 2026-10-03 - Entity metadata managed preview checkpoint
 
 - Promote the pushed extraction through the managed Moodle 5.1 local queue

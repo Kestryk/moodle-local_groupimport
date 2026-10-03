@@ -1,5 +1,12 @@
 # EasyEdu Component Contract
 
+Searchable single-choice destinations consume the canonical Kit controller
+and `searchable-choice-classes`. Keep native values, data hooks, option
+availability and submit commands intact. Deduplicate destination IDs across
+responsive layout copies. Search never clears a selection; Escape closes only
+the choice panel before the dialog. Do not reuse `easyedu-choice`, which already
+belongs to segmented choices. Multiple-filter enhancement is still pending.
+
 Native Text fields use `foundation-text-field` on the input itself. Measure
 the actual eighteen Foundations S/M/L masters before reconciliation; do not
 reuse Search-field wrappers with hidden icons. Keep filled/placeholder roles,
