@@ -9,8 +9,10 @@ excluded by participant, catalogue, structure or grouping filters.
 The implementation centralises the existing filter markers and adds the same
 durable marker to grouping search/occupancy. Clearing a former global
 selection, applying a filter and selecting again therefore targets the current
-filtered result set only. No server command or membership mutation is part of
-this UI state transition.
+filtered result set only. When a filter is active, “Deselect results” also
+clears selected entities of the same type that the filter has hidden; this
+prevents a later “Select results” from reviving the former global scope. No
+server command or membership mutation is part of this UI state transition.
 
 ## Evidence status
 
