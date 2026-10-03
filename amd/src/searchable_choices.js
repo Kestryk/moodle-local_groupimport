@@ -1,4 +1,4 @@
-// Progressive enhancement of a native single-select. No product commands,
+// Progressive enhancement of a native single/multiple select. No product commands,
 // HTML strings, network requests, global listeners or private style overrides.
 const controls = new WeakMap();
 let sequence = 0;
@@ -14,17 +14,30 @@ const normalise = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, ''
  * @param {Object} labels Localised label/search/empty strings, never HTML.
  * @returns {Object} Controller with host, trigger, refresh and close methods.
  */
-export const enhanceSelect = (select, labels) => {
+export const enhanceSelect = (select, labels) => enhanceNativeSelect(select, labels, false);
+
+/**
+ * Independent pressed options keep a native multiple-select authoritative.
+ * Filtering must never clear selections outside the visible search result.
+ *
+ * @param {HTMLSelectElement} select Existing labelled multiple-select.
+ * @param {Object} labels Plain label/search/empty/none strings and count template (__count__).
+ * @returns {Object} Same disclosure lifecycle as the single-choice controller.
+ */
+export const enhanceMultipleSelect = (select, labels) => enhanceNativeSelect(select, labels, true);
+
+const enhanceNativeSelect = (select, labels, multiple) => {
+    if (!select || select.multiple !== multiple) {
+        throw new Error('Searchable choices require the matching native select mode.');
+    }
     if (controls.has(select)) {
         return controls.get(select);
-    }
-    if (!select || select.multiple) {
-        throw new Error('enhanceSelect expects a native single-select.');
     }
     const document = select.ownerDocument;
     const id = `easyedu-searchable-choice-${++sequence}`;
     const host = document.createElement('div');
     host.className = 'easyedu-searchable-choice';
+    host.classList.toggle('easyedu-searchable-choice--multiple', multiple);
     const trigger = document.createElement('button');
     trigger.type = 'button';
     trigger.id = `${id}-trigger`;
@@ -71,11 +84,15 @@ export const enhanceSelect = (select, labels) => {
         }
     };
     const syncValue = () => {
-        const option = select.selectedOptions[0];
-        summary.textContent = option ? option.textContent : '';
+        const options = [...select.selectedOptions];
+        summary.textContent = multiple ? (options.length === 0 ? labels.none || '' : options.length === 1 ?
+            options[0].textContent : (labels.count || '__count__').replace('__count__', String(options.length))) :
+            (options[0] ? options[0].textContent : '');
         trigger.setAttribute('aria-label', `${labels.label}: ${summary.textContent}`);
         trigger.disabled = select.disabled || !select.options.length;
         rows.forEach(row => {
+            row.button.disabled = select.disabled || row.option.disabled ||
+                (row.option.parentElement.tagName === 'OPTGROUP' && row.option.parentElement.disabled);
             row.button.setAttribute('aria-pressed', String(row.option.selected));
             row.check.hidden = !row.option.selected;
         });
@@ -110,10 +127,17 @@ export const enhanceSelect = (select, labels) => {
             check.setAttribute('aria-hidden', 'true');
             button.append(text, check);
             button.addEventListener('click', () => {
-                select.value = option.value;
+                // Native identity/state is never rebuilt from the filtered visible rows.
+                if (multiple) {
+                    option.selected = !option.selected;
+                } else {
+                    select.value = option.value;
+                }
                 select.dispatchEvent(new Event('change', {bubbles: true}));
                 syncValue();
-                close(true);
+                if (!multiple) {
+                    close(true);
+                }
             });
             return {option, button, check};
         });

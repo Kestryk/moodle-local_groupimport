@@ -1,0 +1,279 @@
+{
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "board": "a301101d-ddc2-807b-8008-bba0f07b1569",
+  "bounds": {
+    "x": 80,
+    "y": 6760,
+    "width": 1240,
+    "height": 920
+  },
+  "fontFamilies": [
+    "Inter"
+  ],
+  "choices": [
+    {
+      "role": "Participant groups",
+      "copy": "a301101d-ddc2-807b-8008-bba0a571f8a3",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "archived": [
+        "a301101d-ddc2-807b-8008-bba0a4b224be",
+        "a301101d-ddc2-807b-8008-bba0a4b224bf",
+        "a301101d-ddc2-807b-8008-bba0a4b224c0",
+        "a301101d-ddc2-807b-8008-bba0a4b224c1",
+        "a301101d-ddc2-807b-8008-bba0a4b224c2",
+        "a301101d-ddc2-807b-8008-bba0a4b224c3"
+      ],
+      "visible": true,
+      "bounds": {
+        "x": 5440,
+        "y": 494,
+        "width": 184,
+        "height": 38
+      },
+      "nestedProviders": [
+        "a301101d-ddc2-807b-8008-bb9f590d2922",
+        "3e449734-b87d-80b6-8008-9814eb78f304"
+      ],
+      "texts": [
+        {
+          "text": "Any",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "role": "Participant groupings",
+      "copy": "a301101d-ddc2-807b-8008-bba0a5d9c48e",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "archived": [
+        "a301101d-ddc2-807b-8008-bba0a4b224c5",
+        "a301101d-ddc2-807b-8008-bba0a4b224c6",
+        "a301101d-ddc2-807b-8008-bba0a4b224c7",
+        "a301101d-ddc2-807b-8008-bba0a4b224c8",
+        "a301101d-ddc2-807b-8008-bba0a4b224c9",
+        "a301101d-ddc2-807b-8008-bba0a4b224ca"
+      ],
+      "visible": true,
+      "bounds": {
+        "x": 5656,
+        "y": 494,
+        "width": 184,
+        "height": 38
+      },
+      "nestedProviders": [
+        "a301101d-ddc2-807b-8008-bb9f590d2922",
+        "3e449734-b87d-80b6-8008-9814eb78f304"
+      ],
+      "texts": [
+        {
+          "text": "Any",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "role": "Group catalogue groupings",
+      "host": "a301101d-ddc2-807b-8008-bba0a6620ee8",
+      "copy": "a301101d-ddc2-807b-8008-bba0a6945937",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "archived": [
+        "a301101d-ddc2-807b-8008-bba0a6620eee",
+        "a301101d-ddc2-807b-8008-bba0a6620eef",
+        "a301101d-ddc2-807b-8008-bba0a6620ef0",
+        "a301101d-ddc2-807b-8008-bba0a6620ef1",
+        "a301101d-ddc2-807b-8008-bba0a6620ef2",
+        "a301101d-ddc2-807b-8008-bba0a6620ef3"
+      ],
+      "visible": true,
+      "bounds": {
+        "x": 5224,
+        "y": 854,
+        "width": 284,
+        "height": 38
+      },
+      "nestedProviders": [
+        "a301101d-ddc2-807b-8008-bb9f590d2922",
+        "3e449734-b87d-80b6-8008-9814eb78f304"
+      ],
+      "texts": [
+        {
+          "text": "Any",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "role": "Desktop open group filter",
+      "copy": "a301101d-ddc2-807b-8008-bba0f345da54",
+      "provider": "a301101d-ddc2-807b-8008-bb9f51fafbcd",
+      "archived": [
+        "a301101d-ddc2-807b-8008-bba0f18e3e8f"
+      ],
+      "visible": true,
+      "bounds": {
+        "x": 344,
+        "y": 7006,
+        "width": 184,
+        "height": 224
+      },
+      "nestedProviders": [
+        "a301101d-ddc2-807b-8008-bb9f51fafbcd",
+        "3e449734-b87d-80b6-8008-9814eb78f304",
+        "81455adb-6787-8068-8008-9cea218710ef",
+        "32eadb6d-165e-803e-8008-9890dfe10077",
+        "32eadb6d-165e-803e-8008-9891dc5a5e2e",
+        "32eadb6d-165e-803e-8008-9891dc5a5e2e"
+      ],
+      "texts": [
+        {
+          "text": "2 selected",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Search options",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Group A",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Workshop B",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Project team",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "role": "Mobile Roles",
+      "copy": "a301101d-ddc2-807b-8008-bba110495fe6",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "visible": true,
+      "bounds": {
+        "x": 880,
+        "y": 6996,
+        "width": 294,
+        "height": 44
+      },
+      "nestedProviders": [
+        "a301101d-ddc2-807b-8008-bb9f590d2922",
+        "3e449734-b87d-80b6-8008-9814eb78f304"
+      ],
+      "texts": [
+        {
+          "text": "Any",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "role": "Mobile Groups",
+      "copy": "a301101d-ddc2-807b-8008-bba113744497",
+      "provider": "a301101d-ddc2-807b-8008-bb9f6a93cc2b",
+      "visible": true,
+      "bounds": {
+        "x": 880,
+        "y": 7096,
+        "width": 294,
+        "height": 248
+      },
+      "nestedProviders": [
+        "a301101d-ddc2-807b-8008-bb9f6a93cc2b",
+        "3e449734-b87d-80b6-8008-9814eb78f304",
+        "81455adb-6787-8068-8008-9cea218710ef",
+        "32eadb6d-165e-803e-8008-9890dfe10077",
+        "32eadb6d-165e-803e-8008-9891dc5a5e2e",
+        "32eadb6d-165e-803e-8008-9891dc5a5e2e"
+      ],
+      "texts": [
+        {
+          "text": "2 selected",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Search options",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Group A",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Workshop B",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        },
+        {
+          "text": "Project team",
+          "size": "14",
+          "family": "Inter",
+          "align": "left",
+          "verticalAlign": "center"
+        }
+      ]
+    },
+    {
+      "role": "Mobile Groupings",
+      "copy": "a301101d-ddc2-807b-8008-bba118faafda",
+      "provider": "a301101d-ddc2-807b-8008-bb9f590d2922",
+      "visible": false,
+      "bounds": {
+        "x": 880,
+        "y": 7400,
+        "width": 294,
+        "height": 44
+      },
+      "nestedProviders": [
+        "a301101d-ddc2-807b-8008-bb9f590d2922",
+        "3e449734-b87d-80b6-8008-9814eb78f304"
+      ],
+      "texts": []
+    }
+  ],
+  "overflow": [],
+  "humanVisualValidated": false,
+  "nativePreview": false,
+  "mobileRules": "Role chooser below 768px; native Participant groupings hidden on mobile; More filters touch specimen uses shared source density, dedicated SM17 catalogue pending."
+}

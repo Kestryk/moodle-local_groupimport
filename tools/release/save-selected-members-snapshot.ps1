@@ -1,10 +1,14 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)][ValidatePattern('^[a-z0-9-]+$')][string]$Name,
-    [Parameter(Mandatory = $true)][string[]]$File
+    [Parameter(Mandatory = $true)][string[]]$File,
+    [string]$SourceRoot
 )
 $ErrorActionPreference = 'Stop'
-$sourceRoot = [IO.Path]::GetFullPath((Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
+$sourceRoot = if ($SourceRoot) { [IO.Path]::GetFullPath($SourceRoot) } else {
+    [IO.Path]::GetFullPath((Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
+}
+if (!(Test-Path -LiteralPath (Join-Path $sourceRoot '.git'))) { throw 'Snapshot requires an explicit Git worktree.' }
 $snapshotRoot = Join-Path $env:LOCALAPPDATA 'EasyEdu\handoff-snapshots'
 $targetRoot = [IO.Path]::GetFullPath((Join-Path $snapshotRoot $Name))
 if (Test-Path -LiteralPath $targetRoot) { throw 'Snapshot already exists; never overwrite it.' }

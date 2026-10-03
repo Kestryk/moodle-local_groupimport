@@ -17,7 +17,12 @@
     @error "foundation-text-field expects small, regular or large.";
   }
 
-  font: 400 #{$font-size}/1.2 var(--easyedu-font-family-ui);
+  // The family token may resolve to `inherit`, which is invalid inside `font`.
+  // Longhands preserve the measured density while inheriting the Moodle family.
+  font-family: var(--easyedu-font-family-ui);
+  font-size: $font-size;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: $height;
   min-width: 0;

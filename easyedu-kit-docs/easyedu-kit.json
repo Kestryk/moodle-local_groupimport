@@ -1,10 +1,33 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.59",
+  "version": "0.4.60",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentSearchableMultiple20261003": {
+      "sourceCommit": "df067f8f571c965a38bcbf941e7194c8a6035b72",
+      "historicalConsumerBaseline": "f27f88dbf30843b4d10d85e12b35e47228c5d2a3",
+      "status": "Paired Foundations/Product publication and isolated gates pass; native preview pending. Not a release or human acceptance.",
+      "documentation": "docs/student-searchable-filters-2026-10-03.md",
+      "foundationReadback": "docs/testing/student-searchable-multiple-foundations-2026-10-03.json",
+      "productReadback": "docs/testing/student-searchable-multiple-product-2026-10-03.json",
+      "isolatedRun": "searchable-multiple-20261003-c",
+      "nativeScenario": "student-searchable-filters-preview.spec.js",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "modules": {
+        "amd/src/searchable_choices.js": "37405b256170a545dd93651aebb284d13512e7d2",
+        "scss/easyedu/components/_searchable-choices.scss": "c45580226c532bf6a6521743f44a0d1a31c7f38a",
+        "scss/easyedu/components/_text-fields.scss": "f0755c673b52aa9bcb1c2a643e9a38e1b68079c4",
+        "amd/src/course_manager.js": "4b83b76927551f12d7c0954f798213c305624d3a",
+        "amd/build/course_manager.min.js": "45c281a03183f9eb89392e1946f037032b1994cd",
+        "amd/build/searchable_choices.min.js": "32b53de58d629861da2c3aa3135e185efa66eec1",
+        "styles.css": "aeb3a152786d71cc71300b973c02736cd4e10a68",
+        "templates/manage.mustache": "32fd38c9886f89d2192239d8c2e78cc5d0a2f7f5",
+        "tools/playwright/student-searchable-filters-preview.spec.js": "943f153616922b917d6b32a9e9e9e74b7cf50be8"
+      }
+    },
     "studentSelectedMembers20261003": {
       "status": "Served local preview: six native top/context open/search/Cancel cases pass at 1600/768/390. Actual transfer DB integration and human acceptance remain pending.",
       "currentPreviewProof": "docs/testing/student-selected-members-preview-2026-10-03.json",

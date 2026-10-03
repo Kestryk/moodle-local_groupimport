@@ -116,3 +116,11 @@ Forwarded sticky-mobile clicks must return focus to the real visible button,
 not its CSS-hidden desktop source. Historical search-only whole-file gates stay
 pinned; use an explicit successor to preserve old Participant/Group commands,
 Kit assets and Motion while adding the member-specific endpoint and helper.
+
+Searchable multiple filters keep the original select/options and every chosen
+value authoritative while searching. Use the canonical single/multiple Kit
+controller and paint, not a private dropdown. Reset and role shortcuts refresh
+the enhancement after modifying native options. Keep native mobile visibility
+rules and filtering predicates unchanged. Record successor asset pins without
+rewriting historical Move/member proof. Verify font longhands with the inherited
+theme-family token; an isolated HTML PASS is not Moodle cascade/icon proof.
