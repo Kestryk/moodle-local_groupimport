@@ -55,6 +55,7 @@ test('Student entity dialogs preserve conditional content and Foundation chrome'
             expect(closeBaseline.glyphCenterDeltaY).toBeLessThanOrEqual(1);
         }
         await close.hover();
+        await settle(close);
         const closeHover = await close.evaluate(element => {
             const css = getComputedStyle(element);
             const probe = document.createElement('span');
