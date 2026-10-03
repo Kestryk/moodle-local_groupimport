@@ -20072,7 +20072,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   pointer-events: none;
 }
 
-.easyedu-ui .foundation-selection-action--tray {
+.easyedu-ui .foundation-selection-action.foundation-selection-action--tray {
   min-height: 2.35rem;
 }
 

@@ -268,7 +268,10 @@
   .easyedu-ui .foundation-selection-action.btn-primary {
     @include buttons.selection-action($solid: true);
   }
-  .easyedu-ui .foundation-selection-action--tray { min-height: 2.35rem; }
+  .easyedu-ui .foundation-selection-action.foundation-selection-action--tray {
+    // Match the semantic-role selector specificity; touch density must win.
+    min-height: 2.35rem;
+  }
   .easyedu-ui .easyedu-empty {
     position: relative;
     align-content: center;

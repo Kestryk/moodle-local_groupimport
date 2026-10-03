@@ -8,8 +8,11 @@ stays deferred to the combined checklist; automation never ticks it.
 SM-11 continuation: focused selected-member action routing is now published on
 page 03 (board `c403923b-827e-80b7-8008-bbcc39a95da4`) with inspected capture and
 settled geometry readback. Whole-view toolbar/sticky propagation, paired compact
-semantic Foundation states, real isolated transfer tests and human acceptance
-remain open. See `student-selected-members-transfer-2026-10-03.md`.
+semantic Foundation states are now published, along with forty shared product
+action controls. Six native typography/action-routing cases pass; a measured
+tray-height gap has an explicit Kit successor and fresh gate. Remaining sticky
+view propagation, isolated transfer tests and human acceptance stay open.
+See `student-selection-actions-2026-10-03.md` and the original transfer document.
 
 ## Scope and ownership
 

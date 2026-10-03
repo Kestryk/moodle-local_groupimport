@@ -62,6 +62,7 @@ test('Selection action styles match Foundations at desktop tablet and mobile', a
                     expect(item.font).toContain('Inter');expect(item.size).toBe('12.48px');
                     expect(item.weight).toBe('600');expect(item.radius).toBe('11.52px');
                     expect(item.gap).toBe('5.6px');
+                    expect(Math.abs(item.height-(width<=1024?37.6:30.4))).toBeLessThanOrEqual(.1);
                     expect(Math.abs(item.textCentreDelta)).toBeLessThanOrEqual(2);
                     expect(Math.abs(item.glyphCentreDelta)).toBeLessThanOrEqual(1);
                 }

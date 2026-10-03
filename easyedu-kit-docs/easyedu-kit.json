@@ -1,20 +1,35 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.63",
+  "version": "0.4.64",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentSelectionTray20261003": {
+      "kitCommit": "d8dd0ee8c36007779b62ea60a804a6f7b2967eff",
+      "consumerBehaviorBaseline": "efbad079a4f9595fd15db6153e7bca5a62b05781",
+      "status": "Explicit 0.4.64 successor: restore published 37.6px tray height at semantic-role specificity; native height assertion added. Preview pending.",
+      "historicalTypographyProof": "docs/testing/student-selection-actions-preview-2026-10-03.json",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "nativeTransferVerified": false,
+      "modules": {
+        "scss/easyedu/_foundation-classes.scss": "110c3c7bfe74c6c883985b806f8622edf2f7ee4d",
+        "styles.css": "d4d63ab1ed5d7bcf04def0c5f417ae7a8d2500c7",
+        "tools/playwright/student-selection-action-style-preview.spec.js": "9d86150a20fb1efe96b78cf2914960bc0d42fe28"
+      }
+    },
     "studentSelectionActions20261003": {
       "kitCommit": "2612e0d54f8797d604433054a37c0af9b51adcdc",
       "consumerBehaviorBaseline": "efbad079a4f9595fd15db6153e7bca5a62b05781",
-      "status": "Canonical compact/tray action paint and paired shared publication; static source/CSS checks pass. Native preview and human acceptance are separate pending gates.",
+      "status": "Served 0.4.63: six native font/centring/palette/open/search/Cancel cases pass. Readback identifies 30.4px tray height mismatch; complete density parity requires explicit successor. Human acceptance pending.",
+      "currentPreviewProof": "docs/testing/student-selection-actions-preview-2026-10-03.json",
       "foundationReadback": "docs/testing/student-selection-actions-foundations-2026-10-03.json",
       "productReadback": "docs/testing/student-selection-actions-product-2026-10-03.json",
       "documentation": "docs/student-selection-actions-2026-10-03.md",
       "nativeScenario": "student-selection-action-style-preview.spec.js",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "nativeTransferVerified": false,
       "modules": {
         "scss/easyedu/components/_buttons.scss": "89a823efa46205170c65aba9ffaf519a0e1233ff",

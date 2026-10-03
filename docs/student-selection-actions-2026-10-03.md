@@ -61,6 +61,23 @@ semantic hover/focus, icon/text centring, matched destination-modal footers,
 focus restoration and unchanged membership rows. Native execution remains a
 separate gate until a served preview record and cleanup evidence are recorded.
 
+### Native typography proof and tray-height successor
+
+Source `dbd4e04` is served at clean runtime `3bb9884`, with cache refresh.
+Run `easystud-authenticated-20261003T151653229Z-45412` passes the six native
+toolbar/context cases: actual Inter/600/12.48px, radius/gap, icon/text centres,
+danger hover, keyboard focus, chooser/search/Cancel and matching modal footers.
+No business POST or fixture; credentials, runtime lease and child cleanup pass.
+Evidence: `testing/student-selection-actions-preview-2026-10-03.json`.
+
+The post-run geometry audit found a separate 30.4px mobile tray height gap.
+The initial candidate did not assert its intended 37.6px height; its PASS is
+not complete density parity. Kit 0.4.64 raises only the tray modifier's selector
+specificity to match the semantic roles. Penpot already shows the correct
+37.6px density, so its source providers are not redrawn. The successor browser
+candidate adds an explicit 30.4px desktop / 37.6px tray assertion. Historical
+assets/evidence stay immutable; new served height proof is a separate gate.
+
 ## Platform-owner proposal and remaining gates
 
 Reconcile these provider IDs, source pins and paired/product readbacks into the

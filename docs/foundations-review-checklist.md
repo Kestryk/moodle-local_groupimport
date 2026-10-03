@@ -6,6 +6,11 @@ Technical checks and human visual acceptance remain separate.
 
 ## Student Management
 
+- [ ] Compact selection toolbar and mobile tray: Inter/600/12.48px, shared gap,
+  semantic danger hover/focus and neutral disabled; 30.4px compact / 37.6px tray.
+  Six non-mutating native typography cases pass; the independently discovered
+  tray-height gap has a separate Kit successor. Global human acceptance stays open.
+
 - [ ] Participant/Group/Grouping detail/settings chrome: shared Inter title,
   icon/eyebrow, right-aligned matched native actions and normal open/close; source-complete
   conditional content. Shared headers and three desktop product specimens
