@@ -2,9 +2,13 @@
 *.json text eol=lf
 *.mustache text eol=lf
 *.md text eol=lf
+/.gitattributes export-ignore
+/.gitignore export-ignore
 /easyedu-kit-docs export-ignore
 /easyedu-guide-kit export-ignore
 /easyedu-motion-kit export-ignore
+/easyedu-navigation-kit export-ignore
+/scss/easyedu/README.md export-ignore
 /tools export-ignore
 /docs export-ignore
 /AGENTS.md export-ignore

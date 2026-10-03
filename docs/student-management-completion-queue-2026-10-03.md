@@ -264,3 +264,53 @@ Record the four new Foundation family hosts and six/twelve product specimens
 from the pinned `docs/testing/*2026-10-03.json` readbacks in the crosswalk.
 Keep source mapping, linked geometry, agent export inspection, runtime proof
 and deferred human visual acceptance as distinct columns.
+
+## Accepted continuation — program lots SM-18 to SM-38
+
+The user supplied the following additional programme on 2026-10-03. Repeated
+paragraphs are intentionally represented once; no requested behavior is
+discarded. Execute these lots sequentially in the existing source and Kit
+worktrees. Do not create one worktree per item. The combined human checklist
+remains open and every lot still needs its own source, Penpot, runtime and
+acceptance status.
+
+| ID | Lot | Required outcome |
+| --- | --- | --- |
+| SM-18 | Restricted Kit distribution | Produce an allowlisted consumable package containing only supported SCSS/runtime assets and the minimum public integration material. Exclude agent rules, internal audits, histories and private working context. Add a manifest, hashes, license boundary and repeatable export/check command. |
+| SM-19 | Shared Guide programme | Audit launcher, navigation, portal/layering, steps, targets, progress, restart/completion, focus/keyboard, reduced motion, responsive/mobile, loading/error/empty states and plugin adapter ownership. Keep shared visits in their own project and preserve Kit-first lineage. |
+| SM-20 | Mass Import proportion audit | Reconcile native and Penpot desktop/tablet/mobile proportions with Student Management: smaller coherent icons, typography hierarchy, panel balance and a deliberate empty-results/right-column state. |
+| SM-21 | Message modal completion | Correct header/chrome, remove the textarea resize grip, use the shared loader without the blue shadow artefact, and publish loading/sending/error specimens. Native browser proof remains open/search/cancel only; no real message is sent. |
+| SM-22 | Member-row palette and density | Make participants inside Groups visually quieter than Group titles; normalize typography, height, checkbox, remove action and alignment in Foundation, product Penpot, Kit and native cards. Preserve accepted card/disclosure Motion. |
+| SM-23 | Shared colour picker | Add Foundation/Kit S/M/L (or source-backed equivalent) states, keyboard/focus/error/disabled/read-only behavior and Hex entry. Document future CCB reuse without changing CCB now. |
+| SM-24 | Configurable EasyStud colours | Add validated administration settings and semantic CSS-variable mapping with accessible defaults/contrast guardrails across responsive views. |
+| SM-25 | Component rename migration | Plan and implement `local_groupimport` to `local_easystud` as an upgrade-safe Moodle component migration, covering installation identity, data/config/file areas/capabilities/events/tasks/privacy/navigation/strings/AMD/tests/docs and rollback. Never perform a blind directory rename. |
+| SM-26 | Soft Skeleton shimmer | Restore a subtle continuous shimmer to the accepted softer Skeleton; preserve fade, readiness/fail-open and reduced-motion. Publish in Kit/Foundations/EasyStud; CCB consumption remains separate. |
+| SM-27 | Mobile Navigation typography | Use canonical Kit type roles for responsive Navigation labels and verify active/inactive/icon alignment at all supported widths. |
+| SM-28 | Configurable view availability/default | Add admin controls for Complete-view visibility and default view. Validate fallbacks, permissions and persistence; provide two-view and three-view toggles for desktop and mobile compositions. |
+| SM-29 | Dropdown growth Motion | Apply one smooth, interruptible, reduced-motion-aware open/close/container-growth contract to searchable/multiple dropdowns and modal choices without changing native option authority or focus/ARIA behavior. |
+| SM-30 | More Filters layout/components | In both relevant columns, replace divergent Toggle/Reset controls with Kit families, improve spacing after dropdowns and rearrange `Groups without grouping` with Reset coherently on desktop/mobile. |
+| SM-31 | Nested dropdown closure | Clicking More Filters closed must close its open child dropdown and then collapse the full filter panel consistently across repeated sequences. |
+| SM-32 | Filtered Select-all semantics | After clearing a previous global selection, Select results must operate only on the current filtered visible result set; clearing/deselecting must not retain the former global scope. |
+| SM-33 | Move-Group checkbox | Normalize `Remove from the original grouping` using the canonical checkbox, including size, label, focus-visible, checked and disabled states. |
+| SM-34 | Selected-member top actions | Selecting Group members enables the top Move participants action as well as the equivalent context action, preserving atomic transfer and membership-only removal semantics. |
+| SM-35 | Group-card participant search | Repair the magnifier-opened member search and align it with the working Group-in-Grouping search behavior and shared control components. |
+| SM-36 | Multiple-choice clear affordance | Add an accessible clear-all cross to the searchable multiple field while preserving native selected options, keyboard operation and focus behavior. |
+| SM-37 | Desktop sticky Clear selection | Redesign the sticky action in Foundation/Product Penpot and Kit/native code so it matches selection-action surfaces and cannot cover lists, pagination or Navigation. |
+| SM-38 | Previously open completion work | Continue member/body public-class migration, adjacent fields, context menus, compact drag previews, pagination, typography/icon alignment, responsive compositions and the deferred combined checklist. |
+
+### Dependency order
+
+1. SM-18 defines the public/private package boundary before further Kit
+   distribution work.
+2. SM-22 continues the already announced member-row tranche and is the first
+   visual implementation after SM-18's architecture/contract gate.
+3. SM-21, SM-30 through SM-37 and SM-20 follow as bounded native UI lots.
+4. SM-23 precedes SM-24; SM-28 is independent but requires administration and
+   responsive toggle tests.
+5. SM-19 is a complete shared Guide programme, not a quick product patch.
+6. SM-25 is last among the structural changes and requires a dedicated migration
+   plan plus compatibility decision before any directory/component rename.
+
+No item above authorizes production deployment, a real Send/Move/Drop, permanent
+test-role creation, CCB modification or alteration of another owner's dirty
+Platform files.

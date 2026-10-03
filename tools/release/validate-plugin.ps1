@@ -130,7 +130,14 @@ foreach ($requiredFile in $requiredFiles) {
 }
 
 $ignoredPaths = @(Get-ExportIgnorePaths (Join-Path $pluginRoot '.gitattributes'))
-$developmentPaths = @('easyedu-kit-docs', 'easyedu-guide-kit', 'easyedu-motion-kit', 'tools', 'docs')
+$developmentPaths = @(
+    'easyedu-kit-docs',
+    'easyedu-guide-kit',
+    'easyedu-motion-kit',
+    'easyedu-navigation-kit',
+    'tools',
+    'docs'
+)
 foreach ($developmentPath in $developmentPaths) {
     Add-CheckResult ($ignoredPaths -contains $developmentPath) "Production package excludes $developmentPath/."
 }
@@ -180,6 +187,17 @@ if ($BuildArchive) {
                 $prefix = "groupimport/$developmentPath/"
                 Add-CheckResult (!($entries | Where-Object { $_.StartsWith($prefix) })) "Archive excludes $developmentPath/."
             }
+            $privateNames = @('AGENTS.md', '.codex', '.claude', 'ai', '.gitattributes', '.gitignore')
+            foreach ($privateName in $privateNames) {
+                Add-CheckResult (
+                    !($entries | Where-Object { $_ -match "(^|/)$([regex]::Escape($privateName))(/|$)" })
+                ) "Archive excludes private agent path $privateName."
+            }
+            $kitScssEntries = @($entries | Where-Object { $_.StartsWith('groupimport/scss/easyedu/') })
+            Add-CheckResult ($kitScssEntries.Count -gt 0) 'Archive contains the embedded EasyEdu SCSS source.'
+            Add-CheckResult (
+                !($kitScssEntries | Where-Object { $_ -notmatch '\.scss$' })
+            ) 'Embedded EasyEdu Kit archive entries are SCSS-only.'
         } finally {
             $archive.Dispose()
         }

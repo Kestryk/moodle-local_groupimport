@@ -33,6 +33,12 @@ This portable contract applies to every AI agent working on EasyStud. The
 canonical wording is maintained in the EasyEdu platform repository under
 `AI/DOCUMENTATION_CONTRACT.md`.
 
+Public or paid-plugin archives must never vendor this `ai/` directory or other
+internal audit/history material. Use the SCSS-only exporter and its contract
+test for public Kit distribution. Copying Docs or AI contracts into a consumer
+requires the explicit private-development acknowledgement; `export-ignore`
+remains mandatory on every consumer repository.
+
 Before editing, read the platform workflow, this plugin's `AGENTS.md`, the
 relevant UI Kit contracts and the canonical `EED-*` batch record when work
 crosses repositories.
