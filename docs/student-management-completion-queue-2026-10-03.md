@@ -5,6 +5,12 @@ competing batch or global plan. User instruction: record and implement every
 remaining point from the quoted Student Management request. Human acceptance
 stays deferred to the combined checklist; automation never ticks it.
 
+SM-11 continuation: focused selected-member action routing is now published on
+page 03 (board `c403923b-827e-80b7-8008-bbcc39a95da4`) with inspected capture and
+settled geometry readback. Whole-view toolbar/sticky propagation, paired compact
+semantic Foundation states, real isolated transfer tests and human acceptance
+remain open. See `student-selected-members-transfer-2026-10-03.md`.
+
 ## Scope and ownership
 
 - Owner: this EasyStud/Kit window, existing dedicated branches

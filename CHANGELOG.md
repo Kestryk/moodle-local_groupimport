@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-03 - Selected-member action routing composition
+
+- Add a focused Penpot desktop toolbar and four-action mobile tray using linked
+  Foundation buttons/icons and recorded native control dimensions.
+- Verify nineteen contained text nodes, ten centred labels and icon slots, and
+  the shared 5.6px icon/label gap. Preserve existing full-view compositions.
+- Record remaining full-board propagation and compact semantic Library states;
+  this design/documentation increment does not change runtime assets or certify
+  a real membership transfer.
+
 ## 2026-10-03 - Dense-role preview and linked catalogue proof
 
 - Verify twelve temporary native roles at desktop/tablet/mobile with search,

@@ -28,6 +28,12 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+Selection-action compositions distinguish selected members from selected groups.
+Before propagating a toolbar, resolve effective visible ancestry and selected
+entity type; hidden legacy columns are not current consumers. Linked provider
+overrides are not newly catalogued Library states. Keep compact geometry proof,
+semantic palette parity, full-view propagation and actual transfer proof separate.
+
 Skeleton source proof must retain loading bootstraps, fail-open, cue counts and
 non-Skeleton Motion. Compare painted loop endpoints and interruptible appearance
 separately from native lifecycle. Hold native initialization GETs only within a
