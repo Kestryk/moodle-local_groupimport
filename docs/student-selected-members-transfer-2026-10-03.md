@@ -113,6 +113,39 @@ SM-11 UI preview is scoped proof, not completed all-state/transfer validation.
 
 ## Reproducible checks and handoff
 
+### Focused action-routing composition
+
+Page 03 now includes `Student management — Selected members / Desktop and mobile
+actions`, board `c403923b-827e-80b7-8008-bbcc39a95da4`, at (80, 8920), 1240 x 500.
+It sits 160px below the dense-role composition and does not overwrite accepted
+full views. Six desktop actions show member Move/Remove enabled and unrelated
+group actions disabled; the mobile tray contains Move, Remove, Message and Clear.
+
+The ten button roots remain linked to Foundation Primary/Secondary providers;
+icons remain linked too. Compact dimensions and semantic outline overrides are
+explicit product composition values, NOT newly published Library variants.
+Catalogue those compact outline states and the source-backed tray in the paired
+Foundation pages before claiming complete shared-library parity. The danger
+outline uses the Kit danger colour; no exact native palette parity is claimed.
+
+The recorded native run above supplies control dimensions: desktop 30.390625px,
+mobile 37.59375px height, Inter 12.48px, 5.6px icon/label gap. The mobile two-column
+buttons are 162.359375px wide with a 6.71875px gap. The 390px browser reference
+includes a 15px scrollbar gutter; do not stretch this specimen to fill all 390px.
+Readback checks nineteen contained text nodes, ten contained icon slots and zero
+painted vertical-centre delta for all button labels. Final capture was inspected.
+See `testing/student-selected-members-routing-penpot-2026-10-03.json` and external
+`EasyEdu/artifacts/penpot/selected-members-routing-20261003/composition-final.png`.
+
+Whole-board propagation remains open: desktop views still contain old toolbars,
+including hidden legacy columns. Qualify effective visibility and the actual
+selected entity type before replacing them. The enabled-member state must not
+be copied onto a view containing only selected groups. Preserve equal column
+heights and bottom-owned pagination when wrapping the six actions.
+No code, generated assets, runtime, course data or original Motion changed in
+this increment. No native tests rerun: the cited browser evidence is historical.
+
+
 `tools/release/test-student-selected-members-contract.ps1 -KitRoot <Kit>` checks
 current successor source pins and byte-identical canonical recipes/controller.
 `node tools/playwright/student-member-transfer-contract.cjs <playwright-package>
