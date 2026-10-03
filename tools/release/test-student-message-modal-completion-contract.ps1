@@ -4,8 +4,8 @@ $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $ledger = Get-Content -Raw -LiteralPath (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') | ConvertFrom-Json
 $pin = $ledger.consumerSync.studentMessageModalCompletion20261003
 
-if ($ledger.version -ne '0.4.70' -or $pin.kitCommit -ne '6da5316') {
-    throw 'Message modal completion is not pinned to Kit 0.4.70.'
+if ($ledger.version -ne '0.4.71' -or $pin.kitCommit -ne '5851a0f') {
+    throw 'Message modal completion is not pinned to Kit 0.4.71.'
 }
 foreach ($module in $pin.modules.PSObject.Properties) {
     $actual = & git -C $root hash-object $module.Name
@@ -46,4 +46,4 @@ foreach ($needle in @("toHaveCSS('resize', 'none')", 'closeGeometry.width', 'dat
 
 & (Join-Path $KitRoot 'scripts/test-compact-portals-contract.ps1')
 if ($LASTEXITCODE -ne 0) { throw 'Canonical compact portal contract failed.' }
-Write-Output 'PASS: Kit 0.4.70 message header, field and loader are synchronized in the consumer.'
+Write-Output 'PASS: Kit 0.4.71 message header, field and loader are synchronized in the consumer.'

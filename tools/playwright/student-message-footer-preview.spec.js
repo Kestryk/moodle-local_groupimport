@@ -43,8 +43,10 @@ test('Student native message footer preserves paired geometry and responsive bod
             await expect(close).toBeVisible();
             const closeGeometry = await close.evaluate(button => {
                 const r = button.getBoundingClientRect(), s = getComputedStyle(button);
+                const before = getComputedStyle(button, '::before');
                 return {width: r.width, height: r.height, display: s.display,
-                    align: s.alignItems, justify: s.justifyContent, opacity: s.opacity};
+                    align: s.alignItems, justify: s.justifyContent, opacity: s.opacity,
+                    glyph: before.content, glyphSize: before.fontSize};
             });
             expect(Math.abs(closeGeometry.width - 30.4)).toBeLessThanOrEqual(1);
             expect(Math.abs(closeGeometry.height - 30.4)).toBeLessThanOrEqual(1);
@@ -52,6 +54,9 @@ test('Student native message footer preserves paired geometry and responsive bod
             expect(closeGeometry.align).toBe('center');
             expect(closeGeometry.justify).toBe('center');
             expect(closeGeometry.opacity).toBe('1');
+            expect(closeGeometry.glyph).not.toBe('none');
+            expect(closeGeometry.glyph).not.toBe('normal');
+            expect(closeGeometry.glyphSize).toBe('20px');
             const footer = modal.locator('.modal-footer');
             await expect(footer).toHaveCSS('justify-content', 'flex-end');
             const geometry = await modal.evaluate(element => {

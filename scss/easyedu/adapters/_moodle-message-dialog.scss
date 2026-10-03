@@ -46,6 +46,18 @@
     }
   }
 
+  // Bootstrap 5 paints its empty Close through a background image. The
+  // canonical surface deliberately owns `background`, so restore the glyph as
+  // semantic text paint without adding a second interactive element.
+  .modal-header .btn-close::before {
+    content: "×";
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+
   .modal-title {
     @include typography.type-modal-title;
     color: var(--easyedu-card-identity-title-color);
