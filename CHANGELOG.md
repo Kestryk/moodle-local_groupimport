@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Native entity metadata catalogue audit candidate
+
+- Add a non-mutating nine-case Participant/Group/Grouping list/count/chip audit,
+  including original normal-motion disclosures and hidden native CSV tables.
+- Reuse existing entities and desktop settings entry followed by resize; do not
+  claim a new responsive entry, populated empty-group proof or sending/Save.
+- Source paint/controller/Motion unchanged. Paired metadata catalogue
+  publication and fresh native result remain separate gates.
+
 ## 2026-10-03 - Conditional selection trays and long labels
 
 - Verify twelve native selection-routing cases at 390/768, including grouped
