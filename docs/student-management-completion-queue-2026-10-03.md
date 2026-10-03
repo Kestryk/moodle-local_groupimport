@@ -310,10 +310,11 @@ acceptance status.
   matched footer; no message was sent and no fixture was created. Paired
   Foundation/Product Loading, Sending and Error specimens are published with
   shared linked components. Human acceptance remains the next gate.
-- SM-30 has a Kit 0.4.72/source candidate: More Filters, Toggle and Reset now
+- SM-30 has a Kit 0.4.73/source candidate: More Filters, Toggle and Reset now
   consume public Kit roles; the catalogue choice spans the first row and the
-  Toggle/Reset pair shares the second. Managed preview and paired Penpot proof
-  remain open.
+  Toggle/Reset pair shares the second. The public disclosure default now stays
+  below responsive touch adapters in specificity. Managed preview and paired
+  Penpot proof remain open.
 
 ### Dependency order
 

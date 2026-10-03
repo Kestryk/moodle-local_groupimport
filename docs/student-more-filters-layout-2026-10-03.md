@@ -2,7 +2,7 @@
 
 ## Scope
 
-SM-30 replaces three locally painted filter controls with public Kit 0.4.72
+SM-30 replaces three locally painted filter controls with public Kit 0.4.73
 roles:
 
 - `easyedu-filter-disclosure` for More Filters;
@@ -21,11 +21,14 @@ rejects a consumer redraw of the toggle track.
 
 ## Evidence status
 
-Kit source and SCSS-only package contracts pass at 0.4.72. The consumer Sass
-build passes with the existing unrelated mixed-declarations warning, and the
-focused source/generated contract passes. Managed Moodle proof and paired
-Foundation/Product Penpot publication remain pending. Human acceptance remains
-open in the combined checklist.
+Kit source and SCSS-only package contracts pass at 0.4.73. The first managed
+Moodle pass exposed an order-dependent specificity defect: the wide public
+class overrode the consumer's canonical touch-density adapter at 390 px. Kit
+0.4.73 lowers only that public default selector's specificity; no local paint
+override was added. The consumer Sass build and focused source/generated
+contract pass. Fresh managed Moodle proof and paired Foundation/Product Penpot
+publication remain pending. Human acceptance remains open in the combined
+checklist.
 
 ## Safety
 

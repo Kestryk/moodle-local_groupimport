@@ -275,7 +275,10 @@
   }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
-  .easyedu-ui .easyedu-filter-disclosure { @include forms.filter-disclosure-trigger(wide); }
+  // Keep the public default below product breakpoint adapters in specificity.
+  // A consumer may legitimately promote the same control to the touch recipe
+  // without adding an override or relying on stylesheet order.
+  .easyedu-ui :where(.easyedu-filter-disclosure) { @include forms.filter-disclosure-trigger(wide); }
   .easyedu-ui .easyedu-empty {
     position: relative;
     align-content: center;
