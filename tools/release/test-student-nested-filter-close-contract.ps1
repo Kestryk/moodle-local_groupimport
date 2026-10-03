@@ -19,6 +19,9 @@ if ($managerSource -notmatch "(?s)root\.addEventListener\('pointerdown'.*?closeC
 if (-not $managerSource.Contains('pointerHandledControls.has(control)')) {
     throw 'The physical click is not deduplicated after pointerdown completed the collapse.'
 }
+if (-not $managerSource.Contains('pointerHandledById.get(event.pointerId)')) {
+    throw 'Pointer cleanup still depends on the moved control remaining under pointerup.'
+}
 if (-not $choiceBuild.Contains('closeChoicesWithin') -or -not $managerBuild.Contains('closeChoicesWithin')) {
     throw 'Generated AMD does not contain the nested choice closure contract.'
 }
