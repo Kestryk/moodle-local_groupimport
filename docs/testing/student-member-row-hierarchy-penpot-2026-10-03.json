@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-03",
+  "batch": "EED-UI-2026-0073 / SM-22",
+  "foundation": {
+    "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryPageId": "2b5216d9-06a9-80a1-8008-9cf44cd3d119",
+    "standardPageId": "2b5216d9-06a9-80a1-8008-9cf5f952460b",
+    "componentId": "2a31d374-d2a1-80fd-8008-ac477e3402f9",
+    "mainShapeId": "2a31d374-d2a1-80fd-8008-ac477de8f7f0",
+    "libraryRowsChecked": 8,
+    "standardRowsChecked": 8,
+    "heightPx": 42,
+    "name": {
+      "fontFamily": "Inter",
+      "fontSizePx": 13,
+      "fontWeight": 600,
+      "fill": "#49657a"
+    },
+    "removeSurfacePx": 32,
+    "centreDeltaPx": {
+      "name": 0,
+      "checkbox": 0,
+      "remove": 0
+    }
+  },
+  "product": {
+    "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+    "pageId": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "pageName": "03 — Student management",
+    "rowsChecked": 12,
+    "representativeDesktopShapeId": "75ffc9c1-9374-805a-8008-b997728feae2",
+    "representativeNarrowShapeId": "75ffc9c1-9374-805a-8008-b99809500a10",
+    "widthsPx": [236, 282, 522, 624],
+    "heightPx": 42,
+    "nameFill": "#49657a",
+    "centreDeltaPx": {
+      "name": 0,
+      "checkbox": 0,
+      "remove": 0
+    }
+  },
+  "structure": {
+    "linkedFoundationComponentRetained": true,
+    "detachedInstancesCreated": 0,
+    "cardMotionChanged": false
+  },
+  "visual": {
+    "pngExportAttempted": true,
+    "pngExportResult": "timed_out_after_120_seconds",
+    "agentVisualVerified": false,
+    "humanVisualValidated": false
+  }
+}

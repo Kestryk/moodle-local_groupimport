@@ -223,7 +223,7 @@
 // A related participant inside a Group is subordinate to the card identity,
 // but belongs to the same UI family. Consumer owns selection/removal behavior.
 @mixin related-person-name {
-  color: var(--easyedu-card-identity-title-color);
+  color: var(--easyedu-related-person-name-color);
   font-family: var(--easyedu-font-family-ui);
   font-size: var(--easyedu-related-person-name-size);
   font-weight: var(--easyedu-font-weight-semibold);

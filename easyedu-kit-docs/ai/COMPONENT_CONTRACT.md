@@ -54,7 +54,8 @@ the 52px/32px design specimen versus native row/action gap; do not silently
 resize shared instances or report ownership transfer as pixel parity.
 
 Student identity roles follow measured Foundations card mains: 14px/700
-#264861 titles; related-person names use 13px/600 in the same family. Shell
+#264861 titles; related-person names use 13px/600 and the quieter
+`--easyedu-related-person-name-color` role in the same family. Shell
 density, semantic rails/badges and original disclosure Motion stay separate.
 The 2026-10-02 requested workspace hierarchy is 28/22px title, 20px panel and
 12px view labels; description remains 16/13px. This supersedes historical

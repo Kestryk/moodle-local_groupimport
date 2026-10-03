@@ -26,7 +26,9 @@ bind the shared `--easyedu-card-identity-title-color`; semantic identity colour
 remains on rails and badges. Keep all existing header tracks and Motion.
 
 `related-person-name` is the subordinate member role: Inter, 13px/600,
-#16324f, line-height 1.35. Foundations existing Member-row main
+`--easyedu-related-person-name-color` (`#49657a` by default), line-height 1.35.
+It is intentionally quieter than the `#264861` card identity title while
+remaining stronger than tertiary metadata. Foundations existing Member-row main
 `2a31d374-d2a1-80fd-8008-ac477de8f7f0` is reused, not duplicated. Apply
 the role to participant names inside groups, without changing their contents,
 selection/removal behavior or disclosure. Paired Library/Standard/Composition

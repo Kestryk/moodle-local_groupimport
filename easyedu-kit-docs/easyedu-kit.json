@@ -1,10 +1,23 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.67",
+  "version": "0.4.68",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentRelatedPersonHierarchy20261003": {
+      "kitCommit": "2263171",
+      "status": "Kit 0.4.68 and paired Foundation/Product Penpot publication: 42px rows, 13px/600 #49657a names and centred checkbox/remove lanes. Native preview and human acceptance remain pending; PNG export timed out.",
+      "documentation": "docs/student-member-row-hierarchy-2026-10-03.md",
+      "penpotReadback": "docs/testing/student-member-row-hierarchy-penpot-2026-10-03.json",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "modules": {
+        "scss/easyedu/_tokens.scss": "1f48be5e309d68e52ddca3ff4165d25aa4b5c086",
+        "scss/easyedu/components/_cards.scss": "3d97ef36205cecc5d385fc5bb7f9bf85fa7d3be0",
+        "styles.css": "f9a6045f383d11b7a7eda6f6abd8f7c8bb4eb47b"
+      }
+    },
     "restrictedDistribution20261003": {
       "kitCommit": "b43f819",
       "status": "SCSS-only public Kit exporter and EasyStud archive privacy gates pass; no runtime or visual behavior changed.",
@@ -246,7 +259,7 @@
       "currentPreviewProof": "docs/testing/student-completion-preview-2026-10-03.json",
       "queue": "docs/student-management-completion-queue-2026-10-03.md",
       "modules": {
-        "scss/easyedu/_foundation-classes.scss": "59e43dcca004853333da8546a7079e30670f99ba",
+        "scss/easyedu/_foundation-classes.scss": "174eabda24d55e87da46c08d975d813645b8eca9",
         "scss/easyedu/_dialog-classes.scss": "d3cda40ca18f32736b038365bc5ab9e270c61120",
         "scss/easyedu/_components.scss": "e0a4095ed13c9f2745ece23a3bf2acb8e861bc90",
         "scss/easyedu/components/_identity-card-surfaces.scss": "e5cd258d4a876c6d57e48d6d27970e5b1a96a422"
@@ -541,17 +554,17 @@
       },
       "additiveCurrentModuleCandidates": "Lookup layer tokens are already served; current Foundation footer helper is a source candidate. Historical proof keeps previousProofModules and its original runtime, not a new all-state PASS.",
       "modules": {
-        "_tokens.scss": "7c67bbaa70136b0dadbedf6a32a8fb6b1c0f77f5",
+        "_tokens.scss": "1f48be5e309d68e52ddca3ff4165d25aa4b5c086",
         "_workspace-classes.scss": "83d5f0a11820eb2b7100aa9ed9d3cd9a459cb773",
-        "_foundation-classes.scss": "90c09595d954c299c3f7273a57eec09bafe80a6d",
-        "components/_cards.scss": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
+        "_foundation-classes.scss": "174eabda24d55e87da46c08d975d813645b8eca9",
+        "components/_cards.scss": "3d97ef36205cecc5d385fc5bb7f9bf85fa7d3be0",
         "components/_menus.scss": "50619e7e17f5fc8be5ca3f8ae2e26c02267bbb16"
       }
     },
     "studentMemberRowExtraction": {
       "sourceCommit": "f38913c38fea9a67b9887efe8c34e89941028740",
       "module": "scss/easyedu/components/_cards.scss",
-      "moduleBlob": "977c5dbcf121d64bf4354e124675a8aa02a46b09",
+      "moduleBlob": "3d97ef36205cecc5d385fc5bb7f9bf85fa7d3be0",
       "baseConsumerCommit": "8296ffea3f1ca3f37b39df6a50170cdb5b21b1c5",
       "status": "canonical source parity and complete CSS equality verified; 1600/768/390 row-role, centre, containment and keyboard proof plus native desktop disclosure regression passed; original density and Motion unchanged; Foundation density reconciliation and human review remain pending",
       "proofRun": "easystud-authenticated-20261002T041025264Z-44664",
