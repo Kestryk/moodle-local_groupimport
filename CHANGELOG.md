@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-03 - Dense-role preview and linked catalogue proof
+
+- Verify twelve temporary native roles at desktop/tablet/mobile with search,
+  selection retention, original OR filtering, reset/focus and contained controls.
+- Publish paired Foundation usage and a linked dense filter composition without
+  duplicating shared providers. Pin inspected captures and before/after readbacks.
+- Verify fixture removal and unchanged pre-existing course/role relationships;
+  preserve native tombstones/audit events. Human checklist/full-view parity stay open.
+
 ## 2026-10-03 - Dense-role native candidate correction
 
 - Count matching visible role rows, not the retained hidden DOM options, during

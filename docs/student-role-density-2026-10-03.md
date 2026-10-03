@@ -39,7 +39,27 @@ no-match retention, exact original OR filtering, reset and containment at
 1600/768/390. The browser blocks all non-GET GroupImport requests. CLI fixture
 changes are the only authorised business mutations for this test. Credentials
 stay process-local; only hashes, fixture IDs and QA labels are recorded.
-Native proof and dense Penpot composition publication remain pending.
+Native successor `easystud-authenticated-20261003T134726686Z-46720` passes at
+1600/768/390 on clean served runtime `ebe133c`, with twelve real QA choices and
+two existing roles. Search/selection/no-match/original OR predicate/reset/focus
+and contained 38/44/44px triggers pass; all three long-label captures are
+inspected and pinned. No browser business POST or page error. The final external
+fixture manifest records matching pre-existing relationship hashes; all active
+test roles/enrolments/users are removed using native APIs, with tombstones/audit
+events retained. Both leases are released and credentials/child cleanup completes.
+Proof: `testing/student-role-density-preview-2026-10-03.json`.
+
+Foundations Standard 08.4 and Library 08.4.1 receive paired charted usage notes;
+their six existing shared providers/paint are unchanged. EasyStud page 03 adds
+`Student management — Many roles / Desktop and Mobile` below the preserved
+short-catalogue board with a 160px board gap. The unified filters inherit the
+existing multiple-choice/field/More-filters providers, without a product Library
+duplicate, new icon or detached control. Readbacks show Inter 14px vertically
+centred choice text and zero visible descendant overflow; inspected captures
+remain external. `testing/student-role-density-{foundations,product}-2026-10-03.json`
+records IDs, before/after usage copy and provider/paint bounds. This publication
+shows the closed dense role entry alongside the existing group search, not all
+twelve roles in an expanded full participant-card composition.
 First native run `easystud-authenticated-20261003T134332397Z-42960` failed
 in the test candidate: its unqualified DOM count included two correctly hidden
 pre-existing roles after search. The shared controller deliberately retains

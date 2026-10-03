@@ -1,0 +1,48 @@
+{
+  "batch": "EED-UI-2026-0073",
+  "scope": "SM-15 native dense-role search, selection, original filtering and reset",
+  "kitRevision": "0b491e404e84ad611d83404fde6f1f33fff265c3",
+  "consumerRevision": "d3f8a8a2456beae76c2e36fed4836fb1a461ff6b",
+  "runtimeRevision": "ebe133c02203eb4e78f84e2fdcab22179b770375",
+  "queue": "20261003T134651Z-f0c34cc2fb",
+  "cacheRefreshed": true,
+  "runId": "easystud-authenticated-20261003T134726686Z-46720",
+  "specBlob": "f57cbcf2a270105430cd473c636a1308b654ac21",
+  "fixtureBlob": "fbe04ecd3176cec6d59f44bf15dd72d126865a8e",
+  "status": "passed",
+  "widths": [1600, 768, 390],
+  "realFixtureOptions": 12,
+  "existingRoleOptions": 2,
+  "fontPx": 14,
+  "triggerHeightsPx": [38, 44, 44],
+  "triggerWidthsPx": [243.4375, 535.25, 291.25],
+  "checks": [
+    "Dense catalogue uses the same canonical searchable multiple picker at all widths",
+    "Twelve visibility-qualified QA matches, native selection retained through no-match search",
+    "Original native OR role predicate checked against nonempty participant DOM",
+    "Native reset clears all selected values and restores Any",
+    "Trigger, panel and option-row boxes contained; native long labels inspected",
+    "Escape returns focus to the real trigger"
+  ],
+  "browserBusinessPosts": 0,
+  "pageErrors": [],
+  "fixture": {
+    "courseId": 5,
+    "capabilityFreeRoles": 12,
+    "nologinUsers": 3,
+    "cleanupComplete": true,
+    "preExistingRelationshipHashesMatch": true,
+    "verifiedRelationships": ["roleDefinitions", "courseAssignments", "courseEnrolments", "courseGroups", "courseMembers", "courseGroupings"],
+    "ownershipAndCleanupRecord": "fixture-manifest.json",
+    "retained": "Only native deleted-user tombstones and audit events remain. No active fixture roles or enrolments remain."
+  },
+  "cleanup": {"credentialsCleared": true, "fixtureLeaseReleased": true, "outerRuntimeLeaseReleased": true, "ownedChildStopped": true},
+  "captures": [
+    "playwright-output/student-role-density-previ-ff75e-nd-contained-at-every-width/many-roles-1600.png",
+    "playwright-output/student-role-density-previ-ff75e-nd-contained-at-every-width/many-roles-768.png",
+    "playwright-output/student-role-density-previ-ff75e-nd-contained-at-every-width/many-roles-390.png"
+  ],
+  "agentInspected": true,
+  "humanVisualValidated": false,
+  "notProven": ["Human acceptance", "Permanent manual-test role configuration", "Every language and role-name length", "Whole participant-card twelve-role visual parity", "Native transfer DB integration", "Full-view parity"]
+}
