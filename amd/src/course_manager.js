@@ -22,7 +22,7 @@
  */
 
 import * as Motion from './motion';
-import {enhanceSelect, enhanceMultipleSelect} from './searchable_choices';
+import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './searchable_choices';
 import {snapshotMemberPairs} from './member_selection';
 
 const selectedClass = 'is-selected';
@@ -8093,6 +8093,7 @@ const bindAdvancedFilters = root => {
                 },
             });
         } else {
+            closeChoicesWithin(panel);
             setAdvancedFilterAccessibility(panel, false);
             Motion.collapse(panel, {
                 hideOnComplete: false,

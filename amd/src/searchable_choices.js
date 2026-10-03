@@ -26,6 +26,26 @@ export const enhanceSelect = (select, labels) => enhanceNativeSelect(select, lab
  */
 export const enhanceMultipleSelect = (select, labels) => enhanceNativeSelect(select, labels, true);
 
+/**
+ * Close every enhanced choice whose authoritative native select belongs to a
+ * container that is itself being collapsed. This keeps nested disclosures in
+ * one lifecycle without a document-level listener or synthetic outside click.
+ *
+ * @param {Element} container Enclosing panel that is about to become inert.
+ * @param {boolean} returnFocus Whether the last closed choice returns focus.
+ * @returns {number} Number of enhanced choice panels that were closed.
+ */
+export const closeChoicesWithin = (container, returnFocus = false) => {
+    if (!container || typeof container.querySelectorAll !== 'function') {
+        return 0;
+    }
+    const active = [...container.querySelectorAll('select')]
+        .map(select => controls.get(select))
+        .filter(controller => controller && controller.trigger.getAttribute('aria-expanded') === 'true');
+    active.forEach((controller, index) => controller.close(returnFocus && index === active.length - 1));
+    return active.length;
+};
+
 const enhanceNativeSelect = (select, labels, multiple) => {
     if (!select || select.multiple !== multiple) {
         throw new Error('Searchable choices require the matching native select mode.');

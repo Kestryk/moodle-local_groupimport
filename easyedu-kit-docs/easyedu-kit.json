@@ -1,10 +1,17 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.73",
+  "version": "0.4.74",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentNestedFilterClosure20261004": {
+      "kitCommit": "7599e6c",
+      "status": "Kit 0.4.74 source candidate: collapsing More Filters explicitly closes active searchable choices inside the panel in the same user action, without changing native values or issuing requests. Generated AMD, managed native proof and human acceptance remain open.",
+      "documentation": "docs/student-nested-filter-closure-2026-10-04.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false
+    },
     "studentMoreFiltersLayout20261003": {
       "kitCommit": "6c5aba1",
       "status": "Kit 0.4.73 served: public More Filters, labelled toggle and compact Reset roles with a coherent catalogue action row; the low-specificity disclosure default preserves responsive touch density. Managed native preview passes at 1600/768/390 and paired Foundations/Product Penpot components are published. Human acceptance remains open.",
