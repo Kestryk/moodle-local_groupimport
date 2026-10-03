@@ -5,6 +5,12 @@
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentFilteredSelectAll20261004": {
+      "status": "EasyStud consumer candidate: Select results keeps matching off-page entities but excludes every entity hidden by participant, catalogue, structure or grouping filters. Generated AMD, managed native proof and human acceptance remain open.",
+      "documentation": "docs/student-filtered-select-all-2026-10-04.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false
+    },
     "studentNestedFilterClosure20261004": {
       "kitCommit": "7599e6c",
       "status": "Kit 0.4.74 served: collapsing More Filters explicitly closes active searchable choices inside the panel in the same user action, without changing native values or issuing requests. Generated AMD and nine managed native cycles pass at 1600/768/390; human acceptance remains open.",
