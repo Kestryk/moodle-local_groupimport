@@ -916,6 +916,12 @@ Must not:
 
 ## Icon-label actions and layout disclosures
 
+Confirmation anatomy must consume the public neutral/danger dialog roles and
+matched footer actions. Danger is opt-in; it must not recolour a Copy/Move
+choice or remain red when disabled. Preserve native callbacks and Motion.
+For extraction-only card changes, compare selector/property sequences before
+claiming no visual drift; nested focus predicates remain consumer-owned.
+
 Must:
 
 - use `action-content` or public `easyedu-action-with-icon` whenever a Moodle

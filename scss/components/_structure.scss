@@ -518,8 +518,7 @@
       @include easyedu.identity-rail(var(--local-groupimport-easystud-icon-grouping));
       @include easyedu.open-identity-rail-base(#f7fafc, #b7c5d1);
 
-      background: linear-gradient(180deg, #fff 0%, #f7fafc 100%);
-      border-color: #d7e0e8;
+      @include easyedu.identity-card-paint(container);
       border-left-color: var(--local-groupimport-easystud-grouping-rail);
     }
 
@@ -531,8 +530,7 @@
     &[data-easystud-grouping-id].is-expanded {
       @include easyedu.open-identity-rail-state(#f7fafc, #b7c5d1, #8ca0b1);
 
-      background: linear-gradient(180deg, #fff 0%, #f7fafc 100%);
-      box-shadow: 0 0.42rem 0.9rem -0.28rem rgba(106, 127, 152, 0.18);
+      @include easyedu.identity-card-paint(container, expanded);
     }
 
     &[data-easystud-grouping-id].is-expanded:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
@@ -551,9 +549,8 @@
 
       &[data-easystud-grouping-id] {
         background: var(--local-groupimport-easystud-grouping-soft);
-        border-color: #9eb0c2;
+        @include easyedu.identity-card-paint(container, selected);
         border-left-color: var(--local-groupimport-easystud-grouping);
-        box-shadow: 0 0.56rem 1.05rem rgba(106, 127, 152, 0.17);
       }
 
       &[data-easystud-grouping-id]::before {
@@ -564,9 +561,7 @@
     &[data-easystud-grouping-id].is-expanded.is-selected {
       @include easyedu.open-identity-rail-state(#edf2f7, #9eb0c2, #8a9dad);
 
-      background: #edf2f7;
-      border-color: #9eb0c2;
-      box-shadow: 0 0.5rem 1rem -0.24rem rgba(106, 127, 152, 0.22);
+      @include easyedu.identity-card-paint(container, expanded-selected);
     }
 
     &[data-easystud-grouping-id].is-expanded.is-selected:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) {
@@ -606,10 +601,8 @@
     // This is the grouping/container identity, not an undefined icon alias.
     @include easyedu.identity-rail(var(--easyedu-icon-grouping));
 
-    background: linear-gradient(180deg, #fefbfd 0%, #f7eef5 100%);
-    border-color: #e5d4e0;
+    @include easyedu.identity-card-paint(unassigned);
     border-left-color: var(--local-groupimport-easystud-ungrouped-rail);
-    border-radius: 0.95rem;
     box-shadow: var(--local-groupimport-easystud-shadow-soft);
 
     &:focus-within {
@@ -622,9 +615,7 @@
     }
 
     &.is-expanded {
-      background: linear-gradient(180deg, #fdfafd 0%, #f2e5ef 100%);
-      border-color: #d7bcd0;
-      box-shadow: 0 0.42rem 0.9rem -0.28rem rgba(111, 67, 100, 0.18);
+      @include easyedu.identity-card-paint(unassigned, expanded);
     }
 
     &.is-expanded:focus-within {
@@ -832,12 +823,9 @@
     @include easyedu.identity-rail(var(--local-groupimport-easystud-icon-group));
 
     align-self: start;
-    background: linear-gradient(180deg, #f9fbfd 0%, #f4f8fb 100%);
-    border: 1px solid #d7e5dc;
+    @include easyedu.identity-card-paint(object);
     border-left: var(--local-groupimport-easystud-identity-border-width) solid
       var(--local-groupimport-easystud-group-rail);
-    border-radius: 0.8rem;
-    box-shadow: 0 0.18rem 0.6rem rgba(31, 42, 55, 0.05);
     cursor: grab;
     max-width: 100%;
     min-width: 0;
@@ -849,11 +837,8 @@
       box-shadow var(--easyedu-motion-fast) ease;
 
     &:hover {
-      background: linear-gradient(180deg, #fbfdfc 0%, #f5faf7 100%);
-      border-color: #cbded2;
+      @include easyedu.identity-card-paint(object, hover);
       border-left-color: var(--local-groupimport-easystud-group-rail);
-      box-shadow: 0 0.42rem 0.9rem rgba(31, 42, 55, 0.07);
-      transform: translateY(-1px);
     }
 
     &:focus-within {
@@ -872,9 +857,8 @@
     &.is-drop-target,
     &.is-selected {
       background: var(--local-groupimport-easystud-group-soft);
-      border-color: #82ae97;
+      @include easyedu.identity-card-paint(object, selected);
       border-left-color: var(--local-groupimport-easystud-group);
-      box-shadow: 0 0.55rem 1rem rgba(41, 114, 77, 0.17);
 
       &::before {
         background-color: #fff;

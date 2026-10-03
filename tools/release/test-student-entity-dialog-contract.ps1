@@ -6,9 +6,11 @@ $embedded = & git -C $root hash-object $module
 $canonical = & git -C $KitRoot hash-object $module
 if ($LASTEXITCODE -ne 0 -or $embedded -ne $canonical) { throw 'Entity dialog Kit source drift.' }
 $ledger = Get-Content -Raw -LiteralPath (Join-Path $root 'easyedu-kit-docs/easyedu-kit.json') | ConvertFrom-Json
+$successor = $ledger.consumerSync.studentCompletion20261003
 foreach ($entry in @($ledger.consumerSync.studentEntityDialogs, $ledger.consumerSync.studentLookupDialogs,
     $ledger.consumerSync.studentCompactPortals)) {
-    if ($entry.modules.$module -ne $canonical) { throw 'Current dialog module pin drift in consumer ledger.' }
+    $currentPin = if ($successor.modules.$module) { $successor.modules.$module } else { $entry.modules.$module }
+    if ($currentPin -ne $canonical) { throw 'Current dialog module pin drift in consumer ledger.' }
 }
 $proof = Get-Content -Raw -LiteralPath (Join-Path $root $ledger.consumerSync.studentEntityDialogs.penpotReadback) |
     ConvertFrom-Json
@@ -34,8 +36,8 @@ foreach ($entityRecord in $proof.product.hosts) {
 }
 $footer = Get-Content -Raw -LiteralPath (Join-Path $root $ledger.consumerSync.studentEntityDialogs.footerReadback) |
     ConvertFrom-Json
-if ($footer.source.modules.$module -ne $canonical -or $footer.product.entity.Count -ne 3) {
-    throw 'Current entity footer source/readback missing.'
+if ($footer.source.modules.$module -ne $ledger.consumerSync.studentModalFooters.modules.$module -or $footer.product.entity.Count -ne 3) {
+    throw 'Historical entity footer source/readback missing.'
 }
 foreach ($record in $footer.product.entity) {
     if ($record.actionRightDelta -gt 1 -or $record.heightSpread -gt 1) { throw 'Entity right-aligned matched footer drift.' }
@@ -55,7 +57,7 @@ $source = Get-Content -Raw -LiteralPath (Join-Path $root 'amd/src/course_manager
 $advanced = [regex]::Match($source, '(?s)const openAdvancedSettingsModal =.*?(?=const applyAdvancedGroupUpdate =)').Value
 $participant = [regex]::Match($source, '(?s)const bindParticipantModal =.*?(?=// The shared Guide owns)').Value
 $template = Get-Content -Raw -LiteralPath (Join-Path $root 'templates/manage.mustache')
-$user = [regex]::Match($template, '(?s)class="local-groupimport-easystud-modal easyedu-modal-layer"\s+data-easystud-user-modal="1".*?(?=\n    <div\s+class="local-groupimport-easystud-modal")').Value
+$user = [regex]::Match($template, '(?s)class="local-groupimport-easystud-modal easyedu-modal-layer"\s+data-easystud-user-modal="1".*?(?=\n    <div\s+class="local-groupimport-easystud-modal\b)').Value
 foreach ($role in @('easyedu-modal-layer', 'easyedu-entity-dialog', 'easyedu-entity-dialog__header',
     'easyedu-entity-dialog__heading', 'easyedu-entity-dialog__icon', 'easyedu-entity-dialog__eyebrow',
     'easyedu-entity-dialog__body', 'easyedu-modal-title')) {

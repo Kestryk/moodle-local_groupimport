@@ -1,0 +1,496 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "libraryHost": "253eab0b-b38c-802b-8008-bb51b5e822d3",
+  "standardHost": "253eab0b-b38c-802b-8008-bb52abdcdc0e",
+  "pairs": [
+    {
+      "kind": "Neutral",
+      "size": "Desktop",
+      "component": "253eab0b-b38c-802b-8008-bb51d2ce5798",
+      "main": "253eab0b-b38c-802b-8008-bb51cfd516fd",
+      "standard": {
+        "id": "253eab0b-b38c-802b-8008-bb52acf062f0",
+        "width": 544,
+        "height": 180.80000000000018,
+        "title": [
+          {
+            "text": "Choose an action",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52acf14868",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Secondary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 209.5999999999999,
+            "y": 127.19999999999982,
+            "rightInset": 181.40000000000003,
+            "paintDeltaX": -2.842170943040401e-14,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52acf192e1",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "text": "Primary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 373,
+            "y": 127.19999999999982,
+            "rightInset": 17,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Choose between two available actions. Nothing changes until you confirm your choice.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 129,
+              "y": 5209.199999988079,
+              "width": 489.51251220703125,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      },
+      "library": {
+        "id": "253eab0b-b38c-802b-8008-bb51cfd516fd",
+        "width": 544,
+        "height": 180.80000000000018,
+        "title": [
+          {
+            "text": "Choose an action",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb51cfdaa1d2",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Secondary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 209.5999999999999,
+            "y": 127.19999999999982,
+            "rightInset": 181.40000000000003,
+            "paintDeltaX": -2.842170943040401e-14,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb51cfdaa1d4",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "text": "Primary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 373,
+            "y": 127.19999999999982,
+            "rightInset": 17,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Choose between two available actions. Nothing changes until you confirm your choice.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 129,
+              "y": 5209.199999988079,
+              "width": 489.51251220703125,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "Danger",
+      "size": "Desktop",
+      "component": "253eab0b-b38c-802b-8008-bb51d7c839ce",
+      "main": "253eab0b-b38c-802b-8008-bb51d2d85e7f",
+      "standard": {
+        "id": "253eab0b-b38c-802b-8008-bb52ad3b021b",
+        "width": 544,
+        "height": 180.80000000000018,
+        "title": [
+          {
+            "text": "Confirm deletion",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52ad3b5a96",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Cancel",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 340.5999999999999,
+            "y": 127.19999999999982,
+            "rightInset": 121.40000000000009,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52ad3b5a98",
+            "component": "253eab0b-b38c-802b-8008-bb50b6134d03",
+            "text": "Confirm",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 433,
+            "y": 127.19999999999982,
+            "rightInset": 17,
+            "paintDeltaX": -0.3937492370605469,
+            "paintDeltaY": -0.0499994270503521,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Confirm the removal of the selected items. Existing dependent memberships may be affected.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 1137,
+              "y": 5209.199999988079,
+              "width": 502.5874938964844,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      },
+      "library": {
+        "id": "253eab0b-b38c-802b-8008-bb51d2d85e7f",
+        "width": 544,
+        "height": 180.80000000000018,
+        "title": [
+          {
+            "text": "Confirm deletion",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb51d2dbb119",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Cancel",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 340.5999999999999,
+            "y": 127.19999999999982,
+            "rightInset": 121.40000000000009,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb51d2dbd4a0",
+            "component": "253eab0b-b38c-802b-8008-bb50b6134d03",
+            "text": "Confirm",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 433,
+            "y": 127.19999999999982,
+            "rightInset": 17,
+            "paintDeltaX": -0.3937492370605469,
+            "paintDeltaY": -0.0499994270503521,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Confirm the removal of the selected items. Existing dependent memberships may be affected.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 1137,
+              "y": 5209.199999988079,
+              "width": 502.5874938964844,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "Neutral",
+      "size": "Narrow",
+      "component": "253eab0b-b38c-802b-8008-bb523352a496",
+      "main": "253eab0b-b38c-802b-8008-bb52328f537a",
+      "standard": {
+        "id": "253eab0b-b38c-802b-8008-bb52ad8ad311",
+        "width": 354,
+        "height": 196.39999999999964,
+        "title": [
+          {
+            "text": "Choose an action",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52ad8b0214",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Secondary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 19.600000000000023,
+            "y": 142.80000000000018,
+            "rightInset": 181.39999999999998,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52ad8b514f",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "text": "Primary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 183,
+            "y": 142.80000000000018,
+            "rightInset": 17,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Choose between two available actions. Nothing changes until you confirm your choice.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 705,
+              "y": 5209.199999988079,
+              "width": 295.5,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      },
+      "library": {
+        "id": "253eab0b-b38c-802b-8008-bb52328f537a",
+        "width": 354,
+        "height": 196.39999999999964,
+        "title": [
+          {
+            "text": "Choose an action",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52328fbf3b",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Secondary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 19.600000000000023,
+            "y": 142.80000000000018,
+            "rightInset": 181.39999999999998,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52328fbf3d",
+            "component": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "text": "Primary action",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 183,
+            "y": 142.80000000000018,
+            "rightInset": 17,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Choose between two available actions. Nothing changes until you confirm your choice.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 705,
+              "y": 5209.199999988079,
+              "width": 295.5,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      }
+    },
+    {
+      "kind": "Danger",
+      "size": "Narrow",
+      "component": "253eab0b-b38c-802b-8008-bb5234273aa8",
+      "main": "253eab0b-b38c-802b-8008-bb5233696692",
+      "standard": {
+        "id": "253eab0b-b38c-802b-8008-bb52adcd777e",
+        "width": 354,
+        "height": 196.39999999999964,
+        "title": [
+          {
+            "text": "Confirm deletion",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52adcdbc64",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Cancel",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 150.5999999999999,
+            "y": 142.80000000000018,
+            "rightInset": 121.40000000000009,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb52adcdbc66",
+            "component": "253eab0b-b38c-802b-8008-bb50b6134d03",
+            "text": "Confirm",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 243,
+            "y": 142.80000000000018,
+            "rightInset": 17,
+            "paintDeltaX": -0.3937492370605469,
+            "paintDeltaY": -0.0499994270503521,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Confirm the removal of the selected items. Existing dependent memberships may be affected.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 1713,
+              "y": 5209.199999988079,
+              "width": 316.2749938964844,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      },
+      "library": {
+        "id": "253eab0b-b38c-802b-8008-bb5233696692",
+        "width": 354,
+        "height": 196.39999999999964,
+        "title": [
+          {
+            "text": "Confirm deletion",
+            "font": "Inter",
+            "size": "16",
+            "weight": "700",
+            "color": "#264861"
+          }
+        ],
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bb523369b09f",
+            "component": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "text": "Cancel",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 150.5999999999999,
+            "y": 142.80000000000018,
+            "rightInset": 121.40000000000009,
+            "paintDeltaX": 0,
+            "paintDeltaY": 0,
+            "contained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bb523369b0a1",
+            "component": "253eab0b-b38c-802b-8008-bb50b6134d03",
+            "text": "Confirm",
+            "font": "Inter",
+            "size": "14.08",
+            "height": 37.600000000000364,
+            "x": 243,
+            "y": 142.80000000000018,
+            "rightInset": 17,
+            "paintDeltaX": -0.3937492370605469,
+            "paintDeltaY": -0.0499994270503521,
+            "contained": true
+          }
+        ],
+        "description": [
+          {
+            "text": "Confirm the removal of the selected items. Existing dependent memberships may be affected.",
+            "font": "Inter",
+            "size": "13",
+            "bounds": {
+              "x": 1713,
+              "y": 5209.199999988079,
+              "width": 316.2749938964844,
+              "height": 31.600000202655792
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "humanVisualValidated": false,
+  "parityExceptions": [
+    "Destructive radial highlight/body gradient and native Close anatomy require final full-body reconciliation."
+  ],
+  "readbackDate": "2026-10-03",
+  "exportsInspected": {
+    "standard": true,
+    "library": true
+  }
+}

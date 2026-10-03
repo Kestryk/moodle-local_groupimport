@@ -6,7 +6,10 @@
 @use "components/focus";
 @use "components/buttons";
 
-@mixin foundation-button($secondary: false, $density: regular, $matched-size: false) {
+@mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false) {
+  @if $secondary and $danger {
+    @error "A Foundation action cannot be both secondary and destructive.";
+  }
   align-items: center;
   background: var(--easyedu-primary);
   border: 0.0625rem solid transparent;
@@ -44,6 +47,10 @@
       min-block-size: 2rem;
     }
   }
+  @if $danger {
+    // Same measured Core Action geometry; only its semantic palette changes.
+    background: var(--easyedu-danger);
+  }
   @if $density == compact {
     border-radius: 0.5rem;
     font-size: 0.75rem;
@@ -62,6 +69,9 @@
       background: var(--easyedu-surface);
       @if $density == compact { color: var(--easyedu-primary); }
       @else { color: var(--easyedu-secondary-text); }
+    } @else if $danger {
+      background: var(--easyedu-danger);
+      color: var(--easyedu-surface);
     } @else {
       background: var(--easyedu-primary);
       color: var(--easyedu-surface);
@@ -72,6 +82,9 @@
       background: var(--easyedu-primary-soft);
       @if $density == compact { color: var(--easyedu-primary); }
       @else { color: var(--easyedu-secondary-text); }
+    } @else if $danger {
+      background: var(--easyedu-danger);
+      color: var(--easyedu-surface);
     } @else {
       background: var(--easyedu-primary-strong);
       color: var(--easyedu-surface);
@@ -93,7 +106,8 @@
   justify-content: flex-end;
 
   > .easyedu-button,
-  > .easyedu-button--secondary {
+  > .easyedu-button--secondary,
+  > .easyedu-button--danger {
     @include foundation-button($density: $density, $matched-size: true);
     & {
       box-sizing: border-box;
@@ -104,6 +118,9 @@
   }
   > .easyedu-button--secondary {
     @include foundation-button($secondary: true, $density: $density, $matched-size: true);
+  }
+  > .easyedu-button--danger {
+    @include foundation-button($density: $density, $matched-size: true, $danger: true);
   }
 }
 
@@ -239,6 +256,7 @@
   }
   .easyedu-ui .easyedu-button { @include foundation-button; }
   .easyedu-ui .easyedu-button--secondary { @include foundation-button(true); }
+  .easyedu-ui .easyedu-button--danger { @include foundation-button($danger: true); }
   .easyedu-ui .easyedu-action-with-icon { @include buttons.action-content; }
   .easyedu-ui .easyedu-empty {
     position: relative;

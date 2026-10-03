@@ -1,0 +1,1273 @@
+{
+  "host": "a301101d-ddc2-807b-8008-bb560202717e",
+  "libraryHost": "a301101d-ddc2-807b-8008-bb560202717e",
+  "standardHost": "a301101d-ddc2-807b-8008-bb5687e2cec2",
+  "components": [
+    {
+      "density": "Regular",
+      "style": "Solid",
+      "state": "Default",
+      "component": "a301101d-ddc2-807b-8008-bb5602971dfe",
+      "main": "a301101d-ddc2-807b-8008-bb560256fae6",
+      "x": 112,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2e5b01ba",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb560256fae6",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Regular",
+      "style": "Solid",
+      "state": "Hover",
+      "component": "a301101d-ddc2-807b-8008-bb5602e9c155",
+      "main": "a301101d-ddc2-807b-8008-bb5602abcfe7",
+      "x": 224,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2e8b8e9f",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0d5ca2",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5602abcfe7",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0d5ca2",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Regular",
+      "style": "Solid",
+      "state": "Focus-visible",
+      "component": "a301101d-ddc2-807b-8008-bb560335a6ca",
+      "main": "a301101d-ddc2-807b-8008-bb560300f70e",
+      "x": 336,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2ec29f08",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb560300f70e",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Regular",
+      "style": "Solid",
+      "state": "Disabled",
+      "component": "a301101d-ddc2-807b-8008-bb56037e2867",
+      "main": "a301101d-ddc2-807b-8008-bb560347a4d7",
+      "x": 448,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2ef3b240",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb560347a4d7",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Regular",
+      "style": "Outline",
+      "state": "Default",
+      "component": "a301101d-ddc2-807b-8008-bb5603c792c6",
+      "main": "a301101d-ddc2-807b-8008-bb56039205a3",
+      "x": 632,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2f2a948a",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb56039205a3",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Regular",
+      "style": "Outline",
+      "state": "Hover",
+      "component": "a301101d-ddc2-807b-8008-bb56040d028e",
+      "main": "a301101d-ddc2-807b-8008-bb5603dbd759",
+      "x": 744,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2f5c3aa6",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5603dbd759",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Regular",
+      "style": "Outline",
+      "state": "Focus-visible",
+      "component": "a301101d-ddc2-807b-8008-bb5604590355",
+      "main": "a301101d-ddc2-807b-8008-bb5604209c35",
+      "x": 856,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2f92a925",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5604209c35",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Regular",
+      "style": "Outline",
+      "state": "Disabled",
+      "component": "a301101d-ddc2-807b-8008-bb5604aebd59",
+      "main": "a301101d-ddc2-807b-8008-bb56046ff0ff",
+      "x": 968,
+      "y": 3850,
+      "width": 38,
+      "height": 38,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2fbfb2f6",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb56046ff0ff",
+        "w": 38,
+        "h": 38,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 11,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Solid",
+      "state": "Default",
+      "component": "a301101d-ddc2-807b-8008-bb5605015999",
+      "main": "a301101d-ddc2-807b-8008-bb5604c794d1",
+      "x": 112,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a2ff2c38e",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5604c794d1",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Solid",
+      "state": "Hover",
+      "component": "a301101d-ddc2-807b-8008-bb56054d6603",
+      "main": "a301101d-ddc2-807b-8008-bb560511c026",
+      "x": 224,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a302c9713",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0d5ca2",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb560511c026",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0d5ca2",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Solid",
+      "state": "Focus-visible",
+      "component": "a301101d-ddc2-807b-8008-bb5605aaa2d4",
+      "main": "a301101d-ddc2-807b-8008-bb5605638fb1",
+      "x": 336,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a305d8813",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5605638fb1",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Solid",
+      "state": "Disabled",
+      "component": "a301101d-ddc2-807b-8008-bb560604b359",
+      "main": "a301101d-ddc2-807b-8008-bb5605c4303a",
+      "x": 448,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a308689c4",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5605c4303a",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Outline",
+      "state": "Default",
+      "component": "a301101d-ddc2-807b-8008-bb560653720a",
+      "main": "a301101d-ddc2-807b-8008-bb56061b4b93",
+      "x": 632,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a30b03eee",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb56061b4b93",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Outline",
+      "state": "Hover",
+      "component": "a301101d-ddc2-807b-8008-bb5606a891df",
+      "main": "a301101d-ddc2-807b-8008-bb560669ded5",
+      "x": 744,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a30e1a3b0",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb560669ded5",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#0f6cbf",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#ffffff"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Outline",
+      "state": "Focus-visible",
+      "component": "a301101d-ddc2-807b-8008-bb5606fc1255",
+      "main": "a301101d-ddc2-807b-8008-bb5606c151e6",
+      "x": 856,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a310c60b8",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5606c151e6",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#ffffff",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#0f6cbf"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    },
+    {
+      "density": "Narrow",
+      "style": "Outline",
+      "state": "Disabled",
+      "component": "a301101d-ddc2-807b-8008-bb56074b5cfc",
+      "main": "a301101d-ddc2-807b-8008-bb5607127906",
+      "x": 968,
+      "y": 3966,
+      "width": 38,
+      "height": 42.400000000000546,
+      "standard": {
+        "id": "a301101d-ddc2-807b-8008-bb5a313e72e7",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      },
+      "library": {
+        "id": "a301101d-ddc2-807b-8008-bb5607127906",
+        "w": 38,
+        "h": 42.400000000000546,
+        "rootFills": [],
+        "surface": [
+          {
+            "fillColor": "#f0f4f8",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ],
+        "paint": [
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          },
+          {
+            "x": 11,
+            "y": 13.199999999999818,
+            "w": 16,
+            "h": 16,
+            "color": "#9aa9b8"
+          }
+        ],
+        "centered": true,
+        "proportional": true
+      }
+    }
+  ],
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "humanVisualValidated": false
+}
