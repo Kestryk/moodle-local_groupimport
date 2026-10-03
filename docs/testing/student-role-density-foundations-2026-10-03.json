@@ -1,0 +1,40 @@
+{
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "standard": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+    "host": "a301101d-ddc2-807b-8008-bb9fa3d2feda",
+    "text": "a301101d-ddc2-807b-8008-bb9fa3fb826d",
+    "before": "Shared choice recipe • selection retained while searching • 2.375rem control / 2.75rem touch targets",
+    "after": "Shared choice recipe • selections retained • 38px / 44px touch controls. Dense catalogues reuse search; lists scroll and option labels wrap.",
+    "paint": {
+      "x": 104,
+      "y": 16574,
+      "width": 792.0250244140625,
+      "height": 15.200000762939453
+    },
+    "fontFamily": "Inter",
+    "fontSize": "12",
+    "contained": true
+  },
+  "library": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "page": "81455adb-6787-8068-8008-9ce9b711604d",
+    "host": "a301101d-ddc2-807b-8008-bb9f387ba588",
+    "text": "a301101d-ddc2-807b-8008-bb9f389fed79",
+    "before": "Shared choice recipe • selection retained while searching • 2.375rem control / 2.75rem touch targets",
+    "after": "Shared choice recipe • selections retained • 38px / 44px touch controls. Dense catalogues reuse search; lists scroll and option labels wrap.",
+    "paint": {
+      "x": 104,
+      "y": 13944,
+      "width": 792.0250244140625,
+      "height": 15.200000762939453
+    },
+    "fontFamily": "Inter",
+    "fontSize": "12",
+    "contained": true
+  },
+  "sharedProvidersUnchanged": true,
+  "newComponents": 0,
+  "humanVisualValidated": false
+}

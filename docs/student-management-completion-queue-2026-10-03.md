@@ -174,6 +174,13 @@ The first native candidate counted fourteen retained DOM rows instead of twelve
 visible QA matches. Cleanup/relationship hash equality passed; both leases
 released. Correct the visibility-qualified test only and preserve immutable
 run `easystud-authenticated-20261003T134332397Z-42960`; native proof stays pending.
+Successor `easystud-authenticated-20261003T134726686Z-46720` passes twelve real
+roles at 1600/768/390 on clean served `ebe133c`. Inspected/pinned captures,
+matching post-cleanup relationship hashes and both released leases are recorded.
+Foundations usage notes are paired; product page 03 contains the linked dense
+Desktop/Mobile composition below the preserved short-catalogue example. No new
+shared paint/provider, permanent role assignment or human acceptance is claimed.
+Versioned proofs: `testing/student-role-density-{preview,foundations,product}-2026-10-03.json`.
 
 SM-16 first native run failed because its candidate expected the secondary soft
 token on a primary cue. Preserve run `easystud-authenticated-20261003T132641614Z-4696`
