@@ -27,8 +27,6 @@ foreach ($needle in @(
     '@include easyedu.type-card-title;',
     '@include easyedu.type-control-label;',
     'border-radius: inherit;',
-    '@include easyedu.action-button(small);',
-    'min-height: 2.25rem;',
     'max-inline-size: 100%;'
 )) {
     if (-not $settingsModal.Contains($needle)) {
@@ -80,7 +78,9 @@ foreach ($needle in @(
     '.local-groupimport-easystud-settings-modal .local-groupimport-easystud-modal__body {',
     '.local-groupimport-easystud-detail__avatar img,',
     '.local-groupimport-easystud-detail__list-scroll {',
-    '.local-groupimport-easystud-settings-modal .local-groupimport-easystud-modal__footer > .btn {'
+    '.easyedu-ui .easyedu-entity-dialog__actions {',
+    '.easyedu-ui .easyedu-button {',
+    '.easyedu-ui .easyedu-button--secondary {'
 )) {
     if (-not $styles.Contains($needle)) {
         throw "Generated stylesheet is missing card-modal contract: $needle"

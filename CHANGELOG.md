@@ -1,5 +1,29 @@
 # Changelog
 
+## 2026-10-03 - Matched right-aligned modal footers (candidate)
+
+- Consume the identical Kit footer recipe for native Destination/entity and
+  Message dialogs: actions at the right, same paired font/height/padding/radius,
+  label-dependent widths and preserved regular/compact density.
+- Update six Destination, two Message and three entity Penpot specimens;
+  keep source options, readonly detail, commands and disclosure Motion.
+- Rebuild CSS; add pinned source/recorded-readback contracts and extend
+  open/cancel browser candidates. Not yet applied to local runtime; no sending,
+  saving or membership changes. Human checklist remains unchecked.
+
+## 2026-10-02 - Entity dialog chrome candidate
+
+- Map Participant detail and Group/Grouping advanced-settings chrome to the
+  canonical Kit entity-header/layer/action classes. Keep read-only detail,
+  conditional image/enrolment key/configuration, counted CSV lists, native URLs,
+  responsive dimensions and original disclosure Motion unchanged.
+- Replace duplicate consumer header/footer skins with opt-in Kit classes;
+  reuse regular Primary/Secondary actions with shared icon spacing. Rebuild
+  CSS and AMD from source. Paired Penpot headers and three linked product
+  examples are recorded separately from the pending local preview/browser gate.
+- Preserve the source-complete open/cancel candidate and static contract.
+  Global human review remains deferred; no Moodle data was changed.
+
 ## 2026-10-02 - Workspace hierarchy and native control harmonisation
 
 - Add paired Foundation neutral-lookup sources and linked Desktop/Narrow

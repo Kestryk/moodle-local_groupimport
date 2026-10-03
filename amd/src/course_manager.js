@@ -4047,22 +4047,23 @@ const openAdvancedSettingsModal = (root, item) => {
         modal.remove();
     }
     modal = document.createElement('div');
-    modal.className = 'local-groupimport-easystud-modal local-groupimport-easystud-settings-modal';
+    modal.className = 'local-groupimport-easystud-modal local-groupimport-easystud-settings-modal easyedu-modal-layer';
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     modal.setAttribute('data-easystud-advanced-settings-modal', '1');
     modal.innerHTML =
-        '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog ' +
+        '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog easyedu-entity-dialog ' +
                 (isgroup ? 'local-groupimport-easystud-settings-modal__dialog--group' :
                     'local-groupimport-easystud-settings-modal__dialog--grouping') + '">' +
-            '<div class="local-groupimport-easystud-modal__header local-groupimport-easystud-settings-modal__header">' +
-                '<div class="local-groupimport-easystud-settings-modal__heading">' +
-                    '<span class="local-groupimport-easystud-settings-modal__icon fa ' + icon + '" aria-hidden="true"></span>' +
+            '<div class="local-groupimport-easystud-modal__header local-groupimport-easystud-settings-modal__header easyedu-entity-dialog__header">' +
+                '<div class="local-groupimport-easystud-settings-modal__heading easyedu-entity-dialog__heading">' +
+                    '<span class="local-groupimport-easystud-settings-modal__icon easyedu-entity-dialog__icon fa ' +
+                        icon + '" aria-hidden="true"></span>' +
                     '<div>' +
-                        '<span class="local-groupimport-easystud-settings-modal__eyebrow">' +
+                        '<span class="local-groupimport-easystud-settings-modal__eyebrow easyedu-entity-dialog__eyebrow">' +
                             escapeHtml(pluginLabel) +
                         '</span>' +
-                        '<h3 class="h5 mb-0">' + escapeHtml(typeLabel) + '</h3>' +
+                        '<h3 class="easyedu-modal-title">' + escapeHtml(typeLabel) + '</h3>' +
                     '</div>' +
                 '</div>' +
                 '<button type="button" class="local-groupimport-easystud-modal__close" ' +
@@ -4071,7 +4072,7 @@ const openAdvancedSettingsModal = (root, item) => {
                     '<span aria-hidden="true">&times;</span>' +
                 '</button>' +
             '</div>' +
-            '<div class="local-groupimport-easystud-modal__body">' +
+            '<div class="local-groupimport-easystud-modal__body easyedu-entity-dialog__body">' +
                 '<form class="local-groupimport-easystud-settings-modal__form" data-easystud-advanced-settings-form="1">' +
                     '<input type="hidden" name="courseid" value="' + escapeHtml(root.getAttribute('data-easystud-course-id') || '') + '">' +
                     '<input type="hidden" name="action" value="' +
@@ -4170,17 +4171,17 @@ const openAdvancedSettingsModal = (root, item) => {
                                 '</span>' +
                             '</label>' +
                         '</div>' : '') +
-                    '<div class="local-groupimport-easystud-modal__footer">' +
-                        '<button type="submit" class="btn btn-primary">' +
-                            '<span class="fa fa-save me-1" aria-hidden="true"></span>' +
+                    '<div class="local-groupimport-easystud-modal__footer easyedu-entity-dialog__actions">' +
+                        '<button type="submit" class="btn easyedu-button easyedu-action-with-icon">' +
+                            '<span class="fa fa-save" aria-hidden="true"></span>' +
                             '<span>' + escapeHtml(labels.save || '') + '</span>' +
                         '</button>' +
-                        '<button type="button" class="btn btn-outline-secondary" data-easystud-close-advanced-settings="1">' +
+                        '<button type="button" class="btn easyedu-button--secondary" data-easystud-close-advanced-settings="1">' +
                             escapeHtml(labels.cancel || '') +
                         '</button>' +
                         (nativeurl ?
-                            '<a class="btn btn-outline-secondary" href="' + escapeHtml(nativeurl) + '">' +
-                                '<span class="fa fa-external-link-alt me-1" aria-hidden="true"></span>' +
+                            '<a class="btn easyedu-button--secondary easyedu-action-with-icon" href="' + escapeHtml(nativeurl) + '">' +
+                                '<span class="fa fa-external-link-alt" aria-hidden="true"></span>' +
                                 '<span>' + escapeHtml(labels.advancedsettingsnative || '') + '</span>' +
                             '</a>' : '') +
                     '</div>' +
@@ -8258,9 +8259,9 @@ const bindParticipantModal = root => {
                     '<summary>' + escapeHtml(labels.advancedsettingsdescription || '') + '</summary>' +
                     '<div>' + data.description + '</div>' +
                 '</details>' : '') +
-                (data.profileurl ? '<div class="local-groupimport-easystud-settings-modal__native">' +
-                    '<a class="btn btn-outline-secondary" href="' + escapeHtml(data.profileurl) + '">' +
-                        '<span class="fa fa-external-link-alt me-1" aria-hidden="true"></span>' +
+                (data.profileurl ? '<div class="local-groupimport-easystud-settings-modal__native easyedu-entity-dialog__actions">' +
+                    '<a class="btn easyedu-button--secondary easyedu-action-with-icon" href="' + escapeHtml(data.profileurl) + '">' +
+                        '<span class="fa fa-external-link-alt" aria-hidden="true"></span>' +
                         '<span>' + escapeHtml(labels.nativedetails || '') + '</span>' +
                     '</a>' +
                 '</div>' : '') +

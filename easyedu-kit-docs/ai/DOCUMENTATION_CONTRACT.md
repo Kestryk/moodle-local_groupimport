@@ -28,6 +28,28 @@ publishing or transport layers only.
 
 ## Native-dialog and visual-proof guardrails
 
+Modal footer pairs align to the inline end and share density through the
+canonical `foundation-dialog-actions` recipe, not a consumer CSS override.
+Preserve adaptive translated widths, secondary palette and native Message
+compact density. After a linked parent/root moves, re-read absolute text
+coordinates in Standard and product copies; propagated root geometry alone
+does not prove label paint. Record paired height, font, containment and right
+inset. Keep old browser asset pins alongside current source candidates and
+never label an unserved modal candidate as a preview PASS.
+
+Inventory Group and Grouping separately before migrating their chrome. Keep
+Participant read-only, optional profile/native URLs, counts and CSV tables,
+image/enrolment key/delete-picture and configuration branches unchanged. Public
+chrome does not certify full body parity. Open/cancel proof never invokes Save,
+file upload, CSV export or native navigation.
+
+Penpot proxies must be compared by shape ID, not JavaScript object identity.
+A linked flex-button can recenter a manually placed label on the next update.
+Keep added glyphs in an ordinary composition host, retain the linked button,
+and use an explicit absolute label override where needed. Read painted icon/text
+bounds and gap after layout settles; also verify the actual font family, not
+only size. Do not append new children to a linked component copy.
+
 For a modal/navigation collision, measure the fixed root, ancestor contexts
 and painted helper characters. Consume the canonical layer class on the root,
 not a consumer-only z-index or a raised child. A failed Penpot connection keeps

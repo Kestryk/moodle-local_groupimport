@@ -1,0 +1,708 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "checkpoint": "student-entity-dialog-chrome-2026-10-02",
+  "scope": "Participant read-only detail and Group/Grouping settings: shared title, eyebrow, identity tile, header background/border, root layer and regular centred actions. Body styles, generic Close action, responsive product bodies and disclosure Motion are not certified.",
+  "status": {
+    "canonicalModuleIdentical": true,
+    "pairedPenpotReadback": true,
+    "agentCapturesInspected": true,
+    "authenticatedRuntimeTested": false,
+    "humanVisualValidated": false,
+    "fullBodyParity": false
+  },
+  "source": {
+    "kitBranch": "work/port4719pg3/eed-ui-2026-0073-kit-phase0-mass-admin",
+    "kitBase": "29e8d4f983308dd181375dbc8a0e2cf8fffec6df",
+    "consumerBranch": "work/port4719pg3/easystud-foundations-student-management-20260928",
+    "consumerBase": "3c5f9ebda69efd89bc13607d46b9918a381c1e73",
+    "uncommittedCandidate": true,
+    "module": "scss/easyedu/_dialog-classes.scss",
+    "moduleGitBlob": "1112d0e27c2f737346966039f0cedc41447acddb",
+    "generatedCssBlob": "36690b5f1233794183385ff4da253d2ba3485015",
+    "managerSourceBlob": "ea3e17d983fab7428861c87cc69038ead4c9775e",
+    "managerBuildBlob": "e1668f94dd3d0bc162143a9aa604840870a624d8",
+    "templateBlob": "0630445bfe3984116e5eef2cf92e1b86db1becbc",
+    "scenarioBlob": "7bab4bf008c0f25d98999f58476bde39822d1f26"
+  },
+  "preservedSourceInventory": {
+    "participant": {
+      "mode": "read-only",
+      "fields": [
+        "name",
+        "email",
+        "username",
+        "idnumber",
+        "institution",
+        "department",
+        "city",
+        "country",
+        "lang",
+        "description"
+      ],
+      "relatedLists": [
+        "roles",
+        "groups",
+        "groupings"
+      ],
+      "optionalAction": "native profile URL",
+      "editingFooter": false
+    },
+    "group": {
+      "fields": [
+        "name",
+        "idnumber",
+        "description",
+        "enrolmentkey",
+        "imagefile",
+        "deletepicture"
+      ],
+      "relatedLists": [
+        "members",
+        "groupings"
+      ],
+      "command": "updategroupadvanced",
+      "nativeUrlOptional": true
+    },
+    "grouping": {
+      "fields": [
+        "name",
+        "idnumber",
+        "description"
+      ],
+      "readOnlyMetadata": [
+        "groups count",
+        "configuration data"
+      ],
+      "relatedLists": [
+        "groups"
+      ],
+      "command": "updategroupingadvanced",
+      "nativeUrlOptional": true
+    },
+    "common": [
+      "Counts and hidden CSV tables retained",
+      "No business command, data loading, file persistence or permission change",
+      "Original card/dialog disclosures, Motion calls, normal open/close and focus handlers retained"
+    ]
+  },
+  "foundations": {
+    "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+    "standardPageId": "2b150968-5877-802e-8008-97c286173199",
+    "libraryPageId": "81455adb-6787-8068-8008-9ce6186bf6ef",
+    "standardHostId": "c937b22a-fc4d-8004-8008-bae392c5d17f",
+    "libraryHostId": "c937b22a-fc4d-8004-8008-bae329bc9378",
+    "family": "EasyEdu / Modals / Entity header",
+    "publication": "Source-preserving Shell M instance -> detach -> header-only component; hidden body/footer retained recoverably; original Shell M main unchanged.",
+    "pairs": [
+      {
+        "mainId": "c937b22a-fc4d-8004-8008-bae32a658260",
+        "standardId": "c937b22a-fc4d-8004-8008-bae393e975cc",
+        "providerId": "c937b22a-fc4d-8004-8008-bae32deee79a",
+        "width": 820,
+        "height": 64,
+        "visibleFingerprintMatch": true,
+        "texts": [
+          {
+            "name": "header eyebrow",
+            "fontFamily": "Inter",
+            "fontSize": "10",
+            "fontWeight": "700",
+            "textBounds": {
+              "x": 176,
+              "y": 4665,
+              "width": 49.375,
+              "height": 12
+            }
+          },
+          {
+            "name": "header title",
+            "fontFamily": "Inter",
+            "fontSize": "16",
+            "fontWeight": "700",
+            "textBounds": {
+              "x": 176,
+              "y": 4679,
+              "width": 101.98750305175781,
+              "height": 19.200000762939453
+            }
+          }
+        ],
+        "visibleEscapes": []
+      },
+      {
+        "mainId": "c937b22a-fc4d-8004-8008-bae36ea817a5",
+        "standardId": "c937b22a-fc4d-8004-8008-bae39537fe72",
+        "providerId": "c937b22a-fc4d-8004-8008-bae3711770b7",
+        "width": 354.21875,
+        "height": 64,
+        "visibleFingerprintMatch": true,
+        "texts": [
+          {
+            "name": "header eyebrow",
+            "fontFamily": "Inter",
+            "fontSize": "10",
+            "fontWeight": "700",
+            "textBounds": {
+              "x": 1084,
+              "y": 4665,
+              "width": 49.375,
+              "height": 12
+            }
+          },
+          {
+            "name": "header title",
+            "fontFamily": "Inter",
+            "fontSize": "16",
+            "fontWeight": "700",
+            "textBounds": {
+              "x": 1084,
+              "y": 4679,
+              "width": 101.98750305175781,
+              "height": 19.200000762939453
+            }
+          }
+        ],
+        "visibleEscapes": []
+      }
+    ]
+  },
+  "product": {
+    "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+    "pageId": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "localComponentCount": 0,
+    "hosts": [
+      {
+        "id": "cef95197-06bc-809e-8008-aeffada5eafe",
+        "name": "Participant details",
+        "width": 820,
+        "height": 980,
+        "header": {
+          "id": "253eab0b-b38c-802b-8008-bae4aa179dac",
+          "providerId": "c937b22a-fc4d-8004-8008-bae32deee79a",
+          "width": 820,
+          "height": 64,
+          "texts": [
+            {
+              "id": "253eab0b-b38c-802b-8008-bae4aa1a4993",
+              "name": "header eyebrow",
+              "text": "EASYSTUD",
+              "fontFamily": "Inter",
+              "fontSize": "10",
+              "fontWeight": "700",
+              "align": "left",
+              "verticalAlign": "top",
+              "x": 64,
+              "y": 15,
+              "width": 690,
+              "height": 12,
+              "fillColor": "#0f6cbf",
+              "paint": {
+                "x": 64,
+                "y": 15,
+                "width": 54.9375,
+                "height": 12
+              }
+            },
+            {
+              "id": "253eab0b-b38c-802b-8008-bae4aa1acdcf",
+              "name": "header title",
+              "text": "Participant details",
+              "fontFamily": "Inter",
+              "fontSize": "16",
+              "fontWeight": "700",
+              "align": "left",
+              "verticalAlign": "top",
+              "x": 64,
+              "y": 29,
+              "width": 690,
+              "height": 20,
+              "fillColor": "#264861",
+              "paint": {
+                "x": 64,
+                "y": 29,
+                "width": 141.83750915527344,
+                "height": 19.200000762939453
+              }
+            }
+          ],
+          "gradient": {
+            "type": "linear",
+            "startX": 0,
+            "startY": 0,
+            "endX": 100,
+            "endY": 100,
+            "width": 100,
+            "stops": [
+              {
+                "color": "#f8fbff",
+                "opacity": 1,
+                "offset": 0
+              },
+              {
+                "color": "#eef7f1",
+                "opacity": 1,
+                "offset": 1
+              }
+            ]
+          },
+          "visibleGlyphs": [
+            {
+              "x": 781.5484765624997,
+              "y": 27.94847656250022,
+              "width": 6.503046875000109,
+              "height": 6.503046875000109,
+              "colors": [
+                "#0b4f8a"
+              ]
+            },
+            {
+              "x": 781.5484765624997,
+              "y": 27.94847656250022,
+              "width": 6.503046875000109,
+              "height": 6.503046875000109,
+              "colors": [
+                "#0b4f8a"
+              ]
+            },
+            {
+              "x": 30.16666666666663,
+              "y": 25.33333333333303,
+              "width": 11.666666666666515,
+              "height": 13.33333333333303,
+              "colors": [
+                "#0f6cbf"
+              ]
+            },
+            {
+              "x": 30.16666666666663,
+              "y": 25.33333333333303,
+              "width": 11.666666666666515,
+              "height": 13.33333333333303,
+              "colors": [
+                "#0f6cbf"
+              ]
+            }
+          ]
+        },
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bae5c435dde1",
+            "label": "Open native Moodle profile",
+            "buttonProviderId": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "labelAlign": "center",
+            "labelVerticalAlign": "center",
+            "absoluteLabel": true,
+            "iconProviderId": "32eadb6d-165e-803e-8008-9891561ecb68",
+            "x": 300,
+            "y": 902,
+            "width": 220,
+            "height": 32.399999999999636,
+            "iconLabelBoxGap": 10.400000000000091,
+            "paintCenterDelta": -0.400000286102113,
+            "labelContained": true
+          }
+        ],
+        "actionCenterDelta": 0,
+        "visibleEscapes": []
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeffadfb0281",
+        "name": "Group advanced settings",
+        "width": 820,
+        "height": 1180,
+        "header": {
+          "id": "253eab0b-b38c-802b-8008-bae50a6a83fe",
+          "providerId": "c937b22a-fc4d-8004-8008-bae32deee79a",
+          "width": 820,
+          "height": 64,
+          "texts": [
+            {
+              "id": "253eab0b-b38c-802b-8008-bae50a6ad172",
+              "name": "header eyebrow",
+              "text": "EASYSTUD",
+              "fontFamily": "Inter",
+              "fontSize": "10",
+              "fontWeight": "700",
+              "align": "left",
+              "verticalAlign": "top",
+              "x": 64,
+              "y": 15,
+              "width": 690,
+              "height": 12,
+              "fillColor": "#0f6cbf",
+              "paint": {
+                "x": 64,
+                "y": 15,
+                "width": 54.9375,
+                "height": 12
+              }
+            },
+            {
+              "id": "253eab0b-b38c-802b-8008-bae50a6ad173",
+              "name": "header title",
+              "text": "Group details",
+              "fontFamily": "Inter",
+              "fontSize": "16",
+              "fontWeight": "700",
+              "align": "left",
+              "verticalAlign": "top",
+              "x": 64,
+              "y": 29,
+              "width": 690,
+              "height": 20,
+              "fillColor": "#264861",
+              "paint": {
+                "x": 64,
+                "y": 29,
+                "width": 104.26250457763672,
+                "height": 19.200000762939453
+              }
+            }
+          ],
+          "gradient": {
+            "type": "linear",
+            "startX": 0,
+            "startY": 0,
+            "endX": 100,
+            "endY": 100,
+            "width": 100,
+            "stops": [
+              {
+                "color": "#f8fbff",
+                "opacity": 1,
+                "offset": 0
+              },
+              {
+                "color": "#eef7f1",
+                "opacity": 1,
+                "offset": 1
+              }
+            ]
+          },
+          "visibleGlyphs": [
+            {
+              "x": 781.5484765624997,
+              "y": 27.94847656250022,
+              "width": 6.503046875000109,
+              "height": 6.503046875000109,
+              "colors": [
+                "#0b4f8a"
+              ]
+            },
+            {
+              "x": 781.5484765624997,
+              "y": 27.94847656250022,
+              "width": 6.503046875000109,
+              "height": 6.503046875000109,
+              "colors": [
+                "#0b4f8a"
+              ]
+            },
+            {
+              "x": 29.333333333333343,
+              "y": 26.666666666666742,
+              "width": 13.333333333333343,
+              "height": 10.666666666666515,
+              "colors": [
+                "#0f6cbf"
+              ]
+            },
+            {
+              "x": 29.333333333333343,
+              "y": 26.666666666666742,
+              "width": 13.333333333333343,
+              "height": 10.666666666666515,
+              "colors": [
+                "#0f6cbf"
+              ]
+            }
+          ]
+        },
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bae55cd1cb5a",
+            "label": "Save",
+            "buttonProviderId": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "labelAlign": "center",
+            "labelVerticalAlign": "center",
+            "absoluteLabel": true,
+            "iconProviderId": "32eadb6d-165e-803e-8008-98918f8563f0",
+            "x": 247.60000000000002,
+            "y": 1126,
+            "width": 88,
+            "height": 37.600000000000364,
+            "iconLabelBoxGap": 10.399999999999977,
+            "paintCenterDelta": -0.0500000000001819,
+            "labelContained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae56169c902",
+            "label": "Cancel",
+            "buttonProviderId": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "labelAlign": "center",
+            "labelVerticalAlign": "center",
+            "absoluteLabel": true,
+            "iconProviderId": null,
+            "x": 346,
+            "y": 1128.6,
+            "width": 72,
+            "height": 32.399999999999636,
+            "iconLabelBoxGap": null,
+            "paintCenterDelta": -0.400000286102113,
+            "labelContained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae5640b0e09",
+            "label": "Edit in Moodle",
+            "buttonProviderId": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "labelAlign": "center",
+            "labelVerticalAlign": "center",
+            "absoluteLabel": true,
+            "iconProviderId": "32eadb6d-165e-803e-8008-9891561ecb68",
+            "x": 428.4000000000001,
+            "y": 1128.6,
+            "width": 143.9999999999999,
+            "height": 32.399999999999636,
+            "iconLabelBoxGap": 10.399999999999977,
+            "paintCenterDelta": -0.400000286102113,
+            "labelContained": true
+          }
+        ],
+        "actionCenterDelta": 0,
+        "visibleEscapes": []
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeffae533daf",
+        "name": "Grouping advanced settings",
+        "width": 820,
+        "height": 800,
+        "header": {
+          "id": "253eab0b-b38c-802b-8008-bae586a394f2",
+          "providerId": "c937b22a-fc4d-8004-8008-bae32deee79a",
+          "width": 820,
+          "height": 64,
+          "texts": [
+            {
+              "id": "253eab0b-b38c-802b-8008-bae586a41a1b",
+              "name": "header eyebrow",
+              "text": "EASYSTUD",
+              "fontFamily": "Inter",
+              "fontSize": "10",
+              "fontWeight": "700",
+              "align": "left",
+              "verticalAlign": "top",
+              "x": 64,
+              "y": 15,
+              "width": 690,
+              "height": 12,
+              "fillColor": "#0f6cbf",
+              "paint": {
+                "x": 64,
+                "y": 15,
+                "width": 54.9375,
+                "height": 12
+              }
+            },
+            {
+              "id": "253eab0b-b38c-802b-8008-bae586a41a1c",
+              "name": "header title",
+              "text": "Grouping details",
+              "fontFamily": "Inter",
+              "fontSize": "16",
+              "fontWeight": "700",
+              "align": "left",
+              "verticalAlign": "top",
+              "x": 64,
+              "y": 29,
+              "width": 690,
+              "height": 20,
+              "fillColor": "#264861",
+              "paint": {
+                "x": 64,
+                "y": 29,
+                "width": 128.66250610351562,
+                "height": 19.200000762939453
+              }
+            }
+          ],
+          "gradient": {
+            "type": "linear",
+            "startX": 0,
+            "startY": 0,
+            "endX": 100,
+            "endY": 100,
+            "width": 100,
+            "stops": [
+              {
+                "color": "#f8fbff",
+                "opacity": 1,
+                "offset": 0
+              },
+              {
+                "color": "#eef7f1",
+                "opacity": 1,
+                "offset": 1
+              }
+            ]
+          },
+          "visibleGlyphs": [
+            {
+              "x": 781.5484765624997,
+              "y": 27.94847656250022,
+              "width": 6.503046875000109,
+              "height": 6.503046875000109,
+              "colors": [
+                "#0b4f8a"
+              ]
+            },
+            {
+              "x": 781.5484765624997,
+              "y": 27.94847656250022,
+              "width": 6.503046875000109,
+              "height": 6.503046875000109,
+              "colors": [
+                "#0b4f8a"
+              ]
+            },
+            {
+              "x": 30.074110243055543,
+              "y": 26.07454253472224,
+              "width": 11.8517795138888,
+              "height": 11.850694444444343,
+              "colors": [
+                "#0f6cbf"
+              ]
+            },
+            {
+              "x": 30.074110243055543,
+              "y": 26.07454253472224,
+              "width": 11.8517795138888,
+              "height": 11.850694444444343,
+              "colors": [
+                "#0f6cbf"
+              ]
+            }
+          ]
+        },
+        "actions": [
+          {
+            "id": "253eab0b-b38c-802b-8008-bae58c44724b",
+            "label": "Save",
+            "buttonProviderId": "db59201c-3dd6-8004-8008-babe0d7923f8",
+            "fontFamily": "Inter",
+            "fontSize": "14.08",
+            "labelAlign": "center",
+            "labelVerticalAlign": "center",
+            "absoluteLabel": true,
+            "iconProviderId": "32eadb6d-165e-803e-8008-98918f8563f0",
+            "x": 247.5999999999999,
+            "y": 746,
+            "width": 88,
+            "height": 37.600000000000364,
+            "iconLabelBoxGap": 10.400000000000091,
+            "paintCenterDelta": -0.0500000000001819,
+            "labelContained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae59343fe7c",
+            "label": "Cancel",
+            "buttonProviderId": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "labelAlign": "center",
+            "labelVerticalAlign": "center",
+            "absoluteLabel": true,
+            "iconProviderId": null,
+            "x": 346,
+            "y": 748.5999999999999,
+            "width": 72,
+            "height": 32.399999999999636,
+            "iconLabelBoxGap": null,
+            "paintCenterDelta": -0.400000286102113,
+            "labelContained": true
+          },
+          {
+            "id": "253eab0b-b38c-802b-8008-bae594cd7aa9",
+            "label": "Edit in Moodle",
+            "buttonProviderId": "724138fb-4a17-80dc-8008-babe45e05c1b",
+            "fontFamily": "Inter",
+            "fontSize": "12",
+            "labelAlign": "center",
+            "labelVerticalAlign": "center",
+            "absoluteLabel": true,
+            "iconProviderId": "32eadb6d-165e-803e-8008-9891561ecb68",
+            "x": 428.39999999999986,
+            "y": 748.5999999999999,
+            "width": 144,
+            "height": 32.399999999999636,
+            "iconLabelBoxGap": 10.400000000000091,
+            "paintCenterDelta": -0.400000286102113,
+            "labelContained": true
+          }
+        ],
+        "actionCenterDelta": -1.1368683772161603e-13,
+        "visibleEscapes": []
+      }
+    ]
+  },
+  "artifacts": {
+    "externalFolder": "%LOCALAPPDATA%/EasyEdu/artifacts/easystud/penpot/entity-dialog-chrome-20261002",
+    "files": [
+      "foundation-entity-header-standard.png",
+      "foundation-entity-header-library.png",
+      "easystud-participant.png",
+      "easystud-group.png",
+      "easystud-grouping.png"
+    ],
+    "format": "Owned-CDP Penpot editor screenshots, agent inspected; product bodies retained for context, not a pure board export or Moodle screenshot.",
+    "measuredActions": 7,
+    "iconActionBoxGapPx": 10.4,
+    "maximumLabelPaintCenterDeltaPx": 0.400001,
+    "actionRowCenterDeltaTolerancePx": 0.000001,
+    "visibleEscapes": 0
+  },
+  "validation": {
+    "static": [
+      "Canonical and embedded dialog module equality",
+      "Sass and AMD build",
+      "Entity and existing card-modal source contracts",
+      "Kit compact-portal compile fixture",
+      "Clipboard and workspace source contracts",
+      "Node syntax and git diff checks"
+    ],
+    "knownPreExistingFailure": "test-wave9-modal-panels-contract.ps1 requires the Administration hint selector in _typography-identity.scss although it is already absent at HEAD and resides in _admin-settings.scss. Not changed or waived.",
+    "discovery": {
+      "runId": "easystud-authenticated-20261002T213648242Z-48188",
+      "selectedTests": 1,
+      "runnerExitCode": 0,
+      "authenticated": false,
+      "leaseAcquired": false,
+      "fixtureRequested": false
+    },
+    "runtime": {
+      "branch": "preview/moodle51/easystud-phase0-mass-admin",
+      "headUnchanged": "333b7539932749b354b1070350412cc33b6d29bb",
+      "newPromotion": false,
+      "cachePurged": false,
+      "testExecuted": false
+    }
+  },
+  "openGates": [
+    "Named user approval for owned Kit/consumer commit+push and managed local preview/cache/open-cancel scenario",
+    "1600/768/390 runtime paint, normal-motion and focus checks",
+    "Body field/list/filepicker and common Close component parity",
+    "Complete responsive product compositions",
+    "RTL/forced-colors/all states and deferred human checklist"
+  ],
+  "platformOwnerProposal": "Copy these paired component/product IDs and proof boundaries into 0073, source-component crosswalk, state/plan and scenario registry. Shared dirty Platform files were not edited.",
+  "efficiency": "No token/billing telemetry available. Avoid broad output and whole-board MCP exports; compare Penpot proxies by ID, skip hidden ancestry, read actual font family, wait for library load and settled flex/text layout. Run-scoped retention only; no deletion authority."
+}

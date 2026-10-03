@@ -65,19 +65,11 @@
   .easyedu-message-dialog__field-wrap { margin: 0; width: 100%; }
 
   .modal-footer {
-    align-items: center;
-    display: flex;
-    flex: 0 0 auto;
-    flex-wrap: wrap;
-    gap: var(--easyedu-action-icon-gap);
-    justify-content: center;
-    padding: 0.8rem 1rem;
-
-    .easyedu-button {
-      @include foundations.foundation-button($density: compact);
-      & { margin: 0; }
+    @include foundations.foundation-dialog-actions($density: compact);
+    & {
+      flex: 0 0 auto;
+      padding: 0.8rem 1rem;
     }
-    .easyedu-button--secondary { @include foundations.foundation-button($secondary: true, $density: compact); }
   }
 
   .easyedu-message-dialog__field {

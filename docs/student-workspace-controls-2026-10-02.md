@@ -446,3 +446,38 @@ normally before the bounded stop guard matched; no process was stopped. Its
 inventory, not deletion authority. Prefer run-scoped inventories for iteration.
 No verified transfer snapshot was created; pushed clean branches are not a
 claim of complete multi-machine transfer readiness.
+
+### Entity dialog chrome continuation
+
+The next slice is now implemented as an uncommitted canonical Kit 0.4.55
+candidate and an identical embedded module, not a served Moodle change.
+Participant remains read-only. Group image/enrolment key/delete-picture,
+Grouping configuration, lists/counts/hidden CSV tables, native URLs and all
+original Motion/focus commands are preserved. Duplicate local header/footer
+skins were removed; title/eyebrow/tile/header palette and right-aligned matched regular
+actions now consume opt-in Kit roles.
+
+Foundations has paired Desktop/Narrow header-only Standard/Library sources;
+the three desktop product headers and seven linked native actions were
+re-read after text reflow. All six visible header texts use Inter, rows are
+recorded in the historical centred-footer snapshot; current right-aligned
+matched actions have their separate 2026-10-03 readback. Icon-box/label gaps are
+10.4px and no visible descendants escape the
+three existing hosts. Five final editor captures were inspected. A hidden
+legacy body/footer remains recoverable; original Shell M and product business
+contents are retained. Body styles, generic Close action and full responsive
+product compositions still need their own parity pass.
+
+Detailed source inventory, exact IDs, checks, known pre-existing Administration
+contract failure, new named runtime gate and Platform-owner proposal are in
+`docs/student-entity-dialog-chrome-2026-10-02.md`; machine-readable readback is
+`docs/testing/student-entity-dialog-chrome-penpot-2026-10-02.json`.
+Discovery selected exactly one scenario without authentication or a runtime
+lease. New commit/push, preview/cache and 1600/768/390 open/cancel proof await
+the named user approval. Runtime remains clean at `333b753`; the prior
+Clipboard PASS is not proof for this new candidate. Human checklist is open.
+
+The current footer continuation and served-versus-source inventory are in
+`student-modal-footers-2026-10-03.md` and
+`student-transposition-status-2026-10-03.md`. Historical browser pins remain
+unchanged; source-module candidate pins are additive and not a runtime PASS.

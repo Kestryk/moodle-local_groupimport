@@ -6,13 +6,22 @@ Technical checks and human visual acceptance remain separate.
 
 ## Student Management
 
+- [ ] Participant/Group/Grouping detail/settings chrome: shared Inter title,
+  icon/eyebrow, right-aligned matched native actions and normal open/close; source-complete
+  conditional content. Shared headers and three desktop product specimens
+  updated; 1600/768/390 browser candidate prepared, not yet executed. Body
+  styling, complete responsive product compositions and human acceptance open.
+
 - [ ] Compact simplified Participant/Group drag previews: identity and title,
   no card contents or action/selection controls, bounded footprint, no opaque
   moving-icon square; Multiple only has rear layers and extra-item count.
 - [ ] Native message modal: inherited Kit font/tokens outside the workspace,
-  canonical textarea, header/body/footer, centred Send/Cancel and close action.
+  canonical textarea, header/body/footer, right-aligned matched Send/Cancel and close action.
 - [ ] Move participants/groups dialogs: canonical destination/menu and actions,
   source-complete Penpot specimens including origin option and empty state.
+- [ ] Modal footer pairs: same font/height/padding/radius, adaptive translated
+  width and right-aligned wrapping. Four paired Foundation / eleven product
+  readbacks recorded 2026-10-03; new local preview/native proof still pending.
 - [ ] Creation + centred in solid/outline buttons; adjacent search/add fields
   have coherent height/radius; Ungrouped identity icon remains visible.
 - [ ] Reduced workspace/column/view-title sizes and softer card-title contrast,
