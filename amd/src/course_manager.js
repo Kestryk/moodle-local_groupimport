@@ -8113,6 +8113,7 @@ const bindAdvancedFilters = root => {
     };
 
     const pointerHandledControls = new WeakSet();
+    const pointerHandledById = new Map();
     const activateAdvancedFilters = control => {
         const key = control.getAttribute('data-easystud-advanced-filters-toggle') ||
             control.getAttribute('data-easystud-advanced-filters-more');
@@ -8145,24 +8146,27 @@ const bindAdvancedFilters = root => {
                 event.preventDefault();
                 if (activateAdvancedFilters(control)) {
                     pointerHandledControls.add(control);
+                    pointerHandledById.set(event.pointerId, control);
                 }
             }
         }
     });
 
     root.addEventListener('pointerup', event => {
-        const control = event.target.closest('[data-easystud-advanced-filters-toggle], ' +
-            '[data-easystud-advanced-filters-more]');
-        if (control && pointerHandledControls.has(control)) {
-            window.setTimeout(() => pointerHandledControls.delete(control), 0);
+        const control = pointerHandledById.get(event.pointerId);
+        if (control) {
+            window.setTimeout(() => {
+                pointerHandledControls.delete(control);
+                pointerHandledById.delete(event.pointerId);
+            }, 0);
         }
     });
 
     root.addEventListener('pointercancel', event => {
-        const control = event.target.closest('[data-easystud-advanced-filters-toggle], ' +
-            '[data-easystud-advanced-filters-more]');
+        const control = pointerHandledById.get(event.pointerId);
         if (control) {
             pointerHandledControls.delete(control);
+            pointerHandledById.delete(event.pointerId);
         }
     });
 
