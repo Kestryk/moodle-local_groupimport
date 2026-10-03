@@ -76,7 +76,9 @@ test('Student native message footer preserves paired geometry and responsive bod
                 expect(a.content - a.field - a.header - a.footer).toBeLessThan(40);
             }
             await modal.locator('.modal-content').screenshot({path: testInfo.outputPath('message-footer-' + width + '.png')});
-            await footer.locator('[data-action="hide"]').click();
+            // core/modal_save_cancel owns the native Cancel action; "hide"
+            // belongs to its header close button, not this paired footer.
+            await footer.locator('.easyedu-button--secondary[data-action="cancel"]').click();
             await expect(modal).toBeHidden();
             await selection.evaluate(input => input.click());
         }

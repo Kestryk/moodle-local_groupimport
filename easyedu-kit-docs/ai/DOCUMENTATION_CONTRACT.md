@@ -33,6 +33,11 @@ Restore it in the completed modal-exit callback, never before Motion hides the
 dialog or after a cancelled exit. Keep the failed run and its immutable source
 revision; repair the source rather than deleting or weakening the assertion.
 
+Read the actual native Moodle modal template before selecting its footer:
+`core/modal_save_cancel` uses `cancel`, while header Close uses `hide`.
+Do not manufacture a mobile settings entry absent from native full-card menus.
+Desktop open followed by responsive resizing proves geometry, not mobile entry.
+
 Modal footer pairs align to the inline end and share density through the
 canonical `foundation-dialog-actions` recipe, not a consumer CSS override.
 Preserve adaptive translated widths, secondary palette and native Message
