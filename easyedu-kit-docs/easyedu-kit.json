@@ -623,6 +623,24 @@
       "proofRun": "easystud-authenticated-20261002T041025264Z-44664",
       "disclosureProofRun": "easystud-authenticated-20261002T041123913Z-45996"
     },
+    "studentGroupMemberSearch20261004": {
+      "sourceCommit": "6e16961",
+      "runtimeCommit": "a440584",
+      "status": "Managed 1600/768/390 preview passed for direct and responsive-menu entry; human acceptance and product Penpot propagation remain open.",
+      "currentPreviewProof": "docs/testing/student-group-member-search-preview-2026-10-04.json",
+      "documentation": "docs/student-group-member-search-2026-10-04.md",
+      "nativeScenario": "tools/playwright/student-group-member-search-preview.spec.js",
+      "proofRun": "easystud-authenticated-20261003T233009655Z-46664",
+      "humanAccepted": false,
+      "penpotPropagated": false,
+      "modules": {
+        "amd/src/course_manager.js": "4285b43b51c3b71ae6002e8e70552b415e63c1ca",
+        "amd/build/course_manager.min.js": "34662669aa2a2cbe7773f194a748998e6f4a7b79",
+        "manage.php": "b39ea419c7903cf42d9e94a11e158d38b75ba85b",
+        "tools/playwright/student-group-member-search-preview.spec.js": "09ad6918dc344f4fb585675640c85cacc79f2de3",
+        "tools/release/test-student-group-member-search-contract.ps1": "0862e6a9215160e340f0572b30c170fbb68a2d41"
+      }
+    },
     "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
   },
   "packages": {

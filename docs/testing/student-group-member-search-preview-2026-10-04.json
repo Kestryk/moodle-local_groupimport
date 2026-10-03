@@ -1,0 +1,49 @@
+{
+  "runId": "easystud-authenticated-20261003T233009655Z-46664",
+  "status": "passed",
+  "generatedAtUtc": "2026-10-03T23:30:57.2029527Z",
+  "sourceCommit": "6e16961",
+  "runtimeCommit": "a440584",
+  "records": [
+    {
+      "width": 1600,
+      "entry": "direct-card-search",
+      "query": "Admin",
+      "visibleAfterMatch": 1,
+      "geometry": {
+        "fieldHeight": 38,
+        "inputHeight": 36,
+        "cancelHeight": 38,
+        "radius": "11.52px"
+      }
+    },
+    {
+      "width": 768,
+      "entry": "responsive-context-menu",
+      "query": "Admin",
+      "visibleAfterMatch": 1,
+      "geometry": {
+        "fieldHeight": 42.390625,
+        "inputHeight": 36,
+        "cancelHeight": 42.390625,
+        "radius": "11.52px"
+      }
+    },
+    {
+      "width": 390,
+      "entry": "responsive-context-menu",
+      "query": "Admin",
+      "visibleAfterMatch": 1,
+      "geometry": {
+        "fieldHeight": 42.390625,
+        "inputHeight": 36,
+        "cancelHeight": 42.390625,
+        "radius": "11.52px"
+      }
+    }
+  ],
+  "blockedBusinessRequests": [],
+  "fixtureRequested": false,
+  "humanAccepted": false,
+  "penpotPropagated": false
+}
