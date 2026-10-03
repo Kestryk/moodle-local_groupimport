@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .easyedu-guide-dialog-open {
   overflow: hidden;
   overscroll-behavior: none;
@@ -7022,6 +7023,14 @@
   font-size: 1rem;
   margin: 0;
   opacity: 1;
+}
+.local-groupimport-easystud-message-modal .modal-header .btn-close::before {
+  content: "×";
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
 }
 .local-groupimport-easystud-message-modal .modal-title {
   font-family: var(--easyedu-font-family-ui);

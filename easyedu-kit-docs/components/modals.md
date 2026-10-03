@@ -258,7 +258,9 @@ its existing wrapper; decorate footer buttons with `easyedu-button` and use
 roles, a non-resizable Textarea M, the canonical compact header Close, matched
 compact actions, right-aligned footer and narrow reflow. Its asynchronous
 loading state uses the shared unboxed spinner: do not restore the former radial
-halo, framed tile or drop shadow.
+halo, framed tile or drop shadow. Bootstrap's empty `btn-close` receives the
+same centred multiplication-sign glyph as the linked Close component after its
+native background image is replaced; never ship an empty painted square.
 
 Body-level portals do not inherit a consumer root's variables. Relay resolved
 `--easyedu-*` theme variables and the resolved UI font from the workspace.
