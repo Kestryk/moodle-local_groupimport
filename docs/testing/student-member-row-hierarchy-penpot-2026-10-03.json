@@ -44,6 +44,20 @@
     "detachedInstancesCreated": 0,
     "cardMotionChanged": false
   },
+  "runtime": {
+    "runId": "easystud-authenticated-20261003T201420702Z-22128",
+    "status": "passed",
+    "widthsPx": [1600, 768, 390],
+    "fontFamily": "EasyEdu Inter, Inter, sans-serif",
+    "fontSizePx": 13,
+    "fontWeight": 600,
+    "nameColor": "rgb(73, 101, 122)",
+    "desktopRowHeightPx": 42,
+    "responsiveSelectionHitTargetPx": 44,
+    "fixtureRequested": false,
+    "credentialsCleared": true,
+    "leaseReleased": true
+  },
   "visual": {
     "pngExportAttempted": true,
     "pngExportResult": "timed_out_after_120_seconds",

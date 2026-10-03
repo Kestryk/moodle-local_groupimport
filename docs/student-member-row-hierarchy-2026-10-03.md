@@ -29,6 +29,16 @@ out after 120 seconds, so this is structural/paint readback rather than agent or
 human visual acceptance. See
 `docs/testing/student-member-row-hierarchy-penpot-2026-10-03.json`.
 
+Managed Moodle 5.1 proof `easystud-authenticated-20261003T201420702Z-22128`
+passes at 1600px, 768px and 390px after purging the local Moodle style cache.
+Every measured name is EasyEdu Inter 13px/600 and `rgb(73, 101, 122)`; the
+desktop row is 42px high, while responsive layouts retain the existing 44px
+selection hit target. Credentials were cleared, the runtime lease was released
+and no fixture or business mutation was requested. The earlier failed run
+`easystud-authenticated-20261003T201249646Z-45920` is retained as evidence that
+the generated file was correct while Moodle still served the previous cached
+colour.
+
 ## Gates
 
 - Kit related-person contract and SCSS-only package privacy test.
