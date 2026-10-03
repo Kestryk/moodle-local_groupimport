@@ -5,6 +5,27 @@
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "studentModalClose20261003": {
+      "kitCommit": "b2f9cb67ca14f8c203c1b24018f6d531fce6a9c1",
+      "sourceCandidateCommit": "2b34aa84aa1fc8e1fbe2852e031aeb5117011a1e",
+      "runtimeCommit": "fe55ca3bd7e305a2802f7b6e314824c352ef5804",
+      "status": "Served Kit 0.4.66: nine Participant/Group/Grouping close cases pass at 1600/768/390 with exact 30.4px linked-S geometry, centred glyph, danger hover and real desktop-opener focus return. Human acceptance remains open.",
+      "currentPreviewProof": "docs/testing/student-modal-close-preview-2026-10-03.json",
+      "penpotReadback": "docs/testing/student-modal-close-penpot-2026-10-03.json",
+      "documentation": "docs/student-modal-close-native-2026-10-03.md",
+      "nativeScenario": "student-entity-dialog-chrome.spec.js",
+      "humanAccepted": false,
+      "nativePreviewVerified": true,
+      "penpotLinked": true,
+      "modules": {
+        "scss/easyedu/components/_buttons.scss": "ef8450af98f2cff17bef8ed645f5a0ea97b76cb1",
+        "scss/components/_modals.scss": "a921fc1ec16ec69c10e8943db17210fd623164c5",
+        "amd/src/course_manager.js": "fa2fc2f59417a3f5e17712c35e5942e8beec51db",
+        "amd/build/course_manager.min.js": "d1589f3800d736c7ae765eb0f864f0d01a10cfe5",
+        "styles.css": "a29477500bd6c93eb39a864b0854de428e573111",
+        "tools/playwright/student-entity-dialog-chrome.spec.js": "6914611aba1f837696620f5224a605c0b1d3e1d5"
+      }
+    },
     "studentSelectionLabelWrap20261003": {
       "kitCommit": "69a93cf228e966a939c980ae0f0342ed820cfb2b",
       "consumerBehaviorBaseline": "efbad079a4f9595fd15db6153e7bca5a62b05781",

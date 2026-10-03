@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "scope": "Shared modal-header Close adoption and native focus return",
+  "kitCommit": "b2f9cb67ca14f8c203c1b24018f6d531fce6a9c1",
+  "sourceCandidateCommit": "2b34aa84aa1fc8e1fbe2852e031aeb5117011a1e",
+  "runtimeCommit": "fe55ca3bd7e305a2802f7b6e314824c352ef5804",
+  "runtime": "Moodle 5.1 localhost preview",
+  "scenario": "tools/playwright/student-entity-dialog-chrome.spec.js",
+  "grep": "Student entity dialogs preserve conditional content and Foundation chrome",
+  "runId": "easystud-authenticated-20261003T191545465Z-776",
+  "selectedTests": 1,
+  "status": "passed",
+  "cases": {
+    "count": 9,
+    "entities": ["participant", "group", "grouping"],
+    "widths": [1600, 768, 390],
+    "closeSizePx": 30.4,
+    "maxGlyphCenterDeltaPx": 0,
+    "restBackground": "rgb(255, 255, 255)",
+    "hoverBackground": "rgb(253, 236, 236)",
+    "hoverColour": "rgb(161, 43, 43)",
+    "desktopRealOpenerFocusRestored": true,
+    "businessPostInvoked": false
+  },
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureCleanupComplete": true
+  },
+  "captures": {
+    "inspected": 3,
+    "pinned": 3,
+    "pinnedUntilUtc": "2026-11-02T19:17:17.4101626Z"
+  },
+  "retainedFailure": {
+    "runId": "easystud-authenticated-20261003T191229065Z-28232",
+    "classification": "runtime-cache-write-failure",
+    "detail": "Moodle Mustache could not write one Boost cache file after cache purge; the first 30.4px product case had passed. A later unchanged product run passed after the runtime cache was warmed.",
+    "cleanupComplete": true
+  },
+  "humanVisualAccepted": false
+}
