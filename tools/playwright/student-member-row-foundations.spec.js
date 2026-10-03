@@ -61,7 +61,7 @@ test('Student member rows retain their canonical skin across responsive widths',
             expect(geometry.accessibleRemove).toBeTruthy();
             expect(geometry.nameSize).toBe('13px');
             expect(geometry.nameWeight).toBe('600');
-            expect(geometry.nameColor).toBe('rgb(22, 50, 79)');
+            expect(geometry.nameColor).toBe('rgb(73, 101, 122)');
             expect(geometry.nameFamily).toContain('Inter');
             for (const [name, item] of Object.entries({name: geometry.name,
                 remove: geometry.remove, selector: geometry.selector})) {
