@@ -6,10 +6,11 @@
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
     "studentFilteredSelectAll20261004": {
-      "status": "EasyStud consumer candidate: Select results keeps matching off-page entities but excludes every entity hidden by participant, catalogue, structure or grouping filters. Generated AMD, managed native proof and human acceptance remain open.",
+      "status": "EasyStud consumer served: filtered Deselect results clears stale global selection and Select results retains matching off-page entities while excluding participant, catalogue, structure or grouping filter exclusions. Managed native proof passes at 1600/768/390; human acceptance remains open.",
       "documentation": "docs/student-filtered-select-all-2026-10-04.md",
+      "currentPreviewProof": "docs/testing/student-filtered-select-all-preview-2026-10-04.json",
       "humanAccepted": false,
-      "nativePreviewVerified": false
+      "nativePreviewVerified": true
     },
     "studentNestedFilterClosure20261004": {
       "kitCommit": "7599e6c",
