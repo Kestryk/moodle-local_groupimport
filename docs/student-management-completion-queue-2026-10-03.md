@@ -434,7 +434,10 @@ technical passes do not close these newly reported regressions.
   white panel, centred icons and Close focus return. Paired Foundations
   Compact-item/Guide labels and the linked product panel are reconciled;
   Kit 0.4.92 extraction retains the complete generated CSS. Post-extraction
-  role-specific native proof is pending, separate from human acceptance.
+  run `easystud-authenticated-20261004T200455947Z-37768` passes at 768/390.
+  Native capture exposes the remaining full-course menu composition gap
+  (route title, Guide order and Moodle auxiliary links), separate from
+  typography proof and human acceptance.
   See `student-mobile-navigation-typography-2026-10-04.md`.
 
 - SM-35 layout successor: existing search-shell declarations are extracted into

@@ -51,9 +51,19 @@ Source commits `0cfacb4` and `983ac71` were applied to the clean local preview
 as `6793374` and `c2d5270`. The feature code and supervised test candidate are
 therefore present in the served checkout.
 
-The cache/browser gate is blocked before fixture setup: the Moodle 5.1 MariaDB
+Historical checkpoint only: the cache/browser gate was blocked before fixture setup; the Moodle 5.1 MariaDB
 process does not start because its data directory lacks `aria_log.00000001`
 and referenced `phpmyadmin/pma__*.ibd` tablespaces. The cache purge consequently
 returns `Database connection failed`. No workspace preference was changed and
 the supervised fixture did not execute. Database recovery is a separate
 runtime operation; source/static readiness does not count as browser proof.
+
+## 2026-10-04 current verification boundary
+
+The historical database startup failure is no longer a current blocker:
+managed cache purges and authenticated non-mutating Navigation/card-search
+checks now pass on Moodle 5.1. The view-preference static contract passes again.
+This does not certify persisted administrator preferences or the two-view
+fixture scenario, which has not been executed in this continuation. Keep the
+dedicated configuration-fixture/write-lease gate separate from read-only
+open/Close audits; no setting was changed by this verification.

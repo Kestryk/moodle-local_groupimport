@@ -47,5 +47,25 @@ use native file-import/clipboard-list providers, not custom drawn substitutes.
 Catalogue readback is in the Kit's
 `docs/testing/compact-navigation-typography-2026-10-04.json`.
 
-The role-specific post-extraction native successor is pending. Human acceptance
-remains open; the three destination routes and Guide lifecycle are unchanged.
+The role-specific post-extraction successor
+`easystud-authenticated-20261004T200455947Z-37768` passes at 768/390 on runtime
+`866c0b2a123b152376de0a0c840589a3f4b565dd`: exact title/destination/Guide font
+roles, white opaque paint, destination containment, centred icon tiles and
+Close focus return. The 390px capture was inspected. No business request or
+fixture write occurred; credentials, child and lease cleanup completed.
+
+The capture exposes a separate composition gap: this native course drawer
+also has a `Course participants` section and a route-owned title, while the
+current product Penpot specimen contains only three plugin destinations.
+Its Guide placement also follows the generic old specimen rather than the
+native route. Do not infer a complete mobile-menu composition PASS from the
+typography check. Complete that source-backed product composition in a
+successor, preserving native scrolling and optional Moodle links. Shared
+specimens use a 44px minimum target illustration; the native destination row
+resolves to 46.9375px from its icon/padding. Actual custom-palette native colours
+remain distinct from default-blue catalogue illustrations.
+
+SCSS-only 0.4.92 export inspected: 43 SCSS files, no non-SCSS/internal member.
+Windows archive separators were normalized for inspection, without relaxing
+the file allowlist. Human acceptance stays open; routes and Guide lifecycle
+are unchanged.
