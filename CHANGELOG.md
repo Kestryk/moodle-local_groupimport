@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-04 - Mobile navigation typography audit candidate
+
+- Add a guarded native open/Close check for destination typography, opacity,
+  label containment, icon alignment and focus return at tablet/phone widths.
+- Record the Penpot Guide-label family divergence explicitly; native measurement
+  and paired source repair are pending, not human acceptance.
+
 ## 2026-10-04 - Canonical card inline-search layout
 
 - Consume Kit 0.4.91 search-panel/row/field recipes with identical whole generated
