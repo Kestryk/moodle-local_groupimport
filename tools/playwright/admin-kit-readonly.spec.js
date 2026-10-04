@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const fs = require('node:fs');
 
 // local-supervised: native settings presentation only. Never save configuration.
 test('Administration Kit read-only responsive controls', async({page}, testInfo) => {
@@ -16,6 +17,7 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         await page.goto(url, {waitUntil: 'domcontentloaded'});
     }
     let submitted = false;
+    const choiceMetrics = [];
     await page.route('**/admin/settings.php*', route => {
         if (route.request().method() !== 'GET') {
             submitted = true;
@@ -28,6 +30,7 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         const root = page.locator('#page-admin-setting-local_groupimport');
         const title = root.locator('.local-groupimport-admin-settings__page-title');
         await expect(title).toBeVisible();
+        await expect(title).toHaveText(/^(EasyStud administration|Administration EasyStud)$/);
         await expect(title).toHaveCSS('font-size', '20px');
         await expect(root.locator('.local-groupimport-admin-settings__page-description'))
             .toHaveCSS('font-size', '14.4px');
@@ -40,6 +43,31 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         const choice = root.locator('#admin-defaultlayoutmode .easyedu-searchable-choice');
         await expect(choice).toBeVisible();
         const trigger = choice.locator('.easyedu-searchable-choice__trigger');
+        const nativeChoices = root.locator('.easyedu-searchable-choice');
+        await expect(nativeChoices).toHaveCount(5);
+        const radii = new Set();
+        for (const nativeChoice of await nativeChoices.all()) {
+            const metric = await nativeChoice.evaluate(node => {
+                const triggerNode = node.querySelector('.easyedu-searchable-choice__trigger');
+                const rect = triggerNode.getBoundingClientRect();
+                const style = getComputedStyle(triggerNode);
+                return {
+                    width: innerWidth,
+                    setting: node.closest('.form-item')?.id || '',
+                    kitScope: Boolean(node.closest('.easyedu-ui')),
+                    height: rect.height,
+                    fontSize: style.fontSize,
+                    borderRadius: style.borderRadius,
+                    borderColor: style.borderTopColor,
+                };
+            });
+            choiceMetrics.push(metric);
+            expect(metric.kitScope, `${metric.setting} must use the Kit scope`).toBe(true);
+            expect(metric.height, `${metric.setting} trigger height`).toBe(width === 1600 ? 38 : 44);
+            expect(metric.fontSize, `${metric.setting} trigger font`).toBe('14px');
+            radii.add(metric.borderRadius);
+        }
+        expect(radii.size, 'All admin choices share the Kit radius').toBe(1);
         await trigger.click();
         await expect(choice.getByRole('searchbox')).toBeVisible();
         await choice.getByRole('searchbox').press('Escape');
@@ -96,4 +124,6 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
     }
     expect(submitted).toBe(false);
     expect(errors).toEqual([]);
+    fs.writeFileSync(testInfo.outputPath('admin-choice-metrics.json'),
+        JSON.stringify(choiceMetrics, null, 2));
 });
