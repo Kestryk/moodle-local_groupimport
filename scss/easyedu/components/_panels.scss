@@ -187,24 +187,23 @@
   min-width: 0;
 }
 
-// Floating contextual panel used for "clear selection", compact guided state or
-// any small persistent action. Keep this narrow on desktop; mobile trays should
-// use the dedicated responsive mixin instead.
-@mixin sticky-selection-panel($accent: var(--easyedu-primary), $bottom: 1.45rem, $left: 1.25rem) {
-  align-items: stretch;
-  background: linear-gradient(135deg, var(--easyedu-surface) 0%, var(--easyedu-surface-soft) 100%);
-  border: 1px solid var(--easyedu-card-border);
-  border-left: 0.28rem solid $accent;
-  border-radius: var(--easyedu-radius-lg);
+// Compact desktop recovery surface. Consumers reserve matching scroll space
+// while it is visible; touch layouts use the dedicated action tray instead.
+@mixin sticky-selection-panel($accent: var(--easyedu-primary), $bottom: 1.25rem) {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 1px solid color-mix(in srgb, #{$accent} 28%, var(--easyedu-card-border) 72%);
+  border-radius: 999px;
   bottom: $bottom;
-  box-shadow: var(--easyedu-shadow-strong);
-  display: grid;
-  gap: 0.35rem;
-  left: $left;
-  max-width: min(92vw, 23rem);
-  padding: 0.52rem;
+  box-shadow: var(--easyedu-shadow-soft);
+  display: flex;
+  gap: 0.6rem;
+  inset-inline-start: 50%;
+  max-width: min(calc(100vw - 2rem), 30rem);
+  padding: 0.35rem 0.4rem 0.35rem 0.8rem;
   position: fixed;
-  z-index: 1046;
+  transform: translateX(-50%);
+  z-index: 1038;
 
   &[hidden] {
     display: none;
@@ -217,10 +216,11 @@
   border-color: var(--easyedu-control-border);
   color: color-mix(in srgb, var(--easyedu-text) 78%, var(--easyedu-text-muted) 22%);
   display: inline-flex;
-  gap: 0.35rem;
+  gap: 0.45rem;
   justify-content: center;
   line-height: 1.2;
-  min-height: var(--easyedu-control-height);
+  min-height: 2.25rem;
+  padding-inline: 0.8rem;
   white-space: nowrap;
 
   &[hidden] {
@@ -230,9 +230,10 @@
 
 @mixin sticky-selection-count {
   color: var(--easyedu-text-muted);
-  font-size: 0.72rem;
-  font-weight: 760;
-  line-height: 1;
-  padding: 0 0.22rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 0;
   text-align: center;
+  white-space: nowrap;
 }
