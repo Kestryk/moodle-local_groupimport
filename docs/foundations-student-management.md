@@ -912,8 +912,11 @@ gradient, semantic rail and shadows match the read-back Penpot target and stay
 unchanged. No AMD, eligibility, membership or animation change.
 The exact embedded overlays blob is `5db6f471f45fd87f144c306ea41ed5673906be9b`.
 Native dragover/dragleave assertions extend the preview scenario to Participant
-and Group allowed targets, Single/Multiple. Preview/browser proof pending;
-denied/danger, cancelled/error feedback and mobile drag coverage remain open.
+and Group allowed targets, Single/Multiple. Managed browser proof now passes in
+`easystud-authenticated-20261004T001137528Z-50096` for Participant/Group
+Single/Multiple previews, allowed targets and the Participant danger target.
+The run dispatches start/over/leave/end only and never Drop. Cancelled/error
+feedback and mobile non-drag alternatives remain open.
 
 ## Foundations drag preview - implementation slice
 
