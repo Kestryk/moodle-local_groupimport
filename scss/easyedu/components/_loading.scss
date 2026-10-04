@@ -171,6 +171,36 @@
   }
 }
 
+// Both workspace columns use one quiet framed search/filter region. Consumers
+// supply decorative cue markup and page placement, never separate paint recipes.
+@mixin skeleton-filter-region($radius: var(--easyedu-loading-radius)) {
+  @include skeleton-section-frame(
+    $surface: var(--easyedu-loading-frame-surface), $border: var(--easyedu-loading-border), $radius: $radius
+  );
+  & {
+    box-sizing: border-box;
+    display: grid;
+    gap: 0.55rem;
+    grid-template-columns: minmax(0, 1fr);
+    max-inline-size: 100%;
+    padding: 0.7rem;
+  }
+}
+
+// Heading placeholders follow their actual three-line content; a historical
+// minimum height for absent actions must not create a large empty header.
+@mixin skeleton-page-heading {
+  & {
+    box-sizing: border-box;
+    display: grid;
+    gap: 0.7rem;
+    max-inline-size: 100%;
+    min-height: 0;
+    min-width: 0;
+    padding: 0.2rem 0.4rem 0.35rem;
+  }
+}
+
 // Consumers apply this only in their own narrow-width rule. It changes the
 // reusable visual density, never page widths, offsets or loading lifecycle.
 @mixin skeleton-section-compact {

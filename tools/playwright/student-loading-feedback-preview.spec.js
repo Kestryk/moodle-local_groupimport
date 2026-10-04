@@ -44,9 +44,37 @@ test('Feedback Skeleton has a running subtle sweep and retained QA role catalogu
             expect(proof.policy).toBe('enabled');
             expect(proof.animation).toBe('easyedu-skeleton-shimmer');
             expect(proof.playStates).toContain('running');
+            expect(proof.background).toContain('0.6');
             await expect.poll(() => cue.evaluate(node => getComputedStyle(node, '::after').backgroundPosition),
                 {intervals: [100, 200], timeout: 1000}).not.toBe(proof.position);
             records.push({width, proof});
+            const layout = await root.locator('[data-easystud-loading-skeleton]').evaluate(node => {
+                const header = node.querySelector('.local-groupimport-easystud__loading-header');
+                const regions = [...node.querySelectorAll('.local-groupimport-easystud__loading-search-filter-region')];
+                const origin = node.getBoundingClientRect();
+                const visibleNodes = [...node.querySelectorAll('[class*="__loading-"]')].map(n => {
+                    const r = n.getBoundingClientRect(), s = getComputedStyle(n);
+                    return {className: n.className, tag: n.tagName, x: r.x - origin.x, y: r.y - origin.y,
+                        w: r.width, h: r.height, visible: r.width > 0 && r.height > 0 && s.display !== 'none',
+                        background: s.backgroundColor, border: s.borderTopColor, radius: s.borderRadius};
+                }).filter(n => n.visible);
+                return {root: {w: origin.width, h: origin.height}, visibleNodes,
+                    headerCues: header.children.length, headerHeight: header.getBoundingClientRect().height, filters: regions.map(n => {
+                    const s = getComputedStyle(n), r = n.getBoundingClientRect();
+                    return {height: r.height, padding: s.padding, border: s.borderInlineStartWidth,
+                        grid: s.gridTemplateColumns, children: n.children.length};
+                })};
+            });
+            expect(layout.headerCues).toBe(3);
+            if (width === 1600) { expect(layout.headerHeight).toBeLessThan(100); }
+            expect(layout.filters).toHaveLength(2);
+            for (const filter of layout.filters) { expect(filter.children).toBe(2); }
+            if (width === 1600) {
+                expect(layout.filters[0].height).toBeCloseTo(layout.filters[1].height, 1);
+                expect(layout.filters[0].padding).toBe(layout.filters[1].padding);
+                expect(layout.filters[0].border).toBe(layout.filters[1].border);
+            }
+            records.at(-1).layout = layout;
             await root.locator('[data-easystud-loading-skeleton]').screenshot({path: testInfo.outputPath(`loading-${width}.png`)});
         } finally {
             clearTimeout(timer); release(); await page.unroute('**/lib/requirejs.php/**', hold);
