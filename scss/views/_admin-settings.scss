@@ -471,7 +471,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
       @include easyedu.type-control-label;
     }
 
-    .form-description {
+    // Moodle renders admin_setting descriptions as .form-text, not the
+    // .form-description used by other forms. Keep both on the Kit caption role.
+    .form-description,
+    .form-setting > .form-text,
+    .form-setting > .form-defaultinfo {
       @include easyedu.type-caption;
 
       margin-top: 0.3rem;
