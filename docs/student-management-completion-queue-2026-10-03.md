@@ -323,6 +323,10 @@ technical passes do not close these newly reported regressions.
 
 - [ ] R01: Page 04, Student management — Group image composition: audit all
   alignment, icon/text containment, column spacing and button placement.
+  The latest whole-board export and 27-text/descendant containment scan show
+  consistent desktop alignment and compact left-edge stacking; no additional
+  source offset was detected. Human visual acceptance remains open. See
+  `docs/student-group-image-native-2026-10-03.md`.
 - [ ] R02: More Filters searchable dropdown: restore the chevron to the trailing
   edge while retaining a separate accessible clear-selection control.
 - [ ] R03: More Filters cannot close after opening: reproduce and fix nested
