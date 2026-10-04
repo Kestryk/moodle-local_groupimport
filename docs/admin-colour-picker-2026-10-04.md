@@ -45,5 +45,15 @@ Builder.
 The initial native browser blocker is historical; Moodle 5.1 administration
 controls passed a read-only three-width preview on the preceding strict-guard
 revision. This lighter-palette successor has PHP lint, static contract,
-isolated colour-picker browser interaction and SCSS build evidence. Its own
-native responsive colour proof and Penpot warning propagation remain open.
+isolated colour-picker browser interaction and SCSS build evidence. It is
+served in local Moodle 5.1 at preview HEAD
+`9d6ed6768d53dc7022df7faf0bfe9536329d20f2` after a cache purge.
+Read-only native run `easystud-authenticated-20261004T150423519Z-9736`
+passes at 1600/768/390: the custom light Hex reveals the warning with
+Foundation surface/border/ink, returning to the primary default hides it,
+and the canonical grouping default shows no warning. Settings POST is blocked;
+no configuration value was saved. Credentials and lease were released.
+The whole mixed-background contrast matrix and human visual acceptance remain
+open. Penpot product specimen `cf371b29-2e8e-8011-8008-bd1dadea4968`
+links to Foundation Inline notification / Warning; the full responsive board
+propagation has not been claimed.
