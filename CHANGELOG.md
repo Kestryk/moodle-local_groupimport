@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-10-04 - Restore parent filter closure in delivered JavaScript
+
+- Repair the searchable-choice AMD builder so it exports all public source
+  functions, including `closeChoicesWithin`. The previous generated module
+  omitted that function and aborted More filters collapse after toggling ARIA.
+- Add an executable built-module export gate and a native disclosure regression
+  scenario. Preserve original disclosure Motion and selection behaviour.
+- Broader appearance corrections remain pending in the completion queue; this
+  repair does not certify Penpot parity or human acceptance.
+
+## 2026-10-04 - Mass Import visual balance
+
+- Consume UI Kit `0.4.81` compact panel identities for the two main Mass
+  Import headings while retaining the larger file-deposit illustration.
+- Preserve the measured 44/56 composition with shrinkable tracks and let the
+  no-results surface occupy the available results-panel body.
+- Keep Penpot publication, native browser proof and human acceptance open.
+
 ## 2026-10-04 - Searchable choice disclosure Motion
 
 - Consume UI Kit `0.4.80` for interruptible in-flow opening and closing of
