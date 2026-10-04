@@ -143,3 +143,29 @@ use fixed text boxes and vertical centring; settled painted centre deltas are
 0.5px. The five canonical Foundations Filter toggle/reset masters received
 the same text alignment in 08.5.1, with their linked Standard instances in
 08.5 updated too. Full-application propagation remains a separate check.
+
+### Remaining visible searchable compositions
+
+Twelve additional visible choice heads on Interaction states, Searchable filter
+interactions and Many roles now inherit compact providers. Archived/hidden
+references are preserved. Original Any/selected summaries and option labels
+remain intact; Any hides the clear action. Width-specific text lanes and
+trailing icon positions are normalized for 184/284px desktop and 294px mobile.
+All twelve readbacks retain the provider link, have zero outer text overflow,
+14px icon-frame end inset and zero vertical icon-frame centre delta. The
+Searchable filter interactions whole-board export was visually inspected.
+Desktop triggers are 32px; mobile triggers/search/options stay 44px.
+This closes choice propagation for these visible specimens, not the remaining
+role shortcuts, admin settings, whole-page preview or human checklist.
+
+Re-executed `test-admin-choices-browser.js`: all six width/Motion cases pass,
+including a held physical click on Reset below an open list, disabled/native
+fallback and selection. `test-admin-colour-reset-browser.js` also passes:
+PHP-provided defaults, invalid values, readonly preservation, live status and
+zero submissions. These remain isolated tests, not native Moodle proof.
+
+Administration live inventory confirms that the three current full-view boards
+still omit the five interface palette settings, Restore colours and the
+Complete/default-view settings. Existing colour rows only cover participant
+badge background/text. Add these missing source-backed settings before claiming
+whole-admin parity or lifting the visual candidate preview hold.
