@@ -1,10 +1,25 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.79",
+  "version": "0.4.80",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "searchableChoiceMotion20261004": {
+      "kitCommit": "ab4f9b3",
+      "status": "Kit 0.4.80 candidate: searchable single/multiple disclosures share interruptible in-flow growth Motion, synchronized chevron timing and immediate reduced-motion completion; native select values and product commands remain consumer-owned.",
+      "documentation": "docs/student-searchable-choice-motion-2026-10-04.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "penpotLinked": false,
+      "modules": {
+        "amd/src/searchable_choices.js": "c3754ff25d9a71cb0a42d89701a3bf16a15a50df",
+        "amd/build/searchable_choices.min.js": "f80e4eacb3f82ef58ff46e9bf7bcc3071ef3034c",
+        "amd/build/searchable_choices.min.js.map": "3828b111544cc0f247d3b76a817a15b59d35fc27",
+        "scss/easyedu/components/_searchable-choices.scss": "aeebfea46d68e49df08e5c5202080da721ae04f7",
+        "styles.css": "218891788648df07863af16ded81c02798a04b49"
+      }
+    },
     "adminColourPicker20261004": {
       "kitCommit": "841732e",
       "status": "Kit 0.4.79 candidate: all colour controls consume the public S/M/L family; EasyStud adds validated Primary, Accent, Participant, Group and Grouping settings and applies their derived roles to both workspaces.",
