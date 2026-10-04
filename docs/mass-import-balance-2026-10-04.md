@@ -113,3 +113,31 @@ runtime `5f9e7882a0bae8de3d9f2294858310f0dca2bdd9`. Native transient settled
 CSV centre delta is 0.015625px. Initial three-width balance/readiness/caption
 checks still pass; cleanup clears credentials, lease and child, with no fixture.
 Native upload/disclosure timing and human acceptance remain separate gates.
+
+### Validation, preview and report header propagation
+
+The successor normalizes 27 existing main panel identities on 15 active
+validation/preview/warning/no-results/report boards. Effective visible ancestry
+is checked before selecting headers; hidden archive fields and the three
+loading-shell boards are excluded. Tile 35.2px, linked glyph root 17px, title
+16px Inter/600 and description 14.4px Inter/400 match the initial header recipe.
+Desktop/tablet lanes use a 46.4px title offset and 4px top offset; mobile uses
+51.2px and 8px with full-width subordinate copy. Business labels, semantic
+colours, controls, original board sizes and animations remain untouched.
+
+Three Validation titles retained old Source Sans Pro paint even after a size
+override. The successor applies the canonical font ID/variant and recomputes
+layout, preserving their fixed text lanes. Settled readback reports 27/27
+linked, centred glyph roots and contained title paint; desktop and mobile
+Validation exports were inspected internally. Evidence:
+`docs/testing/mass-import-state-header-geometry-2026-10-04.json`.
+
+Nine existing Preview result headers omit the native report introduction
+(`csvreportintro`); the source renders that introduction unconditionally in
+the same public header before selecting a result state. Adding it needs a
+source-backed downstream-layout pass, not an overlapping text insertion.
+This missing-content gate remains OPEN alongside shared Foundation tile
+Standard/Library publication and relinking. Other internal notice artwork
+retains its own density. This Penpot-only propagation does not certify native
+upload/validation/report lifecycle or human acceptance; the served PHP/CSS/AMD
+were not changed by this lot.

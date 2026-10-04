@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-04 - Mass Import state header propagation
+
+- Reconcile 27 existing main panel headers on 15 validation, preview, warning,
+  no-results and report boards with the served 35.2px compact tile/17px glyph
+  and 16px Inter semibold title; retain semantic paint and every icon link.
+- Normalize 18 existing descriptions to 14.4px Inter, preserving business copy.
+- Correct the three validation headers still painted in Source Sans Pro;
+  settled readback and desktop/mobile exports pass title/glyph containment.
+- Record nine preview headers missing native report introductions as a separate
+  composition gap, not silently completed. Shared Foundation tile publication,
+  full native state lifecycle and human acceptance remain open.
+
 ## 2026-10-04 - Compact filter native proof and touch containment
 
 - Record the passing three-width native toggle/Reset/closure successor while
