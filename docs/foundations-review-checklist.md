@@ -1,5 +1,128 @@
 # Deferred Foundations / EasyStud visual checklist
 
+## Checklist de validation humaine — état du 4 octobre 2026
+
+Toutes les cases ci-dessous attendent la validation utilisateur. Les preuves
+techniques historiques sont conservées plus bas et dans les documents de lot.
+Elles ne valent pas validation globale des derniers fichiers.
+
+### Où regarder et ce qui est disponible
+
+- Preview locale : `http://localhost/local/groupimport/manage.php?id=5`
+  (Student Management), `http://localhost/local/groupimport/index.php?id=5`
+  (Mass Import), et les réglages EasyStud de l'administration Moodle.
+- Dernier code intégré dans le dépôt de preview : `ff7838a`, Kit déclaré
+  `0.4.80`. L'affichage effectif et les tests récents restent à vérifier après
+  rétablissement de la base Moodle.
+- Réglages de vues, color picker/couleurs et nouvelle animation des dropdowns :
+  intégrés dans le dépôt de preview, mais dernières vérifications navigateur
+  et publication Penpot encore en attente.
+- Dernière proposition SM-20 Mass Import : modifications de travail non
+  committées dans EasyStud, non appliquées au dépôt de preview. Kit `0.4.81`
+  poussé, publication Penpot absente. Icônes des deux panneaux 35,2 px au lieu
+  de 40,8 px, grille initiale sans minimum fixe et état vide extensible sont
+  des propositions à confronter à Penpot avant intégration.
+- Autres composants : les lignes ci-dessous regroupent les changements déjà
+  intégrés et leurs éventuels écarts de propagation. La disponibilité dans
+  Penpot est à vérifier composant par composant.
+
+### Student Management — desktop, tablette et mobile 390 px
+
+- [ ] Titres de page/colonnes/vues : tailles et couleurs harmonieuses ; noms des
+  participants d'un groupe plus discrets que le titre du groupe.
+- [ ] Description, navigation et sélecteur de vue : espacement régulier ;
+  options centrées ; icônes contenues et alignées verticalement.
+- [ ] Navigation mobile : fond opaque, police du kit, icônes/état actif lisibles,
+  bouton sticky accessible. L'audit complémentaire SM-27 reste à faire.
+- [ ] Cartes participant repliées/dépliées : toutes les informations présentes,
+  checkbox, nom, badges, courriel et œil correctement alignés.
+- [ ] Cartes groupe/groupement : titres, compteurs et actions alignés, actions
+  compactes ; bordures des cartes imbriquées contenues.
+- [ ] Groups without grouping : icône visible, repli et contenu corrects.
+- [ ] Membres d'un groupe : noms, checkbox et suppression alignés, densité
+  cohérente ; état vide étendu et centré.
+- [ ] Recherche et création : mêmes proportions/rayons ; plus centré dans les
+  deux boutons de création ; focus et disabled cohérents.
+- [ ] More Filters : un bloc unique, disposition Toggle/Reset et espace sous
+  les listes satisfaisants ; hover desktop/mobile cohérent.
+- [ ] Choix multiples : recherche groupes/groupements/rôles, sélections
+  conservées pendant la recherche et croix d'effacement utilisable.
+- [ ] Fermeture More Filters : un clic ferme le dropdown ouvert et tout le
+  bloc ; répéter ouverture/fermeture pour vérifier la stabilité.
+- [ ] Sélection filtrée : tout sélectionner, filtrer, désélectionner puis
+  sélectionner les résultats ne resélectionne que les résultats filtrés.
+- [ ] Sélection de membres : le bouton Move participants du haut et le menu
+  contextuel deviennent disponibles pour les membres sélectionnés.
+- [ ] Recherche dans une carte groupe : loupe/menu responsive, recherche,
+  résultat vide et Cancel fonctionnent avec les bons composants.
+- [ ] Ajout par identifiant : panneau dans la bonne carte, noms reconnus sous
+  le champ, inconnus en état erreur ; comportement mobile conforme.
+- [ ] Menus contextuels desktop et actions mobiles : styles, icônes, focus,
+  placement et commandes attendues ; aucun chevauchement.
+- [ ] Sticky Clear selection desktop et barre d'action mobile : lisibilité,
+  centrage, fermeture et pagination non masquée. Penpot du sticky desktop
+  reste à publier.
+- [ ] Pagination/sort : alignement, clavier, premier/dernier états ; pagination
+  basse ancrée au bas et colonnes de même hauteur.
+- [ ] Drag Single participant/groupe : aperçu compact, identité lisible,
+  détails et contrôles absents, aucun carré bleu, aucun stack/compteur.
+- [ ] Drag Multiple : même aperçu avec stack et compteur centrés ; indication
+  de destination autorisée/interdite lisible.
+- [ ] Animations acceptées des cartes : déplier/replier/afficher tout fluides,
+  focus conservé ; reduced motion utilisable.
+
+### Modales — desktop et mobile
+
+- [ ] Participant/groupe/groupement : contenu complet, champs/images/listes,
+  titres, repli, scrolling et fermeture conformes aux vues existantes.
+- [ ] Move participants/groups : recherche de destination et dropdown au thème,
+  liste lisible, état vide et checkbox Remove from original grouping conformes.
+- [ ] Actions de modale : Cancel et action principale en bas à droite, même
+  hauteur et même densité ; icône/texte centrés avec un espace correct.
+- [ ] Message : header correct, champ sans poignée de redimensionnement,
+  loader du kit sans halo bleu, destinataires et états loading/sending/error.
+- [ ] Clipboard/confirmation/suppression : contenu, couleurs, Close/Cancel et
+  retour du focus corrects ; aucune action destructive nécessaire pour revoir.
+
+### Mass Import et Administration
+
+- [ ] Mass Import initial : proportions des panneaux, titres/descriptions et
+  tailles d'icône cohérents ; état vide de droite satisfaisant.
+- [ ] Dépôt : nuage centré et proportionné, drag-over/interdit, fichier présent,
+  type de fichier, suppression, progression et erreurs lisibles.
+- [ ] CSV en preview : repli/ouverture progressive, timing du chevron et
+  position du CSV stables en fermeture ; vérifier les clics rapides.
+- [ ] Tableau : headers alignés, champs corrects, status centrés avec padding,
+  warnings/exclusions distincts et contrôles de sélection lisibles.
+- [ ] Boutons Preview/Replace/Export/Import/Cancel : centrage prévu, hauteur,
+  couleur et espacement icône/texte corrects.
+- [ ] Historique/rapport/rollback : contenu complet, badges et lignes alignés,
+  actions correctement placées.
+- [ ] Skeleton : apparition douce, shimmer léger et continu, rails discrets,
+  absence de chevauchement en mobile.
+- [ ] Administration mobile : textes contenus, champs lisibles, boutons alignés.
+- [ ] Color picker : tailles/états/Hex/swatches cohérents ; publication
+  Foundations et EasyStud encore en attente pour les derniers changements.
+- [ ] Couleurs configurables : palette appliquée aux deux vues, valeurs invalides
+  signalées, contraste et retour aux valeurs par défaut cohérents.
+- [ ] Vue initiale/Complete : préférence admin respectée ; Complete masquée
+  laisse deux vues centrées ; routage mobile Participants/Groups/Groupings correct.
+
+### Livraisons restant ouvertes
+
+- [ ] Réconcilier les dernières propositions avec Foundations et chaque
+  composition EasyStud liée, puis contrôler le rendu local correspondant.
+- [ ] Finir l'audit global des corps de cartes/modales, menus, états et
+  compositions responsive avant de déclarer tous les composants intégrés.
+- [ ] Migration technique `local_groupimport` vers `local_easystud` : lot SM-25
+  encore ouvert, avec plan de compatibilité et de retour arrière nécessaire.
+- [ ] Guide : programme différé jusqu'à la fin des autres intégrations,
+  dans son projet partagé dédié.
+
+Les premières corrections à examiner sont SM-20 (proposition non intégrée),
+SM-29 (animation dropdown intégrée sans nouvelle preuve navigateur/Penpot),
+et SM-23/24/28 (color picker, palette et vues admin avec les mêmes gates ouverts).
+
 Requested 2026-10-01: continue implementation; review the combined changes later.
 This is a living checklist, not a claim that every component is implemented.
 Technical checks and human visual acceptance remain separate.

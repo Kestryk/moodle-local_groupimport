@@ -310,9 +310,19 @@
     align-items: stretch;
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: minmax(21rem, 0.88fr) minmax(25rem, 1.12fr);
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
     @include easyedu.layout-disclosure-transition(grid-template-columns);
     will-change: grid-template-columns;
+  }
+
+  &-card--results {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-card--results > &-empty {
+    flex: 1 1 auto;
+    min-block-size: 16rem;
   }
 
   &.is-easyedu-motion-off &__grid,

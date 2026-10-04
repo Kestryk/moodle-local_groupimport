@@ -1192,7 +1192,10 @@ if ($preview !== null) {
 // Form card.
 echo html_writer::start_div('local-groupimport-import-card local-groupimport-import-card--upload easyedu-panel');
 echo html_writer::tag('div',
-    html_writer::tag('span', '', ['class' => 'fa fa-file-csv easyedu-icon-tile', 'aria-hidden' => 'true']) .
+    html_writer::tag('span', '', [
+        'class' => 'fa fa-file-csv easyedu-icon-tile easyedu-icon-tile--compact',
+        'aria-hidden' => 'true',
+    ]) .
     html_writer::tag('div',
         html_writer::tag('h3', get_string('importfile', 'local_groupimport'), [
             'class' => 'local-groupimport-import-card__title easyedu-panel__title',
@@ -1203,7 +1206,7 @@ echo html_writer::tag('div',
         , ['class' => 'easyedu-panel__copy']
     ) .
     $uploadtoggle,
-    ['class' => 'local-groupimport-import-card__header easyedu-panel__header']
+    ['class' => 'local-groupimport-import-card__header easyedu-panel__header easyedu-panel__header--compact-icon']
 );
 
 $fieldtags = [];
@@ -1250,7 +1253,10 @@ echo html_writer::start_div(
     ['id' => 'local_groupimport-results']
 );
 echo html_writer::tag('div',
-    html_writer::tag('span', '', ['class' => 'fa fa-clipboard-check easyedu-icon-tile easyedu-icon-tile--success', 'aria-hidden' => 'true']) .
+    html_writer::tag('span', '', [
+        'class' => 'fa fa-clipboard-check easyedu-icon-tile easyedu-icon-tile--compact easyedu-icon-tile--success',
+        'aria-hidden' => 'true',
+    ]) .
     html_writer::tag('div',
         html_writer::tag('h3', get_string('importresults', 'local_groupimport'), [
             'class' => 'local-groupimport-import-card__title easyedu-panel__title',
@@ -1260,7 +1266,7 @@ echo html_writer::tag('div',
         ])
         , ['class' => 'easyedu-panel__copy']
     ),
-    ['class' => 'local-groupimport-import-card__header easyedu-panel__header']
+    ['class' => 'local-groupimport-import-card__header easyedu-panel__header easyedu-panel__header--compact-icon']
 );
 
 if ($preview !== null) {
