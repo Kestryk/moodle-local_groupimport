@@ -46,8 +46,20 @@ test('Desktop sticky selection remains centered and clears without covering fina
             const rootStyle = getComputedStyle(rootNode);
             return {
                 rect: {x: r.x, y: r.y, width: r.width, height: r.height, bottom: r.bottom},
-                viewportCentreDelta: Math.abs(r.left + r.width / 2 - innerWidth / 2),
-                contained: r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight,
+                layoutViewport: {
+                    innerWidth,
+                    clientWidth: document.documentElement.clientWidth,
+                    bodyWidth: document.body.getBoundingClientRect().width,
+                    frameCentre: r.left + r.width / 2,
+                },
+                // Moodle's rendered canvas excludes the native Windows scrollbar
+                // gutter. The recovery capsule must centre on that visible canvas,
+                // rather than on the browser's outer CSS viewport.
+                viewportCentreDelta: Math.abs(r.left + r.width / 2 -
+                    (document.body.getBoundingClientRect().left + document.body.getBoundingClientRect().width / 2)),
+                contained: r.left >= document.body.getBoundingClientRect().left &&
+                    r.right <= document.body.getBoundingClientRect().right &&
+                    r.bottom <= document.documentElement.clientHeight,
                 iconCentreDelta: Math.max(
                     Math.abs(icon.left + icon.width / 2 - (br.left + icon.width / 2 +
                         parseFloat(getComputedStyle(button).paddingLeft))),
@@ -59,6 +71,8 @@ test('Desktop sticky selection remains centered and clears without covering fina
                 rootPaddingBottom: parseFloat(rootStyle.paddingBottom),
             };
         });
+        records.push({width, geometry});
+        save();
         expect(geometry.viewportCentreDelta).toBeLessThanOrEqual(1);
         expect(geometry.contained).toBe(true);
         expect(geometry.background).toBe('none');
@@ -75,8 +89,6 @@ test('Desktop sticky selection remains centered and clears without covering fina
         await frame.locator('[data-easystud-clear-all-selection]').click();
         await expect(frame).toBeHidden();
         await expect(root).not.toHaveClass(/local-groupimport-easystud--has-selection/);
-        records.push({width, geometry});
-        save();
         await page.unroute('**/local/groupimport/**');
     }
     expect(blocked, 'Clear selection must not invoke a business request').toEqual([]);

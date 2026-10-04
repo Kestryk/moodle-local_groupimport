@@ -1,0 +1,26 @@
+{
+  "runId": "easystud-authenticated-20261004T000853019Z-41124",
+  "scope": "SM-37 desktop sticky Clear selection; no business writes",
+  "records": [
+    {
+      "width": 1600,
+      "canvasWidth": 1585,
+      "frameCentre": 792.5,
+      "centreDelta": 0,
+      "frameSize": "218.8125x49.1875",
+      "rootPaddingBottom": 80,
+      "contained": true
+    },
+    {
+      "width": 1100,
+      "canvasWidth": 1085,
+      "frameCentre": 542.5,
+      "centreDelta": 0,
+      "frameSize": "218.8125x49.1875",
+      "rootPaddingBottom": 80,
+      "contained": true
+    }
+  ],
+  "clearStateRestored": true,
+  "businessRequests": []
+}

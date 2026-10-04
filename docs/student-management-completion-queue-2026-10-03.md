@@ -334,6 +334,22 @@ acceptance status.
   1600/768/390 with 44 px touch density at responsive widths. Foundations
   Library/Standard and the linked EasyStud desktop/mobile composition are
   published. Human acceptance remains open.
+- SM-34 is statically reconciled with the existing atomic member-transfer
+  implementation: selected Group members already enable the top Move action and
+  retain the equivalent context route. A stale whole-file hash gate was replaced
+  by functional assertions; real Move execution and human acceptance remain open.
+- SM-35 is implemented and preview-verified: the Group-card member search now
+  consumes the public search-field class and is reachable from the responsive
+  action menu. Search, empty result and Cancel restoration pass at 1600/768/390
+  without a business request. Penpot publication and human acceptance remain open.
+- SM-36 is implemented at Kit 0.4.76 and preview-verified: searchable multiple
+  filters expose one localized clear-all control, retain native select authority,
+  clear hidden filtered selections and emit one change. The proof passes at
+  1600/768/390. Penpot publication and human acceptance remain open.
+- SM-37 is implemented at Kit 0.4.77 and preview-verified: the desktop Clear
+  selection surface is a centred quiet capsule with reserved bottom clearance.
+  It passes at 1600/1100 without covering bottom pagination or issuing a business
+  request. Penpot publication and human acceptance remain open.
 
 ### Dependency order
 
