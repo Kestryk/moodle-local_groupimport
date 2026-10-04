@@ -334,6 +334,9 @@ technical passes do not close these newly reported regressions.
   remains open; see `docs/admin-and-compact-filters-audit-2026-10-04.md`.
 - [ ] R03: More Filters cannot close after opening: reproduce and fix nested
   dropdown/disclosure lifecycle, including repeated and interrupted toggles.
+  Current native preview passes three consecutive parent/nested-choice cycles
+  at 1600/768/390 with one-click closure, synchronized ARIA/inert and no
+  business request; human acceptance remains open.
 - [ ] R04: Sticky Clear selection: the inner button now opts into the linked
   Foundation neutral Selection action; the EasyStud page 03 desktop specimen
   is `cf371b29-2e8e-8011-8008-bd2decf669f1`. Native preview passes at
@@ -342,6 +345,9 @@ technical passes do not close these newly reported regressions.
   `docs/student-sticky-selection-2026-10-04.md`.
 - [ ] R05: Full EasyStud Administration typography/layout audit against Student
   Management and Penpot, including desktop/tablet/mobile and native form labels.
+  The native caption-topology candidate now passes at 1600/768/390 after
+  resolving a documentation-only preview conflict; full visual comparison and
+  human acceptance remain open. See `docs/admin-and-compact-filters-audit-2026-10-04.md`.
 - [ ] R06: Correct rendered color pickers, all sizes/states, editable Hex and
   native input alignment; update Foundations and product compositions.
 - [ ] R07: Add Restore EasyEdu default colours, using canonical defaults and
@@ -369,8 +375,12 @@ technical passes do not close these newly reported regressions.
 - [ ] R10: Native Administration dropdowns must consume canonical Kit fields
   and searchable choices where appropriate; audit generated Moodle markup,
   selector scope and enhancement coverage instead of creating private styles.
-  Adapter candidate written and isolated-browser checked; native promotion held
-  for shared focusout reflow losing clicks below an open choice. See
+  All five native enhanced settings choices measure 38px desktop / 44px
+  responsive within the public Kit scope, matching the linked Penpot M choice;
+  the full five-control assertion and product title copy await native preview.
+  The shared focusout/reflow pointer defect was repaired in Kit 0.4.82 and
+  tested with a held click; the adapter now runs in native Moodle. Human visual
+  acceptance of the Administration composition remains open. See
   `admin-and-compact-filters-audit-2026-10-04.md`.
 - [ ] R11: Contrast validation feedback must use the Foundation warning/error
   component in Penpot and native administration. Relax rejection of valid Hex

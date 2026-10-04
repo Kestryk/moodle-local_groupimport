@@ -304,3 +304,48 @@ vertical-centre delta, while the clear action stays fully inside the trigger
 with an 8px desktop / 10px responsive gap before the chevron. Clear preserves
 focus, resets the native selected options and emits no business request.
 This is browser geometry proof for R02, not human visual acceptance.
+
+### Native Administration caption topology and preview recovery
+
+Moodle 5.1 renders setting help in `.form-setting > .form-text` and default
+values in `.form-setting > .form-defaultinfo`; the earlier `.form-description`
+selector did not reach either native element. The admin adapter now maps both
+to the canonical Kit caption role while retaining the 20px page title, 14.4px
+page description and 14.08px setting labels. The first typography test failed
+on the absent selector, not on a measured font regression; its diagnostic run
+is retained as such.
+
+During the ordered local preview, the Group-image document conflicted with a
+shorter runtime copy. Both versions were preserved by accepting the incoming
+verified-result and alignment sections after the shared introduction. The
+preview now serves `ec3bbf06b13e8707044e1efa7e86102ba2fbbc6c`, includes
+the four ordered source commits through `6dbbdbd`, is clean, and received a
+managed Moodle cache purge (`20261004T164138Z.json`). The tracked stylesheet
+has the same Git blob in source and runtime; raw file hashes differ because of
+checkout line endings.
+
+Native run `easystud-authenticated-20261004T164150898Z-9876` passes at
+1600/768/390: title, description, label, help and default-value typography,
+seven pickers, dropdown Escape, Restore without a settings POST, warning
+paint, headings and no horizontal overflow or page errors. Its cleanup record
+confirms cleared credentials and released lease. This is browser/runtime proof
+of this bounded Administration candidate, not a full visual acceptance or
+persisted settings test; R05 and the combined human checklist remain open.
+
+The three Administration Penpot compositions use a linked M searchable-choice
+family (38px desktop, 44px tablet/mobile). Live Moodle measures all five
+enhanced settings controls within the public `.easyedu-ui` scope at the same
+38/44px heights, 14px type and one common radius. The native test now asserts
+those values across all five controls, rather than only checking that the
+default-view dropdown opens. Penpot's page title says “Administration EasyStud”;
+the English and French product title strings are aligned to that identity.
+
+### More Filters parent/choice closure on the current preview
+
+The existing guarded native scenario was rerun against the corrected serving
+revision. Run `easystud-authenticated-20261004T164342419Z-35596` passes at
+1600/768/390, each with three consecutive cycles of opening the parent and
+its nested choice, then closing both with one parent-toggle click. The final
+ARIA, hidden/inert and disclosure states agree, with no business request or
+page error. This is bounded behavioural proof for R03; human acceptance and
+the broader filter interaction checklist remain open.
