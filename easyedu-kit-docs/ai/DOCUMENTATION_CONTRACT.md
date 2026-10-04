@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Mass Import initial layout evidence waits for both the workspace and native
+file picker to be ready. Header geometry alone does not certify a completed
+deposit screenshot. Mobile product boards include a documentation margin:
+measure the inner course viewport before changing an outer board's width.
+Preserve explicit missing shared-provider gates; existing composition repairs
+do not establish Foundation Standard/Library publication.
+
 Choice exit Motion still moves adjacent controls after ARIA reports closed.
 Keep its temporary pointer guard until settled closure, freeze the animation
 time synchronously during a physical outside press, then resume after click.

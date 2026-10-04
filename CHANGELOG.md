@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-04 - Mass Import initial balance and Penpot header follow-up
+
+- Record native read-only compact icon/title/description and responsive layout
+  proof with the native picker ready before capture; no upload or import.
+- Reconcile six initial/uploading Penpot headers to the served compact geometry,
+  retaining linked icons and regular internal deposit/identification artwork.
+- Keep the missing shared Foundation tile provider and other state compositions
+  explicitly pending; human acceptance remains open.
+- Preserve the balance family's source pin across later additive Kit versions.
+- Fix settled collapsed CSV centring to read the compact Kit token instead of
+  the old regular tile width; regression fails before and passes after the fix.
+  No animation duration, controller or sequencing change.
+
 ## 2026-10-04 - Compact filters and closing-list pointer correction
 
 - Consume Kit 0.4.88's exit-motion pointer guard and rebuild its full AMD
@@ -9,7 +22,10 @@
   44px mobile targets, centred 24px chevrons and 12px type.
 - Extend native catalogue checks to compact trigger/options/search geometry
   and record physical Reset activation. Shared isolated lifecycle passes;
-  native successor proof and human acceptance remain open.
+  native successor proof and human acceptance remain open at that checkpoint.
+- Native successor passes compact geometry/search/selection and physical Reset
+  at 1600/768/390. Parent/nested More Filters closure also passes three cycles
+  per width; no business writes or fixture. Human acceptance remains open.
 
 ## 2026-10-04 - Semantic palette soft-surface contrast candidate
 

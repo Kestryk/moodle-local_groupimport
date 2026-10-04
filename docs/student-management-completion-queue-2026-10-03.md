@@ -414,9 +414,24 @@ technical passes do not close these newly reported regressions.
   now link to compact Closed, with 32px desktop and preserved 44px touch hosts.
   Native compact geometry passed its first desktop cases but exposed a Reset
   hit-target defect during choice exit. Kit 0.4.88 fixes the closing-pointer
-  lifecycle; shared held-pointer proof passes, native successor is next.
+  lifecycle; shared held-pointer proof passes. Native successor
+  `easystud-authenticated-20261004T174549709Z-38204` passes the compact
+  geometry/search/selection and physical catalogue Reset checks at three
+  widths. Parent/nested closure regression also passes
+  `easystud-authenticated-20261004T174817703Z-33456` (three cycles per width).
+  Toggle/Reset density, broader filter states and human acceptance remain open.
 
 ### Current execution checkpoint
+
+- SM-20 successor: initial native panel/icon/type/stacking proof passes at
+  1600/768/390 with the file picker ready. Six initial/uploading Penpot headers
+  have read-back linked compact icons and internally inspected mobile export.
+  The collapsed CSV centring uses the compact token; compiled-CSS regression
+  fails at 2.8125px before the fix and passes afterwards. Shared Foundation
+  tile provider, other state headers and human acceptance remain OPEN. The
+  native compact-rail successor is a transient class/framing probe only, not
+  an uploaded preview or a timed-disclosure certification. See
+  `docs/mass-import-balance-2026-10-04.md` and its geometry JSON.
 
 - SM-18 is implemented, statically verified and pushed: public Kit/plugin
   archives expose supported SCSS without internal agent or audit material.
