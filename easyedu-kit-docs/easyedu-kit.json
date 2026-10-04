@@ -6,9 +6,10 @@
   "consumerSync": {
     "cardInlineSearch20261004": {
       "kitCommit": "bedd8676418c0ad4426b3aa71cb387fa37aaa698",
-      "status": "Kit 0.4.91 owns card search layout; entire rebuilt CSS identical. Paired Foundation mains and two live product copies reconciled; responsive menu uses native Search participants/magnifier. Fresh native successor pending.",
+      "status": "Kit 0.4.91 owns card search layout; entire rebuilt CSS identical. Paired Foundation mains and two live product copies reconciled; responsive menu uses native Search participants/magnifier. Native search/geometry successor passes at 1600/768/390; human acceptance pending.",
+      "nativeRun": "easystud-authenticated-20261004T194652570Z-8360",
       "penpotLinked": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "humanAccepted": false,
       "documentation": "docs/student-card-inline-search-publication-2026-10-04.md"
     },
