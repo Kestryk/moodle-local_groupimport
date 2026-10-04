@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-04 - Framed Search/Add disclosure candidate
+
+- Delegate only framed card Search/Add regions to the shared Kit disclosure;
+  animate frame insets with height instead of hiding a fixed padding floor.
+- Preserve accepted legacy card/Show-all Motion and all business commands;
+  record native baseline and isolated successor proof, native promotion pending.
+
 ## 2026-10-04 - Skeleton feedback successor
 
 - Follow actual two/three available views in Skeleton selector tracks; remove

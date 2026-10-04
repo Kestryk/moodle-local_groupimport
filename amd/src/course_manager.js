@@ -5913,6 +5913,11 @@ const setInlinePanelOpen = (panel, open) => {
     const root = panel.closest('#local-groupimport-easystud');
     requestGuideHighlightRefresh(root);
 
+    // Canonical framed disclosure is opt-in: preserve accepted tree/card Motion.
+    if (panel.matches('[data-easystud-group-member-search-panel], [data-easystud-container-search-panel], ' +
+            '[data-easystud-group-email-panel], [data-easystud-grouping-groups-panel]')) {
+        return Motion.disclosePanel(panel, open, {onComplete: () => requestGuideHighlightRefresh(root)});
+    }
     panel.classList.toggle('is-open', open);
     const complete = () => requestGuideHighlightRefresh(root);
     if (open) {

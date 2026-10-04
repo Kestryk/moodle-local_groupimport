@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Framed Search/Add Motion owns the direct panel and `is-open` measurement.
+Compare sampled vertical insets, natural ancestor and final hidden state;
+do not solve padding-floor jumps by changing all card/Show-all durations.
+Keep the opt-in shared function identical and execute its generated AMD export.
+Record isolated reversal/policy proof separately from native responsive routes.
+
 The 2026-10-04 feedback successor explicitly allows retained local QA roles
 only in course 5, on owned nologin users, with capability-free roles and both
 runtime/fixture leases. Preserve exact ownership and pre-existing relationship

@@ -93,6 +93,94 @@ const clearDisclosureStyles = element => {
     element.style.removeProperty('will-change');
 };
 
+/**
+ * Disclose a framed Search/Add panel without padding, border or margin snaps.
+ *
+ * Opt-in only: existing expand/collapse/resize recipes retain their timing.
+ * Captures in-flight paint before cancellation, then restores original inline
+ * declarations. Natural ancestors follow one direct-region animation.
+ *
+ * @param {HTMLElement} element Direct panel, never its card ancestor.
+ * @param {boolean} open Requested state.
+ * @param {Object} options Completion hook and optional shared timing override.
+ * @returns {Promise<boolean>} False when superseded by another transition.
+ */
+export const disclosePanel = (element, open, options = {}) => {
+    if (!element) {
+        return Promise.resolve(false);
+    }
+    const wasHidden = element.hidden;
+    const rect = element.getBoundingClientRect();
+    const before = getComputedStyle(element);
+    const properties = [
+        'height', 'opacity', 'overflow', 'transform', 'will-change', 'transition', 'min-height',
+        'padding-block-start', 'padding-block-end', 'border-block-start-width', 'border-block-end-width',
+        'margin-block-start', 'margin-block-end',
+    ];
+    const frameProperties = [
+        'paddingBlockStart', 'paddingBlockEnd', 'borderBlockStartWidth', 'borderBlockEndWidth',
+        'marginBlockStart', 'marginBlockEnd',
+    ];
+    const start = {height: wasHidden ? '0px' : before.height, opacity: wasHidden ? 0 : before.opacity};
+    frameProperties.forEach(property => {
+        start[property] = wasHidden ? '0px' : before[property];
+    });
+    if (!wasHidden && before.boxSizing !== 'border-box') {
+        const insets = ['paddingBlockStart', 'paddingBlockEnd', 'borderBlockStartWidth', 'borderBlockEndWidth']
+            .reduce((sum, property) => sum + (parseFloat(before[property]) || 0), 0);
+        start.height = Math.max(0, rect.height - insets) + 'px';
+    }
+    cancel(element);
+    const originalStyles = properties.map(property => ({
+        property, value: element.style.getPropertyValue(property),
+        priority: element.style.getPropertyPriority(property),
+    }));
+    element.style.transition = 'none';
+    element.hidden = false;
+    element.classList.add('is-open');
+    const natural = getComputedStyle(element);
+    const end = {height: natural.height, opacity: 1};
+    frameProperties.forEach(property => {
+        end[property] = natural[property];
+    });
+    const endHeight = element.getBoundingClientRect().height;
+    element.classList.toggle('is-open', open);
+    if (!open) {
+        const closed = getComputedStyle(element);
+        end.height = '0px';
+        end.opacity = 0;
+        frameProperties.forEach(property => {
+            end[property] = property.startsWith('margin') ? closed[property] : '0px';
+        });
+    }
+    element.classList.add('is-easyedu-disclosing');
+    element.style.minHeight = '0';
+    element.style.overflow = 'hidden';
+    element.style.transform = 'none';
+    element.style.willChange = 'height, opacity';
+    const distance = Math.abs((wasHidden ? 0 : rect.height) - (open ? endHeight : 0));
+    const duration = options.duration || Math.round(320 + Math.min(100, distance * 0.15));
+    return play(element, [start, end], {
+        duration,
+        easing: options.easing || easing,
+    }, completed => {
+        if (completed) {
+            element.hidden = !open;
+        }
+        originalStyles.forEach(({property, value, priority}) => {
+            if (value) {
+                element.style.setProperty(property, value, priority);
+            } else {
+                element.style.removeProperty(property);
+            }
+        });
+        element.classList.remove('is-easyedu-disclosing');
+        if (completed && options.onComplete) {
+            options.onComplete();
+        }
+    });
+};
+
 export const expand = (element, options = {}) => {
     if (!element) {
         return Promise.resolve();
