@@ -83,6 +83,16 @@ test('Compact filter toggle and Reset retain native state and responsive geometr
                 await expect(input).not.toBeChecked();
                 expect(await panel.locator('[data-easystud-catalog-grouping-filter]').evaluate(node =>
                     node.selectedOptions.length)).toBe(0);
+                if (width <= 1024) {
+                    // Existing native Reset also closes its responsive filter
+                    // panel. Verify that contract, then exercise explicit closure
+                    // after reopening instead of toggling an already-closed panel.
+                    await expect(more).toHaveAttribute('aria-expanded', 'false');
+                    await expect(panel).not.toHaveClass(/is-easyedu-disclosing/);
+                    await more.click();
+                    await expect(more).toHaveAttribute('aria-expanded', 'true');
+                    await expect(panel).not.toHaveClass(/is-easyedu-disclosing/);
+                }
                 await more.click();
                 await expect(more).toHaveAttribute('aria-expanded', 'false');
                 await expect(panel).not.toHaveClass(/is-easyedu-disclosing/);

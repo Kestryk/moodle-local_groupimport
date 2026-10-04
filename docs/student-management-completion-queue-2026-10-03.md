@@ -422,8 +422,11 @@ technical passes do not close these newly reported regressions.
   Toggle/Reset density, broader filter states and human acceptance remain open.
   Kit 0.4.89 now maps the existing Filter toggle to a dedicated public family
   and Reset to caption with 30.4/44px minima; two catalogue hooks opt in only.
-  Product touch Toggle/Reset hosts are 324x44 and remain linked. Shared browser
-  checks pass; native successor and Foundation On/touch publication are next.
+  Product touch Toggle/Reset hosts are 294x44 and remain linked. Shared browser
+  checks pass. Native successor `easystud-authenticated-20261004T182752684Z-36068`
+  passes desktop catalogues and responsive Groups at 1600/768/390, including
+  native Reset closure/reopening and explicit parent closure. Source Foundation
+  On/touch publication, broader filter states and human acceptance remain open.
 
 ### Current execution checkpoint
 

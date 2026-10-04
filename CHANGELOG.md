@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-04 - Compact filter native proof and touch containment
+
+- Record the passing three-width native toggle/Reset/closure successor while
+  preserving the failed desktop-only Reset expectation and its cleanup.
+- Correct the linked touch dropdown, Toggle and Reset lane to 294px inside
+  the 342px host's 24px padding; read back links and descendant containment.
+- Keep Foundation On paint/touch Reset publication and human acceptance open.
+
 ## 2026-10-04 - Compact filter sibling candidate
 
 - Embed Kit 0.4.89's borderless filter-toggle and caption/touch Reset family;
@@ -7,7 +15,8 @@
 - Centre desktop Toggle/Reset rows and show catalogue contents in responsive
   Groups independently from cleared desktop focus state. No filter predicate,
   command, native option or disclosure controller change.
-- Keep linked product touch controls at 324x44; Foundation On paint and touch
+- Initially keep linked product touch controls at 324x44 (superseded by the
+  294px containment correction above); Foundation On paint and touch
   source publication remain pending. Shared/static checks pass; native next.
 
 ## 2026-10-04 - Mass Import initial balance and Penpot header follow-up

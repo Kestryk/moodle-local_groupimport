@@ -62,7 +62,7 @@ Groups only, not desktop Complete or the Groupings workspace.
 
 EasyStud page 03's existing linked touch hosts are retained:
 Toggle `df1dc7b5-2b58-807e-8008-bc370e996517` and Reset
-`df1dc7b5-2b58-807e-8008-bc370f07f6c0` now use 324x44px rows with centred
+`df1dc7b5-2b58-807e-8008-bc370f07f6c0` now use 294x44px rows with centred
 content. Desktop hosts keep their original shared dimensions. The Foundation
 On track still has historical fixed blue `#1476c8`; catalogue follow-up must
 map it to the shared configurable primary role. A dedicated linked touch Reset
@@ -75,6 +75,34 @@ separately after managed preview, not inferred from the isolated test.
 The Filter-controls static contract now allows later additive Kit revisions
 instead of requiring historical 0.4.73. It still rejects private toggle paint
 and verifies public classes and the two-row catalogue composition.
+
+The whole-board export revealed that the 342px mobile catalogue host needs
+294px controls at its existing 24px padding, not 324px. The touch dropdown,
+Toggle and Reset now share that inner lane; settled readback retains all three
+links and finds no descendant overflow. This supersedes the first 324px host
+resize, not the Foundation provider's flexible size contract.
+
+Native run `easystud-authenticated-20261004T182532501Z-22092` passes both
+desktop catalogue geometries and the tablet toggle/Reset measurements, then
+fails an incorrect harness expectation: native responsive Reset deliberately
+closes its filter panel (`closeResponsiveAdvancedFilters` in the unchanged
+controller). The successor must assert that closure, reopen and then test
+explicit More Filters closure. Do not change native Reset behaviour to satisfy
+the desktop-only test assumption. Failed evidence and complete cleanup are
+preserved; no blocked business request or page error occurred.
+
+Native successor `easystud-authenticated-20261004T182752684Z-36068` passes
+both desktop catalogues and responsive Groups at 768/390px. It verifies the
+12.16px label, 36x20px track, 14px thumb, 44px toggle hit row and Reset
+30.390625px desktop / 44px responsive height. Desktop centres differ by only
+0.0078125px; responsive controls intentionally stack. Physical toggle and Reset
+clear the native choice; responsive Reset closes the panel, then reopening and
+explicit More Filters closure both pass. Blocked requests and page errors are
+empty. Credentials, child and lease are cleared; no fixture or data write.
+The 390px capture was inspected internally. This is scoped native proof, not
+human acceptance or certification of the pending Foundation providers.
+Product readback is recorded in
+`docs/testing/compact-filter-siblings-2026-10-04.json`.
 
 This lot changes presentation classes and layout only. It does not change
 filter values, selection semantics, disclosure Motion or any data endpoint.
