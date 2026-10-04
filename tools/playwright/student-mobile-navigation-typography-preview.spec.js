@@ -37,7 +37,8 @@ test('Mobile navigation keeps Kit typography, opaque paint and aligned targets',
         const panel = page.locator('[data-easyedu-navigation-panel]');
         await expect(panel).toHaveAttribute('aria-hidden', 'false');
         await expect(panel).toBeVisible();
-        const geometry = await panel.evaluate(node => {
+        await expect.poll(() => panel.evaluate(node => getComputedStyle(node).opacity)).toBe('1');
+        const geometry = await panel.evaluate((node, viewportWidth) => {
             const style = getComputedStyle(node);
             const title = node.querySelector('.easyedu-navigation__panel-title');
             const titleStyle = getComputedStyle(title);
@@ -61,14 +62,14 @@ test('Mobile navigation keeps Kit typography, opaque paint and aligned targets',
                 });
             const guide = node.querySelector('.easyedu-guide__launcher-label');
             return {
-                width, panel: {background: style.backgroundColor, opacity: style.opacity,
+                width: viewportWidth, panel: {background: style.backgroundColor, opacity: style.opacity,
                     family: style.fontFamily},
                 title: {font: titleStyle.fontFamily, size: titleStyle.fontSize, weight: titleStyle.fontWeight},
                 guide: guide ? {font: getComputedStyle(guide).fontFamily,
                     size: getComputedStyle(guide).fontSize, weight: getComputedStyle(guide).fontWeight} : null,
                 rows,
             };
-        });
+        }, width);
         records.push(geometry);
         save();
         expect(geometry.panel.opacity).toBe('1');

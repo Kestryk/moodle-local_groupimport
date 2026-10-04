@@ -10,6 +10,9 @@ follows a destination, opens the Guide, or issues a plugin business command.
 Scenario candidate:
 `tools/playwright/student-mobile-navigation-typography-preview.spec.js`, exact
 title `Mobile navigation keeps Kit typography, opaque paint and aligned targets`.
+The gate passes its viewport width explicitly into browser evaluation and waits
+for the existing opening opacity to settle before recording paint. Neither
+correction changes the accepted Navigation Motion.
 Class: local-supervised. Shared Platform registry remains planning-owner-owned;
 this portable backlink records the candidate without modifying that registry.
 
