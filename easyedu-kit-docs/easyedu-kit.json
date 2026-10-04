@@ -1,14 +1,23 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.94",
+  "version": "0.4.95",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "destinationFramedDisclosure20261005": {
+      "kitCommit": "f0a27f3",
+      "documentation": "docs/student-framed-disclosure-2026-10-04.md",
+      "status": "Canonical choice/Motion opt-in, paired 360ms chevron/panel; isolated framed and legacy regression pass, strict source/CSS/AMD gates pass. Native destination successor pending.",
+      "nativePreviewVerified": false,
+      "humanAccepted": false
+    },
     "framedPanelDisclosure20261004": {
       "kitCommit": "8cf3f1d",
       "documentation": "docs/student-framed-disclosure-2026-10-04.md",
-      "status": "Exact canonical opt-in helper, isolated frame/reversal/static-policy proof and unchanged legacy Motion. Native preview successor pending.",
-      "nativePreviewVerified": false,
+      "status": "Exact canonical opt-in helper served; three-width native member Search and Group/Grouping Add preview pass. Legacy Motion unchanged, paired Foundation notes published; destination chooser, product notes and human acceptance pending.",
+      "nativeSearchRun": "easystud-authenticated-20261004T214104984Z-31628",
+      "nativeAddRun": "easystud-authenticated-20261004T215314182Z-38176",
+      "nativePreviewVerified": true,
       "humanAccepted": false
     },
     "loadingFeedback20261004": {

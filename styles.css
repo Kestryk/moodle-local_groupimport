@@ -20865,6 +20865,10 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: none;
 }
 
+.easyedu-ui .easyedu-searchable-choice--framed {
+  --easyedu-choice-disclosure-duration: 360ms;
+}
+
 .easyedu-ui .easyedu-searchable-choice__trigger {
   font-family: var(--easyedu-font-family-ui);
   font-size: 0.875rem;

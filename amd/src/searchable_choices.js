@@ -12,9 +12,10 @@ const normalise = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, ''
  *
  * @param {HTMLSelectElement} select Existing labelled single-select.
  * @param {Object} labels Localised label/search/empty strings, never HTML.
+ * @param {Object} options Optional canonical Motion module for framed disclosure.
  * @returns {Object} Controller with host, trigger, refresh and close methods.
  */
-export const enhanceSelect = (select, labels) => enhanceNativeSelect(select, labels, false);
+export const enhanceSelect = (select, labels, options = {}) => enhanceNativeSelect(select, labels, false, options);
 
 /**
  * Independent pressed options keep a native multiple-select authoritative.
@@ -22,9 +23,10 @@ export const enhanceSelect = (select, labels) => enhanceNativeSelect(select, lab
  *
  * @param {HTMLSelectElement} select Existing labelled multiple-select.
  * @param {Object} labels Plain label/search/empty/none strings and count template (__count__).
+ * @param {Object} options Optional canonical Motion module for framed disclosure.
  * @returns {Object} Same disclosure lifecycle as the single-choice controller.
  */
-export const enhanceMultipleSelect = (select, labels) => enhanceNativeSelect(select, labels, true);
+export const enhanceMultipleSelect = (select, labels, options = {}) => enhanceNativeSelect(select, labels, true, options);
 
 /**
  * Close every enhanced choice whose authoritative native select belongs to a
@@ -46,18 +48,25 @@ export const closeChoicesWithin = (container, returnFocus = false) => {
     return active.length;
 };
 
-const enhanceNativeSelect = (select, labels, multiple) => {
+const enhanceNativeSelect = (select, labels, multiple, options) => {
     if (!select || select.multiple !== multiple) {
         throw new Error('Searchable choices require the matching native select mode.');
     }
     if (controls.has(select)) {
         return controls.get(select);
     }
+    // Opt-in dependency injection keeps standalone consumers and their existing
+    // slow-token lifecycle unchanged. No private copy of the geometry engine.
+    const motion = options.motion;
+    if (motion && (typeof motion.disclosePanel !== 'function' || typeof motion.cancel !== 'function')) {
+        throw new Error('Framed choices require the canonical Motion disclosure and cancellation API.');
+    }
     const document = select.ownerDocument;
     const id = `easyedu-searchable-choice-${++sequence}`;
     const host = document.createElement('div');
     host.className = 'easyedu-searchable-choice';
     host.classList.toggle('easyedu-searchable-choice--multiple', multiple);
+    host.classList.toggle('easyedu-searchable-choice--framed', !!motion);
     const trigger = document.createElement('button');
     trigger.type = 'button';
     trigger.id = `${id}-trigger`;
@@ -172,6 +181,17 @@ const enhanceNativeSelect = (select, labels, multiple) => {
         return 220;
     };
     const animatePanel = (expanded, complete) => {
+        if (motion) {
+            motion.disclosePanel(panel, expanded, {duration: Math.max(320, panelDuration()), onComplete: () => {
+                panelAnimation = null;
+                complete();
+            }});
+            // Keep the actual shared effect available to the existing physical
+            // pointer guard; static policy must not capture unrelated CSS effects.
+            panelAnimation = panel.classList.contains('is-easyedu-disclosing') ?
+                panel.getAnimations().find(animation => animation.effect && animation.effect.target === panel) || null : null;
+            return;
+        }
         if (panelAnimation) {
             panelAnimation.cancel();
             panelAnimation = null;
@@ -291,7 +311,9 @@ const enhanceNativeSelect = (select, labels, multiple) => {
             close();
             return;
         }
-        panel.hidden = false;
+        if (!motion) {
+            panel.hidden = false;
+        }
         panel.inert = false;
         trigger.setAttribute('aria-expanded', 'true');
         startPointerTracking();
@@ -342,6 +364,9 @@ const enhanceNativeSelect = (select, labels, multiple) => {
         host, trigger, clear, refresh, close,
         destroy: () => {
             stopPointerTracking();
+            if (motion) {
+                motion.cancel(panel);
+            }
             if (panelAnimation) {
                 panelAnimation.cancel();
                 panelAnimation = null;

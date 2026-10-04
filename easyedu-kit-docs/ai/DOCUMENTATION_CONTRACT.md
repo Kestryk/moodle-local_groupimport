@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Native motion tests must select the actual active workspace, not merely a
+`:visible` descendant of an inert/off-canvas column. Resolve semantic token
+paint against the configured canonical roles, not historical hard-coded defaults.
+Keep failed immutable specs and their cleanup. Destination choice opt-in passes
+the existing Motion module to the shared controller, not a plugin geometry fork.
+
 Framed Search/Add Motion owns the direct panel and `is-open` measurement.
 Compare sampled vertical insets, natural ancestor and final hidden state;
 do not solve padding-floor jumps by changing all card/Show-all durations.

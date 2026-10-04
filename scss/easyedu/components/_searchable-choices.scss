@@ -17,6 +17,10 @@
 
     [hidden] { display: none; }
   }
+  // Shared framed disclosure and its chevron read the same duration.
+  .easyedu-ui .easyedu-searchable-choice--framed {
+    --easyedu-choice-disclosure-duration: 360ms;
+  }
   .easyedu-ui .easyedu-searchable-choice__trigger {
     @include text-fields.foundation-text-field;
     & {
