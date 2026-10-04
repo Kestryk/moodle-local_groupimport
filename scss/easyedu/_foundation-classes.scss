@@ -316,6 +316,7 @@
   // Keep the public default below product breakpoint adapters in specificity.
   // A consumer may legitimately promote the same control to the touch recipe
   // without adding an override or relying on stylesheet order.
+  .easyedu-ui :where(.easyedu-filter-disclosure-row) { @include forms.filter-disclosure-row; }
   .easyedu-ui :where(.easyedu-filter-disclosure) { @include forms.filter-disclosure-trigger(wide); }
   .easyedu-ui .easyedu-empty {
     position: relative;

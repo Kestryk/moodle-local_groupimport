@@ -213,16 +213,6 @@
       max-height: 42rem;
     }
 
-    &-advanced-filters__control {
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      justify-self: center;
-      margin-top: 0.44rem;
-      padding: 0;
-    }
-
     &-advanced-filters__control &-advanced-filters__toggle {
       @include easyedu.filter-disclosure-trigger(touch);
     }

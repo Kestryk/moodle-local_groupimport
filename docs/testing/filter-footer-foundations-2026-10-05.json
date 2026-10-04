@@ -1,0 +1,85 @@
+{
+  "lot": "SM-43A",
+  "foundationFile": "40e06342-8830-80d6-8008-96572effc11c",
+  "standardPage": "d0d0680d-7d36-80da-8008-97a6a5b5b9d6",
+  "libraryPage": "3ade82ad-bce8-8059-8008-9c07259b5c06",
+  "pairs": [
+    {
+      "standard": "2a31d374-d2a1-80fd-8008-ac60e2aa1257",
+      "provider": "2a31d374-d2a1-80fd-8008-ac60c5933349",
+      "master": "2a31d374-d2a1-80fd-8008-ac60c553284a",
+      "mismatches": []
+    },
+    {
+      "standard": "2a31d374-d2a1-80fd-8008-ac60e2b96232",
+      "provider": "2a31d374-d2a1-80fd-8008-ac60c5f83cf2",
+      "master": "2a31d374-d2a1-80fd-8008-ac60c5b08444",
+      "mismatches": []
+    },
+    {
+      "standard": "2a31d374-d2a1-80fd-8008-ac60e2c75dea",
+      "provider": "2a31d374-d2a1-80fd-8008-ac60c650268e",
+      "master": "2a31d374-d2a1-80fd-8008-ac60c60eff88",
+      "mismatches": []
+    },
+    {
+      "standard": "2a31d374-d2a1-80fd-8008-ac60e2d5c5fa",
+      "provider": "2a31d374-d2a1-80fd-8008-ac60c6a93eda",
+      "master": "2a31d374-d2a1-80fd-8008-ac60c667905a",
+      "mismatches": []
+    },
+    {
+      "standard": "2a31d374-d2a1-80fd-8008-ac60e2e33580",
+      "provider": "2a31d374-d2a1-80fd-8008-ac60c7056bb8",
+      "master": "2a31d374-d2a1-80fd-8008-ac60c6c34551",
+      "mismatches": []
+    },
+    {
+      "standard": "c403923b-827e-80b7-8008-bbb6e296285c",
+      "provider": "a301101d-ddc2-807b-8008-bbb661c14700",
+      "master": "a301101d-ddc2-807b-8008-bbb6305b26c9",
+      "mismatches": []
+    },
+    {
+      "standard": "c403923b-827e-80b7-8008-bbb6e2c8af81",
+      "provider": "a301101d-ddc2-807b-8008-bbb661d28c67",
+      "master": "a301101d-ddc2-807b-8008-bbb6490306e7",
+      "mismatches": []
+    },
+    {
+      "standard": "c403923b-827e-80b7-8008-bbb6e2f79d96",
+      "provider": "a301101d-ddc2-807b-8008-bbb661e42659",
+      "master": "a301101d-ddc2-807b-8008-bbb649278160",
+      "mismatches": []
+    },
+    {
+      "standard": "c403923b-827e-80b7-8008-bbb6e355dc80",
+      "provider": "a301101d-ddc2-807b-8008-bbb66269d3d3",
+      "master": "a301101d-ddc2-807b-8008-bbb6496bcc5e",
+      "mismatches": []
+    },
+    {
+      "standard": "c403923b-827e-80b7-8008-bbb6e374ada1",
+      "provider": "a301101d-ddc2-807b-8008-bbb662795194",
+      "master": "a301101d-ddc2-807b-8008-bbb649855e93",
+      "mismatches": []
+    }
+  ],
+  "footers": {
+    "Wide": {
+      "provider": "cf371b29-2e8e-8011-8008-bd94876f4bc5",
+      "main": "cf371b29-2e8e-8011-8008-bd948748c0b2",
+      "standard": "cf371b29-2e8e-8011-8008-bd94ae1ddd84"
+    },
+    "Touch": {
+      "provider": "cf371b29-2e8e-8011-8008-bd9487b37c82",
+      "main": "cf371b29-2e8e-8011-8008-bd9487978a38",
+      "standard": "cf371b29-2e8e-8011-8008-bd94ae410ef6"
+    },
+    "host": "cf371b29-2e8e-8011-8008-bd94871c9fd8",
+    "standardHost": "cf371b29-2e8e-8011-8008-bd94adf08afb"
+  },
+  "visualExportInspected": true,
+  "nativeVerified": false,
+  "humanVisualValidated": false
+}
