@@ -327,9 +327,12 @@ technical passes do not close these newly reported regressions.
   edge while retaining a separate accessible clear-selection control.
 - [ ] R03: More Filters cannot close after opening: reproduce and fix nested
   dropdown/disclosure lifecycle, including repeated and interrupted toggles.
-- [ ] R04: Sticky Clear selection: replace the legacy inner button with the
-  canonical Kit action and publish its exact location in Foundations/EasyStud;
-  the overall capsule proposal is not human accepted.
+- [ ] R04: Sticky Clear selection: the inner button now opts into the linked
+  Foundation neutral Selection action; the EasyStud page 03 desktop specimen
+  is `cf371b29-2e8e-8011-8008-bd2decf669f1`. Native preview passes at
+  1600/1100 without pagination overlap. The capsule itself remains a
+  product composition; its visual proposal is not human accepted. See
+  `docs/student-sticky-selection-2026-10-04.md`.
 - [ ] R05: Full EasyStud Administration typography/layout audit against Student
   Management and Penpot, including desktop/tablet/mobile and native form labels.
 - [ ] R06: Correct rendered color pickers, all sizes/states, editable Hex and
