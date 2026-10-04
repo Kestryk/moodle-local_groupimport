@@ -302,6 +302,9 @@
   --easyedu-metadata-border: #bcd9ff;
   --easyedu-metadata-text: #1263ae;
   --easyedu-secondary-text: #0b5ea8;
+  --easyedu-filter-toggle-text: #17324d;
+  --easyedu-filter-toggle-track: #d7e3ed;
+  --easyedu-filter-toggle-active: var(--easyedu-primary);
   --easyedu-deposit-surface: #fbfdff;
   --easyedu-deposit-border: #c8d6e3;
   --easyedu-deposit-icon-surface: #eaf4fb;
@@ -4092,7 +4095,7 @@
   min-width: 0;
 }
 .local-groupimport-easystud-group-catalog-filters .local-groupimport-easystud-toggle-check {
-  align-self: start;
+  align-self: center;
   grid-column: 1;
   grid-row: 2;
   margin: 0;
@@ -4102,7 +4105,7 @@
   display: none;
 }
 .local-groupimport-easystud-group-catalog-filters .local-groupimport-easystud__filters-reset--catalog {
-  align-self: end;
+  align-self: center;
   grid-column: 2;
   grid-row: 2;
   justify-content: center;
@@ -14124,6 +14127,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-metadata-border: #bcd9ff;
   --easyedu-metadata-text: #1263ae;
   --easyedu-secondary-text: #0b5ea8;
+  --easyedu-filter-toggle-text: #17324d;
+  --easyedu-filter-toggle-track: #d7e3ed;
+  --easyedu-filter-toggle-active: var(--easyedu-primary);
   --easyedu-deposit-surface: #fbfdff;
   --easyedu-deposit-border: #c8d6e3;
   --easyedu-deposit-icon-surface: #eaf4fb;
@@ -15352,6 +15358,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-metadata-border: #bcd9ff;
   --easyedu-metadata-text: #1263ae;
   --easyedu-secondary-text: #0b5ea8;
+  --easyedu-filter-toggle-text: #17324d;
+  --easyedu-filter-toggle-track: #d7e3ed;
+  --easyedu-filter-toggle-active: var(--easyedu-primary);
   --easyedu-deposit-surface: #fbfdff;
   --easyedu-deposit-border: #c8d6e3;
   --easyedu-deposit-icon-surface: #eaf4fb;
@@ -17469,6 +17478,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
   .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud__filters-reset:not(.is-active), .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud__filters-reset--catalog:not(.is-active) {
     display: none;
+  }
+  .local-groupimport-easystud--responsive-workspace[data-easystud-mobile-view-active=groups] .local-groupimport-easystud-group-catalog-filters--structure {
+    display: grid;
   }
   .local-groupimport-easystud__layout {
     gap: 1rem;
@@ -20246,9 +20258,24 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .easyedu-ui .easyedu-filter-reset {
   align-self: center;
   justify-content: center;
-  min-height: 2.05rem;
+  border-color: var(--easyedu-control-border);
+  color: var(--easyedu-primary-strong);
+  font-size: var(--easyedu-font-size-caption);
+  min-height: 1.9rem;
   padding: 0.32rem 0.7rem;
   width: auto;
+}
+.easyedu-ui .easyedu-filter-reset:not(:disabled):not([aria-disabled=true]):not(.disabled):hover, .easyedu-ui .easyedu-filter-reset:not(:disabled):not([aria-disabled=true]):not(.disabled):active {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+}
+.easyedu-ui .easyedu-filter-reset:not(:disabled):not([aria-disabled=true]):not(.disabled):focus {
+  color: var(--easyedu-primary-strong);
+}
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-filter-reset {
+    min-height: var(--easyedu-touch-target-min);
+  }
 }
 
 .easyedu-ui .easyedu-toggle-check {
@@ -20324,6 +20351,82 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .easyedu-ui .easyedu-toggle-check input:disabled + span, .easyedu-ui .easyedu-toggle-check[aria-disabled=true] span {
   cursor: not-allowed;
   opacity: 0.62;
+}
+
+.easyedu-ui .easyedu-filter-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-filter-toggle-text);
+  cursor: pointer;
+  display: inline-flex;
+  font: 600 var(--easyedu-font-size-caption)/1.25 var(--easyedu-font-family-ui);
+  min-block-size: var(--easyedu-touch-target-min);
+  padding: 0;
+  position: relative;
+}
+.easyedu-ui .easyedu-filter-toggle:focus-within {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-filter-toggle input {
+  height: 1px;
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+}
+.easyedu-ui .easyedu-filter-toggle span {
+  align-items: center;
+  display: inline-flex;
+  min-block-size: var(--easyedu-touch-target-min);
+  padding-inline-start: 3rem;
+  position: relative;
+}
+.easyedu-ui .easyedu-filter-toggle span::before,
+.easyedu-ui .easyedu-filter-toggle span::after {
+  content: "";
+  inset-block-start: 50%;
+  position: absolute;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+}
+.easyedu-ui .easyedu-filter-toggle span::before {
+  background: var(--easyedu-filter-toggle-track);
+  border-radius: 999px;
+  height: 1.25rem;
+  inset-inline-start: 0;
+  transform: translateY(-50%);
+  width: 2.25rem;
+}
+.easyedu-ui .easyedu-filter-toggle span::after {
+  background: var(--easyedu-surface);
+  border-radius: 50%;
+  height: 0.875rem;
+  inset-inline-start: 0.1875rem;
+  transform: translateY(-50%);
+  width: 0.875rem;
+}
+.easyedu-ui .easyedu-filter-toggle input:checked + span::before {
+  background: var(--easyedu-filter-toggle-active);
+}
+.easyedu-ui .easyedu-filter-toggle input:checked + span::after {
+  transform: translate(1rem, -50%);
+}
+.easyedu-ui .easyedu-filter-toggle:dir(rtl) input:checked + span::after {
+  transform: translate(-1rem, -50%);
+}
+.easyedu-ui .easyedu-filter-toggle input:disabled + span, .easyedu-ui .easyedu-filter-toggle[aria-disabled=true] span {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+@media (prefers-reduced-motion: reduce) {
+  .easyedu-ui .easyedu-filter-toggle span::before,
+  .easyedu-ui .easyedu-filter-toggle span::after {
+    transition: none;
+  }
 }
 
 .easyedu-ui .easyedu-color-picker {

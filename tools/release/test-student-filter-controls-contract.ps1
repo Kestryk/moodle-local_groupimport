@@ -9,11 +9,11 @@ $structure = Get-Content -Raw -LiteralPath (Join-Path $PluginRoot 'scss/componen
 $styles = Get-Content -Raw -LiteralPath (Join-Path $PluginRoot 'styles.css')
 $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $KitRoot 'easyedu-kit.json') | ConvertFrom-Json
 
-if ($kitManifest.version -ne '0.4.73') {
-    throw "Expected Kit 0.4.73, found $($kitManifest.version)."
+if ([version]$kitManifest.version -lt [version]'0.4.89') {
+    throw "Expected Kit 0.4.89 or successor, found $($kitManifest.version)."
 }
 
-foreach ($className in @('easyedu-filter-disclosure', 'easyedu-toggle-check', 'easyedu-filter-reset')) {
+foreach ($className in @('easyedu-filter-disclosure', 'easyedu-filter-toggle', 'easyedu-filter-reset')) {
     if (-not $template.Contains($className)) {
         throw "Missing public Kit class in Student Management template: $className"
     }

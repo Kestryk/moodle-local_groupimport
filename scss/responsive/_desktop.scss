@@ -387,6 +387,13 @@
       display: none;
     }
 
+    // Desktop Structure focus is cleared by the mobile view controller.
+    // Its Groups filter contents still belong to the visible Groups workspace.
+    &--responsive-workspace[data-easystud-mobile-view-active="groups"]
+      &-group-catalog-filters--structure {
+      display: grid;
+    }
+
     &__layout {
       gap: 1rem;
       grid-template-columns: minmax(0, 1fr);

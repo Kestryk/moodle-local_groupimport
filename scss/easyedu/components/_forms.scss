@@ -423,6 +423,94 @@
 
 }
 
+// Foundations Filter toggle: quiet borderless row, distinct from the framed
+// generic toggle-check used in forms/dialogs. Native checkbox remains authority.
+@mixin filter-toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-filter-toggle-text);
+  cursor: pointer;
+  display: inline-flex;
+  font: 600 var(--easyedu-font-size-caption)/1.25 var(--easyedu-font-family-ui);
+  min-block-size: var(--easyedu-touch-target-min);
+  padding: 0;
+  position: relative;
+
+  &:focus-within {
+    @include focus.ring;
+  }
+
+  input {
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  span {
+    align-items: center;
+    display: inline-flex;
+    min-block-size: var(--easyedu-touch-target-min);
+    padding-inline-start: 3rem;
+    position: relative;
+  }
+
+  span::before,
+  span::after {
+    content: "";
+    inset-block-start: 50%;
+    position: absolute;
+    transition:
+      background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+      transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+  }
+
+  span::before {
+    background: var(--easyedu-filter-toggle-track);
+    border-radius: 999px;
+    height: 1.25rem;
+    inset-inline-start: 0;
+    transform: translateY(-50%);
+    width: 2.25rem;
+  }
+
+  span::after {
+    background: var(--easyedu-surface);
+    border-radius: 50%;
+    height: 0.875rem;
+    inset-inline-start: 0.1875rem;
+    transform: translateY(-50%);
+    width: 0.875rem;
+  }
+
+  input:checked + span::before {
+    background: var(--easyedu-filter-toggle-active);
+  }
+
+  input:checked + span::after {
+    transform: translate(1rem, -50%);
+  }
+
+  &:dir(rtl) input:checked + span::after {
+    transform: translate(-1rem, -50%);
+  }
+
+  input:disabled + span,
+  &[aria-disabled="true"] span {
+    cursor: not-allowed;
+    opacity: 0.62;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    span::before,
+    span::after { transition: none; }
+  }
+}
+
 @mixin advanced-filter-box {
   @include search-field;
 

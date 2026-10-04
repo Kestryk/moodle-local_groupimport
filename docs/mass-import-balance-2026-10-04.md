@@ -108,3 +108,8 @@ only; the existing `_layout.scss:101` Sass deprecation warning is unchanged.
 The native successor applies and restores temporary preview/collapsed classes
 on the real initial DOM solely to measure settled framing. It reports that
 scope explicitly and never creates a file, preview transaction or import.
+Managed run `easystud-authenticated-20261004T181142083Z-32984` passes against
+runtime `5f9e7882a0bae8de3d9f2294858310f0dca2bdd9`. Native transient settled
+CSV centre delta is 0.015625px. Initial three-width balance/readiness/caption
+checks still pass; cleanup clears credentials, lease and child, with no fixture.
+Native upload/disclosure timing and human acceptance remain separate gates.
