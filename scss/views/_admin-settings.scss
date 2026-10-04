@@ -489,18 +489,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     background: var(--easyedu-semantic-panel-bg);
   }
 
-  .local-groupimport-admin-settings__color-control {
-    @include easyedu.color-picker-control;
-  }
-
-  .local-groupimport-admin-settings__color-input {
-    @include easyedu.color-picker-input;
-  }
-
-  .local-groupimport-admin-settings__color-value {
-    @include easyedu.color-picker-value;
-  }
-
   #adminsettings > .settingsform > .row:last-child {
     margin-left: 0;
     margin-right: 0;

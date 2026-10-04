@@ -56,23 +56,52 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
          */
         public function output_html($data, $query = '') {
             $default = $this->get_defaultsetting();
-            $value = preg_match('/^#[0-9a-fA-F]{6}$/', (string)$data) ? (string)$data : (string)$default;
-            $attributes = [
+            $submittedvalue = (string)$data;
+            if ($submittedvalue === '') {
+                $submittedvalue = (string)$default;
+            }
+            $isvalid = (bool)preg_match('/^#[0-9a-fA-F]{6}$/', $submittedvalue);
+            $swatchvalue = $isvalid ? $submittedvalue : (string)$default;
+            $swatchattributes = [
                 'type' => 'color',
+                'id' => $this->get_id() . '_picker',
+                'value' => $swatchvalue,
+                'class' => 'easyedu-color-picker__swatch',
+                'aria-label' => get_string('colourpickerswatchlabel', 'local_groupimport'),
+            ];
+            $hexattributes = [
+                'type' => 'text',
                 'id' => $this->get_id(),
                 'name' => $this->get_full_name(),
-                'value' => $value,
-                'class' => 'local-groupimport-admin-settings__color-input',
+                'value' => strtoupper($submittedvalue),
+                'class' => 'easyedu-color-picker__hex',
+                'pattern' => '#[0-9A-Fa-f]{6}',
+                'maxlength' => '7',
+                'autocomplete' => 'off',
+                'spellcheck' => 'false',
+                'aria-label' => get_string('colourpickerhexlabel', 'local_groupimport'),
+                'aria-invalid' => $isvalid ? 'false' : 'true',
             ];
+            $controlattributes = [
+                'data-easyedu-color-picker' => '1',
+                'aria-invalid' => $isvalid ? 'false' : 'true',
+            ];
+            $controlclasses = 'easyedu-color-picker local-groupimport-admin-settings__color-control';
 
             if ($this->is_readonly()) {
-                $attributes['disabled'] = 'disabled';
+                $swatchattributes['disabled'] = 'disabled';
+                $hexattributes['readonly'] = 'readonly';
+                $controlattributes['data-readonly'] = 'true';
+                $controlclasses .= ' is-readonly';
+            } elseif (!$isvalid) {
+                $controlclasses .= ' is-invalid';
             }
 
             $element = html_writer::div(
-                html_writer::empty_tag('input', $attributes) .
-                    html_writer::span(s(strtoupper($value)), 'local-groupimport-admin-settings__color-value'),
-                'local-groupimport-admin-settings__color-control'
+                html_writer::empty_tag('input', $swatchattributes) .
+                    html_writer::empty_tag('input', $hexattributes),
+                $controlclasses,
+                $controlattributes
             );
 
             return format_admin_setting($this, $this->visiblename, $element, $this->description, true, '', $default, $query);

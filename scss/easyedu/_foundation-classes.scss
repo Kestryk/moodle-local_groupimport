@@ -276,6 +276,12 @@
   }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
+  .easyedu-ui .easyedu-color-picker { @include forms.color-picker-control; }
+  .easyedu-ui .easyedu-color-picker--small { @include forms.color-picker-control(small); }
+  .easyedu-ui .easyedu-color-picker--large { @include forms.color-picker-control(large); }
+  .easyedu-ui .easyedu-color-picker__swatch { @include forms.color-picker-input; }
+  .easyedu-ui .easyedu-color-picker__hex { @include forms.color-picker-hex-input; }
+  .easyedu-ui .easyedu-color-picker__value { @include forms.color-picker-value; }
   .easyedu-ui .easyedu-related-person-row { @include cards.related-person-row; }
   .easyedu-ui .easyedu-related-person-row__selector { @include cards.related-person-selection-slot; }
   .easyedu-ui .easyedu-related-person-row__name {
