@@ -20,9 +20,9 @@
     },
     "emptyCaption20261004": {
       "kitCommit": "5dc69d6",
-      "status": "Kit 0.4.85 and Foundations Standard/Library map empty descriptions to caption; three Mass Import initial compositions linked. Isolated browser pass; native preview and human acceptance pending.",
+      "status": "Kit and Foundations caption linked to three Mass Import initial compositions; current native read-only three-width caption/dash/balance pass. Human acceptance pending.",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "penpotLinked": true
     },
     "paletteWarning20261004": {
@@ -34,8 +34,10 @@
     },
     "compactChoices20261004": {
       "kitCommit": "73668d8",
-      "status": "Canonical compact density and paired Foundations multiple states; source build and isolated geometry pass. Product/native preview pending.",
-      "humanAccepted": false
+      "status": "Canonical compact density and linked product multiple states; native search, selection, physical Reset and 32/44px geometry pass at three widths. Adjacent controls and human acceptance pending.",
+      "humanAccepted": false,
+      "nativePreviewVerified": true,
+      "penpotLinked": true
     },
     "choicePointerGeometry20261004": {
       "kitCommit": "ea25c23",
@@ -46,17 +48,17 @@
     },
     "choiceExitPointer20261004": {
       "kitCommit": "704924eea7cd11d6074d686cd0d597d565046309",
-      "status": "Canonical pointer guard covers in-flight closing Motion; shared held-pointer lifecycle passes three widths. Native catalogue Reset successor pending.",
-      "nativePreviewVerified": false,
+      "status": "Canonical pointer guard covers in-flight closing Motion; shared held-pointer lifecycle and native physical catalogue Reset pass three widths. Parent/nested disclosure regression also passes; human acceptance pending.",
+      "nativePreviewVerified": true,
       "humanAccepted": false
     },
     "batch": "EED-UI-2026-0073",
     "massImportBalance20261004": {
       "kitCommit": "ab44599d543cc96b6cc23065ec508e147552893c",
-      "status": "Kit 0.4.81 candidate: Mass Import uses the public compact panel identity while preserving regular file-deposit artwork; its initial 44/56 split can shrink without overflow and the empty results surface fills the available panel body.",
+      "status": "Native initial 35.2px panel identities, typography and 44/56 or stacked layout pass at three widths. Six initial/uploading product headers reconciled; shared Foundation tile provider and remaining state headers pending.",
       "documentation": "docs/mass-import-balance-2026-10-04.md",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "penpotLinked": false
     },
     "searchableChoiceMotion20261004": {

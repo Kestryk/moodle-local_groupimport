@@ -17,8 +17,8 @@ foreach ($needle in @(
     }
 }
 
-if (($markup.Split('easyedu-panel__header--compact-icon').Count - 1) -ne 2 -or
-        ($markup.Split('easyedu-icon-tile--compact').Count - 1) -ne 2) {
+if ([regex]::Matches($markup, 'easyedu-panel__header--compact-icon').Count -ne 2 -or
+        [regex]::Matches($markup, 'easyedu-icon-tile--compact').Count -ne 2) {
     throw 'Exactly the two main Mass Import panel identities must consume the compact public family.'
 }
 if ($markup -notmatch 'local-groupimport-import-fields__icon easyedu-icon-tile') {
@@ -30,6 +30,7 @@ foreach ($needle in @(
     '&-card--results > &-empty',
     'flex: 1 1 auto;',
     'min-block-size: 16rem;'
+    'calc((4.85rem - var(--easyedu-section-icon-size-compact)) / 2 - 1px)'
 )) {
     if (-not $view.Contains($needle)) {
         throw "Missing Mass Import balance composition: $needle"
@@ -39,7 +40,8 @@ if ($view -match 'grid-template-columns: minmax\(21rem, 0\.88fr\) minmax\(25rem,
     throw 'Mass Import must not restore fixed track minima before the responsive breakpoint.'
 }
 
-if ($manifest.version -ne '0.4.81' -or
+# Later additive Kit revisions must not invalidate this pinned family contract.
+if ([version]$manifest.version -lt [version]'0.4.81' -or
         $manifest.consumerSync.massImportBalance20261004.kitCommit -ne 'ab44599d543cc96b6cc23065ec508e147552893c') {
     throw 'The embedded Kit manifest does not pin the compact Mass Import source.'
 }

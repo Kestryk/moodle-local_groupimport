@@ -84,7 +84,19 @@ held-pointer scenario now passes at 1600/768/390, alongside single/multiple,
 clear, disabled, reset and no-JS fallback contracts; output is the external
 Kit run `choice-closing-pointer-20261004-174600`. Component paint, easing and
 normal production duration are unchanged. The identical controller is embedded
-in EasyStud and its AMD exports are rebuilt and verified. Native proof is next.
+in EasyStud and its AMD exports are rebuilt and verified.
+
+Native successor `easystud-authenticated-20261004T174549709Z-38204` passes
+at 1600/768/390: 12px trigger/options/search text, 32px desktop and 44px touch
+targets, searching, retained selections and both catalogue Reset buttons with
+physical clicks. The earlier failed runs remain historical evidence, not
+replaced or deleted. Follow-up `easystud-authenticated-20261004T174817703Z-33456`
+also passes three consecutive parent/nested disclosure cycles at each width.
+Both runs record zero blocked business requests/page errors, cleared credentials,
+released leases, stopped children and no fixture. Their manifests, cleanup and
+JSON results remain under the external EasyStud authenticated artifact root.
+This closes the measured native Reset/disclosure regression, not the entire
+compact-control, visual-parity or human-acceptance checklist.
 
 Four remaining M providers were replaced in place on page 03, preserving their
 Any copy and widths: `a301101d-ddc2-807b-8008-bba0f18e3e8f`,

@@ -16284,7 +16284,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   grid-column: 2;
 }
 .local-groupimport-import.has-preview.is-upload-collapsed .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile {
-  inset-inline-start: calc(1.15rem - 1px);
+  inset-inline-start: calc((4.85rem - var(--easyedu-section-icon-size-compact)) / 2 - 1px);
   top: 1.1rem;
 }
 .local-groupimport-import.has-preview:not(.is-upload-collapsed) .local-groupimport-import-card--upload .local-groupimport-import-card__header {
