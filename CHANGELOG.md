@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-04 - Searchable choice disclosure Motion
+
+- Consume UI Kit `0.4.80` for interruptible in-flow opening and closing of
+  searchable single/multiple choices in filters and destination dialogs.
+- Synchronize chevron timing, defer `hidden` until closing completes and keep
+  reduced-motion immediate without changing native selections or commands.
+- Keep Penpot, native browser and human acceptance gates open.
+
 ## 2026-10-04 - Shared administration colour picker
 
 - Consume UI Kit `0.4.79` public S/M/L colour-picker classes for the existing

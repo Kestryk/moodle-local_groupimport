@@ -108,10 +108,62 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     const originalLabels = [...select.labels];
     const originalHidden = select.hidden;
     let rows = [];
+    let panelAnimation = null;
+
+    const reducedMotion = () => document.defaultView && document.defaultView.matchMedia &&
+        document.defaultView.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const panelDuration = () => {
+        const value = document.defaultView.getComputedStyle(panel)
+            .getPropertyValue('--easyedu-choice-disclosure-duration').trim();
+        if (value.endsWith('ms')) {
+            return Number.parseFloat(value) || 0;
+        }
+        if (value.endsWith('s')) {
+            return (Number.parseFloat(value) || 0) * 1000;
+        }
+        return 220;
+    };
+    const animatePanel = (expanded, complete) => {
+        if (panelAnimation) {
+            panelAnimation.cancel();
+            panelAnimation = null;
+        }
+        if (reducedMotion() || typeof panel.animate !== 'function') {
+            complete();
+            return;
+        }
+        const startHeight = panel.getBoundingClientRect().height;
+        const endHeight = expanded ? panel.scrollHeight : 0;
+        const startOpacity = Number.parseFloat(document.defaultView.getComputedStyle(panel).opacity) || 0;
+        panelAnimation = panel.animate([
+            {height: `${startHeight}px`, opacity: startOpacity,
+                transform: expanded ? 'translateY(-0.25rem)' : 'translateY(0)'},
+            {height: `${endHeight}px`, opacity: expanded ? 1 : 0,
+                transform: expanded ? 'translateY(0)' : 'translateY(-0.25rem)'},
+        ], {
+            duration: panelDuration(),
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        });
+        panelAnimation.addEventListener('finish', () => {
+            panelAnimation = null;
+            complete();
+        }, {once: true});
+    };
 
     const close = (returnFocus = false) => {
-        panel.hidden = true;
         trigger.setAttribute('aria-expanded', 'false');
+        if (panel.hidden) {
+            if (returnFocus) {
+                trigger.focus();
+            }
+            return;
+        }
+        panel.inert = true;
+        animatePanel(false, () => {
+            panel.hidden = true;
+            panel.inert = false;
+        });
+        panel.classList.remove('is-open');
         if (returnFocus) {
             trigger.focus();
         }
@@ -184,14 +236,17 @@ const enhanceNativeSelect = (select, labels, multiple) => {
         filter();
     };
     trigger.addEventListener('click', () => {
-        if (!panel.hidden) {
+        if (trigger.getAttribute('aria-expanded') === 'true') {
             close();
             return;
         }
         panel.hidden = false;
+        panel.inert = false;
         trigger.setAttribute('aria-expanded', 'true');
         search.value = '';
         filter();
+        animatePanel(true, () => panel.classList.add('is-open'));
+        panel.classList.add('is-open');
         search.focus();
     });
     search.addEventListener('input', filter);
@@ -234,6 +289,10 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     const controller = {
         host, trigger, clear, refresh, close,
         destroy: () => {
+            if (panelAnimation) {
+                panelAnimation.cancel();
+                panelAnimation = null;
+            }
             select.removeEventListener('change', syncValue);
             originalLabels.forEach(label => { label.htmlFor = select.id; });
             select.hidden = originalHidden;

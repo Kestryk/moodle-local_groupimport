@@ -5,6 +5,8 @@
 
 @mixin searchable-choice-classes {
   .easyedu-ui .easyedu-searchable-choice {
+    --easyedu-choice-disclosure-duration: var(--easyedu-motion-slow);
+
     min-inline-size: 0;
     position: relative;
     font-family: var(--easyedu-font-family-ui);
@@ -27,6 +29,10 @@
       text-decoration: none;
     }
     .fa { color: var(--easyedu-primary); flex: 0 0 1rem; }
+    &[aria-expanded="true"] > .fa:last-child { transform: rotate(180deg); }
+    > .fa:last-child {
+      transition: transform var(--easyedu-choice-disclosure-duration) var(--easyedu-motion-ease);
+    }
   }
   .easyedu-ui .easyedu-searchable-choice__summary {
     min-inline-size: 0;
@@ -67,7 +73,16 @@
     border: 0.0625rem solid var(--easyedu-control-border);
     border-radius: var(--easyedu-control-radius);
     margin-block-start: 0.5rem;
+    box-sizing: border-box;
+    opacity: 0;
+    overflow: clip;
     padding: 0.5rem;
+    transform: translateY(-0.25rem);
+
+    &.is-open {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   .easyedu-ui .easyedu-searchable-choice__search {
     @include forms.search-field;
@@ -130,6 +145,11 @@
       inline-size: 2.25rem;
       inset-block-start: 0.25rem;
       inset-inline-end: 2.5rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .easyedu-ui .easyedu-searchable-choice {
+      --easyedu-choice-disclosure-duration: 0.01ms;
     }
   }
 }
