@@ -162,6 +162,13 @@ if ($hassiteconfig) {
 
     $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
     $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);
+    $PAGE->requires->js_call_amd('local_groupimport/admin_choices', 'init', [[
+        'search' => get_string('searchfilteroptions', 'local_groupimport'),
+        'empty' => get_string('nofilteroptions', 'local_groupimport'),
+        'none' => get_string('none'),
+        'count' => get_string('filterselectioncount', 'local_groupimport', '__count__'),
+        'clear' => get_string('clearfilterselection', 'local_groupimport'),
+    ]]);
 
     $settings = new admin_settingpage(
         'local_groupimport',

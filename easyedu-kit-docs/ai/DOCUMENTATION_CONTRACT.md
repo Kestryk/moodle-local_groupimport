@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Native settings adapters must preserve select names/options, required fallback,
+disabled synchronization and reset semantics. An isolated reset PASS after
+Escape does not certify clicking a button below an open in-flow dropdown:
+focusout reflow can move that target before click. Record and test both paths
+before promoting the adapter, and repair shared dismissal in the Kit.
+
 After any searchable-choice controller rebuild, execute the generated AMD
 module and compare its callable exports with every public source export.
 Presence of a function name in source or generated text is insufficient:
