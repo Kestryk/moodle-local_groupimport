@@ -203,3 +203,8 @@ the existing 390px native composition, rather than scaling controls. Outer and
 inner frames now both measure 390px; board heading boxes are 342px wide with
 24px inset. Settled horizontal text-containment scan passes. This corrects the
 documented 454px mismatch but does not substitute for native mobile testing.
+
+Show-complete-view checkbox now shares the existing keyboard-focus adapter;
+the compiled browser test compares it with enablesimplifiedview at all three
+widths. Colour-picker static contract passes. Prepare the ordered local preview
+chain (all successors to 8d41b90), not a latest-commit-only cherry-pick.

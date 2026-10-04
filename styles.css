@@ -15064,6 +15064,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   outline: 0;
 }
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enablesimplifiedview:focus-visible,
+#page-admin-setting-local_groupimport #id_s_local_groupimport_showcompleteview:focus-visible,
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enableanimations:focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -15073,6 +15074,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
 }
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enablesimplifiedview:focus:not(:focus-visible),
+#page-admin-setting-local_groupimport #id_s_local_groupimport_showcompleteview:focus:not(:focus-visible),
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enableanimations:focus:not(:focus-visible) {
   outline: 0;
 }

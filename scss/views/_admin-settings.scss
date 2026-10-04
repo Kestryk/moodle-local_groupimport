@@ -555,6 +555,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   #id_s_local_groupimport_enablesimplifiedview,
+  #id_s_local_groupimport_showcompleteview,
   #id_s_local_groupimport_enableanimations {
     &:focus-visible {
       @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
