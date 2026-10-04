@@ -120,7 +120,7 @@
   }
 
   &-group-catalog-filters &-toggle-check {
-    align-self: start;
+    align-self: center;
     grid-column: 1;
     grid-row: 2;
     margin: 0;
@@ -132,7 +132,7 @@
   }
 
   &-group-catalog-filters &__filters-reset--catalog {
-    align-self: end;
+    align-self: center;
     grid-column: 2;
     grid-row: 2;
     justify-content: center;

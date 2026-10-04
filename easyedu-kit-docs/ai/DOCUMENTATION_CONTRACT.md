@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Catalogue filters use public easyedu-filter-toggle, not the generic framed
+dialog toggle-check. Assert native compact sibling geometry and checkbox/Reset
+behaviour, including responsive Groups where desktop focus classes are cleared.
+A parent disclosure visible in mobile does not prove its filter contents are
+visible; check the intended catalogue, not only the parent shell.
+
 Mass Import initial layout evidence waits for both the workspace and native
 file picker to be ready. Header geometry alone does not certify a completed
 deposit screenshot. Mobile product boards include a documentation margin:

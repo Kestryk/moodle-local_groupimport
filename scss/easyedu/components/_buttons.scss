@@ -204,9 +204,26 @@
   & {
     align-self: center;
     justify-content: center;
-    min-height: 2.05rem;
+    border-color: var(--easyedu-control-border);
+    color: var(--easyedu-primary-strong);
+    font-size: var(--easyedu-font-size-caption);
+    min-height: 1.9rem;
     padding: 0.32rem 0.7rem;
     width: auto;
+  }
+
+  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):hover,
+  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):active {
+    background: var(--easyedu-primary-soft);
+    color: var(--easyedu-primary-strong);
+  }
+
+  &:not(:disabled):not([aria-disabled="true"]):not(.disabled):focus {
+    color: var(--easyedu-primary-strong);
+  }
+
+  @media (max-width: 52rem), (pointer: coarse) {
+    min-height: var(--easyedu-touch-target-min);
   }
 }
 

@@ -420,6 +420,10 @@ technical passes do not close these newly reported regressions.
   widths. Parent/nested closure regression also passes
   `easystud-authenticated-20261004T174817703Z-33456` (three cycles per width).
   Toggle/Reset density, broader filter states and human acceptance remain open.
+  Kit 0.4.89 now maps the existing Filter toggle to a dedicated public family
+  and Reset to caption with 30.4/44px minima; two catalogue hooks opt in only.
+  Product touch Toggle/Reset hosts are 324x44 and remain linked. Shared browser
+  checks pass; native successor and Foundation On/touch publication are next.
 
 ### Current execution checkpoint
 

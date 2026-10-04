@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-04 - Compact filter sibling candidate
+
+- Embed Kit 0.4.89's borderless filter-toggle and caption/touch Reset family;
+  opt in only the two catalogue labels, leaving dialog toggles unchanged.
+- Centre desktop Toggle/Reset rows and show catalogue contents in responsive
+  Groups independently from cleared desktop focus state. No filter predicate,
+  command, native option or disclosure controller change.
+- Keep linked product touch controls at 324x44; Foundation On paint and touch
+  source publication remain pending. Shared/static checks pass; native next.
+
 ## 2026-10-04 - Mass Import initial balance and Penpot header follow-up
 
 - Record native read-only compact icon/title/description and responsive layout

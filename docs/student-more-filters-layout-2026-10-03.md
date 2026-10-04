@@ -42,5 +42,39 @@ Penpot evidence is recorded in
 
 ## Safety
 
+### Compact sibling successor, 2026-10-04
+
+Kit 0.4.89 (`f0f5e33`) maps the existing borderless Foundation Filter toggle
+Off/On providers to public `easyedu-filter-toggle`, separately from the generic
+framed `easyedu-toggle-check` used in the Move dialog. The two catalogue labels
+consume this class only: native input, commands and predicates are untouched.
+The shared track is 36x20px, thumb 14px, label gap 12px, type 12.16px and hit
+row 44px. Reset uses caption 12.16px and 30.4px desktop / 44px touch minima.
+The four changed canonical SCSS sources are byte-identical in the consumer.
+Shared run `filter-controls-20261004-182400` passes geometry, keyboard, disabled
+preservation and RTL travel at 1600/768/390; no Moodle/data is involved.
+
+Desktop Toggle/Reset composition now centres both controls on the same row.
+The mobile controller clears Desktop Structure focus, so the Groups workspace
+must explicitly reveal its own catalogue filters; otherwise More Filters
+opened an empty shell. This visibility correction is scoped to responsive
+Groups only, not desktop Complete or the Groupings workspace.
+
+EasyStud page 03's existing linked touch hosts are retained:
+Toggle `df1dc7b5-2b58-807e-8008-bc370e996517` and Reset
+`df1dc7b5-2b58-807e-8008-bc370f07f6c0` now use 324x44px rows with centred
+content. Desktop hosts keep their original shared dimensions. The Foundation
+On track still has historical fixed blue `#1476c8`; catalogue follow-up must
+map it to the shared configurable primary role. A dedicated linked touch Reset
+source specimen must also be published in Standard/Library. Product host
+resizing is not certification of those source changes. Human checklist remains
+open. Native successor is the write-guarded
+`student-compact-filter-controls-preview.spec.js`; its result is recorded
+separately after managed preview, not inferred from the isolated test.
+
+The Filter-controls static contract now allows later additive Kit revisions
+instead of requiring historical 0.4.73. It still rejects private toggle paint
+and verifies public classes and the two-row catalogue composition.
+
 This lot changes presentation classes and layout only. It does not change
 filter values, selection semantics, disclosure Motion or any data endpoint.
