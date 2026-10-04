@@ -1,5 +1,9 @@
 # Changelog
 
+- Native administration follow-up: target Moodle's actual sibling h3.main
+  section headings and use the public Kit caption for Restore colours help.
+  Extend the native read-only check with targeted scrolled palette captures.
+
 ## 2026-10-04 - Administration composition and typography candidate
 
 - Complete the three Penpot administration compositions with source palette,

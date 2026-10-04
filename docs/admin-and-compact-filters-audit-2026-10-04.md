@@ -208,3 +208,26 @@ Show-complete-view checkbox now shares the existing keyboard-focus adapter;
 the compiled browser test compares it with enablesimplifiedview at all three
 widths. Colour-picker static contract passes. Prepare the ordered local preview
 chain (all successors to 8d41b90), not a latest-commit-only cherry-pick.
+
+### Local preview applied, native test in progress
+
+The ten ordered commits from d93afc1 through e5c1a3f were applied without
+conflict to the existing preview branch. Runtime HEAD is
+`97913658895f84e98871ec361845eba615b50af8`; Moodle caches were purged.
+Promotion record: `preview-promotions/easystud/20261004T124456Z.json` under
+the external orchestration artifact root. This supersedes the historical
+6da2a1 serving state above. No production deployment or settings write.
+The new local-supervised `admin-kit-readonly.spec.js` opens native settings,
+checks three viewport widths and blocks any settings POST. Record its result
+separately; applied code is not itself a passing native visual test.
+
+Native runs `easystud-authenticated-20261004T124511805Z-27020` and
+`easystud-authenticated-20261004T124630068Z-18568` pass the initial checks:
+title, seven public pickers, dropdown open/Escape, no horizontal overflow or
+page errors, no settings POST. Both release their leases and clear credentials.
+Targeted palette captures reveal the actual native section h3.main is a sibling
+of .formsettingheading, not its child: 18.75px persisted despite the isolated
+fixture PASS. Correct the source adapter and fixture to that real topology;
+the native successor asserts all five section headings at 16px. Restore help
+also adopts the public easyedu-caption class, not an unstyled native paragraph.
+Do not relabel the initial passing checks as full typography parity.

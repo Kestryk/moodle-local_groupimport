@@ -14644,6 +14644,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-size: var(--easyedu-font-size-body);
   line-height: var(--easyedu-line-height-body);
 }
+#page-admin-setting-local_groupimport #adminsettings h3.main,
 #page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);

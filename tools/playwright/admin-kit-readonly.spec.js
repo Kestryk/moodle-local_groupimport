@@ -51,6 +51,14 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
             expect(metrics.hexHeight).toBeGreaterThan(25);
         }
         await expect(root.locator('[data-easystud-restore-colours]')).toBeVisible();
+        const palette = root.locator('#admin-themeprimarycolor');
+        await palette.scrollIntoViewIfNeeded();
+        await page.screenshot({path: testInfo.outputPath(`admin-palette-${width}.png`)});
+        const sectionHeadings = root.locator('#adminsettings h3.main');
+        expect(await sectionHeadings.count()).toBeGreaterThan(0);
+        for (const heading of await sectionHeadings.all()) {
+            await expect(heading).toHaveCSS('font-size', '16px');
+        }
         await title.scrollIntoViewIfNeeded();
         await page.screenshot({path: testInfo.outputPath(`admin-${width}.png`), fullPage: true});
         expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(2);

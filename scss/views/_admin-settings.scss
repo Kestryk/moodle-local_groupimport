@@ -260,6 +260,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     @include easyedu.type-body;
   }
 
+  // core_admin/setting_heading renders h3.main beside (not inside) its
+  // .formsettingheading description. Keep the compatibility form as well.
+  #adminsettings h3.main,
   #adminsettings .formsettingheading h3 {
     @include easyedu.type-section-title;
   }
