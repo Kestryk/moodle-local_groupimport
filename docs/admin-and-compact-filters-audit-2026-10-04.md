@@ -169,3 +169,37 @@ still omit the five interface palette settings, Restore colours and the
 Complete/default-view settings. Existing colour rows only cover participant
 badge background/text. Add these missing source-backed settings before claiming
 whole-admin parity or lifting the visual candidate preview hold.
+
+### Administration composition successor
+
+All three full-view boards now include the five source interface colours,
+Restore EasyEdu colours (form-only, explicit Save still required), Show complete
+view and Default layout. Existing badge settings remain present. Sections below
+the insertions and their root containers were extended; no existing settings
+were deleted. Desktop palette board: `cf371b29-2e8e-8011-8008-bcfd674cd90e`;
+mobile: `cf371b29-2e8e-8011-8008-bcfdaf381927`; tablet:
+`cf371b29-2e8e-8011-8008-bcfdb1688c93`. Palette text readbacks have no outer
+overflow; the narrow palette export was inspected.
+
+Nine old profile-field Dropdown instances now inherit Searchable single choice
+M Closed, preserving their Aucun copy and widths, using 38px desktop and 44px
+responsive triggers. Forty-five setting/checkbox helper texts use the 12.16px
+Foundation caption role instead of the previous 14.4px body role.
+
+Code maps admin page title/description and native section headings directly
+to existing Kit typography mixins (20/14.4/16px). No new pixel-size override
+or shared-token change. Show complete view joins the native checkbox layout
+adapter. Sass and the isolated compiled-CSS typography test pass at
+1600/768/390; all six choice adapter width/Motion cases pass again.
+Scenario `tools/release/test-admin-typography-browser.js` is ci-reusable,
+isolated, read-only and produces no media. Native-theme precedence and actual
+responsive layout still require leased Moodle proof. The board named Mobile
+390 still has an outer documentation frame of 454px and must be reconciled;
+do not claim a complete 390px viewport pass from the contained palette alone.
+Contrast relaxation and canonical warning verification are still open.
+
+Mobile-frame successor: remove only the redundant 32px exterior margins around
+the existing 390px native composition, rather than scaling controls. Outer and
+inner frames now both measure 390px; board heading boxes are 342px wide with
+24px inset. Settled horizontal text-containment scan passes. This corrects the
+documented 454px mismatch but does not substitute for native mobile testing.

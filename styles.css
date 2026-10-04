@@ -14627,6 +14627,32 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: block;
   padding-block: 0.15rem;
 }
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-title {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-page-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
+}
+#page-admin-setting-local_groupimport .local-groupimport-admin-settings__page-description {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
+}
+#page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-section-title);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: var(--easyedu-line-height-title);
+}
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-border);
@@ -14945,10 +14971,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   max-width: min(100%, 34rem);
 }
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-showcompleteview .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-setting > div:first-child {
   max-width: min(100%, 22rem);
 }
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-check,
+#page-admin-setting-local_groupimport #admin-showcompleteview .form-check,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-check {
   align-items: center;
   display: flex;
