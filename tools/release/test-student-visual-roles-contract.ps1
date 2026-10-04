@@ -5,8 +5,11 @@ $manifest = Get-Content -Raw -LiteralPath (Join-Path $root 'easyedu-kit-docs/eas
 foreach ($entry in $manifest.consumerSync.studentVisualRoles.modules.PSObject.Properties) {
     $relative = 'scss/easyedu/' + $entry.Name
     $embedded = & git -C $root hash-object $relative
-    $successor = $manifest.consumerSync.studentCompletion20261003.modules.$relative
-    $currentPin = if ($successor) { $successor } else { $entry.Value }
+    $publicClassSuccessor = $manifest.consumerSync.studentMemberRowPublicClasses20261004.modules.$relative
+    $completionSuccessor = $manifest.consumerSync.studentCompletion20261003.modules.$relative
+    $currentPin = if ($publicClassSuccessor) { $publicClassSuccessor }
+        elseif ($completionSuccessor) { $completionSuccessor }
+        else { $entry.Value }
     if ($LASTEXITCODE -ne 0 -or $embedded -ne $currentPin) { throw "Unpinned current module: $relative" }
     $canonical = & git -C $KitRoot hash-object $relative
     if ($LASTEXITCODE -ne 0 -or $canonical -ne $embedded) { throw "Canonical drift: $relative" }
@@ -17,8 +20,8 @@ foreach ($name in @('surface', 'border', 'shadow')) {
         throw "Undefined navigation drawer token: $name"
     }
 }
-$structure = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/components/_structure.scss')
-if (-not $structure.Contains('@include easyedu.related-person-name;')) { throw 'Missing shared related-person role.' }
+$foundation = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/easyedu/_foundation-classes.scss')
+if (-not $foundation.Contains('.easyedu-related-person-row__name')) { throw 'Missing shared related-person class.' }
 $adapter = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/components/_control-typography.scss')
 foreach ($recipe in @('foundation-button($density: compact)', 'foundation-button($secondary: true, $density: compact)')) {
     if (-not $adapter.Contains($recipe)) { throw "Missing inline action role: $recipe" }
@@ -32,7 +35,6 @@ if (@([regex]::Matches($menus, '@include action-menu-label;')).Count -ne 2) {
 }
 $forms = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/components/_forms.scss')
 if ($forms.Contains('@include easyedu.action-button(small);')) { throw 'Competing Rename action skin.' }
-$foundation = Get-Content -Raw -LiteralPath (Join-Path $root 'scss/easyedu/_foundation-classes.scss')
 foreach ($state in @('&:focus {', '&:hover {', '@include focus.ring($border-color: var(--easyedu-control-focus-border));')) {
     if (-not $foundation.Contains($state)) { throw "Missing Foundation state: $state" }
 }

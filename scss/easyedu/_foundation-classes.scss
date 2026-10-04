@@ -6,6 +6,7 @@
 @use "components/focus";
 @use "components/buttons";
 @use "components/forms";
+@use "components/cards";
 
 @mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false) {
   @if $secondary and $danger {
@@ -275,6 +276,13 @@
   }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
+  .easyedu-ui .easyedu-related-person-row { @include cards.related-person-row; }
+  .easyedu-ui .easyedu-related-person-row__selector { @include cards.related-person-selection-slot; }
+  .easyedu-ui .easyedu-related-person-row__name {
+    @include cards.related-person-name;
+    @include cards.related-person-name-layout;
+  }
+  .easyedu-ui .easyedu-related-person-row__remove { @include cards.related-person-remove; }
   @media (max-width: 52rem) {
     .easyedu-ui .easyedu-toggle-check { min-height: var(--easyedu-touch-target-min); }
   }
