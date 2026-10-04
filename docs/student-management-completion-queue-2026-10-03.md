@@ -430,6 +430,17 @@ technical passes do not close these newly reported regressions.
 
 ### Current execution checkpoint
 
+- Foundation publication successor: eight section-tile providers now exist in
+  paired Standard/Library; 39 Mass Import main headers link to them with their
+  original glyphs, verified centres and containment. Filter On paint and Touch
+  Reset states are published; the product Touch Reset uses its new source link.
+  Kit 0.4.90 adds only Warning/Danger public palette modifiers. Native three-width
+  nested closure baseline `easystud-authenticated-20261004T184303674Z-12180`
+  passes with full cleanup. The 0.4.90 native successor, nine missing preview
+  introductions, full state lifecycle and human acceptance remain open.
+  See `docs/foundation-publication-consumer-2026-10-04.md`. Earlier pending-source
+  entries below are historical; this successor closes their publication gate only.
+
 - SM-20 successor: initial native panel/icon/type/stacking proof passes at
   1600/768/390 with the file picker ready. Six initial/uploading Penpot headers
   have read-back linked compact icons and internally inspected mobile export.

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-04 - Foundation publication and linked Mass Import identities
+
+- Embed Kit 0.4.90 Warning/Danger icon-tile modifiers with no legacy CSS drift.
+- Publish eight Foundation Standard/Library section-tile providers and relink
+  39 main Mass Import headers, preserving compact geometry and original glyphs.
+- Reconcile Filter On, Reset paint/radius and three Touch source states; link
+  the product Touch Reset to its canonical provider.
+- Record passing native nested closure baseline separately from the pending
+  0.4.90 successor, nine missing preview introductions and human acceptance.
+
 ## 2026-10-04 - Mass Import state header propagation
 
 - Reconcile 27 existing main panel headers on 15 validation, preview, warning,

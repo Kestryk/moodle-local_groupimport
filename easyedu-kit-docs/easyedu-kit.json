@@ -1,12 +1,20 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.89",
+  "version": "0.4.90",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "semanticSectionTiles20261004": {
+      "kitCommit": "c80961f901ba27267a31555123fa0033c8b944f7",
+      "status": "Kit 0.4.90 Warning/Danger recipes embedded; eight Foundation Standard/Library providers published; 39 product main headers relinked with preserved glyphs and geometry. Native successor pending; human acceptance open.",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "penpotLinked": true,
+      "documentation": "docs/foundation-publication-consumer-2026-10-04.md"
+    },
     "compactFilterControls20261004": {
       "kitCommit": "f0f5e33667bed35f95454c32682933fb3d69a8cf",
-      "status": "Kit filter-toggle and caption Reset embedded; native run easystud-authenticated-20261004T182752684Z-36068 passes at three widths. Linked product touch lane is 294px. Foundation On/touch provider propagation and human acceptance pending.",
+      "status": "Kit filter-toggle and caption Reset embedded; native three-width geometry and nested closure pass. Foundation On primary paint and three Touch Reset states published; product 294x44 Reset relinked. Human acceptance pending.",
       "humanAccepted": false,
       "nativePreviewVerified": true,
       "penpotLinked": true,
@@ -63,11 +71,11 @@
     "batch": "EED-UI-2026-0073",
     "massImportBalance20261004": {
       "kitCommit": "ab44599d543cc96b6cc23065ec508e147552893c",
-      "status": "Native initial compact identities and responsive layout pass. Six initial/uploading plus 27 state headers reconciled with linked glyphs; nine preview report introductions, shared Foundation tile provider and native all-state/human proof pending.",
+      "status": "Native initial compact identities and responsive layout pass. Six initial/uploading plus 27 state headers now consume shared linked Foundation tiles with preserved glyphs; nine preview report introductions and native all-state/human proof pending.",
       "documentation": "docs/mass-import-balance-2026-10-04.md",
       "humanAccepted": false,
       "nativePreviewVerified": true,
-      "penpotLinked": false
+      "penpotLinked": true
     },
     "searchableChoiceMotion20261004": {
       "kitCommit": "ab4f9b3",
