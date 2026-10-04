@@ -1,5 +1,10 @@
 # Changelog
 
+- Allow valid light EasyStud interface colours in administration, derive
+  readable shared text/action shades and show nonblocking Kit warning guidance.
+  Malformed Hex still fails validation/falls back; native visual acceptance
+  and the full contrast matrix remain open.
+
 - Native administration follow-up: target Moodle's actual sibling h3.main
   section headings and use the public Kit caption for Restore colours help.
   Extend the native read-only check with targeted scrolled palette captures.

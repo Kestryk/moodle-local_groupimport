@@ -54,6 +54,18 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         const palette = root.locator('#admin-themeprimarycolor');
         await palette.scrollIntoViewIfNeeded();
         await page.screenshot({path: testInfo.outputPath(`admin-palette-${width}.png`)});
+        if (width === 1600) {
+            const hex = palette.locator('.easyedu-color-picker__hex');
+            const notice = palette.locator('[data-easyedu-colour-contrast-note]');
+            await hex.fill('#FFF3A5');
+            await expect(notice).toBeVisible();
+            await expect(notice).toHaveCSS('background-color', 'rgb(255, 246, 216)');
+            await expect(notice).toHaveCSS('border-top-color', 'rgb(216, 184, 76)');
+            await expect(notice.locator('strong')).toHaveCSS('color', 'rgb(114, 91, 0)');
+            await notice.screenshot({path: testInfo.outputPath('admin-light-colour-guidance.png')});
+            await hex.fill('#0F6CBF');
+            await expect(notice).toBeHidden();
+        }
         const sectionHeadings = root.locator('#adminsettings h3.main');
         expect(await sectionHeadings.count()).toBeGreaterThan(0);
         for (const heading of await sectionHeadings.all()) {

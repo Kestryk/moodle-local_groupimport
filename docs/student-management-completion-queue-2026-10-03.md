@@ -352,7 +352,10 @@ technical passes do not close these newly reported regressions.
   component in Penpot and native administration. Relax rejection of valid Hex
   palettes through safe foreground/derived text colours or a nonblocking warning;
   do not silently make small text unreadable or claim a lower accessibility standard.
-  Verify server-side palette fallback as well as form validation.
+  Verify server-side palette fallback as well as form validation. Candidate:
+  valid light Hex is retained, foreground/action tokens adapt against white,
+  and the product Penpot warning is linked to Foundations. Native contrast and
+  mixed-background verification remain open; human checklist is not accepted.
 - [ ] R12: Offer a coherent compact variant for every More Filters control,
   including multiple-choice dropdown, chips, clear and chevron. Inventory
   Foundations Standard/Library, create missing variants there, then propagate

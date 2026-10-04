@@ -59,9 +59,14 @@ foreach ($setting in @('themeprimarycolor', 'themeaccentcolor', 'themeparticipan
 
 foreach ($needle in @('function local_groupimport_get_theme_colours()',
     'function local_groupimport_colour_contrast_against_white(',
+    'function local_groupimport_colour_for_white_contrast(',
     'function local_groupimport_get_theme_style()',
-    "'--easyedu-primary'", "`$properties['--easyedu-' . `$role]")) {
+    "'--easyedu-primary'", "`$properties['--easyedu-' . `$role]",
+    "`$properties['--easyedu-' . `$role . '-chosen']")) {
     if (-not $library.Contains($needle)) { throw "Missing safe theme contract: $needle" }
+}
+foreach ($needle in @("'data-easyedu-colour-contrast-note'", 'easyedu-notice--warning')) {
+    if (-not $settings.Contains($needle)) { throw "Missing nonblocking palette guidance: $needle" }
 }
 
 if (-not $manage.Contains('style="{{themestyle}}"')) {

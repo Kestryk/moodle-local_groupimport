@@ -1,5 +1,11 @@
 # EasyEdu Component Contract
 
+Administration palette guidance uses the shared `.easyedu-notice--warning`
+skin, not a consumer warning-panel copy. Valid light Hex values remain saved;
+the product derives readable text/action shades while soft accents keep the
+chosen colour. Check the actual background contrast separately: a white-only
+calculation does not certify every mixed surface or Moodle theme.
+
 ## Selected-member transfer gate (SM-11)
 
 Membership business logic belongs in the consumer service, not Kit paint or
