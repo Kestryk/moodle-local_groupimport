@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Choice exit Motion still moves adjacent controls after ARIA reports closed.
+Keep its temporary pointer guard until settled closure, freeze the animation
+time synchronously during a physical outside press, then resume after click.
+Preserve keyboard, reduced motion and cleanup. Native Reset proof must cover
+this in-flight path, not only an open list or fully settled Escape closure.
+
 Semantic custom-palette text must be checked against its actual soft surface,
 not only white. Keep saved Hex values and shared Kit component recipes intact;
 derive safe foreground tokens in the native configuration adapter. Initial and

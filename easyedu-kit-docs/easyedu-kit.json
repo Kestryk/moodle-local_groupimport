@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.87",
+  "version": "0.4.88",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -27,9 +27,9 @@
     },
     "paletteWarning20261004": {
       "kitCommit": "6cf236c",
-      "status": "Kit 0.4.84 warning notice linked in product Administration; valid light Hex is retained and text/action shades are derived. Native and human visual acceptance pending.",
+      "status": "Linked Foundation warning and surface-aware palette adapter; native Administration warning and 240 computed-paint checks pass. Broader surfaces and human acceptance pending.",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "penpotLinked": true
     },
     "compactChoices20261004": {
@@ -43,6 +43,12 @@
       "humanAccepted": false,
       "nativePreviewVerified": false,
       "penpotLinked": false
+    },
+    "choiceExitPointer20261004": {
+      "kitCommit": "704924eea7cd11d6074d686cd0d597d565046309",
+      "status": "Canonical pointer guard covers in-flight closing Motion; shared held-pointer lifecycle passes three widths. Native catalogue Reset successor pending.",
+      "nativePreviewVerified": false,
+      "humanAccepted": false
     },
     "batch": "EED-UI-2026-0073",
     "massImportBalance20261004": {

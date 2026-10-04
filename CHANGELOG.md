@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-04 - Compact filters and closing-list pointer correction
+
+- Consume Kit 0.4.88's exit-motion pointer guard and rebuild its full AMD
+  export surface; component CSS and production Motion tokens are unchanged.
+- Replace the four remaining M filter providers on Penpot's Searchable filter
+  interactions and Many roles boards with linked compact providers, retaining
+  44px mobile targets, centred 24px chevrons and 12px type.
+- Extend native catalogue checks to compact trigger/options/search geometry
+  and record physical Reset activation. Shared isolated lifecycle passes;
+  native successor proof and human acceptance remain open.
+
 ## 2026-10-04 - Semantic palette soft-surface contrast candidate
 
 - Derive readable foregrounds against each role's existing soft surface as well
@@ -9,6 +20,9 @@
 - Add a ten-palette responsive computed-paint scenario and the white-readable
   but soft-unreadable warning regression. Static/isolated tests pass; native
   proof and human acceptance remain open at this source checkpoint.
+- Successor local Moodle 5.1 proof passes all 240 contrast samples and the
+  three-width native Administration controls/live warning, without settings
+  writes. Broader composition and human acceptance remain open.
 
 - Lower the shared Empty-state descriptive copy to the Foundation caption role
   in the Kit and Mass Import. Preserve icon, container proportions and fixed
