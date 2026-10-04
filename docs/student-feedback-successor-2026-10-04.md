@@ -37,6 +37,13 @@ No other-version compatibility is inferred.
 
 Requests recorded; execution/proof results are appended per lot below.
 
+- SM-43A implemented: shared transparent underline-only hover, Wide/Touch
+  full-lane width and public 16px minimum footer clearance. Ten paired source
+  states and 20 product consumers verified; original equal-height layout,
+  filtering/commands and Motion preserved. Static/isolated/package gates pass;
+  fresh served successor pending. SM-43B toggle and human review stay open.
+  See `student-filter-footer-2026-10-05.md`.
+
 - SM-39 implemented: twelve local QA roles, three nologin users and 24
   assignments retained; exact pre-existing relationship hashes unchanged,
   both leases released. Native three-width catalogue proof passes. Details:

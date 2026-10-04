@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.98",
+  "version": "0.4.99",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "filterFooterSuccessor20261005": {
+      "kitCommit": "0b38a09",
+      "documentation": "docs/student-filter-footer-2026-10-05.md",
+      "status": "SM-43A canonical transparent hover/full-width footer with 16px minimum clearance; static/isolated and paired Penpot gates pass. Fresh native preview pending; SM-43B and human checklist remain open.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "massSecondaryIconHierarchy20261005": {
       "kitCommit": "7e00460",
       "documentation": "docs/mass-secondary-icon-hierarchy-2026-10-05.md",

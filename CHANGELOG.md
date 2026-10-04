@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-05 - More Filters footer successor (SM-43A)
+
+- Use the canonical Kit footer row for four native filter surfaces, reserving
+  at least 16px below the open content. Both responsive densities fill the lane.
+- Replace the filled hover with a restrained underlined text action; preserve
+  original filters, equal-height columns, commands, chevron and panel Motion.
+- Source preservation and isolated states pass. Foundation paired publication,
+  native served checks and human acceptance remain distinct recorded gates.
+
 ## 2026-10-05 - Compact Mass Import secondary icons
 
 - Identification and embedded deposit reuse the shared compact tile density;

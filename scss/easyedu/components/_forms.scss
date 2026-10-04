@@ -595,8 +595,27 @@
   }
 }
 
-// Disclosure used below a compact filter surface. The visual size remains
-// restrained on desktop while coarse pointers receive a full touch target.
+// One available-width footer on desktop and touch. Padding, rather than an
+// outer margin, guarantees a clear gap even inside equal-height filter shells
+// whose consumer intentionally keeps margin-block-start: auto.
+@mixin filter-disclosure-row {
+  align-items: center;
+  align-self: stretch;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  margin-block-start: 0;
+  padding: 1rem 0 0;
+  width: 100%;
+}
+
+// A quiet text action: hover underlines the label, never fills the filter
+// footer. Compact keeps its natural width; Wide and Touch fill the same lane.
 @mixin filter-disclosure-trigger($size: compact) {
   align-items: center;
   background: transparent;
@@ -617,7 +636,7 @@
   @if $size == touch {
     min-height: 2.75rem;
     padding: 0.62rem 0.9rem;
-    width: auto;
+    width: 100%;
   } @else if $size == wide {
     border-radius: var(--easyedu-control-radius);
     min-height: 2.1rem;
@@ -628,21 +647,23 @@
     padding: 0.42rem 0.68rem;
   }
 
-  &:hover {
-    background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, var(--easyedu-surface) 28%);
-    border-color: var(--easyedu-control-border);
+  &:hover:not(:disabled):not([aria-disabled="true"]) {
+    color: var(--easyedu-primary-strong);
+
+    > span:not([aria-hidden="true"]) {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.25em;
+    }
+  }
+
+  &[aria-expanded="true"],
+  &.is-expanded {
     color: var(--easyedu-primary-strong);
   }
 
   &:focus-visible {
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
-  }
-
-  &[aria-expanded="true"],
-  &.is-expanded {
-    background: var(--easyedu-primary-soft);
-    border-color: color-mix(in srgb, var(--easyedu-primary) 24%, transparent 76%);
-    color: var(--easyedu-primary-strong);
   }
 
   &:disabled,

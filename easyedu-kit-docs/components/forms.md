@@ -311,7 +311,7 @@ fields. The same mixin has a compact variant for filter panels.
 Use `filter-disclosure-trigger(wide)` when a desktop filter shell needs a calm
 **More filters** bar spanning the available column. Use
 `filter-disclosure-trigger(touch)` below the consumer's responsive breakpoint
-to restore a compact visual control while preserving its minimum touch target.
+to preserve a 44px touch target with the same full available-width rule.
 `compact` remains available for disclosures embedded in cards. The label and
 chevron belong to one native `button`; do not place the text beside a separate
 icon-only control or reuse a card-members toggle class on this button.
@@ -319,15 +319,23 @@ The disclosure label uses `filter-disclosure-type`: inherited family,
 `0.76rem` (12.16px with a 16px root), regular weight and `1.1` line height at
 every size. The legacy `mobile-filter-disclosure-trigger` consumes this same
 recipe. Do not override the mobile label with a larger/bold role. Validate the
-public wide/touch/legacy paths with
-`scripts/test-filter-disclosure-typography-contract.ps1`.
+public wide/touch/compact/legacy paths with the SM-43A successor
+`scripts/test-filter-footer-focus-successor-browser.cjs`. The older filled-hover
+test remains historical and is not the current recipe.
 
-The shared hover uses 72% primary-soft plus 28% surface and the regular control
-border, independent of the surface behind it. Expanded retains primary-soft;
+The shared hover changes ink and underlines only the label: no filled rectangle
+or resting border. Expanded stays transparent with primary-strong ink;
 keyboard-only Focus-visible retains the resting muted text plus the standard
 ring. Disabled stays transparent with subtle text and 0.62 opacity. Legacy
 `mobile-filter-disclosure-trigger` delegates to the exact touch recipe rather
 than maintaining a different border/radius/gap palette.
+
+Place the trigger inside `.easyedu-filter-disclosure-row` (or consume
+`filter-disclosure-row`). Its 1rem internal top padding guarantees a minimum
+16px clearance after the last filter control, even when equal-height product
+shells keep `margin-block-start: auto`. Do not replace that auto margin or the
+original panel Motion. Wide and Touch both fill the available lane; Compact
+alone retains natural width.
 
 Foundations 08.5/08.5.1 publishes five Touch states alongside the existing
 Wide family. The painted label/chevron gap is 0.42rem (6.72px at 16px/rem), not

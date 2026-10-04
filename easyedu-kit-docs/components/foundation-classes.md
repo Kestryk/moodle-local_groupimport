@@ -1,5 +1,11 @@
 # Foundations class API
 
+SM-43A public filter roles: `.easyedu-filter-disclosure-row` owns 16px minimum
+footer clearance; `.easyedu-filter-disclosure` owns the full-width trigger and
+transparent underline-only hover. `.easyedu-filter-toggle` and
+`.easyedu-filter-reset` remain the binary and Reset roles. Consumer auto margins,
+equal column heights, filtering and original Motion stay product-owned.
+
 Selection toolbars opt in through `.foundation-selection-action`; their native
 Bootstrap semantic class selects the primary outline, neutral outline, danger
 outline or primary solid role. `.foundation-selection-action--tray` adds only

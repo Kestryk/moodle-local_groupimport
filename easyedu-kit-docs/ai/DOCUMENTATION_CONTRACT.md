@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+More Filters footer clearance uses shared internal padding, not a margin that
+equal-height shell auto spacing can consume. Preserve original arrow Motion,
+native filter availability and the intentionally hidden desktop Groupings
+trigger. Keep historical filled-hover specs and add an explicit successor.
+
 Compact deposit hierarchy changes only shared density and class adapters.
 Assert tile/glyph centring and title/support/native-wrapper tracks, with the
 mobile zero-indent override. Keep native upload/draft/removal and all other
