@@ -1,5 +1,15 @@
 # EasyStud Playwright audits
 
+## More filters delivered-module regression
+
+`student-filter-close-regression.spec.js` is local-supervised, EasyStud/QA.
+It opens/closes the native panel with and without its nested searchable choice,
+records the event/state sequence and asserts collapsed class, inert, ARIA and
+absence of page errors. No business POST or fixture is permitted. Run via the
+saved-credentials wrapper with its runtime lease. Registration in the shared
+scenario registry is proposed to the Platform owner; do not alter dirty shared
+planning files. See `docs/filter-closure-regression-2026-10-04.md`.
+
 ## Entity modal entry and responsive geometry
 
 `student-entity-dialog-chrome.spec.js` is local-supervised, EasyStud/QA; exact

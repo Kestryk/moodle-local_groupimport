@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+After any searchable-choice controller rebuild, execute the generated AMD
+module and compare its callable exports with every public source export.
+Presence of a function name in source or generated text is insufficient:
+an omitted AMD return member previously broke More filters parent closure.
+Native disclosure proof asserts final panel class, inert, ARIA and no page
+error, as well as the preserved transition and nested dropdown closure.
+
 Modal-header Close uses one canonical compact geometry: `close-button` maps to
 the linked Foundation `Core action / Secondary / S` component at `1.9rem`
 square. Do not resize it in a consumer or publish another Close family. Native

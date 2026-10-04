@@ -315,6 +315,32 @@ acceptance status.
 | SM-37 | Desktop sticky Clear selection | Redesign the sticky action in Foundation/Product Penpot and Kit/native code so it matches selection-action surfaces and cannot cover lists, pagination or Navigation. |
 | SM-38 | Previously open completion work | Continue member/body public-class migration, adjacent fields, context menus, compact drag previews, pagination, typography/icon alignment, responsive compositions and the deferred combined checklist. |
 
+### User review corrections — 2026-10-04, priority over further visual work
+
+All earlier lots remain recorded. Guide work follows completion of EasyStud integration.
+Use live Penpot and the local rendered preview before visual promotion. Previous
+technical passes do not close these newly reported regressions.
+
+- [ ] R01: Page 04, Student management — Group image composition: audit all
+  alignment, icon/text containment, column spacing and button placement.
+- [ ] R02: More Filters searchable dropdown: restore the chevron to the trailing
+  edge while retaining a separate accessible clear-selection control.
+- [ ] R03: More Filters cannot close after opening: reproduce and fix nested
+  dropdown/disclosure lifecycle, including repeated and interrupted toggles.
+- [ ] R04: Sticky Clear selection: replace the legacy inner button with the
+  canonical Kit action and publish its exact location in Foundations/EasyStud;
+  the overall capsule proposal is not human accepted.
+- [ ] R05: Full EasyStud Administration typography/layout audit against Student
+  Management and Penpot, including desktop/tablet/mobile and native form labels.
+- [ ] R06: Correct rendered color pickers, all sizes/states, editable Hex and
+  native input alignment; update Foundations and product compositions.
+- [ ] R07: Add Restore EasyEdu default colours, using canonical defaults and
+  explicit native Save semantics rather than silently saving settings.
+- [ ] R08: Group and Grouping internal search: consume current search components;
+  replace the Group legacy reset/cancel action and compare both branches.
+- [ ] R09: Mass Import no-results helper is too large: use measured subordinate
+  text role in Foundations/product and canonical Kit, then verify native paint.
+
 ### Current execution checkpoint
 
 - SM-18 is implemented, statically verified and pushed: public Kit/plugin
