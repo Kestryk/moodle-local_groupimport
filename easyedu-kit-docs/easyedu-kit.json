@@ -1,13 +1,13 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.76",
+  "version": "0.4.77",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
     "studentMoveOriginCheckbox20261004": {
       "kitCommit": "d0e6afc",
-      "status": "Kit 0.4.76 candidate: searchable multiple filters gain the shared localized clear-all control. The prior Move-group toggle runtime proof remains valid; clear-all consumer preview, Penpot propagation and human acceptance are tracked separately.",
+      "status": "Kit 0.4.77 candidate: desktop selection recovery uses the shared centered capsule with reserved scroll clearance. Earlier toggle and filter-clear preview proofs remain scoped; sticky native proof, Penpot propagation and human acceptance are tracked separately.",
       "documentation": "docs/student-move-origin-checkbox-2026-10-04.md",
       "currentPreviewProof": "docs/testing/student-move-origin-checkbox-preview-2026-10-04.json",
       "humanAccepted": false,

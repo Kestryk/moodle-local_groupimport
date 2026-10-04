@@ -853,6 +853,12 @@
     @include easyedu.sticky-selection-count;
   }
 
+  // Keep the final list row and its bottom pagination scrollable above the
+  // fixed desktop recovery capsule. Responsive trays own their own clearance.
+  &--has-selection:not(&--responsive-workspace) {
+    padding-bottom: 5rem;
+  }
+
   &__layout-mode-group {
     background: #f4f8fb;
     border: 1px solid #c8dae9;
