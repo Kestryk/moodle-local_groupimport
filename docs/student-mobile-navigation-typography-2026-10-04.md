@@ -24,6 +24,28 @@ do not certify the full drawer from its three destination links. Guided visits
 remain a separate deferred project; a typography audit does not start that
 programme or alter its behavior.
 
-Native measurement and paired catalogue successor are pending. Human acceptance
-remains open. Existing navigation routes, responsive trigger, scrolling, layering
-and Guide lifecycle are unchanged.
+Native pre-extraction run `easystud-authenticated-20261004T195314211Z-19428`
+passes at 768/390: Inter throughout, title 16px/600, destinations 15px/500,
+Guide 16px/700, white opaque panel, 46.9375px destination rows, icon centres
+at zero delta and Close focus return. No business request or fixture mutation;
+owned child stopped, credentials cleared and runtime lease released.
+
+Kit 0.4.92 now owns the two compact destination/Guide-label typography mixins.
+The native adapter includes these roles instead of duplicating their values.
+Canonical/embedded Typography hashes match; the complete compiled CSS equals
+the preserved baseline hash
+`36CD9BACBB3CF8A762B859C70FA8EF0FC4B61A8D9AA128887934B753E81263C1`.
+Controller, AMD, routes, trigger, scrolling, layering and original Motion remain
+unchanged. This bounded extraction does NOT complete the deferred full
+Navigation/Guide embedded-tree drift ledger or certify every native sublink.
+
+Paired Foundation Compact-item states, responsive Guide labels and Mobile
+panel are reconciled to these type roles. Source/Standard fingerprints match.
+The live product panel keeps 316px rows; labels are contained and its three
+linked icons are visible, centred and proportional. The old missing glyphs
+use native file-import/clipboard-list providers, not custom drawn substitutes.
+Catalogue readback is in the Kit's
+`docs/testing/compact-navigation-typography-2026-10-04.json`.
+
+The role-specific post-extraction native successor is pending. Human acceptance
+remains open; the three destination routes and Guide lifecycle are unchanged.

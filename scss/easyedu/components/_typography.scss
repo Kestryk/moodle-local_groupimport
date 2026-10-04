@@ -9,6 +9,19 @@
   letter-spacing: 0;
 }
 
+// Compact destinations inherit the workspace body size. A theme or consumer
+// can resolve it without changing all shared Navigation instances.
+@mixin type-navigation-compact-destination {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-medium);
+}
+
+// Only the compact launcher label role; lifecycle and Motion stay Guide-owned.
+@mixin type-navigation-compact-guide-label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
 @mixin type-page-title {
   @include type-ui-base;
 

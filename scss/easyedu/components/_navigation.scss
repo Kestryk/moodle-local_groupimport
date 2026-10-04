@@ -444,8 +444,7 @@
     color: currentColor;
     display: inline-flex !important;
     flex: 1 1 auto;
-    font-size: 1rem;
-    font-weight: 700;
+    @include typography.type-navigation-compact-guide-label;
     height: auto;
     line-height: 1.25;
     margin: 0;
@@ -556,8 +555,7 @@
     @include responsive.mobile-navigation-link;
 
     & {
-      font-family: var(--easyedu-font-family-ui);
-      font-weight: var(--easyedu-font-weight-medium);
+      @include typography.type-navigation-compact-destination;
     }
 
     &[aria-disabled="true"],
