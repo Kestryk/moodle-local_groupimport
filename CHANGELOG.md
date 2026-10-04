@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-04 - Searchable clear-action publication
+
+- Reconcile shared M/S/Touch selected states and fourteen product choices with
+  canonical linked clear controls, conditional visibility and trailing chevrons.
+- Fix inherited narrow-field overflow and map responsive actions to Touch density.
+- Record passing three-width native clear-all/focus regression with no data write;
+  no additional SCSS/controller change and no human acceptance claimed.
+
 ## 2026-10-04 - Preview introductions and native 0.4.90 proof
 
 - Add the nine source-backed Preview header introductions in product Penpot;

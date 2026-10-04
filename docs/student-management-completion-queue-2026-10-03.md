@@ -430,6 +430,14 @@ technical passes do not close these newly reported regressions.
 
 ### Current execution checkpoint
 
+- SM-36 publication successor: eight canonical clear states and twelve selected
+  Foundation choice variants now have matching source/Standard paint. Fourteen
+  effective product consumers fit actual widths/density; six selected show clear,
+  eight Empty/Any hide it. Settled glyph/Chevron readback and product export pass.
+  Native successor `easystud-authenticated-20261004T192321615Z-388` passes at
+  1600/768/390 with full cleanup and no business request. This closes the previous
+  source-publication gate, not whole-view or human acceptance. See the clear doc.
+
 - SM-20 fresh successor: Kit 0.4.90 is served in managed Moodle preview;
   native initial Mass Import passes at 1600/768/390 in
   `easystud-authenticated-20261004T190630471Z-37384`, with complete cleanup and

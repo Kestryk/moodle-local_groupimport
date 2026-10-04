@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Adding a canonical choice child requires settled narrow/touch consumer readback:
+the new child's inherited position may retain the provider's width. Preserve
+Chevron end alignment and map the shared clear size to actual trigger density.
+Empty/Any product specimens hide selected-source clear; do not publish a visible
+clear with zero selection. Reconcile after a library-update click timeout before
+retrying: the change may already have applied. Disconnect only the owned helper,
+not the persistent dedicated Chrome window.
+
 Preserve the consumer Sass version for bounded shared-source sync. Compare the
 entire generated CSS diff: a newer fixture compiler can alter existing nested
 selectors/media groups even when only an additive palette recipe was imported.
