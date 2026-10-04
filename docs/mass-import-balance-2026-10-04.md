@@ -42,3 +42,7 @@ The compiled-CSS isolated Chromium scenario
 `tools/release/test-mass-import-empty-caption-browser.js` passes at
 1600/768/390 for font size, 11px/11px SVG dash cadence and text containment.
 It does not replace a real course-view browser check.
+The read-only native Moodle candidate
+`tools/playwright/mass-import-empty-caption-readonly.spec.js` checks that
+course 5 renders the caption and fixed dash at 1600/768/390, with no upload
+or POST; its result must be recorded separately after the managed run.
