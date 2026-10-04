@@ -340,6 +340,15 @@ those values across all five controls, rather than only checking that the
 default-view dropdown opens. Penpot's page title says “Administration EasyStud”;
 the English and French product title strings are aligned to that identity.
 
+The same desktop/tablet/mobile boards use a 160px linked Foundation M colour
+picker, with 49.6px swatch and 12.48px Hex text. Native Moodle previously
+stretched the public control to 282px and rendered its Hex input at 13.12px.
+Kit 0.4.86 now fixes M to the source geometry and keeps the Hex lane editable;
+the single SCSS partial is synchronized into EasyStud. The native assertion
+checks all seven controls and painted bounds. S/L widths and the setting-row
+default-value placement remain separate visual follow-ups; this lot does not
+declare full Administration parity.
+
 ### More Filters parent/choice closure on the current preview
 
 The existing guarded native scenario was rerun against the corrected serving

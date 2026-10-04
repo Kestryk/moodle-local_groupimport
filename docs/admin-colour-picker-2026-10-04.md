@@ -57,3 +57,16 @@ The whole mixed-background contrast matrix and human visual acceptance remain
 open. Penpot product specimen `cf371b29-2e8e-8011-8008-bd1dadea4968`
 links to Foundation Inline notification / Warning; the full responsive board
 propagation has not been claimed.
+
+## Foundation M geometry successor
+
+The three Administration product boards use linked Foundation M/Default colour
+picker instances that are 160px wide, with a 49.6px swatch and 12.48px Hex
+value. Kit `0.4.86` (`a72c4cb`) fixes the public regular mixin to that width,
+uses the strong field-border token and allows the authoritative Hex lane to
+shrink within the control. The same `_forms.scss` is embedded in EasyStud and
+`styles.css` was rebuilt. Small/large widths remain separate design contracts;
+the existing native colour validation, defaults and contrast behaviour are
+unchanged. A new guarded native test measures all seven settings controls at
+1600/768/390; it must pass on the served candidate before calling this
+runtime-verified. Human visual acceptance remains open.
