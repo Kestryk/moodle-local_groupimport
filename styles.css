@@ -15031,6 +15031,83 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #admin-participantdetailfield2 .form-setting > div:first-child {
   max-width: min(100%, 22rem);
 }
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting {
+  align-items: start;
+  column-gap: 1.5rem;
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  row-gap: 0.3rem;
+}
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > .easyedu-ui,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > .easyedu-ui,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > .easyedu-ui,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > .easyedu-ui,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > .easyedu-ui,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > .easyedu-ui,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > .easyedu-ui {
+  display: contents;
+}
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > .easyedu-ui > .easyedu-color-picker,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > .easyedu-ui > .easyedu-color-picker,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > .easyedu-ui > .easyedu-color-picker,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > .easyedu-ui > .easyedu-color-picker,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > .easyedu-ui > .easyedu-color-picker,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > .easyedu-ui > .easyedu-color-picker,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > .easyedu-ui > .easyedu-color-picker {
+  grid-column: 1;
+  order: 1;
+}
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > .form-defaultinfo,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > .form-defaultinfo,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > .form-defaultinfo,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > .form-defaultinfo,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > .form-defaultinfo,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > .form-defaultinfo,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > .form-defaultinfo {
+  align-self: center;
+  grid-column: 2;
+  margin-top: 0;
+  order: 2;
+}
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > .easyedu-ui > [data-easyedu-colour-contrast-note],
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > .easyedu-ui > [data-easyedu-colour-contrast-note],
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > .easyedu-ui > [data-easyedu-colour-contrast-note],
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > .easyedu-ui > [data-easyedu-colour-contrast-note],
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > .easyedu-ui > [data-easyedu-colour-contrast-note],
+#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > .easyedu-ui > [data-easyedu-colour-contrast-note],
+#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > .easyedu-ui > [data-easyedu-colour-contrast-note] {
+  grid-column: 1/-1;
+  max-width: 22rem;
+  order: 3;
+}
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > .form-text,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > .form-text,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > .form-text,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > .form-text,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > .form-text,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > .form-text,
+#page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > .form-text {
+  grid-column: 1/-1;
+  margin-top: 0.3rem;
+  order: 4;
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting,
+  #page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting,
+  #page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting,
+  #page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting,
+  #page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting,
+  #page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting,
+  #page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting {
+    column-gap: 1rem;
+  }
+}
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings--participant-display {
   background: var(--easyedu-semantic-panel-bg);
 }

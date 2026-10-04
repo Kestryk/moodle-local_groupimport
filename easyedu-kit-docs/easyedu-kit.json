@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.86",
+  "version": "0.4.87",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "colourPickerAdminRow20261004": {
+      "kitCommit": "bed42f50af66bc179b5e639da07a84e49943aa13",
+      "status": "Shared Moodle admin colour-setting layout embedded; native preview and human acceptance pending.",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "penpotLinked": true
+    },
     "colourPickerM20261004": {
       "kitCommit": "a72c4cbf0272db887865015662cf47dd8a3cc8c2",
       "status": "The 160px Foundation M control is synchronized in EasyStud SCSS; native preview and human acceptance remain separate.",

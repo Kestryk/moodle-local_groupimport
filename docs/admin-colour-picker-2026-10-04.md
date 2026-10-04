@@ -70,3 +70,12 @@ the existing native colour validation, defaults and contrast behaviour are
 unchanged. A new guarded native test measures all seven settings controls at
 1600/768/390; it must pass on the served candidate before calling this
 runtime-verified. Human visual acceptance remains open.
+
+The linked Administration boards put “Default” on the same line as the picker:
+24px to its right on desktop and 16px on tablet/mobile. Kit `0.4.87` adds a
+public Moodle admin-setting layout adapter for those generated siblings.
+EasyStud opts in for all seven colour rows without changing the native input
+names, Hex synchronization or warning condition. The responsive browser test
+now checks the picker/default horizontal and vertical relationship, plus
+warning and help containment. Native promotion is still required for this
+new layout candidate; previous preview evidence applies only to Kit `0.4.86`.

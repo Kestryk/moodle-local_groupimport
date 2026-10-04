@@ -80,13 +80,19 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
                 const r = n.getBoundingClientRect();
                 const hex = n.querySelector('.easyedu-color-picker__hex');
                 const swatch = n.querySelector('.easyedu-color-picker__swatch');
+                const setting = n.closest('.form-setting');
+                const defaultInfo = setting.querySelector('.form-defaultinfo');
+                const defaultRect = defaultInfo.getBoundingClientRect();
                 return {left: r.left, right: r.right, width: innerWidth,
                     display: getComputedStyle(n).display, controlWidth: r.width,
                     borderColor: getComputedStyle(n).borderTopColor,
                     hexFontSize: getComputedStyle(hex).fontSize,
                     hexHeight: hex.getBoundingClientRect().height,
                     hexRight: hex.getBoundingClientRect().right,
-                    swatchWidth: swatch.getBoundingClientRect().width};
+                    swatchWidth: swatch.getBoundingClientRect().width,
+                    defaultLeft: defaultRect.left,
+                    defaultCenterY: defaultRect.top + defaultRect.height / 2,
+                    pickerCenterY: r.top + r.height / 2};
             });
             expect(metrics.left).toBeGreaterThanOrEqual(0);
             expect(metrics.right).toBeLessThanOrEqual(metrics.width + 1);
@@ -97,6 +103,8 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
             expect(metrics.swatchWidth).toBeCloseTo(49.6, 1);
             expect(metrics.hexRight).toBeLessThanOrEqual(metrics.right - 7);
             expect(metrics.hexHeight).toBeGreaterThan(25);
+            expect(metrics.defaultLeft - metrics.right).toBeCloseTo(width === 1600 ? 24 : 16, 1);
+            expect(Math.abs(metrics.defaultCenterY - metrics.pickerCenterY)).toBeLessThanOrEqual(3);
         }
         await expect(root.locator('[data-easystud-restore-colours]')).toBeVisible();
         const palette = root.locator('#admin-themeprimarycolor');
