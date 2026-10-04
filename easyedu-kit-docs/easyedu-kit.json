@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.93",
+  "version": "0.4.94",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "framedPanelDisclosure20261004": {
+      "kitCommit": "8cf3f1d",
+      "documentation": "docs/student-framed-disclosure-2026-10-04.md",
+      "status": "Exact canonical opt-in helper, isolated frame/reversal/static-policy proof and unchanged legacy Motion. Native preview successor pending.",
+      "nativePreviewVerified": false,
+      "humanAccepted": false
+    },
     "loadingFeedback20261004": {
       "kitCommit": "8d0d5515365720270ec2e89106a81ef66950f4d6",
       "status": "Shared pale-cue sweep, matched filter regions and content-sized three-slot heading served. Three-width native successor passes; three measured Student loading boards linked to Foundations. Complete Mass Import/Admin lifecycles and human acceptance remain pending.",
