@@ -72,6 +72,7 @@ test('Group member search reuses the canonical field and filters only its owning
         const input = field.locator('[data-easystud-group-member-search]');
         const cancel = panel.locator('[data-easystud-group-member-search-cancel]');
         await expect(field).toHaveCount(1);
+        await expect(cancel).toHaveClass(/easyedu-button--secondary/);
         await expect(input).toBeFocused();
 
         const members = group.locator(':scope > [data-easystud-group-members] [data-easystud-member-id]');

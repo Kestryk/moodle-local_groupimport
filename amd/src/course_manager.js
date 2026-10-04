@@ -1663,7 +1663,7 @@ const ensureGroupMemberSearchControls = (root, group) => {
                 '<input type="search" class="form-control" placeholder="' + (labels.searchparticipants || '') +
                     '" data-easystud-group-member-search="' + groupid + '">' +
             '</label>' +
-            '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-group-member-search-cancel="' +
+            '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-group-member-search-cancel="' +
                 groupid + '">' + (labels.cancel || '') + '</button>' +
         '</div>';
     group.insertBefore(panel, members);
@@ -3483,7 +3483,7 @@ const createGroupingElement = (root, groupingdata) => {
                     '<span class="fa fa-search" aria-hidden="true"></span>' +
                     '<input type="search" class="form-control" placeholder="' + (labels.searchgroupsplaceholder || '') + '" data-easystud-container-group-search="' + groupingdata.id + '">' +
                 '</label>' +
-                '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-container-search-cancel="' + groupingdata.id + '">' + (labels.cancel || '') + '</button>' +
+                '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-container-search-cancel="' + groupingdata.id + '">' + (labels.cancel || '') + '</button>' +
             '</div>' +
         '</div>' +
         '<div class="local-groupimport-easystud-group-email" data-easystud-grouping-groups-panel="' + groupingdata.id + '" hidden>' +
