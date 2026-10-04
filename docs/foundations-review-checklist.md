@@ -23,6 +23,10 @@ Technical checks and human visual acceptance remain separate.
 - [ ] Compact simplified Participant/Group drag previews: identity and title,
   no card contents or action/selection controls, bounded footprint, no opaque
   moving-icon square; Multiple only has rear layers and extra-item count.
+  Managed native-event proof `easystud-authenticated-20261004T001137528Z-50096`
+  passes Participant/Group Single/Multiple plus allowed and danger targets at
+  1600px without Drop or business write. Human acceptance and mobile
+  non-drag alternatives remain open.
 - [ ] Native message modal: inherited Kit font/tokens outside the workspace,
   canonical textarea, header/body/footer, right-aligned matched Send/Cancel and close action.
 - [ ] Move participants/groups dialogs: canonical destination/menu and actions,
