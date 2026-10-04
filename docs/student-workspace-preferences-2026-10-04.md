@@ -37,3 +37,10 @@ hidden Complete default and the compact structure mapping. A managed Moodle
 preview must still verify the three-view default, two-view configuration and
 compact initial workspace before this behavior is considered browser-proven.
 Human acceptance remains part of the combined EasyStud checklist.
+
+The focused local-supervised scenario is
+`tools/playwright/Invoke-EasyStudWorkspacePreferencesSupervised.ps1`. Its
+fixture holds the dedicated write lease, records both prior configuration
+values outside Git, applies the two-view/structure-first case, blocks every
+plugin business request and restores the exact missing-or-present state in
+`finally`.
