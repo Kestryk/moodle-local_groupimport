@@ -116,6 +116,14 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     // following control. Listen only while open, retaining keyboard blur.
     const onOutsidePointerDown = event => {
         outsidePointer = host.contains(event.target) ? null : event.pointerId;
+        // A closing in-flow panel can still move the next control. Freeze its
+        // geometry for the physical down/up/click sequence, including Escape
+        // initiated closure, then resume the original animation.
+        if (outsidePointer !== null && panelAnimation) {
+            const pointerTime = panelAnimation.currentTime;
+            panelAnimation.pause();
+            panelAnimation.currentTime = pointerTime;
+        }
     };
     const onOutsidePointerEnd = event => {
         if (outsidePointer !== event.pointerId) {
@@ -124,7 +132,14 @@ const enhanceNativeSelect = (select, labels, multiple) => {
         if (dismissTimer !== null) {
             view.clearTimeout(dismissTimer);
         }
-        dismissTimer = view.setTimeout(() => close(), 0);
+        dismissTimer = view.setTimeout(() => {
+            if (trigger.getAttribute('aria-expanded') === 'false' &&
+                    panelAnimation && panelAnimation.playState === 'paused') {
+                panelAnimation.play();
+            } else {
+                close();
+            }
+        }, 0);
     };
     const stopPointerTracking = () => {
         document.removeEventListener('pointerdown', onOutsidePointerDown, true);
@@ -193,9 +208,11 @@ const enhanceNativeSelect = (select, labels, multiple) => {
             return;
         }
         panel.inert = true;
+        startPointerTracking();
         animatePanel(false, () => {
             panel.hidden = true;
             panel.inert = false;
+            stopPointerTracking();
         });
         panel.classList.remove('is-open');
         if (returnFocus) {

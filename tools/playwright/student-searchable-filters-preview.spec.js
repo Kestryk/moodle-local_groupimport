@@ -38,7 +38,16 @@ test('Searchable multiple filters preserve native selections and reset across wo
         await expect(host.locator('[aria-pressed="true"]')).toHaveCount(2);
         const geometry=await trigger.evaluate(n=>{const r=n.getBoundingClientRect(),s=getComputedStyle(n);
             return {h:r.height,font:s.fontSize,x:r.x,right:r.right,viewport:innerWidth};});
-        expect(geometry.font).toBe('14px');expect(geometry.h).toBeGreaterThanOrEqual(width<=768?44:38);
+        await expect(host).toHaveClass(/easyedu-searchable-choice--compact/);
+        expect(geometry.font).toBe('12px');expect(geometry.h).toBe(width<=768?44:32);
+        const optionGeometry=await host.locator('.easyedu-searchable-choice__option:visible').first()
+            .evaluate(n=>({height:n.getBoundingClientRect().height,font:getComputedStyle(n).fontSize}));
+        expect(optionGeometry.font).toBe('12px');
+        expect(optionGeometry.height).toBeGreaterThanOrEqual(width<=768?44:32);
+        const searchGeometry=await host.locator('.easyedu-searchable-choice__search')
+            .evaluate(n=>({height:n.getBoundingClientRect().height,font:getComputedStyle(n.querySelector('input')).fontSize}));
+        expect(searchGeometry.font).toBe('12px');
+        expect(searchGeometry.height).toBeGreaterThanOrEqual(width<=768?44:32);
         expect(geometry.x).toBeGreaterThanOrEqual(0);expect(geometry.right).toBeLessThanOrEqual(geometry.viewport);
         await host.screenshot({path:testInfo.outputPath(kind+'-'+width+'.png')});
         if(kind==='participant-groups'){
@@ -47,7 +56,7 @@ test('Searchable multiple filters preserve native selections and reset across wo
                 return n.hasAttribute('data-easystud-filter-hidden')===!matched;
             }),options.map(o=>o.value));expect(parity,'Original native OR group predicate is unchanged').toBe(true);
         }
-        await search.press('Escape');records.push({width,kind,geometry,selectionsPreserved:true});save();
+        await search.press('Escape');records.push({width,kind,geometry,optionGeometry,searchGeometry,selectionsPreserved:true});save();
         return {select,trigger};
     };
     for(const width of [1600,768,390]){
@@ -74,7 +83,17 @@ test('Searchable multiple filters preserve native selections and reset across wo
             for(const [mode,key,filterKey] of [['participants','participants','participant-groups'],['structure','structure','structure-groups']]){
                 await root.locator('[data-easystud-layout-mode="'+mode+'"]:visible').click();await openFilters(filterKey);
                 const catalog=await exercise('[data-easystud-catalog-grouping-filter="'+key+'"]',width,'catalog-'+key);
+                await page.evaluate(() => {
+                    window.catalogResetEvents=[];
+                    const record=event=>window.catalogResetEvents.push({type:event.type,
+                        tag:event.target.tagName,key:event.target.closest('[data-easystud-reset-catalog-filters]')
+                            ?.getAttribute('data-easystud-reset-catalog-filters')||null});
+                    document.addEventListener('pointerdown',record,{capture:true,once:true});
+                    document.addEventListener('click',record,{capture:true,once:true});
+                });
                 await root.locator('[data-easystud-reset-catalog-filters="'+key+'"]:visible').first().click();
+                records.push({width,kind:'reset-'+key,events:await page.evaluate(()=>window.catalogResetEvents),
+                    selected:await catalog.select.evaluate(n=>n.selectedOptions.length)});save();
                 expect(await catalog.select.evaluate(n=>n.selectedOptions.length)).toBe(0);await expect(catalog.trigger).toContainText('Any');
             }
         }else{

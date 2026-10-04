@@ -60,6 +60,46 @@ compact density modifier from canonical SCSS; preserve usable touch targets
 on mobile rather than shrinking every hit area. Propagate EasyStud after the
 canonical provider, then compare the actual More Filters and native admin.
 
+### R12 compact successor and in-flight Reset correction
+
+The native successor test now measures the public compact modifier explicitly:
+32px trigger/options/search on desktop, 44px minimum responsive targets, and
+12px type across all three lanes. It preserves native filtering, searching,
+selected values and reset assertions rather than relaxing behaviour to match
+a smaller control. Source tests remain local-supervised; no course write or
+fixture is permitted.
+
+The first native run `easystud-authenticated-20261004T173236621Z-25036`
+passes desktop density/selection checks but fails catalogue Reset. Diagnostic
+successor `easystud-authenticated-20261004T173633284Z-26664` records pointerdown
+on the correct Reset button and click on its parent DIV instead, retaining two
+selected options. This is a hit-target reflow defect while the list is exiting,
+not a native reset-value predicate failure. Both failed runs remain preserved.
+
+Kit 0.4.88 (`704924e`) keeps the temporary pointer listeners through exit
+Motion. Outside pointerdown freezes the current animation time synchronously;
+pointerup/cancel resumes it after click dispatch. Merely calling `pause()` was
+insufficient because its pending pause advanced another frame. The shared
+held-pointer scenario now passes at 1600/768/390, alongside single/multiple,
+clear, disabled, reset and no-JS fallback contracts; output is the external
+Kit run `choice-closing-pointer-20261004-174600`. Component paint, easing and
+normal production duration are unchanged. The identical controller is embedded
+in EasyStud and its AMD exports are rebuilt and verified. Native proof is next.
+
+Four remaining M providers were replaced in place on page 03, preserving their
+Any copy and widths: `a301101d-ddc2-807b-8008-bba0f18e3e8f`,
+`a301101d-ddc2-807b-8008-bba118faafda`,
+`c403923b-827e-80b7-8008-bbc4b5de6fae`, and
+`c403923b-827e-80b7-8008-bbc4b5deceb0`. They previously linked to
+M/Closed `a301101d-ddc2-807b-8008-bb9f590d2922`; they now link to compact
+Closed `cf371b29-2e8e-8011-8008-bceae77dbb7c`. Desktop controls are 184x32;
+touch compositions remain 294x44. Text is 12px, chevron roots stay 24px and
+14px from the trailing edge, and Clear is hidden for empty selections.
+Readback finds no visible descendant overflow in those four controls. The
+Searchable filter interactions board export was inspected internally.
+Human acceptance and remaining filter-toggle/reset composition details remain
+open; no new Foundation provider or private product dropdown was introduced.
+
 ## Penpot inspection status
 
 EasyStud page 02 is accessible. Its three root boards are desktop 1440px,

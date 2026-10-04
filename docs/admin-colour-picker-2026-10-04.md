@@ -123,7 +123,20 @@ that the chosen colour remains in soft accents and texts/actions use a readable
 variant. No shape, typography, geometry or shared component change is required
 for this palette-adapter correction; the canonical Kit remains 0.4.87.
 
-Static PHP, controller and isolated notice tests pass. Managed native proof
-and human acceptance remain open until the successor run is recorded.
+Static PHP, controller and isolated notice tests pass. Managed native run
+`easystud-authenticated-20261004T172935555Z-29408` passes all 240 computed-paint
+samples at 1600/768/390; the lowest measured ratio is 4.50719986003392, without
+rounding a failure up. No guarded write or page error occurred. Cleanup confirms
+cleared credentials, released lease, stopped child and no fixture. The served
+preview is `bf7a6303c23f1b341ae31cd60f55250ba2e8dac0`, promoted with predecessor
+proof commit `1b99d52` and source `17551b0`, then cache-purged by record
+`20261004T172907Z.json`.
+
+Administration run `easystud-authenticated-20261004T173034355Z-35616` also
+passes its three-width native controls/reset/no-submit checks and the new
+white-readable-but-soft-unreadable live warning. Its cleanup has no fixture
+and releases credentials/lease. Human acceptance and the broader composition,
+custom-badge and cross-role-background audits remain open. No PHPUnit database
+suite was run; its regression case is versioned, not reported executed.
 Platform registry/state changes are deferred to their owner; source scenario
 classification and its exact no-write boundary are recorded here.

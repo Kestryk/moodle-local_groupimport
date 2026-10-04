@@ -398,7 +398,10 @@ technical passes do not close these newly reported regressions.
   mixed-background verification remain open; human checklist is not accepted.
   Successor source adapter now targets the role's actual soft surface as well
   as white, without changing saved Hex or Kit paint. Static/isolated warning
-  tests pass; ten-palette, three-width managed contrast proof is next.
+  tests pass. Managed run `easystud-authenticated-20261004T172935555Z-29408`
+  passes 240 paint samples across ten palettes/three widths; Administration
+  warning/control successor also passes. Whole-view and cross-role/custom-badge
+  contrast, and human acceptance remain open.
 - [ ] R12: Offer a coherent compact variant for every More Filters control,
   including multiple-choice dropdown, chips, clear and chevron. Inventory
   Foundations Standard/Library, create missing variants there, then propagate
@@ -407,6 +410,11 @@ technical passes do not close these newly reported regressions.
   Selection actions (EasyStud page 03 board
   `cf371b29-2e8e-8011-8008-bd316bf1dfed`) and pass desktop native
   pressed-state proof. Other compact roles and human validation remain open.
+  The four remaining M choices on Searchable filter interactions/Many roles
+  now link to compact Closed, with 32px desktop and preserved 44px touch hosts.
+  Native compact geometry passed its first desktop cases but exposed a Reset
+  hit-target defect during choice exit. Kit 0.4.88 fixes the closing-pointer
+  lifecycle; shared held-pointer proof passes, native successor is next.
 
 ### Current execution checkpoint
 
