@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-04 - Shared desktop selection recovery
+
+- Publish the shared Foundation panel capsule and link the EasyStud specimen;
+  correct the old offset, oversized button override and blue neutral-action icon.
+- Preserve native selection commands and shared SCSS; extend the focused native
+  gate to actual action size, count typography and icon/currentColor parity.
+- Keep the old Penpot composition recoverable and human acceptance open.
+
 ## 2026-10-04 - Searchable clear-action publication
 
 - Reconcile shared M/S/Touch selected states and fourteen product choices with
