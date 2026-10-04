@@ -46,6 +46,7 @@
             var hex = control.querySelector('.easyedu-color-picker__hex');
             var contrastNote = control.parentElement.querySelector('[data-easyedu-colour-contrast-note]');
             var minimumContrast = Number(control.getAttribute('data-easyedu-color-contrast'));
+            var defaultHex = (control.getAttribute('data-easyedu-color-default') || '').toLowerCase();
             var validHex = /^#[0-9a-f]{6}$/i;
             if (!swatch || !hex) {
                 return;
@@ -56,7 +57,8 @@
                 control.setAttribute('aria-invalid', valid ? 'false' : 'true');
                 hex.setAttribute('aria-invalid', valid ? 'false' : 'true');
                 if (contrastNote) {
-                    contrastNote.hidden = !valid || contrastAgainstWhite(hex.value) >= minimumContrast;
+                    contrastNote.hidden = !valid || hex.value.toLowerCase() === defaultHex ||
+                        contrastAgainstWhite(hex.value) >= minimumContrast;
                 }
             };
 

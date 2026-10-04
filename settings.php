@@ -148,7 +148,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
             );
 
             if ($this->minimumcontrast > 0) {
-                $needsadjustment = $isvalid &&
+                $needsadjustment = $isvalid && strcasecmp($submittedvalue, (string)$default) !== 0 &&
                     $this->contrast_against_white($submittedvalue) < $this->minimumcontrast;
                 $noticeattributes = [
                     'data-easyedu-colour-contrast-note' => '1',

@@ -38,6 +38,7 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         await expect(trigger).toHaveAttribute('aria-expanded', 'false');
         const pickers = root.locator('[data-easyedu-color-picker]');
         await expect(pickers).toHaveCount(7);
+        await expect(root.locator('#admin-themegroupingcolor [data-easyedu-colour-contrast-note]')).toBeHidden();
         for (const picker of await pickers.all()) {
             const metrics = await picker.evaluate(n => {
                 const r = n.getBoundingClientRect();

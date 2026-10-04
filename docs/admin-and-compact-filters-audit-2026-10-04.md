@@ -28,6 +28,8 @@ as `--easyedu-*-chosen` and in the admin picker, derives a 4.5:1-or-better
 base role against white, and uses the chosen colour for pale surfaces. A valid
 Hex is no longer rejected or silently reset. An existing Kit notice gains a
 warning skin and appears dynamically when a readable shade is substituted.
+The built-in canonical grouping default is adapted silently, without an
+administrator-choice warning; a different custom light Hex shows the guidance.
 This does not yet certify contrast against every mixed background or a native
 Moodle theme; run that browser matrix before closing R11.
 The product Administration page now has a nonblocking adjusted-colour specimen

@@ -26,6 +26,8 @@ Builder.
   colour. The Kit warning notice explains a live adjustment without blocking
   Save. This is a scoped contrast guarantee, not proof for every composite
   surface or native theme.
+- Canonical default Hex values are not labelled as an administrator-made
+  adjustment; only a different, valid light choice shows the notice.
 - Both Student Management and Mass Import receive the same validated custom
   properties. Strong, soft and rail variants are derived with CSS `color-mix`
   rather than duplicated PHP presentation values.

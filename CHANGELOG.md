@@ -4,6 +4,8 @@
   readable shared text/action shades and show nonblocking Kit warning guidance.
   Malformed Hex still fails validation/falls back; native visual acceptance
   and the full contrast matrix remain open.
+- Suppress the adjustment notice for built-in default colours; keep it for
+  distinct custom light choices, without changing the derived safe shade.
 
 - Native administration follow-up: target Moodle's actual sibling h3.main
   section headings and use the public Kit caption for Restore colours help.
