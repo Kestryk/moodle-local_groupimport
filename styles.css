@@ -2264,7 +2264,7 @@
     padding-top: 0.75rem;
   }
   .local-groupimport-easystud__loading-header {
-    min-height: 7.85rem;
+    min-height: 0;
   }
 }
 @media (max-width: 1024px) and (max-width: 390px) {
@@ -2350,13 +2350,16 @@
 }
 @media (min-width: 1025px) and (min-width: 1201px) {
   .local-groupimport-easystud__loading-layout {
-    inset-block-start: 0.25rem;
+    inset-block-start: 0;
     position: relative;
   }
 }
 .local-groupimport-easystud[data-easyedu-motion-policy=disabled] .local-groupimport-easystud__loading-surface::after, .local-groupimport-easystud.is-easyedu-motion-off .local-groupimport-easystud__loading-surface::after {
   animation: none;
   display: none;
+}
+.local-groupimport-easystud__loading-view-toggle.local-groupimport-easystud__loading-view-toggle--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .local-groupimport-easystud-discovery {
   align-items: center;

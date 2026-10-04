@@ -2,6 +2,9 @@
 
 ## 2026-10-04 - Skeleton feedback successor
 
+- Follow actual two/three available views in Skeleton selector tracks; remove
+  obsolete responsive heading height and desktop offset after native readback.
+
 - Consume Kit 0.4.93's more perceptible subtle sweep across all EasyStud loading
   roots, with unchanged timing/static modes and native readiness.
 - Remove fictitious Student header actions and reserved empty height; both

@@ -23,8 +23,10 @@ $headerActions = '            <div class="local-groupimport-easystud__loading-he
     '            </div>' + "`n"
 $expected = $original.Replace($headerActions, '').Replace(
     '<div class="local-groupimport-easystud__loading-structure-tools">',
-    '<div class="local-groupimport-easystud__loading-search-filter-region">')
-if ($actual -cne $expected) { throw 'Template changed beyond two bounded Skeleton adaptations.' }
+    '<div class="local-groupimport-easystud__loading-search-filter-region">').Replace(
+    '<div class="local-groupimport-easystud__loading-view-toggle">',
+    '<div class="local-groupimport-easystud__loading-view-toggle{{^showcompleteview}} local-groupimport-easystud__loading-view-toggle--two{{/showcompleteview}}">')
+if ($actual -cne $expected) { throw 'Template changed beyond three bounded Skeleton adaptations.' }
 & (Join-Path $KitRoot 'scripts/test-loading-contract.ps1')
 if ($LASTEXITCODE -ne 0) { throw 'Kit loading contract failed.' }
 Write-Output 'PASS: exact Skeleton-only template successor; canonical loading and native lifecycle/Motion retained.'
