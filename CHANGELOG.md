@@ -1,5 +1,9 @@
 # Changelog
 
+- Lower the shared Empty-state descriptive copy to the Foundation caption role
+  in the Kit and Mass Import. Preserve icon, container proportions and fixed
+  dashed boundary; native preview and human review remain open.
+
 - Allow valid light EasyStud interface colours in administration, derive
   readable shared text/action shades and show nonblocking Kit warning guidance.
   Malformed Hex still fails validation/falls back; native visual acceptance

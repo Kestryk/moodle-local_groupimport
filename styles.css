@@ -20563,7 +20563,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   text-align: center;
 }
 .easyedu-ui .easyedu-empty p {
-  font: 500 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  font-weight: 500;
+  line-height: 1.2;
   margin: 0;
 }
 .easyedu-ui .easyedu-empty .fa {

@@ -25,3 +25,20 @@ The focused static contract and generated Sass prove source composition only.
 Penpot publication is pending because no Penpot connector is available. Native
 browser and human visual acceptance are also pending while the local Moodle
 database is unavailable. No upload or import action is executed by this lot.
+
+## Empty-state typography successor
+
+The historical validation boundary above is from the first balance candidate.
+The current Penpot connection is available. Foundation Standard 08.13 and
+Library 08.13.1 now give Default, Inline and Search empty descriptions the
+12.16px caption role. The linked EasyStud Mass Import Default copy uses that
+role on Desktop, Tablette 1024 and Mobile 390. Settled readback retains links,
+centred vertical paint and containment; the mobile empty-state export was
+visually inspected. UI Kit 0.4.85 maps `.easyedu-empty p` to the same public
+caption mixin, without a product font override. The fixed SVG dash cadence,
+outer geometry and icon remain untouched. Native Moodle proof and human review
+remain separate gates.
+The compiled-CSS isolated Chromium scenario
+`tools/release/test-mass-import-empty-caption-browser.js` passes at
+1600/768/390 for font size, 11px/11px SVG dash cadence and text containment.
+It does not replace a real course-view browser check.
