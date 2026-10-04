@@ -265,3 +265,14 @@ Native More Filters regression also passes on this serving revision:
 `easystud-authenticated-20261004T125017798Z-36180`. Parent closure with and
 without an open nested choice preserves final class/inert/ARIA and produces
 no page error. No business action or fixture write was requested.
+
+### Native Restore colours continuation
+
+The read-only Administration scenario now temporarily edits Primary and Accent
+Hex fields in the browser, clicks Restore EasyEdu colours, verifies the
+PHP-provided defaults and the Save-required status, and asserts that no
+settings POST occurred. Native Moodle 5.1 run
+`easystud-authenticated-20261004T161117598Z-31804` passes at
+1600/768/390 with credentials cleared and the runtime lease released. This
+proves the in-form reset path, not persisted settings or every possible theme.
+Human acceptance remains open.

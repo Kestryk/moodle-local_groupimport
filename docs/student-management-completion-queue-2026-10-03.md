@@ -340,7 +340,9 @@ technical passes do not close these newly reported regressions.
 - [ ] R07: Add Restore EasyEdu default colours, using canonical defaults and
   explicit native Save semantics rather than silently saving settings.
   Source candidate and isolated browser checks pass for seven settings,
-  including readonly preservation and no submit. Penpot/native admin pending.
+  including readonly preservation and no submit. Native Moodle in-form reset
+  now passes at 1600/768/390 without settings POST; persistence after Save and
+  human acceptance remain open.
 - [ ] R08: Group and Grouping internal search: consume current search components;
   replace the Group legacy reset/cancel action and compare both branches.
   Candidate: all four server-rendered/generated Group and Grouping search Cancel

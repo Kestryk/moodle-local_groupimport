@@ -66,6 +66,16 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
             await notice.screenshot({path: testInfo.outputPath('admin-light-colour-guidance.png')});
             await hex.fill('#0F6CBF');
             await expect(notice).toBeHidden();
+            const accent = root.locator('#admin-themeaccentcolor .easyedu-color-picker__hex');
+            const accentDefault = await accent.locator('xpath=ancestor::*[@data-easyedu-color-default][1]')
+                .getAttribute('data-easyedu-color-default');
+            await hex.fill('#123456');
+            await accent.fill('#234567');
+            await root.locator('[data-easystud-restore-colours]').click();
+            await expect(hex).toHaveValue('#0F6CBF');
+            await expect(accent).toHaveValue(accentDefault);
+            await expect(root.locator('[data-easystud-restore-colours-status]')).not.toBeEmpty();
+            expect(submitted, 'Restore must not save settings automatically').toBe(false);
         }
         const sectionHeadings = root.locator('#adminsettings h3.main');
         expect(await sectionHeadings.count()).toBeGreaterThan(0);
