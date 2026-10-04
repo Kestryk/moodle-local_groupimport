@@ -137,3 +137,9 @@ large vertical spacing in this specimen is not certified as native parity.
 Other interaction/many-role boards retain their previous providers pending
 width-specific propagation (184px desktop fields need reduced text lanes).
 No claim of all-board completion or runtime promotion is made.
+
+Follow-up: the four Toggle/Reset labels on that product board now explicitly
+use fixed text boxes and vertical centring; settled painted centre deltas are
+0.5px. The five canonical Foundations Filter toggle/reset masters received
+the same text alignment in 08.5.1, with their linked Standard instances in
+08.5 updated too. Full-application propagation remains a separate check.
