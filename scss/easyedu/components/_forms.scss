@@ -797,21 +797,70 @@
   width: 2.8rem;
 }
 
-@mixin color-picker-control {
+@mixin color-picker-control($size: regular) {
+  --easyedu-color-picker-gap: 0.65rem;
+  --easyedu-color-picker-padding-block: 0.42rem;
+  --easyedu-color-picker-padding-inline: 0.55rem;
+  --easyedu-color-picker-swatch-height: 2rem;
+  --easyedu-color-picker-swatch-width: 3.1rem;
+  --easyedu-color-picker-text-size: 0.82rem;
+
+  @if $size == small {
+    --easyedu-color-picker-gap: 0.48rem;
+    --easyedu-color-picker-padding-block: 0.3rem;
+    --easyedu-color-picker-padding-inline: 0.42rem;
+    --easyedu-color-picker-swatch-height: 1.65rem;
+    --easyedu-color-picker-swatch-width: 2.55rem;
+    --easyedu-color-picker-text-size: 0.76rem;
+  } @else if $size == large {
+    --easyedu-color-picker-gap: 0.75rem;
+    --easyedu-color-picker-padding-block: 0.52rem;
+    --easyedu-color-picker-padding-inline: 0.68rem;
+    --easyedu-color-picker-swatch-height: 2.4rem;
+    --easyedu-color-picker-swatch-width: 3.7rem;
+    --easyedu-color-picker-text-size: 0.9rem;
+  } @else if $size != regular {
+    @error "color-picker-control expects small, regular or large.";
+  }
+
   align-items: center;
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-control-border);
   border-radius: var(--easyedu-control-radius);
   display: inline-flex;
-  gap: 0.65rem;
+  gap: var(--easyedu-color-picker-gap);
   max-width: 100%;
-  padding: 0.42rem 0.55rem;
+  min-width: 0;
+  padding: var(--easyedu-color-picker-padding-block) var(--easyedu-color-picker-padding-inline);
   transition:
+    background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
     border-color var(--easyedu-motion-fast) ease,
     box-shadow var(--easyedu-motion-fast) ease;
 
+  &:hover:not(.is-disabled):not([aria-disabled="true"]) {
+    border-color: color-mix(in srgb, var(--easyedu-primary) 42%, var(--easyedu-control-border) 58%);
+  }
+
   &:focus-within {
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
+  }
+
+  &.is-invalid,
+  &[aria-invalid="true"] {
+    border-color: var(--easyedu-danger);
+  }
+
+  &.is-disabled,
+  &[aria-disabled="true"] {
+    background: var(--easyedu-surface-soft);
+    color: var(--easyedu-text-subtle);
+    cursor: not-allowed;
+    opacity: 0.68;
+  }
+
+  &.is-readonly,
+  &[data-readonly="true"] {
+    background: color-mix(in srgb, var(--easyedu-surface-soft) 72%, var(--easyedu-surface) 28%);
   }
 }
 
@@ -820,9 +869,12 @@
   border: 0;
   border-radius: 0.65rem;
   cursor: pointer;
-  height: 2rem;
+  flex: 0 0 var(--easyedu-color-picker-swatch-width, 3.1rem);
+  height: var(--easyedu-color-picker-swatch-height, 2rem);
+  max-width: var(--easyedu-color-picker-swatch-width, 3.1rem);
+  min-width: 0;
   padding: 0;
-  width: 3.1rem;
+  width: var(--easyedu-color-picker-swatch-width, 3.1rem);
 
   &::-webkit-color-swatch-wrapper {
     padding: 0;
@@ -842,6 +894,10 @@
     box-shadow: none;
     outline: 0;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 @mixin color-picker-value {
@@ -849,6 +905,42 @@
   font-size: 0.78rem;
   font-weight: 760;
   letter-spacing: 0.04em;
+}
+
+// Editable hexadecimal companion for the native colour swatch. The text
+// field remains the authoritative named Moodle control; the swatch is an
+// unnamed enhancement synchronized by the consumer controller.
+@mixin color-picker-hex-input {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--easyedu-text);
+  flex: 1 1 7.4rem;
+  font-family: var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-color-picker-text-size, 0.82rem);
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+  min-height: var(--easyedu-color-picker-swatch-height, 2rem);
+  min-width: 6.8rem;
+  padding: 0 0.2rem;
+  text-transform: uppercase;
+
+  &:focus,
+  &:focus-visible {
+    box-shadow: none;
+    outline: 0;
+  }
+
+  &:read-only {
+    color: var(--easyedu-text-muted);
+    cursor: default;
+  }
+
+  &:disabled {
+    color: var(--easyedu-text-subtle);
+    cursor: not-allowed;
+  }
 }
 
 // Align a Moodle QuickForm colour group without changing its submission

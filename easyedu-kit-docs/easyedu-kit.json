@@ -1,10 +1,27 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.78",
+  "version": "0.4.79",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "batch": "EED-UI-2026-0073",
+    "adminColourPicker20261004": {
+      "kitCommit": "841732e",
+      "status": "Kit 0.4.79 candidate: the existing participant-badge settings consume public S/M/L colour-picker classes with a named editable Hex value and unnamed native swatch; broader semantic plugin colours remain a separate batch.",
+      "documentation": "docs/admin-colour-picker-2026-10-04.md",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "penpotLinked": false,
+      "modules": {
+        "scss/easyedu/components/_forms.scss": "8885202dacd8a78fc06a2719c2828666d16aa0a4",
+        "scss/easyedu/_foundation-classes.scss": "7db8370d6f41fe18b87d738fa215a4eb55c9fbd4",
+        "scss/views/_admin-settings.scss": "61098c219ee18169cc3a3ecd893c59848fbaf754",
+        "settings.php": "41c60c0b02b7884c78700c45a35d0edbd9d44998",
+        "js/admin_settings_loading.js": "c391d56049a6235313f8d292b7f16d6c7ff4730b",
+        "styles.css": "d7bba9a5c491828a4b3b8485f1b262023b09abc8",
+        "tools/release/test-admin-color-picker-contract.ps1": "809c1f24c0dd0b71da453b00ae6309b5a14587a1"
+      }
+    },
     "studentMemberRowPublicClasses20261004": {
       "kitCommit": "efaab89",
       "status": "Kit 0.4.78 candidate: static and dynamically created Group member rows consume the public related-person class family; local paint adapters are removed while membership behavior and disclosure Motion remain product-owned.",

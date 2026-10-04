@@ -14,12 +14,12 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 $canonicalModules = @{
     'scss/easyedu/_workspace-classes.scss' = 'bed06f107e9b2bc9745e87a2464cede1840585e9'
     'scss/easyedu/_data-classes.scss' = '14ca45c65aa149e2aa5806e72d0af9a85b470b39'
-    'scss/easyedu/_foundation-classes.scss' = '3e9dacd1f923c948202f3882659a37de91a3f254'
+    'scss/easyedu/_foundation-classes.scss' = '7db8370d6f41fe18b87d738fa215a4eb55c9fbd4'
     'scss/easyedu/_tokens.scss' = '71f3da0a22082b9e87b5869c39bf1198af426c08'
     'scss/easyedu/adapters/_moodle-file-deposit.scss' = 'c8f7f6bb8f30a07f43d2051e870bee6a8aab442f'
     'scss/easyedu/components/_animations.scss' = '9dc31bb53c38984f8d69a1c06e9aec848208aa52'
     'scss/easyedu/components/_buttons.scss' = '355a054392c9ece426a7e49fbfa99ba86f0124d8'
-    'scss/easyedu/components/_forms.scss' = 'e5b87206d93240fe270ba664425449005744889d'
+    'scss/easyedu/components/_forms.scss' = '8885202dacd8a78fc06a2719c2828666d16aa0a4'
 }
 foreach ($path in $canonicalModules.Keys) {
     $actual = & git -C $pluginRoot hash-object $path

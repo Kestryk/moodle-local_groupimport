@@ -3,6 +3,87 @@
 EasyEdu form primitives style plugin-specific controls while keeping Moodle
 forms and accessibility behaviour intact.
 
+## Native text fields
+
+`foundation-text-field(small|regular|large)` is the named single-line field
+recipe measured live on 2026-10-02 from Foundations `08.4.1`, eighteen masters.
+Do not disguise a Search field by hiding its icon. Apply to the native input:
+
+```scss
+.my-create input { @include easyedu.foundation-text-field; }
+.my-compact-edit input { @include easyedu.foundation-text-field(small); }
+```
+
+```html
+<label for="group-name">Group name</label>
+<input id="group-name" name="groupname" type="text" class="my-field">
+```
+
+| Size | Minimum height | Font / weight | Painted inline inset |
+| --- | --- | --- | --- |
+| S / small | 2rem / 32px | 0.75rem / 400 | 0.875rem / 14px |
+| M / regular | 2.375rem / 38px | 0.875rem / 400 | 0.875rem / 14px |
+| L / large | 3rem / 48px | 0.875rem / 400 | 0.875rem / 14px |
+
+One shared Inter family, 1.2 line height and control radius (0.72rem). The inset
+includes the 0.0625rem border and 0.8125rem padding; the specimen widths are
+illustrative, not fixed input widths. Filled values consume `field-text`,
+placeholders `text-muted`; Hover, Focus-visible, Disabled and Error have named
+public tokens. Error is the explicit `aria-invalid="true"` state, not `:invalid`;
+it preserves the visible focus halo. Disabled wins paint without washing out
+the whole input. These measured field error/disabled roles are not the separate
+feedback-pill palette. Themes may override all field-role tokens.
+Focus explicitly owns value colour and surface as well as border/halo; the
+native Moodle focus skin must not override the correct resting value role.
+Resting hover explicitly excludes focused, focus-visible and aria-invalid
+fields: its higher-specificity selector must not override keyboard-focus or
+explicit-error borders while the pointer remains over the field.
+
+Native semantics, labels, validity messages, read-only behavior, commands and
+responsive hit geometry remain consumer-owned. `aria-disabled` only paints;
+use native `disabled` when the control must be disabled. Do not invent a new
+field width or shrink established touch geometry. Reduced Motion removes paint
+transitions; the shared transparent outline supports forced-colors focus.
+The single-line mixin must never be applied to Textarea or a multi-control
+wrapper. Its state paint is shared internally, not its geometry.
+
+Run `scripts/test-foundation-text-field-contract.ps1` for all three public paths.
+Publication/adoption does not imply deferred human acceptance or browser proof.
+
+## Native textareas
+
+`foundation-textarea(small|regular|large)` maps the eighteen measured Foundations
+Textarea masters, without inheriting a single-line input's vertical geometry:
+
+```scss
+.my-identifier-list textarea { @include easyedu.foundation-textarea; }
+```
+
+```html
+<label for="identifiers">User identifiers</label>
+<textarea id="identifiers" rows="3" placeholder="One identifier per line"></textarea>
+```
+
+| Size | Minimum height | Font / weight | Painted top / inline inset |
+| --- | --- | --- | --- |
+| S / small | 5.5rem / 88px | 0.75rem / 400 | 0.75rem / 0.875rem |
+| M / regular | 7rem / 112px | 0.875rem / 400 | 0.75rem / 0.875rem |
+| L / large | 8.75rem / 140px | 0.875rem / 400 | 0.75rem / 0.875rem |
+
+All sizes use Inter, line-height 1.2, top/start text flow and the same six
+explicit field states and theme roles as Text field. `_field-paint.scss` is an
+internal helper: it is not a public component or an input-to-textarea alias.
+Native `rows` and vertical user resizing remain available; no fixed height,
+width, maximum height, row count, parser or submission behavior is imposed.
+Consumers own labels, validation/announcements and panel layout. A taller field
+requires actual panel/card/column reflow, not clipped contents or a scaled
+linked root. Never reveal a source-hidden mobile action to demonstrate a style.
+Clipboard/message controls need their own consumer reconciliation.
+
+Run `scripts/test-foundation-textarea-contract.ps1` and the single-line contract
+together when shared field paint changes. Publication is not browser proof or
+human acceptance.
+
 ## Search fields
 
 ```scss
@@ -234,7 +315,27 @@ to restore a compact visual control while preserving its minimum touch target.
 `compact` remains available for disclosures embedded in cards. The label and
 chevron belong to one native `button`; do not place the text beside a separate
 icon-only control or reuse a card-members toggle class on this button.
-The disclosure label uses the regular typography weight at every size.
+The disclosure label uses `filter-disclosure-type`: inherited family,
+`0.76rem` (12.16px with a 16px root), regular weight and `1.1` line height at
+every size. The legacy `mobile-filter-disclosure-trigger` consumes this same
+recipe. Do not override the mobile label with a larger/bold role. Validate the
+public wide/touch/legacy paths with
+`scripts/test-filter-disclosure-typography-contract.ps1`.
+
+The shared hover uses 72% primary-soft plus 28% surface and the regular control
+border, independent of the surface behind it. Expanded retains primary-soft;
+keyboard-only Focus-visible retains the resting muted text plus the standard
+ring. Disabled stays transparent with subtle text and 0.62 opacity. Legacy
+`mobile-filter-disclosure-trigger` delegates to the exact touch recipe rather
+than maintaining a different border/radius/gap palette.
+
+Foundations 08.5/08.5.1 publishes five Touch states alongside the existing
+Wide family. The painted label/chevron gap is 0.42rem (6.72px at 16px/rem), not
+the gap between oversized icon/text containers. Read settled `textBounds`
+after a linked change; approximate root centring is not painted centring.
+Five Wide and five Touch recursive pairs pass in the consumer's
+`docs/testing/student-more-filters-foundations-2026-10-03.json`. Source/isolated
+checks, native preview and human acceptance remain separate.
 
 ```html
 <button
@@ -270,7 +371,19 @@ Expected structure:
 The plugin may change `size` and container width, but should not override the
 focus ring, selected option contrast or disabled state.
 
-## File picker
+## Compact list sorting
+
+Use `list-sort-trigger` and `list-sort-option` for the established compact
+sorting control, not as replacements for native selects or full-size actions.
+They preserve the existing 1.78rem height / 6.8rem minimum width, regular
+0.68rem trigger, 0.42rem icon gap, expanded-chevron rotation and focus paint.
+The options retain the established 0.74rem/680 role. Menu surface continues
+to use `dropdown-menu`; plugins own placement, routing and keyboard behavior.
+Run `scripts/test-list-sort-contract.ps1` for the public API boundary.
+This source-preserving migration is not a newly accepted Dropdown S skin;
+do not silently apply its compact role to every form dropdown.
+
+## File picker surface
 
 ```scss
 .my-filepicker {
@@ -282,41 +395,62 @@ focus ring, selected option contrast or disabled state.
 }
 ```
 
-### Solid large file deposit
-
-The large native deposit shell uses `type-card-title` (15.68px / 700 / 1.2)
-for its action title and `type-caption` (12.16px / 400 / 1.2) for explanatory
-help. Default, hover, focus, drag, danger, disabled and uploading states keep
-those roles. File names, progress and metadata remain separate data roles.
-
 ## Colour picker
 
-Use this wrapper around a native `input[type="color"]` when a plugin needs a
-theme-compatible colour picker without replacing Moodle's form submission
-mechanics.
+Use the public Foundation family around a native `input[type="color"]` and an
+editable hexadecimal text field. The text field is the authoritative named
+Moodle control; the native colour input is an unnamed progressive enhancement.
+This preserves typed invalid values for server validation instead of silently
+replacing them with the last valid swatch colour.
 
 ```scss
+.my-colour--small {
+  @include easyedu.color-picker-control(small);
+}
+
 .my-colour {
-  @include easyedu.color-picker-control;
+  @include easyedu.color-picker-control(regular);
+}
+
+.my-colour--large {
+  @include easyedu.color-picker-control(large);
 }
 
 .my-colour__input {
   @include easyedu.color-picker-input;
 }
 
-.my-colour__value {
-  @include easyedu.color-picker-value;
+.my-colour__hex {
+  @include easyedu.color-picker-hex-input;
 }
 ```
 
 Expected structure:
 
 ```html
-<label class="my-colour">
-  <input class="my-colour__input" type="color" value="#e8f4ff">
-  <span class="my-colour__value">#E8F4FF</span>
-</label>
+<div class="easyedu-ui">
+  <div class="easyedu-color-picker">
+    <input class="easyedu-color-picker__swatch" type="color"
+           value="#e8f4ff" aria-label="Choose a colour">
+    <input class="easyedu-color-picker__hex" type="text"
+           name="s_plugin_colour" value="#E8F4FF"
+           pattern="#[0-9A-Fa-f]{6}" maxlength="7"
+           aria-label="Hexadecimal colour">
+  </div>
+</div>
 ```
+
+Use `easyedu-color-picker--small` or `easyedu-color-picker--large` on the root
+for the other canonical sizes. Resting, hover and focus are automatic. Apply
+`is-invalid` plus `aria-invalid="true"`, `is-readonly` plus
+`data-readonly="true"`, or `is-disabled` plus `aria-disabled="true"` to the
+root and keep the native input attributes in sync. The legacy
+`color-picker-value` mixin remains available only for read-only displays.
+
+The Kit deliberately does not synchronize the two inputs. The consumer owns a
+small controller because it also owns validation, persistence and any live
+preview. Synchronization must normalize complete valid values only and must
+never discard an incomplete or invalid value typed into the named Hex field.
 
 For a native Moodle QuickForm group containing a text value and a colour input,
 keep Moodle's generated fieldset and apply both mixins to its `.felement`:
@@ -328,9 +462,9 @@ keep Moodle's generated fieldset and apply both mixins to its `.felement`:
 }
 ```
 
-This contract keeps the colour swatch and textual value on one line, places the
-swatch first, removes the nested QuickForm field margin and preserves the
-original input names, ids, validation feedback and submission behaviour.
+This compatibility contract keeps legacy QuickForm groups on one line. New
+custom settings should use the public class structure above so the Hex value is
+editable and the component can expose the complete state family.
 
 ## Detected token inputs
 
@@ -368,6 +502,31 @@ chips, such as users by email/id or groups by name/id.
   translated labels remain inside the segmented-choice surface.
 
 ## Import Audit Checklist
+
+### Solid large file deposit (Foundations)
+
+`file-deposit` is an opt-in presentation shell around a real file control.
+Use `.easyedu-file-deposit__heading` with the decorative `__icon` and a
+`__title`, then `__control` for the native input/picker. The icon uses the
+same 40.8px section tile as adjacent information headings, with a 20px glyph.
+The action title uses `type-card-title` (15.68px / 700 / 1.2) and its help copy
+uses `type-caption` (12.16px / 400 / 1.2), matching the adjacent information
+surface. File names, progress and metadata keep their distinct data roles.
+The shell has a solid border, no relief
+symbol, and 16px internal padding. It does not emit styles globally or alter
+the legacy `filepicker` mixin. See the EasyStud import form for a Moodle adapter.
+Keep filename, progress, accepted types, errors and native keyboard handling.
+Check both an empty picker and a selected file at 390px and desktop. Do not
+hide the native picker or replace it with a non-functional decorative button.
+
+Selected-file presentations exist in M and L. Every file row contains a linked
+type icon, the filename/metadata and a linked remove action. In a single-file
+zone, removal clears the selected draft and exposes the choose action again;
+replacement remains available. In a multi-file zone, every row is removable
+independently and the compact M summary may additionally expose Remove all.
+The visual family never enables multiple upload by itself: the consumer must
+set its native maximum-file contract and preserve server validation.
+
 
 - Search fields include a visible/search icon and focus ring around the complete
   wrapper, not only the `<input>`.

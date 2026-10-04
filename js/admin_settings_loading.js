@@ -12,7 +12,46 @@
     var loadingStateAttribute = 'data-easystud-loading-state';
     var quietPeriod = 240;
     var minimumVisiblePeriod = 1200;
+    var initialiseColourPickers = function() {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-easyedu-color-picker]'), function(control) {
+            var swatch = control.querySelector('.easyedu-color-picker__swatch');
+            var hex = control.querySelector('.easyedu-color-picker__hex');
+            var validHex = /^#[0-9a-f]{6}$/i;
+            if (!swatch || !hex) {
+                return;
+            }
+
+            var setValidity = function(valid) {
+                control.classList.toggle('is-invalid', !valid);
+                control.setAttribute('aria-invalid', valid ? 'false' : 'true');
+                hex.setAttribute('aria-invalid', valid ? 'false' : 'true');
+            };
+
+            swatch.addEventListener('input', function() {
+                hex.value = swatch.value.toUpperCase();
+                setValidity(true);
+                hex.dispatchEvent(new Event('input', {bubbles: true}));
+            });
+
+            hex.addEventListener('input', function() {
+                var valid = validHex.test(hex.value);
+                setValidity(valid);
+                if (valid) {
+                    swatch.value = hex.value;
+                }
+            });
+
+            hex.addEventListener('change', function() {
+                if (validHex.test(hex.value)) {
+                    hex.value = hex.value.toUpperCase();
+                    swatch.value = hex.value;
+                    setValidity(true);
+                }
+            });
+        });
+    };
     var initialise = function() {
+        initialiseColourPickers();
         var root = document.querySelector('#page-admin-setting-local_groupimport');
         var form = document.querySelector('#adminsettings');
         var skeleton = root ? root.querySelector('[data-easystud-loading-skeleton]') : null;
