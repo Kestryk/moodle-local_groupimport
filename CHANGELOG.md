@@ -7,7 +7,8 @@
 - Keep native font ownership, page colors/margins, all controllers/commands and
   non-header CSS unchanged. Publish nine primary linked Penpot headers.
 - Retain failed first Admin-parent sampler and passing native baseline;
-  promoted successor, secondary tiles and human review remain separate gates.
+  promoted successor passes nine Mass/Student/Admin cases at 1600/768/390.
+  Secondary tiles and human review remain separate gates.
 
 ## 2026-10-05 - Destination framed disclosure candidate
 
