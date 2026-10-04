@@ -430,6 +430,15 @@ technical passes do not close these newly reported regressions.
 
 ### Current execution checkpoint
 
+- SM-20 fresh successor: Kit 0.4.90 is served in managed Moodle preview;
+  native initial Mass Import passes at 1600/768/390 in
+  `easystud-authenticated-20261004T190630471Z-37384`, with complete cleanup and
+  no upload/data write. Nine missing Preview introductions are now rendered
+  from native copy. Counter rows, loose desktop table parentage and enclosing
+  course frames are corrected; relative body geometry is preserved. All 24
+  active page-01 outer boards have zero overlap; desktop/mobile exports inspected.
+  Full state lifecycle and combined human acceptance remain open.
+
 - Foundation publication successor: eight section-tile providers now exist in
   paired Standard/Library; 39 Mass Import main headers link to them with their
   original glyphs, verified centres and containment. Filter On paint and Touch

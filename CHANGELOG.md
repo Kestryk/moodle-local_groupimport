@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-04 - Preview introductions and native 0.4.90 proof
+
+- Add the nine source-backed Preview header introductions in product Penpot;
+  move counters below them and preserve downstream table/control rhythm.
+- Reparent three loose linked desktop tables, extend enclosing mobile frames
+  and separate outer board rows; 24 active boards have no intersection.
+- Record passing native initial Mass Import at 1600/768/390 on Kit 0.4.90
+  separately from the untested upload/report lifecycle and human checklist.
+
 ## 2026-10-04 - Foundation publication and linked Mass Import identities
 
 - Embed Kit 0.4.90 Warning/Danger icon-tile modifiers with no legacy CSS drift.

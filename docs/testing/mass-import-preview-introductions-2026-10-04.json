@@ -1,0 +1,1853 @@
+{
+  "date": "2026-10-04",
+  "fileId": "220f6449-533e-815b-8008-ad9958d032a1",
+  "pageId": "220f6449-533e-815b-8008-ad9958d032a2",
+  "humanAccepted": false,
+  "items": [
+    {
+      "titleId": "01e728c3-f1ef-80b3-8008-b30ee51f4f60",
+      "parentId": "01e728c3-f1ef-80b3-8008-b30ee51f2a5b",
+      "courseId": "01e728c3-f1ef-80b3-8008-b30ee389374e",
+      "boardId": "01e728c3-f1ef-80b3-8008-b30ee389374a",
+      "mobile": true,
+      "oldHeight": 1278,
+      "shellId": "01e728c3-f1ef-80b3-8008-b30ee51f4f5e",
+      "originalNoticeY": 9524,
+      "relocatedTables": [],
+      "body": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f5f",
+          "y": 9524,
+          "h": 132
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f67",
+          "y": 10398,
+          "h": 40
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f68",
+          "y": 10456,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f69",
+          "y": 10456,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6c",
+          "y": 9672,
+          "h": 252
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6d",
+          "y": 9940,
+          "h": 112
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6e",
+          "y": 10068,
+          "h": 312
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd589235102e",
+      "tagsBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f61",
+          "x": 678,
+          "y": 9484
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6a",
+          "x": 826,
+          "y": 9484
+        }
+      ],
+      "delta": 77.20000000000073,
+      "notesBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30ee3893755",
+          "y": 10728
+        }
+      ],
+      "courseOldHeight": 1896,
+      "boardOldHeight": 2778,
+      "after": {
+        "height": 1355.2000000000007,
+        "shellHeight": 1327.2000000000007,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 28,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": []
+      }
+    },
+    {
+      "titleId": "01e728c3-f1ef-80b3-8008-b3120c8f4e96",
+      "parentId": "01e728c3-f1ef-80b3-8008-b3120c8f4df5",
+      "courseId": "01e728c3-f1ef-80b3-8008-b3120c8f4dec",
+      "boardId": "01e728c3-f1ef-80b3-8008-b3120c8f4de8",
+      "mobile": true,
+      "oldHeight": 1008,
+      "shellId": "01e728c3-f1ef-80b3-8008-b3120c8f4e94",
+      "originalNoticeY": 14308,
+      "relocatedTables": [],
+      "body": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e95",
+          "y": 14308,
+          "h": 132
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e9d",
+          "y": 15046,
+          "h": 40
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e9e",
+          "y": 15104,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e9f",
+          "y": 15104,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4ea2",
+          "y": 14456,
+          "h": 252
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4ea3",
+          "y": 14724,
+          "h": 112
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120e6594b6",
+          "y": 14852,
+          "h": 178
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd589392d128",
+      "tagsBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e97",
+          "x": 1690,
+          "y": 14268
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4ea0",
+          "x": 1838,
+          "y": 14268
+        }
+      ],
+      "delta": 77.20000000000073,
+      "notesBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120c8f4df2",
+          "y": 15242
+        }
+      ],
+      "courseOldHeight": 2227.999999999998,
+      "boardOldHeight": 2468,
+      "after": {
+        "height": 1085.2000000000007,
+        "shellHeight": 1057.2000000000007,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 28,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": []
+      }
+    },
+    {
+      "titleId": "01e728c3-f1ef-80b3-8008-b311b66e6434",
+      "parentId": "01e728c3-f1ef-80b3-8008-b311b66e2083",
+      "courseId": "01e728c3-f1ef-80b3-8008-b311b66e207a",
+      "boardId": "01e728c3-f1ef-80b3-8008-b311b66e2076",
+      "mobile": true,
+      "oldHeight": 1278,
+      "shellId": "01e728c3-f1ef-80b3-8008-b311b66e6432",
+      "originalNoticeY": 14308,
+      "relocatedTables": [],
+      "body": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e6433",
+          "y": 14308,
+          "h": 132
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e643b",
+          "y": 15182,
+          "h": 40
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e643c",
+          "y": 15240,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e643d",
+          "y": 15240,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e6440",
+          "y": 14456,
+          "h": 252
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e6441",
+          "y": 14724,
+          "h": 112
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e6442",
+          "y": 14852,
+          "h": 312
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd5894bc5af6",
+      "tagsBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e6435",
+          "x": 1184,
+          "y": 14268
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e643e",
+          "x": 1332,
+          "y": 14268
+        }
+      ],
+      "delta": 77.20000000000073,
+      "notesBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b66e2080",
+          "y": 15512
+        }
+      ],
+      "courseOldHeight": 1896,
+      "boardOldHeight": 2778,
+      "after": {
+        "height": 1355.199999999999,
+        "shellHeight": 1327.2000000000025,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 28,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": []
+      }
+    },
+    {
+      "titleId": "5daf2376-ada4-8014-8008-ad9d310ee5b6",
+      "parentId": "5daf2376-ada4-8014-8008-ad9d1e503447",
+      "courseId": "5daf2376-ada4-8014-8008-ad9d1df3bb18",
+      "boardId": "5daf2376-ada4-8014-8008-ad9d1daa4634",
+      "mobile": false,
+      "oldHeight": 830,
+      "shellId": "5daf2376-ada4-8014-8008-ad9d1e5cb4fa",
+      "originalNoticeY": 546,
+      "relocatedTables": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b2ab1c2f5503",
+          "oldParentId": "5daf2376-ada4-8014-8008-ad9d1daa4634",
+          "x": 1784,
+          "y": 862
+        }
+      ],
+      "body": [
+        {
+          "id": "5daf2376-ada4-8014-8008-adaa294ea62e",
+          "y": 546,
+          "h": 92
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad9d607e3ee9",
+          "y": 1180,
+          "h": 24
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad9d609faf62",
+          "y": 1230,
+          "h": 37.59999999999991
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ad9d60c099f5",
+          "y": 1230,
+          "h": 37.59999999999991
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-adaa56fbfcb1",
+          "y": 654,
+          "h": 118
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-adaa57fe0a1d",
+          "y": 786,
+          "h": 58
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b2ab1c2f5503",
+          "y": 862,
+          "h": 296
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd589613565c",
+      "tagsBefore": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad9d3144957c",
+          "x": 2656,
+          "y": 502
+        },
+        {
+          "id": "5daf2376-ada4-8014-8008-ada3bb93f948",
+          "x": 2804,
+          "y": 502
+        }
+      ],
+      "delta": 71.20000000000005,
+      "leftPanelId": "5daf2376-ada4-8014-8008-ad9d1e35b29a",
+      "leftOldHeight": 830,
+      "notesBefore": [
+        {
+          "id": "5daf2376-ada4-8014-8008-ad9d60ddfad1",
+          "y": 1334
+        }
+      ],
+      "courseOldHeight": 1152,
+      "boardOldHeight": 1344,
+      "after": {
+        "height": 901.2,
+        "shellHeight": 901.2,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 24,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b2ab1c2f5503",
+            "parentId": "5daf2376-ada4-8014-8008-ad9d1e503447",
+            "linked": true
+          }
+        ]
+      }
+    },
+    {
+      "titleId": "01e728c3-f1ef-80b3-8008-b30d4c849b97",
+      "parentId": "01e728c3-f1ef-80b3-8008-b30d4c849b58",
+      "courseId": "01e728c3-f1ef-80b3-8008-b30d4c849b51",
+      "boardId": "01e728c3-f1ef-80b3-8008-b30d4c849b4d",
+      "mobile": false,
+      "oldHeight": 1000.0000000000009,
+      "shellId": "01e728c3-f1ef-80b3-8008-b30d4c849b95",
+      "originalNoticeY": 6934,
+      "relocatedTables": [],
+      "body": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849b96",
+          "y": 6934,
+          "h": 92
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849b9e",
+          "y": 7602,
+          "h": 24
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849b9f",
+          "y": 7652,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba0",
+          "y": 7652,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba3",
+          "y": 7042,
+          "h": 138
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba4",
+          "y": 7194,
+          "h": 58
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d5225df29",
+          "y": 7270,
+          "h": 312
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd5897af0119",
+      "tagsBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849b98",
+          "x": 1840,
+          "y": 6878
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba1",
+          "x": 1988,
+          "y": 6878
+        }
+      ],
+      "delta": 57.19999999999982,
+      "notesBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b30d4c849b59",
+          "y": 7872
+        }
+      ],
+      "courseOldHeight": 2028,
+      "boardOldHeight": 2220,
+      "after": {
+        "height": 1057.2000000000007,
+        "shellHeight": 1037.2000000000007,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 28,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": []
+      }
+    },
+    {
+      "titleId": "01e728c3-f1ef-80b3-8008-b312083d55ee",
+      "parentId": "01e728c3-f1ef-80b3-8008-b312083d55ad",
+      "courseId": "01e728c3-f1ef-80b3-8008-b312083d55a7",
+      "boardId": "01e728c3-f1ef-80b3-8008-b312083d55a3",
+      "mobile": false,
+      "oldHeight": 756,
+      "shellId": "01e728c3-f1ef-80b3-8008-b312083d55ec",
+      "originalNoticeY": 12118,
+      "relocatedTables": [],
+      "body": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55ed",
+          "y": 12118,
+          "h": 92
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55f5",
+          "y": 12648,
+          "h": 24
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55f6",
+          "y": 12698,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55f7",
+          "y": 12698,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55fa",
+          "y": 12226,
+          "h": 138
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55fb",
+          "y": 12378,
+          "h": 58
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b3120a5b8b81",
+          "y": 12454,
+          "h": 178
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd589913514c",
+      "tagsBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55ef",
+          "x": 4000,
+          "y": 12062
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55f8",
+          "x": 4148,
+          "y": 12062
+        }
+      ],
+      "delta": 57.20000000000073,
+      "notesBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b312083d55ae",
+          "y": 12824
+        }
+      ],
+      "courseOldHeight": 1760,
+      "boardOldHeight": 1960,
+      "after": {
+        "height": 813.2000000000007,
+        "shellHeight": 793.2000000000007,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 28,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": []
+      }
+    },
+    {
+      "titleId": "01e728c3-f1ef-80b3-8008-b311b407e272",
+      "parentId": "01e728c3-f1ef-80b3-8008-b311b407e231",
+      "courseId": "01e728c3-f1ef-80b3-8008-b311b407e22b",
+      "boardId": "01e728c3-f1ef-80b3-8008-b311b407b083",
+      "mobile": false,
+      "oldHeight": 1000,
+      "shellId": "01e728c3-f1ef-80b3-8008-b311b407e270",
+      "originalNoticeY": 12118,
+      "relocatedTables": [],
+      "body": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e271",
+          "y": 12118,
+          "h": 92
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e279",
+          "y": 12786,
+          "h": 24
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e27a",
+          "y": 12836,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e27b",
+          "y": 12836,
+          "h": 37.600000000000364
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e27e",
+          "y": 12226,
+          "h": 138
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e27f",
+          "y": 12378,
+          "h": 58
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e280",
+          "y": 12454,
+          "h": 312
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd589a6843e9",
+      "tagsBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e273",
+          "x": 2920,
+          "y": 12062
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e27c",
+          "x": 3068,
+          "y": 12062
+        }
+      ],
+      "delta": 57.20000000000073,
+      "notesBefore": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b311b407e232",
+          "y": 13056
+        }
+      ],
+      "courseOldHeight": 2028,
+      "boardOldHeight": 2219.999999999998,
+      "after": {
+        "height": 1057.2000000000007,
+        "shellHeight": 1037.2000000000007,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 28,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": []
+      }
+    },
+    {
+      "titleId": "103e019a-f5a8-8027-8008-b29e1b42719f",
+      "parentId": "103e019a-f5a8-8027-8008-b29e1b421acb",
+      "courseId": "103e019a-f5a8-8027-8008-b29e1b421ac5",
+      "boardId": "103e019a-f5a8-8027-8008-b29e1b421ac1",
+      "mobile": false,
+      "oldHeight": 830,
+      "shellId": "103e019a-f5a8-8027-8008-b29e1b42719d",
+      "originalNoticeY": 1970,
+      "relocatedTables": [
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b2ab1eb686f0",
+          "oldParentId": "103e019a-f5a8-8027-8008-b29e1b421ac1",
+          "x": 264,
+          "y": 2286
+        }
+      ],
+      "body": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b42719e",
+          "y": 1970,
+          "h": 92
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b4271a6",
+          "y": 2604,
+          "h": 24
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b4271a7",
+          "y": 2654,
+          "h": 37.59999999999991
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b4271a8",
+          "y": 2654,
+          "h": 37.59999999999991
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b4271ab",
+          "y": 2078,
+          "h": 118
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b4271ac",
+          "y": 2210,
+          "h": 58
+        },
+        {
+          "id": "01e728c3-f1ef-80b3-8008-b2ab1eb686f0",
+          "y": 2286,
+          "h": 296
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd589be46a03",
+      "tagsBefore": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b4271a0",
+          "x": 1136,
+          "y": 1926
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b4271a9",
+          "x": 1284,
+          "y": 1926
+        }
+      ],
+      "delta": 71.19999999999982,
+      "leftPanelId": "103e019a-f5a8-8027-8008-b29e1b421aca",
+      "leftOldHeight": 830,
+      "notesBefore": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b421acc",
+          "y": 2758
+        }
+      ],
+      "courseOldHeight": 1152,
+      "boardOldHeight": 1344,
+      "after": {
+        "height": 901.1999999999996,
+        "shellHeight": 901.1999999999996,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 24,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b2ab1eb686f0",
+            "parentId": "103e019a-f5a8-8027-8008-b29e1b421acb",
+            "linked": true
+          }
+        ]
+      }
+    },
+    {
+      "titleId": "103e019a-f5a8-8027-8008-b29e1b7cec10",
+      "parentId": "103e019a-f5a8-8027-8008-b29e1b7cebd1",
+      "courseId": "103e019a-f5a8-8027-8008-b29e1b7cebcb",
+      "boardId": "103e019a-f5a8-8027-8008-b29e1b7cebc7",
+      "mobile": false,
+      "oldHeight": 830,
+      "shellId": "103e019a-f5a8-8027-8008-b29e1b7cec0e",
+      "originalNoticeY": 1970,
+      "relocatedTables": [],
+      "body": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec0f",
+          "y": 1970,
+          "h": 92
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec17",
+          "y": 2604,
+          "h": 24
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec18",
+          "y": 2654,
+          "h": 37.59999999999991
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec19",
+          "y": 2654,
+          "h": 37.59999999999991
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec1c",
+          "y": 2078,
+          "h": 118
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec1d",
+          "y": 2210,
+          "h": 58
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1d9d4950",
+          "y": 2286,
+          "h": 178
+        }
+      ],
+      "introductionId": "cf371b29-2e8e-8011-8008-bd589dba884a",
+      "tagsBefore": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec11",
+          "x": 2656,
+          "y": 1926
+        },
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cec1a",
+          "x": 2804,
+          "y": 1926
+        }
+      ],
+      "delta": 71.19999999999982,
+      "leftPanelId": "103e019a-f5a8-8027-8008-b29e1b7cebd0",
+      "leftOldHeight": 830,
+      "notesBefore": [
+        {
+          "id": "103e019a-f5a8-8027-8008-b29e1b7cebd2",
+          "y": 2758
+        }
+      ],
+      "courseOldHeight": 1152,
+      "boardOldHeight": 1344,
+      "after": {
+        "height": 901.1999999999996,
+        "shellHeight": 901.1999999999996,
+        "introFont": "14.4",
+        "family": "Inter",
+        "paintContained": true,
+        "introToTagsGap": 16,
+        "tagsToNoticeGap": 16,
+        "titleY": 24,
+        "courseContainsPanel": true,
+        "outerContainsCourse": true,
+        "bodyPreserved": true,
+        "linkedTables": []
+      }
+    }
+  ],
+  "rootRowsBefore": [
+    {
+      "id": "5daf2376-ada4-8014-8008-ad9c0e35b6c1",
+      "x": 80,
+      "y": 80,
+      "w": 1440,
+      "h": 1176
+    },
+    {
+      "id": "5daf2376-ada4-8014-8008-ad9d1daa4634",
+      "x": 1600,
+      "y": 80,
+      "w": 1440,
+      "h": 1344
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b29e1b421ac1",
+      "x": 80,
+      "y": 1504,
+      "w": 1440,
+      "h": 1344
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b29e1b7cebc7",
+      "x": 1600,
+      "y": 1504,
+      "w": 1440,
+      "h": 1344
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b2b61b6e4aa0",
+      "x": 1600,
+      "y": 2928,
+      "w": 1440,
+      "h": 1344
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b2b5b5397af8",
+      "x": 80,
+      "y": 2928,
+      "w": 1440,
+      "h": 1344
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b5077a35e3e4",
+      "x": 1600,
+      "y": 4352,
+      "w": 1440,
+      "h": 1176
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b2b679d46158",
+      "x": 80,
+      "y": 4352,
+      "w": 1440,
+      "h": 1344
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30ccf0c8730",
+      "x": 80,
+      "y": 5776,
+      "w": 1024,
+      "h": 1648
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b5087f48418c",
+      "x": 3320,
+      "y": 5776,
+      "w": 1024,
+      "h": 1648
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982ac",
+      "x": 2240,
+      "y": 5776,
+      "w": 1024,
+      "h": 1460
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30d4c849b4d",
+      "x": 1160,
+      "y": 5776,
+      "w": 1024,
+      "h": 2220
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30dbbe5ee83",
+      "x": 80,
+      "y": 8072,
+      "w": 454,
+      "h": 2100
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b50884f1204f",
+      "x": 1626,
+      "y": 8072,
+      "w": 454,
+      "h": 2100
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30ee389374a",
+      "x": 614,
+      "y": 8072,
+      "w": 454,
+      "h": 2778
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab37",
+      "x": 1120,
+      "y": 8072,
+      "w": 454,
+      "h": 1700
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30fd561cc00",
+      "x": 80,
+      "y": 10960,
+      "w": 1024,
+      "h": 1800
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b312083d55a3",
+      "x": 3320,
+      "y": 10960,
+      "w": 1024,
+      "h": 1960
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b311b407b083",
+      "x": 2240,
+      "y": 10960,
+      "w": 1024,
+      "h": 2219.999999999998
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b31141012325",
+      "x": 1160,
+      "y": 10960,
+      "w": 1024,
+      "h": 1840
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b3120c8f4de8",
+      "x": 1626,
+      "y": 12856,
+      "w": 454,
+      "h": 2468
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b311b66e2076",
+      "x": 1120,
+      "y": 12856,
+      "w": 454,
+      "h": 2778
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b3117ea2747f",
+      "x": 614,
+      "y": 12856,
+      "w": 454,
+      "h": 2350
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b3102030ec61",
+      "x": 80,
+      "y": 12856,
+      "w": 454,
+      "h": 2055
+    }
+  ],
+  "rootMoves": [
+    {
+      "id": "103e019a-f5a8-8027-8008-b29e1b421ac1",
+      "fromY": 1504,
+      "toY": 1571.2
+    },
+    {
+      "id": "103e019a-f5a8-8027-8008-b29e1b7cebc7",
+      "fromY": 1504,
+      "toY": 1571.2
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b2b61b6e4aa0",
+      "fromY": 2928,
+      "toY": 3062.3999999999996
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b2b5b5397af8",
+      "fromY": 2928,
+      "toY": 3062.3999999999996
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b5077a35e3e4",
+      "fromY": 4352,
+      "toY": 4486.4
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b2b679d46158",
+      "fromY": 4352,
+      "toY": 4486.4
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30ccf0c8730",
+      "fromY": 5776,
+      "toY": 5910.4
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b5087f48418c",
+      "fromY": 5776,
+      "toY": 5910.4
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f413982ac",
+      "fromY": 5776,
+      "toY": 5910.4
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30d4c849b4d",
+      "fromY": 5776,
+      "toY": 5910.4
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30dbbe5ee83",
+      "fromY": 8072,
+      "toY": 8251.599999999999
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b50884f1204f",
+      "fromY": 8072,
+      "toY": 8251.599999999999
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30ee389374a",
+      "fromY": 8072,
+      "toY": 8251.599999999999
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30f6fd4ab37",
+      "fromY": 8072,
+      "toY": 8251.599999999999
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b30fd561cc00",
+      "fromY": 10960,
+      "toY": 11186.8
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b312083d55a3",
+      "fromY": 10960,
+      "toY": 11186.8
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b311b407b083",
+      "fromY": 10960,
+      "toY": 11186.8
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b31141012325",
+      "fromY": 10960,
+      "toY": 11186.8
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b3120c8f4de8",
+      "fromY": 12856,
+      "toY": 13528
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b311b66e2076",
+      "fromY": 12856,
+      "toY": 13528
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b3117ea2747f",
+      "fromY": 12856,
+      "toY": 13528
+    },
+    {
+      "id": "01e728c3-f1ef-80b3-8008-b3102030ec61",
+      "fromY": 12856,
+      "toY": 13528
+    }
+  ],
+  "settledBoardOverlap": {
+    "boardCount": 24,
+    "overlaps": [],
+    "items": [
+      {
+        "parentId": "01e728c3-f1ef-80b3-8008-b30ee51f2a5b",
+        "children": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f5e",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 1327.2000000000007
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f5f",
+            "name": "Prévisualisation — notice source",
+            "y": 187.20000000000073,
+            "h": 132
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f60",
+            "name": "Results title",
+            "y": 28,
+            "h": 19.200000000000728
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f61",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 147.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f67",
+            "name": "Selection summary",
+            "y": 1061.2000000000007,
+            "h": 40
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f68",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 1119.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f69",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 1119.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6a",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 147.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6c",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 335.2000000000007,
+            "h": 252
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6d",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 603.2000000000007,
+            "h": 112
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30ee51f4f6e",
+            "name": "Table viewport — horizontal scroll",
+            "y": 731.2000000000007,
+            "h": 312
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd571da33369",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 20,
+            "h": 35.20000000000073
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd589235102e",
+            "name": "Results introduction",
+            "y": 71.20000000000073,
+            "h": 60
+          }
+        ],
+        "courseH": 2623.2000000000007,
+        "outerH": 2855.2000000000007
+      },
+      {
+        "parentId": "01e728c3-f1ef-80b3-8008-b3120c8f4df5",
+        "children": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e94",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 1057.2000000000007
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e95",
+            "name": "Prévisualisation — notice source",
+            "y": 187.20000000000073,
+            "h": 132
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e96",
+            "name": "Results title",
+            "y": 28,
+            "h": 19.19999999999891
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e97",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 147.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e9d",
+            "name": "Selection summary",
+            "y": 925.2000000000007,
+            "h": 40
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e9e",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 983.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4e9f",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 983.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4ea0",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 147.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4ea2",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 335.2000000000007,
+            "h": 252
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120c8f4ea3",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 603.2000000000007,
+            "h": 112
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120e6594b6",
+            "name": "Product / Preview search empty / responsive",
+            "y": 731.2000000000007,
+            "h": 178
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd571f7555f2",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 20,
+            "h": 35.20000000000073
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd589392d128",
+            "name": "Results introduction",
+            "y": 71.20000000000073,
+            "h": 60
+          }
+        ],
+        "courseH": 2353.2000000000007,
+        "outerH": 2585.2000000000007
+      },
+      {
+        "parentId": "01e728c3-f1ef-80b3-8008-b311b66e2083",
+        "children": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e6432",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 1327.2000000000025
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e6433",
+            "name": "Prévisualisation — notice source",
+            "y": 187.20000000000073,
+            "h": 132
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e6434",
+            "name": "Results title",
+            "y": 28,
+            "h": 19.19999999999891
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e6435",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 147.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e643b",
+            "name": "Selection summary",
+            "y": 1061.2000000000007,
+            "h": 40
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e643c",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 1119.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e643d",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 1119.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e643e",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 147.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e6440",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 335.2000000000007,
+            "h": 252
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e6441",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 603.2000000000007,
+            "h": 112
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b66e6442",
+            "name": "Table viewport — horizontal scroll",
+            "y": 731.2000000000007,
+            "h": 312
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd572139b0e9",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 20,
+            "h": 35.20000000000073
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd5894bc5af6",
+            "name": "Results introduction",
+            "y": 71.20000000000073,
+            "h": 60
+          }
+        ],
+        "courseH": 2623.2000000000007,
+        "outerH": 2855.2000000000007
+      },
+      {
+        "parentId": "5daf2376-ada4-8014-8008-ad9d1e503447",
+        "children": [
+          {
+            "id": "5daf2376-ada4-8014-8008-ad9d1e5cb4fa",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 901.2
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-adaa294ea62e",
+            "name": "Prévisualisation — notice source",
+            "y": 139.20000000000005,
+            "h": 92
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-ad9d310ee5b6",
+            "name": "Results title",
+            "y": 24,
+            "h": 19.200000000000045
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-ad9d3144957c",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 99.20000000000005,
+            "h": 24
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-ad9d607e3ee9",
+            "name": "Selection summary",
+            "y": 773.2,
+            "h": 24
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-ad9d609faf62",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 823.2,
+            "h": 37.59999999999991
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-ad9d60c099f5",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 823.2,
+            "h": 37.59999999999991
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-ada3bb93f948",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 99.20000000000005,
+            "h": 24
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-adaa56fbfcb1",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 247.20000000000005,
+            "h": 118
+          },
+          {
+            "id": "5daf2376-ada4-8014-8008-adaa57fe0a1d",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 379.20000000000005,
+            "h": 58
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd572bf69599",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 20,
+            "h": 35.19999999999982
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b2ab1c2f5503",
+            "name": "Linked Foundations / Canonical generic data table",
+            "y": 455.20000000000005,
+            "h": 296
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd589613565c",
+            "name": "Results introduction",
+            "y": 63.200000000000045,
+            "h": 20
+          }
+        ],
+        "courseH": 1235.2,
+        "outerH": 1411.2
+      },
+      {
+        "parentId": "01e728c3-f1ef-80b3-8008-b30d4c849b58",
+        "children": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849b95",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 1037.2000000000007
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849b96",
+            "name": "Prévisualisation — notice source",
+            "y": 143.19999999999982,
+            "h": 92
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849b97",
+            "name": "Results title",
+            "y": 28,
+            "h": 19.199999999999818
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849b98",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 103.19999999999982,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849b9e",
+            "name": "Selection summary",
+            "y": 811.1999999999998,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849b9f",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 861.1999999999998,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba0",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 861.1999999999998,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba1",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 103.19999999999982,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba3",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 251.19999999999982,
+            "h": 138
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d4c849ba4",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 403.1999999999998,
+            "h": 58
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b30d5225df29",
+            "name": "Table viewport — horizontal scroll",
+            "y": 479.1999999999998,
+            "h": 312
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd572ce4a049",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 24,
+            "h": 35.19999999999982
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd5897af0119",
+            "name": "Results introduction",
+            "y": 67.19999999999982,
+            "h": 20
+          }
+        ],
+        "courseH": 2069.2,
+        "outerH": 2261.199999999999
+      },
+      {
+        "parentId": "01e728c3-f1ef-80b3-8008-b312083d55ad",
+        "children": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55ec",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 793.2000000000007
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55ed",
+            "name": "Prévisualisation — notice source",
+            "y": 143.20000000000073,
+            "h": 92
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55ee",
+            "name": "Results title",
+            "y": 28,
+            "h": 19.19999999999891
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55ef",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 103.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55f5",
+            "name": "Selection summary",
+            "y": 673.2000000000007,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55f6",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 723.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55f7",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 723.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55f8",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 103.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55fa",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 251.20000000000073,
+            "h": 138
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b312083d55fb",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 403.2000000000007,
+            "h": 58
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b3120a5b8b81",
+            "name": "Product / Preview search empty / responsive",
+            "y": 479.2000000000007,
+            "h": 178
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd572ede55a4",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 24,
+            "h": 35.20000000000073
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd589913514c",
+            "name": "Results introduction",
+            "y": 67.20000000000073,
+            "h": 20
+          }
+        ],
+        "courseH": 1837.2000000000007,
+        "outerH": 2029.2000000000007
+      },
+      {
+        "parentId": "01e728c3-f1ef-80b3-8008-b311b407e231",
+        "children": [
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e270",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 1037.2000000000007
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e271",
+            "name": "Prévisualisation — notice source",
+            "y": 143.20000000000073,
+            "h": 92
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e272",
+            "name": "Results title",
+            "y": 28,
+            "h": 19.19999999999891
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e273",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 103.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e279",
+            "name": "Selection summary",
+            "y": 811.2000000000007,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e27a",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 861.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e27b",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 861.2000000000007,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e27c",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 103.20000000000073,
+            "h": 24
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e27e",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 251.20000000000073,
+            "h": 138
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e27f",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 403.2000000000007,
+            "h": 58
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b311b407e280",
+            "name": "Table viewport — horizontal scroll",
+            "y": 479.2000000000007,
+            "h": 312
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd5730eeb3c0",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 24,
+            "h": 35.20000000000073
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd589a6843e9",
+            "name": "Results introduction",
+            "y": 67.20000000000073,
+            "h": 20
+          }
+        ],
+        "courseH": 2069.2000000000007,
+        "outerH": 2261.2000000000007
+      },
+      {
+        "parentId": "103e019a-f5a8-8027-8008-b29e1b421acb",
+        "children": [
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b42719d",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 901.1999999999996
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b42719e",
+            "name": "Prévisualisation — notice source",
+            "y": 139.1999999999996,
+            "h": 92
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b42719f",
+            "name": "Results title",
+            "y": 24,
+            "h": 19.200000000000045
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b4271a0",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 99.19999999999959,
+            "h": 24
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b4271a6",
+            "name": "Selection summary",
+            "y": 773.1999999999996,
+            "h": 24
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b4271a7",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 823.1999999999996,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b4271a8",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 823.1999999999996,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b4271a9",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 99.19999999999959,
+            "h": 24
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b4271ab",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 247.1999999999996,
+            "h": 118
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b4271ac",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 379.1999999999996,
+            "h": 58
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd5735e9e5d6",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 20,
+            "h": 35.19999999999982
+          },
+          {
+            "id": "01e728c3-f1ef-80b3-8008-b2ab1eb686f0",
+            "name": "Linked Foundations / Canonical generic data table",
+            "y": 455.1999999999996,
+            "h": 296
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd589be46a03",
+            "name": "Results introduction",
+            "y": 63.19999999999982,
+            "h": 19.999999999999773
+          }
+        ],
+        "courseH": 1235.1999999999996,
+        "outerH": 1411.1999999999996
+      },
+      {
+        "parentId": "103e019a-f5a8-8027-8008-b29e1b7cebd1",
+        "children": [
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec0e",
+            "name": "EasyEdu / Panels / Semantic panel / Success / Flexible",
+            "y": 0,
+            "h": 901.1999999999996
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec0f",
+            "name": "Prévisualisation — notice source",
+            "y": 139.1999999999996,
+            "h": 92
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec10",
+            "name": "Results title",
+            "y": 24,
+            "h": 19.200000000000045
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec11",
+            "name": "EasyEdu / Labels / Table metadata / S / Primary",
+            "y": 99.19999999999959,
+            "h": 24
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec17",
+            "name": "Selection summary",
+            "y": 773.1999999999996,
+            "h": 24
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec18",
+            "name": "EasyEdu / Buttons / Core action / Primary / M",
+            "y": 823.1999999999996,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec19",
+            "name": "EasyEdu / Buttons / Core action / Secondary / M",
+            "y": 823.1999999999996,
+            "h": 37.600000000000364
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec1a",
+            "name": "EasyEdu / Labels / Table metadata / S / Neutral",
+            "y": 99.19999999999959,
+            "h": 24
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec1c",
+            "name": "Source recipe — segmented-choice (not a text-style toggle)",
+            "y": 247.1999999999996,
+            "h": 118
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1b7cec1d",
+            "name": "Prévisualisation — barre de recherche et sélection",
+            "y": 379.1999999999996,
+            "h": 58
+          },
+          {
+            "id": "103e019a-f5a8-8027-8008-b29e1d9d4950",
+            "name": "Product / Preview search empty",
+            "y": 455.1999999999996,
+            "h": 178
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd5737420734",
+            "name": "Foundation section icon tile / Compact / Success",
+            "y": 20,
+            "h": 35.19999999999982
+          },
+          {
+            "id": "cf371b29-2e8e-8011-8008-bd589dba884a",
+            "name": "Results introduction",
+            "y": 63.19999999999982,
+            "h": 19.999999999999773
+          }
+        ],
+        "courseH": 1235.1999999999996,
+        "outerH": 1411.1999999999996
+      }
+    ]
+  },
+  "exportsInspected": [
+    "5daf2376-ada4-8014-8008-ad9d1daa4634",
+    "01e728c3-f1ef-80b3-8008-b30ee389374a"
+  ]
+}
