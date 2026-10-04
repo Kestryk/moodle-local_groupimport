@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Preserve the consumer Sass version for bounded shared-source sync. Compare the
+entire generated CSS diff: a newer fixture compiler can alter existing nested
+selectors/media groups even when only an additive palette recipe was imported.
+After a Penpot file switch, plugin storage may reset; persist exact publication
+and consumer IDs before switching. Relink existing wrappers with original glyph
+components, normalize descendants from the linked master and preserve the old
+wrapper recoverably. A linked outer tile is not proof of glyph containment.
+
 Mass Import state header propagation qualifies effective visible ancestry;
 hidden archives and loading shells are not live main headers. Check actual
 font ID/variant and painted text bounds after family/size changes. A returned

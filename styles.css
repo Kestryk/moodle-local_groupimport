@@ -19703,6 +19703,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-accent);
 }
 
+.easyedu-ui .easyedu-icon-tile--warning {
+  background: var(--easyedu-warning-soft);
+  border-color: var(--easyedu-semantic-border-warning);
+  color: var(--easyedu-warning);
+}
+
+.easyedu-ui .easyedu-icon-tile--danger {
+  background: var(--easyedu-danger-soft);
+  border-color: var(--easyedu-semantic-border-danger);
+  color: var(--easyedu-danger);
+}
+
 .easyedu-ui .easyedu-information {
   background: var(--easyedu-information-surface);
   border: 0.0625rem solid var(--easyedu-semantic-border-primary);
