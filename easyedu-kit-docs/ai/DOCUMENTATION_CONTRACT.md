@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Compact Navigation audits wait for terminal opening opacity, pass viewport
+arguments explicitly into browser evaluation and distinguish destination links
+from native auxiliary actions. After Penpot text-lane/library changes, force
+text layout then read settled painted bounds and export again; an initial PNG
+may still contain stale text paint. Assert visible linked glyphs separately.
+Use shared opt-in Typography roles without rewriting original drawer Motion.
+
 Card-local search has a field/Cancel row, not an invented heading. Read the
 generated native markup and actual responsive route before publishing. Transfer
 existing layout declarations into canonical Kit recipes with whole-CSS identity

@@ -1,9 +1,18 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.91",
+  "version": "0.4.92",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "compactNavigationTypography20261004": {
+      "kitCommit": "de7abc3f73a8e9d2d8320fd3c026ac4a9b64aa1d",
+      "status": "Kit 0.4.92 owns compact destination/Guide-label type roles with identical complete generated CSS. Paired Foundation states and the linked product drawer reconciled. Native pre-extraction 768/390 audit passes; role-specific successor and human acceptance pending. Full Navigation drift remains separate.",
+      "nativePreExtractionRun": "easystud-authenticated-20261004T195314211Z-19428",
+      "penpotLinked": true,
+      "nativePreviewVerified": false,
+      "humanAccepted": false,
+      "documentation": "docs/student-mobile-navigation-typography-2026-10-04.md"
+    },
     "cardInlineSearch20261004": {
       "kitCommit": "bedd8676418c0ad4426b3aa71cb387fa37aaa698",
       "status": "Kit 0.4.91 owns card search layout; entire rebuilt CSS identical. Paired Foundation mains and two live product copies reconciled; responsive menu uses native Search participants/magnifier. Native search/geometry successor passes at 1600/768/390; human acceptance pending.",

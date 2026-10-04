@@ -7,6 +7,15 @@
 - Record the Penpot Guide-label family divergence explicitly; native measurement
   and paired source repair are pending, not human acceptance.
 
+## 2026-10-04 - Compact navigation typography publication
+
+- Extract compact destination/Guide-label roles into Kit 0.4.92 with identical
+  compiled CSS; existing drawer routes, scrolling and Motion are unchanged.
+- Align paired Foundations specimens and the linked EasyStud drawer; recover
+  native destination glyphs and verify painted containment after propagation.
+- Native 768/390 pre-extraction audit passes. The role-specific successor and
+  combined human checklist remain separate validation gates.
+
 ## 2026-10-04 - Canonical card inline-search layout
 
 - Consume Kit 0.4.91 search-panel/row/field recipes with identical whole generated

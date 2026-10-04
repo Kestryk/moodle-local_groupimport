@@ -430,6 +430,13 @@ technical passes do not close these newly reported regressions.
 
 ### Current execution checkpoint
 
+- SM-27 typography successor: native 768/390 audit passes on Inter, opaque
+  white panel, centred icons and Close focus return. Paired Foundations
+  Compact-item/Guide labels and the linked product panel are reconciled;
+  Kit 0.4.92 extraction retains the complete generated CSS. Post-extraction
+  role-specific native proof is pending, separate from human acceptance.
+  See `student-mobile-navigation-typography-2026-10-04.md`.
+
 - SM-35 layout successor: existing search-shell declarations are extracted into
   Kit 0.4.91 with exact whole-CSS identity. Foundation Members/Groups Standard
   and Library use native search-only anatomy; two effective product specimens

@@ -74,13 +74,24 @@ test('Mobile navigation keeps Kit typography, opaque paint and aligned targets',
         save();
         expect(geometry.panel.opacity).toBe('1');
         expect(geometry.panel.background).not.toMatch(/rgba\(.+, 0\)|transparent/);
+        expect(geometry.panel.family).toContain('Inter');
+        expect(geometry.title.size).toBe('16px');
+        expect(geometry.title.weight).toBe('600');
+        expect(geometry.guide.font).toBe(geometry.title.font);
+        expect(geometry.guide.size).toBe('16px');
+        expect(geometry.guide.weight).toBe('700');
+        const destinations = geometry.rows.filter(row => row.text);
+        expect(destinations).toHaveLength(3);
         expect(geometry.rows.length).toBeGreaterThan(0);
         for (const row of geometry.rows) {
             expect(row.font).toBe(geometry.title.font);
             expect(row.height).toBeGreaterThanOrEqual(44);
             expect(row.labelContained).toBe(true);
             expect(row.iconCentreDelta).toBeLessThanOrEqual(1);
+            expect(row.size).toBe('15px');
+            expect(row.weight).toBe('500');
         }
+        await panel.screenshot({path: testInfo.outputPath(`mobile-navigation-${width}.png`)});
         await panel.locator('[data-easyedu-navigation-close]').click();
         await expect(panel).toHaveAttribute('aria-hidden', 'true');
         await expect(opener).toBeFocused();
