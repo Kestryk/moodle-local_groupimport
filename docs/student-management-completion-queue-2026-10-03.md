@@ -343,8 +343,12 @@ technical passes do not close these newly reported regressions.
   Candidate: all four server-rendered/generated Group and Grouping search Cancel
   actions now use the public secondary Kit button. The EasyStud Penpot page 03
   already depicts the linked secondary M action alongside the linked search
-  field in its inline member-search compositions. Native geometry and behavior
-  remain to be verified; human acceptance stays open.
+  field in its inline member-search compositions. Native Group search passes
+  at 1600/768/390; Grouping search passes at 1600, with direct trigger hidden
+  by source contract at 768/390. The older broad inline-feedback scenario is
+  still blocked before this assertion by a Moodle header intercepting its
+  Group-card disclosure click; the new scoped scenario covers Grouping. Human
+  acceptance stays open. See `docs/student-group-member-search-2026-10-04.md`.
 - [ ] R09: Mass Import no-results helper is too large: use measured subordinate
   text role in Foundations/product and canonical Kit, then verify native paint.
   Candidate: Standard/Library/Product Penpot and Kit now use the 12.16px caption

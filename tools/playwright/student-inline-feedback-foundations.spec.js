@@ -126,15 +126,22 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
                     await card.locator('[data-easystud-container-search-toggle]').first().click();
                     const search = card.locator('[data-easystud-container-search-panel]:visible').first();
                     const searchCancel = search.locator('[data-easystud-container-search-cancel]');
+                    const searchField = search.locator('.easyedu-search-field');
                     await page.mouse.move(0, 0);
+                    await expect(searchField).toHaveCount(1);
+                    await expect(searchCancel).toHaveClass(/easyedu-button--secondary/);
                     await expect(searchCancel).toHaveCSS('font-size', '12px');
-                    await expect(searchCancel).toHaveCSS('font-weight', '700');
-                    await expect(searchCancel).toHaveCSS('color', 'rgb(15, 108, 191)');
+                    await expect(searchCancel).toHaveCSS('font-weight', '600');
                     await expect(searchCancel).toHaveCSS('align-items', 'center');
+                    const heights = await search.evaluate(node => ({
+                        field: node.querySelector('.easyedu-search-field').getBoundingClientRect().height,
+                        cancel: node.querySelector('[data-easystud-container-search-cancel]').getBoundingClientRect().height,
+                    }));
+                    expect(Math.abs(heights.field - heights.cancel)).toBeLessThanOrEqual(1);
+                    reports.push({width, kind: 'container-search', heights});
                     await page.keyboard.press('Tab');
                     await searchCancel.focus();
                     expect(await searchCancel.evaluate(n => n.matches(':focus-visible'))).toBe(true);
-                    await expect(searchCancel).toHaveCSS('border-top-color', 'rgb(138, 188, 227)');
                     expect(await searchCancel.evaluate(n => getComputedStyle(n).boxShadow)).not.toBe('none');
                     await search.screenshot({path: testInfo.outputPath(`inline-search-${width}.png`)});
                     await searchCancel.click();
