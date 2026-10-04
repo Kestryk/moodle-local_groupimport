@@ -7,10 +7,13 @@ const root = path.resolve(__dirname, '../..');
 (async() => {
     const browser = await chromium.launch({headless: true});
     try {
+      for (const width of [1600, 768, 390]) {
+       for (const motion of ['reduce', 'no-preference']) {
         const page = await browser.newPage();
+        await page.setViewportSize({width, height: 1000});
         const errors = [];
         page.on('pageerror', error => errors.push(error.message));
-        await page.emulateMedia({reducedMotion: 'reduce'});
+        await page.emulateMedia({reducedMotion: motion});
         await page.setContent(`<main id="page-admin-setting-local_groupimport"><form id="adminsettings">
             <div><label for="mode">Default view</label><select id="mode" name="s_local_groupimport_defaultlayoutmode">
                 <option value="both" selected>Complete</option><option value="groups">Groups</option></select></div>
@@ -44,8 +47,16 @@ const root = path.resolve(__dirname, '../..');
         await hosts.nth(1).getByRole('button', {name: 'Username', exact: true}).click();
         assert.deepEqual(await page.locator('#fields').evaluate(s => [...s.selectedOptions].map(o => o.value)),
             ['email', 'username']);
-        await page.keyboard.press('Escape');
-        await page.getByRole('button', {name: 'Reset', exact: true}).click();
+        // Actual regression: Reset must work directly below the OPEN list.
+        const reset = page.getByRole('button', {name: 'Reset', exact: true});
+        const resetBefore = await reset.boundingBox();
+        await page.mouse.move(resetBefore.x + resetBefore.width / 2, resetBefore.y + resetBefore.height / 2);
+        await page.mouse.down();
+        // Holding the mouse reproduces focusout without immediately releasing:
+        // the target must not move before the physical click can be delivered.
+        await page.waitForTimeout(150);
+        assert.deepEqual(await reset.boundingBox(), resetBefore, 'No pointerdown reflow');
+        await page.mouse.up();
         await page.waitForFunction(() => document.querySelector('.easyedu-searchable-choice__summary').textContent === 'Complete',
             null, {timeout: 5000}).catch(async error => {
             console.error({errors, resetState: await page.evaluate(() => ({
@@ -59,7 +70,10 @@ const root = path.resolve(__dirname, '../..');
         await page.waitForFunction(() => document.querySelector('.easyedu-searchable-choice__trigger').disabled);
         assert.equal(await hosts.nth(0).evaluate(h => !!h.closest('.easyedu-ui')), true);
         assert.deepEqual(errors, []);
-        console.log('PASS: shared admin choices, native values, multi selection, reset, disabled, scope, idempotence and fallback.');
+        console.log(`PASS ${width}/${motion}: open-list Reset, stable held pointer, values, search, disabled and fallback.`);
+        await page.close();
+       }
+      }
     } finally {
         await browser.close();
     }

@@ -12,6 +12,34 @@
     var loadingStateAttribute = 'data-easystud-loading-state';
     var quietPeriod = 240;
     var minimumVisiblePeriod = 1200;
+    var initialiseColourReset = function() {
+        var form = document.querySelector('#adminsettings');
+        var button = form && form.querySelector('[data-easystud-restore-colours]');
+        if (!button || button.dataset.initialised === 'true') {
+            return;
+        }
+        button.dataset.initialised = 'true';
+        button.hidden = false;
+        button.addEventListener('click', function() {
+            var changed = false;
+            form.querySelectorAll('[data-easyedu-color-default]').forEach(function(control) {
+                var hex = control.querySelector('.easyedu-color-picker__hex');
+                var value = control.getAttribute('data-easyedu-color-default');
+                if (!hex || hex.readOnly || hex.disabled || !/^#[0-9a-f]{6}$/i.test(value)) {
+                    return;
+                }
+                hex.value = value;
+                // Native dirty-state and swatch sync; never submit settings.
+                hex.dispatchEvent(new Event('input', {bubbles: true}));
+                hex.dispatchEvent(new Event('change', {bubbles: true}));
+                changed = true;
+            });
+            var status = form.querySelector('[data-easystud-restore-colours-status]');
+            if (changed && status) {
+                status.textContent = status.getAttribute('data-easystud-restore-colours-status');
+            }
+        });
+    };
     var initialiseColourPickers = function() {
         Array.prototype.forEach.call(document.querySelectorAll('[data-easyedu-color-picker]'), function(control) {
             var swatch = control.querySelector('.easyedu-color-picker__swatch');
@@ -52,6 +80,7 @@
     };
     var initialise = function() {
         initialiseColourPickers();
+        initialiseColourReset();
         var root = document.querySelector('#page-admin-setting-local_groupimport');
         var form = document.querySelector('#adminsettings');
         var skeleton = root ? root.querySelector('[data-easystud-loading-skeleton]') : null;

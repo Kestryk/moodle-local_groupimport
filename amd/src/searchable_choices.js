@@ -109,6 +109,39 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     const originalHidden = select.hidden;
     let rows = [];
     let panelAnimation = null;
+    let outsidePointer = null;
+    let dismissTimer = null;
+    const view = document.defaultView;
+    // An in-flow panel must not collapse between pointerdown and click on the
+    // following control. Listen only while open, retaining keyboard blur.
+    const onOutsidePointerDown = event => {
+        outsidePointer = host.contains(event.target) ? null : event.pointerId;
+    };
+    const onOutsidePointerEnd = event => {
+        if (outsidePointer !== event.pointerId) {
+            return;
+        }
+        if (dismissTimer !== null) {
+            view.clearTimeout(dismissTimer);
+        }
+        dismissTimer = view.setTimeout(() => close(), 0);
+    };
+    const stopPointerTracking = () => {
+        document.removeEventListener('pointerdown', onOutsidePointerDown, true);
+        document.removeEventListener('pointerup', onOutsidePointerEnd, true);
+        document.removeEventListener('pointercancel', onOutsidePointerEnd, true);
+        outsidePointer = null;
+        if (dismissTimer !== null) {
+            view.clearTimeout(dismissTimer);
+            dismissTimer = null;
+        }
+    };
+    const startPointerTracking = () => {
+        stopPointerTracking();
+        document.addEventListener('pointerdown', onOutsidePointerDown, true);
+        document.addEventListener('pointerup', onOutsidePointerEnd, true);
+        document.addEventListener('pointercancel', onOutsidePointerEnd, true);
+    };
 
     const reducedMotion = () => document.defaultView && document.defaultView.matchMedia &&
         document.defaultView.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -151,6 +184,7 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     };
 
     const close = (returnFocus = false) => {
+        stopPointerTracking();
         trigger.setAttribute('aria-expanded', 'false');
         if (panel.hidden) {
             if (returnFocus) {
@@ -243,6 +277,7 @@ const enhanceNativeSelect = (select, labels, multiple) => {
         panel.hidden = false;
         panel.inert = false;
         trigger.setAttribute('aria-expanded', 'true');
+        startPointerTracking();
         search.value = '';
         filter();
         animatePanel(true, () => panel.classList.add('is-open'));
@@ -276,7 +311,7 @@ const enhanceNativeSelect = (select, labels, multiple) => {
         }
     });
     host.addEventListener('focusout', event => {
-        if (event.relatedTarget && !host.contains(event.relatedTarget)) {
+        if (event.relatedTarget && !host.contains(event.relatedTarget) && outsidePointer === null) {
             close();
         }
     });
@@ -289,6 +324,7 @@ const enhanceNativeSelect = (select, labels, multiple) => {
     const controller = {
         host, trigger, clear, refresh, close,
         destroy: () => {
+            stopPointerTracking();
             if (panelAnimation) {
                 panelAnimation.cancel();
                 panelAnimation = null;

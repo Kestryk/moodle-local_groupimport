@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.81",
+  "version": "0.4.82",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "choicePointerGeometry20261004": {
+      "kitCommit": "ea25c23",
+      "status": "Canonical pointer-safe outside dismissal and trailing chevron; isolated browser gates pass. Native preview and Penpot propagation pending.",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "penpotLinked": false
+    },
     "batch": "EED-UI-2026-0073",
     "massImportBalance20261004": {
       "kitCommit": "ab44599d543cc96b6cc23065ec508e147552893c",

@@ -43,7 +43,11 @@ test('More filters preserves collapsed state after nested dropdown dismissal', a
             await expect(toggle).toHaveAttribute('aria-expanded', 'true');
             await expect(panel).not.toHaveClass(/is-easyedu-disclosing/);
             if (nested) {
-                await panel.locator('.easyedu-searchable-choice__trigger').first().click();
+                // Role choices may be intentionally hidden behind role chips.
+                // Exercise the actual visible Group filter, not a hidden peer.
+                const groupChoice = panel.locator('[data-easystud-group-filter]')
+                    .first().locator('xpath=following-sibling::*[1]');
+                await groupChoice.locator('.easyedu-searchable-choice__trigger').click();
             }
             await toggle.click();
             await expect(toggle).toHaveAttribute('aria-expanded', 'false');
