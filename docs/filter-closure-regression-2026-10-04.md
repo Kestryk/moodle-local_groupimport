@@ -15,6 +15,14 @@ exports and invokes the empty-container closure path.
 
 ## Evidence
 
+- Native successor `easystud-authenticated-20261004T105506686Z-24656`: PASS
+  on served runtime `6da2a107`. Parent collapsed class, inert, ARIA and no page
+  errors pass with and without an open nested Group choice. This certifies
+  the generated export repair, not the later unserved Kit 0.4.82 candidate.
+- The prior `easystud-authenticated-20261004T104846339Z-3612` selected the
+  intentionally hidden Role choice and timed out. The successor targets the
+  native Group filter specifically; it does not force-click hidden elements.
+
 - Native baseline `easystud-authenticated-20261004T095920415Z-20524`: FAIL,
   parent inert false after the button became collapsed.
 - Diagnostic `easystud-authenticated-20261004T100239079Z-34580`: FAIL even

@@ -28,20 +28,23 @@
       text-align: start;
       text-decoration: none;
     }
-    .fa { color: var(--easyedu-primary); flex: 0 0 1rem; }
+    .fa { color: var(--easyedu-primary); flex: 0 0 1rem; margin: 0; text-align: center; }
     &[aria-expanded="true"] > .fa:last-child { transform: rotate(180deg); }
     > .fa:last-child {
       transition: transform var(--easyedu-choice-disclosure-duration) var(--easyedu-motion-ease);
     }
   }
   .easyedu-ui .easyedu-searchable-choice__summary {
+    flex: 1 1 auto;
     min-inline-size: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   .easyedu-ui .easyedu-searchable-choice--multiple .easyedu-searchable-choice__trigger {
-    padding-inline-end: 4.75rem;
+    // Reserve the clear-action lane between summary and chevron. Enlarging
+    // the trigger's end padding incorrectly shifts the chevron to the left.
+    column-gap: 3.5rem;
   }
   .easyedu-ui .easyedu-searchable-choice__clear {
     align-items: center;

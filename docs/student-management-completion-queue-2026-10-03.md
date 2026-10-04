@@ -336,6 +336,8 @@ technical passes do not close these newly reported regressions.
   native input alignment; update Foundations and product compositions.
 - [ ] R07: Add Restore EasyEdu default colours, using canonical defaults and
   explicit native Save semantics rather than silently saving settings.
+  Source candidate and isolated browser checks pass for seven settings,
+  including readonly preservation and no submit. Penpot/native admin pending.
 - [ ] R08: Group and Grouping internal search: consume current search components;
   replace the Group legacy reset/cancel action and compare both branches.
 - [ ] R09: Mass Import no-results helper is too large: use measured subordinate

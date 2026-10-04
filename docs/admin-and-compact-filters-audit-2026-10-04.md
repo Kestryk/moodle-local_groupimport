@@ -75,3 +75,30 @@ unchanged; no JavaScript error occurred. Keep this explicitly OPEN. The passing
 reset case first closes with Escape and proves only reset synchronization.
 Repair pointer/keyboard dismissal in the canonical Kit before promoting the
 admin enhancement; include an unchanged-coordinate click regression.
+
+### Pointer repair successor
+
+Kit 0.4.82 (`ea25c23`) now preserves outside pointerdown-to-up geometry, with
+temporary open-only document listeners and cleanup on close/refresh/destroy.
+The direct open-list Reset regression now passes at 1600/768/390 in both
+motion modes, including a held mouse button. The consumer controller and Kit
+source have identical SHA256 `2210491ee7c1c1b4c0f09defd142b0187955a634a1b7484ce3a2eefe5df68cd1`.
+The former Escape-first result remains
+historical, not substituted evidence. Kit trailing-chevron geometry and shared
+single/multiple lifecycle pass at all three widths; transient rotation was
+excluded by waiting for the actual animation, not by relaxing the inset gate.
+Native preview, visual parity and Foundation publication remain pending.
+
+### Restore palette candidate
+
+The Restore EasyEdu colours control consumes the canonical secondary button,
+uses each of the seven PHP setting defaults (no JS palette duplication), updates
+swatch/Hex/validity via existing input/change handlers and announces that Save
+is required. Readonly/disabled fields are skipped. The control remains hidden
+without JavaScript. The isolated browser test passes, including invalid values,
+readonly preservation, live status and zero form submissions. PHP lint passes.
+Penpot rendering and native administration verification remain pending.
+
+The CSS build now includes the existing Mass Import/administration candidates
+and Kit 0.4.82; it is deliberately not promoted piecemeal. Sass emits one
+pre-existing mixed-declaration deprecation warning in `components/_layout.scss`.

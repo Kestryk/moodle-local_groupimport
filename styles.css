@@ -14854,6 +14854,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 #page-admin-setting-local_groupimport #admin-alloweduserfields,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview,
+#page-admin-setting-local_groupimport #admin-showcompleteview,
+#page-admin-setting-local_groupimport #admin-defaultlayoutmode,
 #page-admin-setting-local_groupimport #admin-enableanimations,
 #page-admin-setting-local_groupimport #admin-themeprimarycolor,
 #page-admin-setting-local_groupimport #admin-themeaccentcolor,
@@ -14880,6 +14882,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 #page-admin-setting-local_groupimport #admin-alloweduserfields .form-label label,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-label label,
+#page-admin-setting-local_groupimport #admin-showcompleteview .form-label label,
+#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-label label,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-label label,
 #page-admin-setting-local_groupimport #admin-themeprimarycolor .form-label label,
 #page-admin-setting-local_groupimport #admin-themeaccentcolor .form-label label,
@@ -14901,6 +14905,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 #page-admin-setting-local_groupimport #admin-alloweduserfields .form-description,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-description,
+#page-admin-setting-local_groupimport #admin-showcompleteview .form-description,
+#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-description,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-description,
 #page-admin-setting-local_groupimport #admin-themeprimarycolor .form-description,
 #page-admin-setting-local_groupimport #admin-themeaccentcolor .form-description,
@@ -14923,6 +14929,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 #page-admin-setting-local_groupimport #admin-alloweduserfields .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-showcompleteview .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-defaultlayoutmode .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > div:first-child,
@@ -15040,8 +15048,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enableanimations:focus:not(:focus-visible) {
   outline: 0;
 }
-#page-admin-setting-local_groupimport select[name="s_local_groupimport_alloweduserfields[]"],
-#page-admin-setting-local_groupimport #id_s_local_groupimport_alloweduserfields {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-control-border);
   border-radius: var(--easyedu-control-radius);
@@ -15058,37 +15065,29 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.35rem;
   width: min(100%, 34rem) !important;
 }
-#page-admin-setting-local_groupimport select[name="s_local_groupimport_alloweduserfields[]"]:focus, #page-admin-setting-local_groupimport select[name="s_local_groupimport_alloweduserfields[]"]:focus-visible,
-#page-admin-setting-local_groupimport #id_s_local_groupimport_alloweduserfields:focus,
-#page-admin-setting-local_groupimport #id_s_local_groupimport_alloweduserfields:focus-visible {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple]:focus, #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple]:focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
 }
-#page-admin-setting-local_groupimport select[name="s_local_groupimport_alloweduserfields[]"]:disabled, #page-admin-setting-local_groupimport select[name="s_local_groupimport_alloweduserfields[]"][aria-disabled=true],
-#page-admin-setting-local_groupimport #id_s_local_groupimport_alloweduserfields:disabled,
-#page-admin-setting-local_groupimport #id_s_local_groupimport_alloweduserfields[aria-disabled=true] {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple]:disabled, #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple][aria-disabled=true] {
   background: var(--easyedu-surface-soft);
   color: var(--easyedu-text-muted);
   cursor: not-allowed;
   opacity: 0.72;
 }
-#page-admin-setting-local_groupimport select[name="s_local_groupimport_alloweduserfields[]"] option,
-#page-admin-setting-local_groupimport #id_s_local_groupimport_alloweduserfields option {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] option {
   border-radius: 0.42rem;
   margin: 0.08rem 0;
   padding: 0.34rem 0.42rem;
 }
-#page-admin-setting-local_groupimport select[name="s_local_groupimport_alloweduserfields[]"] option:checked,
-#page-admin-setting-local_groupimport #id_s_local_groupimport_alloweduserfields option:checked {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] option:checked {
   background: linear-gradient(180deg, var(--easyedu-primary-soft), var(--easyedu-primary-soft));
   color: var(--easyedu-primary-strong);
   font-weight: 700;
 }
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantprimarybadgefield],
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield1],
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield2] {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]) {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-control-border);
   border-radius: var(--easyedu-control-radius);
@@ -15101,21 +15100,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   padding: 0.45rem 0.65rem;
   width: min(100%, 22rem) !important;
 }
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantprimarybadgefield]:focus, #page-admin-setting-local_groupimport select[name=s_local_groupimport_participantprimarybadgefield]:focus-visible,
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield1]:focus,
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield1]:focus-visible,
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield2]:focus,
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield2]:focus-visible {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):focus, #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
 }
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantprimarybadgefield]:disabled, #page-admin-setting-local_groupimport select[name=s_local_groupimport_participantprimarybadgefield][aria-disabled=true],
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield1]:disabled,
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield1][aria-disabled=true],
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield2]:disabled,
-#page-admin-setting-local_groupimport select[name=s_local_groupimport_participantdetailfield2][aria-disabled=true] {
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):disabled, #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple])[aria-disabled=true] {
   background: var(--easyedu-surface-soft);
   color: var(--easyedu-text-muted);
   cursor: not-allowed;
@@ -16071,11 +16062,19 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   align-items: stretch;
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: minmax(21rem, 0.88fr) minmax(25rem, 1.12fr);
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
   transition-duration: var(--easyedu-motion-layout);
   transition-property: grid-template-columns;
   transition-timing-function: var(--easyedu-motion-disclosure-ease);
   will-change: grid-template-columns;
+}
+.local-groupimport-import-card--results {
+  display: flex;
+  flex-direction: column;
+}
+.local-groupimport-import-card--results > .local-groupimport-import-empty {
+  flex: 1 1 auto;
+  min-block-size: 16rem;
 }
 .local-groupimport-import.is-easyedu-motion-off .local-groupimport-import__grid, .easyedu-motion-disabled .local-groupimport-import__grid {
   transition: none;
@@ -19460,6 +19459,10 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-block-size: 5.25rem;
 }
 
+.easyedu-ui .easyedu-panel__header--compact-icon {
+  grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr) auto;
+}
+
 .easyedu-ui .easyedu-panel__copy {
   min-inline-size: 0;
 }
@@ -19505,6 +19508,30 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .easyedu-ui .easyedu-icon-tile::before,
 .easyedu-ui .easyedu-icon-tile > .fa,
 .easyedu-ui .easyedu-icon-tile > [aria-hidden=true] {
+  display: block;
+  line-height: 1;
+  max-height: 1em;
+  max-width: 1em;
+}
+
+.easyedu-ui .easyedu-icon-tile--compact {
+  align-items: center;
+  background: var(--easyedu-primary-soft);
+  border: 1px solid var(--easyedu-semantic-border-primary);
+  border-radius: var(--easyedu-section-icon-radius);
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 var(--easyedu-section-icon-size-compact);
+  height: var(--easyedu-section-icon-size-compact);
+  justify-content: center;
+  line-height: 1;
+  width: var(--easyedu-section-icon-size-compact);
+  font-size: 1.0625rem;
+}
+.easyedu-ui .easyedu-icon-tile--compact::before,
+.easyedu-ui .easyedu-icon-tile--compact > .fa,
+.easyedu-ui .easyedu-icon-tile--compact > [aria-hidden=true] {
   display: block;
   line-height: 1;
   max-height: 1em;
@@ -20629,6 +20656,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .easyedu-ui .easyedu-searchable-choice__trigger .fa {
   color: var(--easyedu-primary);
   flex: 0 0 1rem;
+  margin: 0;
+  text-align: center;
 }
 .easyedu-ui .easyedu-searchable-choice__trigger[aria-expanded=true] > .fa:last-child {
   transform: rotate(180deg);
@@ -20638,6 +20667,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-searchable-choice__summary {
+  flex: 1 1 auto;
   min-inline-size: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -20645,7 +20675,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-searchable-choice--multiple .easyedu-searchable-choice__trigger {
-  padding-inline-end: 4.75rem;
+  column-gap: 3.5rem;
 }
 
 .easyedu-ui .easyedu-searchable-choice__clear {

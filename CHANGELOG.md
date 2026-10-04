@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-04 - Restore default palette candidate
+
+- Add the canonical secondary Restore EasyEdu colours control. Read defaults
+  from PHP settings, preserve readonly fields and require explicit native Save.
+- Isolated browser behaviour and PHP syntax pass; Penpot/native admin pending.
+- Verify the earlier generated-AMD More filters closure repair in native
+  Moodle without business writes. Later visual candidates remain unserved.
+
+## 2026-10-04 - Kit 0.4.82 choice pointer and chevron correction
+
+- Consume canonical pointer-safe outside dismissal so Reset below an open
+  dropdown receives its physical click; preserve keyboard dismissal and Motion.
+- Reserve the multiple-clear lane independently of the trailing chevron.
+- Six isolated held-pointer/reset cases and three Kit geometry/lifecycle cases
+  pass. Native preview, paired design propagation and acceptance stay open.
+
 ## 2026-10-04 - Administration shared choices candidate
 
 - Route native administration single/multiple selects through the Kit chooser

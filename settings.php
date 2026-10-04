@@ -127,6 +127,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
             ];
             $controlattributes = [
                 'data-easyedu-color-picker' => '1',
+                'data-easyedu-color-default' => strtoupper((string)$default),
                 'aria-invalid' => $isvalid ? 'false' : 'true',
             ];
             $controlclasses = 'easyedu-color-picker local-groupimport-admin-settings__color-control';
@@ -282,6 +283,22 @@ if ($hassiteconfig) {
             ),
         'local-groupimport-admin-settings local-groupimport-admin-settings--appearance',
         ['data-local-groupimport-admin-appearance' => '1']
+    );
+    $appearancehtml .= html_writer::div(
+        html_writer::tag('button', get_string('restoredefaultcolours', 'local_groupimport'), [
+            'type' => 'button',
+            'class' => 'easyedu-button--secondary',
+            'data-easystud-restore-colours' => '1',
+            'hidden' => 'hidden',
+            'aria-describedby' => 'easystud-restore-colours-help',
+        ]) . html_writer::tag('p', get_string('restoredefaultcolours_help', 'local_groupimport'), [
+            'id' => 'easystud-restore-colours-help',
+            'class' => 'form-description',
+        ]) . html_writer::tag('span', '', [
+            'role' => 'status',
+            'data-easystud-restore-colours-status' => get_string('restoredefaultcolours_pending', 'local_groupimport'),
+        ]),
+        'easyedu-ui'
     );
 
     // Mirror the live settings page rather than drawing an unrelated card
