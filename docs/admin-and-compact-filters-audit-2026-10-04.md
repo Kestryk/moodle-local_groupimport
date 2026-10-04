@@ -276,3 +276,20 @@ settings POST occurred. Native Moodle 5.1 run
 1600/768/390 with credentials cleared and the runtime lease released. This
 proves the in-form reset path, not persisted settings or every possible theme.
 Human acceptance remains open.
+
+### Quick role shortcuts
+
+The short-catalogue role buttons now opt into the existing Foundation
+Selection action component instead of retaining Bootstrap-only paint. Their
+pill geometry is the current consumer composition; `aria-pressed` and the
+native role-filter select remain the source of selection state. The many-role
+fallback still uses the compact searchable multi-select.
+
+EasyStud Penpot page 03 board `cf371b29-2e8e-8011-8008-bd316bf1dfed`
+shows neutral Teacher and selected Student shortcuts as linked Foundation
+Selection action instances. Settled text is contained and the exported board
+was inspected. Native run `easystud-authenticated-20261004T161537203Z-31692`
+passes: 12.48px labels, 30.39px height, neutral-to-selected paint change,
+pressed-state reversal, and zero business requests/page errors. This closes
+this specific quick-role candidate; other compact-filter roles, full-board
+propagation and human acceptance remain open.

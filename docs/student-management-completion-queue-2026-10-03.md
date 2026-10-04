@@ -376,7 +376,11 @@ technical passes do not close these newly reported regressions.
 - [ ] R12: Offer a coherent compact variant for every More Filters control,
   including multiple-choice dropdown, chips, clear and chevron. Inventory
   Foundations Standard/Library, create missing variants there, then propagate
-  EasyStud and canonical SCSS. Preserve usable mobile touch targets.
+  EasyStud and canonical SCSS. Preserve usable mobile touch targets. The
+  short-catalogue role chips now consume linked neutral/selected Foundation
+  Selection actions (EasyStud page 03 board
+  `cf371b29-2e8e-8011-8008-bd316bf1dfed`) and pass desktop native
+  pressed-state proof. Other compact roles and human validation remain open.
 
 ### Current execution checkpoint
 
