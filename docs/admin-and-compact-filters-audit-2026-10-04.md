@@ -339,6 +339,9 @@ enhanced settings controls within the public `.easyedu-ui` scope at the same
 those values across all five controls, rather than only checking that the
 default-view dropdown opens. Penpot's page title says “Administration EasyStud”;
 the English and French product title strings are aligned to that identity.
+Run `easystud-authenticated-20261004T170609304Z-34728` confirms the title
+and all five Kit choice height/font/radius assertions at three widths; no
+settings POST or page error occurred. Human visual acceptance remains open.
 
 The same desktop/tablet/mobile boards use a 160px linked Foundation M colour
 picker, with 49.6px swatch and 12.48px Hex text. Native Moodle previously

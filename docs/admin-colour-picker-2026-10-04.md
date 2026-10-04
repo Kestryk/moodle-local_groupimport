@@ -67,9 +67,8 @@ uses the strong field-border token and allows the authoritative Hex lane to
 shrink within the control. The same `_forms.scss` is embedded in EasyStud and
 `styles.css` was rebuilt. Small/large widths remain separate design contracts;
 the existing native colour validation, defaults and contrast behaviour are
-unchanged. A new guarded native test measures all seven settings controls at
-1600/768/390; it must pass on the served candidate before calling this
-runtime-verified. Human visual acceptance remains open.
+unchanged. A guarded native test measures all seven settings controls at
+1600/768/390. Human visual acceptance remains open.
 
 The linked Administration boards put “Default” on the same line as the picker:
 24px to its right on desktop and 16px on tablet/mobile. Kit `0.4.87` adds a
@@ -77,5 +76,15 @@ public Moodle admin-setting layout adapter for those generated siblings.
 EasyStud opts in for all seven colour rows without changing the native input
 names, Hex synchronization or warning condition. The responsive browser test
 now checks the picker/default horizontal and vertical relationship, plus
-warning and help containment. Native promotion is still required for this
-new layout candidate; previous preview evidence applies only to Kit `0.4.86`.
+warning and help containment.
+
+Successor preview serves `b65c52aa89dce19136f4a22e9d2633a1d0b79d85`
+after managed cache purge (`20261004T170559Z.json`). Native read-only run
+`easystud-authenticated-20261004T170609304Z-34728` passes at 1600/768/390:
+all seven pickers measure 160px, retain a 49.6px swatch and 12.48px Hex,
+place their defaults 24px/16px to the right with at most 3px vertical-centre
+deviation, and keep warnings/help below without horizontal overflow. The
+responsive choice, title and Restore/no-settings-POST assertions also pass.
+Credentials were cleared, the runtime lease released and no fixture was used.
+The targeted captures were inspected; human acceptance, S/L provider
+geometries and the broader Administration visual checklist remain open.
