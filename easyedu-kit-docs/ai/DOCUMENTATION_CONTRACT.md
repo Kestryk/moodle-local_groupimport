@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Compact deposit hierarchy changes only shared density and class adapters.
+Assert tile/glyph centring and title/support/native-wrapper tracks, with the
+mobile zero-indent override. Keep native upload/draft/removal and all other
+CSS/controllers unchanged. Preserve old source gates and superseded product
+compositions; swaps must retain actual product text and settled geometry.
+
 Take the final native Mass Import heading as the typography reference. Student
 workspace headers reuse the existing Foundation Page title/Body/Eyebrow roles;
 do not invent another scale or globally shrink card controls. Preserve native

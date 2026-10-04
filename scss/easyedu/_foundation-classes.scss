@@ -243,6 +243,9 @@
     gap: 0.375rem;
     grid-template-columns: 2.55rem minmax(0, 1fr);
   }
+  .easyedu-ui .easyedu-information__header--compact-icon {
+    grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr);
+  }
   .easyedu-ui .easyedu-information__title {
     @include type.type-card-title;
     display: block;

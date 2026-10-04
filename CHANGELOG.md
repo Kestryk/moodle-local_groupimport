@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-05 - Compact Mass Import secondary icons
+
+- Identification and embedded deposit reuse the shared compact tile density;
+  their 35.2px squares no longer exceed the main headers, with 17px glyphs.
+- Only public Kit classes added to PHP; native draft/upload/removal/import,
+  controllers, accepted Motion and every unrelated CSS rule remain unchanged.
+- Foundation paired source density, isolated geometry and complete preservation
+  guards pass. 18 deposits and 18 identification instances are propagated with
+  content/palette/linked-glyph readback; served proof and human review tracked apart.
+
 ## 2026-10-05 - Shared workspace heading candidate
 
 - Use existing Kit/Foundation page roles for Student header typography,

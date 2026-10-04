@@ -1220,7 +1220,7 @@ echo html_writer::tag('div',
     html_writer::tag('div',
         html_writer::tag('span',
             html_writer::tag('span', '', ['class' => 'fa fa-search', 'aria-hidden' => 'true']),
-            ['class' => 'local-groupimport-import-fields__icon easyedu-icon-tile', 'aria-hidden' => 'true']
+            ['class' => 'local-groupimport-import-fields__icon easyedu-icon-tile easyedu-icon-tile--compact', 'aria-hidden' => 'true']
         ) .
         html_writer::tag('div',
             html_writer::tag('strong', get_string('importautodetecttitle', 'local_groupimport'),
@@ -1228,7 +1228,7 @@ echo html_writer::tag('div',
             html_writer::tag('p', get_string('importautodetectintro', 'local_groupimport'),
                 ['class' => 'easyedu-information__description'])
         ),
-        ['class' => 'local-groupimport-import-fields__header easyedu-information__header']
+        ['class' => 'local-groupimport-import-fields__header easyedu-information__header easyedu-information__header--compact-icon']
     ) .
     html_writer::tag('p', get_string('importfieldsavailable', 'local_groupimport'), [
         'class' => 'local-groupimport-import-fields__label easyedu-information__label',
