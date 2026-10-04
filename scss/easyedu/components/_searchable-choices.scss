@@ -139,7 +139,25 @@
     margin: 0;
     padding: 0.75rem 0.625rem;
   }
-  @media (max-width: 48rem) {
+  // Explicit density, shared by single and multiple selection. Never scale
+  // the whole control: glyphs, focus paint and clear-action lanes stay intact.
+  .easyedu-ui .easyedu-searchable-choice--compact {
+    font-size: 0.75rem;
+    .easyedu-searchable-choice__trigger {
+      @include text-fields.foundation-text-field(small);
+    }
+    .easyedu-searchable-choice__search {
+      box-sizing: border-box;
+      min-block-size: 2rem;
+      input { min-block-size: 1.875rem; }
+    }
+    .easyedu-searchable-choice__option {
+      min-block-size: 2rem;
+      padding-block: 0.375rem;
+    }
+    .easyedu-searchable-choice__clear { inset-block-start: 0.125rem; }
+  }
+  @media (max-width: 48rem), (pointer: coarse) {
     .easyedu-ui .easyedu-searchable-choice__trigger,
     .easyedu-ui .easyedu-searchable-choice__option { min-block-size: 2.75rem; }
     .easyedu-ui .easyedu-searchable-choice__list { max-block-size: 11rem; }
@@ -148,6 +166,13 @@
       inline-size: 2.25rem;
       inset-block-start: 0.25rem;
       inset-inline-end: 2.5rem;
+    }
+    .easyedu-ui .easyedu-searchable-choice--compact {
+      .easyedu-searchable-choice__trigger,
+      .easyedu-searchable-choice__option,
+      .easyedu-searchable-choice__search { min-block-size: 2.75rem; }
+      .easyedu-searchable-choice__search input { min-block-size: 2.625rem; }
+      .easyedu-searchable-choice__clear { inset-block-start: 0.25rem; }
     }
   }
   @media (prefers-reduced-motion: reduce) {

@@ -1,9 +1,14 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.82",
+  "version": "0.4.83",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "compactChoices20261004": {
+      "kitCommit": "73668d8",
+      "status": "Canonical compact density and paired Foundations multiple states; source build and isolated geometry pass. Product/native preview pending.",
+      "humanAccepted": false
+    },
     "choicePointerGeometry20261004": {
       "kitCommit": "ea25c23",
       "status": "Canonical pointer-safe outside dismissal and trailing chevron; isolated browser gates pass. Native preview and Penpot propagation pending.",

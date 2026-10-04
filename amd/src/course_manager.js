@@ -4452,6 +4452,7 @@ const bindSearchableFilters = root => {
             count: labels.filterselectioncount,
             clear: labels.clearfilterselection,
         });
+        choice.host.classList.add('easyedu-searchable-choice--compact');
         filterChoiceControllers.set(select, choice);
         if (role) {
             choice.host.hidden = true;
