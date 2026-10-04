@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-10-05 - Destination framed disclosure candidate
+
+- Connect destination choices to the canonical Kit Motion recipe; progressive
+  height/frame opening and closing share 360ms with the chevron.
+- Preserve standalone default choices, native option authority, existing card
+  Motion and all membership commands; only one shared CSS timing rule added.
+- Add three-width native baseline/successor and complete CSS/controller guards;
+  isolated framed/legacy tests pass, native successor and human review pending.
+
+## 2026-10-04 - Framed Search/Add served proof
+
+- Record passing three-width native Search/Cancel and Group/Grouping Add lookup
+  preview/Cancel; no membership command, message or fixture change.
+- Preserve inactive-workspace and obsolete-default-palette failed specimens;
+  use actual view routing and configured canonical semantic roles in successors.
+- Link paired Foundation Motion usage and keep chooser/product/human gates open.
+
 ## 2026-10-04 - Framed Search/Add disclosure candidate
 
 - Delegate only framed card Search/Add regions to the shared Kit disclosure;

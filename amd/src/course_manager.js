@@ -6818,7 +6818,7 @@ const bindMoveModal = (root, courseId) => {
         search: labels.searchdestination || labels.searchgroupslabel || '',
         empty: labels.noresultsfiltered || '',
     });
-    const chooser = enhanceSelect(destination, chooserLabels());
+    const chooser = enhanceSelect(destination, chooserLabels(), {motion: Motion});
 
     const closeModal = () => {
         // Cancel cannot undo an atomic command already in flight.

@@ -547,6 +547,13 @@ technical passes do not close these newly reported regressions.
 
 ### Dependency order
 
+SM-41 successor: framed Search/Add is served with passing native member Search
+and Group/Grouping Add previews at three widths. Foundation/product behavior
+notes are published. Destination choice 360ms source candidate, isolated
+framed/default regression and exact CSS/controller/AMD guards pass; native
+destination preview and human checklist remain open. Earlier pending items
+remain unchanged; see `student-framed-disclosure-2026-10-04.md`.
+
 1. SM-18 defines the public/private package boundary before further Kit
    distribution work.
 2. SM-22 continues the already announced member-row tranche and is the first

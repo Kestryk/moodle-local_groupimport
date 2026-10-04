@@ -52,6 +52,10 @@ Requests recorded; execution/proof results are appended per lot below.
   are linked to Foundations, with no visible descendant overflow. Full other
   routes, Foundation export inspection and human acceptance stay open; details
   in `student-loading-feedback-2026-10-04.md`.
-- SM-41 in progress: passive native frame recorder added for existing group
-  member search at desktop/tablet/mobile. No modification to accepted Motion or
-  data-changing action; diagnose the height discontinuity before implementation.
+- SM-41 partial implementation served: canonical opt-in frame disclosure removes
+  the padding-floor jump; member Search and native Group/Grouping Add preview
+  pass at desktop/tablet/mobile. Existing card/Show-all Motion and business
+  commands remain unchanged. Foundation/product Motion notes published;
+  destination chooser candidate and isolated regressions pass; its native
+  promotion/proof and human acceptance remain open. See
+  `student-framed-disclosure-2026-10-04.md` for failed/passing test boundaries.
