@@ -9,15 +9,17 @@
       "kitCommit": "efaab89",
       "status": "Kit 0.4.78 candidate: static and dynamically created Group member rows consume the public related-person class family; local paint adapters are removed while membership behavior and disclosure Motion remain product-owned.",
       "documentation": "docs/student-member-row-public-classes-2026-10-04.md",
+      "currentPreviewProof": "docs/testing/student-member-row-public-classes-preview-2026-10-04.json",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "penpotLinked": true,
       "modules": {
         "scss/easyedu/_foundation-classes.scss": "e029c1b77bd59357255717b37b6638dbe0d76f7b",
         "styles.css": "50964a42ad30f2db83b164473c1c3e9935264cc8",
         "templates/manage.mustache": "fe860483b849a2dad1a5409c4bf95ec13f7e03c5",
         "amd/src/course_manager.js": "3ab82ae8558592575250ef9697a2353e33eeb1f1",
-        "amd/build/course_manager.min.js": "c0e6e490818b2e2baceef89a4355f43e99053f30"
+        "amd/build/course_manager.min.js": "c0e6e490818b2e2baceef89a4355f43e99053f30",
+        "tools/playwright/student-member-row-foundations.spec.js": "18473ea07befe40fb89a42a9a6b2a78682d0fa70"
       }
     },
     "studentMoveOriginCheckbox20261004": {
