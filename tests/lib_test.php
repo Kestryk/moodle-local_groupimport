@@ -113,6 +113,71 @@ final class lib_test extends \advanced_testcase {
     }
 
     /**
+     * Missing palette settings preserve the canonical EasyStud colours.
+     *
+     * @return void
+     */
+    public function test_missing_theme_colours_use_canonical_defaults(): void {
+        $this->resetAfterTest();
+
+        foreach (['themeprimarycolor', 'themeaccentcolor', 'themeparticipantcolor',
+                'themegroupcolor', 'themegroupingcolor'] as $setting) {
+            unset_config($setting, 'local_groupimport');
+        }
+
+        $this->assertSame([
+            'primary' => '#0f6cbf',
+            'accent' => '#1b7f5a',
+            'participant' => '#4873ad',
+            'group' => '#29724d',
+            'grouping' => '#6a7f98',
+        ], local_groupimport_get_theme_colours());
+    }
+
+    /**
+     * Invalid and insufficient-contrast database values fail closed.
+     *
+     * @return void
+     */
+    public function test_theme_colours_fail_closed_to_safe_defaults(): void {
+        $this->resetAfterTest();
+
+        set_config('themeprimarycolor', 'red; display:none', 'local_groupimport');
+        set_config('themeaccentcolor', '#ffffff', 'local_groupimport');
+        set_config('themeparticipantcolor', '#123456', 'local_groupimport');
+
+        $colours = local_groupimport_get_theme_colours();
+        $this->assertSame('#0f6cbf', $colours['primary']);
+        $this->assertSame('#1b7f5a', $colours['accent']);
+        $this->assertSame('#123456', $colours['participant']);
+    }
+
+    /**
+     * The root style exposes base colours and derived semantic roles only.
+     *
+     * @return void
+     */
+    public function test_theme_style_builds_safe_custom_properties(): void {
+        $this->resetAfterTest();
+        set_config('themeprimarycolor', '#123456', 'local_groupimport');
+
+        $style = local_groupimport_get_theme_style();
+        $this->assertStringContainsString('--easyedu-primary: #123456;', $style);
+        $this->assertStringContainsString('--easyedu-primary-soft: color-mix(', $style);
+        $this->assertStringNotContainsString('display', $style);
+    }
+
+    /**
+     * Contrast calculation matches the WCAG endpoints.
+     *
+     * @return void
+     */
+    public function test_colour_contrast_against_white(): void {
+        $this->assertEqualsWithDelta(21.0, local_groupimport_colour_contrast_against_white('#000000'), 0.01);
+        $this->assertEqualsWithDelta(1.0, local_groupimport_colour_contrast_against_white('#ffffff'), 0.01);
+    }
+
+    /**
      * Participant-card custom field values are reduced to compact plain text.
      *
      * @param string|null $value Stored custom profile field value.

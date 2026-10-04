@@ -33,6 +33,26 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
      * a safer visual picker than a free text field.
      */
     class local_groupimport_admin_setting_configcolor extends admin_setting_configtext {
+        /** @var float Minimum contrast ratio against white, or zero when unrestricted. */
+        private float $minimumcontrast;
+
+        /**
+         * Build a colour setting with an optional contrast guardrail.
+         *
+         * @param string $name Setting name.
+         * @param string $visiblename Visible label.
+         * @param string $description Setting description.
+         * @param string $defaultsetting Default hexadecimal colour.
+         * @param string $paramtype Moodle parameter type.
+         * @param int|null $size Native text size hint.
+         * @param float $minimumcontrast Minimum contrast against white.
+         */
+        public function __construct($name, $visiblename, $description, $defaultsetting, $paramtype = PARAM_RAW,
+                $size = null, float $minimumcontrast = 0.0) {
+            parent::__construct($name, $visiblename, $description, $defaultsetting, $paramtype, $size);
+            $this->minimumcontrast = $minimumcontrast;
+        }
+
         /**
          * Validate a hexadecimal colour.
          *
@@ -40,11 +60,34 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
          * @return true|string True when valid, otherwise an admin error string.
          */
         public function validate($data) {
-            if (preg_match('/^#[0-9a-fA-F]{6}$/', (string)$data)) {
-                return true;
+            if (!preg_match('/^#[0-9a-fA-F]{6}$/', (string)$data)) {
+                return get_string('validateerror', 'admin');
             }
 
-            return get_string('validateerror', 'admin');
+            if ($this->minimumcontrast > 0 && $this->contrast_against_white((string)$data) < $this->minimumcontrast) {
+                return get_string('colourpickercontrasterror', 'local_groupimport', $this->minimumcontrast);
+            }
+
+            return true;
+        }
+
+        /**
+         * Calculate the WCAG contrast ratio between a Hex colour and white.
+         *
+         * @param string $hex Hexadecimal colour.
+         * @return float Contrast ratio.
+         */
+        private function contrast_against_white(string $hex): float {
+            $channels = [];
+            foreach ([1, 3, 5] as $offset) {
+                $channel = hexdec(substr($hex, $offset, 2)) / 255;
+                $channels[] = $channel <= 0.04045
+                    ? $channel / 12.92
+                    : (($channel + 0.055) / 1.055) ** 2.4;
+            }
+            $luminance = (0.2126 * $channels[0]) + (0.7152 * $channels[1]) + (0.0722 * $channels[2]);
+
+            return 1.05 / ($luminance + 0.05);
         }
 
         /**
@@ -210,11 +253,31 @@ if ($hassiteconfig) {
         ['data-local-groupimport-admin-features' => '1']
     );
 
+    $appearancehtml = html_writer::div(
+        html_writer::div(
+            html_writer::span('', 'fa fa-palette', ['aria-hidden' => 'true']) .
+                html_writer::div(
+                    html_writer::tag('h3', get_string('adminappearanceheroheading', 'local_groupimport')) .
+                        html_writer::tag('p', get_string('adminappearanceherobody', 'local_groupimport')),
+                    'local-groupimport-admin-settings__hero-copy'
+                ),
+            'local-groupimport-admin-settings__hero'
+        ) .
+            html_writer::div(
+                html_writer::tag('strong', get_string('adminappearancehowtitle', 'local_groupimport')) .
+                    html_writer::tag('span', get_string('adminappearancehowbody', 'local_groupimport')),
+                'local-groupimport-admin-settings__hint'
+            ),
+        'local-groupimport-admin-settings local-groupimport-admin-settings--appearance',
+        ['data-local-groupimport-admin-appearance' => '1']
+    );
+
     // Mirror the live settings page rather than drawing an unrelated card
     // dashboard. Each item represents one real overview panel or native
-    // setting row in the same four-section order used below.
+    // setting row in the same five-section order used below.
     $adminloadingskeletonspec = [
         ['overview', 'control'],
+        ['overview', 'control', 'control', 'control', 'control', 'control'],
         ['control'],
         ['overview-wide', 'control-tall'],
         ['overview', 'control', 'control', 'control', 'control', 'control'],
@@ -384,6 +447,62 @@ if ($hassiteconfig) {
         get_string('enableanimations', 'local_groupimport'),
         get_string('enableanimations_desc', 'local_groupimport'),
         1
+    ));
+
+    $settings->add(new admin_setting_heading(
+        'local_groupimport/appearanceoverview',
+        get_string('adminappearancetitle', 'local_groupimport'),
+        $appearancehtml
+    ));
+
+    $settings->add(new local_groupimport_admin_setting_configcolor(
+        'local_groupimport/themeprimarycolor',
+        get_string('themeprimarycolor', 'local_groupimport'),
+        get_string('themeprimarycolor_desc', 'local_groupimport'),
+        '#0f6cbf',
+        PARAM_TEXT,
+        null,
+        4.5
+    ));
+
+    $settings->add(new local_groupimport_admin_setting_configcolor(
+        'local_groupimport/themeaccentcolor',
+        get_string('themeaccentcolor', 'local_groupimport'),
+        get_string('themeaccentcolor_desc', 'local_groupimport'),
+        '#1b7f5a',
+        PARAM_TEXT,
+        null,
+        4.5
+    ));
+
+    $settings->add(new local_groupimport_admin_setting_configcolor(
+        'local_groupimport/themeparticipantcolor',
+        get_string('themeparticipantcolor', 'local_groupimport'),
+        get_string('themeparticipantcolor_desc', 'local_groupimport'),
+        '#4873ad',
+        PARAM_TEXT,
+        null,
+        3.0
+    ));
+
+    $settings->add(new local_groupimport_admin_setting_configcolor(
+        'local_groupimport/themegroupcolor',
+        get_string('themegroupcolor', 'local_groupimport'),
+        get_string('themegroupcolor_desc', 'local_groupimport'),
+        '#29724d',
+        PARAM_TEXT,
+        null,
+        3.0
+    ));
+
+    $settings->add(new local_groupimport_admin_setting_configcolor(
+        'local_groupimport/themegroupingcolor',
+        get_string('themegroupingcolor', 'local_groupimport'),
+        get_string('themegroupingcolor_desc', 'local_groupimport'),
+        '#6a7f98',
+        PARAM_TEXT,
+        null,
+        3.0
     ));
 
     $settings->add(new admin_setting_heading(

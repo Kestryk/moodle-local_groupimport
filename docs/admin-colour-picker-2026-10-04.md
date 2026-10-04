@@ -3,8 +3,9 @@
 ## Scope
 
 This slice consumes UI Kit `0.4.79` for the two existing participant-badge
-colour settings. It does not yet add the broader semantic plugin-colour
-settings requested in SM24 and it does not modify Course Banner Builder.
+colour settings and adds the five SM24 semantic plugin colours: Primary,
+Accent, Participant, Group and Grouping. It does not modify Course Banner
+Builder.
 
 ## Ownership
 
@@ -17,11 +18,19 @@ settings requested in SM24 and it does not modify Course Banner Builder.
   form submission.
 - No colour-picker presentation mixin remains in the EasyStud administration
   view stylesheet.
+- Primary and Accent require 4.5:1 contrast against white. Entity identity
+  colours require 3:1 for rails and icons. Invalid direct database values fall
+  back to the canonical Kit defaults.
+- Both Student Management and Mass Import receive the same validated custom
+  properties. Strong, soft and rail variants are derived with CSS `color-mix`
+  rather than duplicated PHP presentation values.
 
 ## Verification
 
 - `tools/release/test-admin-color-picker-contract.ps1`
 - PHP lint for `settings.php` and both language files
+- PHPUnit coverage for defaults, invalid values, generated properties and
+  contrast endpoints in `tests/lib_test.php`
 - JavaScript syntax check for `js/admin_settings_loading.js`
 - full EasyStud Sass compilation and generated CSS parity
 

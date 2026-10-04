@@ -7,8 +7,11 @@
   native swatch.
 - Preserve invalid typed values for Moodle validation, synchronize valid Hex
   and swatch changes, and remove the former EasyStud-owned picker paint.
-- Keep broader semantic plugin colour settings, Penpot propagation, native
-  browser proof and human acceptance explicitly open.
+- Add validated Primary, Accent, Participant, Group and Grouping settings with
+  contrast guardrails and derived soft/strong/rail roles shared by Student
+  Management and Mass Import.
+- Keep Penpot propagation, native browser proof and human acceptance explicitly
+  open.
 
 ## 2026-10-04 - Configurable Student Management workspaces
 

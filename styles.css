@@ -14838,6 +14838,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #admin-featuresoverview .form-setting {
   max-width: none;
 }
+#page-admin-setting-local_groupimport #admin-appearanceoverview {
+  margin-bottom: 0.85rem;
+}
+#page-admin-setting-local_groupimport #admin-appearanceoverview .form-description,
+#page-admin-setting-local_groupimport #admin-appearanceoverview .form-setting {
+  max-width: none;
+}
 #page-admin-setting-local_groupimport #admin-participantdisplayoverview {
   margin-bottom: 0.85rem;
 }
@@ -14848,6 +14855,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #admin-alloweduserfields,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview,
 #page-admin-setting-local_groupimport #admin-enableanimations,
+#page-admin-setting-local_groupimport #admin-themeprimarycolor,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor,
+#page-admin-setting-local_groupimport #admin-themegroupcolor,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgefield,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor,
@@ -14869,6 +14881,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #admin-alloweduserfields .form-label label,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-label label,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-label label,
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-label label,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-label label,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-label label,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-label label,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-label label,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-label label,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-label label,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-label label,
@@ -14885,6 +14902,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #admin-alloweduserfields .form-description,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-description,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-description,
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-description,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-description,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-description,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-description,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-description,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-description,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-description,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-description,
@@ -14902,6 +14924,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #admin-alloweduserfields .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-enablesimplifiedview .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-enableanimations .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > div:first-child,
@@ -14920,6 +14947,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-height: 2.6rem;
 }
 #page-admin-setting-local_groupimport #admin-participantprimarybadgefield .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themeprimarycolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themeaccentcolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themeparticipantcolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themegroupcolor .form-setting > div:first-child,
+#page-admin-setting-local_groupimport #admin-themegroupingcolor .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgebgcolor .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-participantprimarybadgetextcolor .form-setting > div:first-child,
 #page-admin-setting-local_groupimport #admin-participantdetailfield1 .form-setting > div:first-child,

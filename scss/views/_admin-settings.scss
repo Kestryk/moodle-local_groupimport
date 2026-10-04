@@ -408,6 +408,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     }
   }
 
+  #admin-appearanceoverview {
+    margin-bottom: 0.85rem;
+
+    .form-description,
+    .form-setting {
+      max-width: none;
+    }
+  }
+
   #admin-participantdisplayoverview {
     margin-bottom: 0.85rem;
 
@@ -420,6 +429,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   #admin-alloweduserfields,
   #admin-enablesimplifiedview,
   #admin-enableanimations,
+  #admin-themeprimarycolor,
+  #admin-themeaccentcolor,
+  #admin-themeparticipantcolor,
+  #admin-themegroupcolor,
+  #admin-themegroupingcolor,
   #admin-participantprimarybadgefield,
   #admin-participantprimarybadgebgcolor,
   #admin-participantprimarybadgetextcolor,
@@ -464,6 +478,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   #admin-participantprimarybadgefield,
+  #admin-themeprimarycolor,
+  #admin-themeaccentcolor,
+  #admin-themeparticipantcolor,
+  #admin-themegroupcolor,
+  #admin-themegroupingcolor,
   #admin-participantprimarybadgebgcolor,
   #admin-participantprimarybadgetextcolor,
   #admin-participantdetailfield1,

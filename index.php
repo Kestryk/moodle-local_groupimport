@@ -1074,11 +1074,13 @@ echo $OUTPUT->header();
 // Skeleton lifecycle, its root attributes and real-content wrapper stay owned
 // by the loading implementation.
 $navigationdata = local_groupimport_build_mass_import_navigation_context($course);
+$themestyle = local_groupimport_get_theme_style();
 $navigationmarkup = html_writer::tag('div',
     $OUTPUT->render_from_template('local_groupimport/easyedu_navigation', $navigationdata),
     [
         'class' => 'local-groupimport-import-navigation local-groupimport-easystud local-groupimport-easystud__navigation',
         'data-region' => 'local-groupimport-import-navigation',
+        'style' => $themestyle,
     ]
 );
 
@@ -1091,6 +1093,7 @@ echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !=
     'data-easyedu-loading-bootstrap' => '1',
     'data-easyedu-loading-ready-attribute' => 'data-easyedu-loading-ready',
     'data-easyedu-action-busy-label' => get_string('actioninprogress', 'local_groupimport'),
+    'style' => $themestyle,
 ]);
 
 echo html_writer::start_div('local-groupimport-import__loading-skeleton', [

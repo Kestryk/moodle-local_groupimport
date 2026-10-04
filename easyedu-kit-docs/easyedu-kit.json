@@ -7,7 +7,7 @@
     "batch": "EED-UI-2026-0073",
     "adminColourPicker20261004": {
       "kitCommit": "841732e",
-      "status": "Kit 0.4.79 candidate: the existing participant-badge settings consume public S/M/L colour-picker classes with a named editable Hex value and unnamed native swatch; broader semantic plugin colours remain a separate batch.",
+      "status": "Kit 0.4.79 candidate: all colour controls consume the public S/M/L family; EasyStud adds validated Primary, Accent, Participant, Group and Grouping settings and applies their derived roles to both workspaces.",
       "documentation": "docs/admin-colour-picker-2026-10-04.md",
       "humanAccepted": false,
       "nativePreviewVerified": false,
@@ -15,11 +15,16 @@
       "modules": {
         "scss/easyedu/components/_forms.scss": "8885202dacd8a78fc06a2719c2828666d16aa0a4",
         "scss/easyedu/_foundation-classes.scss": "7db8370d6f41fe18b87d738fa215a4eb55c9fbd4",
-        "scss/views/_admin-settings.scss": "61098c219ee18169cc3a3ecd893c59848fbaf754",
-        "settings.php": "41c60c0b02b7884c78700c45a35d0edbd9d44998",
+        "scss/views/_admin-settings.scss": "12d8c250f2c50d1d1ed6ec5e5262379b4c26def1",
+        "settings.php": "28053ce54eb9bac8cf0f9bef23cc37ec01e9bebd",
         "js/admin_settings_loading.js": "c391d56049a6235313f8d292b7f16d6c7ff4730b",
-        "styles.css": "d7bba9a5c491828a4b3b8485f1b262023b09abc8",
-        "tools/release/test-admin-color-picker-contract.ps1": "809c1f24c0dd0b71da453b00ae6309b5a14587a1"
+        "styles.css": "9e3a5a87bc6a44107522921afcb943f32b1124f1",
+        "tools/release/test-admin-color-picker-contract.ps1": "31aadfc9ea6d8e5dc9584f4ff415345fd4caed03",
+        "lib.php": "4d256b6a6d4d8d2c0ffa970d9b008ebb65d98034",
+        "manage.php": "9f0d6e61953b10989a449f0b87e4e6bc63dfe860",
+        "templates/manage.mustache": "f042a5b6c8b2a32ab763143d6d1f88bddfb1bb4a",
+        "index.php": "666c864bd203d799ac8d2986b61b67d86608a07e",
+        "tests/lib_test.php": "ccba2c71ef669f01b62b59ea4342697c9bd6cb5a"
       }
     },
     "studentMemberRowPublicClasses20261004": {
