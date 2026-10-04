@@ -52,3 +52,17 @@ composition cards contain their descendants. IDs:
 The final Penpot PNG export timed out after the settled readback; it was not
 retried unchanged. Geometry is verified, but human visual acceptance remains
 open in the later global checklist.
+
+## Page 04 alignment continuation, 4 October 2026
+
+The full Group image composition board
+`fcb98309-36c1-8004-8008-bc07bb1ecdce` was exported successfully and
+visually inspected. Both desktop cards have identical 760x300 bounds; their
+linked image previews and file pickers share the same top coordinate, and
+their pending-delete actions share the same 75px offset from the picker. The
+compact card's preview, picker and pending-delete action share one left edge.
+All 27 text paints are contained by their parent and no descendant extends
+outside the board. The inspected preview tiles, linked upload icons and
+text/button alignments show no remaining measured offset requiring a source
+change in this board. This closes the agent geometry/export audit only;
+human visual acceptance remains in the combined checklist.
