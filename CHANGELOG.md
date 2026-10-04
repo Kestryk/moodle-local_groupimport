@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-04 - Administration shared choices candidate
+
+- Route native administration single/multiple selects through the Kit chooser
+  with search, native value ownership, localized labels and reset/disabled sync.
+- Cover future native dropdowns in the no-JS adapter rather than enumerating
+  only three profile fields; include view preferences in the existing shell.
+- Isolated adapter proof passes. Native/visual promotion is held for the
+  shared pointer-dismissal reflow bug recorded in the administration audit.
+
 ## 2026-10-04 - Restore parent filter closure in delivered JavaScript
 
 - Repair the searchable-choice AMD builder so it exports all public source

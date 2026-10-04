@@ -428,6 +428,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 
   #admin-alloweduserfields,
   #admin-enablesimplifiedview,
+  #admin-showcompleteview,
+  #admin-defaultlayoutmode,
   #admin-enableanimations,
   #admin-themeprimarycolor,
   #admin-themeaccentcolor,
@@ -550,16 +552,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     }
   }
 
-  select[name="s_local_groupimport_alloweduserfields[]"],
-  #id_s_local_groupimport_alloweduserfields {
+  // The native fallback covers every plugin setting, including future fields.
+  // Enhanced controls use public Kit markup/classes instead of private paint.
+  select[name^="s_local_groupimport_"][multiple] {
     @include easyedu.multi-select-list;
 
     width: min(100%, 34rem) !important;
   }
 
-  select[name="s_local_groupimport_participantprimarybadgefield"],
-  select[name="s_local_groupimport_participantdetailfield1"],
-  select[name="s_local_groupimport_participantdetailfield2"] {
+  select[name^="s_local_groupimport_"]:not([multiple]) {
     @include easyedu.native-select-control;
 
     width: min(100%, 22rem) !important;

@@ -47,3 +47,31 @@ tablet 768px and a board named Mobile/390 whose actual width is 454px. That
 discrepancy needs inclusion in the responsive audit. The existing warning's
 provider has not yet been verified; no claim that it matches Foundations.
 The current connected document is EasyStud, not Foundations.
+
+## Administration adapter candidate
+
+`admin_choices` now routes all non-required native EasyStud settings selects
+through the existing Kit single/multiple controller. Native names/options/value
+remain authoritative. The adapter supplies the missing `.easyedu-ui` ancestor,
+localized labels, native reset synchronization and observed disabled/options
+changes. Required fields keep a visible native fallback until the shared
+controller supports browser constraint validation. No new paint or private
+dropdown implementation is introduced.
+
+The no-JS SCSS adapter now targets all EasyStud single/multiple selects instead
+of three enumerated field names. New view-preference rows receive the existing
+settings shell. Generated CSS and native promotion remain pending so the
+earlier visual WIP is not inadvertently shipped with this candidate.
+
+Validation: PHP syntax, built choice exports and isolated real-browser adapter
+tests pass (values, search, multiple selection, Escape, reset after closure,
+disabled synchronization, scope, idempotence and required native fallback).
+These are not native Moodle or visual-parity passes.
+
+The initial isolated test exposed a separate shared-controller defect: clicking
+a Reset below an open in-flow choice can be lost as focusout closes/reflows the
+list between pointerdown and click. Native value and summary both remained
+unchanged; no JavaScript error occurred. Keep this explicitly OPEN. The passing
+reset case first closes with Escape and proves only reset synchronization.
+Repair pointer/keyboard dismissal in the canonical Kit before promoting the
+admin enhancement; include an unchanged-coordinate click regression.

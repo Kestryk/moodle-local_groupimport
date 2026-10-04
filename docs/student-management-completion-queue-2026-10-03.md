@@ -343,6 +343,9 @@ technical passes do not close these newly reported regressions.
 - [ ] R10: Native Administration dropdowns must consume canonical Kit fields
   and searchable choices where appropriate; audit generated Moodle markup,
   selector scope and enhancement coverage instead of creating private styles.
+  Adapter candidate written and isolated-browser checked; native promotion held
+  for shared focusout reflow losing clicks below an open choice. See
+  `admin-and-compact-filters-audit-2026-10-04.md`.
 - [ ] R11: Contrast validation feedback must use the Foundation warning/error
   component in Penpot and native administration. Relax rejection of valid Hex
   palettes through safe foreground/derived text colours or a nonblocking warning;
