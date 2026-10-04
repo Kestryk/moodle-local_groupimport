@@ -38,6 +38,13 @@ Inline notification / Warning component. The close glyph is hidden because
 this form explanation is conditional on the current Hex, not dismissible.
 Its exported 1440px board was visually inspected; insertion into every full
 responsive administration composition remains a separate propagation check.
+The final source successor `75d6c4c` is served by Moodle 5.1 preview HEAD
+`9d6ed6768d53dc7022df7faf0bfe9536329d20f2`; native read-only run
+`easystud-authenticated-20261004T150423519Z-9736` passes three widths,
+including real warning paint, default-value suppression and no settings POST.
+Its artifact manifest and cleanup JSON are under the external EasyStud
+authenticated run root. Human checklist and broader surface contrast remain
+open.
 
 Restore defaults should populate the seven existing colour controls from
 their PHP defaults and synchronize swatch/Hex/error state. Native Save remains
