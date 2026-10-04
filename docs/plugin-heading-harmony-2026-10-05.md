@@ -25,4 +25,15 @@ do not silently label the entire board correct from a header PASS.
 Secondary Mass Import tiles remain larger (40.8px) than primary tiles (35.2px)
 and stay pending SM-42B. Other interaction-board propagation, future CCB and
 Skeleton header geometry reconciliation remain explicit follow-ups. Native
-promoted heading successor and human acceptance pending.
+promoted heading successor is recorded below; human acceptance remains open.
+
+## Served successor
+
+`easystud-authenticated-20261004T222517532Z-36620` passes nine native cases:
+Mass Import, Student and Admin at 1600/768/390, all 10.88/20/14.4px with
+700/700/400 weights, matching theme font and line height. No horizontal
+overflow, page error, business POST or fixture. Source `85b3d75`, Kit
+`0e1453c` / 0.4.96, runtime `13a6e77`; promotion `20261004T222442Z`
+purged caches. Cleanup records credentials cleared, owned child stopped and
+runtime lease released. This proves heading roles only, not all descendants
+or the still-larger secondary icon tiles. Human checklist remains OPEN.

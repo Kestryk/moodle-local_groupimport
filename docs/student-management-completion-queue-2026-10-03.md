@@ -7,6 +7,11 @@ stays deferred to the combined checklist; automation never ticks it.
 
 ## 2026-10-04 user feedback successor
 
+SM-42A heading successor is served: nine Mass/Student/Admin cases at
+1600/768/390 pass the shared 10.88/20/14.4px roles. SM-42B secondary tiles,
+remaining board propagation and Skeleton header reconciliation remain open.
+See `plugin-heading-harmony-2026-10-05.md`; human checklist remains OPEN.
+
 The deduplicated SM-39 through SM-47 lots are recorded in
 `student-feedback-successor-2026-10-04.md`, including dependencies and proof
 gates. They supplement every earlier unfinished request, not replace it.
