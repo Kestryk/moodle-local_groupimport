@@ -62,7 +62,9 @@ test('Searchable filter clear-all keeps native state and focus aligned', async (
         const geometry = await clear.evaluate(button => {
             const b = button.getBoundingClientRect();
             const i = button.querySelector('.fa').getBoundingClientRect();
-            const t = button.parentElement.querySelector('.easyedu-searchable-choice__trigger').getBoundingClientRect();
+            const trigger = button.parentElement.querySelector('.easyedu-searchable-choice__trigger');
+            const t = trigger.getBoundingClientRect();
+            const chevron = trigger.querySelector('.fa:last-child').getBoundingClientRect();
             return {
                 size: [b.width, b.height],
                 centreDelta: [
@@ -70,6 +72,9 @@ test('Searchable filter clear-all keeps native state and focus aligned', async (
                     Math.abs((b.top + b.height / 2) - (i.top + i.height / 2)),
                 ],
                 contained: b.left >= t.left && b.right <= t.right && b.top >= t.top && b.bottom <= t.bottom,
+                chevronEndInset: t.right - chevron.right,
+                chevronClearGap: chevron.left - b.right,
+                chevronCentreDelta: Math.abs((chevron.top + chevron.height / 2) - (t.top + t.height / 2)),
             };
         });
         await clear.click();
@@ -80,6 +85,10 @@ test('Searchable filter clear-all keeps native state and focus aligned', async (
         await expect(clear).toBeHidden();
         expect(geometry.contained).toBe(true);
         expect(Math.max(...geometry.centreDelta)).toBeLessThanOrEqual(1);
+        expect(geometry.chevronEndInset).toBeGreaterThanOrEqual(10);
+        expect(geometry.chevronEndInset).toBeLessThanOrEqual(20);
+        expect(geometry.chevronClearGap).toBeGreaterThanOrEqual(0);
+        expect(geometry.chevronCentreDelta).toBeLessThanOrEqual(1);
         records.push({width, geometry});
         save();
         await search.press('Escape');

@@ -293,3 +293,14 @@ passes: 12.48px labels, 30.39px height, neutral-to-selected paint change,
 pressed-state reversal, and zero business requests/page errors. This closes
 this specific quick-role candidate; other compact-filter roles, full-board
 propagation and human acceptance remain open.
+
+### Native trailing-chevron geometry
+
+The existing multiple-choice clear scenario now measures the trailing
+chevron and clear affordance after two selections. Native run
+`easystud-authenticated-20261004T162612514Z-12796` passes at
+1600/768/390: the chevron is 14px from the trigger's end and has zero
+vertical-centre delta, while the clear action stays fully inside the trigger
+with an 8px desktop / 10px responsive gap before the chevron. Clear preserves
+focus, resets the native selected options and emits no business request.
+This is browser geometry proof for R02, not human visual acceptance.

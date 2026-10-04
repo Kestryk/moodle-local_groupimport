@@ -328,7 +328,10 @@ technical passes do not close these newly reported regressions.
   source offset was detected. Human visual acceptance remains open. See
   `docs/student-group-image-native-2026-10-03.md`.
 - [ ] R02: More Filters searchable dropdown: restore the chevron to the trailing
-  edge while retaining a separate accessible clear-selection control.
+  edge while retaining a separate accessible clear-selection control. Native
+  Moodle geometry now passes at 1600/768/390: 14px trailing inset, zero
+  vertical-centre delta and 8/10px gap to Clear. Human visual acceptance
+  remains open; see `docs/admin-and-compact-filters-audit-2026-10-04.md`.
 - [ ] R03: More Filters cannot close after opening: reproduce and fix nested
   dropdown/disclosure lifecycle, including repeated and interrupted toggles.
 - [ ] R04: Sticky Clear selection: the inner button now opts into the linked
