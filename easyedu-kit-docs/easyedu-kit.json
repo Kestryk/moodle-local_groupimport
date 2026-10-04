@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.96",
+  "version": "0.4.98",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "massSecondaryIconHierarchy20261005": {
+      "kitCommit": "7e00460",
+      "documentation": "docs/mass-secondary-icon-hierarchy-2026-10-05.md",
+      "status": "Canonical compact deposit/information tracks; class-only consumer adapter and strict unrelated CSS/controller preservation. Paired compound providers and 18 deposit + 18 identification product instances have settled geometry/content/palette proof; native successor pending.",
+      "nativePreviewVerified": false,
+      "humanAccepted": false
+    },
     "workspaceHeadingHarmony20261005": {
       "kitCommit": "0e1453c8919ee184d48262d02d83a846b6e6c6f3",
       "documentation": "docs/plugin-heading-harmony-2026-10-05.md",

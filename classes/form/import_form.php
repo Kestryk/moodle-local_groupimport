@@ -47,7 +47,7 @@ class import_form extends \moodleform {
 
         // Kit surface around the real Moodle picker: draft IDs, progress,
         // replacement, keyboard access and validation remain Moodle-owned.
-        $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit easyedu-file-deposit--moodle', [
+        $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit easyedu-file-deposit--moodle easyedu-file-deposit--compact-icon', [
             'data-easyedu-drop-label' => get_string('csvdropready', 'local_groupimport'),
             'data-easyedu-remove-label' => get_string('removeimportfile', 'local_groupimport'),
             'data-easyedu-file-mode' => 'single',

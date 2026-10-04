@@ -19735,6 +19735,10 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   grid-template-columns: 2.55rem minmax(0, 1fr);
 }
 
+.easyedu-ui .easyedu-information__header--compact-icon {
+  grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr);
+}
+
 .easyedu-ui .easyedu-information__title {
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
@@ -22383,7 +22387,46 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-text-muted);
 }
 
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__heading {
+  grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr);
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__icon {
+  align-items: center;
+  background: var(--easyedu-deposit-icon-surface);
+  border: 1px solid var(--easyedu-deposit-icon-border);
+  border-radius: var(--easyedu-section-icon-radius);
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 var(--easyedu-section-icon-size-compact);
+  height: var(--easyedu-section-icon-size-compact);
+  justify-content: center;
+  line-height: 1;
+  width: var(--easyedu-section-icon-size-compact);
+  font-size: 1.0625rem;
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__icon::before,
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__icon > .fa,
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__icon > [aria-hidden=true] {
+  display: block;
+  line-height: 1;
+  max-height: 1em;
+  max-width: 1em;
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__support {
+  margin-inline-start: calc(var(--easyedu-section-icon-size-compact) + 0.95rem);
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon [id^=filepicker-wrapper-] {
+  padding-inline-start: calc(var(--easyedu-section-icon-size-compact) + 0.95rem);
+}
+
 @media (max-width: 40rem) {
+  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__support {
+    margin-inline-start: 0;
+  }
+  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon [id^=filepicker-wrapper-] {
+    padding-inline-start: 0;
+  }
   .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__support {
     margin-inline: 0;
     margin-block-start: 1rem;

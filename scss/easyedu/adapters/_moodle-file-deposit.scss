@@ -2,6 +2,7 @@
 // every consumer. Moodle owns draft IDs, repositories, validation and progress.
 @use "../components/focus";
 @use "../components/typography";
+@use "../components/panels";
 @use "../foundation-classes" as foundations;
 
 @mixin moodle-file-deposit-classes {
@@ -269,7 +270,32 @@
       min-inline-size: min(14rem, 100%);
     }
   }
+  // Explicit embedded-heading density. Keep the standalone regular picker
+  // unchanged; the tile and its text track must shrink together.
+  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon {
+    .easyedu-file-deposit__heading {
+      grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr);
+    }
+    .easyedu-file-deposit__icon {
+      @include panels.section-icon-tile(
+        $surface: var(--easyedu-deposit-icon-surface),
+        $border: var(--easyedu-deposit-icon-border),
+        $size: compact
+      );
+      font-size: 1.0625rem;
+    }
+    .easyedu-file-deposit__support {
+      margin-inline-start: calc(var(--easyedu-section-icon-size-compact) + 0.95rem);
+    }
+    [id^="filepicker-wrapper-"] {
+      padding-inline-start: calc(var(--easyedu-section-icon-size-compact) + 0.95rem);
+    }
+  }
   @media (max-width: 40rem) {
+    .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon {
+      .easyedu-file-deposit__support { margin-inline-start: 0; }
+      [id^="filepicker-wrapper-"] { padding-inline-start: 0; }
+    }
     .easyedu-ui .easyedu-file-deposit--moodle {
       .easyedu-file-deposit__support { margin-inline: 0; margin-block-start: 1rem; }
       [id^="filepicker-wrapper-"] { padding-inline: 0; }
