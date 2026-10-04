@@ -803,7 +803,7 @@
   --easyedu-color-picker-padding-inline: 0.55rem;
   --easyedu-color-picker-swatch-height: 2rem;
   --easyedu-color-picker-swatch-width: 3.1rem;
-  --easyedu-color-picker-text-size: 0.82rem;
+  --easyedu-color-picker-text-size: 0.78rem;
 
   @if $size == small {
     --easyedu-color-picker-gap: 0.48rem;
@@ -823,10 +823,17 @@
     @error "color-picker-control expects small, regular or large.";
   }
 
+  @if $size == regular {
+    // Foundation M is a 160px control at every viewport; its Hex lane is
+    // allowed to shrink rather than stretching the entire native setting row.
+    inline-size: 10rem;
+  }
+
   align-items: center;
   background: var(--easyedu-surface);
-  border: 1px solid var(--easyedu-control-border);
+  border: 1px solid var(--easyedu-border-strong);
   border-radius: var(--easyedu-control-radius);
+  box-sizing: border-box;
   display: inline-flex;
   gap: var(--easyedu-color-picker-gap);
   max-width: 100%;
@@ -914,15 +921,15 @@
   background: transparent;
   border: 0;
   box-shadow: none;
-  color: var(--easyedu-text);
+  color: var(--easyedu-text-muted);
   flex: 1 1 7.4rem;
   font-family: var(--easyedu-font-family-ui);
-  font-size: var(--easyedu-color-picker-text-size, 0.82rem);
+  font-size: var(--easyedu-color-picker-text-size, 0.78rem);
   font-weight: 700;
   letter-spacing: 0.035em;
   line-height: 1.2;
   min-height: var(--easyedu-color-picker-swatch-height, 2rem);
-  min-width: 6.8rem;
+  min-width: 0;
   padding: 0 0.2rem;
   text-transform: uppercase;
 

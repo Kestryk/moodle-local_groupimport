@@ -79,12 +79,23 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
             const metrics = await picker.evaluate(n => {
                 const r = n.getBoundingClientRect();
                 const hex = n.querySelector('.easyedu-color-picker__hex');
+                const swatch = n.querySelector('.easyedu-color-picker__swatch');
                 return {left: r.left, right: r.right, width: innerWidth,
-                    display: getComputedStyle(n).display, hexHeight: hex.getBoundingClientRect().height};
+                    display: getComputedStyle(n).display, controlWidth: r.width,
+                    borderColor: getComputedStyle(n).borderTopColor,
+                    hexFontSize: getComputedStyle(hex).fontSize,
+                    hexHeight: hex.getBoundingClientRect().height,
+                    hexRight: hex.getBoundingClientRect().right,
+                    swatchWidth: swatch.getBoundingClientRect().width};
             });
             expect(metrics.left).toBeGreaterThanOrEqual(0);
             expect(metrics.right).toBeLessThanOrEqual(metrics.width + 1);
             expect(metrics.display).not.toBe('block');
+            expect(metrics.controlWidth).toBeCloseTo(160, 1);
+            expect(metrics.borderColor).toBe('rgb(185, 198, 212)');
+            expect(metrics.hexFontSize).toBe('12.48px');
+            expect(metrics.swatchWidth).toBeCloseTo(49.6, 1);
+            expect(metrics.hexRight).toBeLessThanOrEqual(metrics.right - 7);
             expect(metrics.hexHeight).toBeGreaterThan(25);
         }
         await expect(root.locator('[data-easystud-restore-colours]')).toBeVisible();

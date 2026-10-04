@@ -349,7 +349,10 @@ technical passes do not close these newly reported regressions.
   resolving a documentation-only preview conflict; full visual comparison and
   human acceptance remain open. See `docs/admin-and-compact-filters-audit-2026-10-04.md`.
 - [ ] R06: Correct rendered color pickers, all sizes/states, editable Hex and
-  native input alignment; update Foundations and product compositions.
+  native input alignment; update Foundations and product compositions. Kit
+  0.4.86 now matches the linked M/160px source control, with seven native
+  control assertions pending preview. S/L width contracts and default-value
+  placement in the settings row remain open.
 - [ ] R07: Add Restore EasyEdu default colours, using canonical defaults and
   explicit native Save semantics rather than silently saving settings.
   Source candidate and isolated browser checks pass for seven settings,
