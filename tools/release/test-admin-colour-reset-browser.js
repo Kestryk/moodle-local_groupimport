@@ -12,7 +12,7 @@ const {chromium} = require(path.join(path.resolve(process.argv[2]), 'playwright'
             `<div data-easyedu-color-picker="1" data-easyedu-color-default="${value}">
             <input type="color" class="easyedu-color-picker__swatch" value="#111111">
             <input class="easyedu-color-picker__hex" value="bad" ${index === 6 ? 'readonly' : ''}></div>`).join('')}
-            <div><div data-easyedu-color-picker="1" data-easyedu-color-contrast="4.5"
+            <div><div data-easyedu-color-picker="1" data-easyedu-color-contrast="4.5" data-easyedu-color-soft-share="0.11"
                 data-easyedu-color-default="#6A7F98">
             <input type="color" class="easyedu-color-picker__swatch" value="#ffffff">
             <input class="easyedu-color-picker__hex" value="#ffffff"></div>
@@ -47,6 +47,8 @@ const {chromium} = require(path.join(path.resolve(process.argv[2]), 'playwright'
         assert.equal(await contrastNote.isVisible(), true, 'Light Hex shows nonblocking Kit notice');
         await lightHex.fill('#123456');
         assert.equal(await contrastNote.isVisible(), false, 'Readable Hex hides adjustment notice');
+        await lightHex.fill('#4873ad');
+        assert.equal(await contrastNote.isVisible(), true, 'White-readable Hex still warns when its soft surface needs adjustment');
         await lightHex.fill('#invalid');
         assert.equal(await contrastNote.isVisible(), false, 'Malformed Hex uses validity state, not adjustment notice');
         await lightHex.fill('#6A7F98');

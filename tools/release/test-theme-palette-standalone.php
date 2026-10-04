@@ -38,6 +38,17 @@ if ($setting->validate('red; display:none') === true) {
     throw new RuntimeException('Malformed Hex was accepted.');
 }
 
+// Regression: #ff0000 adapted for white still fails on #ffe2e2, its
+// conservative 11%-red surface. Check the independent fixed background.
+$adapted = local_groupimport_colour_for_soft_contrast('#ff0000', 0.11);
+if (local_groupimport_colour_contrast_against_white($adapted) /
+        local_groupimport_colour_contrast_against_white('#ffe2e2') < 4.5) {
+    throw new RuntimeException('Semantic text is unreadable on the chosen soft surface.');
+}
+if (local_groupimport_colour_for_soft_contrast('#0f6cbf', 0.10) !== '#0f6cbf') {
+    throw new RuntimeException('Already readable primary default was needlessly changed.');
+}
+
 $testconfig = [
     'themeprimarycolor' => '#ffffff',
     'themeaccentcolor' => 'red; display:none',
@@ -53,4 +64,22 @@ if (!str_contains($style, '--easyedu-primary-chosen: #ffffff;') ||
     throw new RuntimeException('Unsafe or incorrect semantic style output.');
 }
 
-echo "PASS: valid light Hex accepted, malformed input rejected, saved shade preserved, readable role derived.\n";
+// Export the real server adapter for browser/CSS contrast checks. These are
+// process-local get_config stubs, not a persisted Moodle configuration fixture.
+$palettes = [];
+foreach (['#ffffff', '#fff3a5', '#b9ebd0', '#ccddea', '#ff0000', '#00ff00', '#0000ff', '#000000'] as $hex) {
+    $testconfig = array_fill_keys([
+        'themeprimarycolor', 'themeaccentcolor', 'themeparticipantcolor', 'themegroupcolor', 'themegroupingcolor',
+    ], $hex);
+    $palettes[] = ['name' => $hex, 'style' => local_groupimport_get_theme_style()];
+}
+$testconfig = [];
+$palettes[] = ['name' => 'defaults', 'style' => local_groupimport_get_theme_style()];
+$testconfig = ['themeprimarycolor' => '#ff0000', 'themeaccentcolor' => '#b9ebd0', 'themegroupcolor' => '#0000ff'];
+$palettes[] = ['name' => 'mixed', 'style' => local_groupimport_get_theme_style()];
+
+if (in_array('--json', $argv, true)) {
+    echo json_encode($palettes, JSON_THROW_ON_ERROR) . "\n";
+} else {
+    echo "PASS: valid light Hex accepted, malformed input rejected, saved shade preserved, readable role derived.\n";
+}

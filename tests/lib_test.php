@@ -190,6 +190,24 @@ final class lib_test extends \advanced_testcase {
     }
 
     /**
+     * Soft-surface text uses a stricter target without altering the chosen Hex.
+     *
+     * @return void
+     */
+    public function test_colour_foreground_accounts_for_soft_surface(): void {
+        // A black choice's 11% surface rounds conservatively to #e2e2e2.
+        $this->assertSame('#000000', local_groupimport_colour_for_soft_contrast('#000000', 0.11));
+        $this->assertSame('#767676', local_groupimport_colour_for_soft_contrast('#ffffff', 0.11));
+        $this->assertSame('#0f6cbf', local_groupimport_colour_for_soft_contrast('#0f6cbf', 0.10));
+        // Red was readable on white but not on its pale-red selected surface.
+        $adapted = local_groupimport_colour_for_soft_contrast('#ff0000', 0.11);
+        $backgroundwhitecontrast = local_groupimport_colour_contrast_against_white('#ffe2e2');
+        $this->assertGreaterThanOrEqual(4.5,
+            local_groupimport_colour_contrast_against_white($adapted) / $backgroundwhitecontrast);
+        $this->assertNotSame(local_groupimport_colour_for_white_contrast('#ff0000'), $adapted);
+    }
+
+    /**
      * Participant-card custom field values are reduced to compact plain text.
      *
      * @param string|null $value Stored custom profile field value.

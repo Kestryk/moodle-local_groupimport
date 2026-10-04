@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Semantic custom-palette text must be checked against its actual soft surface,
+not only white. Keep saved Hex values and shared Kit component recipes intact;
+derive safe foreground tokens in the native configuration adapter. Initial and
+live adjustment notices must use the same role-specific surface threshold.
+Record computed-paint contrast proof separately from whole-view/native-DOM
+proof: transient test specimens and PHP configuration stubs do not establish
+persisted settings, cross-role backgrounds or human acceptance.
+
 Native settings adapters must preserve select names/options, required fallback,
 disabled synchronization and reset semantics. An isolated reset PASS after
 Escape does not certify clicking a button below an open in-flow dropdown:

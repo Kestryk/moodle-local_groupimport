@@ -22,7 +22,7 @@ Builder.
 - Six-digit Hex is the only hard validation. Malformed direct database values
   still fall back to the canonical Kit defaults, while valid light colours stay
   saved and visible in the native swatch. Text/action semantic tokens are
-  darkened to at least 4.5:1 against white; soft surfaces retain the chosen
+  darkened to at least 4.5:1 against white and their own semantic soft surface; soft surfaces retain the chosen
   colour. The Kit warning notice explains a live adjustment without blocking
   Save. This is a scoped contrast guarantee, not proof for every composite
   surface or native theme.
@@ -53,8 +53,8 @@ passes at 1600/768/390: the custom light Hex reveals the warning with
 Foundation surface/border/ink, returning to the primary default hides it,
 and the canonical grouping default shows no warning. Settings POST is blocked;
 no configuration value was saved. Credentials and lease were released.
-The whole mixed-background contrast matrix and human visual acceptance remain
-open. Penpot product specimen `cf371b29-2e8e-8011-8008-bd1dadea4968`
+The whole mixed-background contrast matrix and human visual acceptance remained
+open at that revision. Penpot product specimen `cf371b29-2e8e-8011-8008-bd1dadea4968`
 links to Foundation Inline notification / Warning; the full responsive board
 propagation has not been claimed.
 
@@ -88,3 +88,42 @@ responsive choice, title and Restore/no-settings-POST assertions also pass.
 Credentials were cleared, the runtime lease released and no fixture was used.
 The targeted captures were inspected; human acceptance, S/L provider
 geometries and the broader Administration visual checklist remain open.
+
+## R11: semantic text on soft surfaces
+
+The white-only adapter left semantic text below the small-text threshold on
+some tinted surfaces. Independent calculations found, for example, 3.74:1 for
+white-adjusted red on its 11% red surface, and 4.22:1 for the participant
+default on its soft surface. This was not a malformed setting or a picker bug.
+
+The adapter now measures each role's existing sRGB surface: primary 10%,
+accent/success 9%, and identity roles 11%, with the remainder white. It derives
+only the foreground, conservatively accounting for fractional browser channels.
+The chosen Hex, soft CSS mix, native setting names, Save semantics, and Kit
+component paint remain unchanged. The primary default remains `#0f6cbf`.
+Administration's initial and live nonblocking notice use the same surface
+threshold, while canonical defaults remain exempt from adjustment notices.
+
+`theme-soft-contrast-preview.spec.js` is a `local-supervised` scenario:
+the source PHP adapter runs with process-local configuration stubs; temporary
+component specimens and role probes use the served Moodle stylesheet/cascade.
+It covers ten palettes at 1600/768/390, including white, pastels, saturated
+RGB, black, defaults and a mixed palette. It measures actual computed paint
+for Status, recognized-identifier tokens, selected choices, and five published
+foreground/soft role pairs. No configuration, import or membership is saved.
+It is not whole-view, arbitrary cross-role-background or custom-badge contrast
+proof. The existing Administration scenario also checks the live warning for
+a colour that passes on white but fails on its soft surface.
+
+The linked Penpot warning was read back on Administration page 02: title
+`cf371b29-2e8e-8011-8008-bd1db52545c7`, body
+`cf371b29-2e8e-8011-8008-bd1db52545c8`, Foundation Warning component
+`5866ed4a-7d30-8093-8008-ac7862802609`. Its existing message already states
+that the chosen colour remains in soft accents and texts/actions use a readable
+variant. No shape, typography, geometry or shared component change is required
+for this palette-adapter correction; the canonical Kit remains 0.4.87.
+
+Static PHP, controller and isolated notice tests pass. Managed native proof
+and human acceptance remain open until the successor run is recorded.
+Platform registry/state changes are deferred to their owner; source scenario
+classification and its exact no-write boundary are recorded here.
