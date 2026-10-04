@@ -201,6 +201,10 @@
   }
 }
 
+@mixin skeleton-selector-options($count: 3) {
+  & { grid-template-columns: repeat($count, minmax(0, 1fr)); }
+}
+
 // Consumers apply this only in their own narrow-width rule. It changes the
 // reusable visual density, never page widths, offsets or loading lifecycle.
 @mixin skeleton-section-compact {

@@ -59,6 +59,9 @@ test('Feedback Skeleton has a running subtle sweep and retained QA role catalogu
                         background: s.backgroundColor, border: s.borderTopColor, radius: s.borderRadius};
                 }).filter(n => n.visible);
                 return {root: {w: origin.width, h: origin.height}, visibleNodes,
+                    selectorColumns: getComputedStyle(node.querySelector('.local-groupimport-easystud__loading-view-toggle'))
+                        .gridTemplateColumns.split(' ').length,
+                    selectorItems: node.querySelectorAll('.local-groupimport-easystud__loading-view-toggle-item').length,
                     headerCues: header.children.length, headerHeight: header.getBoundingClientRect().height, filters: regions.map(n => {
                     const s = getComputedStyle(n), r = n.getBoundingClientRect();
                     return {height: r.height, padding: s.padding, border: s.borderInlineStartWidth,
@@ -66,7 +69,8 @@ test('Feedback Skeleton has a running subtle sweep and retained QA role catalogu
                 })};
             });
             expect(layout.headerCues).toBe(3);
-            if (width === 1600) { expect(layout.headerHeight).toBeLessThan(100); }
+            expect(layout.headerHeight).toBeLessThan(100);
+            expect(layout.selectorColumns).toBe(layout.selectorItems);
             expect(layout.filters).toHaveLength(2);
             for (const filter of layout.filters) { expect(filter.children).toBe(2); }
             if (width === 1600) {
