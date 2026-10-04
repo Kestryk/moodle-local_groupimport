@@ -6,16 +6,16 @@
   "consumerSync": {
     "colourPickerAdminRow20261004": {
       "kitCommit": "bed42f50af66bc179b5e639da07a84e49943aa13",
-      "status": "Shared Moodle admin colour-setting layout embedded; native preview and human acceptance pending.",
+      "status": "Shared Moodle admin colour-setting layout embedded; native run easystud-authenticated-20261004T170609304Z-34728 passes at three widths; human acceptance pending.",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "penpotLinked": true
     },
     "colourPickerM20261004": {
       "kitCommit": "a72c4cbf0272db887865015662cf47dd8a3cc8c2",
-      "status": "The 160px Foundation M control is synchronized in EasyStud SCSS; native preview and human acceptance remain separate.",
+      "status": "The 160px Foundation M control is synchronized in EasyStud SCSS; native run easystud-authenticated-20261004T170609304Z-34728 passes at three widths; human acceptance pending.",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "penpotLinked": true
     },
     "emptyCaption20261004": {

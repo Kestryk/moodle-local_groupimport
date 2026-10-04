@@ -352,8 +352,9 @@ technical passes do not close these newly reported regressions.
   native input alignment; update Foundations and product compositions. Kit
   0.4.86 now matches the linked M/160px source control, with seven native
   control assertions passing at 1600/768/390. Kit 0.4.87 adds the shared
-  native setting-row layout for Penpot's adjacent default label; its preview,
-  S/L width contracts and human acceptance remain open.
+  native setting-row layout for Penpot's adjacent default label. Native run
+  `easystud-authenticated-20261004T170609304Z-34728` passes all seven rows
+  at 1600/768/390; S/L width contracts and human acceptance remain open.
 - [ ] R07: Add Restore EasyEdu default colours, using canonical defaults and
   explicit native Save semantics rather than silently saving settings.
   Source candidate and isolated browser checks pass for seven settings,
@@ -381,7 +382,8 @@ technical passes do not close these newly reported regressions.
   selector scope and enhancement coverage instead of creating private styles.
   All five native enhanced settings choices measure 38px desktop / 44px
   responsive within the public Kit scope, matching the linked Penpot M choice;
-  the full five-control assertion and product title copy await native preview.
+  the full five-control assertion and product title copy pass native preview at
+  1600/768/390 (`easystud-authenticated-20261004T170609304Z-34728`).
   The shared focusout/reflow pointer defect was repaired in Kit 0.4.82 and
   tested with a held click; the adapter now runs in native Moodle. Human visual
   acceptance of the Administration composition remains open. See
