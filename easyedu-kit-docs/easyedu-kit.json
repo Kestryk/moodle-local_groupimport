@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "choiceClearPublication20261004": {
+      "kitCatalogueCommit": "3a5b401d5415c0e5867802331e2c5b219d133616",
+      "status": "Eight shared clear states, twelve Foundation choice variants and fourteen product consumers reconciled. Native clear-all three-width successor passes; human acceptance pending. Existing 0.4.90 SCSS/controller unchanged.",
+      "nativeRun": "easystud-authenticated-20261004T192321615Z-388",
+      "penpotLinked": true,
+      "nativePreviewVerified": true,
+      "humanAccepted": false,
+      "documentation": "docs/student-searchable-filter-clear-2026-10-04.md"
+    },
     "semanticSectionTiles20261004": {
       "kitCommit": "c80961f901ba27267a31555123fa0033c8b944f7",
       "status": "Kit 0.4.90 Warning/Danger recipes embedded; eight Foundation Standard/Library providers published; 39 product main headers linked. Native initial Mass Import three-width successor passes; full semantic-state lifecycle and human acceptance open.",
