@@ -14,7 +14,7 @@ const root = path.resolve(__dirname, '../..');
               <form id="adminsettings"><div class="settingsform">
                 <h2 class="local-groupimport-import__title local-groupimport-admin-settings__page-title">Administration</h2>
                 <p class="local-groupimport-import__intro local-groupimport-admin-settings__page-description">Configure EasyStud</p>
-                <div class="formsettingheading"><h3>Interface colours</h3></div>
+                <h3 class="main">Interface colours</h3><div class="formsettingheading">Section description</div>
                 <div id="admin-themeprimarycolor"><div class="form-label"><label>Primary colour</label></div>
                   <div class="form-description">Used for primary actions.</div></div>
                 <input type="checkbox" id="id_s_local_groupimport_enablesimplifiedview">
@@ -24,7 +24,7 @@ const root = path.resolve(__dirname, '../..');
             const roles = [
                 ['.local-groupimport-admin-settings__page-title', 20],
                 ['.local-groupimport-admin-settings__page-description', 14.4],
-                ['.formsettingheading h3', 16],
+                ['h3.main', 16],
                 ['.form-label label', 14.08],
                 ['.form-description', 12.16],
             ];
