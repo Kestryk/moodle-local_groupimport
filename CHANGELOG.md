@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-04 - Compact More Filters candidate
+
+- Consume Kit 0.4.83 compact choice density through the four native filter
+  adapters; preserve native values, search and parent disclosure Motion.
+- Keep desktop fields/options at 32px and touch targets at 44px. Shared SCSS
+  is byte-identical; no local filter-size override is introduced.
+- Rebuild course-manager AMD with its existing nested-close import intact.
+  Foundations paired states and isolated checks pass; native preview pending.
+
 ## 2026-10-04 - Restore default palette candidate
 
 - Add the canonical secondary Restore EasyEdu colours control. Read defaults

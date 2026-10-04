@@ -102,3 +102,38 @@ Penpot rendering and native administration verification remain pending.
 The CSS build now includes the existing Mass Import/administration candidates
 and Kit 0.4.82; it is deliberately not promoted piecemeal. Sass emits one
 pre-existing mixed-declaration deprecation warning in `components/_layout.scss`.
+
+### Compact choice successor, source only
+
+Kit 0.4.83 adds the explicit compact host modifier (32px / 12px desktop,
+44px narrow/coarse-pointer targets). EasyStud's four More Filters select
+hooks opt in through that public class only. Canonical and embedded SCSS have
+identical SHA256 `FD30961AFEF19A7A04792539F50F05FCB154EED7077532632B545269521CC5BE`.
+AMD and Sass builds pass; the custom course-manager builder was brought in
+line with the existing closeChoicesWithin import instead of dropping it.
+The existing Sass mixed-declaration warning remains unchanged.
+
+Foundations compact multiple states now exist in linked Standard/Library
+boards `cf371b29-2e8e-8011-8008-bceb09cc86fa` and
+`cf371b29-2e8e-8011-8008-bce9a917bda1`. Six states are read back and visually
+inspected through a board export. The isolated browser three-width contract
+passes; it does not load Moodle font assets and therefore proves control
+geometry/behaviour, not complete painted parity. EasyStud Penpot propagation,
+native compact preview and compact roles/toggle/reset siblings remain open.
+Runtime still serves 6da2a1, not these later source candidates. Human checklist
+remains open; no Guide work or business action was performed.
+
+### Product canonical composition propagation
+
+Page 03 board `df1dc7b5-2b58-807e-8008-bc36e705b19d` now inherits compact
+Closed and Compact-touch Open from Foundations, replacing the two linked
+choice providers in place. Instance IDs remain
+`df1dc7b5-2b58-807e-8008-bc36ec7372f8` and
+`df1dc7b5-2b58-807e-8008-bc370dd287e4`. Readback confirms desktop 360x32,
+touch 324x254 with 44px trigger/options/search. Existing option/summary copy
+is preserved. Full-board export inspected: choice geometry is contained.
+Adjacent Toggle and Reset label centring still needs reconciliation; the
+large vertical spacing in this specimen is not certified as native parity.
+Other interaction/many-role boards retain their previous providers pending
+width-specific propagation (184px desktop fields need reduced text lanes).
+No claim of all-board completion or runtime promotion is made.
