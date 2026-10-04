@@ -65,7 +65,9 @@ Requests recorded; execution/proof results are appended per lot below.
   contained. Source non-header CSS/lifecycle gate and nine native successor
   cases pass (`222517532Z-36620`). Secondary icon tiles, other interaction boards and Skeleton header
   reconciliation remain SM-42 follow-ups; no whole-view parity claim.
-- SM-42B source/Penpot candidate: canonical compact identification/deposit
+- SM-42B served: canonical compact identification/deposit
   tracks, paired Foundation compound providers and 18 + 18 product instances
   retain content/palette with centred linked glyphs. Static/isolated gates pass;
-  native initial successor pending. See `mass-secondary-icon-hierarchy-2026-10-05.md`.
+  corrected native initial successor passes at all three widths, with complete
+  cleanup and no business write. Failed test-only child lookup retained. See
+  `mass-secondary-icon-hierarchy-2026-10-05.md`; broader lifecycle/human review open.

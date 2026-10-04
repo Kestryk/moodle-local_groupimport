@@ -12,6 +12,11 @@ SM-42A heading successor is served: nine Mass/Student/Admin cases at
 remaining board propagation and Skeleton header reconciliation remain open.
 See `plugin-heading-harmony-2026-10-05.md`; human checklist remains OPEN.
 
+SM-42B secondary icon hierarchy is served at Kit 0.4.98: 18 deposits and 18
+identification instances are linked; corrected native initial-GET proof passes
+at 1600/768/390. Other notices, Skeleton geometry and actual upload/report
+lifecycle remain separate. See `mass-secondary-icon-hierarchy-2026-10-05.md`.
+
 The deduplicated SM-39 through SM-47 lots are recorded in
 `student-feedback-successor-2026-10-04.md`, including dependencies and proof
 gates. They supplement every earlier unfinished request, not replace it.

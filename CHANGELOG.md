@@ -9,6 +9,9 @@
 - Foundation paired source density, isolated geometry and complete preservation
   guards pass. 18 deposits and 18 identification instances are propagated with
   content/palette/linked-glyph readback; served proof and human review tracked apart.
+- Native three-width initial-GET successor passes exact four-tile geometry,
+  both heading tracks and responsive chooser indent. Retain the first test-only
+  child-lookup failure; no actual upload/import or human acceptance inferred.
 
 ## 2026-10-05 - Shared workspace heading candidate
 
