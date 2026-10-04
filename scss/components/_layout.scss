@@ -131,13 +131,7 @@
   }
 
   &__loading-header {
-    box-sizing: border-box;
-    display: grid;
-    gap: 0.7rem;
-    max-inline-size: 100%;
-    min-height: 10.5rem;
-    min-width: 0;
-    padding: 0.2rem 0.4rem 0.35rem;
+    @include easyedu.skeleton-page-heading;
   }
 
   &__loading-header-eyebrow {
@@ -268,20 +262,7 @@
   }
 
   &__loading-search-filter-region {
-    @include easyedu.skeleton-section-frame(
-      $surface: var(--easyedu-loading-frame-surface),
-      $border: var(--easyedu-loading-border),
-      $radius: var(--local-groupimport-easystud-loading-radius)
-    );
-
-    & {
-      box-sizing: border-box;
-      display: grid;
-      gap: 0.55rem;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
-      max-inline-size: 100%;
-      padding: 0.7rem;
-    }
+    @include easyedu.skeleton-filter-region($radius: var(--local-groupimport-easystud-loading-radius));
   }
 
   &__loading-search {

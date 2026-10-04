@@ -43,7 +43,8 @@ Requests recorded; execution/proof results are appended per lot below.
   `student-retained-roles-2026-10-04.md`.
 - SM-40 diagnostic: native sweep is already running at 3.2s with enabled
   Motion and advancing background position at all three widths. The problem
-  is not a missing keyframe; pale-filter cues have weak sweep contrast and
-  the two card-copy pseudo-bars have static backgrounds. Right filter region
+  is not a missing keyframe; pale-filter cues have weak sweep contrast.
+  Card-copy background stripes have the shared overlay (not missing animation).
+  Right filter region
   uses an unframed layout unlike the left, and two fictitious header actions
   occupy space. Correction and downstream publication remain in progress.

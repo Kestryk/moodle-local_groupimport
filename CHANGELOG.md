@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-04 - Skeleton feedback successor
+
+- Consume Kit 0.4.93's more perceptible subtle sweep across all EasyStud loading
+  roots, with unchanged timing/static modes and native readiness.
+- Remove fictitious Student header actions and reserved empty height; both
+  workspace columns reuse the same shared framed filter-region recipe.
+- Record canonical Foundation paired specimens and a guarded native successor;
+  static/isolated proof is not yet native or human acceptance.
+
 ## 2026-10-04 - Feedback successor intake
 
 - Restore and retain twelve capability-free local test roles and 24 assignments

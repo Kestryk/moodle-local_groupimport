@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.92",
+  "version": "0.4.93",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "loadingFeedback20261004": {
+      "kitCommit": "115939a05f45c947e568dd6657f086945fe6885b",
+      "status": "Shared visible pale-cue sweep, matched Skeleton filter regions and content-sized three-slot heading. Static/isolated checks pass; native successor and complete product composition pending.",
+      "documentation": "docs/student-loading-feedback-2026-10-04.md",
+      "nativePreviewVerified": false,
+      "humanAccepted": false
+    },
     "compactNavigationTypography20261004": {
       "kitCommit": "de7abc3f73a8e9d2d8320fd3c026ac4a9b64aa1d",
       "status": "Kit 0.4.92 owns compact destination/Guide-label type roles with identical complete generated CSS. Paired Foundation states and linked product type/glyph roles reconciled. Native post-extraction 768/390 audit passes; full-course menu composition and human acceptance pending. Full Navigation drift remains separate.",
