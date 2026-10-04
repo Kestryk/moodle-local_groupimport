@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-04 - Administration composition and typography candidate
+
+- Complete the three Penpot administration compositions with source palette,
+  restore-defaults and initial-view settings; reuse linked searchable fields.
+- Map page/section headings and descriptions to existing Kit typography roles,
+  and align setting helper copy to the Foundation caption role.
+- Add a compiled-CSS three-width typography test; isolated tests pass.
+  Native preview, mobile frame reconciliation and human acceptance remain open.
+
 ## 2026-10-04 - Compact More Filters candidate
 
 - Consume Kit 0.4.83 compact choice density through the four native filter

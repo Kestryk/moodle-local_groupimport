@@ -250,6 +250,20 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     padding-block: 0.15rem;
   }
 
+  // Project Moodle's native headings onto the measured Foundation roles.
+  // The Mass Import class is retained for compatibility, not for its density.
+  .local-groupimport-admin-settings__page-title {
+    @include easyedu.type-page-title;
+  }
+
+  .local-groupimport-admin-settings__page-description {
+    @include easyedu.type-body;
+  }
+
+  #adminsettings .formsettingheading h3 {
+    @include easyedu.type-section-title;
+  }
+
   .local-groupimport-admin-settings {
     @include easyedu.panel-shell;
 
@@ -467,6 +481,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   #admin-enablesimplifiedview,
+  #admin-showcompleteview,
   #admin-enableanimations {
     .form-setting > div:first-child {
       max-width: min(100%, 22rem);
