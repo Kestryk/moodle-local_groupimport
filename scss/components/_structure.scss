@@ -648,24 +648,15 @@
   }
 
   &-container-search {
-    @include easyedu.inline-reveal-panel(8rem);
-
-    padding: 0.55rem;
-
-    &.is-open {
-      margin-top: 0.55rem;
-    }
+    @include easyedu.card-inline-search-panel;
   }
 
   &-container-search__row {
-    align-items: stretch;
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: minmax(0, 1fr) auto;
+    @include easyedu.card-inline-search-row;
   }
 
   &-container-search__field {
-    min-height: 2.45rem;
+    @include easyedu.card-inline-search-field;
   }
 
   &-tree__groupings {

@@ -1,5 +1,5 @@
 [CmdletBinding()]
-param()
+param([string]$KitRoot, [string]$BaselineCssPath)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $source = Get-Content -LiteralPath (Join-Path $root 'amd/src/course_manager.js') -Raw
@@ -7,6 +7,20 @@ $build = Get-Content -LiteralPath (Join-Path $root 'amd/build/course_manager.min
 $manage = Get-Content -LiteralPath (Join-Path $root 'manage.php') -Raw
 $template = Get-Content -LiteralPath (Join-Path $root 'templates/manage.mustache') -Raw
 $spec = Get-Content -LiteralPath (Join-Path $root 'tools/playwright/student-group-member-search-preview.spec.js') -Raw
+$layout = Get-Content -LiteralPath (Join-Path $root 'scss/components/_structure.scss') -Raw
+foreach ($recipe in @('card-inline-search-panel', 'card-inline-search-row', 'card-inline-search-field')) {
+    if (!$layout.Contains('@include easyedu.' + $recipe)) {
+        throw "Card search layout does not consume its shared recipe: $recipe"
+    }
+}
+if ($KitRoot -and ((& git -C $root hash-object 'scss/easyedu/components/_forms.scss') -ne
+    (& git -C $KitRoot hash-object 'scss/easyedu/components/_forms.scss'))) {
+    throw 'Embedded Forms source differs from canonical Kit.'
+}
+if ($BaselineCssPath -and ((Get-FileHash -LiteralPath $BaselineCssPath).Hash -ne
+    (Get-FileHash -LiteralPath (Join-Path $root 'styles.css')).Hash)) {
+    throw 'Search layout extraction changed generated CSS.'
+}
 
 foreach ($needle in @(
     'ensureGroupMemberSearchControls',

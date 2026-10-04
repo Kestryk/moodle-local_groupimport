@@ -831,6 +831,28 @@
   }
 }
 
+// Search-only disclosure: one shrinking field and one Cancel action, no title.
+// Consumers retain native search/filter ownership and existing Motion lifecycle.
+@mixin card-inline-search-panel {
+  @include inline-reveal-panel(8rem);
+  padding: 0.55rem;
+
+  &.is-open {
+    margin-top: 0.55rem;
+  }
+}
+
+@mixin card-inline-search-row {
+  align-items: stretch;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+@mixin card-inline-search-field {
+  min-height: 2.45rem;
+}
+
 @mixin filepicker {
   align-items: center;
   background: var(--easyedu-surface-soft);

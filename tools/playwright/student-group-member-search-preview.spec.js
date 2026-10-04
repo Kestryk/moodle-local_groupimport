@@ -62,6 +62,7 @@ test('Group member search reuses the canonical field and filters only its owning
             await menuToggle.click();
             searchToggle = root.locator('[data-easystud-context-menu] ' +
                 '[data-easystud-context-action="group-search-members"]:visible').first();
+            await expect(searchToggle.locator('.fa-search')).toHaveCount(1);
         }
         await expect(searchToggle).toBeVisible();
         await searchToggle.click();
@@ -94,15 +95,26 @@ test('Group member search reuses the canonical field and filters only its owning
             const lr = label.getBoundingClientRect();
             const ir = inputNode.getBoundingClientRect();
             const br = button.getBoundingClientRect();
+            const pr = node.getBoundingClientRect();
             return {
                 labelHeight: lr.height,
                 inputHeight: ir.height,
                 cancelHeight: br.height,
                 radius: getComputedStyle(label).borderRadius,
                 inputRadius: getComputedStyle(inputNode).borderRadius,
+                panelHeight: pr.height,
+                panelPadding: getComputedStyle(node).paddingTop,
+                panelBorder: getComputedStyle(node).borderTopStyle,
+                panelRadius: getComputedStyle(node).borderRadius,
+                fieldCancelGap: br.left - lr.right,
+                buttonFontSize: getComputedStyle(button).fontSize,
+                buttonColour: getComputedStyle(button).color,
+                hasInventedHeading: !!node.querySelector('h1, h2, h3, h4'),
             };
         });
         expect(Math.abs(geometry.labelHeight - geometry.cancelHeight)).toBeLessThanOrEqual(1);
+        expect(geometry.fieldCancelGap).toBeCloseTo(8, 1);
+        expect(geometry.hasInventedHeading).toBe(false);
 
         await cancel.click();
         await expect(panel).toBeHidden();
