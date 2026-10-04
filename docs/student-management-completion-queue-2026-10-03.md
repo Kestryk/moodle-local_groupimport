@@ -351,8 +351,9 @@ technical passes do not close these newly reported regressions.
 - [ ] R06: Correct rendered color pickers, all sizes/states, editable Hex and
   native input alignment; update Foundations and product compositions. Kit
   0.4.86 now matches the linked M/160px source control, with seven native
-  control assertions pending preview. S/L width contracts and default-value
-  placement in the settings row remain open.
+  control assertions passing at 1600/768/390. Kit 0.4.87 adds the shared
+  native setting-row layout for Penpot's adjacent default label; its preview,
+  S/L width contracts and human acceptance remain open.
 - [ ] R07: Add Restore EasyEdu default colours, using canonical defaults and
   explicit native Save semantics rather than silently saving settings.
   Source candidate and isolated browser checks pass for seven settings,

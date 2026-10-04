@@ -980,6 +980,49 @@
   }
 }
 
+// Moodle admin_setting renders a progressive colour control, its default
+// value and help as siblings. Keep the control/default on one responsive row
+// while allowing a conditional notice to consume a separate full-width row.
+@mixin moodle-admin-color-setting {
+  .form-setting {
+    align-items: start;
+    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    row-gap: 0.3rem;
+
+    > .easyedu-ui { display: contents; }
+
+    > .easyedu-ui > .easyedu-color-picker {
+      grid-column: 1;
+      order: 1;
+    }
+
+    > .form-defaultinfo {
+      align-self: center;
+      grid-column: 2;
+      margin-top: 0;
+      order: 2;
+    }
+
+    > .easyedu-ui > [data-easyedu-colour-contrast-note] {
+      grid-column: 1 / -1;
+      max-width: 22rem;
+      order: 3;
+    }
+
+    > .form-text {
+      grid-column: 1 / -1;
+      margin-top: 0.3rem;
+      order: 4;
+    }
+  }
+
+  @media (max-width: 48rem) {
+    .form-setting { column-gap: 1rem; }
+  }
+}
+
 @mixin detected-token-input {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-control-border);

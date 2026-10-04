@@ -516,6 +516,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     }
   }
 
+  // Keep the native setting markup and use the public Kit layout adapter:
+  // the default value sits beside the M picker, with help/notice below.
+  #admin-themeprimarycolor,
+  #admin-themeaccentcolor,
+  #admin-themeparticipantcolor,
+  #admin-themegroupcolor,
+  #admin-themegroupingcolor,
+  #admin-participantprimarybadgebgcolor,
+  #admin-participantprimarybadgetextcolor {
+    @include easyedu.moodle-admin-color-setting;
+  }
+
   .local-groupimport-admin-settings--participant-display {
     background: var(--easyedu-semantic-panel-bg);
 
