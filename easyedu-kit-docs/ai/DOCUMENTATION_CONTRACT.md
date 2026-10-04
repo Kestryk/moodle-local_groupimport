@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Mass Import state header propagation qualifies effective visible ancestry;
+hidden archives and loading shells are not live main headers. Check actual
+font ID/variant and painted text bounds after family/size changes. A returned
+font-size alone may leave cached Source Sans paint in an Inter composition.
+Record missing native introductions separately; do not insert text over a
+state's existing summary or certify full state lifecycle from initial GETs.
+
 Catalogue filters use public easyedu-filter-toggle, not the generic framed
 dialog toggle-check. Assert native compact sibling geometry and checkbox/Reset
 behaviour, including responsive Groups where desktop focus classes are cleared.

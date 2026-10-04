@@ -435,7 +435,11 @@ technical passes do not close these newly reported regressions.
   have read-back linked compact icons and internally inspected mobile export.
   The collapsed CSV centring uses the compact token; compiled-CSS regression
   fails at 2.8125px before the fix and passes afterwards. Shared Foundation
-  tile provider, other state headers and human acceptance remain OPEN. The
+  tile provider and human acceptance remain OPEN. The other 27 main state
+  headers on 15 boards now share compact identity/Inter/title geometry with
+  linked glyphs and inspected Validation exports. Nine Preview headers still
+  omit native report introductions and require downstream layout propagation.
+  The
   native compact-rail successor is a transient class/framing probe only, not
   an uploaded preview or a timed-disclosure certification. See
   `docs/mass-import-balance-2026-10-04.md` and its geometry JSON.

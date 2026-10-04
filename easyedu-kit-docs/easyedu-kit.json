@@ -63,7 +63,7 @@
     "batch": "EED-UI-2026-0073",
     "massImportBalance20261004": {
       "kitCommit": "ab44599d543cc96b6cc23065ec508e147552893c",
-      "status": "Native initial 35.2px panel identities, typography and 44/56 or stacked layout pass at three widths. Six initial/uploading product headers reconciled; shared Foundation tile provider and remaining state headers pending.",
+      "status": "Native initial compact identities and responsive layout pass. Six initial/uploading plus 27 state headers reconciled with linked glyphs; nine preview report introductions, shared Foundation tile provider and native all-state/human proof pending.",
       "documentation": "docs/mass-import-balance-2026-10-04.md",
       "humanAccepted": false,
       "nativePreviewVerified": true,
