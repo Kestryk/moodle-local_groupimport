@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Take the final native Mass Import heading as the typography reference. Student
+workspace headers reuse the existing Foundation Page title/Body/Eyebrow roles;
+do not invent another scale or globally shrink card controls. Preserve native
+font inheritance using longhands, and distinguish main-header paint containment
+from whole-board/copy/toolbar and Skeleton-geometry parity.
+
 Native motion tests must select the actual active workspace, not merely a
 `:visible` descendant of an inert/off-canvas column. Resolve semantic token
 paint against the configured canonical roles, not historical hard-coded defaults.

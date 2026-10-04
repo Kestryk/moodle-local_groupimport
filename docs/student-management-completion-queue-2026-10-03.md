@@ -551,7 +551,7 @@ SM-41 successor: framed Search/Add is served with passing native member Search
 and Group/Grouping Add previews at three widths. Foundation/product behavior
 notes are published. Destination choice 360ms source candidate, isolated
 framed/default regression and exact CSS/controller/AMD guards pass; native
-destination preview and human checklist remain open. Earlier pending items
+destination preview now passes at three widths; human checklist remains open. Earlier pending items
 remain unchanged; see `student-framed-disclosure-2026-10-04.md`.
 
 1. SM-18 defines the public/private package boundary before further Kit

@@ -285,8 +285,8 @@
   --easyedu-workspace-title-color: #0f2f44;
   --easyedu-workspace-description-color: #49657a;
   --easyedu-workspace-panel-title-color: #12364d;
-  --easyedu-workspace-title-size: 1.75rem;
-  --easyedu-workspace-title-size-narrow: 1.375rem;
+  --easyedu-workspace-title-size: var(--easyedu-font-size-page-title);
+  --easyedu-workspace-title-size-narrow: var(--easyedu-font-size-page-title);
   --easyedu-workspace-panel-title-size: 1.25rem;
   --easyedu-workspace-view-label-size: 0.75rem;
   --easyedu-create-hover-surface: #0d5ca2;
@@ -14113,8 +14113,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-workspace-title-color: #0f2f44;
   --easyedu-workspace-description-color: #49657a;
   --easyedu-workspace-panel-title-color: #12364d;
-  --easyedu-workspace-title-size: 1.75rem;
-  --easyedu-workspace-title-size-narrow: 1.375rem;
+  --easyedu-workspace-title-size: var(--easyedu-font-size-page-title);
+  --easyedu-workspace-title-size-narrow: var(--easyedu-font-size-page-title);
   --easyedu-workspace-panel-title-size: 1.25rem;
   --easyedu-workspace-view-label-size: 0.75rem;
   --easyedu-create-hover-surface: #0d5ca2;
@@ -15344,8 +15344,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-workspace-title-color: #0f2f44;
   --easyedu-workspace-description-color: #49657a;
   --easyedu-workspace-panel-title-color: #12364d;
-  --easyedu-workspace-title-size: 1.75rem;
-  --easyedu-workspace-title-size-narrow: 1.375rem;
+  --easyedu-workspace-title-size: var(--easyedu-font-size-page-title);
+  --easyedu-workspace-title-size-narrow: var(--easyedu-font-size-page-title);
   --easyedu-workspace-panel-title-size: 1.25rem;
   --easyedu-workspace-view-label-size: 0.75rem;
   --easyedu-create-hover-surface: #0d5ca2;
@@ -22944,12 +22944,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-workspace-eyebrow {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-eyebrow);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: 1.3;
+  text-transform: uppercase;
   color: var(--easyedu-primary);
   display: block;
-  font: 700 0.875rem/1.2 var(--easyedu-font-family-ui);
-  letter-spacing: 0;
   margin: 0 0 0.75rem;
-  text-transform: uppercase;
 }
 
 .easyedu-ui .easyedu-workspace-title-control {
@@ -22960,6 +22965,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   max-inline-size: 100%;
 }
 .easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-page-title);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: var(--easyedu-line-height-title);
   align-items: center;
   background: transparent;
   border: 0;
@@ -22967,7 +22979,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-shadow: none;
   color: var(--easyedu-workspace-title-color);
   display: inline-flex;
-  font: 700 var(--easyedu-workspace-title-size)/1.2 var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-workspace-title-size);
   gap: var(--easyedu-action-icon-gap);
   max-inline-size: 100%;
   min-block-size: 0;
@@ -22982,8 +22994,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-workspace-description {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
   color: var(--easyedu-workspace-description-color);
-  font: 400 1rem/1.5 var(--easyedu-font-family-ui);
   margin: 0;
   max-inline-size: 68.75rem;
 }
@@ -23014,14 +23031,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 @media (max-width: 40rem) {
-  .easyedu-ui .easyedu-workspace-eyebrow {
-    font-size: 0.75rem;
-  }
   .easyedu-ui .easyedu-workspace-title-control .select-menu > .dropdown-toggle {
     font-size: var(--easyedu-workspace-title-size-narrow);
-  }
-  .easyedu-ui .easyedu-workspace-description {
-    font-size: 0.8125rem;
   }
   .easyedu-ui .easyedu-workspace-panel > .card-body {
     padding: 1rem;
