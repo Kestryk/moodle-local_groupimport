@@ -245,6 +245,30 @@ function local_groupimport_colour_for_white_contrast(string $hex, float $minimum
 }
 
 /**
+ * Keep semantic text readable on its chosen colour's soft surface and white.
+ *
+ * CSS blends the chosen colour with white in sRGB. Round each background
+ * channel down when measuring it, so fractional browser channels cannot make
+ * the resulting foreground fall just below the required ratio. The saved Hex
+ * and CSS surface remain untouched; only the derived foreground is adapted.
+ *
+ * @param string $hex Valid six-digit hexadecimal colour.
+ * @param float $colourshare Chosen-colour share in the CSS soft surface, from 0 to 1.
+ * @return string Readable six-digit hexadecimal colour.
+ */
+function local_groupimport_colour_for_soft_contrast(string $hex, float $colourshare): string {
+    $channels = [];
+    foreach ([1, 3, 5] as $offset) {
+        $channels[] = (int)floor(hexdec(substr($hex, $offset, 2)) * $colourshare + 255 * (1 - $colourshare));
+    }
+    $background = sprintf('#%02x%02x%02x', ...$channels);
+    // Convert the tinted-surface target into the equivalent white target.
+    $whitetarget = 4.5 * local_groupimport_colour_contrast_against_white($background);
+
+    return local_groupimport_colour_for_white_contrast($hex, $whitetarget);
+}
+
+/**
  * Build the validated custom-property declarations used by EasyStud roots.
  *
  * Derived soft/strong/rail roles stay in CSS so every responsive composition
@@ -255,8 +279,9 @@ function local_groupimport_colour_for_white_contrast(string $hex, float $minimum
 function local_groupimport_get_theme_style(): string {
     $colours = local_groupimport_get_theme_colours();
     $readable = [];
+    $softshares = ['primary' => 0.10, 'accent' => 0.09, 'participant' => 0.11, 'group' => 0.11, 'grouping' => 0.11];
     foreach ($colours as $role => $colour) {
-        $readable[$role] = local_groupimport_colour_for_white_contrast($colour);
+        $readable[$role] = local_groupimport_colour_for_soft_contrast($colour, $softshares[$role]);
     }
     $properties = [
         '--easyedu-primary-chosen' => $colours['primary'],

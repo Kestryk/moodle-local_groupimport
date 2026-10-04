@@ -46,6 +46,7 @@
             var hex = control.querySelector('.easyedu-color-picker__hex');
             var contrastNote = control.parentElement.querySelector('[data-easyedu-colour-contrast-note]');
             var minimumContrast = Number(control.getAttribute('data-easyedu-color-contrast'));
+            var softShare = Number(control.getAttribute('data-easyedu-color-soft-share'));
             var defaultHex = (control.getAttribute('data-easyedu-color-default') || '').toLowerCase();
             var validHex = /^#[0-9a-f]{6}$/i;
             if (!swatch || !hex) {
@@ -58,7 +59,7 @@
                 hex.setAttribute('aria-invalid', valid ? 'false' : 'true');
                 if (contrastNote) {
                     contrastNote.hidden = !valid || hex.value.toLowerCase() === defaultHex ||
-                        contrastAgainstWhite(hex.value) >= minimumContrast;
+                        contrastAgainstWhite(hex.value) >= requiredWhiteContrast(hex.value);
                 }
             };
 
@@ -69,6 +70,14 @@
                     return total + linear * [0.2126, 0.7152, 0.0722][index];
                 }, 0);
                 return 1.05 / (luminance + 0.05);
+            };
+
+            var requiredWhiteContrast = function(value) {
+                var background = '#' + [1, 3, 5].map(function(offset) {
+                    var channel = Math.floor(parseInt(value.substr(offset, 2), 16) * softShare + 255 * (1 - softShare));
+                    return channel.toString(16).padStart(2, '0');
+                }).join('');
+                return minimumContrast * contrastAgainstWhite(background);
             };
 
             swatch.addEventListener('input', function() {

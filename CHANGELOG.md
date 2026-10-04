@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-04 - Semantic palette soft-surface contrast candidate
+
+- Derive readable foregrounds against each role's existing soft surface as well
+  as white; preserve chosen Hex, canonical Kit paint and the primary default.
+- Align initial/live nonblocking guidance with the surface-aware threshold.
+  Valid colour choices remain accepted; settings still require explicit Save.
+- Add a ten-palette responsive computed-paint scenario and the white-readable
+  but soft-unreadable warning regression. Static/isolated tests pass; native
+  proof and human acceptance remain open at this source checkpoint.
+
 - Lower the shared Empty-state descriptive copy to the Foundation caption role
   in the Kit and Mass Import. Preserve icon, container proportions and fixed
   dashed boundary; native preview and human review remain open.

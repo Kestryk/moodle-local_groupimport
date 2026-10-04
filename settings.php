@@ -36,6 +36,9 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
         /** @var float Contrast threshold for the nonblocking adjustment note. */
         private float $minimumcontrast;
 
+        /** @var float Chosen-colour share in the semantic soft surface. */
+        private float $softshare;
+
         /**
          * Build a colour setting with an optional readable-palette note.
          *
@@ -46,11 +49,13 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
          * @param string $paramtype Moodle parameter type.
          * @param int|null $size Native text size hint.
          * @param float $minimumcontrast Contrast below which the rendered shade is adjusted.
+         * @param float $softshare Chosen-colour share in the semantic soft surface.
          */
         public function __construct($name, $visiblename, $description, $defaultsetting, $paramtype = PARAM_RAW,
-                $size = null, float $minimumcontrast = 0.0) {
+                $size = null, float $minimumcontrast = 0.0, float $softshare = 0.0) {
             parent::__construct($name, $visiblename, $description, $defaultsetting, $paramtype, $size);
             $this->minimumcontrast = $minimumcontrast;
+            $this->softshare = $softshare;
         }
 
         /**
@@ -84,6 +89,22 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
             $luminance = (0.2126 * $channels[0]) + (0.7152 * $channels[1]) + (0.0722 * $channels[2]);
 
             return 1.05 / ($luminance + 0.05);
+        }
+
+        /**
+         * Match the semantic adapter's conservative soft-surface threshold.
+         *
+         * @param string $hex Valid six-digit hexadecimal colour.
+         * @return float Equivalent minimum contrast against white.
+         */
+        private function required_white_contrast(string $hex): float {
+            $channels = [];
+            foreach ([1, 3, 5] as $offset) {
+                $channels[] = (int)floor(hexdec(substr($hex, $offset, 2)) * $this->softshare +
+                    255 * (1 - $this->softshare));
+            }
+
+            return $this->minimumcontrast * $this->contrast_against_white(sprintf('#%02x%02x%02x', ...$channels));
         }
 
         /**
@@ -128,6 +149,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
             ];
             if ($this->minimumcontrast > 0) {
                 $controlattributes['data-easyedu-color-contrast'] = (string)$this->minimumcontrast;
+                $controlattributes['data-easyedu-color-soft-share'] = (string)$this->softshare;
             }
             $controlclasses = 'easyedu-color-picker local-groupimport-admin-settings__color-control';
 
@@ -149,7 +171,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
 
             if ($this->minimumcontrast > 0) {
                 $needsadjustment = $isvalid && strcasecmp($submittedvalue, (string)$default) !== 0 &&
-                    $this->contrast_against_white($submittedvalue) < $this->minimumcontrast;
+                    $this->contrast_against_white($submittedvalue) < $this->required_white_contrast($submittedvalue);
                 $noticeattributes = [
                     'data-easyedu-colour-contrast-note' => '1',
                     'role' => 'status',
@@ -511,7 +533,8 @@ if ($hassiteconfig) {
         '#0f6cbf',
         PARAM_TEXT,
         null,
-        4.5
+        4.5,
+        0.10
     ));
 
     $settings->add(new local_groupimport_admin_setting_configcolor(
@@ -521,7 +544,8 @@ if ($hassiteconfig) {
         '#1b7f5a',
         PARAM_TEXT,
         null,
-        4.5
+        4.5,
+        0.09
     ));
 
     $settings->add(new local_groupimport_admin_setting_configcolor(
@@ -531,7 +555,8 @@ if ($hassiteconfig) {
         '#4873ad',
         PARAM_TEXT,
         null,
-        4.5
+        4.5,
+        0.11
     ));
 
     $settings->add(new local_groupimport_admin_setting_configcolor(
@@ -541,7 +566,8 @@ if ($hassiteconfig) {
         '#29724d',
         PARAM_TEXT,
         null,
-        4.5
+        4.5,
+        0.11
     ));
 
     $settings->add(new local_groupimport_admin_setting_configcolor(
@@ -551,7 +577,8 @@ if ($hassiteconfig) {
         '#6a7f98',
         PARAM_TEXT,
         null,
-        4.5
+        4.5,
+        0.11
     ));
 
     $settings->add(new admin_setting_heading(

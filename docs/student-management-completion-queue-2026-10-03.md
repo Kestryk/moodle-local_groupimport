@@ -396,6 +396,9 @@ technical passes do not close these newly reported regressions.
   valid light Hex is retained, foreground/action tokens adapt against white,
   and the product Penpot warning is linked to Foundations. Native contrast and
   mixed-background verification remain open; human checklist is not accepted.
+  Successor source adapter now targets the role's actual soft surface as well
+  as white, without changing saved Hex or Kit paint. Static/isolated warning
+  tests pass; ten-palette, three-width managed contrast proof is next.
 - [ ] R12: Offer a coherent compact variant for every More Filters control,
   including multiple-choice dropdown, chips, clear and chevron. Inventory
   Foundations Standard/Library, create missing variants there, then propagate

@@ -119,6 +119,8 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
             await expect(notice).toHaveCSS('border-top-color', 'rgb(216, 184, 76)');
             await expect(notice.locator('strong')).toHaveCSS('color', 'rgb(114, 91, 0)');
             await notice.screenshot({path: testInfo.outputPath('admin-light-colour-guidance.png')});
+            await hex.fill('#4873AD');
+            await expect(notice).toBeVisible();
             await hex.fill('#0F6CBF');
             await expect(notice).toBeHidden();
             const accent = root.locator('#admin-themeaccentcolor .easyedu-color-picker__hex');
