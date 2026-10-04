@@ -209,3 +209,10 @@ not only provider IDs. A UI click timeout may already have applied the update:
 inspect the current banner/editor state before retrying. Preserve normal-motion
 expand/collapse, inert and ARIA behavior; source paint-only extraction cannot
 claim runtime transition proof.
+
+Student Management workspace availability and defaults are normalized on the
+server before rendering. Never initialize a hidden Complete view, and do not
+replace the compact Participants / Groups / Groupings switcher with the desktop
+two- or three-view model. Map a structure-first desktop preference to compact
+Groups; preserve the existing Motion controller for both initial states and
+subsequent user changes.

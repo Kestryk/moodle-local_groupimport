@@ -49,6 +49,7 @@ create their own scenario data and must not share state with another scenario.
 | --- | --- | --- |
 | Participants navigation opens EasyStud | Behat | Added smoke |
 | Complete, Participants & Groups, Groups & Groupings views | Behat | Added smoke |
+| Configurable Complete view availability and initial workspace | PHPUnit, static contract and focused Playwright | Source coverage added; managed preview pending |
 | Participant compact/full details | Behat plus Playwright motion | Smoke plus existing audit |
 | Single and multiple selection | Behat | Planned fixture extension |
 | Selection exclusivity across all entity types | Behat | Planned |

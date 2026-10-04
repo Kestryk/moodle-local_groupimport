@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-04 - Configurable Student Management workspaces
+
+- Let administrators hide Complete view and choose the initial Student
+  Management workspace while preserving the historical three-view default.
+- Normalize stale or unavailable choices on the server, map the structure
+  preference to the compact Groups workspace and retain the existing desktop
+  and mobile Motion controllers.
+- Add PHPUnit, static-contract and managed-preview protocols; browser and human
+  acceptance remain separate gates until the focused preview is completed.
+
 ## 2026-10-03 - Native message modal completion
 
 - Consume Kit `0.4.71` for the canonical border-box compact header Close with a visible native glyph, non-resizable

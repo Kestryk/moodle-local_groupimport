@@ -124,6 +124,37 @@ function local_groupimport_is_simplified_view_enabled(): bool {
 }
 
 /**
+ * Return the normalized Student Management workspace preferences.
+ *
+ * Missing values preserve the historical three-view experience for existing
+ * installations. When Complete view is disabled, an obsolete `both` default
+ * falls back to Participants & groups rather than selecting a hidden control.
+ * The compact workspace keeps its native entity views, so the desktop
+ * structure preference maps to Groups and every other preference maps to
+ * Participants.
+ *
+ * @return array{showcompleteview: bool, defaultlayoutmode: string, defaultmobileview: string}
+ */
+function local_groupimport_get_workspace_layout_preferences(): array {
+    $configuredshowcomplete = get_config('local_groupimport', 'showcompleteview');
+    $showcompleteview = $configuredshowcomplete === false ? true : (bool)$configuredshowcomplete;
+    $defaultlayoutmode = (string)get_config('local_groupimport', 'defaultlayoutmode');
+    $availablemodes = $showcompleteview
+        ? ['participants', 'both', 'structure']
+        : ['participants', 'structure'];
+
+    if (!in_array($defaultlayoutmode, $availablemodes, true)) {
+        $defaultlayoutmode = $showcompleteview ? 'both' : 'participants';
+    }
+
+    return [
+        'showcompleteview' => $showcompleteview,
+        'defaultlayoutmode' => $defaultlayoutmode,
+        'defaultmobileview' => $defaultlayoutmode === 'structure' ? 'groups' : 'participants',
+    ];
+}
+
+/**
  * Returns the EasyStud manager URL for a course.
  *
  * @param int $courseid The course id.

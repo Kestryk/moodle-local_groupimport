@@ -325,6 +325,25 @@ if ($hassiteconfig) {
         1
     ));
 
+    $settings->add(new admin_setting_configcheckbox(
+        'local_groupimport/showcompleteview',
+        get_string('showcompleteview', 'local_groupimport'),
+        get_string('showcompleteview_desc', 'local_groupimport'),
+        1
+    ));
+
+    $settings->add(new admin_setting_configselect(
+        'local_groupimport/defaultlayoutmode',
+        get_string('defaultlayoutmode', 'local_groupimport'),
+        get_string('defaultlayoutmode_desc', 'local_groupimport'),
+        'both',
+        [
+            'participants' => get_string('layoutmodeparticipants', 'local_groupimport'),
+            'both' => get_string('layoutmodeoverview', 'local_groupimport'),
+            'structure' => get_string('layoutmodestructure', 'local_groupimport'),
+        ]
+    ));
+
     $settings->add(new admin_setting_heading(
         'local_groupimport/interfaceaccessibility',
         get_string('interfaceaccessibility', 'local_groupimport'),

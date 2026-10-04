@@ -59,6 +59,60 @@ final class lib_test extends \advanced_testcase {
     }
 
     /**
+     * Missing workspace settings preserve the historical Complete view.
+     *
+     * @return void
+     */
+    public function test_missing_workspace_preferences_preserve_complete_view(): void {
+        $this->resetAfterTest();
+
+        unset_config('showcompleteview', 'local_groupimport');
+        unset_config('defaultlayoutmode', 'local_groupimport');
+
+        $this->assertSame([
+            'showcompleteview' => true,
+            'defaultlayoutmode' => 'both',
+            'defaultmobileview' => 'participants',
+        ], local_groupimport_get_workspace_layout_preferences());
+    }
+
+    /**
+     * Hidden Complete view cannot remain the active default.
+     *
+     * @return void
+     */
+    public function test_hidden_complete_view_uses_available_workspace(): void {
+        $this->resetAfterTest();
+
+        set_config('showcompleteview', 0, 'local_groupimport');
+        set_config('defaultlayoutmode', 'both', 'local_groupimport');
+
+        $this->assertSame([
+            'showcompleteview' => false,
+            'defaultlayoutmode' => 'participants',
+            'defaultmobileview' => 'participants',
+        ], local_groupimport_get_workspace_layout_preferences());
+    }
+
+    /**
+     * The structure-first preference maps to the compact Groups workspace.
+     *
+     * @return void
+     */
+    public function test_structure_preference_maps_to_mobile_groups(): void {
+        $this->resetAfterTest();
+
+        set_config('showcompleteview', 1, 'local_groupimport');
+        set_config('defaultlayoutmode', 'structure', 'local_groupimport');
+
+        $this->assertSame([
+            'showcompleteview' => true,
+            'defaultlayoutmode' => 'structure',
+            'defaultmobileview' => 'groups',
+        ], local_groupimport_get_workspace_layout_preferences());
+    }
+
+    /**
      * Participant-card custom field values are reduced to compact plain text.
      *
      * @param string|null $value Stored custom profile field value.
