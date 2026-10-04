@@ -44,6 +44,8 @@
         Array.prototype.forEach.call(document.querySelectorAll('[data-easyedu-color-picker]'), function(control) {
             var swatch = control.querySelector('.easyedu-color-picker__swatch');
             var hex = control.querySelector('.easyedu-color-picker__hex');
+            var contrastNote = control.parentElement.querySelector('[data-easyedu-colour-contrast-note]');
+            var minimumContrast = Number(control.getAttribute('data-easyedu-color-contrast'));
             var validHex = /^#[0-9a-f]{6}$/i;
             if (!swatch || !hex) {
                 return;
@@ -53,6 +55,18 @@
                 control.classList.toggle('is-invalid', !valid);
                 control.setAttribute('aria-invalid', valid ? 'false' : 'true');
                 hex.setAttribute('aria-invalid', valid ? 'false' : 'true');
+                if (contrastNote) {
+                    contrastNote.hidden = !valid || contrastAgainstWhite(hex.value) >= minimumContrast;
+                }
+            };
+
+            var contrastAgainstWhite = function(value) {
+                var luminance = [1, 3, 5].reduce(function(total, offset, index) {
+                    var channel = parseInt(value.substr(offset, 2), 16) / 255;
+                    var linear = channel <= 0.04045 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4);
+                    return total + linear * [0.2126, 0.7152, 0.0722][index];
+                }, 0);
+                return 1.05 / (luminance + 0.05);
             };
 
             swatch.addEventListener('input', function() {

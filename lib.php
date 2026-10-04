@@ -157,19 +157,19 @@ function local_groupimport_get_workspace_layout_preferences(): array {
 /**
  * Return the validated EasyStud semantic palette.
  *
- * Direct database edits must not be able to inject arbitrary CSS. Invalid or
- * insufficient-contrast values fail closed to the product defaults used by
- * the shared Kit.
+ * Direct database edits must not be able to inject arbitrary CSS. Malformed
+ * values fall back to the product defaults; valid light colours are retained
+ * and adapted for readable foregrounds in local_groupimport_get_theme_style().
  *
  * @return array<string, string> Normalized hexadecimal colours.
  */
 function local_groupimport_get_theme_colours(): array {
     $definitions = [
-        'primary' => ['setting' => 'themeprimarycolor', 'default' => '#0f6cbf', 'contrast' => 4.5],
-        'accent' => ['setting' => 'themeaccentcolor', 'default' => '#1b7f5a', 'contrast' => 4.5],
-        'participant' => ['setting' => 'themeparticipantcolor', 'default' => '#4873ad', 'contrast' => 3.0],
-        'group' => ['setting' => 'themegroupcolor', 'default' => '#29724d', 'contrast' => 3.0],
-        'grouping' => ['setting' => 'themegroupingcolor', 'default' => '#6a7f98', 'contrast' => 3.0],
+        'primary' => ['setting' => 'themeprimarycolor', 'default' => '#0f6cbf'],
+        'accent' => ['setting' => 'themeaccentcolor', 'default' => '#1b7f5a'],
+        'participant' => ['setting' => 'themeparticipantcolor', 'default' => '#4873ad'],
+        'group' => ['setting' => 'themegroupcolor', 'default' => '#29724d'],
+        'grouping' => ['setting' => 'themegroupingcolor', 'default' => '#6a7f98'],
     ];
     $colours = [];
 
@@ -178,9 +178,6 @@ function local_groupimport_get_theme_colours(): array {
         $candidate = preg_match('/^#[0-9a-fA-F]{6}$/', $configured)
             ? strtolower($configured)
             : $definition['default'];
-        if (local_groupimport_colour_contrast_against_white($candidate) < $definition['contrast']) {
-            $candidate = $definition['default'];
-        }
         $colours[$role] = $candidate;
     }
 
@@ -207,6 +204,47 @@ function local_groupimport_colour_contrast_against_white(string $hex): float {
 }
 
 /**
+ * Darken a valid chosen colour only as much as small text on white requires.
+ *
+ * The admin setting retains the exact chosen Hex; only the shared semantic
+ * foreground/action token is adjusted. Binary search keeps the hue direction
+ * and avoids hard rejection of pastel palettes.
+ *
+ * @param string $hex Valid six-digit hexadecimal colour.
+ * @param float $minimumcontrast Required contrast ratio against white.
+ * @return string Readable six-digit hexadecimal colour.
+ */
+function local_groupimport_colour_for_white_contrast(string $hex, float $minimumcontrast = 4.5): string {
+    if (local_groupimport_colour_contrast_against_white($hex) >= $minimumcontrast) {
+        return strtolower($hex);
+    }
+
+    $channels = [];
+    foreach ([1, 3, 5] as $offset) {
+        $channels[] = hexdec(substr($hex, $offset, 2));
+    }
+    $low = 0.0;
+    $high = 1.0;
+    $safe = '#000000';
+    for ($step = 0; $step < 16; $step++) {
+        $fraction = ($low + $high) / 2;
+        $candidate = sprintf('#%02x%02x%02x',
+            (int)floor($channels[0] * $fraction),
+            (int)floor($channels[1] * $fraction),
+            (int)floor($channels[2] * $fraction)
+        );
+        if (local_groupimport_colour_contrast_against_white($candidate) >= $minimumcontrast) {
+            $low = $fraction;
+            $safe = $candidate;
+        } else {
+            $high = $fraction;
+        }
+    }
+
+    return $safe;
+}
+
+/**
  * Build the validated custom-property declarations used by EasyStud roots.
  *
  * Derived soft/strong/rail roles stay in CSS so every responsive composition
@@ -216,24 +254,31 @@ function local_groupimport_colour_contrast_against_white(string $hex): float {
  */
 function local_groupimport_get_theme_style(): string {
     $colours = local_groupimport_get_theme_colours();
+    $readable = [];
+    foreach ($colours as $role => $colour) {
+        $readable[$role] = local_groupimport_colour_for_white_contrast($colour);
+    }
     $properties = [
-        '--easyedu-primary' => $colours['primary'],
-        '--easyedu-primary-strong' => 'color-mix(in srgb, ' . $colours['primary'] . ' 82%, #000 18%)',
+        '--easyedu-primary-chosen' => $colours['primary'],
+        '--easyedu-primary' => $readable['primary'],
+        '--easyedu-primary-strong' => 'color-mix(in srgb, ' . $readable['primary'] . ' 82%, #000 18%)',
         '--easyedu-primary-soft' => 'color-mix(in srgb, ' . $colours['primary'] . ' 10%, #fff 90%)',
-        '--easyedu-info' => $colours['primary'],
+        '--easyedu-info' => $readable['primary'],
         '--easyedu-info-soft' => 'color-mix(in srgb, ' . $colours['primary'] . ' 10%, #fff 90%)',
-        '--easyedu-accent' => $colours['accent'],
+        '--easyedu-accent-chosen' => $colours['accent'],
+        '--easyedu-accent' => $readable['accent'],
         '--easyedu-accent-soft' => 'color-mix(in srgb, ' . $colours['accent'] . ' 9%, #fff 91%)',
-        '--easyedu-success' => $colours['accent'],
+        '--easyedu-success' => $readable['accent'],
         '--easyedu-success-soft' => 'color-mix(in srgb, ' . $colours['accent'] . ' 9%, #fff 91%)',
     ];
 
     foreach (['participant', 'group', 'grouping'] as $role) {
-        $properties['--easyedu-' . $role] = $colours[$role];
+        $properties['--easyedu-' . $role . '-chosen'] = $colours[$role];
+        $properties['--easyedu-' . $role] = $readable[$role];
         $properties['--easyedu-' . $role . '-soft'] =
             'color-mix(in srgb, ' . $colours[$role] . ' 11%, #fff 89%)';
         $properties['--easyedu-' . $role . '-rail'] =
-            'color-mix(in srgb, ' . $colours[$role] . ' 68%, #fff 32%)';
+            'color-mix(in srgb, ' . $readable[$role] . ' 68%, #fff 32%)';
     }
 
     $declarations = [];

@@ -47,6 +47,27 @@
     // the block keep the larger body role.
     p { @include type.type-caption; color: var(--easyedu-text-muted); line-height: 1.2; margin: 0; }
   }
+  .easyedu-ui .easyedu-notice--warning {
+    align-items: center;
+    background: var(--easyedu-notice-warning-surface);
+    border-color: var(--easyedu-notice-warning-border);
+    color: var(--easyedu-notice-warning-ink);
+    column-gap: 0.875rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    margin-block-start: 0.5rem;
+    min-block-size: 4.5rem;
+    padding: 0.625rem 1.125rem;
+    > .fa {
+      border: 0;
+      color: var(--easyedu-notice-warning-ink);
+      font-size: 1.125rem;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+    strong { color: var(--easyedu-notice-warning-ink); font-size: 0.875rem; line-height: 1.5rem; margin: 0; }
+    p { color: var(--easyedu-notice-warning-ink); font-size: 0.75rem; line-height: 1.5rem; }
+    &[hidden] { display: none; }
+  }
   .easyedu-ui .easyedu-choice {
     @include forms.segmented-choice;
     & { margin: 0; min-width: 0; }

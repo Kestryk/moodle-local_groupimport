@@ -12,6 +12,10 @@ const {chromium} = require(path.join(path.resolve(process.argv[2]), 'playwright'
             `<div data-easyedu-color-picker="1" data-easyedu-color-default="${value}">
             <input type="color" class="easyedu-color-picker__swatch" value="#111111">
             <input class="easyedu-color-picker__hex" value="bad" ${index === 6 ? 'readonly' : ''}></div>`).join('')}
+            <div><div data-easyedu-color-picker="1" data-easyedu-color-contrast="4.5">
+            <input type="color" class="easyedu-color-picker__swatch" value="#ffffff">
+            <input class="easyedu-color-picker__hex" value="#ffffff"></div>
+            <div data-easyedu-colour-contrast-note hidden role="status">Readable shade applied</div></div>
             <button type="button" hidden data-easystud-restore-colours>Restore</button>
             <span role="status" data-easystud-restore-colours-status="Save to apply"></span></form>`);
         await page.evaluate(() => {
@@ -35,7 +39,15 @@ const {chromium} = require(path.join(path.resolve(process.argv[2]), 'playwright'
             assert.equal(values[i].invalid, 'false');
         }
         assert.equal(values[6].hex, 'bad', 'Readonly setting untouched');
-        assert.equal(await page.getByRole('status').textContent(), 'Save to apply');
+        assert.equal(await page.locator('[data-easystud-restore-colours-status]').textContent(), 'Save to apply');
+        const lightHex = page.locator('[data-easyedu-color-contrast] .easyedu-color-picker__hex');
+        const contrastNote = page.locator('[data-easyedu-colour-contrast-note]');
+        await lightHex.fill('#fff3a5');
+        assert.equal(await contrastNote.isVisible(), true, 'Light Hex shows nonblocking Kit notice');
+        await lightHex.fill('#123456');
+        assert.equal(await contrastNote.isVisible(), false, 'Readable Hex hides adjustment notice');
+        await lightHex.fill('#invalid');
+        assert.equal(await contrastNote.isVisible(), false, 'Malformed Hex uses validity state, not adjustment notice');
         assert.equal(await page.evaluate(() => window.submits), 0, 'Never auto-save');
         console.log('PASS: PHP-provided defaults synchronized, invalid reset, readonly preserved, status and no submit.');
     } finally { await browser.close(); }

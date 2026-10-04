@@ -33,11 +33,11 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
      * a safer visual picker than a free text field.
      */
     class local_groupimport_admin_setting_configcolor extends admin_setting_configtext {
-        /** @var float Minimum contrast ratio against white, or zero when unrestricted. */
+        /** @var float Contrast threshold for the nonblocking adjustment note. */
         private float $minimumcontrast;
 
         /**
-         * Build a colour setting with an optional contrast guardrail.
+         * Build a colour setting with an optional readable-palette note.
          *
          * @param string $name Setting name.
          * @param string $visiblename Visible label.
@@ -45,7 +45,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
          * @param string $defaultsetting Default hexadecimal colour.
          * @param string $paramtype Moodle parameter type.
          * @param int|null $size Native text size hint.
-         * @param float $minimumcontrast Minimum contrast against white.
+         * @param float $minimumcontrast Contrast below which the rendered shade is adjusted.
          */
         public function __construct($name, $visiblename, $description, $defaultsetting, $paramtype = PARAM_RAW,
                 $size = null, float $minimumcontrast = 0.0) {
@@ -62,10 +62,6 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
         public function validate($data) {
             if (!preg_match('/^#[0-9a-fA-F]{6}$/', (string)$data)) {
                 return get_string('validateerror', 'admin');
-            }
-
-            if ($this->minimumcontrast > 0 && $this->contrast_against_white((string)$data) < $this->minimumcontrast) {
-                return get_string('colourpickercontrasterror', 'local_groupimport', $this->minimumcontrast);
             }
 
             return true;
@@ -130,6 +126,9 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
                 'data-easyedu-color-default' => strtoupper((string)$default),
                 'aria-invalid' => $isvalid ? 'false' : 'true',
             ];
+            if ($this->minimumcontrast > 0) {
+                $controlattributes['data-easyedu-color-contrast'] = (string)$this->minimumcontrast;
+            }
             $controlclasses = 'easyedu-color-picker local-groupimport-admin-settings__color-control';
 
             if ($this->is_readonly()) {
@@ -147,6 +146,27 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
                 $controlclasses,
                 $controlattributes
             );
+
+            if ($this->minimumcontrast > 0) {
+                $needsadjustment = $isvalid &&
+                    $this->contrast_against_white($submittedvalue) < $this->minimumcontrast;
+                $noticeattributes = [
+                    'data-easyedu-colour-contrast-note' => '1',
+                    'role' => 'status',
+                ];
+                if (!$needsadjustment) {
+                    $noticeattributes['hidden'] = 'hidden';
+                }
+                $element .= html_writer::div(
+                    html_writer::tag('i', '', ['class' => 'fa fa-exclamation-triangle', 'aria-hidden' => 'true']) .
+                        html_writer::div(
+                            html_writer::tag('strong', get_string('colourpickeradjustedtitle', 'local_groupimport')) .
+                                html_writer::tag('p', get_string('colourpickeradjustednotice', 'local_groupimport'))
+                        ),
+                    'easyedu-notice easyedu-notice--warning',
+                    $noticeattributes
+                );
+            }
 
             // Native Moodle admin rows are outside the workspace's Kit root.
             // Keep the public component scoped even without JavaScript; do not
@@ -511,7 +531,7 @@ if ($hassiteconfig) {
         '#4873ad',
         PARAM_TEXT,
         null,
-        3.0
+        4.5
     ));
 
     $settings->add(new local_groupimport_admin_setting_configcolor(
@@ -521,7 +541,7 @@ if ($hassiteconfig) {
         '#29724d',
         PARAM_TEXT,
         null,
-        3.0
+        4.5
     ));
 
     $settings->add(new local_groupimport_admin_setting_configcolor(
@@ -531,7 +551,7 @@ if ($hassiteconfig) {
         '#6a7f98',
         PARAM_TEXT,
         null,
-        3.0
+        4.5
     ));
 
     $settings->add(new admin_setting_heading(

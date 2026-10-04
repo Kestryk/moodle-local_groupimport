@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.83",
+  "version": "0.4.84",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "paletteWarning20261004": {
+      "kitCommit": "6cf236c",
+      "status": "Kit 0.4.84 warning notice linked in product Administration; valid light Hex is retained and text/action shades are derived. Native and human visual acceptance pending.",
+      "humanAccepted": false,
+      "nativePreviewVerified": false,
+      "penpotLinked": true
+    },
     "compactChoices20261004": {
       "kitCommit": "73668d8",
       "status": "Canonical compact density and paired Foundations multiple states; source build and isolated geometry pass. Product/native preview pending.",

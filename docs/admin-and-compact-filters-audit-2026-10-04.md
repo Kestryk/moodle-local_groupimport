@@ -17,14 +17,25 @@ No additional worktree is needed. Human checklist remains open.
   `local_groupimport_get_theme_colours()` runtime fallback. Removing only the
   form guard would save a colour that the interface then silently ignores.
 
-## Proposed palette behaviour (not implemented)
+## Palette behaviour candidate
 
 Keep six-digit Hex syntax validation. Accept a wider decorative palette and
 derive legible foreground/strong action variants where the chosen colour is
 too light. Explain adjustment through a nonblocking canonical Kit notice.
-Audit every affected token consumer before relaxing validation; primary is
-currently both a background and an icon/text colour. A numeric threshold-only
-change would not be safe. Preserve the configured colour in the admin picker.
+The direct primary, accent, identity, info and success roles are used both for
+text/icons and filled actions. The candidate retains the exact configured Hex
+as `--easyedu-*-chosen` and in the admin picker, derives a 4.5:1-or-better
+base role against white, and uses the chosen colour for pale surfaces. A valid
+Hex is no longer rejected or silently reset. An existing Kit notice gains a
+warning skin and appears dynamically when a readable shade is substituted.
+This does not yet certify contrast against every mixed background or a native
+Moodle theme; run that browser matrix before closing R11.
+The product Administration page now has a nonblocking adjusted-colour specimen
+(`cf371b29-2e8e-8011-8008-bd1dadea4968`) linked to the existing Foundations
+Inline notification / Warning component. The close glyph is hidden because
+this form explanation is conditional on the current Hex, not dismissible.
+Its exported 1440px board was visually inspected; insertion into every full
+responsive administration composition remains a separate propagation check.
 
 Restore defaults should populate the seven existing colour controls from
 their PHP defaults and synchronize swatch/Hex/error state. Native Save remains

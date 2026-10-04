@@ -135,7 +135,7 @@ final class lib_test extends \advanced_testcase {
     }
 
     /**
-     * Invalid and insufficient-contrast database values fail closed.
+     * Malformed database values fail closed; valid light choices are retained.
      *
      * @return void
      */
@@ -148,7 +148,7 @@ final class lib_test extends \advanced_testcase {
 
         $colours = local_groupimport_get_theme_colours();
         $this->assertSame('#0f6cbf', $colours['primary']);
-        $this->assertSame('#1b7f5a', $colours['accent']);
+        $this->assertSame('#ffffff', $colours['accent']);
         $this->assertSame('#123456', $colours['participant']);
     }
 
@@ -162,9 +162,16 @@ final class lib_test extends \advanced_testcase {
         set_config('themeprimarycolor', '#123456', 'local_groupimport');
 
         $style = local_groupimport_get_theme_style();
+        $this->assertStringContainsString('--easyedu-primary-chosen: #123456;', $style);
         $this->assertStringContainsString('--easyedu-primary: #123456;', $style);
         $this->assertStringContainsString('--easyedu-primary-soft: color-mix(', $style);
         $this->assertStringNotContainsString('display', $style);
+
+        set_config('themeprimarycolor', '#ffffff', 'local_groupimport');
+        $style = local_groupimport_get_theme_style();
+        $this->assertStringContainsString('--easyedu-primary-chosen: #ffffff;', $style);
+        $this->assertStringContainsString('--easyedu-primary: #767676;', $style);
+        $this->assertStringContainsString('--easyedu-primary-soft: color-mix(in srgb, #ffffff', $style);
     }
 
     /**
@@ -175,6 +182,11 @@ final class lib_test extends \advanced_testcase {
     public function test_colour_contrast_against_white(): void {
         $this->assertEqualsWithDelta(21.0, local_groupimport_colour_contrast_against_white('#000000'), 0.01);
         $this->assertEqualsWithDelta(1.0, local_groupimport_colour_contrast_against_white('#ffffff'), 0.01);
+        $this->assertSame('#0f6cbf', local_groupimport_colour_for_white_contrast('#0f6cbf'));
+        foreach (['#ffffff', '#fff3a5', '#b9ebd0', '#ccddea'] as $chosen) {
+            $adapted = local_groupimport_colour_for_white_contrast($chosen);
+            $this->assertGreaterThanOrEqual(4.5, local_groupimport_colour_contrast_against_white($adapted));
+        }
     }
 
     /**
