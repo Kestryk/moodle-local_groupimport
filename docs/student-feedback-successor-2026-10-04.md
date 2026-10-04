@@ -41,8 +41,16 @@ Requests recorded; execution/proof results are appended per lot below.
   full-lane width and public 16px minimum footer clearance. Ten paired source
   states and 20 product consumers verified; original equal-height layout,
   filtering/commands and Motion preserved. Static/isolated/package gates pass;
-  fresh served successor pending. SM-43B toggle and human review stay open.
+  served alpha successor passes nine available routes plus hidden desktop
+  Groupings; nested closure passes nine iterations at three widths, with
+  full cleanup and no business writes. SM-43B toggle and human review stay open.
   See `student-filter-footer-2026-10-05.md`.
+- SM-43B diagnostic started: native desktop Toggle/Reset gap roughly 384–401px,
+  compact separate full-width rows. Responsive Reset intentionally closes the
+  panel; original sampler's extra click reopened it. Corrected baseline
+  passes four native cases with exact Reset semantics and cleanup; no toggle
+  design/source change yet.
+  See `student-binary-filter-successor-2026-10-05.md`.
 
 - SM-39 implemented: twelve local QA roles, three nologin users and 24
   assignments retained; exact pre-existing relationship hashes unchanged,

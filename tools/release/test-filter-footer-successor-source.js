@@ -29,6 +29,6 @@ const after=strip(read('styles.css')),before=strip(old('styles.css'));
 if(after!==before){let i=0;while(after[i]===before[i]&&i<after.length)i++;
   throw Error('Unrelated CSS changed at '+i+'\nAFTER: '+after.slice(i-100,i+220)+'\nBEFORE: '+before.slice(i-100,i+220));}
 for(const f of cp.execFileSync('git',['ls-files','amd','motion','settings.php','ajax.php','manage.php','index.php',
-  'classes/form/import_form.php','scss/views/_structure.scss','scss/responsive/_desktop.scss'],{cwd:root,encoding:'utf8'}).trim().split('\n'))
+  'classes/form/import_form.php','scss/components/_structure.scss','scss/responsive/_desktop.scss'],{cwd:root,encoding:'utf8'}).trim().split('\n'))
   assert.equal(read(f),old(f),f+' unchanged');
 console.log('PASS SM-43A canonical identity; four class-only rows; equal-height/commands/Motion and all unrelated CSS preserved');
