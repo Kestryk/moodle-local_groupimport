@@ -56,6 +56,12 @@ Requests recorded; execution/proof results are appended per lot below.
   the padding-floor jump; member Search and native Group/Grouping Add preview
   pass at desktop/tablet/mobile. Existing card/Show-all Motion and business
   commands remain unchanged. Foundation/product Motion notes published;
-  destination chooser candidate and isolated regressions pass; its native
-  promotion/proof and human acceptance remain open. See
+  destination chooser is now served and its three-width Participant/Group
+  opening/closing successor passes. Human acceptance remains open. See
   `student-framed-disclosure-2026-10-04.md` for failed/passing test boundaries.
+- SM-42A candidate: native three-route baseline confirms the Mass/Admin reference
+  10.88/20/14.4px against the larger Student header. Kit now reuses existing
+  Foundation roles; nine primary product boards/27 text paints are linked and
+  contained. Source non-header CSS/lifecycle gate passes; native successor
+  pending. Secondary icon tiles, other interaction boards and Skeleton header
+  reconciliation remain SM-42 follow-ups; no whole-view parity claim.

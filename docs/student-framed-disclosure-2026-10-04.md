@@ -88,3 +88,16 @@ Product page 03 now has the behavior-reference board
 export inspected. Foundation paired notes now also specify destination 360ms.
 These catalogue notes do not invent a new visual control or alter accepted card
 geometry. Existing form/panel providers are unchanged.
+
+## Served destination successor
+
+Source `8c5d6c4` is served by managed runtime `53f5520557ed863ba6d55f628a7c59d84abc5b8b`.
+Promotion `20261004T221006Z` records cache purge. Native run
+`easystud-authenticated-20261004T221036647Z-34524` passes Participant and Group
+destination opening/Escape/Cancel at 1600/768/390: 360ms paired panel/chevron,
+opening height zero, closing height/padding/border zero, last visible frame below
+4px, no remaining effects/inline styles, inert false and focus restored.
+No business request, page error or fixture mutation. Credentials cleared,
+owned child stopped and lease released. Human acceptance remains OPEN.
+The native run does not certify a real transfer, group-origin toggle behavior,
+all default-choice consumers or every other card animation.

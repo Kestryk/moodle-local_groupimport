@@ -66,8 +66,8 @@
   --easyedu-workspace-description-color: #49657a;
   --easyedu-workspace-panel-title-color: #12364d;
   // Workspace hierarchy is intentionally quieter than the Moodle page title.
-  --easyedu-workspace-title-size: 1.75rem;
-  --easyedu-workspace-title-size-narrow: 1.375rem;
+  --easyedu-workspace-title-size: var(--easyedu-font-size-page-title);
+  --easyedu-workspace-title-size-narrow: var(--easyedu-font-size-page-title);
   --easyedu-workspace-panel-title-size: 1.25rem;
   --easyedu-workspace-view-label-size: 0.75rem;
   --easyedu-create-hover-surface: #0d5ca2;

@@ -1,6 +1,18 @@
 # Changelog
 
+## 2026-10-05 - Shared workspace heading candidate
+
+- Use existing Kit/Foundation page roles for Student header typography,
+  matching the accepted Mass Import reference at desktop/tablet/mobile sizes.
+- Keep native font ownership, page colors/margins, all controllers/commands and
+  non-header CSS unchanged. Publish nine primary linked Penpot headers.
+- Retain failed first Admin-parent sampler and passing native baseline;
+  promoted successor, secondary tiles and human review remain separate gates.
+
 ## 2026-10-05 - Destination framed disclosure candidate
+
+- Managed Moodle 5.1 successor now passes Participant/Group destination
+  open/Escape/Cancel at 1600/768/390; no transfer or fixture change.
 
 - Connect destination choices to the canonical Kit Motion recipe; progressive
   height/frame opening and closing share 360ms with the chevron.

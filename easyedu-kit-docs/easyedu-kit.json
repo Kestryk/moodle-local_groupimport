@@ -1,14 +1,22 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.95",
+  "version": "0.4.96",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "workspaceHeadingHarmony20261005": {
+      "kitCommit": "0e1453c8919ee184d48262d02d83a846b6e6c6f3",
+      "documentation": "docs/plugin-heading-harmony-2026-10-05.md",
+      "status": "Existing Foundation 10.88/20/14.4 roles adopted in canonical workspace header and nine main product boards; strict non-header CSS/controller preservation passes. Native successor pending. Secondary tile/interaction/Skeleton follow-ups remain open.",
+      "nativePreviewVerified": false,
+      "humanAccepted": false
+    },
     "destinationFramedDisclosure20261005": {
       "kitCommit": "f0a27f3",
       "documentation": "docs/student-framed-disclosure-2026-10-04.md",
-      "status": "Canonical choice/Motion opt-in, paired 360ms chevron/panel; isolated framed and legacy regression pass, strict source/CSS/AMD gates pass. Native destination successor pending.",
-      "nativePreviewVerified": false,
+      "status": "Canonical choice/Motion opt-in served; native Participant/Group destination opening/closing passes at 1600/768/390 with paired 360ms timing, zero frame endpoints and restored focus. Isolated regression and strict CSS/controller/AMD gates pass. Human review remains open.",
+      "nativeRun": "easystud-authenticated-20261004T221036647Z-34524",
+      "nativePreviewVerified": true,
       "humanAccepted": false
     },
     "framedPanelDisclosure20261004": {
