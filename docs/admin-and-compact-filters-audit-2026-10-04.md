@@ -231,3 +231,17 @@ fixture PASS. Correct the source adapter and fixture to that real topology;
 the native successor asserts all five section headings at 16px. Restore help
 also adopts the public easyedu-caption class, not an unstyled native paragraph.
 Do not relabel the initial passing checks as full typography parity.
+
+The corrected successor dd10604 is now served at runtime
+`1fdf1a181099da2eae3ac3e9151dcd273d6ea37a`, caches purged. Native run
+`easystud-authenticated-20261004T124903092Z-23644` passes all three widths,
+including actual h3.main at 16px, title at 20px, seven contained colour pickers,
+searchable default-view dropdown/Escape, restored helper class and no settings
+POST/page errors. Targeted scrolled palette captures accompany the top-view
+captures. Human acceptance, warning/contrast policy and whole-plugin completion
+remain open. More Filters normal-motion regression is run separately.
+
+Native More Filters regression also passes on this serving revision:
+`easystud-authenticated-20261004T125017798Z-36180`. Parent closure with and
+without an open nested choice preserves final class/inert/ARIA and produces
+no page error. No business action or fixture write was requested.
