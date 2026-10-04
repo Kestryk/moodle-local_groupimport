@@ -46,6 +46,15 @@ Panels are the large boxes that organise an EasyEdu management screen.
 }
 ```
 
+Foundation consumers that use the public class API can opt into the same
+compact geometry without recreating the tile:
+
+```html
+<header class="easyedu-panel__header easyedu-panel__header--compact-icon">
+  <span class="easyedu-icon-tile easyedu-icon-tile--compact" aria-hidden="true"></span>
+</header>
+```
+
 ## Patterns
 
 - Use panels for major work areas.
@@ -65,3 +74,9 @@ Panels are the large boxes that organise an EasyEdu management screen.
   mixin. If menus must escape the panel, retain `overflow: visible` locally.
 - Use `section-icon-tile` for heading icons that must share one square and
   centre line across views. Do not resize an icon glyph to fill the tile.
+- Use the compact modifier for dense panel headings only. Keep larger file
+  deposit and onboarding illustrations on their own documented size so icon
+  hierarchy remains visible.
+- Pair it with `easyedu-panel__header--compact-icon`; the header modifier makes
+  the identity track follow the compact square instead of retaining an empty
+  regular-width column.

@@ -190,6 +190,9 @@
     margin-block-end: 1.5rem;
     min-block-size: 5.25rem;
   }
+  .easyedu-ui .easyedu-panel__header--compact-icon {
+    grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr) auto;
+  }
   .easyedu-ui .easyedu-panel__copy { min-inline-size: 0; }
   .easyedu-ui .easyedu-panel__title {
     @include type.type-section-title;
@@ -204,6 +207,10 @@
     @include panels.section-icon-tile;
     font-size: 1.25rem;
     margin: 0;
+  }
+  .easyedu-ui .easyedu-icon-tile--compact {
+    @include panels.section-icon-tile($size: compact);
+    font-size: 1.0625rem;
   }
   .easyedu-ui .easyedu-icon-tile--success {
     background: var(--easyedu-accent-soft);

@@ -147,6 +147,11 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
                 $controlattributes
             );
 
+            // Native Moodle admin rows are outside the workspace's Kit root.
+            // Keep the public component scoped even without JavaScript; do not
+            // copy its paint rules into the native administration adapter.
+            $element = html_writer::div($element, 'easyedu-ui');
+
             return format_admin_setting($this, $this->visiblename, $element, $this->description, true, '', $default, $query);
         }
     }
