@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Card-local search has a field/Cancel row, not an invented heading. Read the
+generated native markup and actual responsive route before publishing. Transfer
+existing layout declarations into canonical Kit recipes with whole-CSS identity
+proof; retain source commands and Motion. Reconcile the actual narrower product
+field and conditional menu icon, not just the linked provider name.
+
 Desktop recovery surfaces reuse the canonical linked capsule and Small neutral
 action; do not retain a regular-height instance override. Compare settled icon
 root and paint, currentColor, count type and canvas centre. Native widths depend

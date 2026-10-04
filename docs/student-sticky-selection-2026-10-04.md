@@ -55,7 +55,14 @@ recipe. Source/Standard paint fingerprints match; exported Standard was inspecte
 No SCSS, Mustache, controller or selection-command change is required: native
 already used these Kit recipes. The focused native test now additionally records
 button size, capsule padding, count typography and icon colour. Its fresh result
-is pending managed execution; the earlier preview runs remain historical proof.
+passes in `easystud-authenticated-20261004T193601173Z-18804` at 1600/1100.
+The action is 30.390625px high; icon and label both use rgb(92,108,125).
+Count typography is 12.48px/700 and native padding/gap match the source recipe.
+Canvas centre delta is zero and final pagination remains unobscured. Native
+capsule width is 217.8125px (font-dependent); its accent border follows the
+current configured palette rather than the default blue Penpot specimen.
+No business request or fixture change occurred and credentials/child/lease
+cleanup completed. The earlier preview runs remain historical proof.
 Human acceptance is not implied by the linked publication.
 
 Evidence: `docs/testing/student-sticky-selection-publication-2026-10-04.json`.

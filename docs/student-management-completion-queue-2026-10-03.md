@@ -430,11 +430,20 @@ technical passes do not close these newly reported regressions.
 
 ### Current execution checkpoint
 
+- SM-35 layout successor: existing search-shell declarations are extracted into
+  Kit 0.4.91 with exact whole-CSS identity. Foundation Members/Groups Standard
+  and Library use native search-only anatomy; two effective product specimens
+  and the responsive Search participants menu label/glyph are reconciled.
+  Fresh native search/geometry successor and human acceptance remain pending.
+  See `student-card-inline-search-publication-2026-10-04.md`.
+
 - SM-37 publication successor: the Foundation 08.12 Standard/08.12.1 Library
   capsule is now published and the page-03 product specimen links to it.
   Zero centre delta, 30.4px compact action and neutral centred icon pass settled
   readback; the old composition remains recoverable. Fresh native density/paint
-  proof is pending. No selection logic or SCSS change; human checklist stays open.
+  run `easystud-authenticated-20261004T193601173Z-18804` passes at 1600/1100
+  with no business request and full cleanup. No selection logic or SCSS change;
+  human checklist stays open.
 
 - SM-36 publication successor: eight canonical clear states and twelve selected
   Foundation choice variants now have matching source/Standard paint. Fourteen

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-04 - Canonical card inline-search layout
+
+- Consume Kit 0.4.91 search-panel/row/field recipes with identical whole generated
+  CSS, preserving native search, Cancel and disclosure Motion.
+- Reconcile paired Foundation search-only panels and two live product copies;
+  correct responsive Search participants menu label/glyph.
+- Extend guarded native search geometry proof; human acceptance remains open.
+
 ## 2026-10-04 - Shared desktop selection recovery
 
 - Publish the shared Foundation panel capsule and link the EasyStud specimen;
