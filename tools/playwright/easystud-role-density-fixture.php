@@ -3,7 +3,7 @@
 // Run through Invoke-EasyStudRolesDensitySupervised.ps1 with both exclusive leases.
 define('CLI_SCRIPT', true);
 
-$options = getopt('', ['moodle-root:', 'action:', 'manifest:', 'run-id:', 'course-id::']);
+$options = getopt('', ['moodle-root:', 'action:', 'manifest:', 'run-id:', 'course-id::', 'retain']);
 foreach (['moodle-root', 'action', 'manifest'] as $key) {
     if (empty($options[$key])) {
         fwrite(STDERR, "Required options: --moodle-root --action --manifest [--run-id].\n");
@@ -37,7 +37,7 @@ function density_manifest(string $path, array $manifest): void {
 }
 
 /** Hash the pre-existing definitions and course relationships, not passwords. */
-function density_baseline(int $courseid, int $contextid): array {
+function density_baseline(int $courseid, int $contextid, array $owned = []): array {
     global $DB;
     $queries = [
         'roleDefinitions' => ['SELECT id, name, shortname, description, sortorder, archetype FROM {role} ORDER BY id', []],
@@ -49,9 +49,71 @@ function density_baseline(int $courseid, int $contextid): array {
     ];
     $result = [];
     foreach ($queries as $key => [$sql, $params]) {
-        $result[$key] = hash('sha256', json_encode($DB->get_records_sql($sql, $params)));
+        $records = $DB->get_records_sql($sql, $params);
+        // Retained fixtures compare precisely the pre-existing rows, never hide
+        // another user's changes or modify records to manufacture equality.
+        foreach ($records as $id => $record) {
+            if (($key === 'roleDefinitions' && in_array((int)$id, $owned['roleIds'] ?? [], true)) ||
+                    (in_array($key, ['courseAssignments', 'courseEnrolments'], true) &&
+                    in_array((int)$record->userid, $owned['userIds'] ?? [], true))) {
+                unset($records[$id]);
+            }
+        }
+        $result[$key] = hash('sha256', json_encode($records));
     }
     return $result;
+}
+
+/** Verify retained manual-test data without removing anything. */
+function density_verify_retained(array $manifest): array {
+    global $DB;
+    if (($manifest['fixture'] ?? '') !== 'easystud-sm15-role-density' ||
+            ($manifest['retention'] ?? '') !== 'manual-testing' ||
+            (int)($manifest['courseId'] ?? 0) !== 5 ||
+            !preg_match('/^eed-sm15-[a-f0-9]{12}-$/', $manifest['prefix'] ?? '') ||
+            count($manifest['roleIds'] ?? []) !== 12 || count($manifest['userIds'] ?? []) !== 3) {
+        throw new RuntimeException('Unknown retained fixture ownership.');
+    }
+    $assignments = [];
+    foreach ($manifest['userIds'] as $index => $id) {
+        $user = $DB->get_record('user', ['id' => $id, 'deleted' => 0], '*', MUST_EXIST);
+        if ($user->auth !== 'nologin' || $user->username !== $manifest['prefix'] . 'user-' . $index ||
+                !$DB->record_exists('user_enrolments', ['userid' => $id, 'enrolid' => $manifest['enrolId']])) {
+            throw new RuntimeException('Retained synthetic user or enrolment changed.');
+        }
+    }
+    foreach ($manifest['roleIds'] as $index => $id) {
+        $role = $DB->get_record('role', ['id' => $id], '*', MUST_EXIST);
+        if ($role->shortname !== $manifest['prefix'] . 'role-' . $index || $role->archetype !== '' ||
+                $DB->record_exists('role_capabilities', ['roleid' => $id])) {
+            throw new RuntimeException('Retained role gained capabilities or lost ownership.');
+        }
+        $rows = $DB->get_records('role_assignments', ['roleid' => $id]);
+        if (!$rows) {
+            throw new RuntimeException('Retained role has no assignment.');
+        }
+        foreach ($rows as $row) {
+            if ((int)$row->contextid !== (int)$manifest['contextId'] ||
+                    !in_array((int)$row->userid, $manifest['userIds'], true)) {
+                throw new RuntimeException('Retained role is assigned outside its fixture.');
+            }
+            $assignments[] = ['roleId' => (int)$id, 'userId' => (int)$row->userid];
+        }
+    }
+    $after = density_baseline(5, (int)$manifest['contextId'], $manifest);
+    return ['complete' => $after === $manifest['baseline'], 'retained' => true,
+        'preExistingRelationshipsUnchanged' => $after === $manifest['baseline'],
+        'baselineAfter' => $after, 'assignments' => $assignments,
+        'roleIds' => $manifest['roleIds'], 'userIds' => $manifest['userIds']];
+}
+
+if ($options['action'] === 'verify-retained') {
+    $manifest = json_decode(file_get_contents($manifestpath), true, 512, JSON_THROW_ON_ERROR);
+    $proof = density_verify_retained($manifest);
+    $manifest['verification'] = $proof;
+    density_manifest($manifestpath, $manifest);
+    echo json_encode($proof, JSON_UNESCAPED_SLASHES) . "\n";
+    exit($proof['complete'] ? 0 : 1);
 }
 
 /** Fail closed before deleting anything if the exact fixture ownership drifted. */
@@ -120,6 +182,9 @@ if ($options['action'] !== 'setup' || empty($options['run-id']) ||
     throw new RuntimeException('Setup needs a unique safe run-id and a new manifest.');
 }
 $courseid = (int)($options['course-id'] ?? 5);
+if (isset($options['retain']) && $courseid !== 5) {
+    throw new RuntimeException('Retained fixtures are authorized only for local course 5.');
+}
 $course = get_course($courseid);
 $context = context_course::instance($courseid);
 $instance = null;
@@ -130,6 +195,7 @@ if (!$instance) { throw new RuntimeException('A pre-existing manual enrolment in
 $manifest = ['schemaVersion' => 1, 'fixture' => 'easystud-sm15-role-density',
     'prefix' => 'eed-sm15-' . substr(hash('sha256', $options['run-id']), 0, 12) . '-',
     'courseId' => $courseid, 'contextId' => (int)$context->id, 'enrolId' => (int)$instance->id,
+    'retention' => isset($options['retain']) ? 'manual-testing' : 'temporary',
     'roleIds' => [], 'userIds' => [], 'baseline' => density_baseline($courseid, (int)$context->id),
     'managerUrl' => $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $courseid];
 density_manifest($manifestpath, $manifest);
@@ -139,7 +205,9 @@ try {
         'QA: Teaching assistant', 'QA: Accessibility support', 'QA: Programme coordinator',
         'QA: Assessment supervisor', 'QA: Industry liaison', 'QA: Learning designer', 'QA: External examiner'];
     foreach ($roles as $index => $name) {
-        $roleid = create_role($name, $manifest['prefix'] . 'role-' . $index, 'Temporary EasyStud role-density fixture; no capabilities.', '');
+        $description = isset($options['retain']) ? 'Retained local EasyStud QA role; no capabilities.' :
+            'Temporary EasyStud role-density fixture; no capabilities.';
+        $roleid = create_role($name, $manifest['prefix'] . 'role-' . $index, $description, '');
         set_role_contextlevels($roleid, [CONTEXT_COURSE]);
         $manifest['roleIds'][] = (int)$roleid;
         density_manifest($manifestpath, $manifest);
