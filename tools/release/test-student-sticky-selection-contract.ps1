@@ -19,6 +19,9 @@ if (!$template.Contains('data-easystud-clear-selection-frame="1"') -or
     !$template.Contains('data-easystud-clear-all-selection="1"')) {
     throw 'Selection recovery hooks are missing.'
 }
+if (!$template.Contains('btn btn-outline-secondary btn-sm foundation-selection-action local-groupimport-easystud__clear-selection')) {
+    throw 'Sticky Clear selection must consume the canonical neutral selection-action skin.'
+}
 foreach ($needle in @('inset-inline-start: 50%', 'transform: translateX(-50%)', 'border-radius: 999px')) {
     if (!$css.Contains($needle)) { throw "Generated selection capsule missing: $needle" }
 }

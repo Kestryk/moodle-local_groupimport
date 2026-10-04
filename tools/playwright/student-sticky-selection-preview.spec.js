@@ -36,6 +36,7 @@ test('Desktop sticky selection remains centered and clears without covering fina
         await first.click();
         const frame = root.locator('[data-easystud-clear-selection-frame]');
         await expect(frame).toBeVisible();
+        await expect(frame.locator('[data-easystud-clear-all-selection]')).toHaveClass(/foundation-selection-action/);
         const geometry = await frame.evaluate(node => {
             const r = node.getBoundingClientRect();
             const button = node.querySelector('[data-easystud-clear-all-selection]');
@@ -43,6 +44,7 @@ test('Desktop sticky selection remains centered and clears without covering fina
             const icon = button.querySelector('.fa').getBoundingClientRect();
             const rootNode = node.closest('#local-groupimport-easystud');
             const style = getComputedStyle(node);
+            const buttonStyle = getComputedStyle(button);
             const rootStyle = getComputedStyle(rootNode);
             return {
                 rect: {x: r.x, y: r.y, width: r.width, height: r.height, bottom: r.bottom},
@@ -68,6 +70,9 @@ test('Desktop sticky selection remains centered and clears without covering fina
                 background: style.backgroundImage,
                 shadow: style.boxShadow,
                 radius: style.borderRadius,
+                buttonFontSize: buttonStyle.fontSize,
+                buttonFontWeight: buttonStyle.fontWeight,
+                buttonColour: buttonStyle.color,
                 rootPaddingBottom: parseFloat(rootStyle.paddingBottom),
             };
         });
@@ -77,6 +82,7 @@ test('Desktop sticky selection remains centered and clears without covering fina
         expect(geometry.contained).toBe(true);
         expect(geometry.background).toBe('none');
         expect(geometry.radius).toBe('999px');
+        expect(geometry.buttonFontWeight).toBe('600');
         expect(geometry.rootPaddingBottom).toBeGreaterThanOrEqual(geometry.rect.height + 16);
         const bottomPagination = root.locator('[data-easystud-pagination-position="bottom"]:visible').first();
         if (await bottomPagination.count()) {
