@@ -340,6 +340,11 @@ technical passes do not close these newly reported regressions.
   including readonly preservation and no submit. Penpot/native admin pending.
 - [ ] R08: Group and Grouping internal search: consume current search components;
   replace the Group legacy reset/cancel action and compare both branches.
+  Candidate: all four server-rendered/generated Group and Grouping search Cancel
+  actions now use the public secondary Kit button. The EasyStud Penpot page 03
+  already depicts the linked secondary M action alongside the linked search
+  field in its inline member-search compositions. Native geometry and behavior
+  remain to be verified; human acceptance stays open.
 - [ ] R09: Mass Import no-results helper is too large: use measured subordinate
   text role in Foundations/product and canonical Kit, then verify native paint.
   Candidate: Standard/Library/Product Penpot and Kit now use the 12.16px caption
