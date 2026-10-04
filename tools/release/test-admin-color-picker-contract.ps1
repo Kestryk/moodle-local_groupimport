@@ -10,6 +10,9 @@ function Read-RequiredFile([string]$RelativePath) {
 $settings = Read-RequiredFile 'settings.php'
 $script = Read-RequiredFile 'js\admin_settings_loading.js'
 $styles = Read-RequiredFile 'scss\views\_admin-settings.scss'
+$library = Read-RequiredFile 'lib.php'
+$manage = Read-RequiredFile 'templates\manage.mustache'
+$massImport = Read-RequiredFile 'index.php'
 $foundation = Read-RequiredFile 'scss\easyedu\_foundation-classes.scss'
 $forms = Read-RequiredFile 'scss\easyedu\components\_forms.scss'
 
@@ -47,4 +50,25 @@ foreach ($legacy in @('@include easyedu.color-picker-control',
     if ($styles.Contains($legacy)) { throw "Consumer-owned colour paint remains: $legacy" }
 }
 
-Write-Output 'PASS: EasyStud consumes the public colour picker with named Hex persistence and unnamed swatch enhancement.'
+foreach ($setting in @('themeprimarycolor', 'themeaccentcolor', 'themeparticipantcolor',
+    'themegroupcolor', 'themegroupingcolor')) {
+    if (-not $settings.Contains("local_groupimport/$setting")) {
+        throw "Missing semantic colour setting: $setting"
+    }
+}
+
+foreach ($needle in @('function local_groupimport_get_theme_colours()',
+    'function local_groupimport_colour_contrast_against_white(',
+    'function local_groupimport_get_theme_style()',
+    "'--easyedu-primary'", "`$properties['--easyedu-' . `$role]")) {
+    if (-not $library.Contains($needle)) { throw "Missing safe theme contract: $needle" }
+}
+
+if (-not $manage.Contains('style="{{themestyle}}"')) {
+    throw 'Student Management root does not consume the validated theme properties.'
+}
+if ([regex]::Matches($massImport, "'style'\s*=>\s*\`$themestyle").Count -lt 2) {
+    throw 'Mass Import root and navigation must consume the same validated theme properties.'
+}
+
+Write-Output 'PASS: EasyStud consumes the public colour picker and applies a validated semantic palette to both workspaces.'

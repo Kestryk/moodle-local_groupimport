@@ -155,6 +155,96 @@ function local_groupimport_get_workspace_layout_preferences(): array {
 }
 
 /**
+ * Return the validated EasyStud semantic palette.
+ *
+ * Direct database edits must not be able to inject arbitrary CSS. Invalid or
+ * insufficient-contrast values fail closed to the product defaults used by
+ * the shared Kit.
+ *
+ * @return array<string, string> Normalized hexadecimal colours.
+ */
+function local_groupimport_get_theme_colours(): array {
+    $definitions = [
+        'primary' => ['setting' => 'themeprimarycolor', 'default' => '#0f6cbf', 'contrast' => 4.5],
+        'accent' => ['setting' => 'themeaccentcolor', 'default' => '#1b7f5a', 'contrast' => 4.5],
+        'participant' => ['setting' => 'themeparticipantcolor', 'default' => '#4873ad', 'contrast' => 3.0],
+        'group' => ['setting' => 'themegroupcolor', 'default' => '#29724d', 'contrast' => 3.0],
+        'grouping' => ['setting' => 'themegroupingcolor', 'default' => '#6a7f98', 'contrast' => 3.0],
+    ];
+    $colours = [];
+
+    foreach ($definitions as $role => $definition) {
+        $configured = (string)get_config('local_groupimport', $definition['setting']);
+        $candidate = preg_match('/^#[0-9a-fA-F]{6}$/', $configured)
+            ? strtolower($configured)
+            : $definition['default'];
+        if (local_groupimport_colour_contrast_against_white($candidate) < $definition['contrast']) {
+            $candidate = $definition['default'];
+        }
+        $colours[$role] = $candidate;
+    }
+
+    return $colours;
+}
+
+/**
+ * Calculate a hexadecimal colour's WCAG contrast ratio against white.
+ *
+ * @param string $hex Valid six-digit hexadecimal colour.
+ * @return float Contrast ratio.
+ */
+function local_groupimport_colour_contrast_against_white(string $hex): float {
+    $channels = [];
+    foreach ([1, 3, 5] as $offset) {
+        $channel = hexdec(substr($hex, $offset, 2)) / 255;
+        $channels[] = $channel <= 0.04045
+            ? $channel / 12.92
+            : (($channel + 0.055) / 1.055) ** 2.4;
+    }
+    $luminance = (0.2126 * $channels[0]) + (0.7152 * $channels[1]) + (0.0722 * $channels[2]);
+
+    return 1.05 / ($luminance + 0.05);
+}
+
+/**
+ * Build the validated custom-property declarations used by EasyStud roots.
+ *
+ * Derived soft/strong/rail roles stay in CSS so every responsive composition
+ * consumes one palette rather than receiving PHP-specific presentation rules.
+ *
+ * @return string Safe inline custom-property declarations.
+ */
+function local_groupimport_get_theme_style(): string {
+    $colours = local_groupimport_get_theme_colours();
+    $properties = [
+        '--easyedu-primary' => $colours['primary'],
+        '--easyedu-primary-strong' => 'color-mix(in srgb, ' . $colours['primary'] . ' 82%, #000 18%)',
+        '--easyedu-primary-soft' => 'color-mix(in srgb, ' . $colours['primary'] . ' 10%, #fff 90%)',
+        '--easyedu-info' => $colours['primary'],
+        '--easyedu-info-soft' => 'color-mix(in srgb, ' . $colours['primary'] . ' 10%, #fff 90%)',
+        '--easyedu-accent' => $colours['accent'],
+        '--easyedu-accent-soft' => 'color-mix(in srgb, ' . $colours['accent'] . ' 9%, #fff 91%)',
+        '--easyedu-success' => $colours['accent'],
+        '--easyedu-success-soft' => 'color-mix(in srgb, ' . $colours['accent'] . ' 9%, #fff 91%)',
+    ];
+
+    foreach (['participant', 'group', 'grouping'] as $role) {
+        $properties['--easyedu-' . $role] = $colours[$role];
+        $properties['--easyedu-' . $role . '-soft'] =
+            'color-mix(in srgb, ' . $colours[$role] . ' 11%, #fff 89%)';
+        $properties['--easyedu-' . $role . '-rail'] =
+            'color-mix(in srgb, ' . $colours[$role] . ' 68%, #fff 32%)';
+    }
+
+    $declarations = [];
+    foreach ($properties as $property => $value) {
+        $declarations[] = $property . ': ' . $value;
+    }
+
+    return implode('; ', $declarations) . ';';
+}
+
+/**
  * Returns the EasyStud manager URL for a course.
  *
  * @param int $courseid The course id.
