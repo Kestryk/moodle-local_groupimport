@@ -29,6 +29,14 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         const title = root.locator('.local-groupimport-admin-settings__page-title');
         await expect(title).toBeVisible();
         await expect(title).toHaveCSS('font-size', '20px');
+        await expect(root.locator('.local-groupimport-admin-settings__page-description'))
+            .toHaveCSS('font-size', '14.4px');
+        await expect(root.locator('#admin-themeprimarycolor .form-label label'))
+            .toHaveCSS('font-size', '14.08px');
+        await expect(root.locator('#admin-themeprimarycolor .form-setting > .form-text'))
+            .toHaveCSS('font-size', '12.16px');
+        await expect(root.locator('#admin-themeprimarycolor .form-setting > .form-defaultinfo'))
+            .toHaveCSS('font-size', '12.16px');
         const choice = root.locator('#admin-defaultlayoutmode .easyedu-searchable-choice');
         await expect(choice).toBeVisible();
         const trigger = choice.locator('.easyedu-searchable-choice__trigger');
