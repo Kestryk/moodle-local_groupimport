@@ -6,8 +6,12 @@ Proposal for the Platform scenario owner; shared registry untouched.
 | --- | --- |
 | student-filter-feedback-baseline.spec.js | Failed immutable desktop Groupings availability assumption; retain cleanup |
 | student-filter-feedback-native-baseline.spec.js | Correct native baseline, 9 available routes + hidden desktop Groupings, 231353640Z-24236 PASS |
-| student-filter-footer-native-successor.spec.js | Native footer width/gap/hover plus normal-motion open/close; fresh served run pending |
+| student-filter-footer-native-successor.spec.js | Immutable transparent-RGB sampler failure, 234150269Z-24656 |
+| student-filter-footer-native-alpha-successor.spec.js | Exact zero alpha + native footer width/gap/hover + normal-motion open/close, 234401012Z-17024 PASS |
+| student-nested-filter-close-preview.spec.js | Existing nested-close contract, rerun 234513763Z-33016 PASS |
 | test-filter-footer-successor-source.js | Static source extraction and whole unrelated-CSS/command preservation |
+| student-binary-filter-native-baseline.spec.js | SM-43B immutable mobile manual-close assumption failure, 234820524Z-31112 |
+| student-binary-filter-reset-baseline.spec.js | SM-43B source-aware responsive Reset baseline, four cases PASS 235022312Z-23440 |
 
 Native specs are local-supervised with one-test discovery, saved-credential
 wrapper and runtime lease. No fixture/business writes. Keep each selected
@@ -15,5 +19,6 @@ spec immutable until its child exits. Isolated Kit recipes are credential-free
 CI candidates but font/glyph/native cascade proof remains consumer-specific.
 
 Platform plan/current-state proposal: SM-43A implemented source + Foundations +
-20 product consumers, isolated/static gates pass; served successor pending.
+20 product consumers, isolated/static and nine native cases pass; nested-choice
+closure passes nine iterations. All native cleanup complete.
 SM-43B binary-toggle proposal and SM-44–47 remain pending. Human checklist OPEN.

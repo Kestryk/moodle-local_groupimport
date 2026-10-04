@@ -7,7 +7,8 @@
 - Replace the filled hover with a restrained underlined text action; preserve
   original filters, equal-height columns, commands, chevron and panel Motion.
 - Source preservation and isolated states pass. Foundation paired publication,
-  native served checks and human acceptance remain distinct recorded gates.
+  native nine-route footer and nine-iteration nested-close successors pass
+  with complete cleanup; human acceptance remains open.
 
 ## 2026-10-05 - Compact Mass Import secondary icons
 

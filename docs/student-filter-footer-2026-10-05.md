@@ -53,9 +53,25 @@ confirmed it before proceeding, and only the two owned CDP helpers were stopped.
   First `-a` preserves a harness blur/focus failure; successor moves focus to
   the actual next control and asserts it. No recipe relaxation.
 - SCSS-only distribution contract PASS: no internal agent/doc files.
-- Native served successor: pending promotion and fresh supervised run.
+- Managed promotion `20261004T234137Z` applies prerequisites `64d5bf5`
+  then `090ac2d`, caches purged, clean runtime `d5e63d80`.
+- Native alpha successor `234401012Z-17024`: PASS nine available routes
+  plus deliberately hidden desktop Groupings. Full available width, matching
+  12.16px label/6.72px gap, transparent underline-only hover, and both original
+  transitional phases + inert/ARIA. Measured last-control gaps 19.52–21.59px.
+  First immutable `234150269Z-24656` rejected transparent white vs transparent
+  black despite alpha zero; successor asserts exact zero alpha independent
+  of meaningless RGB channels. Original failure and cleanup retained.
+- Nested-choice closure regression `234513763Z-33016`: PASS nine
+  iterations (three per width): one click closes both parent and child.
+  All native children stopped, credentials cleared, leases released,
+  fixtures not requested, no page errors or business POST.
 - Full view parity, reduced-motion native routes, binary-toggle redesign and
   human acceptance are NOT inferred.
 
 External media remains manifested under the owned Kit/native runs. Retention
 is dry-run only, zero deletions. No fixture request or business POST.
+
+Next: SM-43B binary-filter presentation and Toggle/Reset arrangement. The
+current 36x20 track, 14px thumb and old placement are not certified as the new
+proposal. Preserve the current exact native filtering/reset semantics.

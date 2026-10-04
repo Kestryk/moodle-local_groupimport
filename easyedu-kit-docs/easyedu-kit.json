@@ -7,8 +7,10 @@
     "filterFooterSuccessor20261005": {
       "kitCommit": "0b38a09",
       "documentation": "docs/student-filter-footer-2026-10-05.md",
-      "status": "SM-43A canonical transparent hover/full-width footer with 16px minimum clearance; static/isolated and paired Penpot gates pass. Fresh native preview pending; SM-43B and human checklist remain open.",
-      "nativePreviewVerified": false,
+      "status": "SM-43A canonical transparent hover/full-width footer with 16px minimum clearance; static/isolated, paired Penpot, nine native routes and nested-close regressions pass. SM-43B and human checklist remain open.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261004T234401012Z-17024",
+      "nestedCloseRunId": "easystud-authenticated-20261004T234513763Z-33016",
       "humanVisualValidated": false
     },
     "massSecondaryIconHierarchy20261005": {
