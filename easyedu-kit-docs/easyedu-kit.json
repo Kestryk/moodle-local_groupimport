@@ -7,8 +7,9 @@
     "massSecondaryIconHierarchy20261005": {
       "kitCommit": "7e00460",
       "documentation": "docs/mass-secondary-icon-hierarchy-2026-10-05.md",
-      "status": "Canonical compact deposit/information tracks; class-only consumer adapter and strict unrelated CSS/controller preservation. Paired compound providers and 18 deposit + 18 identification product instances have settled geometry/content/palette proof; native successor pending.",
-      "nativePreviewVerified": false,
+      "status": "Canonical compact deposit/information tracks; class-only consumer adapter and strict unrelated CSS/controller preservation. Paired compound providers and 18 deposit + 18 identification instances verified. Native initial-GET three-width successor passes; broader lifecycle and human review remain open.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261004T230344536Z-32800",
       "humanAccepted": false
     },
     "workspaceHeadingHarmony20261005": {

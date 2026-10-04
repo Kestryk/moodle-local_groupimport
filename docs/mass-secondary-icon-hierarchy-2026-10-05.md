@@ -50,7 +50,21 @@ These are editor-operation corrections, not suppressed native product errors.
 - Isolated Kit three-width compact/regular geometry, glyph centring and native
   control indent: PASS. This is placeholder geometry, not font-icon proof.
 - `mass-secondary-icons-successor.spec.js` is local-supervised native initial
-  GET-only proof at 1600/768/390. Served successor remains pending.
+  GET-only proof at 1600/768/390. Its first run `230052444Z-35572` failed on
+  a test-only child lookup: two native main tiles put FA on the tile itself.
+  That spec/result remain immutable; no product change was needed.
+- Corrected `mass-secondary-icons-native-successor.spec.js` preserves exact
+  four-tile size/font assertions and checks both FA structures, including
+  pseudo-glyph line height/centring layout and nested glyph bounds. Run
+  `easystud-authenticated-20261004T230344536Z-32800` passes at 1600/768/390,
+  both 35.2px tracks and native chooser 50.4px/0px indent, no horizontal
+  overflow, page error, business POST or fixture. Runtime `646487d` serves
+  source `552ba3e`; promotion `20261004T230036Z` purged caches and included
+  the heading documentation predecessor. Both runs complete credential,
+  child and runtime-lease cleanup. This is initial-GET proof, not upload/report
+  lifecycle or raster glyph-outline validation.
+- Public SCSS-only 0.4.98 archive contract passes: no internal agent/docs files;
+  only its owned temporary test outputs were cleaned by the exporter test.
 
 Human checklist stays OPEN. All-state uploading/removal/report lifecycle,
 other correlated-board typography and Skeleton geometry remain separate
