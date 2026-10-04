@@ -316,7 +316,7 @@
     min-block-size: 11.125rem;
     padding: 1.5rem;
     text-align: center;
-    p { font: 500 0.875rem/1.2 var(--easyedu-font-family-ui); margin: 0; }
+    p { @include type.type-caption; font-weight: 500; line-height: 1.2; margin: 0; }
     .fa { font-size: 1.25rem; margin: 0; }
   }
   // Penpot's inner stroke uses fixed 11-unit dashes, not the browser's dashed heuristic.

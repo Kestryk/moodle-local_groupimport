@@ -6,6 +6,10 @@ the product derives readable text/action shades while soft accents keep the
 chosen colour. Check the actual background contrast separately: a white-only
 calculation does not certify every mixed surface or Moodle theme.
 
+Mass Import no-results copy inherits the shared Empty-state caption role,
+including on mobile. Preserve the linked Foundation Default/Inline/Search
+family and its fixed dashed boundary; do not add a product font-size override.
+
 ## Selected-member transfer gate (SM-11)
 
 Membership business logic belongs in the consumer service, not Kit paint or
