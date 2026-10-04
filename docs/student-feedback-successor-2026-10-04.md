@@ -46,5 +46,12 @@ Requests recorded; execution/proof results are appended per lot below.
   is not a missing keyframe; pale-filter cues have weak sweep contrast.
   Card-copy background stripes have the shared overlay (not missing animation).
   Right filter region
-  uses an unframed layout unlike the left, and two fictitious header actions
-  occupy space. Correction and downstream publication remain in progress.
+  previously used an unframed layout unlike the left, and two fictitious header
+  actions occupied space. Shared correction is served and the fresh native
+  successor passes at 1600/768/390. Three measured Student loading compositions
+  are linked to Foundations, with no visible descendant overflow. Full other
+  routes, Foundation export inspection and human acceptance stay open; details
+  in `student-loading-feedback-2026-10-04.md`.
+- SM-41 in progress: passive native frame recorder added for existing group
+  member search at desktop/tablet/mobile. No modification to accepted Motion or
+  data-changing action; diagnose the height discontinuity before implementation.

@@ -9,8 +9,9 @@
   roots, with unchanged timing/static modes and native readiness.
 - Remove fictitious Student header actions and reserved empty height; both
   workspace columns reuse the same shared framed filter-region recipe.
-- Record canonical Foundation paired specimens and a guarded native successor;
-  static/isolated proof is not yet native or human acceptance.
+- Record canonical Foundation paired specimens, three source-measured product
+  loading boards and passing native successor at desktop/tablet/mobile;
+  complete other-route lifecycles and human acceptance remain separate.
 
 ## 2026-10-04 - Feedback successor intake
 
