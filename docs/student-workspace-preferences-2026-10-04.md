@@ -44,3 +44,16 @@ fixture holds the dedicated write lease, records both prior configuration
 values outside Git, applies the two-view/structure-first case, blocks every
 plugin business request and restores the exact missing-or-present state in
 `finally`.
+
+## Moodle 5.1 preview checkpoint
+
+Source commits `0cfacb4` and `983ac71` were applied to the clean local preview
+as `6793374` and `c2d5270`. The feature code and supervised test candidate are
+therefore present in the served checkout.
+
+The cache/browser gate is blocked before fixture setup: the Moodle 5.1 MariaDB
+process does not start because its data directory lacks `aria_log.00000001`
+and referenced `phpmyadmin/pma__*.ibd` tablespaces. The cache purge consequently
+returns `Database connection failed`. No workspace preference was changed and
+the supervised fixture did not execute. Database recovery is a separate
+runtime operation; source/static readiness does not count as browser proof.
