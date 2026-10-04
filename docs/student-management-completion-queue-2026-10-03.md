@@ -340,6 +340,18 @@ technical passes do not close these newly reported regressions.
   replace the Group legacy reset/cancel action and compare both branches.
 - [ ] R09: Mass Import no-results helper is too large: use measured subordinate
   text role in Foundations/product and canonical Kit, then verify native paint.
+- [ ] R10: Native Administration dropdowns must consume canonical Kit fields
+  and searchable choices where appropriate; audit generated Moodle markup,
+  selector scope and enhancement coverage instead of creating private styles.
+- [ ] R11: Contrast validation feedback must use the Foundation warning/error
+  component in Penpot and native administration. Relax rejection of valid Hex
+  palettes through safe foreground/derived text colours or a nonblocking warning;
+  do not silently make small text unreadable or claim a lower accessibility standard.
+  Verify server-side palette fallback as well as form validation.
+- [ ] R12: Offer a coherent compact variant for every More Filters control,
+  including multiple-choice dropdown, chips, clear and chevron. Inventory
+  Foundations Standard/Library, create missing variants there, then propagate
+  EasyStud and canonical SCSS. Preserve usable mobile touch targets.
 
 ### Current execution checkpoint
 
