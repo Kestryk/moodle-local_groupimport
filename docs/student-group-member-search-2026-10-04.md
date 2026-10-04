@@ -72,6 +72,18 @@ settings were changed. The combined human checklist remains open.
 
 ## Emplacements à réviser
 
+## Kit 0.4.91 source/catalogue successor
+
+The shared card search-layout recipes now own the previous local declarations,
+with identical complete compiled CSS. Foundations 08.12/08.12.1 and two effective
+product specimens show the native search-only anatomy; the mobile menu uses
+Search participants/magnifying-glass. Fresh run
+`easystud-authenticated-20261004T194652570Z-8360` passes all three widths,
+including 8px field/Cancel gap, matching heights and zero business requests.
+See `student-card-inline-search-publication-2026-10-04.md`. This supersedes the
+earlier missing-publication checkpoint only for this bounded anatomy/menu route,
+not every full mobile composition or human acceptance.
+
 - `amd/src/course_manager.js`
 - `manage.php`
 - `tools/playwright/student-group-member-search-preview.spec.js`

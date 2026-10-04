@@ -22,8 +22,14 @@ card-local filtering, selections and Cancel logic remain untouched.
 
 The fresh native test will check real desktop/mobile menu entry, matching and
 empty searches, focus, restoration, gap and equal field/Cancel heights. No
-business action or fixture write is permitted. Fresh runtime result and human
-acceptance remain pending; earlier passing runs remain historical proof.
+business action or fixture write is permitted. Fresh run
+`easystud-authenticated-20261004T194652570Z-8360` passes at 1600/768/390:
+field/Cancel are 38px desktop and 42.390625px responsive; gap is 8px,
+shell inset 8.8px, radius 8px and border dashed. Cancel is 12px with the
+default secondary colour rgb(11,94,168). Search/filter/empty/focus/restoration
+pass through the native magnifier or responsive menu. No business request or
+fixture change occurred; child/credentials/lease cleanup completed. Human
+acceptance stays pending; earlier passing runs remain historical proof.
 
 This bounded pass does not certify every whole-view card state or responsive
 action route. See `student-group-member-search-2026-10-04.md` and the combined

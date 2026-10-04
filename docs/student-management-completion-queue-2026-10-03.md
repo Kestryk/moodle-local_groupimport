@@ -434,7 +434,9 @@ technical passes do not close these newly reported regressions.
   Kit 0.4.91 with exact whole-CSS identity. Foundation Members/Groups Standard
   and Library use native search-only anatomy; two effective product specimens
   and the responsive Search participants menu label/glyph are reconciled.
-  Fresh native search/geometry successor and human acceptance remain pending.
+  Native search/geometry successor `easystud-authenticated-20261004T194652570Z-8360`
+  passes at 1600/768/390 with no business request and full cleanup. Human
+  acceptance remains pending.
   See `student-card-inline-search-publication-2026-10-04.md`.
 
 - SM-37 publication successor: the Foundation 08.12 Standard/08.12.1 Library
