@@ -6,10 +6,11 @@
   "consumerSync": {
     "compactNavigationTypography20261004": {
       "kitCommit": "de7abc3f73a8e9d2d8320fd3c026ac4a9b64aa1d",
-      "status": "Kit 0.4.92 owns compact destination/Guide-label type roles with identical complete generated CSS. Paired Foundation states and the linked product drawer reconciled. Native pre-extraction 768/390 audit passes; role-specific successor and human acceptance pending. Full Navigation drift remains separate.",
+      "status": "Kit 0.4.92 owns compact destination/Guide-label type roles with identical complete generated CSS. Paired Foundation states and linked product type/glyph roles reconciled. Native post-extraction 768/390 audit passes; full-course menu composition and human acceptance pending. Full Navigation drift remains separate.",
       "nativePreExtractionRun": "easystud-authenticated-20261004T195314211Z-19428",
+      "nativeRun": "easystud-authenticated-20261004T200455947Z-37768",
       "penpotLinked": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "humanAccepted": false,
       "documentation": "docs/student-mobile-navigation-typography-2026-10-04.md"
     },

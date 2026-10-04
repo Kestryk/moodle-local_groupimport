@@ -13,8 +13,9 @@
   compiled CSS; existing drawer routes, scrolling and Motion are unchanged.
 - Align paired Foundations specimens and the linked EasyStud drawer; recover
   native destination glyphs and verify painted containment after propagation.
-- Native 768/390 pre-extraction audit passes. The role-specific successor and
-  combined human checklist remain separate validation gates.
+- Native 768/390 role-specific successor passes, with full cleanup and no data
+  write. Native capture records the remaining full-course menu composition
+  gap separately; combined human acceptance remains open.
 
 ## 2026-10-04 - Canonical card inline-search layout
 
