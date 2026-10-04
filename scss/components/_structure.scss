@@ -1163,23 +1163,6 @@
     margin-top: 0.8rem;
   }
 
-  &-member {
-    @include easyedu.related-person-row;
-  }
-
-  &-member > .local-groupimport-easystud-selector {
-    @include easyedu.related-person-selection-slot;
-  }
-
-  &-member__name {
-    @include easyedu.related-person-name;
-    @include easyedu.related-person-name-layout;
-  }
-
-  .local-groupimport-easystud-member__remove {
-    @include easyedu.related-person-remove;
-  }
-
   &-group-email {
     @include easyedu.inline-reveal-panel(24rem);
 

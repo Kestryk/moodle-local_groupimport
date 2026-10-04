@@ -3136,7 +3136,7 @@ const removeMembers = (root, courseId, members) => {
 // Create a member row in a group.
 const createMemberItem = (groupid, userid, fullname, removelabel, selectionlabel) => {
     const item = document.createElement('li');
-    item.className = 'local-groupimport-easystud-member';
+    item.className = 'local-groupimport-easystud-member easyedu-related-person-row';
     item.setAttribute('data-easystud-member-id', userid);
     item.setAttribute('data-member-key', groupid + '-' + userid);
     item.setAttribute('data-selectable-type', 'member');
@@ -3144,7 +3144,8 @@ const createMemberItem = (groupid, userid, fullname, removelabel, selectionlabel
     item.setAttribute('data-search-text', normalise(fullname || ''));
 
     const selector = document.createElement('label');
-    selector.className = 'local-groupimport-easystud-selector local-groupimport-easystud-selector--member';
+    selector.className = 'local-groupimport-easystud-selector local-groupimport-easystud-selector--member ' +
+        'easyedu-related-person-row__selector';
     selector.setAttribute('aria-label', selectionlabel || '');
 
     const checkbox = document.createElement('input');
@@ -3161,13 +3162,14 @@ const createMemberItem = (groupid, userid, fullname, removelabel, selectionlabel
     item.appendChild(selector);
 
     const name = document.createElement('span');
-    name.className = 'local-groupimport-easystud-member__name';
+    name.className = 'local-groupimport-easystud-member__name easyedu-related-person-row__name';
     name.textContent = fullname;
     item.appendChild(name);
 
     const remove = document.createElement('button');
     remove.type = 'button';
-    remove.className = 'btn btn-link p-0 local-groupimport-easystud-member__remove';
+    remove.className = 'btn btn-link p-0 local-groupimport-easystud-member__remove ' +
+        'easyedu-related-person-row__remove';
     remove.setAttribute('data-easystud-remove-member', '1');
     remove.setAttribute('data-group-id', groupid);
     remove.setAttribute('data-user-id', userid);
