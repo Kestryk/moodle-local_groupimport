@@ -17,6 +17,8 @@ const root = path.resolve(__dirname, '../..');
                 <div class="formsettingheading"><h3>Interface colours</h3></div>
                 <div id="admin-themeprimarycolor"><div class="form-label"><label>Primary colour</label></div>
                   <div class="form-description">Used for primary actions.</div></div>
+                <input type="checkbox" id="id_s_local_groupimport_enablesimplifiedview">
+                <input type="checkbox" id="id_s_local_groupimport_showcompleteview">
               </div></form></main>`);
             await page.addStyleTag({content: fs.readFileSync(path.join(root, 'styles.css'), 'utf8')});
             const roles = [
@@ -30,6 +32,16 @@ const root = path.resolve(__dirname, '../..');
                 const actual = await page.locator(selector).evaluate(n => parseFloat(getComputedStyle(n).fontSize));
                 assert(Math.abs(actual - expected) < 0.02, `${width}: ${selector} ${actual} != ${expected}`);
             }
+            const focused = [];
+            for (const id of ['enablesimplifiedview', 'showcompleteview']) {
+                const field = page.locator('#id_s_local_groupimport_' + id);
+                await field.focus();
+                focused.push(await field.evaluate(n => {
+                    const s = getComputedStyle(n);
+                    return {border: s.borderColor, shadow: s.boxShadow};
+                }));
+            }
+            assert.deepEqual(focused[0], focused[1], 'New view checkbox shares native focus adapter');
             await page.close();
             console.log(`PASS ${width}: compiled admin title/description/section/label/caption roles.`);
         }
