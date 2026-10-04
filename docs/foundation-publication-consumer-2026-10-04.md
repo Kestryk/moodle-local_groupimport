@@ -46,11 +46,17 @@ of 1600/768/390, preserving transition, ARIA/inert and nested closure. It has
 no fixture/data write or page error; credentials, child and lease were cleaned.
 This run predates the new palette classes, so is not the native 0.4.90 proof.
 
-Native 0.4.90 promotion and focused initial-Mass-Import successor are pending.
-Nine Preview result introductions remain missing and need a downstream layout
-pass. Full upload/validation/report lifecycle and the combined human checklist
-remain open. No actual import, message, Move/Drop, settings save or role fixture
-was executed. Guide remains deferred until the EasyStud component programme.
+Managed preview `b542e770d9fdf6aba5ba8b182e6763834af6ecfd` serves 0.4.90,
+with caches purged. Native successor
+`easystud-authenticated-20261004T190630471Z-37384` passes initial Mass Import
+at 1600/768/390 with the real picker ready, compact identities, caption/dash,
+responsive lanes and transient settled CSV framing. Cleanup confirms cleared
+credentials, stopped child and released lease; no fixture or data write.
+This does not certify native Warning/Danger/upload/report lifecycle.
+The nine Preview introductions are now added with downstream geometry proof;
+see the successor below. Full lifecycle and combined human acceptance remain
+open. No actual import, message, Move/Drop or settings save was executed.
+Guide remains deferred until the EasyStud component programme.
 
 ## Integration and recovery
 
@@ -65,3 +71,27 @@ revert/new preview commit, never a reset of a shared checkout.
 
 Platform planning/crosswalk files belong to the planning owner and are not
 edited here. This source-owned successor is the portable exact evidence backlink.
+
+## Nine Preview introduction successor
+
+Read `index.php:1251-1294` and EN/FR `csvreportintro`: the results-header
+introduction precedes counters and the Preview notice in every preview state.
+Nine product boards now include that exact FR copy in 14.4px Inter, followed by
+a separate counter row and the unchanged existing content. Desktop titles no
+longer share their text lane with summary badges. Remaining content shifts by
+one measured delta (57.2/71.2/77.2px); internal gaps, button sizes and all table
+cells stay unchanged. Three loose linked desktop tables are reparented to their
+actual results panel with preserved original position before the common shift.
+Collapsed desktop upload rails match the expanded results-panel height.
+Shell surfaces grow without stretching their top accent. Course/outer mobile
+frames contain the full content, including notes previously outside the course
+frame. Root rows are packed with 80px minimum separation; 24 active outer boards
+have zero intersection after settling. Desktop and mobile exports were inspected.
+
+Exact old/new heights, affected child IDs, root movements, text containment,
+provider links and relative-body preservation are recorded in
+`docs/testing/mass-import-preview-introductions-2026-10-04.json`.
+This is source-backed Penpot composition, not a native preview-upload test or
+whole-view acceptance. No plugin layout/source behavior change was necessary:
+the served PHP already renders this introduction. Originals remain recoverable
+through IDs/Git evidence; no design content is deleted.

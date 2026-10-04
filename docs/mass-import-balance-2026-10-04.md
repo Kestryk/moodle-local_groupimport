@@ -141,3 +141,16 @@ Standard/Library publication and relinking. Other internal notice artwork
 retains its own density. This Penpot-only propagation does not certify native
 upload/validation/report lifecycle or human acceptance; the served PHP/CSS/AMD
 were not changed by this lot.
+
+### Shared publication and Preview-content successor
+
+Kit 0.4.90 now has eight paired Foundation section-tile providers. All 39
+initial/uploading/state identities consume linked compact wrappers and their
+original glyphs; this closes the source-provider gap above, not human acceptance.
+The nine Preview introductions now use the exact native FR copy and a separate
+counter row. Downstream controls/tables shift together, panel/course frames grow
+and 24 active page-01 boards have zero intersection. Desktop/mobile exports were
+inspected internally. See `foundation-publication-consumer-2026-10-04.md` and
+`testing/mass-import-preview-introductions-2026-10-04.json` for exact scopes.
+Native initial three-width successor passes on 0.4.90 with complete cleanup;
+upload/state lifecycle and the combined human checklist remain open.

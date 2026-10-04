@@ -6,9 +6,9 @@
   "consumerSync": {
     "semanticSectionTiles20261004": {
       "kitCommit": "c80961f901ba27267a31555123fa0033c8b944f7",
-      "status": "Kit 0.4.90 Warning/Danger recipes embedded; eight Foundation Standard/Library providers published; 39 product main headers relinked with preserved glyphs and geometry. Native successor pending; human acceptance open.",
+      "status": "Kit 0.4.90 Warning/Danger recipes embedded; eight Foundation Standard/Library providers published; 39 product main headers linked. Native initial Mass Import three-width successor passes; full semantic-state lifecycle and human acceptance open.",
       "humanAccepted": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "penpotLinked": true,
       "documentation": "docs/foundation-publication-consumer-2026-10-04.md"
     },
@@ -71,7 +71,7 @@
     "batch": "EED-UI-2026-0073",
     "massImportBalance20261004": {
       "kitCommit": "ab44599d543cc96b6cc23065ec508e147552893c",
-      "status": "Native initial compact identities and responsive layout pass. Six initial/uploading plus 27 state headers now consume shared linked Foundation tiles with preserved glyphs; nine preview report introductions and native all-state/human proof pending.",
+      "status": "Native initial compact identities and responsive layout pass at Kit 0.4.90. All 39 main headers link to Foundation tiles; nine Preview introductions and downstream layouts reconciled, with no outer-board overlap. Native all-state and human proof pending.",
       "documentation": "docs/mass-import-balance-2026-10-04.md",
       "humanAccepted": false,
       "nativePreviewVerified": true,
