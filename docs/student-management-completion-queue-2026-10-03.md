@@ -430,6 +430,12 @@ technical passes do not close these newly reported regressions.
 
 ### Current execution checkpoint
 
+- SM-37 publication successor: the Foundation 08.12 Standard/08.12.1 Library
+  capsule is now published and the page-03 product specimen links to it.
+  Zero centre delta, 30.4px compact action and neutral centred icon pass settled
+  readback; the old composition remains recoverable. Fresh native density/paint
+  proof is pending. No selection logic or SCSS change; human checklist stays open.
+
 - SM-36 publication successor: eight canonical clear states and twelve selected
   Foundation choice variants now have matching source/Standard paint. Fourteen
   effective product consumers fit actual widths/density; six selected show clear,

@@ -41,6 +41,25 @@ open.
 
 ## Emplacements à réviser
 
+### Paired catalogue successor, 4 October 2026
+
+Foundations now publishes the shared Desktop selection recovery / Visible
+component on 08.12 Standard and 08.12.1 Library. EasyStud page 03 consumes that
+linked capsule (`cf371b29-2e8e-8011-8008-bd5e281d5df1`), rather than its earlier
+ordinary composition. The old shape remains hidden and recoverable in the same
+board. The new specimen has zero horizontal centre delta, a 30.4px compact
+neutral button and a centred circle-xmark in the same muted colour as its label.
+The public capsule padding/gap and soft shadow now match the existing source
+recipe. Source/Standard paint fingerprints match; exported Standard was inspected.
+
+No SCSS, Mustache, controller or selection-command change is required: native
+already used these Kit recipes. The focused native test now additionally records
+button size, capsule padding, count typography and icon colour. Its fresh result
+is pending managed execution; the earlier preview runs remain historical proof.
+Human acceptance is not implied by the linked publication.
+
+Evidence: `docs/testing/student-sticky-selection-publication-2026-10-04.json`.
+
 - `scss/easyedu/components/_panels.scss`
 - `scss/components/_layout.scss`
 - `templates/manage.mustache`

@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Desktop recovery surfaces reuse the canonical linked capsule and Small neutral
+action; do not retain a regular-height instance override. Compare settled icon
+root and paint, currentColor, count type and canvas centre. Native widths depend
+on font and translation, not the fixed Penpot specimen width. Keep mobile trays
+and native selection commands unchanged; publication is not human acceptance.
+
 Adding a canonical choice child requires settled narrow/touch consumer readback:
 the new child's inherited position may retain the provider's width. Preserve
 Chevron end alignment and map the shared clear size to actual trigger density.

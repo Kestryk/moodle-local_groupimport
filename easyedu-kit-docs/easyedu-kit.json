@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "desktopRecoveryPublication20261004": {
+      "kitCatalogueCommit": "6e8294c86163969355af91498063277e4e1656ce",
+      "status": "Shared Foundation capsule published and linked product geometry reconciled; existing 0.4.90 SCSS/selection logic unchanged. Fresh native density/paint successor pending.",
+      "penpotLinked": true,
+      "nativePreviewVerified": false,
+      "humanAccepted": false,
+      "documentation": "docs/student-sticky-selection-2026-10-04.md"
+    },
     "choiceClearPublication20261004": {
       "kitCatalogueCommit": "3a5b401d5415c0e5867802331e2c5b219d133616",
       "status": "Eight shared clear states, twelve Foundation choice variants and fourteen product consumers reconciled. Native clear-all three-width successor passes; human acceptance pending. Existing 0.4.90 SCSS/controller unchanged.",

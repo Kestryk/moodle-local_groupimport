@@ -45,6 +45,9 @@ test('Desktop sticky selection remains centered and clears without covering fina
             const rootNode = node.closest('#local-groupimport-easystud');
             const style = getComputedStyle(node);
             const buttonStyle = getComputedStyle(button);
+            const iconStyle = getComputedStyle(button.querySelector('.fa'));
+            const count = node.querySelector('[data-easystud-clear-selection-count]');
+            const countStyle = getComputedStyle(count);
             const rootStyle = getComputedStyle(rootNode);
             return {
                 rect: {x: r.x, y: r.y, width: r.width, height: r.height, bottom: r.bottom},
@@ -73,6 +76,14 @@ test('Desktop sticky selection remains centered and clears without covering fina
                 buttonFontSize: buttonStyle.fontSize,
                 buttonFontWeight: buttonStyle.fontWeight,
                 buttonColour: buttonStyle.color,
+                buttonSize: {width: br.width, height: br.height},
+                iconColour: iconStyle.color,
+                capsulePadding: {
+                    top: style.paddingTop, bottom: style.paddingBottom,
+                    left: style.paddingLeft, right: style.paddingRight,
+                    gap: style.columnGap, border: style.borderTopColor,
+                },
+                countType: {size: countStyle.fontSize, weight: countStyle.fontWeight, colour: countStyle.color},
                 rootPaddingBottom: parseFloat(rootStyle.paddingBottom),
             };
         });
@@ -83,6 +94,11 @@ test('Desktop sticky selection remains centered and clears without covering fina
         expect(geometry.background).toBe('none');
         expect(geometry.radius).toBe('999px');
         expect(geometry.buttonFontWeight).toBe('600');
+        expect(geometry.buttonColour).toBe('rgb(92, 108, 125)');
+        expect(geometry.iconColour).toBe(geometry.buttonColour);
+        expect(geometry.buttonSize.height).toBeCloseTo(30.4, 1);
+        expect(geometry.countType.size).toBe('12.48px');
+        expect(geometry.countType.weight).toBe('700');
         expect(geometry.rootPaddingBottom).toBeGreaterThanOrEqual(geometry.rect.height + 16);
         const bottomPagination = root.locator('[data-easystud-pagination-position="bottom"]:visible').first();
         if (await bottomPagination.count()) {
