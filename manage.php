@@ -246,6 +246,36 @@ function local_groupimport_build_manage_template_data(
     $participantdisplay = local_groupimport_get_participant_display_settings($customuserfields);
     $users = local_groupimport_enrich_users_with_participant_display_fields($users, $participantdisplay, $customuserfields);
     $compactparticipantsdefault = count($users) > 5;
+    $layoutpreferences = local_groupimport_get_workspace_layout_preferences();
+    $layoutmodedefinitions = [
+        'participants' => [
+            'icon' => 'fa-users',
+            'label' => get_string('layoutmodeparticipants', 'local_groupimport'),
+        ],
+        'both' => [
+            'icon' => 'fa-columns',
+            'label' => get_string('layoutmodeoverview', 'local_groupimport'),
+        ],
+        'structure' => [
+            'icon' => 'fa-sitemap',
+            'label' => get_string('layoutmodestructure', 'local_groupimport'),
+        ],
+    ];
+    if (!$layoutpreferences['showcompleteview']) {
+        unset($layoutmodedefinitions['both']);
+    }
+    $layoutmodetoggles = [];
+    foreach ($layoutmodedefinitions as $mode => $definition) {
+        $active = $mode === $layoutpreferences['defaultlayoutmode'];
+        $layoutmodetoggles[] = [
+            'icon' => $definition['icon'],
+            'label' => $definition['label'],
+            'class' => 'btn btn-sm local-groupimport-easystud__layout-mode-button ' .
+                ($active ? 'btn-primary btn-outline-primary active' : 'btn-outline-secondary'),
+            'attribute' => 'data-easystud-layout-mode="' . $mode . '" aria-pressed="' .
+                ($active ? 'true' : 'false') . '"',
+        ];
+    }
     $context = context_course::instance($course->id);
     $canmessageparticipants = !empty($CFG->messaging) &&
         has_all_capabilities(['moodle/site:sendmessage', 'moodle/course:bulkmessaging'], $context);
@@ -390,6 +420,9 @@ function local_groupimport_build_manage_template_data(
         'loadingmanager' => get_string('loadingmanager', 'local_groupimport'),
         'managerready' => get_string('managerready', 'local_groupimport'),
         'compactparticipantsdefault' => $compactparticipantsdefault,
+        'showcompleteview' => $layoutpreferences['showcompleteview'],
+        'defaultlayoutmode' => $layoutpreferences['defaultlayoutmode'],
+        'defaultmobileview' => $layoutpreferences['defaultmobileview'],
         'clipboardlabel' => get_string('clipboardtools', 'local_groupimport'),
         'tutoriallabel' => get_string('tutoriallabel', 'local_groupimport'),
         'tutorialtitle' => get_string('tutorialtitle', 'local_groupimport'),
@@ -738,26 +771,7 @@ function local_groupimport_build_manage_template_data(
         'selectionmodelabel' => get_string('selectionmode', 'local_groupimport'),
         'participantstitle' => get_string('participants', 'local_groupimport'),
         'participantscountlabel' => get_string('participantscount', 'local_groupimport', count($users)),
-        'layoutmodetoggles' => [
-            [
-                'icon' => 'fa-users',
-                'label' => get_string('layoutmodeparticipants', 'local_groupimport'),
-                'class' => 'btn btn-outline-secondary btn-sm local-groupimport-easystud__layout-mode-button',
-                'attribute' => 'data-easystud-layout-mode="participants" aria-pressed="false"',
-            ],
-            [
-                'icon' => 'fa-columns',
-                'label' => get_string('layoutmodeoverview', 'local_groupimport'),
-                'class' => 'btn btn-outline-secondary btn-sm local-groupimport-easystud__layout-mode-button',
-                'attribute' => 'data-easystud-layout-mode="both" aria-pressed="true"',
-            ],
-            [
-                'icon' => 'fa-sitemap',
-                'label' => get_string('layoutmodestructure', 'local_groupimport'),
-                'class' => 'btn btn-outline-secondary btn-sm local-groupimport-easystud__layout-mode-button',
-                'attribute' => 'data-easystud-layout-mode="structure" aria-pressed="false"',
-            ],
-        ],
+        'layoutmodetoggles' => $layoutmodetoggles,
         'participantactions' => [
             [
                 'icon' => 'fa-compress',

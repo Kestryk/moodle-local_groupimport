@@ -32,6 +32,9 @@ the historical Group Import CSV plugin without moving data or changing URLs.
 - Uses Moodle-native group APIs and does not enrol new course users.
 - Includes the EasyStud contextual guide and guided paths.
 - Can be enabled or disabled globally by an administrator.
+- Lets administrators hide the combined Complete view and choose which
+  available workspace opens first; compact layouts keep their native
+  Participants / Groups / Groupings navigation.
 
 ### Administration settings
 

@@ -83,6 +83,9 @@ Technical checks and human visual acceptance remain separate.
   Final danger capture inspected. Error messages and mobile alternatives remain
   separate; this is not a human tick of the combined checklist item.
 - [ ] Context menus, sticky mobile actions and non-drag alternatives remain usable.
+- [ ] Student Management shows the administrator-selected initial workspace;
+  hiding Complete view leaves a centred two-option desktop switcher, and the
+  compact Participants / Groups / Groupings switcher remains usable.
 - [ ] Direct card actions: eight families aligned; Rename/Unlink product instances.
 
   Technical checkpoint: `easystud-authenticated-20261001T193408313Z-42096`

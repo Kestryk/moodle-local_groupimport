@@ -2477,7 +2477,11 @@ const bindLayoutModeToggle = root => {
         });
     });
 
-    applyMode('both', false);
+    const configuredMode = root.getAttribute('data-easystud-default-layout-mode') || 'both';
+    const initialMode = buttons.some(button => button.getAttribute('data-easystud-layout-mode') === configuredMode)
+        ? configuredMode
+        : (buttons[0].getAttribute('data-easystud-layout-mode') || 'participants');
+    applyMode(initialMode, false);
     root.easystudApplyDesktopMode = applyMode;
 };
 
@@ -2574,7 +2578,10 @@ const bindMobileEntityViews = root => {
         return;
     }
 
-    let mobileView = 'participants';
+    const configuredMobileView = root.getAttribute('data-easystud-default-mobile-view') || 'participants';
+    let mobileView = ['participants', 'groups', 'groupings'].includes(configuredMobileView)
+        ? configuredMobileView
+        : 'participants';
     const closeResponsiveGuide = () => {
         root.querySelectorAll('[data-easystud-tutorial-modal], [data-easyedu-guide-modal]').forEach(modal => {
             modal.hidden = true;

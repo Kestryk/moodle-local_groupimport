@@ -7,6 +7,8 @@
     data-easystud-drag-moving-label="{{#str}}dragpreviewmoving, local_groupimport{{/str}}"
     data-easystud-detail-labels="{{detaillabelsjson}}"
     data-easystud-mobile-card-actions="{{mobilecardactions}}"
+    data-easystud-default-layout-mode="{{defaultlayoutmode}}"
+    data-easystud-default-mobile-view="{{defaultmobileview}}"
     data-easyedu-motion-policy="{{motionpolicy}}"
     data-easystud-loading-reveal-duration="320"
 >
@@ -32,7 +34,9 @@
 
         <div class="local-groupimport-easystud__loading-view-toggle">
             <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-view-toggle-item"></span>
+            {{#showcompleteview}}
             <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-view-toggle-item"></span>
+            {{/showcompleteview}}
             <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-view-toggle-item"></span>
         </div>
 
