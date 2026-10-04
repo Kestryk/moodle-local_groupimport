@@ -343,7 +343,8 @@ technical passes do not close these newly reported regressions.
 - [ ] R09: Mass Import no-results helper is too large: use measured subordinate
   text role in Foundations/product and canonical Kit, then verify native paint.
   Candidate: Standard/Library/Product Penpot and Kit now use the 12.16px caption
-  role; native paint and human checklist remain open.
+  role; native Moodle 5.1 read-only proof passes at 1600/768/390. Human
+  checklist remains open.
 - [ ] R10: Native Administration dropdowns must consume canonical Kit fields
   and searchable choices where appropriate; audit generated Moodle markup,
   selector scope and enhancement coverage instead of creating private styles.

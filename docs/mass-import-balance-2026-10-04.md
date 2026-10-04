@@ -46,3 +46,9 @@ The read-only native Moodle candidate
 `tools/playwright/mass-import-empty-caption-readonly.spec.js` checks that
 course 5 renders the caption and fixed dash at 1600/768/390, with no upload
 or POST; its result must be recorded separately after the managed run.
+Moodle 5.1 now serves preview HEAD `e0102e7d1372a14187d72308f293cd3f34f646e7`.
+Managed read-only run `easystud-authenticated-20261004T152059921Z-13888`
+passes all three widths, shows 12.16px native copy and the 11px/11px SVG dash,
+with text contained and no horizontal overflow/page error. The mobile capture
+was visually inspected; no upload or POST occurred. Credentials and runtime
+lease were cleared. Human acceptance remains open.
