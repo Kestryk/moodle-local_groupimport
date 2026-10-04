@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+The 2026-10-04 feedback successor explicitly allows retained local QA roles
+only in course 5, on owned nologin users, with capability-free roles and both
+runtime/fixture leases. Preserve exact ownership and pre-existing relationship
+proof; do not let temporary-fixture runners remove retained manual-test data.
+Specific Search/Add disclosure smoothing and regular Message footer density
+are reopened user gates, not permission to rewrite all existing card Motion.
+The final Mass Import heading reference supersedes blanket typography shrink.
+
 Compact Navigation audits wait for terminal opening opacity, pass viewport
 arguments explicitly into browser evaluation and distinguish destination links
 from native auxiliary actions. After Penpot text-lane/library changes, force

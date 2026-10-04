@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-04 - Feedback successor intake
+
+- Restore and retain twelve capability-free local test roles and 24 assignments
+  on three owned nologin users; native relationship-hash and three-width role
+  catalogue verification pass. No existing user's grants or groups change.
+
+- Preserve all new requests as deduplicated SM-39 through SM-47 lots, linked
+  to the existing unfinished queue; human validation remains open.
+- Record explicit permission for persistent localhost QA roles and synthetic
+  assignments; retain temporary-fixture history and production boundaries.
+- Resolve the heading instruction to the user's final Mass Import reference;
+  reopen specific Skeleton, Search/Add Motion and Message density gates.
+
 ## 2026-10-04 - Mobile navigation typography audit candidate
 
 - Add a guarded native open/Close check for destination typography, opacity,

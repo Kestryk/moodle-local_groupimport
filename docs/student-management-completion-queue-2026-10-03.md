@@ -5,6 +5,18 @@ competing batch or global plan. User instruction: record and implement every
 remaining point from the quoted Student Management request. Human acceptance
 stays deferred to the combined checklist; automation never ticks it.
 
+## 2026-10-04 user feedback successor
+
+The deduplicated SM-39 through SM-47 lots are recorded in
+`student-feedback-successor-2026-10-04.md`, including dependencies and proof
+gates. They supplement every earlier unfinished request, not replace it.
+The user now explicitly authorizes retained localhost course-5 QA roles and
+assignments to synthetic users (SM-39); the older temporary-fixture exclusion
+below is historical for that bounded lot only. New Search/Add disclosure Motion
+and message-footer requests reopen their specific paths, not all original Motion
+or compact controls. Mass Import's current heading is the latest explicit
+typography reference; do not blindly shrink all titles by one pixel.
+
 SM-11 continuation: focused selected-member action routing is now published on
 page 03 (board `c403923b-827e-80b7-8008-bbcc39a95da4`) with inspected capture and
 settled geometry readback. Paired compact semantic Foundation states are now
