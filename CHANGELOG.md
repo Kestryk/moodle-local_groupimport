@@ -9,6 +9,9 @@
   scenario. Preserve original disclosure Motion and selection behaviour.
 - Broader appearance corrections remain pending in the completion queue; this
   repair does not certify Penpot parity or human acceptance.
+- Record the user's native-admin dropdown, contrast-warning and compact-filter
+  requests as R10–R12. Contain the product group-image picker composition;
+  canonical provider propagation and full visual acceptance remain open.
 
 ## 2026-10-04 - Mass Import visual balance
 

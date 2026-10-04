@@ -8,13 +8,15 @@ test('More filters preserves collapsed state after nested dropdown dismissal', a
     await page.emulateMedia({reducedMotion: 'no-preference'});
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    await page.goto(process.env.EASYEDU_MOODLE_URL);
+    await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
     if (page.url().includes('/login/')) {
         await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
         await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
         await page.locator('#loginbtn').click();
-        await page.waitForURL(url => !url.pathname.includes('/login/'));
-        await page.goto(process.env.EASYEDU_MOODLE_URL);
+        await page.waitForURL(url => !url.pathname.includes('/login/'), {waitUntil: 'domcontentloaded'});
+        if (page.url() !== process.env.EASYEDU_MOODLE_URL) {
+            await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
+        }
     }
     const root = page.locator('#local-groupimport-easystud');
     await expect(root).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
@@ -50,7 +52,10 @@ test('More filters preserves collapsed state after nested dropdown dismissal', a
         }
         expect(errors).toEqual([]);
     } finally {
+        // Preserve the original test failure if the runner already closed the
+        // timed-out page; evidence collection must not replace its diagnosis.
+        const events = page.isClosed() ? [] : await page.evaluate(() => window.filterTrace).catch(() => []);
         fs.writeFileSync(testInfo.outputPath('filter-event-trace.json'),
-            JSON.stringify({errors, events: await page.evaluate(() => window.filterTrace)}, null, 2));
+            JSON.stringify({errors, events}, null, 2));
     }
 });
