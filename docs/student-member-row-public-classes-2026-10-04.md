@@ -14,9 +14,13 @@ re-emit their paint.
 - The Mustache compositions and `createMemberItem` use the same four classes,
   preventing AJAX-created rows from drifting from initial server rendering.
 
-This is a source/build candidate. Static contracts and targeted Sass/AMD builds
-must pass before managed preview. Existing Penpot member-row publication is
-retained; human acceptance remains open.
+Static contracts and targeted Sass/AMD builds pass. Managed run
+`easystud-authenticated-20261004T002421409Z-648` verifies the four public
+classes, contained geometry, 13px/600 subordinate name role, hover and keyboard
+focus at 1600/768/390 without activating Remove. Measurements are stored in
+`docs/testing/student-member-row-public-classes-preview-2026-10-04.json`.
+Existing Penpot member-row publication is retained; human acceptance remains
+open.
 
 ## Emplacements à réviser
 
@@ -27,5 +31,7 @@ retained; human acceptance remains open.
 - `amd/src/course_manager.js`
 - `amd/build/course_manager.min.js`
 - `tools/release/test-student-member-row-contract.ps1`
+- `tools/playwright/student-member-row-foundations.spec.js`
+- `docs/testing/student-member-row-public-classes-preview-2026-10-04.json`
 - Foundations related-person/member-row family
 - EasyStud Group and Grouping member-row compositions

@@ -59,6 +59,12 @@ test('Student member rows retain their canonical skin across responsive widths',
                 const style = getComputedStyle(name);
                 return {row: box(node), list: box(node.parentElement), name: box(name),
                     remove: box(remove), selector: box(selector),
+                    publicClasses: {
+                        row: node.classList.contains('easyedu-related-person-row'),
+                        selector: selector.classList.contains('easyedu-related-person-row__selector'),
+                        name: name.classList.contains('easyedu-related-person-row__name'),
+                        remove: remove.classList.contains('easyedu-related-person-row__remove'),
+                    },
                     rem: parseFloat(getComputedStyle(document.documentElement).fontSize),
                     nameText: name.textContent, accessibleRemove: remove.getAttribute('aria-label'),
                     nameSize: style.fontSize, nameWeight: style.fontWeight,
@@ -71,6 +77,7 @@ test('Student member rows retain their canonical skin across responsive widths',
             expect(geometry.nameWeight).toBe('600');
             expect(geometry.nameColor).toBe('rgb(73, 101, 122)');
             expect(geometry.nameFamily).toContain('Inter');
+            expect(Object.values(geometry.publicClasses).every(Boolean)).toBe(true);
             for (const [name, item] of Object.entries({name: geometry.name,
                 remove: geometry.remove, selector: geometry.selector})) {
                 expect(Math.abs(item.y + item.h / 2 - geometry.row.y - geometry.row.h / 2),
