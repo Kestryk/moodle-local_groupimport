@@ -7,6 +7,7 @@
 @use "components/buttons";
 @use "components/forms";
 @use "components/cards";
+@use "components/color-panel";
 
 @mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false) {
   @if $secondary and $danger {
@@ -308,6 +309,7 @@
   .easyedu-ui .easyedu-color-picker__swatch { @include forms.color-picker-input; }
   .easyedu-ui .easyedu-color-picker__hex { @include forms.color-picker-hex-input; }
   .easyedu-ui .easyedu-color-picker__value { @include forms.color-picker-value; }
+  @include color-panel.color-panel-classes;
   .easyedu-ui .easyedu-related-person-row { @include cards.related-person-row; }
   .easyedu-ui .easyedu-related-person-row__selector { @include cards.related-person-selection-slot; }
   .easyedu-ui .easyedu-related-person-row__name {

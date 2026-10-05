@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-05 - Shared colour-panel candidate (SM-46)
+
+- Embed canonical Kit S/M/L popup and optional draft controller; no private
+  colour-panel SCSS, template style or duplicated persistence logic.
+- Native unnamed swatch/named Hex, validation, nonblocking contrast notice,
+  Restore/defaults and Moodle Save stay unchanged. Apply only updates a draft.
+- Isolated/published-source gates pass; native/human status tracked separately.
+
 ## 2026-10-05 - Administration section rhythm successor (SM-45)
 
 - Restore the shared Penpot 40px Desktop / 32px responsive section separation
