@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "selectionFirstRow20261006": {
+      "kitVersion": "0.4.118",
+      "kitCommit": "1dc51cfa9321d6b71dbbd19839c9d7e911ba4a01",
+      "module": "scss/easyedu/components/_cards.scss",
+      "documentation": "docs/mobile-card-first-row-anchor-2026-10-06.md",
+      "status": "Two shared header-track rules,8 isolated cases and whole other-source preservation PASS. Paired guides/12 Large usages saved; native/human pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "studentLateReady20261006": {
       "kitVersion": "0.4.117",
       "scope": "Consumer-owned readiness only; Kit loading paint unchanged, no version bump",

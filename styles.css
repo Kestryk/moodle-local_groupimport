@@ -19175,6 +19175,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     width: 100%;
   }
 }
+@media (max-width: 1024px) {
+  .local-groupimport-easystud--responsive-workspace:not(.local-groupimport-easystud--compact-users) .local-groupimport-easystud-user > .local-groupimport-easystud-selector {
+    top: calc(0.45rem + (1.85rem - var(--easyedu-touch-target-min)) / 2);
+    transform: none;
+  }
+}
+@media (max-width: 768px) {
+  .local-groupimport-easystud--responsive-workspace:not(.local-groupimport-easystud--compact-users) .local-groupimport-easystud-user > .local-groupimport-easystud-selector {
+    top: calc(0.72rem + (1.85rem - var(--easyedu-touch-target-min)) / 2);
+    transform: none;
+  }
+}
 @media (max-width: 25rem) {
   .local-groupimport-easystud .local-groupimport-easystud-pagination {
     column-gap: 0.5rem;

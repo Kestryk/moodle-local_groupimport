@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+First-row selection proof separates centre/size/title clearance from absolute
+whole-card padding and palette parity. Retain old Small usages recoverably;
+use ordinary hosts for new linked controls, qualify visible semantic titles,
+and verify settled paint plus actual autosave/server persistence. Unavailable
+text bounds are not numeric zero and must not trigger speculative repositioning.
+
 When real startup finishes after fail-open, distinguish transport delay from
 late-ready recovery. Preserve the failed immutable runs, fixed deadline and
 existing fades; verify actual initialized/stable markers before ready recovery.

@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+First-row touch selection uses canonical card-selection-first-row-anchor with
+the existing composition padding/action-row height. Keep44px hit size and inline
+title clearance, checkbox paint/metadata and card/Show-all Motion. Product usage
+may consume existing Large states; no duplicate checkbox family is required.
+
 Loading paint/Skeleton families remain canonical Kit primitives. Consumer
 readiness may opt into late initialized/stable recovery after fail-open, but
 must retain the original deadline/fades and never re-hide content, replay
