@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Never assume desktop panel overflow exists on mobile. Inspect native responsive
+visibility, expose requested non-selection actions outside hidden desktop bars,
+reuse canonical button recipes and delegate to the existing controller. Assert
+the real visible action and responsive selection proxy with bounded timeouts;
+preserve the historical failed run, native commands and original Motion.
+
 A served responsive hit-target failure requires an explicit geometry successor:
 preserve the historical run and strict oracles, record bounds before assertions,
 reserve only the affected title lane through a parameterized shared opt-in and

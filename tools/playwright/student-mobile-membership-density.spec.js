@@ -5,6 +5,7 @@ const fs = require('node:fs');
 
 test('Mobile participant density hides only memberships and preserves desktop mode', async ({page}, testInfo) => {
     test.setTimeout(300000);
+    page.setDefaultTimeout(15000);
     const records = [], blocked = [], errors = [];
     page.on('pageerror', error => errors.push(error.message));
     const root = page.locator('#local-groupimport-easystud');
@@ -77,8 +78,16 @@ test('Mobile participant density hides only memberships and preserves desktop mo
         expect(result.selector.h).toBeGreaterThanOrEqual(44);
         return result;
     };
-    const density = root.locator('[data-easystud-density-toggle]');
+    const density = root.locator('[data-easystud-density-toggle]').first();
+    const mobileDensity = root.locator('[data-easystud-mobile-membership-toggle]');
     const clickDensity = async () => {
+        if (page.viewportSize().width <= 1024) {
+            await expect(mobileDensity).toBeVisible();
+            await mobileDensity.click();
+            await settle();
+            await expect(mobileDensity).toHaveAttribute('aria-pressed', await density.getAttribute('aria-pressed'));
+            return;
+        }
         if (!await density.isVisible()) {
             const toggle = root.locator('[data-easystud-panel-actions-toggle]:visible').first();
             await toggle.click();
@@ -157,7 +166,7 @@ test('Mobile participant density hides only memberships and preserves desktop mo
             await expect(density).toHaveAttribute('aria-pressed', 'true');
             await inspect(first, width, 'manual-compact-two-selected', true);
             // Clear selection through the real action before filtered reselection.
-            await root.locator('[data-easystud-clear-all-selection]:visible').first().click();
+            await root.locator('[data-easystud-mobile-action-trigger="[data-easystud-clear-all-selection]"]:visible').click();
             const search = root.locator('[data-easystud-search]');
             const name = (await first.locator('.local-groupimport-easystud-user__name').innerText()).trim();
             await search.fill(name); await settle();
@@ -184,6 +193,7 @@ test('Mobile participant density hides only memberships and preserves desktop mo
                 .map(grouping => [grouping.getAttribute('data-easystud-grouping-id'), grouping.className]));
             await page.setViewportSize({width: 1600, height: 1100}); await settle();
             const desktopCompact = await root.evaluate(node => node.classList.contains('local-groupimport-easystud--compact-users'));
+            await expect(mobileDensity).toBeHidden();
             expect(desktopCompact).toBe(true);
             await select(first); await settle();
             await expect(root).toHaveClass(/local-groupimport-easystud--single-participant-selected/);

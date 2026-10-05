@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-05 - Expose mobile membership density action (SM-50)
+
+- Correct the hidden desktop-bar assumption: expose a responsive existing Kit
+  action, delegate to the same density controller and retain native Motion.
+- Update six linked Product usages, preserve the timeout predecessor and add
+  isolated mobile access/label/forwarding checks plus bounded browser actions.
+- No new CSS or business command. Full native successor and human remain OPEN.
+
 ## 2026-10-05 - Narrow participant title target clearance (SM-50 successor)
 
 - Preserve the failed served 390px overlap and add Kit's opt-in title-track

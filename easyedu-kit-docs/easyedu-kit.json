@@ -13,6 +13,16 @@
       "nativePreviewVerified": false,
       "humanVisualValidated": false
     },
+    "mobileMembershipAction20261005": {
+      "kitVersion": "0.4.114",
+      "kitCommit": "5387a807298ed4709c7c058d66138fcd814204b1",
+      "documentation": "docs/mobile-participant-memberships-2026-10-05.md",
+      "penpotReadback": "docs/testing/mobile-membership-action-penpot-2026-10-05.json",
+      "status": "Dedicated responsive action outside hidden desktop bars; existing selection-action/tray skin and native controller. Six linked usage bounds/type checks PASS, native successor/human OPEN.",
+      "nativeStyleChanged": false,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "mobileParticipantMemberships20261005": {
       "kitVersion": "0.4.113",
       "kitDocumentationCommit": "fc2bfbb5bf545800c2d37ee1cbd472a4837b90cb",
