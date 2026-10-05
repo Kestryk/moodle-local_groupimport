@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Section-icon tiles centre intrinsic icon advance inside the canonical tile,
+not a one-em clamp. Preserve font density and aspect ratio. Native cloud proof
+must inspect actual unobstructed foreground raster, not just the slot; no
+private consumer offsets or forced paint. Correct source vector stays unchanged.
+
 Narrow full-card identity clearance is an opt-in measured overlay-track recipe,
 not whole-card indentation. Keep metadata/email width, existing compact tracks,
 target size/paint and Motion. Compare all unrelated emitted CSS and preserve

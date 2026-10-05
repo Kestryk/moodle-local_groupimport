@@ -101,7 +101,9 @@
     display: block;
     line-height: 1;
     max-height: 1em;
-    max-width: 1em;
+    // Wide font glyphs (FA6 cloud: 1.25em) need their intrinsic advance.
+    // One-em clamping miscentres the overflowing paint; never stretch it.
+    max-width: 100%;
   }
 }
 

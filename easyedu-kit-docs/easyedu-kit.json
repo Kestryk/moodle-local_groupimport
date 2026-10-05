@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "sectionIconIntrinsicWidth20261005": {
+      "kitVersion": "0.4.116",
+      "kitCommit": "ca9aa6272ef5d07200332f12b79b586e5b4cfe7c",
+      "module": "scss/easyedu/components/_panels.scss",
+      "documentation": "docs/cloud-painted-centre-audit-2026-10-05.md",
+      "penpotReadback": "docs/testing/cloud-painted-penpot-readback-2026-10-05.json",
+      "status": "Exact five shared intrinsic-width declarations only; source/Standard/Product vector centred. Native successor/human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "quietSelectionRecovery20261005": {
       "kitVersion": "0.4.115",
       "kitCommit": "43fcf726898364a33fad49eeb69fea0a0cc7c3d4",
