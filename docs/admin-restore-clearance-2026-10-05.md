@@ -81,3 +81,9 @@ cleanup flags are also complete, with no settings Save or fixture.
 Penpot retention inventory uses the scoped run root in dry-run mode: both
 captures are manifested/pinned and protected. A turn-owned global read-only
 inventory was stopped after unnecessary traversal; no deletion was requested.
+
+Third run `easystud-authenticated-20261005T130915165Z-43780` finds the correct
+focus-within border after the added draft input. The unchanged baseline border
+assertion requires unfocused state; explicitly blur that input and await the
+original canonical border before recording baseline metrics. Do not suppress
+focus paint or change its expected colour. Cleanup is complete with no fixture.

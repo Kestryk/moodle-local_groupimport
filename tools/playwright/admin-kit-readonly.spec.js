@@ -83,6 +83,8 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         expect(groupingDefault.toUpperCase()).toBe('#6A7F98');
         await groupingPicker.locator('.easyedu-color-picker__hex').fill(groupingDefault);
         await expect(root.locator('#admin-themegroupingcolor [data-easyedu-colour-contrast-note]')).toBeHidden();
+        await groupingPicker.locator('.easyedu-color-picker__hex').blur();
+        await expect(groupingPicker).toHaveCSS('border-top-color', 'rgb(185, 198, 212)');
         for (const picker of await pickers.all()) {
             const metrics = await picker.evaluate(n => {
                 const r = n.getBoundingClientRect();
