@@ -24,6 +24,15 @@ already does. No new private style or Kit fork; retain every readiness/native
 form/file-picker controller and original Motion. A strict source/CSS guard and
 fresh native three-cue/under-100px proof are required before marking served.
 
+Served source `c58f1ce`, runtime `cf29958c1d52c0102d73ce18dfe09c2eb19261d7`
+passes six native cases in `easystud-authenticated-20261005T042307486Z-20248`,
+with all cleanup flags true, no business request and three heading cues.
+Headers measure 80.58px Mass / 81.53px Admin. During product publication,
+capture inspection exposed a geometry timing caveat: screenshot waits for
+fonts, but the preceding rectangle sampler did not. These lifecycle results
+remain valid, not certified final-font composition measurements. A fresh
+font-settled sampler follows; provisional product boards remain recoverable.
+
 First run `easystud-authenticated-20261005T041654112Z-37928` failed at the
 first Mass Import assertion because the test inspected `::after`, whereas
 these native routes use the shared direct-bar recipe. Student's pale title is
