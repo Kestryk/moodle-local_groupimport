@@ -57,3 +57,17 @@ PASS. Preview must include documentation predecessors d8948e4 then af963ae
 before the implementation. Native normal/reduced Participant entry, modal
 visibility suppression and close recovery remain pending; Message/Guide and
 all-dialog journeys are not certified by this bounded scenario.
+
+## Served native successor - PASS
+
+Ordered request20261005T220005Z-c17b5f28db applied all three commits at clean
+runtime ec8bbd15, cachePurged true; Source68b14f6 is served. One selected test,
+run easystud-authenticated-20261005T220036839Z-31252, passes twelve records:
+390/768/320 with normal/reduced Motion. All thirteen actual destination rows
+and children retain Inter15/500, title16/600, opaque white and >=44px targets.
+Actual mobile Participant-eye entry hides the fixed launcher in all six cases;
+native Close restores the eye focus and visible launcher. No page errors,
+blocked requests, business writes or fixtures; credentials/child/lease cleanup
+complete. Retention dry-run deletes0 and protects1. Full pins and limits are in
+testing/mobile-navigation-modal-yield-native-2026-10-05.json. Human acceptance,
+48/44 specimen parity, clean design export and other modal journeys stay OPEN.

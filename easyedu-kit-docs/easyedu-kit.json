@@ -10,8 +10,9 @@
       "modules": ["scss/easyedu/components/_modals.scss", "scss/easyedu/_dialog-classes.scss"],
       "templateChange": "One public trigger class only; do not overwrite divergent embedded Navigation module",
       "documentation": "docs/mobile-navigation-dialog-yield-2026-10-05.md",
-      "status": "One shared CSS visibility rule; Source/Standard/Product behavior protocols and existing skin retained. Native/human OPEN.",
-      "nativePreviewVerified": false,
+      "status": "One shared CSS visibility rule; paired behavior protocol retained. Six actual responsive Participant cases normal/reduced native PASS. Other-dialog, size-parity and human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T220036839Z-31252",
       "humanVisualValidated": false
     },
     "sectionIconIntrinsicWidth20261005": {
