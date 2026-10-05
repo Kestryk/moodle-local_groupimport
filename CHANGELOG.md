@@ -7,6 +7,8 @@
   source change; native/publication and human gates are tracked separately.
 - Passing baseline exposed fictitious Mass Import header actions; successor
   removes them and reuses the canonical three-cue heading in Mass/Admin.
+- Six final-font native route cases pass with complete cleanup; interrupted
+  Penpot publication is recorded separately, without a false completion claim.
 
 ## 2026-10-05 - Compact navigation composition inventory (SM-47)
 
@@ -16,6 +18,8 @@
 - Native 768/390 inventory passes with full cleanup; product composition now
   includes Guide first and all ten actual Moodle destinations using linked
   controls. Incomplete pane archived recoverably; human checklist remains open.
+- Add short-viewport normal/reduced proof waiting for terminal drawer transform,
+  not opacity alone; verify native scrolling and final-link paint access.
 
 ## 2026-10-05 - Shared colour-panel successor (SM-46)
 

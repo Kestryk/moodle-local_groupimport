@@ -40,3 +40,25 @@ an overlay. This is a test-layer mistake, not proof of missing animation.
 Immutable source `a5e373b` and its failed diagnostic/media are retained, with
 all cleanup flags true. The successor samples the actual direct animated
 element and records its inactive overlay separately; no product code changed.
+
+## Final-font native successor and publication recovery
+
+`easystud-authenticated-20261005T042747518Z-38120` (immutable test source
+`2ddeb5e`) passes all six native cases after fonts and three stable geometry
+samples. No error/business request, every cleanup flag true; retention protects
+the manifested run without deletion. Normal direct sweep runs at 3.2 seconds;
+reduced Motion is static; native roots reach ready and restore controls.
+Mass heading is 80.58px, Admin 81.53px at all widths. Workspace widths are
+1409/588.71875/342.78125 (Mass) and 1216/601/349 (Admin). Heights are
+625.859375/1044.765625/1044.765625 and 2112.828125/2286.125/2286.125.
+
+The three old approximate product Mass loading boards are hidden recoverably.
+Three provisional native specimens (`bdd80e168238`, `bdd81e069ba4`,
+`bdd82d743ec1`, prefix `386b6f86-a1e7-806b-8008-`) passed containment and export
+inspection but used pre-font measurements. A final-font replacement call timed
+out after 120 seconds; the plugin then lost its heartbeat. Do not repeat the
+write blindly or certify publication from intent. Original owned browser tab
+is preserved because saved state cannot be verified. Read back any partial
+replacement before reusing IDs or resuming publication. Admin publication and
+full final product/Foundation export gates remain open. The served source
+correction and final-font native proof are independently complete; human OPEN.
