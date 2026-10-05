@@ -1,5 +1,29 @@
 # Workspace top accents and custom palette (SM-57)
 
+## Served successor PASS
+
+Source visual candidate `e8e68e6`, final immutable scenario `626f3ad`, Kit
+0.4.111 code `3a97490`; runtime `12ccb7dc9a6d2ac22d7f85423875a9988bc6c4d9`.
+Managed requests `20261005T144540Z-5a99863f71`,
+`20261005T145151Z-8583ebf4a3`, `20261005T145506Z-a5fd1e7e85` preserve all
+source/test/doc predecessors. Only the visual candidate refreshes caches.
+
+Run `easystud-authenticated-20261005T145608608Z-38040` passes 144 actual
+native panel checks: both routes, both roles, twelve palettes and 1600/768/390.
+Exact defaults/custom endpoints, independent role opt-ins and all measured
+width/height/radius/background-size/border/overflow/position properties pass.
+Initial real saved settings bind both roots to primary #ffae00 / accent #11fda5.
+No blocked command, page error, settings Save or fixture operation. Only the
+unrelated unsent-message bootstrap is mocked; this is not messaging proof.
+Credentials cleared, owned child stopped, runtime lease released; clean runtime.
+No settings persistence or human acceptance is inferred. Checklist stays OPEN.
+
+Paired Foundation settled checkpoints are internally inspected and manifested
+under `penpot/sm57-custom-rails-20261005`. Preserve initial obscured/cached-text
+captures; terminal text layout was recomputed at the original 24/12px styles.
+No endpoint/geometry/provider changes were needed. Both source-linked examples
+retain original providers; no new component family and no default board repaint.
+
 ## Source successor
 
 Kit 0.4.111 owns the opt-in `data-easyedu-custom-rails` gradient recipe.

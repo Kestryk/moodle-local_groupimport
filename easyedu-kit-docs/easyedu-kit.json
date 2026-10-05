@@ -9,7 +9,11 @@
       "kitCommit": "3a97490d2a577ccf56fdf17b1bbac594ab8db48f",
       "modules": ["scss/easyedu/_foundation-classes.scss", "scss/easyedu/components/_panels.scss"],
       "documentation": "docs/workspace-accent-palette-audit-2026-10-05.md",
-      "status": "SM-57 scoped source candidate; paired examples, native and human gates recorded separately. No persistence claim.",
+      "status": "SM-57 paired Foundation examples and served two-route 144-record native rail/geometry gate PASS. Persistence and human checklist OPEN.",
+      "pairedPenpotPublished": true,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T145608608Z-38040",
+      "nativeScope": "Both actual Student/Mass Import roots and panels at 1600/768/390; transient palettes, unsent-message bootstrap mocked, no settings Save",
       "humanVisualValidated": false
     },
     "cardSelectionHeaderAnchor20261005": {

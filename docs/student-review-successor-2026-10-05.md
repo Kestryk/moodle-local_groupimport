@@ -75,7 +75,10 @@ and introduce the mapping in the Kit, not private consumer paint; see
 workspace-accent-palette-audit-2026-10-05.md. Kit 0.4.111 source successor binds
 custom roles on both workspace roots; static checks and successful rebuild pass.
 Paired catalogue examples preserve defaults. Served/persistence/human gates
-remain separate and OPEN pending their specific proof.
+remain separate. The served successor now passes 144 native rail/geometry
+records at three widths on both pages, with clean cleanup and no settings Save.
+Persistence and human review remain OPEN; the unrelated message-draft bootstrap
+is explicitly mocked. See the chronological SM-57 proof record.
 
 SM-51 source and live Product readback find the four active Participant
 metadata fields already using canonical Inter/regular values; hidden legacy
