@@ -37,11 +37,12 @@ No other-version compatibility is inferred.
 
 Requests recorded; execution/proof results are appended per lot below.
 
-- SM-45 shared candidate: native baseline confirms five zero-gap headings;
+- SM-45 served: native baseline confirms five zero-gap headings;
   Kit restores the existing product Penpot 40px Desktop / 32px compact rhythm
   with one native include and themeable tokens. All unrelated CSS, controls,
   typography, settings and Motion unchanged; compile/package and paired layout
-  guide pass. Native successor pending, human OPEN. See
+  guide pass. Native successor verifies all five 40/32/32px heading gaps at
+  three widths with complete cleanup/no Save; human OPEN. See
   `admin-section-spacing-successor-2026-10-05.md`.
 
 - SM-44 served: shared canonical 64px header and Regular

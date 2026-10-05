@@ -1,11 +1,13 @@
 # Changelog
 
-## 2026-10-05 - Administration section rhythm candidate (SM-45)
+## 2026-10-05 - Administration section rhythm successor (SM-45)
 
 - Restore the shared Penpot 40px Desktop / 32px responsive section separation
   through one canonical Kit include, not per-setting overrides.
 - Heading typography, row/control geometry, settings values and native Save
   remain unchanged; source preservation and preview gates recorded separately.
+- Served native headings pass at 1600/768/390 with exact 40/32/32px gaps,
+  complete cleanup and no settings Save; human checklist remains OPEN.
 
 
 ## 2026-10-05 - Canonical History/Message chrome successor (SM-44)

@@ -65,3 +65,19 @@ intake records the scenario lifecycle. Native successor remains pending.
 Standard export inspected, eight text paints contained. Library/Standard hosts
 are below prior content without overlap. This is a shared layout guide, not a
 new interactive component, a new modal shell or whole-form acceptance.
+
+## Served native successor
+
+Kit `520690d`, source `15ea2dd`, local runtime `a1ea88df` are the served code
+pins. Managed promotion `20261005T030804Z` preserved all predecessor commits
+and purged Moodle caches. Run `easystud-authenticated-20261005T030837826Z-17504`
+passes at 1600/768/390: all five native headings have exactly 40/32/32px start
+margin and preceding gap, unchanged Inter16/600 and 8px end margin. No horizontal
+overflow, page errors or blocked writes; no Save or fixture mutation. Three
+viewport captures are external artifacts, not whole-page visual acceptance.
+
+Runner/test exit 0, no timeout; credentials, runtime lease, child and fixture
+cleanup all complete. Retention dry-run protects this run, zero deletion.
+Earlier pending notes document the staged progression, not current status.
+Human checklist stays OPEN; control interaction and full-form parity are not
+newly certified by a section-heading spacing test.
