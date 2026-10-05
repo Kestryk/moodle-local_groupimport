@@ -9,6 +9,10 @@
 - Nine isolated cases and source preservation pass; paired twelve-state Penpot
   publication and Product inheritance verified. Native successor is prepared;
   served proof pending, human checklist OPEN.
+- Served successor passes 21 native initial popup records plus Primary draft
+  lifecycle at three widths. Preserve failed reduced-policy duration oracle;
+  assert no animated property under the existing microsecond safety guard.
+  No production assets changed for that test fix; persistence/human OPEN.
 
 
 ## 2026-10-05 - Custom workspace accents (SM-57)
