@@ -109,3 +109,12 @@ Preserve the failed immutable source/cleanup; successor retains strict ready,
 real Tab/Space/all widths/geometry and asserts the exact documented checkbox
 token AND external shadow, not non-none or token-only equality. No source CSS
 fix. Earlier degraded run is retained as a distinct timing issue, not erased.
+
+Strict successor after consumer late-ready repair PASS231318800Z-35432:
+84 native records, all9 actual local Tab/Space entries at390/768/320 for
+Participant/Group/Grouping;9 exact focus paints and54 unchanged pointer/title
+geometries. Preserve all failed timing/role/hold sources. Recovery and keyboard
+gates are now served, not inferred from negative-tabindex programmatic focus.
+Vertical centre, twelve Small usage updates, disabled/full tab order/native
+reduced recovery and human remain OPEN; see card-checkbox-keyboard-native-
+2026-10-06.json and student-late-loading-recovery-2026-10-06.md.

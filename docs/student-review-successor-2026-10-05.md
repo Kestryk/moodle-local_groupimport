@@ -1,5 +1,13 @@
 # EasyStud review successor - 5 October 2026
 
+SM48 native keyboard/recovery successor now PASS84 records:9 actual Tab/Space
+entries for all3 entities/widths,9 exact focus paints and54 unchanged hit/title
+states. Real delayed startup retains8s fail-open then stable-ready without
+Skeleton replay. Clean runtimece055419, no data/fixtures/errors/blocked requests,
+complete cleanup. Vertical centre/Small usage propagation and broader keyboard/
+reduced recovery/human gates remain OPEN; see card-checkbox-keyboard-native-
+2026-10-06.json. Guide remains independently owned.
+
 6October SM48 prerequisite: variable native4.7MB AMD startup exceeds the existing
 8s deadline. Preserve failed ready/focus runs and fix consumer-only late-ready
 recovery, not a deadline extension or Skeleton replay. Student opt-in leaves
