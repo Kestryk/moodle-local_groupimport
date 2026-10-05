@@ -7,6 +7,16 @@ stays deferred to the combined checklist; automation never ticks it.
 
 ## 2026-10-04 user feedback successor
 
+Metadata Product anatomy successor: fresh page-04 export exposed inconsistent
+sample counts and flat/colliding member metadata. Group/Grouping now use one
+settings-list density, primary-above-chips rows, separate empty Groupings and
+four aligned painted header tracks. Original board/instance stay recoverable;
+final two exports and 0.1px containment pass. Foundation provider/paired row
+publication remains OPEN, explicitly recorded in
+`student-entity-metadata-native-2026-10-03.md`; this is not new native behavior
+or human acceptance. Token/overflow ownership lots are served locally through
+Source `3d926a3` / runtime `90a6933`, with unchanged browser CSS.
+
 Metadata overflow successor: Kit 0.4.106 owns +N/Show less token and plain-link
 presentation, focus and shared semantic palette. Consumer scope is includes
 only, retaining existing host conflicts explicitly. Complete emitted CSS is

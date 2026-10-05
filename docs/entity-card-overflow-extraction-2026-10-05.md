@@ -35,8 +35,11 @@ that pin. The successor checks exact canonical identity and whole CSS instead.
 
 The preceding token tranche was pushed as Source `6ca62c5` and applied to
 Moodle 5.1 local at `c67c5e097bf2789efb04aff2a8832be681fa34a5` through managed
-promotion `20261005T092912Z`, without cache purge. Overflow publication status
-will be recorded after its own exact pushed commit is applied.
+promotion `20261005T092912Z`, without cache purge.
+Overflow Source `3d926a38c94da0f974847309b8c339b5f504e2e3` is pushed and
+applied through managed promotion `20261005T093654Z`. The clean local preview
+head is `90a6933e9ca1415db29cde74c701d82538778428`; no cache purge, native
+markup/controller change or new browser-asset change occurred.
 
 ## Visual / human boundary
 
