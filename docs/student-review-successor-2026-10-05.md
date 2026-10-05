@@ -67,6 +67,11 @@ action wording. Three Penpot Restore instances now contain their French labels
 and retain 20px helper clearance. Static/isolated checks pass; managed native
 Administration proof is pending. See admin-restore-clearance-2026-10-05.md.
 
+SM-57 source audit confirms literal canonical semantic gradients are not
+connected to the configured primary/accent palette. Preserve panel geometry
+and introduce the mapping in the Kit, not private consumer paint; see
+workspace-accent-palette-audit-2026-10-05.md. Implementation remains OPEN.
+
 1. Finish the authorized docs-only recovery, retain omitted 35813f2 prerequisite
    before 0e60a8c successor, and certify clean runtime/unchanged rendered assets.
 2. Inspect SM-48 and SM-55 source and actual painted geometry. The existing
