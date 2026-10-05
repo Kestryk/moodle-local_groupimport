@@ -358,6 +358,15 @@
   transform: none;
 }
 
+// Centre the full touch target on a measured first header row, not total card
+// height. Both inputs come from the existing composition's padding/row size.
+// Owns no breakpoint, title lane, checkbox paint, card height or disclosure.
+@mixin card-selection-first-row-anchor($content-padding, $first-row-height) {
+  @include card-selection-header-anchor(
+    calc(#{$content-padding} + (#{$first-row-height} - var(--easyedu-touch-target-min)) / 2)
+  );
+}
+
 // Accessible disclosure used when the title itself controls an expandable
 // container card. Keep aria-expanded on the button and pair the icon with
 // card-disclosure-icon.

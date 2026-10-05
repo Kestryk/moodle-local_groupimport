@@ -1,5 +1,20 @@
 # EasyStud review successor - 5 October 2026
 
+SM48 first-row pairing now saved: Library/Standard layout guides and12 Product
+Large usages retain existing providers,44px targets, centred14px titles and
+>=8px clearance. Old Small instances remain hidden recoverably; no card/role/
+metadata/action content discarded. Whole absolute padding/palette parity and
+Group320 wrapping remain OPEN. Public/isolated/full-source guards and native
+discovery PASS; current Source candidate not yet served. Kit0.4.118 is pushed.
+
+SM48 first-row candidate now derives responsive/full Participant checkbox track
+from existing padding/details row instead of the whole card. Baseline isolates
+the same~5px low native square; eight real-CSS320/390/768/1024 cases pass centred
+paint without shrinking44px targets or moving titles. Full unrelated CSS/markup/
+controllers/Motion/Guide preserved; paired/native/human pending. Group320 wrap
+and twelve Small usages remain separately OPEN; see mobile-card-first-row-anchor-
+2026-10-06.md.
+
 SM48 native keyboard/recovery successor now PASS84 records:9 actual Tab/Space
 entries for all3 entities/widths,9 exact focus paints and54 unchanged hit/title
 states. Real delayed startup retains8s fail-open then stable-ready without

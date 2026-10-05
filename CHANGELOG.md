@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Responsive Participant first-row anchor candidate (SM-48)
+
+- Derive existing44px selection centre from header row/padding via canonical
+  Kit, fixing isolated~5px low square without moving title or resizing paint.
+- Eight isolated cases and exact unrelated CSS/Motion/source preservation PASS;
+  paired publication/served native/human pending. Other card variants unchanged.
+
 ## 2026-10-06 - Served checkbox keyboard and late-ready proof (SM-48)
 
 - Verify84 native records: all9 local Tab/Space cases, exact focus paint,

@@ -856,6 +856,22 @@
   }
 }
 
+// The larger responsive checkbox centres on the persistent details-action row.
+// Its hit area/title lane/card contents and existing Motion remain unchanged.
+@media (max-width: 1024px) {
+  .local-groupimport-easystud--responsive-workspace:not(.local-groupimport-easystud--compact-users)
+    .local-groupimport-easystud-user > .local-groupimport-easystud-selector {
+    @include easyedu.card-selection-first-row-anchor(0.45rem, 1.85rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .local-groupimport-easystud--responsive-workspace:not(.local-groupimport-easystud--compact-users)
+    .local-groupimport-easystud-user > .local-groupimport-easystud-selector {
+    @include easyedu.card-selection-first-row-anchor(0.72rem, 1.85rem);
+  }
+}
+
 .local-groupimport-easystud .local-groupimport-easystud-pagination {
   @include easyedu.pagination-narrow-layout(
     $selection: ".local-groupimport-easystud-pagination__selection",
