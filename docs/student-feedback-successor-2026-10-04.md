@@ -107,6 +107,13 @@ Requests recorded; execution/proof results are appended per lot below.
   are linked to Foundations, with no visible descendant overflow. Full other
   routes, Foundation export inspection and human acceptance stay open; details
   in `student-loading-feedback-2026-10-04.md`.
+- SM-40 initial Mass/Admin successor is served: remove two fictitious header
+  actions and reuse the existing three-cue heading include. Strict unrelated
+  CSS/controllers/Motion guard and six final-font native normal/reduced/readiness
+  cases pass, with full cleanup/no business request. Product Mass replacement
+  was interrupted by lost Penpot heartbeat; preserve partial boards and recover
+  by readback. Admin composition publication and human review remain open. See
+  `shared-loading-route-successor-2026-10-05.md`.
 - SM-41 partial implementation served: canonical opt-in frame disclosure removes
   the padding-floor jump; member Search and native Group/Grouping Add preview
   pass at desktop/tablet/mobile. Existing card/Show-all Motion and business

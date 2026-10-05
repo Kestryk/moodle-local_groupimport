@@ -62,3 +62,14 @@ OPEN. External artifacts: `EasyEdu/artifacts/easystud/authenticated/` followed
 by the run ID above, including `runner-result.json`, `cleanup.json` and the
 `playwright-output/student-mobile-navigation--6a922-tories-native-section-order/`
 inventory JSON and four top/bottom captures.
+
+## Short-viewport successor
+
+The first inventory verified contents and tall geometry, but waited for opacity
+only. The drawer's opacity reaches one before its sliding transform finishes;
+that capture does not certify terminal left-edge placement. Preserve the
+historical inventory and add `student-mobile-navigation-short-viewport.spec.js`:
+768/390 x 600, normal/reduced Motion, terminal transform, font-settled title
+containment, actual internal scroll, retained sticky Close and painted last-link
+hit target. Close only, no destinations or Guide activated. Native result pending.
+Penpot publication recovery is separately tracked in the shared loading document.
