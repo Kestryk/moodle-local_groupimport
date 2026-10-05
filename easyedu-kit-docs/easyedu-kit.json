@@ -10,8 +10,9 @@
       "module": "scss/easyedu/components/_panels.scss",
       "documentation": "docs/cloud-painted-centre-audit-2026-10-05.md",
       "penpotReadback": "docs/testing/cloud-painted-penpot-readback-2026-10-05.json",
-      "status": "Exact five shared intrinsic-width declarations only; source/Standard/Product vector centred. Native successor/human OPEN.",
-      "nativePreviewVerified": false,
+      "status": "Exact five shared declarations; paired vector centered. Native foreground at three widths within0.5px, all four peer densities PASS. FA/vector scale, lifecycle/human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T213341684Z-34264",
       "humanVisualValidated": false
     },
     "quietSelectionRecovery20261005": {
