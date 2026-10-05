@@ -587,3 +587,11 @@ their first fixture argument (`{page}`), including forwarding wrappers; syntax
 checking alone cannot certify Playwright discovery. The same native geometry
 oracle remains required after harness fixes. No entities or settings are saved;
 preserve original card animations and loaded-spec immutability through cleanup.
+
+## Administration Restore clearance (SM-56)
+
+The existing `Administration Kit read-only responsive controls` test now records
+`admin-restore-metrics.json`: exact translated action, canonical 20px form-note
+gap, unchanged caption font and viewport containment at 1600/768/390. Preserve
+all existing draft-only Restore and blocked-settings-POST assertions. This is
+a scoped successor, not Save/persistence proof or human acceptance.

@@ -349,7 +349,7 @@ if ($hassiteconfig) {
             'aria-describedby' => 'easystud-restore-colours-help',
         ]) . html_writer::tag('p', get_string('restoredefaultcolours_help', 'local_groupimport'), [
             'id' => 'easystud-restore-colours-help',
-            'class' => 'easyedu-caption',
+            'class' => 'easyedu-caption easyedu-form-note',
         ]) . html_writer::tag('span', '', [
             'role' => 'status',
             'data-easystud-restore-colours-status' => get_string('restoredefaultcolours_pending', 'local_groupimport'),
