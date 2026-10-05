@@ -1027,3 +1027,8 @@ Must not:
 - Persistent card actions must not move when detail rows expand or collapse.
 - Responsive entity ownership must be explicit in the DOM. Never infer it from
   a translated label, child index or incidental template order.
+- Opt-in More Filters capsules paint only the intrinsic label/Chevron surface;
+  retain the full available-width hit target and keyboard ring. Default Compact
+  Show-all controls are compatibility consumers, not implicit redesign targets.
+  Product width overrides require settled descendant-centre readback after the
+  shared Library update; newly inherited children may keep the provider offset.

@@ -730,6 +730,46 @@
   }
 }
 
+// Opt-in More Filters composition. The button retains the full available hit
+// lane and keyboard ring; only its intrinsic content capsule receives paint.
+// Keep the default recipe unchanged for accepted Compact/Show-all consumers.
+@mixin filter-disclosure-capsule {
+  padding-block: 0;
+
+  > .easyedu-filter-disclosure__content {
+    align-items: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--easyedu-control-radius);
+    box-sizing: border-box;
+    display: inline-flex;
+    gap: 0.42rem;
+    justify-content: center;
+    max-inline-size: 100%;
+    min-block-size: 1.75rem;
+    min-inline-size: 0;
+    padding: 0.25rem 0.68rem;
+    text-decoration: none;
+    transition:
+      background-color var(--easyedu-motion-fast) ease,
+      border-color var(--easyedu-motion-fast) ease;
+
+    > span:not([aria-hidden="true"]) {
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+    }
+
+    > [aria-hidden="true"] { flex: 0 0 auto; }
+  }
+
+  &:hover:not(:disabled):not([aria-disabled="true"]) > .easyedu-filter-disclosure__content,
+  &[aria-expanded="true"]:not(:disabled):not([aria-disabled="true"]) > .easyedu-filter-disclosure__content {
+    background: var(--easyedu-primary-soft);
+    border-color: var(--easyedu-control-border);
+    text-decoration: none;
+  }
+}
+
 // Backward-compatible name retained for existing consumers.
 @mixin more-filters-toggle {
   @include filter-disclosure-trigger(compact);

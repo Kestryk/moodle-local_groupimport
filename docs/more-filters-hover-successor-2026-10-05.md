@@ -4,6 +4,49 @@ EED-UI-2026-0073. Intake audit after SM-58 served PASS; implementation and
 human acceptance OPEN. SM-43A underline-only proposal was explicitly rejected.
 Do not close this successor from the old native test PASS.
 
+## Implemented source successor
+
+Kit 0.4.113 opt-in `filter-disclosure-capsule` paints only the intrinsic content
+surface: primary-soft hover/expanded fill, quiet control-border, canonical
+radius; default compatibility recipe remains unchanged. Four Mustache buttons
+add a public modifier/content span; their existing label/Chevron/controller
+selectors remain intact. No private declarations, inline styles or JS changes.
+
+Source gate `test-filter-disclosure-capsule-source.js` reconstructs the exact
+predecessor template and compares all unrelated CSS selector/declaration/order
+records, controller/commands/arrow Motion and card Show-all. PASS.
+Six isolated width/density cases (`sm54-capsule-20261005-a`) and twelve legacy
+default/footer cases (`sm54-compact-regression-20261005-a`) PASS. These are not
+native-font, runtime Motion or human acceptance proof.
+
+Existing ten Foundations mains/Standard states updated; original root targets,
+labels, type, icons and focus strokes preserved. Twenty current Product copies
+inherit the source via one shared-library update. The click timed out after
+performing the update; settled API readback confirmed all inherited children,
+so no second click was issued. Composition width overrides initially retained
+the provider's capsule offset; adjusted only existing inherited child centres,
+without inserting new children into linked copies. Final settled/export gate
+and native height sampling remain pending until recorded below.
+
+Rollback: predecessor Git heads Kit `8149ce5`, consumer `d38a11e`; Penpot
+`SM54-before` plugin data on owned mains/copies and existing ID crosswalk.
+Guide project, memberships, test roles and native data are untouched.
+
+Final settled Product readback: all twenty capsule centres match their actual
+lane; canonical Inter 12.16 label paint is contained; original roots/providers
+and business copy preserved. Desktop Foundations Hover and Product Touch
+Expanded exports inspected. Existing ten Standard copies inherit the paired
+source state/focus paint. IDs and rollback records retained under docs/testing.
+Publication is a proposal, not human acceptance or an animation fix.
+
+Native local-supervised candidate `student-filter-disclosure-capsule.spec.js`
+samples actual heights/opacity during both normal disclosure directions, nine
+available routes at three widths plus intentionally absent desktop Groupings.
+It also closes one real nested choice through one parent click at each width.
+Plugin interaction POST is denied; native bootstrap getter for a consuming
+message draft is mocked without altering a real draft. No fixture/business
+writes or settings Save. Served result remains pending until appended.
+
 ## Verified current state
 
 Canonical Kit `_forms.scss` `filter-disclosure-trigger` uses transparent paint,

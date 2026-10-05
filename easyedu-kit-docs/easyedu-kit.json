@@ -1,9 +1,17 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.112",
+  "version": "0.4.113",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "moreFiltersCapsule20261005": {
+      "kitVersion": "0.4.113",
+      "kitCommit": "79c653a2c51382755a4791adc42432a8c461e6ce",
+      "documentation": "docs/more-filters-hover-successor-2026-10-05.md",
+      "status": "SM54 source/isolated and paired Penpot proposal PASS; native and human OPEN.",
+      "pairedPenpotPublished": true,
+      "humanVisualValidated": false
+    },
     "colourDraftPreview20261005": {
       "kitVersion": "0.4.112",
       "kitCommit": "44b4c10f1cdcbae76fbaf06f359201718a936951",
