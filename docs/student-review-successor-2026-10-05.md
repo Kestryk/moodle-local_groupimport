@@ -12,16 +12,17 @@ close the combined human checklist. Repeated pasted requests are deduplicated.
 - Excludes: real Send/Save/move/drop, production, unrelated shared Platform
   edits, the parallel Guide window's project/component/source ownership.
 - Runtime: exclusive managed promotion/browser lease, never simultaneous writes.
-- Penpot: one active MCP connection and one named writer. A second browser or
-  profile does not isolate the MCP connection. While this window works on source,
-  it performs no Penpot writes/page switches and yields the connection to Guide.
-  Separate project files may use separate dedicated sessions only when each
-  window can verify an independent connection; never assume that merely opening
-  two tabs creates this isolation. Shared Foundations writes stay serialized.
+- Penpot: this window owns the bounded Foundations card/header publication.
+  The user clarifies that Guide is NOT using Penpot yet; it awaits a concurrent
+  connection solution. Do not attribute editor ownership/blockage to Guide.
+  Current exposed tools have no explicit session-ID argument. Keep their hosted
+  connection unchanged; propose a separately named local MCP for Guide. Verify
+  both file identities before enabling two writers. Shared Foundations writes
+  stay serialized. See penpot-parallel-guide-handoff-2026-10-05.md.
 - Guide status correction: user confirms the Guide refactor is already started
   in a parallel window, not an unstarted lot owned by this window. Its exact
-  progress is not inspected or certified here. Record a handoff before resuming
-  this window's Foundation source publication.
+  progress is not inspected or certified here. Its Penpot work has not begun;
+  source-only work can continue while an independent connection is prepared.
 - Approval: user authorizes recovery of the owned metadata documentation conflict
   followed by continuation. Preserve snapshots, current Kit pins and all history.
 
@@ -56,15 +57,18 @@ Penpot/human gates remain OPEN. SM-48 source audit identifies competing
 overlay offsets and card-height centring; no speculative checkbox fix is served.
 Its native diagnostic protocol is student-card-selection-track-2026-10-05.md.
 Native baseline now reproduces the desktop shift. Kit 0.4.110's fixed-anchor
-source candidate passes six isolated cases, awaiting paired Penpot publication
-and managed served successor. Narrow other-state coverage remains OPEN.
+source candidate passes six isolated cases. Paired Foundations/Standard and
+Product publication has readback and inspected checkpoints. Managed served
+strict successor and narrow other-state coverage remain OPEN.
 
 1. Finish the authorized docs-only recovery, retain omitted 35813f2 prerequisite
    before 0e60a8c successor, and certify clean runtime/unchanged rendered assets.
-2. Inspect SM-48 and SM-55 source and actual painted geometry. Prepare focused
-   candidates while Guide owns Penpot; no blind design write or 100% parity claim.
-3. Obtain the correct independent Penpot connection or a writer handoff before
-   changing Foundations. Then update source component and all scoped consumers.
+2. Inspect SM-48 and SM-55 source and actual painted geometry. The existing
+   Foundations connection is available to this window; no blind design write
+   or 100% parity claim. Preserve original card Motion.
+3. Publish source component and all scoped consumers through that connection.
+   Prepare Guide's independent connection separately; do not regenerate the
+   shared remote token or stop this browser to configure the other window.
 4. Promote only pushed owned commits with prerequisite ordering and scoped
    native checks; do not mutate real entities solely to make evidence.
 5. Continue every earlier unfinished lot. Keep rename/migration separate and

@@ -21,7 +21,8 @@ the existing finite card effects instead of changing accepted Motion.
 An audit run can succeed while reporting overlap: it is not a regression PASS
 or human acceptance. Native baseline, canonical recipe successor, isolated and
 served strict regression, paired Foundations/EasyStud publication and human
-review are OPEN. No Penpot write while the parallel Guide writer owns the MCP.
+review are OPEN. User clarifies that Guide has not started Penpot work; this
+window may use the current Foundations connection for the bounded publication.
 
 ## Native baseline - 5 October
 
@@ -55,3 +56,25 @@ title clearance and desktop fixed top/painted-centre alignment. It is not run
 against the unchanged served predecessor. Source is a candidate only: paired
 Foundations/EasyStud writer handoff/publication precedes managed promotion.
 No whole-card mobile completion or human approval is claimed.
+
+## Paired design publication - 5 October
+
+Foundations Library Detailed Participant main and linked Standard already have
+a top-constrained checkbox within 1px of the title centre. Preserve their
+accepted geometry; publish the fixed-header contract and a visible note that
+protects selection and original Motion. Standard note paint remains contained.
+
+Product page 03 contains eight active named Participant compositions, seven
+with a direct checkbox. Its compact desktop header used a 22px checkbox top;
+expanded headers use 26px. Move the existing compact title, email, checkbox and
+details action down 4px together, retaining widths/providers/paint. Compact and
+expanded now share 26px checkbox top, zero title-centre delta and protected
+title space. Publish the contract on the seven hosts; annotations are not new
+component links. Mobile geometry and original Motion are unchanged.
+
+IDs/predecessor geometry are recorded in testing/student-card-header-penpot-2026-10-05.json.
+The initial remote export timed out without a write. After waking the actual
+Foundations tab, export succeeded and was inspected; fresh Standard/product
+browser checkpoints were also inspected in external run sm48-header-20261005.
+Bounded paired publication is complete. Managed served strict regression,
+other mobile states and human acceptance remain OPEN.
