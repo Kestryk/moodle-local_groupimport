@@ -1,5 +1,19 @@
 # Penpot concurrency - independent Guide connection
 
+## Live successor verification
+
+On 5 October, the user-created local connection is exposed and responds as
+`penpot_guide`. Read-only calls verify Guide file
+`b564c72c-f31f-81ec-8008-ad9958b272bd`, page
+`b564c72c-f31f-81ec-8008-ad9958b272be`. Hosted `penpot` still reads Foundations
+file `40e06342-8830-80d6-8008-96572effc11c`. Switching hosted 08.12 Standard /
+08.12.1 Library leaves the Guide file/page identity unchanged. This verifies
+one crossed direction; the Guide owner should perform its own page switch and
+request the reverse readback before claiming a complete crossed-routing test.
+No Guide page, token, server or configuration is modified by this window.
+Shared Foundation writes and Moodle preview still require serialized ownership.
+The proposal below is preserved as historical, not current installation status.
+
 Platform batch EED-UI-2026-0073. Guide source work is already started in a
 parallel window, but the user confirms it is not using Penpot yet. The earlier
 assumption that Guide owned/blocked this connection was incorrect.

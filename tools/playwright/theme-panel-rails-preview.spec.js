@@ -17,6 +17,7 @@ test('Native workspace rails consume custom palette without geometry drift', asy
     const binding = [];
     const errors = [];
     const blocked = [];
+    const bootstrapReads = [];
     page.on('pageerror', error => errors.push(error.message));
     const initial = new URL(process.env.EASYEDU_MOODLE_URL);
     await page.goto(initial.href);
@@ -28,7 +29,22 @@ test('Native workspace rails consume custom palette without geometry drift', asy
     }
     await page.route('**/*', route => {
         if (route.request().method() === 'POST') {
-            blocked.push(route.request().url().split('?')[0]);
+            const request = route.request();
+            const pathname = new URL(request.url()).pathname;
+            let methods = [];
+            try {
+                const body = request.postDataJSON();
+                if (Array.isArray(body)) methods = body.map(call => call.methodname);
+            } catch (_) { /* Unknown POST remains denied. */ }
+            // Native Moodle bootstrap loads translations/templates through
+            // read-only Ajax functions. Allow no other POST and log no args.
+            const allowed = new Set(['core_get_string', 'core_get_strings',
+                'core_output_load_template', 'core_output_load_template_with_dependencies']);
+            if (pathname === '/lib/ajax/service.php' && methods.length && methods.every(method => allowed.has(method))) {
+                bootstrapReads.push(...methods);
+                return route.continue();
+            }
+            blocked.push({pathname, methods});
             return route.abort();
         }
         return route.continue();
@@ -120,6 +136,6 @@ test('Native workspace rails consume custom palette without geometry drift', asy
         expect(errors).toEqual([]);
         expect(blocked).toEqual([]);
     } finally {
-        fs.writeFileSync(testInfo.outputPath('theme-panel-rails.json'), JSON.stringify({binding, records, errors, blocked}, null, 2));
+        fs.writeFileSync(testInfo.outputPath('theme-panel-rails.json'), JSON.stringify({binding, records, errors, blocked, bootstrapReads}, null, 2));
     }
 });
