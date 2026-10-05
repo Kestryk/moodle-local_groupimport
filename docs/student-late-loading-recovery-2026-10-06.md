@@ -48,3 +48,14 @@ validate=[]/explicit version save/UI Enregistré/server GET200 confirm persisten
 See testing/student-late-loading-penpot-2026-10-06.json. Shared Foundations paint
 is not changed because this protocol belongs to the consumer, not the Kit's
 visual family. Native controlled hold and human gates remain OPEN.
+
+First controlled native231010326Z-37664 fails the harness hold, not recovery:
+actual diagnostics already show degraded8888ms -> ready9158ms, then first390
+Participant Tab/focus/Space-select-deselect and pointer cases pass. But the
+core/first.js hold was installed before authentication and sampled a subsequent
+document; alternate native aggregate GETs also delivered the same AMD bundle.
+Keep this failed source/cleanup and partial records; no whole matrix PASS.
+Successor waits for auth document initialization, installs one gate for all
+actual native AMD aggregates on the next owned navigation, releases them in
+finally after real fail-open, then preserves every original ready/recovery/
+keyboard/paint/hit/business oracle. No product source or deadline change.
