@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-05 - Authorized metadata documentation recovery
+
+- Replay omitted historical evidence before the composition successor;
+  retain both changelog histories and the current 0.4.106 consumer manifest.
+- Verify clean managed preview, restored evidence and unchanged rendered assets.
+  No cache purge, business mutation or fresh visual approval implied.
+
+## 2026-10-05 - Review intake and shared design coordination
+
+- Record deduplicated SM-48..58 review requirements without certifying a fix.
+- Correct Guide ownership: its refactor is started in a parallel window;
+  serialize shared Foundations/MCP writes and yield Penpot during source work.
+- Preserve older unfinished lots and the deferred combined human checklist.
+
 ## 2026-10-05 - Metadata documentation preview recovery gate
 
 - Preserve a docs-only cherry-pick conflict and exact seven-file snapshot.
