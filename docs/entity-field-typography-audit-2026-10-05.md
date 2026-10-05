@@ -29,3 +29,14 @@ Next: fresh scoped native Participant/Grouping body inspection at desktop and
 mobile, then correct any genuine discrepancy through shared recipes and linked
 Foundations, not speculative font overrides. Grouping body arrangement and
 optional/empty fields remain OPEN.
+
+## Scoped native successor intake
+
+`student-entity-body-successor.spec.js` retains the original entity-dialog
+assertions and actual course data. Additions are explicit read-only request
+guards, non-consuming unsent-draft bootstrap and saved-palette-aware icon
+paint. One-test discovery PASS 170623694Z-34936. Desktop settings open followed
+by resize is responsive body geometry proof only, not a mobile entry point.
+Fresh live Penpot readback reconfirms the same four IDs and Inter 14.08/400
+values, 12.16/600 captions. No design/source style change is justified yet.
+Native result pending; Grouping body/optional/empty and human gates OPEN.

@@ -8,7 +8,10 @@
       "kitVersion": "0.4.113",
       "kitCommit": "79c653a2c51382755a4791adc42432a8c461e6ce",
       "documentation": "docs/more-filters-hover-successor-2026-10-05.md",
-      "status": "SM54 source/isolated and paired Penpot proposal PASS; native and human OPEN.",
+      "status": "SM54 source/isolated, paired Penpot and scoped native Motion/label/nested closure PASS; reversal/perceived smoothness and human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T165634447Z-30452",
+      "nativeScope": "Nine available routes at 1600/768/390, actual canonical label, both sampled transition directions, nested one-click and reduced-policy endpoints; no fixtures or settings Save",
       "pairedPenpotPublished": true,
       "humanVisualValidated": false
     },

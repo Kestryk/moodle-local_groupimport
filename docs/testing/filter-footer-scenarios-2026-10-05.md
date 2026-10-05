@@ -32,6 +32,22 @@ blue hover paint despite the user's saved custom orange palette. The precise
 painted RGBA and compares the explicit native 10%-chosen/90%-white role, rather
 than accepting internal token equality. Geometry/Motion checks unchanged.
 
+SM54 local-supervised successor intake (historical specs preserved):
+
+- `student-filter-pointer-lifecycle-diagnostic.spec.js`: causal observation
+  PASS 164207075Z-33388; not a product fix.
+- `student-filter-pointer-cleanup-successor.spec.js`: bounded cleanup
+  PASS 164746591Z-43468; actual mobile caption discrepancy found afterward.
+- `student-filter-canonical-label-successor.spec.js`: served PASS
+  165634447Z-30452, nine available routes + unavailable Grouping + three nested
+  closures + three reduced-policy sequences. Actual caption 12.16px at all
+  widths. No writes/fixtures, cleanup complete. Reversal/human gates OPEN.
+- `test-filter-pointer-successor-source.js` and
+  `test-filter-pointer-cleanup.js`: unrelated source/CSS preservation and
+  owned inside/outside/cancel handler regressions PASS.
+
+Scoped Platform registry proposals; shared owner files untouched.
+
 Historical Platform plan/current-state proposal: SM-43A implemented source + Foundations +
 20 product consumers, isolated/static and nine native cases pass; nested-choice
 closure passes nine iterations. All native cleanup complete.

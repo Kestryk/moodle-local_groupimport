@@ -162,3 +162,18 @@ rather than add another style override. Shared Foundation type is already
 exact source/CSS gate allows only that obsolete declaration's removal.
 Canonical-label served result pending; human checklist and reversal/perceived
 duration review remain OPEN. Original card Motion is never rewritten.
+
+## Canonical label served successor
+
+Native `easystud-authenticated-20261005T165634447Z-30452` PASS, source
+`9e80745` served by clean runtime `324bd396`: nine available animated routes,
+one deliberately unavailable desktop Grouping route, three nested one-click
+closures and three live reduced-policy reopen/close sequences. Actual label
+and button both measure 12.16px at 1600/768/390; shared gap is 6.72px, capsule
+paint follows the saved custom palette, and all available hit lanes retain
+their full width. Both transitional directions have distinct sampled heights.
+No page errors/denied requests, fixtures or settings Save; cleanup complete.
+Representative mobile capture inspected; manifested retention dry-run has
+zero candidates/deletions. Failed predecessors remain intact. Reversals,
+perceived smoothness and human acceptance are still OPEN, not implied by PASS.
+Next owned lot: SM-51 native Participant/Grouping body typography and layout.

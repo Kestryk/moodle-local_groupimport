@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Nested disclosure closure can move its trigger before pointerup/click. Release
+and cancellation cleanup must observe owned pointer IDs at document capture,
+not only the workspace root; preserve suppression of the original click while
+clearing stale markers before the next genuine press. Test outside releases
+and cancellation. Assert the actual caption's computed type as well as the
+button: legacy mobile descendant overrides can escape a button-only oracle.
+Keep historical failed immutable scenarios, scoped successors and cleanup.
+
 SM-58 draft previews are decorative and use the exact last valid draft token.
 Preserve labelled/named Hex, native settings persistence and previous module
 pins. Import only the scoped canonical controller/SCSS, compare all unrelated
