@@ -20,6 +20,8 @@
   controls. Incomplete pane archived recoverably; human checklist remains open.
 - Add short-viewport normal/reduced proof waiting for terminal drawer transform,
   not opacity alone; verify native scrolling and final-link paint access.
+- Preserve the startup-deadline failure and add a GET-only cached/routed timing
+  comparison; no readiness assertion, product timeout or controller changes.
 
 ## 2026-10-05 - Shared colour-panel successor (SM-46)
 

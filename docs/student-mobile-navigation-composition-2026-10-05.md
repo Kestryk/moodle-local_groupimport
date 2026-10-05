@@ -86,3 +86,19 @@ state transition timestamps, sanitized script pathnames/durations and long
 tasks at 768 x 600/1100. No auth URL/query is exported; no readiness is forced,
 no timeout enlarged in the product, no action or fixture mutation. The strict
 ready assertion stays required after both diagnostic records are saved.
+
+Initial diagnostic `easystud-authenticated-20261005T063531491Z-38056` reaches
+degraded at both heights, with no errors/business request and complete cleanup.
+The native combined AMD resource takes 6.05/7.42 seconds and manager readiness
+arrives near the existing eight-second deadline. A later unauthenticated direct
+GET of the same revision returns its 4,722,543 decoded bytes in 0.066 seconds:
+this alone cannot establish persistent server slowness or a cache-cold cause.
+
+The diagnostic successor compares GET-only native cached navigation with the
+existing routed write guard at both heights. It records request/response phases,
+encoded/decoded sizes and unexpected writes, keeping the same strict ready gate
+and product deadline. No controls are operated in either mode. Routing disables
+HTTP cache according to the [official Playwright contract](https://playwright.dev/docs/api/class-page#page-route);
+this is a measurement caveat, not proof that routing caused the failure.
+Comparison result pending; preserve the failing source/run and do not hide the
+product fail-open state by increasing its timeout.
