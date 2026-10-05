@@ -87,3 +87,10 @@ focus-within border after the added draft input. The unchanged baseline border
 assertion requires unfocused state; explicitly blur that input and await the
 original canonical border before recording baseline metrics. Do not suppress
 focus paint or change its expected colour. Cleanup is complete with no fixture.
+
+Fourth run `easystud-authenticated-20261005T131151130Z-33764` records an
+interpolated `color(srgb ...)` border on another picker. The draft fill scrolls
+the controls under the pointer; baseline inspection must move the pointer out
+and await each actual unfocused/unhovered border endpoint. Keep the exact colour
+oracle, original transitions and all seven controls. Cleanup is complete with
+no fixture. These failed whole-controls runs do not certify Restore geometry.

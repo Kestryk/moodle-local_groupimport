@@ -84,7 +84,12 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         await groupingPicker.locator('.easyedu-color-picker__hex').fill(groupingDefault);
         await expect(root.locator('#admin-themegroupingcolor [data-easyedu-colour-contrast-note]')).toBeHidden();
         await groupingPicker.locator('.easyedu-color-picker__hex').blur();
-        await expect(groupingPicker).toHaveCSS('border-top-color', 'rgb(185, 198, 212)');
+        await page.mouse.move(0, 0);
+        for (const picker of await pickers.all()) {
+            // Draft fill scrolls controls under the pointer. Await the exact
+            // unfocused/unhovered endpoint, not an interpolated border colour.
+            await expect(picker).toHaveCSS('border-top-color', 'rgb(185, 198, 212)');
+        }
         for (const picker of await pickers.all()) {
             const metrics = await picker.evaluate(n => {
                 const r = n.getBoundingClientRect();
