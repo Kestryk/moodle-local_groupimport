@@ -1,5 +1,14 @@
 # Searchable choices
 
+## Terminal outside spacing (0.4.107, SM-55)
+
+Framed single/multiple choices pass `collapseMargins: true` to canonical
+`disclosePanel`, closing outside margins with height/padding/borders rather than
+removing that space abruptly at hidden. Other card consumers retain the default
+recipe and original Motion. Shared timing, pointer guard and focus are unchanged.
+The exact endpoint regression fails the predecessor by 8px and passes twelve
+isolated configurations. Native, paired publication and human gates are separate.
+
 Opt-in `searchable-choice-classes` and `choices/searchable_choices.js` enhance a
 labelled native single/multiple select. They do not replace a command menu or introduce
 an ARIA combobox. The native select remains the authoritative value and no-JS

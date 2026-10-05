@@ -47,6 +47,11 @@ their source audit and explicit Penpot ownership. No extra worktrees are created
 
 ## Execution and proof gates
 
+SM-55 source successor is implemented with canonical Kit 0.4.107 and isolated
+regressions; see student-choice-terminal-spacing-2026-10-05.md. Native candidate
+and paired Penpot/human gates remain OPEN. SM-48 source audit identifies competing
+overlay offsets and card-height centring; no speculative checkbox fix is served.
+
 1. Finish the authorized docs-only recovery, retain omitted 35813f2 prerequisite
    before 0e60a8c successor, and certify clean runtime/unchanged rendered assets.
 2. Inspect SM-48 and SM-55 source and actual painted geometry. Prepare focused

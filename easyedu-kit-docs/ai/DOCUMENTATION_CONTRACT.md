@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Dropdown exit continuity requires exact terminal before-hidden and following
+help/default/host measurements, not only ARIA or duration. Collapse outside
+margins through a canonical opt-in; retain existing card Motion, pointer/focus
+policy and failing predecessor evidence. Build only in the source worktree,
+verify the builder's module-directory arguments, then promote committed assets.
+
 Retain user review successors as additive deduplicated lots, including partially
 written feedback; never invent its missing sentence. A separate Penpot tab or
 browser profile does not establish an independent MCP connection. Serialize

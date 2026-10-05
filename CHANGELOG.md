@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Framed dropdown terminal spacing (SM-55)
+
+- Consume Kit 0.4.107's opt-in exit margin collapse; rebuild canonical Motion
+  and choices AMD without changing CSS, selection, commands or original cards.
+- Preserve predecessor failure and pass isolated twelve-case endpoint plus
+  pointer/reversal/card regressions. Native, Penpot and human gates are separate.
+
 ## 2026-10-05 - Authorized metadata documentation recovery
 
 - Replay omitted historical evidence before the composition successor;
