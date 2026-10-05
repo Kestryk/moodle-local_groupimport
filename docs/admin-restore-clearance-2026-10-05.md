@@ -53,3 +53,18 @@ strict-fixture commit 510411e and header-proof commit ec9c7c9 before this source
 candidate in managed promotion. Serve pushed commits only; purge cache through
 the managed gate, then run the immutable single Administration test. No Save,
 Send, entity mutation or fixture creation is allowed. Native result is pending.
+
+### Preserved initial native failure
+
+Managed promotion `20261005T130047Z.json` serves the source after ordered
+510411e/ec9c7c9 prerequisites and cache purge. Native run
+`easystud-authenticated-20261005T130123217Z-21836` fails at the old initial
+Grouping contrast-note-hidden assertion, before the new Restore measurements.
+It incorrectly assumes saved configuration uses the exempt default. This is
+not evidence of a Restore spacing or colour-validation defect. The strict
+default-exemption successor explicitly fills the PHP-provided `#6A7F98` default
+in the draft before asserting hidden; it never saves configuration, hides a
+notice directly or changes product validation. Existing light-colour/show,
+readable-colour/hide, seven-picker and no-submit assertions remain required.
+Cleanup: credentials cleared, runtime lease released, owned child stopped,
+no fixture requested or created. Preserve failed media/source under its run ID.
