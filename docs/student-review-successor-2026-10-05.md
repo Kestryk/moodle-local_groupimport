@@ -212,3 +212,9 @@ clearance. No data/fixtures/errors/blocked requests; clean runtime61eb5590 and
 all cleanup true. Preserve navigation/zero-alpha harness predecessors.
 Source/Kit/Penpot/native evidence is separate from still-open human acceptance,
 all-locale/tab-order and clean export coverage. Next: SM-53 painted cloud audit.
+
+SM-53 native protocol now distinguishes actual cloud foreground raster from
+the centred FA line box used by SM42. Preserve compact proportions and hidden
+legacy design layers; no consumer-specific offset or speculative fix. Paired
+providers/all-sizes and actual pixel baseline remain OPEN. See
+cloud-painted-centre-audit-2026-10-05.md.

@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Cloud centring proof measures native foreground raster as well as the icon slot
+and fonts. Preserve the line-box predecessor; palette-aware pixel separation
+must not include pale surface/border. Source vector bounds, raster crop and
+human acceptance are distinct; never infer all-size proof from Compact alone.
+
 Quiet recovery native proof samples desktop rest/hover/keyboard-modality focus
 and the unchanged phone proxy. Zero-alpha transitioned paint can retain white
 RGB channels: assert exact alpha rather than invisible triplets. DOM readiness

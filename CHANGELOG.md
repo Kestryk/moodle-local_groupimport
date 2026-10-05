@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Cloud painted-centre diagnostic (SM-53)
+
+- Add read-only actual foreground-pixel/FA-metric inspection at three widths;
+  preserve the earlier line-box proof, compact roles and all rendered assets.
+- Record source/Product bounds and separate raster/paired/human gates. No
+  speculative private icon offset, upload or business mutation.
+
 ## 2026-10-05 - Quiet sticky served native proof (SM-52)
 
 - Verify transparent inner action, pale hover and canonical keyboard ring at
