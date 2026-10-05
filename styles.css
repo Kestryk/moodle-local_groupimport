@@ -14411,8 +14411,13 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-header {
+  box-sizing: border-box;
   display: grid;
-  gap: 0.55rem;
+  gap: 0.7rem;
+  max-inline-size: 100%;
+  min-height: 0;
+  min-width: 0;
+  padding: 0.2rem 0.4rem 0.35rem;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__loading-sections {
   display: grid;
@@ -15686,9 +15691,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-import__loading-header {
   box-sizing: border-box;
   display: grid;
-  gap: 0.55rem;
+  gap: 0.7rem;
   max-inline-size: 100%;
+  min-height: 0;
   min-width: 0;
+  padding: 0.2rem 0.4rem 0.35rem;
 }
 .local-groupimport-import__loading-grid {
   align-items: stretch;

@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Skeleton route proofs inspect the painted element for direct bars and ::after
+only for overlay bars. Preserve failed immutable-oracle evidence. Actual
+initial page headings have eyebrow/title/description cues, no invented action
+bars; reuse skeleton-page-heading across consumers without altering readiness,
+native controls or existing Motion. Geometry, full lifecycle and human review
+remain separate evidence gates.
+
 Compact course navigation compositions use Moodle's exported destination order
 and capabilities as authority. Guide precedes product tools and native course
 participants. Capture exact copied/native equality without activating routes;

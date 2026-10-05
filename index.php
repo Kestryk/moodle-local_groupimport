@@ -1105,11 +1105,6 @@ echo html_writer::start_div('local-groupimport-import__loading-header');
 echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-eyebrow']);
 echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-title']);
 echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-intro']);
-echo html_writer::tag('div',
-    html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-action']) .
-    html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-action']),
-    ['class' => 'local-groupimport-import__loading-actions']
-);
 echo html_writer::end_div();
 echo html_writer::start_div('local-groupimport-import__loading-navigation', [
     'aria-hidden' => 'true',
