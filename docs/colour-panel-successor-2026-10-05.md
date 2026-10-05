@@ -88,3 +88,11 @@ Scrollbar-cap successor consumes Kit 0.4.104 `85c7ed3`; isolated stress run
 cases with a deliberately scrollable page. Existing Penpot scrollbar-free
 viewport specimens remain valid; responsive cap is documented rather than
 artificially adding a desktop scrollbar to the phone source board.
+
+Second native run `easystud-authenticated-20261005T035535984Z-34892` records
+the corrected 343px mobile panel but its root-client-width oracle still expects
+352px. Desktop/Tablet paths pass and all cleanup flags remain true. The next
+diagnostic records a temporary invisible fixed containing-block probe (removed
+immediately), root/body widths and computed inline caps before asserting.
+The 16px margin and exact shared geometry gates are not reduced. No additional
+product change is inferred solely from that measurement disagreement.

@@ -29,11 +29,17 @@ test('Administration shared colour panel preserves native settings',async({page}
             await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(300);
             const measure=await dialog.evaluate(n=>{
                 const r=n.getBoundingClientRect(),s=getComputedStyle(n);
-                return {w:r.width,h:r.height,x:r.x,right:r.right,viewport:document.documentElement.clientWidth,overflow:n.scrollWidth-n.clientWidth,
+                const probe=document.createElement('div');
+                probe.style.cssText='position:fixed;inset:0;visibility:hidden;pointer-events:none';document.body.appendChild(probe);
+                const viewport=probe.getBoundingClientRect().width;probe.remove();
+                return {w:r.width,h:r.height,x:r.x,right:r.right,viewport,rootClientWidth:document.documentElement.clientWidth,
+                    rootRectWidth:document.documentElement.getBoundingClientRect().width,bodyWidth:document.body.getBoundingClientRect().width,
+                    maxInlineSize:s.maxInlineSize,computedInlineSize:s.inlineSize,overflow:n.scrollWidth-n.clientWidth,
                     primary:s.getPropertyValue('--easyedu-primary').trim(),title:getComputedStyle(n.querySelector('h2')).fontSize,
                     actions:[...n.querySelectorAll('.easyedu-dialog-actions button')].map(b=>{const r=b.getBoundingClientRect(),s=getComputedStyle(b);
                         return {h:r.height,font:s.fontSize,weight:s.fontWeight,right:r.right};})};
             });
+            records.push({width,stage:'measured',measure});
             expect(measure.w).toBeCloseTo(Math.min(352,measure.viewport-32),1);
             expect(measure.x).toBeGreaterThanOrEqual(16);
             expect(measure.right).toBeLessThanOrEqual(measure.viewport-16);expect(measure.overflow).toBe(0);
