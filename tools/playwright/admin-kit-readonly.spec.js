@@ -18,6 +18,7 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
     }
     let submitted = false;
     const choiceMetrics = [];
+    const restoreMetrics = [];
     await page.route('**/admin/settings.php*', route => {
         if (route.request().method() !== 'GET') {
             submitted = true;
@@ -106,7 +107,25 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
             expect(metrics.defaultLeft - metrics.right).toBeCloseTo(width === 1600 ? 24 : 16, 1);
             expect(Math.abs(metrics.defaultCenterY - metrics.pickerCenterY)).toBeLessThanOrEqual(3);
         }
-        await expect(root.locator('[data-easystud-restore-colours]')).toBeVisible();
+        const restore = root.locator('[data-easystud-restore-colours]');
+        await expect(restore).toBeVisible();
+        await expect(restore).toHaveText(/^(Restore EasyEdu colors|Rétablir les couleurs EasyEdu)$/);
+        const restoreHelp = root.locator('#easystud-restore-colours-help');
+        await expect(restoreHelp).toHaveClass(/\beasyedu-form-note\b/);
+        const restoreMetric = await restoreHelp.evaluate(help => {
+            const button = document.querySelector('[data-easystud-restore-colours]');
+            const buttonRect = button.getBoundingClientRect();
+            const helpRect = help.getBoundingClientRect();
+            return {width: innerWidth, gap: helpRect.top - buttonRect.bottom,
+                fontSize: getComputedStyle(help).fontSize,
+                buttonText: button.textContent.trim(),
+                buttonLeft: buttonRect.left, buttonRight: buttonRect.right};
+        });
+        restoreMetrics.push(restoreMetric);
+        expect(restoreMetric.gap, 'Reuse the canonical form-note clearance').toBeCloseTo(20, 1);
+        expect(restoreMetric.fontSize).toBe('12.16px');
+        expect(restoreMetric.buttonLeft).toBeGreaterThanOrEqual(0);
+        expect(restoreMetric.buttonRight).toBeLessThanOrEqual(width + 1);
         const palette = root.locator('#admin-themeprimarycolor');
         await palette.scrollIntoViewIfNeeded();
         await page.screenshot({path: testInfo.outputPath(`admin-palette-${width}.png`)});
@@ -147,4 +166,6 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
     expect(errors).toEqual([]);
     fs.writeFileSync(testInfo.outputPath('admin-choice-metrics.json'),
         JSON.stringify(choiceMetrics, null, 2));
+    fs.writeFileSync(testInfo.outputPath('admin-restore-metrics.json'),
+        JSON.stringify(restoreMetrics, null, 2));
 });

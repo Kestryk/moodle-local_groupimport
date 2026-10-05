@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-05 - Administration Restore clearance (SM-56)
+
+- Use the requested English `Restore EasyEdu colors` action wording while
+  retaining its technical key and draft-only behavior.
+- Reuse the Kit's existing form-note clearance; no plugin CSS or Kit fork.
+- Repair three Penpot action label frames and help gaps; extend the read-only
+  native Administration test with exact clearance and containment assertions.
+- Static/isolated checks pass. Served-native proof and human review are separate.
+
 ## 2026-10-05 - Penpot Guide connection handoff
 
 - Correct the ownership assumption: Guide has not started Penpot work and does
