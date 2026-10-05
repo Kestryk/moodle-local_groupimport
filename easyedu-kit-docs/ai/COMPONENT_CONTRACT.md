@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+The colour-panel shared header adds an 80x40 exact valid-draft sample with
+12px clearance at every density. Invalid Hex retains last valid paint;
+labelled/named Hex remains authoritative. Shared state-Motion changes paint
+only; reduced/disabled policies stay static. Preserve widths and immediate HSV.
+
 Administration palette guidance uses the shared `.easyedu-notice--warning`
 skin, not a consumer warning-panel copy. Valid light Hex values remain saved;
 the product derives readable text/action shades while soft accents keep the
