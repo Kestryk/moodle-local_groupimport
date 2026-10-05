@@ -88,8 +88,8 @@ const runAudit = async ({page}, testInfo) => {
 
 test('Audit Student card selection header tracks without entity writes', runAudit);
 
-test('Student selection header anchor stays stable after sole selection', async (context, testInfo) => {
-    await runAudit(context, testInfo);
+test('Student selection header anchor stays stable after sole selection', async ({page}, testInfo) => {
+    await runAudit({page}, testInfo);
     const proof = JSON.parse(fs.readFileSync(testInfo.outputPath('card-selection-track-audit.json'),'utf8'));
     expect(proof.records.length).toBeGreaterThanOrEqual(12);
     for (const record of proof.records) {
