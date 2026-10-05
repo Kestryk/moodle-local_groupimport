@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+After a startup-deadline failure, distinguish native cached GET timing from
+Playwright routing, which disables HTTP cache. Preserve strict readiness and
+the original product fail-open deadline; record sanitized request/response
+phases and unexpected writes without exporting auth queries. A fast direct
+resource GET does not certify the whole native lifecycle or diagnose the cause.
+
 Skeleton route proofs inspect the painted element for direct bars and ::after
 only for overlay bars. Preserve failed immutable-oracle evidence. Actual
 initial page headings have eyebrow/title/description cues, no invented action
