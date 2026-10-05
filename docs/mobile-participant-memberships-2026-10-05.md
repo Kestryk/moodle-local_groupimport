@@ -100,6 +100,26 @@ The native successor keeps all strict oracles and records geometry before an
 assertion. Its result, paired shared recipe readback and human review stay open
 until independently recorded; the earlier failed run is never reclassified PASS.
 
+Second served run `easystud-authenticated-20261005T204100100Z-16336`
+(Source `d6c89f0`, runtime `5bff69a7`) passes eight 390px geometry/selection
+records and four native 136ms resize transitions, then times out on the assumed
+panel-overflow access. Native source audit confirms responsive panel actions
+are intentionally hidden at <=1024px; the manual membership control was not
+actually accessible. This is an implementation omission, not complete PASS.
+Cleanup is complete, no business POST or fixture occurred, retention dry-run
+is non-destructive. The strict successor uses a dedicated existing Kit selection
+action/tray button outside that hidden bar, forwarding to the same controller.
+It appears only in the participant view, updates localized label/pressed/icon,
+and hides on desktop; no additional CSS or Motion recipe. Five isolated bind
+states now cover actual mobile access and forwarding. The native test uses
+that real control and the existing responsive Clear selection proxy; action
+timeouts are bounded at 15 seconds instead of consuming the full 5-minute test.
+Six Product controls reuse linked Foundation Neutral selection actions and
+Expand/Compress icons; source/control glyph size and padding stay canonical.
+The obsolete panel-overflow note is corrected and full-view controls no longer
+overlap filters, top pagination or the first card. Readback/native successor
+and human acceptance are still separate gates.
+
 ## Previous lot's managed publication
 
 SM-51 documentation promotion request `20261005T192922Z-681e270c05` completed:

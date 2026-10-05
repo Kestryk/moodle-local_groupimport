@@ -178,3 +178,10 @@ successor reserves only narrow/full identity space, not metadata width. Complete
 unrelated CSS remains identical with Sass 1.79.1; retain the failed run and all
 strict native oracles. Source/shared-design/native successor and human gate
 remain distinct. See mobile-participant-memberships-2026-10-05.md.
+
+SM-50 strict 390px successor now passes eight geometry/state records and four
+native height animations, but cannot expose manual density through the hidden
+desktop action bar. Preserve that failed run; a dedicated canonical responsive
+action now forwards to the same controller and has six linked Product usages.
+No CSS/Motion/business change. Five isolated mobile-action bindings PASS;
+fresh native all-width successor and combined human checklist remain OPEN.

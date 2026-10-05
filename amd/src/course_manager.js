@@ -9720,6 +9720,7 @@ const syncParticipantDensity = (root, {animate = true} = {}) => {
 
 const bindOptionalTools = root => {
     const densityToggle = root.querySelector('[data-easystud-density-toggle]');
+    const mobileMembershipToggle = root.querySelector('[data-easystud-mobile-membership-toggle]');
     const modal = root.querySelector('[data-easystud-clipboard-modal]');
     const openClipboardButtons = Array.from(root.querySelectorAll(
         '[data-easystud-open-clipboard], [data-easyedu-navigation-action="open-clipboard"]'
@@ -9754,6 +9755,16 @@ const bindOptionalTools = root => {
                 icon.classList.toggle('fa-compress', !compact);
                 icon.classList.toggle('fa-expand', compact);
             }
+            if (mobileMembershipToggle) {
+                mobileMembershipToggle.hidden = !mobile;
+                mobileMembershipToggle.setAttribute('aria-pressed', state.mobileCompact ? 'true' : 'false');
+                mobileMembershipToggle.querySelector('span:last-child').textContent =
+                    densityToggle.getAttribute(state.mobileCompact ?
+                        'data-mobile-detailed-label' : 'data-mobile-compact-label') || '';
+                const mobileIcon = mobileMembershipToggle.querySelector('.fa');
+                mobileIcon.classList.toggle('fa-compress', !state.mobileCompact);
+                mobileIcon.classList.toggle('fa-expand', state.mobileCompact);
+            }
         };
         state.updateToggle = updateDensityToggle;
 
@@ -9784,6 +9795,9 @@ const bindOptionalTools = root => {
             }
         });
 
+        if (mobileMembershipToggle) {
+            mobileMembershipToggle.addEventListener('click', () => densityToggle.click());
+        }
         syncParticipantDensity(root, {animate: false});
     }
 
