@@ -1,9 +1,17 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.102",
+  "version": "0.4.103",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "colourPanelSuccessor20261005": {
+      "kitVersion": "0.4.103",
+      "kitCommit": "8351869",
+      "documentation": "docs/colour-panel-successor-2026-10-05.md",
+      "status": "SM-46 shared draft panel; isolated S/M/L, paired twelve-state and product linked popup publication, strict native storage/contrast/reset/unrelated CSS preservation pass. Native successor pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "adminSectionSpacing20261005": {
       "kitCommit": "520690d",
       "documentation": "docs/admin-section-spacing-successor-2026-10-05.md",

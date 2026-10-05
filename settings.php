@@ -145,6 +145,19 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
             $controlattributes = [
                 'data-easyedu-color-picker' => '1',
                 'data-easyedu-color-default' => strtoupper((string)$default),
+                'data-easyedu-motion-policy' => get_config('local_groupimport', 'enableanimations') === '0'
+                    ? 'disabled' : 'enabled',
+                'data-easyedu-color-panel-labels' => json_encode([
+                    'title' => get_string('colourpickerswatchlabel', 'local_groupimport'),
+                    'hue' => get_string('colourpickerhue', 'local_groupimport'),
+                    'saturation' => get_string('colourpickersaturation', 'local_groupimport'),
+                    'brightness' => get_string('colourpickerbrightness', 'local_groupimport'),
+                    'palette' => get_string('colourpickerpalette', 'local_groupimport'),
+                    'hex' => get_string('colourpickerpanelhex', 'local_groupimport'),
+                    'invalid' => get_string('colourpickerinvalid', 'local_groupimport'),
+                    'cancel' => get_string('cancel'),
+                    'apply' => get_string('colourpickerapply', 'local_groupimport'),
+                ], JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
                 'aria-invalid' => $isvalid ? 'false' : 'true',
             ];
             if ($this->minimumcontrast > 0) {
@@ -204,6 +217,7 @@ if ($hassiteconfig) {
     global $ADMIN, $DB, $PAGE;
 
     $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
+    $PAGE->requires->js('/local/groupimport/js/easyedu_colour_picker.js', true);
     $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);
     $PAGE->requires->js_call_amd('local_groupimport/admin_choices', 'init', [[
         'search' => get_string('searchfilteroptions', 'local_groupimport'),

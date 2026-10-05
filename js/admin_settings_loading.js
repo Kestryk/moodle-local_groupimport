@@ -101,6 +101,12 @@
                     setValidity(true);
                 }
             });
+            // Kit enhancement owns drafts/focus only; existing named Hex,
+            // validation, contrast notes, Restore and Moodle Save remain native.
+            if (window.EasyEduColourPicker) {
+                window.EasyEduColourPicker.enhance(control,
+                    JSON.parse(control.getAttribute('data-easyedu-color-panel-labels')));
+            }
         });
     };
     var initialise = function() {

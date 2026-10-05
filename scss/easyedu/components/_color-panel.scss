@@ -1,0 +1,183 @@
+// Progressive colour panel. Native Hex submission stays with the consumer.
+@use "focus";
+@use "text-fields";
+
+@mixin color-panel($size: regular) {
+  --easyedu-color-panel-width: 22rem;
+  --easyedu-color-panel-plane-height: 9rem;
+  @if $size == small {
+    --easyedu-color-panel-width: 20rem;
+    --easyedu-color-panel-plane-height: 7.5rem;
+  } @else if $size == large {
+    --easyedu-color-panel-width: 24rem;
+    --easyedu-color-panel-plane-height: 10.5rem;
+  } @else if $size != regular {
+    @error "color-panel expects small, regular or large.";
+  }
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-border-strong);
+  border-radius: 0.75rem;
+  box-shadow: var(--easyedu-modal-shadow);
+  box-sizing: border-box;
+  color: var(--easyedu-text);
+  font-family: var(--easyedu-font-family-ui);
+  inline-size: min(var(--easyedu-color-panel-width), calc(100vw - 2rem));
+  max-inline-size: calc(100vw - 2rem);
+  max-block-size: calc(100dvh - 2rem);
+  overflow: auto;
+  padding: 1rem 1.5rem;
+  &::backdrop { background: rgba(22, 45, 68, 0.22); }
+  &[open] { animation: easyedu-color-panel-enter var(--easyedu-motion-normal, 240ms) var(--easyedu-motion-ease); }
+  @media (prefers-reduced-motion: reduce) { &[open] { animation: none; } }
+  @media (forced-colors: active) {
+    border-color: CanvasText;
+    &::backdrop { background: transparent; }
+  }
+}
+
+@mixin color-panel-classes {
+  .easyedu-ui .easyedu-color-panel { @include color-panel; }
+  .easyedu-ui .easyedu-color-panel--small { @include color-panel(small); }
+  .easyedu-ui .easyedu-color-panel--large { @include color-panel(large); }
+  .easyedu-ui[data-easyedu-motion-policy="disabled"] .easyedu-color-panel[open],
+  body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] { animation: none; }
+  .easyedu-ui .easyedu-color-picker__trigger {
+    @include focus.ring;
+    background: var(--easyedu-color-current);
+    border: 1px solid var(--easyedu-border-strong);
+    border-radius: 0.55rem;
+    cursor: pointer;
+    flex: 0 0 var(--easyedu-color-picker-swatch-width, 3.1rem);
+    block-size: var(--easyedu-color-picker-swatch-height, 2rem);
+    padding: 0;
+    box-shadow: none;
+    outline: none;
+    &:focus-visible { @include focus.ring; }
+    &:disabled { cursor: not-allowed; opacity: 0.68; }
+  }
+  .easyedu-ui .easyedu-color-panel__title {
+    color: var(--easyedu-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    margin: 0 0 1rem;
+  }
+  .easyedu-ui .easyedu-color-panel__plane {
+    background: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent),
+      var(--easyedu-color-hue, #0f6cbf);
+    block-size: var(--easyedu-color-panel-plane-height);
+    border: 1px solid var(--easyedu-border-strong);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    cursor: crosshair;
+    position: relative;
+    touch-action: none;
+  }
+  .easyedu-ui .easyedu-color-panel__handle {
+    background: var(--easyedu-color-current);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+    block-size: 0.75rem;
+    inline-size: 0.75rem;
+    left: var(--easyedu-color-saturation, 50%);
+    pointer-events: none;
+    position: absolute;
+    top: var(--easyedu-color-value, 50%);
+    transform: translate(-50%, -50%);
+  }
+  .easyedu-ui .easyedu-color-panel__sliders { margin-block: 0.5rem 0.75rem; }
+  .easyedu-ui .easyedu-color-panel__slider {
+    align-items: center;
+    display: grid;
+    font-size: 0.76rem;
+    gap: 0.5rem;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    min-block-size: 2.75rem;
+    input {
+      accent-color: var(--easyedu-primary);
+      cursor: pointer;
+      inline-size: 100%;
+      margin: 0;
+      min-inline-size: 0;
+      &:focus-visible { @include focus.ring; }
+    }
+  }
+  .easyedu-ui .easyedu-color-panel__palette-title {
+    color: var(--easyedu-primary);
+    font-size: 0.76rem;
+    font-weight: 600;
+    line-height: 1.375rem;
+    margin: 0 0 0.5rem;
+  }
+  .easyedu-ui .easyedu-color-panel [data-easyedu-color-axis="hue"] {
+    appearance: none;
+    background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+    border: 1px solid var(--easyedu-border-strong);
+    border-radius: 0.5rem;
+    block-size: 0.875rem;
+    &::-webkit-slider-thumb {
+      appearance: none;
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-border-strong);
+      border-radius: 0.25rem;
+      block-size: 1.375rem;
+      inline-size: 0.5rem;
+    }
+    &::-moz-range-thumb {
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-border-strong);
+      border-radius: 0.25rem;
+      block-size: 1.375rem;
+      inline-size: 0.5rem;
+    }
+  }
+  .easyedu-ui .easyedu-color-panel__palette {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .easyedu-ui .easyedu-color-panel__preset {
+    background: var(--easyedu-surface);
+    border: 1px solid var(--easyedu-border-strong);
+    border-radius: 0.55rem;
+    cursor: pointer;
+    min-block-size: 2.5rem;
+    min-inline-size: 0;
+    padding: 0;
+    position: relative;
+    &::before {
+      background: var(--easyedu-color-current);
+      border-radius: 0.4rem;
+      content: "";
+      inset: 0.25rem;
+      pointer-events: none;
+      position: absolute;
+    }
+    &[aria-pressed="true"] { @include focus.ring($color: var(--easyedu-primary)); }
+    &:focus-visible { @include focus.ring; }
+  }
+  .easyedu-ui .easyedu-color-panel__hex {
+    display: block;
+    font-size: 0.76rem;
+    margin-block: 1rem;
+    input {
+      @include text-fields.foundation-text-field;
+      & {
+        inline-size: 100%;
+        margin-block-start: 0.25rem;
+      }
+      &[aria-invalid="true"] { border-color: var(--easyedu-danger); }
+    }
+  }
+  .easyedu-ui .easyedu-color-panel__error {
+    color: var(--easyedu-danger);
+    font-size: 0.76rem;
+    margin: 0 0 1rem;
+    &[hidden] { display: none; }
+  }
+  @keyframes easyedu-color-panel-enter {
+    from { opacity: 0; transform: translateY(0.35rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}

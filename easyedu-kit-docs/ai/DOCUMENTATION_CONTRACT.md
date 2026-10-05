@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Colour-panel integration embeds the exact optional Kit controller plus SCSS.
+Keep the named Hex, native swatch fallback, validation/contrast, Restore, Save
+and loading lifecycle unchanged. Draft Apply dispatches input/change only.
+Paired Foundations source/Standard, product popup readback and native guarded
+three-width proof must be recorded separately from human acceptance.
+
 Admin section flow owns only the native h3.main start margin. Verify actual
 fieldset anatomy, three-width paint/containment and untouched control/type/end
 margin declarations. Reuse the canonical Kit include, not private per-setting
