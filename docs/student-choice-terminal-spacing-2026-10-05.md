@@ -1,5 +1,20 @@
 # Searchable dropdown terminal spacing - SM-55
 
+## Current native gate - 0.4.109
+
+Managed preview applies pushed Source 265f0b7 at clean runtime 30947d3 with
+cache purge, promotion 20261005T114505Z. Immutable native candidate from Source
+c7d5120 runs as easystud-authenticated-20261005T114520875Z-43712 and PASSES:
+all five enhanced Administration choices at 1600/768/390 (15 endpoints), with
+zero measured host-bottom, ancestor-height and default-copy terminal jumps.
+Focus, inert/inline/effect cleanup and no browser errors/blocked writes pass.
+Credentials, owned child and lease cleanup are confirmed; no fixtures/settings
+Save. Canonical copy matches blob a0033a804c4e189ea0ec18ef10ecdce28e67ac7b.
+
+This closes the native Administration terminal gate, not all modal/filter
+journeys, Penpot publication or human acceptance. Historical failures and the
+intermediate OPEN statuses below are retained as dated implementation history.
+
 Kit 0.4.107 fixes one measured exit defect: a framed choice's outside margin
 stayed at 8px until hidden, moving the following help text abruptly. Choices
 now pass the opt-in collapseMargins flag to canonical disclosePanel so that

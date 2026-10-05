@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-05 - Card selection header audit (SM-48)
+
+- Record conflicting density/mobile overlay rules and add a read-only native
+  four-width diagnostic without entity actions, font or Motion changes.
+- Actual geometry, shared successor and paired Penpot/human gates stay separate.
+
 ## 2026-10-05 - Framed dropdown terminal spacing (SM-55)
 
 - Consume Kit 0.4.107's opt-in exit margin collapse; rebuild canonical Motion
@@ -14,6 +20,8 @@
   text. Consume Kit 0.4.108's shared grid host, with one emitted CSS declaration.
 - Preserve the remaining 390px intrinsic-width failure; consume Kit 0.4.109's
   panel containment rather than adding native widths or animation overrides.
+- Served Administration passes all fifteen native terminal measurements with
+  zero host/ancestor/default-copy jump. No settings Save; human review OPEN.
 
 ## 2026-10-05 - Authorized metadata documentation recovery
 
