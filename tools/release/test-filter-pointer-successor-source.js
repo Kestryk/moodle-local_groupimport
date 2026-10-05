@@ -22,7 +22,11 @@ const fingerprint = css => {
         for (let p = rule.parent; p && p.type !== 'root'; p = p.parent) {
             if (p.type === 'atrule') context.unshift(`${p.name} ${p.params}`);
         }
-        for (const selector of rule.selectors.filter(s => !s.includes('.easyedu-filter-disclosure--capsule'))) {
+        const obsoleteMobileLabel = context.includes('media (max-width: 560px)') &&
+            rule.nodes.filter(n => n.type === 'decl').length === 1 &&
+            rule.nodes.find(n => n.type === 'decl')?.prop === 'font-size';
+        for (const selector of rule.selectors.filter(s => !s.includes('.easyedu-filter-disclosure--capsule') &&
+                !(obsoleteMobileLabel && s === '.local-groupimport-easystud-advanced-filters__more'))) {
             rows.push([context, selector, rule.nodes.filter(n => n.type === 'decl').map(n => [n.prop, n.value, n.important])]);
         }
     });
@@ -35,6 +39,15 @@ const generated = new Set(['amd/build/course_manager.min.js','amd/build/course_m
 for (const file of files) {
     if (generated.has(file)) continue; // Rebuilt deterministically by the owned AMD builder.
     let content=read(file);
+    if(file==='scss/responsive/_mobile.scss'){
+        const start=content.indexOf('@media (max-width: 560px)');
+        assert.ok(start>0);
+        const section=content.slice(start);
+        const restored=section.replace('    &__filters-reset,\n    &__filters-reset--catalog {',
+            '    &-advanced-filters__more {\n      font-size: 0.66rem;\n    }\n\n    &__filters-reset,\n    &__filters-reset--catalog {');
+        assert.notEqual(restored,section,'obsolete mobile-only label override removed');
+        content=content.slice(0,start)+restored;
+    }
     if (file==='amd/src/course_manager.js') {
         const start=content.indexOf('    const pointerHandledControls = new WeakSet();');
         const end=content.indexOf("    root.querySelectorAll('[data-easystud-advanced-filters]')",start);

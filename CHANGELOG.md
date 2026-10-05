@@ -12,6 +12,9 @@
   closure moves the button and pointerup lands outside the workspace. Observe
   releases/cancellations at the document capture boundary, filtering by owned
   pointer IDs and retaining same-click suppression. Motion/commands unchanged.
+- Remove the obsolete 10.56px mobile label override: More Filters now inherits
+  canonical 12.16px control type at every width, matching Foundations. No new
+  consumer declaration; native checks measure the label as well as its button.
 
 ## 2026-10-05 - Enlarged colour draft preview candidate (SM-58)
 
