@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Before a metadata documentation successor promotion, inspect the touched
+document's historical prerequisites as well as recent CSS commits. Missing
+proof JSON/consumerSync records must be restored without downgrading current
+Kit pins. Preserve any runtime conflict snapshot and stop writes until explicit
+recovery approval; unchanged rendered assets do not make a dirty preview clean.
+
 Metadata composition proof must match counts and the native primary-then-chips
 row anatomy, not only containment. Settings and Participant detail-list densities
 are different. Linked copies reject structural children: compose on a local

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Metadata documentation preview recovery gate
+
+- Preserve a docs-only cherry-pick conflict and exact seven-file snapshot.
+  Diagnose omitted historical metadata proof prerequisite 35813f2.
+- Existing Kit 0.4.106 token/overflow styles remain served and unchanged;
+  runtime writes stop pending explicit recovery approval. No product/data edit.
+
 ## 2026-10-05 - Native metadata composition alignment
 
 - Correct page-04 Group/Grouping sample counts and primary-above-chips layout;
