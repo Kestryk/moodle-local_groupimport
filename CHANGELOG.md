@@ -8,6 +8,9 @@
   scoped canonical modules. No Guide, navigation or card Motion changes.
 - Extend isolated palette checks and add a native read-only two-route scenario.
   Source/build PASS; served, persistence and human gates recorded separately.
+- Final served scenario passes 144 native rail/geometry records and actual
+  saved-palette root binding. Unrelated draft bootstrap is mocked to preserve
+  session state; two failed guard predecessors remain retained. Human OPEN.
 
 ## 2026-10-05 - Administration Restore clearance (SM-56)
 
