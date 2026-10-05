@@ -10,6 +10,8 @@
   wire it into both choices and honour the saved animation preference.
 - Preserve the authenticated-navigation timeout separately from product proof;
   bound the next candidate's navigation and retain strict widget/font readiness.
+- Native proof exposes a second inline-baseline jump beside Moodle default
+  text. Consume Kit 0.4.108's shared grid host, with one emitted CSS declaration.
 
 ## 2026-10-05 - Authorized metadata documentation recovery
 

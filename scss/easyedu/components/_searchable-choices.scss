@@ -9,6 +9,10 @@
 
     min-inline-size: 0;
     position: relative;
+    // A stable first-row baseline also works inside Moodle's inline-block
+    // defaultsnext wrapper. A block host takes its last child's baseline;
+    // removing the closing panel then makes the adjacent default/help jump.
+    display: grid;
     font-family: var(--easyedu-font-family-ui);
     font-size: 0.875rem;
     font-weight: 400;

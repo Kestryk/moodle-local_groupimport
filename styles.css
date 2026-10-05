@@ -21258,6 +21258,7 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] {
   --easyedu-choice-disclosure-duration: var(--easyedu-motion-slow);
   min-inline-size: 0;
   position: relative;
+  display: grid;
   font-family: var(--easyedu-font-family-ui);
   font-size: 0.875rem;
   font-weight: 400;

@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+Native inline default/help ancestry must retain its baseline through dropdown
+cleanup. Measure ancestor and sibling copy as well as host bottom; canonical
+grid flow owns this fix, never native per-setting offsets or new type rules.
+
 After authenticated navigation failure, preserve the failed run and cleanup.
 Use bounded DOM navigation with independent strict widget/font readiness;
 record only timestamps and sanitized pathnames, never auth queries or state.
