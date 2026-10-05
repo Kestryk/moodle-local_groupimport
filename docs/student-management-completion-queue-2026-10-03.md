@@ -7,6 +7,14 @@ stays deferred to the combined checklist; automation never ticks it.
 
 ## 2026-10-04 user feedback successor
 
+Preview recovery gate: docs-only `0e60a8c` stopped on metadata documentation
+because earlier owned `35813f2` proof/manifest records were omitted. Source and
+Kit are clean/pushed; token/overflow CSS is already served at runtime `90a6933`
+and unchanged. Conflict snapshot preserves the seven owned pending files.
+Runtime writes are stopped pending explicit recovery approval; Foundation was
+opened/read only, with no source-family edit. See
+`entity-metadata-preview-recovery-2026-10-05.md`. Human checklist stays OPEN.
+
 Metadata Product anatomy successor: fresh page-04 export exposed inconsistent
 sample counts and flat/colliding member metadata. Group/Grouping now use one
 settings-list density, primary-above-chips rows, separate empty Groupings and
