@@ -1,5 +1,27 @@
 # Metadata documentation preview conflict - recovery gate
 
+## Authorized recovery result - 5 October 2026
+
+User explicitly authorized the owned recovery. The seven pending files matched
+the preserved snapshot hashes; no shared runtime lease was active. Under the
+promotion lease, abort only the verified 0e60a8c cherry-pick, retaining its
+external snapshot, then replay the omitted 35813f2 prerequisite first.
+
+Its sole conflict was CHANGELOG: resolve by retaining BOTH the newer entries
+and the historical metadata proof entry. The current 0.4.106 manifest merged
+additively with its missing consumerSync record; no current pins were replaced.
+Runtime prerequisite commit is 7609b0b. Managed replay then applied 0e60a8c as
+814e408 and b219bfb as 54d8fb4. The idempotent managed registration of all three
+source records is `20261005T102851Z`; clean runtime HEAD is
+54d8fb4ece835342ceba1bbe6311644a38a5e659.
+
+Both historical proof JSONs exist, the metadata saved-evidence guard passes,
+and the complete baseline-to-successor diff contains documentation/test records
+only. Browser CSS, SCSS, AMD, templates, PHP, language files and business data
+are unchanged. No cache purge, authenticated browser, fixture or runtime push.
+Leases are released. This closes the integration blocker, not visual acceptance.
+Original failure, hashes and historical stop gate below remain recovery evidence.
+
 Source/Kit presentation lots are pushed and already served. No browser CSS,
 controller, template, SCSS or data diff exists in the failed docs-only promotion.
 The source preview currently serves `3d926a3` on local runtime HEAD

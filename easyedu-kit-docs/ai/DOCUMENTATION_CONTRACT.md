@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Retain user review successors as additive deduplicated lots, including partially
+written feedback; never invent its missing sentence. A separate Penpot tab or
+browser profile does not establish an independent MCP connection. Serialize
+shared Foundations writes and publish an explicit Guide/source writer handoff.
+
 Before a metadata documentation successor promotion, inspect the touched
 document's historical prerequisites as well as recent CSS commits. Missing
 proof JSON/consumerSync records must be restored without downgrading current

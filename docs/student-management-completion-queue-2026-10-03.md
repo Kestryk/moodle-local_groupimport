@@ -5,6 +5,19 @@ competing batch or global plan. User instruction: record and implement every
 remaining point from the quoted Student Management request. Human acceptance
 stays deferred to the combined checklist; automation never ticks it.
 
+## 2026-10-05 review successor
+
+Deduplicated SM-48..58 requirements and parallel Guide ownership are recorded in
+`student-review-successor-2026-10-05.md`. This includes mobile/desktop checkbox
+tracks, mobile font/compact memberships, modal value typography, quieter sticky
+actions, cloud paint centring, redesigned More Filters hover/Motion, dropdown
+terminal-jump repair, Restore colors wording/clearance, palette-driven panel
+accents and an enlarged animated colour draft preview. Earlier unfinished lots
+and human acceptance remain OPEN. User authorizes the owned docs-only recovery;
+runtime stop status below is historical: authorized ordered recovery completed
+at clean runtime 54d8fb4, with Kit 0.4.106/current pins retained and every rendered
+asset unchanged. See the recovery-result section for exact provenance.
+
 ## 2026-10-04 user feedback successor
 
 Preview recovery gate: docs-only `0e60a8c` stopped on metadata documentation
