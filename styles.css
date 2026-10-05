@@ -19534,6 +19534,18 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-synthesis: none;
 }
 
+.easyedu-ui[data-easyedu-custom-rails~=primary] {
+  --easyedu-semantic-rail-primary: linear-gradient(
+    90deg, var(--easyedu-primary-chosen, var(--easyedu-primary)) 0%, color-mix(in srgb, var(--easyedu-primary-chosen, var(--easyedu-primary)) 68%, #fff 32%) 100%
+  );
+}
+
+.easyedu-ui[data-easyedu-custom-rails~=success] {
+  --easyedu-semantic-rail-success: linear-gradient(
+    90deg, var(--easyedu-accent-chosen, var(--easyedu-accent)) 0%, color-mix(in srgb, var(--easyedu-accent-chosen, var(--easyedu-accent)) 68%, #fff 32%) 100%
+  );
+}
+
 .easyedu-ui .easyedu-admin-section-flow > h3.main,
 .easyedu-ui .easyedu-admin-section-flow > fieldset > h3.main {
   margin-block-start: var(--easyedu-admin-section-gap, 2.5rem);

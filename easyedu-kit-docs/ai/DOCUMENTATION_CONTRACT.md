@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Custom semantic rails inherit a Kit-owned gradient from validated chosen colours.
+Copy only scoped modules when a consumer pins other modules independently;
+whole-directory sync must not downgrade earlier lots. Compare complete generated
+CSS and preserve default endpoints. Native draft paint is not settings persistence.
+
 Card module successors keep historical extraction pins and add a distinct
 current source pin. A fixed-header candidate does not certify paired design,
 served runtime, full responsive coverage or whole-CSS extraction equivalence.

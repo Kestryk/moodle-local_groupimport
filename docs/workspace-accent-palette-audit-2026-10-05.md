@@ -1,5 +1,31 @@
 # Workspace top accents and custom palette (SM-57)
 
+## Source successor
+
+Kit 0.4.111 owns the opt-in `data-easyedu-custom-rails` gradient recipe.
+EasyStud's validated adapter returns `primary`, `success`, both or neither.
+Both native workspace roots bind that attribute; no presentation is derived
+in PHP, no private consumer gradient. Palette defaults retain exact endpoints.
+Only `_foundation-classes.scss` and `components/_panels.scss` are synchronized.
+Generated CSS changes only by the two theme-root custom-property rules (12 lines).
+All unrelated pinned modules and Guide assets remain unchanged.
+
+PHP lint, isolated configuration/role-fallback checks, Kit rail contract and
+public SCSS-only archive contract pass. A full-directory sync first revealed an
+unrelated Navigation signature downgrade during compilation. All incidental
+sync changes were restored via explicit patches against the previously clean
+HEAD before a successful build; no broken assets were promoted.
+
+Paired Foundation examples are recorded in the Kit's
+`docs/components/custom-semantic-rails-2026-10-05.md`. Default product boards
+stay unchanged; custom palette states are source-linked examples, not a new
+component family. Native proof is pending the managed preview gate.
+
+`tools/playwright/theme-panel-rails-preview.spec.js` is local-supervised:
+actual Student Management/Mass Import roots and both real panels, 1600/768/390,
+twelve default/custom/independent/mixed palettes, exact painted endpoints and
+unchanged geometry, no settings Save/POST/fixtures. Persistence remains OPEN.
+
 Read-only source audit under EED-UI-2026-0073. Not an implementation or native
 PASS; human checklist remains OPEN. Preserve the user's unfinished phrase
 `Et je trouve pas le` without inventing a missing control.

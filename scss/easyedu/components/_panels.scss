@@ -10,6 +10,21 @@
 
 @use "typography";
 
+// Opt in per semantic role at the theme root. Defaults deliberately retain
+// their published endpoints; decorative rails use the chosen (not the
+// contrast-adjusted foreground) colour. Geometry and text paint are unchanged.
+@mixin custom-semantic-rail($role) {
+  $colour: var(--easyedu-primary-chosen, var(--easyedu-primary));
+  @if $role == success {
+    $colour: var(--easyedu-accent-chosen, var(--easyedu-accent));
+  } @else if $role != primary {
+    @error "custom-semantic-rail supports primary or success.";
+  }
+  --easyedu-semantic-rail-#{$role}: linear-gradient(
+    90deg, #{$colour} 0%, color-mix(in srgb, #{$colour} 68%, #fff 32%) 100%
+  );
+}
+
 @mixin panel-shell {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-border);
