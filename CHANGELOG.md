@@ -8,6 +8,8 @@
 - Repair three Penpot action label frames and help gaps; extend the read-only
   native Administration test with exact clearance and containment assertions.
 - Static/isolated checks pass. Served-native proof and human review are separate.
+- Preserve the native test's saved-palette assumption failure; verify the
+  default exemption through a draft-only input rather than altering settings.
 
 ## 2026-10-05 - Penpot Guide connection handoff
 
