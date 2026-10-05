@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.101",
+  "version": "0.4.102",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "adminSectionSpacing20261005": {
+      "kitCommit": "520690d",
+      "documentation": "docs/admin-section-spacing-successor-2026-10-05.md",
+      "status": "SM-45 shared 40/32px section rhythm; strict source/unrelated CSS, compile/package and paired layout guide pass. Native successor pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "modalChromeSuccessor20261005": {
       "kitCommit": "75c57ce",
       "documentation": "docs/student-modal-chrome-successor-2026-10-05.md",

@@ -1,5 +1,15 @@
 # Forms And Filters
 
+## Moodle administration section flow
+
+Shared `moodle-admin-section-spacing` / `easyedu-admin-section-flow` owns only
+native heading start spacing: 40px Desktop, 32px at <=48rem. Tokens
+`--easyedu-admin-section-gap` / `--easyedu-admin-section-gap-narrow` remain
+themeable. Direct and fieldset `h3.main` anatomy is supported; typography,
+end margins, setting rows/controls and Save stay unchanged. Native evidence:
+`docs/admin-section-spacing-successor-2026-10-05.md`. Human checklist OPEN.
+
+
 ## Trailing catalogue actions — SM-43B candidate
 
 Use `.easyedu-filter-actions` around the binary filter and Reset, adding
