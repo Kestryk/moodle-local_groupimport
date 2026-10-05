@@ -42,6 +42,19 @@ test('Shared Skeleton runs and releases on Mass Import and Administration', asyn
                 await page.goto(new URL(routeInfo.path, base).toString(), {waitUntil: 'commit'});
                 await expect(skeleton).toBeVisible({timeout: 5000});
                 await expect(skeleton).toHaveAttribute('aria-hidden', 'true');
+                // Screenshot waits for fonts itself. Settle them before recording
+                // geometry too, otherwise the two artifacts can describe different paint.
+                await page.evaluate(() => document.fonts.ready);
+                let lastGeometry, stableSamples = 0;
+                await expect.poll(async () => {
+                    const geometry = await skeleton.evaluate(n => {
+                        const r = n.getBoundingClientRect();
+                        return JSON.stringify([r.x, r.y, r.width, r.height, getComputedStyle(n).fontSize]);
+                    });
+                    stableSamples = geometry === lastGeometry ? stableSamples + 1 : 0;
+                    lastGeometry = geometry;
+                    return stableSamples;
+                }, {intervals: [100], timeout: 1500}).toBeGreaterThanOrEqual(3);
                 const cue = root.locator(routeInfo.cue);
                 const measure = async node => {
                     // These routes use the canonical direct bar recipe; Student's
