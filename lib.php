@@ -185,6 +185,26 @@ function local_groupimport_get_theme_colours(): array {
 }
 
 /**
+ * Identify custom panel-rail roles without generating presentation rules.
+ *
+ * The Kit owns the gradient. Published default gradients stay unchanged;
+ * malformed settings already fall back through the validated palette.
+ *
+ * @return string Space-separated public Kit roles, or empty for defaults.
+ */
+function local_groupimport_get_theme_rail_roles(): string {
+    $colours = local_groupimport_get_theme_colours();
+    $roles = [];
+    if ($colours['primary'] !== '#0f6cbf') {
+        $roles[] = 'primary';
+    }
+    if ($colours['accent'] !== '#1b7f5a') {
+        $roles[] = 'success';
+    }
+    return implode(' ', $roles);
+}
+
+/**
  * Calculate a hexadecimal colour's WCAG contrast ratio against white.
  *
  * @param string $hex Valid six-digit hexadecimal colour.

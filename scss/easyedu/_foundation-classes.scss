@@ -148,6 +148,12 @@
 
 @mixin foundation-classes {
   .easyedu-ui { @include foundation-scope; }
+  .easyedu-ui[data-easyedu-custom-rails~="primary"] {
+    @include panels.custom-semantic-rail(primary);
+  }
+  .easyedu-ui[data-easyedu-custom-rails~="success"] {
+    @include panels.custom-semantic-rail(success);
+  }
   .easyedu-ui .easyedu-admin-section-flow {
     @include forms.moodle-admin-section-spacing;
   }

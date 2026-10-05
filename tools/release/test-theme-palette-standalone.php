@@ -63,6 +63,21 @@ if (!str_contains($style, '--easyedu-primary-chosen: #ffffff;') ||
         str_contains($style, 'display:none')) {
     throw new RuntimeException('Unsafe or incorrect semantic style output.');
 }
+if (local_groupimport_get_theme_rail_roles() !== 'primary') {
+    throw new RuntimeException('Malformed accent must not opt into custom rails.');
+}
+foreach ([
+    [[], ''],
+    [['themeprimarycolor' => '#0F6CBF', 'themeaccentcolor' => '#1B7F5A'], ''],
+    [['themeprimarycolor' => 'bad', 'themeaccentcolor' => 'bad'], ''],
+    [['themeaccentcolor' => '#ccddea'], 'success'],
+    [['themeprimarycolor' => '#000000', 'themeaccentcolor' => '#ffffff'], 'primary success'],
+] as [$config, $expected]) {
+    $testconfig = $config;
+    if (local_groupimport_get_theme_rail_roles() !== $expected) {
+        throw new RuntimeException('Incorrect custom rail role selection.');
+    }
+}
 
 // Export the real server adapter for browser/CSS contrast checks. These are
 // process-local get_config stubs, not a persisted Moodle configuration fixture.
@@ -71,12 +86,15 @@ foreach (['#ffffff', '#fff3a5', '#b9ebd0', '#ccddea', '#ff0000', '#00ff00', '#00
     $testconfig = array_fill_keys([
         'themeprimarycolor', 'themeaccentcolor', 'themeparticipantcolor', 'themegroupcolor', 'themegroupingcolor',
     ], $hex);
-    $palettes[] = ['name' => $hex, 'style' => local_groupimport_get_theme_style()];
+    $palettes[] = ['name' => $hex, 'style' => local_groupimport_get_theme_style(),
+        'railRoles' => local_groupimport_get_theme_rail_roles()];
 }
 $testconfig = [];
-$palettes[] = ['name' => 'defaults', 'style' => local_groupimport_get_theme_style()];
+$palettes[] = ['name' => 'defaults', 'style' => local_groupimport_get_theme_style(),
+    'railRoles' => local_groupimport_get_theme_rail_roles()];
 $testconfig = ['themeprimarycolor' => '#ff0000', 'themeaccentcolor' => '#b9ebd0', 'themegroupcolor' => '#0000ff'];
-$palettes[] = ['name' => 'mixed', 'style' => local_groupimport_get_theme_style()];
+$palettes[] = ['name' => 'mixed', 'style' => local_groupimport_get_theme_style(),
+    'railRoles' => local_groupimport_get_theme_rail_roles()];
 
 if (in_array('--json', $argv, true)) {
     echo json_encode($palettes, JSON_THROW_ON_ERROR) . "\n";

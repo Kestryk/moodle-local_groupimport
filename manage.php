@@ -161,6 +161,7 @@ $templatedata = local_groupimport_build_manage_template_data(
 $templatedata['animationsenabled'] = $animationsenabled;
 $templatedata['motionpolicy'] = $animationsenabled ? 'enabled' : 'disabled';
 $templatedata['themestyle'] = local_groupimport_get_theme_style();
+$templatedata['themerailroles'] = local_groupimport_get_theme_rail_roles();
 $templatedata['navigation']['hasguide'] = true;
 $templatedata['navigation']['guidehtml'] = $OUTPUT->render_from_template(
     'local_groupimport/easyedu_guide',

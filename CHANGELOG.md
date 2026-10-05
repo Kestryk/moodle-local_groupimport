@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-05 - Custom workspace accents (SM-57)
+
+- Bind Student Management and Mass Import theme roots to shared Kit custom
+  primary/success rail roles. Keep exact default gradients and all geometry.
+- PHP emits validated role flags, not a private gradient; copy only the two
+  scoped canonical modules. No Guide, navigation or card Motion changes.
+- Extend isolated palette checks and add a native read-only two-route scenario.
+  Source/build PASS; served, persistence and human gates recorded separately.
+
 ## 2026-10-05 - Administration Restore clearance (SM-56)
 
 - Use the requested English `Restore EasyEdu colors` action wording while

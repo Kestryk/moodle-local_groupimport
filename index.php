@@ -1075,6 +1075,7 @@ echo $OUTPUT->header();
 // by the loading implementation.
 $navigationdata = local_groupimport_build_mass_import_navigation_context($course);
 $themestyle = local_groupimport_get_theme_style();
+$themerailroles = local_groupimport_get_theme_rail_roles();
 $navigationmarkup = html_writer::tag('div',
     $OUTPUT->render_from_template('local_groupimport/easyedu_navigation', $navigationdata),
     [
@@ -1093,6 +1094,7 @@ echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !=
     'data-easyedu-loading-bootstrap' => '1',
     'data-easyedu-loading-ready-attribute' => 'data-easyedu-loading-ready',
     'data-easyedu-action-busy-label' => get_string('actioninprogress', 'local_groupimport'),
+    'data-easyedu-custom-rails' => $themerailroles,
     'style' => $themestyle,
 ]);
 
