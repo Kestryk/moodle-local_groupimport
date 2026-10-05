@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Fixed controls opt into easyedu-modal-yield-control only where an active shared
+blocking dialog must own the viewport. Hidden/aria-hidden dialogs never suppress
+ordinary navigation. Preserve original typography, geometry, focus lifecycle,
+controllers/Motion and independent Guide ownership.
+
 Section-icon tiles centre intrinsic icon advance inside the canonical tile,
 not a one-em clamp. Preserve font density and aspect ratio. Native cloud proof
 must inspect actual unobstructed foreground raster, not just the slot; no

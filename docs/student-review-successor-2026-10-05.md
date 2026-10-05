@@ -238,3 +238,17 @@ plugin links) and actual mobile Participant-details entry at390/768/320. Keep
 previous typography/scroll proof and accepted Motion; inspect modal lifecycle
 markers before adding a shared yield rule. See mobile-navigation-dialog-yield-
 2026-10-05.md. Guide remains separately owned, no unrelated font override.
+
+SM-49 native baseline now confirms all13 current labels Inter15/500 at three
+widths, but the fixed trigger still paints during Participant details. Public
+modal-yield successor preserves all other CSS/template/controllers/Motion and
+closed-state availability. Do not overwrite the divergent embedded Navigation
+tree: sync identical modal/dialog modules plus the one class only. Paired
+behavior publication and strict normal/reduced successor remain OPEN.
+
+SM-49 paired visibility protocol now has linked Foundations Library/Standard
+and Student/Mass Import behavior boards; 24 existing triggers annotated.
+Settled Student Inter text is contained after viewport rendering. No skin,
+geometry, Navigation/Guide controller or Motion change; source48/native44
+parity and clean export/human gates stay OPEN. Static preservation and test
+discovery PASS; ordered preview/native successor is next.

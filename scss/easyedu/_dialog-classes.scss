@@ -9,6 +9,9 @@
 
 @mixin dialog-classes {
   @include choices.searchable-choice-classes;
+  .easyedu-ui .easyedu-modal-yield-control {
+    @include modals.modal-yield-control;
+  }
   .easyedu-ui .easyedu-modal-layer {
     z-index: var(--easyedu-modal-layer);
   }

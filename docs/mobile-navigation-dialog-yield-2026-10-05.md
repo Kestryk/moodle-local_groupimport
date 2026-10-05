@@ -28,3 +28,32 @@ integration. Do not blanket-sync it to repair this issue. Modal primitives and
 public dialog classes are identical canonical/embedded: an additive public
 modal-yield-control can use the already present easyedu-modal-layer lifecycle
 without editing Navigation/Guide controllers or redoing accepted Motion.
+
+Canonical candidate adds modal-yield-control to identical modal/dialog modules
+and one public template class in both canonical and consumer Navigation. Full
+generated CSS differs only by one visibility/pointer rule; all other CSS,
+controllers, AMD, Navigation geometry and accepted Motion are unchanged.
+Inactive hidden/aria-hidden public dialogs do not suppress the trigger. Native
+successor retains all baseline type/focus checks and adds actual hidden/recovery
+at all three widths with normal and reduced Motion. Paired design/native/human
+publication remain OPEN. No broad Guide/Navigation drift sync is attempted.
+
+Paired visibility protocol is now recorded in Foundations Library/Standard
+and EasyStud Student/Mass Import boards (1240x320); three linked canonical
+Default specimens retain 48x48 and visible/hidden/visible states. Twenty-four
+existing product triggers receive the same lifecycle annotation without skin,
+geometry or controller changes. See testing/mobile-navigation-modal-yield-
+penpot-2026-10-05.json. Initial inactive-page policy write failed before mutation;
+reconciliation confirmed no partial board, then each owned page was opened
+before writing. The first Student readback had unavailable text paint until the
+owned viewport rendered it; settled Inter text/containment has no overflow.
+This is structural/paint readback, not a clean export or human visual PASS.
+Source 48px versus native 44px size parity remains separate. Guide untouched.
+
+Canonical Kit0.4.117/ea831179469d4042003f0939e28075f6be480045 is pushed;
+embedded modal/dialog modules match it exactly after normalized line endings.
+Source complete-CSS/template/controller preservation and one-test discovery
+PASS. Preview must include documentation predecessors d8948e4 then af963ae
+before the implementation. Native normal/reduced Participant entry, modal
+visibility suppression and close recovery remain pending; Message/Guide and
+all-dialog journeys are not certified by this bounded scenario.

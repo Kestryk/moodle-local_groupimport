@@ -21815,6 +21815,11 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {
     --easyedu-choice-disclosure-duration: 0.01ms;
   }
 }
+body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not([hidden]):not([aria-hidden=true])) .easyedu-ui .easyedu-modal-yield-control {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .easyedu-ui .easyedu-modal-layer {
   z-index: var(--easyedu-modal-layer);
 }

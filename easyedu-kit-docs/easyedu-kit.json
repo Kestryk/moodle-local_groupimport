@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "modalYieldControl20261005": {
+      "kitVersion": "0.4.117",
+      "kitCommit": "ea831179469d4042003f0939e28075f6be480045",
+      "modules": ["scss/easyedu/components/_modals.scss", "scss/easyedu/_dialog-classes.scss"],
+      "templateChange": "One public trigger class only; do not overwrite divergent embedded Navigation module",
+      "documentation": "docs/mobile-navigation-dialog-yield-2026-10-05.md",
+      "status": "One shared CSS visibility rule; Source/Standard/Product behavior protocols and existing skin retained. Native/human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "sectionIconIntrinsicWidth20261005": {
       "kitVersion": "0.4.116",
       "kitCommit": "ca9aa6272ef5d07200332f12b79b586e5b4cfe7c",

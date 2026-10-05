@@ -1,0 +1,298 @@
+{
+  "scope": "SM-49 blocking-modal visibility protocol; Guide untouched",
+  "foundation": [
+    {
+      "key": "source",
+      "page": "2b5216d9-06a9-80a1-8008-9dd2fc5ce4ab",
+      "board": "8a982f17-c9c0-80e9-8008-bec67c94d014",
+      "width": 1240,
+      "height": 320,
+      "overflow": [],
+      "controls": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bec67cd6bb43",
+          "w": 48,
+          "h": 48,
+          "hidden": false,
+          "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bec67d0868cc",
+          "w": 48,
+          "h": 48,
+          "hidden": true,
+          "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bec67d3a8ebe",
+          "w": 48,
+          "h": 48,
+          "hidden": false,
+          "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831"
+        }
+      ]
+    },
+    {
+      "key": "standard",
+      "page": "2b5216d9-06a9-80a1-8008-9dd2fc63b9e1",
+      "board": "8a982f17-c9c0-80e9-8008-bec67dc506c7",
+      "width": 1240,
+      "height": 320,
+      "overflow": [],
+      "controls": [
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bec67e0c63af",
+          "w": 48,
+          "h": 48,
+          "hidden": false,
+          "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bec67e348f4f",
+          "w": 48,
+          "h": 48,
+          "hidden": true,
+          "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831"
+        },
+        {
+          "id": "8a982f17-c9c0-80e9-8008-bec67e5e679b",
+          "w": 48,
+          "h": 48,
+          "hidden": false,
+          "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831"
+        }
+      ]
+    }
+  ],
+  "product": {
+    "product": {
+      "student": {
+        "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+        "board": "8a982f17-c9c0-80e9-8008-bec77037cc3a",
+        "controls": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bec77172b2c0",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bec772406fcd",
+            "hidden": true,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bec7730a0f2a",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          }
+        ]
+      },
+      "massImport": {
+        "page": "220f6449-533e-815b-8008-ad9958d032a2",
+        "board": "8a982f17-c9c0-80e9-8008-bec77491e429",
+        "controls": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bec775e8e733",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bec776e89fdf",
+            "hidden": true,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bec777d57a65",
+            "hidden": false,
+            "component": "5866ed4a-7d30-8093-8008-ac7ac05b3831",
+            "width": 48,
+            "height": 48
+          }
+        ]
+      }
+    },
+    "existingPolicyConsumers": 24
+  },
+  "studentSettledPaint": {
+    "board": "8a982f17-c9c0-80e9-8008-bec77037cc3a",
+    "overflow": [],
+    "texts": [
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec7707a0c33",
+        "bounds": {
+          "x": 104,
+          "y": 16444,
+          "width": 1192,
+          "height": 24
+        },
+        "paint": {
+          "x": 104,
+          "y": 16444,
+          "width": 295.4624938964844,
+          "height": 19.200000762939453
+        },
+        "family": "Inter",
+        "size": "16"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec770d3f806",
+        "bounds": {
+          "x": 104,
+          "y": 16482,
+          "width": 1192,
+          "height": 32
+        },
+        "paint": {
+          "x": 104,
+          "y": 16481.19999998808,
+          "width": 563.7999877929688,
+          "height": 15.200000762939453
+        },
+        "family": "Inter",
+        "size": "12.16"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec771175c7b",
+        "bounds": {
+          "x": 104,
+          "y": 16532,
+          "width": 382,
+          "height": 24
+        },
+        "paint": {
+          "x": 104,
+          "y": 16532,
+          "width": 120.5374984741211,
+          "height": 16
+        },
+        "family": "Inter",
+        "size": "13.44"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec771a2c9cd",
+        "bounds": {
+          "x": 168,
+          "y": 16578,
+          "width": 306,
+          "height": 42
+        },
+        "paint": {
+          "x": 168,
+          "y": 16577.19999998808,
+          "width": 167.5625,
+          "height": 15.200000762939453
+        },
+        "family": "Inter",
+        "size": "12.16"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec771e3cd3d",
+        "bounds": {
+          "x": 510,
+          "y": 16532,
+          "width": 382,
+          "height": 24
+        },
+        "paint": {
+          "x": 510,
+          "y": 16532,
+          "width": 125.4124984741211,
+          "height": 16
+        },
+        "family": "Inter",
+        "size": "13.44"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec77263e6a2",
+        "bounds": {
+          "x": 574,
+          "y": 16578,
+          "width": 306,
+          "height": 42
+        },
+        "paint": {
+          "x": 574,
+          "y": 16577.19999998808,
+          "width": 219.5749969482422,
+          "height": 15.200000762939453
+        },
+        "family": "Inter",
+        "size": "12.16"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec772b39603",
+        "bounds": {
+          "x": 916,
+          "y": 16532,
+          "width": 382,
+          "height": 24
+        },
+        "paint": {
+          "x": 916,
+          "y": 16532,
+          "width": 87.63750457763672,
+          "height": 16
+        },
+        "family": "Inter",
+        "size": "13.44"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec773306a2e",
+        "bounds": {
+          "x": 980,
+          "y": 16578,
+          "width": 306,
+          "height": 42
+        },
+        "paint": {
+          "x": 980,
+          "y": 16577.19999998808,
+          "width": 166.10000610351562,
+          "height": 15.200000762939453
+        },
+        "family": "Inter",
+        "size": "12.16"
+      },
+      {
+        "id": "8a982f17-c9c0-80e9-8008-bec77371bbeb",
+        "bounds": {
+          "x": 104,
+          "y": 16660,
+          "width": 1192,
+          "height": 48
+        },
+        "paint": {
+          "x": 104,
+          "y": 16660,
+          "width": 644.5499877929688,
+          "height": 13.600000381469727
+        },
+        "family": "Inter",
+        "size": "11.52"
+      }
+    ]
+  },
+  "gates": {
+    "linked": true,
+    "studentSettledContainment": true,
+    "cleanExport": false,
+    "native": false,
+    "human": false
+  },
+  "caveats": [
+    "Source trigger specimen 48px vs native target 44px remains separate parity gate",
+    "Initial Student text paint readback was null until own viewport rendered board; settled readback has zero overflow",
+    "Initial inactive-page policy write failed before mutation; reconciled and opened each owned page before writing",
+    "Message/Guide/other dialog journeys not native certified"
+  ]
+}

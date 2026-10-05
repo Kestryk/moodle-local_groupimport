@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Public modal-yield successors compare complete CSS and template outside their
+one opt-in. Keep native type baselines and actual mobile open/Close/focus proof;
+normal/reduced visibility is independent from Message/Guide or full keyboard
+acceptance. Older embedded Navigation drift is not implicit sync permission.
+
 Navigation continuation distinguishes all native row/label typography from
 modal layering: being below the dialog is not the same as yielding paint through
 its backdrop. Audit actual mobile entry and active modal markers; preserve
