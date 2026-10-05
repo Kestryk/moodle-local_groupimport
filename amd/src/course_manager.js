@@ -3159,7 +3159,6 @@ const createMemberItem = (groupid, userid, fullname, removelabel, selectionlabel
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.setAttribute('data-easystud-selector-input', '1');
-    checkbox.tabIndex = -1;
     selector.appendChild(checkbox);
 
     const ui = document.createElement('span');
@@ -3352,7 +3351,7 @@ const createGroupElement = (root, groupdata) => {
 
     group.innerHTML =
         '<label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--group" aria-label="' + (labels.selectionmode || '') + '">' +
-            '<input type="checkbox" data-easystud-selector-input="1" tabindex="-1">' +
+            '<input type="checkbox" data-easystud-selector-input="1">' +
             '<span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>' +
         '</label>' +
         '<div class="local-groupimport-easystud-group__header">' +
@@ -3449,7 +3448,7 @@ const createGroupingElement = (root, groupingdata) => {
 
     section.innerHTML =
         '<label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--section" aria-label="' + (labels.selectionmode || '') + '">' +
-            '<input type="checkbox" data-easystud-selector-input="1" tabindex="-1">' +
+            '<input type="checkbox" data-easystud-selector-input="1">' +
             '<span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>' +
         '</label>' +
         '<div class="local-groupimport-easystud-grouping__header">' +

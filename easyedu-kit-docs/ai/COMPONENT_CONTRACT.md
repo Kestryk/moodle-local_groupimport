@@ -1,5 +1,11 @@
 # EasyEdu Component Contract
 
+Selection checkbox inputs retain native sequential focusability and Space/change
+authority unless an equivalent explicit keyboard entry is documented. Keep
+real disabled/incompatible selection state and the existing Kit focus ring;
+Large1.42rem inside44px is canonical, not another responsive family. Pointer
+paint, local keyboard entry and full visual/human acceptance stay separate.
+
 Fixed controls opt into easyedu-modal-yield-control only where an active shared
 blocking dialog must own the viewport. Hidden/aria-hidden dialogs never suppress
 ordinary navigation. Preserve original typography, geometry, focus lifecycle,

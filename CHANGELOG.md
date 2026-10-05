@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-06 - Penpot nested-link autosave recovery (SM-52/49/48)
+
+- Diagnose stale capsule near-main/swap references; preserve frame/copy and
+  external SVG/error evidence, restore exact canonical linkage after reload.
+- Correct prior in-memory-only Product publication claims; recreate only owned
+  missing protocols and verify actual server persistence/UI saved status.
+  Source CSS/native and Guide are unchanged; human checklist remains open.
+
+## 2026-10-06 - Card checkbox keyboard successor candidate (SM-48)
+
+- Preserve63-record mobile diagnostic: pointer lanes pass, vertical paint and
+  keyboard reachability defects remain recorded, without human acceptance.
+- Restore default native focusability on ten rendered and three dynamic
+  checkbox branches through existing handlers; no CSS/Motion/Guide change.
+  Paired protocol and served Tab/Space successor pending.
+
 ## 2026-10-06 - Mobile card checkbox paint and keyboard audit (SM-48)
 
 - Add existing-card paint/hit/local keyboard diagnostic at three mobile widths.

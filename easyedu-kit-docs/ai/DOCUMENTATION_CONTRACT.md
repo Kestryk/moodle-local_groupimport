@@ -5,6 +5,17 @@ focusability. A negative-tabindex input reached by programmatic focus is not
 a keyboard-entry PASS. Preserve diagnostic source, native paint/state records
 and existing Motion before publishing the size/track successor.
 
+When exact Penpot page/shape IDs are known, prefer indexed Page.getShapeById
+readback and bounded descendant checks. Repeated global shape scans can exhaust
+the hosted task despite an intact editor. Reconcile recorded IDs after a read
+timeout; never replay publication blindly.
+
+After nested component replacement, validate file referential integrity and
+actual autosave/server persistence before claiming publication. A successful
+MCP getter or contained editor paint can coexist with a rejected update-file.
+Preserve report, owned SVG/copy and exact pending IDs before reload; recover
+canonical references first, then recreate only missing owned additions.
+
 Public modal-yield successors compare complete CSS and template outside their
 one opt-in. Keep native type baselines and actual mobile open/Close/focus proof;
 normal/reduced visibility is independent from Message/Guide or full keyboard

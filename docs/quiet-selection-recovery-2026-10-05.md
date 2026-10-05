@@ -61,3 +61,13 @@ Native blob 9d0db8b1442e7351256c4ad7928c94bfc21fbbb2 and SHA256
 795E6DDF34AD7AF894C0E8484A176161041362B097E2BAB7501720945D5ED0E4.
 Served CSS blob ed2ed8746f8de3322849784bff727e1bcc09dd95. Source/Kit/Motion
 preservation guards remain PASS. Human validation and clean export remain OPEN.
+
+Persistence correction6October: Product child link from the earlier MCP swap
+was not durably valid against its updated shared near main. This blocked later
+autosaves despite geometric/link readback. Error report names component-id-
+mismatch/missing-slot. Reset the exact capsule from its canonical main after
+SVG/copy preservation and bounded owned reload; keep1 selected/Clear selection,
+218.88x43.6 and position. Native saveVersion/validate/UI Enregistré recover
+autosave. Later owned behavior additions are recreated and server-verified;
+see testing/penpot-autosave-recovery-2026-10-06.json. No served CSS or human gate
+changed. Future publication needs actual persistence evidence, not links alone.
