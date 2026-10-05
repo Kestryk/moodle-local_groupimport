@@ -9,8 +9,9 @@
       "kitCommit": "5387a807298ed4709c7c058d66138fcd814204b1",
       "module": "scss/easyedu/components/_card-responsive.scss",
       "documentation": "docs/mobile-participant-memberships-2026-10-05.md",
-      "status": "SM50 strict geometry successor to failed served 390px target/title overlap. One opt-in CSS rule; unrelated CSS and historical isolated guards PASS. Native/shared-design/human OPEN.",
-      "nativePreviewVerified": false,
+      "status": "SM50 served strict geometry/behavior successor PASS: 86 records, 46 geometry, 34 hit probes. Shared checkbox paint parity and human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T205848070Z-13660",
       "humanVisualValidated": false
     },
     "mobileMembershipAction20261005": {
@@ -18,9 +19,10 @@
       "kitCommit": "5387a807298ed4709c7c058d66138fcd814204b1",
       "documentation": "docs/mobile-participant-memberships-2026-10-05.md",
       "penpotReadback": "docs/testing/mobile-membership-action-penpot-2026-10-05.json",
-      "status": "Dedicated responsive action outside hidden desktop bars; existing selection-action/tray skin and native controller. Six linked usage bounds/type checks PASS, native successor/human OPEN.",
+      "status": "Dedicated responsive action outside hidden desktop bars; existing skin/controller. Six linked usages and strict native manual/filter/breakpoint successor PASS; keyboard/human OPEN.",
       "nativeStyleChanged": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T205848070Z-13660",
       "humanVisualValidated": false
     },
     "mobileParticipantMemberships20261005": {

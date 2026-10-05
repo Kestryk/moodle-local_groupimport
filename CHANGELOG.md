@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-05 - Mobile membership density served proof (SM-50)
+
+- Final strict native successor passes 86 records at 320/390/768/1024 and
+  desktop return: density, filtering, real hit targets and original Motion.
+- Correct the scenario's hidden desktop-view assumption through native view
+  navigation, preserving admin preferences and all failed predecessor runs.
+- Record proof pins/cleanup, preserve design checkbox parity and keyboard
+  follow-ups; combined human acceptance remains OPEN.
+
 ## 2026-10-05 - Expose mobile membership density action (SM-50)
 
 - Correct the hidden desktop-bar assumption: expose a responsive existing Kit

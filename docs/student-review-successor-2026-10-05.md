@@ -185,3 +185,12 @@ desktop action bar. Preserve that failed run; a dedicated canonical responsive
 action now forwards to the same controller and has six linked Product usages.
 No CSS/Motion/business change. Five isolated mobile-action bindings PASS;
 fresh native all-width successor and combined human checklist remain OPEN.
+
+SM-50 final native successor PASS: 86 records (46 geometry, 34 real hit probes,
+12 height animations) across 320/390/768/1024 and 1600 return, manual density,
+selection/filter/desktop preference and reduced Motion. No business writes,
+fixtures, page errors or blocked requests; cleanup complete. The scenario now
+uses the real desktop Participants view, respecting admin default structure.
+See mobile-membership-native-summary-2026-10-05.json. Human checklist stays OPEN;
+legacy Small checkbox versus native responsive paint and keyboard parity stay
+under the broader SM-48 audit. Next bounded lot: SM-52 quiet sticky inner action.

@@ -35,7 +35,27 @@ test('Mobile participant density hides only memberships and preserves desktop mo
             .map(a => a.finished.catch(() => undefined)));
         await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     });
-    const select = card => card.locator(':scope > .local-groupimport-easystud-selector').click();
+    const select = async card => {
+        const target = card.locator(':scope > .local-groupimport-easystud-selector');
+        await target.scrollIntoViewIfNeeded();
+        await settle();
+        const hit = await target.evaluate(node => {
+            const rect = element => {
+                const b = element.getBoundingClientRect();
+                return {x: b.x, y: b.y, w: b.width, h: b.height};
+            };
+            const b = node.getBoundingClientRect();
+            const top = document.elementFromPoint(b.x + b.width / 2, b.y + b.height / 2);
+            const cardNode = node.closest('[data-easystud-user]');
+            return {target: rect(node), card: rect(cardNode), square: rect(node.querySelector('span')),
+                cardClass: cardNode.className, blocker: top ? top.className : null,
+                hitLabel: !!top && (top === node || node.contains(top)),
+                viewport: {width: innerWidth, height: innerHeight}};
+        });
+        records.push({width: page.viewportSize().width, state: 'selection-hit-probe', hit});
+        expect(hit.hitLabel, JSON.stringify(hit)).toBe(true);
+        await target.click();
+    };
     const inspect = async (card, width, state, hidden) => {
         await settle();
         const result = await card.evaluate(node => {
@@ -192,6 +212,12 @@ test('Mobile participant density hides only memberships and preserves desktop mo
             const groupingState = await root.evaluate(node => [...node.querySelectorAll('[data-easystud-grouping-id]')]
                 .map(grouping => [grouping.getAttribute('data-easystud-grouping-id'), grouping.className]));
             await page.setViewportSize({width: 1600, height: 1100}); await settle();
+            // Respect the real admin default (currently Groups & groupings,
+            // Complete disabled). Select the Participants view through its
+            // actual control before testing a card that was intentionally hidden.
+            await root.locator('[data-easystud-layout-mode="participants"]:visible').click();
+            await settle();
+            await expect(first).toBeVisible();
             const desktopCompact = await root.evaluate(node => node.classList.contains('local-groupimport-easystud--compact-users'));
             await expect(mobileDensity).toBeHidden();
             expect(desktopCompact).toBe(true);
