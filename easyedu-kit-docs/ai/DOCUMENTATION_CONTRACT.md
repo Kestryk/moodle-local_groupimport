@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Compact course navigation compositions use Moodle's exported destination order
+and capabilities as authority. Guide precedes product tools and native course
+participants. Capture exact copied/native equality without activating routes;
+export safe pathnames only, never authentication queries. Preserve the generic
+Foundation pane and publish product-only composition children through linked
+controls. Keep an incomplete replaced pane recoverable, and distinguish a
+tall inventory specimen from actual short-viewport scrolling or human approval.
+
 Colour-panel integration embeds the exact optional Kit controller plus SCSS.
 Keep the named Hex, native swatch fallback, validation/contrast, Restore, Save
 and loading lifecycle unchanged. Draft Apply dispatches input/change only.

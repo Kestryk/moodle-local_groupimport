@@ -5,6 +5,9 @@
 - Record the missing native section/order in Product Penpot and a bounded
   native drawer inventory candidate. No plugin styles, routes, data or shared
   Foundation menu change; source/Penpot/native/human gates remain separate.
+- Native 768/390 inventory passes with full cleanup; product composition now
+  includes Guide first and all ten actual Moodle destinations using linked
+  controls. Incomplete pane archived recoverably; human checklist remains open.
 
 ## 2026-10-05 - Shared colour-panel successor (SM-46)
 
