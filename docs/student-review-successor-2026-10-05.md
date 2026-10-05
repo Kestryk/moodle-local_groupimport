@@ -1,5 +1,12 @@
 # EasyStud review successor - 5 October 2026
 
+6October SM48 prerequisite: variable native4.7MB AMD startup exceeds the existing
+8s deadline. Preserve failed ready/focus runs and fix consumer-only late-ready
+recovery, not a deadline extension or Skeleton replay. Student opt-in leaves
+Mass/Admin/Guide/CSS/AMD untouched;20 virtual-time cases PASS. Controlled native
+hold/keyboard and paired behavior publication pending; see student-late-loading-
+recovery-2026-10-06.md. Human checklist remains OPEN.
+
 Portable backlog under Platform batch EED-UI-2026-0073. This document supplements
 SM-01..47 and the completion queue; it does not replace unfinished requests or
 close the combined human checklist. Repeated pasted requests are deduplicated.

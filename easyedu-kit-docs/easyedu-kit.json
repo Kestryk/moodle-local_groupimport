@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "studentLateReady20261006": {
+      "kitVersion": "0.4.117",
+      "scope": "Consumer-owned readiness only; Kit loading paint unchanged, no version bump",
+      "documentation": "docs/student-late-loading-recovery-2026-10-06.md",
+      "status": "Student opt-in preserves8s fail-open/fades; real late initialized/stable recovery without Skeleton replay.20 virtual cases PASS, native pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "cardCheckboxKeyboard20261006": {
       "kitVersion": "0.4.117",
       "kitCommit": "38d195ea42994f4fd43d59ff04616924c4c47880",

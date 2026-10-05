@@ -110,6 +110,10 @@
         var diagnostics = createDiagnostics(root);
         var readyAttribute = root.getAttribute('data-easyedu-loading-ready-attribute') ||
             'data-easystud-manager-initialised';
+        // Student Management can finish after fail-open has exposed its content.
+        // Keep that deadline and reveal unchanged; only recover the readiness
+        // marker after the real manager and the existing stability gate finish.
+        var recoverLateReady = root.getAttribute('data-easyedu-loading-recover-late-ready') === '1';
         var timer = null;
         var managerReadyObserver = null;
         var managerReadyScheduled = false;
@@ -157,6 +161,24 @@
             if (state !== 'ready' && state !== 'degraded') {
                 return false;
             }
+            if (recoverLateReady && state === 'ready' &&
+                    root.getAttribute(loadingStateAttribute) === 'degraded' &&
+                    root.getAttribute(readyAttribute) === '1') {
+                clearVisualStabilityGate();
+                if (managerReadyObserver) {
+                    managerReadyObserver.disconnect();
+                    managerReadyObserver = null;
+                }
+                // Content is already revealed and interactive. Never replay the
+                // Skeleton handoff or change focus, geometry, inert or Motion.
+                root.setAttribute(loadingStateAttribute, 'ready');
+                if (diagnostics) {
+                    diagnostics.record('manager-ready', Object.assign({
+                        reason: 'late-' + (reason || 'unknown'), recoveredFrom: 'degraded'
+                    }, captureVisibility(root)));
+                }
+                return true;
+            }
             if (root.getAttribute(loadingStateAttribute) !== 'loading') {
                 return false;
             }
@@ -168,7 +190,7 @@
                 window.clearTimeout(timer);
                 timer = null;
             }
-            if (managerReadyObserver) {
+            if (managerReadyObserver && !(state === 'degraded' && recoverLateReady)) {
                 managerReadyObserver.disconnect();
                 managerReadyObserver = null;
             }
@@ -187,6 +209,13 @@
                 if (diagnostics) {
                     diagnostics.record(state === 'ready' ? 'manager-ready' : 'manager-degraded',
                         Object.assign({reason: reason || 'unknown'}, captureVisibility(root)));
+                }
+                if (state === 'degraded' && recoverLateReady) {
+                    // Initialization can complete during the existing exit fade.
+                    // Restart only its stability check after fail-open settles.
+                    clearVisualStabilityGate();
+                    managerReadyScheduled = false;
+                    scheduleManagerReady();
                 }
             };
             var revealContent = function() {
