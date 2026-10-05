@@ -2761,6 +2761,7 @@ const scheduleResponsiveUiRefresh = (root, options = {}) => {
     }
 
     const refresh = () => {
+        syncParticipantDensity(root, {animate: false});
         syncResponsiveDragAvailability(root);
         if (options.pagination !== false) {
             syncPagination(root);
@@ -5667,6 +5668,7 @@ const updateSelectionActions = root => {
         updateParticipantDensity();
     }
     root.easystudExpandedParticipant = nextExpandedParticipant;
+    syncParticipantDensity(root);
     ['participant', 'member', 'group', 'grouping'].forEach(type => {
         root.classList.toggle('local-groupimport-easystud--selecting-' + type, activetype === type);
     });
@@ -9658,6 +9660,64 @@ const bindTutorialModal = root => {
 };
 
 // Bind optional tools that should not take permanent screen space.
+/**
+ * Keep compact membership visibility independent from the desktop card density.
+ *
+ * Only participant membership rows opt in. Roles, identity, profile fields and
+ * Grouping cards are never hidden by this mode. Existing Motion measures the
+ * card around the mutation; manual whole-list changes retain Motion.swap.
+ *
+ * @param {HTMLElement} root The management workspace.
+ * @param {Object} options Disclosure options.
+ */
+const syncParticipantDensity = (root, {animate = true} = {}) => {
+    const state = root.easystudParticipantDensity;
+    if (!state) {
+        return;
+    }
+    const responsive = isResponsiveWorkspace();
+    const breakpointChanged = state.responsive !== responsive;
+    if (breakpointChanged) {
+        if (responsive) {
+            state.desktopCompact = root.classList.contains(compactClass);
+            root.classList.remove(compactClass);
+        } else {
+            root.classList.toggle(compactClass, state.desktopCompact);
+        }
+        state.responsive = responsive;
+    }
+    const selected = getSelectedItems(root, 'participant');
+    const expanded = responsive && state.mobileCompact && selected.length === 1 ? selected[0] : null;
+    const cards = Array.from(root.querySelectorAll('[data-easystud-participant-list] [data-easystud-user]'));
+    cards.forEach(card => {
+        const hidden = responsive && state.mobileCompact && card !== expanded;
+        const rows = Array.from(card.querySelectorAll('[data-easystud-participant-memberships]'));
+        if (!rows.some(row => row.hidden !== hidden)) {
+            return;
+        }
+        const apply = () => {
+            rows.forEach(row => {
+                row.hidden = hidden;
+            });
+            syncParticipantTagOverflow(card);
+        };
+        if (animate && !breakpointChanged && responsive) {
+            Motion.resize(card, apply, {
+                duration: Motion.timing.normal,
+                onComplete: () => requestGuideHighlightRefresh(root),
+            });
+        } else {
+            apply();
+        }
+    });
+    state.expandedParticipant = expanded;
+    state.updateToggle();
+    if (breakpointChanged) {
+        // Re-resolve the unchanged desktop automatic density after crossing back.
+        updateSelectionActions(root);
+    }
+};
+
 const bindOptionalTools = root => {
     const densityToggle = root.querySelector('[data-easystud-density-toggle]');
     const modal = root.querySelector('[data-easystud-clipboard-modal]');
@@ -9667,14 +9727,27 @@ const bindOptionalTools = root => {
     const closeClipboard = root.querySelector('[data-easystud-close-clipboard]');
 
     if (densityToggle) {
+        const state = {
+            desktopCompact: root.classList.contains(compactClass),
+            mobileCompact: true,
+            responsive: isResponsiveWorkspace(),
+            expandedParticipant: null,
+        };
+        root.easystudParticipantDensity = state;
+        if (state.responsive) {
+            root.classList.remove(compactClass);
+        }
         const updateDensityToggle = () => {
-            const compact = root.classList.contains(compactClass);
+            const mobile = isResponsiveWorkspace();
+            const compact = mobile ? state.mobileCompact : root.classList.contains(compactClass);
             densityToggle.setAttribute('aria-pressed', compact ? 'true' : 'false');
             const text = densityToggle.querySelector('span:last-child');
             if (text) {
+                const detailedLabel = mobile ? 'data-mobile-detailed-label' : 'data-detailed-label';
+                const compactLabel = mobile ? 'data-mobile-compact-label' : 'data-compact-label';
                 text.textContent = compact ?
-                    (densityToggle.getAttribute('data-detailed-label') || '') :
-                    (densityToggle.getAttribute('data-compact-label') || '');
+                    (densityToggle.getAttribute(detailedLabel) || '') :
+                    (densityToggle.getAttribute(compactLabel) || '');
             }
             const icon = densityToggle.querySelector('.fa');
             if (icon) {
@@ -9682,16 +9755,23 @@ const bindOptionalTools = root => {
                 icon.classList.toggle('fa-expand', compact);
             }
         };
+        state.updateToggle = updateDensityToggle;
 
         densityToggle.addEventListener('click', () => {
-            const compact = !root.classList.contains(compactClass);
+            const mobile = isResponsiveWorkspace();
+            const compact = mobile ? !state.mobileCompact : !root.classList.contains(compactClass);
             const participantList = root.querySelector('[data-easystud-participant-list]');
             const applyDensity = () => {
-                root.classList.toggle(compactClass, compact);
+                if (mobile) {
+                    state.mobileCompact = compact;
+                } else {
+                    state.desktopCompact = compact;
+                    root.classList.toggle(compactClass, compact);
+                }
                 root.classList.remove('local-groupimport-easystud--single-participant-selected');
                 root.querySelectorAll('.is-density-expanded').forEach(card => card.classList.remove('is-density-expanded'));
                 root.easystudExpandedParticipant = null;
-                updateDensityToggle();
+                syncParticipantDensity(root, {animate: false});
                 scheduleResponsiveUiRefresh(root);
             };
             if (participantList) {
@@ -9704,7 +9784,7 @@ const bindOptionalTools = root => {
             }
         });
 
-        updateDensityToggle();
+        syncParticipantDensity(root, {animate: false});
     }
 
     if (modal && openClipboardButtons.length && closeClipboard) {

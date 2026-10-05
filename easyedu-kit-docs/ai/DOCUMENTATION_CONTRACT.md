@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Participant membership-only mobile density must stay independent from desktop
+card density. Opt in only Groups/Groupings rows, retain roles/profile fields
+and desktop preferences, and preserve existing resize/swap Motion. Test zero,
+one, two, deselection, manual-full precedence and breakpoint return. Guide and
+Grouping semantics do not inherit this participant-only rule. Source/isolated
+proof is not native responsive geometry or paired design/human acceptance.
+
 Settings-list structural publication can add source-width sample rows and CSV
 offsets to resized copies. Inspect settled consumers after the update; hide
 inherited dummy rows and compose canonical linked rows on an ordinary host.

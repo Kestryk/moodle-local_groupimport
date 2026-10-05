@@ -782,7 +782,9 @@ function local_groupimport_build_manage_template_data(
                 'attribute' => 'data-easystud-density-toggle="1" aria-pressed="' .
                     ($compactparticipantsdefault ? 'true' : 'false') . '" ' .
                     'data-compact-label="' . s(get_string('compactparticipants', 'local_groupimport')) . '" ' .
-                    'data-detailed-label="' . s(get_string('detailedparticipants', 'local_groupimport')) . '"',
+                    'data-detailed-label="' . s(get_string('detailedparticipants', 'local_groupimport')) . '" ' .
+                    'data-mobile-compact-label="' . s(get_string('hideparticipantmemberships', 'local_groupimport')) . '" ' .
+                    'data-mobile-detailed-label="' . s(get_string('showparticipantmemberships', 'local_groupimport')) . '"',
                 'disabled' => false,
             ],
             [

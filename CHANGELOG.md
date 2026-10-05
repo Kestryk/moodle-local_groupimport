@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-05 - Mobile participant memberships candidate (SM-50)
+
+- Separate responsive Groups/Groupings visibility from desktop card density;
+  retain native responsive avatar rules, roles/custom fields and desktop preferences.
+- Sole selection reveals memberships; multiple selection collapses in compact
+  mode. Manual full mode and localized mobile action reuse existing Kit Motion.
+- Publish 12 linked phone/tablet usage compositions with existing Kit title type;
+  recover prior shells and preserve CSS/business commands. 32 isolated states
+  and one-test discovery pass; native geometry and human OPEN.
+
 ## 2026-10-05 - Shared metadata Settings-list publication (SM-51)
 
 - Publish coherent Open, linked Settings row and separate Closed/Empty source
