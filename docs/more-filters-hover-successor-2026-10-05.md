@@ -143,3 +143,22 @@ duration/easing, typography, DOM or CSS change. Unit handler tests cover inside
 release, outside release and outside cancellation; exact source reconstruction
 checks both listeners and all unrelated controllers/CSS/Motion. AMD rebuilt.
 Native end-to-end successor remains pending until a result is appended.
+
+## Pointer cleanup served PASS and real mobile label discrepancy
+
+Native `easystud-authenticated-20261005T164746591Z-43468` passes all 16
+records: nine real animated routes, one intentionally unavailable desktop
+Grouping route, three nested one-click closures and three live reduced-policy
+reopen/close sequences. No page errors/denied requests; all cleanup complete.
+Runtime `3dfd459` serves source `e05ca6c`; CSS remains exactly the capsule
+candidate. Failed predecessors/diagnostic retained. No fixtures/data writes.
+
+Measured native capsule width is 107.046875px desktop/tablet but 98.40625px
+phone. This is not a provider centring error: obsolete consumer mobile
+`advanced-filters__more {font-size:0.66rem}` reduces actual label to 10.56px
+while the button correctly remains 12.16px. Remove that private legacy rule,
+rather than add another style override. Shared Foundation type is already
+12.16px. Extend native successor to assert actual label size at each width;
+exact source/CSS gate allows only that obsolete declaration's removal.
+Canonical-label served result pending; human checklist and reversal/perceived
+duration review remain OPEN. Original card Motion is never rewritten.
