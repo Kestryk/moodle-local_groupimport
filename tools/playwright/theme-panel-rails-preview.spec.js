@@ -36,10 +36,12 @@ test('Native workspace rails consume custom palette without geometry drift', asy
                 const body = request.postDataJSON();
                 if (Array.isArray(body)) methods = body.map(call => call.methodname);
             } catch (_) { /* Unknown POST remains denied. */ }
-            // Native Moodle bootstrap loads translations/templates through
+            // Native Moodle bootstrap loads translations/templates and the
+            // existing unsent draft through
             // read-only Ajax functions. Allow no other POST and log no args.
             const allowed = new Set(['core_get_string', 'core_get_strings',
-                'core_output_load_template', 'core_output_load_template_with_dependencies']);
+                'core_output_load_template', 'core_output_load_template_with_dependencies',
+                'core_message_get_unsent_message']);
             if (pathname === '/lib/ajax/service.php' && methods.length && methods.every(method => allowed.has(method))) {
                 bootstrapReads.push(...methods);
                 return route.continue();

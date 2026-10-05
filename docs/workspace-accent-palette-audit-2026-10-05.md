@@ -36,6 +36,13 @@ translation/template methods on the exact service endpoint; no setting/entity
 mutation is permitted and request arguments are never logged. This is a
 harness correction, not a product fix or a persistence PASS.
 
+The successor run `easystud-authenticated-20261005T145221952Z-40072` again
+passes 144 rail records but captures the exact denied method:
+`core_message_get_unsent_message`. Moodle's service definition marks it read;
+its implementation only retrieves the existing user's draft. Explicitly allow
+that method, not its separate write counterpart. No message content or request
+arguments are recorded. Retain both failures and completed cleanup.
+
 Read-only source audit under EED-UI-2026-0073. Not an implementation or native
 PASS; human checklist remains OPEN. Preserve the user's unfinished phrase
 `Et je trouve pas le` without inventing a missing control.
