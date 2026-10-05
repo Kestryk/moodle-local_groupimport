@@ -1,0 +1,30 @@
+{
+  "lot": "SM-43B",
+  "file": "220f6449-533e-815b-8008-ad9958d032a1",
+  "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "records": [
+    {
+      "parent": "df1dc7b5-2b58-807e-8008-bc36e991fff9",
+      "row": "386b6f86-a1e7-806b-8008-bdbb13a27c0a",
+      "component": "386b6f86-a1e7-806b-8008-bdba01230516",
+      "archivedToggle": "df1dc7b5-2b58-807e-8008-bc36eced25e9",
+      "archivedReset": "df1dc7b5-2b58-807e-8008-bc36ed6e46b9",
+      "more": "df1dc7b5-2b58-807e-8008-bc36ede4658c"
+    },
+    {
+      "parent": "df1dc7b5-2b58-807e-8008-bc36ef187833",
+      "row": "386b6f86-a1e7-806b-8008-bdbb1415b884",
+      "component": "386b6f86-a1e7-806b-8008-bdba014949ba",
+      "archivedToggle": "df1dc7b5-2b58-807e-8008-bc370e996517",
+      "archivedReset": "df1dc7b5-2b58-807e-8008-bc370f07f6c0",
+      "more": "df1dc7b5-2b58-807e-8008-bc370f752b9c"
+    }
+  ],
+  "actionGap": 12,
+  "footerGap": 16,
+  "paintOverflow": [],
+  "exportsInspected": true,
+  "oldControlsPreservedHidden": true,
+  "nativeVerified": false,
+  "humanVisualValidated": false
+}
