@@ -260,3 +260,10 @@ after Close. No errors/blocked/business/fixture writes, complete cleanup and
 clean runtimeec8bbd15. Shared Guide/controller/Motion untouched. Other-modal,
 source48/native44 parity and human checklist remain OPEN. Next: SM-48 broader
 mobile checkbox paint/keyboard reconciliation.
+
+SM-48 broader mobile successor inventories native Large touch paint versus
+twelve older Small16px usages, and a keyboard source gap (inputs tabindex=-1
+without card Space/Enter fallback). Existing first/longest native cards will
+measure hit/paint and actual local Shift+Tab entry at390/768/320. Native,
+paired successor and human OPEN; no Guide/data/Motion change. See
+mobile-card-checkbox-paint-audit-2026-10-06.md.
