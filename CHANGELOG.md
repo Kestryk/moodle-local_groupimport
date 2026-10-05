@@ -22,6 +22,9 @@
   not opacity alone; verify native scrolling and final-link paint access.
 - Preserve the startup-deadline failure and add a GET-only cached/routed timing
   comparison; no readiness assertion, product timeout or controller changes.
+- Cached startup passes at both diagnostic heights, while routed timing remains
+  mixed. Open/Close-only short-menu successor observes unexpected writes without
+  disabling native HTTP cache; prior failure and strict ready gates retained.
 
 ## 2026-10-05 - Shared colour-panel successor (SM-46)
 
