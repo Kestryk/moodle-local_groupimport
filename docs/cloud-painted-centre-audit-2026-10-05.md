@@ -51,3 +51,20 @@ are identical to diagnostic base de2cfae. Regular/compact public API compiles
 without transform/forced styles. Existing diagnostic remains immutable; fresh
 successor adds strict native raster centring and four-peer density guards.
 No consumer-only offsets or Penpot geometry changes. Preview/native pending.
+
+Served strict successor PASS easystud-authenticated-20261005T213341684Z-34264.
+Actual foreground bounds now have horizontal centre delta-0.5px at all three
+widths; vertical +/-0.5px (integer raster rounding). FA line-box intrinsic width
+is21.25px without clipping, canonical font17px/tile35.19px preserved. All four
+peer tiles retain density; zero errors/blocked requests/business writes/fixtures,
+all cleanup true. Mobile crop inspected; captures manifested and explicitly
+pinned, dry-run retention deleted0. Human checkbox stays OPEN.
+
+Managed request20261005T213319Z-7eebecb3dc applied prerequisites330a9e8/de2cfae
+before845dfe3 and purged caches. Runtime clean dede197afbdc248799751b8d913405052eb4b281,
+CSS b8453b33054822e76205f2b4f7291c6692ea85bf. Immutable successor spec blob
+db6e499d9de75103eb1cf4f31d4cfe1e530082b6, SHA256
+CA871ED0F7F850564EDFBC8CA6001247E89CA314F1C2CBB176AFC90673EB3CD0.
+Kit0.4.116/ca9aa62 is scoped to the panel module, not a global embedded revision
+overwrite. Source/Penpot/native geometry passes; FA/vector ink-scale parity,
+all upload lifecycle and human acceptance remain separate open gates.

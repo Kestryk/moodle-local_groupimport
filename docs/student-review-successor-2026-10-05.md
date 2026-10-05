@@ -225,3 +225,10 @@ eighteen Product uses already centre vector paint. Canonical intrinsic-width
 candidate changes exactly five generated declarations, preserving all other
 CSS/markup/controllers/Motion. Strict raster successor and served/human gates
 remain OPEN; no blind Penpot offset is added.
+
+SM-53 served strict raster successor PASS213341684Z-34264 at1600/768/390:
+paint centre delta now +/-0.5px instead of1.5-2px right shift; four peer tiles,
+font/density and all unrelated assets preserved. No data/fixtures/errors/blocked
+requests; clean runtime dede197a and complete cleanup. Existing correctly centred
+paired Foundation/Product vector is retained. Full pixel-scale parity and
+upload lifecycle/human remain OPEN. Next bounded audit: SM-49 mobile navigation.

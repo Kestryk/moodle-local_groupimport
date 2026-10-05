@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Cloud centring served native proof (SM-53)
+
+- Verify actual unobstructed cloud foreground at1600/768/390 within0.5px of
+  centre, preserving four peer tiles and all unrelated CSS/markup/Motion.
+- Keep correct paired vector paint, native crops and failed harness predecessors;
+  no business writes or fixtures. Human/full pixel-scale/lifecycle remain open.
+
 ## 2026-10-05 - Shared intrinsic cloud centring candidate (SM-53)
 
 - Remove the canonical one-em icon clamp that displaces wide cloud paint;
