@@ -1,9 +1,18 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.107",
+  "version": "0.4.108",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "choiceNativeInlineBaseline20261005": {
+      "kitVersion": "0.4.108",
+      "kitCommit": "19f6f0b6a44437c814b5afdfac3da1a6be3d6abb",
+      "choiceModuleBlob": "bbb640bcc197baffafe25477eaa0ab5f1ff550a1",
+      "documentation": "docs/student-choice-terminal-spacing-2026-10-05.md",
+      "status": "SM-55 native-inline baseline successor; six inline and twelve block isolated cases plus framed regressions pass. Native, paired Penpot and human gates pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "choiceTerminalSpacing20261005": {
       "kitVersion": "0.4.107",
       "kitCommit": "3026e3f1f362ba34f3ce13acb0b0ffa2ab3a288b",

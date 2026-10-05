@@ -47,8 +47,9 @@ their source audit and explicit Penpot ownership. No extra worktrees are created
 
 ## Execution and proof gates
 
-SM-55 source successor is implemented with canonical Kit 0.4.107 and isolated
-regressions; see student-choice-terminal-spacing-2026-10-05.md. Native candidate
+SM-55 source successor includes canonical Kit 0.4.107 margin collapse and
+0.4.108 native-inline baseline correction, with isolated regressions; see
+student-choice-terminal-spacing-2026-10-05.md. Native candidate
 and paired Penpot/human gates remain OPEN. SM-48 source audit identifies competing
 overlay offsets and card-height centring; no speculative checkbox fix is served.
 

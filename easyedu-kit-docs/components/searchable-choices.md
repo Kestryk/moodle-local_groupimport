@@ -1,5 +1,13 @@
 # Searchable choices
 
+## Native inline baseline (0.4.108, SM-55)
+
+The canonical host uses grid flow to retain the trigger's first-row baseline
+when the closing panel disappears. Native Moodle inline default/help wrappers
+otherwise move even when the host bottom is stable. No consumer-specific
+offset, typography or Motion change. Check ancestor and sibling text geometry
+through final cleanup, not only the host. See the durable SM-55 evidence record.
+
 ## Terminal outside spacing (0.4.107, SM-55)
 
 Framed single/multiple choices pass `collapseMargins: true` to canonical

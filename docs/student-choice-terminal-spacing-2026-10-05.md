@@ -71,3 +71,22 @@ readiness or identify the timeout's cause. The next immutable candidate bounds
 navigation at 30 seconds, waits for DOM rather than unrelated resource load,
 and retains strict widget/font/geometry readiness. Sanitized phase timestamps
 and destination pathname help distinguish navigation from assertion failures.
+
+## Native inline baseline successor (Kit 0.4.108)
+
+The bounded candidate easystud-authenticated-20261005T113139682Z-40204 reaches
+the first real 1600px setting and finds a second failure: host bottom is stable,
+but the form-setting height jumps 6.5px and default text moves 14.40625px at hide.
+No browser errors or blocked writes; credential/child/lease cleanup is complete.
+Core Boost and native setting templates confirm defaultsnext/defaultinfo are
+inline-block siblings: a block choice's last-child baseline changes at hide.
+
+Canonical 0.4.108 uses a grid host, preserving the first trigger row's baseline.
+The full compiled consumer CSS changes by exactly one display declaration;
+no private Moodle selector offset, typography, command or Motion changes.
+The native-inline predecessor fixture fails, and six successor cases pass
+ancestor/default/help top and height continuity at three widths, single/multiple.
+An intermediate isolated harness reused a stale JS realm; each case now starts
+from about:blank. Keep that failure rather than claim it was a product regression.
+Existing twelve block endpoint and framed pointer/reversal regressions are
+separate checks. Fresh served native execution is still OPEN until recorded.
