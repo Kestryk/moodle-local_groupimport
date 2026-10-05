@@ -78,3 +78,13 @@ Foundations tab, export succeeded and was inspected; fresh Standard/product
 browser checkpoints were also inspected in external run sm48-header-20261005.
 Bounded paired publication is complete. Managed served strict regression,
 other mobile states and human acceptance remain OPEN.
+
+## Served candidate and discovery correction
+
+Managed record 20261005T124242Z applies Source 8936722 then 811d2a6 at clean
+runtime 092c3d31, with cache purge. Kit 0.4.110 is now served. The first strict
+test stops at discovery before credentials, lease or artifact creation:
+Playwright requires an object-destructured first fixture argument; the new
+wrapper used `context`. Correct only that parameter to `{page}` and forward
+it to the unchanged audit. No oracle, selectors, product CSS or Motion changed.
+Retain this harness failure separately; it is not a native product failure.

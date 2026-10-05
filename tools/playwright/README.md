@@ -577,3 +577,13 @@ typography and containment at each native/resized width. Field-recipe proof is
 not full-body parity: images, metadata lists, CSV and Close remain separate.
 Preserve its pre-extraction runs; use the new immutable scenario blob after the
 managed source promotion rather than claiming old runs tested new source.
+
+## Fixed selection header (SM-48)
+
+`student-card-selection-track-audit.spec.js` has a diagnostic and a separate
+strict local-supervised successor. Select exactly `Student selection header
+anchor stays stable after sole selection`. Test callbacks must destructure
+their first fixture argument (`{page}`), including forwarding wrappers; syntax
+checking alone cannot certify Playwright discovery. The same native geometry
+oracle remains required after harness fixes. No entities or settings are saved;
+preserve original card animations and loaded-spec immutability through cleanup.
