@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-05 - Shared modal-yield candidate (SM-49)
+
+- Opt compact Navigation into a shared fixed-control yield while public blocking
+  dialogs are active; restore through existing hidden/ARIA state at Close.
+- Keep every other style/template/controller/Motion unchanged. Six responsive
+  normal/reduced strict native cases pending; linked Foundations Library/Standard
+  and both Product behavior boards recorded with settled Student containment.
+
 ## 2026-10-05 - Mobile navigation modal-yield audit (SM-49)
 
 - Add fonts-ready all-native-label inspection and actual phone/tablet

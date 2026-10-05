@@ -11,6 +11,16 @@
 @use "focus";
 @use "typography";
 
+// Opt-in fixed controls yield while an actual shared blocking dialog owns the
+// viewport. Existing hidden/ARIA lifecycle is authoritative; closed dialogs
+// must never suppress ordinary navigation. No new controller or Motion policy.
+@mixin modal-yield-control {
+  body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal="true"]:not([hidden]):not([aria-hidden="true"])) & {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 @mixin modal-surface {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-modal-border);
