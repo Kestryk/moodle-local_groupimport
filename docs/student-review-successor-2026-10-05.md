@@ -232,3 +232,9 @@ font/density and all unrelated assets preserved. No data/fixtures/errors/blocked
 requests; clean runtime dede197a and complete cleanup. Existing correctly centred
 paired Foundation/Product vector is retained. Full pixel-scale parity and
 upload lifecycle/human remain OPEN. Next bounded audit: SM-49 mobile navigation.
+
+SM-49 continuation now audits all native destination labels (not only three
+plugin links) and actual mobile Participant-details entry at390/768/320. Keep
+previous typography/scroll proof and accepted Motion; inspect modal lifecycle
+markers before adding a shared yield rule. See mobile-navigation-dialog-yield-
+2026-10-05.md. Guide remains separately owned, no unrelated font override.
