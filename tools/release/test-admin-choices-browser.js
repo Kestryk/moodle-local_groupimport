@@ -8,12 +8,12 @@ const root = path.resolve(__dirname, '../..');
     const browser = await chromium.launch({headless: true});
     try {
       for (const width of [1600, 768, 390]) {
-       for (const motion of ['reduce', 'no-preference']) {
+       for (const motion of ['reduce', 'no-preference', 'disabled']) {
         const page = await browser.newPage();
         await page.setViewportSize({width, height: 1000});
         const errors = [];
         page.on('pageerror', error => errors.push(error.message));
-        await page.emulateMedia({reducedMotion: motion});
+        await page.emulateMedia({reducedMotion: motion === 'reduce' ? 'reduce' : 'no-preference'});
         await page.setContent(`<main id="page-admin-setting-local_groupimport"><form id="adminsettings">
             <div><label for="mode">Default view</label><select id="mode" name="s_local_groupimport_defaultlayoutmode">
                 <option value="both" selected>Complete</option><option value="groups">Groups</option></select></div>
@@ -25,21 +25,30 @@ const root = path.resolve(__dirname, '../..');
         await page.evaluate(() => {
             window.modules = {};
             window.define = (name, deps, factory) => {
-                window.modules[name] = factory(...deps.map(dep => window.modules[dep]));
+                // Moodle Babel modules publish through the AMD exports object;
+                // handwritten controllers may instead return their public API.
+                const exports = {};
+                const result = factory(...deps.map(dep => dep === 'exports' ? exports : window.modules[dep]));
+                window.modules[name] = result === undefined ? exports : result;
             };
         });
-        for (const module of ['searchable_choices', 'admin_choices']) {
+        for (const module of ['motion', 'searchable_choices', 'admin_choices']) {
             await page.addScriptTag({path: path.join(root, 'amd/build', `${module}.min.js`)});
         }
-        await page.evaluate(() => {
+        await page.evaluate(animationsEnabled => {
             const labels = {search: 'Search', empty: 'No matches', none: 'None', count: '__count__ selected', clear: 'Clear'};
-            window.modules['local_groupimport/admin_choices'].init(labels);
-            window.modules['local_groupimport/admin_choices'].init(labels);
-        });
+            window.modules['local_groupimport/admin_choices'].init(labels, animationsEnabled);
+            window.modules['local_groupimport/admin_choices'].init(labels, animationsEnabled);
+        }, motion !== 'disabled');
         assert.equal(await page.locator('.easyedu-searchable-choice').count(), 2, 'Idempotent adapter');
+        assert.equal(await page.locator('.easyedu-searchable-choice--framed').count(), 2, 'Canonical framed Motion');
         assert.equal(await page.locator('#required').isVisible(), true, 'Required native fallback');
         const hosts = page.locator('.easyedu-searchable-choice');
         await hosts.nth(0).locator('button').first().click();
+        if (motion === 'disabled' || motion === 'reduce') {
+            assert.equal(await hosts.nth(0).locator('.easyedu-searchable-choice__panel')
+                .evaluate(panel => panel.getAnimations().length), 0, 'Static policy keeps framed controls static');
+        }
         await hosts.nth(0).locator('input[type=search]').fill('Groups');
         await hosts.nth(0).getByRole('button', {name: 'Groups', exact: true}).click();
         assert.equal(await page.locator('#mode').inputValue(), 'groups');
@@ -47,6 +56,11 @@ const root = path.resolve(__dirname, '../..');
         await hosts.nth(1).getByRole('button', {name: 'Username', exact: true}).click();
         assert.deepEqual(await page.locator('#fields').evaluate(s => [...s.selectedOptions].map(o => o.value)),
             ['email', 'username']);
+        // This legacy regression starts from an OPEN list, not an unfinished
+        // entry transition. The canonical framed engine now takes 360ms.
+        await hosts.nth(1).locator('.easyedu-searchable-choice__panel').evaluate(async panel => {
+            await Promise.all(panel.getAnimations().map(animation => animation.finished.catch(() => {})));
+        });
         // Actual regression: Reset must work directly below the OPEN list.
         const reset = page.getByRole('button', {name: 'Reset', exact: true});
         const resetBefore = await reset.boundingBox();

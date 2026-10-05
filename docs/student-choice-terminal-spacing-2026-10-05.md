@@ -37,3 +37,26 @@ continuity, focus and cleanup. It blocks settings POST and never saves settings.
 Its native execution, other modal/filter consumers, paired Foundations/EasyStud
 Motion annotation and human acceptance are OPEN until separately recorded.
 No Penpot write is made while the parallel Guide window may use the MCP channel.
+
+## Native Administration integration gap and successor
+
+The first native run easystud-authenticated-20261005T104515936Z-1356 fails before
+geometry: expected at least five framed controls but found zero. Snapshot/source
+confirm enhanced choices exist, but admin_choices never injected canonical Motion;
+it retained the legacy fallback, unlike modal/filter consumers. Preserve the
+failure and completed credential/lease/child cleanup; do not relax that assertion.
+
+Successor imports canonical Motion in the native adapter and generated dependency
+list, and passes it to both single and multiple enhancements. The existing saved
+enableanimations setting is supplied as the form's shared Motion policy. Native
+select values, storage, observer/reset/required fallback and all paint are unchanged.
+Existing isolated Admin Reset/held-pointer tests now load that real dependency and
+assert framed integration. Other native consumer paths and human gates stay OPEN.
+
+Nine isolated native-adapter cases now pass (three widths, normal/reduced/admin-
+disabled), including open-list physical Reset, held-pointer stability, selection,
+search, observer-disable, required fallback and idempotence. The fixture required
+real AMD exports-object handling for the imported Babel Motion module, then a
+settled-open starting point for its legacy Reset probe. Preserve both intermediate
+harness failures in the task record; neither justified weakening pointer equality.
+PHP syntax and executed generated choices exports also pass. No settings write.
