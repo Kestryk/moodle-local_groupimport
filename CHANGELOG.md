@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-05 - Narrow participant title target clearance (SM-50 successor)
+
+- Preserve the failed served 390px overlap and add Kit's opt-in title-track
+  clearance, leaving metadata, compact cards and original Motion unchanged.
+- Full generated CSS differs by one rule only; strict successor retains the
+  historical state guards and captures native geometry before assertions.
+- Native successor and paired shared design proof remain pending, human OPEN.
+
 ## 2026-10-05 - Mobile participant memberships candidate (SM-50)
 
 - Separate responsive Groups/Groupings visibility from desktop card density;

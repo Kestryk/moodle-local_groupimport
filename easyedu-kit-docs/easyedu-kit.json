@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "participantTitleClearance20261005": {
+      "kitVersion": "0.4.114",
+      "kitCommit": "5387a807298ed4709c7c058d66138fcd814204b1",
+      "module": "scss/easyedu/components/_card-responsive.scss",
+      "documentation": "docs/mobile-participant-memberships-2026-10-05.md",
+      "status": "SM50 strict geometry successor to failed served 390px target/title overlap. One opt-in CSS rule; unrelated CSS and historical isolated guards PASS. Native/shared-design/human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "mobileParticipantMemberships20261005": {
       "kitVersion": "0.4.113",
       "kitDocumentationCommit": "fc2bfbb5bf545800c2d37ee1cbd472a4837b90cb",

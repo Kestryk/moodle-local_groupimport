@@ -62,6 +62,9 @@ test('Mobile participant density hides only memberships and preserves desktop mo
                     selector.y < title.y + title.h && selector.y + selector.h > title.y,
             };
         });
+        // Retain geometry even when an assertion fails, unlike the initial
+        // served run (2a6b6b1). Keep every original behavior/target oracle.
+        records.push({width, state, result});
         expect(result.membershipHidden.length).toBeGreaterThan(0);
         expect(result.membershipHidden.every(value => value === hidden)).toBe(true);
         expect(result.membershipDisplay.every(value => hidden ? value === 'none' : value !== 'none')).toBe(true);
@@ -72,7 +75,6 @@ test('Mobile participant density hides only memberships and preserves desktop mo
         expect(result.gap).toBeGreaterThanOrEqual(4);
         expect(result.selector.w).toBeGreaterThanOrEqual(44);
         expect(result.selector.h).toBeGreaterThanOrEqual(44);
-        records.push({width, state, result});
         return result;
     };
     const density = root.locator('[data-easystud-density-toggle]');

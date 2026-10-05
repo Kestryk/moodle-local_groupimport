@@ -703,6 +703,12 @@
       padding-left: 1.85rem;
     }
 
+    // Full responsive cards retain their metadata width. Only the identity
+    // track clears the existing 44px overlay target; compact cards are unchanged.
+    &--responsive-workspace:not(&--compact-users) &-user__headline-main {
+      @include easyedu.person-card-selection-title-clearance;
+    }
+
     &--compact-users &-user {
       padding-left: 3.85rem;
     }

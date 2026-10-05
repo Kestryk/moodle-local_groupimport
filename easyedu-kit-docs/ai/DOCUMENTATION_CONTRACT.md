@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+A served responsive hit-target failure requires an explicit geometry successor:
+preserve the historical run and strict oracles, record bounds before assertions,
+reserve only the affected title lane through a parameterized shared opt-in and
+compare complete unrelated generated CSS with the correct compiler version.
+Do not shrink touch targets, rewrite accepted Motion or claim native coverage
+from isolated visibility tests or a design readback.
+
 Participant membership-only mobile density must stay independent from desktop
 card density. Opt in only Groups/Groupings rows, retain roles/profile fields
 and desktop preferences, and preserve existing resize/swap Motion. Test zero,

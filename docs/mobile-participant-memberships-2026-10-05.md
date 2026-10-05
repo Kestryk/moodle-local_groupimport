@@ -76,6 +76,30 @@ is certified by isolated tests. References consulted:
 [Moodle coding style](https://moodledev.io/general/development/policies/codingstyle)
 and [Moodle 5.1 JavaScript](https://moodledev.io/docs/5.1/guides/javascript).
 
+## Native failure and bounded title-track successor
+
+SM-50 `2a6b6b1` was served by request `20261005T201827Z-8105db4d3f`
+(runtime `a9cd5fe2`, clean). Its first native 390px zero-selected case failed:
+the 44px selection hit target overlaps the name. Run
+`easystud-authenticated-20261005T201916853Z-25976` retains the assertion,
+error context and successful credential/lease/child cleanup; no business writes.
+This is a real layout failure, not completed native behavior coverage.
+
+The successor opts into canonical Kit 0.4.114
+`person-card-selection-title-clearance` at the existing <=560px/full breakpoint.
+It reserves only the title/badge lane (2.02rem), retaining metadata/email width,
+44px target, desktop/compact CSS and all JS/Motion. The complete CSS delta is
+exactly one three-line rule, compiled with Sass 1.79.1; older Sass 1.58.3
+introduced unrelated selector drift and its output was replaced by this build.
+The complete responsive module matches Kit `5387a80` after line-ending
+normalization; its pre-existing experimental narrow mixins are not opted into
+by this lot. No other independently pinned Kit module is overwritten.
+`test-mobile-participant-title-clearance.cjs` proves the complete unrelated CSS
+and reruns the pinned historical controller/template/build/design checks.
+The native successor keeps all strict oracles and records geometry before an
+assertion. Its result, paired shared recipe readback and human review stay open
+until independently recorded; the earlier failed run is never reclassified PASS.
+
 ## Previous lot's managed publication
 
 SM-51 documentation promotion request `20261005T192922Z-681e270c05` completed:
