@@ -71,3 +71,10 @@ blocked requests, business writes or fixtures; credentials/child/lease cleanup
 complete. Retention dry-run deletes0 and protects1. Full pins and limits are in
 testing/mobile-navigation-modal-yield-native-2026-10-05.json. Human acceptance,
 48/44 specimen parity, clean design export and other modal journeys stay OPEN.
+
+6October persistence correction: original Product protocol IDs were not saved
+because the prior SM52 nested capsule link blocked autosave. Native CSS PASS is
+unaffected. Recover exact capsule linkage, recreate only missing owned protocol
+boards and verify all three via server GET200/UI Enregistré/validate=[]. Current
+Student/Mass IDs are in testing/penpot-autosave-recovery-2026-10-06.json;
+earlier readback metadata is historic, not current saved proof. Guide untouched.

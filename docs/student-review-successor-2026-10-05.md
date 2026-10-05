@@ -267,3 +267,16 @@ without card Space/Enter fallback). Existing first/longest native cards will
 measure hit/paint and actual local Shift+Tab entry at390/768/320. Native,
 paired successor and human OPEN; no Guide/data/Motion change. See
 mobile-card-checkbox-paint-audit-2026-10-06.md.
+
+SM-48 mobile diagnostic PASS63 records, but retains two actual paint defects:
+Participant ~5px low, Group320 ~4.83px low. Nine real local Tab probes cannot
+reach checkbox (tabindex=-1). Source keyboard candidate restores browser
+default focusability for ten static/three dynamic controls, preserving existing
+handlers, CSS/Motion/Guide. Canonical Large already matches22.72px native size;
+paired keyboard/native and separate vertical/usage-size publication remain OPEN.
+
+SM52 persistence recovery corrects an earlier nested swap reference, preserving
+capsule geometry/copy; validate=[], Enregistré and GET200 now prove saved SM49
+replacement behavior boards and SM48 keyboard protocol. Earlier original IDs
+were in-memory only; retained as historical evidence. See penpot-autosave-
+recovery-2026-10-06.json. No CSS/native/human claim changed; Guide untouched.

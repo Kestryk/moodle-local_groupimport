@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "cardCheckboxKeyboard20261006": {
+      "kitVersion": "0.4.117",
+      "kitCommit": "38d195ea42994f4fd43d59ff04616924c4c47880",
+      "scope": "Documentation/native keyboard contract only; unchanged selection-checkbox SCSS and existing Large providers",
+      "documentation": "docs/mobile-card-checkbox-paint-audit-2026-10-06.md",
+      "status": "Restore ten static/three dynamic checkbox default focusability; paired protocol/native successor pending. Paint-track/size/human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "modalYieldControl20261005": {
       "kitVersion": "0.4.117",
       "kitCommit": "ea831179469d4042003f0939e28075f6be480045",
