@@ -6807,14 +6807,16 @@
   background: var(--easyedu-modal-footer-bg);
   border-top: 1px solid var(--easyedu-modal-border);
 }
-.local-groupimport-easystud-message-modal .modal-header {
+.local-groupimport-easystud-message-modal .modal-content .modal-header {
   align-items: center;
   background: var(--easyedu-modal-header-bg);
-  border-bottom: 1px solid var(--easyedu-modal-border);
+  border-block-end: 0.0625rem solid var(--easyedu-modal-border);
+  box-sizing: border-box;
   display: flex;
-  gap: 0.85rem;
+  gap: 0.75rem;
   justify-content: space-between;
-  padding: 1rem 1.15rem;
+  min-block-size: 4rem;
+  padding: 0.75rem 1.25rem;
   flex: 0 0 auto;
 }
 .local-groupimport-easystud-message-modal .modal-header [data-action=hide],
@@ -6933,11 +6935,6 @@
   text-align: center;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: var(--easyedu-font-weight-strong);
-  min-block-size: 1.625rem;
-  padding: 0.25rem 0.65rem;
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button .fa,
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button [class*=" fa-"],
@@ -7007,12 +7004,6 @@
   background: var(--easyedu-surface);
   border-color: var(--easyedu-deposit-border);
   color: var(--easyedu-secondary-text);
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: var(--easyedu-font-weight-strong);
-  min-block-size: 1.625rem;
-  padding: 0.25rem 0.65rem;
-  color: var(--easyedu-primary);
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary .fa,
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary [class*=" fa-"] {
@@ -7027,11 +7018,11 @@
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary:focus {
   background: var(--easyedu-surface);
-  color: var(--easyedu-primary);
+  color: var(--easyedu-secondary-text);
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary:hover {
   background: var(--easyedu-primary-soft);
-  color: var(--easyedu-primary);
+  color: var(--easyedu-secondary-text);
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary:focus-visible {
   border-color: var(--easyedu-control-focus-border);
@@ -7060,11 +7051,6 @@
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-danger);
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: var(--easyedu-font-weight-strong);
-  min-block-size: 1.625rem;
-  padding: 0.25rem 0.65rem;
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--danger .fa,
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--danger [class*=" fa-"] {
@@ -21289,7 +21275,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 
 .easyedu-ui .easyedu-entity-dialog__header,
-.easyedu-ui .easyedu-confirmation-dialog__header {
+.easyedu-ui .easyedu-confirmation-dialog__header,
+.easyedu-ui .easyedu-dialog-header {
   align-items: center;
   background: var(--easyedu-modal-header-bg);
   border-block-end: 0.0625rem solid var(--easyedu-modal-border);
@@ -21299,6 +21286,50 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   justify-content: space-between;
   min-block-size: 4rem;
   padding: 0.75rem 1.25rem;
+}
+
+.easyedu-ui .easyedu-dialog-close {
+  align-items: center;
+  border-radius: var(--easyedu-control-radius);
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  box-sizing: border-box;
+  color: var(--easyedu-text-muted);
+  height: 1.9rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0;
+  width: 1.9rem;
+}
+.easyedu-ui .easyedu-dialog-close:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-dialog-close:hover, .easyedu-ui .easyedu-dialog-close:focus-visible {
+  background: var(--easyedu-danger-soft);
+  border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);
+  color: var(--easyedu-danger);
+}
+.easyedu-ui .easyedu-dialog-close {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  margin: 0;
+}
+.easyedu-ui .easyedu-dialog-close > .fa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
 }
 
 .easyedu-ui .easyedu-entity-dialog__heading {

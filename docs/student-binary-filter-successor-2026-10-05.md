@@ -1,6 +1,6 @@
 # SM-43B — Binary filter / Reset presentation
 
-Current gate: source and paired publication ready, native preview pending.
+Current gate: served local preview; static, paired and native scoped proof pass.
 Shared/embedded recipes and two class-only adapters pass strict static/isolated
 gates. Six Foundation source/Standard states match and both product catalogue
 compositions are linked, reflowed and exported after scoped editor recovery.
@@ -105,3 +105,20 @@ data. Both product exports inspected; no commands or user-data change.
 Exact crosswalk: `docs/testing/filter-actions-foundations-2026-10-05.json` and
 `filter-actions-product-2026-10-05.json`. Kit code pin `55cd2c2`.
 Native successor and human review are still separate pending gates.
+
+## Served native successor
+
+Code `3bfe9e2` promoted after dry-run to clean preview `13f59f57`; record
+`20261005T022249Z`, normal managed cache purge complete. Native successor
+`easystud-authenticated-20261005T022300949Z-38004` PASS four catalogue cases:
+desktop Participants/Structure plus compact Groups at 768/390. Actual 12px
+action gap, 44px toggle, 30.39px desktop/44px compact Reset, trailing lane,
+keyboard authority and original responsive Reset closure pass. No page errors
+or blocked business requests; credentials cleared, child stopped, lease released,
+no fixture. Nested parent/choice close regression `022431310Z-17424` PASS.
+Its cleanup likewise complete; both retention dry-runs protect evidence and
+delete nothing. No membership, colour setting or message data changed.
+
+Native proof covers these four routes, not every semantic/disabled state or
+full plugin composition. Six source states and isolated RTL/disabled/palette/
+reduced-motion proof remain separate. Human checklist OPEN. Next: SM-44.

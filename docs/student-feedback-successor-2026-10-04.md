@@ -37,6 +37,13 @@ No other-version compatibility is inferred.
 
 Requests recorded; execution/proof results are appended per lot below.
 
+- SM-44 source and Penpot candidate: shared canonical 64px header and Regular
+  Message actions, exact History class-only adapters and unrelated CSS/body/
+  commands/Motion guard pass. Foundations Desktop/Narrow providers, Standard
+  and five product Message copies updated, alongside History chrome. Preview
+  successor remains pending; human checklist OPEN. See
+  `student-modal-chrome-successor-2026-10-05.md`.
+
 - SM-43A implemented: shared transparent underline-only hover, Wide/Touch
   full-lane width and public 16px minimum footer clearance. Ten paired source
   states and 20 product consumers verified; original equal-height layout,
@@ -45,16 +52,18 @@ Requests recorded; execution/proof results are appended per lot below.
   Groupings; nested closure passes nine iterations at three widths, with
   full cleanup and no business writes. SM-43B toggle and human review stay open.
   See `student-filter-footer-2026-10-05.md`.
-- SM-43B source candidate prepared: shared trailing switch/12px action gap,
+- SM-43B served: shared trailing switch/12px action gap,
   exact class-only adapters and strict unrelated-CSS/commands gate pass.
   Isolated three-width keyboard/disabled/RTL/palette/reduced-Motion proof and
   SCSS-only package gate pass. Six paired states verified and two product
   catalogue compositions linked/reflowed/exported after page-local recovery;
-  native preview still pending. No runtime mutation yet. Baseline gap roughly 384–401px,
+  four native cases and nested parent/choice closure regression pass, all cleanup
+  complete and no business/fixture writes. Human checklist remains OPEN.
+  Baseline gap roughly 384–401px,
   compact separate full-width rows. Responsive Reset intentionally closes the
   panel; original sampler's extra click reopened it. Corrected baseline
-  passes four native cases with exact Reset semantics and cleanup; no toggle
-  design/source change yet.
+  passes four native cases with exact Reset semantics and cleanup; those were
+  baseline results before the now-served toggle successor, not its current status.
   See `student-binary-filter-successor-2026-10-05.md`.
 
 - SM-39 implemented: twelve local QA roles, three nologin users and 24
