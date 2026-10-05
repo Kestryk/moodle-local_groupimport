@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Settings-list structural publication can add source-width sample rows and CSV
+offsets to resized copies. Inspect settled consumers after the update; hide
+inherited dummy rows and compose canonical linked rows on an ordinary host.
+Keep original names/counts/CSV and scrolling excerpts, archive prior lists.
+Text.layoutChild may be null outside a layout parent: reconcile a partial host
+before resuming, never blindly create duplicates. Export stalls do not authorize
+closing an unsaved editor or claiming visual acceptance from readback alone.
+
 Nested disclosure closure can move its trigger before pointerup/click. Release
 and cancellation cleanup must observe owned pointer IDs at document capture,
 not only the workspace root; preserve suppression of the original click while

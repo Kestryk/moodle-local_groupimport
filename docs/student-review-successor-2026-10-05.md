@@ -149,3 +149,10 @@ The requested mobile membership-only default/one-two-selection rule is therefore
 still unimplemented. Preserve desktop behavior and Grouping cards; next lot
 requires an explicit mobile recipe/composition and zero/one/two/filter tests,
 not removal of the responsive guard alone.
+
+SM-51 Settings-list successor now has paired Open/Closed/Empty/Row publication
+and linked Product metadata/full Group/Grouping compositions. Native recipes,
+generated assets, business content and Motion are unchanged. Saved containment
+and type checks pass, with intentional scrolling clipping retained. Full-dialog
+exports inspected and purple Groupings chip published with its paired source;
+see entity-settings-list-publication-2026-10-05.md. No human gate is closed.

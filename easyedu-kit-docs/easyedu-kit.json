@@ -4,6 +4,17 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "settingsListPublication20261005": {
+      "kitVersion": "0.4.113",
+      "kitCommit": "79c653a2c51382755a4791adc42432a8c461e6ce",
+      "documentation": "docs/entity-settings-list-publication-2026-10-05.md",
+      "penpotReadback": "docs/testing/entity-settings-list-publication-2026-10-05.json",
+      "productReadback": "docs/testing/entity-settings-list-product-readback-2026-10-05.json",
+      "status": "SM51 paired Settings family and semantic Groupings chip; linked full Product lists and scoped saved containment/type/agent-export PASS. Native optional/mobile and human OPEN.",
+      "nativeStyleChanged": false,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "moreFiltersCapsule20261005": {
       "kitVersion": "0.4.113",
       "kitCommit": "79c653a2c51382755a4791adc42432a8c461e6ce",
