@@ -37,6 +37,15 @@ No other-version compatibility is inferred.
 
 Requests recorded; execution/proof results are appended per lot below.
 
+- SM-47 published: course-5 native inventory passes at 768/390 with complete
+  cleanup, no business request and unchanged route/controller authority.
+  Product compact navigation now contains Guide first, three linked product
+  rows and ten text-only native destinations in the measured order. Original
+  incomplete pane is recoverably hidden; settled containment and internal
+  export pass. Generic Foundations stays unchanged; other capabilities,
+  short-height scrolling and human review remain open. See
+  `student-mobile-navigation-composition-2026-10-05.md`.
+
 - SM-46 served: shared S/M/L draft popup with palette, native keyboard ranges,
   authoritative Hex and Apply/Cancel; strict native settings/reset/contrast,
   loading and unrelated CSS/controller preservation pass. Twelve Foundations
