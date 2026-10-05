@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Mobile navigation modal-yield audit (SM-49)
+
+- Add fonts-ready all-native-label inspection and actual phone/tablet
+  Participant-details entry; record launcher paint and active modal markers.
+- Preserve prior font/scroll proof, all assets/Guide lifecycle and open human
+  gate. No speculative type override, destination visit or business mutation.
+
 ## 2026-10-05 - Cloud centring served native proof (SM-53)
 
 - Verify actual unobstructed cloud foreground at1600/768/390 within0.5px of

@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Navigation continuation distinguishes all native row/label typography from
+modal layering: being below the dialog is not the same as yielding paint through
+its backdrop. Audit actual mobile entry and active modal markers; preserve
+ordinary trigger availability, close focus and accepted Motion/Guide ownership.
+
 Intrinsic icon-width successors retain the immutable painted diagnostic and
 compare complete generated CSS. Bound changes to shared width declarations;
 keep all markup/controllers/Motion and source vector paint unchanged. Native
