@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-05 - Compact navigation composition inventory (SM-47)
+
+- Record the missing native section/order in Product Penpot and a bounded
+  native drawer inventory candidate. No plugin styles, routes, data or shared
+  Foundation menu change; source/Penpot/native/human gates remain separate.
+
 ## 2026-10-05 - Shared colour-panel successor (SM-46)
 
 - Embed canonical Kit S/M/L popup and optional draft controller; no private
