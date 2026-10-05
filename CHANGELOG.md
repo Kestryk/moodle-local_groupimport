@@ -5,6 +5,8 @@
 - Add a bounded native Mass Import/Administration initialization candidate for
   running subtle sweep, reduced Motion and original readiness. No product
   source change; native/publication and human gates are tracked separately.
+- Passing baseline exposed fictitious Mass Import header actions; successor
+  removes them and reuses the canonical three-cue heading in Mass/Admin.
 
 ## 2026-10-05 - Compact navigation composition inventory (SM-47)
 

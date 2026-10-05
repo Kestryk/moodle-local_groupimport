@@ -87,8 +87,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__loading-header {
-    display: grid;
-    gap: 0.55rem;
+    @include easyedu.skeleton-page-heading;
   }
 
   .local-groupimport-admin-settings__loading-sections {

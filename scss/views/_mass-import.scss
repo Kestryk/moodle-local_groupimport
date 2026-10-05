@@ -63,11 +63,7 @@
   }
 
   &__loading-header {
-    box-sizing: border-box;
-    display: grid;
-    gap: 0.55rem;
-    max-inline-size: 100%;
-    min-width: 0;
+    @include easyedu.skeleton-page-heading;
   }
 
   &__loading-grid {

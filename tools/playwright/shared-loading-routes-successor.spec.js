@@ -74,6 +74,8 @@ test('Shared Skeleton runs and releases on Mass Import and Administration', asyn
                 await expect.poll(() => cue.evaluate(n => getComputedStyle(n).backgroundPosition),
                     {intervals: [100, 200], timeout: 1000}).not.toBe(record.normal.position);
                 expect(record.layout.focusable).toBe(0);
+                expect(record.layout.headerCues).toBe(3);
+                expect(record.layout.headerHeight).toBeLessThan(100);
                 expect(record.layout.overflow).toBeLessThanOrEqual(1);
                 await page.screenshot({path: testInfo.outputPath(`shared-loading-${routeInfo.name}-${width}.png`)});
                 await page.emulateMedia({reducedMotion: 'reduce'});
