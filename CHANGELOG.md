@@ -7,6 +7,8 @@
 - Native unnamed swatch/named Hex, validation, nonblocking contrast notice,
   Restore/defaults and Moodle Save stay unchanged. Apply only updates a draft.
 - Isolated/published-source gates pass; native/human status tracked separately.
+- Shared viewport-cap successor preserves 16px margins with native scrollbars;
+  retain the failing native capture/run and verify the corrected gate separately.
 
 ## 2026-10-05 - Administration section rhythm successor (SM-45)
 
