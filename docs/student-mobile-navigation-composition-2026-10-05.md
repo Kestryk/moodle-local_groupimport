@@ -73,3 +73,16 @@ historical inventory and add `student-mobile-navigation-short-viewport.spec.js`:
 containment, actual internal scroll, retained sticky Close and painted last-link
 hit target. Close only, no destinations or Guide activated. Native result pending.
 Penpot publication recovery is separately tracked in the shared loading document.
+
+First short run `easystud-authenticated-20261005T062930649Z-18756` failed before
+opening the menu: the native bootstrap reached `degraded`, while the manager
+eventually reported initialized. No page error or business request was recorded;
+all cleanup flags are true. Do not weaken the required ready state or rerun
+unchanged. Preserve this as a startup-deadline failure requiring timing/resource
+diagnostics before further native visual certification.
+
+`student-loading-deadline-diagnostic.spec.js` records native diagnostic events,
+state transition timestamps, sanitized script pathnames/durations and long
+tasks at 768 x 600/1100. No auth URL/query is exported; no readiness is forced,
+no timeout enlarged in the product, no action or fixture mutation. The strict
+ready assertion stays required after both diagnostic records are saved.
