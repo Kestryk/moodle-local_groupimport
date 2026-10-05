@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "mobileParticipantMemberships20261005": {
+      "kitVersion": "0.4.113",
+      "kitDocumentationCommit": "fc2bfbb5bf545800c2d37ee1cbd472a4837b90cb",
+      "documentation": "docs/mobile-participant-memberships-2026-10-05.md",
+      "penpotReadback": "docs/testing/mobile-participant-memberships-final-2026-10-05.json",
+      "status": "SM50 consumer visibility candidate; 32 isolated states, preserved desktop/commands/CSS and 12 linked Product usages PASS. Native/human OPEN.",
+      "nativeStyleChanged": false,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "settingsListPublication20261005": {
       "kitVersion": "0.4.113",
       "kitCommit": "79c653a2c51382755a4791adc42432a8c461e6ce",

@@ -1,0 +1,520 @@
+{
+  "scoped": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "board": "cef95197-06bc-809e-8008-aeeaa9e3ad0d",
+    "ids": [
+      {
+        "id": "01e728c3-f1ef-80b3-8008-b5b20adadb1c",
+        "name": "Composition / Participant card / Samira Benali / Mobile selected compact",
+        "hidden": false,
+        "x": 2656,
+        "y": 5180.9,
+        "width": 326,
+        "height": 46
+      },
+      {
+        "id": "01e728c3-f1ef-80b3-8008-b5b205db1851",
+        "name": "Composition / Participant card / Alice Martin",
+        "hidden": false,
+        "x": 2656,
+        "y": 5242.9,
+        "width": 326,
+        "height": 60
+      },
+      {
+        "id": "cef95197-06bc-809e-8008-aeeac9040cc6",
+        "name": "Text",
+        "hidden": false,
+        "x": 2656,
+        "y": 4934,
+        "width": 310,
+        "height": 22,
+        "text": "24 participants · 3 selected"
+      },
+      {
+        "id": "37222e98-689a-801a-8008-bbedd4321b24",
+        "name": "Text",
+        "hidden": false,
+        "x": 2645.8,
+        "y": 5529.179999999999,
+        "width": 331.4000000000001,
+        "height": 18.24000000000069,
+        "text": "3 selected"
+      }
+    ]
+  },
+  "full": {
+    "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd42",
+    "name": "Archive / Mobile selected participant / Previous expanded composition",
+    "type": "board",
+    "x": 2656,
+    "y": 5128.4,
+    "width": 326,
+    "height": 188,
+    "hidden": true,
+    "children": [
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd43",
+        "name": "Foundation / Participant card / Samira Benali / Selected",
+        "type": "board",
+        "x": 2656,
+        "y": 5128.4,
+        "width": 326,
+        "height": 188,
+        "hidden": false,
+        "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3",
+        "children": [
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd56",
+            "name": "Card surface",
+            "type": "rectangle",
+            "x": 2656,
+            "y": 5128.4,
+            "width": 326,
+            "height": 188,
+            "hidden": false,
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3",
+            "children": []
+          },
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd57",
+            "name": "Identity rail",
+            "type": "rectangle",
+            "x": 2656,
+            "y": 5128.4,
+            "width": 20,
+            "height": 188,
+            "hidden": false,
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3",
+            "children": []
+          },
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd58",
+            "name": "Linked identity icon",
+            "type": "board",
+            "x": 2658,
+            "y": 5214.4,
+            "width": 16,
+            "height": 16,
+            "hidden": false,
+            "component": "32eadb6d-165e-803e-8008-989287ae041b",
+            "children": [
+              {
+                "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd5b",
+                "name": "Mask glyph — easyedu-icon-user",
+                "type": "group",
+                "x": 2659.333333333333,
+                "y": 5215.733333333333,
+                "width": 13.33333333333394,
+                "height": 13.33333333333394,
+                "hidden": false,
+                "component": "32eadb6d-165e-803e-8008-989287ae041b",
+                "children": [
+                  {
+                    "id": "12fdf2ed-f141-80b0-8008-b8c573e71ec7",
+                    "name": "base-background",
+                    "type": "rectangle",
+                    "x": 2659.333333333333,
+                    "y": 5215.733333333333,
+                    "width": 13.33333333333394,
+                    "height": 13.33333333333394,
+                    "hidden": true,
+                    "component": "32eadb6d-165e-803e-8008-989287ae041b",
+                    "children": []
+                  },
+                  {
+                    "id": "12fdf2ed-f141-80b0-8008-b8c573e71ec8",
+                    "name": "svg-path",
+                    "type": "path",
+                    "x": 2660.8066568493878,
+                    "y": 5216.816666666667,
+                    "width": 10.386686301224472,
+                    "height": 11.25,
+                    "hidden": false,
+                    "component": "32eadb6d-165e-803e-8008-989287ae041b",
+                    "children": []
+                  },
+                  {
+                    "id": "12fdf2ed-f141-80b0-8008-b8c573e71ec9",
+                    "name": "svg-path",
+                    "type": "path",
+                    "x": 2660.8066568493878,
+                    "y": 5216.816666666667,
+                    "width": 10.386686301224472,
+                    "height": 11.25,
+                    "hidden": false,
+                    "component": "32eadb6d-165e-803e-8008-989287ae041b",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd59",
+            "name": "Title",
+            "type": "text",
+            "x": 2722,
+            "y": 5144.4,
+            "width": 130,
+            "height": 24,
+            "hidden": false,
+            "text": "Samira Benali",
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3",
+            "children": []
+          },
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd5a",
+            "name": "Metadata",
+            "type": "text",
+            "x": 2694,
+            "y": 5172.4,
+            "width": 266,
+            "height": 26,
+            "hidden": false,
+            "text": "samira.benali@example.edu",
+            "component": "2b5216d9-06a9-80a1-8008-9cf47b5e23d3",
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd44",
+        "name": "Foundation / Participant actions / More",
+        "type": "board",
+        "x": 2938,
+        "y": 5141.599999999999,
+        "width": 29.59999999999991,
+        "height": 29.599999999999454,
+        "hidden": false,
+        "component": "16efa6a5-be95-808f-8008-98eb989c1cb6",
+        "children": [
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e71eca",
+            "name": "Icon — linked Bars",
+            "type": "board",
+            "x": 2945.76,
+            "y": 5149.36,
+            "width": 14.079999999999927,
+            "height": 14.079999999999927,
+            "hidden": false,
+            "component": "32eadb6d-165e-803e-8008-988f8172cbe9",
+            "children": [
+              {
+                "id": "12fdf2ed-f141-80b0-8008-b8c573e71ecb",
+                "name": "Glyph — bars / solid",
+                "type": "group",
+                "x": 2947.666666666667,
+                "y": 5150.533333333333,
+                "width": 10.266666666666652,
+                "height": 11.733333333333348,
+                "hidden": false,
+                "component": "32eadb6d-165e-803e-8008-988f8172cbe9",
+                "children": [
+                  {
+                    "id": "12fdf2ed-f141-80b0-8008-b8c573e71ecc",
+                    "name": "base-background",
+                    "type": "rectangle",
+                    "x": 2947.666666666667,
+                    "y": 5150.533333333333,
+                    "width": 10.266666666666652,
+                    "height": 11.733333333333348,
+                    "hidden": true,
+                    "component": "32eadb6d-165e-803e-8008-988f8172cbe9",
+                    "children": []
+                  },
+                  {
+                    "id": "12fdf2ed-f141-80b0-8008-b8c573e71ecd",
+                    "name": "svg-g",
+                    "type": "group",
+                    "x": 2947.666666666667,
+                    "y": 5152,
+                    "width": 10.266666666666652,
+                    "height": 8.799999999999955,
+                    "hidden": false,
+                    "component": "32eadb6d-165e-803e-8008-988f8172cbe9",
+                    "children": [
+                      {
+                        "id": "12fdf2ed-f141-80b0-8008-b8c573e71ecf",
+                        "name": "svg-path",
+                        "type": "path",
+                        "x": 2947.666666666667,
+                        "y": 5152,
+                        "width": 10.266666666666652,
+                        "height": 8.799999999999955,
+                        "hidden": false,
+                        "component": "32eadb6d-165e-803e-8008-988f8172cbe9",
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "id": "12fdf2ed-f141-80b0-8008-b8c573e71ece",
+                    "name": "svg-path",
+                    "type": "path",
+                    "x": 2947.666666666667,
+                    "y": 5152,
+                    "width": 10.266666666666652,
+                    "height": 8.799999999999955,
+                    "hidden": false,
+                    "component": "32eadb6d-165e-803e-8008-988f8172cbe9",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd45",
+        "name": "Role surface",
+        "type": "rectangle",
+        "x": 2874,
+        "y": 5145.4,
+        "width": 62,
+        "height": 22,
+        "hidden": false,
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd46",
+        "name": "Role label",
+        "type": "text",
+        "x": 2874,
+        "y": 5145.4,
+        "width": 62,
+        "height": 22,
+        "hidden": false,
+        "text": "Student",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd47",
+        "name": "Foundation / Checkbox / Samira / Checked",
+        "type": "board",
+        "x": 2694,
+        "y": 5148.4,
+        "width": 16,
+        "height": 16,
+        "hidden": false,
+        "component": "e5bf882d-be5b-8059-8008-982e7f285e14",
+        "children": [
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e71ed0",
+            "name": "Checkbox / small checked surface",
+            "type": "rectangle",
+            "x": 2694,
+            "y": 5148.4,
+            "width": 16,
+            "height": 16,
+            "hidden": false,
+            "component": "e5bf882d-be5b-8059-8008-982e7f285e14",
+            "children": []
+          },
+          {
+            "id": "12fdf2ed-f141-80b0-8008-b8c573e71ed1",
+            "name": "Checkbox / small checked / source pseudo-check",
+            "type": "group",
+            "x": 2697.84,
+            "y": 5151.789999999999,
+            "width": 8.320000000000164,
+            "height": 8.320000000000164,
+            "hidden": false,
+            "component": "e5bf882d-be5b-8059-8008-982e7f285e14",
+            "children": [
+              {
+                "id": "12fdf2ed-f141-80b0-8008-b8c573e71ed2",
+                "name": "base-background",
+                "type": "rectangle",
+                "x": 2697.84,
+                "y": 5151.789999999999,
+                "width": 8.320000000000164,
+                "height": 8.320000000000164,
+                "hidden": true,
+                "component": "e5bf882d-be5b-8059-8008-982e7f285e14",
+                "children": []
+              },
+              {
+                "id": "12fdf2ed-f141-80b0-8008-b8c573e71ed3",
+                "name": "svg-path",
+                "type": "path",
+                "x": 2698.539999988079,
+                "y": 5152.6099999928465,
+                "width": 6.919999897480011,
+                "height": 5.529999911785126,
+                "hidden": false,
+                "component": "e5bf882d-be5b-8059-8008-982e7f285e14",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd48",
+        "name": "Product / Mobile participant metadata / Roles",
+        "type": "text",
+        "x": 2694,
+        "y": 5198.4,
+        "width": 62,
+        "height": 16,
+        "hidden": false,
+        "text": "ROLES",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd49",
+        "name": "Product / Mobile participant metadata / Teacher / surface",
+        "type": "rectangle",
+        "x": 2758,
+        "y": 5197.4,
+        "width": 58,
+        "height": 18,
+        "hidden": false,
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd4a",
+        "name": "Product / Mobile participant metadata / Teacher / label",
+        "type": "text",
+        "x": 2758,
+        "y": 5197.4,
+        "width": 58,
+        "height": 18,
+        "hidden": false,
+        "text": "Teacher",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd4b",
+        "name": "Product / Mobile participant metadata / Groups",
+        "type": "text",
+        "x": 2694,
+        "y": 5222.4,
+        "width": 62,
+        "height": 16,
+        "hidden": false,
+        "text": "GROUPS",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd4c",
+        "name": "Product / Mobile participant metadata / Group A / surface",
+        "type": "rectangle",
+        "x": 2758,
+        "y": 5221.4,
+        "width": 58,
+        "height": 18,
+        "hidden": false,
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd4d",
+        "name": "Product / Mobile participant metadata / Group A / label",
+        "type": "text",
+        "x": 2758,
+        "y": 5221.4,
+        "width": 58,
+        "height": 18,
+        "hidden": false,
+        "text": "Group A",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd4e",
+        "name": "Product / Mobile participant metadata / More / surface",
+        "type": "rectangle",
+        "x": 2822,
+        "y": 5221.4,
+        "width": 30,
+        "height": 18,
+        "hidden": false,
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd4f",
+        "name": "Product / Mobile participant metadata / More / label",
+        "type": "text",
+        "x": 2822,
+        "y": 5221.4,
+        "width": 30,
+        "height": 18,
+        "hidden": false,
+        "text": "+2",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd50",
+        "name": "Product / Mobile participant metadata / Groupings",
+        "type": "text",
+        "x": 2694,
+        "y": 5246.4,
+        "width": 62,
+        "height": 16,
+        "hidden": false,
+        "text": "GROUPINGS",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd51",
+        "name": "Product / Mobile participant metadata / Year 2026 / surface",
+        "type": "rectangle",
+        "x": 2758,
+        "y": 5245.4,
+        "width": 70,
+        "height": 18,
+        "hidden": false,
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd52",
+        "name": "Product / Mobile participant metadata / Year 2026 / label",
+        "type": "text",
+        "x": 2758,
+        "y": 5245.4,
+        "width": 70,
+        "height": 18,
+        "hidden": false,
+        "text": "Year 2026",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd53",
+        "name": "Product / Mobile participant metadata / Custom",
+        "type": "text",
+        "x": 2694,
+        "y": 5270.4,
+        "width": 62,
+        "height": 16,
+        "hidden": false,
+        "text": "ID CAMPUS",
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd54",
+        "name": "Product / Mobile participant metadata / Programme / surface",
+        "type": "rectangle",
+        "x": 2758,
+        "y": 5269.4,
+        "width": 126,
+        "height": 18,
+        "hidden": false,
+        "children": []
+      },
+      {
+        "id": "12fdf2ed-f141-80b0-8008-b8c573e6dd55",
+        "name": "Product / Mobile participant metadata / Programme / label",
+        "type": "text",
+        "x": 2758,
+        "y": 5269.4,
+        "width": 126,
+        "height": 18,
+        "hidden": false,
+        "text": "Programme — Design",
+        "children": []
+      }
+    ]
+  }
+}

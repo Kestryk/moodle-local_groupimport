@@ -156,3 +156,17 @@ generated assets, business content and Motion are unchanged. Saved containment
 and type checks pass, with intentional scrolling clipping retained. Full-dialog
 exports inspected and purple Groupings chip published with its paired source;
 see entity-settings-list-publication-2026-10-05.md. No human gate is closed.
+
+SM-50 now has a bounded source candidate separating mobile memberships-only
+density from desktop card density. Preserve other participant metadata and the
+original desktop automatic rule, Kit paint and Motion. Isolated/build/Penpot/
+served/native/human gates remain separate; see
+mobile-participant-memberships-2026-10-05.md. No preview claim yet.
+
+SM-50 successor: source/build/PHP lint and 32 isolated state/preservation guards
+PASS; 12 Product phone/tablet usage readbacks are contained, keep linked controls
+and canonical title role, with old specimens recoverable. Dedicated behavior
+board x80/y14810 records zero/one/two/manual-full. Owned editor checkpoint was
+inspected; MCP image export stalled, not a full visual/parity PASS. One-test
+native discovery PASS. Runtime promotion and native geometry/behavior/human
+remain OPEN. Kit documentation-only contract fc2bfbb pushed, no SCSS/version bump.

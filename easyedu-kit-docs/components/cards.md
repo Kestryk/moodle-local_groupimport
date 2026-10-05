@@ -1,5 +1,25 @@
 # Cards
 
+## Responsive participant membership visibility (consumer contract)
+
+EasyStud SM-50 keeps existing card paint, identity type, metadata and Motion
+recipes. A responsive consumer may opt only its Groups/Groupings rows into
+membership visibility; roles/profile rows remain untouched. This is not the
+desktop Compact list mode and not a Grouping-card expansion variant. The
+consumer owns its breakpoint, initial mode, selection and localized action.
+
+Use the existing identity title role (14px/700, `#264861` default in the Kit),
+fixed header track, checkbox and direct Eye/More actions. Animate actual card
+height changes through existing resize Motion, whole-list mode through swap;
+no-op refreshes must not measure/restart animations. Respect reduced/disabled
+Motion and preserve independent desktop preference across breakpoints.
+
+Product page 03 now has zero/one/two/manual-full usage compositions and mobile/
+tablet successors, with recoverable prior shells and no product-local masters.
+This documentation-only update adds no SCSS, source version, style or animation
+family. Paired provider title legacy overrides, native containment/behavior and
+human acceptance remain independent checks, not a blanket completed-card claim.
+
 ## Fixed selection header anchor (0.4.110 source candidate)
 
 `card-selection-header-anchor($block-start: 0.3rem)` opts the existing overlay
