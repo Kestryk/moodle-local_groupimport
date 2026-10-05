@@ -103,3 +103,31 @@ The successor asserts `transition-property: none` plus technical duration at
 most one microsecond: no property can animate. This recognizes the existing
 shared policy without weakening static behavior or changing production CSS.
 Native re-run still pending; previous immutable source/test evidence retained.
+
+## Served native successor PASS
+
+Source code `a2cf37734126505b6acb711a1515afed291a9564` and test/oracle
+`8f5b1cb3a1598edfed777f6ff2176d3afd8710ac` are pushed on the existing branch.
+Runtime `3556dcc9b9f7b5d42f619c18fd2bd5174a4d25bc` serves the canonical
+Kit `44b4c10f1cdcbae76fbaf06f359201718a936951` controller/SCSS blobs exactly.
+Ordered promotions `20261005T154941Z` and `20261005T155446Z` are completed;
+the second changes no production assets and performs no cache refresh.
+
+Native `easystud-authenticated-20261005T155448684Z-20096` PASS in 62.86s,
+21 initial popup geometry/paint records (seven at each 1600/768/390 width).
+All samples 80x40, exact initial draft paint, 12px gap and centred header.
+M panels retain 352/352/343px widths (native scrollbars), no horizontal overflow,
+16px title and matched 37.59px/14.08px actions. Primary at every width passes
+valid/invalid/preset preview, native authority, Cancel/Apply/focus and static
+reduced Motion. This is not the complete HSV/preset lifecycle for every role.
+Phone capture inspected; unchanged saved custom colours visible underneath.
+
+No page errors, blocked writes, settings Save or fixtures. Consuming message
+draft bootstrap mocked, side-effect-free core read POSTs only allowlisted.
+Test/runner exits zero, no timeout, credentials/lease/child/fixture cleanup
+complete. Failed native run retained. Both runs manifested with scoped retention
+dry-runs (zero deletions). Human acceptance, actual saved-setting persistence,
+wider browsers/screen readers and older unfinished lots remain OPEN.
+
+Next ordered UI work: SM-54 More Filters hover replacement and disclosure
+audit, preserving the accepted unrelated card Motion. Guide stays parallel.

@@ -10,10 +10,12 @@
       "colourPanelBlob": "c07199aab52b8d85c29fc0116c25421d0a5b531e",
       "controllerBlob": "6aa8d7732031eae224548254c76c6b5c90ac638f",
       "documentation": "docs/colour-panel-preview-audit-2026-10-05.md",
-      "status": "SM-58 nine isolated cases and source preservation PASS; twelve paired Foundation states plus existing Product copies published. Served proof pending; human checklist OPEN.",
+      "status": "SM-58 isolated/source and paired Penpot gates PASS; served native 21-control/width records PASS. Persistence and human checklist OPEN.",
       "pairedPenpotPublished": true,
       "penpotReadback": "docs/testing/colour-draft-preview-penpot-2026-10-05.json",
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T155448684Z-20096",
+      "nativeScope": "Seven initial popup geometries per width, Primary draft/invalid/preset/Cancel/Apply/focus/static Motion at 1600/768/390; no settings Save or fixtures",
       "humanVisualValidated": false
     },
     "customSemanticRails20261005": {

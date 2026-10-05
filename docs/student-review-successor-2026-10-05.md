@@ -111,3 +111,9 @@ inherit the same provider and remain contained, inspected checkpoint available.
 One-test native discovery only; served proof, persistence and human checklist
 remain OPEN. See colour-panel-preview-audit-2026-10-05.md. Older unfinished
 lots and Guide ownership remain unchanged.
+
+SM-58 served successor now PASS: seven native initial popup paints/geometries
+at each of 1600/768/390 (21 records), Primary draft/invalid/preset/Apply/Cancel,
+focus and static Motion. Native run `easystud-authenticated-20261005T155448684Z-20096`;
+failed duration-only predecessor retained. No settings Save/fixtures, cleanup
+complete. Persistence and human checklist OPEN. Next: SM-54 hover/disclosure.
