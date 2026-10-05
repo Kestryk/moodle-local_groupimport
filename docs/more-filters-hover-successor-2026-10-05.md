@@ -105,3 +105,22 @@ nested closure, inert/ARIA, focus and reduced/disabled policies. Native proof
 must sample both transitional phases, not merely the endpoint. No filtering,
 roles, memberships or Guide writes belong to this lot. Existing footer gap
 and per-view availability rules remain in force.
+
+## Native scoped results and open reduced-policy sequence
+
+Palette successor `easystud-authenticated-20261005T163425874Z-25040` certifies
+nine available native width/routes: exact chosen-colour RGBA, type/gap/full
+lane, centred paint, footer clearance, both normal height/opacity phases
+(7–10 transitional samples per direction). Actual sampled spans 117–203ms.
+One parent click closes the nested choice at desktop and tablet. The overall
+test is FAILED, not PASS: after that tablet closure and a live reduced-policy
+change, the next click leaves the parent closed. Desktop same sequence passes.
+Preserve this unresolved pointer/terminal-layout case rather than weaken the
+assertion or claim the entire SM54 Motion fixed.
+
+The strict bootstrap also denied `core_courseformat_get_state`. Local Moodle
+`course/format/classes/external/get_state.php` confirms it exports visible
+course/section/module state only. A diagnostic allowlists precisely that read
+and records document-level pointer/click targets plus keyboard recovery; it
+does not mutate source presentation or native data. Other POSTs remain denied.
+All runner cleanup true, source spec preserved; no fixtures or settings Save.
