@@ -3,6 +3,7 @@
 @use "components/typography";
 @use "components/text-fields";
 @use "components/modals";
+@use "components/buttons";
 @use "components/searchable-choices" as choices;
 @use "foundation-classes" as foundations;
 
@@ -41,16 +42,24 @@
     @include modals.modal-surface;
   }
   .easyedu-ui .easyedu-entity-dialog__header,
-  .easyedu-ui .easyedu-confirmation-dialog__header {
-    align-items: center;
-    background: var(--easyedu-modal-header-bg);
-    border-block-end: 0.0625rem solid var(--easyedu-modal-border);
-    box-sizing: border-box;
-    display: flex;
-    gap: 0.75rem;
-    justify-content: space-between;
-    min-block-size: 4rem;
-    padding: 0.75rem 1.25rem;
+  .easyedu-ui .easyedu-confirmation-dialog__header,
+  .easyedu-ui .easyedu-dialog-header {
+    @include modals.dialog-header;
+  }
+  .easyedu-ui .easyedu-dialog-close {
+    @include buttons.close-button;
+    & {
+      flex: 0 0 auto;
+      font-size: 1rem;
+      margin: 0;
+    }
+    > .fa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      margin: 0;
+    }
   }
   .easyedu-ui .easyedu-entity-dialog__heading {
     align-items: center;

@@ -29,8 +29,8 @@
     overflow: hidden;
   }
 
-  .modal-header {
-    @include modals.modal-header;
+  .modal-content .modal-header {
+    @include modals.dialog-header;
     flex: 0 0 auto;
   }
 
@@ -90,7 +90,7 @@
   .easyedu-message-dialog__field-wrap { margin: 0; width: 100%; }
 
   .modal-footer {
-    @include foundations.foundation-dialog-actions($density: compact);
+    @include foundations.foundation-dialog-actions;
     & {
       flex: 0 0 auto;
       padding: 0.8rem 1rem;

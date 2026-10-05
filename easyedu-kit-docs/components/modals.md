@@ -1,5 +1,19 @@
 # Modals
 
+## SM-44 canonical header and Message footer - 2026-10-05
+
+Kit 0.4.101 supersedes historical compact Native Message density below: the
+adapter uses Regular matched right-end actions (14.08px/600, 37.6px, 11.52px
+radius), preserving adaptive translated widths and native commands/loading.
+`dialog-header` shares the existing entity/confirmation 64px minimum and
+12px/20px padding; `easyedu-dialog-header` / `easyedu-dialog-close` opt existing
+native anatomy in. History changes only header/title/Close classes; rollback
+and body/data remain untouched. All unrelated generated CSS is compared.
+Old compact specs remain pinned; new compile and native successors are distinct.
+Exact staged source/Standard/product publication and preview evidence:
+`docs/student-modal-chrome-successor-2026-10-05.md`. Human checklist OPEN.
+
+
 ## Entity-field Penpot catalogue (2026-10-03)
 
 Foundations publishes twelve linked Regular/Narrow resting specimens at

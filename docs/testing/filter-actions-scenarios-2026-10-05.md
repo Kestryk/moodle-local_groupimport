@@ -23,3 +23,9 @@ cross-page append misuse and non-serializable openPage return. More expensive
 were repeated Penpot heartbeat/CDP timeouts. Prefer scoped indexed reads and
 preflight exact paths/API context, separate tool writes from slow reads, and
 bounded browser recovery. No per-model token totals are available here.
+
+Served successor append: SM-43B now passes four native cases in
+`easystud-authenticated-20261005T022300949Z-38004`; nested close regression
+passes in `easystud-authenticated-20261005T022431310Z-17424`. Both wrappers
+record full credential/child/lease/fixture cleanup with no fixture or business
+write. Earlier candidate notes above remain historical, not current status.

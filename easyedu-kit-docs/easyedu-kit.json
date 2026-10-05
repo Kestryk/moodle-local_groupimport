@@ -1,14 +1,23 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.100",
+  "version": "0.4.101",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "modalChromeSuccessor20261005": {
+      "kitCommit": "75c57ce",
+      "documentation": "docs/student-modal-chrome-successor-2026-10-05.md",
+      "status": "SM-44 canonical header/Close and Regular Message footer; static, distribution and paired/product publication pass. Native successor pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "binaryFilterActions20261005": {
       "kitCommit": "55cd2c2",
       "documentation": "docs/student-binary-filter-successor-2026-10-05.md",
-      "status": "SM-43B shared trailing toggle and adjacent Reset; static/isolated/package gates pass, six paired source states and two product catalogue compositions published. Native preview gate pending; human checklist open.",
-      "nativePreviewVerified": false,
+      "status": "SM-43B served: static/isolated/package, six paired states, two product catalogue compositions, four native routes and nested closure regression pass; human checklist open.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T022300949Z-38004",
+      "nestedCloseRunId": "easystud-authenticated-20261005T022431310Z-17424",
       "humanVisualValidated": false
     },
     "filterFooterSuccessor20261005": {

@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+SM-44 explicitly supersedes the historical compact Native Message footer with
+Regular paired actions. Preserve older source/browser guards and add a strict
+successor; compare complete unrelated CSS/body/loading/commands/Motion. History
+opts into shared header/title/Close classes only; rollback stays unchanged.
+Source/Standard/product publication, native open/Cancel and human gates differ.
+
+
 Trailing catalogue switches opt in to canonical filter-actions; preserve
 legacy leading/framed controls. Keep responsive Reset closure unchanged and
 compare the full unrelated CSS and commands against the previous served pin.

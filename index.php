@@ -1637,18 +1637,18 @@ echo html_writer::tag('div',
         html_writer::tag('div',
             html_writer::tag('h3', get_string('importhistory', 'local_groupimport'), [
                 'id' => 'local-groupimport-import-history-title',
-                'class' => 'h5 mb-0',
+                'class' => 'easyedu-modal-title',
             ]) .
             html_writer::tag('button',
                 html_writer::tag('span', '', ['class' => 'fa fa-times', 'aria-hidden' => 'true']),
                 [
                     'type' => 'button',
-                    'class' => 'local-groupimport-import-modal__close',
+                    'class' => 'easyedu-dialog-close',
                     'data-local-groupimport-history-close' => '1',
                     'aria-label' => get_string('closebuttontitle'),
                 ]
             ),
-            ['class' => 'local-groupimport-import-modal__header']
+            ['class' => 'easyedu-dialog-header']
         ) .
         html_writer::tag('div',
             html_writer::tag('p', get_string('importhistorydesc', 'local_groupimport'), [
