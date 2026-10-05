@@ -15,6 +15,9 @@
 - Remove the obsolete 10.56px mobile label override: More Filters now inherits
   canonical 12.16px control type at every width, matching Foundations. No new
   consumer declaration; native checks measure the label as well as its button.
+- Canonical-label served successor passes nine available routes, both sampled
+  Motion directions, nested closure and reduced-policy endpoints at three
+  widths. Reversal/perceived smoothness and human acceptance remain open.
 
 ## 2026-10-05 - Enlarged colour draft preview candidate (SM-58)
 

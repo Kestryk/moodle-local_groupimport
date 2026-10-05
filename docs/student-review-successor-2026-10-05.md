@@ -124,3 +124,12 @@ PASS. Whole unrelated CSS/controllers/card Motion preserved. Ten paired existing
 Foundation states and twenty current Product consumers are being published;
 served animation-height/nested-close proof and human acceptance remain OPEN.
 See more-filters-hover-successor-2026-10-05.md. All other lots remain tracked.
+
+SM-54 successor now published in ten existing paired Foundation states and
+twenty current Product copies. Native canonical-label run
+`easystud-authenticated-20261005T165634447Z-30452` PASS: nine available routes,
+actual 12.16px label at all three widths, both sampled Motion directions,
+three nested closures and reduced-policy reopen/close. Bounded pointer cleanup
+fix resolves the reproduced tablet next-click suppression. No fixture/data
+writes; all cleanup true. Reversal/perceived smoothness and human checklist
+remain OPEN. Continue SM-51 body audit; Guide stays with its parallel owner.
