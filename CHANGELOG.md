@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-05 - Native metadata composition alignment
+
+- Correct page-04 Group/Grouping sample counts and primary-above-chips layout;
+  separate Group's empty Groupings section and use Settings density for Grouping.
+- Align four painted header tracks; preserve remote links and archive the old
+  board/Grouping specimen recoverably. Final exports/containment pass.
+- No native CSS, markup, data, commands or Motion change. Shared Foundation
+  source-family reconciliation and combined human acceptance remain open.
+
 ## 2026-10-05 - Dense metadata overflow ownership successor
 
 - Delegate +N/Show less token/link styling and focus to Kit 0.4.106, reusing

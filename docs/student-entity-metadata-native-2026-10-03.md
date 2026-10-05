@@ -57,3 +57,58 @@ This is not a global typography normalization or human acceptance. The global
 human checklist remains open. A post-correction Penpot export timed out, so the
 fresh settled geometry readback is recorded separately from the earlier visual
 inspection; it is not presented as a completed human visual gate.
+
+## Product anatomy successor - 5 October 2026
+
+A fresh full-board export exposed a real composition mismatch despite the
+earlier geometry PASS: the Group specimen showed two members beside a count of
+one; its email and metadata collided on a single track. Grouping used the
+Participant detail-list provider and inherited a member count and six-group
+placeholder. Native proof from 3 October and unchanged renderAdvancedListSection
+place metadata below the primary name, with separate Members/Groupings sections.
+This does not claim a fresh authenticated run or current fixture counts.
+
+Corrected Product board `e38279dc-cd7d-80fa-8008-bc000f020794`:
+
+- Group: one illustrative member, two linked metadata chips below its name,
+  plus a separate zero-Grouping empty section.
+- Grouping: one Group, member-count/ID chips below its name, using the same
+  linked Settings-list provider/density rather than the Participant detail list.
+- Participant: explicitly label its three visible rows as an excerpt of six;
+  the actual scrollable list is not represented as only three memberships.
+- Align four title/count/chevron painted centres; all deltas are zero, and
+  all visible descendant/text paint is contained at 0.1px tolerance.
+
+The complete previous board is archived hidden at
+`386b6f86-a1e7-806b-8008-be2016d7d782`; the old Grouping detail-list instance is
+also hidden/recoverable. Count, chip and section roots retain remote Foundation
+links. Row surfaces compose the existing metadata-scroll-list li paint
+(white, #e3ecf4 border, 11.2px radius), not a new plugin style. Primary labels use
+the actual entity-metadata-primary #334b61/13.44px role with the documented
+native 650 -> Penpot 600 mapping. User name/email is illustrative/redacted.
+No controller, template, CSS, data, animation or runtime state changed.
+
+One append attempt correctly failed because linked component copies reject
+structural additions; readback preserved its partial state. New row composition
+was placed on the local host, with ordinary linked chip instances, rather than
+detaching/modifying shared controls. A fresh export then revealed missing names
+from the text-clone attempt; explicit ordinary role text corrected them before
+the final two exports. Both final Group/Grouping exports were inspected.
+All failures are retained; no blind full-board replay occurred.
+
+Snapshot readback/guard:
+`testing/student-entity-metadata-penpot-2026-10-05.json` and
+`tools/release/test-entity-metadata-composition-successor.js <KitRoot>`.
+They certify saved agent geometry/recipe evidence, not a fresh live editor,
+native all-state behavior or human approval.
+
+### Next Foundations publication (OPEN)
+
+Reconcile Library Settings-list provider `79c98099-5199-8000-8008-bbfe8b1b6bfc`
+and its paired Standard instance: coherent sample count, primary then wrapped
+chips, no duplicate raw email lane, separate empty section, header paint centres
+and canonical primary tone. Isolate the existing metadata row recipe in the
+correct shared page/Library without creating a second token family. Then read
+back the narrow/product consumers after library publication; do not mass-update
+unrelated overrides. These source-family updates and full-dialog/mobile
+compositions remain OPEN, as does the combined human checklist.

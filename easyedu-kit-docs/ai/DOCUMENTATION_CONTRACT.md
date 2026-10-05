@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Metadata composition proof must match counts and the native primary-then-chips
+row anatomy, not only containment. Settings and Participant detail-list densities
+are different. Linked copies reject structural children: compose on a local
+host with linked controls and retain prior specimens; inspect final exports
+after correcting any partial write. Record pending Foundation/Standard source
+changes separately from product overrides and unchanged native CSS.
+
 Dense overflow presentation delegates to canonical Kit includes. Existing
 Bootstrap utility conflicts are retained only with an explicit legacy adapter,
 not new forced declarations in the plugin. Preserve native tags/counts/ARIA and
