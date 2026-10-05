@@ -29,13 +29,14 @@ test('Administration shared colour panel preserves native settings',async({page}
             await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(300);
             const measure=await dialog.evaluate(n=>{
                 const r=n.getBoundingClientRect(),s=getComputedStyle(n);
-                return {w:r.width,h:r.height,x:r.x,right:r.right,overflow:n.scrollWidth-n.clientWidth,
+                return {w:r.width,h:r.height,x:r.x,right:r.right,viewport:document.documentElement.clientWidth,overflow:n.scrollWidth-n.clientWidth,
                     primary:s.getPropertyValue('--easyedu-primary').trim(),title:getComputedStyle(n.querySelector('h2')).fontSize,
                     actions:[...n.querySelectorAll('.easyedu-dialog-actions button')].map(b=>{const r=b.getBoundingClientRect(),s=getComputedStyle(b);
                         return {h:r.height,font:s.fontSize,weight:s.fontWeight,right:r.right};})};
             });
-            expect(measure.w).toBeCloseTo(352,1);expect(measure.x).toBeGreaterThanOrEqual(16);
-            expect(measure.right).toBeLessThanOrEqual(width-16);expect(measure.overflow).toBe(0);
+            expect(measure.w).toBeCloseTo(Math.min(352,measure.viewport-32),1);
+            expect(measure.x).toBeGreaterThanOrEqual(16);
+            expect(measure.right).toBeLessThanOrEqual(measure.viewport-16);expect(measure.overflow).toBe(0);
             expect(measure.title).toBe('16px');expect(measure.actions[0].h).toBeCloseTo(measure.actions[1].h,2);
             expect(measure.actions[0].h).toBeCloseTo(37.6,1);expect(measure.actions[0].font).toBe('14.08px');
             await draft.fill('#bad');await expect(dialog.locator('.easyedu-button')).toBeDisabled();

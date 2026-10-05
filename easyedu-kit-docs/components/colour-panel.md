@@ -4,6 +4,9 @@ Opt-in `color-panel(small|regular|large)` and public `easyedu-color-panel*`
 classes use 320/352/384px widths, 120/144/168px pointer planes, viewport caps,
 one 16px title and existing M text fields/Regular right-end actions. The
 existing S/M/L swatch+Hex control geometry is unchanged.
+Width caps use the containing viewport percentage, excluding a classic vertical
+scrollbar. A 390px desktop-emulated view can therefore expose 375px and cap
+the panel at 343px, while a scrollbar-free 390px phone retains the 352px M.
 
 The optional classic `colour-picker/colour-picker.js` exports
 `window.EasyEduColourPicker`. Copy only that runtime file plus canonical SCSS;

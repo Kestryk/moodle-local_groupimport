@@ -1,12 +1,12 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.103",
+  "version": "0.4.104",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
     "colourPanelSuccessor20261005": {
-      "kitVersion": "0.4.103",
-      "kitCommit": "8351869",
+      "kitVersion": "0.4.104",
+      "kitCommit": "85c7ed3",
       "documentation": "docs/colour-panel-successor-2026-10-05.md",
       "status": "SM-46 shared draft panel; isolated S/M/L, paired twelve-state and product linked popup publication, strict native storage/contrast/reset/unrelated CSS preservation pass. Native successor pending.",
       "nativePreviewVerified": false,

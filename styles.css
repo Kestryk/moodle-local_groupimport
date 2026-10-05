@@ -20684,8 +20684,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-sizing: border-box;
   color: var(--easyedu-text);
   font-family: var(--easyedu-font-family-ui);
-  inline-size: min(var(--easyedu-color-panel-width), 100vw - 2rem);
-  max-inline-size: calc(100vw - 2rem);
+  inline-size: min(var(--easyedu-color-panel-width), 100% - 2rem);
+  max-inline-size: calc(100% - 2rem);
   max-block-size: calc(100dvh - 2rem);
   overflow: auto;
   padding: 1rem 1.5rem;
@@ -20722,8 +20722,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-sizing: border-box;
   color: var(--easyedu-text);
   font-family: var(--easyedu-font-family-ui);
-  inline-size: min(var(--easyedu-color-panel-width), 100vw - 2rem);
-  max-inline-size: calc(100vw - 2rem);
+  inline-size: min(var(--easyedu-color-panel-width), 100% - 2rem);
+  max-inline-size: calc(100% - 2rem);
   max-block-size: calc(100dvh - 2rem);
   overflow: auto;
   padding: 1rem 1.5rem;
@@ -20760,8 +20760,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   box-sizing: border-box;
   color: var(--easyedu-text);
   font-family: var(--easyedu-font-family-ui);
-  inline-size: min(var(--easyedu-color-panel-width), 100vw - 2rem);
-  max-inline-size: calc(100vw - 2rem);
+  inline-size: min(var(--easyedu-color-panel-width), 100% - 2rem);
+  max-inline-size: calc(100% - 2rem);
   max-block-size: calc(100dvh - 2rem);
   overflow: auto;
   padding: 1rem 1.5rem;

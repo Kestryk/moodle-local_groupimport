@@ -75,3 +75,16 @@ Final isolated run `colour-panel-20261005-sm46a-policy-final` additionally cover
 pointer drafts, disabled fallback and the canonical saved Motion policy. The
 consumer attaches that read-only policy; normal/reduced/disabled routes retain
 their distinct behavior. No configuration is changed to force animation.
+
+First native run `easystud-authenticated-20261005T035054194Z-32164` passes
+Desktop/Tablet draft and Cancel paths, then exposes a real phone margin defect:
+390px emulation has a 375px usable viewport with a classic scrollbar. A vw cap
+leaves only 11.5px clearance. Shared percentages now exclude that scrollbar,
+retaining the required 16px side clearance without hiding it or reducing the
+assertion. Native and isolated scenarios measure usable viewport width. All
+cleanup flags true; failed run preserved. Fresh successor remains pending.
+Scrollbar-cap successor consumes Kit 0.4.104 `85c7ed3`; isolated stress run
+`colour-panel-20261005-sm46a-scrollbar-successor` passes all nine size/width
+cases with a deliberately scrollable page. Existing Penpot scrollbar-free
+viewport specimens remain valid; responsive cap is documented rather than
+artificially adding a desktop scrollbar to the phone source board.
