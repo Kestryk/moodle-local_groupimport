@@ -26,6 +26,16 @@ actual Student Management/Mass Import roots and both real panels, 1600/768/390,
 twelve default/custom/independent/mixed palettes, exact painted endpoints and
 unchanged geometry, no settings Save/POST/fixtures. Persistence remains OPEN.
 
+First native run `easystud-authenticated-20261005T144620433Z-41880`
+passes all 144 rail paint/geometry samples and both real saved-palette bindings
+(primary #ffae00, accent #11fda5). The aggregate gate fails: two bootstrap
+Moodle service POSTs were aborted by the test, producing empty page errors.
+Cleanup confirms credentials cleared, lease released and child stopped.
+Preserve this failed immutable run. The successor permits only core read-only
+translation/template methods on the exact service endpoint; no setting/entity
+mutation is permitted and request arguments are never logged. This is a
+harness correction, not a product fix or a persistence PASS.
+
 Read-only source audit under EED-UI-2026-0073. Not an implementation or native
 PASS; human checklist remains OPEN. Preserve the user's unfinished phrase
 `Et je trouve pas le` without inventing a missing control.
