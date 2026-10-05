@@ -1,5 +1,14 @@
 # Buttons
 
+## Quiet selection recovery (0.4.115 opt-in)
+
+Use `easyedu-selection-recovery-action` alongside `foundation-selection-action`
+only inside an already framed desktop recovery capsule. The outer capsule owns
+the persistent border; the action keeps Small type/geometry, icon gap, keyboard
+focus ring and Motion, with a pale hover/pressed surface. Regular neutral and
+responsive tray actions are unchanged. Five Foundations source/Standard states
+and the Product shared capsule are linked; native and human gates are separate.
+
 Button mixins complement Moodle/Bootstrap classes rather than replacing them.
 The plugin should keep semantic Bootstrap classes such as `btn`,
 `btn-primary`, `btn-outline-secondary` or `btn-outline-danger`, then add an

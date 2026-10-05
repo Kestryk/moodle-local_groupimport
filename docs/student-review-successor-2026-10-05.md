@@ -194,3 +194,13 @@ uses the real desktop Participants view, respecting admin default structure.
 See mobile-membership-native-summary-2026-10-05.json. Human checklist stays OPEN;
 legacy Small checkbox versus native responsive paint and keyboard parity stay
 under the broader SM-48 audit. Next bounded lot: SM-52 quiet sticky inner action.
+
+SM-52 is now an opt-in source candidate: public quiet selection-recovery skin
+inside the unchanged desktop capsule. Complete unrelated CSS/template and
+controller/Motion preservation PASS. Five new Foundation states and Standard
+copies are published; inherited icon descendant normalization is being checked.
+Shared capsule and Product propagation now pass linked component readback;
+the owned editor checkpoint is inspected. Clean export and served native proof
+remain OPEN. Kit 0.4.115/43fcf72 is pushed; the consumer pin is scoped to buttons
+and public classes, not a blanket replacement of older module revisions.
+This candidate is not currently served; human checklist unchanged.

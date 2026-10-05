@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+A quiet recovery action is an explicit shared opt-in inside the framed desktop
+capsule, not a global neutral-button repaint. Preserve original density/Motion,
+mobile action proxies and complete unrelated CSS. Publish all states and settle
+linked icon descendants before capsule/Product propagation and native proof.
+
 Never assume desktop panel overflow exists on mobile. Inspect native responsive
 visibility, expose requested non-selection actions outside hidden desktop bars,
 reuse canonical button recipes and delegate to the existing controller. Assert
