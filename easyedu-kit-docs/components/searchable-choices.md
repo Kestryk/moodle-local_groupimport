@@ -1,5 +1,12 @@
 # Searchable choices
 
+## Intrinsic inline width (0.4.109, SM-55)
+
+Canonical panels use contain:inline-size: long unselected options wrap within
+the trigger-controlled host instead of widening a native wrapper until hidden.
+No private native width, font or Motion override. Test intrinsic-width ancestry
+at phone width as well as fixed-width layouts; retain historical failures.
+
 ## Native inline baseline (0.4.108, SM-55)
 
 The canonical host uses grid flow to retain the trigger's first-row baseline

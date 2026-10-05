@@ -1,9 +1,18 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.108",
+  "version": "0.4.109",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "choiceNativeIntrinsicWidth20261005": {
+      "kitVersion": "0.4.109",
+      "kitCommit": "19cbff9ae1e80c790adaa3f442255b608296d77d",
+      "choiceModuleBlob": "a0033a804c4e189ea0ec18ef10ecdce28e67ac7b",
+      "documentation": "docs/student-choice-terminal-spacing-2026-10-05.md",
+      "status": "SM-55 intrinsic inline width successor; twelve inline and twelve block isolated cases plus framed regressions pass. Native, paired Penpot and human gates pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "choiceNativeInlineBaseline20261005": {
       "kitVersion": "0.4.108",
       "kitCommit": "19f6f0b6a44437c814b5afdfac3da1a6be3d6abb",

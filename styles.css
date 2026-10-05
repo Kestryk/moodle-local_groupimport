@@ -21399,6 +21399,7 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] {
 }
 
 .easyedu-ui .easyedu-searchable-choice__panel {
+  contain: inline-size;
   background: var(--easyedu-surface);
   border: 0.0625rem solid var(--easyedu-control-border);
   border-radius: var(--easyedu-control-radius);

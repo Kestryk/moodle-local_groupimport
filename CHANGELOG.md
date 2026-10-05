@@ -12,6 +12,8 @@
   bound the next candidate's navigation and retain strict widget/font readiness.
 - Native proof exposes a second inline-baseline jump beside Moodle default
   text. Consume Kit 0.4.108's shared grid host, with one emitted CSS declaration.
+- Preserve the remaining 390px intrinsic-width failure; consume Kit 0.4.109's
+  panel containment rather than adding native widths or animation overrides.
 
 ## 2026-10-05 - Authorized metadata documentation recovery
 
