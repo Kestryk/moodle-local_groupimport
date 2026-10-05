@@ -85,3 +85,16 @@ server GET200 confirm all three new board IDs are persisted. Indexed keyboard
 readback has zero overflow/centre delta. Authoritative successor IDs and limits:
 testing/penpot-autosave-recovery-2026-10-06.json. Original readback files remain
 history. Editor saved checkpoint is not a clean export or human acceptance.
+
+## Served keyboard candidate / strict readiness failure
+
+Ordered promotion224606Z-cedfe98f4e applies cf818c9/3889045/b2ee255 at clean
+runtimee48c0954, cache purge true. CSS blobdaa9322 unchanged, AMD0a712bae.
+Native224701866Z-23908 fails before any keyboard record: loading becomes
+degraded although manager-initialised eventually reaches1. Existing bootstrap
+fails open after8000ms; do not relax readiness/extend that deadline or certify
+keyboard behavior. No errors/blocked/business/fixture writes, cleanup true.
+Keep the failed immutable spec. The successor adds the existing diagnostic
+query and native loading event/resource timing on exit; every strict keyboard,
+paint, ready and business guard remains. Discovery one-test PASS; native
+diagnostic pending, no product/controller/Motion change from this failure.

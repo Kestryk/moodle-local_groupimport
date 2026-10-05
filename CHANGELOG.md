@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Served checkbox strict-readiness diagnostic (SM-48)
+
+- Record ordered local preview; first native run stops at degraded bootstrap
+  before keyboard actions, with unchanged CSS and complete cleanup.
+- Preserve failed spec/oracles; add existing diagnostic-event/resource timing
+  successor rather than relaxing readiness or changing accepted Motion.
+
 ## 2026-10-06 - Penpot nested-link autosave recovery (SM-52/49/48)
 
 - Diagnose stale capsule near-main/swap references; preserve frame/copy and
