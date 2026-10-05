@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-05 - Dense metadata overflow ownership successor
+
+- Delegate +N/Show less token/link styling and focus to Kit 0.4.106, reusing
+  its semantic palette rather than private declarations in the plugin.
+- Retain existing host utility priority explicitly; no new forced rules,
+  template changes, native commands or animation changes.
+- Complete compiled CSS identity, canonical module and public package checks
+  are separate from the pending full public-class migration/human checklist.
+
 ## 2026-10-05 - Dense card metadata ownership successor
 
 - Replace compact metadata-token/private semantic declarations with canonical
