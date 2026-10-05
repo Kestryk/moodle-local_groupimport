@@ -102,3 +102,18 @@ HTTP cache according to the [official Playwright contract](https://playwright.de
 this is a measurement caveat, not proof that routing caused the failure.
 Comparison result pending; preserve the failing source/run and do not hide the
 product fail-open state by increasing its timeout.
+
+Comparison `easystud-authenticated-20261005T065705593Z-31040` (source
+`ea53d2d`) records cached ready at both heights (2.404/2.516 seconds after
+bootstrap, zero bundle transfer), routed degraded at 600 (8.819 seconds) and
+routed ready at 1100 (4.300 seconds). The degraded routed case waits 4.533
+seconds between bundle fetchStart and requestStart, then 0.828 seconds to first
+byte and 0.229 seconds for its body. All errors, blocked requests and unexpected
+writes are empty; cleanup complete. The strict diagnostic correctly remains FAIL
+because one state is degraded. Routing overhead/caching is an observed test
+influence, not a complete explanation for every cold native startup.
+
+The Open/Close-only short-menu successor observes unexpected plugin writes
+without routing. No other control is clicked; any write remains a failing
+assertion. Preserve the previous routed failure, strict ready/geometry/scroll/
+focus gates and all product code/deadlines/Motion. Fresh successor pending.

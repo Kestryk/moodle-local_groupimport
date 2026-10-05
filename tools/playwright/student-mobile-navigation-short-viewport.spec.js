@@ -4,7 +4,7 @@ const fs = require('node:fs');
 
 test('Compact navigation fits short viewports and retains native scroll access', async ({page}, testInfo) => {
     test.setTimeout(180000);
-    const records = [], errors = [], blocked = [];
+    const records = [], errors = [], unexpectedWrites = [];
     page.on('pageerror', e => errors.push(e.message));
     const url = new URL('/local/groupimport/manage.php?id=5', process.env.EASYEDU_MOODLE_URL).toString();
     await page.goto(url);
@@ -14,9 +14,11 @@ test('Compact navigation fits short viewports and retains native scroll access',
         await page.locator('#loginbtn').click();
         await page.waitForURL(u => !u.pathname.includes('/login/'));
     }
-    await page.route('**/local/groupimport/**', async route => {
-        if (route.request().method() === 'GET') await route.continue();
-        else { blocked.push(route.request().method()); await route.abort('blockedbyclient'); }
+    // Open/Close only. Observe requests instead of installing routing, which
+    // disables HTTP cache and distorted the native startup deadline diagnostic.
+    page.on('request', request => {
+        if (new URL(request.url()).pathname.startsWith('/local/groupimport/') && request.method() !== 'GET')
+            unexpectedWrites.push(request.method());
     });
     try {
         for (const width of [768, 390]) for (const reduced of [false, true]) {
@@ -84,8 +86,9 @@ test('Compact navigation fits short viewports and retains native scroll access',
             await expect(panel).toHaveAttribute('aria-hidden', 'true');
             await expect(opener).toBeFocused();
         }
-        expect(errors).toEqual([]); expect(blocked).toEqual([]);
+        expect(errors).toEqual([]); expect(unexpectedWrites).toEqual([]);
     } finally {
-        fs.writeFileSync(testInfo.outputPath('navigation-short-viewport.json'), JSON.stringify({records, errors, blocked}, null, 2));
+        fs.writeFileSync(testInfo.outputPath('navigation-short-viewport.json'),
+            JSON.stringify({records, errors, unexpectedWrites}, null, 2));
     }
 });
