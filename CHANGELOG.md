@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Student late-ready recovery candidate (SM-48 prerequisite)
+
+- Keep8s fail-open and all original fades; opt Student Management into real
+  late initialization/stability recovery without replaying Skeleton or Motion.
+- Twenty virtual-time cases and whole unrelated CSS/AMD/Guide preservation PASS.
+  Paired behavior and controlled native delayed-GET/keyboard proof pending.
+
 ## 2026-10-06 - Checkbox focus-role native successor (SM-48)
 
 - Retain strict-ready failure; diagnostic successor reaches ready and real Tab

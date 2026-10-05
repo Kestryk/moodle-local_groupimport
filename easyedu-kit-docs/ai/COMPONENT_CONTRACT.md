@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Loading paint/Skeleton families remain canonical Kit primitives. Consumer
+readiness may opt into late initialized/stable recovery after fail-open, but
+must retain the original deadline/fades and never re-hide content, replay
+Skeleton or move focus. Other non-opted routes keep legacy state behavior.
+
 Selection checkbox inputs retain native sequential focusability and Space/change
 authority unless an equivalent explicit keyboard entry is documented. Keep
 real disabled/incompatible selection state and the existing Kit focus ring;

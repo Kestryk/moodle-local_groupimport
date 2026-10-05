@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+When real startup finishes after fail-open, distinguish transport delay from
+late-ready recovery. Preserve the failed immutable runs, fixed deadline and
+existing fades; verify actual initialized/stable markers before ready recovery.
+An opt-in consumer recovery must never replay Skeleton or claim startup speed
+from a controlled native GET hold. Check timer/observer cleanup through exit races.
+
 Card keyboard audits distinguish visible pointer targets from real sequential
 focusability. A negative-tabindex input reached by programmatic focus is not
 a keyboard-entry PASS. Preserve diagnostic source, native paint/state records
