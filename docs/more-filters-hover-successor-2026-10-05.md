@@ -47,6 +47,21 @@ Plugin interaction POST is denied; native bootstrap getter for a consuming
 message draft is mocked without altering a real draft. No fixture/business
 writes or settings Save. Served result remains pending until appended.
 
+## First native palette oracle failure
+
+Managed promotion `20261005T162915Z-d750ba1ed2` serves `3c962c9` on clean
+runtime `e1df4df`. Discovery selects exactly one test. Native run
+`easystud-authenticated-20261005T163012635Z-40084` fails its first hover-colour
+expectation: saved primary is orange, so the correct canonical primary-soft
+paint is `color(srgb 1 0.968235 0.9)`, not the default-blue RGB hardcoded by
+the test. No production defect or animation result is inferred from this stop.
+All cleanup flags true; no fixture request. Failure/source pins preserved.
+
+Immutable palette successor decodes actual painted RGBA and independently
+computes the native adapter's 10%-chosen/90%-white RGB channels. It still checks
+opaque paint, canonical type/gap/centres, full lane, both Motion phases and
+nested closure. No production change, settings write or relaxed geometry gate.
+
 ## Verified current state
 
 Canonical Kit `_forms.scss` `filter-disclosure-trigger` uses transparent paint,

@@ -18,7 +18,6 @@ wrapper and runtime lease. No fixture/business writes. Keep each selected
 spec immutable until its child exits. Isolated Kit recipes are credential-free
 CI candidates but font/glyph/native cascade proof remains consumer-specific.
 
-Platform plan/current-state proposal: SM-43A implemented source + Foundations +
 SM-54 successor intake: `student-filter-disclosure-capsule.spec.js` is a
 local-supervised one-test candidate for native localized hover, both normal
 height/opacity phases, three-width nested closure and reduced-Motion endpoints.
@@ -26,6 +25,12 @@ Historical SM-43A specs remain pinned. Static candidate is
 `test-filter-disclosure-capsule-source.js`; isolated Kit counterpart is
 `test-filter-disclosure-capsule-browser.cjs` (CI-reusable, no credentials).
 Serve only pushed predecessors in order; source spec immutable during child.
+
+The first SM54 native candidate is historical: it incorrectly assumes default
+blue hover paint despite the user's saved custom orange palette. The precise
+`student-filter-disclosure-capsule-palette-successor.spec.js` decodes actual
+painted RGBA and compares the explicit native 10%-chosen/90%-white role, rather
+than accepting internal token equality. Geometry/Motion checks unchanged.
 
 Historical Platform plan/current-state proposal: SM-43A implemented source + Foundations +
 20 product consumers, isolated/static and nine native cases pass; nested-choice
