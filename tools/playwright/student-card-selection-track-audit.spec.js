@@ -2,7 +2,7 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
-test('Audit Student card selection header tracks without entity writes', async ({page}, testInfo) => {
+const runAudit = async ({page}, testInfo) => {
     test.setTimeout(150000);
     const records = [], blocked = [], errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -84,4 +84,20 @@ test('Audit Student card selection header tracks without entity writes', async (
         fs.writeFileSync(testInfo.outputPath('card-selection-track-audit.json'),
             JSON.stringify({status:'diagnostic-not-acceptance',records,blocked,errors},null,2));
     }
+};
+
+test('Audit Student card selection header tracks without entity writes', runAudit);
+
+test('Student selection header anchor stays stable after sole selection', async (context, testInfo) => {
+    await runAudit(context, testInfo);
+    const proof = JSON.parse(fs.readFileSync(testInfo.outputPath('card-selection-track-audit.json'),'utf8'));
+    expect(proof.records.length).toBeGreaterThanOrEqual(12);
+    for (const record of proof.records) {
+        expect(record.geometry.overlap).toBe(false);
+        expect(record.geometry.targetGap).toBeGreaterThanOrEqual(4);
+    }
+    const desktop = proof.records.filter(r => r.width === 1600 && r.kind === 'participant');
+    expect(desktop.length).toBe(2);
+    expect(Math.abs(desktop[0].geometry.target.top-desktop[1].geometry.target.top)).toBeLessThanOrEqual(1);
+    for (const record of desktop) { expect(record.geometry.squareCentreDelta).toBeLessThanOrEqual(2); }
 });

@@ -11,7 +11,10 @@ $structure = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'scss/componen
 $module = 'scss/easyedu/components/_cards.scss'
 $manifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit-docs/easyedu-kit.json') | ConvertFrom-Json
 $embeddedHash = & git -C $pluginRoot hash-object $module
-if ($LASTEXITCODE -ne 0 -or $embeddedHash -ne $manifest.consumerSync.studentHeaderExtraction.cardModuleBlob) {
+$currentCardPin = if ($manifest.consumerSync.PSObject.Properties['cardSelectionHeaderAnchor20261005']) {
+    $manifest.consumerSync.cardSelectionHeaderAnchor20261005.cardModuleBlob
+} else { $manifest.consumerSync.studentHeaderExtraction.cardModuleBlob }
+if ($LASTEXITCODE -ne 0 -or $embeddedHash -ne $currentCardPin) {
     throw 'Embedded card module differs from the recorded canonical source.'
 }
 if ($KitRoot) {

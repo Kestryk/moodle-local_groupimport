@@ -55,6 +55,9 @@ gate passes without terminal jump; other modal/filter native journeys and paired
 Penpot/human gates remain OPEN. SM-48 source audit identifies competing
 overlay offsets and card-height centring; no speculative checkbox fix is served.
 Its native diagnostic protocol is student-card-selection-track-2026-10-05.md.
+Native baseline now reproduces the desktop shift. Kit 0.4.110's fixed-anchor
+source candidate passes six isolated cases, awaiting paired Penpot publication
+and managed served successor. Narrow other-state coverage remains OPEN.
 
 1. Finish the authorized docs-only recovery, retain omitted 35813f2 prerequisite
    before 0e60a8c successor, and certify clean runtime/unchanged rendered assets.

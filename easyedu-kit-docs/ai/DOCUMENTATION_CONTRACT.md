@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+Card module successors keep historical extraction pins and add a distinct
+current source pin. A fixed-header candidate does not certify paired design,
+served runtime, full responsive coverage or whole-CSS extraction equivalence.
+
 Checkbox header-track audits measure both painted square and full touch target
 against the actual title before/after density disclosure. Preserve finite card
 Motion and export geometry only. Diagnostic overlap reports are not regression

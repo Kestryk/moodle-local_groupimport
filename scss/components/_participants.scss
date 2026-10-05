@@ -156,12 +156,14 @@
     left: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
+    @media (min-width: 1025px) {
+      @include easyedu.card-selection-header-anchor;
+    }
   }
 
   &--compact-users.local-groupimport-easystud--single-participant-selected &-user.is-selected > .local-groupimport-easystud-selector {
     left: 0.9rem;
-    top: 0.3rem;
-    transform: none;
+    @include easyedu.card-selection-header-anchor;
   }
 
   &-user__rail {
@@ -179,7 +181,7 @@
 
     left: 0.9rem;
     margin-top: 0;
-    top: 0.3rem;
+    @include easyedu.card-selection-header-anchor;
     z-index: 6;
   }
 

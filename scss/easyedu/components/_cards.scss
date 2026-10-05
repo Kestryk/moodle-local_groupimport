@@ -350,6 +350,14 @@
   }
 }
 
+// Opt-in fixed header track. Expanded content must not move the selection
+// target vertically. Owns no breakpoint, inline lane, checkbox paint or Motion;
+// apply only where the consumer has measured the shared header geometry.
+@mixin card-selection-header-anchor($block-start: 0.3rem) {
+  top: $block-start;
+  transform: none;
+}
+
 // Accessible disclosure used when the title itself controls an expandable
 // container card. Keep aria-expanded on the button and pair the icon with
 // card-disclosure-icon.
