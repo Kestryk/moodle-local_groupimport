@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Checkbox header-track audits measure both painted square and full touch target
+against the actual title before/after density disclosure. Preserve finite card
+Motion and export geometry only. Diagnostic overlap reports are not regression
+or human PASS; do not move a checkbox by centring on total expanded card height.
+
 Test intrinsic native wrapper widths with long unselected options as well as
 fixed fixtures. Option width must not change default/help wrapping at hidden;
 canonical inline-size containment preserves the selected summary's width role.

@@ -50,9 +50,11 @@ their source audit and explicit Penpot ownership. No extra worktrees are created
 SM-55 source successor includes canonical Kit 0.4.107 margin collapse and
 0.4.108 native-inline baseline and 0.4.109 intrinsic-width correction, with
 isolated regressions; see
-student-choice-terminal-spacing-2026-10-05.md. Native candidate
-and paired Penpot/human gates remain OPEN. SM-48 source audit identifies competing
+student-choice-terminal-spacing-2026-10-05.md. Native Administration 15-endpoint
+gate passes without terminal jump; other modal/filter native journeys and paired
+Penpot/human gates remain OPEN. SM-48 source audit identifies competing
 overlay offsets and card-height centring; no speculative checkbox fix is served.
+Its native diagnostic protocol is student-card-selection-track-2026-10-05.md.
 
 1. Finish the authorized docs-only recovery, retain omitted 35813f2 prerequisite
    before 0e60a8c successor, and certify clean runtime/unchanged rendered assets.
