@@ -117,3 +117,16 @@ The Open/Close-only short-menu successor observes unexpected plugin writes
 without routing. No other control is clicked; any write remains a failing
 assertion. Preserve the previous routed failure, strict ready/geometry/scroll/
 focus gates and all product code/deadlines/Motion. Fresh successor pending.
+
+Successor `easystud-authenticated-20261005T070309439Z-38916` (source
+`132a41d`) passes all four short cases: 768/390 x 600 with normal/reduced Motion.
+Native root is ready; opaque white panel reaches x=0 with terminal transform,
+no overflow and contained title paint. Panel width is 352/343.1875, header 60px;
+internal scroll is 783px within a 540px lane. Actual bottom scrolling exposes
+Check permissions at y=543.17..587.17 with a positive painted hit target. Close
+restores opener focus. No page error, unexpected plugin write or fixture change;
+all cleanup flags true. Scoped retention protects this run and deletes nothing.
+Eight captures and `navigation-short-viewport.json` are under external run
+`playwright-output/student-mobile-navigation--6bc7c-etains-native-scroll-access/`.
+The 390 normal bottom capture was inspected internally, without hiding native
+overlays. Other account capabilities/translations and human acceptance stay OPEN.

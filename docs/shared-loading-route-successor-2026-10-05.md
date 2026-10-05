@@ -62,3 +62,49 @@ is preserved because saved state cannot be verified. Read back any partial
 replacement before reusing IDs or resuming publication. Admin publication and
 full final product/Foundation export gates remain open. The served source
 correction and final-font native proof are independently complete; human OPEN.
+
+## Recovered publication, 2026-10-05
+
+Heartbeat recovered. Readback confirms the interrupted final-font call completed:
+all three provisional boards are hidden recoverably and one visible final
+replacement exists per width. No repeated write or duplicate replacement.
+Final Mass boards, on page 01, are `386b6f86-a1e7-806b-8008-bdf2dce73aba`,
+`386b6f86-a1e7-806b-8008-bdf31962b794` and
+`386b6f86-a1e7-806b-8008-bdf356be04aa`. Their widths include only the explicit
+48px documentation margin around the measured native workspace. Each contains
+19 linked bar cues and three static linked frames; Navigation keeps a 2px
+inline-start accent, while the two large containers use block-start accents.
+Visible containment passes and the final mobile export was inspected internally.
+
+Administration page `5daf2376-ada4-8014-8008-ad9db3131f63` now has three native
+initial loading compositions at y=7320, x=80/1600/2448, below existing views.
+Boards: `9b51ca01-3224-80fb-8008-bdf8bd34829e` (1600),
+`9b51ca01-3224-80fb-8008-bdf98bc527c2` (768),
+`9b51ca01-3224-80fb-8008-bdf9f70107d1` (390).
+Each contains 50 linked bar cues and 17 static linked section frames, using
+the native measured geometry and 2px inline-start accent. Mobile export exposed
+a missing accent in the first composition; it was restored on all 51 frames.
+Settled visible containment and linked-provider identity pass. This is the
+plugin workspace, not a reproduction of Moodle's theme/banner/outer chrome.
+
+Cross-check with native paint found that Foundations cue contours were omitted,
+although canonical `skeleton-surface` already emits the 1px `#dee7ef` border.
+Reconciled all 50 visible cues across 12 Library specimens (S/M/L bars, Card,
+Table row, Stack; shimmer/static) with an inner 1px stroke. Shared fills, sizes,
+Motion and Kit code/version remain unchanged. Standard board
+`5866ed4a-7d30-8093-8008-ac79780e8148` inherits the change; all twelve recursive
+geometry/paint fingerprints exactly match providers, with zero visible overflow
+at 0.1px tolerance. Strict helper edge flags were floating-point epsilon only.
+Paired catalogue export inspected internally. Foundations save marker confirmed
+before returning the owned browser to EasyStud. Product-library update/readback
+and the post-accent mobile export are the final publication gates; human OPEN.
+
+Remote-library notification appeared after return. The first exact-label click
+matched no button (no write); the next helper had a parse error (no write).
+The bounded ASCII-label update attempt ended with unknown result and the MCP
+connection dropped. Provider readback had the new contours; product instance
+readback still had zero contoured cues before that attempt. Preserve original
+and recovery browser targets: do not reload/close or repeat Update blindly.
+Two owned CDP helpers subsequently exited normally after their bounded timeout;
+no active browser-test/credential lease remains. Product contour propagation
+and final re-export remain OPEN until the editor responds for readback.
