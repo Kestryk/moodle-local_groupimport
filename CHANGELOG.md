@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Checkbox focus-role native successor (SM-48)
+
+- Retain strict-ready failure; diagnostic successor reaches ready and real Tab
+  checkbox entry, then exposes a wrong button-role shadow test assumption.
+- Check exact canonical checkbox RGBA/.18rem paint without repainting the
+  component or relaxing focus/Space/geometry guards. Fresh native pending.
+
 ## 2026-10-06 - Served checkbox strict-readiness diagnostic (SM-48)
 
 - Record ordered local preview; first native run stops at degraded bootstrap

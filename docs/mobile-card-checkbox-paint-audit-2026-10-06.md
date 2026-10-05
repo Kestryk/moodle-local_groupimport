@@ -98,3 +98,14 @@ Keep the failed immutable spec. The successor adds the existing diagnostic
 query and native loading event/resource timing on exit; every strict keyboard,
 paint, ready and business guard remains. Discovery one-test PASS; native
 diagnostic pending, no product/controller/Motion change from this failure.
+
+Native readiness successor225126544Z-36816 reaches strict ready naturally
+in6970ms with amd-visual-stable; records real Shift+Tab reaching INPUT,
+tabIndex0 and focus-visible. It then fails a harness assumption: the test used
+the Foundation button border colour#8abce3 as checkbox shadow. Actual exact
+paint is canonical tokens.scss rgba(15,108,191,.22),2.88px (.18rem), matching
+focus.ring. Do not repaint the checkbox to satisfy a wrong button-role oracle.
+Preserve the failed immutable source/cleanup; successor retains strict ready,
+real Tab/Space/all widths/geometry and asserts the exact documented checkbox
+token AND external shadow, not non-none or token-only equality. No source CSS
+fix. Earlier degraded run is retained as a distinct timing issue, not erased.
