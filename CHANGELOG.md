@@ -10,6 +10,8 @@
 - Static/isolated checks pass. Served-native proof and human review are separate.
 - Preserve the native test's saved-palette assumption failure; verify the
   default exemption through a draft-only input rather than altering settings.
+- Update the controls test to measure the existing enhanced swatch trigger,
+  retaining its strict width oracle and native fallback/submission behavior.
 
 ## 2026-10-05 - Penpot Guide connection handoff
 

@@ -75,6 +75,7 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
         await expect(trigger).toHaveAttribute('aria-expanded', 'false');
         const pickers = root.locator('[data-easyedu-color-picker]');
         await expect(pickers).toHaveCount(7);
+        await expect(root.locator('.easyedu-color-picker__trigger')).toHaveCount(7);
         // Saved custom colours may legitimately show contrast guidance. Test
         // the default exemption with a draft-only input, never a settings Save.
         const groupingPicker = root.locator('#admin-themegroupingcolor [data-easyedu-color-picker]');
@@ -86,7 +87,7 @@ test('Administration Kit read-only responsive controls', async({page}, testInfo)
             const metrics = await picker.evaluate(n => {
                 const r = n.getBoundingClientRect();
                 const hex = n.querySelector('.easyedu-color-picker__hex');
-                const swatch = n.querySelector('.easyedu-color-picker__swatch');
+                const swatch = n.querySelector('.easyedu-color-picker__trigger');
                 const setting = n.closest('.form-setting');
                 const defaultInfo = setting.querySelector('.form-defaultinfo');
                 const defaultRect = defaultInfo.getBoundingClientRect();
