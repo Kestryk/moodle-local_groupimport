@@ -6,10 +6,12 @@ if (!toolchain) throw new Error('Supply the directory containing terser.');
 const terser = require(path.join(path.resolve(toolchain), 'terser'));
 const root = path.resolve(__dirname, '../..');
 const input = "import {enhanceSelect, enhanceMultipleSelect} from './searchable_choices';";
+const motionInput = "import * as Motion from './motion';";
 const source = fs.readFileSync(path.join(root, 'amd/src/admin_choices.js'), 'utf8');
-if (!source.includes(input)) throw new Error('Unexpected admin choice dependencies.');
-const wrapped = 'define("local_groupimport/admin_choices", ["local_groupimport/searchable_choices"], ' +
-    'function(Choices) {\n' + source.replace(input, 'const {enhanceSelect, enhanceMultipleSelect} = Choices;')
+if (!source.includes(input) || !source.includes(motionInput)) throw new Error('Unexpected admin choice dependencies.');
+const wrapped = 'define("local_groupimport/admin_choices", ["local_groupimport/searchable_choices", ' +
+    '"local_groupimport/motion"], function(Choices, Motion) {\n' +
+    source.replace(input, 'const {enhanceSelect, enhanceMultipleSelect} = Choices;').replace(motionInput, '')
         .replace('export const init =', 'const init =') + '\nreturn {init};\n});';
 const filename = 'admin_choices.min.js';
 terser.minify({'../src/admin_choices.js': wrapped}, {

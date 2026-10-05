@@ -6,6 +6,8 @@
   and choices AMD without changing CSS, selection, commands or original cards.
 - Preserve predecessor failure and pass isolated twelve-case endpoint plus
   pointer/reversal/card regressions. Native, Penpot and human gates are separate.
+- Native preflight exposes missing shared Motion injection in Administration;
+  wire it into both choices and honour the saved animation preference.
 
 ## 2026-10-05 - Authorized metadata documentation recovery
 

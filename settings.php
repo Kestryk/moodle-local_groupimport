@@ -225,7 +225,7 @@ if ($hassiteconfig) {
         'none' => get_string('none'),
         'count' => get_string('filterselectioncount', 'local_groupimport', '__count__'),
         'clear' => get_string('clearfilterselection', 'local_groupimport'),
-    ]]);
+    ], get_config('local_groupimport', 'enableanimations') !== '0']);
 
     $settings = new admin_settingpage(
         'local_groupimport',

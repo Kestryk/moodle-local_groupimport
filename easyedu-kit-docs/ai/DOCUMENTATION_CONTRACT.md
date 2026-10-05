@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Native Administration choices must inject canonical Motion for single/multiple
+selects and receive saved animation policy separately from their labels. Verify
+generated AMD dependencies/exports, required native fallback and open-list Reset.
+An adapter fixture must support Babel AMD exports objects and await the actual
+open state before its settled-list pointer probe; do not weaken pointer checks.
+
 Dropdown exit continuity requires exact terminal before-hidden and following
 help/default/host measurements, not only ARIA or duration. Collapse outside
 margins through a canonical opt-in; retain existing card Motion, pointer/focus

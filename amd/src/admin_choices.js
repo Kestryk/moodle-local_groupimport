@@ -1,12 +1,14 @@
 // Native Moodle settings own storage and validation; the Kit owns choice UI.
 import {enhanceSelect, enhanceMultipleSelect} from './searchable_choices';
+import * as Motion from './motion';
 
-export const init = labels => {
+export const init = (labels, animationsEnabled = true) => {
     const form = document.querySelector('#page-admin-setting-local_groupimport #adminsettings');
     if (!form || form.dataset.easyeduAdminChoices === 'ready') {
         return;
     }
     form.dataset.easyeduAdminChoices = 'ready';
+    form.setAttribute('data-easyedu-motion-policy', animationsEnabled ? 'enabled' : 'disabled');
     const controllers = [];
     form.querySelectorAll('select[name^="s_local_groupimport_"]').forEach(select => {
         // Keep a visible native fallback for browser-required validation until
@@ -17,7 +19,7 @@ export const init = labels => {
         const label = [...select.labels].map(node => node.textContent.trim()).join(' ') || select.name;
         select.parentElement.classList.add('easyedu-ui');
         const enhance = select.multiple ? enhanceMultipleSelect : enhanceSelect;
-        const controller = enhance(select, {...labels, label});
+        const controller = enhance(select, {...labels, label}, {motion: Motion});
         controllers.push(controller);
         // Moodle dependencies may disable a setting after initialisation.
         // Observe native state only, never the generated Kit subtree.
