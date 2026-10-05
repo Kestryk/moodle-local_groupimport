@@ -80,6 +80,10 @@
   }
   // In-flow disclosure: cannot escape a modal's scrolling body or narrow panel.
   .easyedu-ui .easyedu-searchable-choice__panel {
+    // Options may be longer than the selected summary. They must not change
+    // an intrinsic-width native wrapper (and wrap its adjacent default copy)
+    // merely because the panel switches between present and hidden.
+    contain: inline-size;
     background: var(--easyedu-surface);
     border: 0.0625rem solid var(--easyedu-control-border);
     border-radius: var(--easyedu-control-radius);

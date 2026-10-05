@@ -90,3 +90,21 @@ An intermediate isolated harness reused a stale JS realm; each case now starts
 from about:blank. Keep that failure rather than claim it was a product regression.
 Existing twelve block endpoint and framed pointer/reversal regressions are
 separate checks. Fresh served native execution is still OPEN until recorded.
+
+## Intrinsic wrapper successor (Kit 0.4.109)
+
+Served run easystud-authenticated-20261005T113954545Z-46748 verifies all five
+real choices at 1600 and 768, then two at 390. The third mobile choice still
+fails: field height jumps 24.296875px while host bottom remains unchanged.
+The remaining cause is inline width, not timing: long option content widens
+an intrinsic defaultsnext wrapper until the hidden panel stops contributing.
+Adjacent default text then moves from its own line beside the short summary.
+Retain the failed run and fully completed cleanup; do not mark SM-55 complete.
+
+The isolated fixture now adds long options and intrinsic-width wrappers,
+reproducing the failure at 390. Canonical panel contain:inline-size removes
+option contents' intrinsic width contribution without adding a fixed width,
+private native selector, font or Motion override. Twelve fixed/intrinsic
+single/multiple successor cases pass. Consumer compilation adds one more
+declaration. Fresh served verification and paired design/human gates remain
+OPEN until their results are separately recorded.

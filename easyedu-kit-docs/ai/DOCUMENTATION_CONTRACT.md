@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+Test intrinsic native wrapper widths with long unselected options as well as
+fixed fixtures. Option width must not change default/help wrapping at hidden;
+canonical inline-size containment preserves the selected summary's width role.
+
 Native inline default/help ancestry must retain its baseline through dropdown
 cleanup. Measure ancestor and sibling copy as well as host bottom; canonical
 grid flow owns this fix, never native per-setting offsets or new type rules.
