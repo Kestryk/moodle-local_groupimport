@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-05 - Quiet sticky served native proof (SM-52)
+
+- Verify transparent inner action, pale hover and canonical keyboard ring at
+  1600/1100 with stable centred capsule, clear behavior and footer clearance.
+- Preserve the 390px proxy skin and command; no business writes or fixtures.
+- Retain both harness predecessor failures and scoped native pins. Human
+  acceptance, clean export and broader keyboard/localized coverage stay open.
+
 ## 2026-10-05 - Quiet sticky inner action candidate (SM-52)
 
 - Opt only desktop Clear selection into the new shared quiet recovery family,

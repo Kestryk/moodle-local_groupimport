@@ -204,3 +204,11 @@ the owned editor checkpoint is inspected. Clean export and served native proof
 remain OPEN. Kit 0.4.115/43fcf72 is pushed; the consumer pin is scoped to buttons
 and public classes, not a blanket replacement of older module revisions.
 This candidate is not currently served; human checklist unchanged.
+
+SM-52 successor is now served via ordered 97f449d/ea5d351 promotion and native
+PASS easystud-authenticated-20261005T212116128Z-47096: six desktop paint/focus/
+geometry records plus unchanged phone proxy, clear commands and footer
+clearance. No data/fixtures/errors/blocked requests; clean runtime61eb5590 and
+all cleanup true. Preserve navigation/zero-alpha harness predecessors.
+Source/Kit/Penpot/native evidence is separate from still-open human acceptance,
+all-locale/tab-order and clean export coverage. Next: SM-53 painted cloud audit.
