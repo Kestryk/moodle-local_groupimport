@@ -1198,62 +1198,37 @@
   }
 
   &-token {
-    @include easyedu.token-pill(transparent, transparent, inherit);
-
-    border: 1px solid transparent;
-    font-size: 0.72rem;
-    font-weight: 600;
-    gap: 0.25rem;
-    max-width: 100%;
-    min-width: 0;
-    overflow: hidden;
-    padding: 0.2rem 0.55rem;
-    text-align: center;
-    text-overflow: ellipsis;
-    vertical-align: middle;
-    white-space: nowrap;
+    @include easyedu.entity-card-token;
   }
 
   &-token--valid {
-    background: #e9f7ee;
-    border-color: #c6e8d2;
-    color: #16653b;
+    @include easyedu.entity-card-token-semantic(valid);
   }
 
   &-token--invalid {
-    background: var(--local-groupimport-easystud-danger-soft);
-    border-color: #f3c8c8;
-    color: #9e2626;
+    @include easyedu.entity-card-token-semantic(invalid,
+      $danger-surface: var(--local-groupimport-easystud-danger-soft));
   }
 
   &-token--role {
-    background: #edf5fc;
-    border-color: #cfe1f1;
-    color: #134f82;
+    @include easyedu.entity-card-token-semantic(role);
   }
 
   &-token--group {
-    background: var(--local-groupimport-easystud-accent-soft);
-    border-color: #cfe5d8;
-    color: #17593f;
+    @include easyedu.entity-card-token-semantic(group,
+      $accent-surface: var(--local-groupimport-easystud-accent-soft));
   }
 
   &-token--grouping {
-    background: #f3eefb;
-    border-color: #ddd1f0;
-    color: #5c3b8a;
+    @include easyedu.entity-card-token-semantic(grouping);
   }
 
   &-token--custom-info {
-    background: #eef6f7;
-    border-color: #cbe2e5;
-    color: #315f68;
+    @include easyedu.entity-card-token-semantic(custom-info);
   }
 
   &-token--empty {
-    background: #f2f5f8;
-    border-color: #dde5ec;
-    color: #687789;
+    @include easyedu.entity-card-token-semantic(empty);
   }
 
   // Identifier lookup feedback is the published Forms/Feedback family, not

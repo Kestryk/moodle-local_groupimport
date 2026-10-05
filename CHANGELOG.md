@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Dense card metadata ownership successor
+
+- Replace compact metadata-token/private semantic declarations with canonical
+  Kit 0.4.105 includes, keeping explicit existing palette aliases.
+- Full compiled CSS identity and untouched commands/templates/Motion pass;
+  no new visual change or human acceptance is implied.
+
 ## 2026-10-05 - Shared loading route successor (SM-40)
 
 - Add a bounded native Mass Import/Administration initialization candidate for

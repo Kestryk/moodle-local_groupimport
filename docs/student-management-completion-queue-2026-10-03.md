@@ -7,6 +7,13 @@ stays deferred to the combined checklist; automation never ticks it.
 
 ## 2026-10-04 user feedback successor
 
+Shared metadata continuation: Kit 0.4.105 owns compact card-token base/seven
+semantic variants; `_structure.scss` delegates with original palette aliases.
+Full emitted CSS remains unchanged against `018d44e`, as do commands/templates/
+Motion. This closes only that declaration-ownership tranche; public-class
+adoption and human acceptance remain OPEN. See
+`entity-card-token-extraction-2026-10-05.md` for build/proof/preview boundaries.
+
 SM-42A heading successor is served: nine Mass/Student/Admin cases at
 1600/768/390 pass the shared 10.88/20/14.4px roles. SM-42B secondary tiles,
 remaining board propagation and Skeleton header reconciliation remain open.

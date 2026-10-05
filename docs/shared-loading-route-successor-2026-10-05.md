@@ -108,3 +108,19 @@ and recovery browser targets: do not reload/close or repeat Update blindly.
 Two owned CDP helpers subsequently exited normally after their bounded timeout;
 no active browser-test/credential lease remains. Product contour propagation
 and final re-export remain OPEN until the editor responds for readback.
+
+Subsequent recovery readback confirms Update was applied: all 150 Admin cues
+have the canonical contour, all 51 section accents remain correct, update
+notification is absent and the EasyStud save marker is confirmed. Post-accent
+mobile export was inspected internally. No additional update was repeated.
+The final Mass contour/readback completes the bounded initial-route catalogue
+publication; broader uploaded/operation loading states and human acceptance
+remain OPEN. Tests/docs through `018d44e` are applied on the local preview branch
+at `8ceb0abf69428ae530ef6889f0dfcbf255a8a800`, without cache purge or CSS change.
+
+Final Mass readback confirms 57 canonical contoured cues across the three boards,
+19 per board, with no visible descendant overflow at 0.1px tolerance. The final
+mobile export was inspected internally after the remote-library update. Together
+with the 150 Admin cues and 51 section accents, this closes publication for the
+six bounded initial-route compositions only. No private contour styles were
+added to the consumer: the Kit already emitted this source paint. Human OPEN.

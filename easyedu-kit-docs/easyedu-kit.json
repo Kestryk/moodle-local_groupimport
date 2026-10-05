@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.104",
+  "version": "0.4.105",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -818,6 +818,14 @@
       "sourceCommit": "d18196e9c8c36962460419959f04e7285539ef7c",
       "module": "scss/easyedu/components/_card-metadata.scss",
       "moduleBlob": "d3e0430f9c339c0b31f03508a8b53a1f2c42066f"
+    },
+    "entityCardTokenExtraction": {
+      "status": "source-only canonical extraction; complete CSS unchanged; not new visual acceptance",
+      "sourceCommit": "3ca36a5e834e1f6de449f48677d4498220ddbe63",
+      "module": "scss/easyedu/components/_entity-metadata.scss",
+      "moduleBlob": "9d55461e9207e308504cea002cda7f4dab60d6d0",
+      "baseline": "018d44e",
+      "normalizedCssSha256": "194c4eb281eab186dfb4e7a3a0d87bbee948724f7457a75ff5fbf217c31638c8"
     },
     "studentDirectActions": {
       "status": "eight action families pass managed 1600/768/390 geometry and non-mutating native interaction checks; captures inspected, human acceptance deferred",
