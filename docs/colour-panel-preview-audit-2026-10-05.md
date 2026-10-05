@@ -88,3 +88,18 @@ names above plus `sm58-colour-preview-20261005`, manifested; scoped retention
 dry-runs preserve all runs without deletion. Pre-edit snapshot is
 `%LOCALAPPDATA%/EasyEdu/handoff-snapshots/sm58-source-pre-20261005`.
 Human checklist, persistence and wider browser/AT matrix remain OPEN.
+
+## First served native run and precise static-Motion oracle
+
+Managed `20261005T154941Z` serves source `a2cf377`. Native run
+`easystud-authenticated-20261005T155007740Z-40328` fails only at its first
+reduced-Motion duration assertion: native shared guard intentionally forces
+`0.001ms !important`, computed `1e-06s`, not zero. Initial 80x40 sample, 12px
+clearance, valid/invalid/preset drafts, Cancel/Apply/focus and matched Regular
+actions pass for the first Primary control. No page error/blocked write; all
+cleanup flags true. Failure/report/capture remain preserved.
+
+The successor asserts `transition-property: none` plus technical duration at
+most one microsecond: no property can animate. This recognizes the existing
+shared policy without weakening static behavior or changing production CSS.
+Native re-run still pending; previous immutable source/test evidence retained.

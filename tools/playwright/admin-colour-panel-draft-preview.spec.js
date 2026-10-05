@@ -73,6 +73,7 @@ test('Administration enlarged colour draft preview preserves native settings', a
                         gap: s.left - title.right, centerDelta: Math.abs((s.top + s.bottom - header.top - header.bottom) / 2),
                         title: getComputedStyle(n.querySelector('h2')).fontSize,
                         transition: getComputedStyle(sample).transitionDuration,
+                        transitionProperty: getComputedStyle(sample).transitionProperty,
                         policy: n.parentElement.dataset.easyeduMotionPolicy || 'normal',
                         actions: [...n.querySelectorAll('.easyedu-dialog-actions button')].map(b => ({
                             height: b.getBoundingClientRect().height, font: getComputedStyle(b).fontSize}))};
@@ -86,7 +87,10 @@ test('Administration enlarged colour draft preview preserves native settings', a
                 expect(measure.title).toBe('16px');
                 expect(measure.actions[0].height).toBeCloseTo(measure.actions[1].height, 2);
                 expect(measure.actions[0].height).toBeCloseTo(37.6, 1); expect(measure.actions[0].font).toBe('14.08px');
-                if (measure.policy === 'disabled') expect(measure.transition).toBe('0s');
+                if (measure.policy === 'disabled') {
+                    expect(measure.transitionProperty).toBe('none');
+                    expect(Math.max(...measure.transition.split(',').map(Number.parseFloat))).toBeLessThanOrEqual(0.000001);
+                }
                 else expect(measure.transition).not.toBe('0s');
                 if (index === 0) {
                     await draft.fill('#123456'); await expect(preview).toHaveCSS('background-color', rgb('#123456'));
@@ -107,8 +111,14 @@ test('Administration enlarged colour draft preview preserves native settings', a
                     // Revert only the unsaved input draft; no settings Save.
                     await hex.fill(initial); await hex.dispatchEvent('change');
                     await page.emulateMedia({reducedMotion: 'reduce'}); await trigger.click();
-                    await expect(preview).toHaveCSS('transition-duration', '0s');
-                    await expect(dialog.locator('.easyedu-color-panel__preset').first()).toHaveCSS('transition-duration', '0s');
+                    // Native shared reduced-Motion guard forces 0.001ms
+                    // !important. No transition property is the real static
+                    // contract, irrespective of that technical duration.
+                    for (const target of [preview, dialog.locator('.easyedu-color-panel__preset').first()]) {
+                        await expect(target).toHaveCSS('transition-property', 'none');
+                        const duration = await target.evaluate(n => getComputedStyle(n).transitionDuration);
+                        expect(Math.max(...duration.split(',').map(Number.parseFloat))).toBeLessThanOrEqual(0.000001);
+                    }
                     await expect(dialog).toHaveCSS('animation-name', 'none');
                     await page.keyboard.press('Escape'); await expect(trigger).toBeFocused();
                     await page.emulateMedia({reducedMotion: 'no-preference'});
