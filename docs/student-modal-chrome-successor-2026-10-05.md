@@ -1,7 +1,7 @@
 # SM-44 — History and native Message diagnosis
 
-SM-43B is served and its native/cleanup gates pass. SM-44 diagnosis and shared
-source candidate are implemented; preview promotion is still pending below.
+SM-43B is served and its native/cleanup gates pass. SM-44 shared source,
+paired/product publication and served native successor now pass below.
 Human checklist OPEN.
 
 ## Confirmed divergences
@@ -92,6 +92,27 @@ title-only header: old decorative icon/eyebrow stay hidden, title Inter16/700
 The history items/restored status/actions remain intact; full History export
 inspected. Backup `SM44-history-before` preserves old header geometry/paint.
 Native successor and human acceptance remain separate gates.
+
+## Served native successor
+
+Kit source `75c57ce`, EasyStud `c186f81`, local runtime `51a6ef13` are the served
+code pins. Promotion `20261005T025218Z` preserved all predecessors and purged
+Moodle caches under the managed gate. Successor run
+`easystud-authenticated-20261005T025256040Z-13652` passes 1600/768/390:
+History and Message headers are exactly 64px with identical canonical gradient,
+12px/20px padding, Inter16/700 and semantic identity title colour. Close is
+centred, 30.4px and unobscured. Message actions are 37.59px/14.08px/600 with
+equal radius/height and correct right inset, native non-resizable field and
+surviving real-opener focus restoration. Six captures saved externally;
+phone Message capture inspected. Current native action palette is configured,
+not hard-coded back to the Penpot default. No page errors or blocked writes.
+
+Runner passed, no timeout; all credentials/child/runtime/fixture cleanup flags
+true, no fixture requested. Baseline and successor manifests retention dry-runs
+protect one run each, zero deletion. No real Send, restore, export or DB write.
+Historical candidate notes above describe the staged progression, not current
+preview status. Full sending/error lifecycle, other native modal bodies and
+human checklist remain OPEN. No global component parity claim.
 
 ## Scenario lifecycle
 

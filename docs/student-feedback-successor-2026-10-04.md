@@ -37,11 +37,12 @@ No other-version compatibility is inferred.
 
 Requests recorded; execution/proof results are appended per lot below.
 
-- SM-44 source and Penpot candidate: shared canonical 64px header and Regular
+- SM-44 served: shared canonical 64px header and Regular
   Message actions, exact History class-only adapters and unrelated CSS/body/
   commands/Motion guard pass. Foundations Desktop/Narrow providers, Standard
   and five product Message copies updated, alongside History chrome. Preview
-  successor remains pending; human checklist OPEN. See
+  successor passes at three widths, with restored Message opener focus and full
+  cleanup/no business writes; human checklist OPEN. See
   `student-modal-chrome-successor-2026-10-05.md`.
 
 - SM-43A implemented: shared transparent underline-only hover, Wide/Touch
