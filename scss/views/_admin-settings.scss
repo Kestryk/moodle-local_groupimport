@@ -260,6 +260,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     @include easyedu.type-body;
   }
 
+  // Shared section flow adapts Moodle's native fieldset, not individual rows.
+  #adminsettings .settingsform {
+    @include easyedu.moodle-admin-section-spacing;
+  }
+
   // core_admin/setting_heading renders h3.main beside (not inside) its
   // .formsettingheading description. Keep the compatibility form as well.
   #adminsettings h3.main,

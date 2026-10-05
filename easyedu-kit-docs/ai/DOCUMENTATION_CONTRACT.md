@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Admin section flow owns only the native h3.main start margin. Verify actual
+fieldset anatomy, three-width paint/containment and untouched control/type/end
+margin declarations. Reuse the canonical Kit include, not private per-setting
+offsets. Public layout diagrams are guidance, not full native form acceptance.
+
+
 SM-44 explicitly supersedes the historical compact Native Message footer with
 Regular paired actions. Preserve older source/browser guards and add a strict
 successor; compare complete unrelated CSS/body/loading/commands/Motion. History

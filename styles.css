@@ -319,6 +319,8 @@
   --easyedu-font-size-modal-title: 1rem;
   --easyedu-font-size-panel-title: 1.08rem;
   --easyedu-font-size-section-title: 1rem;
+  --easyedu-admin-section-gap: 2.5rem;
+  --easyedu-admin-section-gap-narrow: 2rem;
   --easyedu-font-size-card-title: 0.98rem;
   --easyedu-font-size-control: 0.88rem;
   --easyedu-font-size-body: 0.9rem;
@@ -14113,6 +14115,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-font-size-modal-title: 1rem;
   --easyedu-font-size-panel-title: 1.08rem;
   --easyedu-font-size-section-title: 1rem;
+  --easyedu-admin-section-gap: 2.5rem;
+  --easyedu-admin-section-gap-narrow: 2rem;
   --easyedu-font-size-card-title: 0.98rem;
   --easyedu-font-size-control: 0.88rem;
   --easyedu-font-size-body: 0.9rem;
@@ -14624,6 +14628,16 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-text);
   font-size: var(--easyedu-font-size-body);
   line-height: var(--easyedu-line-height-body);
+}
+#page-admin-setting-local_groupimport #adminsettings .settingsform > h3.main,
+#page-admin-setting-local_groupimport #adminsettings .settingsform > fieldset > h3.main {
+  margin-block-start: var(--easyedu-admin-section-gap, 2.5rem);
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport #adminsettings .settingsform > h3.main,
+  #page-admin-setting-local_groupimport #adminsettings .settingsform > fieldset > h3.main {
+    margin-block-start: var(--easyedu-admin-section-gap-narrow, 2rem);
+  }
 }
 #page-admin-setting-local_groupimport #adminsettings h3.main,
 #page-admin-setting-local_groupimport #adminsettings .formsettingheading h3 {
@@ -15344,6 +15358,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   --easyedu-font-size-modal-title: 1rem;
   --easyedu-font-size-panel-title: 1.08rem;
   --easyedu-font-size-section-title: 1rem;
+  --easyedu-admin-section-gap: 2.5rem;
+  --easyedu-admin-section-gap-narrow: 2rem;
   --easyedu-font-size-card-title: 0.98rem;
   --easyedu-font-size-control: 0.88rem;
   --easyedu-font-size-body: 0.9rem;
@@ -19490,6 +19506,17 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-family: var(--easyedu-font-family-ui);
   font-optical-sizing: none;
   font-synthesis: none;
+}
+
+.easyedu-ui .easyedu-admin-section-flow > h3.main,
+.easyedu-ui .easyedu-admin-section-flow > fieldset > h3.main {
+  margin-block-start: var(--easyedu-admin-section-gap, 2.5rem);
+}
+@media (max-width: 48rem) {
+  .easyedu-ui .easyedu-admin-section-flow > h3.main,
+  .easyedu-ui .easyedu-admin-section-flow > fieldset > h3.main {
+    margin-block-start: var(--easyedu-admin-section-gap-narrow, 2rem);
+  }
 }
 
 .easyedu-ui .easyedu-page-header {

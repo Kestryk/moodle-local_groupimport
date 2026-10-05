@@ -1165,6 +1165,19 @@
   }
 }
 
+// Moodle's setting_heading emits direct h3.main siblings inside a fieldset.
+// Separate sections without changing native heading typography, setting rows
+// or their end margins. Also support a settings renderer without a fieldset.
+@mixin moodle-admin-section-spacing {
+  > h3.main,
+  > fieldset > h3.main {
+    margin-block-start: var(--easyedu-admin-section-gap, 2.5rem);
+    @media (max-width: 48rem) {
+      margin-block-start: var(--easyedu-admin-section-gap-narrow, 2rem);
+    }
+  }
+}
+
 // Moodle admin_setting renders a progressive colour control, its default
 // value and help as siblings. Keep the control/default on one responsive row
 // while allowing a conditional notice to consume a separate full-width row.

@@ -147,6 +147,9 @@
 
 @mixin foundation-classes {
   .easyedu-ui { @include foundation-scope; }
+  .easyedu-ui .easyedu-admin-section-flow {
+    @include forms.moodle-admin-section-spacing;
+  }
 
   .easyedu-ui .easyedu-page-header {
     display: grid;
