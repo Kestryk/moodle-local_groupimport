@@ -1,13 +1,14 @@
 # Changelog
 
-## 2026-10-05 - Canonical History/Message chrome candidate (SM-44)
+## 2026-10-05 - Canonical History/Message chrome successor (SM-44)
 
 - Share the Kit 64px modal header and canonical Close with native History;
   preserve History items/body/commands and the rollback header unchanged.
 - Native Message opts into the same header and Regular matched Cancel/Send
   density, aligned right; recipients, textarea, async loading and Motion remain native.
 - Source/unrelated CSS and distribution gates pass; paired Foundations source
-  and Standard controls are published. Local preview and human gates remain pending.
+  and Standard/product controls are published. Local preview successor passes at
+  three widths with native focus restoration and full cleanup; human review open.
 
 
 ## 2026-10-05 - Binary catalogue filter candidate (SM-43B)
