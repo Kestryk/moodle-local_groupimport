@@ -9,7 +9,9 @@
       "kitCommit": "0f3f705f26e5db39df697ca1548f10792ca2979b",
       "cardModuleBlob": "027f2d106fcb70f12fdcd286a80ca3ff89c6f6ec",
       "documentation": "docs/student-card-selection-track-2026-10-05.md",
-      "status": "SM-48 source candidate; desktop native predecessor shift reproduced; six isolated anchor cases pass. Paired Penpot publication and served successor pending. Mobile other states and human checklist OPEN.",
+      "status": "SM-48 desktop header candidate; isolated and paired Penpot publication pass. Served strict successor, other mobile states and human checklist OPEN.",
+      "pairedPenpotPublished": true,
+      "penpotReadback": "docs/testing/student-card-header-penpot-2026-10-05.json",
       "nativePreviewVerified": false,
       "humanVisualValidated": false
     },

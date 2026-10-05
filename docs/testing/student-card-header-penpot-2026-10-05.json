@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "lot": "SM-48",
+  "kitVersion": "0.4.110",
+  "cardModuleBlob": "027f2d106fcb70f12fdcd286a80ca3ff89c6f6ec",
+  "scope": "Desktop fixed Participant header, not all mobile states.",
+  "foundations": {
+    "file": "40e06342-8830-80d6-8008-96572effc11c",
+    "libraryPage": "2b5216d9-06a9-80a1-8008-9cf44cd3d119",
+    "main": "2a31d374-d2a1-80fd-8008-ac477e4f8285",
+    "component": "2a31d374-d2a1-80fd-8008-ac4780d7e45a",
+    "standardPage": "2b5216d9-06a9-80a1-8008-9cf5f952460b",
+    "standard": "2a31d374-d2a1-80fd-8008-ac52c6a264c1",
+    "standardProviderVerified": true,
+    "checkboxTop": 24,
+    "checkboxVerticalConstraint": "top",
+    "titleCentreDelta": 1,
+    "geometryUnchanged": true,
+    "sourceNoteUpdated": true,
+    "notePaintContained": true
+  },
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "activeNamedCompositionsInspected": 8,
+    "directCheckboxContractHosts": 7,
+    "compact": "01e728c3-f1ef-80b3-8008-b5b207e1a552",
+    "expanded": "01e728c3-f1ef-80b3-8008-b5b216528a78",
+    "compactHeaderBefore": {"titleTop": 18, "metadataTop": 19, "checkboxTop": 22, "detailsTop": 15.2},
+    "compactHeaderAfter": {"titleTop": 22, "metadataTop": 23, "checkboxTop": 26, "detailsTop": 19.2},
+    "expandedHeader": {"titleTop": 22, "checkboxTop": 26},
+    "compactExpandedCheckboxTopDelta": 0,
+    "compactExpandedTitleCentreDelta": 0,
+    "compactTitleGap": 16,
+    "expandedTitleGap": 80,
+    "providersAndPaintPreserved": true,
+    "mobileGeometryUnchanged": true,
+    "annotationIsNotComponentLink": true
+  },
+  "evidence": {
+    "externalRun": "sm48-header-20261005",
+    "standardCheckpoint": "foundations-standard-participant.png",
+    "productCheckpoint": "easystud-compact-expanded-participant.png",
+    "checkpointsInspected": true,
+    "remoteExportFirstTimedOut": true,
+    "remoteExportAfterCorrectTabWakeInspected": true
+  },
+  "nativeSuccessorVerified": false,
+  "humanVisualValidated": false
+}

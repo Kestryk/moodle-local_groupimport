@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Penpot Guide connection handoff
+
+- Correct the ownership assumption: Guide has not started Penpot work and does
+  not block Foundations. Preserve its separate source/project ownership.
+- Document independent hosted/local MCP routing and a required crossed file-ID
+  proof before concurrent writes; no global configuration or token changed.
+
 ## 2026-10-05 - Card selection header audit (SM-48)
 
 - Record conflicting density/mobile overlay rules and add a read-only native
@@ -8,6 +15,9 @@
 - Native baseline confirms a 9.5px desktop shift. Kit 0.4.110 source candidate
   anchors the header without changing original Motion or mobile breakpoints;
   six isolated configurations pass. Paired publication/served successor pending.
+- Successor publication records the paired Foundation contract and seven product
+  checkbox compositions; compact header now uses the expanded header track.
+  Served strict regression and broader mobile-state checks remain pending.
 
 ## 2026-10-05 - Framed dropdown terminal spacing (SM-55)
 
