@@ -117,3 +117,10 @@ at each of 1600/768/390 (21 records), Primary draft/invalid/preset/Apply/Cancel,
 focus and static Motion. Native run `easystud-authenticated-20261005T155448684Z-20096`;
 failed duration-only predecessor retained. No settings Save/fixtures, cleanup
 complete. Persistence and human checklist OPEN. Next: SM-54 hover/disclosure.
+
+SM-54 now has a canonical opt-in localized capsule proposal, four exact public
+Mustache adapters, six isolated cases and twelve unchanged compatibility cases
+PASS. Whole unrelated CSS/controllers/card Motion preserved. Ten paired existing
+Foundation states and twenty current Product consumers are being published;
+served animation-height/nested-close proof and human acceptance remain OPEN.
+See more-filters-hover-successor-2026-10-05.md. All other lots remain tracked.

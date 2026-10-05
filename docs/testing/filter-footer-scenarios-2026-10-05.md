@@ -19,6 +19,15 @@ spec immutable until its child exits. Isolated Kit recipes are credential-free
 CI candidates but font/glyph/native cascade proof remains consumer-specific.
 
 Platform plan/current-state proposal: SM-43A implemented source + Foundations +
+SM-54 successor intake: `student-filter-disclosure-capsule.spec.js` is a
+local-supervised one-test candidate for native localized hover, both normal
+height/opacity phases, three-width nested closure and reduced-Motion endpoints.
+Historical SM-43A specs remain pinned. Static candidate is
+`test-filter-disclosure-capsule-source.js`; isolated Kit counterpart is
+`test-filter-disclosure-capsule-browser.cjs` (CI-reusable, no credentials).
+Serve only pushed predecessors in order; source spec immutable during child.
+
+Historical Platform plan/current-state proposal: SM-43A implemented source + Foundations +
 20 product consumers, isolated/static and nine native cases pass; nested-choice
 closure passes nine iterations. All native cleanup complete.
 SM-43B binary-toggle proposal and SM-44–47 remain pending. Human checklist OPEN.

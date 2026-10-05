@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-05 - More Filters localized hover candidate (SM-54)
+
+- Consume canonical Kit capsule paint through four class/wrapper-only adapters.
+  Full available hit lane, type, footer clearance and keyboard ring remain.
+- Preserve Group Show-all, filters/commands, native ARIA/inert and all original
+  controller/Chevron Motion. No private plugin style declarations added.
+- Six isolated cases, twelve compatibility cases and whole unrelated CSS/source
+  preservation pass. Paired publication/native/human gates recorded separately.
+
 ## 2026-10-05 - Enlarged colour draft preview candidate (SM-58)
 
 - Embed the scoped canonical colour-panel controller/SCSS: 80x40 draft sample,
