@@ -6,6 +6,12 @@ the original product fail-open deadline; record sanitized request/response
 phases and unexpected writes without exporting auth queries. A fast direct
 resource GET does not certify the whole native lifecycle or diagnose the cause.
 
+Skeleton catalogue reconciliation includes the canonical 1px inner cue contour,
+not only gradient fill and static section accent. A current connected provider
+does not prove that its product copies received the remote-library update.
+Inspect copies after the update and preserve unknown update results; use a
+subpixel tolerance for floating-point bounds, without masking real overflow.
+
 Skeleton route proofs inspect the painted element for direct bars and ::after
 only for overlay bars. Preserve failed immutable-oracle evidence. Actual
 initial page headings have eyebrow/title/description cues, no invented action

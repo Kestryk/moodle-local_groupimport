@@ -9,6 +9,10 @@
   removes them and reuses the canonical three-cue heading in Mass/Admin.
 - Six final-font native route cases pass with complete cleanup; interrupted
   Penpot publication is recorded separately, without a false completion claim.
+- Recover final Mass loading boards by readback; add native-sized Administration
+  desktop/tablet/mobile compositions with linked shared Skeleton cues/frames.
+- Reconcile Foundations/Standard cue contours with the unchanged canonical SCSS
+  border. No new private styles or Kit version change; human review stays open.
 
 ## 2026-10-05 - Compact navigation composition inventory (SM-47)
 
@@ -25,6 +29,8 @@
 - Cached startup passes at both diagnostic heights, while routed timing remains
   mixed. Open/Close-only short-menu successor observes unexpected writes without
   disabling native HTTP cache; prior failure and strict ready gates retained.
+- Native short-menu successor passes four viewport/Motion cases, including
+  opaque paint, actual bottom scrolling and restored Close focus; no writes.
 
 ## 2026-10-05 - Shared colour-panel successor (SM-46)
 

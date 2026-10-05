@@ -45,6 +45,9 @@ Requests recorded; execution/proof results are appended per lot below.
   export pass. Generic Foundations stays unchanged; other capabilities,
   short-height scrolling and human review remain open. See
   `student-mobile-navigation-composition-2026-10-05.md`.
+  Short-height 600px successor also passes four normal/reduced cases, with
+  original startup readiness and Close focus. Cached/routed diagnostic failure
+  remains preserved; no product timeout or Motion was changed.
 
 - SM-46 served: shared S/M/L draft popup with palette, native keyboard ranges,
   authoritative Hex and Apply/Cancel; strict native settings/reset/contrast,
@@ -114,6 +117,10 @@ Requests recorded; execution/proof results are appended per lot below.
   was interrupted by lost Penpot heartbeat; preserve partial boards and recover
   by readback. Admin composition publication and human review remain open. See
   `shared-loading-route-successor-2026-10-05.md`.
+  Recovery readback confirms the final-font Mass replacement; native-sized
+  Administration specimens are now linked at three widths. Twelve Foundation/
+  Standard Skeleton pairs match after restoring source SCSS cue contours.
+  Product remote-library readback/export remains the final publication gate.
 - SM-41 partial implementation served: canonical opt-in frame disclosure removes
   the padding-floor jump; member Search and native Group/Grouping Add preview
   pass at desktop/tablet/mobile. Existing card/Show-all Motion and business
