@@ -59,3 +59,18 @@ Successor waits for auth document initialization, installs one gate for all
 actual native AMD aggregates on the next owned navigation, releases them in
 finally after real fail-open, then preserves every original ready/recovery/
 keyboard/paint/hit/business oracle. No product source or deadline change.
+
+## Served strict successor PASS
+
+Owned native231318800Z-35432 PASS84 records at clean runtimece055419;
+served Source522234a, loaded protocol43e6d89. Actual delayed aggregate GETs
+produce fail-open8723ms then initialized/stable-ready13793ms, with content
+visible, aria-busy false, inert released and Skeleton hidden throughout recovery.
+Nine real local Tab entries, nine exact canonical focus shadows and nine native
+Space select/deselect/focus-retention cases pass across390/768/320 and all three
+entity kinds. Fifty-four rest/selected/deselected first/longest existing-card
+geometries have no title overlap, missed44px hit or horizontal overflow.
+Zero errors/blocked/business/fixtures; cleanup complete, retention0deleted/1protected.
+Pins and remaining gates: testing/card-checkbox-keyboard-native-2026-10-06.json.
+This proves recovery/selection, not faster transport, whole-page tab order,
+all disabled/forced-color/native-reduced paths or visual track/human acceptance.

@@ -8,8 +8,9 @@
       "kitVersion": "0.4.117",
       "scope": "Consumer-owned readiness only; Kit loading paint unchanged, no version bump",
       "documentation": "docs/student-late-loading-recovery-2026-10-06.md",
-      "status": "Student opt-in preserves8s fail-open/fades; real late initialized/stable recovery without Skeleton replay.20 virtual cases PASS, native pending.",
-      "nativePreviewVerified": false,
+      "status": "Student opt-in preserves8s fail-open/fades; actual delayed GET recovery and84-record keyboard successor PASS.20 virtual cases PASS; startup speed/native reduced/human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T231318800Z-35432",
       "humanVisualValidated": false
     },
     "cardCheckboxKeyboard20261006": {
@@ -17,8 +18,9 @@
       "kitCommit": "38d195ea42994f4fd43d59ff04616924c4c47880",
       "scope": "Documentation/native keyboard contract only; unchanged selection-checkbox SCSS and existing Large providers",
       "documentation": "docs/mobile-card-checkbox-paint-audit-2026-10-06.md",
-      "status": "Restore ten static/three dynamic checkbox default focusability; paired protocol/native successor pending. Paint-track/size/human OPEN.",
-      "nativePreviewVerified": false,
+      "status": "Ten static/three dynamic defaults restored; paired protocol saved.9 real Tab/Space/focus cases and54 hit/title records native PASS. Paint-track/size/full keyboard/human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T231318800Z-35432",
       "humanVisualValidated": false
     },
     "modalYieldControl20261005": {

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Served checkbox keyboard and late-ready proof (SM-48)
+
+- Verify84 native records: all9 local Tab/Space cases, exact focus paint,
+  unchanged pointer/title geometry and actual delayed-startup recovery.
+- Preserve8s fail-open/fades and no Skeleton replay, all failed predecessors,
+  clean runtime and complete cleanup. Visual track/size/human remain open.
+
 ## 2026-10-06 - Owned delayed-startup native successor (SM-48)
 
 - Preserve first controlled-run failure and observed late recovery/first-card
