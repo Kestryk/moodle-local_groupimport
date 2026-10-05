@@ -150,7 +150,9 @@ export const disclosePanel = (element, open, options = {}) => {
         end.height = '0px';
         end.opacity = 0;
         frameProperties.forEach(property => {
-            end[property] = property.startsWith('margin') ? closed[property] : '0px';
+            // A hidden in-flow list owns no outside spacing. Opt-in choices
+            // collapse that margin with the frame instead of dropping it at hide.
+            end[property] = property.startsWith('margin') && !options.collapseMargins ? closed[property] : '0px';
         });
     }
     element.classList.add('is-easyedu-disclosing');

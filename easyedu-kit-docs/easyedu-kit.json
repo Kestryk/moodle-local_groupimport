@@ -1,9 +1,19 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.106",
+  "version": "0.4.107",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "choiceTerminalSpacing20261005": {
+      "kitVersion": "0.4.107",
+      "kitCommit": "3026e3f1f362ba34f3ce13acb0b0ffa2ab3a288b",
+      "sourceMotionBlob": "9a886225f6e7f1c79b27849d10797eddeec7ecb6",
+      "sourceChoicesBlob": "5edf7534b8637b9aba890f356e9a7345eb910c67",
+      "documentation": "docs/student-choice-terminal-spacing-2026-10-05.md",
+      "status": "SM-55 opt-in frame margin exit; isolated endpoint, pointer/reversal/card regressions and generated AMD pass. Native, paired Penpot and human gates pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "colourPanelSuccessor20261005": {
       "kitVersion": "0.4.104",
       "kitCommit": "85c7ed3",
