@@ -64,13 +64,21 @@ Other mobile states and human acceptance remain OPEN; see the SM-48 native recor
 
 SM-56 source uses the existing Kit form-note spacing and requested English
 action wording. Three Penpot Restore instances now contain their French labels
-and retain 20px helper clearance. Static/isolated checks pass; managed native
-Administration proof is pending. See admin-restore-clearance-2026-10-05.md.
+and retain 20px helper clearance. Static/isolated checks and managed native
+Administration proof at 1600/768/390 pass: exact wording, 20px helper gap,
+draft-only reset and no settings POST. Human checklist stays OPEN. See
+admin-restore-clearance-2026-10-05.md; preserve the four failed prior harness runs.
 
 SM-57 source audit confirms literal canonical semantic gradients are not
 connected to the configured primary/accent palette. Preserve panel geometry
 and introduce the mapping in the Kit, not private consumer paint; see
 workspace-accent-palette-audit-2026-10-05.md. Implementation remains OPEN.
+
+SM-51 source and live Product readback find the four active Participant
+metadata fields already using canonical Inter/regular values; hidden legacy
+Open Sans descendants are not current fields. No blind font override applied.
+Fresh native/full Grouping-body proof remains OPEN; see
+entity-field-typography-audit-2026-10-05.md.
 
 1. Finish the authorized docs-only recovery, retain omitted 35813f2 prerequisite
    before 0e60a8c successor, and certify clean runtime/unchanged rendered assets.

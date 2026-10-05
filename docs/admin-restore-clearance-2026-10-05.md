@@ -94,3 +94,26 @@ the controls under the pointer; baseline inspection must move the pointer out
 and await each actual unfocused/unhovered border endpoint. Keep the exact colour
 oracle, original transitions and all seven controls. Cleanup is complete with
 no fixture. These failed whole-controls runs do not certify Restore geometry.
+
+## Served native successor - PASS
+
+Loaded source `43216d0`, clean served runtime
+`c74fea29b7ae7ad7cb45d79fe5643846ae03616d`, managed prerequisite record
+`20261005T131446Z.json`. No additional cache purge or asset rebuild was needed
+for these test/docs-only successors; the actual UI/string source was already
+cache-purged by the preceding 13:00 promotion.
+
+Run `easystud-authenticated-20261005T131511964Z-20384` passes the immutable
+single Administration test at 1600/768/390. Restore text is exactly
+`Restore EasyEdu colors`, helper font is 12.16px and actual frame clearance
+is 20px in all three cases. Action viewport bounds pass. All seven enhanced
+picker width/Hex/default-alignment checks, five searchable choices, title and
+section roles, contrast-notice show/hide and draft Restore/no-submit assertions
+pass as well. This remains read-only settings presentation, not persistence.
+
+External run `playwright-output/admin-kit-readonly-Adminis-efa89-ad-only-responsive-controls/`
+contains `admin-restore-metrics.json`, `admin-choice-metrics.json`, three page
+and three palette captures. Scoped retention dry-run protects the manifested
+run and deletes nothing. Cleanup confirms credentials cleared, runtime lease
+released, owned child stopped and no fixture requested or created. Agent capture
+inspection is separate from the combined human acceptance, which stays OPEN.

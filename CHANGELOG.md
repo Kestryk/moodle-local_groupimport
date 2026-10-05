@@ -12,6 +12,8 @@
   default exemption through a draft-only input rather than altering settings.
 - Update the controls test to measure the existing enhanced swatch trigger,
   retaining its strict width oracle and native fallback/submission behavior.
+- Served native successor passes Restore wording/20px help spacing and all
+  controls at 1600/768/390, after explicit baseline-state waits. No settings Save.
 
 ## 2026-10-05 - Penpot Guide connection handoff
 
