@@ -5,6 +5,9 @@
 - Record conflicting density/mobile overlay rules and add a read-only native
   four-width diagnostic without entity actions, font or Motion changes.
 - Actual geometry, shared successor and paired Penpot/human gates stay separate.
+- Native baseline confirms a 9.5px desktop shift. Kit 0.4.110 source candidate
+  anchors the header without changing original Motion or mobile breakpoints;
+  six isolated configurations pass. Paired publication/served successor pending.
 
 ## 2026-10-05 - Framed dropdown terminal spacing (SM-55)
 

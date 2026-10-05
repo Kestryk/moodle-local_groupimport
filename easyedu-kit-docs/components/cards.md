@@ -1,5 +1,14 @@
 # Cards
 
+## Fixed selection header anchor (0.4.110 source candidate)
+
+`card-selection-header-anchor($block-start: 0.3rem)` opts the existing overlay
+slot into a fixed header track, removing card-height translation. It owns no
+inline lane, checkbox paint/size, breakpoint or Motion. Bind measured desktop
+density states only. Preserve narrow responsive recipes and title clearance.
+Paired Foundations/EasyStud publication and served native successor remain
+pending; source presence is not whole-card/mobile or human acceptance.
+
 ## Source-preserving identity surfaces
 
 `identity-card-paint($kind, $state: rest)` centralises twelve existing painted
