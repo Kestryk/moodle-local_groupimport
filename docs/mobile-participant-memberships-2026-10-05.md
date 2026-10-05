@@ -120,6 +120,33 @@ The obsolete panel-overflow note is corrected and full-view controls no longer
 overlap filters, top pagination or the first card. Readback/native successor
 and human acceptance are still separate gates.
 
+## Final scoped native successor
+
+Run `easystud-authenticated-20261005T205848070Z-13660` PASS on served
+Source `8f047c6` / runtime `ea3eb92a`: 86 records, including 46 geometry cases
+and 34 successful real selection hit probes. Native widths 320/390/768/1024
+and desktop return 1600 retain roles/profile rows, 44px responsive targets,
+minimum 8px title clearance, no horizontal overflow, sole/two/deselection,
+manual full/compact, filtered selection and independent desktop preference.
+Twelve original native height animations run at 120/136ms; reduced policy
+produces none. Unrelated Grouping classes remain identical. Zero page errors,
+blocked/business requests or fixtures; credentials, child and lease cleanup
+complete. Retention dry-run deletes nothing and protects one visual artifact.
+The external proof and summary are retained in the manifested run, with durable
+scope/pins in `docs/testing/mobile-membership-native-summary-2026-10-05.json`.
+
+The prior action/hit successors remain failed evidence. The desktop diagnostic
+showed a hidden Participant panel because the real admin default is Groups &
+groupings and Complete is disabled. The final scenario opens Participants
+through its actual view control before testing it; no admin preference, CSS,
+pointer target or Motion override was needed. The strict hit oracle is retained.
+
+Human acceptance remains OPEN, as do broader all-card paint/size reconciliation
+and dedicated keyboard-focus proof. The twelve usage cards still inherit
+historical Small checkbox specimens, while native responsive checkbox paint is
+larger; retain this explicit catalogue parity gap for the SM-48 mobile successor
+rather than certifying 100% visual equivalence from a behavior-only PASS.
+
 ## Previous lot's managed publication
 
 SM-51 documentation promotion request `20261005T192922Z-681e270c05` completed:
