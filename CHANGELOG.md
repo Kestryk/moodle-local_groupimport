@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-05 - Scoped entity body typography audit (SM-51)
+
+- Fresh guarded native open/Cancel audit passes nine entity/width cases. Values
+  already use canonical paragraph family and 14.08px/400; no font/style fork
+  added. Existing conditional fields, controls and shared chrome retained.
+- Full-dialog Penpot metadata propagation and mobile sticky-nav overlap remain
+  distinct open gates. No settings Save, fixtures or business mutations.
+
 ## 2026-10-05 - More Filters localized hover candidate (SM-54)
 
 - Consume canonical Kit capsule paint through four class/wrapper-only adapters.

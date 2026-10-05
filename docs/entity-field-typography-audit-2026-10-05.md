@@ -40,3 +40,34 @@ by resize is responsive body geometry proof only, not a mobile entry point.
 Fresh live Penpot readback reconfirms the same four IDs and Inter 14.08/400
 values, 12.16/600 captions. No design/source style change is justified yet.
 Native result pending; Grouping body/optional/empty and human gates OPEN.
+
+## Fresh scoped native result
+
+Run `easystud-authenticated-20261005T170755545Z-45416` PASS, source protocol
+`db34c492`, runtime `324bd396`: Participant, Group and Grouping at 1600/768/390
+(nine cases, 42 measurement records). Actual value family is
+`"EasyEdu Inter", Inter, sans-serif`, 14.08px/400. Caption family is Inter,
+12.16px/600; native edit controls remain the separate 13.76px role. All nine
+bodies retain their expected fields/list counts, viewport containment, shared
+Close geometry/hover and action-row density/end alignment. Participant remains
+read-only; Group keeps image/enrolment/delete controls; Grouping omits them.
+Native opening/Cancel and desktop return focus pass. No Save, upload, export,
+navigation, fixture or membership writes. Errors/denied requests zero; child,
+credentials, lease and fixture cleanup all complete. Manifested retention
+dry-run has zero deletions. Mobile Participant/Grouping captures inspected.
+
+The value-font complaint is not reproduced in this currently served revision;
+no additional SCSS override or font family is added. This is not whole-body
+human acceptance: native nonempty descriptions/optional profile fields were
+not manufactured, and desktop-open-then-resize is not mobile settings entry.
+The 390px captures show the native sticky navigation launcher protruding over
+the modal's left edge; retain that SM-49 layering/visibility follow-up instead
+of hiding it for the screenshot. Participant avatar lifecycle is not covered.
+
+Live Grouping full-dialog export inspected at
+`cef95197-06bc-809e-8008-aeffae533daf`: field type is current, but its older
+Groups list still uses 13px/700 legacy rows while the separately corrected
+native metadata specimen uses 13.44px/canonical primary-then-chips. Full-dialog
+propagation and paired Settings-list/row Foundation publication remain OPEN
+as already tracked in student-entity-metadata-native-2026-10-03.md. Do not claim
+that the native font PASS closes these distinct design-composition gaps.
