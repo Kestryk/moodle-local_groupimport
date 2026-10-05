@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-05 - Shared loading route successor (SM-40)
+
+- Add a bounded native Mass Import/Administration initialization candidate for
+  running subtle sweep, reduced Motion and original readiness. No product
+  source change; native/publication and human gates are tracked separately.
+
 ## 2026-10-05 - Compact navigation composition inventory (SM-47)
 
 - Record the missing native section/order in Product Penpot and a bounded
