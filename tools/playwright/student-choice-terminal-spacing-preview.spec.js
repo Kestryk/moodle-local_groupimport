@@ -4,9 +4,16 @@ const fs = require('node:fs');
 
 test('Native Administration choices close without terminal layout jump', async ({page}, testInfo) => {
     test.setTimeout(180000);
-    const records = [], errors = [], blocked = [];
+    const records = [], errors = [], blocked = [], phases = [];
     page.on('pageerror', error => errors.push(error.message));
     const url = new URL('/admin/settings.php?section=local_groupimport', process.env.EASYEDU_MOODLE_URL).toString();
+    const navigate = async () => {
+        phases.push({phase:'navigation-start', at:Date.now()});
+        // Widget readiness is checked below. Do not wait for unrelated page
+        // resources' load event, or leave a navigation unbounded after failure.
+        await page.goto(url, {waitUntil:'domcontentloaded', timeout:30000});
+        phases.push({phase:'dom-ready', at:Date.now(), path:new URL(page.url()).pathname});
+    };
     const guard = async route => {
         if (route.request().method() === 'GET') { await route.continue(); }
         else { blocked.push(route.request().method()); await route.abort('blockedbyclient'); }
@@ -16,18 +23,22 @@ test('Native Administration choices close without terminal layout jump', async (
             await page.setViewportSize({width, height:1100});
             await page.emulateMedia({reducedMotion:'no-preference'});
             await page.unroute('**/admin/settings.php*', guard);
-            await page.goto(url);
+            await navigate();
             if (page.url().includes('/login/')) {
                 await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
                 await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
                 await page.locator('#loginbtn').click();
-                await page.waitForURL(u => !u.pathname.includes('/login/'));
-                await page.goto(url);
+                await page.waitForURL(u => !u.pathname.includes('/login/'),
+                    {waitUntil:'domcontentloaded', timeout:30000});
+                await navigate();
             }
             await page.route('**/admin/settings.php*', guard);
             await expect(page.locator('body')).not.toHaveClass(/local-groupimport-admin-settings-page--loading/,
                 {timeout:60000});
-            await page.evaluate(() => document.fonts.ready);
+            await page.evaluate(() => Promise.race([
+                document.fonts.ready,
+                new Promise((_, reject) => setTimeout(() => reject(Error('Fonts did not settle.')), 15000)),
+            ]));
             const choices = page.locator('.easyedu-searchable-choice--framed:visible');
             expect(await choices.count()).toBeGreaterThanOrEqual(5);
             for (let index = 0; index < await choices.count(); index++) {
@@ -77,6 +88,6 @@ test('Native Administration choices close without terminal layout jump', async (
         expect(blocked).toEqual([]);
     } finally {
         fs.writeFileSync(testInfo.outputPath('choice-terminal-spacing-native.json'),
-            JSON.stringify({records,errors,blocked}, null, 2));
+            JSON.stringify({records,errors,blocked,phases}, null, 2));
     }
 });

@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+After authenticated navigation failure, preserve the failed run and cleanup.
+Use bounded DOM navigation with independent strict widget/font readiness;
+record only timestamps and sanitized pathnames, never auth queries or state.
+
 Native Administration choices must inject canonical Motion for single/multiple
 selects and receive saved animation policy separately from their labels. Verify
 generated AMD dependencies/exports, required native fallback and open-list Reset.
