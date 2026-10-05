@@ -39,9 +39,13 @@ harness correction, not a product fix or a persistence PASS.
 The successor run `easystud-authenticated-20261005T145221952Z-40072` again
 passes 144 rail records but captures the exact denied method:
 `core_message_get_unsent_message`. Moodle's service definition marks it read;
-its implementation only retrieves the existing user's draft. Explicitly allow
-that method, not its separate write counterpart. No message content or request
-arguments are recorded. Retain both failures and completed cleanup.
+its implementation also unsets the session draft after retrieving it. The
+allowlist candidate was committed but not executed/promoted before that source
+detail was identified. The safe successor instead fulfills only this bootstrap
+call with an empty client response, leaving the actual session untouched.
+No message content or request arguments are recorded. All panel roots, markup,
+palette binding and stylesheet remain real native Moodle. This is not message
+workflow proof. Retain both failures and completed cleanup.
 
 Read-only source audit under EED-UI-2026-0073. Not an implementation or native
 PASS; human checklist remains OPEN. Preserve the user's unfinished phrase

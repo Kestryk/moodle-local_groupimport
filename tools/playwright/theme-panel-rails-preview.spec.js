@@ -18,6 +18,7 @@ test('Native workspace rails consume custom palette without geometry drift', asy
     const errors = [];
     const blocked = [];
     const bootstrapReads = [];
+    const mockedBootstrap = [];
     page.on('pageerror', error => errors.push(error.message));
     const initial = new URL(process.env.EASYEDU_MOODLE_URL);
     await page.goto(initial.href);
@@ -36,12 +37,18 @@ test('Native workspace rails consume custom palette without geometry drift', asy
                 const body = request.postDataJSON();
                 if (Array.isArray(body)) methods = body.map(call => call.methodname);
             } catch (_) { /* Unknown POST remains denied. */ }
-            // Native Moodle bootstrap loads translations/templates and the
-            // existing unsent draft through
-            // read-only Ajax functions. Allow no other POST and log no args.
+            // The message draft getter is classified read but consumes its
+            // session value. This visual gate must not consume a user's draft.
+            if (pathname === '/lib/ajax/service.php' && methods.length &&
+                    methods.every(method => method === 'core_message_get_unsent_message')) {
+                mockedBootstrap.push(...methods);
+                return route.fulfill({status: 200, contentType: 'application/json',
+                    body: JSON.stringify(methods.map(() => ({error: false, data: {}})))});
+            }
+            // Allow only side-effect-free core translation/template reads;
+            // deny other POSTs and log no arguments or message contents.
             const allowed = new Set(['core_get_string', 'core_get_strings',
-                'core_output_load_template', 'core_output_load_template_with_dependencies',
-                'core_message_get_unsent_message']);
+                'core_output_load_template', 'core_output_load_template_with_dependencies']);
             if (pathname === '/lib/ajax/service.php' && methods.length && methods.every(method => allowed.has(method))) {
                 bootstrapReads.push(...methods);
                 return route.continue();
@@ -138,6 +145,7 @@ test('Native workspace rails consume custom palette without geometry drift', asy
         expect(errors).toEqual([]);
         expect(blocked).toEqual([]);
     } finally {
-        fs.writeFileSync(testInfo.outputPath('theme-panel-rails.json'), JSON.stringify({binding, records, errors, blocked, bootstrapReads}, null, 2));
+        fs.writeFileSync(testInfo.outputPath('theme-panel-rails.json'), JSON.stringify({binding, records, errors, blocked,
+            bootstrapReads, mockedBootstrap}, null, 2));
     }
 });
