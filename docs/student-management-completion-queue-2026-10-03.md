@@ -7,6 +7,13 @@ stays deferred to the combined checklist; automation never ticks it.
 
 ## 2026-10-04 user feedback successor
 
+Metadata overflow successor: Kit 0.4.106 owns +N/Show less token and plain-link
+presentation, focus and shared semantic palette. Consumer scope is includes
+only, retaining existing host conflicts explicitly. Complete emitted CSS is
+unchanged against served `6ca62c5`; no native labels/counts/ARIA/Motion change.
+See `entity-card-overflow-extraction-2026-10-05.md`. Public-class migration,
+legacy density normalization and the combined human checklist remain OPEN.
+
 Shared metadata continuation: Kit 0.4.105 owns compact card-token base/seven
 semantic variants; `_structure.scss` delegates with original palette aliases.
 Full emitted CSS remains unchanged against `018d44e`, as do commands/templates/

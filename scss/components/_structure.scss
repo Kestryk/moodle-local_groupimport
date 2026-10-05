@@ -1258,94 +1258,38 @@
   }
 
   &-tags-toggle {
-    align-items: center;
-    border-radius: 999px !important;
-    box-shadow: none;
-    font-family: inherit !important;
-    font-size: 0.72rem !important;
-    font-weight: 600 !important;
-    justify-content: center;
-    line-height: 1.2 !important;
-    min-width: 1.65rem;
-    padding: 0.24rem 0.62rem !important;
-    text-decoration: none;
-    vertical-align: middle;
+    @include easyedu.entity-card-overflow-control($legacy-priority: true);
 
     &.local-groupimport-easystud-token {
-      align-items: center;
-      border-style: solid !important;
-      border-width: 1px !important;
-      color: inherit !important;
-      display: inline-flex;
-      gap: 0.25rem;
-      height: auto;
-      max-width: 100%;
-      min-width: 1.65rem;
-      overflow: hidden;
-      text-align: center;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      @include easyedu.entity-card-overflow-token($legacy-priority: true);
     }
 
     &.local-groupimport-easystud-token--role {
-      background: #edf5fc !important;
-      border-color: #cfe1f1 !important;
-      color: #134f82 !important;
+      @include easyedu.entity-card-token-semantic(role, $legacy-priority: true);
     }
 
     &.local-groupimport-easystud-token--group {
-      background: var(--local-groupimport-easystud-accent-soft) !important;
-      border-color: #cfe5d8 !important;
-      color: #17593f !important;
+      @include easyedu.entity-card-token-semantic(group,
+        $accent-surface: var(--local-groupimport-easystud-accent-soft),
+        $legacy-priority: true);
     }
 
     &.local-groupimport-easystud-token--grouping {
-      background: #f3eefb !important;
-      border-color: #ddd1f0 !important;
-      color: #5c3b8a !important;
+      @include easyedu.entity-card-token-semantic(grouping, $legacy-priority: true);
     }
 
     &.local-groupimport-easystud-token--custom-info {
-      background: #eef6f7 !important;
-      border-color: #cbe2e5 !important;
-      color: #315f68 !important;
+      @include easyedu.entity-card-token-semantic(custom-info, $legacy-priority: true);
     }
 
-    &:hover,
-    &:focus {
-      box-shadow: none;
-      outline: 0;
-      text-decoration: none;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring;
-    }
+    @include easyedu.entity-card-overflow-feedback;
   }
 
   &-tags-toggle:not(.local-groupimport-easystud-token) {
-    border: 0 !important;
-    border-radius: 999px;
-    box-shadow: none;
-    color: var(--local-groupimport-easystud-primary);
-    font-size: 0.5rem;
-    font-weight: 700;
-    line-height: 1;
-    padding: 0.15rem 0.35rem !important;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      background: transparent;
-      box-shadow: none;
-      color: var(--local-groupimport-easystud-primary-strong);
-      outline: 0;
-      text-decoration: none;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring;
-    }
+    @include easyedu.entity-card-overflow-link(
+      $text: var(--local-groupimport-easystud-primary),
+      $active-text: var(--local-groupimport-easystud-primary-strong),
+      $legacy-priority: true);
   }
 
   [data-selectable-type].is-selected > &-selector &-selector__ui {

@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Dense overflow presentation delegates to canonical Kit includes. Existing
+Bootstrap utility conflicts are retained only with an explicit legacy adapter,
+not new forced declarations in the plugin. Preserve native tags/counts/ARIA and
+Motion; whole-CSS identity is required. Keep earlier token proof pins historical.
+
 Dense metadata extraction preserves detected lookup feedback and explicit
 consumer palette aliases. Compare the complete emitted CSS and canonical module,
 not a subset of new selectors; transfer is not class-only or human acceptance.

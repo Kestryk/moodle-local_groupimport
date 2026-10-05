@@ -4,6 +4,15 @@
 @use "focus";
 @use "modals";
 @use "typography";
+@use "sass:map";
+@use "sass:list";
+
+// Migration adapter only: new consumers use the normal-priority default.
+// Existing host utility conflicts can be retained explicitly during extraction.
+@mixin _metadata-property($name, $value, $legacy-priority) {
+  @if $legacy-priority { #{$name}: $value !important; }
+  @else { #{$name}: $value; }
+}
 
 // Source-preserving dense metadata tokens. Lookup feedback remains a distinct
 // detected-token family; these roles describe card metadata, not commands.
@@ -27,41 +36,93 @@
 @mixin entity-card-token-semantic(
   $role,
   $danger-surface: var(--easyedu-danger-soft),
-  $accent-surface: var(--easyedu-accent-soft)
+  $accent-surface: var(--easyedu-accent-soft),
+  $legacy-priority: false
 ) {
-  @if $role == valid {
-    background: #e9f7ee;
-    border-color: #c6e8d2;
-    color: #16653b;
-  } @else if $role == invalid {
-    background: $danger-surface;
-    border-color: #f3c8c8;
-    color: #9e2626;
-  } @else if $role == role {
-    background: #edf5fc;
-    border-color: #cfe1f1;
-    color: #134f82;
-  } @else if $role == group {
-    background: $accent-surface;
-    border-color: #cfe5d8;
-    color: #17593f;
-  } @else if $role == grouping {
-    background: #f3eefb;
-    border-color: #ddd1f0;
-    color: #5c3b8a;
-  } @else if $role == custom-info {
-    background: #eef6f7;
-    border-color: #cbe2e5;
-    color: #315f68;
-  } @else if $role == empty {
-    background: #f2f5f8;
-    border-color: #dde5ec;
-    color: #687789;
-  } @else {
+  $palette: (
+    valid: (#e9f7ee, #c6e8d2, #16653b),
+    invalid: ($danger-surface, #f3c8c8, #9e2626),
+    role: (#edf5fc, #cfe1f1, #134f82),
+    group: ($accent-surface, #cfe5d8, #17593f),
+    grouping: (#f3eefb, #ddd1f0, #5c3b8a),
+    custom-info: (#eef6f7, #cbe2e5, #315f68),
+    empty: (#f2f5f8, #dde5ec, #687789)
+  );
+  @if not map.has-key($palette, $role) {
     @error "Unknown entity card token role: #{$role}";
   }
+  $paint: map.get($palette, $role);
+  @include _metadata-property(background, list.nth($paint, 1), $legacy-priority);
+  @include _metadata-property(border-color, list.nth($paint, 2), $legacy-priority);
+  @include _metadata-property(color, list.nth($paint, 3), $legacy-priority);
 }
 
+// Overflow presentation only: counts, labels, ARIA and disclosure stay native.
+@mixin entity-card-overflow-control($legacy-priority: false) {
+  align-items: center;
+  @include _metadata-property(border-radius, 999px, $legacy-priority);
+  box-shadow: none;
+  @include _metadata-property(font-family, inherit, $legacy-priority);
+  @include _metadata-property(font-size, 0.72rem, $legacy-priority);
+  @include _metadata-property(font-weight, 600, $legacy-priority);
+  justify-content: center;
+  @include _metadata-property(line-height, 1.2, $legacy-priority);
+  min-width: 1.65rem;
+  @include _metadata-property(padding, 0.24rem 0.62rem, $legacy-priority);
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+@mixin entity-card-overflow-token($legacy-priority: false) {
+  align-items: center;
+  @include _metadata-property(border-style, solid, $legacy-priority);
+  @include _metadata-property(border-width, 1px, $legacy-priority);
+  @include _metadata-property(color, inherit, $legacy-priority);
+  display: inline-flex;
+  gap: 0.25rem;
+  height: auto;
+  max-width: 100%;
+  min-width: 1.65rem;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin entity-card-overflow-feedback {
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    outline: 0;
+    text-decoration: none;
+  }
+  &:focus-visible { @include focus.ring; }
+}
+
+@mixin entity-card-overflow-link(
+  $text: var(--easyedu-primary),
+  $active-text: var(--easyedu-primary-strong),
+  $legacy-priority: false
+) {
+  @include _metadata-property(border, 0, $legacy-priority);
+  border-radius: 999px;
+  box-shadow: none;
+  color: $text;
+  font-size: 0.5rem;
+  font-weight: 700;
+  line-height: 1;
+  @include _metadata-property(padding, 0.15rem 0.35rem, $legacy-priority);
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    background: transparent;
+    box-shadow: none;
+    color: $active-text;
+    outline: 0;
+    text-decoration: none;
+  }
+  &:focus-visible { @include focus.ring; }
+}
 
 @mixin entity-metadata-title($detail: false) {
   @include typography.type-control-label;

@@ -1,6 +1,6 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.105",
+  "version": "0.4.106",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
@@ -838,6 +838,14 @@
       "sourceCommit": "d18196e9c8c36962460419959f04e7285539ef7c",
       "module": "scss/easyedu/components/_card-metadata.scss",
       "moduleBlob": "d3e0430f9c339c0b31f03508a8b53a1f2c42066f"
+    },
+    "entityCardOverflowExtraction": {
+      "status": "source-only canonical overflow extraction; complete CSS unchanged; not new visual acceptance",
+      "sourceCommit": "2662aa1d56907b25d6f5250eb58ad82b93f86781",
+      "module": "scss/easyedu/components/_entity-metadata.scss",
+      "moduleBlob": "928ac8928d5bf688484836a877c127525bdd29fd",
+      "baseline": "6ca62c5",
+      "normalizedCssSha256": "194c4eb281eab186dfb4e7a3a0d87bbee948724f7457a75ff5fbf217c31638c8"
     },
     "entityCardTokenExtraction": {
       "status": "source-only canonical extraction; complete CSS unchanged; not new visual acceptance",
