@@ -46,6 +46,8 @@
     "remoteExportFirstTimedOut": true,
     "remoteExportAfterCorrectTabWakeInspected": true
   },
-  "nativeSuccessorVerified": false,
+  "nativeSuccessorVerified": true,
+  "nativeRunId": "easystud-authenticated-20261005T124541289Z-44316",
+  "nativeScope": "Desktop fixed Participant header and representative mobile title lanes; not all mobile states",
   "humanVisualValidated": false
 }

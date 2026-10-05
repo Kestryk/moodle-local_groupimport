@@ -88,3 +88,17 @@ Playwright requires an object-destructured first fixture argument; the new
 wrapper used `context`. Correct only that parameter to `{page}` and forward
 it to the unchanged audit. No oracle, selectors, product CSS or Motion changed.
 Retain this harness failure separately; it is not a native product failure.
+
+## Native strict successor - PASS
+
+Loaded Source 510411e, run easystud-authenticated-20261005T124541289Z-44316,
+passes sixteen native measurements at 1600/768/390/320 on runtime 092c3d31.
+Desktop Participant target top is 5.796875px in both states (delta zero), with
+painted-square/title deltas 0.078125/1.1875px and title gaps 7.1875/75.984375px.
+All sampled title hit lanes remain separated. Browser errors/blocked writes are
+zero; credentials cleared, child stopped and lease released, no fixtures.
+
+This closes the fixed desktop header successor only. Original card Motion is
+awaited, not rewritten. Representative mobile headers pass unchanged geometry;
+manual full-details, long names and additional nested states remain OPEN,
+along with the combined human checklist.
