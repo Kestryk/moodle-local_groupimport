@@ -8,6 +8,8 @@
   pointer/reversal/card regressions. Native, Penpot and human gates are separate.
 - Native preflight exposes missing shared Motion injection in Administration;
   wire it into both choices and honour the saved animation preference.
+- Preserve the authenticated-navigation timeout separately from product proof;
+  bound the next candidate's navigation and retain strict widget/font readiness.
 
 ## 2026-10-05 - Authorized metadata documentation recovery
 

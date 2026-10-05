@@ -60,3 +60,14 @@ real AMD exports-object handling for the imported Babel Motion module, then a
 settled-open starting point for its legacy Reset probe. Preserve both intermediate
 harness failures in the task record; neither justified weakening pointer equality.
 PHP syntax and executed generated choices exports also pass. No settings write.
+
+The second native run easystud-authenticated-20261005T105307208Z-17644 times
+out during authenticated Administration navigation, before geometry assertions.
+Cleanup confirms credentials cleared, owned child stopped and lease released;
+no fixture or settings Save. This is not a native product PASS. Subsequent
+read-only localhost and anonymous Administration requests return HTTP 200
+(Administration redirects to login). This alone cannot certify authenticated
+readiness or identify the timeout's cause. The next immutable candidate bounds
+navigation at 30 seconds, waits for DOM rather than unrelated resource load,
+and retains strict widget/font/geometry readiness. Sanitized phase timestamps
+and destination pathname help distinguish navigation from assertion failures.
