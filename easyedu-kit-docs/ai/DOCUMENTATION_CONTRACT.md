@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Card keyboard audits distinguish visible pointer targets from real sequential
+focusability. A negative-tabindex input reached by programmatic focus is not
+a keyboard-entry PASS. Preserve diagnostic source, native paint/state records
+and existing Motion before publishing the size/track successor.
+
 Public modal-yield successors compare complete CSS and template outside their
 one opt-in. Keep native type baselines and actual mobile open/Close/focus proof;
 normal/reduced visibility is independent from Message/Guide or full keyboard

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-06 - Mobile card checkbox paint and keyboard audit (SM-48)
+
+- Add existing-card paint/hit/local keyboard diagnostic at three mobile widths.
+- Record older Small versus native Large touch paint and tabindex=-1 source
+  gaps without speculative control/Motion changes. Native pending.
+
 ## 2026-10-06 - Mobile navigation served modal recovery (SM-49)
 
 - Verify six native phone/tablet normal/reduced cases: canonical menu type,
