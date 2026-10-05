@@ -21,6 +21,8 @@
 - Serve the paired header candidate with managed cache purge. Correct the strict
   Playwright fixture signature after a pre-credential discovery failure;
   preserve the same geometry oracle and original product assets.
+- Strict native successor passes sixteen four-width measurements: desktop
+  checkbox top stays fixed. Other mobile states and human acceptance remain OPEN.
 
 ## 2026-10-05 - Framed dropdown terminal spacing (SM-55)
 

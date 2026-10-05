@@ -59,7 +59,8 @@ Its native diagnostic protocol is student-card-selection-track-2026-10-05.md.
 Native baseline now reproduces the desktop shift. Kit 0.4.110's fixed-anchor
 source candidate passes six isolated cases. Paired Foundations/Standard and
 Product publication has readback and inspected checkpoints. Managed served
-strict successor and narrow other-state coverage remain OPEN.
+strict successor passes sixteen native records with zero desktop top shift.
+Other mobile states and human acceptance remain OPEN; see the SM-48 native record.
 
 1. Finish the authorized docs-only recovery, retain omitted 35813f2 prerequisite
    before 0e60a8c successor, and certify clean runtime/unchanged rendered assets.
