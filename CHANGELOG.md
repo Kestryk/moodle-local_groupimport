@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-05 - Shared metadata Settings-list publication (SM-51)
+
+- Publish coherent Open, linked Settings row and separate Closed/Empty source
+  states with paired Standard instances; no new source paint or font override.
+- Propagate lists to EasyStud specimens and complete Group/Grouping dialogs,
+  preserving illustrative names, IDs, counts, CSV and recoverable older lists.
+- Reconcile inherited-width offsets and a partial layout write before resuming.
+  Saved type/containment, paired semantic chip and inspected full-dialog exports
+  are separate from human acceptance. Native CSS/Motion/data unchanged.
+
 ## 2026-10-05 - Scoped entity body typography audit (SM-51)
 
 - Fresh guarded native open/Cancel audit passes nine entity/width cases. Values

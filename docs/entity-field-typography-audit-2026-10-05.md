@@ -71,3 +71,15 @@ native metadata specimen uses 13.44px/canonical primary-then-chips. Full-dialog
 propagation and paired Settings-list/row Foundation publication remain OPEN
 as already tracked in student-entity-metadata-native-2026-10-03.md. Do not claim
 that the native font PASS closes these distinct design-composition gaps.
+
+## Paired list publication successor
+
+The Settings-list/Row source catalogue now has paired source-preserving
+Open/Closed/Empty/Row instances. Full Group and Grouping lists use those linked
+families and the actual 13.44/600 primary role, retaining original names, counts,
+IDs and native max-height excerpt. Settled type/containment readback passes;
+the full Grouping export has been inspected. See
+entity-settings-list-publication-2026-10-05.md for paired semantic chip publication
+and the inspected full Group export. No stylesheet/controller/runtime change, no
+human acceptance claim; historical native proof and remaining optional/mobile
+gates above remain intact.

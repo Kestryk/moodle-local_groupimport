@@ -112,3 +112,14 @@ correct shared page/Library without creating a second token family. Then read
 back the narrow/product consumers after library publication; do not mass-update
 unrelated overrides. These source-family updates and full-dialog/mobile
 compositions remain OPEN, as does the combined human checklist.
+
+### Paired publication successor - 5 October 2026
+
+The source-family reconciliation above is now recorded in
+`entity-settings-list-publication-2026-10-05.md`: paired Open/Closed/Empty/Row,
+narrow wrapped usage and linked complete Product Group/Grouping lists. Preserve
+the original proof JSON and its explicitly source-pending historical state;
+the new successor has separate source/product readbacks and guard. Both full
+dialog exports were inspected and Groupings semantic chip is now paired/linked.
+Native SCSS, scrolling/hidden CSV, commands and Motion are unchanged. Mobile
+entry/optional states and the human checklist stay OPEN.

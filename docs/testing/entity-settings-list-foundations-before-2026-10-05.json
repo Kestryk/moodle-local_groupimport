@@ -1,0 +1,556 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "file": "40e06342-8830-80d6-8008-96572effc11c",
+  "page": "81455adb-6787-8068-8008-9ce6186bf6ef",
+  "main": "79c98099-5199-8000-8008-bbfe87ba453e",
+  "nodes": [
+    {
+      "id": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "parent": "37222e98-689a-801a-8008-bbfd3b2f8022",
+      "type": "board",
+      "name": "EasyEdu / Modals / Entity metadata / Disclosure / Settings list / Open",
+      "x": 740,
+      "y": 5810,
+      "width": 700,
+      "height": 280.0000000000018,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#fbfdff",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [
+        {
+          "strokeColor": "#d9e7f1",
+          "strokeColorRefFile": null,
+          "strokeColorRefId": null,
+          "strokeOpacity": 1,
+          "strokeStyle": "solid",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe88053280",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "board",
+      "name": "EasyEdu / Icons / Navigation / Chevron",
+      "x": 756,
+      "y": 5827,
+      "width": 24,
+      "height": 24,
+      "hidden": false,
+      "fills": [],
+      "strokes": [],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe88053281",
+      "parent": "79c98099-5199-8000-8008-bbfe88053280",
+      "type": "group",
+      "name": "Icon / Chevron down (master; source vector)",
+      "x": 761,
+      "y": 5834,
+      "width": 14,
+      "height": 10,
+      "hidden": false,
+      "fills": [],
+      "strokes": [],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe88053282",
+      "parent": "79c98099-5199-8000-8008-bbfe88053281",
+      "type": "rectangle",
+      "name": "base-background",
+      "x": 761,
+      "y": 5834,
+      "width": 14,
+      "height": 10,
+      "hidden": true,
+      "fills": [],
+      "strokes": [],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe88053283",
+      "parent": "79c98099-5199-8000-8008-bbfe88053281",
+      "type": "path",
+      "name": "svg-path",
+      "x": 763.333333333333,
+      "y": 5836.916666666668,
+      "width": 9.333333333333712,
+      "height": 3.3333333333321207,
+      "hidden": false,
+      "fills": [],
+      "strokes": [
+        {
+          "strokeColor": "#0b5ea8",
+          "strokeColorRefFile": null,
+          "strokeColorRefId": null,
+          "strokeOpacity": 1,
+          "strokeStyle": null,
+          "strokeWidth": 2,
+          "strokeAlignment": null,
+          "strokeCapStart": "round",
+          "strokeCapEnd": "round",
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8820470b",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "text",
+      "name": "Heading",
+      "x": 782,
+      "y": 5823,
+      "width": 210,
+      "height": 28,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#263b4f",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "Members",
+      "size": "14.08",
+      "weight": "600"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe886d5091",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "board",
+      "name": "EasyEdu / Modals / Entity metadata / Count / Settings",
+      "x": 1282,
+      "y": 5821,
+      "width": 132,
+      "height": 25.81999999999971,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#edf7f1",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [
+        {
+          "strokeColor": "#cfe3d6",
+          "strokeColorRefFile": null,
+          "strokeColorRefId": null,
+          "strokeOpacity": 1,
+          "strokeStyle": "solid",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe886d5092",
+      "parent": "79c98099-5199-8000-8008-bbfe886d5091",
+      "type": "text",
+      "name": "Text",
+      "x": 1290,
+      "y": 5823,
+      "width": 116,
+      "height": 21.81999999999971,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#225842",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "1 member(s)",
+      "size": "12.48",
+      "weight": "600"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe888d7bdb",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "rectangle",
+      "name": "Separator",
+      "x": 741,
+      "y": 5858,
+      "width": 698,
+      "height": 1,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#d9e7f1",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe88be18b1",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "text",
+      "name": "Primary / Alex Dupont",
+      "x": 756,
+      "y": 5872,
+      "width": 210,
+      "height": 28,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#263b4f",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "Alex Dupont",
+      "size": "13.44",
+      "weight": "600"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8904ba9e",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "text",
+      "name": "Secondary / Alex",
+      "x": 978,
+      "y": 5872,
+      "width": 250,
+      "height": 28,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5b7085",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "alex.dupont@example.edu",
+      "size": "12.16",
+      "weight": "400"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe895dc1b7",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "board",
+      "name": "EasyEdu / Modals / Entity metadata / Chip / Members",
+      "x": 1170,
+      "y": 5874,
+      "width": 246,
+      "height": 23.48999999999978,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#eef6fc",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [
+        {
+          "strokeColor": "#c9deef",
+          "strokeColorRefFile": null,
+          "strokeColorRefId": null,
+          "strokeOpacity": 1,
+          "strokeStyle": "solid",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe895e0fb7",
+      "parent": "79c98099-5199-8000-8008-bbfe895dc1b7",
+      "type": "text",
+      "name": "Text",
+      "x": 1178,
+      "y": 5876,
+      "width": 230,
+      "height": 19.48999999999978,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#2f5f89",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "Email address · user@example.edu",
+      "size": "12.16",
+      "weight": "600"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8976baff",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "rectangle",
+      "name": "Separator",
+      "x": 741,
+      "y": 5914,
+      "width": 698,
+      "height": 1,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#d9e7f1",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe89a2d8e1",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "text",
+      "name": "Primary / Léa Martin",
+      "x": 756,
+      "y": 5928,
+      "width": 210,
+      "height": 28,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#263b4f",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "Léa Martin",
+      "size": "13.44",
+      "weight": "600"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe89e13bf0",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "text",
+      "name": "Secondary / Léa",
+      "x": 978,
+      "y": 5928,
+      "width": 250,
+      "height": 28,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5b7085",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "lea.martin@example.edu",
+      "size": "12.16",
+      "weight": "400"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8a2bd590",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "board",
+      "name": "EasyEdu / Modals / Entity metadata / Chip / Groups",
+      "x": 1226,
+      "y": 5930,
+      "width": 188,
+      "height": 23.48999999999978,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#eaf6ef",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [
+        {
+          "strokeColor": "#c5e2d0",
+          "strokeColorRefFile": null,
+          "strokeColorRefId": null,
+          "strokeOpacity": 1,
+          "strokeStyle": "solid",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "strokeCapStart": null,
+          "strokeCapEnd": null,
+          "strokeColorGradient": null,
+          "strokeImage": null
+        }
+      ],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8a2bd591",
+      "parent": "79c98099-5199-8000-8008-bbfe8a2bd590",
+      "type": "text",
+      "name": "Text",
+      "x": 1234,
+      "y": 5932,
+      "width": 172,
+      "height": 19.48999999999978,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#2e6f4b",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "Members · 6 member(s)",
+      "size": "12.16",
+      "weight": "600"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8a4e58ca",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "rectangle",
+      "name": "Separator",
+      "x": 741,
+      "y": 5970,
+      "width": 698,
+      "height": 1,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#d9e7f1",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8a7d42fe",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "text",
+      "name": "Empty state",
+      "x": 756,
+      "y": 5986,
+      "width": 668,
+      "height": 34,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5b7085",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "Empty state: This group is not assigned to any grouping yet.",
+      "size": "12.16",
+      "weight": "400"
+    },
+    {
+      "id": "79c98099-5199-8000-8008-bbfe8acaa2c6",
+      "parent": "79c98099-5199-8000-8008-bbfe87ba453e",
+      "type": "text",
+      "name": "Description",
+      "x": 756,
+      "y": 6034,
+      "width": 668,
+      "height": 34,
+      "hidden": false,
+      "fills": [
+        {
+          "fillColor": "#5b7085",
+          "fillOpacity": 1,
+          "fillColorGradient": null,
+          "fillColorRefFile": null,
+          "fillColorRefId": null,
+          "fillImage": null
+        }
+      ],
+      "strokes": [],
+      "rotation": 0,
+      "text": "Clipped list surface; search and CSV actions remain modal controls.",
+      "size": "12.16",
+      "weight": "400"
+    }
+  ]
+}

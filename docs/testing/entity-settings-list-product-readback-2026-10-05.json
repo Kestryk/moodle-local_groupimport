@@ -1,0 +1,469 @@
+{
+  "schemaVersion": 1,
+  "batch": "EED-UI-2026-0073",
+  "product": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "cef95197-06bc-809e-8008-aeff9a955b2c",
+    "localMasters": 0,
+    "full": [
+      {
+        "old": "cef95197-06bc-809e-8008-af3549b39ab1",
+        "host": "8a982f17-c9c0-80e9-8008-bea2fde43847",
+        "rows": [
+          "8a982f17-c9c0-80e9-8008-bea2ffdac728",
+          "8a982f17-c9c0-80e9-8008-bea32be4cff9",
+          "8a982f17-c9c0-80e9-8008-bea32dc81bf1"
+        ],
+        "title": "Members",
+        "kind": "members",
+        "count": 3,
+        "clip": true,
+        "complete": true,
+        "section": "8a982f17-c9c0-80e9-8008-bea2fe86b783",
+        "archiveHidden": true,
+        "rect": [
+          136,
+          2200,
+          771.9999999999998,
+          216
+        ],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea2fe86d355",
+            "text": "Members",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "600",
+            "bounds": {
+              "x": 178,
+              "y": 2215.6000003814697,
+              "width": 64.4375,
+              "height": 16.799999237060547
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea2fe86d357",
+            "text": "3 Members",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600",
+            "bounds": {
+              "x": 701.89999961853,
+              "y": 2216.3999996185303,
+              "width": 68.19999694824219,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea2fe8934a7",
+            "text": "CSV",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600",
+            "bounds": {
+              "x": 848.3200001907346,
+              "y": 2216.3999996185303,
+              "width": 26.399999618530273,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea2ffdac729",
+            "text": "Alice Martin",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600",
+            "bounds": {
+              "x": 153.12,
+              "y": 2264.32,
+              "width": 78.11250305175781,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea2ffdb3d35",
+            "text": "Email address · alice.martin@example.edu",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 170.425,
+              "y": 2292.839999976158,
+              "width": 249.375,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea2ffdb3d37",
+            "text": "ID · 10482",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 470.52500114440915,
+              "y": 2292.839999976158,
+              "width": 58.78749847412104,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea32be4cffa",
+            "text": "Samira Benali",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600",
+            "bounds": {
+              "x": 153.12,
+              "y": 2342.0800000000004,
+              "width": 88.125,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea32be4cffc",
+            "text": "Email address · samira.benali@example.edu",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 165.66250019073487,
+              "y": 2370.5999999761584,
+              "width": 258.9125061035156,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea32be4cffe",
+            "text": "ID · 10503",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 470.65000114440915,
+              "y": 2370.5999999761584,
+              "width": 58.52500152587885,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea32dc81bf2",
+            "text": "Alex Dupont",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600",
+            "bounds": {
+              "x": 153.12,
+              "y": 2419.84,
+              "width": 79.42500305175781,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea32dc81bf4",
+            "text": "Email address · alex.dupont@example.edu",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 170.3,
+              "y": 2448.359999976158,
+              "width": 249.63751220703125,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea32dc87bbd",
+            "text": "ID · 10621",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 472.0125003814697,
+              "y": 2448.359999976158,
+              "width": 55.81249999999994,
+              "height": 15.200000762939453
+            }
+          }
+        ]
+      },
+      {
+        "old": "cef95197-06bc-809e-8008-af354af014e8",
+        "host": "8a982f17-c9c0-80e9-8008-bea32fcf39a9",
+        "rows": [
+          "8a982f17-c9c0-80e9-8008-bea3325c60a1"
+        ],
+        "title": "Groupings",
+        "kind": "groupings",
+        "count": 1,
+        "clip": false,
+        "complete": true,
+        "section": "8a982f17-c9c0-80e9-8008-bea33082e42e",
+        "archiveHidden": true,
+        "rect": [
+          136,
+          2468,
+          771.9999999999998,
+          136
+        ],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33083261d",
+            "text": "Groupings",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "600",
+            "bounds": {
+              "x": 178,
+              "y": 2483.6000003814697,
+              "width": 70.6500015258789,
+              "height": 16.799999237060547
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33083261f",
+            "text": "1 Groupings",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600",
+            "bounds": {
+              "x": 700.4750003814695,
+              "y": 2484.3999996185303,
+              "width": 71.05000305175781,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33084c459",
+            "text": "CSV",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600",
+            "bounds": {
+              "x": 848.3200001907346,
+              "y": 2484.3999996185303,
+              "width": 26.399999618530273,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea3325c60a2",
+            "text": "Year 2026",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600",
+            "bounds": {
+              "x": 153.12,
+              "y": 2532.32,
+              "width": 66.9625015258789,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea3333df90c",
+            "text": "ID · YEAR-2026",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 249.4750030517577,
+              "y": 2560.839999976158,
+              "width": 91.27499389648438,
+              "height": 15.200000762939453
+            }
+          }
+        ]
+      },
+      {
+        "old": "cef95197-06bc-809e-8008-af354d70b04d",
+        "host": "8a982f17-c9c0-80e9-8008-bea334c3faf2",
+        "rows": [
+          "8a982f17-c9c0-80e9-8008-bea3371a04a2",
+          "8a982f17-c9c0-80e9-8008-bea339f97723"
+        ],
+        "title": "Groups",
+        "kind": "groups",
+        "count": 2,
+        "clip": false,
+        "complete": true,
+        "section": "8a982f17-c9c0-80e9-8008-bea33576c152",
+        "archiveHidden": true,
+        "rect": [
+          1016,
+          2636,
+          772.0000000000009,
+          216
+        ],
+        "texts": [
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33577185a",
+            "text": "Groups",
+            "font": "Inter",
+            "size": "14.08",
+            "weight": "600",
+            "bounds": {
+              "x": 1058,
+              "y": 2651.6000003814697,
+              "width": 49.54999923706055,
+              "height": 16.799999237060547
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33577185c",
+            "text": "2 Groups",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600",
+            "bounds": {
+              "x": 1588.5750007629404,
+              "y": 2652.3999996185303,
+              "width": 54.83749771118164,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33579353a",
+            "text": "CSV",
+            "font": "Inter",
+            "size": "12.48",
+            "weight": "600",
+            "bounds": {
+              "x": 1728.3200001907358,
+              "y": 2652.3999996185303,
+              "width": 26.399999618530273,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea3371a04a3",
+            "text": "Group A",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600",
+            "bounds": {
+              "x": 1033.12,
+              "y": 2700.32,
+              "width": 53.04999923706055,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea337e3a494",
+            "text": "Members · 3",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 1138.425,
+              "y": 2728.839999976158,
+              "width": 73.38749694824219,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea338f213f4",
+            "text": "ID · GROUP-A",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 1340.3750005722043,
+              "y": 2728.839999976158,
+              "width": 79.07499694824219,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea339f97724",
+            "text": "Group B",
+            "font": "Inter",
+            "size": "13.44",
+            "weight": "600",
+            "bounds": {
+              "x": 1033.12,
+              "y": 2778.0800000000004,
+              "width": 52.125,
+              "height": 16
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33abf103c",
+            "text": "Members · 8",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 1138.399998474121,
+              "y": 2806.5999999761584,
+              "width": 73.43750762939453,
+              "height": 15.200000762939453
+            }
+          },
+          {
+            "id": "8a982f17-c9c0-80e9-8008-bea33be01517",
+            "text": "ID · GROUP-B",
+            "font": "Inter",
+            "size": "12.16",
+            "weight": "600",
+            "bounds": {
+              "x": 1340.5875001907345,
+              "y": 2806.5999999761584,
+              "width": 78.6624984741211,
+              "height": 15.200000762939453
+            }
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "rows": [
+        {
+          "section": "fcb98309-36c1-8004-8008-bc008ad4740f",
+          "row": "8a982f17-c9c0-80e9-8008-bea0ad704db9",
+          "oldRow": "386b6f86-a1e7-806b-8008-be211f3ca189",
+          "kind": "members",
+          "width": 682.3999999999999
+        },
+        {
+          "section": "386b6f86-a1e7-806b-8008-be21211faf3e",
+          "row": "8a982f17-c9c0-80e9-8008-bea0afb02b61",
+          "oldRow": "386b6f86-a1e7-806b-8008-be2121c919a5",
+          "kind": "groups",
+          "width": 562.3999999999999
+        }
+      ],
+      "empty": "386b6f86-a1e7-806b-8008-be20a8c81909"
+    }
+  },
+  "geometry": {
+    "full": [
+      {
+        "host": "8a982f17-c9c0-80e9-8008-bea2fde43847",
+        "archiveHidden": true,
+        "overflows": []
+      },
+      {
+        "host": "8a982f17-c9c0-80e9-8008-bea32fcf39a9",
+        "archiveHidden": true,
+        "overflows": []
+      },
+      {
+        "host": "8a982f17-c9c0-80e9-8008-bea334c3faf2",
+        "archiveHidden": true,
+        "overflows": []
+      }
+    ],
+    "cards": [
+      {
+        "id": "e38279dc-cd7d-80fa-8008-bc0018036a8f",
+        "overflows": []
+      },
+      {
+        "id": "e38279dc-cd7d-80fa-8008-bc001a5e3ab6",
+        "overflows": []
+      }
+    ],
+    "tolerance": 0.1
+  },
+  "humanVisualValidated": false,
+  "nativeStyleChanged": false
+}
