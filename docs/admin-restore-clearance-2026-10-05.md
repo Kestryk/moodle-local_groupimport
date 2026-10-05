@@ -68,3 +68,16 @@ notice directly or changes product validation. Existing light-colour/show,
 readable-colour/hide, seven-picker and no-submit assertions remain required.
 Cleanup: credentials cleared, runtime lease released, owned child stopped,
 no fixture requested or created. Preserve failed media/source under its run ID.
+
+Second run `easystud-authenticated-20261005T130535694Z-43652` reaches the
+picker geometry checks, then reports a zero-width native swatch. SM-46's
+existing progressive enhancement deliberately hides that fallback and renders
+the linked/shared `.easyedu-color-picker__trigger` instead. The older controls
+test measured the hidden fallback. Its successor requires all seven real
+triggers and applies the same strict 49.6px width oracle to that visible paint.
+No product change, fallback removal or relaxed width assertion is made. Its
+cleanup flags are also complete, with no settings Save or fixture.
+
+Penpot retention inventory uses the scoped run root in dry-run mode: both
+captures are manifested/pinned and protected. A turn-owned global read-only
+inventory was stopped after unnecessary traversal; no deletion was requested.

@@ -595,3 +595,9 @@ The existing `Administration Kit read-only responsive controls` test now records
 gap, unchanged caption font and viewport containment at 1600/768/390. Preserve
 all existing draft-only Restore and blocked-settings-POST assertions. This is
 a scoped successor, not Save/persistence proof or human acceptance.
+
+With the native colour-panel enhancement active, measure the real
+`.easyedu-color-picker__trigger`, not its deliberately hidden native swatch.
+Saved custom palettes may show contrast guidance; assert the default exemption
+only after explicitly restoring that field's PHP-provided default in the draft.
+Keep seven controls, strict width and no-submit assertions unchanged.
