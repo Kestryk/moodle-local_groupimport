@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+SM-58 draft previews are decorative and use the exact last valid draft token.
+Preserve labelled/named Hex, native settings persistence and previous module
+pins. Import only the scoped canonical controller/SCSS, compare all unrelated
+CSS and retain the historical SM-46 gate. Paired Penpot, isolated, served native
+and human acceptance remain independent; reconcile unknown editor writes.
+
 Custom semantic rails inherit a Kit-owned gradient from validated chosen colours.
 Copy only scoped modules when a consumer pins other modules independently;
 whole-directory sync must not downgrade earlier lots. Compare complete generated

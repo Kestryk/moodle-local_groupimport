@@ -20842,6 +20842,12 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] {
   padding: 0;
   box-shadow: none;
   outline: none;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .easyedu-ui .easyedu-color-picker__trigger {
+    transition: none;
+  }
 }
 .easyedu-ui .easyedu-color-picker__trigger:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -20859,6 +20865,34 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] {
   font-weight: 600;
   line-height: 1.75rem;
   margin: 0 0 1rem;
+}
+
+.easyedu-ui .easyedu-color-panel__header {
+  align-items: center;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr) 5rem;
+  margin-block-end: 1rem;
+}
+.easyedu-ui .easyedu-color-panel__header .easyedu-color-panel__title {
+  margin: 0;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.easyedu-ui .easyedu-color-panel__preview {
+  background-color: var(--easyedu-color-current);
+  block-size: 2.5rem;
+  border: 1px solid var(--easyedu-border-strong);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  inline-size: 5rem;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .easyedu-ui .easyedu-color-panel__preview {
+    transition: none;
+  }
 }
 
 .easyedu-ui .easyedu-color-panel__plane {
@@ -20957,6 +20991,12 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] {
   min-inline-size: 0;
   padding: 0;
   position: relative;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .easyedu-ui .easyedu-color-panel__preset {
+    transition: none;
+  }
 }
 .easyedu-ui .easyedu-color-panel__preset::before {
   background: var(--easyedu-color-current);
@@ -20970,6 +21010,9 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-primary);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
+}
+.easyedu-ui .easyedu-color-panel__preset:hover {
+  border-color: var(--easyedu-control-focus-border);
 }
 .easyedu-ui .easyedu-color-panel__preset:focus-visible {
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
@@ -21052,6 +21095,21 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel[open] {
 }
 .easyedu-ui .easyedu-color-panel__error[hidden] {
   display: none;
+}
+
+.easyedu-ui[data-easyedu-motion-policy=disabled] .easyedu-color-panel__preview,
+.easyedu-ui[data-easyedu-motion-policy=disabled] .easyedu-color-panel__preset,
+.easyedu-ui[data-easyedu-motion-policy=disabled] .easyedu-color-picker__trigger,
+.easyedu-ui.is-easyedu-motion-off .easyedu-color-panel__preview,
+.easyedu-ui.is-easyedu-motion-off .easyedu-color-panel__preset,
+.easyedu-ui.is-easyedu-motion-off .easyedu-color-picker__trigger,
+.is-easyedu-motion-off .easyedu-ui .easyedu-color-panel__preview,
+.is-easyedu-motion-off .easyedu-ui .easyedu-color-panel__preset,
+.is-easyedu-motion-off .easyedu-ui .easyedu-color-picker__trigger,
+body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel__preview,
+body.easyedu-motion-disabled .easyedu-ui .easyedu-color-panel__preset,
+body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {
+  transition: none;
 }
 
 @keyframes easyedu-color-panel-enter {

@@ -43,3 +43,48 @@ the raw child list alone. Product counterparts are pinned in the SM-46 record.
 No Guide, card disclosure, source hierarchy or colour persistence changes belong
 to this lot. Public export remains SCSS-only; optional runtime picker stays a
 separate explicit package, with no internal agent/docs distribution.
+
+## Implementation and paired publication successor
+
+Kit 0.4.112 adds a decorative 80x40 exact-draft sample, shared shrinkable header
+and 12px title clearance. Short-title height +12px; widths 320/352/384 unchanged.
+Presets/swatch/sample use existing fast state-Motion, static reduced/disabled
+policies. Invalid Hex retains last valid paint; Apply/Cancel/HSV are unchanged.
+
+Isolated `sm58-colour-preview-20261005-b` passes nine size/viewport cases.
+Retained predecessor `sm58-colour-preview-20261005-a` exposes the initial
+disabled-policy selector miss. Explicit root selectors fix it. Helper placement
+also removes new Sass mixed-declaration warnings; consumer rebuild retains
+only its existing layout warning. Source gate compares the entire unrelated
+CSS and business files against `087956f4d2a02a34bc73950eddda090be7be1cb7`: PASS.
+Canonical controller/SCSS identity PASS; only that module is imported, no
+whole-Kit synchronization or private plugin styling.
+
+Twelve existing Library providers updated in place; originals recoverable in
+`sm58-backup` plugin data. The write exceeded 120s and stalled the editor;
+later heartbeat/readback recovered and confirmed all twelve complete. No
+duplicate write or forced reload. Standard/source fingerprints match with no
+visible descendant overflow. Standard export/capture inspected; initial Library
+capture is obscured by toolbar chrome and remains predecessor evidence only.
+
+Product actual Admin page `5daf2376-ada4-8014-8008-ad9db3131f63` contains the
+two original linked M/Open copies, now 352x581.6 with 80x40 samples. Provider
+`5daf2376-ada4-8014-8008-ad8044e4a033` retained, no visible descendant overflow;
+mobile capture inspected. Update click timed out after dispatch, but readback
+confirmed successful propagation; no second click. Detailed IDs/readback in
+`docs/testing/colour-draft-preview-penpot-2026-10-05.json`. Guide connection
+still points to its separate project; no Guide writes.
+
+Native `admin-colour-panel-draft-preview.spec.js` is a local-supervised CI
+candidate: seven controls at 1600/768/390, representative draft/invalid/preset,
+Cancel/Apply/focus/static Motion, no settings Save/fixtures. Only translation
+and template reads are allowed POST; consuming message-draft getter mocked
+empty. One-test discovery `easystud-authenticated-20261005T153449979Z-32312`
+passes with no credentials/lease. Source checkout lacks CLI dependencies;
+use runtime wrapper and explicit source-spec allowlist. Served proof pending.
+
+Artifacts under `%LOCALAPPDATA%/EasyEdu/artifacts/kit/` and `/penpot/`, run
+names above plus `sm58-colour-preview-20261005`, manifested; scoped retention
+dry-runs preserve all runs without deletion. Pre-edit snapshot is
+`%LOCALAPPDATA%/EasyEdu/handoff-snapshots/sm58-source-pre-20261005`.
+Human checklist, persistence and wider browser/AT matrix remain OPEN.

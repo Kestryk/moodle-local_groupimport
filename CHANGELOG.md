@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-05 - Enlarged colour draft preview candidate (SM-58)
+
+- Embed the scoped canonical colour-panel controller/SCSS: 80x40 draft sample,
+  shared fast state-Motion, static reduced/disabled policies, unchanged widths.
+- Preserve native Hex authority, Apply/Cancel, HSV feedback, settings and all
+  unrelated CSS. No private plugin styling or Guide changes.
+- Nine isolated cases and source preservation pass; paired twelve-state Penpot
+  publication and Product inheritance verified. Native successor is prepared;
+  served proof pending, human checklist OPEN.
+
+
 ## 2026-10-05 - Custom workspace accents (SM-57)
 
 - Bind Student Management and Mass Import theme roots to shared Kit custom

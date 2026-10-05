@@ -69,9 +69,14 @@
         dialog.id = id;
         if (control.classList.contains('easyedu-color-picker--small')) { dialog.classList.add('easyedu-color-panel--small'); }
         if (control.classList.contains('easyedu-color-picker--large')) { dialog.classList.add('easyedu-color-panel--large'); }
-        var title = el('h2', 'easyedu-color-panel__title', labels.title, dialog);
+        var header = el('div', 'easyedu-color-panel__header', null, dialog);
+        var title = el('h2', 'easyedu-color-panel__title', labels.title, header);
         title.id = id + '-title';
         dialog.setAttribute('aria-labelledby', title.id);
+        // The editable Hex already names the draft. The larger sample is
+        // decorative and consumes the same current-colour token as the handle.
+        var preview = el('span', 'easyedu-color-panel__preview', null, header);
+        preview.setAttribute('aria-hidden', 'true');
         var plane = el('div', 'easyedu-color-panel__plane', null, dialog);
         plane.setAttribute('aria-hidden', 'true');
         el('span', 'easyedu-color-panel__handle', null, plane);

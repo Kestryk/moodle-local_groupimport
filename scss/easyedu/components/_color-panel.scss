@@ -1,6 +1,14 @@
 // Progressive colour panel. Native Hex submission stays with the consumer.
 @use "focus";
 @use "text-fields";
+@use "buttons";
+
+// Use the standard state timing. Only paint transitions, never HSV geometry;
+// retain immediate pointer/keyboard feedback and all static Motion policies.
+@mixin color-panel-state-motion {
+  @include buttons.control-state-transition(var(--easyedu-motion-fast));
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
 
 @mixin color-panel($size: regular) {
   --easyedu-color-panel-width: 22rem;
@@ -53,6 +61,7 @@
     padding: 0;
     box-shadow: none;
     outline: none;
+    @include color-panel-state-motion;
     &:focus-visible { @include focus.ring; }
     &:disabled { cursor: not-allowed; opacity: 0.68; }
   }
@@ -62,6 +71,27 @@
     font-weight: 600;
     line-height: 1.75rem;
     margin: 0 0 1rem;
+  }
+  .easyedu-ui .easyedu-color-panel__header {
+    align-items: center;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr) 5rem;
+    margin-block-end: 1rem;
+    .easyedu-color-panel__title {
+      margin: 0;
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+  .easyedu-ui .easyedu-color-panel__preview {
+    background-color: var(--easyedu-color-current);
+    block-size: 2.5rem;
+    border: 1px solid var(--easyedu-border-strong);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    inline-size: 5rem;
+    @include color-panel-state-motion;
   }
   .easyedu-ui .easyedu-color-panel__plane {
     background: linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent),
@@ -147,6 +177,7 @@
     min-inline-size: 0;
     padding: 0;
     position: relative;
+    @include color-panel-state-motion;
     &::before {
       background: var(--easyedu-color-current);
       border-radius: 0.4rem;
@@ -156,6 +187,7 @@
       position: absolute;
     }
     &[aria-pressed="true"] { @include focus.ring($color: var(--easyedu-primary)); }
+    &:hover { border-color: var(--easyedu-control-focus-border); }
     &:focus-visible { @include focus.ring; }
   }
   .easyedu-ui .easyedu-color-panel__hex {
@@ -176,6 +208,14 @@
     font-size: 0.76rem;
     margin: 0 0 1rem;
     &[hidden] { display: none; }
+  }
+  .easyedu-ui[data-easyedu-motion-policy="disabled"],
+  .easyedu-ui.is-easyedu-motion-off,
+  .is-easyedu-motion-off .easyedu-ui,
+  body.easyedu-motion-disabled .easyedu-ui {
+    .easyedu-color-panel__preview,
+    .easyedu-color-panel__preset,
+    .easyedu-color-picker__trigger { transition: none; }
   }
   @keyframes easyedu-color-panel-enter {
     from { opacity: 0; transform: translateY(0.35rem); }

@@ -103,3 +103,11 @@ entity-field-typography-audit-2026-10-05.md.
 For each lot record source/static, Penpot linkage/readback/export, served preview,
 native behavior and human acceptance separately. None of the newly registered
 lots is certified fixed by this intake document.
+
+SM-58: enlarged exact-draft sample/shared state-Motion implemented in canonical
+Kit/consumer. Nine isolated cases and unrelated source/CSS preservation PASS.
+Twelve Foundation/Standard states match; existing Product Desktop/Mobile copies
+inherit the same provider and remain contained, inspected checkpoint available.
+One-test native discovery only; served proof, persistence and human checklist
+remain OPEN. See colour-panel-preview-audit-2026-10-05.md. Older unfinished
+lots and Guide ownership remain unchanged.
