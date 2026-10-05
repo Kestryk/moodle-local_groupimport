@@ -1,5 +1,10 @@
 # Foundations class API
 
+SM-43B candidate: `.easyedu-filter-actions` owns the adjacent 12px action gap;
+`.easyedu-filter-toggle--trailing` opts into an 8px label-to-switch gap and
+end-lane 36x20 track, preserving legacy controls and native state authority.
+Source/isolated proof is not served native or final Penpot acceptance.
+
 SM-43A public filter roles: `.easyedu-filter-disclosure-row` owns 16px minimum
 footer clearance; `.easyedu-filter-disclosure` owns the full-width trigger and
 transparent underline-only hover. `.easyedu-filter-toggle` and

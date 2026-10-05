@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Trailing catalogue switches opt in to canonical filter-actions; preserve
+legacy leading/framed controls. Keep responsive Reset closure unchanged and
+compare the full unrelated CSS and commands against the previous served pin.
+Publication IDs alone are not paired visual proof. If the editor stops after
+a write, preserve that partial state and source candidate; do not promote it
+blindly or discard a possibly unsaved editing window.
+
 More Filters footer clearance uses shared internal padding, not a margin that
 equal-height shell auto spacing can consume. Preserve original arrow Motion,
 native filter availability and the intentionally hidden desktop Groupings

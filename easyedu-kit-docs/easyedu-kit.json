@@ -1,9 +1,16 @@
 {
   "name": "easyedu-ui-kit",
-  "version": "0.4.99",
+  "version": "0.4.100",
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "binaryFilterActions20261005": {
+      "kitCommit": "55cd2c2",
+      "documentation": "docs/student-binary-filter-successor-2026-10-05.md",
+      "status": "SM-43B shared trailing toggle and adjacent Reset; static/isolated/package gates pass, six paired source states and two product catalogue compositions published. Native preview gate pending; human checklist open.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "filterFooterSuccessor20261005": {
       "kitCommit": "0b38a09",
       "documentation": "docs/student-filter-footer-2026-10-05.md",

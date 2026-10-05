@@ -45,7 +45,12 @@ Requests recorded; execution/proof results are appended per lot below.
   Groupings; nested closure passes nine iterations at three widths, with
   full cleanup and no business writes. SM-43B toggle and human review stay open.
   See `student-filter-footer-2026-10-05.md`.
-- SM-43B diagnostic started: native desktop Toggle/Reset gap roughly 384–401px,
+- SM-43B source candidate prepared: shared trailing switch/12px action gap,
+  exact class-only adapters and strict unrelated-CSS/commands gate pass.
+  Isolated three-width keyboard/disabled/RTL/palette/reduced-Motion proof and
+  SCSS-only package gate pass. Six paired states verified and two product
+  catalogue compositions linked/reflowed/exported after page-local recovery;
+  native preview still pending. No runtime mutation yet. Baseline gap roughly 384–401px,
   compact separate full-width rows. Responsive Reset intentionally closes the
   panel; original sampler's extra click reopened it. Corrected baseline
   passes four native cases with exact Reset semantics and cleanup; no toggle

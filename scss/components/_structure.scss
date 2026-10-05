@@ -119,24 +119,8 @@
     min-width: 0;
   }
 
-  &-group-catalog-filters &-toggle-check {
-    align-self: center;
-    grid-column: 1;
-    grid-row: 2;
-    margin: 0;
-    width: fit-content;
-  }
-
   &-group-catalog-filters--structure {
     display: none;
-  }
-
-  &-group-catalog-filters &__filters-reset--catalog {
-    align-self: center;
-    grid-column: 2;
-    grid-row: 2;
-    justify-content: center;
-    width: auto;
   }
 
   &-structure-groups {

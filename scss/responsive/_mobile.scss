@@ -145,16 +145,10 @@
       grid-template-rows: auto;
     }
 
-    &-group-catalog-filters > &__filter-group,
-    &-group-catalog-filters &-toggle-check,
-    &-group-catalog-filters &__filters-reset--catalog {
+    &-group-catalog-filters > &__filter-group {
       grid-column: 1;
       grid-row: auto;
       width: 100%;
-    }
-
-    &-group-catalog-filters &-toggle-check {
-      margin-top: 0.34rem;
     }
 
     &--participant-focus &__participant-content {
@@ -705,11 +699,6 @@
 
     &__filters-reset,
     &__filters-reset--catalog {
-      width: 100%;
-    }
-
-    &-group-catalog-filters &-toggle-check {
-      justify-content: center;
       width: 100%;
     }
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-05 - Binary catalogue filter candidate (SM-43B)
+
+- Prepare the canonical trailing switch and adjacent Reset action row in both
+  catalogue filters, replacing private stretched-grid control positions.
+- Exact source/CSS preservation and isolated three-width keyboard/state gates
+  pass; all filtering, Reset closure and existing card/disclosure Motion stay
+  unchanged. Canonical source and embedded SCSS match.
+- Six Foundation states and their Standard copies match; both product catalogue
+  compositions are linked/reflowed and exported. Native preview is pending. This lot is
+  not served and does not close the human checklist.
+
 ## 2026-10-05 - More Filters footer successor (SM-43A)
 
 - Use the canonical Kit footer row for four native filter surfaces, reserving

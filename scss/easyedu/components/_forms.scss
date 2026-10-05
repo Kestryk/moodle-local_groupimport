@@ -511,6 +511,60 @@
   }
 }
 
+// Opt-in trailing variant: same native checkbox, track, thumb and Motion as
+// filter-toggle. Its label wraps independently of the reserved switch lane.
+@mixin filter-toggle-trailing {
+  font-family: var(--easyedu-font-family-ui);
+  font-size: var(--easyedu-font-size-caption);
+  font-weight: 600;
+  line-height: 1.25;
+  min-inline-size: 0;
+  white-space: normal;
+
+  span {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 2.75rem;
+  }
+
+  span::before {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+  }
+
+  span::after {
+    inset-inline-start: auto;
+    inset-inline-end: 1.1875rem;
+  }
+
+  &:not([aria-disabled="true"]):hover:has(input:not(:disabled)) {
+    color: var(--easyedu-primary-strong);
+  }
+}
+
+// Catalogue controls stay adjacent rather than sitting at opposite ends of a
+// stretched grid. Native Reset closure/filter predicates remain product-owned.
+@mixin filter-actions {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  gap: 0.75rem;
+  grid-column: 1 / -1;
+  min-inline-size: 0;
+
+  > .easyedu-filter-toggle {
+    flex: 0 1 auto;
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  > .easyedu-filter-reset {
+    flex: 0 0 auto;
+    inline-size: auto;
+  }
+}
+
 @mixin advanced-filter-box {
   @include search-field;
 

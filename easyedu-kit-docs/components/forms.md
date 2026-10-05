@@ -1,5 +1,16 @@
 # Forms And Filters
 
+## Trailing catalogue actions — SM-43B candidate
+
+Use `.easyedu-filter-actions` around the binary filter and Reset, adding
+`.easyedu-filter-toggle--trailing` to the borderless filter label. Track/thumb
+remain 36x20/14px, caption 12.16px/600 and 44px hit row. Label clearance is
+8px and Reset gap 12px; translated labels wrap without invading the switch.
+Legacy leading switches and generic framed toggles remain unchanged.
+Native checkbox, filtering predicates and responsive Reset closure remain
+product-owned. Source/isolated proof passes; paired Penpot readback/product
+propagation/native preview are pending and human checklist remains OPEN.
+
 EasyEdu form primitives style plugin-specific controls while keeping Moodle
 forms and accessibility behaviour intact.
 
