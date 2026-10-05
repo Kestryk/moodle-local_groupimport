@@ -8,8 +8,9 @@
       "kitVersion": "0.4.104",
       "kitCommit": "85c7ed3",
       "documentation": "docs/colour-panel-successor-2026-10-05.md",
-      "status": "SM-46 shared draft panel; isolated S/M/L, paired twelve-state and product linked popup publication, strict native storage/contrast/reset/unrelated CSS preservation pass. Native successor pending.",
-      "nativePreviewVerified": false,
+      "status": "SM-46 shared draft panel; isolated S/M/L, paired twelve-state/product publication and strict preservation pass. Native seven-control enhancement and representative three-width draft/focus/containment successor pass. Human checklist OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261005T035947851Z-17288",
       "humanVisualValidated": false
     },
     "adminSectionSpacing20261005": {

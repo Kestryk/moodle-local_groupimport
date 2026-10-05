@@ -96,3 +96,26 @@ diagnostic records a temporary invisible fixed containing-block probe (removed
 immediately), root/body widths and computed inline caps before asserting.
 The 16px margin and exact shared geometry gates are not reduced. No additional
 product change is inferred solely from that measurement disagreement.
+
+## Served native successor
+
+Kit `85c7ed3`, source code `c52eca5` and runtime `dbe30d10` are the corrected
+served pins. Managed promotion `20261005T035532Z` purged caches and retained
+all predecessors. Pushed scenario `afcc095` records the actual CSS viewport.
+Run `easystud-authenticated-20261005T035947851Z-17288` passes at 1600/768/390:
+seven native controls are enhanced; a representative Primary panel retains
+the authoritative unsaved Hex, valid/invalid drafts, Apply/Cancel/Escape,
+restored opener focus, original field names and static reduced Motion.
+
+Native CSS containing viewports are 1585/753/375px while root clientWidth
+reports 1600/768/390. The fixed probe agrees with root/body painted widths;
+the panel widths are 352/352/343px, with exact 16px side inset in the narrow
+case. Title is 16px; actions match 37.59px height and 14.08px type. Phone capture
+inspected; configured colours remain intact rather than reset to Penpot defaults.
+No horizontal overflow, page error, blocked POST, Save or fixture mutation.
+
+Runner/test exit 0, no timeout; credentials/runtime/child/fixture cleanup all
+true. Failed native and isolated runs remain retained. Prior pending notes
+describe staged progress, not current status. All-seven individual popup
+lifecycle, real persistence, browser/screen-reader matrix and human visual
+acceptance are not implied by this representative guarded proof.

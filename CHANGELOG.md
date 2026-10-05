@@ -1,6 +1,6 @@
 # Changelog
 
-## 2026-10-05 - Shared colour-panel candidate (SM-46)
+## 2026-10-05 - Shared colour-panel successor (SM-46)
 
 - Embed canonical Kit S/M/L popup and optional draft controller; no private
   colour-panel SCSS, template style or duplicated persistence logic.
@@ -9,6 +9,9 @@
 - Isolated/published-source gates pass; native/human status tracked separately.
 - Shared viewport-cap successor preserves 16px margins with native scrollbars;
   retain the failing native capture/run and verify the corrected gate separately.
+- Corrected three-width native successor passes representative Hex drafts,
+  Apply/Cancel/focus/containment, seven enhanced controls and no settings POST.
+  Native scrollbar viewport oracle is documented; human acceptance stays OPEN.
 
 ## 2026-10-05 - Administration section rhythm successor (SM-45)
 

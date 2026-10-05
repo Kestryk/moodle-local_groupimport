@@ -37,12 +37,13 @@ No other-version compatibility is inferred.
 
 Requests recorded; execution/proof results are appended per lot below.
 
-- SM-46 candidate: shared S/M/L draft popup with palette, native keyboard ranges,
+- SM-46 served: shared S/M/L draft popup with palette, native keyboard ranges,
   authoritative Hex and Apply/Cancel; strict native settings/reset/contrast,
   loading and unrelated CSS/controller preservation pass. Twelve Foundations
   source/Standard states match and contain all visible paint. Product Desktop/
-  Mobile linked popup readback and mobile export pass; native successor pending,
-  human OPEN. See `colour-panel-successor-2026-10-05.md`.
+  Mobile linked popup readback and mobile export pass. Native successor verifies
+  seven enhanced controls and representative three-width drafts/focus/margins,
+  with complete cleanup/no Save; human OPEN. See `colour-panel-successor-2026-10-05.md`.
 
 - SM-45 served: native baseline confirms five zero-gap headings;
   Kit restores the existing product Penpot 40px Desktop / 32px compact rhythm
