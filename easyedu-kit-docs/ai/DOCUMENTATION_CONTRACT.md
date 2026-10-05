@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+Dense metadata extraction preserves detected lookup feedback and explicit
+consumer palette aliases. Compare the complete emitted CSS and canonical module,
+not a subset of new selectors; transfer is not class-only or human acceptance.
+
 After a startup-deadline failure, distinguish native cached GET timing from
 Playwright routing, which disables HTTP cache. Preserve strict readiness and
 the original product fail-open deadline; record sanitized request/response

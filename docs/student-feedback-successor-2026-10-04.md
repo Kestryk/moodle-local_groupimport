@@ -121,6 +121,10 @@ Requests recorded; execution/proof results are appended per lot below.
   Administration specimens are now linked at three widths. Twelve Foundation/
   Standard Skeleton pairs match after restoring source SCSS cue contours.
   Product remote-library readback/export remains the final publication gate.
+  That gate subsequently recovered: all 150 Admin cues inherited their contour,
+  saved state is confirmed and the post-accent mobile export is inspected.
+  Initial-route catalogue publication is complete; full operation loading and
+  the combined human checklist stay OPEN.
 - SM-41 partial implementation served: canonical opt-in frame disclosure removes
   the padding-floor jump; member Search and native Group/Grouping Add preview
   pass at desktop/tablet/mobile. Existing card/Show-all Motion and business
