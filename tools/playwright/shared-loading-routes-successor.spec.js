@@ -44,9 +44,12 @@ test('Shared Skeleton runs and releases on Mass Import and Administration', asyn
                 await expect(skeleton).toHaveAttribute('aria-hidden', 'true');
                 const cue = root.locator(routeInfo.cue);
                 const measure = async node => {
-                    const s = getComputedStyle(node, '::after');
+                    // These routes use the canonical direct bar recipe; Student's
+                    // pale title uses its overlay variant. Do not probe the wrong paint layer.
+                    const s = getComputedStyle(node), overlay = getComputedStyle(node, '::after');
                     return {animation: s.animationName, duration: s.animationDuration,
                         position: s.backgroundPosition, background: s.backgroundImage,
+                        surface: s.backgroundColor, overlayAnimation: overlay.animationName,
                         states: node.getAnimations({subtree: true}).map(a => a.playState)};
                 };
                 record.normal = await cue.evaluate(measure);
@@ -66,8 +69,9 @@ test('Shared Skeleton runs and releases on Mass Import and Administration', asyn
                 expect(record.normal.animation).toBe('easyedu-skeleton-shimmer');
                 expect(record.normal.duration).toBe('3.2s');
                 expect(record.normal.states).toContain('running');
-                expect(record.normal.background).toContain('0.6');
-                await expect.poll(() => cue.evaluate(n => getComputedStyle(n, '::after').backgroundPosition),
+                expect(record.normal.background).toContain('linear-gradient');
+                expect(record.normal.surface).toBe('rgb(232, 239, 245)');
+                await expect.poll(() => cue.evaluate(n => getComputedStyle(n).backgroundPosition),
                     {intervals: [100, 200], timeout: 1000}).not.toBe(record.normal.position);
                 expect(record.layout.focusable).toBe(0);
                 expect(record.layout.overflow).toBeLessThanOrEqual(1);
