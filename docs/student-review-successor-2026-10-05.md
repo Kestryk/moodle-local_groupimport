@@ -252,3 +252,11 @@ Settled Student Inter text is contained after viewport rendering. No skin,
 geometry, Navigation/Guide controller or Motion change; source48/native44
 parity and clean export/human gates stay OPEN. Static preservation and test
 discovery PASS; ordered preview/native successor is next.
+
+SM-49 served successor PASS220036839Z-31252: six actual mobile Participant
+entries at390/768/320 normal/reduced, twelve records, thirteen canonical labels
+per menu. Fixed launcher hidden during dialog, focus and visibility restored
+after Close. No errors/blocked/business/fixture writes, complete cleanup and
+clean runtimeec8bbd15. Shared Guide/controller/Motion untouched. Other-modal,
+source48/native44 parity and human checklist remain OPEN. Next: SM-48 broader
+mobile checkbox paint/keyboard reconciliation.

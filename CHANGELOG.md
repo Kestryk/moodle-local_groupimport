@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Mobile navigation served modal recovery (SM-49)
+
+- Verify six native phone/tablet normal/reduced cases: canonical menu type,
+  launcher hidden during actual Participant dialog and restored after Close.
+- Record ordered preview and cleanup, zero business/fixture writes. Other modal
+  journeys, source48/native44 size parity and human checklist remain open.
+
 ## 2026-10-05 - Shared modal-yield candidate (SM-49)
 
 - Opt compact Navigation into a shared fixed-control yield while public blocking
