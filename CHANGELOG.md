@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Owned delayed-startup native successor (SM-48)
+
+- Preserve first controlled-run failure and observed late recovery/first-card
+  keyboard proof; isolate the next native document after authentication.
+- Gate actual AMD aggregates together, release in finally, retain every strict
+  recovery/keyboard/hit/paint guard. No product or Motion change.
+
 ## 2026-10-06 - Student late-ready recovery candidate (SM-48 prerequisite)
 
 - Keep8s fail-open and all original fades; opt Student Management into real
