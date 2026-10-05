@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "quietSelectionRecovery20261005": {
+      "kitVersion": "0.4.115",
+      "kitCommit": "43fcf726898364a33fad49eeb69fea0a0cc7c3d4",
+      "modules": ["scss/easyedu/components/_buttons.scss", "scss/easyedu/_foundation-classes.scss"],
+      "documentation": "docs/quiet-selection-recovery-2026-10-05.md",
+      "penpotReadback": "docs/testing/quiet-selection-recovery-penpot-2026-10-05.json",
+      "status": "SM52 public opt-in and complete unrelated CSS/controller preservation PASS; five paired states/shared capsule/Product linked. Native/human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "participantTitleClearance20261005": {
       "kitVersion": "0.4.114",
       "kitCommit": "5387a807298ed4709c7c058d66138fcd814204b1",

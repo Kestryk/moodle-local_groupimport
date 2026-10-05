@@ -304,6 +304,9 @@
     // Match the semantic-role selector specificity; touch density must win.
     @include buttons.selection-action-tray-density;
   }
+  .easyedu-ui .foundation-selection-action.easyedu-selection-recovery-action {
+    @include buttons.selection-recovery-action;
+  }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
   .easyedu-ui .easyedu-filter-toggle { @include forms.filter-toggle; }

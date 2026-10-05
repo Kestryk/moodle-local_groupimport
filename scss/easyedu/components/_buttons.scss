@@ -196,6 +196,25 @@
   }
 }
 
+// Quiet recovery action inside an already framed selection capsule. Keep the
+// normal selection-action density, type, icon gap, state Motion and keyboard
+// ring; the outer capsule owns the persistent border, not this inner control.
+@mixin selection-recovery-action {
+  @include selection-action(neutral);
+  & { background: transparent; border-color: transparent; }
+  &:focus { background: transparent; }
+  &:hover,
+  &:active,
+  &[aria-pressed="true"] {
+    background: var(--easyedu-surface-soft);
+    border-color: transparent;
+    color: var(--easyedu-text);
+  }
+  &:disabled,
+  &[aria-disabled="true"],
+  &.disabled { background: transparent; border-color: transparent; }
+}
+
 // Compact neutral reset used inside filter panels. It intentionally shares the
 // selection-action interaction contract while keeping reset-specific sizing.
 @mixin filter-reset {

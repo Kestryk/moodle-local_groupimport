@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Quiet sticky inner action candidate (SM-52)
+
+- Opt only desktop Clear selection into the new shared quiet recovery family,
+  preserving the capsule, density, icon gap, Motion and responsive proxy skin.
+- Public Kit and full unrelated CSS/template/controller preservation checks
+  separate source readiness from pending paired/native/human proof.
+
 ## 2026-10-05 - Mobile membership density served proof (SM-50)
 
 - Final strict native successor passes 86 records at 320/390/768/1024 and

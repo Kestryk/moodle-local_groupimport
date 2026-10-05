@@ -1001,6 +1001,11 @@ Must not:
   context sheets, action trays and busy states.
 ## Responsive navigation and cards
 
+- Desktop selection recovery inside an already framed capsule opts into
+  `easyedu-selection-recovery-action`. Retain canonical Small density, keyboard
+  ring and state Motion; the outer capsule owns the persistent border. This is
+  not a global neutral-button repaint or a mobile action-tray skin.
+
 - Denied drag feedback is transient and derives from existing product eligibility.
   Clear on leave/end; eligible nested targets take precedence. Shared recipes
   own the flat indicator, not native drop acceptance or persistence.
