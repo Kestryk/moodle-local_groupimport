@@ -133,3 +133,19 @@ three nested closures and reduced-policy reopen/close. Bounded pointer cleanup
 fix resolves the reproduced tablet next-click suppression. No fixture/data
 writes; all cleanup true. Reversal/perceived smoothness and human checklist
 remain OPEN. Continue SM-51 body audit; Guide stays with its parallel owner.
+
+SM-51 scoped native audit PASS `easystud-authenticated-20261005T170755545Z-45416`:
+nine Participant/Group/Grouping cases, real canonical Inter values at 14.08/400,
+retained conditional controls/list counts and shared modal chrome. No new font
+override or business write. Full-dialog metadata publication, optional states,
+mobile native entry and human checklist remain OPEN. Mobile sticky-nav/modal
+edge overlap observed, retained under SM-49. See entity-field-typography audit.
+
+SM-50 source preflight: automatic sole-Participant disclosure explicitly
+excludes responsive workspaces (`selectedUsers.length === 1 &&
+!isResponsiveWorkspace()`). Current global density hides all metadata, not
+only Groups/Groupings, and defaults compact only when course has >5 users.
+The requested mobile membership-only default/one-two-selection rule is therefore
+still unimplemented. Preserve desktop behavior and Grouping cards; next lot
+requires an explicit mobile recipe/composition and zero/one/two/filter tests,
+not removal of the responsive guard alone.
