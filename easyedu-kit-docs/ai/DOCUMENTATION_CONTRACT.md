@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Quiet recovery native proof samples desktop rest/hover/keyboard-modality focus
+and the unchanged phone proxy. Zero-alpha transitioned paint can retain white
+RGB channels: assert exact alpha rather than invisible triplets. DOM readiness
+and font settlement remain mandatory; preserve failed harness predecessors and
+distinguish focus paint from full keyboard tab-order/localization acceptance.
+
 A quiet recovery action is an explicit shared opt-in inside the framed desktop
 capsule, not a global neutral-button repaint. Preserve original density/Motion,
 mobile action proxies and complete unrelated CSS. Publish all states and settle

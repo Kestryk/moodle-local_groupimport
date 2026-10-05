@@ -6,6 +6,7 @@ const fs = require('node:fs');
 test('Quiet desktop recovery preserves focus geometry clearing and mobile proxy', async ({page}, testInfo) => {
     test.setTimeout(180000);
     page.setDefaultTimeout(15000);
+    page.setDefaultNavigationTimeout(60000);
     const records = [], blocked = [], errors = [];
     const save = () => fs.writeFileSync(testInfo.outputPath('quiet-selection-native.json'),
         JSON.stringify({records, blocked, errors}, null, 2));
@@ -27,13 +28,13 @@ test('Quiet desktop recovery preserves focus geometry clearing and mobile proxy'
     });
     const root = page.locator('#local-groupimport-easystud');
     await page.setViewportSize({width: 1600, height: 900});
-    await page.goto(process.env.EASYEDU_MOODLE_URL);
+    await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
     if (page.url().includes('/login/')) {
         await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
         await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
         await page.locator('#loginbtn').click();
-        await page.waitForURL(url => !url.pathname.includes('/login/'));
-        await page.goto(process.env.EASYEDU_MOODLE_URL);
+        await page.waitForURL(url => !url.pathname.includes('/login/'), {waitUntil: 'domcontentloaded'});
+        await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
     }
     await page.route('**/local/groupimport/**', route => {
         if (route.request().method() === 'GET') return route.continue();
@@ -50,6 +51,9 @@ test('Quiet desktop recovery preserves focus geometry clearing and mobile proxy'
     });
     const frame = root.locator('[data-easystud-clear-selection-frame]');
     const button = frame.locator('[data-easystud-clear-all-selection]');
+    // A transitioned transparent color can retain white RGB channels. Paint
+    // equivalence requires zero alpha, not a particular invisible RGB triplet.
+    const alpha = color => /^rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)$/.exec(color)?.[1];
     const inspect = async (width, state) => {
         await settle();
         const result = await button.evaluate(node => {
@@ -85,12 +89,12 @@ test('Quiet desktop recovery preserves focus geometry clearing and mobile proxy'
         await expect(button).toHaveClass(/easyedu-selection-recovery-action/);
         await page.mouse.move(0, 0);
         const idle = await inspect(width, 'rest');
-        expect(idle.background).toBe('rgba(0, 0, 0, 0)');
-        expect(idle.border).toBe('rgba(0, 0, 0, 0)');
+        expect(Number(alpha(idle.background))).toBe(0);
+        expect(Number(alpha(idle.border))).toBe(0);
         await button.hover();
         const hover = await inspect(width, 'hover');
         expect(hover.background).toBe('rgb(247, 249, 252)');
-        expect(hover.border).toBe('rgba(0, 0, 0, 0)');
+        expect(Number(alpha(hover.border))).toBe(0);
         expect(hover.width).toBe(idle.width);
         await page.mouse.move(0, 0);
         await page.keyboard.press('Tab');
