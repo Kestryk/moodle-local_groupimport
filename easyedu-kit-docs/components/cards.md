@@ -1,5 +1,20 @@
 # Cards
 
+## Narrow full-card title clearance (0.4.114 candidate)
+
+`person-card-selection-title-clearance` reserves a measured selection overlay
+track in the identity wrapper only. Parameters are selection start/target,
+existing content start and desired gap; defaults produce 2.02rem start padding.
+It emits one property, owns no breakpoint, target size/paint, card padding,
+metadata/email width or Motion. Opt in only at a consumer's narrow/full state;
+accepted compact tracks stay unchanged.
+
+SM-50's first native 390px full/mobile case reproduced target/title overlap
+despite hidden membership rows and preserved roles. This opt-in addresses that
+real geometry failure without replacing the selection behavior or shrinking
+the 44px target. Preserve the failed run and verify a strict native successor;
+isolated/CSS equivalence and a recipe declaration are not native or human proof.
+
 ## Responsive participant membership visibility (consumer contract)
 
 EasyStud SM-50 keeps existing card paint, identity type, metadata and Motion

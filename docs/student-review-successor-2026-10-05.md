@@ -170,3 +170,11 @@ board x80/y14810 records zero/one/two/manual-full. Owned editor checkpoint was
 inspected; MCP image export stalled, not a full visual/parity PASS. One-test
 native discovery PASS. Runtime promotion and native geometry/behavior/human
 remain OPEN. Kit documentation-only contract fc2bfbb pushed, no SCSS/version bump.
+
+SM-50 publication `2a6b6b1` is now served (clean runtime `a9cd5fe2`). First
+native 390px default card FAILED actual checkbox-target/title overlap; cleanup
+completed and no business writes occurred. Bounded Kit 0.4.114 title-clearance
+successor reserves only narrow/full identity space, not metadata width. Complete
+unrelated CSS remains identical with Sass 1.79.1; retain the failed run and all
+strict native oracles. Source/shared-design/native successor and human gate
+remain distinct. See mobile-participant-memberships-2026-10-05.md.

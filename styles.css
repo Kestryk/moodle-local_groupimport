@@ -19042,6 +19042,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     grid-template-columns: minmax(0, 1fr);
     padding-left: 1.85rem;
   }
+  .local-groupimport-easystud--responsive-workspace:not(.local-groupimport-easystud--compact-users) .local-groupimport-easystud-user__headline-main {
+    padding-inline-start: 2.02rem;
+  }
   .local-groupimport-easystud--compact-users .local-groupimport-easystud-user {
     padding-left: 3.85rem;
   }

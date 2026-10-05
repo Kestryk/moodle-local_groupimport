@@ -4,3 +4,48 @@
 @mixin person-card-responsive-tracks {
   grid-template-columns: minmax(0, 3fr) minmax(0, 1fr) auto;
 }
+
+// Reserve only the title/badge track for a larger overlay selection target.
+// Consumers apply this to the identity wrapper at their existing narrow/full
+// breakpoint. Metadata, email, card padding and accepted compact/Motion stay
+// untouched. Offsets are parameters, not a plugin-specific forced style.
+@mixin person-card-selection-title-clearance(
+  $selection-start: 0.62rem,
+  $selection-target: 2.75rem,
+  $content-start: 1.85rem,
+  $gap: 0.5rem
+) {
+  padding-inline-start: max(0rem, $selection-start + $selection-target + $gap - $content-start);
+}
+
+// Opt-in narrow candidate: secondary email gets its own row rather than
+// competing with identity/badge. Owns no font, height, breakpoint or Motion.
+// Validate and publish paired Foundation specimens before consumer adoption.
+@mixin person-card-narrow-tracks {
+  grid-template-areas: "identity action" "email action";
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  row-gap: 0;
+}
+
+// Experimental narrow density: let the email use both headline columns.
+// Pair with stacked identity and a consumer-owned compact height release.
+// No action dimensions, visibility, breakpoint or Motion changes are owned here.
+@mixin person-card-narrow-readable-tracks {
+  grid-template-areas: "identity action" "email email";
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  row-gap: 0.15rem;
+}
+
+@mixin person-card-narrow-readable-identity {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.15rem;
+}
+
+// Keep text-overflow on a block (a flex text node loses its ellipsis).
+@mixin person-card-narrow-readable-name($action-height: 1.85rem) {
+  line-height: $action-height;
+  min-height: $action-height;
+}

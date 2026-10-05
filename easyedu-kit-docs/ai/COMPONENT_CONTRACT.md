@@ -1,5 +1,11 @@
 # EasyEdu Component Contract
 
+Narrow full-card identity clearance is an opt-in measured overlay-track recipe,
+not whole-card indentation. Keep metadata/email width, existing compact tracks,
+target size/paint and Motion. Compare all unrelated emitted CSS and preserve
+the failed native full-card case before a strict successor; do not weaken the
+hit-target/title overlap oracle.
+
 The colour-panel shared header adds an 80x40 exact valid-draft sample with
 12px clearance at every density. Invalid Hex retains last valid paint;
 labelled/named Hex remains authoritative. Shared state-Motion changes paint
