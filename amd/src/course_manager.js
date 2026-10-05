@@ -8191,7 +8191,10 @@ const bindAdvancedFilters = root => {
         }
     });
 
-    root.addEventListener('pointerup', event => {
+    // Closing a nested choice moves this control before pointerup. Cleanup
+    // must also observe releases outside the workspace; otherwise its stale
+    // suppression marker consumes the next genuine click on the control.
+    document.addEventListener('pointerup', event => {
         const control = pointerHandledById.get(event.pointerId);
         if (control) {
             window.setTimeout(() => {
@@ -8199,15 +8202,15 @@ const bindAdvancedFilters = root => {
                 pointerHandledById.delete(event.pointerId);
             }, 0);
         }
-    });
+    }, true);
 
-    root.addEventListener('pointercancel', event => {
+    document.addEventListener('pointercancel', event => {
         const control = pointerHandledById.get(event.pointerId);
         if (control) {
             pointerHandledControls.delete(control);
             pointerHandledById.delete(event.pointerId);
         }
-    });
+    }, true);
 
     root.addEventListener('click', event => {
         const control = event.target.closest('[data-easystud-advanced-filters-toggle], [data-easystud-advanced-filters-more]');

@@ -8,6 +8,10 @@
   controller/Chevron Motion. No private plugin style declarations added.
 - Six isolated cases, twelve compatibility cases and whole unrelated CSS/source
   preservation pass. Paired publication/native/human gates recorded separately.
+- Pointer diagnostic reproduces the tablet swallowed-next-click case: nested
+  closure moves the button and pointerup lands outside the workspace. Observe
+  releases/cancellations at the document capture boundary, filtering by owned
+  pointer IDs and retaining same-click suppression. Motion/commands unchanged.
 
 ## 2026-10-05 - Enlarged colour draft preview candidate (SM-58)
 

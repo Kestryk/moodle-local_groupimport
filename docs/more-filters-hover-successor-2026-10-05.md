@@ -124,3 +124,22 @@ course/section/module state only. A diagnostic allowlists precisely that read
 and records document-level pointer/click targets plus keyboard recovery; it
 does not mutate source presentation or native data. Other POSTs remain denied.
 All runner cleanup true, source spec preserved; no fixtures or settings Save.
+
+## Reproduced cause and bounded pointer cleanup successor
+
+Diagnostic `easystud-authenticated-20261005T164207075Z-33388` reproduces the
+tablet lost click with no denied requests/errors. During nested closure,
+pointerdown targets the button, but pointerup/click target a DIV outside the
+workspace after its geometry moves. The old root-only cleanup misses the
+release and retains the suppression marker. Next genuine pointer click is
+swallowed; keyboard recovery immediately works. Desktop/phone reopen normally.
+Diagnostic PASS means causal observations recorded, NOT the behavior fixed.
+
+Successor moves only the two owned pointerup/pointercancel cleanup listeners
+to document capture, still keyed by this workspace's handled pointer IDs.
+Deferred cleanup retains same-pointer click suppression; outside releases and
+cancel now clear stale state. No filter/selection semantics, card animation,
+duration/easing, typography, DOM or CSS change. Unit handler tests cover inside
+release, outside release and outside cancellation; exact source reconstruction
+checks both listeners and all unrelated controllers/CSS/Motion. AMD rebuilt.
+Native end-to-end successor remains pending until a result is appended.
