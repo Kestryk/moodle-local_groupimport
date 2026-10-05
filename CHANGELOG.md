@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-05 - Shared intrinsic cloud centring candidate (SM-53)
+
+- Remove the canonical one-em icon clamp that displaces wide cloud paint;
+  keep intrinsic aspect ratio, tile/font density and all other styles unchanged.
+- Preserve diagnostic and add strict native raster/four-peer successor. Correct
+  Foundations/Product vector geometry is retained; no private consumer offset.
+
 ## 2026-10-05 - Cloud painted-centre diagnostic (SM-53)
 
 - Add read-only actual foreground-pixel/FA-metric inspection at three widths;

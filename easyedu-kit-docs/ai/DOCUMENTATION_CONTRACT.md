@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Intrinsic icon-width successors retain the immutable painted diagnostic and
+compare complete generated CSS. Bound changes to shared width declarations;
+keep all markup/controllers/Motion and source vector paint unchanged. Native
+raster centre and four-peer density checks do not certify all upload lifecycles.
+
 Cloud centring proof measures native foreground raster as well as the icon slot
 and fonts. Preserve the line-box predecessor; palette-aware pixel separation
 must not include pale surface/border. Source vector bounds, raster crop and

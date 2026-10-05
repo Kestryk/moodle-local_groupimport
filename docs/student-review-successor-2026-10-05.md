@@ -218,3 +218,10 @@ the centred FA line box used by SM42. Preserve compact proportions and hidden
 legacy design layers; no consumer-specific offset or speculative fix. Paired
 providers/all-sizes and actual pixel baseline remain OPEN. See
 cloud-painted-centre-audit-2026-10-05.md.
+
+SM-53 unobstructed native baseline confirms1.5-2px right shift from a one-em
+clamp around FA6's1.25em cloud advance. Eleven paired Foundation providers and
+eighteen Product uses already centre vector paint. Canonical intrinsic-width
+candidate changes exactly five generated declarations, preserving all other
+CSS/markup/controllers/Motion. Strict raster successor and served/human gates
+remain OPEN; no blind Penpot offset is added.

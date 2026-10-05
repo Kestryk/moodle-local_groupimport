@@ -14715,7 +14715,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: block;
   line-height: 1;
   max-height: 1em;
-  max-width: 1em;
+  max-width: 100%;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings__hero-copy {
   min-width: 0;
@@ -15144,7 +15144,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: block;
   line-height: 1;
   max-height: 1em;
-  max-width: 1em;
+  max-width: 100%;
 }
 #page-admin-setting-local_groupimport .local-groupimport-admin-settings--features {
   background: var(--easyedu-semantic-panel-bg);
@@ -19690,7 +19690,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: block;
   line-height: 1;
   max-height: 1em;
-  max-width: 1em;
+  max-width: 100%;
 }
 
 .easyedu-ui .easyedu-icon-tile--compact {
@@ -19714,7 +19714,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   display: block;
   line-height: 1;
   max-height: 1em;
-  max-width: 1em;
+  max-width: 100%;
 }
 
 .easyedu-ui .easyedu-icon-tile--success {
@@ -23054,7 +23054,7 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {
   display: block;
   line-height: 1;
   max-height: 1em;
-  max-width: 1em;
+  max-width: 100%;
 }
 .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__support {
   margin-inline-start: calc(var(--easyedu-section-icon-size-compact) + 0.95rem);

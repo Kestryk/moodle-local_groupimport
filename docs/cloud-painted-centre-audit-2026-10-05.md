@@ -43,3 +43,11 @@ and multiple-file states: don't invent cloud glyphs in S/M file rows. Readback
 is saved in cloud-painted-penpot-readback-2026-10-05.json. Native FA ink scale
 and vector icon scale differ; this lot repairs centring, not all raster/vector
 pixel parity or the upload lifecycle. Human visual checklist remains OPEN.
+
+Canonical/source successor changes section-icon-tile max-width from1em to100%,
+allowing intrinsic advance inside the existing tile. Sass1.79.1 emits exactly
+five corresponding declarations; complete other CSS/markup/controllers/Motion
+are identical to diagnostic base de2cfae. Regular/compact public API compiles
+without transform/forced styles. Existing diagnostic remains immutable; fresh
+successor adds strict native raster centring and four-peer density guards.
+No consumer-only offsets or Penpot geometry changes. Preview/native pending.
