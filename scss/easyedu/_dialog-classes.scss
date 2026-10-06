@@ -6,6 +6,7 @@
 @use "components/buttons";
 @use "components/searchable-choices" as choices;
 @use "foundation-classes" as foundations;
+@use "dialog-palette-classes" as palette;
 
 @mixin dialog-classes {
   @include choices.searchable-choice-classes;
@@ -148,4 +149,5 @@
     @include text-fields.foundation-text-field;
     & { padding-inline-end: 2.25rem; }
   }
+  @include palette.dialog-palette-classes;
 }

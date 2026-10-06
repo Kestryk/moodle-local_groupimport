@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-06 - Shared semantic dialog palette candidate (SM-59)
+
+- Consume Kit0.4.121 primary/success header classes on six modal families;
+  retain official defaults, transparent legacy Move, danger/lookup and Motion.
+- Clear only two optional new tint properties on reused native Message portals
+  before existing token relay, avoiding stale paint after restoring defaults.
+-96 isolated checks, shared chrome and complete unrelated source/CSS identity
+  PASS. Paired Foundations saved; Product connection/served/human gates remain
+  separately OPEN in docs/dialog-semantic-palette-2026-10-06.md.
+
 ## 2026-10-06 - Semantic view icons served scoped proof (SM-60)
 
 - Native49 checks PASS: actual two desktop modes/four palette roots/five states

@@ -22635,6 +22635,35 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   padding-inline-end: 2.25rem;
 }
 
+.easyedu-ui[data-easyedu-dialog-palette~=primary] {
+  --easyedu-dialog-palette-primary-header:
+    radial-gradient(circle at 4.5rem 1.6rem,
+      color-mix(in srgb, var(--easyedu-primary-chosen, var(--easyedu-primary)) 13%, transparent), transparent 8rem),
+    linear-gradient(135deg, #f8fbff 0%,
+      color-mix(in srgb, var(--easyedu-primary-chosen, var(--easyedu-primary)) 5%, #fff 95%) 100%);
+}
+
+.easyedu-ui[data-easyedu-dialog-palette~=success] {
+  --easyedu-dialog-palette-success-header:
+    radial-gradient(circle at 4.5rem 1.6rem,
+      color-mix(in srgb, var(--easyedu-accent-chosen, var(--easyedu-accent)) 12%, transparent), transparent 8rem),
+    linear-gradient(135deg, #f8fbff 0%,
+      color-mix(in srgb, var(--easyedu-accent-chosen, var(--easyedu-accent)) 5%, #fff 95%) 100%);
+}
+
+.easyedu-ui .easyedu-dialog-header-palette--primary,
+.easyedu-ui.easyedu-message-dialog .modal-content .easyedu-dialog-header-palette--primary {
+  background: var(--easyedu-dialog-palette-primary-header, var(--easyedu-dialog-palette-base, var(--easyedu-modal-header-bg)));
+}
+
+.easyedu-ui .easyedu-dialog-header-palette--success {
+  background: var(--easyedu-dialog-palette-success-header, var(--easyedu-dialog-palette-base, var(--easyedu-modal-header-bg)));
+}
+
+.easyedu-ui .easyedu-dialog-header-palette--plain {
+  --easyedu-dialog-palette-base: transparent;
+}
+
 .easyedu-ui .easyedu-form--deposit .mform {
   margin: 0;
   padding: 0;

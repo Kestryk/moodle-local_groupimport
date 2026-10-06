@@ -2,6 +2,11 @@
 
 ## Bounded successor update
 
+SM-59 now has a paint-only Kit0.4.121/source candidate with96 isolated and
+complete preservation checks. Foundations source/Standard are saved; Product
+connection and served-native proof remain OPEN. The inventory below remains
+the original diagnosis. See `dialog-semantic-palette-2026-10-06.md`.
+
 SM-60 now has canonical Kit0.4.120/default paired publication and served native49
 paint/geometry checks. See `view-switch-icon-palette-2026-10-06.md`; remaining
 native three-view/custom design/persistence gates stay separate. The initial

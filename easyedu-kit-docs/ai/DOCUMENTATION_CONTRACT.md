@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Dialog palette opt-ins preserve official/plain/neutral/danger semantics and
+all geometry/Motion. Canonical Kit owns tints; expose validated role flags
+separately from rail selectors. Clear only the two optional dialog tint tokens
+before reusing a portal's existing relay. Never duplicate relays or use private
+PHP/JS gradients. Unknown timed-out Penpot writes require readback before replay;
+do not attach the implementation tools to the Guide's local server/profile.
+
 View-switch semantic paint is an opt-in tiled recipe, not new compact icon
 geometry. Compare disabled/pressed/hover specificity against the complete
 consumer cascade, preserve all unrelated CSS and original Motion, and keep
