@@ -178,6 +178,32 @@ Product propagation/paint/export/human gates. Do not rerun the historical68
 dimension assertion as a current metric oracle or falsely claim exact native
 font raster/intrinsic-width parity.
 
+## Reconnected design successor (supersedes the pending Product checkpoint)
+
+The own-window MCP recovered intermittently. An explicit checked Product01
+six-root mutation was reported suspended, but a subsequent actual saved GET
+shows it DID execute: do not treat a stale heartbeat error as a cancellation or
+replay blindly. Current Library/Standard/Product all contain summary328x43.28,
+line676x42.64 and action262.4x37.6/radius8. Action uses the existing linked Excel
+glyph with its entire subtree proportionally resized into15x15,15px Inter label,
+18px line height and10.4px icon/label gap; its intrinsic width now differs from
+native262.390625 by less than.01px. No code CSS/density/Motion changed here.
+
+Product file validate[]; fresh comparison PNG was exported and inspected by the
+agent: all six usages contained, clean inline summary, white single-message
+line, centred icon/action with distinct independent palettes. This is not user
+approval or a claim that every existing Product board is revised. Exact IDs
+remain the table above; no duplicate comparison host was created or old generic
+family removed. The standalone saved metric reader has an explicit
+`--verify-successor` mode; the predecessor68 assertion remains historical.
+That explicit saved-successor mode PASSES all18 current dimensions/radii,
+direct child containment and six15px action slots/10.4px gaps. It does not
+assert whole recursive paint equivalence or user visual acceptance.
+
+The earlier MCP reconnect question no longer requires action for these six
+usages. Source-preserved Hover/Focus/Disabled comparison states, full imported
+report lifecycle, persisted palette settings and human checklist remain OPEN.
+
 ## Next
 
 Preserve/push the native protocol and this proof, then reconcile actual theme

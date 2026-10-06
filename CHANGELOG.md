@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-06 - Native report design metric propagation
+
+- Reconcile18 saved Library/Standard/Product usages with native summary/line
+  metrics and15px action icon+label,8px radius and10.4px gap. Existing providers
+  and comparison hosts retained; Product validate[] and fresh export inspected.
+- A stale MCP heartbeat error did not cancel the requested write. Saved exact-ID
+  readback prevents duplicate replay. No source CSS/controller/Motion change;
+  full lifecycle/persistence and human checklist remain open.
+
 ## 2026-10-06 - Catalogue focus and density diagnostic
 
 - Record24 native mouse/keyboard/disabled cases reproducing the caption-wide
