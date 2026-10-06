@@ -79,6 +79,12 @@ no Guide write, token regeneration, shutdown or forced session takeover yet.
 The local MCP transport is4401, manifest4400, websocket4402. The reported
 server2.15.4/editor2.18.2 warning is unresolved, not a proved root cause.
 
+Recovery successor: hosted Guide panel Connected, actual localhost4400 plugin
+Not connected. Reconnected only the local plugin; the supplied external
+Guide-only client confirmed exact file/page and six active handoff roots.
+Dedicated4401/9227 is now usable; no design write or Moodle Guide replacement
+yet. See `guide-production-handoff-intake-2026-10-06.md`.
+
 Replacement means the Guide presentation via canonical Kit, NOT replacing
 the engine with demo.js. Preserve stable IDs/storage, progression/unlock,
 original highlight geometry/lifecycle, focus/Escape/return/scroll, accepted

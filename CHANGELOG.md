@@ -13,6 +13,9 @@
   preserve newer centring/wrapping and translated controller defaults rather
   than blindly synchronizing the old demo. Dedicated Guide/demo live-read
   checks performed; actual integration/publication remains pending.
+- Reconnect only the disconnected local Guide plugin. Fresh external Guide-only
+  MCP client verifies exact project/page and six active composition roots;
+  hosted configuration/key and existing browsers preserved, no design writes.
 
 ## 2026-10-06 - Native report design metric propagation
 
