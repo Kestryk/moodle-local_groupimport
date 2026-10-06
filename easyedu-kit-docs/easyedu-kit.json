@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "compactMoveAvailability20261006": {
+      "scope": "Consumer native action availability only; Kit paint/controls/Motion unchanged",
+      "documentation": "docs/mobile-move-availability-successor-2026-10-06.md",
+      "penpotReadback": "docs/testing/mobile-move-availability-penpot-2026-10-06.json",
+      "status": "24 executed compact view/default branches and complete other-source/style preservation PASS; three Product trays already show Move. Native/human pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "filterSharedMotion20261006": {
       "kitVersion": "0.4.119",
       "kitDocumentationCommit": "9527b7af3c33c94f77d6b144f5879f8bdadf5583",

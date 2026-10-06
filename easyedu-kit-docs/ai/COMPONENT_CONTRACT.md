@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Compact selection trays resolve native selection/disabled availability independently
+from desktop workspace-only hidden flags. Preserve saved desktop mode and reapply
+its visibility when leaving responsive mode; do not create another button skin
+or change transfer commands/Motion merely to expose the existing mobile action.
+
 Catalogue/Participant multiple filters consume the canonical choices Motion
 option, not a forced framed class or copied geometry engine. Keep compact
 density, native options/state/search/clear/Reset and role shortcuts authoritative.

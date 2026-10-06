@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Compact Participant Move availability candidate
+
+- Prevent the saved desktop structure-only hidden flag from leaking into mobile
+  Participant Move. Preserve native selection/disabled rules, desktop preference,
+  every style/command and original Motion;24 executed branch cases pass.
+- Three existing Product Participant trays already render Move; record their
+  behavior policy without repainting controls. Served/native/human pending.
+
 ## 2026-10-06 - Shared filter Motion behavior proof (SM-55)
 
 - Thirty-nine native records pass search/selection/clear, one-click parent closure and
