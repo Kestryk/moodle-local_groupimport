@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-06 - Preserve lots and accept limited Guide integration handoff
+
+- Save every active SM-59..73 lot, earlier queue and distinct remaining gates
+  before changing priority. Kit focus0.4.124 and peer proposals are not served.
+- Retain native8 effective density routes and16 typed-add Cancel paint states,
+  source protocols and failed/partial predecessors. No business writes.
+- Read the external Guide handoff and required references. Intake preserves
+  the existing engine/highlight/progression and legacy content; no replacement
+  or native Guide integration claimed in this checkpoint.
+
 ## 2026-10-06 - Native report design metric propagation
 
 - Reconcile18 saved Library/Standard/Product usages with native summary/line

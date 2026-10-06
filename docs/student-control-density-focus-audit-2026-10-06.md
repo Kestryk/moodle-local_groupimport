@@ -1,5 +1,11 @@
 # SM-65..68 /71 /73 control audit checkpoint
 
+Current preserved status and Guide priority are in
+`lots-before-guide-handoff-2026-10-06.md`. Kit0.4.124 public focus is source-ready
+and pushed, but NOT consumed/served. Source publication timed out; saved GET
+found no new host, old Focus unchanged. The following candidate evidence is
+historical, retained rather than relabelled as consumer acceptance.
+
 Portable continuation of `student-feedback-successor-2026-10-06.md` under
 EED-UI-2026-0073. One existing Source/Kit worktree pair, no new writer; Guide
 remains separately owned. This is diagnostic/candidate evidence, not closure
@@ -92,3 +98,31 @@ candidate avoids a repeated full modal matrix. Numeric model token usage is
 unavailable; record this workflow cost rather than inventing quota figures.
 Platform planning/scenario owner receives this portable backlink; shared files
 are not concurrently edited. Human checklist stays OPEN.
+
+## Source-ready and native density/Cancel continuation
+
+Kit focus `9a3925ed79bfd7a6b13ed9e09ed3c7f622f21277`: public48 records and
+same-compiler complete old/current public CSS compare PASS, exactly3 opt-in
+rules. Paired design and consumer gates remain OPEN.
+
+Native density successor `easystud-authenticated-20261006T155742516Z-12140`
+PASS8 actual routes with effective opacity/hidden/inert ancestry. Desktop
+Search38px / Reset30.390625, Select25.90625 / count23.09375. Group/Grouping
+21.125px /11.25px and panel23.34375px /12.48px. Compact Reset44; catalogue
+Search and compact counts absent in sampled routes. Do not force them visible.
+The first protocol's hidden-column measurements are preserved but not paint
+proof. No Source CSS/commands/Motion change.
+
+Kit peer candidate18 PASS in `control-peer-density-candidate-20261006-b`:
+38/44 field peers and25.92/29.6 pagination peers, shared type/paint, passive
+counts, LTR/RTL and long counts. Failed `-a` exposed insufficient prototype
+specificity; fixed in the example, not a private consumer override. No public
+release/class adoption or paired design claim.
+
+Native SM-73 `easystud-authenticated-20261006T161419219Z-13872` PASS16:
+Participant-in-Group and Group-in-Grouping, official/custom Primary,26px/12px
+Cancel with canonical hover, real Tab focus and disabled text. No identifiers
+entered, Add/Move/Send or settings Save; transient properties restored. Broader
+responsive/provider/human gates remain separate; a private hover fix is not
+justified in these sampled routes. Both native runs cleaned credentials,
+children and leases; no fixtures/errors/blocked commands.
