@@ -1,7 +1,24 @@
 # Group fold member-selection successor (SM-62)
 
-Batch EED-UI-2026-0073. Candidate only until managed promotion and native proof.
+Batch EED-UI-2026-0073. Served/native scoped successor now PASS; not human acceptance.
 The earlier human checklist and all other SM-01..73 lots remain OPEN.
+
+## Served scoped proof
+
+Source `dcf68620b95205c6941ad7ce17368dd29478d4bd` is served at clean runtime
+`1c6caa159ac4be2e39d550f6edc41dfd5b288f78`. Ordered request
+`20261006T085656Z-7b0366efe3` includes prior compact-Move proof and feedback
+intake before the fold candidate; `20261006T090428Z-8b7d8aeea3` promotes the
+accessibility successor. Caches refreshed; CSS remains byte-identical.
+
+The exact same immutable native scenario now passes eight cases at1600/768/390/
+320 in normal/reduced policies, after changing the actual product source.
+Three real checkbox selections, another Group retained, all folded-Group copies
+cleared, reopen without reselection and zero-selection action reconciliation
+PASS. Four normal-policy cases observe the original disclosure marker. No
+forced click, altered Motion, settings Save, transfer, import, Send or fixtures.
+Cleanup complete; no errors/blocked requests. See
+`testing/group-fold-member-selection-native-2026-10-06.json` for exact pins.
 
 ## Verified cause and bounded correction
 
@@ -64,11 +81,10 @@ unchanged retry or a weakened test, must be served before rerunning.
 Product metadata readback/validate=[] and actual saved-file GET200 are verified
 after owned plugin-heartbeat recovery. No shared provider paint was changed.
 
-Managed preview, native behavioural matrix, broad context-action/keyboard
-journeys and human acceptance remain OPEN. Source snapshot/commit supplies an
+Broad context-action/keyboard journeys and human acceptance remain OPEN.
+Source snapshot/commit supplies an
 explicit reversible boundary; do not revert another window or shared runtime.
 Penpot publication is behaviour metadata only, not a visual or native PASS.
 
-Next: saved design readback, ordered Source prerequisites, managed promotion
-and the immutable single supervised scenario. Continue palette root/cascade
-audit and SM-51 optional/full modal-body/native compact entry work afterward.
+Next: shared palette root/cascade successor, then SM-51 optional/full modal-body
+and native compact-entry work. Preserve this passing scoped native proof.

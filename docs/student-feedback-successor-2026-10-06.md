@@ -46,6 +46,13 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
 
 ## Ordered continuation
 
+SM-62 served scoped successor now PASS8 at1600/768/390/320 normal/reduced:
+fold clears same-Group member copies only, preserves another Group, reopening
+does not reselect and action surfaces reconcile. Preserve the actual failed
+whole-card ARIA predecessor; selection authority remains native. No CSS/Motion/
+business/fixture changes. Human and broader keyboard/context gates OPEN; see
+`group-fold-member-selection-2026-10-06.md`. Palette audit continues next.
+
 1. Read-only semantic-palette audit: SM-72 with SM-59/60/64. Distinguish missing
    mapping from a cascade/portal defect and draft paint from persisted settings.
 2. Selection-integrity correction SM-62, preserving original card animations.
@@ -58,6 +65,13 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
    the user's final combined checklist. No automatic human acceptance.
 
 ## Verified starting observations (source only)
+
+Palette audit successor now confirms literal view-switch icon paints and modal
+header/gradient tokens as distinct obstacles. Forty-five actual server role
+checks and the existing seven-default browser reset guard PASS, without DB/Save.
+No source identity swap is reproduced; persisted default restoration remains
+OPEN. See `semantic-palette-successor-audit-2026-10-06.md`. Canonical shared paint
+and native modal/Mass matrices are still pending, not certified by this audit.
 
 - `lib.php` defines distinct participant/group/grouping settings and default
   tokens. `index.php` already puts validated palette variables on the Mass Import
