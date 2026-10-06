@@ -8242,6 +8242,31 @@ const bindAdvancedFilters = root => {
     });
 };
 
+/**
+ * Clear member selection for the folded Group, including its catalogue copies.
+ *
+ * Another membership of the same user in a different Group remains selected.
+ * Use the existing selection authority so checkboxes and all action surfaces
+ * reconcile together, without changing the card's disclosure animation.
+ *
+ * @param {HTMLElement} root Workspace selection owner.
+ * @param {HTMLElement} group Group whose member list is being folded.
+ */
+const clearFoldedGroupMemberSelection = (root, group) => {
+    const groupid = group.getAttribute('data-easystud-group-id');
+    if (!groupid) {
+        return;
+    }
+    const selected = getSelectedItems(root, 'member').filter(member => {
+        const owner = member.closest('[data-easystud-group-id]');
+        return owner && owner.getAttribute('data-easystud-group-id') === groupid;
+    });
+    selected.forEach(member => setItemSelected(member, false));
+    if (selected.length) {
+        updateSelectionActions(root);
+    }
+};
+
 const bindGroupMemberToggles = root => {
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-group-members-toggle]');
@@ -8268,6 +8293,9 @@ const bindGroupMemberToggles = root => {
         list.classList.add('is-easyedu-disclosing');
         void Motion.resize(list, () => {
             toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            if (expanded) {
+                clearFoldedGroupMemberSelection(root, group);
+            }
             syncGroupMembersCollapsible(group);
         }, {
             duration: Motion.timing.normal,
