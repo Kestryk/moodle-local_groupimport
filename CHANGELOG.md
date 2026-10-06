@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-06 - Group native authentication-wait successor (SM-48)
+
+- Record served Group candidate and pre-geometry login wait failure with clean
+  cleanup. Preserve original script; separate explicit navigation wait from
+  action timeout without forcing click or changing product/strict oracles.
+
 ## 2026-10-06 - Group empty-wrap / wider-touch clearance candidate (SM-48)
 
 - Preserve94-record native successor and new1024 Group overlap; reproduce320
