@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "dialogSemanticPalette20261006": {
+      "kitVersion": "0.4.121",
+      "kitCommit": "5891d8cde05eab1ebf34d89807d81db5a0e8ab49",
+      "modules": ["scss/easyedu/_dialog-classes.scss", "scss/easyedu/_dialog-palette-classes.scss"],
+      "documentation": "docs/dialog-semantic-palette-2026-10-06.md",
+      "scope": "Five optional paint blocks, role flags, six header class consumers, existing relay clears only two optional tint tokens; geometry/commands/Motion preserved",
+      "status": "96 isolated/old shared chrome/public SCSS package and complete unrelated source/CSS identity PASS. Four paired Foundations providers saved. Product hosted reconnection, served native/persistence/human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "viewIconSemanticPalette20261006": {
       "kitVersion": "0.4.120",
       "kitCommit": "49d047ac1cac875fc3adabd12d1994156ff72749",

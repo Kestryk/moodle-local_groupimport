@@ -198,6 +198,10 @@ const relayWorkspaceTheme = (workspace, portal) => {
         return;
     }
     const theme = window.getComputedStyle(workspace);
+    // These opt-in tokens disappear on Restore defaults. A reused portal must
+    // not retain its previous custom tint when the root no longer supplies it.
+    portal.style.removeProperty('--easyedu-dialog-palette-primary-header');
+    portal.style.removeProperty('--easyedu-dialog-palette-success-header');
     for (let index = 0; index < theme.length; index++) {
         const property = theme[index];
         if (property.startsWith('--easyedu-') || property.startsWith('--local-groupimport-')) {
@@ -1900,6 +1904,11 @@ const decorateNativeMessageModalNode = node => {
     node.classList.add('local-groupimport-easystud-message-modal', 'easyedu-ui', 'easyedu-message-dialog', 'is-open');
     relayWorkspaceTheme(document.getElementById('local-groupimport-easystud'), node);
     node.classList.toggle('is-loading', !node.querySelector('#bulk-message'));
+
+    const header = node.querySelector('.modal-header');
+    if (header) {
+        header.classList.add('easyedu-dialog-header-palette--primary');
+    }
 
     const dialog = node.querySelector('.modal-dialog');
     if (dialog) {
@@ -4075,7 +4084,7 @@ const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
         '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog easyedu-entity-dialog ' +
                 (isgroup ? 'local-groupimport-easystud-settings-modal__dialog--group' :
                     'local-groupimport-easystud-settings-modal__dialog--grouping') + '">' +
-            '<div class="local-groupimport-easystud-modal__header local-groupimport-easystud-settings-modal__header easyedu-entity-dialog__header">' +
+            '<div class="local-groupimport-easystud-modal__header local-groupimport-easystud-settings-modal__header easyedu-entity-dialog__header easyedu-dialog-header-palette--success">' +
                 '<div class="local-groupimport-easystud-settings-modal__heading easyedu-entity-dialog__heading">' +
                     '<span class="local-groupimport-easystud-settings-modal__icon easyedu-entity-dialog__icon fa ' +
                         icon + '" aria-hidden="true"></span>' +

@@ -1,0 +1,36 @@
+// Optional semantic header paint. Geometry, Motion, commands and destructive
+// meanings remain with their existing recipes. The host declares only roles
+// whose chosen colours differ from the official palette (space-separated).
+@mixin dialog-palette-classes {
+  .easyedu-ui[data-easyedu-dialog-palette~="primary"] {
+    --easyedu-dialog-palette-primary-header:
+      radial-gradient(circle at 4.5rem 1.6rem,
+        color-mix(in srgb, var(--easyedu-primary-chosen, var(--easyedu-primary)) 13%, transparent), transparent 8rem),
+      linear-gradient(135deg, #f8fbff 0%,
+        color-mix(in srgb, var(--easyedu-primary-chosen, var(--easyedu-primary)) 5%, #fff 95%) 100%);
+  }
+  .easyedu-ui[data-easyedu-dialog-palette~="success"] {
+    --easyedu-dialog-palette-success-header:
+      radial-gradient(circle at 4.5rem 1.6rem,
+        color-mix(in srgb, var(--easyedu-accent-chosen, var(--easyedu-accent)) 12%, transparent), transparent 8rem),
+      linear-gradient(135deg, #f8fbff 0%,
+        color-mix(in srgb, var(--easyedu-accent-chosen, var(--easyedu-accent)) 5%, #fff 95%) 100%);
+  }
+  // The portal selector deliberately beats native Message's contextual skin.
+  // Copy resolved --easyedu-* tokens to the portal; do not reconstruct colour
+  // recipes in JavaScript or copy an entire workspace's structural attributes.
+  .easyedu-ui .easyedu-dialog-header-palette--primary,
+  .easyedu-ui.easyedu-message-dialog .modal-content .easyedu-dialog-header-palette--primary {
+    background: var(--easyedu-dialog-palette-primary-header,
+      var(--easyedu-dialog-palette-base, var(--easyedu-modal-header-bg)));
+  }
+  .easyedu-ui .easyedu-dialog-header-palette--success {
+    background: var(--easyedu-dialog-palette-success-header,
+      var(--easyedu-dialog-palette-base, var(--easyedu-modal-header-bg)));
+  }
+  // A legacy unpainted header can adopt custom colour without changing its
+  // default appearance. This modifier changes no padding or dimensions.
+  .easyedu-ui .easyedu-dialog-header-palette--plain {
+    --easyedu-dialog-palette-base: transparent;
+  }
+}
