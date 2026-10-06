@@ -1,5 +1,11 @@
 # EasyStud review successor - 5 October 2026
 
+SM55 default filter terminal diagnostic reproduces256px flash/jump plus8px
+margin; modals already pass. Candidate consumes existing shared Framed Motion
+through one {motion: Motion} argument, preserving compact paint/native filtering
+and all commands. Shared design/nine-endpoint/native nested-pointer/reduced/
+human gates remain OPEN; see filter-choice-shared-motion-2026-10-06.md.
+
 SM55 remaining native candidate now covers6 destination modal and3 multiple
 filter terminal endpoints, preserving prior Admin15/destination360ms proofs.
 Real access/Search/Escape/Cancel only; pause/finish samples endpoint continuity,

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Multiple-filter shared Motion candidate (SM-55)
+
+- Reproduce256px end-frame flash/jump in the legacy filter animation. Inject
+  existing canonical Motion at one native multiple-filter enhancement call.
+- Keep compact paint, options/search/clear/selection/Reset and every other
+  controller/CSS/Guide/data path. Paired/native/human pending, no new Kit engine.
+
 ## 2026-10-06 - Choice default/framed native diagnostic (SM-55)
 
 - Preserve two passing destination endpoints and the filter-family harness

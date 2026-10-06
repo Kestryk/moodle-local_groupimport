@@ -31,3 +31,10 @@ engine owns closing. This isn't permission to force a framed CSS class. Preserve
 failed source/cleanup; diagnostic successor qualifies the actual family, retains
 strict host/ancestor/sibling/margin/focus/value oracles and measures the default
 endpoint before deciding a consumer adapter change. No product change yet.
+
+Default diagnostic052415749Z-44148 records actual256px terminal host/parent
+jump with8px surviving margin. Its end-frame loses legacy animation fill before
+hidden cleanup; user-reported brief full-content flash is reproduced. Existing
+canonical Motion injection is the next bounded consumer successor, preserving
+all choices/style/filter/data logic rather than modifying the shared default.
+See filter-choice-shared-motion-2026-10-06.md. Human/other lifecycle gates OPEN.

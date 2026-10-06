@@ -1,0 +1,233 @@
+{
+  "publication": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "consumers": [
+      {
+        "id": "a301101d-ddc2-807b-8008-bba0a571f8a3",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "a301101d-ddc2-807b-8008-bba0a571f8a3",
+        "parent": "a301101d-ddc2-807b-8008-bba0a4b224b3",
+        "width": 184,
+        "height": 32,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bba0a5d9c48e",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "a301101d-ddc2-807b-8008-bba0a5d9c48e",
+        "parent": "a301101d-ddc2-807b-8008-bba0a4b224b3",
+        "width": 184,
+        "height": 32,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bba0a6945937",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "a301101d-ddc2-807b-8008-bba0a6945937",
+        "parent": "a301101d-ddc2-807b-8008-bba0a6620ee8",
+        "width": 284,
+        "height": 32,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bba0f18e3e90",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "a301101d-ddc2-807b-8008-bba0f18e3e90",
+        "parent": "a301101d-ddc2-807b-8008-bba0f18dffff",
+        "width": 184,
+        "height": 32,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bba0f345da54",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Open",
+        "type": "board",
+        "board": "a301101d-ddc2-807b-8008-bba0f345da54",
+        "parent": "a301101d-ddc2-807b-8008-bba0f18dffff",
+        "width": 184,
+        "height": 194,
+        "component": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+          "name": "Open",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bba110495fe6",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "a301101d-ddc2-807b-8008-bba110495fe6",
+        "parent": "a301101d-ddc2-807b-8008-bba10d09cb44",
+        "width": 294,
+        "height": 44,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "a301101d-ddc2-807b-8008-bba113744497",
+        "name": "EasyEdu / Forms / Searchable multiple choice / Compact touch / Open",
+        "type": "board",
+        "board": "a301101d-ddc2-807b-8008-bba113744497",
+        "parent": "a301101d-ddc2-807b-8008-bba10d09cb44",
+        "width": 294,
+        "height": 254,
+        "component": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+          "name": "Open",
+          "path": "EasyEdu / Forms / Searchable multiple choice / Compact touch"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "c403923b-827e-80b7-8008-bbc4b5de6faf",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "c403923b-827e-80b7-8008-bbc4b5de6faf",
+        "parent": "c403923b-827e-80b7-8008-bbc4b5de0b55",
+        "width": 184,
+        "height": 32,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "c403923b-827e-80b7-8008-bbc4b5de6fb0",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Open",
+        "type": "board",
+        "board": "c403923b-827e-80b7-8008-bbc4b5de6fb0",
+        "parent": "c403923b-827e-80b7-8008-bbc4b5de0b55",
+        "width": 184,
+        "height": 194,
+        "component": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae7855f4d",
+          "name": "Open",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "c403923b-827e-80b7-8008-bbc4b82d21c4",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "c403923b-827e-80b7-8008-bbc4b82d21c4",
+        "parent": "c403923b-827e-80b7-8008-bbc4b5de0b55",
+        "width": 184,
+        "height": 32,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "c403923b-827e-80b7-8008-bbc4b5deceac",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "c403923b-827e-80b7-8008-bbc4b5deceac",
+        "parent": "c403923b-827e-80b7-8008-bbc4b5de0b56",
+        "width": 294,
+        "height": 44,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "c403923b-827e-80b7-8008-bbc4b5deceae",
+        "name": "EasyEdu / Forms / Searchable multiple choice / Compact touch / Open",
+        "type": "board",
+        "board": "c403923b-827e-80b7-8008-bbc4b5deceae",
+        "parent": "c403923b-827e-80b7-8008-bbc4b5de0b56",
+        "width": 294,
+        "height": 254,
+        "component": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+          "name": "Open",
+          "path": "EasyEdu / Forms / Searchable multiple choice / Compact touch"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "df1dc7b5-2b58-807e-8008-bc36ec7372f8",
+        "name": "EasyEdu / Forms / Searchable multiple choice / S / Closed",
+        "type": "board",
+        "board": "df1dc7b5-2b58-807e-8008-bc36ec7372f8",
+        "parent": "df1dc7b5-2b58-807e-8008-bc36e991fff9",
+        "width": 359.9999999999999,
+        "height": 32,
+        "component": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae77dbb7c",
+          "name": "Closed",
+          "path": "EasyEdu / Forms / Searchable multiple choice / S"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      },
+      {
+        "id": "df1dc7b5-2b58-807e-8008-bc370dd287e4",
+        "name": "EasyEdu / Forms / Searchable multiple choice / Compact touch / Open",
+        "type": "board",
+        "board": "df1dc7b5-2b58-807e-8008-bc370dd287e4",
+        "parent": "df1dc7b5-2b58-807e-8008-bc36ef187833",
+        "width": 294,
+        "height": 254,
+        "component": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+        "provider": {
+          "id": "cf371b29-2e8e-8011-8008-bceae79fdbd2",
+          "name": "Open",
+          "path": "EasyEdu / Forms / Searchable multiple choice / Compact touch"
+        },
+        "policy": "Framed consumers inject canonical Motion; 360ms paired panel/chevron. Collapse outside margins/frame before hidden cleanup. Preserve search, native selections, compact paint and parent More Filters. Static protocol, not native/human acceptance."
+      }
+    ]
+  },
+  "scope": "14 effective visible Student03 multiple-choice consumers; metadata only, preserve all geometry/provider/paint; server persistence pending"
+}
