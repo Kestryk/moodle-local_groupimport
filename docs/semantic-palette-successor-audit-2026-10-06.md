@@ -2,6 +2,11 @@
 
 ## Bounded successor update
 
+SM-59 native60 successor now passes six families/five transient palettes at
+1600/390, including native portal/default restored paint with stable geometry.
+Product custom examples, full lifecycle/persistence/raster/human remain OPEN;
+the earlier inventory/candidate notes below are historical staged findings.
+
 SM-59 now has a paint-only Kit0.4.121/source candidate with96 isolated and
 complete preservation checks. Foundations source/Standard are saved; Product
 connection and served-native proof remain OPEN. The inventory below remains
@@ -32,6 +37,15 @@ Batch EED-UI-2026-0073. Source/isolated audit only; no palette repair, persisten
 or whole-view native PASS is claimed. SM-62 has independent served proof.
 
 ## Confirmed source boundaries
+
+SM-64 next source-only inventory: `_mass-import.scss` success summary passes
+literal #eef8f2/#cfe7d9/#1f6748 into shared report-summary-item; success report
+title/icons also pass/paint fixed green. Keep error/reimport warnings semantic,
+not brand-success. Export uses `btn-outline-primary easyedu-action-with-icon`
+plus shared `action-button`: geometry/interactions but no semantic rest paint,
+which remains Bootstrap-owned. Preserve accepted geometry/defaults and original
+CSV disclosure Motion in a canonical successor. No all-lifecycle diagnosis/fix
+or fresh Mass visual proof is claimed from this source-only audit.
 
 | Surface | Verified source finding | Consequence / next bounded action |
 | --- | --- | --- |

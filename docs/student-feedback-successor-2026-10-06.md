@@ -29,8 +29,10 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
 SM-59 bounded source candidate consumes Kit0.4.121 paint only.96 isolated,
 shared chrome and exact unrelated CSS/controller/Motion guards PASS. Four
 source-preserving custom header providers and paired Standard examples saved
-in Foundations; Product hosted reconnection and served-native gates remain
-OPEN. See `dialog-semantic-palette-2026-10-06.md`. No settings Save or human
+in Foundations; Product hosted reconnection remains OPEN.
+Native60 successor passes six families/five transient states at1600/390,
+unchanged geometry and native portal restored-default paint; full lifecycle/
+persistence remains OPEN. See `dialog-semantic-palette-2026-10-06.md`. No settings Save or human
 acceptance; every older unfinished lot remains retained.
 
 SM-60 bounded shared successor: Kit 0.4.120, one public tiled class and four
