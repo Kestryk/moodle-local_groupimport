@@ -8,8 +8,9 @@
       "scope": "Consumer native action availability only; Kit paint/controls/Motion unchanged",
       "documentation": "docs/mobile-move-availability-successor-2026-10-06.md",
       "penpotReadback": "docs/testing/mobile-move-availability-penpot-2026-10-06.json",
-      "status": "24 executed compact view/default branches and complete other-source/style preservation PASS; three Product trays already show Move. Native/human pending.",
-      "nativePreviewVerified": false,
+      "status": "24 executed compact branches, three saved Product trays and9 native sticky open/Cancel/desktop-return records PASS. Commands/CSS/Motion retained; human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261006T060208701Z-45516",
       "humanVisualValidated": false
     },
     "filterSharedMotion20261006": {

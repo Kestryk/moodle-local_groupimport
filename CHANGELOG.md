@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Compact Participant Move native proof
+
+- Six real sticky Move open/Cancel cases pass with one/two selected Participants
+  at768/390/320; selection and visible trigger focus remain intact.
+- Three desktop-return cases preserve structure/Participants action availability.
+  Full CSS/commands/Motion unchanged; no data/fixtures, complete cleanup and
+  human checklist OPEN. Retain exact source/runtime/native pins in the proof.
+
 ## 2026-10-06 - Compact Participant Move availability candidate
 
 - Prevent the saved desktop structure-only hidden flag from leaking into mobile

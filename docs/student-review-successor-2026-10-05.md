@@ -1,5 +1,13 @@
 # EasyStud review successor - 5 October 2026
 
+Compact Move successor now served and native060208701Z-45516 PASS9: six
+one/two-Participant sticky Move open/Cancel cases at768/390/320 with unchanged
+selection/visible return focus, and three desktop-preference return cases.
+CSS/commands/original Motion preserved; no data/fixtures/errors/blocked requests,
+complete cleanup. Source/Kit branches clean/pushed; combined human checklist
+and all earlier unfinished lots remain OPEN. Next bounded lot is SM51 optional
+Group/Grouping bodies and actual compact entries; Guide remains separate.
+
 Compact Move availability follow-up is an owned bounded source candidate:
 desktop structure-first hidden state no longer poisons mobile Participant Move.
 24 default/view/hidden branches and whole other-source/style preservation PASS;
