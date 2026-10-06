@@ -292,7 +292,12 @@ const loadGuideState = config => {
   }
 
   try {
-    return JSON.parse(storage.getItem(getStateKey(config)) || '{}') || {};
+    const state = JSON.parse(storage.getItem(getStateKey(config)) || '{}') || {};
+    if (config.presentationKey && state.presentationKey !== config.presentationKey &&
+        Number.isInteger(state.slideIndex) && Number.isInteger(config.legacySlideOffset)) {
+      return {...state, slideIndex: state.slideIndex + config.legacySlideOffset};
+    }
+    return state;
   } catch (error) {
     return {};
   }
@@ -304,7 +309,15 @@ const saveGuideState = (config, state) => {
     return;
   }
 
-  storage.setItem(getStateKey(config), JSON.stringify(state || {}));
+  if (config.presentationKey) {
+    const backupKey = `${getStateKey(config)}.before-${config.presentationKey}`;
+    if (storage.getItem(backupKey) === null) {
+      storage.setItem(backupKey, storage.getItem(getStateKey(config)) || '{}');
+    }
+    storage.setItem(getStateKey(config), JSON.stringify({...state, presentationKey: config.presentationKey}));
+  } else {
+    storage.setItem(getStateKey(config), JSON.stringify(state || {}));
+  }
 };
 
 const getCompletedSteps = (config, pathName) => {
@@ -962,6 +975,133 @@ const syncInterfaceCue = (root, slide) => {
   root.easyeduGuideDockedCommand = {anchor, button};
 };
 
+// Illustrations are DOM-only. They never dispatch business completion events.
+const stopDiscoveryScene = root => {
+  if (root.easyeduGuideSceneStop) {
+    root.easyeduGuideSceneStop();
+    root.easyeduGuideSceneStop = null;
+  }
+};
+
+const playDiscoveryScene = (root, scene, requestedMode) => {
+  stopDiscoveryScene(root);
+  if (!scene) { return; }
+  const kind = scene.getAttribute('data-easyedu-guide-scene');
+  if (kind === 'concepts' || kind === 'creation') { return; }
+  const mode = requestedMode || scene.easyeduGuideSceneMode || (kind === 'actions' ? 'actions' : 'add');
+  const stage = scene.querySelector('[data-guide-stage]');
+  const result = scene.querySelector('[data-guide-result]');
+  if (!stage || !result) { return; }
+  if (!scene.easyeduGuideStageOriginal) {
+    scene.easyeduGuideStageOriginal = stage.innerHTML;
+    scene.easyeduGuideResultOriginal = result.textContent;
+  }
+  stage.innerHTML = scene.easyeduGuideStageOriginal;
+  delete scene.dataset.guideSceneFinished;
+  result.textContent = scene.easyeduGuideResultOriginal;
+  scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
+  scene.querySelectorAll('[data-guide-phase]').forEach(item => item.removeAttribute('aria-current'));
+  if (mode === 'reset') { return; }
+
+  const controller = new AbortController();
+  const animations = new Set();
+  let timer = null;
+  let resolveWait = null;
+  const reduced = getScrollBehavior(root) === 'auto';
+  const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
+  const wait = duration => new Promise(resolve => {
+    resolveWait = resolve;
+    timer = window.setTimeout(() => { timer = null; resolveWait = null; resolve(); }, duration);
+  });
+  const animate = async(element, frames, duration) => {
+    if (controller.signal.aborted || reduced) { return; }
+    const animation = element.animate(frames, {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
+    animations.add(animation);
+    try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
+  };
+  const phase = async name => {
+    const item = scene.querySelector(`[data-guide-phase="${name}"]`);
+    scene.querySelectorAll('[data-guide-phase]').forEach(node => node.removeAttribute('aria-current'));
+    if (item) { item.setAttribute('aria-current', 'step'); }
+    if (!reduced) { await wait(Math.max(2400, (item?.textContent.trim().split(/\s+/).length || 0) * 230)); }
+  };
+  root.easyeduGuideSceneStop = () => {
+    controller.abort();
+    if (timer !== null) { window.clearTimeout(timer); }
+    if (resolveWait) { resolveWait(); }
+    animations.forEach(animation => animation.cancel());
+    stage.querySelector('[data-guide-ghost]')?.remove();
+  };
+  const run = async() => {
+    const person = stage.querySelector('[data-guide-person]');
+    const member = stage.querySelector('[data-guide-member]');
+    const cursor = stage.querySelector('[data-guide-cursor]');
+    const menu = stage.querySelector('[data-guide-menu]');
+    const confirm = stage.querySelector('[data-guide-confirm]');
+    const travel = async(element, duration = 750) => {
+      if (compact || reduced || controller.signal.aborted) { return; }
+      const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
+      const from = getComputedStyle(cursor).transform;
+      cursor.hidden = false;
+      await animate(cursor, [{transform: from},
+        {transform: `translate(${a.left - b.left + a.width / 2}px, ${a.top - b.top + a.height / 2}px)`}], duration);
+    };
+    await travel(person);
+    await phase('select');
+    if (controller.signal.aborted) { return; }
+    if (mode !== 'add') {
+      menu.hidden = false;
+      await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
+      await phase('menu');
+      if (controller.signal.aborted) { return; }
+      await travel(menu.querySelector('strong'));
+      await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
+      if (controller.signal.aborted) { return; }
+      menu.hidden = true;
+      confirm.hidden = false;
+      await animate(confirm, [{opacity: 0}, {opacity: 1}], 280);
+      await phase('confirm');
+      if (controller.signal.aborted) { return; }
+      const submit = confirm.querySelector('[data-guide-simulated-submit]');
+      await travel(submit);
+      await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
+        {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
+      if (controller.signal.aborted) { return; }
+      await animate(confirm, [{opacity: 1}, {opacity: 0}], 220);
+      if (controller.signal.aborted) { return; }
+      confirm.hidden = true;
+    } else if (!compact && !reduced) {
+      const ghost = person.cloneNode(true);
+      ghost.removeAttribute('data-guide-person');
+      ghost.setAttribute('data-guide-ghost', '');
+      ghost.setAttribute('aria-hidden', 'true');
+      stage.appendChild(ghost);
+      const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
+      ghost.style.left = `${a.left - b.left}px`;
+      ghost.style.top = `${a.top - b.top}px`;
+      const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
+      const dx = destination.left - a.left, dy = destination.top - a.top + 32;
+      await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
+        {transform: `translate(${dx}px,${dy}px)`}], 1200), travel(stage.querySelector('[data-guide-destination]'), 1200)]);
+      if (controller.signal.aborted) { return; }
+      member.hidden = false;
+      await animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
+        {transform: 'translate(0,0)', opacity: 0.2}], 650);
+      await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
+      ghost.remove();
+    }
+    if (controller.signal.aborted) { return; }
+    member.hidden = false;
+    cursor.hidden = true;
+    if (mode !== 'add') {
+      stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => { node.hidden = true; });
+    }
+    result.textContent = result.getAttribute(`data-${mode}`) || '';
+    scene.dataset.guideSceneFinished = 'true';
+  };
+  run().catch(() => { stopDiscoveryScene(root); });
+};
+
 const setActiveSlide = (root, index, config, options = {}) => {
   if (config) {
     syncSlideLocks(root, config);
@@ -1009,6 +1149,11 @@ const setActiveSlide = (root, index, config, options = {}) => {
 
   root.setAttribute('data-easyedu-guide-current-slide', String(safeIndex));
   syncInterfaceCue(root, slides[safeIndex]);
+  stopDiscoveryScene(root);
+  const modal = root.querySelector(SELECTORS.modal);
+  if (modal && !modal.hidden) {
+    playDiscoveryScene(root, slides[safeIndex]?.querySelector('[data-easyedu-guide-scene]'));
+  }
   scrollActiveNavItemIntoView(root);
   setTrackedTimeout(root, () => updateNavScrollButtons(root), 80);
 };
@@ -1046,6 +1191,7 @@ const openModal = (root, config) => {
 };
 
 const closeModal = (root, preserveHighlight = false, restoreFocus = true) => {
+  stopDiscoveryScene(root);
   const modal = root.querySelector(SELECTORS.modal);
   if (!modal) {
     return;
@@ -1447,6 +1593,7 @@ const bindNavWheel = root => {
   nav.dataset.easyeduGuideWheelBound = '1';
   addTrackedListener(root, nav, 'scroll', () => updateNavScrollButtons(root), {passive: true});
   addTrackedListener(root, nav, 'wheel', event => {
+    if (event.ctrlKey || nav.scrollWidth <= nav.clientWidth) { return; }
     if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
       return;
     }
@@ -1491,6 +1638,33 @@ const bindGuide = (root, config) => {
   root.dataset.easyeduGuideBound = '1';
 
   addTrackedListener(root, root, 'click', event => {
+    const sceneCommand = event.target.closest('[data-guide-scene-command]');
+    if (sceneCommand && root.contains(sceneCommand)) {
+      event.preventDefault();
+      const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
+      const command = sceneCommand.getAttribute('data-guide-scene-command');
+      if (command === 'preview' || command === 'letters') {
+        const input = scene.querySelector('[data-guide-pattern]');
+        const output = scene.querySelector('[data-guide-names]');
+        if (command === 'letters') {
+          input.value = input.value.replace(/[#@]/, value => value === '#' ? '@' : '#');
+        }
+        const match = input.value.match(/^(.*?)([#@])\*([1-9]\d*)$/);
+        output.replaceChildren();
+        if (!match || Number(match[3]) > 6) {
+          output.textContent = output.getAttribute('data-invalid');
+        } else {
+          for (let index = 0; index < Number(match[3]); index++) {
+            const chip = document.createElement('span');
+            chip.textContent = match[1] + (match[2] === '#' ? index + 1 : String.fromCharCode(65 + index));
+            output.appendChild(chip);
+          }
+        }
+      } else {
+        playDiscoveryScene(root, scene, command === 'replay' ? undefined : command);
+      }
+      return;
+    }
     const activeConfig = root.easyeduGuideConfig || config;
     const open = event.target.closest(SELECTORS.open);
     if (open && root.contains(open)) {
@@ -1789,6 +1963,7 @@ export const destroy = rootOrSelector => {
   }
 
   restoreInterfaceCue(root);
+  stopDiscoveryScene(root);
   unlockPageScroll(root);
   clearTrackedListeners(root);
   clearTrackedTimeouts(root);
