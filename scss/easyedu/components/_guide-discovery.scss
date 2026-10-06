@@ -72,8 +72,25 @@
   }
 
   .easyedu-guide-modal__header {
+    @include modals.dialog-header;
     display: flex;
     min-height: 0;
+  }
+
+  .easyedu-guide-modal__close { @include buttons.close-button; }
+
+  .easyedu-guide-guided-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    max-width: none;
+    box-shadow: none;
+    background: var(--easyedu-accent-soft);
+    border: 1px solid var(--easyedu-border);
+    .easyedu-guide-slide__start {
+      grid-column: 3;
+      width: auto;
+      justify-self: end;
+    }
   }
 
   .easyedu-guide-modal__footer {
@@ -168,7 +185,8 @@
     &__field { display: grid; gap: 0.5rem; }
     &__field input { @include text-fields.foundation-text-field; width: 100%; }
     &__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-block: 0.75rem; }
-    &__actions .btn { @include buttons.button-size(small); }
+    &__actions .btn { @include buttons.selection-action; @include buttons.button-size(small); }
+    &__actions .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
     &__utilities { display: flex; gap: 0.5rem; margin-inline-start: auto; }
     &__stage { display: grid; position: relative; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
     &__stage:has([data-guide-confirm])::after { content: ''; grid-area: 2 / 1 / 3 / 3; min-height: 17rem; pointer-events: none; }
@@ -186,7 +204,18 @@
     &__steps [aria-current] { color: var(--easyedu-accent); font-weight: 600; }
     &__note { padding: 0.75rem; background: var(--easyedu-primary-soft); border-radius: 0.625rem; }
     &__results { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    &__results > span { padding: 0.5rem 0.75rem; border: 1px solid var(--easyedu-border); border-radius: 0.5rem; }
+    &__results > span {
+      flex: 1 1 10rem;
+      min-height: 4.5rem;
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--easyedu-border);
+      border-inline-start: 0.5rem solid var(--easyedu-group-rail, var(--easyedu-accent));
+      border-radius: 0.75rem;
+      background: var(--easyedu-surface);
+      box-shadow: var(--easyedu-shadow-soft);
+    }
     [data-guide-ghost] { position: absolute; margin: 0; width: min(13.75rem, 45%); border: 1px solid var(--easyedu-primary); box-shadow: var(--easyedu-shadow-soft); pointer-events: none; }
   }
 
@@ -207,6 +236,8 @@
   }
 
   @media (max-width: 40rem) {
+    .easyedu-guide-guided-card { grid-template-columns: auto minmax(0, 1fr); }
+    .easyedu-guide-guided-card .easyedu-guide-slide__start { grid-column: 1 / -1; }
     .easyedu-guide-scene__concepts, .easyedu-guide-scene__stage { grid-template-columns: minmax(0, 1fr); }
     .easyedu-guide-scene__stage:has([data-guide-confirm])::after,
     .easyedu-guide-scene__menu, .easyedu-guide-scene__dialog { grid-area: 3 / 1; }
