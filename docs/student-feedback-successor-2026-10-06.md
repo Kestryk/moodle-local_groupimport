@@ -33,6 +33,11 @@ Product comparisons; prior generic/full-view examples preserved. Native cascade
 and full lifecycle/persistence/human remain separate gates. See
 `mass-report-palette-successor-2026-10-06.md`; no older unfinished lot is closed.
 
+SM-64 native-state successor consumes Kit0.4.123 after the first native cascade
+run exposed Bootstrap overriding official Export hover. Failure/cleanup retained;
+shared composed-state qualification preserves density/Motion and does not weaken
+the unchanged native scenario. Fresh native proof remains pending here.
+
 SM-59 bounded source candidate consumes Kit0.4.121 paint only.96 isolated,
 shared chrome and exact unrelated CSS/controller/Motion guards PASS. Four
 source-preserving custom header providers and paired Standard examples saved

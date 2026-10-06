@@ -104,7 +104,23 @@ style in finally. No upload/import/history restoration/Export click or Save.
 CI blockers: supervised Moodle5.1/theme/auth. Platform scenario registry/batch
 owner receives this portable backlink; no competing shared-plan edit.
 
-Native run/promotion is pending at this source checkpoint. Actual lifecycle,
+First preview Sourcefe8984d -> runtime2963e0475b5ec0c8f2fad1a73f151ef265a3df0d,
+managed record20261006T130543Z, cachesPurged=true. Native run
+`easystud-authenticated-20261006T130623148Z-16372` FAILED at official Export hover:
+actual rgb(15,108,191) solid background vs canonical Primary soft. Its external
+log/manifest and cleanup are retained: credentials cleared, lease released,
+child stopped, no fixture. Never relabel this run PASS or weaken its scenario.
+
+Kit0.4.123 successor moves existing canonical state paint into an explicitly
+qualified `.easyedu-ui .easyedu-button--outline-primary.btn` recipe. Later
+Bootstrap could override the previous equal-specificity product selectors.
+No new declaration/timing/density; exactly seven report/action blocks still
+bound the complete-CSS guard. Official rest and all summary/report defaults
+stay unchanged, but actual native Export interactive paint intentionally gains
+canonical ownership. The isolated372 successor and full source guard pass.
+The native spec is unchanged and must pass after the source correction.
+
+Native successor run is pending at this source checkpoint. Actual lifecycle,
 persisted settings, full-board long-copy/responsive/raster and human acceptance
 stay OPEN even if that bounded cascade test later passes. The historical
 diagnostic and SM-59 guards stay pinned, not rewritten to claim this successor.

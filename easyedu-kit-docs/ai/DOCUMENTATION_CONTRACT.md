@@ -6,6 +6,9 @@ generic providers. Public paint flags are validated and independent; warnings
 and danger never inherit brand success. A real Moodle cascade with transient
 specimens is not an import lifecycle or settings-persistence result. Keep the
 historical diagnostic/guards pinned and add a separately bounded successor.
+Qualify composed native `.btn` interaction paint so later theme CSS cannot win
+an equal-specificity tie. Preserve the failing native run and unchanged strict
+scenario; a rest-paint sentinel alone cannot prove canonical hover ownership.
 
 Penpot persistence recovery separates autosave from version snapshots. After a
 snapshot504, read the actual saved file and exact affected objects before reload

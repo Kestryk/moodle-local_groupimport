@@ -23,6 +23,11 @@
     background: var(--easyedu-surface);
     border-color: var(--easyedu-primary);
     color: var(--easyedu-primary);
+  }
+  // Native Bootstrap can be loaded after consumer CSS. Qualify its composed
+  // action, as other canonical controls do, so the same shared states win for
+  // both official and custom colours. Rest paint/geometry remain untouched.
+  .easyedu-ui .easyedu-button--outline-primary.btn {
     @include buttons.button-interaction-states;
   }
 }

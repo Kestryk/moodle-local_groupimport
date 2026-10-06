@@ -5,12 +5,13 @@
   "status": "stable",
   "consumerSync": {
     "massReportSemanticPalette20261006": {
-      "kitVersion": "0.4.122",
-      "kitCommit": "49218ece4d0eec710c34afcad635a7c941c523a4",
+      "kitVersion": "0.4.123",
+      "kitCommit": "22a9380f70d0465537c95fa1573919cb9e51f967",
+      "predecessorKitCommit": "49218ece4d0eec710c34afcad635a7c941c523a4",
       "modules": ["scss/easyedu/_report-palette-classes.scss", "scss/easyedu/components/_reports.scss", "scss/easyedu/_data-classes.scss"],
       "documentation": "docs/mass-report-palette-successor-2026-10-06.md",
       "scope": "Seven additive paint blocks and canonical default report delegates; validated independent roles and class-only PHP adapters. No commands, geometry, Motion or whole-tree sync.",
-      "status": "372 isolated and complete default/unrelated CSS/command/Motion identity PASS. Six paired Foundation/Standard and six linked Product comparisons saved;68 saved-file assertions PASS. Served native cascade pending; actual lifecycle, persistence and human OPEN.",
+      "status": "372 isolated and complete default recipes/unrelated CSS/command/Motion identity PASS. Six paired Foundation/Standard and six linked Product comparisons saved;68 saved-file assertions PASS. First native hover FAILED and retained; Kit0.4.123 state qualification successor ready for unchanged native scenario. Actual lifecycle, persistence and human OPEN.",
       "nativePreviewVerified": false,
       "humanVisualValidated": false
     },
