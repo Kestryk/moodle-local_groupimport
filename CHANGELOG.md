@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Choice default/framed native diagnostic (SM-55)
+
+- Preserve two passing destination endpoints and the filter-family harness
+  failure; source finds missing shared Motion option in multiple filters.
+- Qualify actual family while retaining all terminal geometry/focus/value
+  oracles. No forced class, private animation or product change.
+
 ## 2026-10-06 - Choice consumer terminal audit candidate (SM-55)
 
 - Extend existing Admin/destination proofs with nine scoped modal/multiple-filter
