@@ -1,5 +1,28 @@
 # Semantic palette successor audit (SM-59/60/64/72)
 
+## Bounded successor update
+
+SM-60 now has canonical Kit0.4.120/default paired publication and served native49
+paint/geometry checks. See `view-switch-icon-palette-2026-10-06.md`; remaining
+native three-view/custom design/persistence gates stay separate. The initial
+read-only findings below are retained, not silently relabelled as full fixes.
+
+SM-59 next inventory confirms several independent header routes:
+Participant details use the primary contextual header under the entity adapter;
+Group/Grouping settings use success context; shared dialog-header emits generic
+header paint later in the cascade. Move uses its legacy header anatomy; History
+uses the shared public header. Message relays tokens outside the workspace but
+its adapter also includes generic dialog-header after primary context. Lookup
+is deliberately neutral; danger confirmation must retain its danger meaning.
+Therefore one global token repaint would not safely certify every header or
+preserve these semantic differences. Guide header has its separately owned
+literal #f6f9fc recipe; do not change its source or infer progress coverage.
+
+Next: canonical opt-in popup palette roles, actual family/portal cascade proof,
+paired default/custom examples and one scoped native open/Cancel scenario,
+preserving all accepted geometry, Close/buttons and Motion. No popup style
+change, Save, real Move/Send/rollback or Guide write occurred in this inventory.
+
 Batch EED-UI-2026-0073. Source/isolated audit only; no palette repair, persistence
 or whole-view native PASS is claimed. SM-62 has independent served proof.
 
