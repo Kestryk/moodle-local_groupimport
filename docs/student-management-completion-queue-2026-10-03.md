@@ -7,6 +7,12 @@ stays deferred to the combined checklist; automation never ticks it.
 
 ## 2026-10-05 review successor
 
+The 6 October additive intake `student-feedback-successor-2026-10-06.md`
+preserves SM-59..73 (palette propagation/default identity, Group fold selection,
+discreet select-all proposal, control densities/focus, More Filters fluency,
+sticky/Cancel review and separately owned Guide progress). Earlier unfinished
+lots and human acceptance stay OPEN; no requirement is certified by intake.
+
 Deduplicated SM-48..58 requirements and parallel Guide ownership are recorded in
 `student-review-successor-2026-10-05.md`. This includes mobile/desktop checkbox
 tracks, mobile font/compact memberships, modal value typography, quieter sticky

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-06 - Additive user feedback intake (SM-59..73)
+
+- Preserve fifteen deduplicated requests covering semantic palettes/default
+  identity, Group-member selection, control densities/focus, More Filters
+  fluency, sticky/Cancel review and a separate Guide-owner progress handoff.
+- Resume after disk-space recovery in the existing Source/Kit worktrees;
+  earlier unfinished lots and the combined human checklist remain OPEN.
+  Intake changes documentation only, not runtime paint or data.
+
 ## 2026-10-06 - Compact Participant Move native proof
 
 - Six real sticky Move open/Cancel cases pass with one/two selected Participants

@@ -1,5 +1,9 @@
 # EasyStud review successor - 5 October 2026
 
+New additive SM-59..73 intake is recorded in
+`student-feedback-successor-2026-10-06.md`. It preserves every new distinct
+requirement without replacing this queue or closing earlier/human gates.
+
 Compact Move successor now served and native060208701Z-45516 PASS9: six
 one/two-Participant sticky Move open/Cancel cases at768/390/320 with unchanged
 selection/visible return focus, and three desktop-preference return cases.
