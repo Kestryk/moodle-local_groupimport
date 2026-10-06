@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Native view-count harness successor (SM-60)
+
+- Preserve the initial native stop: actual admin configuration exposes two
+  modes, not the test's assumed three. Sample actual two/three counts without
+  changing settings or manufacturing hidden controls. Served paint unchanged;
+  fresh native gate remains pending, failed-run cleanup complete.
+
 ## 2026-10-06 - Semantic view-switch icon candidate (SM-60)
 
 - Consume Kit 0.4.120 public tiled paint through one template class. Custom
