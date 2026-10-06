@@ -1,5 +1,14 @@
 # EasyStud review successor - 5 October 2026
 
+SM48 responsive title/selection successor PASS120 native records:4 touch widths
+plus desktop return, all3 entities/76 geometry cases,12 actual Tab/Space/focus
+entries and4 Group Rename open/Cancel branches with unchanged values. Participant
+centres<=0.024px, Group centres0,1024 title overlap resolved; unchanged Motion,
+delayed-ready recovery and clean cleanup/no data writes. Fresh shared/product
+readback passes after connection resumes. Broader/whole-view/human OPEN; see
+responsive-card-title-lanes-native-2026-10-06.json. Next: remaining modal/filter
+journeys, not another Guide implementation or silent checklist closure.
+
 SM48 first-row native94 records preserve Participant centres/all prior3-width
 keyboard, but new1024 Group probe fails3.53px title overlap. Exact isolated320
 wrap diagnosis finds a0x0 inactive rename form consuming a flex row. Canonical
