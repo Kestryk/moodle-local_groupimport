@@ -18,6 +18,9 @@ Catalogue focus audits distinguish a mouse `:focus-within` label ring from
 real sequential keyboard focus. Retain the44px native label target and disabled
 semantics when exploring track-only paint. A test-only Kit example is not a
 public class, paired design or served correction; state those gates separately.
+After an MCP suspended/heartbeat error, verify exact saved IDs before replay:
+the requested write may have completed. Readback of current dimensions is
+separate from whole recursive paint, exported raster and human acceptance.
 
 Penpot persistence recovery separates autosave from version snapshots. After a
 snapshot504, read the actual saved file and exact affected objects before reload

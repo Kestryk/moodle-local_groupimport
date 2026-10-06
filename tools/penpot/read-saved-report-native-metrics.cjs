@@ -7,6 +7,8 @@ const transit = require(path.resolve(process.argv[3], 'transit-js'));
 assert.match(process.argv[4], /^http:\/\/(?:127\.0\.0\.1|localhost):\d+\/?$/);
 const read = (value, key) => (value.rep || value).get(transit.keyword(key));
 const prefix = 'b8f49f05-1e1d-8037-8008-';
+const verifySuccessor = process.argv[5] === '--verify-successor';
+const expected = [[328, 43.28, 13.6], [676, 42.64, 11.52], [262.4, 37.6, 8]];
 const scopes = [
     ['40e06342-8830-80d6-8008-96572effc11c', [
         ['Library', '01c94d93-948c-803b-8008-9cf0d7cbfa22',
@@ -32,10 +34,30 @@ const scopes = [
             const data = read(transit.reader('json').read(response.body), 'data');
             for (const [scope, pageId, ids] of groups) {
                 const objects = read(read(data, 'pages-index').get(transit.uuid(pageId)), 'objects');
-                for (const id of ids) {
+                for (const [index, id] of ids.entries()) {
                     const node = objects.get(transit.uuid(prefix + id));
                     assert.ok(node, 'Recorded root is saved');
                     const children = Array.from(read(node, 'shapes') || []).map(childId => objects.get(childId));
+                    if (verifySuccessor) {
+                        const [width, height, radius] = expected[index % 3];
+                        for (const [key, value] of [['width', width], ['height', height],
+                            ['r1', radius], ['r2', radius], ['r3', radius], ['r4', radius]]) {
+                            assert.ok(Math.abs(read(node, key) - value) < 1e-6, `${scope}:${id} ${key}`);
+                        }
+                        for (const child of children) {
+                            assert.ok(read(child, 'x') >= read(node, 'x') - .01 &&
+                                read(child, 'y') >= read(node, 'y') - .01 &&
+                                read(child, 'x') + read(child, 'width') <= read(node, 'x') + width + .01 &&
+                                read(child, 'y') + read(child, 'height') <= read(node, 'y') + height + .01,
+                            'Actual saved child bounds stay contained');
+                        }
+                        if (index % 3 === 2) {
+                            const [icon, label] = children;
+                            assert.ok(Math.abs(read(icon, 'width') - 15) < 1e-6);
+                            assert.ok(Math.abs(read(icon, 'height') - 15) < 1e-6);
+                            assert.ok(Math.abs(read(label, 'x') - read(icon, 'x') - 15 - 10.4) < 1e-6);
+                        }
+                    }
                     const values = node => Object.fromEntries(['name', 'x', 'y', 'width', 'height', 'r1', 'r2', 'r3', 'r4']
                         .map(key => [key, read(node, key)]));
                     console.log(JSON.stringify({scope, id: prefix + id, ...values(node),
@@ -45,6 +67,8 @@ const scopes = [
                 }
             }
         }
-        console.log('Saved readback complete:18 bounded roots; paired successor parity NOT asserted. No editor/Guide/Moodle writes.');
+        console.log(verifySuccessor ?
+            'PASS saved successor:18 bounded root dimensions/radii, child containment and six15px action slots/10.4px gaps. Full recursive paint/raster/human parity NOT asserted.' :
+            'Saved readback complete:18 bounded roots; paired successor parity NOT asserted. No editor/Guide/Moodle writes.');
     } finally { await browser.close(); }
 })().catch(error => { console.error(error.message); process.exitCode = 1; });

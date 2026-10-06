@@ -34,6 +34,11 @@ forced colours; it is NOT public/deployed or paired-design accepted. SM-66/67/
 68/71/73 source density inventory retained; see
 `student-control-density-focus-audit-2026-10-06.md`. Older unfinished lots OPEN.
 
+SM-64 design continuation now saved on all18 Library/Standard/Product roots:
+summary43.28, line42.64, action262.4x37.6/radius8/15px icon+label. Product validate[]
+and fresh comparison export inspected. This supersedes the earlier pending
+Product metric note below, not lifecycle/persistence or human acceptance.
+
 SM-64 report successor consumes scoped Kit0.4.122 public paint;372 isolated
 palette/state assertions and full unrelated/default CSS/command/Motion identity
 PASS. Six native-shaped Foundation providers have paired Standard and linked
