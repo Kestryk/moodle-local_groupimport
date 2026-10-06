@@ -1,7 +1,8 @@
 # Mass Import semantic palette: bounded diagnosis (SM-64)
 
-Batch EED-UI-2026-0073. Diagnostic source/isolated evidence, **not a repair**,
-native browser result, design publication or human acceptance. SM-01..73 and
+Batch EED-UI-2026-0073. Palette diagnosis, **not a CSS palette repair** or native
+browser/human result. The bounded Product design reconciliation below is now
+saved, independently of the palette/code gate. SM-01..73 and
 the combined user checklist remain OPEN. Guide stays separately owned.
 
 ## What was actually measured
@@ -48,12 +49,10 @@ surfaces must not be blindly branded.
 
 ## Ordered continuation and design gate
 
-1. Restore this implementation window's **hosted** Penpot connection. Its own
-   plugin modal is currently configured to localhost:4400, the independent
-   Guide lane. Do not change the Guide server, token, manifest or browser.
-2. Read back Product page04 before replaying the previous timed-out header
-   comparison write; server readback found no saved host, but live unsaved state
-   must still be checked. Complete the linked SM-59 comparison first.
+1. Hosted implementation connection restored; Guide server/token/profile untouched.
+2. SM-59 linked Product comparison saved after live-state reconciliation. Four
+   exact paint/type/content fingerprints and contained export inspected; see
+   `dialog-semantic-palette-2026-10-06.md`. Human/full raster gates remain open.
 3. Read actual accepted Mass report/summary/Export providers and compositions;
    add canonical default/custom specimens source-preservingly, paired Library/
    Standard, with product instances. No new guessed typography or dimensions.
@@ -63,6 +62,78 @@ surfaces must not be blindly branded.
 5. Isolated actual full-cascade test followed by one approved served-native
    non-destructive scenario; no Save/import/rollback/Send to obtain a screenshot.
    Settings persistence and final human acceptance remain separate gates.
+
+## Actual design providers and bounded lane reconciliation
+
+Product page01 `220f6449-533e-815b-8008-ad9958d032a2` has12 effectively visible
+report/summary instances across Desktop,1024Tablet and390Mobile. One bounded
+page traversal found them; later checks use exact IDs rather than repeating a
+global document scan. All four desktop roots have clipContent=true: the oversized
+formal lanes did **not** prove painted copy overflow for their current short text.
+The problem is their inherited wrapping/containment contract for future copy.
+
+| Desktop root | Previous visible text lanes | Saved correction |
+| --- | --- | --- |
+| Success summary `01e728c3-f1ef-80b3-8008-b2b5b5c6be2d` | two610px lanes inside328px root | two288px lanes, same20px inset |
+| Warning summary `01e728c3-f1ef-80b3-8008-b2b5b5e2d6fe` | two610px lanes inside328px root | two288px lanes, same20px inset |
+| Success line `01e728c3-f1ef-80b3-8008-b2b5b6005ce3` | two1160px lanes inside676px root; clipped Close at1282px | two602px lanes, same56px start/18px end; Close hidden |
+| Danger line `01e728c3-f1ef-80b3-8008-b2b5b620e4bb` | same inherited lane/Close defect | same602px lanes and Close hidden |
+
+Eight responsive roots already had contained text lanes and no visible Close,
+so were not modified. All12 now pass settled text-lane **and actual textBounds**
+containment, preserve linked providers, Inter12/14/32 typography and roots:
+summary328/416/326x116, report676/864x72 or326x104. No palette/font/copy/root
+resize, new control or Motion change. The Success/Danger Close is absent from
+the actual `index.php` li renderer (glyph plus one message only), so hiding the
+inherited notification Close is source-backed, not a new behavior. Existing
+hidden legacy children are retained. Agent inspected the desktop report export;
+this is not full plugin visual acceptance or long-localized-copy proof.
+
+SDK validate[] after own-window reload. The after-write snapshot request returned
+Cloudflare504 on `create-file-snapshot`; **do not call that a saved version**.
+Independent authenticated get-file?id200 was decoded using Transit-js0.8.874:
+all four exact root/provider IDs, eight new widths and two hidden Close children
+are present in saved data. Only then was the owned browser reloaded. Its SDK
+read/validate succeeded again; Guide/browser/server/token untouched. A failed
+width-setter attempt was checked as unchanged before using Shape.resize.
+
+Repeatable read-only helper:
+
+```text
+node tools/penpot/audit-saved-mass-report-lanes.cjs <playwright-node-modules> <transit-node-modules> <owned-local-cdp-url>
+```
+
+The helper reads only the saved Product file, prints bounded assertions and
+disconnects only its own CDP connection. No screenshot/profile/auth export,
+settings/DB/fixture/lease or editor write. This is local-supervised, not CI or
+native Moodle proof. Auxiliary Transit-js was installed outside all worktrees.
+Node syntax and84 saved-file assertions PASS across all12 recorded instances.
+
+### Remaining canonical discrepancy, not a silent fix
+
+Actual Foundations sources differ from native report recipes: the report-summary
+Success provider `5866ed4a-7d30-8093-8008-ac7b918b1f89` is650x150 with stacked
+Inter12/32/12 and#e8f6ef/#79c59d/#166b3b. Native report-summary-item is an inline
+count/label recipe with1.18rem count and#eef8f2/#cfe7d9/#1f6748. Neither formal
+lane containment nor the existing linked provider proves native parity.
+
+Report lines link generic Inline notification Success/Danger rather than the
+native report-list anatomy. Native report has no Close and a20px glyph role;
+the preserved Product examples use24px linked glyph and two-line message.
+Export links **Core action / Secondary / M**, provider
+`761eab91-8390-80e8-8008-98c36f424ad4`, main69x37.6, resized Product292x40.
+It has no Excel glyph, while native Export is `btn-outline-primary` plus the
+canonical action-content gap and a file-excel glyph. The missing provider in the
+first component listing was a variant-index issue, not a broken link:
+instance.component().mainInstance() resolves the actual M member.
+
+Do not blindly repaint these generic Foundation families or replace accepted
+dimensions to repair SM-64. Next: reconcile canonical native-shaped Summary/
+Report/outlined-icon action usages in paired Library/Standard and Product,
+then implement paint-only opt-ins with published default/native-cascade proof.
+Report/danger semantic meanings, original CSV disclosure Motion and user
+checklist remain open. This turn introduces no Kit style/version or native
+asset change; existing palette/lane/unknown-write AI contracts cover it.
 
 ## Served predecessor and continuity
 

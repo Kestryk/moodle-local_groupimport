@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-06 - Penpot comparison and report lane reconciliation
+
+- Saved four linked Product dialog-header palette comparisons; recursive source
+  paint/type/content match, negligible measured numeric geometry deltas and
+  contained exported comparison. Earlier native60 result remains separately pinned.
+- Audited12 Mass report/summary instances. Corrected eight text lane widths and
+  hid two non-native notification Close children in four desktop roots only;
+  providers, root dimensions, typography and paint retained. Saved-file readback
+  and settled geometry checks pass. No product CSS/AMD/settings/data changes.
+- Preserved snapshot504 failure; verified autosave before owned-window reload.
+  Added read-only saved-file regression helper; checklist/human gates stay OPEN.
+
 ## SM-64 semantic palette diagnosis - 2026-10-06
 
 - Added an isolated diagnostic using actual PHP colour mapping and compiled

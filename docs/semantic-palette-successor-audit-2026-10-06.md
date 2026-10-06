@@ -4,12 +4,13 @@
 
 SM-59 native60 successor now passes six families/five transient palettes at
 1600/390, including native portal/default restored paint with stable geometry.
-Product custom examples, full lifecycle/persistence/raster/human remain OPEN;
+Product four linked custom comparison examples are now saved and inspected;
+full lifecycle/persistence/native raster/human remain OPEN;
 the earlier inventory/candidate notes below are historical staged findings.
 
 SM-59 now has a paint-only Kit0.4.121/source candidate with96 isolated and
 complete preservation checks. Foundations source/Standard are saved; Product
-connection and served-native proof remain OPEN. The inventory below remains
+comparison is saved and native60 proof is recorded above. The inventory below remains
 the original diagnosis. See `dialog-semantic-palette-2026-10-06.md`.
 
 SM-60 now has canonical Kit0.4.120/default paired publication and served native49

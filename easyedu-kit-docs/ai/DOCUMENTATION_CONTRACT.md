@@ -1,5 +1,14 @@
 # EasyEdu documentation contract
 
+Penpot persistence recovery separates autosave from version snapshots. After a
+snapshot504, read the actual saved file and exact affected objects before reload
+or replay; metadata presence alone is not geometry proof. Decode Transit shape
+wrappers rather than scraping numeric text. Resize through Shape.resize, not
+readonly width/height setters. Measure raw relative geometry deltas separately
+from exact paint/type/content fingerprints: rounding ties are not real drift.
+Keep the owned-browser helper read-only, bounded and disconnected in finally;
+never export authentication or alter another window's server/token/profile.
+
 Dialog palette opt-ins preserve official/plain/neutral/danger semantics and
 all geometry/Motion. Canonical Kit owns tints; expose validated role flags
 separately from rail selectors. Clear only the two optional dialog tint tokens

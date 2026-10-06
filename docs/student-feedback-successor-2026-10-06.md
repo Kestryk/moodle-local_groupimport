@@ -29,7 +29,7 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
 SM-59 bounded source candidate consumes Kit0.4.121 paint only.96 isolated,
 shared chrome and exact unrelated CSS/controller/Motion guards PASS. Four
 source-preserving custom header providers and paired Standard examples saved
-in Foundations; Product hosted reconnection remains OPEN.
+in Foundations; four linked Product custom comparisons now saved and inspected.
 Native60 successor passes six families/five transient states at1600/390,
 unchanged geometry and native portal restored-default paint; full lifecycle/
 persistence remains OPEN. See `dialog-semantic-palette-2026-10-06.md`. No settings Save or human
@@ -68,6 +68,16 @@ summary/report and Export rest paint gaps are reproduced, not fixed. Six
 already mapped surfaces follow independent roles with stable geometry/Motion.
 See `mass-import-semantic-palette-audit-2026-10-06.md`. Canonical design/code/
 served correction and complete lifecycle/persistence/human gates stay OPEN.
+
+SM-64 design reconciliation:12 report/summary instances audited atDesktop,
+1024Tablet and390Mobile. Four desktop roots retained inherited over-wide text
+lanes; eight text widths corrected and two irrelevant notification Close children
+hidden, source-backed by index.php's report renderer. Providers/root geometry,
+fonts, content and paint unchanged; other eight responsive instances untouched.
+Actual saved-file readback and settled12-instance lane/paint containment PASS;
+validate[]. No native CSS correction is claimed. The version-snapshot request
+failed504, but autosave was independently verified before reloading the owned
+window; SDK reads work again. See the SM-64 audit for remaining provider mismatch.
 
 SM-62 served scoped successor now PASS8 at1600/768/390/320 normal/reduced:
 fold clears same-Group member copies only, preserves another Group, reopening
