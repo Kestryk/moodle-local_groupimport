@@ -15,7 +15,7 @@ $pluginRootPath = (Resolve-Path -LiteralPath $PluginRoot).Path
 function Read-NormalizedText {
     param([string]$Path)
 
-    return (Get-Content -LiteralPath $Path -Raw) -replace "`r`n", "`n"
+    return (Get-Content -LiteralPath $Path -Raw -Encoding UTF8) -replace "`r`n", "`n"
 }
 
 function Write-Utf8NoBom {
@@ -58,6 +58,23 @@ $wrappedBody = $wrappedBody.Replace("export const init =", "const init =")
 $wrappedBody = $wrappedBody.Replace("export default init;", "")
 $wrappedBody = $wrappedBody.TrimEnd()
 
+# EasyStud supplies translated labels through its PHP configuration. Retain its
+# existing empty fallbacks rather than reintroducing English during each sync.
+$labelKeys = 'close|next|previous|start|hint|complete|guidedPath|visited|completeStepFirst'
+$defaultsEnd = $wrappedBody.IndexOf('const SELECTORS =')
+if ($defaultsEnd -lt 0) { throw 'Guide defaults boundary missing.' }
+$defaults = $wrappedBody.Substring(0, $defaultsEnd)
+$labelPattern = "(?m)^(    (?:$labelKeys): )'[^\r\n]*'(,?)$"
+if ([regex]::Matches($defaults, $labelPattern).Count -ne 9) {
+    throw 'Review changed Guide default labels before localization adaptation.'
+}
+$defaults = [regex]::Replace($defaults, $labelPattern, { param($match)
+    $match.Groups[1].Value + "''" + $match.Groups[2].Value
+})
+$wrappedBody = $defaults + $wrappedBody.Substring($defaultsEnd)
+$wrappedBody = $wrappedBody.Replace("config.labels.guidedPath || 'Guided path'", "config.labels.guidedPath || ''")
+$wrappedBody = $wrappedBody.Replace("config.labels.visited || 'visited'", "config.labels.visited || ''")
+
 $runtimeJavascript = @"
 // This file is generated from the embedded EasyEdu guide kit source and adapted to Moodle AMD.
 // Keep behaviour aligned with easyedu-guide-kit/amd/src/easyedu_guide.js, then pass
@@ -72,9 +89,15 @@ return {
 };
 });
 "@
-$runtimeJavascript = $runtimeJavascript.TrimEnd() + "`n"
+$runtimeJavascript = ($runtimeJavascript -replace "`r`n", "`n").TrimEnd() + "`n"
 
 $items = @(
+    [pscustomobject]@{
+        Name = "runtime discovery SCSS"
+        Source = Resolve-OwnedPath $kitRoot "scss\easyedu\components\_guide-discovery.scss"
+        Target = Resolve-OwnedPath $pluginRootPath "scss\easyedu\components\_guide-discovery.scss"
+        Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "scss\easyedu\components\_guide-discovery.scss")
+    },
     [pscustomobject]@{
         Name = "embedded JavaScript"
         Source = $canonicalJavascriptPath

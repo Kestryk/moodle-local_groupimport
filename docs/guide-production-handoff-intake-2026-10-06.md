@@ -1,5 +1,29 @@
 # Guide production handoff intake — first local integration
 
+## Source integration successor, 6 October
+
+Canonical Kit e314f0c (0.4.126) supplies an opt-in discovery shell and fixed
+interface cue. Source now embeds the identical discovery SCSS and shared
+controller/template additions. The Student builder opts into that presentation;
+the existing curriculum, path IDs, storage and native highlights are preserved.
+The four delivered lessons/scenes have NOT yet replaced the old curriculum.
+
+Consumer changes are limited to Guide sources, template, builder opt-in,
+English/French cue label and generated Guide AMD/CSS. The synchronization helper
+now explicitly preserves nine empty localized defaults and three existing empty
+fallbacks, and normalizes generated wrapper line endings before comparison.
+Read-only synchronization and Guide integration checks PASS. AMD rebuild and
+Node syntax check PASS; PHP manage.php syntax PASS; Sass1.77.8 compilation PASS
+with existing mixed-declaration deprecation warnings. CSS diff adds209 lines
+under the discovery opt-in, with no removed existing CSS lines. Controller diff
+adds only cue helpers, slide synchronization and teardown restoration (28 lines).
+
+No managed runtime promotion, cache purge, native Moodle test or Penpot write
+occurred in this tranche. Kit isolated geometry/helper tests are not native
+proof. Next: integrate the four lesson scenes and reversible legacy access,
+verify complete template/header/controls against the handed-off Penpot, then
+perform the authorized managed local preview and native lifecycle checks.
+
 Portable scope under EED-UI-2026-0073. User asked to preserve all prior lots,
 read the Guide window's handoff and integrate its production locally with a
 dedicated Penpot channel. See `lots-before-guide-handoff-2026-10-06.md`; older

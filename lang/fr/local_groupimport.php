@@ -515,6 +515,7 @@ $string['tutorialdiscoverdismiss'] = 'Fermer l’invitation au guide';
 $string['tutorialdiscovertext'] = 'Lancez un court guide pour comprendre participants, groupes et groupements avant d’organiser le cours.';
 $string['tutorialdiscovertitle'] = 'Première fois sur EasyStud ?';
 $string['tutorialtitle'] = 'Guide EasyStud';
+$string['guideinterfacecuelabel'] = 'Retrouver le repère dans votre espace';
 $string['tutorialvisualcontext'] = 'Menu contextuel';
 $string['tutorialvisualcontextdesc'] = 'Le clic droit affiche les raccourcis de la carte ; avec une sélection, les actions concernent les éléments sélectionnés.';
 $string['tutorialvisualcopy'] = 'Copier les infos';

@@ -12586,6 +12586,215 @@
     width: auto;
   }
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery {
+  --easyedu-guide-font-size-control: 0.78rem;
+  --easyedu-guide-font-size-body: 0.88rem;
+  --easyedu-guide-modal-width: 76.25rem;
+  --easyedu-guide-modal-height: min(50rem, calc(100dvh - 3rem));
+  --easyedu-guide-modal-max-height: calc(100dvh - 3rem);
+  --easyedu-guide-modal-min-height: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal {
+  padding: max(1.5rem, env(safe-area-inset-top)) max(2rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(2rem, env(safe-area-inset-left));
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__dialog,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__dialog {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  width: 100%;
+  min-width: 0;
+  height: var(--easyedu-guide-modal-height);
+  max-height: var(--easyedu-guide-modal-max-height);
+  max-width: var(--easyedu-guide-modal-width);
+  border-radius: 1rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__dialog:has(> .easyedu-guide-interface-cue),
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__dialog:has(> .easyedu-guide-interface-cue) {
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__header,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__header,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer {
+  padding: 0.625rem 1.125rem;
+  gap: 0.625rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.625rem 1.125rem;
+  border-top: 1px solid var(--easyedu-border);
+  min-height: 3rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue__caption,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue__caption {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] {
+  margin-inline-start: auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap {
+  flex-direction: row;
+  text-align: start;
+  gap: 0.625rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap h2,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap h2 {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-eyebrow);
+  font-weight: var(--easyedu-font-weight-strong);
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--easyedu-primary);
+  margin: 0;
+  text-transform: none;
+  text-align: start;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap p,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap p {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  margin: 0.1875rem 0 0;
+  text-align: start;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__header,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__header {
+  display: flex;
+  min-height: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__hero-icon,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__hero-icon {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.125rem;
+  border-radius: 0.625rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-control);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
+  flex: 0 0 11.875rem;
+  min-width: 0;
+  min-height: 3rem;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  border-radius: 999px;
+  font-size: var(--easyedu-guide-font-size-control);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active {
+  background: var(--easyedu-accent-soft);
+  border-color: var(--easyedu-accent);
+  color: var(--easyedu-accent);
+  transform: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav-copy,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav-copy {
+  min-width: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav-copy > span,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav-copy > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-bar,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-bar {
+  background: var(--easyedu-accent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__body,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__body {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-body);
+  line-height: var(--easyedu-line-height-body);
+  font-size: var(--easyedu-guide-font-size-body);
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overflow-anchor: none;
+  overscroll-behavior: contain;
+  padding: 1rem 1.125rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  max-width: 100%;
+  gap: 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-control);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
+  font-size: var(--easyedu-guide-font-size-control);
+  min-width: 6.5rem;
+  min-height: 2.375rem;
+  height: auto;
+}
+@media (max-width: 40rem) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery {
+    --easyedu-guide-modal-height: calc(100dvh - 2.125rem);
+    --easyedu-guide-modal-max-height: calc(100dvh - 2.125rem);
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal {
+    padding: max(1.0625rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1.0625rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item {
+    flex-basis: 11.375rem;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions {
+    width: auto;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn {
+    width: auto;
+    min-width: 0;
+  }
+}
 .local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher .easyedu-guide__launcher-icon,
 .local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher > .fa,
 .path-local-groupimport .easyedu-guide .easyedu-guide__launcher .easyedu-guide__launcher-icon,

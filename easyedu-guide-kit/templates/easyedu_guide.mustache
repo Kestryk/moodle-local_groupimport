@@ -16,6 +16,7 @@
                         <p>{{guidesubtitle}}</p>
                     </div>
                 </div>
+                {{^discoverypresentation}}
                 <div class="easyedu-guide-modal__map-flow" aria-hidden="true">
                     <span class="easyedu-guide-modal__map-item easyedu-guide-modal__map-item--source">
                         <span class="fa fa-sitemap"></span>
@@ -32,6 +33,7 @@
                         <span>{{guidemapbanner}}</span>
                     </span>
                 </div>
+                {{/discoverypresentation}}
                 <button type="button" class="btn easyedu-guide-modal__close" data-easyedu-guide-close="1" aria-label="{{guidecloselabel}}">
                     <span class="fa fa-times" aria-hidden="true"></span>
                 </button>
@@ -346,6 +348,12 @@
                 {{/slides}}
             </div>
 
+            {{#discoverypresentation}}
+            <div class="easyedu-guide-interface-cue">
+                <span class="easyedu-guide-interface-cue__caption">{{guideinterfacecuelabel}}</span>
+                <div data-easyedu-guide-interface-cue-action></div>
+            </div>
+            {{/discoverypresentation}}
             <footer class="easyedu-guide-modal__footer">
                 <span class="easyedu-guide-modal__step-count" data-easyedu-guide-progress-label data-progress-label="{{guidesteplabel}}">1/{{slidecount}}</span>
                 <div class="easyedu-guide-modal__footer-actions">

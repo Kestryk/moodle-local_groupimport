@@ -551,6 +551,7 @@ $string['tutorialdiscoverdismiss'] = 'Dismiss discovery prompt';
 $string['tutorialdiscovertext'] = 'Take a short guided tour to understand participants, groups and groupings before organising the course.';
 $string['tutorialdiscovertitle'] = 'New to EasyStud?';
 $string['tutorialtitle'] = 'EasyStud guide';
+$string['guideinterfacecuelabel'] = 'Find this area in your workspace';
 $string['tutorialvisualcontext'] = 'Context menu';
 $string['tutorialvisualcontextdesc'] = 'Right click shows card-specific shortcuts; with a selection, actions apply to the selected items.';
 $string['tutorialvisualcopy'] = 'Copy info';

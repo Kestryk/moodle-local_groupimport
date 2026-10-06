@@ -941,6 +941,32 @@ const formatProgressLabel = (template, current, total) => {
     .replace('__total__', String(total));
 };
 
+// The discovery presentation docks the original command, preserving every
+// responsive target/open attribute and the existing delegated click handler.
+const restoreInterfaceCue = root => {
+  const docked = root.easyeduGuideDockedCommand;
+  if (docked) {
+    docked.anchor.replaceWith(docked.button);
+    delete root.easyeduGuideDockedCommand;
+  }
+};
+
+const syncInterfaceCue = (root, slide) => {
+  restoreInterfaceCue(root);
+  const slot = root.querySelector('[data-easyedu-guide-interface-cue-action]');
+  if (!slot || !slide || slide.classList.contains('is-locked')) {
+    return;
+  }
+  const button = slide.querySelector(SELECTORS.showTarget);
+  if (!button) {
+    return;
+  }
+  const anchor = document.createComment('Guide interface command origin');
+  button.replaceWith(anchor);
+  slot.appendChild(button);
+  root.easyeduGuideDockedCommand = {anchor, button};
+};
+
 const setActiveSlide = (root, index, config, options = {}) => {
   if (config) {
     syncSlideLocks(root, config);
@@ -987,6 +1013,7 @@ const setActiveSlide = (root, index, config, options = {}) => {
   });
 
   root.setAttribute('data-easyedu-guide-current-slide', String(safeIndex));
+  syncInterfaceCue(root, slides[safeIndex]);
   scrollActiveNavItemIntoView(root);
   setTrackedTimeout(root, () => updateNavScrollButtons(root), 80);
 };
@@ -1766,6 +1793,7 @@ const destroy = rootOrSelector => {
     return;
   }
 
+  restoreInterfaceCue(root);
   unlockPageScroll(root);
   clearTrackedListeners(root);
   clearTrackedTimeouts(root);

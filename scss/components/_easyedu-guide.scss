@@ -21,6 +21,10 @@
   @include easyedu.guide-visuals;
   @include easyedu.guided-panel;
 
+  &.easyedu-guide--discovery {
+    @include easyedu.guide-discovery-shell;
+  }
+
   .easyedu-guide__launcher {
     .easyedu-guide__launcher-icon,
     > .fa {
