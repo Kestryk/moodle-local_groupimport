@@ -50,3 +50,14 @@ closed by guesswork. Guide tools/server untouched. Actual editor+read-only serve
 GET remain available and were used for scoped saved-reference review; further
 MCP writes/readback remain pending. Metadata: group-header-layout-penpot-
 2026-10-06.json. No source/code/served/human claim depends on a fake MCP PASS.
+
+Managed050145Z-c3f350e686 now serves dffdcc1 at clean runtimed2d51488;
+cache purge true, CSS986779f, unchanged bootstrapf33a0b7/AMD0a712bae.
+Native050231580Z-21276 stops during login click's15s scheduled-navigation wait,
+before any geometry/rename; cleanup true, no errors/blocked/fixtures. Keep its
+immutable source. Successor retains normal visible/stable click without forcing,
+but uses noWaitAfter plus the existing explicit60s waitForURL/DOMContentLoaded
+boundary, instead of letting the15s action timeout own auth page loading.
+Every ready/delayed-GET/centre/hit/keyboard/rename/value oracle remains unchanged.
+Hosted MCP later responds again on the expected Product/Foundations identities;
+fresh indexed readback is being recorded. No URL/token/Guide change was made.
