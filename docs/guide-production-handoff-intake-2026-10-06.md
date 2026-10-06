@@ -1,5 +1,36 @@
 # Guide production handoff intake — first local integration
 
+## Native preview successor, 6 October evening
+
+Four localized discovery lessons and their isolated examples now precede the
+retained legacy curriculum. Kit source 1910df3 and consumer source 27c2202 are
+pushed; runtime d9225ac6803abd9427d55012b248fd86c43bb931 serves the candidate.
+Managed promotions 20261006T200646Z, 20261006T215620Z and 20261006T215838Z applied
+the source commits with cache purge. No course business data was modified.
+
+Native run easystud-authenticated-20261006T200716713Z-17164 FAILED at390px:
+the legacy full-width progress counter compressed footer actions to unequal
+heights. The source fixture had omitted that counter. The successor adds it
+and reserves a separate compact row, with equal right-aligned buttons.
+Native run easystud-authenticated-20261006T215623871Z-9316 PASSED all12 slide/width
+checks at1280/768/390, creation preview, animated Actions completion, Show in
+interface/return and Escape. No page errors or blocked business writes recorded.
+Its captures/manifest/cleanup remain external. A final successor is running on
+the invitation/result-card alignment changes; record its result before closure.
+
+The handed-off Penpot capture creation-linked-icons-final.png exposed further
+visual differences: invitation action position and group-shaped preview results.
+These are now adjusted through shared SCSS. Guide Penpot source boards were
+read, not changed; no Foundations component publication is claimed.
+
+Remaining parity work must not be hidden by passing geometry checks: first four
+topics are currently followed by20 reference lessons; full demo slide/exit and
+result-insertion Motion, natural/drag preview fidelity, panel compositions,
+all shared icon links and Foundations Standard/Library publication remain open.
+Current preview is a working integration candidate, not an exact reproduction
+or completion of the user's entire Guide handoff. The combined human checklist
+and all pre-Guide SM lots remain open.
+
 ## Source integration successor, 6 October
 
 Canonical Kit e314f0c (0.4.126) supplies an opt-in discovery shell and fixed
