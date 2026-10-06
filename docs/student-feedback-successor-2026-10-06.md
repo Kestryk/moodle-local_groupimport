@@ -36,7 +36,12 @@ and full lifecycle/persistence/human remain separate gates. See
 SM-64 native-state successor consumes Kit0.4.123 after the first native cascade
 run exposed Bootstrap overriding official Export hover. Failure/cleanup retained;
 shared composed-state qualification preserves density/Motion and does not weaken
-the unchanged native scenario. Fresh native proof remains pending here.
+the strict native paint/state assertions. Fresh native15 palette/width cases
+PASS in run `easystud-authenticated-20261006T131436053Z-44724`; empty global draft
+poll stub avoids private reads, commands remain denied. Native metrics exposed
+predecessor Penpot differences; exact-ID Library correction acknowledged but
+paired Standard/Product reconciliation is OPEN after MCP connection failure.
+Full lifecycle/settings persistence/human checklist remain OPEN.
 
 SM-59 bounded source candidate consumes Kit0.4.121 paint only.96 isolated,
 shared chrome and exact unrelated CSS/controller/Motion guards PASS. Four

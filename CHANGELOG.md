@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-06 - Mass report served palette proof and metric reconciliation
+
+- Record15 native palette/viewport combinations PASS on the served Kit0.4.123
+  successor. Preserve earlier paint and final-request protocol failures.
+- Stub only global unsent-draft reads with an empty response; deny unknown
+  commands. Credentials/lease/child cleanup confirmed, no fixture or data write.
+- Record actual native typography/radius and acknowledged partial Library
+  corrections. Paired Penpot reconciliation, lifecycle/persistence and human
+  checklist remain open; no product CSS or Motion changes in this checkpoint.
+
 ## 2026-10-06 - Mass Export native hover successor
 
 - First native cascade test found later Bootstrap replacing canonical soft hover
