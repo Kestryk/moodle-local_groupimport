@@ -26,6 +26,13 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
 
 ## Accepted lots
 
+SM-60 bounded shared candidate: Kit 0.4.120, one public tiled class and four
+paint rules; complete unrelated CSS/controllers/Motion identity passes. Eight
+Foundation providers plus paired Standard/default three Product compositions
+are saved. Native palette scenario discovery selects one test; runtime/custom
+design/state persistence/human gates remain OPEN. See
+`view-switch-icon-palette-2026-10-06.md`; all older unfinished lots are retained.
+
 | Lot | Priority / predecessor | Requirement and implementation boundary | Required proof |
 | --- | --- | --- | --- |
 | SM-59 | P1 / SM-24,44,57 | Saved plugin palette must affect popups/modals. Audit real roots, portals and inherited semantic tokens before changing shared paint. | Native portal lifecycle, custom/default palette, foreground/surface contrast; no private colours. |

@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+View-switch semantic paint is an opt-in tiled recipe, not new compact icon
+geometry. Compare disabled/pressed/hover specificity against the complete
+consumer cascade, preserve all unrelated CSS and original Motion, and keep
+default/custom Penpot publication, isolated paint and served-native proof
+separate. Test distinct readable and chosen primary values without saving
+settings just to obtain a visual result.
+
 Group member-fold selection cleanup is scoped to the exact Group identity,
 including its catalogue copies, not to a user across every membership. Execute
 the original disclosure mutation and reconcile the existing selection authority;

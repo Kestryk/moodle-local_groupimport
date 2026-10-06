@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-06 - Semantic view-switch icon candidate (SM-60)
+
+- Consume Kit 0.4.120 public tiled paint through one template class. Custom
+  readable/chosen primary now replaces literal icon blue; disabled is neutral.
+- Complete unrelated CSS, controller, original Motion and compact plain icons
+  are preserved. Eight paired Foundation states and three linked Product
+  defaults retain geometry. Isolated/source PASS; fresh native/persistence/
+  custom-design/human gates are separately recorded, not implied complete.
+
 ## 2026-10-06 - Semantic palette source/identity audit
 
 - Identify literal view-switch icon paints and shared modal-header tokens;
