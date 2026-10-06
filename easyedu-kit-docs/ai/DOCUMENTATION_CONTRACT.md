@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Native choice terminal audits measure ancestor and following sibling continuity
+as well as host bottom; a shrinking panel alone cannot prove no text jump.
+Record pause/finish endpoint sampling distinctly from natural fluency/reversal.
+Use real desktop/mobile view and action access, retain focus and native values,
+and never invoke Move/Save to validate layout.
+
 A wider responsive matrix can reveal untouched legacy Group/Grouping defects.
 Retain that failed matrix rather than reducing width/entity coverage. Diagnose
 actual empty flex items and check the active editor, pointer/title lane and

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Choice consumer terminal audit candidate (SM-55)
+
+- Extend existing Admin/destination proofs with nine scoped modal/multiple-filter
+  endpoint continuity cases using actual native views, Search/Escape/Cancel.
+- Preserve margins/focus/source and all data; no speculative product change.
+  Native/perceptual/reduced/whole-consumer/human gates remain separate.
+
 ## 2026-10-06 - Served responsive card title-lane proof (SM-48)
 
 - Verify120 native records: centred Participant/Group touch selection across

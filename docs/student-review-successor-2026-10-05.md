@@ -1,5 +1,12 @@
 # EasyStud review successor - 5 October 2026
 
+SM55 remaining native candidate now covers6 destination modal and3 multiple
+filter terminal endpoints, preserving prior Admin15/destination360ms proofs.
+Real access/Search/Escape/Cancel only; pause/finish samples endpoint continuity,
+not perceived Motion. Source styles/controllers untouched; fresh native and
+broader/perceptual/human remain OPEN. See choice-consumer-terminal-audit-
+2026-10-06.md. Guide remains separately owned.
+
 SM48 responsive title/selection successor PASS120 native records:4 touch widths
 plus desktop return, all3 entities/76 geometry cases,12 actual Tab/Space/focus
 entries and4 Group Rename open/Cancel branches with unchanged values. Participant
