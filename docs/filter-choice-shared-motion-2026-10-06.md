@@ -53,3 +53,11 @@ sticky action. Do not directly click a hidden source or manufacture native state
 Correct sticky availability in its own bounded successor after the choice gate.
 Search/clear/nested/reduced behavior receives its own guarded native protocol.
 Both historical failure and all cleanup=true are retained; human OPEN.
+
+Native menu successor054341576Z-33332 proves the768 Participant choice endpoint
+but its modal-close oracle targets the now-hidden menu item. Native hideMenu
+returns focus to the original card menu before opening; modal returnFocus
+therefore correctly owns that visible menu button. Explicit focus successor
+changes only that expected return target; all nine endpoint assertions remain.
+The missing sticky Move issue stays registered. No UI/controller change; all
+cleanup complete and no blocked/business writes.
