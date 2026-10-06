@@ -81,3 +81,24 @@ when the parent correctly closes. Stable successor qualifies visible hosts at
 opening, retains native trigger IDs for closed-state queries and keeps every
 original cleanup/nested/reduced oracle. No source asset changes or fabricated
 visibility; failed run/complete cleanup/zero errors and writes retained.
+
+Stable behavior run055104775Z-42500 stops before auth/records: native Moodle
+login render reports Class __Mustache_fe7cb34645499dc52abe405079b76352 not found
+at core Mustache Engine760. Cache epoch1791265869 is05:51:09UTC, newer than our
+05:39:32 managed purge; exact compiled class was absent in that directory. No
+cache/source/settings/service repair performed, and no actor/cause is inferred.
+Subsequent read-only login GET200 renders the username field without that error;
+the observed runtime condition has changed. Retain the failed run/cleanup and
+retry the same immutable guarded spec once against the now-working login. If
+it fails again at core rendering, stop rather than extend deadlines or edit UI.
+
+Unchanged stable behavior retry055405901Z-38752 PASS39 records:11 visible native
+choices search/select/clear/Escape,21 nested parent closes in one click with next
+click reopening, and7 static reduced-motion choice cases at1600/768/390.
+Native values/clear focus/panel cleanup remain correct; no errors/blocked/data
+or fixtures, cleanup complete. Main filter and both available catalogue panels
+covered, including dense Role choice on desktop. Natural held-pointer/reversal,
+all empty/disabled/locales and perceived fluency/human acceptance remain OPEN.
+The own Penpot MCP resumes after reloading only its plugin iframe; fresh
+Library/Standard indexed source-family readbacks validate[], and saved reload
+visually confirms search/clear/selected rows. Guide profile/server untouched.

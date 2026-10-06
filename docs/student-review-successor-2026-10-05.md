@@ -1,5 +1,13 @@
 # EasyStud review successor - 5 October 2026
 
+SM55 shared filter Motion is served and native successor055405901Z-38752 PASS39:
+11 native search/select/clear cases,21 one-click nested closes/reopens and7 static
+reduced cases at1600/768/390. Nine terminal continuity cases already PASS0px.
+Retain native core-login transient and unchanged retry evidence separately;
+no data/fixtures or errors, complete cleanup. Natural pointer/reversal, broad
+variants and human remain OPEN. Next: compact Move source availability, then
+remaining earlier lots; no accepted card Motion or Guide rewrite.
+
 SM55 framed native endpoint successor054652983Z-46140 now PASS9 endpoints
 at1600/768/390 with exactly0px host/parent terminal jump, correct dropdown/modal
 focus and selection, no data/errors/blocked requests and complete cleanup.

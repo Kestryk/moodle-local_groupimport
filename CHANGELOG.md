@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Shared filter Motion behavior proof (SM-55)
+
+- Thirty-nine native records pass search/selection/clear, one-click parent closure and
+  subsequent reopen, plus reduced-motion static choices at1600/768/390.
+- Preserve the external Mustache-login failure and unchanged retry after normal
+  login rendering returned; no speculative core/cache repair. Complete cleanup,
+  no data/fixtures, human checklist still OPEN.
+
 ## 2026-10-06 - Framed native terminal continuity proof (SM-55)
 
 - Nine desktop/tablet/mobile endpoints pass with exactly0px final host/parent
