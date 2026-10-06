@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+A wider responsive matrix can reveal untouched legacy Group/Grouping defects.
+Retain that failed matrix rather than reducing width/entity coverage. Diagnose
+actual empty flex items and check the active editor, pointer/title lane and
+whole unrelated source/CSS/Motion identity before promoting a shared correction.
+
 First-row selection proof separates centre/size/title clearance from absolute
 whole-card padding and palette parity. Retain old Small usages recoverably;
 use ordinary hosts for new linked controls, qualify visible semantic titles,

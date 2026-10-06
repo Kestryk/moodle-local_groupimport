@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Group empty-wrap / wider-touch clearance candidate (SM-48)
+
+- Preserve94-record native successor and new1024 Group overlap; reproduce320
+  empty-form flex-wrap offset exactly and correct its inactive layout via Kit.
+- Shared title clearance/first-row anchor retain44px hit target and active edit;
+  eight isolated geometry/edit branches PASS, all other CSS/JS/Motion unchanged.
+
 ## 2026-10-06 - Responsive Participant first-row anchor candidate (SM-48)
 
 - Derive existing44px selection centre from header row/padding via canonical
