@@ -1,0 +1,219 @@
+{
+  "date": "2026-10-06",
+  "scope": "SM55 shared framed Motion consumer policy; design is static, native and human gates separate",
+  "publication": {
+    "guide": {
+      "providers": [
+        {
+          "id": "f5233124-51fb-805e-8008-ac75dc9718a6",
+          "path": "EasyEdu / Forms / Multi-select / M",
+          "state": "Hover"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac75e5d234c7",
+          "path": "EasyEdu / Forms / Multi-select / M",
+          "state": "Selected"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac756d34fc3d",
+          "path": "EasyEdu / Forms / Multi-select / S",
+          "state": "Selected"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac756f4342e1",
+          "path": "EasyEdu / Forms / Multi-select / S",
+          "state": "Disabled"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac76544ab98b",
+          "path": "EasyEdu / Forms / Multi-select / L",
+          "state": "Selected"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac76565701b3",
+          "path": "EasyEdu / Forms / Multi-select / L",
+          "state": "Disabled"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac75e36fe89c",
+          "path": "EasyEdu / Forms / Multi-select / M",
+          "state": "Open"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac75da8d0588",
+          "path": "EasyEdu / Forms / Multi-select / M",
+          "state": "Default"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac756ac64378",
+          "path": "EasyEdu / Forms / Multi-select / S",
+          "state": "Open"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac764a4fdd16",
+          "path": "EasyEdu / Forms / Multi-select / L",
+          "state": "Default"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac7652241693",
+          "path": "EasyEdu / Forms / Multi-select / L",
+          "state": "Open"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac75debd1fc1",
+          "path": "EasyEdu / Forms / Multi-select / M",
+          "state": "Focus-visible"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac764c37ec24",
+          "path": "EasyEdu / Forms / Multi-select / L",
+          "state": "Hover"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac75615cedb5",
+          "path": "EasyEdu / Forms / Multi-select / S",
+          "state": "Default"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac75636e29d7",
+          "path": "EasyEdu / Forms / Multi-select / S",
+          "state": "Hover"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac764df3b053",
+          "path": "EasyEdu / Forms / Multi-select / L",
+          "state": "Focus-visible"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac7565917d0c",
+          "path": "EasyEdu / Forms / Multi-select / S",
+          "state": "Focus-visible"
+        },
+        {
+          "id": "f5233124-51fb-805e-8008-ac75e81d596a",
+          "path": "EasyEdu / Forms / Multi-select / M",
+          "state": "Disabled"
+        }
+      ],
+      "mainAnnotations": [
+        {
+          "page": "81455adb-6787-8068-8008-9ce9b711604d",
+          "ids": [
+            "f5233124-51fb-805e-8008-ac75db1b1bdc",
+            "f5233124-51fb-805e-8008-ac75e4089fe0",
+            "f5233124-51fb-805e-8008-ac756b630cb6",
+            "f5233124-51fb-805e-8008-ac756dcecaa4",
+            "f5233124-51fb-805e-8008-ac7652b54b60",
+            "f5233124-51fb-805e-8008-ac7654dc04ad",
+            "f5233124-51fb-805e-8008-ac75df53be0a",
+            "f5233124-51fb-805e-8008-ac75d931bcb6",
+            "f5233124-51fb-805e-8008-ac75661c5232",
+            "f5233124-51fb-805e-8008-ac7648ffe0f0",
+            "f5233124-51fb-805e-8008-ac764e788d2a",
+            "f5233124-51fb-805e-8008-ac75dd2ff066",
+            "f5233124-51fb-805e-8008-ac764ad61021",
+            "f5233124-51fb-805e-8008-ac756000519a",
+            "f5233124-51fb-805e-8008-ac7561e786fd",
+            "f5233124-51fb-805e-8008-ac764caa7d51",
+            "f5233124-51fb-805e-8008-ac7563f06844",
+            "f5233124-51fb-805e-8008-ac75e67681d4"
+          ]
+        }
+      ],
+      "boards": {
+        "library": {
+          "page": "81455adb-6787-8068-8008-9ce9b711604d",
+          "board": "83ffce63-041b-803e-8008-bf30283568e7",
+          "controls": [
+            {
+              "id": "83ffce63-041b-803e-8008-bf3028e3906c",
+              "component": "f5233124-51fb-805e-8008-ac75615cedb5",
+              "state": "Default",
+              "w": 500,
+              "h": 32
+            },
+            {
+              "id": "83ffce63-041b-803e-8008-bf3028f651b6",
+              "component": "f5233124-51fb-805e-8008-ac756ac64378",
+              "state": "Open",
+              "w": 500,
+              "h": 174
+            }
+          ]
+        },
+        "standard": {
+          "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+          "board": "83ffce63-041b-803e-8008-bf3029a07709",
+          "controls": [
+            {
+              "id": "83ffce63-041b-803e-8008-bf302a53e5ff",
+              "component": "f5233124-51fb-805e-8008-ac75615cedb5",
+              "state": "Default",
+              "w": 500,
+              "h": 32
+            },
+            {
+              "id": "83ffce63-041b-803e-8008-bf302a684e33",
+              "component": "f5233124-51fb-805e-8008-ac756ac64378",
+              "state": "Open",
+              "w": 500,
+              "h": 174
+            }
+          ]
+        }
+      }
+    },
+    "validation": []
+  },
+  "library": {
+    "page": "81455adb-6787-8068-8008-9ce9b711604d",
+    "board": {
+      "id": "83ffce63-041b-803e-8008-bf30283568e7",
+      "x": 80,
+      "y": 18680,
+      "width": 1600,
+      "height": 440
+    },
+    "controls": [
+      {
+        "id": "83ffce63-041b-803e-8008-bf3028e3906c",
+        "component": "f5233124-51fb-805e-8008-ac75615cedb5",
+        "width": 500,
+        "height": 32
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf3028f651b6",
+        "component": "f5233124-51fb-805e-8008-ac756ac64378",
+        "width": 500,
+        "height": 174
+      }
+    ],
+    "overflow": [],
+    "validation": []
+  },
+  "standard": {
+    "role": "standard",
+    "page": "d0d0680d-7d36-80da-8008-97a6a5af5762",
+    "board": "83ffce63-041b-803e-8008-bf3029a07709",
+    "controls": [
+      {
+        "id": "83ffce63-041b-803e-8008-bf302a53e5ff",
+        "component": "f5233124-51fb-805e-8008-ac75615cedb5",
+        "state": "Default",
+        "w": 500,
+        "h": 32
+      },
+      {
+        "id": "83ffce63-041b-803e-8008-bf302a684e33",
+        "component": "f5233124-51fb-805e-8008-ac756ac64378",
+        "state": "Open",
+        "w": 500,
+        "h": 174
+      }
+    ],
+    "w": 1600,
+    "h": 440,
+    "overflow": [],
+    "validation": []
+  }
+}

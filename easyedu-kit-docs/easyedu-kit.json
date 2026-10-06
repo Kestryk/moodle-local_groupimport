@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "filterSharedMotion20261006": {
+      "kitVersion": "0.4.119",
+      "kitDocumentationCommit": "9527b7af3c33c94f77d6b144f5879f8bdadf5583",
+      "scope": "Consume existing canonical choice Framed Motion; no Kit code/style/version change",
+      "documentation": "docs/filter-choice-shared-motion-2026-10-06.md",
+      "penpotReadback": "docs/testing/filter-shared-motion-exact-family-2026-10-06.json",
+      "status": "One shared Motion injection and four actual binding cases PASS; paired providers and14 Product consumers annotated. Native successor and human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "groupHeaderActionLayout20261006": {
       "kitVersion": "0.4.119",
       "kitCommit": "f28278cac2fd2e8ce4b5fcce44519eb4d6796985",

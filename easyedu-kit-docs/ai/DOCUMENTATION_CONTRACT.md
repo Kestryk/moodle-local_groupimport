@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Qualify actual choice family before asserting its terminal animation. Legacy
+effects without end fill can show full content immediately before hidden;
+capture that failed frame and consume canonical Framed Motion at the adapter,
+not a private style/engine. Preserve native values, nested close and pointer/
+reduced policies separately from endpoint geometry and human acceptance.
+
 Native choice terminal audits measure ancestor and following sibling continuity
 as well as host bottom; a shrinking panel alone cannot prove no text jump.
 Record pause/finish endpoint sampling distinctly from natural fluency/reversal.

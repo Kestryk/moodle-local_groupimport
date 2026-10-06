@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Catalogue/Participant multiple filters consume the canonical choices Motion
+option, not a forced framed class or copied geometry engine. Keep compact
+density, native options/state/search/clear/Reset and role shortcuts authoritative.
+Motion adoption must preserve parent More Filters and its one-click closure.
+
 Responsive Group headers opt dormant-card-action-host in only because direct
 rename controls are already suppressed; the native visible edit child restores
 layout. Wider-touch title clearance uses the shared person/object computation,
