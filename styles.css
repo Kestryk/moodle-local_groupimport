@@ -23703,19 +23703,20 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   border-color: var(--easyedu-primary);
   color: var(--easyedu-primary);
 }
-.easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary:hover, .easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary:focus-visible, .easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary[aria-expanded=true], .easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary[aria-pressed=true], .easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary.active, .easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary.is-active {
+
+.easyedu-ui .easyedu-button--outline-primary.btn:hover, .easyedu-ui .easyedu-button--outline-primary.btn:focus-visible, .easyedu-ui .easyedu-button--outline-primary.btn[aria-expanded=true], .easyedu-ui .easyedu-button--outline-primary.btn[aria-pressed=true], .easyedu-ui .easyedu-button--outline-primary.btn.active, .easyedu-ui .easyedu-button--outline-primary.btn.is-active {
   background: var(--easyedu-primary-soft);
   border-color: var(--easyedu-control-focus-border);
   color: var(--easyedu-primary-strong);
   outline: 0;
 }
-.easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary:focus-visible {
+.easyedu-ui .easyedu-button--outline-primary.btn:focus-visible {
   border-color: var(--easyedu-control-focus-border);
   box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
   outline: var(--easyedu-focus-outline-width) solid transparent;
   outline-offset: var(--easyedu-focus-outline-offset);
 }
-.easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary:disabled, .easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary[aria-disabled=true], .easyedu-ui[data-easyedu-report-palette~=primary] .easyedu-button--outline-primary.disabled {
+.easyedu-ui .easyedu-button--outline-primary.btn:disabled, .easyedu-ui .easyedu-button--outline-primary.btn[aria-disabled=true], .easyedu-ui .easyedu-button--outline-primary.btn.disabled {
   background: var(--easyedu-surface-soft);
   border-color: var(--easyedu-card-border);
   color: var(--easyedu-text-muted);

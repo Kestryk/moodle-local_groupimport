@@ -8,7 +8,7 @@ const baseline = '9726efb1f93cc5c215899ad77b8caabea7d86931';
 const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
 const old = file => execFileSync('git', ['show', `${baseline}:${file}`], {cwd: root}).toString().replace(/\r\n/g, '\n');
 let blocks = 0;
-const css = read('styles.css').replace(/\.easyedu-ui\[data-easyedu-report-palette[^{}]*\{[^{}]*\}\n*/g, block => {
+const css = read('styles.css').replace(/(?:\.easyedu-ui\[data-easyedu-report-palette[^{}]*|\.easyedu-ui \.easyedu-button--outline-primary\.btn[^{}]*)\{[^{}]*\}\n*/g, block => {
     assert.ok(!/\b(?:width|height|padding|margin|font|font-size|transition|animation|position|display|gap)\s*:/.test(block),
         'Palette adds no layout/type/Motion declarations');
     blocks++; return '';

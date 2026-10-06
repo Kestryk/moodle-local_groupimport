@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Mass Export native hover successor
+
+- First native cascade test found later Bootstrap replacing canonical soft hover
+  with a solid background. Preserve the failed run/cleanup; consume Kit0.4.123
+  composed-state qualification, not private CSS or a weaker test.
+- Official rest/report defaults, dimensions, spacing and Motion remain intact.
+  The unchanged native scenario is required after this scoped source repair.
+
 ## 2026-10-06 - Canonical Mass report palette successor (SM-64)
 
 - Connect preview/report success summaries, successful report titles/checks and
