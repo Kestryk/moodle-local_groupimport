@@ -1403,7 +1403,9 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
     $slidecount = max(1, count($slides));
 
     return [
-        'rootclass' => 'local-groupimport-easystud-easyedu-guide',
+        'rootclass' => 'local-groupimport-easystud-easyedu-guide easyedu-guide--discovery',
+        'discoverypresentation' => true,
+        'guideinterfacecuelabel' => get_string('guideinterfacecuelabel', 'local_groupimport'),
         'guideopenlabel' => $templatedata['tutoriallabel'],
         'guidehoverlabel' => get_string('tutorialhoverlabel', 'local_groupimport'),
         'guidecloselabel' => get_string('closebuttontitle', 'core'),

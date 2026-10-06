@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-06 - Guide discovery presentation integration (source WIP)
+
+- Consume Kit e314f0c discovery shell and fixed interface cue in Student Guide,
+  preserving existing lessons, progress, targets and business actions.
+- Preserve localized AMD defaults/fallbacks in the repeatable synchronization
+  helper; rebuild Guide AMD and CSS. Integration and syntax checks pass.
+- New four-lesson scenes, Penpot parity and managed Moodle preview are pending;
+  no deployment or human acceptance is claimed.
+
 ## 2026-10-06 - Preserve lots and accept limited Guide integration handoff
 
 - Save every active SM-59..73 lot, earlier queue and distinct remaining gates

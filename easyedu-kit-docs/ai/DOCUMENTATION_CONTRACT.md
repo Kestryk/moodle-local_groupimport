@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Guide synchronization retains EasyStud localized empty defaults and fallbacks
+explicitly, and normalizes wrapper line endings before comparing. Discovery
+shell adoption is separate from curriculum replacement and native proof; retain
+old paths/storage while new sample scenes are still being integrated.
+
 Guide demo handoffs replace presentation through the Kit, not the native engine
 with demo.js. Preserve IDs/storage/unlock paths, highlight geometry/lifecycle,
 accepted card Motion and legacy curriculum; four demo slides are not the full
