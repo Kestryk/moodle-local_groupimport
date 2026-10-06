@@ -23760,6 +23760,22 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   text-align: center;
 }
 
+.easyedu-ui .easyedu-workspace-view-switcher--tiled > button .fa {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary);
+}
+.easyedu-ui .easyedu-workspace-view-switcher--tiled > button:not(.active):not([aria-pressed=true]):hover:not(:disabled):not([aria-disabled=true]) .fa, .easyedu-ui .easyedu-workspace-view-switcher--tiled > button:not(.active):not([aria-pressed=true]):focus:not(:disabled):not([aria-disabled=true]) .fa {
+  background: color-mix(in srgb, var(--easyedu-primary-chosen, var(--easyedu-primary)) 16%, var(--easyedu-surface) 84%);
+}
+.easyedu-ui .easyedu-workspace-view-switcher--tiled > button.active .fa, .easyedu-ui .easyedu-workspace-view-switcher--tiled > button[aria-pressed=true] .fa {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
+.easyedu-ui .easyedu-workspace-view-switcher--tiled > button:disabled .fa, .easyedu-ui .easyedu-workspace-view-switcher--tiled > button[aria-disabled=true] .fa {
+  background: var(--easyedu-field-disabled-surface);
+  color: var(--easyedu-field-disabled-text);
+}
+
 .easyedu-ui .easyedu-search-field {
   align-items: center;
   background: var(--easyedu-surface);

@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "viewIconSemanticPalette20261006": {
+      "kitVersion": "0.4.120",
+      "kitCommit": "49d047ac1cac875fc3adabd12d1994156ff72749",
+      "module": "scss/easyedu/_workspace-control-classes.scss",
+      "documentation": "docs/view-switch-icon-palette-2026-10-06.md",
+      "scope": "One canonical paint module and one public tiled template class; compact plain icons, geometry, other modules and Motion preserved",
+      "status": "43 isolated shared states and complete unrelated consumer CSS/controller identity PASS. Eight paired Foundation providers and three inherited Product defaults saved. Native/custom-design/human gates remain separate.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "compactMoveAvailability20261006": {
       "scope": "Consumer native action availability only; Kit paint/controls/Motion unchanged",
       "documentation": "docs/mobile-move-availability-successor-2026-10-06.md",

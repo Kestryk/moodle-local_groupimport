@@ -11,6 +11,41 @@
     text-align: center;
   }
 
+  // Tiled desktop/tablet variant only. Compact entity tabs have no icon tile;
+  // do not give their glyphs a new background or change either recipe's layout.
+  .easyedu-ui .easyedu-workspace-view-switcher--tiled > button {
+    .fa {
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary);
+    }
+
+    &:not(.active):not([aria-pressed="true"]):hover:not(:disabled):not([aria-disabled="true"]),
+    &:not(.active):not([aria-pressed="true"]):focus:not(:disabled):not([aria-disabled="true"]) {
+      .fa {
+        background: color-mix(in srgb,
+          var(--easyedu-primary-chosen, var(--easyedu-primary)) 16%,
+          var(--easyedu-surface) 84%);
+      }
+    }
+
+    &.active,
+    &[aria-pressed="true"] {
+      .fa {
+        // Readable primary, not an unrestricted pale decorative colour.
+        background: var(--easyedu-primary);
+        color: var(--easyedu-surface);
+      }
+    }
+
+    &:disabled,
+    &[aria-disabled="true"] {
+      .fa {
+        background: var(--easyedu-field-disabled-surface);
+        color: var(--easyedu-field-disabled-text);
+      }
+    }
+  }
+
   .easyedu-ui .easyedu-search-field {
     align-items: center;
     background: var(--easyedu-surface);
