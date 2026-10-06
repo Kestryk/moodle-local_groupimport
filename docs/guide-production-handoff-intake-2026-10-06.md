@@ -66,6 +66,22 @@ release. Serialize the actual channel before writes; never close its browser,
 regenerate tokens or overwrite hosted MCP to guess a fix. Reported server2.15.4
 /editor2.18.2 warning remains unresolved, not a proved failure cause.
 
+### Dedicated channel recovery successor
+
+Frame inspection distinguishes origins: the Connected panel belonged to
+design.penpot.app, while the localhost4400 plugin was Not connected. The local
+plugin alone was reconnected in the existing9227 Guide browser; no hosted
+configuration/key, server or browser was replaced/stopped.
+
+The handoff's external `penpot-guide-client.cjs` then established a fresh
+Guide-only4401 MCP client and returned the exact Guide file/Page1 identity.
+Its built-in file/page guard is mandatory before writes. Do not vendor this
+machine-specific external client into the plugin; only portable input bodies
+`tools/penpot/inspect-guide-channel.js` and `inspect-guide-compositions.js` are
+versioned. Both executed read-only. Six recorded roots read successfully:
+five desktop1220x800 and one mobile390x800, all active/not hidden. The dedicated
+channel is now usable; descendant paint, native/human gates remain open.
+
 ## Current source differs from the handoff snapshot
 
 Read-only `sync-easyedu-guide.ps1` preflight reports embedded JS/Mustache aligned,
