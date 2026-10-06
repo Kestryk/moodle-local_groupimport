@@ -10,8 +10,9 @@
       "module": "scss/easyedu/_workspace-control-classes.scss",
       "documentation": "docs/view-switch-icon-palette-2026-10-06.md",
       "scope": "One canonical paint module and one public tiled template class; compact plain icons, geometry, other modules and Motion preserved",
-      "status": "43 isolated shared states and complete unrelated consumer CSS/controller identity PASS. Eight paired Foundation providers and three inherited Product defaults saved. Native/custom-design/human gates remain separate.",
-      "nativePreviewVerified": false,
+      "status": "43 isolated states and complete unrelated CSS/controller identity PASS; eight paired Foundation providers and three Product defaults saved. Native49 paint/geometry/plain compact checks PASS on actual two views, no settings Save. Native three-view/custom design/human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261006T094746983Z-46880",
       "humanVisualValidated": false
     },
     "compactMoveAvailability20261006": {

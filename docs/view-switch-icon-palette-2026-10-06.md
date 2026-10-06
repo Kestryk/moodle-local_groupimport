@@ -1,5 +1,30 @@
 # Semantic view-switch icon paint (SM-60)
 
+## Served scoped successor PASS
+
+Source visual `3b12f4e33c0442032e6c6b6333113136c728c298`, immutable test
+successor `f6fcbd569e5a0e53c013cf5f8278259b01476e74`, canonical Kit
+`49d047ac1cac875fc3adabd12d1994156ff72749`/0.4.120. Clean managed runtime
+`e600de66828abac092c1a71c1513c6f1735ca4e8`; CSS blob
+`af92c25f46cf94e90e0ad9ce5bf6868dc17ccf6e`, unchanged AMD blob
+`8b81fcdc453d544d002d1542a82ae858c889c1cc`. Ordered requests
+`20261006T094317Z-a29c506fa1` and `20261006T094650Z-dd742a1ad8`, promotions
+`20261006T094337Z.json` and `20261006T094710Z.json`. Only the visual tranche
+refreshes caches; the second preserves assets and corrects only tests/docs.
+
+Run `easystud-authenticated-20261006T094746983Z-46880` PASS49:
+40 served desktop paint/geometry checks (actual two available views, four
+saved/default/purple/light-chosen palettes, five states) and nine real compact
+view-click/background checks at768/390/320. Actual local view commands are
+used; disabled is explicitly a transient paint probe, not permission proof.
+No page error, denied business request, settings Save or fixture mutation.
+Credentials cleared, child stopped, runtime lease released, cleanup complete.
+Retention dry-run:one manifest/one protected, zero candidates/deletions/errors.
+
+See `testing/view-switch-icon-palette-native-2026-10-06.json`. This closes the
+scoped native paint gate, not native three-view configuration, custom Penpot
+raster specimens, full-board migration, persistence or human acceptance.
+
 ## Preserved initial native diagnostic
 
 Candidate `3b12f4e33c0442032e6c6b6333113136c728c298` is served at clean managed
@@ -14,8 +39,8 @@ errors=[], blocked=[], records=[]; credentials cleared, child stopped, runtime
 lease released and no fixture requested. Preserve the failed immutable run.
 Three-choice isolated proof is not native three-choice configuration proof.
 
-EED-UI-2026-0073. Source candidate; native gate below is pending until its exact
-pushed candidate is served and the immutable scenario finishes. Human OPEN.
+EED-UI-2026-0073. The historical source-candidate description below is superseded
+only for the native scope above. Human acceptance and listed wider gates OPEN.
 
 ## Actual change and preservation
 

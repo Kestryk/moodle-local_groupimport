@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Semantic view icons served scoped proof (SM-60)
+
+- Native49 checks PASS: actual two desktop modes/four palette roots/five states
+  plus nine compact768/390/320 checks, stable geometry and no new icon square.
+- Preserve the original count-assumption failure; no settings/business/fixture
+  writes, cleanup complete and clean managed preview. Three-view native/custom
+  Penpot/whole-view/persistence/human gates remain OPEN.
+
 ## 2026-10-06 - Native view-count harness successor (SM-60)
 
 - Preserve the initial native stop: actual admin configuration exposes two
