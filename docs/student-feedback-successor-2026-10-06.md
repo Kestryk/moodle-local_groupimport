@@ -70,6 +70,14 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
 
 ## Guide handoff (SM-61)
 
+SM-62 now has a bounded Source candidate and rebuilt AMD. Eighteen isolated
+selection cases plus three actual event directions pass, with complete original
+controller/CSS/Motion outside the addition preserved. Existing nineteen Product
+Group compositions receive behaviour metadata only. Native scenario discovery
+PASS; served/native/human gates stay OPEN. See
+`group-fold-member-selection-2026-10-06.md`. No Kit skin/engine change is needed
+for this product-only selection rule; palette audit remains separately open.
+
 Please consume the EasyStud workspace's validated semantic palette for Guide
 progress paint, including body-portalled roots. Keep official Kit defaults as
 fallback; do not bake the plugin's custom Hex values into shared Guide SCSS.

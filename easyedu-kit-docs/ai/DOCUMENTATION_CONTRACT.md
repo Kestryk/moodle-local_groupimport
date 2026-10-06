@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Group member-fold selection cleanup is scoped to the exact Group identity,
+including its catalogue copies, not to a user across every membership. Execute
+the original disclosure mutation and reconcile the existing selection authority;
+do not rewrite accepted Motion or make reopening restore hidden selections.
+Preserve unrelated Groups and record isolated versus actual native proof.
+
 Qualify visible native controls before retaining stable IDs for closed-state
 assertions: :visible locators correctly disappear when the parent closes.
 Native menu modal return focus owns the original visible menu trigger, not its

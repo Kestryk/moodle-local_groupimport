@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Group fold scoped selection candidate (SM-62)
+
+- Folding clears only that Group's selected member copies through the existing
+  checkbox/action authority; other Group memberships and reopening are preserved.
+- Eighteen isolated cases plus three real binding directions pass; complete
+  unrelated CSS/commands/Motion preserved, AMD rebuilt. Product design records
+  the rule without repainting. Served/native/human gates remain OPEN.
+
 ## 2026-10-06 - Additive user feedback intake (SM-59..73)
 
 - Preserve fifteen deduplicated requests covering semantic palettes/default
