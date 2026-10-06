@@ -44,6 +44,26 @@ Kit SCSS/controllers/version remain unchanged. No private Mustache style exists.
 
 ## Open gates / rollback
 
+### Actual native predecessor and accessibility successor
+
+Run `easystud-authenticated-20261006T090024033Z-24168` fails before the fold:
+the Group toggle is semantically disabled by its ancestor's `aria-disabled=true`
+when members are selected. No record is a native PASS. Cleanup is complete;
+no fixture/business write, errors or blocked requests. Preserve the immutable
+scenario and failed evidence; never force-click this disabled action.
+
+`updateSelectionAvailability` keeps exclusive-type logic, disabled-selection
+paint, event guards and actual native checkbox `disabled`, but removes the
+ancestor ARIA flag. Whole-card ARIA disabled would incorrectly include nested
+fold/search/actions and selected members that remain valid controls. Forty
+executed actual-function states pass, with complete remaining code/styles,
+previous fold correction, original Motion and the native scenario unchanged.
+The generated AMD is rebuilt; a genuinely changed Source successor, not an
+unchanged retry or a weakened test, must be served before rerunning.
+
+Product metadata readback/validate=[] and actual saved-file GET200 are verified
+after owned plugin-heartbeat recovery. No shared provider paint was changed.
+
 Managed preview, native behavioural matrix, broad context-action/keyboard
 journeys and human acceptance remain OPEN. Source snapshot/commit supplies an
 explicit reversible boundary; do not revert another window or shared runtime.
