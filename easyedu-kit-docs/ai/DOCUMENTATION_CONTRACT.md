@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Guide demo handoffs replace presentation through the Kit, not the native engine
+with demo.js. Preserve IDs/storage/unlock paths, highlight geometry/lifecycle,
+accepted card Motion and legacy curriculum; four demo slides are not the full
+programme. Read declared source/reference precedence, confirm released writer
+ownership and serialize the dedicated channel. No raw demo/vendor/profile/
+internal-note copying or automatic real exercises/cleanup to manufacture proof.
+
 Native report palette successors preserve complete default/unrelated CSS and
 commands. Native inline summaries/single-message lines are separate from resized
 generic providers. Public paint flags are validated and independent; warnings

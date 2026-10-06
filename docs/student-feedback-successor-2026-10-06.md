@@ -1,5 +1,10 @@
 # EasyStud feedback successor - 6 October 2026
 
+User requested the full lots checkpoint before Guide takeover:
+`lots-before-guide-handoff-2026-10-06.md`. All earlier requirements and human
+gates are retained. Guide artefact handoff is now intake for this Source/Kit
+owner, not permission to copy the demo engine or overwrite another writer.
+
 Portable additive intake under Platform batch `EED-UI-2026-0073`. This follows
 `student-management-completion-queue-2026-10-03.md`,
 `student-feedback-successor-2026-10-04.md` and
