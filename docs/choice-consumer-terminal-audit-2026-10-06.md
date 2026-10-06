@@ -22,3 +22,12 @@ real transfer, contrast persistence and human acceptance.
 
 Spec: student-choice-consumer-terminal-audit.spec.js; Source-only candidate.
 Fresh native/source pins, any product diagnosis and human gate remain OPEN.
+
+Native052032867Z-33064 records both1600 destination endpoints PASS, then stops
+on a harness expectation that the multiple filter is framed. Source confirms
+bindSearchableFilters still calls enhanceMultipleSelect without its shared
+Motion option; compact/multiple paint is present, but the legacy height/opacity
+engine owns closing. This isn't permission to force a framed CSS class. Preserve
+failed source/cleanup; diagnostic successor qualifies the actual family, retains
+strict host/ancestor/sibling/margin/focus/value oracles and measures the default
+endpoint before deciding a consumer adapter change. No product change yet.
