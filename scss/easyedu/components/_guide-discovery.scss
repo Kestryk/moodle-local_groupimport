@@ -219,7 +219,9 @@
     }
 
     .easyedu-guide-nav .easyedu-guide-nav-item { flex-basis: 11.375rem; }
-    .easyedu-guide-modal__footer-actions { width: auto; }
+    .easyedu-guide-modal__footer { flex-wrap: wrap; }
+    .easyedu-guide-modal__step-count { width: auto; flex: 1 0 100%; text-align: end; order: 0; }
+    .easyedu-guide-modal__footer-actions { width: min(100%, 15rem); flex: 0 1 15rem; align-items: stretch; }
     .easyedu-guide-modal__footer-actions .btn { width: auto; min-width: 0; }
   }
 }
