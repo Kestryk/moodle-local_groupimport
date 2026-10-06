@@ -51,6 +51,14 @@ test('Guide discovery first version native preview', async({page}, info) => {
                 const slide = modal.locator(`[data-easyedu-guide-slide="${index}"]`);
                 await expect(slide).toBeVisible();
                 if (index === 1) {
+                    const input = await slide.locator('[data-guide-pattern]').boundingBox();
+                    const actions = await slide.locator('.easyedu-guide-scene__creation-controls .easyedu-guide-scene__actions').boundingBox();
+                    if (width === 1280) {
+                        expect(actions.x).toBeGreaterThan(input.x + input.width);
+                        expect(actions.y + actions.height).toBeCloseTo(input.y + input.height, 0);
+                    } else if (width === 390) {
+                        expect(actions.y).toBeGreaterThanOrEqual(input.y + input.height);
+                    }
                     await slide.locator('[data-guide-scene-command="preview"]').click();
                     await expect(slide.locator('[data-guide-names] > span')).toHaveCount(3);
                 }

@@ -147,14 +147,16 @@
                                 </div>
                                 {{/concepts}}
                                 {{#creation}}
+                                <div class="easyedu-guide-scene__creation-controls">
                                 <label class="easyedu-guide-scene__field">{{patternlabel}}
                                     <input type="text" data-guide-pattern value="Équipe #*3" autocomplete="off">
                                 </label>
-                                <p>{{syntaxlabel}}</p>
                                 <div class="easyedu-guide-scene__actions">
                                     <button type="button" class="btn btn-primary" data-guide-scene-command="preview">{{previewlabel}}</button>
                                     <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="letters">{{letterslabel}}</button>
                                 </div>
+                                </div>
+                                <p class="easyedu-guide-scene__caption">{{syntaxlabel}}</p>
                                 <div data-guide-names class="easyedu-guide-scene__results" aria-live="polite" data-invalid="{{invalidlabel}}"></div>
                                 {{/creation}}
                                 {{^concepts}}{{^creation}}

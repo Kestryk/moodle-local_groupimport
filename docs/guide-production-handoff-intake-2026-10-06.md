@@ -2,6 +2,20 @@
 
 ## Native preview successor, 6 October evening
 
+### 7 October continuation: creation controls
+
+Dedicated read-only MCP identity reconfirmed the exact Guide file/Page1. Compared
+creation-linked-icons-final.png against the served1280 creation capture: the
+candidate stacked the field/actions where the design aligns them. Shared Kit
+template/SCSS now provide a wrapping control row and caption syntax help; the
+adapted runtime template receives the same wrapper without replacing its hooks.
+Six isolated French/English width checks pass, including explicit desktop
+baseline and phone non-overlap assertions. Integration/synchronization checks
+pass. The first test failed on a missing runtime wrapper while only the embedded
+template had been synchronized; the adapted template was corrected, not the
+assertion weakened. No controller, business data or card Motion changes.
+Native promotion and all previously listed full-parity gaps remain open.
+
 Four localized discovery lessons and their isolated examples now precede the
 retained legacy curriculum. Kit source 1910df3 and consumer source 27c2202 are
 pushed; runtime d9225ac6803abd9427d55012b248fd86c43bb931 serves the candidate.
@@ -15,8 +29,10 @@ and reserves a separate compact row, with equal right-aligned buttons.
 Native run easystud-authenticated-20261006T215623871Z-9316 PASSED all12 slide/width
 checks at1280/768/390, creation preview, animated Actions completion, Show in
 interface/return and Escape. No page errors or blocked business writes recorded.
-Its captures/manifest/cleanup remain external. A final successor is running on
-the invitation/result-card alignment changes; record its result before closure.
+Its captures/manifest/cleanup remain external. Final successor
+easystud-authenticated-20261006T215845591Z-59484 PASSED on the invitation/result
+candidate. Cleanup confirms the owned child stopped, credentials cleared and
+runtime lease released; no fixture was requested. This is not full handoff parity.
 
 The handed-off Penpot capture creation-linked-icons-final.png exposed further
 visual differences: invitation action position and group-shaped preview results.
