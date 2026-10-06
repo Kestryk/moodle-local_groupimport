@@ -1,0 +1,153 @@
+{
+  "records": [
+    {
+      "scope": "destination-participants",
+      "width": 1600,
+      "geometry": {
+        "before": {
+          "hostBottom": 607.59375,
+          "parentHeight": 192.59375,
+          "siblings": [
+            {
+              "y": 500.59375,
+              "h": 22.5
+            },
+            {
+              "y": 539.09375,
+              "h": 22.5
+            },
+            {
+              "y": 623.59375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 607.59375,
+          "parentHeight": 192.59375,
+          "siblings": [
+            {
+              "y": 500.59375,
+              "h": 22.5
+            },
+            {
+              "y": 539.09375,
+              "h": 22.5
+            },
+            {
+              "y": 623.59375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "destination-groups",
+      "width": 1600,
+      "geometry": {
+        "before": {
+          "hostBottom": 582.390625,
+          "parentHeight": 242.984375,
+          "siblings": [
+            {
+              "y": 475.390625,
+              "h": 22.5
+            },
+            {
+              "y": 513.890625,
+              "h": 22.5
+            },
+            {
+              "y": 595.1875,
+              "h": 37.59375
+            },
+            {
+              "y": 648.78125,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 582.390625,
+          "parentHeight": 242.984375,
+          "siblings": [
+            {
+              "y": 475.390625,
+              "h": 22.5
+            },
+            {
+              "y": 513.890625,
+              "h": 22.5
+            },
+            {
+              "y": 595.1875,
+              "h": 37.59375
+            },
+            {
+              "y": 648.78125,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "multiple-participant-group-filter",
+      "width": 1600,
+      "geometry": {
+        "before": {
+          "hostBottom": 614.328125,
+          "parentHeight": 51.71875,
+          "siblings": [
+            {
+              "y": 562.609375,
+              "h": 14.125
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 614.328125,
+          "parentHeight": 51.71875,
+          "siblings": [
+            {
+              "y": 562.609375,
+              "h": 14.125
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "runId": "easystud-authenticated-20261006T053947929Z-41704",
+  "result": "FAILED native mobile Participant opener absent at768; all3 desktop terminal endpoints PASS",
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false
+  }
+}

@@ -1,5 +1,12 @@
 # EasyStud review successor - 5 October 2026
 
+SM55 shared adapter is served; all3 desktop terminal cases now PASS. Native
+matrix then exposes a compact Participant sticky Move availability defect when
+the configured desktop default is structure. Retain exact failed run/cleanup;
+actual card-menu successor will keep nine endpoint oracles. This availability
+issue is registered for a separate bounded correction, not silently waived.
+Search/clear/nested-close/reduced proof remains a separate next gate.
+
 SM55 default filter terminal diagnostic reproduces256px flash/jump plus8px
 margin; modals already pass. Candidate consumes existing shared Framed Motion
 through one {motion: Motion} argument, preserving compact paint/native filtering
