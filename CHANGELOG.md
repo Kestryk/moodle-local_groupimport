@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Dialog palette native readiness successor
+
+- Preserve first served failure: measuring only header animations missed its
+  ancestor's remaining entrance scale. Await that real finite Motion before
+  paint/geometry sampling; record probes before assertions, no relaxed oracle.
+- Product styles, compiled assets and commands unchanged. All failed-run
+  cleanup flags complete; fresh native gate pending, human checklist OPEN.
+
 ## 2026-10-06 - Shared semantic dialog palette candidate (SM-59)
 
 - Consume Kit0.4.121 primary/success header classes on six modal families;

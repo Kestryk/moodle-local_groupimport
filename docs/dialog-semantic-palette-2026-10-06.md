@@ -83,6 +83,16 @@ that timeout. Check live editor again after hosted reconnection before retrying.
 
 ## Continuation and efficiency
 
+First served candidate: Source2ceccaf, runtime91026af, managed request
+20261006T102427Z-a79042d3e0/promotion20261006T102441Z, caches refreshed. Native
+`easystud-authenticated-20261006T102451137Z-28388` stopped after the first record:
+header-only settling missed the ancestor's entrance transform, measuring
+1149.9518x63.9973 before1150x64. This is a harness readiness failure, not proof
+of a palette layout defect. All cleanup flags true, no blocked/page errors,
+no business/fixture writes. Preserve run and exact metrics; successor waits
+the actual modal ancestor's finite animations without relaxing geometry or
+rewriting product Motion. Successor native verification remains pending.
+
 Reconcile unknown Product write, complete linked examples, then supervised
 served open/Cancel proof. Source-only checks may continue while the hosted
 connection is restored. Keep all older lots and human checklist open.
