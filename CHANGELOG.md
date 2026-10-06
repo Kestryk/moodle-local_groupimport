@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-06 - Canonical Mass report palette successor (SM-64)
+
+- Connect preview/report success summaries, successful report titles/checks and
+  annotated Export to independent validated Accent/Primary through Kit0.4.122
+  public classes. Preserve official defaults, warning/error and all Motion.
+- Move published success recipes into canonical Kit delegates; seven additive
+  paint blocks only, complete unrelated CSS and commands preserved.372 isolated
+  assertions plus PHP45/lint pass; bounded native proof remains a separate gate.
+- Add six paired native-shaped Foundation/Standard/Product comparison usages,
+  preserving older compositions and the open combined human checklist.
+
 ## 2026-10-06 - Penpot comparison and report lane reconciliation
 
 - Saved four linked Product dialog-header palette comparisons; recursive source

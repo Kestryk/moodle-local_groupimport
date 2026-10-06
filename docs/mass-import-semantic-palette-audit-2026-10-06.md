@@ -1,5 +1,9 @@
 # Mass Import semantic palette: bounded diagnosis (SM-64)
 
+The diagnosis below remains historical, not relabelled as a repair test.
+The scoped Kit0.4.122 implementation and paired native-shaped design successor
+are recorded in [SM-64 report palette successor](mass-report-palette-successor-2026-10-06.md).
+
 Batch EED-UI-2026-0073. Palette diagnosis, **not a CSS palette repair** or native
 browser/human result. The bounded Product design reconciliation below is now
 saved, independently of the palette/code gate. SM-01..73 and
