@@ -61,3 +61,23 @@ therefore correctly owns that visible menu button. Explicit focus successor
 changes only that expected return target; all nine endpoint assertions remain.
 The missing sticky Move issue stays registered. No UI/controller change; all
 cleanup complete and no blocked/business writes.
+
+Native focus successor054652983Z-46140 PASS: nine endpoints at1600/768/390
+plus two actual Participant mobile-menu entries. Host and parent terminal jump
+are both exactly0px in every case; margin0, hidden/inert/inline/effect cleanup,
+dropdown trigger focus, modal return focus and native selections pass. No page
+errors, blocked requests, data/fixtures; cleanup complete. This certifies sampled
+terminal continuity, not natural reversal, all locales or human fluency.
+The initial editor capture was stale: after verified saved reload and native
+layer selection/zoom, library-settled-editor.png shows the correct searchable
+multiple controls with search/clear/two selected rows. Kept first/reload captures
+as historical/incomplete; no clean-export or human acceptance claim. Own MCP
+heartbeat remains unavailable after reload/reconnect despite responsive editor;
+do not reset the independent Guide connection or unknown other clients.
+
+Behavior predecessor054912882Z-20436 passes three desktop Role/Group/Grouping
+search/select/clear/Escape cases, then its :visible host locator disappears
+when the parent correctly closes. Stable successor qualifies visible hosts at
+opening, retains native trigger IDs for closed-state queries and keeps every
+original cleanup/nested/reduced oracle. No source asset changes or fabricated
+visibility; failed run/complete cleanup/zero errors and writes retained.
