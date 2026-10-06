@@ -27,6 +27,13 @@ test('Mass report palette follows independent roles in the served Moodle cascade
     await page.route('**/lib/ajax/service.php*', route=>{
         if(route.request().method()!=='POST')return route.continue();
         let methods=[];try{methods=route.request().postDataJSON().map(c=>c.methodname);}catch(_){}
+        // Moodle's global message drawer polls the current unsent draft even
+        // on Mass Import. As in the existing dialog palette protocol, return
+        // an empty read result without reading/persisting a real private draft.
+        if(methods.length&&methods.every(m=>m==='core_message_get_unsent_message')){
+            return route.fulfill({status:200,contentType:'application/json',
+                body:JSON.stringify(methods.map(()=>({error:false,data:{}})))});
+        }
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
         if(methods.length&&methods.every(m=>reads.has(m)))return route.continue();

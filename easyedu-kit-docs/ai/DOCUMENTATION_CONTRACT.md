@@ -9,6 +9,11 @@ historical diagnostic/guards pinned and add a separately bounded successor.
 Qualify composed native `.btn` interaction paint so later theme CSS cannot win
 an equal-specificity tie. Preserve the failing native run and unchanged strict
 scenario; a rest-paint sentinel alone cannot prove canonical hover ownership.
+Native cascade protocols may stub the global unsent-message read with an empty
+result instead of reading a private draft; unknown methods remain denied. Keep
+paint and protocol failures distinct. Native font/radius/line metrics can expose
+isolated Penpot differences: retain exact partial-write IDs and reconcile every
+paired copy after reconnection before claiming design parity.
 
 Penpot persistence recovery separates autosave from version snapshots. After a
 snapshot504, read the actual saved file and exact affected objects before reload

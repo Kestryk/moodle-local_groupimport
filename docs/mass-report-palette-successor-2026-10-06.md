@@ -120,20 +120,62 @@ stay unchanged, but actual native Export interactive paint intentionally gains
 canonical ownership. The isolated372 successor and full source guard pass.
 The native spec is unchanged and must pass after the source correction.
 
-Native successor run is pending at this source checkpoint. Actual lifecycle,
-persisted settings, full-board long-copy/responsive/raster and human acceptance
-stay OPEN even if that bounded cascade test later passes. The historical
-diagnostic and SM-59 guards stay pinned, not rewritten to claim this successor.
+## Served native successor proof
+
+Source `d284e8473c68ad3a9df4327335dfcc3d59d3ebcd` was promoted through managed
+record `20261006T131156Z` (dry-run `20261006T131146Z`, cachesPurged=true) to clean
+runtime `cdd85179dd026ab763c0e0f12a25f0284696e5f8`. Served CSS blob is
+`96499cd120c1aa898b6ba16a1dd41f2d87fdc014`; unchanged course-manager AMD blob is
+`bc5cec771d2a60367a76c62558a114cb3efb9f25`.
+
+Second run `easystud-authenticated-20261006T131224976Z-16300` completed all15
+paint/geometry cases, but FAILED the final request guard because Moodle's global
+message drawer polled `core_message_get_unsent_message`. Retain that overall
+failure. The protocol successor returns an empty result for that read only,
+as in the earlier dialog-palette protocol; it neither reads nor saves a real
+private draft. Unknown core methods and product commands remain blocked. No
+product assertion or source paint was weakened.
+
+Fresh run `easystud-authenticated-20261006T131436053Z-44724` PASSED one discovered
+test and15 combinations:1600/768/390, official, independent Primary, independent
+Accent, light chosen/readable pair and restored defaults. It verifies native
+root roles, seven stable geometry/type/Motion specimens, warning/error/white
+row preservation,10.4px icon gap, canonical hover, actual Tab focus and disabled
+paint. `blocked=[]`, `errors=[]`; credentials cleared, owned child stopped and
+runtime lease released. No fixture requested or data mutation performed.
+
+This is real native-cascade proof with transient representative DOM, not proof
+of a completed import or persisted settings. Actual lifecycle, persisted
+settings, full-board long-copy/responsive/raster and human acceptance stay OPEN.
+Historical diagnostic and SM-59 guards remain pinned.
+
+## Native metric reconciliation remains open
+
+Native Export is37.59375px high,15px EasyEdu Inter,18px line height,8px radius,
+10.390625px painted gap and theme-dependent intrinsic width262.390625px at1600.
+The first249.48px Penpot specimen used14.08px labels and6px radius: that was an
+isolated recipe comparison, not exact theme parity. Native summary resolves to
+43.25px high with16.896px line height; report line42.609375px with19.008px line
+height and20px glyph. Browser subpixel rounding is recorded, not normalized away.
+
+An exact-ID source-only Penpot correction was acknowledged before the connection
+failed: six Library roots now target summary43.28/line42.64, summary line1.2 and
+Export15px/radius8. Action intrinsic width still needs settled text measurement.
+Standard/Product copies have NOT yet been reconciled or verified against these
+successor dimensions. Earlier68 saved-file assertions describe the predecessor
+only. The MCP connection then reported missing userToken; a reconnection request
+was sent. Do not replay the write blindly or claim the paired design complete.
 
 ## Next
 
-Commit/push the scoped Kit and Source, run the approved managed preview followed
-by the one non-destructive native-cascade scenario. Reconcile actual theme
-metrics before further Product propagation; retain older unfinished lots,
+Preserve/push the native protocol and this proof, then reconcile actual theme
+metrics across Library/Standard/Product after exact saved-file readback;
+retain older unfinished lots,
 including SM-63,65..73 and Guide-owner SM-61. No human action is required now.
 
 Efficiency: one existing worktree pair, one seven-block CSS gate, one isolated
-browser, bounded design IDs and one planned native scenario. No new worktree,
+browser, bounded design IDs and three native runs (one actual paint failure,
+one protocol failure, one fresh PASS). No new worktree,
 parallel writer or repeated full all-modal matrix. Numeric token usage is not
 available; repeated guessed CWD/path reads were avoidable and are not a model
 quota measurement.
