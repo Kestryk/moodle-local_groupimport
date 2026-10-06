@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Qualify visible native controls before retaining stable IDs for closed-state
+assertions: :visible locators correctly disappear when the parent closes.
+Native menu modal return focus owns the original visible menu trigger, not its
+hidden option. Preserve failed oracles and separate an actually missing sticky
+action from a geometry regression. Core login/template failures before auth
+provide no widget proof; retain them, check current read-only state and do not
+extend UI deadlines or rewrite product styles to bypass a runtime failure.
+
 Qualify actual choice family before asserting its terminal animation. Legacy
 effects without end fill can show full content immediately before hidden;
 capture that failed frame and consume canonical Framed Motion at the adapter,

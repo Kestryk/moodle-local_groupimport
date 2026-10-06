@@ -1,5 +1,12 @@
 # EasyStud review successor - 5 October 2026
 
+Compact Move availability follow-up is an owned bounded source candidate:
+desktop structure-first hidden state no longer poisons mobile Participant Move.
+24 default/view/hidden branches and whole other-source/style preservation PASS;
+AMD rebuilt. Three existing Product trays already show Move and receive policy
+metadata; no new Kit skin/engine. Native entry/Cancel/desktop-return and human
+remain OPEN. See mobile-move-availability-successor-2026-10-06.md.
+
 SM55 shared filter Motion is served and native successor055405901Z-38752 PASS39:
 11 native search/select/clear cases,21 one-click nested closes/reopens and7 static
 reduced cases at1600/768/390. Nine terminal continuity cases already PASS0px.

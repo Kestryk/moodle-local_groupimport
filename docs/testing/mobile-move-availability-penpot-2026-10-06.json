@@ -1,0 +1,31 @@
+{
+  "publication": {
+    "file": "220f6449-533e-815b-8008-ad9958d032a1",
+    "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+    "consumers": [
+      {
+        "id": "37222e98-689a-801a-8008-bbeddcd41ac2",
+        "name": "Composition / Selection tray / 1 selected / 3 actions",
+        "width": 729.96,
+        "height": 128.72000000000025,
+        "policy": "Compact Participant selection retains Move participant(s) independently of saved desktop layout. Native selected count enables action; zero selection hides tray. Cancel restores visible sticky trigger. Desktop return reapplies saved desktop availability. Same canonical tray/controls/paint; source availability fix, not a new skin."
+      },
+      {
+        "id": "37222e98-689a-801a-8008-bbed2f6745d7",
+        "name": "Composition / Selection tray / 3 selected / 3 actions",
+        "width": 351.96000000000004,
+        "height": 128.72000000000116,
+        "policy": "Compact Participant selection retains Move participant(s) independently of saved desktop layout. Native selected count enables action; zero selection hides tray. Cancel restores visible sticky trigger. Desktop return reapplies saved desktop availability. Same canonical tray/controls/paint; source availability fix, not a new skin."
+      },
+      {
+        "id": "37222e98-689a-801a-8008-bbed63430e8b",
+        "name": "Composition / Selection tray / 3 selected / 3 actions",
+        "width": 729.96,
+        "height": 128.72000000000116,
+        "policy": "Compact Participant selection retains Move participant(s) independently of saved desktop layout. Native selected count enables action; zero selection hides tray. Cancel restores visible sticky trigger. Desktop return reapplies saved desktop availability. Same canonical tray/controls/paint; source availability fix, not a new skin."
+      }
+    ],
+    "validation": []
+  },
+  "note": "Three existing Participant trays already show Move; preserve paint/providers/geometry, metadata policy only. saveVersion and GET200 confirm compactMovePolicy saved; validate[]. Native and human gates separate."
+}

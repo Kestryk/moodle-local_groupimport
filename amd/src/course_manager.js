@@ -2598,6 +2598,10 @@ const bindMobileEntityViews = root => {
         // Desktop focus classes hide whole regions and must not leak into the
         // three independent responsive workspaces.
         root.classList.remove(participantFocusClass, structureFocusClass);
+        // Compact workspaces do not inherit the desktop structure-only action hiding.
+        root.querySelectorAll('[data-easystud-move-selected-participants]').forEach(button => {
+            button.hidden = false;
+        });
         clearSelectionState(root);
         updateSelectionActions(root);
 
