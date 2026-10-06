@@ -1,0 +1,123 @@
+# SM-64 native report palette successor
+
+EED-UI-2026-0073, existing Source/Kit worktrees only. This is a bounded successor
+to `mass-import-semantic-palette-audit-2026-10-06.md`, not closure of SM-01..73,
+the entire Mass Import lifecycle or the human checklist. Guide remains owned
+by its parallel window and its browser/server/token/project were untouched.
+
+## Implementation and boundaries
+
+Kit0.4.122 owns `_report-palette-classes.scss` and `components/_reports.scss`.
+`data-classes` includes the public report paint. Source imports only these
+scoped modules and that dependency; the existing components forwarding file
+gets one additive reports export. No whole-directory Kit sync or downgrade.
+
+Actual `index.php` adds the validated role flag and public classes to the two
+success summaries, report success heading/list and annotated Export. Existing
+PHP palette validation and readable/chosen separation are unchanged. Official
+success-summary/title/glyph recipes move into canonical delegates with exact
+emitted CSS identity; danger and warning meanings remain distinct.
+
+Custom Accent maps summary surface/contour/ink and report heading/check glyph.
+Custom Primary maps outlined Export rest paint through the Kit and retains its
+Regular geometry, canonical icon gap, shared hover/focus/disabled states and
+Motion. Remove each role on Restore defaults: default report literals and native
+theme-owned Export rest paint remain EXACTLY as before this tranche.
+
+This does not normalize every old component or claim all styles are class-only:
+legacy report geometry still delegates through product selectors to Kit mixins.
+No PHP business flow, template, controller, AMD build, import, rollback, export
+command, settings Save, real participant/group role or fixture is changed.
+Native floor remains declared Moodle5.1; no compatibility claim for another
+version. Official Moodle coding style and the platform coding contract were read;
+the change uses existing HTML writer class adapters, not a new Moodle API.
+
+## Paired design (prior examples preserved)
+
+Foundation Library08.8.1 host `b8f49f05-1e1d-8037-8008-bf94dcd4da52` and
+Standard08.8 host `b8f49f05-1e1d-8037-8008-bf95a378adbb`:80,9640,1560x430.
+Product01 host `b8f49f05-1e1d-8037-8008-bf9715fd2478`:80,18244.765625,1560x430.
+All hosts have `sm64-native-report` metadata. Existing largest previous bottom
+is9520 in Foundations and18124.765625 in Product; these comparison hosts do not
+overlap previous active boards. No existing full composition is silently removed.
+
+All table IDs below have prefix `b8f49f05-1e1d-8037-8008-`.
+
+| Native role | Provider | Main | Standard | Product |
+| --- | --- | --- | --- | --- |
+| Summary Official | bf94e3f954b4 | bf94de8c6ba1 | bf95cdc19135 | bf97181d17a0 |
+| Line Official | bf94e41337c4 | bf94e07e9910 | bf95cddfc734 | bf97185f05a6 |
+| Outlined action Official | bf94e430c8e6 | bf94e2945198 | bf95cdfcbd78 | bf971896e4c2 |
+| Summary Custom | bf94e9788411 | bf94e4b09909 | bf95ce56c4ad | bf9718cd0348 |
+| Line Custom | bf94e986d6b1 | bf94e5bc2b7a | bf95ce6f3f1c | bf971906e227 |
+| Outlined action Custom | bf94e9a7c3f7 | bf94e7dfb04c | bf95ce8775b4 | bf9719401c7d |
+
+Six Standard and six Product recursive geometry/paint/type fingerprints match
+their sources; validate[] in both files. Agent inspected contained Standard
+export. Native recipe geometry: inline count/label328x44.816 (Inter18.88/14.08),
+single-message Line676x40.848 (Inter14.08),20px circle and linked11.2px check slot,
+no Close. Outlined action249.48x37.6, linked14.08px Excel slot,10.4px gap. Its
+intrinsic sample width derives from settled text rather than stretched292px.
+Vector glyph providers remain the existing canonical Check/Excel components.
+Theme-dependent button radius/font raster are a separate native comparison gate.
+
+The generic stacked summary/inline notification families and the previous twelve
+full-view instances remain recoverable and unchanged by this tranche. The new
+native-shaped usages reconcile their documented anatomy without globally
+repainting those generic providers. Product board propagation is still separate.
+
+First Standard copy attempted to clone inactive-page ordinary text and was
+rejected. The empty host was reconciled by exact ID, then filled without a second
+host; no source instance was discarded. Settled auto-width count/action labels
+were read before centring and provider paths made uniquely Summary/Line/Action.
+
+Saved-file proof uses `audit-saved-native-report-roles.cjs`: actual authenticated
+GET200 for Foundations and Product,68 assertions over exact provider/copy IDs,
+dimensions and file links. No auth export, editor write or version-snapshot claim.
+
+## Tests and scenario registry backlink
+
+- Sass1.79.1 rebuild PASS; existing unrelated mixed-declarations warning retained.
+- `test-mass-report-palette-preservation.cjs <kit-root>` PASS: exactly seven new
+  report-role blocks removed, remaining complete CSS equals Source9726efb;
+  exact class/role adapters only; all commands/controllers/Motion/Guide identical.
+- `test-mass-report-semantic-palette.cjs <playwright-modules>`372 isolated
+  assertions PASS at1600/768/390, six palettes including distinct light chosen
+  colours, exact official restore, geometry/type/Motion identity, independent
+  roles, actual soft-surface contrast>=4.5 and keyboard/hover/disabled Export.
+  Rest uses an explicit Bootstrap sentinel, NOT native theme RGB proof.
+- Actual PHP role-identity45 PASS; changed index.php lint PASS.
+- Kit Phase0 Mass/Administration contract PASS. Scoped code/package and metadata
+  must retain0.4.122 together; older module pins remain historical.
+- Harness predecessor failures were missing csv_import filename, repeat keyboard
+  entry and disabled state leaking between viewport baselines. Corrected harness
+  establishes a real preceding keyboard entry and resets each baseline; no
+  product change or weakened assertion to turn those failures into a UI fix.
+
+`tools/playwright/mass-report-semantic-palette.spec.js` is **local-supervised**,
+immutable for its run. Owner EasyStud implementation; course5 GET only, active
+runtime lease, saved process-local credentials. Actual native root/served CSS
+plus transient representative report DOM, not a real completed import page.
+It blocks product POSTs/unknown core AJAX, tests three widths/five transient
+palettes and Export keyboard/hover/disabled, removes specimens/restores original
+style in finally. No upload/import/history restoration/Export click or Save.
+CI blockers: supervised Moodle5.1/theme/auth. Platform scenario registry/batch
+owner receives this portable backlink; no competing shared-plan edit.
+
+Native run/promotion is pending at this source checkpoint. Actual lifecycle,
+persisted settings, full-board long-copy/responsive/raster and human acceptance
+stay OPEN even if that bounded cascade test later passes. The historical
+diagnostic and SM-59 guards stay pinned, not rewritten to claim this successor.
+
+## Next
+
+Commit/push the scoped Kit and Source, run the approved managed preview followed
+by the one non-destructive native-cascade scenario. Reconcile actual theme
+metrics before further Product propagation; retain older unfinished lots,
+including SM-63,65..73 and Guide-owner SM-61. No human action is required now.
+
+Efficiency: one existing worktree pair, one seven-block CSS gate, one isolated
+browser, bounded design IDs and one planned native scenario. No new worktree,
+parallel writer or repeated full all-modal matrix. Numeric token usage is not
+available; repeated guessed CWD/path reads were avoidable and are not a model
+quota measurement.

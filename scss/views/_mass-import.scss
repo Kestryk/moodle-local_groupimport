@@ -515,7 +515,7 @@
   }
 
   &-summary__item--success {
-    @include easyedu.report-summary-item(#eef8f2, #cfe7d9, #1f6748);
+    @include easyedu.report-success-summary;
   }
 
   &-summary__item--error {
@@ -532,7 +532,7 @@
   }
 
   &-report__title--success {
-    @include easyedu.report-title(#1f6748);
+    @include easyedu.report-success-title;
   }
 
   &-report__title--error {
@@ -544,8 +544,7 @@
   }
 
   &-report--success .fa {
-    background: #e4f5eb;
-    color: #1f6748;
+    @include easyedu.report-success-glyph;
   }
 
   &-report--error .fa {

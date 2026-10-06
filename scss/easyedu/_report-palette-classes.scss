@@ -1,0 +1,28 @@
+// Paint-only opt-ins for reports with independently configured brand roles.
+// Declare space-separated primary/success ONLY for non-default validated roles.
+// Existing report/button recipes retain geometry, typography and Motion.
+@use "components/buttons";
+
+@mixin report-palette-classes {
+  .easyedu-ui[data-easyedu-report-palette~="success"] .easyedu-report-summary--success {
+    background: var(--easyedu-accent-soft);
+    border-color: color-mix(in srgb,
+      var(--easyedu-accent-chosen, var(--easyedu-accent)) 24%, #fff 76%);
+    color: var(--easyedu-accent);
+  }
+  .easyedu-ui[data-easyedu-report-palette~="success"] .easyedu-report-title--success {
+    color: var(--easyedu-accent);
+  }
+  .easyedu-ui[data-easyedu-report-palette~="success"] .easyedu-report-list--success > li > .fa {
+    background: var(--easyedu-accent-soft);
+    color: var(--easyedu-accent);
+  }
+  .easyedu-ui[data-easyedu-report-palette~="primary"] .easyedu-button--outline-primary {
+    // The native outlined action's rest paint is otherwise theme-owned. This
+    // explicit custom-role opt-in does not repaint official/default actions.
+    background: var(--easyedu-surface);
+    border-color: var(--easyedu-primary);
+    color: var(--easyedu-primary);
+    @include buttons.button-interaction-states;
+  }
+}

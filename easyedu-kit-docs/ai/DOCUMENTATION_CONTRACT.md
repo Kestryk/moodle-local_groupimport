@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Native report palette successors preserve complete default/unrelated CSS and
+commands. Native inline summaries/single-message lines are separate from resized
+generic providers. Public paint flags are validated and independent; warnings
+and danger never inherit brand success. A real Moodle cascade with transient
+specimens is not an import lifecycle or settings-persistence result. Keep the
+historical diagnostic/guards pinned and add a separately bounded successor.
+
 Penpot persistence recovery separates autosave from version snapshots. After a
 snapshot504, read the actual saved file and exact affected objects before reload
 or replay; metadata presence alone is not geometry proof. Decode Transit shape

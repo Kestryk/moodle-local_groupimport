@@ -1096,6 +1096,7 @@ echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !=
     'data-easyedu-action-busy-label' => get_string('actioninprogress', 'local_groupimport'),
     'data-easyedu-custom-rails' => $themerailroles,
     'data-easyedu-dialog-palette' => $themerailroles,
+    'data-easyedu-report-palette' => $themerailroles,
     'style' => $themestyle,
 ]);
 
@@ -1276,7 +1277,7 @@ if ($preview !== null) {
     echo html_writer::tag('div',
         html_writer::tag('span',
             html_writer::tag('strong', $rowcount) . ' ' . get_string('importpreviewrows', 'local_groupimport'),
-            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success']
+            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success easyedu-report-summary--success']
         ) .
         html_writer::tag('span',
             html_writer::tag('strong', $warningcount) . ' ' . get_string('importpreviewwarnings', 'local_groupimport'),
@@ -1505,7 +1506,7 @@ if ($preview !== null) {
     echo html_writer::tag('div',
         html_writer::tag('span',
             html_writer::tag('strong', count($success)) . ' ' . get_string('successheader', 'local_groupimport'),
-            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success']
+            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success easyedu-report-summary--success']
         ) .
         html_writer::tag('span',
             html_writer::tag('strong', count($errors)) . ' ' . get_string('errorheader', 'local_groupimport'),
@@ -1519,10 +1520,10 @@ if ($preview !== null) {
 
     if (!empty($success)) {
         echo html_writer::tag('h4', get_string('successheader', 'local_groupimport'), [
-            'class' => 'local-groupimport-import-report__title local-groupimport-import-report__title--success',
+            'class' => 'local-groupimport-import-report__title local-groupimport-import-report__title--success easyedu-report-title--success',
         ]);
         echo html_writer::start_tag('ul', [
-            'class' => 'local-groupimport-import-report local-groupimport-import-report--success',
+            'class' => 'local-groupimport-import-report local-groupimport-import-report--success easyedu-report-list--success',
         ]);
         foreach ($success as $msg) {
             echo html_writer::tag('li',
@@ -1558,7 +1559,7 @@ if ($preview !== null) {
                 ]),
                 html_writer::span('', 'fa fa-file-excel', ['aria-hidden' => 'true']) .
                     html_writer::span(get_string('importexportresults', 'local_groupimport')),
-                ['class' => 'btn btn-outline-primary easyedu-action-with-icon local-groupimport-import__export-results']
+                ['class' => 'btn btn-outline-primary easyedu-action-with-icon local-groupimport-import__export-results easyedu-button--outline-primary']
             ),
             'local-groupimport-import-preview__result-actions'
         );

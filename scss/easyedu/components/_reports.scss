@@ -1,0 +1,17 @@
+// Native report roles. These defaults deliberately preserve the published
+// inline count/label and single-message report anatomy, not the generic
+// notification or stacked dashboard-summary component.
+@use "tables";
+
+@mixin report-success-summary {
+  @include tables.report-summary-item(#eef8f2, #cfe7d9, #1f6748);
+}
+
+@mixin report-success-title {
+  @include tables.report-title(#1f6748);
+}
+
+@mixin report-success-glyph {
+  background: #e4f5eb;
+  color: #1f6748;
+}

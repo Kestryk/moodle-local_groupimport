@@ -26,6 +26,13 @@ deduplicated, not dropped. An accepted requirement is not an implementation PASS
 
 ## Accepted lots
 
+SM-64 report successor consumes scoped Kit0.4.122 public paint;372 isolated
+palette/state assertions and full unrelated/default CSS/command/Motion identity
+PASS. Six native-shaped Foundation providers have paired Standard and linked
+Product comparisons; prior generic/full-view examples preserved. Native cascade
+and full lifecycle/persistence/human remain separate gates. See
+`mass-report-palette-successor-2026-10-06.md`; no older unfinished lot is closed.
+
 SM-59 bounded source candidate consumes Kit0.4.121 paint only.96 isolated,
 shared chrome and exact unrelated CSS/controller/Motion guards PASS. Four
 source-preserving custom header providers and paired Standard examples saved

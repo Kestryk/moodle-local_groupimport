@@ -5,6 +5,7 @@
 @use "components/tables";
 @use "components/typography" as type;
 @use "foundation-classes" as foundation;
+@use "report-palette-classes" as reports;
 
 @mixin data-classes {
   .easyedu-ui .easyedu-button--neutral {
@@ -190,4 +191,5 @@
     .easyedu-ui .easyedu-table-toolbar .easyedu-button { width: 100%; }
     .easyedu-ui .easyedu-choice .easyedu-segmented-choice__options { grid-template-columns: minmax(0, 1fr); }
   }
+  @include reports.report-palette-classes;
 }

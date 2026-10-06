@@ -4,13 +4,23 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "massReportSemanticPalette20261006": {
+      "kitVersion": "0.4.122",
+      "kitCommit": "49218ece4d0eec710c34afcad635a7c941c523a4",
+      "modules": ["scss/easyedu/_report-palette-classes.scss", "scss/easyedu/components/_reports.scss", "scss/easyedu/_data-classes.scss"],
+      "documentation": "docs/mass-report-palette-successor-2026-10-06.md",
+      "scope": "Seven additive paint blocks and canonical default report delegates; validated independent roles and class-only PHP adapters. No commands, geometry, Motion or whole-tree sync.",
+      "status": "372 isolated and complete default/unrelated CSS/command/Motion identity PASS. Six paired Foundation/Standard and six linked Product comparisons saved;68 saved-file assertions PASS. Served native cascade pending; actual lifecycle, persistence and human OPEN.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "dialogSemanticPalette20261006": {
       "kitVersion": "0.4.121",
       "kitCommit": "5891d8cde05eab1ebf34d89807d81db5a0e8ab49",
       "modules": ["scss/easyedu/_dialog-classes.scss", "scss/easyedu/_dialog-palette-classes.scss"],
       "documentation": "docs/dialog-semantic-palette-2026-10-06.md",
       "scope": "Five optional paint blocks, role flags, six header class consumers, existing relay clears only two optional tint tokens; geometry/commands/Motion preserved",
-      "status": "96 isolated/old shared chrome/public SCSS package and complete unrelated source/CSS identity PASS. Four paired Foundations providers saved. Native60 scoped paint/geometry/portal/default-restore PASS; Product custom/all lifecycle/persistence/human OPEN.",
+      "status": "96 isolated/old shared chrome/public SCSS package and complete unrelated source/CSS identity PASS. Four paired Foundations providers and four linked Product custom comparisons saved. Native60 scoped paint/geometry/portal/default-restore PASS; full lifecycle/persistence/human OPEN.",
       "nativePreviewVerified": true,
       "nativeRunId": "easystud-authenticated-20261006T102719508Z-44344",
       "humanVisualValidated": false
