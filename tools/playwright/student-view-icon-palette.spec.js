@@ -73,7 +73,8 @@ test('View switcher icons consume semantic palette with stable geometry', async(
         await expect(switcher).toBeVisible();
         const original = await root.getAttribute('style');
         const modes = switcher.locator('button');
-        expect(await modes.count()).toBe(3);
+        const modeCount = await modes.count();
+        expect([2, 3]).toContain(modeCount);
         try {
             for (const palette of [
                 {name: 'saved', style: original},
@@ -82,8 +83,8 @@ test('View switcher icons consume semantic palette with stable geometry', async(
                 {name: 'light-chosen-readable-ink', style: '--easyedu-primary:#765300;--easyedu-primary-chosen:#ffae00;--easyedu-primary-soft:#fff7e6;'},
             ]) {
                 await root.evaluate((node, style) => {node.style.cssText = style || '';}, palette.style);
-                for (let index = 0; index < 3; index++) {
-                    const button = modes.nth(index), other = modes.nth((index + 1) % 3);
+                for (let index = 0; index < modeCount; index++) {
+                    const button = modes.nth(index), other = modes.nth((index + 1) % modeCount);
                     await other.click(); await page.mouse.move(1, 1); await settle();
                     const baseline = await sample(button, 'rest');
                     for (const state of ['rest', 'hover', 'focus', 'pressed', 'disabled']) {
@@ -94,7 +95,7 @@ test('View switcher icons consume semantic palette with stable geometry', async(
                         if (state === 'disabled') await button.evaluate(n => {n.disabled = true;});
                         await settle();
                         const result = await sample(button, state);
-                        records.push({palette: palette.name, index, ...result});
+                        records.push({palette: palette.name, modeCount, index, ...result});
                         for (const property of ['background', 'color']) {
                             result.actual[property].forEach((v, i) => expect(Math.abs(v - result.expected[property][i])).toBeLessThanOrEqual(1));
                         }
@@ -112,7 +113,9 @@ test('View switcher icons consume semantic palette with stable geometry', async(
             const compact = root.locator('[data-easystud-mobile-view-switcher]');
             await expect(compact).toBeVisible();
             expect(await compact.getAttribute('class')).not.toContain('switcher--tiled');
-            for (const button of await compact.locator('button').all()) {
+            const compactButtons = compact.locator('button:visible');
+            expect([2, 3]).toContain(await compactButtons.count());
+            for (const button of await compactButtons.all()) {
                 await button.click(); await settle();
                 expect(await button.locator('.fa').evaluate(n => getComputedStyle(n).backgroundColor)).toBe('rgba(0, 0, 0, 0)');
                 records.push({width, compactPlainIcon: true});

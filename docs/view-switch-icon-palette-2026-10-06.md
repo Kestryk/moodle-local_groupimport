@@ -1,5 +1,19 @@
 # Semantic view-switch icon paint (SM-60)
 
+## Preserved initial native diagnostic
+
+Candidate `3b12f4e33c0442032e6c6b6333113136c728c298` is served at clean managed
+runtime `04f968910e5e978c27ea3abad37e7055473571d6`, request
+`20261006T094317Z-a29c506fa1`, promotion `20261006T094337Z.json`; caches refreshed.
+Run `easystud-authenticated-20261006T094407485Z-33040` stopped before paint
+sampling because its initial harness assumed three desktop modes. This course's
+real configuration exposes two; no setting is changed to manufacture a third.
+The successor samples the actual two-or-three mode count and only visible
+compact controls. This repairs the test assumption, not product availability.
+errors=[], blocked=[], records=[]; credentials cleared, child stopped, runtime
+lease released and no fixture requested. Preserve the failed immutable run.
+Three-choice isolated proof is not native three-choice configuration proof.
+
 EED-UI-2026-0073. Source candidate; native gate below is pending until its exact
 pushed candidate is served and the immutable scenario finishes. Human OPEN.
 
