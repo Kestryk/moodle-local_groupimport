@@ -13112,9 +13112,22 @@
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item {
     flex-basis: 11.375rem;
   }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer {
+    flex-wrap: wrap;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count {
+    width: auto;
+    flex: 1 0 100%;
+    text-align: end;
+    order: 0;
+  }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions {
-    width: auto;
+    width: min(100%, 15rem);
+    flex: 0 1 15rem;
+    align-items: stretch;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn {
