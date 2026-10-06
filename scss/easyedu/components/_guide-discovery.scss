@@ -184,6 +184,14 @@
     &__person { display: flex; gap: 0.625rem; padding: 0.625rem; background: var(--easyedu-surface-soft); border-radius: 0.5rem; margin-block: 0.625rem; }
     &__field { display: grid; gap: 0.5rem; }
     &__field input { @include text-fields.foundation-text-field; width: 100%; }
+    &__creation-controls {
+      display: flex;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      .easyedu-guide-scene__field { flex: 0 1 22.5rem; min-width: 0; max-width: 100%; }
+      .easyedu-guide-scene__actions { margin: 0; min-height: var(--easyedu-control-height, 2.375rem); }
+    }
     &__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-block: 0.75rem; }
     &__actions .btn { @include buttons.selection-action; @include buttons.button-size(small); }
     &__actions .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }

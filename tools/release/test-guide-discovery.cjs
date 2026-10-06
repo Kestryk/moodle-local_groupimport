@@ -10,6 +10,7 @@ const root = path.resolve(__dirname, '../..');
     const browser = await chromium.launch({headless: true, channel: 'chrome'});
     try {
         const page = await browser.newPage({reducedMotion: 'reduce'});
+        page.setDefaultTimeout(10000);
         await page.route('**/*', route => route.fulfill({status: 200, contentType: 'text/html', body: '<html></html>'}));
         await page.goto('http://guide.test');
         for (const language of ['fr', 'en']) {
@@ -28,6 +29,19 @@ const root = path.resolve(__dirname, '../..');
                 const modal = page.locator('[data-easyedu-guide-modal]');
                 if (!await modal.isVisible()) { await page.locator('[data-easyedu-guide-open]').click(); }
                 await page.locator('[data-easyedu-guide-nav-item="1"]').click();
+                const creation = page.locator('.easyedu-guide-scene__creation-controls');
+                const inputBounds = await creation.locator('input').boundingBox();
+                const actionBounds = await creation.locator('.easyedu-guide-scene__actions').boundingBox();
+                const creationBounds = await creation.boundingBox();
+                assert.ok(inputBounds.width > 0 && inputBounds.x + inputBounds.width <= creationBounds.x + creationBounds.width + 1);
+                assert.ok(actionBounds.x + actionBounds.width <= creationBounds.x + creationBounds.width + 1);
+                if (width === 1280) {
+                    assert.ok(actionBounds.x > inputBounds.x + inputBounds.width, 'Desktop creation actions follow the input');
+                    assert.ok(Math.abs(actionBounds.y + actionBounds.height - inputBounds.y - inputBounds.height) <= 1,
+                        'Desktop creation controls share their bottom baseline');
+                } else if (width === 390) {
+                    assert.ok(actionBounds.y >= inputBounds.y + inputBounds.height, 'Phone controls wrap without overlapping');
+                }
                 await page.locator('[data-guide-scene-command="preview"]').click();
                 assert.equal(await page.locator('[data-guide-names] > span').count(), 3);
                 await page.locator('[data-guide-scene-command="letters"]').click();
