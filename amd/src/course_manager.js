@@ -5405,7 +5405,9 @@ const updateSelectionAvailability = root => {
         const selected = item.classList.contains(selectedClass);
         const disabled = !!activetype && !areSelectionTypesCompatible(activetype, type) && !selected;
         item.classList.toggle(disabledSelectionClass, disabled);
-        item.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+        // Only selection is unavailable: the card's nested actions stay usable.
+        // Native input.disabled below expresses the checkbox's actual state.
+        item.removeAttribute('aria-disabled');
 
         const input = getSelectionInput(item);
         if (input) {

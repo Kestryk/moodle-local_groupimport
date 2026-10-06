@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Selection accessibility scope successor (SM-62)
+
+- Preserve a native failed fold attempt: whole-card ARIA disabled also disabled
+  its nested commands. Scope unavailability to existing selection paint/guards
+  and native disabled checkbox, leaving fold/search/actions available.
+- Forty isolated availability states pass; original fold logic, commands, CSS,
+  Motion and immutable native scenario unchanged. Fresh served/native gate OPEN.
+
 ## 2026-10-06 - Group fold scoped selection candidate (SM-62)
 
 - Folding clears only that Group's selected member copies through the existing
