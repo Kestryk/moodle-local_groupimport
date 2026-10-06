@@ -1,8 +1,8 @@
 # Dialog semantic palette successor (SM-59)
 
 Latest bounded result:96 isolated and60 served-native checks PASS; original
-geometry/type/Motion retained. Foundations source/Standard saved; Product custom
-examples still await the correct hosted connection. Human checklist OPEN.
+geometry/type/Motion retained. Foundations source/Standard and four linked Product
+custom examples are saved. Human checklist OPEN.
 
 Batch EED-UI-2026-0073. Source candidate, not human acceptance. Previous lots
 SM-01..73 and the combined checklist remain OPEN; Guide separately owned.
@@ -75,16 +75,28 @@ Original default providers and full compositions stay intact. SDK saved versions
 and validate[]; actual authenticated get-file?id readback200 confirms both hosts.
 Initial incorrect get-file?file-id request400 is not persistence proof.
 
-Product page04 connected Library exposes all four new providers. Creating its
-linked comparison host timed out after120 seconds; do not replay until actual
-readback establishes whether anything was saved. The dedicated browser's plugin
-now points to localhost:4400, reserved for Guide, instead of the implementation
-hosted plugin. Do not change that server/token/manifest or use the Guide tool.
-Requested hosted reconnection; Product publication, raster inspection and human
-acceptance remain OPEN. Paired readback is not visual or all-state acceptance.
-Actual Product get-file?id readback200 contains neither the attempted host name
-nor its `sm59-palette-host` metadata: no saved Product addition is proven after
-that timeout. Check live editor again after hosted reconnection before retrying.
+The implementation's hosted connection was restored, without editing the Guide
+server/token/manifest/profile. Live readback first confirmed no previous host;
+then Product page04 received the four linked instances below on comparison host
+`14d0232d-e3f9-80dc-8008-bf89dbbfc60c` at80/9100,1800x420. Existing accepted
+compositions remain intact. Saved version, validate[] and actual authenticated
+get-file?id HTTP200 confirm host and all four instance IDs.
+
+| Role | Product linked instance |
+| --- | --- |
+| Desktop primary | 14d0232d-e3f9-80dc-8008-bf89dc21d01e |
+| Desktop success | 14d0232d-e3f9-80dc-8008-bf89dc8267cf |
+| Narrow primary | 14d0232d-e3f9-80dc-8008-bf89dcf6bdaf |
+| Narrow success | 14d0232d-e3f9-80dc-8008-bf89dd42d571 |
+
+Recursive85-node paint/type/content fingerprints match their source providers
+exactly. Maximum relative geometry delta is9.094947017729282e-13px, measured
+directly rather than widening a rounding comparison. Earlier1e-8 rounding
+placed a tiny glyph-height value on opposite sides of the boundary; it was not
+a real geometry defect. The exported comparison is contained and preserves
+canonical Entity title/glyph/Close with purple/brown tints. This is agent visual
+inspection of the comparison, not full native modal raster parity or human
+acceptance. Historical timeout/misconnection evidence is retained in Git.
 
 ## Continuation and efficiency
 
@@ -106,7 +118,9 @@ No page errors/blocked writes/real draft consumption/Save/Move/Send/import/
 restore/fixtures. All cleanup flags true, managed runtime clean/previewed.
 Retention dry-run1 protected, zero candidates/deletes/unmanaged/errors. No new
 screenshots requested or shown. Raster/perceived visual, complete lifecycle,
-settings persistence, Product custom examples and human acceptance stay OPEN.
+settings persistence and human acceptance stay OPEN. Product custom comparison
+publication is now complete above; existing native60 proof is not rerun or
+relabelled as a new code/runtime result.
 The earlier candidate/failure notes remain historical, not the current result.
 
 Kit pin5891d8cde05eab1ebf34d89807d81db5a0e8ab49/version0.4.121 on
@@ -131,10 +145,9 @@ no business/fixture writes. Preserve run and exact metrics; successor waits
 the actual modal ancestor's finite animations without relaxing geometry or
 rewriting product Motion. The successor subsequently passed60 records above.
 
-Reconcile unknown Product write and complete linked examples. The bounded
-served open/Cancel proof is complete; broader lifecycle proof remains open.
-Source-only checks may continue while the hosted
-connection is restored. Keep all older lots and human checklist open.
+Product linked examples are reconciled and saved. The bounded served open/Cancel
+proof is complete; broader lifecycle proof remains open. Continue SM-64 canonical
+report/summary/Export reconciliation. Keep all older lots and human checklist open.
 
 Cost audit: small five-rule/class-only change and exact complete-CSS identity
 avoid whole-Kit sync. This pass nevertheless wasted reads on guessed paths and
