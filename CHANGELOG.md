@@ -9,6 +9,10 @@
 - Read the external Guide handoff and required references. Intake preserves
   the existing engine/highlight/progression and legacy content; no replacement
   or native Guide integration claimed in this checkpoint.
+- Preflight records two bounded Source/Kit drifts and immutable baselines;
+  preserve newer centring/wrapping and translated controller defaults rather
+  than blindly synchronizing the old demo. Dedicated Guide/demo live-read
+  checks performed; actual integration/publication remains pending.
 
 ## 2026-10-06 - Native report design metric propagation
 
