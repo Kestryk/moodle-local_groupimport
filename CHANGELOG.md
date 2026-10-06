@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-06 - Catalogue focus and density diagnostic
+
+- Record24 native mouse/keyboard/disabled cases reproducing the caption-wide
+  Ungrouped switch focus frame; saved Foundations source matches this defect.
+- Retain48 isolated Kit candidate records and coordinated Reset/count/header
+  badge inventory. No production CSS/controller/Motion or business-data change.
+- Read back18 saved report roots: source/Standard metrics propagated, six Product
+  examples still need reconciliation after MCP reconnect. Human checklist open.
+
 ## 2026-10-06 - Mass report served palette proof and metric reconciliation
 
 - Record15 native palette/viewport combinations PASS on the served Kit0.4.123

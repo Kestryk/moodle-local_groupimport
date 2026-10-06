@@ -14,6 +14,10 @@ result instead of reading a private draft; unknown methods remain denied. Keep
 paint and protocol failures distinct. Native font/radius/line metrics can expose
 isolated Penpot differences: retain exact partial-write IDs and reconcile every
 paired copy after reconnection before claiming design parity.
+Catalogue focus audits distinguish a mouse `:focus-within` label ring from
+real sequential keyboard focus. Retain the44px native label target and disabled
+semantics when exploring track-only paint. A test-only Kit example is not a
+public class, paired design or served correction; state those gates separately.
 
 Penpot persistence recovery separates autosave from version snapshots. After a
 snapshot504, read the actual saved file and exact affected objects before reload
