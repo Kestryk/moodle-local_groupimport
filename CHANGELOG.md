@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-06 - Served responsive card title-lane proof (SM-48)
+
+- Verify120 native records: centred Participant/Group touch selection across
+  four widths, no sampled title overlap, real keyboard/focus and Rename Cancel.
+- Preserve desktop anchor, existing Motion/recovery and all data; complete
+  cleanup and fresh paired readback. Broader/whole-view/human gates remain open.
+
 ## 2026-10-06 - Group native authentication-wait successor (SM-48)
 
 - Record served Group candidate and pre-geometry login wait failure with clean

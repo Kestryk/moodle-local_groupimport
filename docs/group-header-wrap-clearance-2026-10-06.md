@@ -61,3 +61,23 @@ boundary, instead of letting the15s action timeout own auth page loading.
 Every ready/delayed-GET/centre/hit/keyboard/rename/value oracle remains unchanged.
 Hosted MCP later responds again on the expected Product/Foundations identities;
 fresh indexed readback is being recorded. No URL/token/Guide change was made.
+
+## Served strict successor PASS
+
+Native050706047Z-43400 PASS120 records on clean runtimed2d51488. Four widths
+390/768/320/1024 retain76 hit/title/state measurements,12 actual local Tab,
+12 exact focus paints,12 native Space select/deselect and4 real Group menu
+Rename open/focused input/Cancel branches with unchanged value. Participant
+centre deltas0.0078/0.0234px; Group centres0 at all widths. Group1024 no longer
+overlaps its title: gap7.984px (~8px rounding), instead of-3.531px. Desktop1600
+return retains32px target and fixed5.796875px top before/after sole selection.
+Delayed-native-GET recovery, zero errors/blocked/business/fixtures and complete
+cleanup pass. Retention0deleted/1protected. Summary/pins:
+testing/responsive-card-title-lanes-native-2026-10-06.json.
+
+Fresh hosted Product/Library/Standard readback now PASS: all three1240x300
+guides, existing Large provider, Inter14/#264861,8px title gap,~0 centre delta,
+zero descendant overflow and validate=[]. Keep earlier UI fallback/connectivity
+history; don't erase it. See group-header-layout-indexed-successor-2026-10-06.json.
+Human/whole-view pixel and broader nested/disabled/native-reduced/complete
+keyboard gates remain OPEN. No real Rename/Save or other data command ran.
