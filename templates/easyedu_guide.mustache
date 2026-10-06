@@ -141,6 +141,68 @@
                                     </div>
                                 </div>
                             {{/requires}}
+                            {{#discoveryscene}}
+                            <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" aria-label="{{caption}}">
+                                <p class="easyedu-guide-scene__caption">{{caption}}</p>
+                                {{#concepts}}
+                                <div class="easyedu-guide-scene__concepts">
+                                    <div><span class="fa fa-user" aria-hidden="true"></span><p>{{participantlabel}}</p></div>
+                                    <div><span class="fa fa-users" aria-hidden="true"></span><p>{{grouplabel}}</p></div>
+                                    <div><span class="fa fa-layer-group" aria-hidden="true"></span><p>{{groupinglabel}}</p></div>
+                                </div>
+                                {{/concepts}}
+                                {{#creation}}
+                                <label class="easyedu-guide-scene__field">{{patternlabel}}
+                                    <input type="text" data-guide-pattern value="Équipe #*3" autocomplete="off">
+                                </label>
+                                <p>{{syntaxlabel}}</p>
+                                <div class="easyedu-guide-scene__actions">
+                                    <button type="button" class="btn btn-primary" data-guide-scene-command="preview">{{previewlabel}}</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="letters">{{letterslabel}}</button>
+                                </div>
+                                <div data-guide-names class="easyedu-guide-scene__results" aria-live="polite" data-invalid="{{invalidlabel}}"></div>
+                                {{/creation}}
+                                {{^concepts}}{{^creation}}
+                                <div class="easyedu-guide-scene__stage" data-guide-stage>
+                                    <div class="easyedu-guide-scene__card" data-guide-source>
+                                        <strong>Projet Orion</strong>
+                                        <div class="easyedu-guide-scene__person" data-guide-person><span class="fa fa-user" aria-hidden="true"></span>Alex Dupont</div>
+                                        {{#actions}}<div class="easyedu-guide-scene__person">Léa Martin</div>{{/actions}}
+                                        {{#membership}}<small>TD lundi · Projet Orion</small>{{/membership}}
+                                    </div>
+                                    <div class="easyedu-guide-scene__card" data-guide-destination>
+                                        <strong>{{#actions}}Projet Horizon{{/actions}}{{#membership}}Recherche{{/membership}}</strong>
+                                        <div data-guide-member hidden>Alex Dupont{{#actions}} · Léa Martin{{/actions}}</div>
+                                    </div>
+                                    <div class="easyedu-guide-scene__menu" data-guide-menu hidden>
+                                        <span>{{menulabel}}</span><strong>{{movelabel}}</strong>
+                                    </div>
+                                    <div class="easyedu-guide-scene__dialog" data-guide-confirm hidden>
+                                        <header><strong>{{movelabel}}</strong><span class="fa fa-times" aria-hidden="true"></span></header>
+                                        <div><p>{{destinationlabel}}</p><div class="easyedu-guide-scene__destination">{{#actions}}Projet Horizon{{/actions}}{{#membership}}Recherche{{/membership}}<span class="fa fa-chevron-down" aria-hidden="true"></span></div><p>{{confirmlabel}}</p></div>
+                                        <footer><span>{{cancellabel}}</span><strong data-guide-simulated-submit>{{movelabel}}</strong></footer>
+                                    </div>
+                                    <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"></span>
+                                </div>
+                                <ol class="easyedu-guide-scene__steps">
+                                    <li data-guide-phase="select">{{selectlabel}}</li>
+                                    <li data-guide-phase="menu">{{menulabel}}</li>
+                                    <li data-guide-phase="confirm">{{confirmlabel}}</li>
+                                </ol>
+                                <p data-guide-result aria-live="polite" data-add="{{resultaddlabel}}" data-move="{{resultmovelabel}}" data-actions="{{resultactionslabel}}">{{initiallabel}}</p>
+                                <div class="easyedu-guide-scene__actions">
+                                    {{#membership}}<button type="button" class="btn btn-primary" data-guide-scene-command="add">{{addlabel}}</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="move">{{movelabel}}</button>{{/membership}}
+                                    <div class="easyedu-guide-scene__utilities">
+                                        <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay" aria-label="{{replay}}" title="{{replay}}"><span class="fa fa-rotate-right" aria-hidden="true"></span></button>
+                                        <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset" aria-label="{{reset}}" title="{{reset}}"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span></button>
+                                    </div>
+                                </div>
+                                <p class="easyedu-guide-scene__caption">{{mobilelabel}}</p>
+                                {{/creation}}{{/concepts}}
+                                <p class="easyedu-guide-scene__note">{{note}}</p>
+                            </section>
+                            {{/discoveryscene}}
                             {{#hasvisualflow}}
                                 <div class="easyedu-guide-visual easyedu-guide-visual--flow" aria-hidden="true">
                                     <span class="easyedu-guide-mini-card easyedu-guide-mini-card--source">

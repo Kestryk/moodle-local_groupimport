@@ -1400,6 +1400,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         $slides[] = $slide;
     }
 
+    $slides = \local_groupimport\local\guide_discovery::prepend($slides);
     $slidecount = max(1, count($slides));
 
     return [
@@ -1447,6 +1448,8 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
 function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
     return [
         'storageKey' => 'local_groupimport.easyedu_guide.' . $courseid,
+        'presentationKey' => 'discovery-20261006',
+        'legacySlideOffset' => 4,
         'firstVisit' => false,
         'highlightAutoHideDelay' => 5200,
         'highlightStyle' => 'pulse-blue',

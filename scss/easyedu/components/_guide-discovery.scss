@@ -1,6 +1,9 @@
 // Opt-in presentation for the Guide handoff. Include after guide-shell and
 // guide-rich-navigation on the same root. Existing engine hooks are retained.
 @use "typography";
+@use "text-fields";
+@use "buttons";
+@use "modals";
 
 @mixin guide-discovery-shell {
   --easyedu-guide-font-size-control: 0.78rem;
@@ -128,6 +131,65 @@
     padding: 1rem 1.125rem;
   }
 
+  .easyedu-guide-slide:has([data-easyedu-guide-scene]) {
+    display: block;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    > .easyedu-guide-slide__icon { display: none; }
+    &[hidden] { display: none; }
+    h3 { @include typography.type-control-label; font-size: var(--easyedu-guide-font-size-body); }
+  }
+
+  .easyedu-guide-scene {
+    @include typography.type-body;
+    font-size: var(--easyedu-guide-font-size-body);
+    padding: 0.875rem;
+    border: 1px solid var(--easyedu-border);
+    border-radius: 0.75rem;
+    background: var(--easyedu-surface-soft);
+    min-width: 0;
+    margin-block: 0.875rem;
+
+    [hidden] { display: none; }
+    p { margin-block: 0.5rem 0.75rem; }
+    &__caption, small { @include typography.type-caption; }
+    &__concepts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+    &__concepts > div, &__card {
+      padding: 0.875rem;
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      background: var(--easyedu-surface);
+      min-width: 0;
+    }
+    &__card { border-inline-start: 0.5rem solid var(--easyedu-group-rail, var(--easyedu-accent)); }
+    &__person { display: flex; gap: 0.625rem; padding: 0.625rem; background: var(--easyedu-surface-soft); border-radius: 0.5rem; margin-block: 0.625rem; }
+    &__field { display: grid; gap: 0.5rem; }
+    &__field input { @include text-fields.foundation-text-field; width: 100%; }
+    &__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-block: 0.75rem; }
+    &__actions .btn { @include buttons.button-size(small); }
+    &__utilities { display: flex; gap: 0.5rem; margin-inline-start: auto; }
+    &__stage { display: grid; position: relative; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+    &__stage:has([data-guide-confirm])::after { content: ''; grid-area: 2 / 1 / 3 / 3; min-height: 17rem; pointer-events: none; }
+    &__menu, &__dialog { grid-area: 2 / 1 / 3 / 3; justify-self: center; align-self: start; width: min(23rem, 100%); border: 1px solid var(--easyedu-border); border-radius: 0.75rem; background: var(--easyedu-surface); overflow: hidden; }
+    &__menu { padding: 0.875rem; display: grid; gap: 0.75rem; }
+    &__menu strong { padding: 0.5rem; background: var(--easyedu-primary-soft); color: var(--easyedu-primary); }
+    &__dialog header { @include modals.dialog-header; padding: 0.625rem 0.75rem; display: flex; justify-content: space-between; }
+    &__dialog > div { padding: 0.75rem; }
+    &__dialog footer { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.625rem 0.75rem; border-top: 1px solid var(--easyedu-border); }
+    &__dialog footer > * { flex: 0 1 6rem; text-align: center; padding: 0.5rem; border-radius: var(--easyedu-control-radius); background: var(--easyedu-surface-soft); }
+    &__dialog footer strong { background: var(--easyedu-primary); color: var(--easyedu-on-primary, white); }
+    &__destination { display: flex; justify-content: space-between; border: 1px solid var(--easyedu-control-border); padding: 0.5rem; border-radius: var(--easyedu-control-radius); }
+    &__cursor { position: absolute; top: 0; left: 0; pointer-events: none; color: var(--easyedu-primary); z-index: 2; }
+    &__steps { padding-inline-start: 1.25rem; }
+    &__steps [aria-current] { color: var(--easyedu-accent); font-weight: 600; }
+    &__note { padding: 0.75rem; background: var(--easyedu-primary-soft); border-radius: 0.625rem; }
+    &__results { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    &__results > span { padding: 0.5rem 0.75rem; border: 1px solid var(--easyedu-border); border-radius: 0.5rem; }
+    [data-guide-ghost] { position: absolute; margin: 0; width: min(13.75rem, 45%); border: 1px solid var(--easyedu-primary); box-shadow: var(--easyedu-shadow-soft); pointer-events: none; }
+  }
+
   .easyedu-guide-modal__footer-actions {
     display: grid;
     grid-auto-flow: column;
@@ -145,6 +207,9 @@
   }
 
   @media (max-width: 40rem) {
+    .easyedu-guide-scene__concepts, .easyedu-guide-scene__stage { grid-template-columns: minmax(0, 1fr); }
+    .easyedu-guide-scene__stage:has([data-guide-confirm])::after,
+    .easyedu-guide-scene__menu, .easyedu-guide-scene__dialog { grid-area: 3 / 1; }
     --easyedu-guide-modal-height: calc(100dvh - 2.125rem);
     --easyedu-guide-modal-max-height: calc(100dvh - 2.125rem);
 

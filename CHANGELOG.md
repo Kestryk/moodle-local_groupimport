@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-06 - Four discovery lessons, first preview candidate
+
+- Add localized overview, group-name practice, membership comparison and actions
+  before the retained reference lessons. Reuse the existing first-structure path.
+- Consume Kit discovery scene markup/styles/controller; examples do not mutate
+  course data. Keep legacy checklist IDs and save a reversible storage baseline.
+- Isolated French/English 1280/768/390 checks pass. Native preview and visual
+  comparison are tracked separately in the Guide intake record.
+
 ## 2026-10-06 - Guide discovery presentation integration (source WIP)
 
 - Consume Kit e314f0c discovery shell and fixed interface cue in Student Guide,
