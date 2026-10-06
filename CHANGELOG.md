@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Framed native terminal continuity proof (SM-55)
+
+- Nine desktop/tablet/mobile endpoints pass with exactly0px final host/parent
+  jump, native selections and real focus retained. Two Participant compact entries
+  use the native card menu; missing sticky Move remains a separate issue.
+- Preserve failed immutable predecessors, saved paired design and settled editor
+  checkpoint. Native search/nested/reduced and human acceptance remain separate.
+
 ## 2026-10-06 - Native choice entry and behavior successors (SM-55)
 
 - Record served desktop3-endpoint PASS and mobile sticky Move entry failure,

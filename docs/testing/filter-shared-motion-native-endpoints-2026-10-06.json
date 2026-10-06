@@ -1,0 +1,446 @@
+{
+  "records": [
+    {
+      "scope": "destination-participants",
+      "width": 1600,
+      "geometry": {
+        "before": {
+          "hostBottom": 607.59375,
+          "parentHeight": 192.59375,
+          "siblings": [
+            {
+              "y": 500.59375,
+              "h": 22.5
+            },
+            {
+              "y": 539.09375,
+              "h": 22.5
+            },
+            {
+              "y": 623.59375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 607.59375,
+          "parentHeight": 192.59375,
+          "siblings": [
+            {
+              "y": 500.59375,
+              "h": 22.5
+            },
+            {
+              "y": 539.09375,
+              "h": 22.5
+            },
+            {
+              "y": 623.59375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "destination-groups",
+      "width": 1600,
+      "geometry": {
+        "before": {
+          "hostBottom": 582.390625,
+          "parentHeight": 242.984375,
+          "siblings": [
+            {
+              "y": 475.390625,
+              "h": 22.5
+            },
+            {
+              "y": 513.890625,
+              "h": 22.5
+            },
+            {
+              "y": 595.1875,
+              "h": 37.59375
+            },
+            {
+              "y": 648.78125,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 582.390625,
+          "parentHeight": 242.984375,
+          "siblings": [
+            {
+              "y": 475.390625,
+              "h": 22.5
+            },
+            {
+              "y": 513.890625,
+              "h": 22.5
+            },
+            {
+              "y": 595.1875,
+              "h": 37.59375
+            },
+            {
+              "y": 648.78125,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "multiple-participant-group-filter",
+      "width": 1600,
+      "geometry": {
+        "before": {
+          "hostBottom": 614.328125,
+          "parentHeight": 51.71875,
+          "siblings": [
+            {
+              "y": 562.609375,
+              "h": 14.125
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 614.328125,
+          "parentHeight": 51.71875,
+          "siblings": [
+            {
+              "y": 562.609375,
+              "h": 14.125
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "mobile-participant-native-menu",
+      "width": 768,
+      "stickyMoveUnavailable": true
+    },
+    {
+      "scope": "destination-participants",
+      "width": 768,
+      "geometry": {
+        "before": {
+          "hostBottom": 610.59375,
+          "parentHeight": 198.59375,
+          "siblings": [
+            {
+              "y": 497.59375,
+              "h": 22.5
+            },
+            {
+              "y": 536.09375,
+              "h": 22.5
+            },
+            {
+              "y": 626.59375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 610.59375,
+          "parentHeight": 198.59375,
+          "siblings": [
+            {
+              "y": 497.59375,
+              "h": 22.5
+            },
+            {
+              "y": 536.09375,
+              "h": 22.5
+            },
+            {
+              "y": 626.59375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "destination-groups",
+      "width": 768,
+      "geometry": {
+        "before": {
+          "hostBottom": 582.1875,
+          "parentHeight": 255.390625,
+          "siblings": [
+            {
+              "y": 469.1875,
+              "h": 22.5
+            },
+            {
+              "y": 507.6875,
+              "h": 22.5
+            },
+            {
+              "y": 594.984375,
+              "h": 44
+            },
+            {
+              "y": 654.984375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 582.1875,
+          "parentHeight": 255.390625,
+          "siblings": [
+            {
+              "y": 469.1875,
+              "h": 22.5
+            },
+            {
+              "y": 507.6875,
+              "h": 22.5
+            },
+            {
+              "y": 594.984375,
+              "h": 44
+            },
+            {
+              "y": 654.984375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "multiple-participant-group-filter",
+      "width": 768,
+      "geometry": {
+        "before": {
+          "hostBottom": 869.90625,
+          "parentHeight": 63.71875,
+          "siblings": [
+            {
+              "y": 806.1875,
+              "h": 14.125
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 869.90625,
+          "parentHeight": 63.71875,
+          "siblings": [
+            {
+              "y": 806.1875,
+              "h": 14.125
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "mobile-participant-native-menu",
+      "width": 390,
+      "stickyMoveUnavailable": true
+    },
+    {
+      "scope": "destination-participants",
+      "width": 390,
+      "geometry": {
+        "before": {
+          "hostBottom": 621.84375,
+          "parentHeight": 221.09375,
+          "siblings": [
+            {
+              "y": 486.34375,
+              "h": 45
+            },
+            {
+              "y": 547.34375,
+              "h": 22.5
+            },
+            {
+              "y": 637.84375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 621.84375,
+          "parentHeight": 221.09375,
+          "siblings": [
+            {
+              "y": 486.34375,
+              "h": 45
+            },
+            {
+              "y": 547.34375,
+              "h": 22.5
+            },
+            {
+              "y": 637.84375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "destination-groups",
+      "width": 390,
+      "geometry": {
+        "before": {
+          "hostBottom": 593.4375,
+          "parentHeight": 277.890625,
+          "siblings": [
+            {
+              "y": 457.9375,
+              "h": 45
+            },
+            {
+              "y": 518.9375,
+              "h": 22.5
+            },
+            {
+              "y": 606.234375,
+              "h": 44
+            },
+            {
+              "y": 666.234375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 593.4375,
+          "parentHeight": 277.890625,
+          "siblings": [
+            {
+              "y": 457.9375,
+              "h": 45
+            },
+            {
+              "y": 518.9375,
+              "h": 22.5
+            },
+            {
+              "y": 606.234375,
+              "h": 44
+            },
+            {
+              "y": 666.234375,
+              "h": 37.59375
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    },
+    {
+      "scope": "multiple-participant-group-filter",
+      "width": 390,
+      "geometry": {
+        "before": {
+          "hostBottom": 901.421875,
+          "parentHeight": 63.71875,
+          "siblings": [
+            {
+              "y": 837.703125,
+              "h": 14.125
+            }
+          ]
+        },
+        "after": {
+          "hostBottom": 901.421875,
+          "parentHeight": 63.71875,
+          "siblings": [
+            {
+              "y": 837.703125,
+              "h": 14.125
+            }
+          ]
+        },
+        "margin": "0px",
+        "hidden": true,
+        "inert": false,
+        "inline": "",
+        "effects": 0,
+        "focused": true,
+        "font": "\"EasyEdu Inter\", Inter, sans-serif"
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "runId": "easystud-authenticated-20261006T054652983Z-46140",
+  "result": "PASS nine endpoint cases plus two actual native mobile menu entries",
+  "servedSource": "9119637dfba7766cf4bdeeb9eb67b32e28730218",
+  "runtimeHead": "65a2ab4f3e9344d7c808f53e6c4d1bc6690a7d55",
+  "cssBlob": "986779f1346b7c11bf35ffd78ff0a7c316c60222",
+  "amdBlob": "26dfb5417d4262ff152cadb78142d10766f97569",
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false
+  },
+  "humanVisualValidated": false
+}

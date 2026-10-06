@@ -10,8 +10,9 @@
       "scope": "Consume existing canonical choice Framed Motion; no Kit code/style/version change",
       "documentation": "docs/filter-choice-shared-motion-2026-10-06.md",
       "penpotReadback": "docs/testing/filter-shared-motion-exact-family-2026-10-06.json",
-      "status": "One shared Motion injection and four actual binding cases PASS; paired providers and14 Product consumers annotated. Native successor and human OPEN.",
-      "nativePreviewVerified": false,
+      "status": "Shared injection/four bindings, paired providers/14 consumers and nine native terminal endpoints PASS;0px jumps. Search/nested/reduced and human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261006T054652983Z-46140",
       "humanVisualValidated": false
     },
     "groupHeaderActionLayout20261006": {

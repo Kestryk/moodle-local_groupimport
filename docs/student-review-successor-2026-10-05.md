@@ -1,5 +1,12 @@
 # EasyStud review successor - 5 October 2026
 
+SM55 framed native endpoint successor054652983Z-46140 now PASS9 endpoints
+at1600/768/390 with exactly0px host/parent terminal jump, correct dropdown/modal
+focus and selection, no data/errors/blocked requests and complete cleanup.
+Guarded search/clear/nested/reduced successor is running independently; perceived
+fluency/reversal and human checklist stay OPEN. Compact sticky Move availability
+under structure-first default is separately retained, not waived.
+
 SM55 shared adapter is served; all3 desktop terminal cases now PASS. Native
 matrix then exposes a compact Participant sticky Move availability defect when
 the configured desktop default is structure. Retain exact failed run/cleanup;
