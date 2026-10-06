@@ -10,8 +10,9 @@
       "modules": ["scss/easyedu/_dialog-classes.scss", "scss/easyedu/_dialog-palette-classes.scss"],
       "documentation": "docs/dialog-semantic-palette-2026-10-06.md",
       "scope": "Five optional paint blocks, role flags, six header class consumers, existing relay clears only two optional tint tokens; geometry/commands/Motion preserved",
-      "status": "96 isolated/old shared chrome/public SCSS package and complete unrelated source/CSS identity PASS. Four paired Foundations providers saved. Product hosted reconnection, served native/persistence/human OPEN.",
-      "nativePreviewVerified": false,
+      "status": "96 isolated/old shared chrome/public SCSS package and complete unrelated source/CSS identity PASS. Four paired Foundations providers saved. Native60 scoped paint/geometry/portal/default-restore PASS; Product custom/all lifecycle/persistence/human OPEN.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261006T102719508Z-44344",
       "humanVisualValidated": false
     },
     "viewIconSemanticPalette20261006": {

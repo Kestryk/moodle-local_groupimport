@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-06 - Semantic modal palette served scoped proof (SM-59)
+
+-60 native records PASS: six modal families at1600/390, independent primary/
+  accent/pale-chosen and official restored colours, stable type/dimensions and
+  original Motion, native portal/Cancel focus. No Save/business/fixture writes.
+- Preserve first readiness failure; complete cleanup. Product custom examples
+  await hosted reconnect; all lifecycle/persistence/human remain OPEN.
+
 ## 2026-10-06 - Dialog palette native readiness successor
 
 - Preserve first served failure: measuring only header animations missed its

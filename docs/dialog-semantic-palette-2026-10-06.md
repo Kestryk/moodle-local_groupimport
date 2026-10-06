@@ -1,5 +1,9 @@
 # Dialog semantic palette successor (SM-59)
 
+Latest bounded result:96 isolated and60 served-native checks PASS; original
+geometry/type/Motion retained. Foundations source/Standard saved; Product custom
+examples still await the correct hosted connection. Human checklist OPEN.
+
 Batch EED-UI-2026-0073. Source candidate, not human acceptance. Previous lots
 SM-01..73 and the combined checklist remain OPEN; Guide separately owned.
 
@@ -37,8 +41,9 @@ popup/menu/component or settings persistence; SM-64/72 retain separate gates.
 - Sass1.79.1 and AMD build PASS; pre-existing mixed-declarations warning retained.
   `php -l index.php` PASS. SCSS-only0.4.121 archive contract PASS, no internal
   agent/docs files exported; temporary test package cleaned by its owned helper.
-- Native scenario discovery selects exactly one test, without credentials,
-  fixture, lease or runtime writes. Actual served scenario remains pending.
+- Initial native scenario discovery selected exactly one test without
+  credentials, fixture, lease or runtime writes. The subsequent served PASS60
+  result and its separate remaining gates are recorded below.
 
 Native candidate `student-dialog-semantic-palette.spec.js`:60 intended records,
 six actual families/five transient palette states/two widths, including a final
@@ -83,6 +88,39 @@ that timeout. Check live editor again after hosted reconnection before retrying.
 
 ## Continuation and efficiency
 
+### Served immutable successor (current)
+
+Source b11560c08fffce1e85a058cdb6e3697f8ea21cd9 is served by runtime
+bb15f5574c91db174cecf44e459a70ef78c4adbc. Request
+20261006T102659Z-641facf05b/promotion20261006T102708Z applies tests/docs only:
+CSS53d0ad7bf4cabd095bb29675978b3789913a1ea4 and
+AMDbc5cec771d2a60367a76c62558a114cb3efb9f25 stay identical to first code
+promotion; no second cache refresh needed. Run
+`easystud-authenticated-20261006T102719508Z-44344`: one test PASS,60 records
+at1600/390, six actual families/five palette states including official restored
+after custom. Exact within-family header/child geometry/type/padding/Motion
+identity; canonical role paint and native Message portal Cancel/focus return.
+Settings entry is desktop then resize, not actual mobile settings-entry proof.
+
+No page errors/blocked writes/real draft consumption/Save/Move/Send/import/
+restore/fixtures. All cleanup flags true, managed runtime clean/previewed.
+Retention dry-run1 protected, zero candidates/deletes/unmanaged/errors. No new
+screenshots requested or shown. Raster/perceived visual, complete lifecycle,
+settings persistence, Product custom examples and human acceptance stay OPEN.
+The earlier candidate/failure notes remain historical, not the current result.
+
+Kit pin5891d8cde05eab1ebf34d89807d81db5a0e8ab49/version0.4.121 on
+`work/port4719pg3/eed-ui-2026-0073-kit-phase0-mass-admin`; Source branch
+`work/port4719pg3/easystud-foundations-student-management-20260928`; runtime
+`preview/moodle51/easystud-phase0-mass-admin`. Owned snapshots hash-verified,
+WIP commits pushed. Shared dirty Platform and Guide source/server/token/profile
+not edited. Versioned local-supervised scenario is a guarded Docker/CI candidate;
+portable backlink only, Platform planning/registry remain with their owner.
+
+Next SM-64 source audit finds literal success report/summary paint and export
+rest paint delegated to Bootstrap. Preserve accepted defaults, density and CSV
+disclosure Motion; canonicalize missing semantic roles before all-route proof.
+
 First served candidate: Source2ceccaf, runtime91026af, managed request
 20261006T102427Z-a79042d3e0/promotion20261006T102441Z, caches refreshed. Native
 `easystud-authenticated-20261006T102451137Z-28388` stopped after the first record:
@@ -91,10 +129,11 @@ header-only settling missed the ancestor's entrance transform, measuring
 of a palette layout defect. All cleanup flags true, no blocked/page errors,
 no business/fixture writes. Preserve run and exact metrics; successor waits
 the actual modal ancestor's finite animations without relaxing geometry or
-rewriting product Motion. Successor native verification remains pending.
+rewriting product Motion. The successor subsequently passed60 records above.
 
-Reconcile unknown Product write, complete linked examples, then supervised
-served open/Cancel proof. Source-only checks may continue while the hosted
+Reconcile unknown Product write and complete linked examples. The bounded
+served open/Cancel proof is complete; broader lifecycle proof remains open.
+Source-only checks may continue while the hosted
 connection is restored. Keep all older lots and human checklist open.
 
 Cost audit: small five-rule/class-only change and exact complete-CSS identity
