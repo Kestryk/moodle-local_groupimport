@@ -166,6 +166,18 @@ successor dimensions. Earlier68 saved-file assertions describe the predecessor
 only. The MCP connection then reported missing userToken; a reconnection request
 was sent. Do not replay the write blindly or claim the paired design complete.
 
+Later read-only `read-saved-report-native-metrics.cjs` reconciled18 exact saved
+roots (GET200 both files) without editor writes. Library AND its six Standard
+copies now persist summary43.28, line42.64, action261.48x37.6/radius8; action
+label is settled211x18. The Standard copies propagated source changes; they
+are not still at predecessor dimensions. Check glyph descendants remain within
+their11.2px slot. The six linked Product roots still retain predecessor
+summary44.816/line40.848/action249.48/radius6 and need updating. This saved
+readback supersedes the uncertain partial-write account above, not the open
+Product propagation/paint/export/human gates. Do not rerun the historical68
+dimension assertion as a current metric oracle or falsely claim exact native
+font raster/intrinsic-width parity.
+
 ## Next
 
 Preserve/push the native protocol and this proof, then reconcile actual theme
