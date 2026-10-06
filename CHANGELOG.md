@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-06 - Semantic palette source/identity audit
+
+- Identify literal view-switch icon paints and shared modal-header tokens;
+  existing Mass root mapping and Message token relay are preserved.
+- Forty-five server role-identity checks and existing seven-default reset guard
+  pass without DB/Save. No identity swap or all-surface/persistence fix is claimed;
+  canonical palette successors and human gates remain OPEN.
+
+## 2026-10-06 - Group fold native scoped proof (SM-62)
+
+- Eight desktop/touch normal/reduced cases pass real member selection, scoped
+  fold clear, preserved other Group, reopen and action-state reconciliation.
+- Original Motion and all CSS preserved; no business/fixture writes, complete
+  cleanup and clean managed preview. Failed ARIA predecessor retained; human
+  checklist and broad context/keyboard coverage stay OPEN.
+
 ## 2026-10-06 - Selection accessibility scope successor (SM-62)
 
 - Preserve a native failed fold attempt: whole-card ARIA disabled also disabled
