@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-06 - Native choice entry and behavior successors (SM-55)
+
+- Record served desktop3-endpoint PASS and mobile sticky Move entry failure,
+  preserving the immutable run and complete cleanup. Source traces the missing
+  action to retained desktop structure-first hidden state.
+- Retain all terminal oracles in a real card-menu entry successor; add guarded
+  native search/clear/nested-close/reduced protocol. No UI asset/business change.
+  Broader native and human acceptance remain OPEN.
+
 ## 2026-10-06 - Multiple-filter shared Motion candidate (SM-55)
 
 - Reproduce256px end-frame flash/jump in the legacy filter animation. Inject

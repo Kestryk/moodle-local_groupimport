@@ -38,3 +38,18 @@ Compatibility: version.php retains Moodle5.1 minimum2025100600/component
 local_groupimport. Existing AMD architecture/build retained; official Moodle
 coding-style and 5.1 JavaScript guides consulted. No new Moodle API or PHP change,
 and no executed4.5/5.2/5.3 compatibility claim.
+
+Served9119637 with all four unserved documentary/test predecessors in order,
+managed request20261006T053915Z-28db3ae0db/cache purge complete. Native
+053947929Z-41704 proves all three1600 terminal endpoints, including the previously
+failing multiple filter, then fails the768 Participant sticky Move entry:
+selection exists but the action is absent. Source explains the desktop
+structure-first mode sets hidden on the Participant Move source; compact
+applyMobileState clears focus classes but retains that hidden attribute.
+This is a retained availability defect, not a choice-motion regression.
+An immutable successor uses the actual visible Participant card menu for that
+native modal entry, retaining all nine terminal oracles and recording the missing
+sticky action. Do not directly click a hidden source or manufacture native state.
+Correct sticky availability in its own bounded successor after the choice gate.
+Search/clear/nested/reduced behavior receives its own guarded native protocol.
+Both historical failure and all cleanup=true are retained; human OPEN.
