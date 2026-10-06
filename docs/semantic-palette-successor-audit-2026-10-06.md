@@ -38,6 +38,14 @@ or whole-view native PASS is claimed. SM-62 has independent served proof.
 
 ## Confirmed source boundaries
 
+SM-64 successor now reproduces the source finding with actual PHP mapping and
+compiled consumer CSS:288 isolated diagnostic checks at1600/768/390. Mapped
+rails/icon tiles/notice/Ready respond independently; fixed summary/report and
+export rest gaps remain reproduced, not repaired. Export uses an explicit
+Bootstrap sentinel, not native theme proof. See
+`mass-import-semantic-palette-audit-2026-10-06.md`; hosted design and native
+correction gates remain OPEN. No product CSS, typography or Motion changed.
+
 SM-64 next source-only inventory: `_mass-import.scss` success summary passes
 literal #eef8f2/#cfe7d9/#1f6748 into shared report-summary-item; success report
 title/icons also pass/paint fixed green. Keep error/reimport warnings semantic,

@@ -1,5 +1,16 @@
 # Changelog
 
+## SM-64 semantic palette diagnosis - 2026-10-06
+
+- Added an isolated diagnostic using actual PHP colour mapping and compiled
+  consumer CSS:288 checks at1600/768/390 reproduce fixed success-summary/report
+  and Export rest-paint gaps, while six mapped surfaces retain independent
+  semantic roles and exact geometry/Motion. This is not a palette repair.
+- Export uses an explicit Bootstrap sentinel, not native theme proof. No
+  product CSS/AMD/PHP/Mustache, settings, fixtures, Guide or Penpot writes.
+- Recorded the canonical component crosswalk and hosted-design/native gates;
+  all earlier unfinished lots and combined human acceptance remain OPEN.
+
 ## 2026-10-06 - Semantic modal palette served scoped proof (SM-59)
 
 -60 native records PASS: six modal families at1600/390, independent primary/

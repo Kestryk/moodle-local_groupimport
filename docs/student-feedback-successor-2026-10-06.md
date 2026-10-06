@@ -63,6 +63,12 @@ remain OPEN. See
 
 ## Ordered continuation
 
+SM-64 diagnosis now has288 isolated actual-PHP/compiled-CSS checks; fixed
+summary/report and Export rest paint gaps are reproduced, not fixed. Six
+already mapped surfaces follow independent roles with stable geometry/Motion.
+See `mass-import-semantic-palette-audit-2026-10-06.md`. Canonical design/code/
+served correction and complete lifecycle/persistence/human gates stay OPEN.
+
 SM-62 served scoped successor now PASS8 at1600/768/390/320 normal/reduced:
 fold clears same-Group member copies only, preserves another Group, reopening
 does not reselect and action surfaces reconcile. Preserve the actual failed
