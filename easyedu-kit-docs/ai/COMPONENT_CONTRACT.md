@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Responsive Group headers opt dormant-card-action-host in only because direct
+rename controls are already suppressed; the native visible edit child restores
+layout. Wider-touch title clearance uses the shared person/object computation,
+not another font/checkbox size or an arbitrary offset. Preserve all commands.
+
 First-row touch selection uses canonical card-selection-first-row-anchor with
 the existing composition padding/action-row height. Keep44px hit size and inline
 title clearance, checkbox paint/metadata and card/Show-all Motion. Product usage

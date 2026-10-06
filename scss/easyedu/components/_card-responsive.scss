@@ -15,7 +15,22 @@
   $content-start: 1.85rem,
   $gap: 0.5rem
 ) {
+  @include card-selection-title-clearance($selection-start, $selection-target, $content-start, $gap);
+}
+
+// Shared title-lane computation for both people and object cards. The original
+// person wrapper keeps its API/defaults; consumers supply their measured slots.
+@mixin card-selection-title-clearance($selection-start, $selection-target, $content-start, $gap) {
   padding-inline-start: max(0rem, $selection-start + $selection-target + $gap - $content-start);
+}
+
+// A zero-size action wrapper can still consume a flex-wrap gap and create an
+// empty row. Opt in only when all its ordinary actions are already unavailable;
+// an active editing child must restore the existing layout without extra JS.
+@mixin dormant-card-action-host($active-child) {
+  &:not(:has(> #{$active-child})) {
+    display: none;
+  }
 }
 
 // Opt-in narrow candidate: secondary email gets its own row rather than

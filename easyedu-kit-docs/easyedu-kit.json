@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "groupHeaderActionLayout20261006": {
+      "kitVersion": "0.4.119",
+      "kitCommit": "f28278cac2fd2e8ce4b5fcce44519eb4d6796985",
+      "module": "scss/easyedu/components/_card-responsive.scss",
+      "documentation": "docs/group-header-wrap-clearance-2026-10-06.md",
+      "status": "Shared dormant host/wide title lane/anchor;8 isolated geometry/edit branches and full other-source preservation PASS. Saved paired UI references; indexed MCP duplicate-connection gate/native/human pending.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "selectionFirstRow20261006": {
       "kitVersion": "0.4.118",
       "kitCommit": "1dc51cfa9321d6b71dbbd19839c9d7e911ba4a01",

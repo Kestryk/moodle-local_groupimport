@@ -1,5 +1,12 @@
 # EasyStud review successor - 5 October 2026
 
+SM48 first-row native94 records preserve Participant centres/all prior3-width
+keyboard, but new1024 Group probe fails3.53px title overlap. Exact isolated320
+wrap diagnosis finds a0x0 inactive rename form consuming a flex row. Canonical
+dormant host plus wider shared title/anchor candidate passes4 geometry+4 edit
+branches, preserving all JS/CSS outside Group. Native/paired/human pending;
+see group-header-wrap-clearance-2026-10-06.md. Do not hide this failed matrix.
+
 SM48 first-row pairing now saved: Library/Standard layout guides and12 Product
 Large usages retain existing providers,44px targets, centred14px titles and
 >=8px clearance. Old Small instances remain hidden recoverably; no card/role/

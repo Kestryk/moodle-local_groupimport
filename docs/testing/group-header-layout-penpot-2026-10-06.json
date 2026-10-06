@@ -1,0 +1,61 @@
+{
+  "foundation": {
+    "records": {
+      "library": {
+        "page": "2b5216d9-06a9-80a1-8008-9cf44cd3d119",
+        "board": "83ffce63-041b-803e-8008-bee2007d8828",
+        "checkbox": {
+          "id": "83ffce63-041b-803e-8008-bee200fa0880",
+          "host": "83ffce63-041b-803e-8008-bee200e9f7b1",
+          "component": "e5bf882d-be5b-8059-8008-982e815deb67"
+        },
+        "title": "83ffce63-041b-803e-8008-bee20100842e"
+      },
+      "standard": {
+        "page": "2b5216d9-06a9-80a1-8008-9cf5f952460b",
+        "board": "83ffce63-041b-803e-8008-bee2018a577b",
+        "checkbox": {
+          "id": "83ffce63-041b-803e-8008-bee201eb84e1",
+          "host": "83ffce63-041b-803e-8008-bee201deadcb",
+          "component": "e5bf882d-be5b-8059-8008-982e815deb67"
+        },
+        "title": "83ffce63-041b-803e-8008-bee201f7bf8b"
+      }
+    },
+    "validation": []
+  },
+  "product": {
+    "protocol": {
+      "page": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+      "board": "83ffce63-041b-803e-8008-bee27b435d6a",
+      "checkbox": {
+        "id": "83ffce63-041b-803e-8008-bee27d3e4f85",
+        "host": "83ffce63-041b-803e-8008-bee27d0ec549",
+        "component": "e5bf882d-be5b-8059-8008-982e815deb67"
+      },
+      "title": "83ffce63-041b-803e-8008-bee27d5a8b44"
+    },
+    "validation": []
+  },
+  "gates": {
+    "created": true,
+    "validationPassedBeforeDisconnect": true,
+    "savedVersion": true,
+    "serverGet200": true,
+    "sourceAndStandardUiInspected": true,
+    "productUiCheckpoint": true,
+    "indexedPaintReadback": false,
+    "cleanExport": false,
+    "native": false,
+    "human": false
+  },
+  "connection": {
+    "issue": "Hosted MCP reports suspended heartbeat; UI reconnect rejects duplicate connection for same user token",
+    "ownBrowserPages": 1,
+    "ownBrowserPort": 9225,
+    "urlOrTokenChanged": false,
+    "otherConnectionClosed": false,
+    "guideUntouched": true
+  },
+  "caveat": "UI fallback is bounded diagram review, not all-descendant indexed geometry or complete view pixel parity"
+}
