@@ -91,6 +91,14 @@ const root = path.resolve(__dirname, '../..');
             await page.locator('[data-easyedu-guide-resume-path]').click();
             assert.equal(await page.locator('[data-easyedu-guide-checklist]').isVisible(), true);
             assert.equal(await page.locator('[data-easyedu-guide-step-id].is-complete').count(), 1);
+            if (width === 390) {
+                await page.locator('[data-easyedu-guide-checklist-restore]').click();
+                await page.evaluate(step => document.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
+                    detail: {path: 'practice-membership', step}
+                })), ids[1]);
+                assert.equal(await page.locator('[data-easyedu-guide-checklist]').evaluate(node =>
+                    node.classList.contains('is-minimized')), false, 'Explicit Restore survives progress render');
+            }
             await page.evaluate(() => window.Guide.destroy('[data-easyedu-guide-root]'));
             await render([ids[0]]);
             await page.clock.runFor(19999);

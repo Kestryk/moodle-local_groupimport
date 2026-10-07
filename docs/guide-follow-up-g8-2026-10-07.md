@@ -93,3 +93,10 @@ Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.
   0.4.143 keeps its steps scrollable in a shorter panel and vertically docks
   away from the external dialog target. Checklist and native field must both
   remain normally clickable; no hidden panel, pointer-through or force-click.
+- Native18920 reaches the real tablet choice/confirmation highlight without
+  checklist collision. Its centre oracle then measured an earlier row outside
+  the newly bounded scroll viewport. Successor scrolls that real row normally
+  before elementFromPoint (same strict true oracle and normal click). Source
+  inspection also found Restore writes a boolean expanded attribute while
+  re-render incorrectly compared it to the string1; Kit0.4.144 preserves that
+  explicit Restore with hasAttribute. Full phone/native matrix remains open.

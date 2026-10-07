@@ -1677,7 +1677,7 @@ const renderChecklist = (root, config, pathName) => {
   hideInterfaceReturn(root, true);
   const wasMinimized = checklist.classList.contains('is-minimized');
   const compactDefault = isCompactChecklistViewport() &&
-    checklist.getAttribute('data-easyedu-guide-checklist-expanded') !== '1';
+    !checklist.hasAttribute('data-easyedu-guide-checklist-expanded');
   checklist.classList.remove('is-complete', 'is-docked-left', 'is-docked-right');
   checklist.classList.toggle('is-minimized', isCompactChecklistViewport() ? compactDefault : wasMinimized);
   checklist.classList.toggle('is-unlock-path', config.unlockPaths.includes(pathName));

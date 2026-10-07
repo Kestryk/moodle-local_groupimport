@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideCompactRestore20261007": {
+      "kitVersion": "0.4.144",
+      "kitCommit": "2e96cbd5130d1fac472ec4b36021884247483fcc",
+      "documentation": "docs/guide-follow-up-g8-2026-10-07.md",
+      "scope": "Preserve explicitly expanded compact checklist after native progress re-render.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideCompactDialogDock20261007": {
       "kitVersion": "0.4.143",
       "kitCommit": "0442e94934419bccc2ae8d8e5835ee89150b0ae4",
