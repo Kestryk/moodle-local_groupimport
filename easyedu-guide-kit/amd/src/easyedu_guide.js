@@ -333,6 +333,47 @@ const isStepComplete = (config, pathName, step, index) => {
   return getCompletedSteps(config, pathName).includes(stepId);
 };
 
+const isPathComplete = (config, pathName) => {
+  const steps = config.paths[pathName] || [];
+  return steps.length > 0 && steps.every((step, index) => isStepComplete(config, pathName, step, index));
+};
+
+// Reset this Guide path only, never other progress or Moodle course data.
+const resetPathProgress = (config, pathName) => {
+  const state = loadGuideState(config);
+  saveGuideState(config, {...state, path: pathName, activeIndex: 0,
+    completed: {...(state.completed || {}), [pathName]: []}});
+};
+
+const syncPathInvitation = (root, config) => {
+  root.querySelectorAll('[data-easyedu-guide-reset-path]').forEach(button => {
+    const path = button.getAttribute('data-easyedu-guide-reset-path');
+    const state = loadGuideState(config);
+    button.hidden = state.path !== path && getCompletedSteps(config, path).length === 0;
+  });
+};
+
+const dismissResume = (root, animate = false) => {
+  clearTrackedTimeout(root, root.easyeduGuideResumeTimer);
+  root.easyeduGuideResumeTimer = null;
+  root.easyeduGuideResumeAnimation?.cancel();
+  const notice = root.querySelector('[data-easyedu-guide-resume]');
+  if (!notice || notice.hidden) { return; }
+  if (!animate || getScrollBehavior(root) === 'auto') { notice.hidden = true; return; }
+  const motion = notice.animate([{opacity: 1, transform: 'translateY(0)'},
+    {opacity: 0, transform: 'translateY(.35rem)'}], {duration: 280, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+  root.easyeduGuideResumeAnimation = motion;
+  motion.finished.then(() => { notice.hidden = true; motion.cancel(); }).catch(() => {});
+};
+
+const offerResume = (root, config, pathName) => {
+  const notice = root.querySelector('[data-easyedu-guide-resume]');
+  if (!notice || isPathComplete(config, pathName)) { return; }
+  notice.dataset.easyeduGuideResumePathName = pathName;
+  notice.hidden = false;
+  root.easyeduGuideResumeTimer = setTrackedTimeout(root, () => dismissResume(root, true), 20000);
+};
+
 const saveChecklistProgress = (root, config, pathName, activeIndex = 0) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const state = loadGuideState(config);
@@ -349,6 +390,7 @@ const saveChecklistProgress = (root, config, pathName, activeIndex = 0) => {
   }
 
   saveGuideState(config, {
+    ...state,
     path: pathName,
     activeIndex,
     completed,
@@ -790,7 +832,7 @@ const highlightChecklistStep = (root, config, step, callback = () => {}) => {
     return;
   }
 
-  runStepOpenAction(root, config, step, () => {
+  const begin = () => runStepOpenAction(root, config, step, () => {
     const target = resolveStepHighlightTarget(config, step);
     scrollToTarget(root, target, {
       autoHideHighlight: true,
@@ -798,6 +840,19 @@ const highlightChecklistStep = (root, config, step, callback = () => {}) => {
     });
     callback();
   });
+  if (step.beforeHighlight) {
+    const request = {target: step.beforeHighlight, root, handled: false};
+    document.dispatchEvent(new CustomEvent('easyedu:guide-open-target', {detail: request}));
+    if (request.ready) {
+      Promise.resolve(request.ready).then(completed => {
+        if (completed !== false && root.easyeduGuideConfig === config && !root.querySelector(SELECTORS.checklist)?.hidden) {
+          begin();
+        }
+      }).catch(() => {});
+      return;
+    }
+  }
+  begin();
 };
 
 const scrollActiveNavItemIntoView = root => {
@@ -1200,7 +1255,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
         {transform: `translate(${point.x}px, ${point.y}px)`}], duration);
     };
     const travel = async(element, duration = 750, cardAnchor = false) => {
-      if (compact || reduced || controller.signal.aborted) { return; }
+      if (reduced || controller.signal.aborted) { return; }
       const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
       const point = {
         x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
@@ -1329,6 +1384,9 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     result.textContent = result.getAttribute(`data-${mode}`) || '';
     await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
     if (recap) {
+      // Keep it transparent during insertion/reveal: previously one fully
+      // painted frame preceded the fade-in and caused the completion flash.
+      recap.style.opacity = '0';
       recap.hidden = false;
       // Adding has no Move confirmation; compact devices explain actions instead of mouse gestures.
       recap.querySelectorAll('[data-guide-phase]').forEach(item => {
@@ -1340,6 +1398,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       });
       await reveal(recap);
       await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
+      recap.style.removeProperty('opacity');
     }
     if (controller.signal.aborted) { return; }
     scene.dataset.guideSceneFinished = 'true';
@@ -1852,18 +1911,25 @@ const completeStep = (root, config, pathName, stepIdOrIndex) => {
 
   const selector = `[data-easyedu-guide-step-id="${stepIdOrIndex}"], [data-easyedu-guide-step-index="${stepIdOrIndex}"]`;
   const item = checklist.querySelector(selector);
-  if (item) {
-    item.classList.add('is-complete');
-  }
-
-  const active = checklist.querySelector('[data-easyedu-guide-step-index].is-active');
-  const activeIndex = active ? Number(active.getAttribute('data-easyedu-guide-step-index') || 0) : 0;
   const steps = config.paths[pathName] || [];
-  saveChecklistProgress(root, config, pathName, Math.min(activeIndex + 1, Math.max(steps.length - 1, 0)));
+  if (!item || item.disabled || item.classList.contains('is-locked') || item.classList.contains('is-complete')) { return; }
+  item.classList.add('is-complete');
+  const completedIndex = Number(item.getAttribute('data-easyedu-guide-step-index'));
+  saveChecklistProgress(root, config, pathName, Math.min(completedIndex + 1, Math.max(steps.length - 1, 0)));
   renderChecklist(root, config, pathName);
-  updateChecklistMessage(root, config, active ? {
-    feedback: active.getAttribute('data-easyedu-guide-feedback') || ''
-  } : null);
+  syncPathInvitation(root, config);
+  updateChecklistMessage(root, config, steps[completedIndex]);
+  if (steps[completedIndex]?.autoHighlightNext && !isPathComplete(config, pathName)) {
+    const next = checklist.querySelector('[data-easyedu-guide-step-index]:not(.is-complete):not(.is-locked)');
+    if (next) {
+      setStepOpenTimeout(root, () => {
+        if (!checklist.hidden && checklist.getAttribute('data-easyedu-guide-path') === pathName) {
+          const step = setActiveChecklistStep(root, config, Number(next.dataset.easyeduGuideStepIndex));
+          highlightChecklistStep(root, config, step);
+        }
+      }, 260);
+    }
+  }
 };
 
 const refreshActiveHighlight = (root, shouldDock = false) => {
@@ -2070,8 +2136,12 @@ const bindGuide = (root, config) => {
     const startPath = event.target.closest(SELECTORS.startPath);
     if (startPath && root.contains(startPath)) {
       event.preventDefault();
+      dismissResume(root);
+      const requestedPath = startPath.getAttribute('data-easyedu-guide-start-path');
+      if (isPathComplete(activeConfig, requestedPath)) { resetPathProgress(activeConfig, requestedPath); }
       syncSlideLocks(root, activeConfig);
-      renderChecklist(root, activeConfig, startPath.getAttribute('data-easyedu-guide-start-path'));
+      renderChecklist(root, activeConfig, requestedPath);
+      syncPathInvitation(root, activeConfig);
       closeModal(root, false, false).then(() => {
         if (!root.querySelector(SELECTORS.modal).hidden) { return; }
         notifyInterfaceTransition(root, 'guided-path');
@@ -2109,6 +2179,30 @@ const bindGuide = (root, config) => {
       });
     }
   });
+
+  root.querySelectorAll('[data-easyedu-guide-reset-path]').forEach(button => {
+    addTrackedListener(root, button, 'click', () => {
+      const activeConfig = root.easyeduGuideConfig || config;
+      dismissResume(root);
+      resetPathProgress(activeConfig, button.getAttribute('data-easyedu-guide-reset-path'));
+      hideChecklist(root, activeConfig);
+      syncPathInvitation(root, activeConfig);
+    });
+  });
+  const resume = root.querySelector('[data-easyedu-guide-resume-path]');
+  if (resume) { addTrackedListener(root, resume, 'click', () => {
+    const activeConfig = root.easyeduGuideConfig || config;
+    const path = root.querySelector('[data-easyedu-guide-resume]').dataset.easyeduGuideResumePathName;
+    dismissResume(root);
+    if (!isPathComplete(activeConfig, path)) { renderChecklist(root, activeConfig, path); }
+  }); }
+  const cancelPath = root.querySelector('[data-easyedu-guide-cancel-path]');
+  if (cancelPath) { addTrackedListener(root, cancelPath, 'click', () => {
+    const activeConfig = root.easyeduGuideConfig || config;
+    dismissResume(root);
+    const state = loadGuideState(activeConfig);
+    saveGuideState(activeConfig, {...state, path: null});
+  }); }
 
   addTrackedListener(root, root, 'keydown', event => {
     const activeConfig = root.easyeduGuideConfig || config;
@@ -2208,19 +2302,9 @@ const bindGuide = (root, config) => {
           if (currentPath !== pathName) {
             return;
           }
-          const completed = Object.assign({}, state.completed || {});
-          const pathCompleted = Array.isArray(completed[pathName]) ? completed[pathName].slice() : [];
           const stepId = step.id || String(index);
-          if (!pathCompleted.includes(stepId)) {
-            pathCompleted.push(stepId);
-          }
-          completed[pathName] = pathCompleted;
-          saveGuideState(config, {
-            path: pathName,
-            activeIndex: Math.min(index + 1, Math.max((config.paths[pathName] || []).length - 1, 0)),
-            completed,
-            slideIndex: Number(root.getAttribute('data-easyedu-guide-current-slide') || 0)
-          });
+          // The common completion gate validates dependencies BEFORE storing
+          // progress. A click on a locked future target must not unlock it.
           completeStep(root, config, pathName, stepId);
         }, true);
       }
@@ -2276,6 +2360,8 @@ export const destroy = rootOrSelector => {
   if (!root) {
     return;
   }
+
+  dismissResume(root);
 
   restoreInterfaceCue(root);
   stopSlideTransition(root);
@@ -2353,9 +2439,12 @@ export const init = (rootOrSelector, rawConfig) => {
     allowLocked: Number.isFinite(restoredSlideIndex)
   });
   bindGuide(root, config);
-  if (state.path && config.paths[state.path]) {
-    renderChecklist(root, config, state.path);
+  // A completed path never reopens a checklist on reload. Unfinished progress
+  // is offered, not imposed: only an explicit Resume renders the checklist.
+  if (state.path && config.paths[state.path] && !isPathComplete(config, state.path)) {
+    offerResume(root, config, state.path);
   }
+  syncPathInvitation(root, config);
 
   const storage = getStorage();
   const seen = storage && storage.getItem(config.storageKey) === '1';

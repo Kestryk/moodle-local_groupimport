@@ -125,8 +125,7 @@
     gap: 0.625rem;
 
     h2 {
-      @include typography.type-eyebrow;
-      color: var(--easyedu-primary);
+      @include typography.type-modal-title;
       margin: 0;
       text-transform: none;
       text-align: start;
@@ -155,6 +154,7 @@
     background: var(--easyedu-accent-soft);
     border: 1px solid var(--easyedu-border);
     gap: 1rem;
+    align-items: start;
     padding: 1.25rem;
     border-radius: 0.875rem;
     &__icon { width: 2.75rem; height: 2.75rem; font-size: 1.375rem; }
@@ -184,8 +184,9 @@
           content: counter(discovery-step);
           display: grid;
           place-items: center;
-          width: 1.125rem;
-          height: 1.125rem;
+          flex: 0 0 0.9375rem;
+          width: 0.9375rem;
+          height: 0.9375rem;
           border-radius: 50%;
           background: var(--easyedu-accent);
           color: white;
@@ -200,7 +201,30 @@
       justify-self: end;
       min-height: 2.375rem;
       font-size: 0.78rem;
+      align-self: start;
+      height: auto;
     }
+    &__reset { @include buttons.selection-action; grid-column: 3; justify-self: end; }
+  }
+
+  .easyedu-guide-resume {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+    position: fixed;
+    inset-block-end: 1rem;
+    inset-inline-end: 1rem;
+    width: min(30rem, calc(100vw - 2rem));
+    padding: 0.75rem;
+    border: 1px solid var(--easyedu-border);
+    border-radius: var(--easyedu-radius-lg);
+    background: var(--easyedu-surface);
+    z-index: 1070;
+    > span { @include typography.type-caption; flex: 1 1 10rem; }
+    .btn { @include buttons.selection-action; @include buttons.button-size(small); }
+    .btn-primary { @include buttons.selection-action($solid: true); }
+    &[hidden] { display: none; }
   }
 
   .easyedu-guide-modal__footer {
@@ -408,6 +432,10 @@
       @include overlays.file-drop-overlay;
       border-radius: inherit;
       background: transparent;
+      // Identity rail extends beyond the content padding-box. Keep the dashed
+      // target on the actual outer card, using the same Group identity colour.
+      inset-inline-start: calc(-1 * var(--easyedu-identity-border-width));
+      border-color: var(--easyedu-group-rail, var(--easyedu-accent));
       content: '';
     }
     &__stage { display: grid; position: relative; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
@@ -558,7 +586,8 @@
       strong { line-height: 1.4; }
       small { line-height: 1.5; font-weight: var(--easyedu-font-weight-regular); }
       &.is-locked {
-        background: var(--easyedu-surface-soft);
+        background: repeating-linear-gradient(-45deg, transparent 0 0.5rem,
+          color-mix(in srgb, var(--easyedu-text-muted) 5%, transparent) 0.5rem 1rem), var(--easyedu-surface-soft);
         border-color: var(--easyedu-border);
         opacity: 1;
         cursor: default;
@@ -568,6 +597,19 @@
         color: var(--easyedu-text-muted);
         font-size: 0.68rem;
       }
+    }
+    .easyedu-guided-panel__message.is-complete {
+      @include typography.type-caption;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: var(--easyedu-success-soft);
+      border: 1px solid var(--easyedu-border);
+      border-radius: var(--easyedu-radius-md);
+      max-height: none;
+      > span:not(.fa) { @include typography.type-caption; }
+      .easyedu-guided-panel__message-compact { display: none; }
     }
     &[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps {
       max-height: min(19rem, 45dvh);
@@ -600,6 +642,14 @@
   @media (max-width: 40rem) {
     .easyedu-guide-guided-card { grid-template-columns: auto minmax(0, 1fr); }
     .easyedu-guide-guided-card .easyedu-guide-slide__start { grid-column: 1 / -1; }
+    .easyedu-guide-guided-card .easyedu-guide-guided-card__body { text-align: start; align-items: start; }
+    .easyedu-guide-guided-card .easyedu-guide-slide__start,
+    .easyedu-guide-guided-card .easyedu-guide-guided-card__reset {
+      grid-column: 1 / -1;
+      justify-self: stretch;
+      height: auto;
+      min-height: 2.375rem;
+    }
     .easyedu-guide-scene__concepts, .easyedu-guide-scene__stage, .easyedu-guide-scene__results { grid-template-columns: minmax(0, 1fr); }
     .easyedu-guide-scene[data-guide-mode] .easyedu-guide-scene__stage::after,
     .easyedu-guide-scene__dialog { grid-area: 3 / 1; }

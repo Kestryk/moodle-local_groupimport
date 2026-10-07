@@ -172,6 +172,7 @@
                                 <template data-guide-name-card><span class="easyedu-guide-scene__card"><span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong data-guide-name></strong><small>{{emptymembers}}</small></span></span></template>
                                 {{/creation}}
                                 {{^concepts}}{{^creation}}
+                                {{#membership}}<p class="easyedu-guide-scene__intro">{{note}}</p>{{/membership}}
                                 <div class="easyedu-guide-scene__stage" data-guide-stage>
                                     <div class="easyedu-guide-scene__source" data-guide-source>
                                         <strong class="easyedu-guide-scene__source-title">Projet Orion</strong>
@@ -439,6 +440,7 @@
                                         <span>{{guidestartpathlabel}}</span>
                                         {{#discoveryscene}}<span class="fa fa-arrow-right" aria-hidden="true"></span>{{/discoveryscene}}
                                     </button>
+                                    <button type="button" class="btn btn-outline-secondary easyedu-guide-guided-card__reset" data-easyedu-guide-reset-path="{{guidedpath}}" hidden>{{guideresetpathlabel}}</button>
                                 </div>
                             {{/guidedpath}}
                             {{#discoveryscene}}{{#concepts}}
@@ -485,6 +487,11 @@
                 <span class="fa fa-times" aria-hidden="true"></span>
             </button>
         </div>
+    </aside>
+    <aside class="easyedu-guide-resume" data-easyedu-guide-resume hidden aria-label="{{guideresumetitle}}">
+        <span>{{guideresumetitle}}</span>
+        <button type="button" class="btn btn-primary" data-easyedu-guide-resume-path>{{guideresumelabel}}</button>
+        <button type="button" class="btn btn-outline-secondary" data-easyedu-guide-cancel-path>{{guidecancelpathlabel}}</button>
     </aside>
 
     <aside class="easyedu-guide-checklist easyedu-guided-panel" data-easyedu-guide-checklist hidden role="region" aria-label="{{guidechecklisttitle}}">

@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideReviewG820261007": {
+      "kitVersion": "0.4.140",
+      "kitCommit": "c635b39b92a6606b0fba32bdd097284109c8e5b0",
+      "documentation": "docs/guide-follow-up-g8-2026-10-07.md",
+      "scope": "Canonical header/invitation, illustration refinements, explicit20s resume, completed-path restart/reset and review-aware dependency progression.",
+      "nativePreviewVerified": false,
+      "foundationCataloguePublished": false,
+      "humanVisualValidated": false
+    },
     "guidePresentationFollowup20261007": {
       "kitVersion": "0.4.139",
       "kitCommit": "461d26812488179a1c79a560889a246c5a1d461e",

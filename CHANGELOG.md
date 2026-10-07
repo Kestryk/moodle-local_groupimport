@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-07 - Guide G8 review and lifecycle
+
+- Apply canonical modal title/caption/Close, compact numbered invitation and
+  natural-height responsive actions. Explain Add/Move before the illustration;
+  retain compact cursor, aligned identity dash paint and flash-free recap reveal.
+- Never restore completed checklist on reload. Unfinished paths offer explicit
+  Resume/Cancel for20s; restart/reset affect only Guide state for that path.
+- Dependency-gated completion advances from the actual milestone. Practice
+  opts into next highlights and read-only destination re-opening; earlier review
+  awaits normal native dialog closure. No automatic business confirmation.
+- Record all review lots and separate structured curriculum handoff prompt.
+  Isolated lifecycle/geometry/routes pass; native integration remains pending.
+
 ## 2026-10-07 - Guide G7 native checkpoint
 
 - Native49844 passes the three-width presentation; native51960 passes the latest

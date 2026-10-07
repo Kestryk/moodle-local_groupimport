@@ -93,6 +93,7 @@ final class guide_discovery {
                 'description' => get_string('discovery_path_desc' . ($index + 1), 'local_groupimport'),
                 'target' => $target,
                 'completionMode' => 'event',
+                'autoHighlightNext' => true,
             ];
             if ($index > 0) {
                 $step['requiresStep'] = $definitions[$index - 1][0];
@@ -100,6 +101,13 @@ final class guide_discovery {
             if ($open !== null) {
                 $step['open'] = $open;
                 $step['openDelay'] = 360;
+            }
+            if ($index >= 4) {
+                $step['open'] = 'tutorial:participant-move-dialog';
+                $step['openDelay'] = 360;
+            }
+            if ($index < 4) {
+                $step['beforeHighlight'] = 'tutorial:close-participant-move-dialog';
             }
             $steps[] = $step;
         }

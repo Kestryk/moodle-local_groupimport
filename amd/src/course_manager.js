@@ -6871,10 +6871,10 @@ const bindMoveModal = (root, courseId) => {
     const closeModal = () => {
         // Cancel cannot undo an atomic command already in flight.
         if (memberBusy) {
-            return;
+            return Promise.resolve(false);
         }
         chooser.close();
-        hideEasyStudModal(modal, () => {
+        return hideEasyStudModal(modal, () => {
             contextType = '';
             memberSnapshot = [];
             if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
@@ -6883,6 +6883,7 @@ const bindMoveModal = (root, courseId) => {
             returnFocus = null;
         });
     };
+    root.easystudCloseMoveDialog = closeModal;
 
     const setMemberBusy = busy => {
         memberBusy = busy;
@@ -8695,6 +8696,22 @@ const bindSharedGuideTargets = root => {
         if (!selector) {
             return null;
         }
+        if (selector === 'tutorial:close-participant-move-dialog') {
+            const modal = root.querySelector('[data-easystud-move-modal]');
+            if (modal && !modal.hidden) {
+                modal.querySelector('[data-easystud-close-move-modal]')?.click();
+            }
+            return root;
+        }
+        if (selector === 'tutorial:participant-move-dialog') {
+            const modal = root.querySelector('[data-easystud-move-modal]');
+            if (modal && modal.hidden) {
+                const action = Array.from(root.querySelectorAll('[data-easystud-move-selected-participants]'))
+                    .find(button => !button.disabled);
+                action?.click();
+            }
+            return modal && !modal.hidden ? modal : null;
+        }
         if (selector === 'tutorial:participant-details') {
             const participant = root.querySelector('[data-easystud-participant-list] [data-easystud-user]:not([hidden])');
             if (participant) {
@@ -8793,6 +8810,11 @@ const bindSharedGuideTargets = root => {
         const request = event.detail;
         if (!request || request.root !== guideRoot || typeof request.target !== 'string' ||
                 !request.target.startsWith('tutorial:')) {
+            return;
+        }
+        if (request.target === 'tutorial:close-participant-move-dialog') {
+            request.handled = true;
+            request.ready = root.easystudCloseMoveDialog?.() || Promise.resolve(true);
             return;
         }
         if (openTarget(request.target)) {
