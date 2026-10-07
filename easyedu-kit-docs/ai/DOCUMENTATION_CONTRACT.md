@@ -7,6 +7,11 @@ overlap-time dashed target, contained live/final state and cancellable modal-bod
 reveal scrolling. Keep previous G6 scenarios/proof pinned and block business
 writes. Guide-local Library publication is not Foundation catalogue acceptance.
 
+Native G7 run41716 failed at the unchanged <1px sticky oracle (actual22px).
+Retain the source and failed evidence. Reading-body padding must be compensated
+in canonical SCSS, not by relaxing the oracle or hiding native controls. Scope
+checklist subtitle fonts to copy only; native action glyphs keep their own font.
+
 Guide refinement preserves accepted Overview/natural-card structure. G6 retained
 checklist layout; G7 explicitly reopens its opt-in chrome. Practice invalid patterns use the canonical Warning notice
 with explicit aria-invalid recovery. Prove quiet Show/Return wrapping/paint,

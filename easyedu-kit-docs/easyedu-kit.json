@@ -5,13 +5,15 @@
   "status": "stable",
   "consumerSync": {
     "guidePresentationFollowup20261007": {
-      "kitVersion": "0.4.135",
-      "kitCommit": "8456c983b49bcb4e67daafbae0873a397b64ab64",
+      "kitVersion": "0.4.137",
+      "kitCommit": "458360522ae20b21c20284bf7d78062357067aab",
       "predecessorKitCommit": "544bf1fe19c1788d2170b64f98d78c4250857b81",
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
       "documentation": "docs/guide-follow-up-2026-10-07.md",
       "scope": "G7 persistent step frame, synchronized drag/return/drop, selected comparisons/checkboxes, scoped reveal scroll, context/recap and Discovery checklist Restore/long-list scroll.",
-      "status": "Source/build/isolated gates pass. Native successor and six-stage Practice remain separately tracked.",
+      "status": "Source/build/isolated gates pass, including responsive sticky gap correction. Failed native run41716 is preserved; strict successor and six-stage Practice remain separately tracked.",
+      "failedNativeRunId": "easystud-authenticated-20261007T120554874Z-41716",
+      "failedNativeAssetSourceCommit": "fe389e0ddd0e83996a1a2fe9fe7e92aadb65d5c1",
       "nativePreviewVerified": false,
       "foundationCataloguePublished": false,
       "humanVisualValidated": false

@@ -70,3 +70,27 @@ Fullscreen assessment: requestFullscreen is feasible after an explicit user
 gesture, with Escape/fullscreenchange handling and a viewport fallback for
 mobile. Exit fullscreen before Show in interface so native Moodle targets
 remain reachable. No fullscreen feature has been implemented or tested.
+
+## G7 native failure and forward correction
+
+Promotion20261007T120534Z applied Sourcefe389e0 to runtimed070e245,
+with managed cache purge. Native run
+easystud-authenticated-20261007T120554874Z-41716 FAILED at the sticky oracle:
+expected absolute gap<1px, actual22px. Desktop drag samples, target dashed
+paint and read-only AJAX guard passed up to that assertion. Cleanup records
+credentialsCleared/leaseReleased/ownedChildStopped true; no fixture or course
+write. Preserve original guide-presentation-follow-up.spec.js and failed output.
+
+The gap matches the padded scrollport's22px inset (16px on phone). Canonical
+0.4.137 compensates that actual reading inset; isolated painted gaps are0px at
+1280/768/390 without changing scene/card padding. It also includes0.4.136's
+subtitle-only typography fix, preserving action glyph fonts. Native successor
+guide-reading-edge-successor.spec.js retains the strict<1px oracle, records
+pre-assert geometry and adds Restore glyph-font proof. Native pass is pending.
+
+Guide-linked usage IDs after the preceding Source checkpoint:
+Membership4ee6f77a-1dfb-809b-8008-c0d4744b0b74;
+Actions4ee6f77a-1dfb-809b-8008-c0d474963c30.
+Both reference Active4ee6f77a-1dfb-809b-8008-c0d31eb7cfc5. Earlier surfaces
+are hidden recoverable Archive G6 references. New composed export and shared
+Foundations publication/human acceptance remain separate gates.
