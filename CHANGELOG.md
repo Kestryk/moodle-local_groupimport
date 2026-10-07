@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-07 - Guide G7 native checkpoint
+
+- Native49844 passes the three-width presentation; native51960 passes the latest
+  six-stage checklist with contained copy, bounded scroll and usable Restore at
+ 1280/768/390. Captures inspected, no business writes. Preserve failed evidence.
+- Shared Foundations publication, complete curriculum and human review remain
+  open; new Practice signals are not a tested real-course mutation claim.
+
 ## 2026-10-07 - Guide readable checklist successor
 
 - Consume Kit0.4.139 intrinsic-height checklist rows and in-flow prerequisites,
