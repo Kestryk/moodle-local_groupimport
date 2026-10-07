@@ -59,7 +59,7 @@
                             <span class="easyedu-guide-nav-copy">
                                 {{#category}}<small>{{category}}</small>{{/category}}
                                 {{^category}}{{#hasguidedpath}}<small>{{guideguidedpathlabel}}</small>{{/hasguidedpath}}{{/category}}
-                                <span>{{title}}</span>
+                                <span>{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
                             </span>
                             {{#requires}}
                                 <span class="easyedu-guide-nav-item__requirement" aria-hidden="true">{{#requiresbadge}}{{requiresbadge}}{{/requiresbadge}}{{^requiresbadge}}{{guiderequiresbadge}}{{/requiresbadge}}</span>

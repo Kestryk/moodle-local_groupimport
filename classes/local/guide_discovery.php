@@ -38,6 +38,7 @@ final class guide_discovery {
                 'icon' => $icon,
                 'category' => get_string($prefix . 'category', 'local_groupimport'),
                 'title' => get_string($prefix . 'title', 'local_groupimport'),
+                'navtitle' => get_string($prefix . 'navtitle', 'local_groupimport'),
                 'content' => \html_writer::tag('p', s(get_string($prefix . 'body', 'local_groupimport'))),
                 'discoveryscene' => $scene,
                 'target' => $target,

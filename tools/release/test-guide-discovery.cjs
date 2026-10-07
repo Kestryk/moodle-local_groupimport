@@ -28,6 +28,12 @@ const root = path.resolve(__dirname, '../..');
                 await page.evaluate(() => window.Guide.init('[data-easyedu-guide-root]', {storageKey: 'test', firstVisit: true}));
                 const modal = page.locator('[data-easyedu-guide-modal]');
                 if (!await modal.isVisible()) { await page.locator('[data-easyedu-guide-open]').click(); }
+                for (const slide of data.slides) {
+                    const title = page.locator(`[data-easyedu-guide-nav-item="${slide.index}"] .easyedu-guide-nav-copy > span`);
+                    assert.equal(await title.innerText(), slide.navtitle);
+                    assert.ok(await title.evaluate(node => node.scrollWidth <= node.clientWidth + 1),
+                        `${language} ${width}: short topic label must fit`);
+                }
                 await page.locator('[data-easyedu-guide-nav-item="1"]').click();
                 const creation = page.locator('.easyedu-guide-scene__creation-controls');
                 const inputBounds = await creation.locator('input').boundingBox();

@@ -50,6 +50,10 @@ test('Guide discovery first version native preview', async({page}, info) => {
                 await modal.locator(`[data-easyedu-guide-nav-item="${index}"]`).click();
                 const slide = modal.locator(`[data-easyedu-guide-slide="${index}"]`);
                 await expect(slide).toBeVisible();
+                const topic = modal.locator(`[data-easyedu-guide-nav-item="${index}"] .easyedu-guide-nav-copy > span`);
+                expect(await topic.evaluate(node => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
+                const bodySize = await slide.locator('.easyedu-guide-slide__content p').evaluate(node => getComputedStyle(node).fontSize);
+                expect(bodySize).toBe('14.08px');
                 if (index === 1) {
                     const input = await slide.locator('[data-guide-pattern]').boundingBox();
                     const actions = await slide.locator('.easyedu-guide-scene__creation-controls .easyedu-guide-scene__actions').boundingBox();
