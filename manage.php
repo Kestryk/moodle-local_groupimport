@@ -1430,6 +1430,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         'guidereturndismiss' => $templatedata['tutorialreturndismiss'],
         'guidechecklisttitle' => $templatedata['tutorialguidedpaneltitle'],
         'guideminimizelabel' => $templatedata['tutorialguidedpanelminimize'],
+        'guiderestorelabel' => get_string('discovery_restore', 'local_groupimport'),
         'guidechecklisthint' => $templatedata['tutorialguidedpanelhint'],
         'guidechecklistdonelabel' => $templatedata['tutorialguidedpanelcomplete'],
         'guidesteplabel' => $templatedata['tutorialstepof'],

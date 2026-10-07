@@ -1,7 +1,14 @@
 # EasyEdu documentation contract
 
-Guide refinement preserves accepted Overview/natural-card structure and native
-checklist layout. Practice invalid patterns use the canonical Warning notice
+G7 explicitly redesigns Discovery checklist chrome, preserving completion IDs
+and legacy paths. Track reduced Restore and >3-step scrolling separately from
+the six-stage Practice integration. Test synchronized actual cursor/ghost paint,
+overlap-time dashed target, contained live/final state and cancellable modal-body
+reveal scrolling. Keep previous G6 scenarios/proof pinned and block business
+writes. Guide-local Library publication is not Foundation catalogue acceptance.
+
+Guide refinement preserves accepted Overview/natural-card structure. G6 retained
+checklist layout; G7 explicitly reopens its opt-in chrome. Practice invalid patterns use the canonical Warning notice
 with explicit aria-invalid recovery. Prove quiet Show/Return wrapping/paint,
 near-cursor menu, contrast, instruction transition and neutral completion on
 desktop/tablet/mobile; keep Foundation publication and human review separate.

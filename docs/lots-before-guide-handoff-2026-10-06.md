@@ -149,3 +149,11 @@ were inspected in real native captures, not only isolated fixtures. The Guide
 file contains linked Warning/cursor specimens and desktop/phone Practice.
 Foundation canonical Small utility publication/propagation, broader G4, G5 and
 all older feedback/human acceptance stay open. See the exact G6 proof record.
+
+G7 successor is recorded in guide-follow-up-2026-10-07.md. It retains every
+new request: sticky/contained step banner, synchronized drag/drop and selected
+controls, illustrated reveal scrolling/checkboxes, quieter organized recap,
+six-stage accompanied Practice, checklist expanded/reduced/scrolling design,
+Guide page rename. Browser fullscreen is an assessment only. Existing SM/G4/G5
+lots and human acceptance remain open; no business data writes are authorized
+for presentation tests.
