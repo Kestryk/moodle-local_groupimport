@@ -546,6 +546,29 @@
       @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
       & { @include buttons.button-size(small); }
     }
+    .easyedu-guided-panel__steps {
+      grid-auto-rows: max-content;
+      align-content: start;
+    }
+    .easyedu-guided-panel__step {
+      height: auto;
+      align-items: start;
+      padding: 0.625rem;
+      > span:last-child { gap: 0.25rem; }
+      strong { line-height: 1.4; }
+      small { line-height: 1.5; font-weight: var(--easyedu-font-weight-regular); }
+      &.is-locked {
+        background: var(--easyedu-surface-soft);
+        border-color: var(--easyedu-border);
+        opacity: 1;
+        cursor: default;
+        &[data-easyedu-guide-lock-message]::before { display: none; }
+      }
+      .easyedu-guide-checklist__requirement {
+        color: var(--easyedu-text-muted);
+        font-size: 0.68rem;
+      }
+    }
     &[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps {
       max-height: min(19rem, 45dvh);
       scrollbar-gutter: stable;

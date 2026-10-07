@@ -39,6 +39,15 @@ const root = path.resolve(__dirname, '../..');
                 assert.equal(await checklist.getAttribute('data-easyedu-guide-path'), 'practice-membership');
                 assert.equal(await checklist.locator('[data-easyedu-guide-step-id]').count(), 6);
                 assert.equal(await checklist.locator('[data-easyedu-guide-step-id]:disabled').count(), 5);
+                const rows = await checklist.locator('[data-easyedu-guide-step-id]').evaluateAll(nodes => nodes.map(node => {
+                    const box = node.getBoundingClientRect();
+                    const copy = node.querySelector('span:last-child').getBoundingClientRect();
+                    return {height: box.height, copyHeight: copy.height,
+                        contained: copy.top >= box.top && copy.bottom <= box.bottom,
+                        overlay: getComputedStyle(node, '::before').display};
+                }));
+                assert.ok(rows.every(row => row.contained), JSON.stringify(rows));
+                assert.ok(rows.slice(1).every(row => row.overlay === 'none'), JSON.stringify(rows));
                 await page.evaluate(() => window.emitPracticeCompletion(document.querySelector('#workspace'), 'confirm-move'));
                 assert.equal(await checklist.locator('.is-complete').count(), 0, 'Out-of-order completion rejected');
                 for (const step of data.practicePath) {

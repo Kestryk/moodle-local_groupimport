@@ -24,6 +24,12 @@ Pinned Sass may hoist plain sizing declarations before a recipe's nested paint.
 Use an explicit trailing & sizing block and inspect compiled/native dimensions;
 never relax a Small-size assertion to match an unintended regular control.
 
+Discovery long checklist rows retain intrinsic content height inside bounded
+scroll. Prerequisites remain in flow, without legacy duplicate lock overlays.
+Inspect native captures and assert each copy lane's containment; count/outer
+bounds alone can pass while titles and descriptions are clipped. Historical
+whole-file identity specs are commit-bounded proofs, not current multi-lot tests.
+
 Guide refinement preserves accepted Overview/natural-card structure. G6 retained
 checklist layout; G7 explicitly reopens its opt-in chrome. Practice invalid patterns use the canonical Warning notice
 with explicit aria-invalid recovery. Prove quiet Show/Return wrapping/paint,
