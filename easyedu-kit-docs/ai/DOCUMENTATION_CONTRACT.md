@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Guide compact hit-target proof scrolls the actual earlier row into its bounded
+viewport before measuring its centre. Never force-click or confuse off-scroll
+geometry with modal interception. Restore state is a boolean attribute and must
+survive native progress re-render; keep real dialog fields clickable as well.
+
 Guide launcher restored pointer focus must retain resting paint; use canonical
 `:focus-visible` focus paint and never blur the opener to hide a state defect.
 Assert real hover and keyboard focus separately from pointer Close.

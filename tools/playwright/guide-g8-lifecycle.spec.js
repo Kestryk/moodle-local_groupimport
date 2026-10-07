@@ -127,6 +127,10 @@ test('Guide G8 lifecycle and native destination review', async({page}, info) => 
             // Review an earlier completed step: close native dialog safely,
             // retain completion/unlocks, then reopen a later destination.
             const previous = checklist.locator('[data-easyedu-guide-step-id="select-participant"]');
+            // The compact list is genuinely scrollable. Scroll the real row
+            // before measuring its painted centre; off-scroll bounds are not
+            // evidence that a modal intercepted a visible target.
+            await previous.scrollIntoViewIfNeeded();
             const stacking = await previous.evaluate(node => {
                 const box = node.getBoundingClientRect();
                 const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
