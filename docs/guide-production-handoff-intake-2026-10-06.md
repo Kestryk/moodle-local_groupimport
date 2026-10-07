@@ -4,6 +4,17 @@
 
 ### 7 October continuation: creation controls
 
+Follow-on source candidate adds translated short topic labels (full lesson titles
+remain), category-lane path markers and compact introduction typography. Six
+isolated locale/width checks assert that all four short labels fit; no legacy
+slide is removed. Native validation of this follow-on is tracked separately.
+Foundation hosted MCP recovery is not yet confirmed: focusing9225, opening its
+MCP menu and Disconnect/Connect here did not yield an identity response. No
+design writes or reload performed. Guide4401 later returned no connected plugin;
+do not claim either publication or current Guide availability from the earlier
+successful identity. Preserve browsers/configuration and verify both identities
+before any further design write.
+
 Dedicated read-only MCP identity reconfirmed the exact Guide file/Page1. Compared
 creation-linked-icons-final.png against the served1280 creation capture: the
 candidate stacked the field/actions where the design aligns them. Shared Kit

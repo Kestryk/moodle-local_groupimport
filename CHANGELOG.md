@@ -2,6 +2,9 @@
 
 ## 2026-10-07 - Guide creation composition successor
 
+- Add French/English short discovery navigation labels, keeping full lesson
+  titles. Consume the Kit category-lane path marker and compact body typography.
+
 - Consume the Kit creation-control row in both embedded and adapted templates;
   desktop input/actions share a baseline and wrap on phones. French/English
   isolated checks pass at 1280/768/390. Native promotion is tracked separately.
