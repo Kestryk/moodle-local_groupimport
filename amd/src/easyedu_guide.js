@@ -988,11 +988,74 @@ const stopDiscoveryScene = root => {
   }
 };
 
+// Names are generated locally from the exercise input, never through Moodle APIs.
+const renderDiscoveryNames = (root, scene, command) => {
+  stopDiscoveryScene(root);
+  const input = scene.querySelector('[data-guide-pattern]');
+  const output = scene.querySelector('[data-guide-names]');
+  if (!input || !output) { return; }
+  if (command === 'letters') {
+    input.value = input.value.replace(/[#@]/, value => value === '#' ? '@' : '#');
+  }
+  const match = input.value.match(/^(.*?)([#@])\*([1-9]\d*)$/);
+  const template = scene.querySelector('[data-guide-name-card]');
+  const reduced = getScrollBehavior(root) === 'auto';
+  const animations = new Set();
+  let stopped = false;
+  const animate = async(element, frames, duration, delay = 0) => {
+    if (stopped || reduced) { return; }
+    const animation = element.animate(frames, {duration, delay, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+    animations.add(animation);
+    try { await animation.finished; } catch (error) { /* Departure/replay cancels the presentation only. */ }
+    animation.cancel();
+    animations.delete(animation);
+  };
+  root.easyeduGuideSceneStop = () => {
+    stopped = true;
+    animations.forEach(animation => animation.cancel());
+  };
+  const run = async() => {
+    if (output.childElementCount || output.textContent) {
+      await animate(output, [{opacity: 1}, {opacity: 0}], 110);
+    }
+    if (stopped) { return; }
+    const initialHeight = output.getBoundingClientRect().height;
+    output.replaceChildren();
+    if (command !== 'clear') {
+      if (!match || Number(match[3]) > 6) {
+        output.textContent = output.getAttribute('data-invalid') || '';
+      } else {
+        for (let index = 0; index < Number(match[3]); index++) {
+          const name = match[1] + (match[2] === '#' ? index + 1 : String.fromCharCode(65 + index));
+          const card = template?.content.firstElementChild?.cloneNode(true) || document.createElement('span');
+          const label = card.querySelector('[data-guide-name]');
+          if (label) { label.textContent = name; } else { card.textContent = name; }
+          output.appendChild(card);
+        }
+      }
+    }
+    const finalHeight = output.getBoundingClientRect().height;
+    await Promise.all([
+      animate(output, [{height: initialHeight + 'px'}, {height: finalHeight + 'px'}], 320),
+      ...Array.from(output.children, (card, index) => animate(card,
+        [{opacity: 0, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}], 260, index * 55))
+    ]);
+  };
+  run().catch(() => { stopDiscoveryScene(root); });
+};
+
 const playDiscoveryScene = (root, scene, requestedMode) => {
   stopDiscoveryScene(root);
   if (!scene) { return; }
   const kind = scene.getAttribute('data-easyedu-guide-scene');
-  if (kind === 'concepts' || kind === 'creation') { return; }
+  if (kind === 'concepts') { return; }
+  if (kind === 'creation') {
+    if (!scene.easyeduGuideNamesInitialized) {
+      scene.easyeduGuideNamesInitialized = true;
+      renderDiscoveryNames(root, scene, 'preview');
+    }
+    return;
+  }
   const mode = requestedMode || scene.easyeduGuideSceneMode || (kind === 'actions' ? 'actions' : 'add');
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
@@ -1005,7 +1068,21 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   delete scene.dataset.guideSceneFinished;
   result.textContent = scene.easyeduGuideResultOriginal;
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
-  scene.querySelectorAll('[data-guide-phase]').forEach(item => item.removeAttribute('aria-current'));
+  scene.dataset.guideMode = mode;
+  const live = scene.parentElement.querySelector('[data-guide-live]');
+  if (live) { live.textContent = scene.easyeduGuideResultOriginal; }
+  const recap = scene.querySelector('[data-guide-recap]');
+  if (recap) { recap.hidden = true; }
+  const origin = scene.querySelector('[data-guide-membership-origin]');
+  const target = scene.querySelector('[data-guide-membership-target]');
+  if (origin) { origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept; }
+  if (target) { target.classList.add('is-absent'); target.querySelector('b').textContent = target.dataset.absent; }
+  scene.querySelectorAll('[data-guide-phase]').forEach(item => {
+    item.removeAttribute('aria-current');
+    item.hidden = false;
+    if (!item.dataset.original) { item.dataset.original = item.textContent; }
+    item.textContent = item.dataset.original;
+  });
   if (mode === 'reset') { return; }
 
   const controller = new AbortController();
@@ -1027,7 +1104,12 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   const phase = async name => {
     const item = scene.querySelector(`[data-guide-phase="${name}"]`);
     scene.querySelectorAll('[data-guide-phase]').forEach(node => node.removeAttribute('aria-current'));
-    if (item) { item.setAttribute('aria-current', 'step'); }
+    if (item) {
+      item.setAttribute('aria-current', 'step');
+      const text = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+      item.textContent = text;
+      if (live) { live.textContent = text; }
+    }
     if (!reduced) { await wait(Math.max(2400, (item?.textContent.trim().split(/\s+/).length || 0) * 230)); }
   };
   root.easyeduGuideSceneStop = () => {
@@ -1052,6 +1134,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
         {transform: `translate(${a.left - b.left + a.width / 2}px, ${a.top - b.top + a.height / 2}px)`}], duration);
     };
     await travel(person);
+    stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
     await phase('select');
     if (controller.signal.aborted) { return; }
     if (mode !== 'add') {
@@ -1068,6 +1151,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       await phase('confirm');
       if (controller.signal.aborted) { return; }
       const submit = confirm.querySelector('[data-guide-simulated-submit]');
+      await phase('validate');
       await travel(submit);
       await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
         {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
@@ -1076,14 +1160,25 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       if (controller.signal.aborted) { return; }
       confirm.hidden = true;
     } else if (!compact && !reduced) {
+      await phase('menu');
+      if (controller.signal.aborted) { return; }
       const ghost = person.cloneNode(true);
       ghost.removeAttribute('data-guide-person');
       ghost.setAttribute('data-guide-ghost', '');
       ghost.setAttribute('aria-hidden', 'true');
+      ghost.querySelectorAll('small').forEach(node => node.remove());
+      ghost.classList.remove('is-selected');
+      const badge = document.createElement('span');
+      badge.className = 'easyedu-guide-scene__drag-badge';
+      const grip = document.createElement('span');
+      grip.className = 'fa fa-grip-vertical';
+      badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
+      ghost.appendChild(badge);
       stage.appendChild(ghost);
       const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
       ghost.style.left = `${a.left - b.left}px`;
       ghost.style.top = `${a.top - b.top}px`;
+      await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
       const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
       const dx = destination.left - a.left, dy = destination.top - a.top + 32;
       await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
@@ -1100,14 +1195,78 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     cursor.hidden = true;
     if (mode !== 'add') {
       stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => { node.hidden = true; });
+      const empty = stage.querySelector('[data-guide-source-empty]');
+      if (empty) { empty.hidden = false; }
     }
+    if (origin && mode !== 'add') { origin.classList.add('is-removed'); origin.querySelector('b').textContent = origin.dataset.removed; }
+    if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
     result.textContent = result.getAttribute(`data-${mode}`) || '';
+    if (live) { live.textContent = result.textContent; }
+    if (recap) {
+      recap.hidden = false;
+      // Adding has no Move confirmation; compact devices explain actions instead of mouse gestures.
+      recap.querySelectorAll('[data-guide-phase]').forEach(item => {
+        item.hidden = mode === 'add' && ['confirm', 'validate'].includes(item.dataset.guidePhase);
+        item.textContent = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+        item.removeAttribute('aria-current');
+      });
+      await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
+    }
+    if (controller.signal.aborted) { return; }
     scene.dataset.guideSceneFinished = 'true';
   };
   run().catch(() => { stopDiscoveryScene(root); });
 };
 
+const stopSlideTransition = root => {
+  root.easyeduGuideSlideStop?.();
+  root.easyeduGuideSlideStop = null;
+};
+
+// One cancellable presentation transition; the existing slide engine still owns state.
 const setActiveSlide = (root, index, config, options = {}) => {
+  stopSlideTransition(root);
+  const modal = root.querySelector(SELECTORS.modal);
+  const outgoing = root.querySelector(SELECTORS.slide + '.is-active');
+  if (options.immediate || !root.classList.contains('easyedu-guide--discovery') ||
+      !modal || modal.hidden || !outgoing || index === getActiveSlideIndex(root) || getScrollBehavior(root) === 'auto') {
+    applyActiveSlide(root, index, config, options);
+    return;
+  }
+  stopDiscoveryScene(root);
+  const animations = new Set();
+  let stopped = false;
+  root.easyeduGuideSlideStop = () => {
+    stopped = true;
+    animations.forEach(animation => animation.cancel());
+    root.removeAttribute('data-easyedu-guide-slide-transition');
+  };
+  const fade = async(element, from, to, duration) => {
+    const animation = element.animate([{opacity: from}, {opacity: to}],
+      {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+    animations.add(animation);
+    try { await animation.finished; } catch (error) { /* A newer navigation request wins. */ }
+    return animation;
+  };
+  const run = async() => {
+    root.setAttribute('data-easyedu-guide-slide-transition', 'out');
+    const exit = await fade(outgoing, 1, 0, 110);
+    if (stopped) { return; }
+    applyActiveSlide(root, index, config, options);
+    exit.cancel();
+    root.setAttribute('data-easyedu-guide-slide-transition', 'in');
+    const incoming = root.querySelector(SELECTORS.slide + '.is-active');
+    const entry = await fade(incoming, 0, 1, 220);
+    entry.cancel();
+    if (!stopped) {
+      root.removeAttribute('data-easyedu-guide-slide-transition');
+      root.easyeduGuideSlideStop = null;
+    }
+  };
+  run().catch(() => stopSlideTransition(root));
+};
+
+const applyActiveSlide = (root, index, config, options = {}) => {
   if (config) {
     syncSlideLocks(root, config);
   }
@@ -1164,6 +1323,10 @@ const setActiveSlide = (root, index, config, options = {}) => {
 };
 
 const openModal = (root, config) => {
+  root.easyeduGuideExitStop?.();
+  root.easyeduGuideExitStop = null;
+  root.easyeduGuideExitPromise = null;
+  stopSlideTransition(root);
   const modal = root.querySelector(SELECTORS.modal);
   if (!modal) {
     return;
@@ -1172,7 +1335,7 @@ const openModal = (root, config) => {
   const returnFocus = !modal.contains(document.activeElement) ? document.activeElement : null;
   Array.from(openGuideRoots).forEach(openRoot => {
     if (openRoot !== root) {
-      closeModal(openRoot, false, false);
+      closeModal(openRoot, false, false, {immediate: true});
     }
   });
   root.easyeduGuideReturnFocus = returnFocus;
@@ -1191,30 +1354,52 @@ const openModal = (root, config) => {
     storage.setItem(config.storageKey, '1');
   }
   syncSlideLocks(root, config);
-  setActiveSlide(root, getActiveSlideIndex(root), config);
+  setActiveSlide(root, getActiveSlideIndex(root), config, {immediate: true});
   setTrackedTimeout(root, () => updateNavScrollButtons(root), 80);
 };
 
-const closeModal = (root, preserveHighlight = false, restoreFocus = true) => {
+const closeModal = (root, preserveHighlight = false, restoreFocus = true, options = {}) => {
+  stopSlideTransition(root);
   stopDiscoveryScene(root);
   const modal = root.querySelector(SELECTORS.modal);
   if (!modal) {
-    return;
+    return Promise.resolve();
   }
 
-  modal.classList.remove('is-open');
-  modal.hidden = true;
-  modal.removeAttribute('aria-modal');
-  unlockPageScroll(root);
-  if (!preserveHighlight) {
-    hideInterfaceReturn(root, true);
-    clearHighlight(root);
+  const finish = () => {
+    modal.classList.remove('is-open');
+    modal.hidden = true;
+    modal.removeAttribute('aria-modal');
+    unlockPageScroll(root);
+    if (!preserveHighlight) {
+      hideInterfaceReturn(root, true);
+      clearHighlight(root);
+    }
+    const returnFocus = root.easyeduGuideReturnFocus;
+    root.easyeduGuideReturnFocus = null;
+    if (restoreFocus && isVisibleElement(returnFocus)) {
+      returnFocus.focus({preventScroll: true});
+    }
+  };
+  if (options.immediate || modal.hidden || !root.classList.contains('easyedu-guide--discovery') ||
+      getScrollBehavior(root) === 'auto') {
+    finish();
+    return Promise.resolve();
   }
-  const returnFocus = root.easyeduGuideReturnFocus;
-  root.easyeduGuideReturnFocus = null;
-  if (restoreFocus && isVisibleElement(returnFocus)) {
-    returnFocus.focus({preventScroll: true});
-  }
+  if (root.easyeduGuideExitPromise) { return root.easyeduGuideExitPromise; }
+  const animation = modal.animate([{opacity: 1}, {opacity: 0}], {duration: 200, easing: 'ease', fill: 'both'});
+  let stopped = false;
+  const stopExit = () => { stopped = true; animation.cancel(); };
+  root.easyeduGuideExitStop = stopExit;
+  root.easyeduGuideExitPromise = animation.finished.catch(() => {}).then(() => {
+    if (!stopped) { finish(); }
+    animation.cancel();
+    if (root.easyeduGuideExitStop === stopExit) {
+      root.easyeduGuideExitPromise = null;
+      root.easyeduGuideExitStop = null;
+    }
+  });
+  return root.easyeduGuideExitPromise;
 };
 
 const getPathLabel = (pathName, config) => {
@@ -1648,23 +1833,8 @@ const bindGuide = (root, config) => {
       event.preventDefault();
       const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
       const command = sceneCommand.getAttribute('data-guide-scene-command');
-      if (command === 'preview' || command === 'letters') {
-        const input = scene.querySelector('[data-guide-pattern]');
-        const output = scene.querySelector('[data-guide-names]');
-        if (command === 'letters') {
-          input.value = input.value.replace(/[#@]/, value => value === '#' ? '@' : '#');
-        }
-        const match = input.value.match(/^(.*?)([#@])\*([1-9]\d*)$/);
-        output.replaceChildren();
-        if (!match || Number(match[3]) > 6) {
-          output.textContent = output.getAttribute('data-invalid');
-        } else {
-          for (let index = 0; index < Number(match[3]); index++) {
-            const chip = document.createElement('span');
-            chip.textContent = match[1] + (match[2] === '#' ? index + 1 : String.fromCharCode(65 + index));
-            output.appendChild(chip);
-          }
-        }
+      if (['preview', 'letters', 'clear'].includes(command)) {
+        renderDiscoveryNames(root, scene, command);
       } else {
         playDiscoveryScene(root, scene, command === 'replay' ? undefined : command);
       }
@@ -1742,19 +1912,21 @@ const bindGuide = (root, config) => {
     const targetButton = event.target.closest(SELECTORS.showTarget);
     if (targetButton && root.contains(targetButton)) {
       event.preventDefault();
-      closeModal(root, true, false);
-      notifyInterfaceTransition(root, 'show-target');
-      runShowTargetOpenAction(root, activeConfig, targetButton, () => {
-        const target = resolveTarget(activeConfig, resolveShowTargetKey(targetButton));
-        if (!target) {
-          // A consumer can temporarily remove a target while changing views.
-          // Reopen the guide rather than leaving the visitor without context.
-          openModal(root, activeConfig);
-          return;
-        }
-        scrollToTarget(root, target);
-        focusTarget(target);
-        showInterfaceReturn(root);
+      closeModal(root, true, false).then(() => {
+        if (!root.querySelector(SELECTORS.modal).hidden) { return; }
+        notifyInterfaceTransition(root, 'show-target');
+        runShowTargetOpenAction(root, activeConfig, targetButton, () => {
+          const target = resolveTarget(activeConfig, resolveShowTargetKey(targetButton));
+          if (!target) {
+            // A consumer can temporarily remove a target while changing views.
+            // Reopen the guide rather than leaving the visitor without context.
+            openModal(root, activeConfig);
+            return;
+          }
+          scrollToTarget(root, target);
+          focusTarget(target);
+          showInterfaceReturn(root);
+        });
       });
       return;
     }
@@ -1764,18 +1936,20 @@ const bindGuide = (root, config) => {
       event.preventDefault();
       syncSlideLocks(root, activeConfig);
       renderChecklist(root, activeConfig, startPath.getAttribute('data-easyedu-guide-start-path'));
-      closeModal(root, false, false);
-      notifyInterfaceTransition(root, 'guided-path');
-      const checklist = root.querySelector(SELECTORS.checklist);
-      const activeItem = checklist ?
-        checklist.querySelector('[data-easyedu-guide-step-index].is-active') :
-        null;
-      const pathName = checklist ? checklist.getAttribute('data-easyedu-guide-path') : '';
-      const steps = activeConfig.paths[pathName] || [];
-      const stepIndex = activeItem ?
-        Number(activeItem.getAttribute('data-easyedu-guide-step-index') || 0) :
-        0;
-      highlightChecklistStep(root, activeConfig, steps[stepIndex] || null);
+      closeModal(root, false, false).then(() => {
+        if (!root.querySelector(SELECTORS.modal).hidden) { return; }
+        notifyInterfaceTransition(root, 'guided-path');
+        const checklist = root.querySelector(SELECTORS.checklist);
+        const activeItem = checklist ?
+          checklist.querySelector('[data-easyedu-guide-step-index].is-active') :
+          null;
+        const pathName = checklist ? checklist.getAttribute('data-easyedu-guide-path') : '';
+        const steps = activeConfig.paths[pathName] || [];
+        const stepIndex = activeItem ?
+          Number(activeItem.getAttribute('data-easyedu-guide-step-index') || 0) :
+          0;
+        highlightChecklistStep(root, activeConfig, steps[stepIndex] || null);
+      });
       return;
     }
 
@@ -1968,6 +2142,8 @@ const destroy = rootOrSelector => {
   }
 
   restoreInterfaceCue(root);
+  stopSlideTransition(root);
+  root.easyeduGuideExitStop?.();
   stopDiscoveryScene(root);
   unlockPageScroll(root);
   clearTrackedListeners(root);

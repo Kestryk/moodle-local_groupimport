@@ -63,11 +63,16 @@ test('Guide discovery first version native preview', async({page}, info) => {
                     } else if (width === 390) {
                         expect(actions.y).toBeGreaterThanOrEqual(input.y + input.height);
                     }
-                    await slide.locator('[data-guide-scene-command="preview"]').click();
+                    await slide.locator('[data-guide-scene-command="preview"]').first().click();
                     await expect(slide.locator('[data-guide-names] > span')).toHaveCount(3);
+                    await expect(slide.locator('[data-guide-names] [data-guide-name]')).toHaveCount(3);
+                    await expect(slide.locator('.easyedu-guide-guided-card__steps li')).toHaveCount(3);
+                    await expect(slide.locator('.easyedu-guide-guided-card__body > small')).not.toBeEmpty();
                 }
                 if (index === 3 && width === 1280) {
                     await expect(slide.locator('[data-easyedu-guide-scene]')).toHaveAttribute('data-guide-scene-finished', 'true', {timeout: 70000});
+                    await expect(slide.locator('[data-guide-recap]')).toBeVisible();
+                    await expect(slide.locator('[data-guide-source-empty]')).toBeVisible();
                 }
                 const geometry = await modal.locator('.easyedu-guide-modal__dialog').evaluate(node => {
                     const r = node.getBoundingClientRect();

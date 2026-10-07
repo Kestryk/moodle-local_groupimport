@@ -48,19 +48,29 @@ const root = path.resolve(__dirname, '../..');
                 } else if (width === 390) {
                     assert.ok(actionBounds.y >= inputBounds.y + inputBounds.height, 'Phone controls wrap without overlapping');
                 }
-                await page.locator('[data-guide-scene-command="preview"]').click();
+                await page.locator('[data-guide-scene-command="preview"]').first().click();
                 assert.equal(await page.locator('[data-guide-names] > span').count(), 3);
                 await page.locator('[data-guide-scene-command="letters"]').click();
                 assert.match(await page.locator('[data-guide-names]').innerText(), /Équipe A/);
                 await page.locator('[data-guide-pattern]').fill('Custom @*2');
-                await page.locator('[data-guide-scene-command="preview"]').click();
-                assert.equal(await page.locator('[data-guide-names]').innerText(), 'Custom A\nCustom B');
+                await page.locator('[data-guide-scene-command="preview"]').first().click();
+                assert.deepEqual(await page.locator('[data-guide-names] [data-guide-name]').allTextContents(), ['Custom A', 'Custom B']);
+                assert.equal(await page.locator('[data-guide-names] .easyedu-guide-scene__identity').count(), 2);
+                await page.locator('[data-guide-scene-command="clear"]').click();
+                assert.equal(await page.locator('[data-guide-names] > span').count(), 0);
                 await page.locator('[data-easyedu-guide-nav-item="2"]').click();
                 await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="membership"]').dataset.guideSceneFinished === 'true');
+                assert.equal(await page.locator('[data-guide-membership-target].is-absent').count(), 0);
+                assert.equal(await page.locator('[data-guide-membership-origin].is-removed').count(), 0);
                 await page.locator('[data-guide-scene-command="move"]').click();
                 await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="membership"] [data-guide-person]').hidden);
+                assert.equal(await page.locator('[data-guide-membership-origin].is-removed').count(), 1);
+                await page.locator('[data-easyedu-guide-scene="membership"] [data-guide-scene-command="reset"]').click();
+                assert.equal(await page.locator('[data-guide-membership-target].is-absent').count(), 1);
+                assert.equal(await page.locator('[data-guide-membership-origin].is-removed').count(), 0);
                 await page.locator('[data-easyedu-guide-nav-item="3"]').click();
                 await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="actions"]').dataset.guideSceneFinished === 'true');
+                assert.equal(await page.locator('[data-easyedu-guide-scene="actions"] [data-guide-recap]').isVisible(), true);
                 const rect = await modal.locator('.easyedu-guide-modal__dialog').boundingBox();
                 assert.ok(rect.x >= 0 && rect.x + rect.width <= width + 1);
                 assert.ok(rect.y >= 0 && rect.y + rect.height <= 901);
@@ -69,6 +79,24 @@ const root = path.resolve(__dirname, '../..');
                 await page.evaluate(() => window.Guide.destroy('[data-easyedu-guide-root]'));
                 assert.equal(await page.locator('[data-easyedu-guide-interface-cue-action] button').count(), 0);
                 console.log(`PASS ${language} ${width}: creation, add/move/actions, bounds, Escape and cleanup`);
+                if (language === 'fr' && width === 1280) {
+                    await page.emulateMedia({reducedMotion: 'no-preference'});
+                    await page.evaluate(() => window.Guide.init('[data-easyedu-guide-root]', {storageKey: 'motion', firstVisit: true}));
+                    await page.locator('[data-easyedu-guide-nav-item="2"]').click();
+                    assert.ok(await page.locator('[data-easyedu-guide-slide-transition]').count(), 'Normal slide fade is active');
+                    await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-current-slide="2"]') !== null);
+                    await page.locator('[data-easyedu-guide-nav-item="0"]').click();
+                    await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-current-slide="0"]') !== null);
+                    await page.waitForTimeout(350);
+                    assert.equal(await page.locator('[data-guide-ghost]').count(), 0, 'Departure cancels the scene');
+                    assert.equal(await page.locator('[data-easyedu-guide-slide-transition]').count(), 0, 'Fade cleans up');
+                    await page.keyboard.press('Escape');
+                    await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-modal]').hidden);
+                    await page.evaluate(() => window.Guide.destroy('[data-easyedu-guide-root]'));
+                    assert.equal(await page.evaluate(() => document.getAnimations().length), 0, 'Destroy cancels presentation animations');
+                    await page.emulateMedia({reducedMotion: 'reduce'});
+                    console.log('PASS normal motion: slide fade, scene departure, exit and destroy cleanup');
+                }
             }
         }
     } finally { await browser.close(); }

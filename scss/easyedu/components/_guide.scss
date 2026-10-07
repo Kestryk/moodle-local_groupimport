@@ -574,11 +574,11 @@
 
   .easyedu-guide-slide__show {
     align-items: center;
-    background: var(--easyedu-primary);
-    background-color: var(--easyedu-primary) !important;
-    border-color: var(--easyedu-primary) !important;
+    background: var(--easyedu-guide-target-background, var(--easyedu-primary));
+    background-color: var(--easyedu-guide-target-background, var(--easyedu-primary)) !important;
+    border-color: var(--easyedu-guide-target-border, var(--easyedu-primary)) !important;
     border-radius: var(--easyedu-guide-action-radius);
-    color: #fff !important;
+    color: var(--easyedu-guide-target-color, #fff) !important;
     display: inline-flex;
     flex: 0 1 auto;
     flex-wrap: wrap;
@@ -596,10 +596,10 @@
 
     &:hover,
     &:focus {
-      background: var(--easyedu-primary-strong);
-      background-color: var(--easyedu-primary-strong) !important;
-      border-color: var(--easyedu-primary-strong) !important;
-      color: #fff !important;
+      background: var(--easyedu-guide-target-hover-background, var(--easyedu-primary-strong));
+      background-color: var(--easyedu-guide-target-hover-background, var(--easyedu-primary-strong)) !important;
+      border-color: var(--easyedu-guide-target-hover-border, var(--easyedu-primary-strong)) !important;
+      color: var(--easyedu-guide-target-hover-color, #fff) !important;
     }
 
     &:focus-visible {
