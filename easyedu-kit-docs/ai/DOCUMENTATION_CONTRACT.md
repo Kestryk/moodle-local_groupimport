@@ -1,5 +1,14 @@
 # EasyEdu documentation contract
 
+G8 never automatically renders completed checklists on reload. Unfinished paths
+offer explicit Resume/Cancel, expiring after20s without deleting progress.
+Restart/reset are path-local Guide storage only. All dependency completion
+signals pass the same gate before persistence. Previous highlight review does
+not advance business progress; Practice auto next highlight is opt-in. Close
+native dialogs with their existing Motion and await completion before reviewing
+an earlier target; read-only reopen never submits a command. Verify native
+hit-target/focus/visibility with dialogs, not only isolated Guide state.
+
 G7 explicitly redesigns Discovery checklist chrome, preserving completion IDs
 and legacy paths. Track reduced Restore and >3-step scrolling separately from
 the six-stage Practice integration. Test synchronized actual cursor/ghost paint,
