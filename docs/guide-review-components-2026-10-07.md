@@ -103,3 +103,54 @@ zero-margin assertions and correct the fictitious membership copy to the actual
 Projet Horizon destination. Final served native confirmation follows separately.
 An over-broad two-scenario runner request was rejected before execution;
 retry only with the wrapper's required one exact scenario per invocation.
+
+### Served final component successor
+
+Promotion20261007T110802Z serves08bdc21b9e31ea4515c449e915f1f1bec7addfa1
+through Sourcec4848f1/Kit0.4.134, with a successful cache purge. Native run
+easystud-authenticated-20261007T110854392Z-50020 PASSED12 routes and actual
+zero-margin/read-start Warning, invalid recovery, quiet wrapped return, nearby
+menu/contrasted cursor and neutral completion. Inspected the settled phone
+Warning:94px high for three24px lines, canonical padding, no extra Guide margin.
+Cleanup clears credentials/child/lease; no course fixture or business write.
+
+Guide catalogue specimen71 also renders the linked dark Pointer with four light
+halo shadows on a linked blue Foundation action (ids
+4ee6f77a-1dfb-809b-8008-c0c76b0d338f and
+4ee6f77a-1dfb-809b-8008-c0c76ae8f18e). The shared utility Eye/Compass takes
+the Guide accent role, matching native paint. Rule70 records phase cadence,
+menu anchoring, cancellation/reduced Motion and quiet completion. Correct the
+fictitious Horizon copy in active07/10, not old reference curriculum.
+
+Guide exports/readback inspected: desktop and phone Practice,05 return/native
+checklist and71 Warning/cursor/quiet-result. Overview shape/content fingerprint
+stays unchanged. Foundation exact Small utility provider/Standard/Library
+publication is OPEN: linked M button roots with Small usage overrides are not
+proof of a new canonical Small text provider. Propagate that future provider
+to the remaining design references, without replacing accepted Overview/cards.
+Broader G4 accessibility/launcher/absent targets, full G5 curriculum/Mass Import,
+all older SM feedback and the combined human checklist remain OPEN.
+
+Process review: no new agents/worktrees. Most elapsed time comes from real
+translated native scene playback and Penpot export/readback. The iterative
+captures caught real cascade/geometry issues; keep them as evidence rather than
+claiming the first PASS was visual parity. Batch a semantic change before a
+single build/promotion and use settled markers. Keep API output to exact ids,
+paint bounds and counts; no full proxy or historic retention inventory dump.
+Token usage was not measured, so no invented cost/token totals are reported.
+
+Final supplementary lifecycle run easystud-authenticated-20261007T111319843Z-9272
+PASSED on the same servedc4848f1 assets: focus in both directions, real path
+open/close, centred desktop controls, expanded phone bounds, interruption and
+reduced Motion. Latest proof folders50020/9272 are under
+`%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated/`; all runner summaries
+reportpassed, zero page errors/blocked commands, released leases and no fixture.
+Exact scenario is `tools/playwright/guide-discovery-preview.spec.js`, classified
+local-supervised: authenticated local Moodle/course/lease dependencies prevent
+claiming a deterministic CI gate. Retention dry-runs use exact roots and print
+counts only;1 manifest,0 candidates/deletions/errors,1 protected run observed.
+
+Technical G6-A..E changes are served; G6-F's Foundation provider and broader
+accessibility/human gates stay open. Human review is still the combined deferred
+checklist, not a new request to validate captures now. No project renaming,
+full Guide rewrite, release/main merge, production deploy or user escalation.
