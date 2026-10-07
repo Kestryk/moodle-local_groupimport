@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 - Guide compact native destination coexistence
+
+- Target the existing compact Move sticky delegate. Adopt Kit0.4.143 bounded
+  checklist scroll and vertical dialog-field docking; preserve native35588
+  collision evidence and test both real pointer targets without forced clicks.
+
 ## 2026-10-07 - Guide checklist native dialog hit-target successor
 
 - Preserve native17776 failure: destination modal intercepted previous-step

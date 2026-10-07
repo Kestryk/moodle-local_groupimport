@@ -88,3 +88,8 @@ Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.
   command delegate. Product Guide target now includes that real compact control;
   successor clicks it normally. Do not invent a new mobile action or force a
   hidden desktop command for this test. Phone/native full matrix still pending.
+- Native35588 passes the desktop review again, then identifies the real compact
+  collision: the expanded checklist covers the native destination choice. Kit
+  0.4.143 keeps its steps scrollable in a shorter panel and vertically docks
+  away from the external dialog target. Checklist and native field must both
+  remain normally clickable; no hidden panel, pointer-through or force-click.

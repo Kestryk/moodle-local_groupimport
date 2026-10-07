@@ -15878,6 +15878,21 @@
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__footer {
   display: none;
 }
+@media (max-width: 64rem) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized),
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) {
+    max-height: min(20rem, 35dvh);
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) .easyedu-guided-panel__steps,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) .easyedu-guided-panel__steps {
+    max-height: 6rem;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery[data-easyedu-guide-target-in-dialog][data-easyedu-guide-dialog-dock=top] .easyedu-guided-panel,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery[data-easyedu-guide-target-in-dialog][data-easyedu-guide-dialog-dock=top] .easyedu-guided-panel {
+    top: max(1rem, env(safe-area-inset-top));
+    bottom: auto;
+  }
+}
 @media (max-width: 40rem) {
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-guided-card,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-guided-card {
