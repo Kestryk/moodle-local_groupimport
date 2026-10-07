@@ -120,3 +120,11 @@ card Motion and legacy curriculum not covered by the four demo lessons.
 No public/main release or technical component rename in the Guide tranche.
 No raw demo SCSS/vendor/engine/notes/profile copying into the plugin. The demo
 on4415 is standalone evidence, not a replaced Moodle Guide or native proof.
+
+7 October G2/G3 successor: Kit0.4.131 and Sourcec52e8a2 now supply all four
+handed-off scene compositions/presentation to the existing engine. Managed
+Moodle5.1 promotion and12 native routes pass, including snapshot-resistant
+phone geometry and settled paint. Supplementary G4 lifecycle proof is next;
+Foundation paired publication, remaining G4 edge/accessibility checks, G5 and
+every older SM lot remain open. Exact pins/variant arbitration are in
+guide-style-successor-2026-10-07.md. Do not mistake four samples for full Guide.

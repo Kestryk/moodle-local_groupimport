@@ -225,6 +225,12 @@ but two drifts: runtime shared SCSS and AMD source. No `-Apply` was used.
 | scenes.js |85BB42155B6B91012FC488BB09707CA1CA65C069DFB1C1B947DD7BCE4903F687 |
 | icons.js |E0369775094B438E1E44C258276E10A34BFBB7FD98BF6E1A31A8217E7BF7D48E |
 
+7 October successor: the first four samples are now composed through Kit0.4.131
+and served in Moodle5.1, preserving the original engine and remaining lessons.
+See `guide-style-successor-2026-10-07.md` for exact source/runtime/test pins,
+retained failed evidence, deliberate variants and still-open publication gates.
+These historical baseline hashes remain unchanged; they are not current assets.
+
 ## First integration steps and acceptance gates
 
 1. Preserve these baselines and current private branches; finish G1 crosswalk
