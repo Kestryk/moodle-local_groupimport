@@ -272,6 +272,7 @@
   }
 
   .easyedu-guide-modal__body {
+    --easyedu-guide-reading-inset: 1.375rem;
     @include typography.type-body;
     font-size: var(--easyedu-guide-font-size-body);
     min-width: 0;
@@ -280,7 +281,7 @@
     background: var(--easyedu-surface);
     overflow-anchor: none;
     overscroll-behavior: contain;
-    padding: 1.375rem;
+    padding: var(--easyedu-guide-reading-inset);
   }
 
   .easyedu-guide-slide:has([data-easyedu-guide-scene]) {
@@ -382,7 +383,9 @@
       border-radius: 0.625rem;
       background: var(--easyedu-surface);
       position: sticky;
-      inset-block-start: 0;
+      // Sticky offsets use the padded scrollport's content edge. Compensate
+      // its inset, not the scene/card padding or the Moodle page.
+      inset-block-start: calc(-1 * var(--easyedu-guide-reading-inset));
       z-index: 6;
       margin-block: 0 0.875rem;
       transition: background-color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
@@ -523,7 +526,7 @@
       gap: 0.625rem;
       > div:first-child { display: grid; gap: 0.25rem; }
       strong { @include typography.type-control-label; color: var(--easyedu-text); font-size: 0.88rem; }
-      span { @include typography.type-caption; text-transform: none; letter-spacing: normal; font-weight: var(--easyedu-font-weight-regular); }
+      > div:first-child > span { @include typography.type-caption; text-transform: none; letter-spacing: normal; font-weight: var(--easyedu-font-weight-regular); }
     }
     .easyedu-guided-panel__header-actions { max-width: none; }
     .easyedu-guided-panel__close { @include buttons.close-button; }
@@ -590,7 +593,7 @@
     .easyedu-guide-scene { padding: 1rem; }
     .easyedu-guide-scene__concepts { gap: 1rem; padding: 0; }
     .easyedu-guide-scene__concept-arrow { display: none; }
-    .easyedu-guide-modal__body { padding: 1rem; }
+    .easyedu-guide-modal__body { --easyedu-guide-reading-inset: 1rem; }
     .easyedu-guide-modal__footer-actions { width: min(100%, 15rem); flex: 0 1 15rem; align-items: stretch; }
     .easyedu-guide-modal__footer-actions .btn { width: auto; min-width: 0; }
     .easyedu-guide-interface-return { inset-inline: 1rem; width: auto; }

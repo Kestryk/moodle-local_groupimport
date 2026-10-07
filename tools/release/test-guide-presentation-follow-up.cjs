@@ -54,6 +54,24 @@ const root = path.resolve(__dirname, '../..');
         assert.equal(await page.locator('[data-guide-scene-command="add"]').getAttribute('aria-pressed'), 'true');
         await page.locator('[data-guide-scene-command="move"]').click();
         assert.equal(await page.locator('[data-guide-scene-command="move"]').getAttribute('aria-pressed'), 'true');
+        await page.locator('[data-easyedu-guide-nav-item="3"]').click();
+        await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="actions"]').dataset.guideSceneFinished === 'true', null, {timeout: 60000});
+        for (const width of [1280, 768, 390]) {
+            await page.setViewportSize({width, height: 900});
+            const geometry = await page.locator('[data-easyedu-guide-slide="3"] [data-guide-live]').evaluate(async node => {
+                const body = node.closest('.easyedu-guide-modal__body');
+                body.scrollTop = body.scrollHeight;
+                await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+                const box = node.getBoundingClientRect(), port = body.getBoundingClientRect();
+                return {gap: box.top - port.top, padding: getComputedStyle(body).paddingTop,
+                    inset: getComputedStyle(node).top, scroll: body.scrollTop, max: body.scrollHeight - body.clientHeight};
+            });
+            console.log('Sticky geometry', width, JSON.stringify(geometry));
+            assert.ok(Math.abs(geometry.gap) < 1, JSON.stringify(geometry));
+        }
+        // Keep the original long-list fixture viewport/oracle independent from
+        // the preceding responsive reading-edge sweep.
+        await page.setViewportSize({width: 1280, height: 900});
         await page.locator('[data-easyedu-guide-nav-item="1"]').click();
         await page.locator('[data-easyedu-guide-start-path]').click();
         const checklist = page.locator('[data-easyedu-guide-checklist]');

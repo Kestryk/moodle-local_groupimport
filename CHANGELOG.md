@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-07 - Guide reading-edge correction
+
+- Correct the actual22px sticky gap through canonical responsive reading-inset
+  compensation, and retain checklist action icon fonts. Source isolated geometry
+  is0px at1280/768/390; native successor remains a separate gate.
+- Preserve failed native run41716 and its source/oracle. A new strict successor
+  records geometry before assertion and tests the actual Restore icon font.
+
 ## 2026-10-07 - Guide presentation follow-up G7
 
 - Consume canonical persistent step frame, synchronized illustrative drag/drop,
