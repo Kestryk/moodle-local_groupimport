@@ -5,10 +5,10 @@
   "status": "stable",
   "consumerSync": {
     "guideComponentReview20261007": {
-      "kitVersion": "0.4.133",
-      "kitCommit": "cba176ce2ec18f76a59d5d16a7a88497f42a8264",
+      "kitVersion": "0.4.134",
+      "kitCommit": "925020dbf788ee882b0c8bcd34d6856b2ec313b7",
       "predecessorKitCommit": "8da2b85d4238e6b71b1873325c558df067834521",
-      "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss", "scss/easyedu/components/_buttons.scss"],
+      "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss", "scss/easyedu/components/_buttons.scss", "scss/easyedu/_data-classes.scss"],
       "documentation": "docs/guide-review-components-2026-10-07.md",
       "scope": "G6 quiet Show/Return, practice syntax/Warning, instruction/menu/cursor/neutral completion, checklist control roles only. Overview/cards/business Motion retained.",
       "status": "Translated responsive, shared recipe-preservation and shell checks PASS; Guide readback/native proof tracked separately.",

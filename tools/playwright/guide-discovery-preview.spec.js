@@ -80,6 +80,8 @@ test('Guide discovery first version native preview', async({page}, info) => {
                     await slide.locator('[data-guide-scene-command="preview"]').first().click();
                     await expect(slide.locator('[data-guide-warning-host] .easyedu-notice--warning')).toBeVisible();
                     await expect(slide.locator('[data-guide-warning-text]')).toHaveCSS('text-align', 'start');
+                    await expect(slide.locator('[data-guide-warning-text]')).toHaveCSS('margin-top', '0px');
+                    await expect(slide.locator('[data-guide-warning-text]')).toHaveCSS('margin-bottom', '0px');
                     await expect(pattern).toHaveAttribute('aria-invalid', 'true');
                     await expect(slide.locator('[data-guide-names] > span')).toHaveCount(0);
                     await modal.screenshot({path: info.outputPath(`guide-warning-${width}.png`)});

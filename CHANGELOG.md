@@ -2,6 +2,10 @@
 
 ## 2026-10-07 - Guide component review G6
 
+- Preserve canonical nested Warning spacing through Kit0.4.134: only direct
+  scene copy receives generic paragraph margins. Align illustrated Add/Move
+  copy with the actual fictitious Projet Horizon destination.
+
 - Native12-route and supplementary lifecycle proof pass for12dffd4. Capture
   review found centred mobile Warning copy; canonical Kit0.4.133 makes the
   reading alignment explicit and exposes phase evidence after its fade.
