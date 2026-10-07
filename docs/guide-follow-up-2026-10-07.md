@@ -94,3 +94,36 @@ Actions4ee6f77a-1dfb-809b-8008-c0d474963c30.
 Both reference Active4ee6f77a-1dfb-809b-8008-c0d31eb7cfc5. Earlier surfaces
 are hidden recoverable Archive G6 references. New composed export and shared
 Foundations publication/human acceptance remain separate gates.
+
+## G7 compact size and Practice successor
+
+Native54552 on Source2fdda2f/runtime297e05c proves desktop sticky gap0px,
+retained final frame, dashed overlap and Font Awesome6 Restore font. It then
+FAILS Minimize:33.59375px against30.4px Small contract. Cleanup again clears
+credentials, releases lease and stops its owned child, without fixtures/writes.
+Kit0.4.138/dce7545 emits compact dimensions after nested utility paint, avoiding
+the pinned Sass compiler's declaration hoisting. Original failed spec/evidence
+and strict dimension oracle remain retained. Fresh native successor pending.
+
+G7-D now has a separate localized practice-membership path, retaining all three
+legacy paths and their storage. Six stages: create-group/open-participants/
+select-participant/open-move/choose-destination/confirm-move. Each has a precise
+native highlight target and an immediate predecessor lock. Adapter accepts only
+the next unfinished unlocked step. Create completes only when the response has
+createdGroups; confirmation only after the existing participant addusers request
+succeeds. Native Move participants assigns group membership and preserves other
+groups; this change does not invent exclusive removal semantics.
+
+Intermediate stages use existing native view/selection/dialog/destination change
+signals. No automatic business action or synthetic successful network response.
+Click a checklist step to reveal its target; automatic next-target highlighting
+remains a possible separately tested refinement, not a delivered claim.
+Isolated test-guide-practice-path.cjs passes all six en/fr1280/768/390 routes,
+including dependencies and rejected out-of-order completion. This is NOT an
+actual course mutation/end-to-end business proof. Native successor checks six
+rendered steps and reduced/Restore only, with writes blocked.
+
+Penpot existing desktop Practice invitation now reflects the six-stage route;
+G7 checklist specimens remain the separate expanded/reduced/mobile publication.
+Remaining G7 gates: fresh native compact-size proof; composed design export;
+Foundation publication; human checklist; wider G5 retained curriculum.

@@ -17,6 +17,8 @@ const root = path.resolve(__dirname, '../..');
         Object.assign(data, {discoverypresentation: true, rootclass: 'local-groupimport-easystud-easyedu-guide easyedu-guide--discovery',
             guideopenlabel: 'Open', guidecloselabel: 'Close', guidetitle: 'Guide EasyStud', guidesubtitle: 'Student Management',
             guidepreviouslabel: 'Previous', guidenextlabel: 'Next', guiderestorelabel: 'Restore', slidecount: 4});
+        // Synthetic long-list proof remains independent from real Practice.
+        data.slides[1].guidedpath = 'first-structure';
         await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${fs.readFileSync(path.join(root, 'styles.css'), 'utf8')}</style>` +
             mustache.render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data));
         await page.addScriptTag({content: 'window.define=(deps,factory)=>{window.Guide=factory();};\n' +

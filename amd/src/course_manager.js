@@ -2147,6 +2147,26 @@ const emitGuidedCompletion = (root, step, path = 'main') => {
     }
 };
 
+// Emit only the next unfinished milestone in the distinct Practice path.
+// Presentation/highlights never call business commands or reuse broad legacy
+// completion events (copy/drag/create grouping must not complete this exercise).
+const emitPracticeCompletion = (root, step) => {
+    const checklist = document.querySelector(
+        '[data-easyedu-guide-checklist][data-easyedu-guide-path="practice-membership"]'
+    );
+    if (!checklist || checklist.hidden || !root.isConnected) {
+        return;
+    }
+    const next = checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)');
+    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== step) {
+        return;
+    }
+    root.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
+        bubbles: true,
+        detail: {path: 'practice-membership', step},
+    }));
+};
+
 const getFixedHeaderOffset = () => {
     const candidates = Array.from(document.body.querySelectorAll('body > *, .navbar, header, [role="navigation"]'));
     return candidates.reduce((offset, node) => {
@@ -2463,6 +2483,9 @@ const bindLayoutModeToggle = root => {
         updateSelectionActions(root);
         scheduleResponsiveUiRefresh(root, {pagination: false});
         scheduleCompleteListAlignment(root);
+        if (normalisedmode === 'participants' && !isResponsiveWorkspace()) {
+            emitPracticeCompletion(root, 'open-participants');
+        }
     };
 
     const applyMode = (mode, animate = true) => {
@@ -2632,6 +2655,9 @@ const bindMobileEntityViews = root => {
         closeResponsiveGuide();
         syncPagination(root);
         scheduleResponsiveUiRefresh(root, {pagination: false, guide: false});
+        if (mobileView === 'participants') {
+            emitPracticeCompletion(root, 'open-participants');
+        }
     };
 
     const applyMobileView = (view, animate = true) => {
@@ -5647,6 +5673,9 @@ const renderMobileActionBar = (root, counts, activetype) => {
 
 const updateSelectionActions = root => {
     const selectedUsers = getSelectedItems(root, 'participant');
+    if (selectedUsers.length) {
+        emitPracticeCompletion(root, 'select-participant');
+    }
     const selectedGroups = getSelectedItems(root, 'group');
     const selectedGroupings = getSelectedItems(root, 'grouping');
     const selectedMembers = getSelectedItems(root, 'member');
@@ -6315,6 +6344,9 @@ const bindQuickCreate = (root, courseId) => {
                 });
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 0, 'main');
+                if (createdGroups.length) {
+                    emitPracticeCompletion(root, 'create-group');
+                }
                 if (action.value === 'creategrouping') {
                     emitGuidedCompletion(root, 0, 'grouping');
                 }
@@ -6958,6 +6990,9 @@ const bindMoveModal = (root, courseId) => {
                 (labels.nomovegroupingsavailable || '');
         }
         showEasyStudModal(modal);
+        if (type === 'participant' && selectedCount > 0 && hasDestination) {
+            emitPracticeCompletion(root, 'open-move');
+        }
         if (hasDestination) {
             chooser.trigger.focus();
         } else if (emptyState) {
@@ -6966,6 +7001,13 @@ const bindMoveModal = (root, courseId) => {
     };
 
     openParticipants.forEach(button => button.addEventListener('click', () => openModal('participant')));
+
+    destination.addEventListener('change', () => {
+        if (contextType === 'participant' && destination.value &&
+                getGroupElementsById(root, destination.value).length) {
+            emitPracticeCompletion(root, 'choose-destination');
+        }
+    });
 
     openGroups.forEach(button => button.addEventListener('click', () => openModal('group')));
 
@@ -7075,6 +7117,7 @@ const bindMoveModal = (root, courseId) => {
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1);
                 emitGuidedCompletion(root, 1, 'actions');
+                emitPracticeCompletion(root, 'confirm-move');
             }).catch(() => window.location.reload());
             return;
         }

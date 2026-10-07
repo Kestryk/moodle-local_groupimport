@@ -12,6 +12,18 @@ Retain the source and failed evidence. Reading-body padding must be compensated
 in canonical SCSS, not by relaxing the oracle or hiding native controls. Scope
 checklist subtitle fonts to copy only; native action glyphs keep their own font.
 
+Practice uses a separate practice-membership path, preserving legacy storage.
+Only the next unfinished unlocked milestone accepts an adapter signal. Do not
+reuse broad legacy copy/drag/create-grouping events as membership proof. Group
+creation and final assignment complete only in their successful native response
+branches. A destination change uses the authoritative select and existing group.
+Tests use isolated signals or cancel native dialogs; do not create/move data to
+prove presentation. Keep complete business workflow acceptance separate.
+
+Pinned Sass may hoist plain sizing declarations before a recipe's nested paint.
+Use an explicit trailing & sizing block and inspect compiled/native dimensions;
+never relax a Small-size assertion to match an unintended regular control.
+
 Guide refinement preserves accepted Overview/natural-card structure. G6 retained
 checklist layout; G7 explicitly reopens its opt-in chrome. Practice invalid patterns use the canonical Warning notice
 with explicit aria-invalid recovery. Prove quiet Show/Return wrapping/paint,

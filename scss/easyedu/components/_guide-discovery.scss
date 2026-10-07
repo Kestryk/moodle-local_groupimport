@@ -532,15 +532,19 @@
     .easyedu-guided-panel__close { @include buttons.close-button; }
     .easyedu-guided-panel__minimize {
       @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
-      @include buttons.button-size(small);
-      width: 1.9rem;
-      height: 1.9rem;
-      min-height: 1.9rem;
-      padding: 0;
+      // Emit after the utility's nested paint block: otherwise Sass hoists
+      // these declarations and the regular 2.1rem utility minimum wins.
+      & {
+        @include buttons.button-size(small);
+        width: 1.9rem;
+        height: 1.9rem;
+        min-height: 1.9rem;
+        padding: 0;
+      }
     }
     .easyedu-guided-panel__restore {
       @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
-      @include buttons.button-size(small);
+      & { @include buttons.button-size(small); }
     }
     &[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps {
       max-height: min(19rem, 45dvh);

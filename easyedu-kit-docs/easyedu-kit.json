@@ -5,8 +5,8 @@
   "status": "stable",
   "consumerSync": {
     "guidePresentationFollowup20261007": {
-      "kitVersion": "0.4.137",
-      "kitCommit": "458360522ae20b21c20284bf7d78062357067aab",
+      "kitVersion": "0.4.138",
+      "kitCommit": "dce75454013d4c20c1a9a810d70dd193035a28c7",
       "predecessorKitCommit": "544bf1fe19c1788d2170b64f98d78c4250857b81",
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
       "documentation": "docs/guide-follow-up-2026-10-07.md",
@@ -14,6 +14,8 @@
       "status": "Source/build/isolated gates pass, including responsive sticky gap correction. Failed native run41716 is preserved; strict successor and six-stage Practice remain separately tracked.",
       "failedNativeRunId": "easystud-authenticated-20261007T120554874Z-41716",
       "failedNativeAssetSourceCommit": "fe389e0ddd0e83996a1a2fe9fe7e92aadb65d5c1",
+      "readingEdgeNativeRunId": "easystud-authenticated-20261007T122732983Z-54552",
+      "readingEdgeNativeSourceCommit": "2fdda2f7f0ce6487abaae3ead9cecb576136eaa5",
       "nativePreviewVerified": false,
       "foundationCataloguePublished": false,
       "humanVisualValidated": false

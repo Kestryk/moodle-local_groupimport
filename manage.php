@@ -1503,6 +1503,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                 '[data-easystud-participant-list] [data-easystud-card-menu]',
             ],
             'participantMoveAction' => '[data-easystud-move-selected-participants]',
+            'participantMoveDestination' => '[data-easystud-move-modal] .easyedu-searchable-choice',
+            'participantMoveConfirm' => '[data-easystud-confirm-move]',
             'firstGroup' => [
                 '[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])',
                 '[data-easystud-group-id]:not([hidden])',
@@ -1542,11 +1544,13 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'tree' => '[data-easystud-tree]',
         ],
         'pathLabels' => [
+            'practice-membership' => get_string('discovery_path_title', 'local_groupimport'),
             'first-structure' => get_string('tutorialguidedpaneltitle', 'local_groupimport'),
             'create-grouping' => get_string('tutorialguidedgroupingtitle', 'local_groupimport'),
             'try-actions' => get_string('tutorialguidedactionstitle', 'local_groupimport'),
         ],
         'paths' => [
+            'practice-membership' => \local_groupimport\local\guide_discovery::practice_path(),
             'first-structure' => [
                 [
                     'id' => 'create-structure',

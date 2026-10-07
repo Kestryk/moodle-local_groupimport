@@ -59,19 +59,50 @@ final class guide_discovery {
                 'showopendelay' => 360,
             ];
         }
-        // Reuse the existing native accompanied path, including completion events.
-        $slides[1]['guidedpath'] = 'first-structure';
+        // A distinct path preserves the existing reference curriculum/storage.
+        $slides[1]['guidedpath'] = 'practice-membership';
         $slides[1]['hasguidedpath'] = true;
         foreach (['label', 'title', 'content'] as $label) {
             $slides[1]['guidedpath' . $label] = get_string('discovery_path_' . $label, 'local_groupimport');
         }
         $slides[1]['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
             return get_string('discovery_path_step' . $step, 'local_groupimport');
-        }, [1, 2, 3])];
+        }, [1, 2, 3, 4, 5, 6])];
         foreach ($legacy as $index => $slide) {
             $slide['index'] = $index + count($definitions);
             $slides[] = $slide;
         }
         return $slides;
+    }
+
+    /** Six native milestones; the Guide never creates or transfers participants. */
+    public static function practice_path(): array {
+        $definitions = [
+            ['create-group', 'groupCreateInput', 'viewGroups'],
+            ['open-participants', 'viewParticipants', null],
+            ['select-participant', 'participantSelectionInput', null],
+            ['open-move', 'participantMoveAction', null],
+            ['choose-destination', 'participantMoveDestination', null],
+            ['confirm-move', 'participantMoveConfirm', null],
+        ];
+        $steps = [];
+        foreach ($definitions as $index => [$id, $target, $open]) {
+            $step = [
+                'id' => $id,
+                'title' => get_string('discovery_path_step' . ($index + 1), 'local_groupimport'),
+                'description' => get_string('discovery_path_desc' . ($index + 1), 'local_groupimport'),
+                'target' => $target,
+                'completionMode' => 'event',
+            ];
+            if ($index > 0) {
+                $step['requiresStep'] = $definitions[$index - 1][0];
+            }
+            if ($open !== null) {
+                $step['open'] = $open;
+                $step['openDelay'] = 360;
+            }
+            $steps[] = $step;
+        }
+        return $steps;
     }
 }
