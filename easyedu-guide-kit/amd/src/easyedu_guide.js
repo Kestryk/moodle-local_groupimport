@@ -615,6 +615,16 @@ const scheduleHighlightRefreshBurst = (root, target, shouldDock = true) => {
 
 const dockChecklistAwayFromTarget = (root, target) => {
   const checklist = root.querySelector(SELECTORS.checklist);
+  const dialog = isVisibleElement(target) ? target.closest('[role="dialog"][aria-modal="true"]') : null;
+  const externalDialog = dialog && dialog !== root.querySelector(SELECTORS.modal);
+  root.toggleAttribute('data-easyedu-guide-target-in-dialog', !!externalDialog);
+  if (externalDialog) {
+    const bounds = target.getBoundingClientRect();
+    root.setAttribute('data-easyedu-guide-dialog-dock', bounds.top + bounds.height / 2 > window.innerHeight / 2 ?
+      'top' : 'bottom');
+  } else {
+    root.removeAttribute('data-easyedu-guide-dialog-dock');
+  }
   if (!checklist || checklist.hidden || !isVisibleElement(target)) {
     return;
   }

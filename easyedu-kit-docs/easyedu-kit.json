@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideCompactDialogDock20261007": {
+      "kitVersion": "0.4.143",
+      "kitCommit": "0442e94934419bccc2ae8d8e5835ee89150b0ae4",
+      "documentation": "docs/guide-follow-up-g8-2026-10-07.md",
+      "scope": "Bounded compact checklist scroll and vertical external-dialog target docking.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideChecklistDialogLayer20261007": {
       "kitVersion": "0.4.142",
       "kitCommit": "02f2d94e033b669a419a63429a0f4ef4d7119270",

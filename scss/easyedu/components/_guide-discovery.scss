@@ -643,6 +643,20 @@
     }
   }
 
+  // A small viewport cannot fit a full checklist beside a native dialog.
+  // Keep steps scrollable and dock vertically away from its current field,
+  // without hiding the checklist or disabling dialog pointer interaction.
+  @media (max-width: 64rem) {
+    &[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) {
+      max-height: min(20rem, 35dvh);
+      .easyedu-guided-panel__steps { max-height: 6rem; }
+    }
+    &[data-easyedu-guide-target-in-dialog][data-easyedu-guide-dialog-dock="top"] .easyedu-guided-panel {
+      top: max(1rem, env(safe-area-inset-top));
+      bottom: auto;
+    }
+  }
+
   @media (max-width: 40rem) {
     .easyedu-guide-guided-card { grid-template-columns: auto minmax(0, 1fr); }
     .easyedu-guide-guided-card .easyedu-guide-slide__start { grid-column: 1 / -1; }
