@@ -2,6 +2,10 @@
 
 ## 2026-10-07 - Complete four-scene Guide presentation successor
 
+- Native12-route geometry and supplementary keyboard/path/cancellation/reduced
+  Motion proof pass. Retain the earlier failed test oracle and its corrected
+  classification of valid launcher focus CSS transitions. No course fixture.
+
 - Consume Kit0.4.131 after native capture review: reading-edge mobile copy,
   separate source-empty text, single recap numbering and confirmed illustrated
   movement. Responsive phone sizing survives the Navigation token snapshot.

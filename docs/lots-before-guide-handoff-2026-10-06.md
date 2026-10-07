@@ -128,3 +128,10 @@ phone geometry and settled paint. Supplementary G4 lifecycle proof is next;
 Foundation paired publication, remaining G4 edge/accessibility checks, G5 and
 every older SM lot remain open. Exact pins/variant arbitration are in
 guide-style-successor-2026-10-07.md. Do not mistake four samples for full Guide.
+
+Supplementary G4 proof now passes in18084: keyboard containment, full invitation
+scroll/fixed footer, first-structure start/close, scene cancellation and reduced
+phone outcome. Retain failed60228 as the overbroad all-animation oracle;18084
+classifies the eight native launcher focus CSSTransitions and proves the scene
+controller/WAAPI stopped. G4 edge/accessibility and Foundation provider/Library
+publication remain open alongside G5 and the combined human checklist.
