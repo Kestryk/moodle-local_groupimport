@@ -1134,8 +1134,9 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       item.setAttribute('aria-current', 'step');
       const text = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
       item.textContent = text;
-      scene.dataset.guidePhase = name;
       await writeLive(text);
+      if (controller.signal.aborted) { return; }
+      scene.dataset.guidePhase = name;
     }
     if (!reduced) { await wait(Math.max(2400, (item?.textContent.trim().split(/\s+/).length || 0) * 230)); }
   };

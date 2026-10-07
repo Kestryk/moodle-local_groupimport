@@ -61,3 +61,30 @@ the exact Small utility usage; no new canonical Library publication is claimed.
 Linked flex text can override its x coordinate, so read actual painted gap and
 use an ordinary explicit label composition when necessary. Settled export,
 native actual paint/Motion and human acceptance remain separate checkpoints.
+
+### First native G6 proof and capture successor
+
+Promotion20261007T105125Z applied12dffd4 and purged caches, serving clean
+runtimefdd5e8c0880b03aaedcf259e7cef6ea33d8fe365. Native run
+easystud-authenticated-20261007T105209470Z-7272 PASSED all12 scene/width
+routes, canonical Warning/invalid recovery, menu proximity/cursor contrast,
+neutral completion and real Show/Return. Supplementary lifecycle32960 PASSED
+keyboard/path open-close, interruption/cleanup and reduced390 outcomes.
+Both cleanup reports show no fixture, cleared credentials and released lease.
+
+Inspected actual desktop Practice, phone Warning, return banner and near-cursor
+menu captures. Banner text no longer overlaps its actions. Warning inherited
+centred paragraph paint from the old Guide on mobile; the menu capture also
+caught an instruction during its fade. Kit0.4.133/cba176c makes the canonical
+Warning reading alignment explicit and publishes the test phase marker only
+after the instruction settles. Complete data-class CSS remains identical apart
+from that one paragraph declaration; the source module baseline hashes matched.
+The successor served/native confirmation remains pending at this checkpoint.
+
+Design recovery also reduced actual Eye glyph geometry, not just its viewport;
+readback centres differ by less than1px from their controls and the label uses
+the shared8px container gap. An aborted empty ordinary host was hidden/archived
+recoverably inside the G6 specimen; nothing material was deleted. Desktop
+Practice and mobile syntax were exported/read after text/range updates settled.
+Overview geometry/content fingerprint remains unchanged. Foundation utility
+provider publication and human acceptance are still OPEN.

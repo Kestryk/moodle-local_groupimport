@@ -79,6 +79,7 @@ test('Guide discovery first version native preview', async({page}, info) => {
                     await pattern.fill('Test #*7');
                     await slide.locator('[data-guide-scene-command="preview"]').first().click();
                     await expect(slide.locator('[data-guide-warning-host] .easyedu-notice--warning')).toBeVisible();
+                    await expect(slide.locator('[data-guide-warning-text]')).toHaveCSS('text-align', 'start');
                     await expect(pattern).toHaveAttribute('aria-invalid', 'true');
                     await expect(slide.locator('[data-guide-names] > span')).toHaveCount(0);
                     await modal.screenshot({path: info.outputPath(`guide-warning-${width}.png`)});
@@ -200,6 +201,19 @@ test('Guide discovery lifecycle native preview', async({page}, info) => {
         await invitation.locator('[data-easyedu-guide-start-path="first-structure"]').click();
         await expect(modal).toBeHidden();
         await expect(guide.locator('[data-easyedu-guide-checklist-close]')).toBeVisible();
+        const checklist = guide.locator('[data-easyedu-guide-checklist]');
+        const desktopControls = await checklist.locator('.easyedu-guided-panel__header-actions button').evaluateAll(nodes =>
+            nodes.map(node => {
+                const button = node.getBoundingClientRect(), icon = node.querySelector('.fa').getBoundingClientRect();
+                return {dx: icon.x + icon.width / 2 - button.x - button.width / 2,
+                    dy: icon.y + icon.height / 2 - button.y - button.height / 2};
+            }));
+        for (const control of desktopControls) {
+            expect(Math.abs(control.dx)).toBeLessThan(1);
+            expect(Math.abs(control.dy)).toBeLessThan(1);
+        }
+        await checklist.screenshot({path: info.outputPath('guide-checklist-desktop.png')});
+        records.push({desktopControls});
         await guide.locator('[data-easyedu-guide-checklist-close]').click();
         await expect(guide.locator('[data-easyedu-guide-checklist-close]')).not.toBeVisible();
         records.push('full invitation scrolls above fixed footer; native path opens and closes without completion');
@@ -233,8 +247,21 @@ test('Guide discovery lifecycle native preview', async({page}, info) => {
         await expect(actions).toHaveAttribute('data-guide-scene-finished', 'true');
         await expect(actions.locator('[data-guide-recap]')).toBeVisible();
         await expect(actions.locator('[data-guide-ghost]')).toHaveCount(0);
-        await page.keyboard.press('Escape');
+        await modal.locator('[data-easyedu-guide-nav-item="1"]').click();
+        await modal.locator('[data-easyedu-guide-slide="1"] [data-easyedu-guide-start-path="first-structure"]').click();
         await expect(modal).toBeHidden();
+        await expect(checklist).toBeVisible();
+        const minimize = checklist.locator('[data-easyedu-guide-checklist-minimize]');
+        if (await minimize.getAttribute('aria-expanded') === 'false') await minimize.click();
+        await expect(checklist.locator('[data-easyedu-guide-checklist-items]')).toBeVisible();
+        const phonePanel = await checklist.boundingBox();
+        expect(phonePanel.x).toBeGreaterThanOrEqual(0);
+        expect(phonePanel.x + phonePanel.width).toBeLessThanOrEqual(391);
+        expect(phonePanel.y + phonePanel.height).toBeLessThanOrEqual(1001);
+        await checklist.screenshot({path: info.outputPath('guide-checklist-phone.png')});
+        await checklist.locator('[data-easyedu-guide-checklist-close]').click();
+        await expect(checklist).toBeHidden();
+        records.push({phonePanel, checklist: 'existing path opens/closes without completing any business step'});
         records.push('phone reduced motion retains final membership and recap without mouse gesture');
         expect(errors).toEqual([]);
         expect(blocked).toEqual([]);
