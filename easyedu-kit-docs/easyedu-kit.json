@@ -11,8 +11,10 @@
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide.scss", "scss/easyedu/components/_guide-discovery.scss"],
       "documentation": "docs/guide-style-successor-2026-10-07.md",
       "scope": "Four complete teaching scenes, discovery shell/cue/invitation and cancellable presentation. Localized runtime defaults retained; no business or card-Motion change.",
-      "status": "Source/isolated checks passed; native successor, Foundation catalogue publication and human acceptance tracked separately.",
-      "nativePreviewVerified": false,
+      "status": "Four-scene native12-route geometry/progress/settled-result successor PASS; supplementary lifecycle, Foundation catalogue publication and human acceptance tracked separately.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261007T034815618Z-36868",
+      "nativeAssetSourceCommit": "c52e8a2272aa34254196776edd201be60dc82911",
       "humanVisualValidated": false
     },
     "massReportSemanticPalette20261006": {

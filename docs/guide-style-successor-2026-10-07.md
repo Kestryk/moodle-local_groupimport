@@ -124,3 +124,23 @@ Six isolated translated scenes, sixLTR/RTL shells including snapshot resize,
 normal Motion departure/exit and synchronization pass. The next native height,
 reading-edge and recap successor is pending. No Foundation or human acceptance
 is claimed from the historical PASS.
+
+### Settled native successor
+
+Promotion20261007T034808Z applied Sourcec52e8a2 in order, purged caches and
+serves runtime5ff233e192b4d70eefe0b740418ed931fd354225. Native run
+easystud-authenticated-20261007T034815618Z-36868 PASSED12 scene-width routes.
+Phone dialog actual height966/top17 at390x1000 survives the root snapshot;
+titles use the body reading edge. Actual progress width, equal footer heights,
+settled creation cards, single recap numbers and separate empty-source copy
+pass. Inspected actual390 creation and1280 actions captures against the Guide
+Penpot/demonstration; all content remains internally scrollable.
+Zero page errors/blocked commands; cleanup confirms cleared credentials,
+released lease, stopped child and no fixture. No course data mutation.
+
+The source now also contains a supplementary lifecycle scenario: Tab/Shift+Tab,
+invitation scroll/fixed footer, existing path start/close without completion,
+active-scene Escape/cancellation and reduced-motion phone outcome. Its native
+proof is pending at this checkpoint. Mobile launcher paint collision/hit-target,
+absent/permission-limited target coverage and broader accessibility matrix stay
+open, not hidden for capture. Foundation publication remains a distinct gate.
