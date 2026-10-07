@@ -590,15 +590,19 @@
   }
 }
 
-@mixin guide-adjacent-action($variant: default, $size: regular) {
+@mixin guide-adjacent-action($variant: default, $size: regular, $override-legacy: false) {
+  // Opt-in only for a Guide host with historical forced solid-action paint.
+  // It reuses this exact family/state palette instead of a consumer repaint.
+  $priority: null;
+  @if $override-legacy { $priority: !important; }
   @include action-button($size);
 
   & {
-    background: var(--easyedu-surface);
-    border: 1px solid color-mix(in srgb, var(--easyedu-card-border) 88%, #fff 12%);
+    background: var(--easyedu-surface) $priority;
+    border: 1px solid color-mix(in srgb, var(--easyedu-card-border) 88%, #fff 12%) $priority;
     border-radius: calc(var(--easyedu-control-radius) + 0.08rem);
     box-shadow: 0 0.14rem 0.34rem rgba(31, 68, 104, 0.055);
-    color: color-mix(in srgb, var(--easyedu-text-muted) 78%, var(--easyedu-text) 22%);
+    color: color-mix(in srgb, var(--easyedu-text-muted) 78%, var(--easyedu-text) 22%) $priority;
     flex: 0 0 auto;
     font-size: 0.84rem;
     font-weight: 700;
@@ -618,12 +622,12 @@
 
   &:hover,
   &:focus-visible {
-    background: var(--easyedu-primary-soft);
-    border-color: color-mix(in srgb, var(--easyedu-primary) 26%, #fff 74%);
+    background: var(--easyedu-primary-soft) $priority;
+    border-color: color-mix(in srgb, var(--easyedu-primary) 26%, #fff 74%) $priority;
     box-shadow:
       0 0.16rem 0.38rem rgba(31, 68, 104, 0.075),
       0 0 0 0.14rem color-mix(in srgb, var(--easyedu-primary) 12%, transparent);
-    color: var(--easyedu-primary-strong);
+    color: var(--easyedu-primary-strong) $priority;
     outline: 0;
     text-decoration: none;
   }

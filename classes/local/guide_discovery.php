@@ -30,13 +30,14 @@ final class guide_discovery {
             foreach (['participant', 'group', 'grouping', 'pattern', 'preview', 'letters', 'syntax',
                 'invalid', 'add', 'move', 'cancel', 'destination', 'select', 'menu', 'confirm',
                 'resultadd', 'resultmove', 'resultactions', 'mobile', 'initial', 'kept', 'removed', 'added',
-                'absent', 'validate', 'drag'] as $label) {
+                'absent', 'validate', 'drag', 'finished'] as $label) {
                 $scene[$label . 'label'] = get_string('discovery_' . $label, 'local_groupimport');
             }
             foreach (['participanttitle', 'grouptitle', 'groupingtitle', 'patternvalue', 'resulttitle',
                 'emptymembers', 'sourceempty', 'destinationcaption', 'menutitle', 'removeaction',
                 'membershiptitle', 'recaptitle', 'addselect', 'adddrop', 'compactselect', 'compactmenu',
-                'comparemove', 'examplegroup', 'examplegrouping', 'exampletitle', 'examplebody'] as $label) {
+                'comparemove', 'examplegroup', 'examplegrouping', 'exampletitle', 'examplebody',
+                'syntaxnumbers', 'syntaxletters', 'syntaxcount'] as $label) {
                 $scene[$label] = get_string('discovery_' . $label, 'local_groupimport');
             }
             $scene['selectioncaption'] = get_string('discovery_selection_' . ($kind === 'actions' ? 'many' : 'one'),

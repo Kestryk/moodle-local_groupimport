@@ -37,17 +37,12 @@ const root = path.resolve(__dirname, '../..');
                 await page.locator('[data-easyedu-guide-nav-item="1"]').click();
                 const creation = page.locator('.easyedu-guide-scene__creation-controls');
                 const inputBounds = await creation.locator('input').boundingBox();
-                const actionBounds = await creation.locator('.easyedu-guide-scene__actions').boundingBox();
+                const actionBounds = await page.locator('[data-easyedu-guide-scene="creation"] > .easyedu-guide-scene__actions').boundingBox();
                 const creationBounds = await creation.boundingBox();
                 assert.ok(inputBounds.width > 0 && inputBounds.x + inputBounds.width <= creationBounds.x + creationBounds.width + 1);
                 assert.ok(actionBounds.x + actionBounds.width <= creationBounds.x + creationBounds.width + 1);
-                if (width === 1280) {
-                    assert.ok(actionBounds.x > inputBounds.x + inputBounds.width, 'Desktop creation actions follow the input');
-                    assert.ok(Math.abs(actionBounds.y + actionBounds.height - inputBounds.y - inputBounds.height) <= 1,
-                        'Desktop creation controls share their bottom baseline');
-                } else if (width === 390) {
-                    assert.ok(actionBounds.y >= inputBounds.y + inputBounds.height, 'Phone controls wrap without overlapping');
-                }
+                assert.ok(actionBounds.y >= inputBounds.y + inputBounds.height, 'Actions follow nomenclature without overlapping');
+                assert.deepEqual(await page.locator('.easyedu-guide-scene__syntax b').allTextContents(), ['#', '@', '*3']);
                 await page.locator('[data-guide-scene-command="preview"]').first().click();
                 assert.equal(await page.locator('[data-guide-names] > span').count(), 3);
                 await page.locator('[data-guide-scene-command="letters"]').click();
@@ -56,12 +51,25 @@ const root = path.resolve(__dirname, '../..');
                 await page.locator('[data-guide-scene-command="preview"]').first().click();
                 assert.deepEqual(await page.locator('[data-guide-names] [data-guide-name]').allTextContents(), ['Custom A', 'Custom B']);
                 assert.equal(await page.locator('[data-guide-names] .easyedu-guide-scene__identity').count(), 2);
+                await page.locator('[data-guide-pattern]').fill('Custom #*7');
+                await page.locator('[data-guide-scene-command="preview"]').first().click();
+                assert.equal(await page.locator('[data-guide-warning-host]').isVisible(), true);
+                assert.equal(await page.locator('[data-guide-pattern]').getAttribute('aria-invalid'), 'true');
+                assert.equal(await page.locator('[data-guide-names] > span').count(), 0);
+                assert.ok(await page.locator('[data-guide-warning-host] .easyedu-notice--warning').count());
+                await page.locator('[data-guide-pattern]').fill('Custom #*2');
+                await page.locator('[data-guide-scene-command="preview"]').first().click();
+                assert.equal(await page.locator('[data-guide-warning-host]').isVisible(), false);
+                assert.equal(await page.locator('[data-guide-pattern]').getAttribute('aria-invalid'), null);
+                assert.equal(await page.locator('[data-guide-names] > span').count(), 2);
                 await page.locator('[data-guide-scene-command="clear"]').click();
                 assert.equal(await page.locator('[data-guide-names] > span').count(), 0);
                 await page.locator('[data-easyedu-guide-nav-item="2"]').click();
                 await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="membership"]').dataset.guideSceneFinished === 'true');
                 assert.equal(await page.locator('[data-guide-membership-target].is-absent').count(), 0);
                 assert.equal(await page.locator('[data-guide-membership-origin].is-removed').count(), 0);
+                assert.equal(await page.locator('[data-easyedu-guide-slide="2"] [data-guide-live]').getAttribute('data-guide-live-state'), 'finished');
+                assert.equal(await page.locator('[data-easyedu-guide-scene="membership"] .is-selected').count(), 0);
                 await page.locator('[data-guide-scene-command="move"]').click();
                 await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="membership"] [data-guide-person]').hidden);
                 assert.equal(await page.locator('[data-guide-membership-origin].is-removed').count(), 1);

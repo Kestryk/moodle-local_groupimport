@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-07 - Guide component review G6
+
+- Consume Kit0.4.132 quiet Show/Return actions, responsive return text wrapping
+  and native checklist control/type roles; keep its layout and real path rules.
+- Recompose local Group names practice with full-width field, blue bold #/@/*
+  notation and canonical Warning/invalid-input recovery. Preserve generated
+  natural cards and the real accompanied-path invitation.
+- Illustrate menu placement near a contrasted cursor, faded instruction phases
+  and quiet neutral completion. No enrolment, message or group writes; accepted
+  student card/search/add animations are unchanged.
+- See docs/guide-review-components-2026-10-07.md for source, Penpot, native and
+  Foundation/human gates. Older SM/G5 and human checklist remain open.
+
 ## 2026-10-07 - Complete four-scene Guide presentation successor
 
 - Native12-route geometry and supplementary keyboard/path/cancellation/reduced

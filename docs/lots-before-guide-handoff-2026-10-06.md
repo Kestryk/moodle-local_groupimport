@@ -135,3 +135,10 @@ phone outcome. Retain failed60228 as the overbroad all-animation oracle;18084
 classifies the eight native launcher focus CSSTransitions and proves the scene
 controller/WAAPI stopped. G4 edge/accessibility and Foundation provider/Library
 publication remain open alongside G5 and the combined human checklist.
+
+7 October user refinement is recorded as G6-A..F in
+guide-review-components-2026-10-07.md: quiet Show/Return with safe wrapping,
+demo-like Group names/nomenclature and canonical Warning, near-cursor menu,
+cursor contrast, instruction/neutral-completion Motion, quiet result and native
+checklist controls only. Overview and natural cards are explicitly retained.
+This does not replace G5 or close any older lot/human gate.
