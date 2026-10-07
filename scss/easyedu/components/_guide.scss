@@ -81,7 +81,9 @@
     transform: translateY(-0.08rem);
   }
 
-  &:focus {
+  // Restoring focus after a pointer-opened Guide must not simulate hover.
+  // Keep the keyboard-visible focus treatment and the real hover unchanged.
+  &:focus-visible {
     background: transparent;
     border-color: transparent;
     box-shadow: none;
@@ -99,8 +101,8 @@
     transform: scale(1.04);
   }
 
-  &:focus .easyedu-guide__launcher-icon,
-  &:focus > .fa {
+  &:focus-visible .easyedu-guide__launcher-icon,
+  &:focus-visible > .fa {
     background: #fff;
     border-color: color-mix(in srgb, var(--easyedu-accent) 32%, #fff 68%);
     box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);

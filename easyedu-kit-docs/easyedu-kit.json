@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideLauncherFocus20261007": {
+      "kitVersion": "0.4.141",
+      "kitCommit": "729338320a38e2836350500b01e7da2712769b96",
+      "documentation": "docs/guide-follow-up-g8-2026-10-07.md",
+      "scope": "Restored pointer focus keeps resting launcher paint; keyboard focus-visible and actual hover preserved.",
+      "isolatedThreeWidthVerified": true,
+      "nativePreviewVerified": false,
+      "foundationCataloguePublished": false,
+      "humanVisualValidated": false
+    },
     "guideReviewG820261007": {
       "kitVersion": "0.4.140",
       "kitCommit": "c635b39b92a6606b0fba32bdd097284109c8e5b0",

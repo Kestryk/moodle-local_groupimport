@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 - Guide opener resting paint after pointer close
+
+- Adopt the canonical Kit launcher `:focus-visible` fix: closing by pointer
+  restores opener focus without retaining hover colours. Real hover and
+  keyboard-visible focus keep their existing feedback; no product blur hack.
+
 ## 2026-10-07 - Guide G8 review and lifecycle
 
 - Apply canonical modal title/caption/Close, compact numbered invitation and

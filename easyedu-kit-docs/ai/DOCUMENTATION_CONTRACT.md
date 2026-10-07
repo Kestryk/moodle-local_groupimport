@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+Guide launcher restored pointer focus must retain resting paint; use canonical
+`:focus-visible` focus paint and never blur the opener to hide a state defect.
+Assert real hover and keyboard focus separately from pointer Close.
+
 G8 never automatically renders completed checklists on reload. Unfinished paths
 offer explicit Resume/Cancel, expiring after20s without deleting progress.
 Restart/reset are path-local Guide storage only. All dependency completion

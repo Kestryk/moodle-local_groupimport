@@ -26,7 +26,8 @@ const root = path.resolve(__dirname, '../..');
             await page.evaluate(completed => localStorage.setItem('g8.checklist', JSON.stringify({path: 'practice-membership',
                 slideIndex: 1, activeIndex: 0, completed: {'practice-membership': completed, other: ['retained']}})), completed);
             await page.setContent(`<style>*{box-sizing:border-box}[hidden]{display:none!important}${fs.readFileSync(path.join(root, 'styles.css'), 'utf8')}</style>` +
-                mustache.render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data));
+                '<div class="local-groupimport-easystud">' +
+                mustache.render(fs.readFileSync(path.join(root, 'templates/easyedu_guide.mustache'), 'utf8'), data) + '</div>');
             await page.addScriptTag({content: 'window.define=(deps,factory)=>{window.Guide=factory();};\n' +
                 fs.readFileSync(path.join(root, 'amd/src/easyedu_guide.js'), 'utf8')});
             await page.evaluate(steps => window.Guide.init('[data-easyedu-guide-root]', {storageKey: 'g8', firstVisit: false,
@@ -35,6 +36,45 @@ const root = path.resolve(__dirname, '../..');
         for (const width of [1280, 768, 390]) {
             await page.setViewportSize({width, height: 900});
             await render(ids);
+            // Pointer-close returns focus, but not hover paint. Keyboard focus
+            // and genuine hover must retain their distinct active treatment.
+            const opener = page.locator('[data-easyedu-guide-open]');
+            const paint = () => opener.locator('.easyedu-guide__launcher-icon').evaluate(node => {
+                const css = getComputedStyle(node);
+                return {background: css.backgroundImage, color: css.color};
+            });
+            await page.mouse.move(width - 2, 898);
+            const resting = await paint();
+            await opener.click();
+            await page.locator('[data-easyedu-guide-close]').click();
+            await page.mouse.move(width - 2, 898);
+            await page.clock.runFor(500);
+            assert.equal(await opener.evaluate(node => document.activeElement === node), true, 'Keep opener focus');
+            assert.equal(await opener.evaluate(node => node.matches(':focus-visible')), false);
+            assert.deepEqual(await paint(), resting, 'Pointer Close must restore resting icon paint');
+            await opener.hover();
+            await page.clock.runFor(500);
+            await page.waitForFunction(resting => {
+                const css = getComputedStyle(document.querySelector('.easyedu-guide__launcher-icon'));
+                return css.color !== resting.color;
+            }, resting);
+            assert.notDeepEqual(await paint(), resting, 'Actual hover still paints');
+            await page.mouse.move(width - 2, 898);
+            await opener.evaluate(node => node.blur()); // Test setup only; product never blurs the opener.
+            await page.keyboard.press('Tab');
+            await opener.focus();
+            await page.clock.runFor(500);
+            assert.equal(await opener.evaluate(node => node.matches(':focus-visible')), true);
+            assert.notDeepEqual(await paint(), resting, 'Keyboard-visible focus still paints');
+            await opener.press('Enter');
+            await page.keyboard.press('Escape');
+            await page.clock.runFor(500);
+            assert.equal(await opener.evaluate(node => document.activeElement === node), true);
+            assert.equal(await opener.evaluate(node => node.matches(':focus-visible')), true, 'Escape preserves keyboard cue');
+            await opener.click();
+            await page.locator('[data-easyedu-guide-close]').click();
+            await page.mouse.move(width - 2, 898);
+            await page.clock.runFor(500);
             assert.equal(await page.locator('[data-easyedu-guide-checklist]').isVisible(), false);
             assert.equal(await page.locator('[data-easyedu-guide-resume]').isVisible(), false, 'Completed path never resumes on reload');
             await page.locator('[data-easyedu-guide-open]').click();
