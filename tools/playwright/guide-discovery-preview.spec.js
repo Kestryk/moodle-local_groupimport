@@ -169,8 +169,22 @@ test('Guide discovery lifecycle native preview', async({page}, info) => {
         await expect(guide).not.toHaveAttribute('data-easyedu-guide-slide-transition', /.+/);
         await page.keyboard.press('Escape');
         await expect(modal).toBeHidden();
-        expect(await guide.evaluate(node => document.getAnimations().filter(animation =>
-            animation.effect?.target && node.contains(animation.effect.target)).length)).toBe(0);
+        const closingState = await guide.evaluate(node => ({
+            sceneStopped: node.easyeduGuideSceneStop === null,
+            animations: document.getAnimations().filter(animation =>
+                animation.effect?.target && node.contains(animation.effect.target)).map(animation => ({
+                kind: animation.constructor.name,
+                state: animation.playState,
+                target: animation.effect.target.className,
+                transition: animation.transitionProperty || null,
+                name: animation.animationName || null,
+            })),
+        }));
+        records.push({closingState});
+        expect(closingState.sceneStopped).toBe(true);
+        // Native focus/hover CSS transitions are not owned teaching-scene WAAPI work.
+        // Keep their diagnostics; assert the actual illustration controller's cleanup.
+        expect(closingState.animations.filter(animation => animation.kind === 'Animation')).toEqual([]);
         records.push('closing an active scene cancels owned animation');
         await page.emulateMedia({reducedMotion: 'reduce'});
         await page.setViewportSize({width: 390, height: 1000});

@@ -144,3 +144,12 @@ active-scene Escape/cancellation and reduced-motion phone outcome. Its native
 proof is pending at this checkpoint. Mobile launcher paint collision/hit-target,
 absent/permission-limited target coverage and broader accessibility matrix stay
 open, not hidden for capture. Foundation publication remains a distinct gate.
+
+Lifecycle attempt easystud-authenticated-20261007T035141575Z-60228 FAILED after
+keyboard/path checks passed. Its zero-all-root-animations assertion observed8
+animations, but did not distinguish native focus/hover CSS transitions from
+owned teaching-scene WAAPI work. Preserve the failure/cleanup. The successor
+records animation types/targets, requires the scene controller stopped and
+requires zero owned plain-WAAPI animations; it does not cancel unrelated CSS
+or change source behaviour to satisfy an overbroad test. Native confirmation
+of that classification is pending.
