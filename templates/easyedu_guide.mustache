@@ -143,7 +143,7 @@
                                 </div>
                             {{/requires}}
                             {{#discoveryscene}}
-                            {{^concepts}}{{^creation}}<p class="easyedu-guide-scene__live" data-guide-live aria-live="polite">{{initiallabel}}</p>{{/creation}}{{/concepts}}
+                            {{^concepts}}{{^creation}}<div class="easyedu-guide-scene__live" data-guide-live aria-live="polite"><span data-guide-live-copy>{{initiallabel}}</span></div>{{/creation}}{{/concepts}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" aria-label="{{caption}}">
                                 <p class="easyedu-guide-scene__caption">{{caption}}</p>
                                 {{#concepts}}
@@ -182,14 +182,15 @@
                                         <strong class="easyedu-guide-scene__source-title">Projet Orion</strong>
                                         <div class="easyedu-guide-scene__person" data-guide-person>
                                             <span class="easyedu-guide-scene__identity fa fa-user" aria-hidden="true"></span>
+                                            {{#actions}}<span class="easyedu-guide-scene__illustrated-checkbox" aria-hidden="true"><input type="checkbox" tabindex="-1" aria-hidden="true" data-guide-illustrated-checkbox><span class="easyedu-selection-checkbox__ui"></span></span>{{/actions}}
                                             <span class="easyedu-guide-scene__card-copy"><strong>Alex Dupont</strong>{{#membership}}<small>TD lundi · Projet Orion</small>{{/membership}}</span>
                                         </div>
-                                        {{#actions}}<div class="easyedu-guide-scene__person"><span class="easyedu-guide-scene__identity fa fa-user" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong>Léa Martin</strong></span></div>{{/actions}}
+                                        {{#actions}}<div class="easyedu-guide-scene__person"><span class="easyedu-guide-scene__identity fa fa-user" aria-hidden="true"></span><span class="easyedu-guide-scene__illustrated-checkbox" aria-hidden="true"><input type="checkbox" tabindex="-1" aria-hidden="true" data-guide-illustrated-checkbox><span class="easyedu-selection-checkbox__ui"></span></span><span class="easyedu-guide-scene__card-copy"><strong>Léa Martin</strong></span></div>{{/actions}}
                                         <small data-guide-source-empty hidden>{{sourceempty}}</small>
                                     </div>
                                     <div class="easyedu-guide-scene__card" data-guide-destination>
                                         <span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span>
-                                        <span class="easyedu-guide-scene__card-copy"><strong>{{#actions}}Projet Horizon{{/actions}}{{#membership}}Recherche{{/membership}}</strong>
+                                        <span class="easyedu-guide-scene__card-copy"><strong>{{destinationname}}</strong>
                                             <small>{{destinationcaption}}</small><span class="easyedu-guide-scene__member" data-guide-member hidden>Alex Dupont{{#actions}} · Léa Martin{{/actions}}</span>
                                         </span>
                                     </div>
@@ -198,7 +199,7 @@
                                     </div>
                                     <div class="easyedu-guide-scene__dialog" data-guide-confirm hidden aria-hidden="true">
                                         <header><strong>{{movelabel}}</strong><span class="fa fa-times" aria-hidden="true"></span></header>
-                                        <div><p>{{selectioncaption}}</p><span>{{destinationlabel}}</span><div class="easyedu-guide-scene__destination"><span class="fa fa-search" aria-hidden="true"></span><span>{{#actions}}Projet Horizon{{/actions}}{{#membership}}Recherche{{/membership}}</span><span class="fa fa-chevron-down" aria-hidden="true"></span></div><p>{{consequence}}</p></div>
+                                        <div><p>{{selectioncaption}}</p><span>{{destinationlabel}}</span><div class="easyedu-guide-scene__destination"><span class="fa fa-search" aria-hidden="true"></span><span>{{destinationname}}</span><span class="fa fa-chevron-down" aria-hidden="true"></span></div><p>{{consequence}}</p></div>
                                         <footer><span>{{cancellabel}}</span><strong data-guide-simulated-submit>{{movelabel}}</strong></footer>
                                     </div>
                                     <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"></span>
@@ -208,7 +209,7 @@
                                     <strong>{{membershiptitle}}</strong>
                                     <span>TD lundi <b>{{keptlabel}}</b></span>
                                     <span data-guide-membership-origin data-kept="{{keptlabel}}" data-removed="{{removedlabel}}">Projet Orion <b>{{keptlabel}}</b></span>
-                                    <span data-guide-membership-target data-added="{{addedlabel}}" data-absent="{{absentlabel}}" class="is-absent">Recherche <b>{{absentlabel}}</b></span>
+                                    <span data-guide-membership-target data-added="{{addedlabel}}" data-absent="{{absentlabel}}" class="is-absent">{{destinationname}} <b>{{absentlabel}}</b></span>
                                 </div>
                                 {{/membership}}
                                 <section class="easyedu-guide-scene__recap" data-guide-recap hidden>
@@ -220,7 +221,11 @@
                                         <li data-guide-phase="validate">{{validatelabel}}</li>
                                     </ol>
                                 </section>
-                                <p class="easyedu-guide-scene__result" data-guide-result aria-live="polite" data-add="{{resultaddlabel}}" data-move="{{resultmovelabel}}" data-actions="{{resultactionslabel}}">{{initiallabel}}</p>
+                                <div class="easyedu-guide-scene__context">
+                                    <p class="easyedu-guide-scene__result" data-guide-result aria-live="polite" data-add="{{resultaddlabel}}" data-move="{{resultmovelabel}}" data-actions="{{resultactionslabel}}">{{initiallabel}}</p>
+                                    <p>{{mobilelabel}}</p>
+                                    <p>{{note}}</p>
+                                </div>
                                 <div class="easyedu-guide-scene__actions">
                                     {{#membership}}<button type="button" class="btn btn-primary" data-guide-scene-command="add">{{addlabel}}</button>
                                     <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="move">{{comparemove}}</button>{{/membership}}
@@ -229,7 +234,6 @@
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>
                                     </div>
                                 </div>
-                                <p class="easyedu-guide-scene__caption">{{mobilelabel}}</p>
                                 {{/creation}}{{/concepts}}
                             </section>
                             {{/discoveryscene}}
@@ -445,7 +449,7 @@
                             {{#discoveryscene}}{{#concepts}}
                             <aside class="easyedu-guide-guided-card easyedu-guide-scene__example"><span class="easyedu-guide-guided-card__icon fa fa-route" aria-hidden="true"></span><div class="easyedu-guide-guided-card__body"><strong>{{exampletitle}}</strong><span>{{examplebody}}</span></div></aside>
                             {{/concepts}}{{/discoveryscene}}
-                            {{#discoveryscene}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/discoveryscene}}
+                            {{#discoveryscene}}{{#concepts}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/concepts}}{{#creation}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/creation}}{{/discoveryscene}}
                         </div>
                     </section>
                 {{/slides}}
@@ -501,6 +505,7 @@
                 <button type="button" class="btn btn-link easyedu-guided-panel__close" data-easyedu-guide-checklist-close="1" aria-label="{{guidecloselabel}}">
                     <span class="fa fa-times" aria-hidden="true"></span>
                 </button>
+                {{#discoverypresentation}}<button type="button" class="btn btn-outline-secondary easyedu-guided-panel__restore" data-easyedu-guide-checklist-restore="1" aria-expanded="false" hidden><span class="fa fa-expand" aria-hidden="true"></span><span>{{guiderestorelabel}}</span></button>{{/discoverypresentation}}
             </div>
         </div>
         <div class="easyedu-guide-checklist__items easyedu-guided-panel__steps" data-easyedu-guide-checklist-items></div>

@@ -46,7 +46,7 @@ const SELECTORS = {
   checklistClose: '[data-easyedu-guide-checklist-close]',
   checklistItems: '[data-easyedu-guide-checklist-items]',
   checklistMessage: '[data-easyedu-guide-checklist-message]',
-  checklistMinimize: '[data-easyedu-guide-checklist-minimize]',
+  checklistMinimize: '[data-easyedu-guide-checklist-minimize], [data-easyedu-guide-checklist-restore]',
   checklistReturn: '[data-easyedu-guide-checklist-return]',
   checklistSubtitle: '[data-easyedu-guide-checklist-subtitle]',
   checklistTitle: '[data-easyedu-guide-checklist-title]',
@@ -1085,9 +1085,13 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   result.textContent = scene.easyeduGuideResultOriginal;
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
   scene.dataset.guideMode = mode;
+  scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
+    button.setAttribute('aria-pressed', String(button.dataset.guideSceneCommand === mode));
+  });
   const live = scene.parentElement.querySelector('[data-guide-live]');
+  const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
   if (live) {
-    live.textContent = scene.easyeduGuideResultOriginal;
+    liveCopy.textContent = scene.easyeduGuideResultOriginal;
     live.removeAttribute('data-guide-live-state');
   }
   delete scene.dataset.guidePhase;
@@ -1109,6 +1113,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   const animations = new Set();
   let timer = null;
   let resolveWait = null;
+  let dropFrame = null;
   const reduced = getScrollBehavior(root) === 'auto';
   const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
   const wait = duration => new Promise(resolve => {
@@ -1126,11 +1131,42 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   // starts only after the new sentence is visible; no business state is changed.
   const writeLive = async(text, state = 'active') => {
     if (!live || controller.signal.aborted) { return; }
-    await animate(live, [{opacity: 1}, {opacity: 0}], 100, false);
+    await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false);
     if (controller.signal.aborted) { return; }
-    live.textContent = text;
+    liveCopy.textContent = text;
     live.dataset.guideLiveState = state;
-    await animate(live, [{opacity: 0}, {opacity: 1}], 200, false);
+    await animate(liveCopy, [{opacity: 0}, {opacity: 1}], 200, false);
+  };
+  // Scroll only the Guide reading surface, never the Moodle page. The same
+  // cancellable animation set owns illustration and scroll, including exit.
+  const reveal = async element => {
+    const body = scene.closest('.easyedu-guide-modal__body');
+    if (!body || controller.signal.aborted || element.hidden) { return; }
+    const bounds = body.getBoundingClientRect(), item = element.getBoundingClientRect();
+    const readingTop = bounds.top + (live?.getBoundingClientRect().height || 0) + 12;
+    const readingBottom = bounds.bottom - 12;
+    if (item.top >= readingTop && item.bottom <= readingBottom) { return; }
+    const offset = item.height > readingBottom - readingTop || item.top < readingTop ?
+      item.top - readingTop : item.bottom - readingBottom;
+    const from = body.scrollTop;
+    const to = Math.max(0, Math.min(from + offset, body.scrollHeight - body.clientHeight));
+    if (reduced || !body.animate) { body.scrollTop = to; return; }
+    // A clock animation supplies a cancellable, eased progress value;
+    // scrolling stays a DOM property rather than an independent smooth-scroll.
+    const clock = body.animate([{opacity: 1}, {opacity: 1}],
+      {duration: 420, easing: 'cubic-bezier(.4,0,.2,1)'});
+    animations.add(clock);
+    await new Promise(resolve => {
+      const tick = () => {
+        if (controller.signal.aborted || clock.playState === 'idle') { resolve(); return; }
+        const progress = clock.effect.getComputedTiming().progress;
+        if (progress !== null) { body.scrollTop = from + (to - from) * progress; }
+        if (clock.playState === 'finished') { body.scrollTop = to; resolve(); return; }
+        requestAnimationFrame(tick);
+      };
+      tick();
+    });
+    clock.cancel(); animations.delete(clock);
   };
   const phase = async name => {
     const item = scene.querySelector(`[data-guide-phase="${name}"]`);
@@ -1149,7 +1185,9 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     controller.abort();
     if (timer !== null) { window.clearTimeout(timer); }
     if (resolveWait) { resolveWait(); }
+    if (dropFrame !== null) { cancelAnimationFrame(dropFrame); }
     animations.forEach(animation => animation.cancel());
+    stage.querySelector('[data-guide-destination]')?.classList.remove('is-guide-drop-target');
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
@@ -1159,20 +1197,26 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     const menu = stage.querySelector('[data-guide-menu]');
     const confirm = stage.querySelector('[data-guide-confirm]');
     let cursorPoint = null;
-    const travel = async(element, duration = 750, cardAnchor = false) => {
-      if (compact || reduced || controller.signal.aborted) { return; }
-      const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
-      cursorPoint = {
-        x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
-        y: a.top - b.top + (cardAnchor ? Math.min(28, a.height / 2) : a.height / 2)
-      };
+    const travelPoint = async(point, duration) => {
+      cursorPoint = point;
       const from = getComputedStyle(cursor).transform;
       cursor.hidden = false;
       await animate(cursor, [{transform: from},
-        {transform: `translate(${cursorPoint.x}px, ${cursorPoint.y}px)`}], duration);
+        {transform: `translate(${point.x}px, ${point.y}px)`}], duration);
     };
+    const travel = async(element, duration = 750, cardAnchor = false) => {
+      if (compact || reduced || controller.signal.aborted) { return; }
+      const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
+      const point = {
+        x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
+        y: a.top - b.top + (cardAnchor ? Math.min(28, a.height / 2) : a.height / 2)
+      };
+      await travelPoint(point, duration);
+    };
+    await reveal(person);
     await travel(person, 750, true);
     stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
+    stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = true; });
     await phase('select');
     if (controller.signal.aborted) { return; }
     if (mode !== 'add') {
@@ -1187,6 +1231,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
         `${Math.max(0, Math.min(point.x + 12, stageBounds.width - menuBounds.width))}px`);
       stage.style.setProperty('--easyedu-guide-menu-y',
         `${Math.max(0, Math.min(point.y + 12, stageBounds.height - menuBounds.height))}px`);
+      await reveal(menu);
       await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
       await phase('menu');
       if (controller.signal.aborted) { return; }
@@ -1198,11 +1243,13 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       if (controller.signal.aborted) { return; }
       menu.hidden = true;
       confirm.hidden = false;
+      await reveal(confirm);
       await animate(confirm, [{opacity: 0}, {opacity: 1}], 280);
       await phase('confirm');
       if (controller.signal.aborted) { return; }
       const submit = confirm.querySelector('[data-guide-simulated-submit]');
       await phase('validate');
+      await reveal(submit);
       await travel(submit);
       await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
         {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
@@ -1243,14 +1290,30 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       ghost.style.left = `${a.left - b.left}px`;
       ghost.style.top = `${a.top - b.top}px`;
       await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
-      const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
+      const destinationNode = stage.querySelector('[data-guide-destination]');
+      const destination = destinationNode.getBoundingClientRect();
       const dx = destination.left - a.left, dy = destination.top - a.top + 32;
+      const startPoint = {...cursorPoint};
+      // One displacement, duration and easing for ghost and pointer. Track
+      // actual animated paint to reveal the destination only while hovering.
+      const trackDrop = () => {
+        if (controller.signal.aborted || !ghost.isConnected) { return; }
+        const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
+        destinationNode.classList.toggle('is-guide-drop-target',
+          card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
+        dropFrame = requestAnimationFrame(trackDrop);
+      };
+      trackDrop();
       await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
-        {transform: `translate(${dx}px,${dy}px)`}], 1200), travel(stage.querySelector('[data-guide-destination]'), 1200)]);
+        {transform: `translate(${dx}px,${dy}px)`}], 1200),
+        travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
       if (controller.signal.aborted) { return; }
+      cancelAnimationFrame(dropFrame); dropFrame = null;
       member.hidden = false;
-      await animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
-        {transform: 'translate(0,0)', opacity: 0.2}], 650);
+      await wait(220);
+      destinationNode.classList.remove('is-guide-drop-target');
+      await Promise.all([animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
+        {transform: 'translate(0,0)', opacity: 0.2}], 650), travelPoint(startPoint, 650)]);
       await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
       ghost.remove();
     }
@@ -1260,6 +1323,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     if (controller.signal.aborted) { return; }
     cursor.hidden = true;
     stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
+    stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = false; });
     if (mode !== 'add') {
       stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => { node.hidden = true; });
       const empty = stage.querySelector('[data-guide-source-empty]');
@@ -1279,6 +1343,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
         item.textContent = copy.replace(/^\d+\s*[\u00b7.]\s*/, '');
         item.removeAttribute('aria-current');
       });
+      await reveal(recap);
       await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
     }
     if (controller.signal.aborted) { return; }
@@ -1520,6 +1585,12 @@ const syncChecklistMinimizeControl = root => {
     return;
   }
   const minimized = checklist.classList.contains('is-minimized');
+  const restore = root.querySelector('[data-easyedu-guide-checklist-restore]');
+  if (restore) {
+    minimize.hidden = minimized;
+    restore.hidden = !minimized;
+    restore.setAttribute('aria-expanded', minimized ? 'false' : 'true');
+  }
   minimize.setAttribute('aria-expanded', minimized ? 'false' : 'true');
   const icon = minimize.querySelector('.fa');
   if (icon) {
@@ -1549,6 +1620,7 @@ const renderChecklist = (root, config, pathName) => {
   checklist.classList.toggle('has-guided-feedback', steps.some(step => !!step.feedback));
   checklist.setAttribute('data-easyedu-guide-path', pathName);
   list.innerHTML = '';
+  checklist.toggleAttribute('data-easyedu-guide-checklist-scroll', steps.length > 3);
 
   steps.forEach((step, index) => {
     const stepComplete = isStepComplete(config, pathName, step, index);

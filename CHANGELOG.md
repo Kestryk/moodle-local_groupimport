@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-07 - Guide presentation follow-up G7
+
+- Consume canonical persistent step frame, synchronized illustrative drag/drop,
+  selected comparisons/checkboxes and Guide-only reveal scrolling. Result,
+  gesture and scope copy form one quiet context; recap steps get more space.
+- Discovery checklist adds compact controls and localized Restore with readable
+  reduced title/progress. Long configured paths use bounded list scrolling.
+  Six-stage Practice integration remains a separate open successor.
+- Record all G7 requests, renamed Guide page and new Active/Finished/Phone
+  Guide-local components. Foundations and combined human review remain open.
+- Preserve prior G6 scenarios; add a strict no-business-write G7 native successor.
+  Source/build and isolated gates pass; native proof is recorded separately.
+
+
 ## 2026-10-07 - Guide component review G6
 
 - Final served twelve-route50020 and supplementary lifecycle9272 proof pass,
