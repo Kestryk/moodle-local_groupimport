@@ -7,13 +7,23 @@
 Follow-on source candidate adds translated short topic labels (full lesson titles
 remain), category-lane path markers and compact introduction typography. Six
 isolated locale/width checks assert that all four short labels fit; no legacy
-slide is removed. Native validation of this follow-on is tracked separately.
+slide is removed. Kit3199fdc and Source0135aa6 are pushed. Managed promotion
+20261007T030443Z applied documentation predecessor40b6c17 then0135aa6, purged
+caches and serves runtime dd6f3fab6ddcc1f6569bf6c8cddd4516194c73f8. Native
+run easystud-authenticated-20261007T030527651Z-51708 PASSED all12 slide/width
+checks, including untruncated topic labels and14.08px introduction copy. No
+business fixture used. Retention dry-run retained the run without deleting media.
 Foundation hosted MCP recovery is not yet confirmed: focusing9225, opening its
 MCP menu and Disconnect/Connect here did not yield an identity response. No
 design writes or reload performed. Guide4401 later returned no connected plugin;
 do not claim either publication or current Guide availability from the earlier
 successful identity. Preserve browsers/configuration and verify both identities
 before any further design write.
+The existing9227 extension list was reopened and its existing local4400 manifest
+requested; this did not establish a confirmed4401 identity. No browser closed,
+token changed or page reloaded. Further design publication needs a responding
+identity, not an optimistic Connected label. Source/runtime progress remains
+independent of this outstanding paired-design gate.
 
 Dedicated read-only MCP identity reconfirmed the exact Guide file/Page1. Compared
 creation-linked-icons-final.png against the served1280 creation capture: the
