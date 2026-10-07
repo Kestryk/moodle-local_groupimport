@@ -5,8 +5,8 @@
   "status": "stable",
   "consumerSync": {
     "guideComponentReview20261007": {
-      "kitVersion": "0.4.132",
-      "kitCommit": "ef6c33f668830fd9f58a1d346408f9ed2f4784d7",
+      "kitVersion": "0.4.133",
+      "kitCommit": "cba176ce2ec18f76a59d5d16a7a88497f42a8264",
       "predecessorKitCommit": "8da2b85d4238e6b71b1873325c558df067834521",
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss", "scss/easyedu/components/_buttons.scss"],
       "documentation": "docs/guide-review-components-2026-10-07.md",

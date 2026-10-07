@@ -93,6 +93,12 @@ $runtimeJavascript = ($runtimeJavascript -replace "`r`n", "`n").TrimEnd() + "`n"
 
 $items = @(
     [pscustomobject]@{
+        Name = "canonical data classes SCSS"
+        Source = Resolve-OwnedPath $kitRoot "scss\easyedu\_data-classes.scss"
+        Target = Resolve-OwnedPath $pluginRootPath "scss\easyedu\_data-classes.scss"
+        Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "scss\easyedu\_data-classes.scss")
+    },
+    [pscustomobject]@{
         Name = "canonical action buttons SCSS"
         Source = Resolve-OwnedPath $kitRoot "scss\easyedu\components\_buttons.scss"
         Target = Resolve-OwnedPath $pluginRootPath "scss\easyedu\components\_buttons.scss"

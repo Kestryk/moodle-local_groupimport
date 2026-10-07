@@ -2,6 +2,11 @@
 
 ## 2026-10-07 - Guide component review G6
 
+- Native12-route and supplementary lifecycle proof pass for12dffd4. Capture
+  review found centred mobile Warning copy; canonical Kit0.4.133 makes the
+  reading alignment explicit and exposes phase evidence after its fade.
+  The successor native gate is tracked separately from that historical PASS.
+
 - Consume Kit0.4.132 quiet Show/Return actions, responsive return text wrapping
   and native checklist control/type roles; keep its layout and real path rules.
 - Recompose local Group names practice with full-width field, blue bold #/@/*

@@ -25688,6 +25688,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-notice-warning-ink);
   font-size: 0.75rem;
   line-height: 1.5rem;
+  text-align: start;
 }
 .easyedu-ui .easyedu-notice--warning[hidden] {
   display: none;
