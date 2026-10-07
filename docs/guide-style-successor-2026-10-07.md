@@ -1,7 +1,8 @@
 # Guide full sample style successor — 7 October
 
 Owned scope: G2/G3/G4, under the preserved EasyStud program EED-UI-2026-0073.
-Canonical Kit source17634cca08e2f99ff9d05b535d6208918d705c23, version0.4.128.
+Canonical Kit full-scene source17634cca08e2f99ff9d05b535d6208918d705c23.
+Footer successor5a84c732c80fabbeb4bf0dea3d4ae7713eb6d158, version0.4.129.
 Source and Kit existing private worktrees only. Four sample scenes, not the
 whole curriculum. No course fixture, messaging, enrolment or group mutation.
 
@@ -73,3 +74,16 @@ the connected file is Guide. No100% correspondence claim.
 
 All older SM lots, G5 and the combined human validation checklist stay open.
 See lots-before-guide-handoff-2026-10-06.md; no older feedback is dropped.
+
+### First served successor and retained failure
+
+Managed promotion20261007T033505Z applied6a67bfd then62daab7, purged caches,
+and serves runtime d970cb837f1d2d9e05ef40df4e0297ea93268805.
+Native run easystud-authenticated-20261007T033512268Z-41644 FAILED at the exact
+paired-footer equality: secondary32px / solid30.390625px. The isolated fixture
+had two secondary buttons and did not represent the actual pair. Retain the
+strict native assertion and failed manifested run; cleanup confirms credentials
+cleared, child stopped, lease released and no fixture requested.
+Kit0.4.129 removes the extra minimum and stretches shared grid tracks, with
+the isolated fixture now containing the solid class. Six LTR/RTL cases pass.
+Native successor remains pending at this checkpoint; no acceptance claim.

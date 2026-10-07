@@ -14321,6 +14321,7 @@
   grid-auto-columns: minmax(0, 1fr);
   max-width: 100%;
   gap: 0.5rem;
+  align-items: stretch;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn {
@@ -14348,7 +14349,7 @@
   line-height: 1.35;
   font-size: var(--easyedu-guide-font-size-control);
   min-width: 5.75rem;
-  min-height: 2rem;
+  min-height: 1.9rem;
   height: auto;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn .fa,

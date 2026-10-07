@@ -5,8 +5,9 @@
   "status": "stable",
   "consumerSync": {
     "guideDiscoveryFullSample20261007": {
-      "kitVersion": "0.4.128",
-      "kitCommit": "17634cca08e2f99ff9d05b535d6208918d705c23",
+      "kitVersion": "0.4.129",
+      "kitCommit": "5a84c732c80fabbeb4bf0dea3d4ae7713eb6d158",
+      "predecessorKitCommit": "17634cca08e2f99ff9d05b535d6208918d705c23",
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide.scss", "scss/easyedu/components/_guide-discovery.scss"],
       "documentation": "docs/guide-style-successor-2026-10-07.md",
       "scope": "Four complete teaching scenes, discovery shell/cue/invitation and cancellable presentation. Localized runtime defaults retained; no business or card-Motion change.",
