@@ -1506,7 +1506,10 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                     '[data-easystud-card-menu]',
                 '[data-easystud-participant-list] [data-easystud-card-menu]',
             ],
-            'participantMoveAction' => '[data-easystud-move-selected-participants]',
+            'participantMoveAction' => [
+                '[data-easystud-move-selected-participants]',
+                '[data-easystud-mobile-action-trigger="[data-easystud-move-selected-participants]"]',
+            ],
             'participantMoveDestination' => '[data-easystud-move-modal] .easyedu-searchable-choice',
             'participantMoveConfirm' => '[data-easystud-confirm-move]',
             'firstGroup' => [
