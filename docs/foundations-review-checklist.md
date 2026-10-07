@@ -301,3 +301,13 @@ Allowed/empty-Grouping refusal run:
 `easystud-authenticated-20261001T192313452Z-43724`, preview `023fbee`.
 Native start/over/leave/end only, no drop or mutation. Remaining danger cases,
 error feedback and whole-view/mobile coverage still need their own slices.
+# Guide refinement G6 — pending human review
+
+- [ ] Keep Overview and natural teaching-card rendering; checklist remains native.
+- [ ] Show/Return quiet action; return copy never runs behind its controls.
+- [ ] Group names full-width field, blue bold #/@/* notation and Warning recovery.
+- [ ] Menus near the contrasted cursor; soft instruction/neutral-end transitions.
+- [ ] Quiet result copy remains readable, including mobile.
+- [ ] Shared Guide utility catalogue publication in Foundations, separately from
+  the linked Warning instances and Guide-page review specimens.
+

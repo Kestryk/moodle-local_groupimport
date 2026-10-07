@@ -119,7 +119,7 @@
                                         {{#showafteropen}}data-easyedu-guide-show-after-open="{{showafteropen}}"{{/showafteropen}}
                                         {{#showafteropendelay}}data-easyedu-guide-show-after-open-delay="{{showafteropendelay}}"{{/showafteropendelay}}
                                     >
-                                        <span class="fa fa-location-arrow" aria-hidden="true"></span>
+                                        <span class="fa {{#discoverypresentation}}fa-eye{{/discoverypresentation}}{{^discoverypresentation}}fa-location-arrow{{/discoverypresentation}}" aria-hidden="true"></span>
                                         <span>{{guideshowinterfacelabel}}</span>
                                     </button>
                                 {{/target}}
@@ -144,7 +144,7 @@
                             {{/requires}}
                             {{#discoveryscene}}
                             {{^concepts}}{{^creation}}<p class="easyedu-guide-scene__live" data-guide-live aria-live="polite">{{initiallabel}}</p>{{/creation}}{{/concepts}}
-                            <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" aria-label="{{caption}}">
+                            <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" aria-label="{{caption}}">
                                 <p class="easyedu-guide-scene__caption">{{caption}}</p>
                                 {{#concepts}}
                                 <div class="easyedu-guide-scene__concepts">
@@ -155,15 +155,17 @@
                                 {{/concepts}}
                                 {{#creation}}
                                 <div class="easyedu-guide-scene__creation-controls">
-                                    <label class="easyedu-guide-scene__field">{{patternlabel}}
+                                    <label class="easyedu-guide-scene__field"><span>{{patternlabel}}</span>
                                         <input type="text" data-guide-pattern value="{{patternvalue}}" autocomplete="off">
                                     </label>
-                                    <div class="easyedu-guide-scene__actions">
-                                        <button type="button" class="btn btn-primary" data-guide-scene-command="preview">{{previewlabel}}</button>
-                                        <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="letters">{{letterslabel}}</button>
-                                    </div>
                                 </div>
+                                <div class="easyedu-guide-scene__syntax"><span><b>#</b> {{syntaxnumbers}}</span><span><b>@</b> {{syntaxletters}}</span><span><b>*3</b> {{syntaxcount}}</span></div>
                                 <p class="easyedu-guide-scene__caption">{{syntaxlabel}}</p>
+                                <div class="easyedu-guide-scene__actions">
+                                    <button type="button" class="btn btn-primary" data-guide-scene-command="preview">{{previewlabel}}</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="letters">{{letterslabel}}</button>
+                                </div>
+                                <div class="easyedu-ui" data-guide-warning-host hidden><div class="easyedu-notice easyedu-notice--warning" role="alert"><span class="fa fa-exclamation-triangle" aria-hidden="true"></span><p data-guide-warning-text>{{invalidlabel}}</p></div></div>
                                 <div class="easyedu-guide-scene__result-heading">
                                     <span>{{resulttitle}}</span>
                                     <div class="easyedu-guide-scene__utilities">
@@ -472,7 +474,7 @@
         </div>
         <div class="easyedu-guide-interface-return__actions">
             <button type="button" class="btn btn-primary btn-sm easyedu-guide-interface-return__button" data-easyedu-guide-interface-return-button="1">
-                <span class="fa fa-question-circle" aria-hidden="true"></span>
+                <span class="fa {{#discoverypresentation}}fa-compass{{/discoverypresentation}}{{^discoverypresentation}}fa-question-circle{{/discoverypresentation}}" aria-hidden="true"></span>
                 <span>{{guidereturnbutton}}</span>
             </button>
             <button

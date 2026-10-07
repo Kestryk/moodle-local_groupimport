@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Guide refinement preserves accepted Overview/natural-card structure and native
+checklist layout. Practice invalid patterns use the canonical Warning notice
+with explicit aria-invalid recovery. Prove quiet Show/Return wrapping/paint,
+near-cursor menu, contrast, instruction transition and neutral completion on
+desktop/tablet/mobile; keep Foundation publication and human review separate.
+
 Guide full-scene successors verify natural/compact cards, result metadata,
 live instructions, confirmation, persistent membership and invitation/recap,
 not only modal bounds. Keep the adapted and embedded Mustache regions aligned.

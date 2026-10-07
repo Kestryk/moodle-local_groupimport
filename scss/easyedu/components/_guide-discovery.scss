@@ -85,9 +85,38 @@
     &__caption { @include typography.type-caption; }
     [data-easyedu-guide-interface-cue-action] {
       margin-inline-start: auto;
-      .easyedu-guide-slide__show { @include buttons.guide-adjacent-action($size: small); }
+      .easyedu-guide-slide__show {
+        @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+        @include buttons.button-size(small);
+        gap: var(--easyedu-action-icon-gap);
+        .fa { color: var(--easyedu-accent); }
+      }
     }
   }
+
+  .easyedu-guide-interface-return {
+    width: min(42rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    gap: 1rem;
+    .easyedu-guide-interface-return__text {
+      strong { @include typography.type-control-label; color: var(--easyedu-primary-strong); }
+      span { @include typography.type-caption; overflow-wrap: anywhere; white-space: normal; }
+    }
+  }
+  .easyedu-guide-interface-return__button,
+  .easyedu-guided-panel__return {
+    @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+    @include buttons.button-size(small);
+    gap: var(--easyedu-action-icon-gap);
+    .fa { color: var(--easyedu-accent); }
+  }
+  .easyedu-guide-interface-return__dismiss,
+  .easyedu-guided-panel__close { @include buttons.close-button; }
+  .easyedu-guided-panel__minimize { @include buttons.icon-button($size: small); }
+  .easyedu-guided-panel__header strong { @include typography.type-control-label; color: var(--easyedu-text); }
+  .easyedu-guided-panel__header > div:first-child > span { @include typography.type-caption; text-transform: none; letter-spacing: 0; }
+  .easyedu-guided-panel__step strong { @include typography.type-control-label; font-size: 0.78rem; }
+  .easyedu-guided-panel__step small { @include typography.type-caption; }
 
   .easyedu-guide-modal__title-wrap {
     flex-direction: row;
@@ -316,13 +345,12 @@
     &__member { @include typography.type-caption; color: var(--easyedu-accent); }
     &__field { display: grid; gap: 0.5rem; }
     &__field input { @include text-fields.foundation-text-field($size: small); width: 100%; }
-    &__creation-controls {
-      display: flex;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 0.75rem 1.5rem;
-      .easyedu-guide-scene__field { flex: 0 1 22.5rem; min-width: 0; max-width: 100%; }
-      .easyedu-guide-scene__actions { margin: 0; min-height: 2rem; }
+    &__creation-controls { display: grid; gap: 0.5rem; }
+    &__field { @include typography.type-control-label; font-size: 0.78rem; width: 100%; }
+    &__syntax {
+      display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-block: 1rem 0.75rem;
+      @include typography.type-caption;
+      b { color: var(--easyedu-primary); font-weight: var(--easyedu-font-weight-bold); }
     }
     &__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-block: 0.75rem; }
     &__actions .btn { @include buttons.selection-action; @include buttons.button-size(small); }
@@ -334,7 +362,7 @@
     }
     &__result-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 0.625rem; margin-block: 1rem; @include typography.type-caption; }
     &__live {
-      @include typography.type-control-label;
+      @include typography.type-body;
       color: var(--easyedu-accent);
       font-size: 0.78rem;
       min-height: 3rem;
@@ -346,12 +374,27 @@
       inset-block-start: 0;
       z-index: 6;
       margin-block: 1rem;
+      transition: background-color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        border-color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+      &[data-guide-live-state="finished"] {
+        background: transparent;
+        border-color: transparent;
+        color: var(--easyedu-text-muted);
+        padding-inline: 0;
+        font-weight: var(--easyedu-font-weight-regular);
+      }
     }
     &__stage { display: grid; position: relative; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
     &[data-guide-mode="move"] &__stage::after,
     &[data-guide-mode="actions"] &__stage::after { content: ''; grid-area: 2 / 1 / 3 / 3; min-height: 20.625rem; pointer-events: none; }
     &__menu, &__dialog { grid-area: 2 / 1 / 3 / 3; justify-self: center; align-self: start; width: min(23rem, 100%); border: 1px solid var(--easyedu-border); border-radius: 0.75rem; background: var(--easyedu-surface); overflow: hidden; }
-    &__menu { @include menus.menu-surface($size: small); padding: 0.875rem; gap: 0.5rem; }
+    &__menu {
+      @include menus.menu-surface($size: small); padding: 0.875rem; gap: 0.5rem;
+      position: absolute; left: var(--easyedu-guide-menu-x, 0px); top: var(--easyedu-guide-menu-y, 0px);
+      z-index: 4; grid-area: auto; justify-self: auto;
+    }
     &__menu > span { @include typography.type-caption; }
     &__menu strong { @include menus.menu-item($size: small); background: var(--easyedu-primary-soft); color: var(--easyedu-primary); }
     &__dialog header { @include modals.dialog-header; padding: 0.625rem 0.75rem; display: flex; justify-content: space-between; }
@@ -361,10 +404,17 @@
     &__dialog footer strong { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
     &__destination { @include text-fields.foundation-text-field($size: small); display: flex; align-items: center; gap: 0.5rem; margin-block: 0.5rem; }
     &__destination > span:last-child { margin-inline-start: auto; }
-    &__cursor { position: absolute; top: 0; left: 0; pointer-events: none; color: var(--easyedu-primary); z-index: 2; }
+    &__cursor {
+      position: absolute; top: 0; left: 0; pointer-events: none;
+      color: var(--easyedu-text); font-size: 1.125rem; z-index: 5;
+      // White halo retains a dark silhouette over blue action surfaces.
+      filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white)
+        drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white);
+    }
     &__steps { padding-inline-start: 1.25rem; }
     &__steps [aria-current] { color: var(--easyedu-accent); font-weight: 600; }
     &__note { @include typography.type-caption; margin-block: 0.75rem 1.25rem; }
+    &__result { @include typography.type-caption; color: var(--easyedu-text-muted); line-height: 1.5; }
     &__recap { padding: 1rem; border: 1px solid var(--easyedu-border); border-radius: 0.75rem; background: var(--easyedu-surface); margin-block: 1rem; @include typography.type-caption; }
     &__memberships {
       display: flex;
@@ -423,7 +473,7 @@
     .easyedu-guide-guided-card .easyedu-guide-slide__start { grid-column: 1 / -1; }
     .easyedu-guide-scene__concepts, .easyedu-guide-scene__stage, .easyedu-guide-scene__results { grid-template-columns: minmax(0, 1fr); }
     .easyedu-guide-scene[data-guide-mode] .easyedu-guide-scene__stage::after,
-    .easyedu-guide-scene__menu, .easyedu-guide-scene__dialog { grid-area: 3 / 1; }
+    .easyedu-guide-scene__dialog { grid-area: 3 / 1; }
     // The navigation portal snapshots root tokens inline. Responsive geometry
     // belongs on the dialog so that inherited desktop snapshots cannot freeze it.
     .easyedu-guide-modal__dialog {
@@ -444,5 +494,14 @@
     .easyedu-guide-modal__body { padding: 1rem; }
     .easyedu-guide-modal__footer-actions { width: min(100%, 15rem); flex: 0 1 15rem; align-items: stretch; }
     .easyedu-guide-modal__footer-actions .btn { width: auto; min-width: 0; }
+    .easyedu-guide-interface-return { inset-inline: 1rem; width: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
+  }
+  &[data-easyedu-motion-policy="disabled"],
+  [data-easyedu-motion-policy="disabled"] &,
+  .easyedu-motion-disabled & {
+    .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
   }
 }

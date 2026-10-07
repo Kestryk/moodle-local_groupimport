@@ -999,6 +999,8 @@ const renderDiscoveryNames = (root, scene, command) => {
   }
   const match = input.value.match(/^(.*?)([#@])\*([1-9]\d*)$/);
   const template = scene.querySelector('[data-guide-name-card]');
+  const warning = scene.querySelector('[data-guide-warning-host]');
+  const warningText = scene.querySelector('[data-guide-warning-text]');
   const reduced = getScrollBehavior(root) === 'auto';
   const animations = new Set();
   let stopped = false;
@@ -1021,11 +1023,22 @@ const renderDiscoveryNames = (root, scene, command) => {
       await animate(output, [{opacity: 1}, {opacity: 0}], 110);
     }
     if (stopped) { return; }
+    if (warning && !warning.hidden) {
+      await animate(warning, [{opacity: 1}, {opacity: 0}], 110);
+      if (stopped) { return; }
+      warning.hidden = true;
+    }
+    input.removeAttribute('aria-invalid');
     const initialHeight = output.getBoundingClientRect().height;
     output.replaceChildren();
     if (command !== 'clear') {
       if (!match || Number(match[3]) > 6) {
-        output.textContent = output.getAttribute('data-invalid') || '';
+        input.setAttribute('aria-invalid', 'true');
+        if (warning && warningText) {
+          warningText.textContent = output.getAttribute('data-invalid') || '';
+          warning.hidden = false;
+          await animate(warning, [{opacity: 0}, {opacity: 1}], 220);
+        }
       } else {
         for (let index = 0; index < Number(match[3]); index++) {
           const name = match[1] + (match[2] === '#' ? index + 1 : String.fromCharCode(65 + index));
@@ -1073,7 +1086,11 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
   scene.dataset.guideMode = mode;
   const live = scene.parentElement.querySelector('[data-guide-live]');
-  if (live) { live.textContent = scene.easyeduGuideResultOriginal; }
+  if (live) {
+    live.textContent = scene.easyeduGuideResultOriginal;
+    live.removeAttribute('data-guide-live-state');
+  }
+  delete scene.dataset.guidePhase;
   const recap = scene.querySelector('[data-guide-recap]');
   if (recap) { recap.hidden = true; }
   const origin = scene.querySelector('[data-guide-membership-origin]');
@@ -1098,11 +1115,22 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     resolveWait = resolve;
     timer = window.setTimeout(() => { timer = null; resolveWait = null; resolve(); }, duration);
   });
-  const animate = async(element, frames, duration) => {
+  const animate = async(element, frames, duration, retain = true) => {
     if (controller.signal.aborted || reduced) { return; }
     const animation = element.animate(frames, {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
     animations.add(animation);
     try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
+    if (!retain) { animation.cancel(); animations.delete(animation); }
+  };
+  // Fade the instruction copy, not the entire teaching scene. Its reading pause
+  // starts only after the new sentence is visible; no business state is changed.
+  const writeLive = async(text, state = 'active') => {
+    if (!live || controller.signal.aborted) { return; }
+    await animate(live, [{opacity: 1}, {opacity: 0}], 100, false);
+    if (controller.signal.aborted) { return; }
+    live.textContent = text;
+    live.dataset.guideLiveState = state;
+    await animate(live, [{opacity: 0}, {opacity: 1}], 200, false);
   };
   const phase = async name => {
     const item = scene.querySelector(`[data-guide-phase="${name}"]`);
@@ -1111,7 +1139,8 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       item.setAttribute('aria-current', 'step');
       const text = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
       item.textContent = text;
-      if (live) { live.textContent = text; }
+      scene.dataset.guidePhase = name;
+      await writeLive(text);
     }
     if (!reduced) { await wait(Math.max(2400, (item?.textContent.trim().split(/\s+/).length || 0) * 230)); }
   };
@@ -1128,20 +1157,35 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     const cursor = stage.querySelector('[data-guide-cursor]');
     const menu = stage.querySelector('[data-guide-menu]');
     const confirm = stage.querySelector('[data-guide-confirm]');
-    const travel = async(element, duration = 750) => {
+    let cursorPoint = null;
+    const travel = async(element, duration = 750, cardAnchor = false) => {
       if (compact || reduced || controller.signal.aborted) { return; }
       const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
+      cursorPoint = {
+        x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
+        y: a.top - b.top + (cardAnchor ? Math.min(28, a.height / 2) : a.height / 2)
+      };
       const from = getComputedStyle(cursor).transform;
       cursor.hidden = false;
       await animate(cursor, [{transform: from},
-        {transform: `translate(${a.left - b.left + a.width / 2}px, ${a.top - b.top + a.height / 2}px)`}], duration);
+        {transform: `translate(${cursorPoint.x}px, ${cursorPoint.y}px)`}], duration);
     };
-    await travel(person);
+    await travel(person, 750, true);
     stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
     await phase('select');
     if (controller.signal.aborted) { return; }
     if (mode !== 'add') {
       menu.hidden = false;
+      // Desktop follows the illustrated click. Compact/reduced scenes anchor
+      // to the same card without implying a mouse-only mobile interaction.
+      const stageBounds = stage.getBoundingClientRect(), cardBounds = person.getBoundingClientRect();
+      const point = cursorPoint || {x: cardBounds.left - stageBounds.left + 24,
+        y: cardBounds.bottom - stageBounds.top};
+      const menuBounds = menu.getBoundingClientRect();
+      stage.style.setProperty('--easyedu-guide-menu-x',
+        `${Math.max(0, Math.min(point.x + 12, stageBounds.width - menuBounds.width))}px`);
+      stage.style.setProperty('--easyedu-guide-menu-y',
+        `${Math.max(0, Math.min(point.y + 12, stageBounds.height - menuBounds.height))}px`);
       await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
       await phase('menu');
       if (controller.signal.aborted) { return; }
@@ -1211,7 +1255,10 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     }
     if (controller.signal.aborted) { return; }
     member.hidden = false;
+    await animate(cursor, [{opacity: 1}, {opacity: 0}], 220);
+    if (controller.signal.aborted) { return; }
     cursor.hidden = true;
+    stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
     if (mode !== 'add') {
       stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person').forEach(node => { node.hidden = true; });
       const empty = stage.querySelector('[data-guide-source-empty]');
@@ -1220,7 +1267,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     if (origin && mode !== 'add') { origin.classList.add('is-removed'); origin.querySelector('b').textContent = origin.dataset.removed; }
     if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
     result.textContent = result.getAttribute(`data-${mode}`) || '';
-    if (live) { live.textContent = result.textContent; }
+    await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
     if (recap) {
       recap.hidden = false;
       // Adding has no Move confirmation; compact devices explain actions instead of mouse gestures.

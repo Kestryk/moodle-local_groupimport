@@ -65,24 +65,51 @@ test('Guide discovery first version native preview', async({page}, info) => {
                 expect(bodySize).toBe('14.08px');
                 if (index === 1) {
                     const input = await slide.locator('[data-guide-pattern]').boundingBox();
-                    const actions = await slide.locator('.easyedu-guide-scene__creation-controls .easyedu-guide-scene__actions').boundingBox();
-                    if (width === 1280) {
-                        expect(actions.x).toBeGreaterThan(input.x + input.width);
-                        expect(actions.y + actions.height).toBeCloseTo(input.y + input.height, 0);
-                    } else if (width === 390) {
-                        expect(actions.y).toBeGreaterThanOrEqual(input.y + input.height);
-                    }
+                    const actions = await slide.locator('.easyedu-guide-scene__actions').boundingBox();
+                    expect(actions.y).toBeGreaterThanOrEqual(input.y + input.height);
+                    await expect(slide.locator('.easyedu-guide-scene__syntax b')).toHaveText(['#', '@', '*3']);
                     await slide.locator('[data-guide-scene-command="preview"]').first().click();
                     await expect(slide.locator('[data-guide-names] > span')).toHaveCount(3);
                     await expect(slide.locator('[data-guide-names] [data-guide-name]')).toHaveCount(3);
                     await expect(slide.locator('[data-guide-names]')).toHaveAttribute('aria-busy', 'false');
                     await expect(slide.locator('.easyedu-guide-guided-card__steps li')).toHaveCount(3);
                     await expect(slide.locator('.easyedu-guide-guided-card__body > small')).not.toBeEmpty();
+                    const pattern = slide.locator('[data-guide-pattern]');
+                    const validValue = await pattern.inputValue();
+                    await pattern.fill('Test #*7');
+                    await slide.locator('[data-guide-scene-command="preview"]').first().click();
+                    await expect(slide.locator('[data-guide-warning-host] .easyedu-notice--warning')).toBeVisible();
+                    await expect(pattern).toHaveAttribute('aria-invalid', 'true');
+                    await expect(slide.locator('[data-guide-names] > span')).toHaveCount(0);
+                    await modal.screenshot({path: info.outputPath(`guide-warning-${width}.png`)});
+                    await pattern.fill(validValue);
+                    await slide.locator('[data-guide-scene-command="preview"]').first().click();
+                    await expect(slide.locator('[data-guide-warning-host]')).toBeHidden();
+                    await expect(slide.locator('[data-guide-names] > span')).toHaveCount(3);
+                    await expect(slide.locator('[data-guide-names]')).toHaveAttribute('aria-busy', 'false');
                 }
                 if (index === 3 && width === 1280) {
+                    const scene = slide.locator('[data-easyedu-guide-scene]');
+                    await expect(scene).toHaveAttribute('data-guide-phase', 'menu', {timeout: 20000});
+                    await expect(slide.locator('[data-guide-menu]')).toBeVisible();
+                    const menuPlacement = await slide.evaluate(node => {
+                        const cursor = node.querySelector('[data-guide-cursor]');
+                        const menu = node.querySelector('[data-guide-menu]');
+                        const a = cursor.getBoundingClientRect(), b = menu.getBoundingClientRect();
+                        return {dx: b.left - a.left, dy: b.top - a.top,
+                            colour: getComputedStyle(cursor).color, halo: getComputedStyle(cursor).filter};
+                    });
+                    expect(Math.abs(menuPlacement.dx)).toBeLessThan(30);
+                    expect(Math.abs(menuPlacement.dy)).toBeLessThan(30);
+                    expect(menuPlacement.colour).not.toBe('rgb(15, 108, 191)');
+                    expect(menuPlacement.halo).toContain('drop-shadow');
+                    records.push({width, menuPlacement});
+                    await modal.screenshot({path: info.outputPath('guide-menu-near-cursor.png')});
                     await expect(slide.locator('[data-easyedu-guide-scene]')).toHaveAttribute('data-guide-scene-finished', 'true', {timeout: 70000});
                     await expect(slide.locator('[data-guide-recap]')).toBeVisible();
                     await expect(slide.locator('[data-guide-source-empty]')).toBeVisible();
+                    await expect(slide.locator('[data-guide-live]')).toHaveAttribute('data-guide-live-state', 'finished');
+                    await expect(slide.locator('.easyedu-guide-scene__person.is-selected')).toHaveCount(0);
                     for (const copy of await slide.locator('[data-guide-recap] li').allTextContents()) {
                         expect(copy).not.toMatch(/^\s*\d+\s*[\u00b7.]/);
                     }
@@ -119,6 +146,18 @@ test('Guide discovery first version native preview', async({page}, info) => {
             await modal.locator('[data-easyedu-guide-interface-cue-action] button').click();
             await expect(modal).toBeHidden();
             await expect(guide.locator('[data-easyedu-guide-interface-return]')).toBeVisible();
+            const returnGeometry = await guide.locator('[data-easyedu-guide-interface-return]').evaluate(node => {
+                const text = node.querySelector('.easyedu-guide-interface-return__text').getBoundingClientRect();
+                const actions = node.querySelector('.easyedu-guide-interface-return__actions').getBoundingClientRect();
+                const action = node.querySelector('[data-easyedu-guide-interface-return-button]');
+                return {textRight: text.right, textBottom: text.bottom, actionsLeft: actions.left, actionsTop: actions.top,
+                    background: getComputedStyle(action).backgroundColor};
+            });
+            expect(returnGeometry.textRight <= returnGeometry.actionsLeft + 1 ||
+                returnGeometry.textBottom <= returnGeometry.actionsTop + 1).toBe(true);
+            expect(returnGeometry.background).not.toBe('rgb(15, 108, 191)');
+            await guide.locator('[data-easyedu-guide-interface-return]').screenshot({path: info.outputPath(`guide-return-${width}.png`)});
+            records.push({width, returnGeometry});
             await guide.locator('[data-easyedu-guide-interface-return-button]').click();
             await expect(modal).toBeVisible();
             await page.keyboard.press('Escape');
