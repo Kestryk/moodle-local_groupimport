@@ -6,6 +6,7 @@ const fs = require('node:fs');
 // 0.4.137 corrects the reading inset; record geometry before the strict assertion.
 test('Guide G8 lifecycle and native destination review', async({page}, info) => {
     test.setTimeout(240000);
+    page.setDefaultTimeout(15000);
     const errors = [], blocked = [], records = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
@@ -119,6 +120,21 @@ test('Guide G8 lifecycle and native destination review', async({page}, info) => 
             })).toBe(true);
             // Review an earlier completed step: close native dialog safely,
             // retain completion/unlocks, then reopen a later destination.
+            const previous = checklist.locator('[data-easyedu-guide-step-id="select-participant"]');
+            const stacking = await previous.evaluate(node => {
+                const box = node.getBoundingClientRect();
+                const hit = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+                const ancestors = [];
+                for (let current = node; current; current = current.parentElement) {
+                    const css = getComputedStyle(current);
+                    if (css.zIndex !== 'auto' || css.transform !== 'none' || css.isolation === 'isolate') {
+                        ancestors.push({class: current.className, zIndex: css.zIndex, transform: css.transform});
+                    }
+                }
+                return {clickable: node.contains(hit), hitClass: hit?.className, ancestors};
+            });
+            records.push({width, checklistWithNativeDialog: stacking});
+            expect(stacking.clickable).toBe(true);
             await checklist.locator('[data-easyedu-guide-step-id="select-participant"]').click();
             await expect(destination).toBeHidden();
             await checklist.locator('[data-easyedu-guide-step-id="choose-destination"]').click();

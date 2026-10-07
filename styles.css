@@ -15459,6 +15459,7 @@
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel {
+  z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-border);
   border-inline-start: 3px solid var(--easyedu-accent);

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 - Guide checklist native dialog hit-target successor
+
+- Preserve native17776 failure: destination modal intercepted previous-step
+  review despite checklist visibility. Adopt Kit0.4.142 public-layer derivation
+  and record real pointer hit/ancestors in the focused successor, not force-click.
+
 ## 2026-10-07 - Guide opener resting paint after pointer close
 
 - Adopt the canonical Kit launcher `:focus-visible` fix: closing by pointer

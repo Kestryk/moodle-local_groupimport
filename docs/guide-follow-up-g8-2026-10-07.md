@@ -44,3 +44,35 @@ widths. Native publication and Penpot remain separate gates.
 
 Record source commits, Penpot exact IDs/export, served asset pins and tests here.
 Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.
+
+### 7 October continuation / verified checkpoint
+
+- Kit7293383 /0.4.141 and Sourcee610333 implement the pointer-close correction;
+  both private branches pushed. Managed preview applied Source483e53c then
+  e610333 in order on runtime622b2cf; cache purge passed.
+- Isolated G8 passes1280/768/390: resting pointer-close paint with restored
+  opener focus, actual hover and keyboard focus/ Escape, reload suppression,
+  explicit resume/cancel,20s expiry, path-local reset/restart and compact pills.
+  The fixture now includes the actual consumer token root, not undefined palette
+  variables. Keep normal-motion/native checks separate.
+- G7 presentation successor passes actual synchronized cursor/ghost transforms,
+  overlap-time drop state, selected comparison, persistent step frame at the
+  three widths, long-list scroll, reduced Restore and cleanup.
+- Penpot current file/page verified as GuideEasyStud b564c72c-f31f-81ec-8008-
+  ad9958b272bd /b564c72c-f31f-81ec-8008-ad9958b272be. Existing G8 board
+  4ee6f77a-1dfb-809b-8008-c0e8547f6d75 read back and exported/inspected;
+  five existing header title shapes read back16px. Pointer-close contract note
+  4ee6f77a-1dfb-809b-8008-c0ed43d4deaf added and settled readback confirmed after
+  correcting its resize API. These are Guide-local compositions, not Foundation
+  Library publication or global human acceptance.
+- Native supervised run17776 FAILED at prior-step pointer review: visible
+  checklist was intercepted by native destination modal. Before failure, native
+  launcher pointer-close resting paint/focus passed1280; next-target highlight
+  and native destination selection reached the confirmation target. No page
+  errors or blocked business writes. Cleanup released lease/stopped child/cleared
+  credentials. Keep manifest and failed oracle, not a full native PASS.
+- Root cause: old checklist1070 equals public native-modal1070; DOM paint order
+  lets the modal intercept it. Kit0.4.142 derives Discovery layer from the public
+  modal role plus one. Successor records actual ancestors and elementFromPoint
+  and retains normal previous-step click (no force). Three-width native proof
+  still required. No Create/Move/Save/Send test transaction is authorized.
