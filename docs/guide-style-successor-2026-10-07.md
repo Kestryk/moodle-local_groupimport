@@ -58,6 +58,7 @@ These are candidates, not accepted Foundation changes.
 | Discovery topic/invitation composition | Opt-in within the existing Guide family; default legacy controls preserved | Rectangular topics and complete inline invitation differ from the old pill/stacked Guide. Catalogue these as Guide composition variants, not replacements for all navigation/callout families. |
 | Scene illustrations | Reuse object cards, menu/fields/footer and compact drag primitives | The standalone scenes are intentionally not actual plugin cards/menus. Preserve their pedagogical composition as a Guide example, not another production Group/Participant component. |
 | Guide navigation footer | Canonical Small action pair, equal native30.390625px height | Demo32px and Penpot38px specimens use different densities. Keep canonical Small unless a distinct regular Guide footer density is deliberately accepted. |
+| Guide glyph delivery | Existing Moodle/FontAwesome runtime glyphs | Guide Penpot uses linked Foundation icon providers, including the custom Group icon. Exact vector/provider binding remains to be published; do not call glyph correspondence complete or create another ad-hoc icon registry. |
 
 The Kit font remains the shared inherited UI family, matching the actual plugin.
 Penpot uses Inter. Do not insert a Guide-only font to force screenshot similarity.
@@ -153,3 +154,44 @@ records animation types/targets, requires the scene controller stopped and
 requires zero owned plain-WAAPI animations; it does not cancel unrelated CSS
 or change source behaviour to satisfy an overbroad test. Native confirmation
 of that classification is pending.
+
+### Supplementary lifecycle proof
+
+Promotion20261007T035310Z serves runtimee06a6567f056c31392718102acc31efb46d26709
+through Sourcedf238fd, with unchanged generated assets fromc52e8a2 (no cache
+purge required for these documentation/test successors).
+Native run easystud-authenticated-20261007T035312761Z-18084 PASSED. The eight
+animations are precisely native CSSTransition focus/hover paint on the returned
+launcher/icon, not teaching-scene animations. Scene stop is cleared and no
+plain-WAAPI work remains. Do not remove valid focus feedback to satisfy the
+old overbroad assertion.
+
+Both-direction18 Tab cycles stay inside the modal; the full invitation scrolls
+above a fixed footer; the existing first-structure path starts/closes without
+business completion; Escape interrupts a scene; reduced-motion390 retains
+the final memberships/recap without mouse gestures. Zero errors/blocked writes;
+cleanup proves cleared credentials, released lease and stopped child, no fixture.
+The failed lifecycle attempt remains distinct and preserved.
+
+Read-only retention dry-run:1279 manifests,1512 eligible media,688 protected,
+zero deletions/errors. Preserve the named failed and passing runs. Future
+retention queries should use an exact run root and print summary counts only,
+not the entire historic file inventory.
+
+## Current next gates and workflow review
+
+1. Publish/cross-check the shared Guide composition/glyph bindings in Foundations
+   when its own writer channel is confirmed; preserve the current Guide file.
+2. Finish G4 absent/permission-limited targets, mobile launcher paint hit-target,
+   broader accessibility/zoom/landscape coverage. Do not present scoped PASS as
+   that whole matrix or as human acceptance.
+3. G5 remaining Student lessons/new illustrations and distinct Mass Import guide,
+   coordinated with the original Guide author. Keep all older SM lots open.
+
+Cost/process observations, not measured token accounting: source/asset checks
+are cheap; native login/scene playback dominate elapsed time. Batch shared
+changes before compilation/promotion, strengthen the isolated fixture with the
+real native solid/secondary pair and portal snapshot, then do one normal and
+one lifecycle native pass. Keep concise object mappings and retention counts;
+do not serialize full Penpot proxies or historic media inventories. No new
+worktrees or subagents were created for this successor.
