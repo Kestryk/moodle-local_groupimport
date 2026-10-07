@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideChecklistDialogLayer20261007": {
+      "kitVersion": "0.4.142",
+      "kitCommit": "02f2d94e033b669a419a63429a0f4ef4d7119270",
+      "documentation": "docs/guide-follow-up-g8-2026-10-07.md",
+      "scope": "Discovery checklist derives from shared modal layer plus one; normal pointer previous-step review.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideLauncherFocus20261007": {
       "kitVersion": "0.4.141",
       "kitCommit": "729338320a38e2836350500b01e7da2712769b96",

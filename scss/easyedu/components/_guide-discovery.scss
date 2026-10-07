@@ -542,6 +542,10 @@
   // Discovery opts into a restrained checklist. Legacy Guide consumers retain
   // guided-panel geometry; completion, docking and target opening stay native.
   .easyedu-guided-panel {
+    // The opt-in guided path remains operable while a real destination dialog
+    // is open. Its prior1070 tied the modal role and lost DOM paint ordering.
+    // Compose from the public modal layer, never a product-only z-index patch.
+    z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
     background: var(--easyedu-surface);
     border: 1px solid var(--easyedu-border);
     border-inline-start: 3px solid var(--easyedu-accent);
