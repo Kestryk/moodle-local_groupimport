@@ -5,6 +5,8 @@ Canonical Kit full-scene source17634cca08e2f99ff9d05b535d6208918d705c23.
 Footer successor5a84c732c80fabbeb4bf0dea3d4ae7713eb6d158, version0.4.129.
 Settled-result/progress successor5d3f055f5bf7325181da66b6846e77bffa47edac,
 version0.4.130.
+Settled alignment/portal successor8da2b85d4238e6b71b1873325c558df067834521,
+version0.4.131.
 Source and Kit existing private worktrees only. Four sample scenes, not the
 whole curriculum. No course fixture, messaging, enrolment or group mutation.
 
@@ -55,6 +57,7 @@ These are candidates, not accepted Foundation changes.
 | Membership state tags | Reuse canonical token pills | The demo has rectangular membership chips. Keep the existing family unless a distinct semantic membership component is wanted; do not clone another label family silently. |
 | Discovery topic/invitation composition | Opt-in within the existing Guide family; default legacy controls preserved | Rectangular topics and complete inline invitation differ from the old pill/stacked Guide. Catalogue these as Guide composition variants, not replacements for all navigation/callout families. |
 | Scene illustrations | Reuse object cards, menu/fields/footer and compact drag primitives | The standalone scenes are intentionally not actual plugin cards/menus. Preserve their pedagogical composition as a Guide example, not another production Group/Participant component. |
+| Guide navigation footer | Canonical Small action pair, equal native30.390625px height | Demo32px and Penpot38px specimens use different densities. Keep canonical Small unless a distinct regular Guide footer density is deliberately accepted. |
 
 The Kit font remains the shared inherited UI family, matching the actual plugin.
 Penpot uses Inter. Do not insert a Guide-only font to force screenshot similarity.
@@ -103,3 +106,21 @@ Do not relabel that image as settled visual parity. Kit0.4.130 stretches the
 actual track, restores neutral stage/body paint and declares result aria-busy
 until completion/cancellation. Strengthen native width/height and settled-state
 checks; the next guarded successor is pending.
+
+### Progress/settled-card proof and responsive follow-up
+
+Promotion20261007T034111Z serves runtimefff99a5408bfac2c0b66cf47862be4cc482e4347
+through Sourceb07b1c5. Native run
+easystud-authenticated-20261007T034114428Z-59672 PASSED12 routes with the actual
+progress width/height and settled generated cards. Screenshot review found
+mobile-centred introductions, inline source-empty copy and doubled recap
+numbers. The phone dialog stayed800px high after desktop-to-phone resize:
+Navigation snapshots root tokens inline, masking responsive root declarations.
+
+Kit0.4.131 fixes these in the opt-in shared recipe, with responsive dimensions
+declared on the dialog below the inherited token snapshot. It adds confirmed
+illustrative card movement; business/card disclosure Motion remains untouched.
+Six isolated translated scenes, sixLTR/RTL shells including snapshot resize,
+normal Motion departure/exit and synchronization pass. The next native height,
+reading-edge and recap successor is pending. No Foundation or human acceptance
+is claimed from the historical PASS.

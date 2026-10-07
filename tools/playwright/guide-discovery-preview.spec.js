@@ -75,6 +75,12 @@ test('Guide discovery first version native preview', async({page}, info) => {
                     await expect(slide.locator('[data-easyedu-guide-scene]')).toHaveAttribute('data-guide-scene-finished', 'true', {timeout: 70000});
                     await expect(slide.locator('[data-guide-recap]')).toBeVisible();
                     await expect(slide.locator('[data-guide-source-empty]')).toBeVisible();
+                    for (const copy of await slide.locator('[data-guide-recap] li').allTextContents()) {
+                        expect(copy).not.toMatch(/^\s*\d+\s*[\u00b7.]/);
+                    }
+                    const sourceTitle = await slide.locator('.easyedu-guide-scene__source-title').boundingBox();
+                    const sourceEmpty = await slide.locator('[data-guide-source-empty]').boundingBox();
+                    expect(sourceEmpty.y).toBeGreaterThanOrEqual(sourceTitle.y + sourceTitle.height);
                 }
                 const geometry = await modal.locator('.easyedu-guide-modal__dialog').evaluate(node => {
                     const r = node.getBoundingClientRect();
@@ -82,7 +88,8 @@ test('Guide discovery first version native preview', async({page}, info) => {
                         const box = b.getBoundingClientRect(); return {height: box.height, width: box.width};
                     });
                     const progress = node.querySelector('.easyedu-guide-modal__progress-track').getBoundingClientRect();
-                    return {x: r.x, right: r.right, bottom: r.bottom, buttons, progress: {x: progress.x, width: progress.width, height: progress.height}};
+                    return {x: r.x, y: r.y, height: r.height, right: r.right, bottom: r.bottom, buttons,
+                        progress: {x: progress.x, width: progress.width, height: progress.height}};
                 });
                 expect(geometry.x).toBeGreaterThanOrEqual(0);
                 expect(geometry.right).toBeLessThanOrEqual(width + 1);
@@ -90,6 +97,13 @@ test('Guide discovery first version native preview', async({page}, info) => {
                 expect(geometry.buttons[0].height).toBeCloseTo(geometry.buttons[1].height, 0);
                 expect(geometry.progress.width).toBeGreaterThan((geometry.right - geometry.x) * 0.8);
                 expect(geometry.progress.height).toBeGreaterThanOrEqual(3.9);
+                if (width === 390) {
+                    expect(geometry.height).toBeCloseTo(966, 0);
+                    expect(geometry.y).toBeCloseTo(17, 0);
+                    const title = await slide.locator('h3').boundingBox();
+                    const body = await modal.locator('.easyedu-guide-modal__body').boundingBox();
+                    expect(title.x).toBeCloseTo(body.x + 16, 0);
+                }
                 records.push({width, index, geometry});
                 await modal.screenshot({path: info.outputPath(`guide-${width}-${index}.png`)});
             }

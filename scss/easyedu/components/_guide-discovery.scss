@@ -48,6 +48,7 @@
   --easyedu-guide-target-hover-color: var(--easyedu-primary);
 
   .easyedu-guide-modal {
+    align-items: center;
     padding: max(1.5rem, env(safe-area-inset-top)) max(2rem, env(safe-area-inset-right))
       max(1.5rem, env(safe-area-inset-bottom)) max(2rem, env(safe-area-inset-left));
   }
@@ -260,6 +261,8 @@
     background: transparent;
     box-shadow: none;
     > .easyedu-guide-slide__icon { display: none; }
+    > div { justify-items: stretch; min-width: 0; text-align: start; }
+    .easyedu-guide-slide__header { justify-content: flex-start; text-align: start; }
     &[hidden] { display: none; }
     h3 { @include typography.type-control-label; font-size: var(--easyedu-guide-font-size-body); text-align: start; }
     .easyedu-guide-slide__kicker {
@@ -306,7 +309,9 @@
     }
     &__card-copy { display: grid; gap: 0.375rem; min-width: 0; }
     &__card-copy > strong { @include typography.type-control-label; font-size: 0.88rem; }
-    &__source-title { @include typography.type-control-label; font-size: 0.88rem; }
+    &__source-title { @include typography.type-control-label; display: block; font-size: 0.88rem; }
+    [data-guide-source-empty] { display: block; margin-block-start: 0.5rem; }
+    [data-guide-source-empty][hidden] { display: none; }
     &__source { border: 1px solid var(--easyedu-border); border-radius: 0.75rem; padding: 0.75rem; background: var(--easyedu-surface); }
     &__member { @include typography.type-caption; color: var(--easyedu-accent); }
     &__field { display: grid; gap: 0.5rem; }
@@ -419,8 +424,12 @@
     .easyedu-guide-scene__concepts, .easyedu-guide-scene__stage, .easyedu-guide-scene__results { grid-template-columns: minmax(0, 1fr); }
     .easyedu-guide-scene[data-guide-mode] .easyedu-guide-scene__stage::after,
     .easyedu-guide-scene__menu, .easyedu-guide-scene__dialog { grid-area: 3 / 1; }
-    --easyedu-guide-modal-height: calc(100dvh - 2.125rem);
-    --easyedu-guide-modal-max-height: calc(100dvh - 2.125rem);
+    // The navigation portal snapshots root tokens inline. Responsive geometry
+    // belongs on the dialog so that inherited desktop snapshots cannot freeze it.
+    .easyedu-guide-modal__dialog {
+      --easyedu-guide-modal-height: calc(100dvh - 2.125rem);
+      --easyedu-guide-modal-max-height: calc(100dvh - 2.125rem);
+    }
 
     .easyedu-guide-modal {
       padding: max(1.0625rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))

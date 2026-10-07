@@ -1146,6 +1146,9 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       await phase('menu');
       if (controller.signal.aborted) { return; }
       await travel(menu.querySelector('strong'));
+      if (!compact) {
+        await animate(cursor, [{opacity: 1}, {opacity: 0.45}, {opacity: 1}], 180);
+      }
       await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
       if (controller.signal.aborted) { return; }
       menu.hidden = true;
@@ -1162,6 +1165,19 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       await animate(confirm, [{opacity: 1}, {opacity: 0}], 220);
       if (controller.signal.aborted) { return; }
       confirm.hidden = true;
+      // Move the natural selected cards only after the illustrated confirmation.
+      // Compact/reduced modes keep the same outcome without a mouse-only gesture.
+      if (!compact && !reduced) {
+        const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
+        const selected = [...stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person')];
+        await Promise.all(selected.map((node, index) => {
+          const source = node.getBoundingClientRect();
+          return animate(node, [{transform: 'translate(0,0)', opacity: 1},
+            {transform: `translate(${destination.left - source.left}px, ${destination.top - source.top + 32 + index * 12}px)`,
+              opacity: 0.25}], 1200);
+        }));
+        if (controller.signal.aborted) { return; }
+      }
     } else if (!compact && !reduced) {
       await phase('menu');
       if (controller.signal.aborted) { return; }
@@ -1210,7 +1226,9 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       // Adding has no Move confirmation; compact devices explain actions instead of mouse gestures.
       recap.querySelectorAll('[data-guide-phase]').forEach(item => {
         item.hidden = mode === 'add' && ['confirm', 'validate'].includes(item.dataset.guidePhase);
-        item.textContent = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+        const copy = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+        // The ordered list supplies recap numbering; live instructions retain their phase prefix.
+        item.textContent = copy.replace(/^\d+\s*[\u00b7.]\s*/, '');
         item.removeAttribute('aria-current');
       });
       await animate(recap, [{opacity: 0}, {opacity: 1}], 280);

@@ -71,9 +71,19 @@ const root = path.resolve(__dirname, '../..');
                 await page.locator('[data-easyedu-guide-nav-item="3"]').click();
                 await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="actions"]').dataset.guideSceneFinished === 'true');
                 assert.equal(await page.locator('[data-easyedu-guide-scene="actions"] [data-guide-recap]').isVisible(), true);
+                for (const copy of await page.locator('[data-easyedu-guide-scene="actions"] [data-guide-recap] li').allTextContents()) {
+                    assert.ok(!/^\s*\d+\s*[\u00b7.]/.test(copy), 'Ordered recap must not repeat phase numbering');
+                }
                 const rect = await modal.locator('.easyedu-guide-modal__dialog').boundingBox();
                 assert.ok(rect.x >= 0 && rect.x + rect.width <= width + 1);
                 assert.ok(rect.y >= 0 && rect.y + rect.height <= 901);
+                if (width === 390) {
+                    assert.ok(Math.abs(rect.height - 866) < 1, 'Phone discovery fills the intended safe viewport');
+                    const active = page.locator('[data-easyedu-guide-slide="3"]');
+                    const title = await active.locator('h3').boundingBox();
+                    const body = await modal.locator('.easyedu-guide-modal__body').boundingBox();
+                    assert.ok(Math.abs(title.x - body.x - 16) < 1, 'Phone title uses the shared reading edge');
+                }
                 await page.keyboard.press('Escape');
                 assert.equal(await modal.isVisible(), false);
                 await page.evaluate(() => window.Guide.destroy('[data-easyedu-guide-root]'));

@@ -2,6 +2,12 @@
 
 ## 2026-10-07 - Complete four-scene Guide presentation successor
 
+- Consume Kit0.4.131 after native capture review: reading-edge mobile copy,
+  separate source-empty text, single recap numbering and confirmed illustrated
+  movement. Responsive phone sizing survives the Navigation token snapshot.
+- Preserve the passing12-route progress/settled-card run as scoped evidence;
+  strengthen the next native gate with actual phone height and title position.
+
 - Inspect the passing native capture and correct the collapsed progress track
   through Kit0.4.130. Capture generated-card results only after their busy
   presentation settles; retain the earlier scoped PASS as historical evidence.
