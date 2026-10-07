@@ -62,6 +62,24 @@ test('Guide G8 lifecycle and native destination review', async({page}, info) => 
             await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
             await expect(guide.locator('[data-easyedu-guide-checklist]')).toBeHidden();
             await expect(guide.locator('[data-easyedu-guide-resume]')).toBeHidden();
+            // Native navigation launcher: baseline with the pointer away,
+            // preserve restored focus, but no stale pointer hover palette.
+            if (width === 1280) {
+                const opener = page.locator('[data-easyedu-navigation-desktop] [data-easyedu-guide-open]:visible').first();
+                await page.mouse.move(width - 2, 998);
+                const paint = () => opener.locator('.easyedu-guide__launcher-icon').evaluate(node => {
+                    const css = getComputedStyle(node);
+                    return {background: css.backgroundImage, color: css.color};
+                });
+                const resting = await paint();
+                await opener.click(); await expect(modal).toBeVisible();
+                await modal.locator('[data-easyedu-guide-close]').click();
+                await expect(modal).toBeHidden(); await page.mouse.move(width - 2, 998);
+                await expect.poll(paint).toEqual(resting);
+                await expect(opener).toBeFocused();
+                expect(await opener.evaluate(node => node.matches(':focus-visible'))).toBe(false);
+                records.push({width, launcherPointerCloseRestingPaint: true});
+            }
             await seed(2);
             await page.reload({waitUntil: 'domcontentloaded'});
             await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});

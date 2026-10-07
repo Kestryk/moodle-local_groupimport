@@ -35,5 +35,12 @@ All six lots planned at intake. Global human checklist remains OPEN.
 
 ## Evidence / remaining work
 
+Additional user review: after closing Guide, the navigation launcher must not
+retain hover colour. Cause: broad `:focus` shared active paint matches restored
+opener focus. Canonical Kit fix uses `:focus-visible`, preserving keyboard cue
+and real hover. Isolated successor asserts computed icon resting/hover/keyboard
+paint and focus preservation after pointer Close and keyboard Escape at three
+widths. Native publication and Penpot remain separate gates.
+
 Record source commits, Penpot exact IDs/export, served asset pins and tests here.
 Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.

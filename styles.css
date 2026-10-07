@@ -9497,8 +9497,8 @@
   text-decoration: none;
   transform: translateY(-0.08rem);
 }
-.local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher:focus,
-.path-local-groupimport .easyedu-guide .easyedu-guide__launcher:focus {
+.local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher:focus-visible,
+.path-local-groupimport .easyedu-guide .easyedu-guide__launcher:focus-visible {
   background: transparent;
   border-color: transparent;
   box-shadow: none;
@@ -9515,9 +9515,9 @@
   color: var(--easyedu-accent);
   transform: scale(1.04);
 }
-.local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher:focus .easyedu-guide__launcher-icon, .local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher:focus > .fa,
-.path-local-groupimport .easyedu-guide .easyedu-guide__launcher:focus .easyedu-guide__launcher-icon,
-.path-local-groupimport .easyedu-guide .easyedu-guide__launcher:focus > .fa {
+.local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher:focus-visible .easyedu-guide__launcher-icon, .local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher:focus-visible > .fa,
+.path-local-groupimport .easyedu-guide .easyedu-guide__launcher:focus-visible .easyedu-guide__launcher-icon,
+.path-local-groupimport .easyedu-guide .easyedu-guide__launcher:focus-visible > .fa {
   background: #fff;
   border-color: color-mix(in srgb, var(--easyedu-accent) 32%, #fff 68%);
   box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);
