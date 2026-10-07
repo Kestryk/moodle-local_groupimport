@@ -2,6 +2,10 @@
 
 ## 2026-10-07 - Complete four-scene Guide presentation successor
 
+- Retain the native mixed-footer height failure and consume Kit0.4.129
+  canonical Small/paired-track correction. Native successor is recorded
+  separately; the strict equality test is unchanged.
+
 - Consume the canonical Kit discovery scene composition: semantic concept
   cards/workshop example, detailed simulated group results, natural and compact
   Participant cards, illustrated menu/destination, membership state and recap.

@@ -391,6 +391,7 @@
     grid-auto-columns: minmax(0, 1fr);
     max-width: 100%;
     gap: 0.5rem;
+    align-items: stretch;
 
     .btn {
       @include buttons.selection-action;
@@ -398,7 +399,7 @@
       @include typography.type-control-label;
       font-size: var(--easyedu-guide-font-size-control);
       min-width: 5.75rem;
-      min-height: 2rem;
+      min-height: 1.9rem;
       height: auto;
     }
     .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
