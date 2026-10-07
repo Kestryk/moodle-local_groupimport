@@ -173,3 +173,33 @@ selection function). Preserve the old spec; it is not a current multi-lot
 regression oracle. No source change was made to force this obsolete boundary.
 Card-keyboard historical whole-file spec was consequently not run. Dedicated
 Guide isolated/native gates above remain the evidence for this bounded tranche.
+
+## G7 native checkpoint after readable rows
+
+Promotion20261007T124317Z applied eadb953 and f8d7dc2 in order, with cache
+purge; runtime8b7f4a8881fc96508c8d527e6be17c3ec89cda0f. Native
+easystud-authenticated-20261007T124421359Z-51960 PASS at1280/768/390 on
+Kit0.4.139/Sourcef8d7dc2. All six copy lanes remain contained, no lock overlay;
+scroll viewport304px/content673/673/691px. Small Minimize, phone/Desktop
+Restore and title/progress preservation pass. Desktop/phone expanded/reduced
+captures inspected: titles/descriptions/prerequisites readable, three visible
+rows with remaining items scrolling. Credentials/lease/child cleanup all pass;
+no fixtures, course writes or unknown AJAX requests. Human checklist stays OPEN.
+
+Penpot board72 is now1640x1120 (bottom11720), preserving its top10600 and
+separation from board71. Expanded specimen includes non-overlapping descriptions
+and in-flow prerequisites, aligned compact Minimize/Close and linked Restore
+glyphs. Fresh export inspected; not shared Foundation publication.
+
+Current lot gates: A/B/C native presentation PASS49844 with prior source pin;
+D six-stage source/isolated/native rendering PASS (real business acceptance
+pending, automatic next-target highlighting not implemented); E latest native
+readability/scroll/Restore PASS51960; F Guide rename/local specimens DONE,
+shared Foundation catalogue still pending. Fullscreen remains assessment only.
+All earlier SM/G4/G5 work and combined human validation are retained, not closed.
+
+Next sequence: finish paired shared Foundations publication on a confirmed own
+channel; audit intermediate Practice target/focus progression and optional
+automatic next highlighting without automatic commands; continue retained G5
+curriculum and distinct Mass Import guide. Shared Platform registry/plan owner
+receives these bounded scenario candidates; no competing plan write here.
