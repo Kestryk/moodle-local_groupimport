@@ -107,3 +107,32 @@ Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.
   selection/open progression proves only the latest destination-open request
   survives (no obsolete close), plus explicit phone Restore remains expanded.
   Preserve native failure, don't increase the strict next-highlight timeout.
+
+### Native54068 — successful successor
+
+Source13d8822 /Kit98cf6c9 /0.4.145, runtime274b9e1; scenario
+`Guide G8 lifecycle and native destination review` passes1280/768/390. Read
+`docs/testing/guide-g8-native-2026-10-07.json` for scoped proof. Completed-path
+reload never shows checklist; unfinished reload offers Resume only. Native
+selection/Move opening advances highlights; real destination choice is usable.
+Scroll the earlier row, prove its real hit, close the modal normally, then review
+a later destination and reopen it. Cancel only, never confirm a transaction.
+Invitation Start38px /counter15px, path Reset accessible. Native desktop opener
+resting paint/focus passes; isolated keyboard/hover/phone Restore/rapid progress
+and exact20s expiry remain separate proofs. Zero page errors/blocked writes.
+
+Captures inspected at1280 and390; tablet capture retained. External artifacts:
+`easystud/authenticated/easystud-authenticated-20261007T141947251Z-54068` under
+the approved local EasyEdu artifact root. Runner cleanup clears credentials,
+releases lease and stops owned child. Retention dry-run protects the run;
+zero deletion. Failed17776/39412/28888/35588/18920/8116 evidence retained.
+
+Penpot Guide board73 records the compact-dialog coexistence contract in text
+shape4ee6f77a-1dfb-809b-8008-c0f184628f04; settled12.16px text readback fits.
+This does not publish a new responsive dialog/checklist specimen in Foundations.
+
+Remaining: shared Foundation publication, detailed compact-dialog composition
+in Penpot, complete curriculum via the dedicated content handoff, broader Guide
+Motion/accessibility audit, older EasyStud lots and global human checklist.
+None are closed by this focused native PASS. Code checkpoints were saved in
+verified Git bundles; these are not a workspace-v3 restore-drill claim.

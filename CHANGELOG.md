@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-07 - Guide G8 focused native checkpoint
+
+- Native54068 passes lifecycle, real compact Move delegate, destination choice,
+  checklist pointer review/reopen and invitation sizing at1280/768/390. Desktop
+  opener restores resting paint/focus. No course mutation; clean test teardown.
+- Preserve failed predecessors and scoped isolated results. Foundations,
+  complete curriculum and global human checklist remain open.
+
 ## 2026-10-07 - Guide latest native milestone transition
 
 - Cancel obsolete predecessor highlight/open on rapid native progress through
