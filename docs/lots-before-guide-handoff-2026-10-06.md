@@ -65,6 +65,20 @@ No whole dirty-Kit copy, branch reset or claim that push equals localhost.
 
 ## Guide handoff and new order
 
+### 7 October user review successor
+
+G2/G3 are reopened for full presentation parity with the actual Guide Penpot
+and live4415 reference. Apply the delivered four scenes comprehensively:
+shell/topic/progress/footer density, scene cards and membership state, dynamic
+instructions, recognizable menu/destination/confirmation, result and invitation,
+replay/reset plus normal/reduced/touch Motion. Record any new shared recipe
+diverging from an existing Kit family for one final user arbitration list.
+Do not silently declare the current four scenes equivalent to the whole Guide.
+G5 retains complete rewrite of remaining Student slides/new animations, by this
+owner or the separately coordinated Guide window, and distinct Mass Import.
+No other writer's source is claimed; exact handoff is required if resumed there.
+All older SM lots and combined human acceptance remain open.
+
 User supplied `PROMPT-PASSATION-CODEX-INTEGRATION-GUIDE.md` in the external
 `easystud-guide-20261005` artefacts. The complete prompt and its rendering,
 slides, Foundations, crosswalk, correction, reusable-contract, security,

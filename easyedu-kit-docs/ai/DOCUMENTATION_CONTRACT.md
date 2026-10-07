@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Guide full-scene successors verify natural/compact cards, result metadata,
+live instructions, confirmation, persistent membership and invitation/recap,
+not only modal bounds. Keep the adapted and embedded Mustache regions aligned.
+Cancel result/slide/exit work and wait for exit before target focus; preserve
+native card Motion, storage IDs and reference curriculum. A Guide project
+export is not Foundation Library publication; keep that and human gates open.
+
 Guide synchronization retains EasyStud localized empty defaults and fallbacks
 explicitly, and normalizes wrapper line endings before comparing. Discovery
 shell adoption is separate from curriculum replacement and native proof; retain

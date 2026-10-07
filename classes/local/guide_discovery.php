@@ -29,14 +29,25 @@ final class guide_discovery {
             ];
             foreach (['participant', 'group', 'grouping', 'pattern', 'preview', 'letters', 'syntax',
                 'invalid', 'add', 'move', 'cancel', 'destination', 'select', 'menu', 'confirm',
-                'resultadd', 'resultmove', 'resultactions', 'mobile', 'initial', 'kept', 'removed', 'added'] as $label) {
+                'resultadd', 'resultmove', 'resultactions', 'mobile', 'initial', 'kept', 'removed', 'added',
+                'absent', 'validate', 'drag'] as $label) {
                 $scene[$label . 'label'] = get_string('discovery_' . $label, 'local_groupimport');
             }
+            foreach (['participanttitle', 'grouptitle', 'groupingtitle', 'patternvalue', 'resulttitle',
+                'emptymembers', 'sourceempty', 'destinationcaption', 'menutitle', 'removeaction',
+                'membershiptitle', 'recaptitle', 'addselect', 'adddrop', 'compactselect', 'compactmenu',
+                'comparemove', 'examplegroup', 'examplegrouping', 'exampletitle', 'examplebody'] as $label) {
+                $scene[$label] = get_string('discovery_' . $label, 'local_groupimport');
+            }
+            $scene['selectioncaption'] = get_string('discovery_selection_' . ($kind === 'actions' ? 'many' : 'one'),
+                'local_groupimport');
+            $scene['consequence'] = get_string('discovery_consequence', 'local_groupimport');
             $slides[] = [
                 'index' => $index,
                 'navicon' => $icon,
                 'icon' => $icon,
                 'category' => get_string($prefix . 'category', 'local_groupimport'),
+                'kicker' => get_string($prefix . 'kicker', 'local_groupimport'),
                 'title' => get_string($prefix . 'title', 'local_groupimport'),
                 'navtitle' => get_string($prefix . 'navtitle', 'local_groupimport'),
                 'content' => \html_writer::tag('p', s(get_string($prefix . 'body', 'local_groupimport'))),
@@ -50,6 +61,12 @@ final class guide_discovery {
         // Reuse the existing native accompanied path, including completion events.
         $slides[1]['guidedpath'] = 'first-structure';
         $slides[1]['hasguidedpath'] = true;
+        foreach (['label', 'title', 'content'] as $label) {
+            $slides[1]['guidedpath' . $label] = get_string('discovery_path_' . $label, 'local_groupimport');
+        }
+        $slides[1]['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+            return get_string('discovery_path_step' . $step, 'local_groupimport');
+        }, [1, 2, 3])];
         foreach ($legacy as $index => $slide) {
             $slide['index'] = $index + count($definitions);
             $slides[] = $slide;

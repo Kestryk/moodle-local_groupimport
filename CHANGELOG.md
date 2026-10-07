@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-07 - Complete four-scene Guide presentation successor
+
+- Consume the canonical Kit discovery scene composition: semantic concept
+  cards/workshop example, detailed simulated group results, natural and compact
+  Participant cards, illustrated menu/destination, membership state and recap.
+- Complete the accompanied-path invitation and localized explanatory labels.
+  Add cancellable slide/result/exit Motion, quiet cue and visible progression.
+- Shared sources, PHP lint, six translated responsive cases and normal-Motion
+  teardown pass. Native preview, Foundation catalogue and human acceptance are
+  tracked separately in docs/guide-style-successor-2026-10-07.md.
+
 ## 2026-10-07 - Guide creation composition successor
 
 - Add French/English short discovery navigation labels, keeping full lesson
