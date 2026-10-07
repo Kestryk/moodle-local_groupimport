@@ -50,6 +50,7 @@ test('Guide discovery first version native preview', async({page}, info) => {
                 await modal.locator(`[data-easyedu-guide-nav-item="${index}"]`).click();
                 const slide = modal.locator(`[data-easyedu-guide-slide="${index}"]`);
                 await expect(slide).toBeVisible();
+                await expect(guide).not.toHaveAttribute('data-easyedu-guide-slide-transition', /.+/);
                 const topic = modal.locator(`[data-easyedu-guide-nav-item="${index}"] .easyedu-guide-nav-copy > span`);
                 expect(await topic.evaluate(node => node.scrollWidth <= node.clientWidth + 1)).toBe(true);
                 const bodySize = await slide.locator('.easyedu-guide-slide__content p').evaluate(node => getComputedStyle(node).fontSize);
@@ -66,6 +67,7 @@ test('Guide discovery first version native preview', async({page}, info) => {
                     await slide.locator('[data-guide-scene-command="preview"]').first().click();
                     await expect(slide.locator('[data-guide-names] > span')).toHaveCount(3);
                     await expect(slide.locator('[data-guide-names] [data-guide-name]')).toHaveCount(3);
+                    await expect(slide.locator('[data-guide-names]')).toHaveAttribute('aria-busy', 'false');
                     await expect(slide.locator('.easyedu-guide-guided-card__steps li')).toHaveCount(3);
                     await expect(slide.locator('.easyedu-guide-guided-card__body > small')).not.toBeEmpty();
                 }
@@ -79,12 +81,15 @@ test('Guide discovery first version native preview', async({page}, info) => {
                     const buttons = [...node.querySelectorAll('.easyedu-guide-modal__footer-actions button')].map(b => {
                         const box = b.getBoundingClientRect(); return {height: box.height, width: box.width};
                     });
-                    return {x: r.x, right: r.right, bottom: r.bottom, buttons};
+                    const progress = node.querySelector('.easyedu-guide-modal__progress-track').getBoundingClientRect();
+                    return {x: r.x, right: r.right, bottom: r.bottom, buttons, progress: {x: progress.x, width: progress.width, height: progress.height}};
                 });
                 expect(geometry.x).toBeGreaterThanOrEqual(0);
                 expect(geometry.right).toBeLessThanOrEqual(width + 1);
                 expect(geometry.bottom).toBeLessThanOrEqual(1001);
                 expect(geometry.buttons[0].height).toBeCloseTo(geometry.buttons[1].height, 0);
+                expect(geometry.progress.width).toBeGreaterThan((geometry.right - geometry.x) * 0.8);
+                expect(geometry.progress.height).toBeGreaterThanOrEqual(3.9);
                 records.push({width, index, geometry});
                 await modal.screenshot({path: info.outputPath(`guide-${width}-${index}.png`)});
             }

@@ -3,6 +3,8 @@
 Owned scope: G2/G3/G4, under the preserved EasyStud program EED-UI-2026-0073.
 Canonical Kit full-scene source17634cca08e2f99ff9d05b535d6208918d705c23.
 Footer successor5a84c732c80fabbeb4bf0dea3d4ae7713eb6d158, version0.4.129.
+Settled-result/progress successor5d3f055f5bf7325181da66b6846e77bffa47edac,
+version0.4.130.
 Source and Kit existing private worktrees only. Four sample scenes, not the
 whole curriculum. No course fixture, messaging, enrolment or group mutation.
 
@@ -87,3 +89,17 @@ cleared, child stopped, lease released and no fixture requested.
 Kit0.4.129 removes the extra minimum and stretches shared grid tracks, with
 the isolated fixture now containing the solid class. Six LTR/RTL cases pass.
 Native successor remains pending at this checkpoint; no acceptance claim.
+
+### Footer successor proof and visual follow-up
+
+Promotion20261007T033745Z applied0e44b57 with cache purge, serving
+03015ee704ec727478527bf312e16317f40f1213. Native run
+easystud-authenticated-20261007T033747980Z-41252 PASSED all12 translated/native
+slide-width routes, detailed creation/invitation, actions recap, real interface
+target/return and Escape. No blocked writes or page errors; no fixture used.
+That PASS is scoped: capture inspection showed an almost-zero-width progress
+track and a screenshot taken during staggered name-card entrance.
+Do not relabel that image as settled visual parity. Kit0.4.130 stretches the
+actual track, restores neutral stage/body paint and declares result aria-busy
+until completion/cancellation. Strengthen native width/height and settled-state
+checks; the next guarded successor is pending.

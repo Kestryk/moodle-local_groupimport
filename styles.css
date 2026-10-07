@@ -13080,7 +13080,9 @@
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 0.5rem;
+  background: var(--easyedu-surface);
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-label,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-label {
@@ -13096,6 +13098,7 @@
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-track,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-track {
   height: 0.25rem;
+  width: 100%;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count {
@@ -13117,6 +13120,7 @@
   min-width: 0;
   min-height: 0;
   overflow: auto;
+  background: var(--easyedu-surface);
   overflow-anchor: none;
   overscroll-behavior: contain;
   padding: 1.375rem;
@@ -13189,7 +13193,7 @@
   padding: 1.25rem;
   border: 1px solid var(--easyedu-border);
   border-radius: 0.75rem;
-  background: linear-gradient(135deg, var(--easyedu-accent-soft), var(--easyedu-surface-soft));
+  background: var(--easyedu-surface-soft);
   min-width: 0;
   margin-block: 0.875rem;
 }
@@ -13387,6 +13391,13 @@
   font-weight: var(--easyedu-font-weight-semibold);
   line-height: 1.35;
   font-size: 0.88rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__source,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__source {
+  border: 1px solid var(--easyedu-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  background: var(--easyedu-surface);
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__member,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__member {
