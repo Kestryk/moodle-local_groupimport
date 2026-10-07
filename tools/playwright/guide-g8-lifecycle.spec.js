@@ -103,7 +103,10 @@ test('Guide G8 lifecycle and native destination review', async({page}, info) => 
             const selection = workspace.locator('[data-easystud-participant-list] [data-easystud-user]:visible .local-groupimport-easystud-selector').first();
             await selection.click();
             await expect(checklist.locator('[data-easyedu-guide-step-id="select-participant"]')).toHaveClass(/is-complete/);
-            const move = workspace.locator('[data-easystud-move-selected-participants]:visible').first();
+            // Compact UI delegates the same native command through its real
+            // sticky action control; never click the hidden desktop source.
+            const move = workspace.locator('[data-easystud-move-selected-participants]:visible, ' +
+                '[data-easystud-mobile-action-trigger="[data-easystud-move-selected-participants]"]:visible').first();
             await expect(move).toBeEnabled(); await move.click();
             const destination = workspace.locator('[data-easystud-move-modal]');
             await expect(destination).toBeVisible();

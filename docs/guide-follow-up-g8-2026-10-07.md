@@ -81,3 +81,10 @@ Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.
   database error. Restore an independent60s native navigation budget; keep15s
   interactions and strict normal-pointer hit-target oracle unchanged. This run
   says nothing about the new checklist layer. Runtimec68d987 serves Sourcefab45f0.
+- Native28888 confirms the actual1280 pointer-close resting paint, normal
+  checklist hit-target1071, native destination open/select/cancel and earlier
+  review/later reopen. It then fails at768 looking for the desktop Move button,
+  which the existing compact UI deliberately hides in favour of its sticky
+  command delegate. Product Guide target now includes that real compact control;
+  successor clicks it normally. Do not invent a new mobile action or force a
+  hidden desktop command for this test. Phone/native full matrix still pending.
