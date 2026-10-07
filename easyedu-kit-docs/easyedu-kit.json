@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideLatestMilestone20261007": {
+      "kitVersion": "0.4.145",
+      "kitCommit": "98cf6c9a35f6814daf3e6449ab84b60f9e70062f",
+      "documentation": "docs/guide-follow-up-g8-2026-10-07.md",
+      "scope": "Cancel obsolete predecessor highlight/open work when native milestones advance quickly.",
+      "isolatedRapidProgressVerified": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideCompactRestore20261007": {
       "kitVersion": "0.4.144",
       "kitCommit": "2e96cbd5130d1fac472ec4b36021884247483fcc",

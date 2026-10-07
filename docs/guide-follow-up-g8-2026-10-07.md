@@ -100,3 +100,10 @@ Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.
   inspection also found Restore writes a boolean expanded attribute while
   re-render incorrectly compared it to the string1; Kit0.4.144 preserves that
   explicit Restore with hasAttribute. Full phone/native matrix remains open.
+- Native8116 confirms desktop again but identifies an intermittent tablet
+  highlight race: fast native Move completion can be followed by the pending
+  predecessor beforeHighlight close. Kit0.4.145 clears old step-open timers on
+  successful later completion, preserving original delays. Isolated rapid
+  selection/open progression proves only the latest destination-open request
+  survives (no obsolete close), plus explicit phone Restore remains expanded.
+  Preserve native failure, don't increase the strict next-highlight timeout.

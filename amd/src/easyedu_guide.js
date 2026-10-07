@@ -1928,6 +1928,9 @@ const completeStep = (root, config, pathName, stepIdOrIndex) => {
   const item = checklist.querySelector(selector);
   const steps = config.paths[pathName] || [];
   if (!item || item.disabled || item.classList.contains('is-locked') || item.classList.contains('is-complete')) { return; }
+  // A real later milestone supersedes the pending highlight/open from its
+  // predecessor. Otherwise a fast Move click can be undone by the old close.
+  clearStepOpenTimers(root);
   item.classList.add('is-complete');
   const completedIndex = Number(item.getAttribute('data-easyedu-guide-step-index'));
   saveChecklistProgress(root, config, pathName, Math.min(completedIndex + 1, Math.max(steps.length - 1, 0)));
