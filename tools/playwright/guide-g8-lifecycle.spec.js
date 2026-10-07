@@ -7,6 +7,9 @@ const fs = require('node:fs');
 test('Guide G8 lifecycle and native destination review', async({page}, info) => {
     test.setTimeout(240000);
     page.setDefaultTimeout(15000);
+    // Native PHP navigation gets its independent existing readiness budget;
+    // short interaction timeouts must not also truncate a cold Moodle load.
+    page.setDefaultNavigationTimeout(60000);
     const errors = [], blocked = [], records = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
