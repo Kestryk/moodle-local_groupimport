@@ -76,3 +76,8 @@ Do not silently close G7/Foundation or older SM/G4/G5 acceptance gates.
   modal role plus one. Successor records actual ancestors and elementFromPoint
   and retains normal previous-step click (no force). Three-width native proof
   still required. No Create/Move/Save/Send test transaction is authorized.
+- Native39412 stopped before login: the new15s interaction timeout also shortened
+  navigation. Read-only login health check returned200, actual login form and no
+  database error. Restore an independent60s native navigation budget; keep15s
+  interactions and strict normal-pointer hit-target oracle unchanged. This run
+  says nothing about the new checklist layer. Runtimec68d987 serves Sourcefab45f0.
