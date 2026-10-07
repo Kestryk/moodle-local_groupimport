@@ -127,3 +127,24 @@ Penpot existing desktop Practice invitation now reflects the six-stage route;
 G7 checklist specimens remain the separate expanded/reduced/mobile publication.
 Remaining G7 gates: fresh native compact-size proof; composed design export;
 Foundation publication; human checklist; wider G5 retained curriculum.
+
+## G7 native responsive precondition correction
+
+Promotion20261007T123537Z installed Source3c45d43 on runtime1f0179ca with
+managed cache purge. Native31048 passes desktop sticky0px, Small Minimize
+30.390625px, correct Restore icon font and six real Practice checklist items.
+It then fails at the second width because the scenario assumed Add was reset;
+the existing controller deliberately retains the user's Compare Move mode on
+reopen (requestedMode || easyeduGuideSceneMode). This is a test precondition,
+not permission to change user-state persistence. Keep the failed scenario.
+New guide-responsive-presentation.spec.js explicitly chooses Add at the start
+of each width and retains all paint/containment/Small-size/write-block oracles.
+Native pass pending. All31048 credentials/lease/child cleanup gates pass.
+
+Penpot G7 specimen now includes a30.4px linked Small Minimize and normalized
+12.48px linked expand icons beside desktop/mobile Restore. IDs:
+Minimize4ee6f77a-1dfb-809b-8008-c0db8f7065a5;
+Restore4ee6f77a-1dfb-809b-8008-c0db8ffddae3 and
+4ee6f77a-1dfb-809b-8008-c0db905337dc. Readback has zero descendant overflow;
+fresh board export was inspected. Practice invitation text bounds fit the
+retained container. These proofs do not publish new shared Foundation variants.

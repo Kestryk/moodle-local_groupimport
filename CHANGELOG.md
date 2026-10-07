@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 - Guide responsive scenario preconditions
+
+- Retain native31048 and its verified desktop30.4px controls/six-stage path.
+  Width sweeps explicitly choose Add rather than assuming that reopening clears
+  the user's retained Compare Move mode. No product assets/policy change.
+
 ## 2026-10-07 - Practice six-stage path and compact checklist
 
 - Add a distinct practice-membership path without replacing legacy path/storage
