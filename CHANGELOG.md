@@ -2,6 +2,10 @@
 
 ## 2026-10-07 - Complete four-scene Guide presentation successor
 
+- Inspect the passing native capture and correct the collapsed progress track
+  through Kit0.4.130. Capture generated-card results only after their busy
+  presentation settles; retain the earlier scoped PASS as historical evidence.
+
 - Retain the native mixed-footer height failure and consume Kit0.4.129
   canonical Small/paired-track correction. Native successor is recorded
   separately; the strict equality test is unchanged.

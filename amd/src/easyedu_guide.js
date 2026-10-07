@@ -1002,6 +1002,7 @@ const renderDiscoveryNames = (root, scene, command) => {
   const reduced = getScrollBehavior(root) === 'auto';
   const animations = new Set();
   let stopped = false;
+  output.setAttribute('aria-busy', 'true');
   const animate = async(element, frames, duration, delay = 0) => {
     if (stopped || reduced) { return; }
     const animation = element.animate(frames, {duration, delay, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
@@ -1013,6 +1014,7 @@ const renderDiscoveryNames = (root, scene, command) => {
   root.easyeduGuideSceneStop = () => {
     stopped = true;
     animations.forEach(animation => animation.cancel());
+    output.setAttribute('aria-busy', 'false');
   };
   const run = async() => {
     if (output.childElementCount || output.textContent) {
@@ -1040,6 +1042,7 @@ const renderDiscoveryNames = (root, scene, command) => {
       ...Array.from(output.children, (card, index) => animate(card,
         [{opacity: 0, transform: 'translateY(8px)'}, {opacity: 1, transform: 'translateY(0)'}], 260, index * 55))
     ]);
+    if (!stopped) { output.setAttribute('aria-busy', 'false'); }
   };
   run().catch(() => { stopDiscoveryScene(root); });
 };
