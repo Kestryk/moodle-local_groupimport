@@ -58,6 +58,9 @@ const root = path.resolve(__dirname, '../..');
                 assert.equal(await page.locator('[data-guide-names] > span').count(), 0);
                 assert.ok(await page.locator('[data-guide-warning-host] .easyedu-notice--warning').count());
                 assert.equal(await page.locator('[data-guide-warning-text]').evaluate(node => getComputedStyle(node).textAlign), 'start');
+                assert.deepEqual(await page.locator('[data-guide-warning-text]').evaluate(node => {
+                    const style = getComputedStyle(node); return [style.marginTop, style.marginBottom];
+                }), ['0px', '0px']);
                 await page.locator('[data-guide-pattern]').fill('Custom #*2');
                 await page.locator('[data-guide-scene-command="preview"]').first().click();
                 assert.equal(await page.locator('[data-guide-warning-host]').isVisible(), false);

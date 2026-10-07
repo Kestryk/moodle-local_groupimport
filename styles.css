@@ -13499,8 +13499,8 @@
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene [hidden] {
   display: none;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene p,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene p {
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene > p,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene > p {
   margin-block: 0.5rem 0.75rem;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__caption, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene small,

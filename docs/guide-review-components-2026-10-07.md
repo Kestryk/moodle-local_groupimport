@@ -88,3 +88,18 @@ recoverably inside the G6 specimen; nothing material was deleted. Desktop
 Practice and mobile syntax were exported/read after text/range updates settled.
 Overview geometry/content fingerprint remains unchanged. Foundation utility
 provider publication and human acceptance are still OPEN.
+
+Native successor55904 PASSED12 routes on04f025f/Kit0.4.133; menu instruction
+paint is settled and Warning text reads from the start edge. Lifecycle24924
+PASSED both keyboard directions, unchanged path/close behaviour, desktop header
+glyph centres(dx/dy0 and-0.0078125px), and the real expanded phone checklist
+within390x1000 (x8,width359,height442.078125,bottom992). No business step is
+completed. Inspected both native checklist captures; layout stays native.
+
+Final capture review found that generic scene paragraph margins still won over
+the global notice recipe. Kit0.4.134/925020d limits them to direct scene copy;
+the canonical nested Warning owns its spacing, without a product patch. Add
+zero-margin assertions and correct the fictitious membership copy to the actual
+Projet Horizon destination. Final served native confirmation follows separately.
+An over-broad two-scenario runner request was rejected before execution;
+retry only with the wrapper's required one exact scenario per invocation.

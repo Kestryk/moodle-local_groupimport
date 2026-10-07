@@ -319,7 +319,9 @@
     margin-block: 0.875rem;
 
     [hidden] { display: none; }
-    p { margin-block: 0.5rem 0.75rem; }
+    // Scene spacing owns its direct copy only. Nested canonical notices/cards
+    // retain their own paragraph padding/margins after the Guide is portalled.
+    > p { margin-block: 0.5rem 0.75rem; }
     &__caption, small { @include typography.type-caption; }
     &__concepts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; padding: 1rem; }
     &__concepts > div { position: relative; min-width: 0; }
