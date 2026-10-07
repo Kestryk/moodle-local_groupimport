@@ -14,7 +14,14 @@ baseline and phone non-overlap assertions. Integration/synchronization checks
 pass. The first test failed on a missing runtime wrapper while only the embedded
 template had been synchronized; the adapted template was corrected, not the
 assertion weakened. No controller, business data or card Motion changes.
-Native promotion and all previously listed full-parity gaps remain open.
+Managed promotion20261006T220654Z applied Source5657919 and36ef584 in order,
+with cache purge, to runtime29203c97335c23f0ff99a0c6083e98a0fd202179.
+Native successor easystud-authenticated-20261007T025741148Z-4416 PASSED:12
+slide/width checks, explicit desktop creation-control baseline and phone wrapping,
+scene completion, real target/return and Escape. Cleanup confirms stopped child,
+released lease and cleared credentials; no fixture requested. Viewed its desktop
+creation capture. Retention dry-run protected this run; zero deletions. All
+previously listed full-parity gaps remain open, including Foundations publication.
 
 Four localized discovery lessons and their isolated examples now precede the
 retained legacy curriculum. Kit source 1910df3 and consumer source 27c2202 are
