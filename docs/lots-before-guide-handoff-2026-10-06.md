@@ -142,3 +142,10 @@ demo-like Group names/nomenclature and canonical Warning, near-cursor menu,
 cursor contrast, instruction/neutral-completion Motion, quiet result and native
 checklist controls only. Overview and natural cards are explicitly retained.
 This does not replace G5 or close any older lot/human gate.
+
+G6 component refinement is now served and12 native routes PASS on Kit0.4.134.
+Canonical Warning spacing/reading direction, near-cursor menu and quiet return
+were inspected in real native captures, not only isolated fixtures. The Guide
+file contains linked Warning/cursor specimens and desktop/phone Practice.
+Foundation canonical Small utility publication/propagation, broader G4, G5 and
+all older feedback/human acceptance stay open. See the exact G6 proof record.

@@ -11,8 +11,11 @@
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss", "scss/easyedu/components/_buttons.scss", "scss/easyedu/_data-classes.scss"],
       "documentation": "docs/guide-review-components-2026-10-07.md",
       "scope": "G6 quiet Show/Return, practice syntax/Warning, instruction/menu/cursor/neutral completion, checklist control roles only. Overview/cards/business Motion retained.",
-      "status": "Translated responsive, shared recipe-preservation and shell checks PASS; Guide readback/native proof tracked separately.",
-      "nativePreviewVerified": false,
+      "status": "Current twelve native scene/width routes PASS, including canonical Warning alignment/spacing; Guide specimen readback and broader Foundation/human gates remain separate.",
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261007T110854392Z-50020",
+      "nativeAssetSourceCommit": "c4848f17c614980f833a29d308d839d86590e2b2",
+      "nativeLifecycleRunId": "easystud-authenticated-20261007T111319843Z-9272",
       "foundationCataloguePublished": false,
       "humanVisualValidated": false
     },
