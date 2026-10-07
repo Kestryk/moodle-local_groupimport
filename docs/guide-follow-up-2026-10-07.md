@@ -148,3 +148,28 @@ Restore4ee6f77a-1dfb-809b-8008-c0db8ffddae3 and
 4ee6f77a-1dfb-809b-8008-c0db905337dc. Readback has zero descendant overflow;
 fresh board export was inspected. Practice invitation text bounds fit the
 retained container. These proofs do not publish new shared Foundation variants.
+
+## G7 responsive pass and readable-row inspection
+
+Nativeeasystud-authenticated-20261007T123926371Z-49844 PASS,3widths
+1280/768/390, on served Source3c45d43/runtime1f0179ca/Kit0.4.138.
+Scenario sourceeadb953 explicitly establishes comparison mode per width;
+paint/drag synchronization/dashed overlap/selected modes/two checkboxes,
+illustrated modal reveal, final opaque sticky frame,12px recap rhythm,
+six-stage checklist and30.4px Minimize/Restore pass. No blocked writes/pageerrors;
+credentials/lease/owned child all cleaned, no fixture or business change.
+
+Inspection of native31048's desktop checklist capture found cramped row copy
+and the legacy lock pill overlay obscuring descriptions. A passing count/size
+scenario does not close that visual defect. Kit0.4.139/461d268 uses max-content
+rows and an in-flow semantic prerequisite with quiet locked paint. Six isolated
+language/width routes prove copy containment and no pseudo overlay.
+New guide-practice-checklist.spec.js checks actual native row containment,
+bounded scrolling and reduced/Restore at all three widths; native proof pending.
+
+Additional test-selection-availability-scope.cjs fails its historical whole-file
+identity against df07df2 (already later palette/Guide edits, unrelated to the
+selection function). Preserve the old spec; it is not a current multi-lot
+regression oracle. No source change was made to force this obsolete boundary.
+Card-keyboard historical whole-file spec was consequently not run. Dedicated
+Guide isolated/native gates above remain the evidence for this bounded tranche.

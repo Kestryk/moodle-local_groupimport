@@ -5,13 +5,15 @@
   "status": "stable",
   "consumerSync": {
     "guidePresentationFollowup20261007": {
-      "kitVersion": "0.4.138",
-      "kitCommit": "dce75454013d4c20c1a9a810d70dd193035a28c7",
+      "kitVersion": "0.4.139",
+      "kitCommit": "461d26812488179a1c79a560889a246c5a1d461e",
       "predecessorKitCommit": "544bf1fe19c1788d2170b64f98d78c4250857b81",
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
       "documentation": "docs/guide-follow-up-2026-10-07.md",
       "scope": "G7 persistent step frame, synchronized drag/return/drop, selected comparisons/checkboxes, scoped reveal scroll, context/recap and Discovery checklist Restore/long-list scroll.",
-      "status": "Source/build/isolated gates pass, including responsive sticky gap correction. Failed native run41716 is preserved; strict successor and six-stage Practice remain separately tracked.",
+      "status": "Native49844 passes all three-width presentation routes on Source3c45d43/Kit0.4.138. Kit0.4.139 adds readable checklist rows, isolated proof passed; its native successor is pending. Real business/human gates remain separate.",
+      "presentationNativeRunId": "easystud-authenticated-20261007T123926371Z-49844",
+      "presentationNativeAssetSourceCommit": "3c45d439a07956fc4c1a6c9a79ada31d45f37304",
       "failedNativeRunId": "easystud-authenticated-20261007T120554874Z-41716",
       "failedNativeAssetSourceCommit": "fe389e0ddd0e83996a1a2fe9fe7e92aadb65d5c1",
       "readingEdgeNativeRunId": "easystud-authenticated-20261007T122732983Z-54552",

@@ -15492,6 +15492,46 @@
   min-width: 1.9rem;
   padding: 0.22rem 0.5rem;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__steps,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__steps {
+  grid-auto-rows: max-content;
+  align-content: start;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step {
+  height: auto;
+  align-items: start;
+  padding: 0.625rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step > span:last-child,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step > span:last-child {
+  gap: 0.25rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step strong,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step strong {
+  line-height: 1.4;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step small,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step small {
+  line-height: 1.5;
+  font-weight: var(--easyedu-font-weight-regular);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step.is-locked,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step.is-locked {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-border);
+  opacity: 1;
+  cursor: default;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step.is-locked[data-easyedu-guide-lock-message]::before,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step.is-locked[data-easyedu-guide-lock-message]::before {
+  display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step .easyedu-guide-checklist__requirement,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__step .easyedu-guide-checklist__requirement {
+  color: var(--easyedu-text-muted);
+  font-size: 0.68rem;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel[data-easyedu-guide-checklist-scroll] .easyedu-guided-panel__steps {
   max-height: min(19rem, 45dvh);

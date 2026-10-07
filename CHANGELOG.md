@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-07 - Guide readable checklist successor
+
+- Consume Kit0.4.139 intrinsic-height checklist rows and in-flow prerequisites,
+  removing the legacy overlay/stripes only in Discovery. Six isolated localized
+  routes verify complete copy containment and dependency semantics.
+- Native49844 passes the three-width G7 presentation on Source3c45d43, including
+  drag/drop, final sticky banner, illustrated dialogs and compact Restore.
+  Fresh native checklist-row proof remains separate for the new assets.
+
 ## 2026-10-07 - Guide responsive scenario preconditions
 
 - Retain native31048 and its verified desktop30.4px controls/six-stage path.
