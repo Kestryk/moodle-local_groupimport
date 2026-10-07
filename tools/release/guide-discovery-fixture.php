@@ -12,4 +12,5 @@ class html_writer {
     public static function tag($name, $value) { return '<' . $name . '>' . $value . '</' . $name . '>'; }
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
-echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([])], JSON_THROW_ON_ERROR);
+echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([]),
+    'practicePath' => \local_groupimport\local\guide_discovery::practice_path()], JSON_THROW_ON_ERROR);

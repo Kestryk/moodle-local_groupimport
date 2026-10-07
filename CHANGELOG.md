@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-07 - Practice six-stage path and compact checklist
+
+- Add a distinct practice-membership path without replacing legacy path/storage
+  IDs: actual Group creation, Participants view, selection, Move dialog, explicit
+  native destination choice, then confirmed successful membership assignment.
+  Intermediate stages expose exact highlight targets and dependency locks.
+- Canonical Kit0.4.138 preserves Small control sizing after nested utility paint.
+  Retain native54552: sticky/icon gates pass;33.59px Minimize fails30.4px contract.
+- Six language/width isolated Practice routes pass. Native read-only rendering
+  and real business completion remain separate; no course data was changed.
+
 ## 2026-10-07 - Guide reading-edge correction
 
 - Correct the actual22px sticky gap through canonical responsive reading-inset
