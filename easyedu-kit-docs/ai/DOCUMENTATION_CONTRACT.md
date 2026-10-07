@@ -649,3 +649,9 @@ replace the compact Participants / Groups / Groupings switcher with the desktop
 two- or three-view model. Map a structure-first desktop preference to compact
 Groups; preserve the existing Motion controller for both initial states and
 subsequent user changes.
+
+The Discovery Guide inherits a desktop token snapshot when portalled. Responsive
+dimensions therefore belong on the shared dialog, not just its root. Assert
+phone height/reading edge after resize and single recap numbering. Source
+alignment, scene animation and native preview proof remain separate from
+Foundations publication and the pending combined human checklist.
