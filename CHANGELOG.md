@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-07 - Guide latest native milestone transition
+
+- Cancel obsolete predecessor highlight/open on rapid native progress through
+  the Kit. Retain the original timing and strict next-target assertion; isolated
+  rapid progression regression passes along with explicit compact Restore.
+
 ## 2026-10-07 - Guide compact native destination coexistence
 
 - Target the existing compact Move sticky delegate. Adopt Kit0.4.143 bounded

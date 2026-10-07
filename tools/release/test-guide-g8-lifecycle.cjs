@@ -98,6 +98,16 @@ const root = path.resolve(__dirname, '../..');
                 })), ids[1]);
                 assert.equal(await page.locator('[data-easyedu-guide-checklist]').evaluate(node =>
                     node.classList.contains('is-minimized')), false, 'Explicit Restore survives progress render');
+                await page.evaluate(steps => {
+                    window.g8OpenRequests = [];
+                    document.addEventListener('easyedu:guide-open-target', event => window.g8OpenRequests.push(event.detail.target));
+                    for (const step of steps) document.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
+                        detail: {path: 'practice-membership', step}
+                    }));
+                }, [ids[2], ids[3]]);
+                await page.clock.runFor(1000);
+                assert.deepEqual(await page.evaluate(() => window.g8OpenRequests), ['tutorial:participant-move-dialog'],
+                    'Rapid later progress cancels predecessor close/highlight');
             }
             await page.evaluate(() => window.Guide.destroy('[data-easyedu-guide-root]'));
             await render([ids[0]]);
