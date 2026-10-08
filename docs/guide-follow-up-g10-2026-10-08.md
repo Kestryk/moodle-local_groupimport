@@ -409,3 +409,12 @@ Diagnostic confirms launcher visible after loading. Shared0.4.157 waits for
 the loading shell's real reveal using bounded owned observers, no polling or
 consumer styling. EN/FR normal/reduced delayed-visibility regressions pass.
 Corrected native proof remains pending; H fullscreen and older lots still open.
+
+Native successor203306236Z-52108 at200860d passes genuine first opening/own-user
+acknowledgement, persisted reload and GET/invalid-sesskey rejection. It then
+reveals a real admin reset rendering error: settings.php adds a body class during
+header/navigation construction. Restrict settings presentation initialization to
+its exact /admin/settings.php section before output; retain tree registration on
+other admin pages. No global reset/course writes; cleanup passes. Native full
+successor/admin-cancel/mobile gates pending. Earlier actual first-opening proof
+remains valid even when the next test correctly sees an already-seen account.

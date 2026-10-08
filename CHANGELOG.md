@@ -2,6 +2,11 @@
 
 ## Unreleased - Guide welcome loading reveal successor
 
+- Native successor proves actual first-opening acknowledgement/reload and
+  invalid request rejection, then exposes an admin settings header lifecycle
+  error. Initialize settings presentation only on the exact early settings page;
+  keep navigation/settings registration unchanged. Full successor pending.
+
 - Preserve two native failed runs: eligible invitation stayed hidden because
   Guide initialized before the loading shell revealed navigation. No preference,
   global reset or course write occurred; runner cleanup passed.
