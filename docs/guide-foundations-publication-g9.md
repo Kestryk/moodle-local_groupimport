@@ -135,6 +135,13 @@ Complete relative properties match; source geometry and Overview remain intact.
 Export now reports explicit HTTP500 ResourceRequest timeout. Raster gate and
 temporary transfer cleanup remain open; no runtime or full-curriculum claim.
 
+Browser-raster successor closes the scoped visual/cleanup gate without remote
+export:contained Guide/Library/Standard captures inspected, external manifested
+run g9-quiet-browser-20261008. Original viewport restored; overlays remain real.
+Exact temporary Guide main/empty host removed after proof, unused temporary
+provider gone; saved readback verifies absence and accepted-source retention.
+Source/evidence records remain recoverable. Human/full-curriculum gates stay open.
+
 Quiet utility source-preserving transfer is prepared on Guide board79; exact
 temporary main/provider and10 saved descendants are recorded in
 docs/testing/guide-g9-quiet-transfer-2026-10-08.json. Fingerprint parity and

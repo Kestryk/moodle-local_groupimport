@@ -488,5 +488,41 @@ No fresh native test/cache/fixture was appropriate for unchanged runtime assets.
 NEXT:inspect Foundation/Guide raster when export service responds, then remove
 the exact temporary Guide provider/main and finalize its cleanup record. Full
 curriculum/content handoff, Mass Import Guide and older backlog stay open.
+
+## Export blocker bypassed and exact transfer cleanup saved (2026-10-08)
+
+Remote Penpot export returned HTTP500 ResourceRequest timed out, independently
+of successful editor/saved operations. Do not describe the Guide or Moodle as
+broken from this error. No longer wait on that service: supervised live-editor
+browser screenshots provide a separate real raster path, after fonts and two
+paint frames settle. No overlays were hidden, no auth exported, no new profile.
+The own viewport is centred on the actual button, not its wider host. Initial
+host-centred captures clipped the left edge: preserve them as diagnostic media,
+then inspect contained successors rather than accepting a cropped control.
+
+Three contained representative captures inspected (Guide, Foundation Library,
+linked Standard) in external run g9-quiet-browser-20261008. Borders, text and
+eye glyph are fully visible and aligned. No new font/paint/geometry adjustment.
+All5 captures manifested,3 pinned; retention dry-run0 candidates/0 deletions,
+no unmanaged media, helper disconnected. Screenshot source:
+tools/penpot/capture-owned-editor.cjs; exact local file/CDP/output allowlists,
+no screenshot overwrite. Initial argument-count diagnostic corrected before
+any capture. Media stays outside Git; cleanup.json records no browser closure.
+
+After saved publication/fingerprint/raster gates, remove only temporary Guide
+main007cab03-0a24-8025-8008-c20b16a428f6 and its empty owned host
+007cab03-0a24-8025-8008-c20b163e8fda. No other temporary references existed.
+API removes the unused local temporary provider as well; accepted original
+4ee6f77a-1dfb-809b-8008-c0c1f5f694c2 remains retained, not deleted. Saved-server
+successor confirms absence of the main/host/active temporary provider, retained
+original and3 canonical links/24 descendants/3 archives. Penpot undo/source
+records preserve recovery; no user document, data or screenshot was removed.
+
+The scoped Quiet Foundation publication/product propagation/cleanup is delivered.
+Remote export service itself is not claimed repaired; its historical failures
+stay recorded. Kit0.4.146/native assets unchanged, no fresh runtime test needed.
+Human checklist remains OPEN. NEXT:review remaining Guide curriculum/content
+handoff coverage and unfinished older lots separately; four Discovery slides
+remain a sample, not the entire Student Management/Mass Import curriculum.
 Rollback:hide the exact new instances and restore the recorded original hidden
 flags; restore the13 destination y positions from the evidence. No data rollback.

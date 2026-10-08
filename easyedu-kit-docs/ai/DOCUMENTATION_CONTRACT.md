@@ -32,6 +32,13 @@ explicitly before fingerprint comparison. Suspended-renderer saved proof may
 use its owned browser context request without exporting session state; that
 does not certify raster or justify discarding unknown editor writes.
 
+A failed remote design export need not block scoped raster proof: use the owned
+editor's actual browser screenshot after fonts/paint settle, retain real overlays
+and restore the viewport. Centre on the control itself; a wider host can clip
+its child in the available canvas. Keep cropped diagnostics, inspect contained
+successors, manifest media outside Git and record this as a different proof
+transport, not a repaired export service or human acceptance.
+
 Guide product relinking preserves real copy and conditional step states, not
 the generic provider's dummy completed rows. Use ordinary product composition
 hosts for linked state rows; hide old slots without adding structural children

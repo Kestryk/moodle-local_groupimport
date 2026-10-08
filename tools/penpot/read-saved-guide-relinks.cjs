@@ -126,6 +126,13 @@ const geometry = (shape, field) => {
                 }
             }
         }
+        if (expected.temporaryCleanup && expected.cleanupIds) {
+            assert.ok(!object(expected.cleanupIds.mainId), 'Exact temporary main removed from saved page');
+            assert.ok(!object(expected.cleanupIds.hostId), 'Exact empty transfer host removed from saved page');
+            assert.ok(object(expected.cleanupIds.acceptedSourceId), 'Accepted source retained');
+            const temporary = read(data, 'components')?.get(transit.uuid(expected.cleanupIds.componentId));
+            assert.ok(!temporary || read(temporary, 'deleted') === true, 'No active temporary provider remains');
+        }
         console.log(JSON.stringify({passed: true, roots: expected.components.length, descendants, archives,
             relocatedDestinationShapes: expected.mobileDestinationShift.length, editorWrites: 0, moodleWrites: 0,
             practiceChildren: expected.practiceLayout?.finalChildren.length || 0,

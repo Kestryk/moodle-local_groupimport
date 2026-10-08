@@ -18,7 +18,7 @@
       "foundationGuideRelinked": false,
       "foundationGuideRelinkRecord": "docs/testing/guide-g9-product-relinks-tranche3-2026-10-08.json",
       "quietGuideUtilityPublicationRecord": "docs/testing/guide-g9-quiet-foundation-publication-2026-10-08.json",
-      "quietGuideUtilityStatus": "Canonical Library/Standard plus three Guide links have matching fingerprints and saved-server proof. Export HTTP500 leaves raster and exact temporary cleanup open. No runtime change.",
+      "quietGuideUtilityStatus": "Canonical Library/Standard and three Guide links have matching fingerprints, saved proof and inspected live-editor browser raster. Exact temporary main/host/provider cleanup saved; original retained. Export HTTP500 bypassed, not repaired; human acceptance open. No runtime change.",
       "quietGuideUtilityRelinkRecord": "docs/testing/guide-g9-quiet-guide-relinks-2026-10-08.json",
       "foundationGuideRelinkStatus": "Tranche3: 31 Foundation instances including retained Return compositions, plus two source-preserving Quiet utility copies; exports and saved-file gate verified. Quiet recipe Library promotion, full curriculum and human review remain open. Historical checklist providers and Overview preserved.",
       "penpotFileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",

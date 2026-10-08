@@ -25,10 +25,11 @@
   "nestedFoundationProviders": ["db59201c-3dd6-8004-8008-baad48fd2237", "32eadb6d-165e-803e-8008-9891fe031706"],
   "savedFileVerified": true,
   "savedFileProof": {"roots": 2, "descendants": 16, "editorWrites": 0, "moodleWrites": 0, "helperDisconnected": true, "transport": "Owned browser context request; no renderer navigation or authentication export."},
-  "rasterVerified": false,
+  "rasterVerified": true,
+  "rasterMethod": "Owned live-editor browser capture fallback; run g9-quiet-browser-20261008. foundation-library-contained.png and foundation-standard-contained.png inspected. Export service failure remains historical diagnostic, not fixed.",
   "guideRelinked": true,
   "guideRelinkRecord": "guide-g9-quiet-guide-relinks-2026-10-08.json",
-  "temporaryGuideCleanup": false,
+  "temporaryGuideCleanup": true,
   "humanVisualValidated": false,
   "runtimeChanged": false,
   "exportDiagnostic": "Export was stopped after prolonged no response; plugin heartbeat then suspended. Exact successful write IDs retained; do not replay creation."

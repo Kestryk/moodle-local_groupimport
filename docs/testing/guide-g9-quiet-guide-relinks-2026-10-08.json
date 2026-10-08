@@ -76,9 +76,11 @@
   "predecessorRecord": "guide-g9-product-relinks-tranche3-2026-10-08.json",
   "savedFileVerified": true,
   "savedFileProof": {"roots": 3, "descendants": 24, "archives": 3, "editorWrites": 0, "moodleWrites": 0, "helperDisconnected": true},
-  "rasterVerified": false,
+  "rasterVerified": true,
+  "rasterMethod": "Owned live-editor browser screenshot after fonts settled; no hidden overlays. Run g9-quiet-browser-20261008, guide-quiet.png inspected.",
   "exportDiagnostic": "Current linked Guide action export returned HTTP500 ResourceRequest timed out. Property fingerprints pass; raster remains open.",
-  "temporaryCleanup": false,
+  "temporaryCleanup": true,
+  "cleanupIds": {"mainId": "007cab03-0a24-8025-8008-c20b16a428f6", "hostId": "007cab03-0a24-8025-8008-c20b163e8fda", "componentId": "007cab03-0a24-8025-8008-c20b176b5589", "acceptedSourceId": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2"},
   "temporaryGuideProviderId": "007cab03-0a24-8025-8008-c20b176b5589",
   "humanVisualValidated": false,
   "runtimeChanged": false
