@@ -291,3 +291,40 @@ the remaining relink/content/human gates to EED-UI-2026-0073; do not replace old
 unfinished feedback. Shared Platform planning files stay with their named owner.
 The complete curriculum and separate Mass Import Guide still require the G8/G9
 content-owner deliverables. Human checklist remains OPEN.
+
+## Guide consumer relinking tranche1 (2026-10-08)
+
+Main channel confirmed on Guide file/page, with19 published Discovery providers
+available from Foundations. Boards72/73/75 now contain19 linked instances:
+desktop/phone reading banners, explicit Resume, completion, six-step phone
+invitation + quiet in-progress footer, expanded/reduced checklist, prerequisite
+rows and compact native-dialog coexistence.100 superseded direct shapes remain
+hidden/recoverable, not deleted. Accepted Overview is fingerprint-identical.
+
+Product content is retained; generic checklist slots are hidden, then actual
+linked Active/Complete/Locked rows are composed on the ordinary product host.
+Reduced title shows the active step without the redundant path-title prefix.
+Long native-context title has40px intrinsic text height; compact panel grows
+to346px, retaining standard font/spacing. Phone destination moves88px below
+the panel within the unchanged744px viewport. Native dialog controls/styles,
+cards, commands and runtime Motion are untouched. This is not consumer CSS.
+
+Readback:63 Inter texts,11 linked glyphs,0 containment/type/glyph errors. Final
+whole-board72/73/75 exports inspected. Initial missing copy-name write recovered
+through exact pending ID, no duplicate. A root/child double-offset on four
+compact rows was corrected from provider-relative positions before final proof.
+First75 export timed out on server; final export inspected without discarding
+unknown state. Evidence:docs/testing/guide-g9-product-relinks-2026-10-08.json.
+
+Saved-server gate PASS19 roots/258 descendants,100 retained hidden originals and
+13 shifted destination shapes. Script:tools/penpot/read-saved-guide-relinks.cjs,
+local-supervised/read-only; arguments are local Playwright/Transit module paths
+and an owned local CDP endpoint. Helper disconnected,0 Moodle/editor writes.
+No new SCSS/template/controller/assets/cache/test fixture. Earlier native runs
+remain their pinned evidence; this design-only tranche is not a fresh preview.
+
+NEXT:correlated Practice/Organisation/Actions phone/tablet compositions76/78,
+then other retained Guide/return compositions. Do not mark all-product relinking,
+full curriculum, Mass Import Guide or human checklist complete from this tranche.
+Rollback:hide the exact new instances and restore the recorded original hidden
+flags; restore the13 destination y positions from the evidence. No data rollback.

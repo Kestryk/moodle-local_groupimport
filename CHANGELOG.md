@@ -2,6 +2,13 @@
 
 ## 2026-10-08 - Guide G9 paired design continuation
 
+- Relink19 Guide instances on boards72/73/75 to canonical Discovery providers;
+  preserve actual step copy, locks, active reduced title and phone dialog room.
+  100 replaced originals remain hidden/recoverable; accepted Overview unchanged.
+- Inspect full-board exports and scoped63-text/11-glyph bounds. Saved-file gate
+  passes19 roots/258 descendants. No asset/runtime change; remaining correlated
+  scenes and complete curriculum/human acceptance are still open.
+
 - Publish19 Discovery recipes in Foundations08.14/08.14.1 with linked Standards
   examples. Preserve all7 historical Checklist providers and remove only19
   temporary transfer mains after complete geometry/style/type fingerprints.
