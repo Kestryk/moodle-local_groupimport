@@ -10,6 +10,7 @@ const transit = require(path.resolve(process.argv[3], 'transit-js'));
 const recordName = process.argv[5] || 'guide-g9-product-relinks-2026-10-08.json';
 assert.ok(['guide-g9-product-relinks-2026-10-08.json',
     'guide-g10-b-product-links-2026-10-08.json',
+    'guide-g10-c-product-links-2026-10-08.json',
     'guide-g9-product-relinks-tranche2-2026-10-08.json',
     'guide-g9-product-relinks-tranche3-2026-10-08.json',
     'guide-g9-quiet-transfer-2026-10-08.json',
