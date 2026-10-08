@@ -1,0 +1,99 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "lot": "Guide keyboard K1",
+  "date": "2026-10-08",
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components": [],
+  "mobileDestinationShift": [],
+  "ruleUpdates": [
+    {
+      "id": "74a0e4b4-0497-8084-8008-bfa37216908f",
+      "before": {
+        "text": "Pilules 190 × 48, une seule ligne ; actif vert, badge Parcours distinct. Rail tactile / molette, chevrons flottants translucides. Parcours : action à droite du contenu, pas pleine largeur. Revoir / Réinitialiser : côte à côte à droite. Voir dans l’interface : barre fixe.",
+        "width": 716,
+        "height": 53
+      },
+      "after": {
+        "text": "Pilules 190 × 48 ; actif vert, badge Parcours distinct. Rail tactile / molette, chevrons flottants. Parcours desktop : action centrée à droite. Mobile : icône en haut à gauche, étapes centrées, action sous le contenu. Practice : Réinitialiser près du résultat, sans Revoir. Voir dans l’interface : barre fixe.",
+        "width": 716,
+        "height": 72,
+        "x": 2644,
+        "y": 8794
+      },
+      "fontFamily": "Inter",
+      "fontSize": "12.16",
+      "textBounds": {
+        "x": 2644,
+        "y": 8794.800000011921,
+        "width": 696.5125122070312,
+        "height": 50.44999998807907
+      }
+    },
+    {
+      "id": "74a0e4b4-0497-8084-8008-bfa37c6d745d",
+      "before": {
+        "text": "Ouverture EasyStud conservée : 240 ms ; fermeture 200 ms. Slide : fondu 110 / 220 ms. Consigne : fondu 100 / 200 ms entre phases, puis lecture max(2400 ms, mots × 230 ms). Fin : curseur 220 ms vers éteint, sélection via animation de carte existante. Annuler scènes et attentes à la sortie. Mouvement réduit : état final lisible sans geste.",
+        "width": 716,
+        "height": 53
+      },
+      "after": {
+        "text": "Ouverture 240 ms ; fermeture 200 ms conservées. Slide : fondu 110 / 220 ms. Consigne : fondu 100 / 200 ms puis lecture max(2400 ms, 900 ms + mots × 60000 / 180). Annuler scènes et attentes à la sortie. Mouvement réduit : état final lisible sans geste.",
+        "width": 716,
+        "height": 72,
+        "x": 3432,
+        "y": 8794
+      },
+      "fontFamily": "Inter",
+      "fontSize": "12.16",
+      "textBounds": {
+        "x": 3432,
+        "y": 8794.800000011921,
+        "width": 699.0875244140625,
+        "height": 50.44999998807907
+      }
+    },
+    {
+      "id": "74a0e4b4-0497-8084-8008-bfa36f505bee",
+      "before": {
+        "text": "Desktop : max. 1220 × 800, marges 32 / 24. Mobile : marge 16. Seul le contenu défile. En-tête, rail, progression, repérage et pied stables. Ne pas remonter la page au changement de slide. Deux lignes d’en-tête, icône 32 et croix Kit.",
+        "width": 716,
+        "height": 36
+      },
+      "after": {
+        "text": "Desktop : coque de lecture max. 1220 × 800, marges 32 / 24 ; mobile : marge 16. Seul le contenu défile, repérage et pied stables. Échap ferme même depuis le champ Practice, sauf si un contrôle a déjà intercepté la touche. Les flèches, Début et Fin restent disponibles pour éditer le texte.",
+        "width": 716,
+        "height": 72,
+        "x": 2644,
+        "y": 8478
+      },
+      "fontFamily": "Inter",
+      "fontSize": "12.16",
+      "textBounds": {
+        "x": 2644,
+        "y": 8478.800000011921,
+        "width": 708.9249877929688,
+        "height": 50.44999998807907
+      }
+    }
+  ],
+  "isolatedCanonicalPass": true,
+  "isolatedBuiltAmdPass": true,
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "motion": [
+    "no-preference",
+    "reduce"
+  ],
+  "nativeSpec": "tools/playwright/guide-keyboard.spec.js",
+  "nativeSpecClassification": "local-supervised",
+  "nativeDiscoveryRun": "easystud-authenticated-20261008T113045554Z-58724",
+  "nativeDiscoveryCount": 1,
+  "nativeRuntimeVerified": false,
+  "savedRulesVerified": true,
+  "humanVisualValidated": false,
+  "scope": "Typing Escape closes after existing Motion; nested consumed Escape retains priority. No course commands, stylesheet/template/card/timing changes."
+}

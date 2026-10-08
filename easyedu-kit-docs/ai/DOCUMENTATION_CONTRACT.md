@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Guide Escape is handled before the typing guard, but only when a nested control
+has not consumed it. Preserve text-editing arrows/Home/End, Tab trapping, original
+exit Motion and real opener focus. Isolated keyboard proof does not replace the
+served native six-route gate or human acceptance; never issue course commands
+to test a Practice-only keyboard interaction.
+
 Correlated Guide layout propagation keeps linked recipes and actual localized
 copy at every size. Longer desktop step labels can increase intrinsic copy/pill
 width without changing font or provider identity. If a board needs more height,
