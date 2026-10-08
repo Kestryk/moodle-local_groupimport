@@ -1,11 +1,15 @@
 {
   "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
   "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
-  "components": [{"id":"e764db89-4cb1-80d0-8008-c276499fce0f","componentId":"e764db89-4cb1-80d0-8008-c274b986568d","x":886,"y":11486,"width":358,"height":150,"archived":[]}],
+  "components": [{"id":"c53a1fb5-311f-80be-8008-c27808f46f62","componentId":"e764db89-4cb1-80d0-8008-c274b986568d","x":886,"y":11486,"width":358,"height":150,"archived":[]}],
+  "discardedOwnedUnsavedAttemptId": "e764db89-4cb1-80d0-8008-c276499fce0f",
+  "mobileDestinationShift": [],
   "savedServerVerified": false,
   "editorAutosaveErrorObserved": true,
   "newInstanceUnsaved": true,
-  "editorReloaded": false,
+  "editorReloaded": true,
   "pendingResetPropagation": true,
+  "autosaveDiagnostic": {"code":"referential-integrity","nestedComponentMismatch":"007cab03-0a24-8025-8008-c1f8933449bf","missingSlot":"007cab03-0a24-8025-8008-c1f8933449c1"},
+  "repairAttempt": "Reset the actual In-progress footer Phone parent007cab03-0a24-8025-8008-c1f8933449bc through public API, retain host bounds/copy; stale Reset replaced with canonical near-main link. Saved editor remains pending.",
   "humanVisualValidated": false
 }

@@ -32,10 +32,13 @@ const geometry = (shape, field) => {
     try {
         const pages = browser.contexts().flatMap(context => context.pages()).filter(page => {
             const url = new URL(page.url());
-            return url.origin === 'https://design.penpot.app' && url.hash.includes(evidence.fileId);
+            const ownedFile = process.argv[6] === 'guide-context-request' &&
+                recordName === 'guide-g10-e-foundations-2026-10-08.json' ?
+                'b564c72c-f31f-81ec-8008-ad9958b272bd' : evidence.fileId;
+            return url.origin === 'https://design.penpot.app' && url.hash.includes(ownedFile);
         });
         assert.equal(pages.length, 1, 'Exactly one owned Foundations tab');
-        const response = process.argv[6] === 'context-request' ? await (async() => {
+        const response = ['context-request','guide-context-request'].includes(process.argv[6]) ? await (async() => {
             // Supervised read-only fallback when the renderer is suspended.
             // Reuse the owned browser context; never export cookies/auth state.
             const result = await pages[0].context().request.get(

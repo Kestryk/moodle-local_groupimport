@@ -5,16 +5,15 @@
   "libraryPageId": "4ee6f77a-1dfb-809b-8008-c1eac9c6142e",
   "components": [
     {"family":"Checklist panel","state":"Reduced Complete Phone","componentId":"e764db89-4cb1-80d0-8008-c274b986568d","mainId":"e764db89-4cb1-80d0-8008-c274b8a0868c","standardId":"e764db89-4cb1-80d0-8008-c2751a923bcf","width":358,"height":150},
-    {"family":"Path invitation","state":"Desktop","componentId":"4ee6f77a-1dfb-809b-8008-c1ed9c7893ea","mainId":"4ee6f77a-1dfb-809b-8008-c1ed9c50f1e9","standardId":"4ee6f77a-1dfb-809b-8008-c1ef204308c9","width":750,"height":260},
-    {"family":"Path invitation","state":"Phone","componentId":"4ee6f77a-1dfb-809b-8008-c1ed9cacc3ab","mainId":"4ee6f77a-1dfb-809b-8008-c1ed9c86276c","standardId":"4ee6f77a-1dfb-809b-8008-c1ef207dda78","width":358,"height":500}
+    {"family":"In-progress footer","state":"Desktop","componentId":"4ee6f77a-1dfb-809b-8008-c1ed9cc7abd5","mainId":"4ee6f77a-1dfb-809b-8008-c1ed9cb90c27","standardId":"4ee6f77a-1dfb-809b-8008-c1ef20b14303","width":750,"height":54},
+    {"family":"In-progress footer","state":"Phone","componentId":"4ee6f77a-1dfb-809b-8008-c1ed9cdd4fc0","mainId":"4ee6f77a-1dfb-809b-8008-c1ed9ccecca1","standardId":"4ee6f77a-1dfb-809b-8008-c1ef20c564f3","width":358,"height":70}
   ],
   "resetComponentId": "c403923b-827e-80b7-8008-bbd343f71807",
   "completionCopyPaintContained": true,
   "standardCompletionHostId": "e764db89-4cb1-80d0-8008-c275719977df",
   "libraryCompletionHostId": "e764db89-4cb1-80d0-8008-c27591c072c7",
-  "savedServerVerified": true,
-  "savedRoots": 6,
-  "savedVisibleDescendants": 190,
+  "savedServerVerified": false,
+  "priorSavedGateScope": "Completion plus unrelated Path invitation roots passed6/190; successor must check the actual In-progress footer Reset providers.",
   "rasterInspected": true,
   "initialRasterOverlapCorrectedWithSeparateHost": true,
   "productPropagationVerified": false,
