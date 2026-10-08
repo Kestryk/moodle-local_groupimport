@@ -92,7 +92,11 @@
   "nativeSpecClassification": "local-supervised",
   "nativeDiscoveryRun": "easystud-authenticated-20261008T113045554Z-58724",
   "nativeDiscoveryCount": 1,
-  "nativeRuntimeVerified": false,
+  "nativeRuntimeVerified": true,
+  "nativeRunId": "easystud-authenticated-20261008T141046253Z-23524",
+  "nativeRunPassedRoutes": 6,
+  "nativeRuntimeHead": "daf9a09f47233d4e2ddfd3e75168d8af27e6e212",
+  "nativeCleanupVerified": true,
   "savedRulesVerified": true,
   "humanVisualValidated": false,
   "scope": "Typing Escape closes after existing Motion; nested consumed Escape retains priority. No course commands, stylesheet/template/card/timing changes."

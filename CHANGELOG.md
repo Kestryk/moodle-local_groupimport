@@ -7,6 +7,9 @@
 - Retain failed baseline and six-route isolated canonical/built-AMD proof;
   add one read-only local-supervised native scenario. Correct three saved
   Penpot documentary rules. Native preview and human acceptance remain open.
+- Served successor: ordered promotion/cache purge and native keyboard test
+  pass six routes. No fixtures/course commands; cleanup verified. Human
+  checklist remains open; continue bounded focus-boundary/navigation audit.
 
 ## 2026-10-08 - Guide G9 paired design continuation
 

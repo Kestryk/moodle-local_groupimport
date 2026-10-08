@@ -47,5 +47,25 @@ one scenario, six width/Motion routes, no fixtures or course writes. Runtime
 wrapper discovery selected exactly one test. Registry classification is handed
 to the Platform planning owner; no competing shared registry edits.
 
-Status: private Kit published; Source integration/build verified. Controlled
-native publication/test pending. Human combined checklist remains open.
+## Served native successor
+
+Ordered managed promotion includes all eight owned documentary predecessors,
+then Source294944dc29261fbb9cb466ada4c711baf7a1ff03. Runtime
+daf9a09f47233d4e2ddfd3e75168d8af27e6e212 is clean; cache purge completed.
+Native run easystud-authenticated-20261008T141046253Z-23524 selects one test
+and passes all six routes. No browser errors, blocked course commands, fixtures
+or business transaction. Credentials cleared, child stopped, lease released.
+External manifested evidence: EasyEdu/artifacts/easystud/authenticated/<runId>.
+No visual media was needed for this functional keyboard gate.
+
+Status: K1 source, saved documentary design, build and served native gate pass.
+Combined human acceptance remains OPEN, as do earlier unfinished lots.
+
+## Next bounded accessibility lot K2
+
+Verify real Tab/Shift+Tab wrap at both focus boundaries, plus Home/End slide
+navigation outside inputs. Keep the already passing typing Escape/Enter routes.
+No presentation/controller changes unless the audit establishes an actual defect.
+Preserve selected native spec until its owned child exits. Full curriculum,
+separate Mass Import Guide and older programme backlog remain separate lots;
+their completion cannot be inferred from keyboard proof or four sample slides.

@@ -45,6 +45,37 @@ test('Guide typing Escape and nested-control keyboard priority', async({page}, i
                 await opener.press('Enter');
                 const modal = page.locator('.easyedu-guide--discovery [data-easyedu-guide-modal]');
                 await expect(modal).toBeVisible();
+                // Actual browser key presses at the live modal boundaries:
+                // markers identify existing controls, never alter tabindex.
+                const boundaries = await modal.evaluate(node => {
+                    const controls = Array.from(node.querySelectorAll([
+                        'a[href]', 'button:not([disabled])', 'input:not([disabled])',
+                        'select:not([disabled])', 'textarea:not([disabled])',
+                        '[tabindex]:not([tabindex="-1"])'
+                    ].join(','))).filter(control => {
+                        const style = getComputedStyle(control), rect = control.getBoundingClientRect();
+                        return !control.closest('[hidden]') && style.display !== 'none' &&
+                            !['hidden', 'collapse'].includes(style.visibility) &&
+                            control.getClientRects().length > 0 && rect.width > 0 && rect.height > 0;
+                    });
+                    if (controls.length < 2) throw new Error('Expected real modal focus boundaries');
+                    controls[0].setAttribute('data-guide-qa-boundary', 'first');
+                    controls.at(-1).setAttribute('data-guide-qa-boundary', 'last');
+                    return controls.length;
+                });
+                const first = modal.locator('[data-guide-qa-boundary="first"]');
+                const last = modal.locator('[data-guide-qa-boundary="last"]');
+                await last.focus(); await last.press('Tab');
+                await expect(first).toBeFocused();
+                await first.press('Shift+Tab');
+                await expect(last).toBeFocused();
+                await modal.locator('[data-guide-qa-boundary]').evaluateAll(nodes =>
+                    nodes.forEach(node => node.removeAttribute('data-guide-qa-boundary')));
+                const close = modal.locator('[data-easyedu-guide-close]').first();
+                await close.focus(); await close.press('End');
+                await expect(modal.locator('[data-easyedu-guide-slide="3"]')).toHaveClass(/is-active/);
+                await close.press('Home');
+                await expect(modal.locator('[data-easyedu-guide-slide="0"]')).toHaveClass(/is-active/);
                 await modal.locator('[data-easyedu-guide-nav-item="1"]').click();
                 const input = modal.locator('[data-guide-pattern]');
                 await input.fill('Equipe #*3');
@@ -65,7 +96,8 @@ test('Guide typing Escape and nested-control keyboard priority', async({page}, i
                 // by a compact drawer closing as Guide opens.
                 await expect(page.locator('[data-easyedu-guide-open]:focus')).toHaveCount(1);
                 records.push({width, motion, typingEscapeCloses: true, nestedEscapePriority: true,
-                    enterPreviewsLocally: true, openerFocusRestored: true});
+                    enterPreviewsLocally: true, openerFocusRestored: true, focusableBoundaries: boundaries,
+                    tabWrapsForward: true, tabWrapsBackward: true, homeEndSlideNavigation: true});
             }
         }
         expect(errors).toEqual([]); expect(blocked).toEqual([]);
