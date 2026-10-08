@@ -6,6 +6,9 @@
   obsolete-tab rejection and capability-guarded constant-cost global reset.
 - Add isolated no-database contract harness and real PHPUnit candidate. No UI,
   endpoint, preference write, admin reset or production activation claimed yet.
+- Synchronize canonical0.4.154 opt-in desktop invitation and actual-open lifecycle
+  notification. Actual built consumer EN/FR normal/reduced tests pass; not enabled
+  in product until authenticated adapter, privacy and admin confirmation land.
 
 ## Unreleased - Guide G10-E active task highlight lifetime (WIP)
 

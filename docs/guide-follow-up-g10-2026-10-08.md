@@ -369,3 +369,16 @@ Not published as component yet, no product/UI activation. Exact IDs and all
 remaining gates in guide-g10-g-welcome-draft-2026-10-08.json. A width getter error
 created only an empty owned host; inspected partial state and finished the same
 host with resize(), no duplicated write or discarded unsaved work.
+
+G10-G successor: Kit0.4.154 opt-in desktop invitation + genuine-open event shared
+primitive implemented, documented and pushed. Actual built consumer EN/FR
+normal/reduced passes480x140, equal action heights, no auto-opening, no seen event
+on dismissal, event on real opening, destroy and1023/390 suppression. Existing
+header/completion/label regressions pass. Foundations draft promoted retaining
+linked nested buttons and a linked Standard copy; saved proof separate. Product
+has no welcome fields/eligibility adapter yet, so no active preference writes.
+
+G10-G saved Foundations gate passes2 roots/14 visible descendants. Standard
+linked instance retains copy/button geometry and painted containment. Raster
+captured separately; product link, server activation, admin reset/privacy/native
+welcome remain pending. No completed Guide lot or human acceptance inferred.

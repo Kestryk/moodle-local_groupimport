@@ -49,3 +49,12 @@ at external `penpot/g10-g-welcome-20261008/foundations-welcome-desktop-draft.png
 No Library publication, Standard/Product link, saved readback or native welcome
 claim yet. The one partial empty host left by a read-only-width API error was
 completed in place with documented `resize()`, not duplicated or discarded.
+
+Successor canonical0.4.154 adds opt-in `welcomeOffer` and actual-open
+`easyedu:guide-opened` notification, no server writes. Translated template fields
+remain absent from product config, so this surface is not active. Isolated
+actual built consumer passes EN/FR normal/reduced-motion480x140 geometry, paired
+action heights, no automatic guide opening, no event on dismiss, event on actual
+opening and responsive suppression1023/390. Header/completion/mobile label
+regressions also pass. Foundations provider and Standard linked successor now
+exist with identical settled paint; saved-server gate still separately pending.

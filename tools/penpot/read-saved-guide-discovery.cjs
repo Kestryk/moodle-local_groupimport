@@ -11,6 +11,7 @@ const recordName = process.argv[5] || 'guide-g9-foundations-publication-2026-10-
 assert.ok(['guide-g9-foundations-publication-2026-10-08.json',
     'guide-g10-c-foundations-2026-10-08.json',
     'guide-g10-e-foundations-2026-10-08.json',
+    'guide-g10-g-welcome-foundations-2026-10-08.json',
     'guide-g9-quiet-foundation-publication-2026-10-08.json'].includes(recordName), 'Exact owned publication record');
 const evidence = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
