@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-08 - Guide G9 paired design continuation
+
+- Propagate invitation, contextual Practice/Organisation copy, stronger live
+  instruction and destination dash layering into the connected Guide project.
+- Add mobile selection/action/destination/confirmation compositions using
+  linked Foundations checkboxes and retained accepted card/dialog controls.
+- Record exact board IDs and inspected exports; complete paired propagation,
+  Foundation publication and human acceptance stay open. No asset/runtime change.
+
 ## 2026-10-08 - Guide G9 review candidate
 
 - Record every new review item in five ordered lots; old backlog/human checklist

@@ -140,3 +140,37 @@ Both successful runs and failed46276 protected by retention dry-run;0 deletion.
 - Then paired Foundation publication under its writer, broader native Motion/
   readability and complete content via G9 content addendum, distinct Mass Import
   Guide and older unfinished EasyStud lots. Global human checklist stays OPEN.
+
+## G9-E design continuation — 2026-10-08
+
+Hosted Penpot is now verified on Guide file
+`b564c72c-f31f-81ec-8008-ad9958b272bd`, page
+`b564c72c-f31f-81ec-8008-ad9958b272be` (`Guide easystud`). Dedicated Guide
+channel remains unused; no browser configuration or other writer was changed.
+
+- Board73 `4ee6f77a-1dfb-809b-8008-c0e8547f6d75`: actual phone invitation
+  reordered with top-left linked route icon, centred copy/steps, full-row Start,
+  quiet Small Reset footer and explicit unfinished-only state contract. Success
+  icon added to completion. Export inspected; a fifth-row overlap found during
+  inspection was corrected and settled textBounds read back inside its pill.
+- Existing Practice board `6208b726-6df8-80e1-8008-bf93bb7f20d5`: contextual
+  native fields/+ explanation, Enter preview instruction and centred Start.
+- Existing Organisation board `74a0e4b4-0497-8084-8008-bf9a1b450db4`: contained
+  Add/Move consequence explanation, semibold explicit mouse drag instruction,
+  destination-edge dash `4ee6f77a-1dfb-809b-8008-c1dc36811383`. Readback confirms
+  dash layer50 below retained drag-preview layer51; export inspected.
+- Actions description wraps at canonical caption size; active instruction
+  semibold. Accepted Overview body and native source assets unchanged.
+- New board74 `4ee6f77a-1dfb-809b-8008-c1da197ecf1d`, x0/y13080/1640x720:
+  four actual mobile-width states, selection/action tray/search/confirmation,
+  preserved membership recap and reading/Motion contract. Existing accepted
+  participant/card/dialog controls reused. Checked instances created through
+  the Foundations provider `e5bf882d-be5b-8059-8008-982e7f285e14`; original
+  child cloning did not retain them, so final provider instances were verified.
+  Internal export inspected;27 text shapes have no outer-board overflow.
+
+This is PARTIAL paired propagation, not completion of G9-E. Remaining: complete
+correlated tablet/phone slides, actual compact native-modal/checklist specimen,
+full icon/paint audit and Foundations publication. Source Kit146 and previously
+served native proofs are unchanged; no new runtime test or course mutation was
+needed for these design-only changes. Human checklist remains OPEN.
