@@ -98,7 +98,9 @@ test('Guide G10 playback pause resume next and departure', async({page}, info) =
                     expect(visibility.cardTop).toBeLessThan(visibility.bottom);
                     expect(visibility.cardBottom).toBeGreaterThan(visibility.top);
                 }
-                await expect(scene).toHaveAttribute('data-guide-scene-finished', 'true');
+                // Natural playback retains word-count reading and reveal clocks;
+                // the default5s assertion deadline only suits skipped phases.
+                await expect(scene).toHaveAttribute('data-guide-scene-finished', 'true', {timeout: 30000});
                 expect(await page.evaluate(() => window.scrollY)).toEqual(backgroundScroll);
             }
             await expect(pause).toBeDisabled(); await expect(next).toBeDisabled();

@@ -244,3 +244,16 @@ the full wrapping message beneath its compact header; Reset consumes existing
 bordered neutral selection-action instead of borderless capsule recovery.
 Actual rendered EN/FR desktop/phone completion and all G10-B header/finish
 checks pass. Native highlights, Penpot publication and human review still open.
+
+Native successor182002627Z-55368 passes desktop card visibility/contained intro,
+then the phone's natural validation reading exceeds Playwright's default5s
+completion assertion. Unlike the former skipped phase, normal playback retains
+word-count reading plus reveal/confirmation clocks. Bound this completion check
+at30s, without changing engine duration. No page errors/blocked writes/fixtures;
+cleanup passed. Preserve failed evidence, require successor.
+
+Operational correction: a combined git/test command was accidentally launched
+from the runtime instead of Source. Git committed nothing (runtime was clean),
+but pushed the unchanged9bf0d41 private preview branch and established upstream.
+No main/prod change or data write. Do not delete/reset this branch automatically.
+Future Git staging/push is explicitly scoped to Source/Kit worktrees only.
