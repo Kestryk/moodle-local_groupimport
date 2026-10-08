@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+G9 paired-design progress is partial until correlated tablet/phone slides and
+native-modal/checklist compositions are inspected. Clone of a nested linked
+checkbox may not persist in its destination: instantiate the canonical provider,
+read back its component identity and inspect paint. Never infer complete design
+publication from an added contract note or outer-board containment alone.
+
 Guide G9 Reset/Cancel proof includes re-entry, reload and late native events;
 immediate empty progress alone is insufficient. Preserve Return-to-Guide state
 and other paths. Mobile Participants Move uses addusers; source-member Move
