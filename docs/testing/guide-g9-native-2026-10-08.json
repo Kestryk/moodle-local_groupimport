@@ -1,0 +1,31 @@
+{
+  "batch": "EED-UI-2026-0073/G9",
+  "sourceAssetCommit": "8becc2d8fc276b831115650114b029e812553f0c",
+  "sourceScenarioCommit": "e4c4f5ffa69d41dd8e1d78c3b4365ed701029632",
+  "kitCommit": "e0727d5c757651fe74d324dc282a903218f82700",
+  "kitVersion": "0.4.146",
+  "runtimeHead": "cb8af5e78caea320969c0c679d8285c4965de0e1",
+  "runId": "easystud-authenticated-20261008T065409477Z-24220",
+  "scenario": "Guide G9 lifecycle and native destination review",
+  "classification": "local-supervised",
+  "status": "passed",
+  "widths": [1280, 768, 390],
+  "nativeProof": [
+    "completed reload suppresses automatic checklist and Resume",
+    "unfinished reload requires explicit Resume",
+    "real participant selection and native Move dialog opening",
+    "native destination choice, checklist hit, earlier-step review and reopen",
+    "Reset persists, same-path re-entry has zero completed steps",
+    "Reset reload never prompts Resume",
+    "Cancel after reload persists and next reload never prompts Resume",
+    "Enter generates three example names and completes its fade",
+    "desktop launcher keeps return focus and resting paint"
+  ],
+  "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true, "fixtureRequested": false},
+  "pageErrors": [],
+  "blockedWrites": [],
+  "businessTransactionConfirmed": false,
+  "penpotPublished": false,
+  "humanVisualValidated": false,
+  "remaining": ["paired Guide/Foundations publication", "focused invitation paint capture", "whole curriculum", "combined human checklist"]
+}

@@ -43,6 +43,34 @@ const root = path.resolve(__dirname, '../..');
             await boot({path: 'practice-membership', slideIndex: 1, activeIndex: 0,
                 completed: {'practice-membership': ids.slice(0, 2), other: ['retained']}});
             await page.locator('[data-easyedu-guide-resume-path]').click();
+            if (await page.locator('[data-easyedu-guide-checklist-restore]').isVisible()) {
+                await page.locator('[data-easyedu-guide-checklist-restore]').click();
+            }
+            await page.evaluate(step => {
+                const root = document.querySelector('[data-easyedu-guide-root]');
+                const checklist = root.querySelector('[data-easyedu-guide-checklist]');
+                checklist.classList.add('is-docked-right');
+                document.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
+                    detail: {path: 'practice-membership', step}
+                }));
+            }, ids[2]);
+            assert.equal(await page.locator('[data-easyedu-guide-checklist]').evaluate(node => node.classList.contains('is-docked-right')), true,
+                'Progress render retains docking instead of hopping back to its default');
+            await page.evaluate(() => {
+                const root = document.querySelector('[data-easyedu-guide-root]');
+                root.easyeduGuideConfig.paths['practice-membership'][2].open = 'fixture:obsolete-review';
+                window.g9Pending = []; window.g9ObsoleteOpens = 0;
+                window.g9RequestListener = event => {
+                    if (event.detail.target === 'tutorial:close-participant-move-dialog') {
+                        event.detail.handled = true;
+                        event.detail.ready = new Promise(resolve => window.g9Pending.push(resolve));
+                    }
+                    if (event.detail.target === 'fixture:obsolete-review') window.g9ObsoleteOpens++;
+                };
+                document.addEventListener('easyedu:guide-open-target', window.g9RequestListener);
+            });
+            await page.locator(`[data-easyedu-guide-step-id="${ids[2]}"]`).click();
+            assert.ok(await page.evaluate(() => window.g9Pending.length > 0), 'Native request is genuinely awaiting completion');
             await page.locator('[data-easyedu-guide-open]').click();
             const reset = page.locator('[data-easyedu-guide-reset-path]');
             await reset.click();
@@ -52,6 +80,16 @@ const root = path.resolve(__dirname, '../..');
             assert.match(await page.locator('[data-easyedu-guide-path-status]').textContent(), /Path reset/);
             await late();
             assert.equal((await state()).path, null, 'Late native milestones cannot reactivate Reset');
+            await page.locator('[data-easyedu-guide-start-path="practice-membership"]').click();
+            await page.evaluate(async() => {
+                window.g9Pending.forEach(resolve => resolve(true));
+                await Promise.resolve(); await Promise.resolve();
+            });
+            assert.equal(await page.evaluate(() => window.g9ObsoleteOpens), 0,
+                'An obsolete native promise cannot open an old step in a freshly restarted path');
+            await page.evaluate(() => document.removeEventListener('easyedu:guide-open-target', window.g9RequestListener));
+            await page.locator('[data-easyedu-guide-open]').click();
+            await reset.click();
             await stop();
             await boot(); // Reinitialization reads the same stored state; no reseeding.
             assert.equal(await page.locator('[data-easyedu-guide-resume]').isVisible(), false);
