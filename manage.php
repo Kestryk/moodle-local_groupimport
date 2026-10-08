@@ -1672,6 +1672,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'guidedPath' => get_string('tutorialguidedpaneltitle', 'local_groupimport'),
             'visited' => get_string('visited', 'local_groupimport'),
             'completeStepFirst' => get_string('guidesteplocked', 'local_groupimport'),
+            'pathReset' => get_string('discovery_path_reset_feedback', 'local_groupimport'),
+            'pathCancelled' => get_string('discovery_path_cancelled_feedback', 'local_groupimport'),
         ],
     ];
 }

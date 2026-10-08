@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-08 - Guide G9 review candidate
+
+- Record every new review item in five ordered lots; old backlog/human checklist
+  remains open. Consume Kit0.4.146 lifecycle, invitation, reading and layering.
+- Practice Enter previews locally; contextual copy identifies native creation
+  fields/+ buttons. Mobile Add explicitly illustrates Participants selection
+  and Move participants, preserving original memberships. No business changes.
+- New isolated lifecycle/geometry and presentation successor scenarios preserve
+  earlier G8/G7 evidence. New native G9 candidate is read-only/open/cancel.
+  Penpot and served validation are not claimed by source or isolated results.
+
 ## 2026-10-07 - Guide G8 focused native checkpoint
 
 - Native54068 passes lifecycle, real compact Move delegate, destination choice,

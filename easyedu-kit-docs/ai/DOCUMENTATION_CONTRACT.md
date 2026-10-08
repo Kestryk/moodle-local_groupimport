@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Guide G9 Reset/Cancel proof includes re-entry, reload and late native events;
+immediate empty progress alone is insufficient. Preserve Return-to-Guide state
+and other paths. Mobile Participants Move uses addusers; source-member Move
+uses movemembers. Illustrations must reflect this distinction without issuing
+transactions. Keep historical timing diagnostics when longer reading copy
+requires a separate presentation successor; do not relax native target oracles.
+
 Guide compact hit-target proof scrolls the actual earlier row into its bounded
 viewport before measuring its centre. Never force-click or confuse off-scroll
 geometry with modal interception. Restore state is a boolean attribute and must

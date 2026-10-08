@@ -37,7 +37,9 @@ final class guide_discovery {
                 'emptymembers', 'sourceempty', 'destinationcaption', 'menutitle', 'removeaction',
                 'membershiptitle', 'recaptitle', 'addselect', 'adddrop', 'compactselect', 'compactmenu',
                 'comparemove', 'examplegroup', 'examplegrouping', 'exampletitle', 'examplebody',
-                'syntaxnumbers', 'syntaxletters', 'syntaxcount', 'destinationname'] as $label) {
+                'syntaxnumbers', 'syntaxletters', 'syntaxcount', 'destinationname',
+                'mobileparticipants', 'mobileaddaction', 'mobileaddconsequence', 'mobileaddselect',
+                'mobileaddmenu', 'mobileaddconfirm', 'mobileaddvalidate'] as $label) {
                 $scene[$label] = get_string('discovery_' . $label, 'local_groupimport');
             }
             $scene['selectioncaption'] = get_string('discovery_selection_' . ($kind === 'actions' ? 'many' : 'one'),
