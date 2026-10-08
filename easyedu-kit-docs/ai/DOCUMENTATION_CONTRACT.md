@@ -1,5 +1,15 @@
 # EasyEdu documentation contract
 
+Correlated Guide layout propagation keeps linked recipes and actual localized
+copy at every size. Longer desktop step labels can increase intrinsic copy/pill
+width without changing font or provider identity. If a board needs more height,
+move it into verified free page space rather than overlapping its neighbour;
+record original board/child geometry and archive states before the move.
+Practice clear remains available beside the result heading, while unused Replay
+is recoverably hidden. Recheck actual textBounds after paint settles: root
+containment alone can miss a multiline description clipped by its own text box.
+Keep historical saved-proof records immutable and add bounded successor records.
+
 Guide product relinking preserves real copy and conditional step states, not
 the generic provider's dummy completed rows. Use ordinary product composition
 hosts for linked state rows; hide old slots without adding structural children

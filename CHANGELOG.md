@@ -2,6 +2,14 @@
 
 ## 2026-10-08 - Guide G9 paired design continuation
 
+- Complete correlated phone/tablet Practice/Organisation/Actions and desktop
+  invitation/reading links: 28 canonical instances total, 165 old shapes retained
+  hidden. Reorganize desktop Practice in free page space; retain clear, hide
+  redundant Replay, fit long step copy without typography exceptions.
+- Inspect five correlated full-board exports; audit 117 Inter texts and saved
+  links/geometry/archives. Keep Overview unchanged, previous proof intact and
+  runtime assets untouched. Other retained Guide controls/content remain open.
+
 - Relink19 Guide instances on boards72/73/75 to canonical Discovery providers;
   preserve actual step copy, locks, active reduced title and phone dialog room.
   100 replaced originals remain hidden/recoverable; accepted Overview unchanged.

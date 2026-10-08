@@ -122,6 +122,16 @@ icon proof, not an audit of every source/legacy/provider glyph.
 
 ## Native proof and remaining content boundary
 
+Tranche2 correlates boards76/78 and desktop Practice/Organisation/Actions with
+the same Foundation recipes (28 product instances total). Successor record:
+docs/testing/guide-g9-product-relinks-tranche2-2026-10-08.json. Its saved gate
+passes393 descendants,165 retained hidden originals,53 relocated Practice
+children and3 intrinsic description fits. Full relevant exports inspected;
+117 Inter texts have contained painted bounds. Desktop Practice moves into
+free page space for the complete invitation, with reversible geometry recorded.
+No Kit provider source, runtime asset or native command changed. Retained
+Guide/return utility controls and full curriculum remain separate open gates.
+
 Native27760 normal Motion passes1280/768/390 for Organisation/Actions, narration
 dwell, active/finished type, sticky edge, overflow and Close cleanup. Native24220
 proves lifecycle/native destination open/search/Cancel;42196 invitation layout.
