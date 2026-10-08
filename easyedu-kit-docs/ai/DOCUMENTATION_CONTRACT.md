@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Welcome native failure before acknowledgement must retain its exact source and
+cleanup. Initialize isolated regression beneath a hidden loading shell and
+reveal naturally. No manufactured eligibility, weakened visibility assertion or
+consumer-only style patch; observers are bounded and cleared on Guide teardown.
+
 G10-C playback uses canonical Kit0.4.149; its saved design proof is not a
 served-preview claim. Preserve the existing scene's reading/WAAPI/scroll owner;
 Pause retains remaining time, Next drains one phase, and departure aborts all

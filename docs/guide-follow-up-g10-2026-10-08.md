@@ -401,3 +401,11 @@ without changing normal inherited custom palettes. Actual reset Mustache EN/FR
 1280/768/390 layout passes paired heights/20px padding/primary paint/long copy.
 Only new owned scope hunk copied; unrelated Kit filter-track-focus class remains
 outside this batch. No native/global-reset or admin Penpot confirmation proof yet.
+
+G10-G native baseline served dc76075/cache purge. Runs202747658Z-53756 and
+203022143Z-55920 fail invitation visibility before preference acknowledgement.
+Eligibility true, no page errors/blocked writes/course mutation; cleanup passes.
+Diagnostic confirms launcher visible after loading. Shared0.4.157 waits for
+the loading shell's real reveal using bounded owned observers, no polling or
+consumer styling. EN/FR normal/reduced delayed-visibility regressions pass.
+Corrected native proof remains pending; H fullscreen and older lots still open.

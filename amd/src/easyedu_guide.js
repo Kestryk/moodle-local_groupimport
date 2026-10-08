@@ -1687,6 +1687,7 @@ const applyActiveSlide = (root, index, config, options = {}) => {
 };
 
 const hideWelcome = root => {
+  root.easyeduGuideWelcomeWaitStop?.();
   const invitation = root.querySelector('[data-easyedu-guide-welcome]');
   if (!invitation || invitation.hidden) { return; }
   invitation.hidden = true;
@@ -1703,7 +1704,30 @@ const offerWelcome = (root, config) => {
   const invitation = root.querySelector('[data-easyedu-guide-welcome]');
   const target = config.welcomeTarget ? document.querySelector(config.welcomeTarget) :
     root.querySelector(SELECTORS.open);
-  if (!invitation || !isVisibleElement(target)) { return; }
+  if (!invitation || !target) { return; }
+  if (!isVisibleElement(target)) {
+    // Consumers may initialize Guide while their loading shell still hides
+    // the launcher. Observe only its ancestry, never the whole document tree.
+    // The wait is bounded and belongs to the Guide teardown lifecycle.
+    if (!root.easyeduGuideWelcomeWaitStop) {
+      const refresh = () => offerWelcome(root, config);
+      const mutation = new MutationObserver(refresh);
+      const resize = new ResizeObserver(refresh);
+      resize.observe(target);
+      for (let node = target; node; node = node.parentElement) {
+        mutation.observe(node, {attributes: true, attributeFilter: ['class', 'hidden', 'style']});
+      }
+      const deadline = setTrackedTimeout(root, () => root.easyeduGuideWelcomeWaitStop?.(), 30000);
+      root.easyeduGuideWelcomeWaitStop = () => {
+        mutation.disconnect();
+        resize.disconnect();
+        clearTrackedTimeout(root, deadline);
+        root.easyeduGuideWelcomeWaitStop = null;
+      };
+    }
+    return;
+  }
+  root.easyeduGuideWelcomeWaitStop?.();
   invitation.hidden = false;
   root.easyeduGuideWelcomeTarget = target;
   updateHighlight(root, target);
@@ -1719,6 +1743,7 @@ const openModal = (root, config) => {
     return;
   }
   const wasOpen = !modal.hidden;
+  root.easyeduGuideWelcomeDismissed = true;
   hideWelcome(root);
 
   const returnFocus = !modal.contains(document.activeElement) ? document.activeElement : null;

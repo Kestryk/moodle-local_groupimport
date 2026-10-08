@@ -1,7 +1,13 @@
 # Guide welcome — server generation candidate
 
-Current successor: source wiring is implemented, not yet promoted/tested in
-Moodle. Historical paragraphs below retain the earlier unconnected state.
+Current successor: source wiring is served at runtime dc76075. Native welcome
+failed in runs202747658Z-53756 and203022143Z-55920 before acknowledgement:
+eligibility true, invitation hidden, no errors/writes. Diagnostic confirms the
+launcher is visible after readiness but the one-shot init had occurred while
+the loading shell hid it. Canonical0.4.157 now observes only launcher ancestry
+attributes/size for at most30s, disconnecting on visibility/open/close/destroy.
+EN/FR normal/reduced built consumer delayed-visibility tests pass. Corrected
+native promotion/proof pending. Historical paragraphs retain earlier states.
 `guide_welcome.php` requires POST, login, course management permission and sesskey;
 it accepts no user id. `amd/src/guide_welcome.js` qualifies the owned root's real
 opening, coalesces pending requests and aborts on teardown. It does not control
