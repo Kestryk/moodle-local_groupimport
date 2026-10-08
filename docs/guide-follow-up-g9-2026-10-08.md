@@ -195,3 +195,11 @@ needed for these design-only changes. Human checklist remains OPEN.
   dwell, sticky edge, scene completion and cleanup at1280/768/390. Business
   writes denied, no fixture. Syntax PASS; actual execution remains pending at
   this source checkpoint. Historical isolated Motion proof remains separate.
+
+Native39352 (scenario904fe8c) failed the new weight oracle: it measured finished
+copy400 as though still active600. Canonical SCSS explicitly returns finished
+copy to regular quiet state. Preserve the immutable predecessor commit and run.
+Successor records active computed weight alongside phase timestamps and checks
+the finished regular state separately; settles two paint frames after actual
+reading-body scroll. No product styles, timeouts or course writes changed.
+Cleanup confirms cleared credentials, released lease, stopped child/no fixture.

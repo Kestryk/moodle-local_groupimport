@@ -49,9 +49,11 @@ test('Guide G9 native responsive narration and scene motion', async({page}, info
                 window.g9NativeObserver = new MutationObserver(entries => {
                     for (const entry of entries) {
                         const scene = entry.target;
+                        const liveCopy = scene.closest('[data-easyedu-guide-slide]').querySelector('[data-guide-live-copy]');
                         window.g9NativePhases.push({scene: scene.dataset.easyeduGuideScene,
                             phase: scene.dataset.guidePhase, at: performance.now(),
-                            copy: scene.closest('[data-easyedu-guide-slide]').querySelector('[data-guide-live-copy]')?.textContent || ''});
+                            copy: liveCopy?.textContent || '',
+                            weight: liveCopy ? getComputedStyle(liveCopy).fontWeight : null});
                     }
                 });
                 root.querySelectorAll('[data-easyedu-guide-scene]').forEach(scene =>
@@ -63,13 +65,14 @@ test('Guide G9 native responsive narration and scene motion', async({page}, info
                 await expect(slide).toBeVisible();
                 await page.waitForFunction(sceneName => document.querySelector(
                     `[data-easyedu-guide-scene="${sceneName}"]`)?.dataset.guideSceneFinished === 'true', name, {timeout: 60000});
-                const result = await slide.evaluate(node => {
+                const result = await slide.evaluate(async node => {
                     const scene = node.querySelector('[data-easyedu-guide-scene]');
                     const rect = el => {const b = el.getBoundingClientRect(); return {x: b.x, y: b.y, w: b.width, h: b.height};};
                     const live = node.querySelector('[data-guide-live]');
                     const copy = node.querySelector('[data-guide-live-copy]');
                     const body = node.closest('.easyedu-guide-modal__body');
                     body.scrollTop = body.scrollHeight;
+                    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
                     return {phase: scene.dataset.guidePhase,
                         finished: scene.dataset.guideSceneFinished,
                         live: rect(live), copy: rect(copy), body: rect(body),
@@ -82,11 +85,13 @@ test('Guide G9 native responsive narration and scene motion', async({page}, info
                 });
                 expect(result.finished).toBe('true');
                 expect(result.overflow).toBe(false);
-                expect(Number(result.weight)).toBeGreaterThanOrEqual(600);
+                // Finished state deliberately returns to quiet regular copy.
+                expect(Number(result.weight)).toBe(400);
                 expect(Math.abs(result.live.y - result.body.y)).toBeLessThan(1);
                 const select = result.phases.find(row => row.phase === 'select');
                 const next = result.phases.find(row => row.phase === 'menu');
                 expect(select).toBeTruthy(); expect(next).toBeTruthy();
+                expect(Number(select.weight)).toBeGreaterThanOrEqual(600);
                 const words = select.copy.trim().split(/\s+/).length;
                 expect(next.at - select.at).toBeGreaterThanOrEqual(Math.max(2400, 900 + words * 60000 / 180));
                 if (width <= 768 && name === 'membership') expect(result.ghostVisible).toBe(false);
