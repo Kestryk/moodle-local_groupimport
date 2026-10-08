@@ -154,6 +154,13 @@ Keep the failed run; correct only native selector scope and add15s action timeou
 so a harness miss does not wait the full4-minute scenario budget. Product timing,
 card Motion and selectors in shipped code unchanged. Native successor required.
 
+Second run `easystud-authenticated-20261008T175604911Z-52080` reached the correct
+Moodle URL and DOMContentLoaded but timed out waiting for full window load during
+login after the new15s global action timeout. Fix login's DOMContentLoaded
+navigation boundary explicitly, apply bounded control timeout after login and
+keep a60s navigation timeout. No rendering assertion reached; do not count this
+as product failure or success. Child/credentials/lease cleanup passed, no fixture.
+
 G10-B native successor passes `easystud-authenticated-20261008T152735563Z-19344`
 against runtime72dbfc5:1280 normal-motion,768/390 reduced-motion. Header16px/700,
 32px compass centered/no overflow, strong green finish/check, full2px border,
