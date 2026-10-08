@@ -1,0 +1,55 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "lot": "G10-B",
+  "kitVersion": "0.4.148",
+  "sourceImplementation": true,
+  "consumerBuild": true,
+  "isolatedBuiltAmd": {
+    "scenario": "scripts/test-guide-g10-chrome.cjs",
+    "languages": ["en", "fr"],
+    "widths": [1280, 768, 390],
+    "headerGeometryMatchesEntityDialog": true,
+    "headingSizePx": 16,
+    "iconSizePx": 32,
+    "finishWeight": 700,
+    "finishColour": "#1b7f5a",
+    "borderPx": 2,
+    "resetHidesCheck": true,
+    "pageErrors": 0,
+    "courseWrites": 0,
+    "authentication": false,
+    "motion": "reduce",
+    "normalMotionKeyboardRoutesPassed": true
+  },
+  "diagnostics": [
+    "Initial fixture omitted Moodle FontAwesome; no painted check without the host icon system.",
+    "Reduced-motion scene may finish before an after-click initial-state assertion; assert initial hidden markup before init instead.",
+    "Fixture omitted EasyStud token wrapper; fixed host setup, not product paint. No token-less header comparison counted as proof.",
+    "Penpot icon root shrink did not scale descendants; actual glyph geometry scaled at two canonical providers then Standard instances reset.",
+    "Cross-page reset refused without mutation; opened the owned Standard page before resetting instances."
+  ],
+  "penpot": {
+    "foundationFile": "40e06342-8830-80d6-8008-96572effc11c",
+    "canonicalReadingProvidersUpdated": 4,
+    "standardReadingInstancesUpdated": 4,
+    "guideReadingInstancesUpdated": 9,
+    "savedFoundationRootsVerified": 38,
+    "savedFoundationDescendantsVerified": 582,
+    "savedReadbackBeforeGlyphCorrection": true,
+    "correctedStandardRasterInspected": true,
+    "guideHeaderCompositionsUpdated": 5,
+    "guideHeaderRemainingAuditOpen": true,
+    "guideReadingSavedRootsVerified": 9,
+    "guideReadingSavedDescendantsVerified": 32,
+    "guideMobileHeaderRasterInspected": true,
+    "guideSavedAndRasterPending": true,
+    "externalRun": "g10-b-reading-20261008"
+  },
+  "servedPreviewVerified": false,
+  "humanVisualValidated": false,
+  "limits": [
+    "No Pause/Play/Skip implementation in this presentation tranche.",
+    "No fullscreen/welcome/admin reset or course mutation.",
+    "Normal-motion final scene and native cascade still require supervised preview tests."
+  ]
+}

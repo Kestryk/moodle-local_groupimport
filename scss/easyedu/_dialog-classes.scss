@@ -66,28 +66,10 @@
     }
   }
   .easyedu-ui .easyedu-entity-dialog__heading {
-    align-items: center;
-    display: flex;
-    gap: 0.75rem;
-    min-inline-size: 0;
-    > div { min-inline-size: 0; }
+    @include modals.dialog-heading;
   }
   .easyedu-ui .easyedu-entity-dialog__icon {
-    align-items: center;
-    background: var(--easyedu-surface);
-    border: 0.0625rem solid var(--easyedu-modal-border);
-    border-radius: 0.5rem;
-    box-shadow: none;
-    box-sizing: border-box;
-    color: var(--easyedu-primary);
-    display: inline-flex;
-    flex: 0 0 2rem;
-    font-size: 1rem;
-    block-size: 2rem;
-    inline-size: 2rem;
-    justify-content: center;
-    line-height: 1;
-    &::before { position: static; transform: none; }
+    @include modals.dialog-heading-icon;
   }
   .easyedu-ui .easyedu-entity-dialog__eyebrow {
     @include typography.type-ui-base;

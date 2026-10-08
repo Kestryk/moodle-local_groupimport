@@ -120,12 +120,14 @@
   .easyedu-guided-panel__step small { @include typography.type-caption; }
 
   .easyedu-guide-modal__title-wrap {
+    @include modals.dialog-heading;
     flex-direction: row;
     text-align: start;
-    gap: 0.625rem;
+    > div { display: block; }
 
     h2 {
       @include typography.type-modal-title;
+      color: var(--easyedu-card-identity-title-color);
       margin: 0;
       text-transform: none;
       text-align: start;
@@ -140,8 +142,6 @@
 
   .easyedu-guide-modal__header {
     @include modals.dialog-header;
-    display: flex;
-    min-height: 0;
   }
 
   .easyedu-guide-modal__close { @include buttons.close-button; }
@@ -251,10 +251,9 @@
   }
 
   .easyedu-guide-modal__hero-icon {
+    @include modals.dialog-heading-icon;
     width: 2rem;
     height: 2rem;
-    font-size: 1.125rem;
-    border-radius: 0.625rem;
   }
 
   .easyedu-guide-nav .easyedu-guide-nav-item {
@@ -430,8 +429,8 @@
       font-weight: var(--easyedu-font-weight-semibold);
       min-height: 3rem;
       padding: 0.75rem 0.875rem;
-      border: 1px solid var(--easyedu-border);
-      border-inline-start: 3px solid var(--easyedu-accent);
+      border: 2px solid var(--easyedu-primary);
+      gap: var(--easyedu-action-icon-gap);
       border-radius: 0.625rem;
       background: var(--easyedu-surface);
       position: sticky;
@@ -445,10 +444,12 @@
         color var(--easyedu-motion-slow) var(--easyedu-motion-ease),
         padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
       &[data-guide-live-state="finished"] {
-        background: var(--easyedu-surface-soft);
-        color: var(--easyedu-text-muted);
-        font-weight: var(--easyedu-font-weight-regular);
+        background: var(--easyedu-accent-soft);
+        border-color: var(--easyedu-accent);
+        color: var(--easyedu-accent);
+        font-weight: var(--easyedu-font-weight-strong);
       }
+      > [data-guide-live-complete] { flex: 0 0 auto; line-height: 1; }
     }
     &__illustrated-checkbox {
       @include forms.selection-checkbox;
