@@ -13,4 +13,7 @@ assert.ok(reset.includes("required_param('confirm', PARAM_BOOL)") && reset.inclu
 assert.ok(privacy.includes('user_preference_provider') && privacy.includes('add_user_preference(') && privacy.includes('export_user_preferences(int $userid)'));
 assert.ok(read('templates/guide_welcome_reset.mustache').includes('method="post"'));
 assert.ok(!/\bstyle=|<style|<script/.test(read('templates/guide_welcome_reset.mustache')));
+const settings=read('settings.php');
+assert.ok(settings.includes('$PAGE->state === moodle_page::STATE_BEFORE_HEADER'));
+assert.ok(settings.includes("$PAGE->url->get_param('section') === 'local_groupimport'"));
 console.log('PASS static welcome POST/login/capability/sesskey/current-user/Privacy wiring; not a native endpoint authorization test');

@@ -216,16 +216,23 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
 if ($hassiteconfig) {
     global $ADMIN, $DB, $PAGE;
 
-    $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
-    $PAGE->requires->js('/local/groupimport/js/easyedu_colour_picker.js', true);
-    $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);
-    $PAGE->requires->js_call_amd('local_groupimport/admin_choices', 'init', [[
-        'search' => get_string('searchfilteroptions', 'local_groupimport'),
-        'empty' => get_string('nofilteroptions', 'local_groupimport'),
-        'none' => get_string('none'),
-        'count' => get_string('filterselectioncount', 'local_groupimport', '__count__'),
-        'clear' => get_string('clearfilterselection', 'local_groupimport'),
-    ], get_config('local_groupimport', 'enableanimations') !== '0']);
+    // Moodle also loads this file while building navigation on other admin
+    // pages, sometimes during header rendering. Register the settings tree
+    // everywhere, but initialize its presentation only on its own early page.
+    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER &&
+            $PAGE->url->compare(new moodle_url('/admin/settings.php'), URL_MATCH_BASE) &&
+            $PAGE->url->get_param('section') === 'local_groupimport') {
+        $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
+        $PAGE->requires->js('/local/groupimport/js/easyedu_colour_picker.js', true);
+        $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);
+        $PAGE->requires->js_call_amd('local_groupimport/admin_choices', 'init', [[
+            'search' => get_string('searchfilteroptions', 'local_groupimport'),
+            'empty' => get_string('nofilteroptions', 'local_groupimport'),
+            'none' => get_string('none'),
+            'count' => get_string('filterselectioncount', 'local_groupimport', '__count__'),
+            'clear' => get_string('clearfilterselection', 'local_groupimport'),
+        ], get_config('local_groupimport', 'enableanimations') !== '0']);
+    }
 
     $settings = new admin_settingpage(
         'local_groupimport',
