@@ -1202,6 +1202,8 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
     live.removeAttribute('data-guide-live-state');
+    const completionIcon = live.querySelector('[data-guide-live-complete]');
+    if (completionIcon) { completionIcon.hidden = true; }
   }
   delete scene.dataset.guidePhase;
   const recap = scene.querySelector('[data-guide-recap]');
@@ -1245,6 +1247,8 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     if (controller.signal.aborted) { return; }
     liveCopy.textContent = text;
     live.dataset.guideLiveState = state;
+    const completionIcon = live.querySelector('[data-guide-live-complete]');
+    if (completionIcon) { completionIcon.hidden = state !== 'finished'; }
     await animate(liveCopy, [{opacity: 0, transform: 'translateY(.15rem)'},
       {opacity: 1, transform: 'translateY(0)'}], 260, false);
   };

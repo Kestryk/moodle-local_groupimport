@@ -13039,9 +13039,20 @@
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  min-inline-size: 0;
   flex-direction: row;
   text-align: start;
-  gap: 0.625rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap > div,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap > div {
+  min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap > div,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap > div {
+  display: block;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap h2,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap h2 {
@@ -13052,6 +13063,7 @@
   font-size: var(--easyedu-font-size-modal-title);
   font-weight: var(--easyedu-font-weight-strong);
   line-height: var(--easyedu-line-height-title);
+  color: var(--easyedu-card-identity-title-color);
   margin: 0;
   text-transform: none;
   text-align: start;
@@ -13078,8 +13090,6 @@
   justify-content: space-between;
   min-block-size: 4rem;
   padding: 0.75rem 1.25rem;
-  display: flex;
-  min-height: 0;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__close,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__close {
@@ -13617,10 +13627,27 @@
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__hero-icon,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__hero-icon {
+  align-items: center;
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid var(--easyedu-modal-border);
+  border-radius: 0.5rem;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 2rem;
+  font-size: 1rem;
+  block-size: 2rem;
+  inline-size: 2rem;
+  justify-content: center;
+  line-height: 1;
   width: 2rem;
   height: 2rem;
-  font-size: 1.125rem;
-  border-radius: 0.625rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__hero-icon::before,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__hero-icon::before {
+  position: static;
+  transform: none;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item {
@@ -14638,8 +14665,8 @@
   font-weight: var(--easyedu-font-weight-semibold);
   min-height: 3rem;
   padding: 0.75rem 0.875rem;
-  border: 1px solid var(--easyedu-border);
-  border-inline-start: 3px solid var(--easyedu-accent);
+  border: 2px solid var(--easyedu-primary);
+  gap: var(--easyedu-action-icon-gap);
   border-radius: 0.625rem;
   background: var(--easyedu-surface);
   position: sticky;
@@ -14650,9 +14677,15 @@
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live[data-guide-live-state=finished],
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live[data-guide-live-state=finished] {
-  background: var(--easyedu-surface-soft);
-  color: var(--easyedu-text-muted);
-  font-weight: var(--easyedu-font-weight-regular);
+  background: var(--easyedu-accent-soft);
+  border-color: var(--easyedu-accent);
+  color: var(--easyedu-accent);
+  font-weight: var(--easyedu-font-weight-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live > [data-guide-live-complete],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live > [data-guide-live-complete] {
+  flex: 0 0 auto;
+  line-height: 1;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__illustrated-checkbox,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__illustrated-checkbox {

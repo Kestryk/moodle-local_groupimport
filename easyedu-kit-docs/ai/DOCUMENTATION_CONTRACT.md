@@ -799,3 +799,11 @@ dimensions therefore belong on the shared dialog, not just its root. Assert
 phone height/reading edge after resize and single recap numbering. Source
 alignment, scene animation and native preview proof remain separate from
 Foundations publication and the pending combined human checklist.
+
+Guide headers consume shared dialog-heading/icon primitives, not local paint
+copies. Include these canonical modules in the sync gate. A rendering fixture
+must include actual host tokens and Moodle icon fonts; token-less equality is
+not a style proof. Completion check must disappear on reset. Linked icon root
+resizing does not necessarily scale glyph descendants: inspect containment and
+raster before propagating a provider update. G10-B source/isolated proof is
+not native preview, finished Penpot propagation or human validation.

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-08 - Guide G10-B presentation checkpoint
+
+- Consume canonical shared entity heading/icon recipes and Guide narration
+  border/strong semantic completion/check. Extend canonical sync to dialogs;
+  build AMD/CSS without private consumer styles or scene Motion changes.
+- EN/FR six-width header/finish/reset checks and six keyboard regressions pass
+  in isolated browser; record fixture diagnostics. Foundations Reading and
+  nine linked Guide instances updated; headers/final saved proof/native preview
+  and human acceptance remain open in the G10 ledger.
+
 ## 2026-10-08 - Guide G10 review intake and content handoff
 
 - Preserve all new user review defects and requests as ordered Guide-only lots:

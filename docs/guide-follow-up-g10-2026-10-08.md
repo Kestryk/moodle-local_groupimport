@@ -45,3 +45,41 @@ K1/K2 passent leurs six routes clavier ; le retour utilisateur rouvre les
 problèmes de présentation/surbrillance ci-dessus. Aucun nouveau contrôle,
 accueil serveur, reset global ou plein écran n'est encore implémenté dans G10.
 Les anciens SM/G5 et le guide Mass Import distinct restent enregistrés.
+
+## G10-B — implementation checkpoint (8 October)
+
+Canonical Kit0.4.148 extracts the existing entity heading/icon recipes, without
+changing emitted native dialog declarations. Guide consumes those recipes and
+the shared modal title identity colour. Narration gets a complete primary
+border and a strong accent finish/check; reset hides the check. The Source
+sync helper now includes canonical dialog primitives/classes, avoiding private
+consumer copies. Sass1.79.1 and AMD builds pass; generated CSS differences are
+restricted to Guide selectors. No scene timing/card Motion was changed.
+
+Actual Moodle Mustache + built AMD + Moodle FontAwesome isolated test passes
+EN/FR at1280/768/390, with matching entity header geometry and reset/completion
+paint. Six keyboard normal/reduced regressions and canonical sync pass.
+The failed fixture setups are recorded, not treated as product regressions.
+
+Four canonical Reading providers and four linked Standard specimens updated
+in Foundations, plus nine linked Guide instances with original copy/host bounds
+retained. Initial raster exposed a clipped icon; actual descendants corrected
+at providers before Standard propagation. Corrected Standard raster inspected.
+Guide headers, final saved/raster proof, managed preview and human acceptance
+remain OPEN. Exact bounded evidence:
+`docs/testing/guide-g10-b-presentation-2026-10-08.json`.
+
+Successor: five ordinary Guide header compositions updated with linked close/
+compass retained; mobile title uses modal role rather than uppercase eyebrow.
+The API rejected documented `textTransform=null`; accepted `none` restores
+normal casing. Mobile raster inspected after that correction. Nine Reading
+links have saved containment/link/host-bounds proof (32 descendants). Historical
+G9 full-product reader now fails its pinned Practice-header coordinates, which
+were intentionally revised; keep that record unchanged, use G10 Reading-only
+successor, and retain broader header saved/coverage audit as open.
+Candidate native scenario: `tools/playwright/guide-g10-chrome.spec.js`; must
+run through saved-credential/lease wrapper after ordered promotion.
+
+Next: finish G10-B Penpot/header and native presentation gates, then G10-C
+shared phase clock/controls. G10-D..H, returned content, older lots and the
+combined human checklist remain open; no global acceptance inferred.
