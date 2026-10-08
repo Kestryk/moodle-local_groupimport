@@ -12,7 +12,8 @@
       "isolatedCanonicalVerified": true,
       "isolatedBuiltAmdVerified": true,
       "savedPenpotRulesVerified": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261008T141046253Z-23524",
       "humanVisualValidated": false
     },
     "guideG9Review20261008": {
