@@ -100,6 +100,12 @@
   .easyedu-ui .easyedu-dialog-actions {
     @include foundations.foundation-dialog-actions;
   }
+  // Opt-in complete body lane, not a change to legacy entity field layouts.
+  .easyedu-ui .easyedu-dialog-body {
+    padding: 1.25rem;
+    min-inline-size: 0;
+    margin: 0;
+  }
   // A Copy/Move choice is neutral. Destructive paint is an explicit modifier,
   // never inferred from the reusable confirmation dimensions or a data hook.
   .easyedu-ui .easyedu-confirmation-dialog {

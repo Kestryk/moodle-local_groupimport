@@ -321,6 +321,13 @@ if ($hassiteconfig) {
         'local-groupimport-admin-settings local-groupimport-admin-settings--features',
         ['data-local-groupimport-admin-features' => '1']
     );
+    $featureshtml .= html_writer::div(
+        html_writer::link(new moodle_url('/local/groupimport/reset_guide_welcome.php'),
+            get_string('guidewelcomereset', 'local_groupimport'), ['class' => 'easyedu-button--secondary']) .
+        html_writer::tag('p', get_string('guidewelcomeresethelp', 'local_groupimport'),
+            ['class' => 'easyedu-caption easyedu-form-note']),
+        'easyedu-ui'
+    );
 
     $appearancehtml = html_writer::div(
         html_writer::div(

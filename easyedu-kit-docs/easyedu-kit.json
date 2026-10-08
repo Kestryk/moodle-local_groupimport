@@ -8,7 +8,12 @@
       "kitVersion": "0.4.154",
       "kitCommit": "bc7c929a43fa0b2c45cb03c8880bb4cfb3d1a551",
       "isolatedBuiltConsumerVerified": true,
-      "enabledInProduct": false,
+      "enabledInProduct": true,
+      "sharedDialogBodyKitVersion": "0.4.155",
+      "sharedDialogBodyKitCommit": "182a9763402351346708033ba614897ea74626a2",
+      "standaloneTokenScopeKitVersion": "0.4.156",
+      "standaloneTokenScopeKitCommit": "8222da4f87d4f25df7032804c6b5fcdf1137603e",
+      "productSavedVerified": true,
       "nativePreviewVerified": false,
       "humanVisualValidated": false
     },

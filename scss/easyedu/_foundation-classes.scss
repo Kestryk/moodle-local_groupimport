@@ -8,6 +8,7 @@
 @use "components/forms";
 @use "components/cards";
 @use "components/color-panel";
+@use "tokens";
 
 @mixin foundation-button($secondary: false, $density: regular, $matched-size: false, $danger: false) {
   @if $secondary and $danger {
@@ -148,6 +149,9 @@
 
 @mixin foundation-classes {
   .easyedu-ui { @include foundation-scope; }
+  // Standalone pages have no workspace parent providing semantic defaults.
+  // Explicit opt-in avoids overwriting a product's inherited custom palette.
+  .easyedu-ui--standalone { @include tokens.token-defaults; }
   .easyedu-ui[data-easyedu-custom-rails~="primary"] {
     @include panels.custom-semantic-rail(primary);
   }

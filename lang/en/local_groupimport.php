@@ -24,6 +24,16 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['guidewelcometitle'] = 'Discover the EasyStud guide';
+$string['guidewelcomecopy'] = 'Discover the cards and actions in an interactive guide. Open it when you are ready.';
+$string['guidewelcomeopen'] = 'Open guide';
+$string['guidewelcomedismiss'] = 'Later';
+$string['guidewelcomereset'] = 'Reset guide welcome';
+$string['guidewelcomeresethelp'] = 'Offer the desktop guide welcome again to all users. You will confirm before anything changes.';
+$string['guidewelcomeresetconfirm'] = 'Offer the desktop guide welcome again to all users on their next visit? Existing guided path progress and course data will not change.';
+$string['guidewelcomeresetdone'] = 'The guide welcome will be offered again on the next desktop visit.';
+$string['privacy:metadata:guidewelcomeseen'] = 'The welcome generation for which this user actually opened the EasyStud guide. It prevents repeating the first-visit invitation.';
+
 $string['addemails'] = 'Add users';
 $string['addemailstogroup'] = 'Add students by identifier';
 $string['addgroups'] = 'Add groups';

@@ -382,3 +382,22 @@ G10-G saved Foundations gate passes2 roots/14 visible descendants. Standard
 linked instance retains copy/button geometry and painted containment. Raster
 captured separately; product link, server activation, admin reset/privacy/native
 welcome remain pending. No completed Guide lot or human acceptance inferred.
+
+G10-G source successor now wires desktop invitation eligibility, separate actual-
+open Moodle adapter, POST/course capability/sesskey current-user acknowledgement,
+stale generation rejection, and explicit admin confirmation/POST reset. Privacy
+metadata/export added before activation. All paint remains in canonical Kit,
+including opt-in dialog body lane0.4.155. Isolated built adapter/state/static
+security and PHP lint pass. Native test candidate allows only own QA preference
+acknowledgement; no global reset/course mutation. Native execution pending.
+Guide first-visit Foundation instance added on a separate79 host after existing
+boards, preserving nested providers/paint. Saved product/raster proof separate.
+Admin Penpot confirmation composition, H fullscreen and all older gates remain
+OPEN; this source wiring does not close the combined checklist.
+
+G10-G Guide instance saved/raster gates pass1 root/7 visible descendants. Shared
+standalone token scope0.4.156 explicitly supplies defaults on the reset page
+without changing normal inherited custom palettes. Actual reset Mustache EN/FR
+1280/768/390 layout passes paired heights/20px padding/primary paint/long copy.
+Only new owned scope hunk copied; unrelated Kit filter-track-focus class remains
+outside this batch. No native/global-reset or admin Penpot confirmation proof yet.

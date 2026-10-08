@@ -23484,6 +23484,271 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   font-synthesis: none;
 }
 
+.easyedu-ui--standalone {
+  --easyedu-empty-border: #cdddea;
+  --easyedu-file-deposit-drag-over-surface: #edf6fc;
+  --easyedu-file-deposit-danger-surface: #fff4f2;
+  --easyedu-file-deposit-danger-border: #d96b63;
+  --easyedu-file-deposit-danger-title: #9b2c24;
+  --easyedu-page-header-gap: 1.125rem;
+  --easyedu-gap: 1rem;
+  --easyedu-navigation-following-gap: 2.5rem;
+  --easyedu-navigation-panel-width: 88vw;
+  --easyedu-navigation-panel-max-width: 22rem;
+  --easyedu-navigation-item-indent: 0.8rem;
+  --easyedu-navigation-trigger-inline-start: 0.75rem;
+  --easyedu-navigation-trigger-gap: 0.5rem;
+  --easyedu-navigation-trigger-fallback-top: 0.75rem;
+  --easyedu-navigation-trigger-safe-edge: 0.75rem;
+  --easyedu-navigation-layer-trigger: 1064;
+  --easyedu-navigation-layer-backdrop: 1065;
+  --easyedu-navigation-layer-panel: 1066;
+  --easyedu-modal-layer: calc(var(--easyedu-navigation-layer-panel) + 4);
+  --easyedu-navigation-drawer-surface: var(--easyedu-surface);
+  --easyedu-navigation-drawer-border: var(--easyedu-border);
+  --easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);
+  --easyedu-navigation-guide-surface: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--easyedu-primary) 10%, var(--easyedu-surface) 90%) 0%,
+    color-mix(in srgb, var(--easyedu-accent) 14%, var(--easyedu-surface) 86%) 100%
+  );
+  --easyedu-navigation-guide-border: color-mix(in srgb, var(--easyedu-accent) 28%, var(--easyedu-card-border) 72%);
+  --easyedu-navigation-guide-shadow: 0 0.4rem 1rem rgba(22, 45, 68, 0.12);
+  --easyedu-radius: 0.75rem;
+  --easyedu-radius-sm: 0.5rem;
+  --easyedu-radius-lg: 1rem;
+  --easyedu-border: #d7dfe8;
+  --easyedu-border-strong: #b9c6d4;
+  --easyedu-focus-ring: rgba(15, 108, 191, 0.22);
+  --easyedu-focus-ring-accent: rgba(27, 127, 90, 0.22);
+  --easyedu-focus-ring-danger: rgba(161, 43, 43, 0.22);
+  --easyedu-focus-ring-warning: rgba(154, 101, 15, 0.22);
+  --easyedu-focus-ring-width: 0.18rem;
+  --easyedu-focus-outline-width: 0.125rem;
+  --easyedu-focus-outline-offset: 0.125rem;
+  --easyedu-shadow: 0 0.45rem 1.25rem rgba(31, 42, 55, 0.08);
+  --easyedu-shadow-soft: 0 0.25rem 0.8rem rgba(31, 42, 55, 0.05);
+  --easyedu-shadow-strong: 0 0.9rem 2.2rem rgba(31, 42, 55, 0.16);
+  --easyedu-text: #1f2a37;
+  --easyedu-text-muted: #5c6c7d;
+  --easyedu-workspace-title-color: #0f2f44;
+  --easyedu-workspace-description-color: #49657a;
+  --easyedu-workspace-panel-title-color: #12364d;
+  --easyedu-workspace-title-size: var(--easyedu-font-size-page-title);
+  --easyedu-workspace-title-size-narrow: var(--easyedu-font-size-page-title);
+  --easyedu-workspace-panel-title-size: 1.25rem;
+  --easyedu-workspace-view-label-size: 0.75rem;
+  --easyedu-create-hover-surface: #0d5ca2;
+  --easyedu-create-hover-border: #0c5699;
+  --easyedu-card-identity-title-color: #264861;
+  --easyedu-card-identity-title-size: 0.875rem;
+  --easyedu-related-person-name-color: #49657a;
+  --easyedu-related-person-name-size: 0.8125rem;
+  --easyedu-surface: #fff;
+  --easyedu-surface-soft: #f7f9fc;
+  --easyedu-surface-strong: #edf3f8;
+  --easyedu-information-surface: linear-gradient(180deg, #f7fbff, #eef6fc);
+  --easyedu-metadata-border: #bcd9ff;
+  --easyedu-metadata-text: #1263ae;
+  --easyedu-secondary-text: #0b5ea8;
+  --easyedu-filter-toggle-text: #17324d;
+  --easyedu-filter-toggle-track: #d7e3ed;
+  --easyedu-filter-toggle-active: var(--easyedu-primary);
+  --easyedu-deposit-surface: #fbfdff;
+  --easyedu-deposit-border: #c8d6e3;
+  --easyedu-deposit-icon-surface: #eaf4fb;
+  --easyedu-deposit-icon-border: #c7dded;
+  --easyedu-deposit-title: #163b59;
+  --easyedu-deposit-text: #607487;
+  --easyedu-requirements-surface: #f3f8fc;
+  --easyedu-requirements-border: #d4e2ed;
+  --easyedu-requirements-title: #264861;
+  --easyedu-font-family-ui: inherit;
+  --easyedu-font-size-page-title: 1.25rem;
+  --easyedu-font-size-modal-title: 1rem;
+  --easyedu-font-size-panel-title: 1.08rem;
+  --easyedu-font-size-section-title: 1rem;
+  --easyedu-admin-section-gap: 2.5rem;
+  --easyedu-admin-section-gap-narrow: 2rem;
+  --easyedu-font-size-card-title: 0.98rem;
+  --easyedu-font-size-control: 0.88rem;
+  --easyedu-font-size-body: 0.9rem;
+  --easyedu-font-size-caption: 0.76rem;
+  --easyedu-font-size-eyebrow: 0.68rem;
+  --easyedu-font-weight-regular: 400;
+  --easyedu-font-weight-medium: 500;
+  --easyedu-font-weight-semibold: 600;
+  --easyedu-font-weight-strong: 700;
+  --easyedu-line-height-title: 1.25;
+  --easyedu-line-height-body: 1.45;
+  --easyedu-primary: #0f6cbf;
+  --easyedu-primary-soft: #eaf3fb;
+  --easyedu-primary-strong: #0b4f8a;
+  --easyedu-accent: #1b7f5a;
+  --easyedu-accent-soft: #eef8f2;
+  --easyedu-warning-soft: #fff4df;
+  --easyedu-notice-warning-surface: #fff6d8;
+  --easyedu-notice-warning-border: #d8b84c;
+  --easyedu-notice-warning-ink: #725b00;
+  --easyedu-danger-soft: #fdecec;
+  --easyedu-danger: #a12b2b;
+  --easyedu-success: #1f7a4d;
+  --easyedu-success-soft: #e9f7ef;
+  --easyedu-warning: #9a650f;
+  --easyedu-info: #0f6cbf;
+  --easyedu-info-soft: #eaf3fb;
+  --easyedu-card-border: #d9e2ec;
+  --easyedu-card-radius: 0.9rem;
+  --easyedu-card-shadow: 0 0.2rem 0.55rem rgba(31, 42, 55, 0.04);
+  --easyedu-count-bg: #f6f8fa;
+  --easyedu-count-border: #d8e0e8;
+  --easyedu-count-text: #6d7f91;
+  --easyedu-control-height: 2.35rem;
+  --easyedu-touch-target-min: 2.75rem;
+  --easyedu-control-radius: 0.72rem;
+  --easyedu-control-border: #c8d6e3;
+  --easyedu-control-focus-border: #8abce3;
+  --easyedu-field-text: #1e3448;
+  --easyedu-field-hover-border: #77a7d3;
+  --easyedu-field-disabled-surface: #f0f4f8;
+  --easyedu-field-disabled-text: #9aa9b8;
+  --easyedu-field-error-border: #b3261e;
+  --easyedu-field-error-text: #8e1b15;
+  --easyedu-action-icon-gap: 0.65rem;
+  --easyedu-section-icon-size: 2.55rem;
+  --easyedu-section-icon-size-compact: 2.2rem;
+  --easyedu-section-icon-radius: 0.75rem;
+  --easyedu-dropdown-border: #cbdcea;
+  --easyedu-dropdown-radius: 0.78rem;
+  --easyedu-dropdown-shadow: 0 0.85rem 1.8rem rgba(31, 42, 55, 0.16);
+  --easyedu-empty-bg-start: #fbfdff;
+  --easyedu-empty-bg-end: #f6f9fc;
+  --easyedu-empty-border: #cdddea;
+  --easyedu-loading-surface: #e8eff5;
+  --easyedu-loading-surface-soft: #f3f6fa;
+  --easyedu-loading-surface-strong: #dbe7f0;
+  --easyedu-loading-frame-surface: #fbfcfe;
+  --easyedu-loading-highlight: #f6f9fc;
+  --easyedu-loading-border: #dee7ef;
+  --easyedu-loading-shimmer-soft: rgba(255, 255, 255, 0.2);
+  --easyedu-loading-shimmer-highlight: rgba(255, 255, 255, 0.6);
+  --easyedu-loading-radius: 0.72rem;
+  --easyedu-loading-stack-gap: 0.9rem;
+  --easyedu-loading-shimmer-duration: 3.2s;
+  --easyedu-loading-appearance-duration: 320ms;
+  --easyedu-loading-reveal-duration: 180ms;
+  --easyedu-loading-section-accent: var(--easyedu-primary);
+  --easyedu-loading-section-rail-accent: #aacbe5;
+  --easyedu-loading-success-rail-accent: #b4d3bf;
+  --easyedu-loading-section-border-width: 0.125rem;
+  --easyedu-loading-section-surface: var(--easyedu-loading-frame-surface);
+  --easyedu-loading-section-border: var(--easyedu-loading-border);
+  --easyedu-loading-section-radius: var(--easyedu-loading-radius);
+  --easyedu-loading-section-stack-gap: var(--easyedu-loading-stack-gap);
+  --easyedu-loading-section-icon-slot-size: 1.5rem;
+  --easyedu-loading-section-heading-gap: var(--easyedu-action-icon-gap);
+  --easyedu-loading-section-navigation-gap: 1rem;
+  --easyedu-loading-section-compact-icon-slot-size: 1.25rem;
+  --easyedu-loading-section-compact-heading-gap: 0.5rem;
+  --easyedu-loading-section-compact-navigation-gap: 0.75rem;
+  --easyedu-loading-container-accent: var(--easyedu-loading-section-rail-accent);
+  --easyedu-loading-container-border-width: var(--easyedu-loading-section-border-width);
+  --easyedu-loading-container-surface: var(--easyedu-loading-section-surface);
+  --easyedu-loading-container-border: var(--easyedu-loading-section-border);
+  --easyedu-loading-container-radius: var(--easyedu-loading-section-radius);
+  --easyedu-navigation-skeleton-compact-min-block-size: 4rem;
+  --easyedu-navigation-skeleton-compact-padding: 0.65rem;
+  --easyedu-navigation-skeleton-compact-guide-cue-size: 2.5rem;
+  --easyedu-navigation-skeleton-compact-guide-cue-gap: 0.65rem;
+  --easyedu-navigation-skeleton-compact-cue-gap: 0.5rem;
+  --easyedu-navigation-skeleton-compact-line-inline-size: min(18rem, 72%);
+  --easyedu-navigation-skeleton-compact-cue-min-block-size: 1.75rem;
+  --easyedu-navigation-skeleton-compact-mobile-min-block-size: 3.5rem;
+  --easyedu-navigation-skeleton-compact-mobile-padding: 0.5rem;
+  --easyedu-navigation-skeleton-compact-mobile-guide-cue-size: 2.25rem;
+  --easyedu-navigation-skeleton-compact-mobile-guide-cue-gap: 0.5rem;
+  --easyedu-navigation-skeleton-compact-mobile-cue-min-block-size: 1.5rem;
+  --easyedu-filter-border: #dce7f1;
+  --easyedu-modal-border: #cfe0ef;
+  --easyedu-modal-radius: 1rem;
+  --easyedu-modal-shadow: 0 1.15rem 3.2rem rgba(22, 45, 68, 0.24);
+  --easyedu-modal-header-bg: linear-gradient(135deg, #f8fbff 0%, #eef7f1 100%);
+  --easyedu-modal-body-bg: linear-gradient(180deg, #fff 0%, #f8fbfd 100%);
+  --easyedu-modal-footer-bg: #f8fbfd;
+  --easyedu-modal-primary-accent: #4873ad;
+  --easyedu-modal-success-accent: #1b7f5a;
+  --easyedu-modal-warning-accent: #9a650f;
+  --easyedu-modal-danger-accent: #a12b2b;
+  --easyedu-modal-header-primary-bg:
+    radial-gradient(circle at 4.5rem 1.6rem, rgba(72, 115, 173, 0.13), transparent 8rem),
+    linear-gradient(135deg, #f8fbff 0%, #eef5fb 100%);
+  --easyedu-modal-header-success-bg:
+    radial-gradient(circle at 4.5rem 1.6rem, rgba(27, 127, 90, 0.12), transparent 8rem),
+    linear-gradient(135deg, #f8fbff 0%, #eef7f1 100%);
+  --easyedu-modal-header-warning-bg:
+    radial-gradient(circle at 4.5rem 1.6rem, rgba(154, 101, 15, 0.12), transparent 8rem),
+    linear-gradient(135deg, #fffdf8 0%, #fff7e8 100%);
+  --easyedu-modal-header-danger-bg:
+    radial-gradient(circle at 4.5rem 1.6rem, rgba(161, 43, 43, 0.11), transparent 8rem),
+    linear-gradient(135deg, #fffaf8 0%, #fff1ef 100%);
+  --easyedu-modal-field-bg: rgba(255, 255, 255, 0.86);
+  --easyedu-modal-field-border: #d9e7f1;
+  --easyedu-guide-modal-width: 72rem;
+  --easyedu-guide-modal-height: min(90vh, 46rem);
+  --easyedu-guide-modal-max-height: calc(100vh - 2rem);
+  --easyedu-guide-modal-min-height: min(42rem, calc(100vh - 2rem));
+  --easyedu-tooltip-bg: #f8fbfd;
+  --easyedu-tooltip-border: #cfe0ec;
+  --easyedu-tooltip-glow: rgba(12, 113, 194, 0.1);
+  --easyedu-tooltip-shadow:
+    0 0.65rem 1.45rem rgba(31, 68, 104, 0.15),
+    0 0.08rem 0.2rem rgba(31, 42, 55, 0.06);
+  --easyedu-tooltip-text: #31485f;
+  --easyedu-table-header-bg: #f5f9fc;
+  --easyedu-table-row-border: #e1e9f1;
+  --easyedu-table-row-hover: #f9fcff;
+  --easyedu-table-success-bg: #f0f9f4;
+  --easyedu-table-warning-bg: #fff8e9;
+  --easyedu-table-error-bg: #fff1f1;
+  --easyedu-semantic-panel-bg: linear-gradient(180deg, #fff 0%, #fbfcfe 100%);
+  --easyedu-semantic-border-primary: #cddbed;
+  --easyedu-semantic-border-success: #d8e6dd;
+  --easyedu-semantic-border-warning: #eadbbd;
+  --easyedu-semantic-border-danger: #ebcccc;
+  --easyedu-semantic-rail-primary: linear-gradient(90deg, #0f6cbf 0%, #5b9bd8 100%);
+  --easyedu-semantic-rail-success: linear-gradient(90deg, #1b7f5a 0%, #65a97f 100%);
+  --easyedu-semantic-rail-warning: linear-gradient(90deg, #9a650f 0%, #d2a34d 100%);
+  --easyedu-semantic-rail-danger: linear-gradient(90deg, #a12b2b 0%, #d86a62 100%);
+  --easyedu-overlay-bg: rgba(255, 255, 255, 0.82);
+  --easyedu-overlay-plus-bg: var(--easyedu-accent);
+  --easyedu-overlay-plus-color: #fff;
+  --easyedu-image-preview-bg: #f7fbff;
+  --easyedu-image-preview-border: #d5e5f1;
+  --easyedu-motion-fast: 100ms;
+  --easyedu-motion-normal: 160ms;
+  --easyedu-motion-slow: 220ms;
+  --easyedu-motion-layout: 560ms;
+  --easyedu-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --easyedu-motion-disclosure-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --easyedu-participant: #4873ad;
+  --easyedu-participant-soft: #e6eef7;
+  --easyedu-participant-rail: #79acd6;
+  --easyedu-group: #29724d;
+  --easyedu-group-soft: #eaf6ef;
+  --easyedu-group-rail: #74b892;
+  --easyedu-grouping: #6a7f98;
+  --easyedu-grouping-soft: #edf2f7;
+  --easyedu-grouping-rail: #8aa5ba;
+  --easyedu-identity-border-width: 1.28rem;
+  --easyedu-grouping-open-border-width: var(--easyedu-identity-border-width);
+  --easyedu-identity-icon-color: #fff;
+  --easyedu-identity-size: 0.78rem;
+  --easyedu-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 8.2a3.45 3.45 0 1 0 0-6.9 3.45 3.45 0 0 0 0 6.9Zm0 1.45c-3.28 0-5.72 1.72-6.22 4.36-.08.42.25.79.68.79h11.08c.43 0 .76-.37.68-.79-.5-2.64-2.94-4.36-6.22-4.36Z'/%3E%3C/svg%3E");
+  --easyedu-icon-group: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6.2 7.35a2.85 2.85 0 1 0 0-5.7 2.85 2.85 0 0 0 0 5.7Zm5.25.55a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5ZM6.2 8.65c-2.9 0-5.05 1.65-5.48 4.05-.08.45.27.85.73.85h9.5c.46 0 .81-.4.73-.85-.43-2.4-2.58-4.05-5.48-4.05Zm5.25.55c-.42 0-.82.04-1.2.13 1.15.77 1.96 1.86 2.25 3.2h2.04c.47 0 .83-.42.72-.88-.36-1.55-1.81-2.45-3.81-2.45Z'/%3E%3C/svg%3E");
+  --easyedu-icon-grouping: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 2h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm7 0h4a1 1 0 0 1 1 1v2.7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1ZM6 9.3h4a1 1 0 0 1 1 1V13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2.7a1 1 0 0 1 1-1ZM4 7.3h1.2v1.1h5.6V7.3H12v2H8.6v-1H7.4v1H4v-2Z'/%3E%3C/svg%3E");
+  --easyedu-drag-handle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 14'%3E%3Ccircle cx='2' cy='2' r='1.2'/%3E%3Ccircle cx='6' cy='2' r='1.2'/%3E%3Ccircle cx='2' cy='7' r='1.2'/%3E%3Ccircle cx='6' cy='7' r='1.2'/%3E%3Ccircle cx='2' cy='12' r='1.2'/%3E%3Ccircle cx='6' cy='12' r='1.2'/%3E%3C/svg%3E");
+}
+
 .easyedu-ui[data-easyedu-custom-rails~=primary] {
   --easyedu-semantic-rail-primary: linear-gradient(
     90deg, var(--easyedu-primary-chosen, var(--easyedu-primary)) 0%, color-mix(in srgb, var(--easyedu-primary-chosen, var(--easyedu-primary)) 68%, #fff 32%) 100%
@@ -26272,6 +26537,12 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger:disabled {
   background: var(--easyedu-surface-soft);
   color: var(--easyedu-text-muted);
+}
+
+.easyedu-ui .easyedu-dialog-body {
+  padding: 1.25rem;
+  min-inline-size: 0;
+  margin: 0;
 }
 
 .easyedu-ui .easyedu-confirmation-dialog {

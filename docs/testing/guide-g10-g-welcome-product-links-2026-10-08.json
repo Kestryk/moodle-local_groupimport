@@ -1,0 +1,15 @@
+{
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components": [
+    {"id":"c53a1fb5-311f-80be-8008-c28f490e819e","componentId":"c53a1fb5-311f-80be-8008-c27f918d51a9","x":32,"y":19840,"width":480,"height":140,"archived":[]}
+  ],
+  "hostId": "c53a1fb5-311f-80be-8008-c28f48e39609",
+  "mobileDestinationShift": [],
+  "savedServerVerified": true,
+  "savedRoots": 1,
+  "savedVisibleDescendants": 7,
+  "rasterInspected": true,
+  "settledPaintContained": true,
+  "humanVisualValidated": false
+}
