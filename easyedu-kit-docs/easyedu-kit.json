@@ -4,6 +4,17 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideKeyboard20261008": {
+      "kitVersion": "0.4.147",
+      "kitCommit": "08c9abb09989c7495d435efb2c4c94af4c236d67",
+      "documentation": "docs/guide-keyboard-audit-2026-10-08.md",
+      "record": "docs/testing/guide-keyboard-candidate-2026-10-08.json",
+      "isolatedCanonicalVerified": true,
+      "isolatedBuiltAmdVerified": true,
+      "savedPenpotRulesVerified": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideG9Review20261008": {
       "kitVersion": "0.4.146",
       "kitCommit": "e0727d5c757651fe74d324dc282a903218f82700",

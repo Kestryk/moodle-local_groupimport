@@ -2297,6 +2297,15 @@ const bindGuide = (root, config) => {
     if (modal && trapModalFocus(modal, event)) {
       return;
     }
+    // Escape closes the Guide even while editing Practice. A nested control
+    // that consumed the key (for example its own popup) keeps first priority.
+    if (event.key === 'Escape') {
+      if (!event.defaultPrevented) {
+        event.preventDefault();
+        closeModal(root);
+      }
+      return;
+    }
     if (isTypingTarget(event.target)) {
       return;
     }
@@ -2328,10 +2337,6 @@ const bindGuide = (root, config) => {
       return;
     }
 
-    if (event.key === 'Escape') {
-      event.preventDefault();
-      closeModal(root);
-    }
   });
 
   addTrackedListener(root, document, 'focusin', event => {

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-08 - Guide keyboard K1
+
+- Consume canonical Kit0.4.147: unconsumed Escape closes Guide from Practice
+  input while preserving nested-control priority and original exit Motion.
+- Retain failed baseline and six-route isolated canonical/built-AMD proof;
+  add one read-only local-supervised native scenario. Correct three saved
+  Penpot documentary rules. Native preview and human acceptance remain open.
+
 ## 2026-10-08 - Guide G9 paired design continuation
 
 - Bypass failed remote Penpot export with supervised real-editor raster checks

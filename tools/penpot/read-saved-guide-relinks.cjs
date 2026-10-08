@@ -12,7 +12,8 @@ assert.ok(['guide-g9-product-relinks-2026-10-08.json',
     'guide-g9-product-relinks-tranche2-2026-10-08.json',
     'guide-g9-product-relinks-tranche3-2026-10-08.json',
     'guide-g9-quiet-transfer-2026-10-08.json',
-    'guide-g9-quiet-guide-relinks-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
+    'guide-g9-quiet-guide-relinks-2026-10-08.json',
+    'guide-keyboard-candidate-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
 const expected = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
 const geometry = (shape, field) => {
@@ -133,11 +134,21 @@ const geometry = (shape, field) => {
             const temporary = read(data, 'components')?.get(transit.uuid(expected.cleanupIds.componentId));
             assert.ok(!temporary || read(temporary, 'deleted') === true, 'No active temporary provider remains');
         }
+        for (const rule of expected.ruleUpdates || []) {
+            const shape = object(rule.id);
+            assert.ok(shape, 'Exact Guide rule saved');
+            for (const field of ['x', 'y', 'width', 'height']) {
+                assert.ok(Math.abs(geometry(shape, field) - rule.after[field]) < 0.05, `Guide rule ${field}`);
+            }
+            const text = node => read(node, 'text') || (read(node, 'children') || []).map(text).join('');
+            assert.equal(text(read(shape, 'content')), rule.after.text, 'Exact Guide rule copy saved');
+        }
         console.log(JSON.stringify({passed: true, roots: expected.components.length, descendants, archives,
             relocatedDestinationShapes: expected.mobileDestinationShift.length, editorWrites: 0, moodleWrites: 0,
             practiceChildren: expected.practiceLayout?.finalChildren.length || 0,
             descriptionFits: expected.descriptionFit?.length || 0,
             quietCopies: expected.quietCopies?.length || 0,
+            savedDocumentaryRules: expected.ruleUpdates?.length || 0,
             temporaryTransferDescendants: expected.temporaryTransfer?.descendants.length || 0,
             helperDisconnected: true, scope: 'Exact saved links/geometry/archive retention only; no native or human acceptance.'}));
     } finally { await browser.close(); }

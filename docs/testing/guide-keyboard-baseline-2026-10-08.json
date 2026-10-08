@@ -1,0 +1,22 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "scope": "K1 isolated canonical Guide typing Escape",
+  "date": "2026-10-08",
+  "baselineKitCommit": "8f67ee7ff08f80932d78172768b411fd957221e4",
+  "sourceChangedDuringOwnedRun": false,
+  "results": [
+    {"width":1280,"motion":"no-preference","typingEscapeCloses":false,"openerFocusRestored":false},
+    {"width":1280,"motion":"reduce","typingEscapeCloses":false,"openerFocusRestored":false},
+    {"width":768,"motion":"no-preference","typingEscapeCloses":false,"openerFocusRestored":false},
+    {"width":768,"motion":"reduce","typingEscapeCloses":false,"openerFocusRestored":false},
+    {"width":390,"motion":"no-preference","typingEscapeCloses":false,"openerFocusRestored":false},
+    {"width":390,"motion":"reduce","typingEscapeCloses":false,"openerFocusRestored":false}
+  ],
+  "failedOracle": "All six typing Escape / focus / nested-control routes must pass",
+  "fixtureDiagnostic": "Initial rootclass contained easustud spelling; corrected only after owned child exited. Real outer consumer root, template and canonical handler loaded; failure preserved rather than relabelled as PASS.",
+  "businessWrites":0,
+  "authentication":false,
+  "browserClosed":true,
+  "nativeProof":false,
+  "humanAccepted":false
+}
