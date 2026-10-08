@@ -453,3 +453,10 @@ suppression. Existing EN/FR1280/768/390 chrome regression PASS. Native scenario
 added; ordered managed preview must include e18b33b and05a8a91 documentary
 predecessors before this candidate. Runtime proof and human checklist still open.
 Common introduction/curriculum remains a separate writer-dependent remainder.
+
+Native G10-H run213506218Z-46584 fails the strict fullscreen width oracle by15px
+before Escape/close/target/mobile proof. No page errors, blocked/course writes or
+fixtures; lease/credentials/child cleanup PASS. Preserve unchanged scenario.
+Diagnose native document scrollbar containing-block width; shared fullscreen
+viewport units/border-box/overflow successor only, no plugin-local CSS and no
+weakened oracle. Managed correction/native successor pending.
