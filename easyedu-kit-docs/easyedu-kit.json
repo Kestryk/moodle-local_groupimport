@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideG10PhoneLabels20261008": {
+      "kitVersion": "0.4.152",
+      "kitCommit": "9c3c0910ad3b61ec153907f93ab92b2b40eaf8e9",
+      "isolatedTextRangesVerified": true,
+      "existingFoundationPhoneProvider": "4ee6f77a-1dfb-809b-8008-c1ed9cacc3ab",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideG10Completion20261008": {
       "kitVersion": "0.4.151",
       "kitCommit": "e939c17f670fb44189e2b3645ecbc106e2645a58",

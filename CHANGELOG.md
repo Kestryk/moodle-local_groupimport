@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide G10-F phone invitation labels (WIP)
+
+- Synchronize canonical0.4.152 phone-only counter/text tracks, matching existing
+  centred Foundations Phone copy. Desktop/tablet paint and layout unchanged.
+- EN/FR six actual rendered labels pass range-based centering/no overflow,
+  including multiline French destination; header/completion regressions pass.
+  Native serving and combined human review remain separate open gates.
+
 ## Unreleased - Guide G10-E completion presentation (WIP)
 
 - Canonical0.4.151 keeps the full completion message in reduced Discovery

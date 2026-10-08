@@ -757,7 +757,15 @@
       grid-template-columns: minmax(0, 1fr);
       .easyedu-guide-guided-card__icon { justify-self: start; grid-row: 1; }
       .easyedu-guide-guided-card__steps { justify-content: center; }
-      .easyedu-guide-guided-card__steps li { text-align: center; }
+      .easyedu-guide-guided-card__steps li {
+        // The counter owns its left track; the anonymous text grid item wraps
+        // and centres every line independently, including long destination copy.
+        display: grid;
+        grid-template-columns: 0.9375rem minmax(0, 1fr);
+        max-inline-size: 100%;
+        min-inline-size: 0;
+        text-align: center;
+      }
     }
     .easyedu-guide-guided-card .easyedu-guide-slide__start { grid-column: 1 / -1; }
     .easyedu-guide-guided-card .easyedu-guide-guided-card__body { text-align: center; align-items: center; }

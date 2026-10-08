@@ -16187,6 +16187,10 @@
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-guided-card .easyedu-guide-guided-card__steps li,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-guided-card .easyedu-guide-guided-card__steps li {
+    display: grid;
+    grid-template-columns: 0.9375rem minmax(0, 1fr);
+    max-inline-size: 100%;
+    min-inline-size: 0;
     text-align: center;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-guided-card .easyedu-guide-slide__start,
