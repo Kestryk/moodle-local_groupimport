@@ -3164,6 +3164,13 @@
   overscroll-behavior: none;
 }
 
+// A host's stable document gutter reduces even viewport units in Chrome.
+// Release that reservation only while this Guide occupies the native top layer;
+// the host's original rule automatically resumes on exit without inline styles.
+html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
+  scrollbar-gutter: auto;
+}
+
 .easyedu-guide-highlight {
   border: 2px solid var(--easyedu-primary);
   border-radius: 0.9rem;
