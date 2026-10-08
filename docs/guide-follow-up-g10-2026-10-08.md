@@ -257,3 +257,11 @@ from the runtime instead of Source. Git committed nothing (runtime was clean),
 but pushed the unchanged9bf0d41 private preview branch and established upstream.
 No main/prod change or data write. Do not delete/reset this branch automatically.
 Future Git staging/push is explicitly scoped to Source/Kit worktrees only.
+
+Native successor easystud-authenticated-20261008T182313016Z-48272 passes1280/390
+normal and768 reduced against runtime9bf0d41. Post-confirmation transfer is
+visible, long Compare intro contained, background scroll unchanged, playback
+completion/reset/departure clean. No errors/blocked writes/course operations or
+fixtures; credential/child/lease cleanup passed. Retention dry-run0 candidates,
+0 deletions. Foundations Motion contract text updated and painted bounds fit
+750x74. G10-D native gate complete; human acceptance stays OPEN.

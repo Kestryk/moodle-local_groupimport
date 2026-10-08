@@ -9,7 +9,8 @@
       "kitCommit": "2afeb317d38d3e66b4d95af76313f16cab5d2ccc",
       "record": "docs/testing/guide-g10-d-reveal-2026-10-08.json",
       "isolatedBuiltAmdVerified": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261008T182313016Z-48272",
       "humanVisualValidated": false
     },
     "guideG10Playback20261008": {
