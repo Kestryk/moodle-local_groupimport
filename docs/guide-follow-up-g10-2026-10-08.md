@@ -122,6 +122,20 @@ Guide-product copy/geometry propagation, managed preview and native playback.
 Runtime remains at72dbfc5 (G10-B), not this G10-C source WIP. G10-D..H and the
 combined human checklist remain open. Do not mark the released Kit updated.
 
+Successor: nine Guide Reading links reset from Foundations and original product
+copy/host coordinates restored;25 correlated phone elements moved28px to retain
+clearance below the taller banner. New bounded C link record preserves B as a
+historical proof. Mobile product raster inspected. Saved containment caught
+desktop dots positioned from unsettled text bounds; corrected from settled paint
+and retained the failure. Saved persistence successor, remaining hover/focus,
+native preview and human acceptance are still open.
+
+Saved Guide successor now passes9 roots/128 visible descendants, exact product
+copy and all25 phone clearance shifts. Tablet corrected raster inspected.
+The earlier immediate saved retry saw the pre-save dot position; no tolerance
+was weakened. Foundation saved successor, hover/focus specimens and native
+playback remain open; all evidence stays separate from the human checklist.
+
 G10-B native successor passes `easystud-authenticated-20261008T152735563Z-19344`
 against runtime72dbfc5:1280 normal-motion,768/390 reduced-motion. Header16px/700,
 32px compass centered/no overflow, strong green finish/check, full2px border,
