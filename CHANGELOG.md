@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide G10-E active task highlight lifetime (WIP)
+
+- Synchronize canonical0.4.153: current checklist highlights persist until
+  milestone/path exit. Ordinary Show-in-interface cue keeps its former timeout.
+- Isolated actual built consumer verifies persistence, next-step replacement and
+  stop cleanup. Native scenario now waits6.5s before Move, beyond former5.2s cue
+  timeout; native verification and human checklist remain open.
+
 ## Unreleased - Guide G10-F phone invitation labels (WIP)
 
 - Synchronize canonical0.4.152 phone-only counter/text tracks, matching existing
