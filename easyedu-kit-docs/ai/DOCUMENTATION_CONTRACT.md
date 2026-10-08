@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Native Guide fullscreen activation consumes the canonical helper in the existing
+AMD boundary. Keep shared styling/translated labels separate from native business
+adapters. Assert actual fullscreenElement, first Escape preserving slide, close
+exit/focus and Show-in-interface exit before target. No forced fullscreen/mobile
+emulation or progression mutation to manufacture proof. Separate saved controls,
+isolated Chrome, native Moodle and the still-open human checklist.
+
 Welcome native failure before acknowledgement must retain its exact source and
 cleanup. Initialize isolated regression beneath a hidden loading shell and
 reveal naturally. No manufactured eligibility, weakened visibility assertion or

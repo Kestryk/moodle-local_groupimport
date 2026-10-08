@@ -12,6 +12,7 @@ assert.ok(['guide-g9-foundations-publication-2026-10-08.json',
     'guide-g10-c-foundations-2026-10-08.json',
     'guide-g10-e-foundations-2026-10-08.json',
     'guide-g10-g-welcome-foundations-2026-10-08.json',
+    'guide-g10-h-foundations-2026-10-08.json',
     'guide-g9-quiet-foundation-publication-2026-10-08.json'].includes(recordName), 'Exact owned publication record');
 const evidence = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
@@ -34,7 +35,8 @@ const geometry = (shape, field) => {
         const pages = browser.contexts().flatMap(context => context.pages()).filter(page => {
             const url = new URL(page.url());
             const ownedFile = process.argv[6] === 'guide-context-request' &&
-                recordName === 'guide-g10-e-foundations-2026-10-08.json' ?
+                ['guide-g10-e-foundations-2026-10-08.json',
+                    'guide-g10-h-foundations-2026-10-08.json'].includes(recordName) ?
                 'b564c72c-f31f-81ec-8008-ad9958b272bd' : evidence.fileId;
             return url.origin === 'https://design.penpot.app' && url.hash.includes(ownedFile);
         });
