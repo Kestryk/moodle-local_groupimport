@@ -91,7 +91,28 @@ return {
 "@
 $runtimeJavascript = ($runtimeJavascript -replace "`r`n", "`n").TrimEnd() + "`n"
 
+# Runtime markup consumes the canonical template, with only the existing
+# translated hover/completion labels retained. Checking just the embedded
+# package cannot prove that Moodle's rendered template has been updated.
+$runtimeTemplate = Read-NormalizedText $canonicalTemplatePath
+$runtimeTemplate = $runtimeTemplate.Replace(
+    '<span class="easyedu-guide__launcher-label">{{guideopenlabel}}</span>',
+    '<span class="easyedu-guide__launcher-label" aria-hidden="true">{{guidehoverlabel}}</span>')
+$runtimeTemplate = $runtimeTemplate.Replace(
+    '<span class="easyedu-guided-panel__message-compact" aria-hidden="true">Everything is set</span>',
+    '<span class="easyedu-guided-panel__message-compact" aria-hidden="true">{{guidechecklistdonelabel}}</span>')
+if (-not $runtimeTemplate.Contains('{{guidehoverlabel}}') -or
+    -not $runtimeTemplate.Contains('aria-hidden="true">{{guidechecklistdonelabel}}</span>')) {
+    throw 'Canonical template changed: review the EasyStud localization adaptations.'
+}
+
 $items = @(
+    [pscustomobject]@{
+        Name = "runtime localized Mustache"
+        Source = $canonicalTemplatePath
+        Target = Resolve-OwnedPath $pluginRootPath "templates\easyedu_guide.mustache"
+        Expected = $runtimeTemplate
+    },
     [pscustomobject]@{
         Name = "canonical dialog primitives SCSS"
         Source = Resolve-OwnedPath $kitRoot "scss\easyedu\components\_modals.scss"

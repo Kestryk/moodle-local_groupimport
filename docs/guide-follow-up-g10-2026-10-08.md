@@ -87,6 +87,14 @@ dialog opening animations and two paints, then compares square geometry within
 .001px (serialization precision, not a relaxed visual layout tolerance). Keep
 failed run `easystud-authenticated-20261008T152319023Z-56720` and immutable source.
 
+Second native run `easystud-authenticated-20261008T152458589Z-2600` exposed an
+actual integration omission: rendered Moodle template lacked the completion
+check, while embedded template/controller and SCSS were current. Add the runtime
+Mustache to canonical sync, retaining only translated hover/compact completion
+labels; extend the isolated fixture to render that actual consumer template.
+Do not report this failed run as presentation success. No course writes/errors;
+credential/lease/child cleanup passed. Corrective preview/test still required.
+
 Next: finish G10-B Penpot/header and native presentation gates, then G10-C
 shared phase clock/controls. G10-D..H, returned content, older lots and the
 combined human checklist remain open; no global acceptance inferred.
