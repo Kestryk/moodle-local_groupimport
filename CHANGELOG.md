@@ -2,6 +2,11 @@
 
 ## Unreleased - Guide G10-H desktop fullscreen candidate
 
+- Native fullscreen geometry passes; consume tracked modal/document Escape
+  fallback before enclosing Navigation actions, preserving consumed popup keys.
+  Common content proposal received read-only and recorded in sequential intake;
+  no legacy slide or path state removed. Native successor remains pending.
+
 - Settled native diagnostic identifies the host's stable document gutter.
   Canonical Guide-only fullscreen rule releases/restores it without inline CSS;
   isolated fixture now reproduces that context. Failed evidence kept.
