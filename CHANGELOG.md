@@ -2,6 +2,11 @@
 
 ## 2026-10-08 - Guide G9 paired design continuation
 
+- Bypass failed remote Penpot export with supervised real-editor raster checks
+  of Quiet Guide/Library/Standard. Keep contained captures manifested outside
+  Git. Remove only the exact unused transfer main/empty host/provider after
+  proof; saved gate confirms cleanup and original retention. No runtime change.
+
 - Relink Practice/Organisation/Actions Quiet actions to the published Foundation
   provider; preserve full properties and archive originals. Saved3-root proof
   passes. Explicit export HTTP500 leaves raster/temporary cleanup open.
