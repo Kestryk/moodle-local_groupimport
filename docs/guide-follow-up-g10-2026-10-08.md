@@ -161,6 +161,21 @@ navigation boundary explicitly, apply bounded control timeout after login and
 keep a60s navigation timeout. No rendering assertion reached; do not count this
 as product failure or success. Child/credentials/lease cleanup passed, no fixture.
 
+Native successor `easystud-authenticated-20261008T175707682Z-38024` passes against
+served3e7058b:1280/390 normal motion and768 reduced. Single-phase paused advance,
+resume, final recap/reset/departure, equal30.39px control heights and no overflow.
+No browser errors, blocked writes or fixtures; credentials cleared, owned child
+closed and runtime lease released. G10-C implementation/design/native gates
+complete, human acceptance OPEN. Test harness corrections do not change served
+assets. Preserve failed runs and the canonical/source/native scope distinctions.
+
+Next G10-D boundary: after simulated Move confirmation hides, reveal the scene
+stage through the same pause-aware cancellable scroll owner BEFORE measuring
+card displacement. Reproduce on offscreen/tall Guide bodies and assert paired
+card visibility/motion; recheck long Compare Add/Move EN/FR text containment.
+Do not change Moodle's background scroll or accepted drag/card choreography.
+G10-E..H, content-writer return and all older Student Management lots stay open.
+
 G10-B native successor passes `easystud-authenticated-20261008T152735563Z-19344`
 against runtime72dbfc5:1280 normal-motion,768/390 reduced-motion. Header16px/700,
 32px compass centered/no overflow, strong green finish/check, full2px border,

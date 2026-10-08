@@ -11,6 +11,10 @@
   disabled, hover/focus specimens. Saved Foundations30 roots/260 descendants,
   Guide9 roots/128 descendants and25 phone-clearance shifts pass. Pin canonical
   Kit0.4.149 and preserve a no-business-write native playback candidate.
+- Native successor passes1280/390 normal and768 reduced: paused single-phase
+  advancement, resume, completion/reset and departure cleanup; equal control
+  sizes/no overflow, no browser errors, blocked writes or fixtures. Preserve
+  both harness failures separately; human checklist and G10-D..H remain open.
 
 ## 2026-10-08 - Guide G10-B presentation checkpoint
 

@@ -1,6 +1,6 @@
 {
   "lot": "G10-C",
-  "status": "work-in-progress",
+  "status": "implemented-preview-verified-human-open",
   "kitVersion": "0.4.149",
   "kitCommit": "c20f420",
   "sourceAndBuild": true,
@@ -52,7 +52,13 @@
     "allStatesStandardRasterInspected": true
   },
   "diagnostics": ["Phone dots overlapped instruction in initial Penpot raster; reserve text/dot width, reset linked Standards, inspect corrected raster.","WAAPI pause is pending until animation.ready; settle the test measurement without changing product timings.","Product dot placement used unsettled textBounds immediately after overriding copy; saved containment gate caught x=8 outside tablet banner. Correct from settled text paint, retain failed check and require saved successor."],
-  "servedPreviewVerified": false,
-  "lastServedRuntimeHead": "72dbfc5e7a78846c98086d2a24779ae91f823c37",
+  "servedPreviewVerified": true,
+  "testedRuntimeHead": "3e7058bc429266d5d5f46f93f1c7c8932d991de8",
+  "nativeRunId": "easystud-authenticated-20261008T175707682Z-38024",
+  "nativeFailedRunIds": ["easystud-authenticated-20261008T175051760Z-59528", "easystud-authenticated-20261008T175604911Z-52080"],
+  "nativeRoutes": [{"width":1280,"motion":"normal","overflow":false},{"width":390,"motion":"normal","overflow":false},{"width":768,"motion":"reduce","overflow":false}],
+  "nativePageErrors": 0,
+  "nativeBlockedWrites": 0,
+  "cleanup": {"credentialsCleared":true,"ownedChildStopped":true,"leaseReleased":true,"fixtureRequested":false},
   "humanVisualValidated": false
 }
