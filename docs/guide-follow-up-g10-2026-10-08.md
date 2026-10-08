@@ -468,3 +468,10 @@ the strict <1px oracle remains. Shared html lock:has(Guide :fullscreen) releases
 the gutter only for native top-layer ownership; ordinary exit restores host
 policy. Isolated fixture gains stable gutter to reproduce native host context.
 All failed runs retained, no writes/errors, cleanup passes. Native retry pending.
+
+Native successor214036495Z-16300 confirms1280x900 root/dialog and gutter:auto.
+It times out waiting for Escape exit; native keyboard focus can be outside the
+root after fullscreen request. Shared tracked document fallback handles only
+unconsumed Escape while this Guide owns native fullscreen. Existing root and
+nested-popup priority stay intact; no navigation/source-specific patch. Native
+lifecycle successor pending, previous geometry failure remains preserved.

@@ -2289,6 +2289,21 @@ const bindGuide = (root, config) => {
       if (status) status.textContent = !entered && !controller.ownsFullscreen() ?
         (fullscreenButton.dataset.unavailableLabel || '') : '';
     });
+    // Native requestFullscreen can leave focus on the host document rather
+    // than inside the Guide root. Keep Escape available for our owned session
+    // only; a nested popup that consumed it still has first priority.
+    const exitOwnedFullscreenOnEscape = event => {
+      if (event.key === 'Escape' && !event.defaultPrevented &&
+          root.easyeduGuideFullscreen?.ownsFullscreen()) {
+        event.preventDefault();
+        event.stopPropagation();
+        void root.easyeduGuideFullscreen.exit();
+      }
+    };
+    // Run before an enclosing Navigation panel can treat the Guide's Escape as
+    // its own. Descendant popup handlers run first through ordinary bubbling.
+    addTrackedListener(root, fullscreenModal, 'keydown', exitOwnedFullscreenOnEscape);
+    addTrackedListener(root, fullscreenModal.ownerDocument, 'keydown', exitOwnedFullscreenOnEscape);
   }
 
   addTrackedListener(root, root, 'keydown', event => {
