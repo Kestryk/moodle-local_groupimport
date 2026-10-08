@@ -2,6 +2,13 @@
 
 ## 2026-10-08 - Guide G9 paired design continuation
 
+- Publish19 Discovery recipes in Foundations08.14/08.14.1 with linked Standards
+  examples. Preserve all7 historical Checklist providers and remove only19
+  temporary transfer mains after complete geometry/style/type fingerprints.
+- Inspect final checklist/full-host exports; audit88 Inter texts and12 linked
+  glyphs. Record exact mappings and a read-only saved-file gate. Consumer
+  relinking, complete curriculum and human acceptance remain separate.
+
 - Propagate invitation, contextual Practice/Organisation copy, stronger live
   instruction and destination dash layering into the connected Guide project.
 - Add mobile selection/action/destination/confirmation compositions using

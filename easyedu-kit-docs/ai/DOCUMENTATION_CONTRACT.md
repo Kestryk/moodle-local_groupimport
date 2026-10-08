@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Discovery Foundation publication retains the historical Guide providers. Use
+one canonical component per new recipe and linked Standards instances; remove
+only exact owned temporary transfer mains after recursive fingerprint parity.
+An icon-only Small action is not a text button. After swapping its linked glyph,
+normalize descendant geometry from the master, then inspect settled raster.
+Record saved-file persistence independently from editor and human validation.
+Keep Guide consumer relinking and the complete curriculum as separate gates.
+
 G9 paired-design progress is partial until correlated tablet/phone slides and
 native-modal/checklist compositions are inspected. Clone of a nested linked
 checkbox may not persist in its destination: instantiate the canonical provider,

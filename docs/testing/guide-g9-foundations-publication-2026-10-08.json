@@ -1,0 +1,229 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "lot": "G9-E Foundations Discovery publication",
+  "date": "2026-10-08",
+  "kitVersion": "0.4.146",
+  "kitCommit": "e0727d5c757651fe74d324dc282a903218f82700",
+  "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+  "standardPageId": "4ee6f77a-1dfb-809b-8008-c1eac9c2959e",
+  "libraryPageId": "4ee6f77a-1dfb-809b-8008-c1eac9c6142e",
+  "standardHostId": "4ee6f77a-1dfb-809b-8008-c1eb1becb2de",
+  "libraryHostId": "4ee6f77a-1dfb-809b-8008-c1ed7d4957ec",
+  "components": [
+    {
+      "family": "Reading banner",
+      "state": "Active Desktop",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed889a5627",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1f032598",
+      "width": 750,
+      "height": 48,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Reading banner",
+      "state": "Finished Desktop",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88b1ed50",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed88ab5e43",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1f1a204e",
+      "width": 750,
+      "height": 48,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Reading banner",
+      "state": "Active Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed88b6c44a",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1f2c83e8",
+      "width": 358,
+      "height": 76,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Reading banner",
+      "state": "Finished Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88c787ee",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed88c1e51e",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1f3aa22f",
+      "width": 358,
+      "height": 76,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Checklist item",
+      "state": "Active",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88d329da",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed88cbb4e7",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1f4c3c2a",
+      "width": 358,
+      "height": 94,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Checklist item",
+      "state": "Complete",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88e2c48b",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed88d7a6a0",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1f61f262",
+      "width": 358,
+      "height": 94,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Checklist item",
+      "state": "Locked",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed8911c054",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed88e7d134",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1f7d4b3b",
+      "width": 358,
+      "height": 94,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Checklist panel",
+      "state": "Expanded Desktop",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9bf59c1c",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9bcbe8de",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1fb1240f",
+      "width": 400,
+      "height": 432,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Checklist panel",
+      "state": "Expanded Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c284721",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9c01df06",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1ff2bc48",
+      "width": 358,
+      "height": 330,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Checklist panel",
+      "state": "Reduced Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c48e862",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9c31b6ba",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef201ec0ea",
+      "width": 358,
+      "height": 96,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Path invitation",
+      "state": "Desktop",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c7893ea",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9c50f1e9",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef204308c9",
+      "width": 750,
+      "height": 260,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Path invitation",
+      "state": "Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cacc3ab",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9c86276c",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef207dda78",
+      "width": 358,
+      "height": 500,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "In-progress footer",
+      "state": "Desktop",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cc7abd5",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9cb90c27",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef20b14303",
+      "width": 750,
+      "height": 54,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "In-progress footer",
+      "state": "Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cdd4fc0",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9ccecca1",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef20c564f3",
+      "width": 358,
+      "height": 70,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Resume invitation",
+      "state": "Desktop",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cfb9a72",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9ce35716",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef20dd6d89",
+      "width": 750,
+      "height": 72,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Resume invitation",
+      "state": "Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d1e5f32",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9d035784",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef20fc64e5",
+      "width": 358,
+      "height": 130,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Completion notice",
+      "state": "Complete",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d33f5a5",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9d2644f2",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef211a6e58",
+      "width": 750,
+      "height": 74,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Return to guide",
+      "state": "Desktop",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d49c24a",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9d3a7520",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef21361b2c",
+      "width": 750,
+      "height": 84,
+      "fingerprintMatches": true
+    },
+    {
+      "family": "Return to guide",
+      "state": "Phone",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d641e44",
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9d508e4c",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef21510bc6",
+      "width": 358,
+      "height": 132,
+      "fingerprintMatches": true
+    }
+  ],
+  "textCount": 88,
+  "icons": 12,
+  "issues": [],
+  "tempProvidersRemaining": 0,
+  "legacyMatches": true,
+  "verification": {
+    "editorReadback": true,
+    "recursiveFingerprint": true,
+    "standardHostExportInspected": true,
+    "expandedChecklistExportInspected": true,
+    "savedServerReadback": true,
+    "savedRoots": 38,
+    "savedDescendants": 570,
+    "savedReadbackScenario": "tools/penpot/read-saved-guide-discovery.cjs",
+    "classification": "local-supervised",
+    "savedGeometryReaderNote": "Path geometry is decoded from tagged selrect, never null coerced to zero. Initial direct-field diagnostics failed; corrected parser passed without changing product geometry or tolerance.",
+    "guideConsumerRelinked": false,
+    "humanVisualValidated": false
+  },
+  "limits": [
+    "Design-only publication; no new generated assets or Moodle data writes",
+    "Legacy Checklist providers are retained",
+    "Four Discovery slides remain a sample, not the full curriculum",
+    "Tablet reuses desktop responsive layout; no independent tablet provider claimed"
+  ]
+}
