@@ -43,6 +43,10 @@ test('Guide G10 shared header and completion presentation', async({page}, info) 
             await expect(modal).toBeVisible();
             const header = await modal.locator('.easyedu-guide-modal__header').evaluate(async node => {
                 await document.fonts.ready;
+                const dialog = node.closest('.easyedu-guide-modal__dialog');
+                await Promise.all(dialog.getAnimations().filter(animation =>
+                    animation.effect.getTiming().iterations !== Infinity).map(animation => animation.finished.catch(() => {})));
+                await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
                 const style = getComputedStyle(node), title = node.querySelector('h2'), icon = node.querySelector('.fa-compass');
                 const rect = node.getBoundingClientRect(), i = icon.getBoundingClientRect(), t = title.getBoundingClientRect();
                 return {padding: style.padding, font: getComputedStyle(title).fontSize,
@@ -54,7 +58,9 @@ test('Guide G10 shared header and completion presentation', async({page}, info) 
             });
             expect(header.centred && header.contained && !header.overflow).toBeTruthy();
             expect(Number(header.weight)).toBeGreaterThanOrEqual(700);
-            expect(header.iconWidth).toEqual(header.iconHeight);
+            // Browser DOMRect float serialization can differ below .001px,
+            // even for a square layout box. This is not a paint tolerance.
+            expect(Math.abs(header.iconWidth - header.iconHeight)).toBeLessThan(0.001);
             await modal.locator('[data-easyedu-guide-nav-item="3"]').click();
             await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="actions"]')?.dataset.guideSceneFinished === 'true',
                 null, {timeout: 90000});

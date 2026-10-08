@@ -80,6 +80,13 @@ successor, and retain broader header saved/coverage audit as open.
 Candidate native scenario: `tools/playwright/guide-g10-chrome.spec.js`; must
 run through saved-credential/lease wrapper after ordered promotion.
 
+First native G10 run failed a harness exact-float assertion during opening:
+31.76280975341797px vs31.762802124023438px. It had no page errors or blocked
+writes; credentials/child/runtime lease cleaned up. Follow-up waits for finite
+dialog opening animations and two paints, then compares square geometry within
+.001px (serialization precision, not a relaxed visual layout tolerance). Keep
+failed run `easystud-authenticated-20261008T152319023Z-56720` and immutable source.
+
 Next: finish G10-B Penpot/header and native presentation gates, then G10-C
 shared phase clock/controls. G10-D..H, returned content, older lots and the
 combined human checklist remain open; no global acceptance inferred.
