@@ -9,6 +9,9 @@
   in isolated browser; record fixture diagnostics. Foundations Reading and
   nine linked Guide instances updated; headers/final saved proof/native preview
   and human acceptance remain open in the G10 ledger.
+- Served assets applied with cache purge. First native test caught a premature
+  opening-animation float measurement; retain failure and correct only the
+  harness settling/serialization assertion. Native successor still pending.
 
 ## 2026-10-08 - Guide G10 review intake and content handoff
 
