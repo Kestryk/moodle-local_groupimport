@@ -42,6 +42,13 @@ test('Guide G10 checklist native selection and destination highlights', async({p
             await page.evaluate(async() => {
                 const root = document.querySelector('[data-easyedu-guide-root]');
                 const config = root.easyeduGuideConfig;
+                window.g10ChecklistTrace = [];
+                document.addEventListener('easyedu:guide-open-target', event => {
+                    if (event.detail?.root !== root) return;
+                    const row = {target:event.detail.target,handled:event.detail.handled,at:performance.now()};
+                    window.g10ChecklistTrace.push(row);
+                    Promise.resolve(event.detail.ready).then(result => {row.readyResult=result;});
+                });
                 // Preserve actual native targets/events; do not fabricate Create
                 // completion or touch the course. Ephemeral owned QA profile only.
                 const steps = config.paths['practice-membership'].slice(2,5).map((step,index,array) => ({
@@ -94,7 +101,22 @@ test('Guide G10 checklist native selection and destination highlights', async({p
         }
         expect(errors).toEqual([]); expect(blocked).toEqual([]);
     } finally {
+        const diagnostic = await page.evaluate(() => {
+            const root = document.querySelector('[data-easyedu-guide-root]');
+            const describe = n => {
+                if (!n) return null;
+                const r = n.getBoundingClientRect(), s = getComputedStyle(n);
+                return {tag:n.tagName,hidden:n.hidden,disabled:n.disabled,display:s.display,
+                    visibility:s.visibility,rect:{x:r.x,y:r.y,width:r.width,height:r.height}};
+            };
+            return {trace:window.g10ChecklistTrace || [],epoch:root?.easyeduGuidePathEpoch,
+                currentTarget:describe(root?.easyeduGuideCurrentTarget),
+                activeStep:root?.querySelector('[data-easyedu-guide-step-index].is-active')?.dataset.easyeduGuideStepId,
+                moveTargets:root?.easyeduGuideConfig?.targets?.participantMoveAction,
+                moveControls:[...document.querySelectorAll('[data-easystud-move-selected-participants]')].map(describe)};
+        }).catch(() => null);
         fs.writeFileSync(info.outputPath('guide-g10-checklist-result.json'),JSON.stringify({rows,errors,blocked,
+            diagnostic,
             scope:'Presentation path begins at real selection; full Create/Confirm curriculum not exercised',
             fixtureRequested:false,businessTransactionConfirmed:false},null,2));
     }
