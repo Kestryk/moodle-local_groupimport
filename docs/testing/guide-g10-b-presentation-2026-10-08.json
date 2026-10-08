@@ -45,11 +45,20 @@
     "guideSavedAndRasterPending": true,
     "externalRun": "g10-b-reading-20261008"
   },
-  "servedPreviewVerified": false,
+  "servedPreviewVerified": true,
+  "nativeRunId": "easystud-authenticated-20261008T152735563Z-19344",
+  "runtimeHead": "72dbfc5e7a78846c98086d2a24779ae91f823c37",
+  "nativeRoutes": [
+    {"width": 1280, "motion": "no-preference", "headerFontPx": 16, "iconPx": 32, "finishWeight": 700, "resetHidesCheck": true},
+    {"width": 768, "motion": "reduce", "headerFontPx": 16, "iconPx": 32, "finishWeight": 700, "resetHidesCheck": true},
+    {"width": 390, "motion": "reduce", "headerFontPx": 16, "iconPx": 32, "finishWeight": 700, "resetHidesCheck": true}
+  ],
+  "cleanup": {"credentialsCleared": true, "ownedChildStopped": true, "leaseReleased": true, "fixtureRequested": false},
   "humanVisualValidated": false,
   "limits": [
     "No Pause/Play/Skip implementation in this presentation tranche.",
     "No fullscreen/welcome/admin reset or course mutation.",
-    "Normal-motion final scene and native cascade still require supervised preview tests."
+    "Native proof covers normal-motion desktop and reduced-motion tablet/phone, not all motion/language combinations.",
+    "Broad Penpot header propagation and painted product copy audit remain open."
   ]
 }

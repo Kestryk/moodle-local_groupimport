@@ -15,6 +15,10 @@
 - Second native test found omitted runtime Mustache synchronization. Extend
   the canonical sync gate to rendered markup with bounded localization-only
   adaptations; test the real consumer template, not just its embedded copy.
+- Corrective preview/native successor passes desktop normal-motion and
+  tablet/phone reduced-motion: centered header, strong green completion/check,
+  full border and reset. No errors/course writes; cleanup verified. Broader
+  Penpot propagation/paint audit and combined human acceptance remain open.
 
 ## 2026-10-08 - Guide G10 review intake and content handoff
 

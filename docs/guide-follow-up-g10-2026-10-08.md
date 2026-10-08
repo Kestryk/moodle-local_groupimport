@@ -95,6 +95,38 @@ labels; extend the isolated fixture to render that actual consumer template.
 Do not report this failed run as presentation success. No course writes/errors;
 credential/lease/child cleanup passed. Corrective preview/test still required.
 
+## G10-C — next implementation boundary
+
+G10-B native successor passes `easystud-authenticated-20261008T152735563Z-19344`
+against runtime72dbfc5:1280 normal-motion,768/390 reduced-motion. Header16px/700,
+32px compass centered/no overflow, strong green finish/check, full2px border,
+reset hides check. No errors/blocked writes/course transactions or fixtures;
+credentials cleared, owned child stopped and lease released. Retention dry-run
+0 candidates/0 deletions. This verifies served behavior, not human acceptance.
+Broader Penpot header propagation/painted-copy audit remains open.
+
+The current scene already owns an AbortController, WAAPI animation set (including
+the reveal scroll clock), reading timeout and drag-overlap frame. Reuse those
+owners; do not add a disconnected second animation or generic slide Next button.
+
+- Pause must retain remaining reading time and pause every current/new scene
+  animation, including scroll and copy fade. Departure/reset aborts all pending
+  waits regardless of pause; never leave an unresolved pause gate.
+- Next phase acts on the current illustration phase only. Serialize rapid clicks
+  and preserve each phase's final presentation effects exactly once. If paused,
+  expose the next narration without silently restarting playback.
+- Dots animate only while explanation runs; pause/finish/departure stops them.
+  Reduced motion removes bouncing, not the indication or keyboard controls.
+- Shared localized labels and accessible button states belong to Kit/controller
+  config, with EN/FR labels supplied by EasyStud. Public small icon-button recipes,
+  no inline style overrides. Preserve current teaching cards/drag choreography.
+- Tests must cover pause during reading/fade/drag/scroll, resume remaining time,
+  skip during each phase, double click, final phase, reset, scene comparison,
+  slide change and close while paused. No course operation may be invoked.
+
+This is an audited implementation plan, NOT implemented controls. G10-D..H and
+the content writer's returned proposals remain independent open lots.
+
 Next: finish G10-B Penpot/header and native presentation gates, then G10-C
 shared phase clock/controls. G10-D..H, returned content, older lots and the
 combined human checklist remain open; no global acceptance inferred.
