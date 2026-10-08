@@ -113,3 +113,30 @@ See docs/testing/guide-g9-native-2026-10-08.json. Inspect the phone capture:
 it mainly shows settled example cards, not the invitation farther down. Keep
 full invitation paint evidence pending; its separate read-only scenario must
 scroll that actual card into view without hiding native sticky chrome.
+
+## Native42196 — invitation layout and actual phone paint
+
+Source scenario930ef53, unchanged asset8becc2d /Kit e0727d5 /0.4.146,
+runtime01fcfdb. PASS1280/768/390: desktop/tablet Start centres vertically at the
+inline end; phone compass is top-left, copy/step labels centred, Start below
+all content at full body width. Native phone card309x445.66, body267px and
+Start267x38; no text overflow in any of the three layouts. Actual phone modal
+capture inspected: complete invitation in its reading viewport, no suppressed
+native sticky element. Credentials/lease/child cleaned; no fixture or writes.
+Both successful runs and failed46276 protected by retention dry-run;0 deletion.
+
+## Current next work — not a completion/acceptance claim
+
+- G9-A..D source and scoped isolated proofs delivered; native lifecycle and
+  invitation proof recorded separately. Assets served on private local preview.
+- G9-E paired Penpot propagation remains pending: hosted channel is on the
+  EasyStud/Rules page, Guide channel has no connected instance. Read-only CDP9225
+  inventory finds a Foundations tab, not the Guide. No tab closed/reloaded,
+  credentials/config printed or other writer connection changed.
+- Once Guide is connected, read actual board73/Practice/Organisation/Actions,
+  preserve Overview and existing linked controls; update desktop/phone invitation
+  and in-progress footer, animation instructions/mobile actions and layering
+  compositions. Read settled text/icon paint, export/inspect all affected views.
+- Then paired Foundation publication under its writer, broader native Motion/
+  readability and complete content via G9 content addendum, distinct Mass Import
+  Guide and older unfinished EasyStud lots. Global human checklist stays OPEN.

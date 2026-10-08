@@ -27,5 +27,9 @@
   "businessTransactionConfirmed": false,
   "penpotPublished": false,
   "humanVisualValidated": false,
-  "remaining": ["paired Guide/Foundations publication", "focused invitation paint capture", "whole curriculum", "combined human checklist"]
+  "invitationRunId": "easystud-authenticated-20261008T070020274Z-42196",
+  "invitationScenarioCommit": "930ef53485f3040a8d69e4e6768885292e26734f",
+  "invitationRuntimeHead": "01fcfdb3b7e61f3def23df3d27ebcce6b97dbf40",
+  "invitationProof": "PASS1280/768/390; desktop/tablet Start centre error below2px; phone compass above body, centred copy, Start below and full body width; no text overflow; phone capture inspected.",
+  "remaining": ["paired Guide/Foundations publication", "broader native animation/readability review", "whole curriculum", "combined human checklist"]
 }
