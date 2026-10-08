@@ -1,0 +1,79 @@
+# Guide G9 — review intake and sequential roadmap
+
+Parent programme: EED-UI-2026-0073. Source/Kit existing worktrees only.
+Human acceptance and all unfinished G8/older EasyStud lots remain open.
+No real Create/Move/Send transaction is needed to validate these changes.
+
+## Ordered lots
+
+1. **G9-A lifecycle and practice keyboard**: diagnose actual Reset and reload
+   Cancel persistence; stop obsolete callbacks/highlights/completion listeners
+   from reactivating a stopped path. Preserve other paths. Give visible feedback.
+   Enter previews example teams; remove redundant Practice Replay only.
+2. **G9-B invitation and checklist geometry**: desktop Start vertically centred
+   at inline end; phone compass top-left, centred step copy, Start below content.
+   Quiet smallest-Kit Reset in a footer row with in-progress explanation, only
+   for an unfinished active path. Green completion icon. Stabilise checklist
+   docking without losing avoidance of real native dialog controls.
+3. **G9-C narrative and timing**: explain the native Student Management creation
+   buttons before the naming exercise. Organisation explains Add versus Move,
+   mouse pickup and drag/drop explicitly; prevent long intro overflow at all
+   widths. Stronger live instruction with subtle per-step entrance. Reading
+   time follows word count, existing delays remain minimums (including Actions).
+4. **G9-D illustration layering and mobile actions**: destination dashed border
+   at the actual card edge, underneath the dragged card, correct timing. Mobile
+   Add/Move uses the native mobile selection/action menu, not desktop gestures.
+   Apply the mobile convention to applicable present and future scenes.
+5. **G9-E paired design and integration**: audit every slide at desktop/tablet/
+   phone; update meaningful Penpot compositions and fix icon/text containment.
+   Canonical Kit first, adapted EasyStud templates second; build, private push,
+   controlled preview and scoped native checks. Internal captures are evidence,
+   not a request for human acceptance or a replacement for final checklist.
+
+## Evidence ledger
+
+- Intake recorded before implementation, 2026-10-08.
+- Current baseline: Source7936791 / Kit98cf6c9 / Kit0.4.145.
+- G8 isolated/native PASS did not prove the user's full reset/late-event/reload
+  workflow, nor accept the invitation mobile layout. These are reopened here.
+- Shared Foundation publication, full curriculum, broader Motion/accessibility
+  review and prior programme backlog are still pending; do not drop them.
+- Source, isolated browser, Penpot, served native preview and human acceptance
+  must be recorded separately for each lot.
+
+## Source candidate and isolated checks
+
+- G9-A implemented: active-path Reset/Cancel, epoch invalidation and timer
+  cleanup, late-event guard, translated live feedback, Enter and Practice Replay
+  removal. Other-path completion preserved. No course command modified.
+- G9-B implemented in canonical SCSS: centred desktop Start, stacked phone
+  icon/copy/steps/Start, quiet Small in-progress Reset footer and green completion
+  icon. Progress keeps existing docking; re-evaluate only actual collisions.
+- G9-C source: native creation context EN/FR, explicit mouse drag narration,
+  wrapped Organisation intro, semibold entering instructions;180wpm+900ms with
+  minimum2400ms, unchanged reduced-motion/cancellable lifecycle.
+- G9-D source: shared deposit dash was z4 above ghost z3; Guide override is z2.
+  Native audit confirms mobile Participants Move posts addusers (preserves
+  memberships), but selected source members Move posts movemembers. Compact Add
+  now illustrates Participants/action bar/destination/confirm, no mouse drag;
+  all four recap steps retained. Existing scene/card styles are preserved.
+- G9 lifecycle isolated PASS1280/768/390: actual storage re-entry after Reset,
+  Cancel/reload with no reseeding, late events, Enter, footer suppression,
+  desktop/tablet vertical centre, phone sequence/width, intro containment and
+  mobile Add semantics. No Moodle bootstrap or course write.
+- Six EN/FR practice dependency cases and six EN/FR discovery cases PASS;
+  normal-motion scene-departure/exit/teardown PASS. PHP manage lint and canonical
+  seven-copy integration / Kit contract / git diff check PASS.
+- Historical G7 presentation test fails its15s first-drag arrival deadline
+  after deliberately longer narration. Preserve it unchanged. New G9 successor
+  retains motion/overlap/sticky oracles and asserts word-count dwell explicitly;
+  its arrival budget is separate from native highlight readiness.
+- G9 presentation successor PASS: actual normal-motion word-count dwell,
+  pointer/ghost transform pairing, drop overlap, pressed comparison state,
+  reading-edge gap0 at1280/768/390, long checklist scroll/Restore and teardown.
+  Terminal output recovered by one fresh bounded run after the interrupted
+  process handle was unavailable; no owned predecessor process remained alive.
+- G9-E remains open: main hosted Penpot currently Foundations/Library labels,
+  not Guide. Asked for the intended project on that same channel; no blind
+  design write, other agent channel or page switch. Native G9 is prepared but
+  not yet run/served at this source checkpoint. Human acceptance remains open.

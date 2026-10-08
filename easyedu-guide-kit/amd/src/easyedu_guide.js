@@ -8,6 +8,10 @@ const DEFAULTS = {
   firstVisit: false,
   highlightAutoHideDelay: 9000,
   highlightStyle: 'default',
+  // Instruction pauses are minimums, not deadlines: allow reading longer copy.
+  narrationMinimumMs: 2400,
+  narrationWordsPerMinute: 180,
+  narrationLeadInMs: 900,
   targets: {},
   paths: {},
   unlockPaths: [],
@@ -20,7 +24,9 @@ const DEFAULTS = {
     complete: 'Everything is ready. Return to the guide when you want to review another topic.',
     guidedPath: 'Guided path',
     visited: 'visited',
-    completeStepFirst: 'Complete "{$a}" first'
+    completeStepFirst: 'Complete "{$a}" first',
+    pathReset: 'Path reset. Start again when you are ready.',
+    pathCancelled: 'Path cancelled. Your course data has not changed.'
   }
 };
 
@@ -341,7 +347,7 @@ const isPathComplete = (config, pathName) => {
 // Reset this Guide path only, never other progress or Moodle course data.
 const resetPathProgress = (config, pathName) => {
   const state = loadGuideState(config);
-  saveGuideState(config, {...state, path: pathName, activeIndex: 0,
+  saveGuideState(config, {...state, path: state.path === pathName ? null : state.path, activeIndex: 0,
     completed: {...(state.completed || {}), [pathName]: []}});
 };
 
@@ -349,7 +355,9 @@ const syncPathInvitation = (root, config) => {
   root.querySelectorAll('[data-easyedu-guide-reset-path]').forEach(button => {
     const path = button.getAttribute('data-easyedu-guide-reset-path');
     const state = loadGuideState(config);
-    button.hidden = state.path !== path && getCompletedSteps(config, path).length === 0;
+    button.hidden = state.path !== path || isPathComplete(config, path);
+    const footer = button.closest('[data-easyedu-guide-path-progress]');
+    if (footer) { footer.hidden = button.hidden; }
   });
 };
 
@@ -631,6 +639,15 @@ const dockChecklistAwayFromTarget = (root, target) => {
 
   const rect = target.getBoundingClientRect();
   const viewportMiddle = window.innerWidth / 2;
+  // A progress re-render must not reset docking. Move only when the settled
+  // target actually overlaps the panel and another horizontal lane can fit.
+  const hasDock = checklist.classList.contains('is-docked-right') || checklist.classList.contains('is-docked-left');
+  if (hasDock) {
+    const panel = checklist.getBoundingClientRect();
+    const overlaps = rect.left < panel.right && rect.right > panel.left &&
+      rect.top < panel.bottom && rect.bottom > panel.top;
+    if (!overlaps || rect.width + panel.width + 32 > window.innerWidth) { return; }
+  }
   const dockRight = rect.left < viewportMiddle;
 
   checklist.classList.toggle('is-docked-right', dockRight);
@@ -695,6 +712,29 @@ const hideChecklist = (root, config, clearProgress = false) => {
   clearHighlight(root);
   if (clearProgress) {
     clearChecklistProgress(config);
+  }
+};
+
+// Unlike Return to Guide, Stop invalidates pending native-dialog work.
+const stopPath = (root, config, pathName, reset = false) => {
+  root.easyeduGuidePathEpoch = (root.easyeduGuidePathEpoch || 0) + 1;
+  clearStepOpenTimers(root);
+  dismissResume(root);
+  hideChecklist(root, config);
+  if (reset) {
+    resetPathProgress(config, pathName);
+  } else {
+    const state = loadGuideState(config);
+    saveGuideState(config, {...state, path: null});
+  }
+  syncPathInvitation(root, config);
+  root.querySelectorAll('[data-easyedu-guide-path-status]').forEach(status => {
+    status.textContent = reset ? config.labels.pathReset : config.labels.pathCancelled;
+  });
+  if (reset && isModalOpen(root)) {
+    const start = Array.from(root.querySelectorAll(SELECTORS.startPath))
+      .find(button => button.getAttribute('data-easyedu-guide-start-path') === pathName);
+    start?.focus({preventScroll: true});
   }
 };
 
@@ -842,14 +882,18 @@ const highlightChecklistStep = (root, config, step, callback = () => {}) => {
     return;
   }
 
-  const begin = () => runStepOpenAction(root, config, step, () => {
-    const target = resolveStepHighlightTarget(config, step);
-    scrollToTarget(root, target, {
-      autoHideHighlight: true,
-      autoHideDelay: config.highlightAutoHideDelay
+  const epoch = root.easyeduGuidePathEpoch || 0;
+  const begin = () => {
+    if (epoch !== (root.easyeduGuidePathEpoch || 0)) { return; }
+    runStepOpenAction(root, config, step, () => {
+      const target = resolveStepHighlightTarget(config, step);
+      scrollToTarget(root, target, {
+        autoHideHighlight: true,
+        autoHideDelay: config.highlightAutoHideDelay
+      });
+      callback();
     });
-    callback();
-  });
+  };
   if (step.beforeHighlight) {
     const request = {target: step.beforeHighlight, root, handled: false};
     document.dispatchEvent(new CustomEvent('easyedu:guide-open-target', {detail: request}));
@@ -1176,6 +1220,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   let dropFrame = null;
   const reduced = getScrollBehavior(root) === 'auto';
   const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
+  scene.toggleAttribute('data-guide-mobile-actions', compact);
   const wait = duration => new Promise(resolve => {
     resolveWait = resolve;
     timer = window.setTimeout(() => { timer = null; resolveWait = null; resolve(); }, duration);
@@ -1195,7 +1240,8 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     if (controller.signal.aborted) { return; }
     liveCopy.textContent = text;
     live.dataset.guideLiveState = state;
-    await animate(liveCopy, [{opacity: 0}, {opacity: 1}], 200, false);
+    await animate(liveCopy, [{opacity: 0, transform: 'translateY(.15rem)'},
+      {opacity: 1, transform: 'translateY(0)'}], 260, false);
   };
   // Scroll only the Guide reading surface, never the Moodle page. The same
   // cancellable animation set owns illustration and scroll, including exit.
@@ -1233,13 +1279,20 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     scene.querySelectorAll('[data-guide-phase]').forEach(node => node.removeAttribute('aria-current'));
     if (item) {
       item.setAttribute('aria-current', 'step');
-      const text = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+      const text = (compact && mode === 'add' && item.dataset.compactAdd) ||
+        (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
       item.textContent = text;
       await writeLive(text);
       if (controller.signal.aborted) { return; }
       scene.dataset.guidePhase = name;
     }
-    if (!reduced) { await wait(Math.max(2400, (item?.textContent.trim().split(/\s+/).length || 0) * 230)); }
+    if (!reduced) {
+      const words = item?.textContent.trim().split(/\s+/).filter(Boolean).length || 0;
+      const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
+      const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+      const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+      await wait(Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
+    }
   };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
@@ -1256,6 +1309,15 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     const cursor = stage.querySelector('[data-guide-cursor]');
     const menu = stage.querySelector('[data-guide-menu]');
     const confirm = stage.querySelector('[data-guide-confirm]');
+    if (compact && mode === 'add') {
+      // Native mobile Add uses Participants > Move participants (addusers),
+      // not the member-transfer action that removes the source membership.
+      stage.querySelector('[data-guide-source-title]').textContent = scene.dataset.guideMobileParticipantsLabel;
+      menu.querySelector('strong').textContent = scene.dataset.guideMobileAddAction;
+      menu.querySelector('[data-guide-member-remove]').hidden = true;
+      confirm.querySelector('header strong').textContent = scene.dataset.guideMobileAddAction;
+      confirm.querySelector('[data-guide-consequence]').textContent = scene.dataset.guideMobileAddConsequence;
+    }
     let cursorPoint = null;
     const travelPoint = async(point, duration) => {
       cursorPoint = point;
@@ -1279,7 +1341,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = true; });
     await phase('select');
     if (controller.signal.aborted) { return; }
-    if (mode !== 'add') {
+    if (mode !== 'add' || compact) {
       menu.hidden = false;
       // Desktop follows the illustrated click. Compact/reduced scenes anchor
       // to the same card without implying a mouse-only mobile interaction.
@@ -1400,8 +1462,9 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       recap.hidden = false;
       // Adding has no Move confirmation; compact devices explain actions instead of mouse gestures.
       recap.querySelectorAll('[data-guide-phase]').forEach(item => {
-        item.hidden = mode === 'add' && ['confirm', 'validate'].includes(item.dataset.guidePhase);
-        const copy = (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
+        item.hidden = mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase);
+        const copy = (compact && mode === 'add' && item.dataset.compactAdd) ||
+          (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
         // The ordered list supplies recap numbering; live instructions retain their phase prefix.
         item.textContent = copy.replace(/^\d+\s*[\u00b7.]\s*/, '');
         item.removeAttribute('aria-current');
@@ -1678,7 +1741,7 @@ const renderChecklist = (root, config, pathName) => {
   const wasMinimized = checklist.classList.contains('is-minimized');
   const compactDefault = isCompactChecklistViewport() &&
     !checklist.hasAttribute('data-easyedu-guide-checklist-expanded');
-  checklist.classList.remove('is-complete', 'is-docked-left', 'is-docked-right');
+  checklist.classList.remove('is-complete');
   checklist.classList.toggle('is-minimized', isCompactChecklistViewport() ? compactDefault : wasMinimized);
   checklist.classList.toggle('is-unlock-path', config.unlockPaths.includes(pathName));
   checklist.classList.toggle('has-guided-feedback', steps.some(step => !!step.feedback));
@@ -1915,7 +1978,8 @@ const notifyInterfaceTransition = (root, reason) => {
 
 const completeStep = (root, config, pathName, stepIdOrIndex) => {
   const checklist = root.querySelector(SELECTORS.checklist);
-  if (!checklist || checklist.getAttribute('data-easyedu-guide-path') !== pathName) {
+  if (!checklist || checklist.getAttribute('data-easyedu-guide-path') !== pathName ||
+      loadGuideState(config).path !== pathName) {
     return;
   }
 
@@ -2041,6 +2105,13 @@ const bindGuide = (root, config) => {
     return;
   }
   root.dataset.easyeduGuideBound = '1';
+
+  addTrackedListener(root, root, 'keydown', event => {
+    if (event.key !== 'Enter' || event.isComposing ||
+        !event.target.matches('[data-guide-pattern]')) { return; }
+    event.preventDefault();
+    renderDiscoveryNames(root, event.target.closest('[data-easyedu-guide-scene]'), 'preview');
+  });
 
   addTrackedListener(root, root, 'click', event => {
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
@@ -2196,10 +2267,7 @@ const bindGuide = (root, config) => {
   root.querySelectorAll('[data-easyedu-guide-reset-path]').forEach(button => {
     addTrackedListener(root, button, 'click', () => {
       const activeConfig = root.easyeduGuideConfig || config;
-      dismissResume(root);
-      resetPathProgress(activeConfig, button.getAttribute('data-easyedu-guide-reset-path'));
-      hideChecklist(root, activeConfig);
-      syncPathInvitation(root, activeConfig);
+      stopPath(root, activeConfig, button.getAttribute('data-easyedu-guide-reset-path'), true);
     });
   });
   const resume = root.querySelector('[data-easyedu-guide-resume-path]');
@@ -2212,9 +2280,7 @@ const bindGuide = (root, config) => {
   const cancelPath = root.querySelector('[data-easyedu-guide-cancel-path]');
   if (cancelPath) { addTrackedListener(root, cancelPath, 'click', () => {
     const activeConfig = root.easyeduGuideConfig || config;
-    dismissResume(root);
-    const state = loadGuideState(activeConfig);
-    saveGuideState(activeConfig, {...state, path: null});
+    stopPath(root, activeConfig, loadGuideState(activeConfig).path);
   }); }
 
   addTrackedListener(root, root, 'keydown', event => {

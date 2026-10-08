@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideG9Review20261008": {
+      "kitVersion": "0.4.146",
+      "kitCommit": "e0727d5c757651fe74d324dc282a903218f82700",
+      "documentation": "docs/guide-follow-up-g9-2026-10-08.md",
+      "scope": "Guide stop/reset, invitation layout, word-count narration and native mobile Add illustration.",
+      "isolatedLifecycleVerified": true,
+      "penpotPublished": false,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideLatestMilestone20261007": {
       "kitVersion": "0.4.145",
       "kitCommit": "98cf6c9a35f6814daf3e6449ab84b60f9e70062f",
