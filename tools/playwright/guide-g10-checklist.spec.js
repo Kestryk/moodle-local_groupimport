@@ -84,6 +84,10 @@ test('Guide G10 checklist native selection and destination highlights', async({p
                 '[data-easystud-mobile-action-trigger="[data-easystud-move-selected-participants]"]:visible').first();
             const activeMove = panel.locator('[data-easyedu-guide-step-id="open-move"]');
             await expect(activeMove).toHaveClass(/is-active/);
+            // A guided task remains current beyond the ordinary transient cue's
+            // 5.2s timeout; do not abandon its highlight while the visitor reads.
+            await page.waitForTimeout(6500);
+            await expect(highlight).toBeVisible();
             await move.click();
             const dialog = page.locator('[data-easystud-move-modal]');
             await expect(dialog).toBeVisible();

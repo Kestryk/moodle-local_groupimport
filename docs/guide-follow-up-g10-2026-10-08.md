@@ -319,3 +319,16 @@ and a centred wrapping text track. Actual EN/FR six labels pass range-based line
 centering (French destination wraps with0.008px centering error), no overflow.
 Desktop/tablet header, minimized-completion and green-finish regressions pass.
 Version/pin, Foundations/provider propagation and native serving still pending.
+
+G10-E diagnostic successor184711909Z-52880 reproduces hidden highlight again,
+despite active Move step and available control. Former checklist highlights
+shared the transient Show-in-interface5.2s timeout. Canonical0.4.153 separates
+these lifetimes: active checklist highlight persists until step/path change;
+Show-in-interface remains transient. Isolated built consumer passes next-target
+replacement and stop cleanup; native regression explicitly waits6.5s before
+opening real Move and checks destination geometry. This is a candidate, not a
+claim that every intermittent transition is fixed. No business writes/fixtures.
+
+G10-F canonical0.4.152 source pin pushed atdbf09f6. Existing Foundations Phone
+provider already uses centred copy and left counters; implementation matches
+that design without redrawing it. Native promotion pending. G10-G/H remain open.

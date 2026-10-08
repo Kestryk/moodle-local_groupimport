@@ -888,8 +888,10 @@ const highlightChecklistStep = (root, config, step, callback = () => {}) => {
     runStepOpenAction(root, config, step, () => {
       const target = resolveStepHighlightTarget(config, step);
       scrollToTarget(root, target, {
-        autoHideHighlight: true,
-        autoHideDelay: config.highlightAutoHideDelay
+        // A checklist is an active task, not a transient Show-in-interface cue.
+        // Keep its target until the next step/path exit; long reading must not
+        // silently remove the guidance. scrollToTarget clears any former timer.
+        autoHideHighlight: false
       });
       callback();
     });
