@@ -95,3 +95,21 @@ confirms credentials cleared, runtime lease released, owned child stopped and
 no fixture requested. Main MCP now responds on EasyStud/Rules and tokens,
 not Guide; dedicated Guide MCP reports no connected instance. No design write
 or cross-window browser/token change was made. Paired design remains pending.
+
+Additional isolated lifecycle regression PASS1280/768/390: progress keeps its
+dock class, and a genuinely deferred native request resolved after Reset AND
+same-root restart cannot open the old step. Test adapter request/listener is
+removed; the real product adapter is untouched. G9 content addendum records
+native mobile command semantics and the reading contract for the content owner.
+
+## Native24220 — successful lifecycle successor
+
+Source assets8becc2d /scenario e4c4f5f /Kit e0727d5 /0.4.146,
+runtimecb8af5e. PASS1280/768/390: native selection, Move open/search/Cancel,
+checklist modal hit/review/reopen, Reset/re-entry/reload, Cancel/reload, Enter
+with completed name fade and desktop launcher resting paint. Zero page errors
+or blocked writes; cleanup confirms released lease/credentials/child/no fixture.
+See docs/testing/guide-g9-native-2026-10-08.json. Inspect the phone capture:
+it mainly shows settled example cards, not the invitation farther down. Keep
+full invitation paint evidence pending; its separate read-only scenario must
+scroll that actual card into view without hiding native sticky chrome.
