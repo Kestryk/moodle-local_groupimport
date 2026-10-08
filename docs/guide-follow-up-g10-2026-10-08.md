@@ -203,9 +203,30 @@ owners; do not add a disconnected second animation or generic slide Next button.
   skip during each phase, double click, final phase, reset, scene comparison,
   slide change and close while paused. No course operation may be invoked.
 
-This is an audited implementation plan, NOT implemented controls. G10-D..H and
-the content writer's returned proposals remain independent open lots.
+The preceding engine boundary is historical: G10-C controls are now implemented
+and served, as the successor evidence above records. G10-D..H and the content
+writer's returned proposals remain independent lots, not implied acceptance.
 
-Next: finish G10-B Penpot/header and native presentation gates, then G10-C
-shared phase clock/controls. G10-D..H, returned content, older lots and the
-combined human checklist remain open; no global acceptance inferred.
+## G10-D — source and isolated checkpoint
+
+Kit0.4.150 reveals the card stage after illustrated confirmation hides and before
+transfer geometry is measured. It reuses the existing pause-aware cancellable
+scroll owner; accepted card/drag timing and appearance remain unchanged.
+
+The prior built controller reproduces the bug at1280: moving card top78.03px,
+Guide body top211.73px/bottom569.02px. Successor passes EN/FR1280, EN768, FR390:
+visible desktop transfer, completion, unchanged Moodle background scroll and
+long Compare intro containment. G10-C playback regression also passes. The first
+test setup inspected a transitioning hidden slide; it now waits for its actual
+visible intro, rather than weakening the containment assertion.
+
+Foundations MCP is live on08.14 Standards. This behavioral correction introduces
+no new visual provider or layout; existing G10-C Reading/Playback geometry stays
+unchanged. Penpot does not execute the Moodle scene controller. The design
+contract and native evidence are independent from static provider coverage.
+
+Native playback candidate is extended with post-confirmation reveal and Compare
+intro containment. Managed preview/native proof pending. Next: finish this gate,
+then G10-E reduced checklist, reset border and native destination highlights.
+G10-F..H, broader G10-B headers, returned content, older Student Management and
+the combined human checklist remain open. No data mutation is part of this lot.

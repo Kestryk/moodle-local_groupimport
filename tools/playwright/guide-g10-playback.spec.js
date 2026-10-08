@@ -76,8 +76,26 @@ test('Guide G10 playback pause resume next and departure', async({page}, info) =
                     await expect(scene).toHaveAttribute('data-guide-phase', phase);
                     await expect(live).toHaveAttribute('data-guide-playback-state', 'paused');
                 }
-                await next.click();
+                // G10-D: confirmation may have scrolled the cards out of view.
+                // Resume naturally, rather than skipping the transfer itself.
+                const backgroundScroll = await page.evaluate(() => window.scrollY);
+                await modal.locator('.easyedu-guide-modal__body').evaluate(n => { n.scrollTop = n.scrollHeight; });
+                await pause.evaluate(n => n.click());
+                if (width > 768) {
+                    await page.waitForFunction(() => document.getAnimations().some(a =>
+                        a.effect?.target?.classList.contains('easyedu-guide-scene__person') &&
+                        a.effect.getTiming().duration === 1200 && a.playState === 'running'), null, {timeout: 30000});
+                    const visibility = await scene.locator('[data-guide-source] .easyedu-guide-scene__person').first().evaluate(n => {
+                        const body = n.closest('.easyedu-guide-modal__body').getBoundingClientRect();
+                        const card = n.getBoundingClientRect();
+                        return {cardTop:card.top,cardBottom:card.bottom,top:body.top,bottom:body.bottom};
+                    });
+                    expect(visibility.cardTop).toBeGreaterThanOrEqual(visibility.top);
+                    expect(visibility.cardTop).toBeLessThan(visibility.bottom);
+                    expect(visibility.cardBottom).toBeGreaterThan(visibility.top);
+                }
                 await expect(scene).toHaveAttribute('data-guide-scene-finished', 'true');
+                expect(await page.evaluate(() => window.scrollY)).toEqual(backgroundScroll);
             }
             await expect(pause).toBeDisabled(); await expect(next).toBeDisabled();
             await expect(live.locator('[data-guide-activity]')).toBeHidden();
@@ -92,10 +110,16 @@ test('Guide G10 playback pause resume next and departure', async({page}, info) =
             expect(Math.abs(geometry.controls[0].height - geometry.controls[1].height)).toBeLessThan(0.01);
             await scene.locator('[data-guide-scene-command="reset"]').click();
             await expect(live).toHaveAttribute('data-guide-playback-state', 'idle');
+            await modal.locator('[data-easyedu-guide-nav-item="2"]').click();
+            const intro = modal.locator('[data-easyedu-guide-slide="2"] .easyedu-guide-scene__intro');
+            await expect(intro).toBeVisible();
+            const introGeometry = await intro.evaluate(n => ({width:n.clientWidth,scroll:n.scrollWidth}));
+            expect(introGeometry.width).toBeGreaterThan(0);
+            expect(introGeometry.scroll).toBeLessThanOrEqual(introGeometry.width + 1);
             await modal.locator('[data-easyedu-guide-close]').first().click();
             await expect(modal).toBeHidden();
             expect(await page.evaluate(() => document.querySelector('[data-easyedu-guide-root]').easyeduGuideScenePlayback)).toBeNull();
-            rows.push({width,motion,geometry,finishedAndReset:true});
+            rows.push({width,motion,geometry,introGeometry,moveRevealVerified:motion !== 'reduce',finishedAndReset:true});
         }
         expect(errors).toEqual([]); expect(blocked).toEqual([]);
     } finally {

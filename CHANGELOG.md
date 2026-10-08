@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - Guide G10-D reveal before Move (WIP)
+
+- Synchronize Kit0.4.150: reveal the teaching card stage after illustrated
+  confirmation and before transfer geometry. Same pause-aware scroll owner;
+  no card style/duration change and no Moodle background scroll.
+- Previous built consumer reproduces offscreen transfer. Successor passes
+  EN/FR1280, EN768 and FR390 with contained Compare intro; G10-C playback
+  regression passes. Native test extended, pending managed preview.
+
 ## Unreleased - Guide G10-C playback checkpoint (WIP)
 
 - Synchronize canonical Pause/Resume/Next-phase controls and activity dots into
