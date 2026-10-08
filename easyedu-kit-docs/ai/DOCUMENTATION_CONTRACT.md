@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+G10-C playback checkpoint is a canonical Kit WIP, not a released Kit pin or
+served-preview claim. Preserve the existing scene's reading/WAAPI/scroll owner;
+Pause retains remaining time, Next drains one phase, and departure aborts all
+pending gates. Test the actual localized consumer template and built AMD.
+Await WAAPI pause readiness before comparing clocks. Follow the G10 ledger for
+separate Foundations/product/saved/native/human gates and unresolved G10-D..H.
+
 Guide G10 review reopens user-reported presentation/highlight failures despite
 earlier scoped PASS. Content writers own declarative proposals, not runtime/Kit
 or Foundation publication. Record all4+20 native slides before deduplication and

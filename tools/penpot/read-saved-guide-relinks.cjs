@@ -63,6 +63,14 @@ const geometry = (shape, field) => {
                 for (const id of read(shape, 'shapes') || []) walk(objects.get(id), hidden);
             };
             walk(root, false);
+            if (expected.instructionOverrides?.[item.id]) {
+                const instruction = (read(root, 'shapes') || []).map(id => objects.get(id))
+                    .find(shape => read(shape, 'name') === 'Instruction');
+                assert.ok(instruction, 'Saved instruction exists');
+                const text = node => read(node, 'text') || (read(node, 'children') || []).map(text).join('');
+                assert.equal(text(read(instruction, 'content')), expected.instructionOverrides[item.id],
+                    `${item.id}: saved product instruction override`);
+            }
             for (const archive of item.archived) {
                 assert.ok(object(archive.id), 'Original retained');
                 assert.equal(read(object(archive.id), 'hidden'), true, 'Original archived, not deleted');

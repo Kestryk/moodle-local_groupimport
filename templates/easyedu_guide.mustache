@@ -138,7 +138,19 @@
                                 </div>
                             {{/requires}}
                             {{#discoveryscene}}
-                            {{^concepts}}{{^creation}}<div class="easyedu-guide-scene__live" data-guide-live aria-live="polite"><span class="fa fa-check-circle" data-guide-live-complete aria-hidden="true" hidden></span><span data-guide-live-copy>{{initiallabel}}</span></div>{{/creation}}{{/concepts}}
+                            {{^concepts}}{{^creation}}
+                            <div class="easyedu-guide-scene__live" data-guide-live>
+                                <span class="easyedu-guide-scene__live-content">
+                                    <span class="fa fa-check-circle" data-guide-live-complete aria-hidden="true" hidden></span>
+                                    <span data-guide-live-copy aria-live="polite">{{initiallabel}}</span>
+                                    <span class="easyedu-guide-scene__activity" data-guide-activity aria-hidden="true" hidden><span></span><span></span><span></span></span>
+                                </span>
+                                <span class="easyedu-guide-scene__playback" aria-live="off">
+                                    <button type="button" class="easyedu-guide-scene__playback-button" data-guide-playback="pause" data-pause-label="{{pauselabel}}" data-resume-label="{{resumelabel}}" aria-label="{{pauselabel}}" aria-pressed="false" disabled><span class="fa fa-pause" aria-hidden="true"></span></button>
+                                    <button type="button" class="easyedu-guide-scene__playback-button" data-guide-playback="next-phase" aria-label="{{nextphaselabel}}" disabled><span class="fa fa-forward" aria-hidden="true"></span></button>
+                                </span>
+                            </div>
+                            {{/creation}}{{/concepts}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
                                 <p class="easyedu-guide-scene__caption">{{caption}}</p>
                                 {{#concepts}}

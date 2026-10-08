@@ -97,6 +97,31 @@ credential/lease/child cleanup passed. Corrective preview/test still required.
 
 ## G10-C — next implementation boundary
 
+### WIP checkpoint after interruption recovery
+
+Canonical playback implementation and localized actual consumer Mustache/AMD
+are synchronized and built. Shared small selection-action/icon recipes skin
+both controls. Pause retains reading and freezes illustration/copy/scroll;
+Next serializes one phase while keeping paused state. Idle/finished/advancing
+controls are disabled. Activity dots stop in pause/reduced motion and hide at
+completion. No course transaction or fixture is introduced.
+
+Isolated actual-consumer test passes EN1280/FR390 normal and EN768 reduced,
+including all Actions phases advanced while paused through the final recap,
+copy/scroll freeze, paired drag clocks, reset/departure/Escape and ghost cleanup.
+Six keyboard routes pass. An intermediate clock assertion ran before WAAPI
+pause readiness; the harness now awaits `ready`, like the paired-drag assertion.
+
+Foundations six Reading providers (Active/Paused/Finished desktop/phone), five
+canonical-derived playback specimens and linked Standard checkpoint are present.
+Initial raster exposed phone dots over text; corrected providers and reset linked
+specimens, then inspected the corrected Standard raster. No duplicate writes
+after the slow read. External media: `g10-c-playback-20261008`, retained diagnostic
+and successor. Still OPEN: hover/focus catalogue, exact saved-file proof,
+Guide-product copy/geometry propagation, managed preview and native playback.
+Runtime remains at72dbfc5 (G10-B), not this G10-C source WIP. G10-D..H and the
+combined human checklist remain open. Do not mark the released Kit updated.
+
 G10-B native successor passes `easystud-authenticated-20261008T152735563Z-19344`
 against runtime72dbfc5:1280 normal-motion,768/390 reduced-motion. Header16px/700,
 32px compass centered/no overflow, strong green finish/check, full2px border,

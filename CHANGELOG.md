@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide G10-C playback checkpoint (WIP)
+
+- Synchronize canonical Pause/Resume/Next-phase controls and activity dots into
+  actual localized runtime Mustache, embedded kit and built AMD/CSS.
+- Built-consumer playback and six keyboard routes pass without authentication
+  or course writes; Foundations checkpoint recorded. Product propagation,
+  native preview and human review remain open; served runtime is still G10-B.
+
 ## 2026-10-08 - Guide G10-B presentation checkpoint
 
 - Consume canonical shared entity heading/icon recipes and Guide narration
