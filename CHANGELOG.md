@@ -8,6 +8,9 @@
   linked Foundations checkboxes and retained accepted card/dialog controls.
 - Record exact board IDs and inspected exports; complete paired propagation,
   Foundation publication and human acceptance stay open. No asset/runtime change.
+- Add compact destination/checklist and responsive Practice/Organisation/Actions
+  compositions; preserve partial-write IDs before recovery. Prepare read-only
+  native narration/Motion successor without replacing earlier lifecycle proofs.
 
 ## 2026-10-08 - Guide G9 review candidate
 
