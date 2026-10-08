@@ -431,3 +431,14 @@ labels/action widths fixed without a new master/font/skin. Saved1 root/15
 visible descendants and raster inspected. Full native/design pixel parity and
 human acceptance remain open. G10-H desktop fullscreen is the next tranche;
 all earlier recorded lots remain retained.
+
+G10-H canonical lifecycle candidate started, deliberately not synchronized or
+activated in EasyStud. Real isolated Chrome API test passes desktop entry/exit,
+denied-request ordinary-mode fallback, compact unavailability and teardown.
+The helper never exits another element's fullscreen. Remaining sequence:
+linked Foundation Expand/Compress Small controls and Desktop Guide composition;
+integrate native lifecycle with existing Escape/focus and await exit before
+Show in interface/close; preserve slide/progression/accepted animations;
+translate controls, add scoped shared layout, regression and managed native
+preview. No fullscreen option visible in current Moodle yet. Common intro
+content and all older product lots remain separate/open.
