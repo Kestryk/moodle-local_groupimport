@@ -13182,11 +13182,14 @@
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal:fullscreen {
   background: var(--easyedu-surface);
   padding: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100dvh;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal:fullscreen .easyedu-guide-modal__dialog,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal:fullscreen .easyedu-guide-modal__dialog {
+  box-sizing: border-box;
   width: 100%;
   height: 100dvh;
   max-width: none;

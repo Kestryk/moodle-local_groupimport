@@ -2,6 +2,9 @@
 
 ## Unreleased - Guide G10-H desktop fullscreen candidate
 
+- Retain native failed15px width oracle; synchronize shared viewport/border-box
+  successor, preserving the scenario and ordinary dialog/accepted animations.
+
 - Consume canonical native fullscreen lifecycle, translated EN/FR Small header
   controls and shared fullscreen layout. Escape preserves Guide/slide; close
   and Show in interface await exit. No responsive fullscreen action.

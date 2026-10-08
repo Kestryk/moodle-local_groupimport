@@ -7,6 +7,7 @@
     "guideG10Fullscreen20261008": {
       "kitVersion": "0.4.158",
       "kitCommit": "2299060d99d3dd2f6164a6bd7042e777f8277b1b",
+      "fullscreenGeometrySuccessor": "eca68a4cdef3279b718dc60715fe49beb4e68028",
       "isolatedBuiltConsumerVerified": true,
       "foundationSavedVerified": true,
       "productSavedVerified": true,
