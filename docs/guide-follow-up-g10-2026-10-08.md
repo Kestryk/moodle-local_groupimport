@@ -307,3 +307,15 @@ desktop button. Isolate temporary path storage per viewport, so the phone does
 not resume the unfinished desktop exercise. Keep both failures; first absent
 desktop highlight was not reproduced in successor, do not invent a product fix.
 Native phone/repeat stability still open; no business write/fixture requested.
+
+Phone successor184446788Z-49456 exposes another harness-only carryover: slicing
+the already bounded3-step config again leaves only Choose destination. Select
+the three actual milestone IDs idempotently and assert exactly3 before init.
+Desktop native selection/move/destination passed again, no errors/blocked writes
+or transactions. Preserve failure; do not modify product lifecycle to compensate.
+
+G10-F source WIP: only the phone invitation labels use a fixed left counter track
+and a centred wrapping text track. Actual EN/FR six labels pass range-based line
+centering (French destination wraps with0.008px centering error), no overflow.
+Desktop/tablet header, minimized-completion and green-finish regressions pass.
+Version/pin, Foundations/provider propagation and native serving still pending.
