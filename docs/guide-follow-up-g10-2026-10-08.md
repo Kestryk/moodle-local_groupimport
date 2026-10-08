@@ -361,3 +361,11 @@ contract and lint gates added; real PHPUnit candidate retained (local PHPUnit
 absent). Full design, actual-open engine hook, POST/sesskey controllers,
 confirmation/feedback, privacy export and native acceptance remain pending.
 No active preview preference/configuration or course data changed by this work.
+
+G10-G Foundations ordinary draft480x140 prepared by cloning/detaching only Resume
+root and retaining linked canonical Small primary/neutral actions, paired30.4px.
+Existing Inter12.16 copy and12.48 actions; settled text fits, raster inspected.
+Not published as component yet, no product/UI activation. Exact IDs and all
+remaining gates in guide-g10-g-welcome-draft-2026-10-08.json. A width getter error
+created only an empty owned host; inspected partial state and finished the same
+host with resize(), no duplicated write or discarded unsaved work.
