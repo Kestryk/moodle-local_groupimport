@@ -39,7 +39,7 @@ test('Guide G10 checklist native selection and destination highlights', async({p
         for (const width of [1280,390]) {
             await page.setViewportSize({width,height:900});
             await page.emulateMedia({reducedMotion:'no-preference'});
-            await page.evaluate(async() => {
+            await page.evaluate(async width => {
                 const root = document.querySelector('[data-easyedu-guide-root]');
                 const config = root.easyeduGuideConfig;
                 window.g10ChecklistTrace = [];
@@ -56,9 +56,9 @@ test('Guide G10 checklist native selection and destination highlights', async({p
                 }));
                 const Guide = await new Promise(resolve => require(['local_groupimport/easyedu_guide'],resolve));
                 Guide.destroy(root);
-                Guide.init(root, {...config,firstVisit:false,storageKey:'g10-native-checklist-presentation',
+                Guide.init(root, {...config,firstVisit:false,storageKey:'g10-native-checklist-presentation-'+width,
                     paths:{...config.paths,'practice-membership':steps}});
-            });
+            },width);
             if (!await page.locator('[data-easyedu-guide-open]:visible').count()) {
                 await page.locator('[data-easyedu-navigation-open]:visible').first().click();
             }
@@ -69,7 +69,8 @@ test('Guide G10 checklist native selection and destination highlights', async({p
             await expect(guide).toBeHidden();
             const panel = page.locator('[data-easyedu-guide-checklist]');
             await expect(panel).toBeVisible();
-            await page.locator('[data-easystud-layout-mode="participants"]').click();
+            await page.locator('[data-easystud-mobile-view="participants"]:visible, ' +
+                '[data-easystud-layout-mode="participants"]:visible').first().click();
             const selector = page.locator('[data-easystud-participant-list] [data-easystud-user]:visible .local-groupimport-easystud-selector').first();
             const checkbox = selector.locator('input');
             await selector.click();
