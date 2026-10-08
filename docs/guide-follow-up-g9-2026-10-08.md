@@ -174,3 +174,24 @@ correlated tablet/phone slides, actual compact native-modal/checklist specimen,
 full icon/paint audit and Foundations publication. Source Kit146 and previously
 served native proofs are unchanged; no new runtime test or course mutation was
 needed for these design-only changes. Human checklist remains OPEN.
+
+## G9-E continuation: responsive compositions and native Motion candidate
+
+- Board75 `4ee6f77a-1dfb-809b-8008-c1dd939450a8`, x0/y13980/1640x940:
+  actual mobile/tablet checklist + destination compositions. Earlier review,
+  active step, bounded scrolling, Small minimize, native-style destination
+  search and equal38px Cancel/Move are visible together. Export inspected.
+- Board76 `4ee6f77a-1dfb-809b-8008-c1ddedeb1f05`, x0/y15080/2150x1500:
+  phone Practice/Organisation/Actions and tablet Practice reading compositions.
+  Retained cards and linked controls, both checked members in Actions, mobile
+  action tray instead of mouse teaching, airy four-step recap and consequence
+  copy. Practice has Enter/native-context copy, six-step invitation; tablet
+  Start stays at inline end. A missing old button ID interrupted creation;
+  exact partial board was read back and continued without duplication. Export
+  inspected after continuation. These are Guide-local compositions, not new
+  Foundation Library providers or full native-pixel equivalence claims.
+- Added local-supervised `tools/playwright/guide-g9-motion.spec.js`: native
+  normal-motion narration, Organisation/Actions responsive reading, word-count
+  dwell, sticky edge, scene completion and cleanup at1280/768/390. Business
+  writes denied, no fixture. Syntax PASS; actual execution remains pending at
+  this source checkpoint. Historical isolated Motion proof remains separate.
