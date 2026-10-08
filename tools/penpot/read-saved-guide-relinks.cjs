@@ -7,7 +7,10 @@ assert.ok(process.argv[2] && process.argv[3] && process.argv[4],
 assert.match(process.argv[4], /^http:\/\/(?:127\.0\.0\.1|localhost):\d+\/?$/);
 const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
 const transit = require(path.resolve(process.argv[3], 'transit-js'));
-const expected = require('../../docs/testing/guide-g9-product-relinks-2026-10-08.json');
+const recordName = process.argv[5] || 'guide-g9-product-relinks-2026-10-08.json';
+assert.ok(['guide-g9-product-relinks-2026-10-08.json',
+    'guide-g9-product-relinks-tranche2-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
+const expected = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
 const geometry = (shape, field) => {
     let value = read(shape, field);
@@ -64,8 +67,31 @@ const geometry = (shape, field) => {
         for (const moved of expected.mobileDestinationShift) {
             assert.ok(Math.abs(geometry(object(moved.id), 'y') - moved.toY) < 0.05, 'Mobile dialog clearance saved');
         }
+        if (expected.practiceLayout) {
+            const layout = expected.practiceLayout;
+            for (const field of ['x', 'y', 'width', 'height']) {
+                assert.ok(Math.abs(geometry(object(layout.boardId), field) - layout.after[field]) < 0.05,
+                    `Practice board saved ${field}`);
+            }
+            for (const child of layout.finalChildren) {
+                const saved = object(child.id);
+                assert.ok(saved, 'Retained Practice child exists');
+                for (const field of ['x', 'y', 'width', 'height']) {
+                    assert.ok(Math.abs(geometry(saved, field) - child[field]) < 0.05, `Practice child ${field}`);
+                }
+                assert.equal(Boolean(read(saved, 'hidden')), child.hidden, 'Practice archive state saved');
+            }
+            assert.equal(read(object(layout.replayId), 'hidden'), true, 'Unused Practice Replay archived');
+            assert.equal(Boolean(read(object(layout.resetId), 'hidden')), false, 'Practice clear action retained');
+        }
+        for (const fit of expected.descriptionFit || []) {
+            assert.ok(Math.abs(geometry(object(fit.id), 'height') - fit.toHeight) < 0.05,
+                'Multiline description intrinsic height saved');
+        }
         console.log(JSON.stringify({passed: true, roots: expected.components.length, descendants, archives,
             relocatedDestinationShapes: expected.mobileDestinationShift.length, editorWrites: 0, moodleWrites: 0,
+            practiceChildren: expected.practiceLayout?.finalChildren.length || 0,
+            descriptionFits: expected.descriptionFit?.length || 0,
             helperDisconnected: true, scope: 'Exact saved links/geometry/archive retention only; no native or human acceptance.'}));
     } finally { await browser.close(); }
 })().catch(error => { console.error(error.message); process.exitCode = 1; });

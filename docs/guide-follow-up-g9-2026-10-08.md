@@ -326,5 +326,42 @@ remain their pinned evidence; this design-only tranche is not a fresh preview.
 NEXT:correlated Practice/Organisation/Actions phone/tablet compositions76/78,
 then other retained Guide/return compositions. Do not mark all-product relinking,
 full curriculum, Mass Import Guide or human checklist complete from this tranche.
+
+## Guide consumer relinking tranche2 (2026-10-08)
+
+Correlated boards76/78 and desktop Practice/Organisation/Actions now reuse nine
+additional Foundation instances (28 total). Phone invitation keeps the six real
+milestones, top-left route and full-width Start below the steps. Tablet/desktop
+Start stays centred inline-end. Active instruction banners use actual mobile
+actions, never simulated mouse gestures. Desktop invitation widens its copy
+lanes for the real French labels without shrinking fonts or creating SCSS.
+
+Desktop Practice moved from (0,6500),1220x878 to (0,18500),1220x1030 in verified
+free page space. Footer moves152px for the full260px invitation; scene moves8px
+for description clearance. Unused Practice Replay is hidden/recoverable; the
+native-equivalent clear remains beside the result heading. Original geometry,
+archive flags and final children are recorded before/after, not deleted.
+
+Full-board exports inspected:76,78 and the three desktop scenes. Settled audit
+passes28 linked roots,393 visible shapes and117 Inter texts; zero root/board/
+text-bound errors. Three older descriptions needed intrinsic height32 instead
+of28 after actual multiline paint; font/provider/row height stay unchanged.
+Accepted Overview remains fingerprint-identical. Saved-server successor PASS:
+28 roots/393 descendants,165 retained hidden originals,13 dialog offsets,
+53 Practice children and3 description fits. Read-only helper disconnected.
+
+Evidence:docs/testing/guide-g9-product-relinks-tranche2-2026-10-08.json.
+The original tranche1 evidence stays intact. The saved reader accepts only these
+two exact owned records. No new Kit SCSS/template/controller or generated asset,
+Moodle write, cache purge, fixture or native test: this is design propagation
+of the already-served G9 correction, not a new preview release. Earlier native
+Motion/lifecycle evidence stays pinned; human acceptance remains OPEN.
+
+NEXT:remaining retained Guide/return compositions and shared Show/Return utility
+controls; then content-owner full curriculum and separate Mass Import Guide.
+Keep older unfinished EasyStud feedback and combined human checklist open.
+Rollback:hide new instances, restore original archived flags; restore Practice
+board/children from practiceLayout.children/before and earlier dialog offsets.
+No Moodle/data rollback is required.
 Rollback:hide the exact new instances and restore the recorded original hidden
 flags; restore the13 destination y positions from the evidence. No data rollback.
