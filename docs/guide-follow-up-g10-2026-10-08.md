@@ -352,3 +352,12 @@ Next G10-G: server-backed actual-open marker and one global welcome generation
 for admin reset, then desktop invitation design/motion and safe adapter. G10-H
 desktop fullscreen, broader B headers, writer content and all older lots remain
 OPEN; no automatic human acceptance or lost backlog.
+
+G10-G server candidate now exists in classes/local/guide_welcome.php, deliberately
+unconnected. Native Moodle preferences + one opaque config generation avoid
+mass user updates. Mark actual opening only, reject stale-page generations,
+current user only; reset requires site configuration capability. Isolated PHP
+contract and lint gates added; real PHPUnit candidate retained (local PHPUnit
+absent). Full design, actual-open engine hook, POST/sesskey controllers,
+confirmation/feedback, privacy export and native acceptance remain pending.
+No active preview preference/configuration or course data changed by this work.

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased - Guide G10-G server welcome generation candidate (WIP)
+
+- Add an unconnected server service for actual guide opening, per-user memory,
+  obsolete-tab rejection and capability-guarded constant-cost global reset.
+- Add isolated no-database contract harness and real PHPUnit candidate. No UI,
+  endpoint, preference write, admin reset or production activation claimed yet.
+
 ## Unreleased - Guide G10-E active task highlight lifetime (WIP)
 
 - Synchronize canonical0.4.153: current checklist highlights persist until
