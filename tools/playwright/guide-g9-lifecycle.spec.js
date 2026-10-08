@@ -163,11 +163,15 @@ test('Guide G9 lifecycle and native destination review', async({page}, info) => 
             expect((await stored()).completed['practice-membership']).toEqual([]);
             await card.locator('[data-easyedu-guide-start-path]').click();
             await expect(checklist.locator('.is-complete[data-easyedu-guide-step-id]')).toHaveCount(0);
+            if (await checklist.locator('[data-easyedu-guide-checklist-restore]').isVisible()) {
+                await checklist.locator('[data-easyedu-guide-checklist-restore]').click();
+            }
             await checklist.locator('[data-easyedu-guide-checklist-return]').click();
             await expect(reset).toBeVisible(); await reset.click();
             const pattern = modal.locator('[data-guide-pattern]');
             await pattern.fill('Equipe #*3'); await pattern.press('Enter');
             await expect(modal.locator('[data-guide-name]')).toHaveCount(3);
+            await expect(modal.locator('[data-guide-names]')).toHaveAttribute('aria-busy', 'false');
             const geometry = await card.evaluate(node => ({card: node.getBoundingClientRect().height,
                 action: node.querySelector('[data-easyedu-guide-start-path]').getBoundingClientRect().height,
                 badge: getComputedStyle(node.querySelector('li'), '::before').width}));

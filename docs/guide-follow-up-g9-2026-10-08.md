@@ -77,3 +77,21 @@ No real Create/Move/Send transaction is needed to validate these changes.
   not Guide. Asked for the intended project on that same channel; no blind
   design write, other agent channel or page switch. Native G9 is prepared but
   not yet run/served at this source checkpoint. Human acceptance remains open.
+
+## Native46276 — preserved partial result and harness successor
+
+Kit e0727d5 /0.4.146, Source8becc2d promoted to clean runtime58f066d with cache
+purge (promotion20261008T064928Z). Native46276 proves1280/768 lifecycle and
+geometry, and real native-modal checklist hit at all three widths. It then
+fails phone Return-to-Guide after a restarted path: compact Start correctly
+reopens a minimized checklist, whose Return footer is not visible. No product
+failure/longer timeout is inferred. The successor explicitly clicks native
+Restore before Return, preserving exact interaction deadlines and existing
+Motion. Screenshots also await aria-busy=false so preview-name fades have
+finished. Old immutable source is in8becc2d and the failed run is retained.
+
+No page errors or blocked writes; no transaction submitted. Runner cleanup
+confirms credentials cleared, runtime lease released, owned child stopped and
+no fixture requested. Main MCP now responds on EasyStud/Rules and tokens,
+not Guide; dedicated Guide MCP reports no connected instance. No design write
+or cross-window browser/token change was made. Paired design remains pending.
