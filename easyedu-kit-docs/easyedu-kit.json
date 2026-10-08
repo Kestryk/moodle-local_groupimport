@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideG10Completion20261008": {
+      "kitVersion": "0.4.151",
+      "kitCommit": "e939c17f670fb44189e2b3645ecbc106e2645a58",
+      "isolatedBuiltConsumerVerified": true,
+      "foundationSavedVerified": true,
+      "productSavedVerified": false,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideG10Reveal20261008": {
       "kitVersion": "0.4.150",
       "kitCommit": "2afeb317d38d3e66b4d95af76313f16cab5d2ccc",

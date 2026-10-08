@@ -265,3 +265,18 @@ completion/reset/departure clean. No errors/blocked writes/course operations or
 fixtures; credential/child/lease cleanup passed. Retention dry-run0 candidates,
 0 deletions. Foundations Motion contract text updated and painted bounds fit
 750x74. G10-D native gate complete; human acceptance stays OPEN.
+
+G10-E Foundations: new Reduced Complete Phone provider358x150, linked Standard
+and two Path invitation Reset providers. Saved gate passes6 roots/190 visible
+descendants. Initial raster exposed catalogue overlap: move the new variant to
+separate Library/Standard hosts at2480, preserve failed image, inspect corrected
+raster. Product Guide new linked example at886/11486 is visible but NOT saved:
+editor displays autosave failure and saved readback has no new ID. Preserve the
+open editor, no reload/close. Exact reconstruction in product-links evidence.
+No product-reset propagation or saved success claimed. Native highlight candidate
+uses a bounded path starting at real selection to avoid Create/Move data writes.
+
+Next: recover product save safely after capturing its error; finish G10-E native
+milestone/highlight proof, then F responsive path alignment, G server welcome/
+admin reset and H desktop fullscreen. Broader B headers/content writer/old lots
+and combined human checklist remain OPEN.
