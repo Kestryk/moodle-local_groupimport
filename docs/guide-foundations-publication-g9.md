@@ -3,6 +3,36 @@
 Programme EED-UI-2026-0073. Human acceptance remains OPEN.
 Canonical source: Kit0.4.146 / e0727d5. Product Guide content stays EasyStud-owned.
 
+## Publication successor:08.14 /08.14.1
+
+19 new Discovery components are published, with19 linked Standards examples.
+Machine-readable exact source/main/example mapping and verification limits:
+[publication record](testing/guide-g9-foundations-publication-2026-10-08.json).
+Standards page4ee6f77a-1dfb-809b-8008-c1eac9c2959e; Library page
+4ee6f77a-1dfb-809b-8008-c1eac9c6142e. Titles contain no workflow status.
+All19 recursive fingerprints match. All7 legacy Checklist provider fingerprints
+are unchanged. Temporary transfer components removed only after replacement
+examples matched; no accepted historical component was deleted or reconstructed.
+Final expanded-checklist and full-host exports inspected.88 Inter text shapes,
+12 linked glyphs audited; no outer overflow or unexplained glyph-centre error.
+
+The new generic compositions use canonical button/icon providers and the
+current shared SCSS dimensions. Repeated generic wording is a reusable example,
+not the completed product curriculum. Phone recipes use a358px inner viewport;
+tablet follows the desktop responsive composition, not a separately invented
+provider. No new SCSS, template, controller, Moodle transaction or release.
+
+Persistence gate (module directories/CDP endpoint supplied by the local owner):
+`node tools/penpot/read-saved-guide-discovery.cjs <playwright-modules> <transit-modules> <local-cdp-url>`.
+Classification:local-supervised, read-only, no screenshots/auth-state persisted.
+It checks38 saved roots, canonical links/sizes and descendant containment;
+it does not replace editor fingerprints, raster inspection or human acceptance.
+Saved-server successor PASS:38 roots and570 descendants. Path bounds are read
+from tagged selrect when raw scalar fields are absent, never coerced to zero.
+No editor/Moodle writes, no browser closed; only the helper disconnected.
+Guide board relinking remains separate and must preserve accepted Overview,
+product text, native cards and prior specimens. No blind whole-board replacement.
+
 ## Verified files and ownership
 
 - Guide file b564c72c-f31f-81ec-8008-ad9958b272bd, page

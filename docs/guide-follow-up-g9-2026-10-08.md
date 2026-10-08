@@ -258,3 +258,36 @@ accessibility acceptance stay OPEN. Foundations has been requested on hosted
 MCP; current live identity is still Guide. No wrong-file publication attempted.
 Complete24-slide curriculum and distinct Mass Import Guide remain with the
 content-owner handoff. Global human checklist remains OPEN, no forgotten lots.
+
+## Foundations publication successor (2026-10-08)
+
+Foundations is now connected on the owned hosted channel. Publish19 shared
+Discovery recipes separately from legacy Guide on08.14 Standards and08.14.1
+Library. The exact IDs and scoped proof are in
+docs/testing/guide-g9-foundations-publication-2026-10-08.json. All19 source/main/
+linked-Standard recursive fingerprints match;7 historical Checklist providers
+are unchanged.19 exact temporary mains removed,0 temporary providers remain.
+88 texts use Inter;12 linked glyphs are contained/centred; no outer overflow.
+Final expanded-checklist and full-Standards exports inspected. Correct Small
+text actions are reused; swapped icon descendants are normalized from masters.
+
+This is a design/documentation-only successor: Kit0.4.146 and generated runtime
+assets are unchanged. Native27760/50592 remain their earlier scoped evidence,
+not fresh tests of a new stylesheet. Saved-file persistence has its own gate,
+tools/penpot/read-saved-guide-discovery.cjs (local-supervised). Guide product
+relinking is NEXT after the exact Foundation records are safely persisted;
+the currently connected file must not be switched by another writer mid-write.
+No source worktree, channel or Moodle write ownership is transferred implicitly.
+
+Saved-server gate PASS:38 Standard/Library roots, canonical links/sizes and570
+descendants contained. No editor/Moodle writes; helper disconnected. Initial
+reader diagnostics treated absent Path x/width as zero; saved tagged selrect
+retains the actual coordinates. Corrected parser (no changed tolerance/product
+geometry) passes. Record this as harness recovery, not a style correction.
+Source/Kit mapping both retain explicit false Guide-relinked/human flags.
+
+Platform coordination handoff: append the exact published pages/components and
+the remaining relink/content/human gates to EED-UI-2026-0073; do not replace older
+unfinished feedback. Shared Platform planning files stay with their named owner.
+The complete curriculum and separate Mass Import Guide still require the G8/G9
+content-owner deliverables. Human checklist remains OPEN.
