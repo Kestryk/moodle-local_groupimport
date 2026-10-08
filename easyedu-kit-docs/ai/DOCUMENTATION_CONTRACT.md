@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Guide product relinking preserves real copy and conditional step states, not
+the generic provider's dummy completed rows. Use ordinary product composition
+hosts for linked state rows; hide old slots without adding structural children
+to a component copy. Normalize child coordinates from the provider after root
+movement: root setters may already translate descendants. Verify settled paint
+and saved references/archives before continuing. Intrinsic title-height changes
+are content adaptations, not a new typography scale or stylesheet exception.
+
 Discovery Foundation publication retains the historical Guide providers. Use
 one canonical component per new recipe and linked Standards instances; remove
 only exact owned temporary transfer mains after recursive fingerprint parity.

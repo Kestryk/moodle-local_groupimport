@@ -33,6 +33,26 @@ No editor/Moodle writes, no browser closed; only the helper disconnected.
 Guide board relinking remains separate and must preserve accepted Overview,
 product text, native cards and prior specimens. No blind whole-board replacement.
 
+### Consumer successor:boards72/73/75
+
+19 linked Guide instances are now inspected and saved. Exact mappings, overrides,
+retained original IDs and mobile destination offsets:
+[Guide relink record](testing/guide-g9-product-relinks-2026-10-08.json).
+63 Inter texts/11 glyphs pass bounded checks; full72/73/75 exports inspected.
+Saved gate verifies19 roots/258 descendants,100 originals retained hidden and
+13 dialog-shape offsets. Overview unchanged. Intrinsic multiline title frames
+and ordinary-host row compositions are explicit consumer content adaptations,
+not new Foundation type scales/private styles. Some generic complete-row copy
+is replaced by a truthful consultation cue; no business progress is generated.
+Full product relinking remains pending76/78 and other retained compositions.
+
+Read-only gate:
+`node tools/penpot/read-saved-guide-relinks.cjs <playwright-modules> <transit-modules> <local-cdp-url>`.
+Classification:local-supervised. It disconnects only its helper and never writes
+Moodle, editor objects or authentication state. Raster/editor/native/human gates
+remain separate. Restore recorded original hidden flags/offsets for rollback;
+new instances can be hidden without deleting any accepted specimen.
+
 ## Verified files and ownership
 
 - Guide file b564c72c-f31f-81ec-8008-ad9958b272bd, page
