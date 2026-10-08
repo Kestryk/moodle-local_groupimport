@@ -449,7 +449,41 @@
         color: var(--easyedu-accent);
         font-weight: var(--easyedu-font-weight-strong);
       }
-      > [data-guide-live-complete] { flex: 0 0 auto; line-height: 1; }
+      flex-wrap: wrap;
+      &-content { display: flex; align-items: center; gap: var(--easyedu-action-icon-gap); flex: 1 1 14rem; min-width: 0; }
+      [data-guide-live-complete] { flex: 0 0 auto; line-height: 1; }
+      [data-guide-live-copy] { min-width: 0; overflow-wrap: anywhere; }
+    }
+    &__playback {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--easyedu-action-icon-gap);
+      margin-inline-start: auto;
+      flex: 0 0 auto;
+    }
+    &__playback-button {
+      @include buttons.selection-action;
+      @include buttons.icon-button($size: small);
+      > .fa { margin: 0; line-height: 1; }
+    }
+    &__activity {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.1875rem;
+      flex: 0 0 auto;
+      > span {
+        width: 0.1875rem;
+        height: 0.1875rem;
+        background: currentColor;
+        border-radius: 50%;
+        animation: easyedu-guide-activity 1.2s ease-in-out infinite;
+        &:nth-child(2) { animation-delay: 0.16s; }
+        &:nth-child(3) { animation-delay: 0.32s; }
+      }
+    }
+    &__live[data-guide-playback-state="paused"] .easyedu-guide-scene__activity > span {
+      animation: none;
+      opacity: 0.55;
     }
     &__illustrated-checkbox {
       @include forms.selection-checkbox;
@@ -740,10 +774,17 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
+    .easyedu-guide-scene__activity > span { animation: none; }
   }
   &[data-easyedu-motion-policy="disabled"],
   [data-easyedu-motion-policy="disabled"] &,
   .easyedu-motion-disabled & {
     .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
+    .easyedu-guide-scene__activity > span { animation: none; }
   }
+}
+
+@keyframes easyedu-guide-activity {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.55; }
+  30% { transform: translateY(-0.125rem); opacity: 1; }
 }

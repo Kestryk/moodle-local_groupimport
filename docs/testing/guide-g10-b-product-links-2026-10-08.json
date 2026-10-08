@@ -2,6 +2,17 @@
   "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
   "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
   "mobileDestinationShift": [],
+  "instructionOverrides": {
+    "007cab03-0a24-8025-8008-c1f86792c85b": "2 · Ouvrez les actions des membres, puis choisissez Déplacer.",
+    "007cab03-0a24-8025-8008-c1f88f946f85": "Démonstration terminée · récapitulatif ci-dessous.",
+    "007cab03-0a24-8025-8008-c1f88fd0908c": "3 · Recherchez le groupe de destination, puis vérifiez votre choix.",
+    "007cab03-0a24-8025-8008-c205f4c275b5": "Dans Participants, cochez Alex puis ouvrez Déplacer les participants.",
+    "007cab03-0a24-8025-8008-c205f591af75": "Dans Projet Orion, cochez Alex et Léa puis ouvrez les actions de membres.",
+    "007cab03-0a24-8025-8008-c205f65ed302": "Recherchez Projet Horizon, vérifiez la destination, puis confirmez.",
+    "007cab03-0a24-8025-8008-c205f7b5d7df": "Recherchez Projet Horizon, vérifiez la destination, puis confirmez.",
+    "007cab03-0a24-8025-8008-c206da1fd181": "1 · Cliquez et maintenez Alex, puis glissez sa carte vers le groupe Projet Horizon.",
+    "007cab03-0a24-8025-8008-c206db18e191": "4 · Vérifier la destination, puis cliquer sur « Déplacer » pour valider."
+  },
   "components": [
     {"id":"007cab03-0a24-8025-8008-c1f86792c85b","componentId":"4ee6f77a-1dfb-809b-8008-c1ed88a731b9","x":32,"y":10770,"width":750,"height":48,"archived":[]},
     {"id":"007cab03-0a24-8025-8008-c1f88f946f85","componentId":"4ee6f77a-1dfb-809b-8008-c1ed88b1ed50","x":32,"y":10836,"width":750,"height":48,"archived":[]},

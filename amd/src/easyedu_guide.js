@@ -1199,6 +1199,22 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   });
   const live = scene.parentElement.querySelector('[data-guide-live]');
   const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
+  const pauseControl = live?.querySelector('[data-guide-playback="pause"]');
+  const nextControl = live?.querySelector('[data-guide-playback="next-phase"]');
+  const activity = live?.querySelector('[data-guide-activity]');
+  const syncPlayback = (state, advancing = false) => {
+    if (!live) { return; }
+    live.dataset.guidePlaybackState = state;
+    if (activity) { activity.hidden = !['playing', 'paused'].includes(state); }
+    if (pauseControl) {
+      pauseControl.disabled = advancing || !['playing', 'paused'].includes(state);
+      pauseControl.setAttribute('aria-pressed', String(state === 'paused'));
+      pauseControl.setAttribute('aria-label', state === 'paused' ? pauseControl.dataset.resumeLabel : pauseControl.dataset.pauseLabel);
+      pauseControl.querySelector('.fa').className = state === 'paused' ? 'fa fa-play' : 'fa fa-pause';
+    }
+    if (nextControl) { nextControl.disabled = !scene.dataset.guidePhase || advancing || !['playing', 'paused'].includes(state); }
+  };
+  syncPlayback('idle');
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
     live.removeAttribute('data-guide-live-state');
@@ -1224,37 +1240,96 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   const animations = new Set();
   let timer = null;
   let resolveWait = null;
+  let waitRemaining = 0;
+  let waitDeadline = 0;
+  let paused = false;
+  let skipping = false;
+  let advancing = false;
+  let finished = false;
+  const gates = new Set();
   let dropFrame = null;
   const reduced = getScrollBehavior(root) === 'auto';
   const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
   scene.toggleAttribute('data-guide-mobile-actions', compact);
-  const wait = duration => new Promise(resolve => {
-    resolveWait = resolve;
-    timer = window.setTimeout(() => { timer = null; resolveWait = null; resolve(); }, duration);
-  });
+  // Reading, illustration and scroll share one lifecycle. Pause retains the
+  // unread duration; phase advance drains just this phase's presentation work.
+  const releaseGates = () => { gates.forEach(resolve => resolve()); gates.clear(); };
+  const gate = () => !paused || skipping || controller.signal.aborted ? Promise.resolve() :
+    new Promise(resolve => gates.add(resolve));
+  const finishWait = () => {
+    if (timer !== null) { window.clearTimeout(timer); }
+    timer = null; waitRemaining = 0;
+    const resolve = resolveWait; resolveWait = null;
+    resolve?.();
+  };
+  const scheduleWait = () => {
+    waitDeadline = performance.now() + waitRemaining;
+    timer = window.setTimeout(finishWait, waitRemaining);
+  };
+  const wait = async duration => {
+    await gate();
+    if (controller.signal.aborted || skipping) { return; }
+    await new Promise(resolve => {
+      resolveWait = resolve; waitRemaining = duration; scheduleWait();
+    });
+  };
+  root.easyeduGuideScenePlayback = {
+    scene,
+    toggle: () => {
+      if (controller.signal.aborted || finished || advancing) { return; }
+      paused = !paused;
+      if (paused) {
+        if (timer !== null) {
+          window.clearTimeout(timer); timer = null;
+          waitRemaining = Math.max(0, waitDeadline - performance.now());
+        }
+        animations.forEach(animation => { if (animation.playState === 'running') { animation.pause(); } });
+      } else {
+        if (resolveWait) { scheduleWait(); }
+        animations.forEach(animation => { if (animation.playState === 'paused') { animation.play(); } });
+        releaseGates();
+      }
+      syncPlayback(paused ? 'paused' : 'playing');
+    },
+    next: () => {
+      if (controller.signal.aborted || finished || advancing || !scene.dataset.guidePhase) { return; }
+      advancing = true; skipping = true;
+      syncPlayback(paused ? 'paused' : 'playing', true);
+      finishWait(); releaseGates();
+      animations.forEach(animation => {
+        if (['running', 'paused'].includes(animation.playState)) { animation.finish(); }
+      });
+    }
+  };
+  syncPlayback('playing');
   const animate = async(element, frames, duration, retain = true) => {
+    await gate();
     if (controller.signal.aborted || reduced) { return; }
     const animation = element.animate(frames, {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
     animations.add(animation);
+    if (skipping) { animation.finish(); }
     try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
     if (!retain) { animation.cancel(); animations.delete(animation); }
   };
   // Fade the instruction copy, not the entire teaching scene. Its reading pause
   // starts only after the new sentence is visible; no business state is changed.
-  const writeLive = async(text, state = 'active') => {
+  const writeLive = async(text, state = 'active', immediate = false) => {
     if (!live || controller.signal.aborted) { return; }
-    await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false);
+    if (!immediate) { await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false); }
     if (controller.signal.aborted) { return; }
     liveCopy.textContent = text;
     live.dataset.guideLiveState = state;
     const completionIcon = live.querySelector('[data-guide-live-complete]');
     if (completionIcon) { completionIcon.hidden = state !== 'finished'; }
-    await animate(liveCopy, [{opacity: 0, transform: 'translateY(.15rem)'},
-      {opacity: 1, transform: 'translateY(0)'}], 260, false);
+    if (!immediate) {
+      await animate(liveCopy, [{opacity: 0, transform: 'translateY(.15rem)'},
+        {opacity: 1, transform: 'translateY(0)'}], 260, false);
+    }
   };
   // Scroll only the Guide reading surface, never the Moodle page. The same
   // cancellable animation set owns illustration and scroll, including exit.
   const reveal = async element => {
+    await gate();
     const body = scene.closest('.easyedu-guide-modal__body');
     if (!body || controller.signal.aborted || element.hidden) { return; }
     const bounds = body.getBoundingClientRect(), item = element.getBoundingClientRect();
@@ -1265,7 +1340,7 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       item.top - readingTop : item.bottom - readingBottom;
     const from = body.scrollTop;
     const to = Math.max(0, Math.min(from + offset, body.scrollHeight - body.clientHeight));
-    if (reduced || !body.animate) { body.scrollTop = to; return; }
+    if (reduced || skipping || !body.animate) { body.scrollTop = to; return; }
     // A clock animation supplies a cancellable, eased progress value;
     // scrolling stays a DOM property rather than an independent smooth-scroll.
     const clock = body.animate([{opacity: 1}, {opacity: 1}],
@@ -1284,6 +1359,8 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     clock.cancel(); animations.delete(clock);
   };
   const phase = async name => {
+    const jumped = skipping;
+    skipping = false;
     const item = scene.querySelector(`[data-guide-phase="${name}"]`);
     scene.querySelectorAll('[data-guide-phase]').forEach(node => node.removeAttribute('aria-current'));
     if (item) {
@@ -1291,10 +1368,14 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       const text = (compact && mode === 'add' && item.dataset.compactAdd) ||
         (compact && item.dataset.compact) || (mode === 'add' && item.dataset.add) || item.dataset.original;
       item.textContent = text;
-      await writeLive(text);
+      await writeLive(text, 'active', paused && jumped);
       if (controller.signal.aborted) { return; }
       scene.dataset.guidePhase = name;
     }
+    advancing = false;
+    syncPlayback(paused ? 'paused' : 'playing');
+    await gate();
+    if (controller.signal.aborted) { return; }
     if (!reduced) {
       const words = item?.textContent.trim().split(/\s+/).filter(Boolean).length || 0;
       const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
@@ -1305,8 +1386,9 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
-    if (timer !== null) { window.clearTimeout(timer); }
-    if (resolveWait) { resolveWait(); }
+    finishWait(); releaseGates();
+    root.easyeduGuideScenePlayback = null;
+    syncPlayback('idle');
     if (dropFrame !== null) { cancelAnimationFrame(dropFrame); }
     animations.forEach(animation => animation.cancel());
     stage.querySelector('[data-guide-destination]')?.classList.remove('is-guide-drop-target');
@@ -1464,6 +1546,8 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
     result.textContent = result.getAttribute(`data-${mode}`) || '';
     await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+    finished = true;
+    syncPlayback('finished');
     if (recap) {
       // Keep it transparent during insertion/reveal: previously one fully
       // painted frame preceded the fade-in and caused the completion flash.
@@ -2123,6 +2207,16 @@ const bindGuide = (root, config) => {
   });
 
   addTrackedListener(root, root, 'click', event => {
+    const playback = event.target.closest('[data-guide-playback]');
+    if (playback && root.contains(playback)) {
+      event.preventDefault();
+      if (playback.disabled || event.detail > 1) { return; }
+      const active = root.easyeduGuideScenePlayback;
+      if (active && playback.closest('[data-easyedu-guide-slide]')?.contains(active.scene)) {
+        if (playback.dataset.guidePlayback === 'pause') { active.toggle(); } else { active.next(); }
+      }
+      return;
+    }
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
     if (sceneCommand && root.contains(sceneCommand)) {
       event.preventDefault();

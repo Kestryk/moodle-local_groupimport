@@ -30,7 +30,7 @@ final class guide_discovery {
             foreach (['participant', 'group', 'grouping', 'pattern', 'preview', 'letters', 'syntax',
                 'invalid', 'add', 'move', 'cancel', 'destination', 'select', 'menu', 'confirm',
                 'resultadd', 'resultmove', 'resultactions', 'mobile', 'initial', 'kept', 'removed', 'added',
-                'absent', 'validate', 'drag', 'finished'] as $label) {
+                'absent', 'validate', 'drag', 'finished', 'pause', 'resume', 'nextphase'] as $label) {
                 $scene[$label . 'label'] = get_string('discovery_' . $label, 'local_groupimport');
             }
             foreach (['participanttitle', 'grouptitle', 'groupingtitle', 'patternvalue', 'resulttitle',

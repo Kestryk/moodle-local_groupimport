@@ -233,6 +233,16 @@
     box-shadow: 0 0 0 0.36rem rgba(11, 117, 209, 0.26), 0 0 0 0.88rem rgba(11, 117, 209, 0.12), 0 0.9rem 2.25rem rgba(15, 33, 50, 0.18);
   }
 }
+@keyframes easyedu-guide-activity {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  30% {
+    transform: translateY(-0.125rem);
+    opacity: 1;
+  }
+}
 .local-groupimport-easystud {
   color: var(--local-groupimport-easystud-text);
   margin: 1.5rem 0;
@@ -14674,6 +14684,7 @@
   z-index: 6;
   margin-block: 0 0.875rem;
   transition: background-color var(--easyedu-motion-slow) var(--easyedu-motion-ease), border-color var(--easyedu-motion-slow) var(--easyedu-motion-ease), color var(--easyedu-motion-slow) var(--easyedu-motion-ease), padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+  flex-wrap: wrap;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live[data-guide-live-state=finished],
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live[data-guide-live-state=finished] {
@@ -14682,10 +14693,151 @@
   color: var(--easyedu-accent);
   font-weight: var(--easyedu-font-weight-strong);
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live > [data-guide-live-complete],
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live > [data-guide-live-complete] {
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live-content,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live-content {
+  display: flex;
+  align-items: center;
+  gap: var(--easyedu-action-icon-gap);
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live [data-guide-live-complete],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live [data-guide-live-complete] {
   flex: 0 0 auto;
   line-height: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live [data-guide-live-copy],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live [data-guide-live-copy] {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--easyedu-action-icon-gap);
+  margin-inline-start: auto;
+  flex: 0 0 auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  align-items: center;
+  border-radius: var(--easyedu-control-radius);
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button [class*=" fa-"],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:focus,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button[aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button[aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button.disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button > .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__playback-button > .fa {
+  margin: 0;
+  line-height: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1875rem;
+  flex: 0 0 auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span {
+  width: 0.1875rem;
+  height: 0.1875rem;
+  background: currentColor;
+  border-radius: 50%;
+  animation: easyedu-guide-activity 1.2s ease-in-out infinite;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span:nth-child(2),
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span:nth-child(3),
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live[data-guide-playback-state=paused] .easyedu-guide-scene__activity > span,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live[data-guide-playback-state=paused] .easyedu-guide-scene__activity > span {
+  animation: none;
+  opacity: 0.55;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__illustrated-checkbox,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__illustrated-checkbox {
@@ -16118,6 +16270,10 @@
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__person {
     transition: none;
   }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span {
+    animation: none;
+  }
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery[data-easyedu-motion-policy=disabled] .easyedu-guide-scene__live, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery[data-easyedu-motion-policy=disabled] .easyedu-guide-scene__person, [data-easyedu-motion-policy=disabled] .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live, [data-easyedu-motion-policy=disabled] .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__person, .easyedu-motion-disabled .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live, .easyedu-motion-disabled .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__person,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery[data-easyedu-motion-policy=disabled] .easyedu-guide-scene__live,
@@ -16127,6 +16283,12 @@
 .easyedu-motion-disabled .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__live,
 .easyedu-motion-disabled .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__person {
   transition: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery[data-easyedu-motion-policy=disabled] .easyedu-guide-scene__activity > span, [data-easyedu-motion-policy=disabled] .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span, .easyedu-motion-disabled .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery[data-easyedu-motion-policy=disabled] .easyedu-guide-scene__activity > span,
+[data-easyedu-motion-policy=disabled] .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span,
+.easyedu-motion-disabled .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__activity > span {
+  animation: none;
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher .easyedu-guide__launcher-icon,
 .local-groupimport-easystud-easyedu-guide .easyedu-guide__launcher > .fa,
