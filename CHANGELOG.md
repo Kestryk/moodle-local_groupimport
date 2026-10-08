@@ -7,6 +7,10 @@
 - Built-consumer playback and six keyboard routes pass without authentication
   or course writes; Foundations checkpoint recorded. Product propagation,
   native preview and human review remain open; served runtime is still G10-B.
+- Design successor: six Reading/nine Playback providers with default, paused,
+  disabled, hover/focus specimens. Saved Foundations30 roots/260 descendants,
+  Guide9 roots/128 descendants and25 phone-clearance shifts pass. Pin canonical
+  Kit0.4.149 and preserve a no-business-write native playback candidate.
 
 ## 2026-10-08 - Guide G10-B presentation checkpoint
 

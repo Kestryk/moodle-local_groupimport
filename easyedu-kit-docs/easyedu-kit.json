@@ -4,6 +4,17 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideG10Playback20261008": {
+      "kitVersion": "0.4.149",
+      "kitCommit": "c20f420",
+      "record": "docs/testing/guide-g10-c-playback-2026-10-08.json",
+      "documentation": "docs/guide-follow-up-g10-2026-10-08.md",
+      "isolatedBuiltAmdVerified": true,
+      "foundationSavedVerified": true,
+      "productSavedVerified": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideG10Presentation20261008": {
       "kitVersion": "0.4.148",
       "kitCommit": "0ceaa31",

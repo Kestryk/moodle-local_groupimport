@@ -9,6 +9,7 @@ const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
 const transit = require(path.resolve(process.argv[3], 'transit-js'));
 const recordName = process.argv[5] || 'guide-g9-foundations-publication-2026-10-08.json';
 assert.ok(['guide-g9-foundations-publication-2026-10-08.json',
+    'guide-g10-c-foundations-2026-10-08.json',
     'guide-g9-quiet-foundation-publication-2026-10-08.json'].includes(recordName), 'Exact owned publication record');
 const evidence = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));

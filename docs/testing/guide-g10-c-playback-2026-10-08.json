@@ -1,7 +1,8 @@
 {
   "lot": "G10-C",
   "status": "work-in-progress",
-  "releasedKitVersion": "0.4.148",
+  "kitVersion": "0.4.149",
+  "kitCommit": "c20f420",
   "sourceAndBuild": true,
   "canonicalSyncPassed": true,
   "isolatedPlayback": {
@@ -34,7 +35,9 @@
     },
     "correctedStandardRasterInspected": true,
     "externalRunId": "g10-c-playback-20261008",
-    "savedFoundationProofPending": true,
+    "savedFoundationProofPending": false,
+    "foundationSavedRootsVerified": 30,
+    "foundationSavedDescendantsVerified": 260,
     "savedGuideProofPending": false,
     "guideProductInstancesUpdated": 9,
     "guideProductPhoneClearanceShapesShifted": 25,
@@ -44,7 +47,9 @@
     "guideSavedDescendantsVerified": 128,
     "guideSavedClearanceShapesVerified": 25,
     "guideProductPropagationPending": false,
-    "hoverFocusSpecimensPending": true
+    "hoverFocusSpecimensPending": false,
+    "playbackProviderCount": 9,
+    "allStatesStandardRasterInspected": true
   },
   "diagnostics": ["Phone dots overlapped instruction in initial Penpot raster; reserve text/dot width, reset linked Standards, inspect corrected raster.","WAAPI pause is pending until animation.ready; settle the test measurement without changing product timings.","Product dot placement used unsettled textBounds immediately after overriding copy; saved containment gate caught x=8 outside tablet banner. Correct from settled text paint, retain failed check and require saved successor."],
   "servedPreviewVerified": false,

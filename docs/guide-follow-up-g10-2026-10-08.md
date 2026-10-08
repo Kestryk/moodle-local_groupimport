@@ -136,6 +136,15 @@ The earlier immediate saved retry saw the pre-save dot position; no tolerance
 was weakened. Foundation saved successor, hover/focus specimens and native
 playback remain open; all evidence stays separate from the human checklist.
 
+Canonical Kit0.4.149 is now pinned for this bounded Guide slice. Four Hover/Focus
+playback compositions preserve existing selection-action paint; linked Standard
+specimens published and raster inspected. Foundations saved gate passes30 roots/
+260 visible descendants across six Reading and nine Playback providers. This
+supersedes the earlier WIP design gaps, not its recorded failures. Candidate
+native spec `guide-g10-playback.spec.js` checks1280/390 normal and768 reduced
+without fixtures or course writes. Ordered preview must include6e05ed3, dcb14da,
+5dfd9db and this successor; do not omit the documentary predecessor.
+
 G10-B native successor passes `easystud-authenticated-20261008T152735563Z-19344`
 against runtime72dbfc5:1280 normal-motion,768/390 reduced-motion. Header16px/700,
 32px compass centered/no overflow, strong green finish/check, full2px border,

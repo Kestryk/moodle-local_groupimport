@@ -1,6 +1,6 @@
 # EasyEdu documentation contract
 
-G10-C playback checkpoint is a canonical Kit WIP, not a released Kit pin or
+G10-C playback uses canonical Kit0.4.149; its saved design proof is not a
 served-preview claim. Preserve the existing scene's reading/WAAPI/scroll owner;
 Pause retains remaining time, Next drains one phase, and departure aborts all
 pending gates. Test the actual localized consumer template and built AMD.
