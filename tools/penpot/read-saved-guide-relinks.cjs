@@ -11,7 +11,8 @@ const recordName = process.argv[5] || 'guide-g9-product-relinks-2026-10-08.json'
 assert.ok(['guide-g9-product-relinks-2026-10-08.json',
     'guide-g9-product-relinks-tranche2-2026-10-08.json',
     'guide-g9-product-relinks-tranche3-2026-10-08.json',
-    'guide-g9-quiet-transfer-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
+    'guide-g9-quiet-transfer-2026-10-08.json',
+    'guide-g9-quiet-guide-relinks-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
 const expected = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
 const geometry = (shape, field) => {

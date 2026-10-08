@@ -23,6 +23,15 @@ temporary provider/main/host IDs and saved descendant references before a file
 switch; retain the accepted ordinary source. Delete only those owned temporary
 identities after canonical Foundation fingerprint parity and saved publication.
 
+Foundations must not depend on a consumer library that already depends on it.
+For exact accepted-source promotion, use owned native clipboard transport of
+the ordinary host, preserving nested canonical links, then compare complete
+properties. A failed connectLibrary may expose a zero-component placeholder:
+do not bypass the dependency cycle or redraw the source. Decode UTF8 records
+explicitly before fingerprint comparison. Suspended-renderer saved proof may
+use its owned browser context request without exporting session state; that
+does not certify raster or justify discarding unknown editor writes.
+
 Guide product relinking preserves real copy and conditional step states, not
 the generic provider's dummy completed rows. Use ordinary product composition
 hosts for linked state rows; hide old slots without adding structural children

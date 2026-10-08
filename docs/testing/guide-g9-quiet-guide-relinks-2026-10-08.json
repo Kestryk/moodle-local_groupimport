@@ -1,0 +1,85 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "lot": "G9-E canonical Quiet Guide relinks",
+  "date": "2026-10-08",
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components": [
+    {
+      "id": "e764db89-4cb1-80d0-8008-c20e78113515",
+      "boardId": "6208b726-6df8-80e1-8008-bf93bb7f20d5",
+      "componentId": "e764db89-4cb1-80d0-8008-c20c94fe7fc3",
+      "oldId": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+      "oldHidden": false,
+      "x": 1022,
+      "y": 19434,
+      "width": 180,
+      "height": 30.400000000001455,
+      "fingerprintDifferences": [],
+      "originalArchived": true,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+          "hidden": false
+        }
+      ],
+      "providerVerified": true
+    },
+    {
+      "id": "e764db89-4cb1-80d0-8008-c20e7988f467",
+      "boardId": "74a0e4b4-0497-8084-8008-bf9a1b450db4",
+      "componentId": "e764db89-4cb1-80d0-8008-c20c94fe7fc3",
+      "oldId": "007cab03-0a24-8025-8008-c208966cc0f9",
+      "oldHidden": false,
+      "x": 1022,
+      "y": 8103.799999999999,
+      "width": 180,
+      "height": 30.400000000001455,
+      "fingerprintDifferences": [],
+      "originalArchived": true,
+      "archived": [
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0f9",
+          "hidden": false
+        }
+      ],
+      "providerVerified": true
+    },
+    {
+      "id": "e764db89-4cb1-80d0-8008-c20e7ae34970",
+      "boardId": "74a0e4b4-0497-8084-8008-bf9a68482f2c",
+      "componentId": "e764db89-4cb1-80d0-8008-c20c94fe7fc3",
+      "oldId": "007cab03-0a24-8025-8008-c2089730b26d",
+      "oldHidden": false,
+      "x": 2322,
+      "y": 8103.799999999999,
+      "width": 180,
+      "height": 30.400000000001455,
+      "fingerprintDifferences": [],
+      "originalArchived": true,
+      "archived": [
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b26d",
+          "hidden": false
+        }
+      ],
+      "providerVerified": true
+    }
+  ],
+  "mobileDestinationShift": [],
+  "editorAudit": {
+    "roots": 3,
+    "texts": 3,
+    "issues": [],
+    "overviewUnchanged": true
+  },
+  "predecessorRecord": "guide-g9-product-relinks-tranche3-2026-10-08.json",
+  "savedFileVerified": true,
+  "savedFileProof": {"roots": 3, "descendants": 24, "archives": 3, "editorWrites": 0, "moodleWrites": 0, "helperDisconnected": true},
+  "rasterVerified": false,
+  "exportDiagnostic": "Current linked Guide action export returned HTTP500 ResourceRequest timed out. Property fingerprints pass; raster remains open.",
+  "temporaryCleanup": false,
+  "temporaryGuideProviderId": "007cab03-0a24-8025-8008-c20b176b5589",
+  "humanVisualValidated": false,
+  "runtimeChanged": false
+}
