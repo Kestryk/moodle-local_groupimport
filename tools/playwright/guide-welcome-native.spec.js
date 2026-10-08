@@ -85,6 +85,19 @@ test('Guide welcome actual opening persistence and admin cancel',async({page},in
         result.mobileSuppressed=true;
         expect(errors).toEqual([]);expect(blocked).toEqual([]);
     }finally{
+        result.presentationDiagnostic=await page.evaluate(()=>{
+            const root=document.querySelector('[data-easyedu-guide-root]');
+            const launcher=root?.querySelector('[data-easyedu-guide-open]');
+            const ancestors=[];
+            for(let node=launcher;node && ancestors.length<9;node=node.parentElement){
+                const style=getComputedStyle(node),rect=node.getBoundingClientRect();
+                ancestors.push({tag:node.tagName,classes:node.className,hidden:node.hidden,
+                    display:style.display,visibility:style.visibility,width:rect.width,height:rect.height});
+            }
+            return {width:innerWidth,dismissed:root?.easyeduGuideWelcomeDismissed===true,
+                invitationHidden:root?.querySelector('[data-easyedu-guide-welcome]')?.hidden,
+                modalHidden:root?.querySelector('[data-easyedu-guide-modal]')?.hidden,ancestors};
+        }).catch(()=>null);
         fs.writeFileSync(info.outputPath('guide-welcome-result.json'),JSON.stringify({...result,errors,blocked},null,2));
     }
 });

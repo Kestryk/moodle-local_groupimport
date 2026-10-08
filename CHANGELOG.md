@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide welcome loading reveal successor
+
+- Preserve two native failed runs: eligible invitation stayed hidden because
+  Guide initialized before the loading shell revealed navigation. No preference,
+  global reset or course write occurred; runner cleanup passed.
+- Synchronize canonical0.4.157 bounded launcher visibility wait. EN/FR normal/
+  reduced delayed-reveal fixture passes; corrected native proof pending.
+
 ## Unreleased - Guide G10-G welcome/server/admin integration (WIP)
 
 - Activate server eligibility and translated desktop invitation. A separate

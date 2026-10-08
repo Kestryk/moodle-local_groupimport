@@ -5,8 +5,8 @@
   "status": "stable",
   "consumerSync": {
     "guideG10Welcome20261008": {
-      "kitVersion": "0.4.154",
-      "kitCommit": "bc7c929a43fa0b2c45cb03c8880bb4cfb3d1a551",
+      "kitVersion": "0.4.157",
+      "kitCommit": "f8011469a864300d6e9859353bbe3fb9924bbd1b",
       "isolatedBuiltConsumerVerified": true,
       "enabledInProduct": true,
       "sharedDialogBodyKitVersion": "0.4.155",
