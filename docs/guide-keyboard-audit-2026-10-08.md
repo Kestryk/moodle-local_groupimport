@@ -76,3 +76,16 @@ but the new test wrongly expected sample slide4. The immutable failure context
 shows Step24 of24. Correct only the test oracle to the actual native slide
 count; preserve the same deadlines and product assets. Cleanup is complete,
 no course writes. Do not relabel the failed run as PASS.
+
+K2 successor easystud-authenticated-20261008T141457791Z-49684 PASS all six
+native routes: Tab wraps forward/backward, Home/End selects actual slide1/24,
+editing remains local, consumed Escape wins, close restores real opener focus.
+No errors/blocked writes/fixtures. Cleanup confirms child stopped, credentials
+cleared and lease released. CSS blob1e0d223c75784641930055b5fc56107f5b0fbf68
+and Guide AMD blob1f98f3a2694e2f60dbd5b022d1eca00df3c2894a are unchanged
+throughout K2. Test-only diagnostics do not justify any animation/style rewrite.
+
+K1/K2 technical gates are delivered; human checklist is not yet accepted.
+Next integration audit: remaining Guide Motion/accessibility coverage against
+the retained G7/G8/G9 programme ledger and content-owner contract. Do not infer
+that the twenty reference slides have been rewritten from End-navigation proof.

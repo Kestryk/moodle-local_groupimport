@@ -13,6 +13,9 @@
 - K2 harness diagnostic retained: End opens the real last native slide24,
   not sample4. Derive the final index from real markup without changing
   keyboard/controller assets or relaxing interaction deadlines.
+- K2 corrected native successor passes forward/backward focus wrapping and
+  Home/End navigation on six routes, preserving K1 assets. No product change
+  was needed. Retain initial harness failure and combined human review gate.
 
 ## 2026-10-08 - Guide G9 paired design continuation
 

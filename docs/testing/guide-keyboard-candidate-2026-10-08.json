@@ -97,6 +97,18 @@
   "nativeRunPassedRoutes": 6,
   "nativeRuntimeHead": "daf9a09f47233d4e2ddfd3e75168d8af27e6e212",
   "nativeCleanupVerified": true,
+  "focusBoundarySuccessor": {
+    "sourceCommit": "83ea28915d115d0f3aa87355a086be35c1597160",
+    "runId": "easystud-authenticated-20261008T141457791Z-49684",
+    "passedRoutes": 6,
+    "tabWrapsForward": true,
+    "tabWrapsBackward": true,
+    "homeEndSlideNavigation": true,
+    "actualNativeSlideCount": 24,
+    "runtimeAssetsUnchangedFromK1": true,
+    "cleanupVerified": true,
+    "failedHarnessRunRetained": "easystud-authenticated-20261008T141329950Z-10128"
+  },
   "savedRulesVerified": true,
   "humanVisualValidated": false,
   "scope": "Typing Escape closes after existing Motion; nested consumed Escape retains priority. No course commands, stylesheet/template/card/timing changes."
