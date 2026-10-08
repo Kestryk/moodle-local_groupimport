@@ -11,6 +11,16 @@
   earlier G8/G7 evidence. New native G9 candidate is read-only/open/cancel.
   Penpot and served validation are not claimed by source or isolated results.
 
+### Focused local preview checkpoint
+
+- Controlled preview serves Kit0.4.146. Native24220 passes three-width lifecycle,
+  actual destination open/choice/Cancel, Reset and Cancel reload, and Enter.
+- Native42196 separately passes invitation geometry/overflow at1280/768/390;
+  phone paint inspected. Preserve failed46276 and its immutable source.
+- No business writes, fixtures or deletion. Runner credentials/leases/children
+  cleaned; private branches pushed. Penpot propagation, full curriculum, broader
+  animation review and combined human acceptance remain explicitly open.
+
 ## 2026-10-07 - Guide G8 focused native checkpoint
 
 - Native54068 passes lifecycle, real compact Move delegate, destination choice,

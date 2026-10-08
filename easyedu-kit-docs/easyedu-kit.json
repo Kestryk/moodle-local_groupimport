@@ -11,7 +11,9 @@
       "scope": "Guide stop/reset, invitation layout, word-count narration and native mobile Add illustration.",
       "isolatedLifecycleVerified": true,
       "penpotPublished": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeVerificationScope": "Lifecycle/reset/reload and invitation geometry at 1280/768/390; not the full Guide curriculum.",
+      "nativeRunIds": ["easystud-authenticated-20261008T065409477Z-24220", "easystud-authenticated-20261008T070020274Z-42196"],
       "humanVisualValidated": false
     },
     "guideLatestMilestone20261007": {
