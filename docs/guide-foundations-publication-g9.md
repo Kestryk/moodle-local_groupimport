@@ -122,6 +122,19 @@ icon proof, not an audit of every source/legacy/provider glyph.
 
 ## Native proof and remaining content boundary
 
+Quiet Show publication record:docs/testing/guide-g9-quiet-foundation-publication-2026-10-08.json.
+Canonical e764db89-4cb1-80d0-8008-c20c94fe7fc3 has source-identical main and
+linked Standard; saved2-root/16-visible-descendant proof PASS. Native clipboard
+transfer avoids the prohibited Foundation-to-dependent-Guide library cycle.
+Raster exports stalled; Guide canonical relink and exact temporary cleanup
+remain pending. No public SCSS/version/runtime changes or human acceptance.
+
+Successor:Practice/Organisation/Actions Quiet relink now saved (3 roots/24 visible
+descendants/3 hidden originals), record guide-g9-quiet-guide-relinks-2026-10-08.json.
+Complete relative properties match; source geometry and Overview remain intact.
+Export now reports explicit HTTP500 ResourceRequest timeout. Raster gate and
+temporary transfer cleanup remain open; no runtime or full-curriculum claim.
+
 Quiet utility source-preserving transfer is prepared on Guide board79; exact
 temporary main/provider and10 saved descendants are recorded in
 docs/testing/guide-g9-quiet-transfer-2026-10-08.json. Fingerprint parity and

@@ -2,6 +2,15 @@
 
 ## 2026-10-08 - Guide G9 paired design continuation
 
+- Relink Practice/Organisation/Actions Quiet actions to the published Foundation
+  provider; preserve full properties and archive originals. Saved3-root proof
+  passes. Explicit export HTTP500 leaves raster/temporary cleanup open.
+
+- Publish source-identical Quiet Show Foundation Library/Standard via native
+  clipboard, avoiding circular Guide dependency. Saved2-root proof passes;
+  export/Guide relink/temporary cleanup remain pending after renderer stalls.
+  Document UTF8 fingerprint recovery and read-only saved-request fallback.
+
 - Prepare the accepted Quiet Show recipe for Foundation transfer through a
   source-preserving temporary provider on framed Guide board79. Exact property
   comparison, export and saved10-descendant gate pass; original host unchanged.

@@ -7,7 +7,10 @@ assert.ok(process.argv[2] && process.argv[3] && process.argv[4],
 assert.match(process.argv[4], /^http:\/\/(?:127\.0\.0\.1|localhost):\d+\/?$/);
 const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
 const transit = require(path.resolve(process.argv[3], 'transit-js'));
-const evidence = require('../../docs/testing/guide-g9-foundations-publication-2026-10-08.json');
+const recordName = process.argv[5] || 'guide-g9-foundations-publication-2026-10-08.json';
+assert.ok(['guide-g9-foundations-publication-2026-10-08.json',
+    'guide-g9-quiet-foundation-publication-2026-10-08.json'].includes(recordName), 'Exact owned publication record');
+const evidence = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
 const close = (actual, expected, label) => assert.ok(Math.abs(actual - expected) < 0.05, label);
 const geometry = (shape, field) => {
@@ -30,7 +33,13 @@ const geometry = (shape, field) => {
             return url.origin === 'https://design.penpot.app' && url.hash.includes(evidence.fileId);
         });
         assert.equal(pages.length, 1, 'Exactly one owned Foundations tab');
-        const response = await pages[0].evaluate(async id => {
+        const response = process.argv[6] === 'context-request' ? await (async() => {
+            // Supervised read-only fallback when the renderer is suspended.
+            // Reuse the owned browser context; never export cookies/auth state.
+            const result = await pages[0].context().request.get(
+                `https://design.penpot.app/api/rpc/command/get-file?id=${evidence.fileId}`, {timeout: 45000});
+            return {status: result.status(), body: await result.text()};
+        })() : await pages[0].evaluate(async id => {
             const result = await fetch(`/api/rpc/command/get-file?id=${id}`, {signal: AbortSignal.timeout(45000)});
             return {status: result.status, body: await result.text()};
         }, evidence.fileId);

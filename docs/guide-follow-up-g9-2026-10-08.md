@@ -420,5 +420,73 @@ Then propagate canonical instances to correlated Guide controls. Remove only
 the exact temporary main/provider after successful saved publication/parity.
 Do not rebuild accepted styling manually, mistake transfer for publication, or
 alter another window's browser/channel. No human validation is claimed.
+
+## Quiet Foundation publication successor (2026-10-08)
+
+User opened Foundations. Connecting its dependent Guide library was refused by
+Penpot: circular dependency (Guide already depends on Foundations). Connected
+library entries expose0 components; do not treat that as a missing saved source.
+Use the owned browser's native copy/paste of the exact ordinary accepted Guide
+host instead. Normal file navigation suspends MCP; native MCP button reopens it.
+No token/profile/server changes, global library Update or property reconstruction.
+The selected source was copied despite a return serialization diagnostic caused
+by returning isComponentHead as a function; exact destination readback confirms
+one10-shape paste with unchanged button/eye links. UTF8 source record required:
+PowerShell default decoding initially produced false text-fingerprint mismatches.
+Correct decoding gives zero property differences; no product text was changed.
+
+Canonical component e764db89-4cb1-80d0-8008-c20c94fe7fc3 published on Library
+08.14.1, main e764db89-4cb1-80d0-8008-c20c71498020. Framed500x160 host at1800,0
+is e764db89-4cb1-80d0-8008-c20c948c70a9. Linked Standard on08.14 is
+e764db89-4cb1-80d0-8008-c20cc9bd9144, host
+e764db89-4cb1-80d0-8008-c20cc999180a. Name/path and exact fields are recorded in
+docs/testing/guide-g9-quiet-foundation-publication-2026-10-08.json.
+Main and Standard match source fingerprints; size180x30.4, nested button/eye
+remain canonical Foundation primitives. Resting specimen only, not new hover/
+focus/disabled paint or a new SCSS version. Kit0.4.146/runtime stay unchanged.
+
+Saved-server PASS2 roots/16 visible descendants with exact component links,
+sizes and contained children. The read-only reader can use the owned context's
+request transport while renderer is suspended; no cookies/auth state exported.
+Two export attempts stalled, followed by heartbeat suspension. They are recorded
+as incomplete raster checks, not acceptance. One earlier owned-browser focus
+helper timed out; both helper processes exited, no new browser/profile created.
+Do not replay writes: saved publication is confirmed. Current render/Guide
+relink/temporary cleanup remain OPEN. Original accepted source is still intact.
+
+NEXT:reactivate the owned renderer, inspect the current-page Standard host,
+then relink Guide Quiet copies to canonical provider and remove only the exact
+temporary Guide transfer identities after parity. Keep the unfinished full
+curriculum, separate Mass Import and combined human checklist open.
+
+## Canonical Quiet Guide relinks saved (2026-10-08)
+
+Owned native Guide navigation eventually succeeded after the10s MCP-button
+locator timed out; exact MCP identity readback confirmed Guide before any write.
+No repeated click, credentials or new browser. Foundation canonical provider
+is available after file navigation, without applying every pending shared update.
+Plugin storage reset on file change; bounded helpers and exact IDs were rebuilt
+from retained records, not assumed. Practice/Organisation/Actions now contain
+three canonical Quiet instances at unchanged positions/sizes. Each full relative
+property fingerprint matches its predecessor; old ordinary hosts are hidden,
+not deleted. Overview unchanged within this tranche. Exact new IDs and rollback
+flags:docs/testing/guide-g9-quiet-guide-relinks-2026-10-08.json.
+
+Saved-server PASS3 roots/24 visible descendants/3 hidden originals. Scoped
+editor audit9 Inter texts,0 geometry/font/text-paint errors. This adds3 canonical
+Guide heads to the31 previously verified Discovery/Return heads; it is not
+blanket conversion of historical Checklist or all retained Guide controls.
+Current linked Guide export returns explicit HTTP500 ResourceRequest timed out,
+confirming export transport failure rather than a component-create failure.
+Raster/human gate remains OPEN. Temporary Guide transfer is retained until the
+visual publication gate is met; do not delete it solely from link/save PASS.
+
+Source/Kit mapping, changelogs and AI rules updated in the same session.
+No SCSS/template/controller/version/generated asset change: native preview
+already uses the canonical Quiet styling; this aligns design ownership only.
+No fresh native test/cache/fixture was appropriate for unchanged runtime assets.
+NEXT:inspect Foundation/Guide raster when export service responds, then remove
+the exact temporary Guide provider/main and finalize its cleanup record. Full
+curriculum/content handoff, Mass Import Guide and older backlog stay open.
 Rollback:hide the exact new instances and restore the recorded original hidden
 flags; restore the13 destination y positions from the evidence. No data rollback.
