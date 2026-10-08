@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-08 - Guide G10 review intake and content handoff
+
+- Preserve all new user review defects and requests as ordered Guide-only lots:
+  shared modal header, stronger live/final narration, Pause/Play/Skip/dots,
+  reveal scrolling, checklist highlight/compact text/reset, mobile alignment,
+  server-backed desktop welcome/admin reset and desktop fullscreen.
+- Prepare copyable content-writer handoff with verified4+20 slide inventory,
+  deduplication crosswalk, EN/FR declarative proposals, native mobile semantics
+  and bounded ownership. No new runtime/Kit/Penpot feature is implemented here.
+
 ## 2026-10-08 - Guide keyboard K1
 
 - Consume canonical Kit0.4.147: unconsumed Escape closes Guide from Practice

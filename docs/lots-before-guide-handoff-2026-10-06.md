@@ -6,6 +6,12 @@ worktrees; no new worktree, parallel writer or implicit global acceptance.
 
 ## Queues retained, not replaced
 
+Latest Guide priority: `guide-follow-up-g10-2026-10-08.md` preserves the full
+human checklist review and new Pause/Play/Skip, desktop welcome/admin reset and
+fullscreen requests. Content-writer prompt is delivered first in
+`PROMPT-PASSATION-GUIDES-CONTENU-2026-10-08.md`. Keep the prior Guide and SM
+queues; do not resume the older EasyStud lots before the current Guide work.
+
 - `student-management-completion-queue-2026-10-03.md`.
 - `student-feedback-successor-2026-10-04.md`.
 - `student-review-successor-2026-10-05.md` (SM-39..58 and older open gates).

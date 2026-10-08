@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Guide G10 review reopens user-reported presentation/highlight failures despite
+earlier scoped PASS. Content writers own declarative proposals, not runtime/Kit
+or Foundation publication. Record all4+20 native slides before deduplication and
+preserve stable path/storage migration boundaries. Pause/Skip, server welcome
+and desktop fullscreen are new requested features, not existing capabilities.
+The G10 fullscreen request supersedes G7's assessment-only boundary, without
+authorizing unrelated browser/server configuration or automatic course actions.
+
 Guide Escape is handled before the typing guard, but only when a nested control
 has not consumed it. Preserve text-editing arrows/Home/End, Tab trapping, original
 exit Motion and real opener focus. Isolated keyboard proof does not replace the
