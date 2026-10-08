@@ -5,6 +5,7 @@ const fs = require('node:fs');
 // no Create/Move/Send or preference request. Route policy fails on unexpected writes.
 test('Guide G10 playback pause resume next and departure', async({page}, info) => {
     test.setTimeout(240000);
+    page.setDefaultTimeout(15000);
     const rows = [], errors = [], blocked = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
@@ -43,8 +44,10 @@ test('Guide G10 playback pause resume next and departure', async({page}, info) =
             const modal = page.locator('.easyedu-guide--discovery [data-easyedu-guide-modal]');
             await expect(modal).toBeVisible();
             await modal.locator('[data-easyedu-guide-nav-item="3"]').click();
-            const scene = modal.locator('[data-easyedu-guide-scene="actions"]');
-            const live = scene.locator('[data-guide-live]');
+            const slide = modal.locator('[data-easyedu-guide-slide="3"]');
+            const scene = slide.locator('[data-easyedu-guide-scene="actions"]');
+            // The sticky reading banner is a sibling above the teaching scene.
+            const live = slide.locator('[data-guide-live]');
             const pause = live.locator('[data-guide-playback="pause"]');
             const next = live.locator('[data-guide-playback="next-phase"]');
             if (motion === 'reduce') {

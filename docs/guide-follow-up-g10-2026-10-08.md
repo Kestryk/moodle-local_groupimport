@@ -145,6 +145,15 @@ native spec `guide-g10-playback.spec.js` checks1280/390 normal and768 reduced
 without fixtures or course writes. Ordered preview must include6e05ed3, dcb14da,
 5dfd9db and this successor; do not omit the documentary predecessor.
 
+Managed preview applied these four commits with cache purge to3e7058b. First
+native playback run `easystud-authenticated-20261008T175051760Z-59528` failed
+at its new pause selector: the sticky narration is a sibling above the scene,
+not a descendant. Actual template confirms this; isolated test already scopes
+to the slide. Child/credential/runtime lease cleanup passed, no fixture.
+Keep the failed run; correct only native selector scope and add15s action timeout
+so a harness miss does not wait the full4-minute scenario budget. Product timing,
+card Motion and selectors in shipped code unchanged. Native successor required.
+
 G10-B native successor passes `easystud-authenticated-20261008T152735563Z-19344`
 against runtime72dbfc5:1280 normal-motion,768/390 reduced-motion. Header16px/700,
 32px compass centered/no overflow, strong green finish/check, full2px border,
