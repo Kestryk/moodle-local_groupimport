@@ -503,6 +503,15 @@
             </button>
         </div>
     </aside>
+    {{#guidewelcomecopy}}
+    <aside class="easyedu-guide-welcome" data-easyedu-guide-welcome hidden role="region" aria-label="{{guidewelcometitle}}">
+        <p>{{guidewelcomecopy}}</p>
+        <div class="easyedu-guide-welcome__actions">
+            <button type="button" class="easyedu-guide-welcome__dismiss" data-easyedu-guide-welcome-dismiss>{{guidewelcomedismiss}}</button>
+            <button type="button" class="easyedu-guide-welcome__open" data-easyedu-guide-open>{{guidewelcomeopen}}</button>
+        </div>
+    </aside>
+    {{/guidewelcomecopy}}
     <aside class="easyedu-guide-resume" data-easyedu-guide-resume hidden aria-label="{{guideresumetitle}}">
         <span>{{guideresumetitle}}</span>
         <button type="button" class="btn btn-primary" data-easyedu-guide-resume-path>{{guideresumelabel}}</button>

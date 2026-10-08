@@ -6,6 +6,9 @@
 const DEFAULTS = {
   storageKey: 'easyedu.guide.seen',
   firstVisit: false,
+  // Server eligibility is product-owned. This opt-in offers, never auto-opens.
+  welcomeOffer: false,
+  welcomeTarget: '',
   highlightAutoHideDelay: 9000,
   highlightStyle: 'default',
   // Instruction pauses are minimums, not deadlines: allow reading longer copy.
@@ -1678,6 +1681,29 @@ const applyActiveSlide = (root, index, config, options = {}) => {
   setTrackedTimeout(root, () => updateNavScrollButtons(root), 80);
 };
 
+const hideWelcome = root => {
+  const invitation = root.querySelector('[data-easyedu-guide-welcome]');
+  if (!invitation || invitation.hidden) { return; }
+  invitation.hidden = true;
+  if (root.easyeduGuideCurrentTarget === root.easyeduGuideWelcomeTarget) {
+    clearHighlight(root);
+  }
+  root.easyeduGuideWelcomeTarget = null;
+};
+
+const offerWelcome = (root, config) => {
+  // A first-visit invitation never competes with a resumed task or phone nav.
+  if (!config.welcomeOffer || window.innerWidth < 1024 ||
+      root.easyeduGuideWelcomeDismissed) { return; }
+  const invitation = root.querySelector('[data-easyedu-guide-welcome]');
+  const target = config.welcomeTarget ? document.querySelector(config.welcomeTarget) :
+    root.querySelector(SELECTORS.open);
+  if (!invitation || !isVisibleElement(target)) { return; }
+  invitation.hidden = false;
+  root.easyeduGuideWelcomeTarget = target;
+  updateHighlight(root, target);
+};
+
 const openModal = (root, config) => {
   root.easyeduGuideExitStop?.();
   root.easyeduGuideExitStop = null;
@@ -1687,6 +1713,8 @@ const openModal = (root, config) => {
   if (!modal) {
     return;
   }
+  const wasOpen = !modal.hidden;
+  hideWelcome(root);
 
   const returnFocus = !modal.contains(document.activeElement) ? document.activeElement : null;
   Array.from(openGuideRoots).forEach(openRoot => {
@@ -1704,6 +1732,10 @@ const openModal = (root, config) => {
   modal.setAttribute('aria-modal', 'true');
   modal.setAttribute('tabindex', '-1');
   modal.focus({preventScroll: true});
+  if (!wasOpen) {
+    // Adapter persists an actual opening; an impression/dismissal is not seen.
+    document.dispatchEvent(new CustomEvent('easyedu:guide-opened', {detail: {root}}));
+  }
 
   const storage = getStorage();
   if (storage) {
@@ -2209,6 +2241,13 @@ const bindGuide = (root, config) => {
   });
 
   addTrackedListener(root, root, 'click', event => {
+    const welcomeDismiss = event.target.closest('[data-easyedu-guide-welcome-dismiss]');
+    if (welcomeDismiss && root.contains(welcomeDismiss)) {
+      event.preventDefault();
+      root.easyeduGuideWelcomeDismissed = true;
+      hideWelcome(root);
+      return;
+    }
     const playback = event.target.closest('[data-guide-playback]');
     if (playback && root.contains(playback)) {
       event.preventDefault();
@@ -2552,6 +2591,8 @@ export const destroy = rootOrSelector => {
 
   dismissResume(root);
 
+  hideWelcome(root);
+  delete root.easyeduGuideWelcomeDismissed;
   restoreInterfaceCue(root);
   stopSlideTransition(root);
   root.easyeduGuideExitStop?.();
@@ -2634,6 +2675,12 @@ export const init = (rootOrSelector, rawConfig) => {
     offerResume(root, config, state.path);
   }
   syncPathInvitation(root, config);
+  if (!state.path || !config.paths[state.path] || isPathComplete(config, state.path)) {
+    offerWelcome(root, config);
+  }
+  addTrackedListener(root, window, 'resize', () => {
+    if (window.innerWidth < 1024) { hideWelcome(root); }
+  });
 
   const storage = getStorage();
   const seen = storage && storage.getItem(config.storageKey) === '1';
