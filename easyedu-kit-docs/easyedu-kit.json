@@ -12,7 +12,8 @@
       "isolatedBuiltAmdVerified": true,
       "foundationSavedVerified": true,
       "productSavedVerified": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261008T175707682Z-38024",
       "humanVisualValidated": false
     },
     "guideG10Presentation20261008": {
