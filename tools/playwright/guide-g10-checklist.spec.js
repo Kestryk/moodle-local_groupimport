@@ -51,9 +51,11 @@ test('Guide G10 checklist native selection and destination highlights', async({p
                 });
                 // Preserve actual native targets/events; do not fabricate Create
                 // completion or touch the course. Ephemeral owned QA profile only.
-                const steps = config.paths['practice-membership'].slice(2,5).map((step,index,array) => ({
+                const steps = config.paths['practice-membership'].filter(step =>
+                    ['select-participant','open-move','choose-destination'].includes(step.id)).map((step,index,array) => ({
                     ...step, requiresStep:index ? array[index-1].id : null
                 }));
+                if (steps.length !== 3) throw new Error('All three native presentation milestones required');
                 const Guide = await new Promise(resolve => require(['local_groupimport/easyedu_guide'],resolve));
                 Guide.destroy(root);
                 Guide.init(root, {...config,firstVisit:false,storageKey:'g10-native-checklist-presentation-'+width,
