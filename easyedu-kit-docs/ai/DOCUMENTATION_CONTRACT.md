@@ -10,6 +10,14 @@ is recoverably hidden. Recheck actual textBounds after paint settles: root
 containment alone can miss a multiline description clipped by its own text box.
 Keep historical saved-proof records immutable and add bounded successor records.
 
+For an accepted Guide utility composition without a complete Library provider,
+clone the actual ordinary host (Penpot Board.clone), preserving its nested
+linked primitives and painted properties; do not redraw it field by field or
+pretend the clone is a published shared recipe. Compare relative descendant
+geometry and paint before export. Floating-point translation noise is recorded
+separately from paint differences; publish the exact recipe in Foundations when
+its writer is available, then replace the temporary product copies explicitly.
+
 Guide product relinking preserves real copy and conditional step states, not
 the generic provider's dummy completed rows. Use ordinary product composition
 hosts for linked state rows; hide old slots without adding structural children

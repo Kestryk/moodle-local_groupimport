@@ -122,6 +122,14 @@ icon proof, not an audit of every source/legacy/provider glyph.
 
 ## Native proof and remaining content boundary
 
+Tranche3 adds three retained Return instances (boards02/05/60); total31 linked
+Foundation roots,429 saved descendants and169 retained hidden originals.
+Exact successor:docs/testing/guide-g9-product-relinks-tranche3-2026-10-08.json.
+Desktop Organisation/Actions Quiet Show ordinary hosts are source-preserving
+clones of accepted Practice with linked button/eye primitives, not published
+complete recipe heads. Publish that exact host through Foundations before
+claiming all-product recipe linkage. Overview/historical Checklist unchanged.
+
 Tranche2 correlates boards76/78 and desktop Practice/Organisation/Actions with
 the same Foundation recipes (28 product instances total). Successor record:
 docs/testing/guide-g9-product-relinks-tranche2-2026-10-08.json. Its saved gate

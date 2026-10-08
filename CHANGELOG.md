@@ -2,6 +2,13 @@
 
 ## 2026-10-08 - Guide G9 paired design continuation
 
+- Relink three retained Return compositions to Foundations (31 linked instances
+  total). Preserve real context and archive originals. Reuse the accepted Quiet
+  Show action on desktop Organisation/Actions through source-preserving clones;
+  nested button/eye providers remain linked, complete recipe promotion pending.
+- Inspect correlated exports and saved31-root/429-descendant proof; no runtime
+  changes or human acceptance inferred. Keep all previous evidence records.
+
 - Complete correlated phone/tablet Practice/Organisation/Actions and desktop
   invitation/reading links: 28 canonical instances total, 165 old shapes retained
   hidden. Reorganize desktop Practice in free page space; retain clear, hide

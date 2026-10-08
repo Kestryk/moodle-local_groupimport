@@ -9,7 +9,8 @@ const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
 const transit = require(path.resolve(process.argv[3], 'transit-js'));
 const recordName = process.argv[5] || 'guide-g9-product-relinks-2026-10-08.json';
 assert.ok(['guide-g9-product-relinks-2026-10-08.json',
-    'guide-g9-product-relinks-tranche2-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
+    'guide-g9-product-relinks-tranche2-2026-10-08.json',
+    'guide-g9-product-relinks-tranche3-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
 const expected = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
 const geometry = (shape, field) => {
@@ -88,10 +89,27 @@ const geometry = (shape, field) => {
             assert.ok(Math.abs(geometry(object(fit.id), 'height') - fit.toHeight) < 0.05,
                 'Multiline description intrinsic height saved');
         }
+        for (const copy of expected.quietCopies || []) {
+            assert.equal(read(object(copy.oldId), 'hidden'), true, 'Original utility action archived');
+            assert.ok(copy.fingerprintMatches, 'Accepted source comparison passed in editor');
+            for (const child of copy.descendants) {
+                const saved = object(child.id);
+                assert.ok(saved, 'Quiet descendant saved');
+                for (const field of ['x', 'y', 'width', 'height']) {
+                    assert.ok(Math.abs(geometry(saved, field) - child[field]) < 0.05, `Quiet child ${field}`);
+                }
+                assert.equal(Boolean(read(saved, 'hidden')), child.hidden, 'Quiet visibility saved');
+                if (child.componentId) {
+                    assert.equal(String(read(saved, 'component-id')), child.componentId, 'Quiet primitive provider saved');
+                    assert.equal(String(read(saved, 'component-file')), '40e06342-8830-80d6-8008-96572effc11c');
+                }
+            }
+        }
         console.log(JSON.stringify({passed: true, roots: expected.components.length, descendants, archives,
             relocatedDestinationShapes: expected.mobileDestinationShift.length, editorWrites: 0, moodleWrites: 0,
             practiceChildren: expected.practiceLayout?.finalChildren.length || 0,
             descriptionFits: expected.descriptionFit?.length || 0,
+            quietCopies: expected.quietCopies?.length || 0,
             helperDisconnected: true, scope: 'Exact saved links/geometry/archive retention only; no native or human acceptance.'}));
     } finally { await browser.close(); }
 })().catch(error => { console.error(error.message); process.exitCode = 1; });
