@@ -12,8 +12,12 @@ test('Guide G10 playback pause resume next and departure', async({page}, info) =
         await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
         await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
         await page.locator('#loginbtn').click({noWaitAfter: true});
-        await page.waitForURL(url => !url.pathname.includes('/login/'), {waitUntil: 'domcontentloaded', timeout: 60000});
-        await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
+        // The server redirect commits successfully before optional Moodle assets
+        // finish loading. Product readiness below is the explicit test boundary.
+        await page.waitForURL(url => !url.pathname.includes('/login/'), {waitUntil: 'commit', timeout: 60000});
+        if (page.url() !== process.env.EASYEDU_MOODLE_URL) {
+            await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
+        }
     }
     // Bound missing controls, not login or optional external asset loading.
     page.setDefaultTimeout(15000);

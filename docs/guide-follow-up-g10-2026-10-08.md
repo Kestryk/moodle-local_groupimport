@@ -230,3 +230,17 @@ intro containment. Managed preview/native proof pending. Next: finish this gate,
 then G10-E reduced checklist, reset border and native destination highlights.
 G10-F..H, broader G10-B headers, returned content, older Student Management and
 the combined human checklist remain open. No data mutation is part of this lot.
+
+Native run easystud-authenticated-20261008T181650311Z-59964 failed before any
+Guide assertion: login redirected to the correct manage.php URL but waiting for
+DOMContentLoaded timed out. Cleanup passed (credentials, child and runtime
+lease), no fixture. Retain failure. Successor waits for redirect commit, avoids
+redundant navigation when already on the requested URL, then retains the strict
+real EasyStud loading-state=ready gate. No product assertion is relaxed.
+
+G10-E presentation WIP, not yet served: baseline reproduces hidden full message
+in completed minimized checklist. Canonical discovery completion now exposes
+the full wrapping message beneath its compact header; Reset consumes existing
+bordered neutral selection-action instead of borderless capsule recovery.
+Actual rendered EN/FR desktop/phone completion and all G10-B header/finish
+checks pass. Native highlights, Penpot publication and human review still open.
