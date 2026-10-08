@@ -122,6 +122,13 @@ icon proof, not an audit of every source/legacy/provider glyph.
 
 ## Native proof and remaining content boundary
 
+Quiet utility source-preserving transfer is prepared on Guide board79; exact
+temporary main/provider and10 saved descendants are recorded in
+docs/testing/guide-g9-quiet-transfer-2026-10-08.json. Fingerprint parity and
+framed export pass; complete Foundation recipe publication is still pending.
+Preserve the original accepted host and nested canonical links. Cleanup only
+after Foundation publication/parity/saved proof, not when the transfer exists.
+
 Tranche3 adds three retained Return instances (boards02/05/60); total31 linked
 Foundation roots,429 saved descendants and169 retained hidden originals.
 Exact successor:docs/testing/guide-g9-product-relinks-tranche3-2026-10-08.json.

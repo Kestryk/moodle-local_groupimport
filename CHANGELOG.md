@@ -2,6 +2,11 @@
 
 ## 2026-10-08 - Guide G9 paired design continuation
 
+- Prepare the accepted Quiet Show recipe for Foundation transfer through a
+  source-preserving temporary provider on framed Guide board79. Exact property
+  comparison, export and saved10-descendant gate pass; original host unchanged.
+  Complete shared publication/propagation and scoped temporary cleanup pending.
+
 - Relink three retained Return compositions to Foundations (31 linked instances
   total). Preserve real context and archive originals. Reuse the accepted Quiet
   Show action on desktop Organisation/Actions through source-preserving clones;
