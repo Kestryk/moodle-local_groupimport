@@ -280,3 +280,30 @@ Next: recover product save safely after capturing its error; finish G10-E native
 milestone/highlight proof, then F responsive path alignment, G server welcome/
 admin reset and H desktop fullscreen. Broader B headers/content writer/old lots
 and combined human checklist remain OPEN.
+
+G10-E successors: footer Reset belongs to In-progress footer, not Path invitation.
+Correct the evidence scope; read saved Foundation through the owned Guide context
+without navigating its unsaved editor: actual6 roots/62 descendants pass. Error
+report identifies stale Guide footer Phone nested component and missing swap slot.
+Preserve report/raster/reconstruction first, reload only the integrator's failed
+editor, reset the whole actual footer parent through public API retaining its
+copy/bounds, then recreate the owned completion example. Saved Guide2 roots/26
+descendants now pass; corrected raster inspected, no error toast. The prior
+unsaved instance ID is retained in evidence, not claimed as persisted.
+
+Source/Kit presentation changes pushed, ordered preview through e0627c2 served at
+runtime9de50d7 with cache purge. Native E run183619952Z-55040 reproduces absent
+highlight after real Select participant: checkbox and completion succeed, Move
+step active/control available, highlight hidden. No errors/blocked writes or
+business transactions; credential/child/lease cleanup passed. The test uses a
+three-step presentation path beginning at selection, not a fabricated Create
+completion. Follow-up adds bounded event/current-target diagnostics; do not
+close native E or infer full curriculum proof from the presentation fixture.
+
+Diagnostic successor184216654Z-39824 passes actual desktop Select→Move and native
+destination highlight aligned. It then fails a harness desktop-only layout click
+at390, before phone selection: use the actual mobile workspace tab, not a hidden
+desktop button. Isolate temporary path storage per viewport, so the phone does
+not resume the unfinished desktop exercise. Keep both failures; first absent
+desktop highlight was not reproduced in successor, do not invent a product fix.
+Native phone/repeat stability still open; no business write/fixture requested.
