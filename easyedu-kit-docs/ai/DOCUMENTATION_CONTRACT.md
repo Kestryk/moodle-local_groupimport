@@ -5,6 +5,11 @@ has not consumed it. Preserve text-editing arrows/Home/End, Tab trapping, origin
 exit Motion and real opener focus. Isolated keyboard proof does not replace the
 served native six-route gate or human acceptance; never issue course commands
 to test a Practice-only keyboard interaction.
+Native End-navigation tests derive the actual retained curriculum boundary;
+four Discovery samples are not the complete native slide count. Tab-boundary
+checks use real browser keys without altering tabindex or forcing clicks.
+Preserve immutable failed harness evidence and exact product assets when the
+defect is an incorrect test expectation rather than a runtime failure.
 
 Correlated Guide layout propagation keeps linked recipes and actual localized
 copy at every size. Longer desktop step labels can increase intrinsic copy/pill
