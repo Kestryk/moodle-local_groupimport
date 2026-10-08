@@ -65,6 +65,10 @@ instances back to correlated Guide boards. Structural proof is not acceptance.
 Boards74..78:185 final text shapes, all Inter; outer/painted-width audit has
 zero overflow. Internal exports inspected. This does not certify whole-page
 paint, all icon centres, Foundation save/publication or human acceptance.
+Additional bounded readback:18 linked compass/xmark instances in boards74/75/
+76/78 have contained path bounds and centred painted unions (<1px error).
+No linked icon root was shrunk to its painted glyph bounds. This is a scoped
+icon proof, not an audit of every source/legacy/provider glyph.
 
 ## Native proof and remaining content boundary
 
