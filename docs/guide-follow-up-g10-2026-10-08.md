@@ -332,3 +332,23 @@ claim that every intermittent transition is fixed. No business writes/fixtures.
 G10-F canonical0.4.152 source pin pushed atdbf09f6. Existing Foundations Phone
 provider already uses centred copy and left counters; implementation matches
 that design without redrawing it. Native promotion pending. G10-G/H remain open.
+
+Native successor190124360Z-43640 passes1280/390 normal Motion at runtime0b8626a:
+real checkbox selection, active Move highlight still visible after6.5s, actual
+Move dialog opened and destination searchable-choice highlight aligned within
+2px. Cancel and path close succeed. No page errors, blocked writes, fixture or
+confirmed course transaction. Credential/child/lease cleanup passes. Retention
+dry-run0 candidates/0 deleted. Source/Kit branches pushed clean. This closes the
+bounded native E presentation gate, not full Create/Confirm or human acceptance.
+Phone invitation CSS0.4.152 is now served; range-based isolated F proof remains
+distinct from a dedicated native mobile invitation visual acceptance.
+
+Foundations Standard Motion copy now specifies task highlight lifetime through
+step change/close. Settled painted copy749.25x44.375 fits750x74. No geometry,
+accepted card Motion or other window's design was changed. Four E design rasters
+are pinned; failed overlap/autosave diagnostics retained, no media deleted.
+
+Next G10-G: server-backed actual-open marker and one global welcome generation
+for admin reset, then desktop invitation design/motion and safe adapter. G10-H
+desktop fullscreen, broader B headers, writer content and all older lots remain
+OPEN; no automatic human acceptance or lost backlog.

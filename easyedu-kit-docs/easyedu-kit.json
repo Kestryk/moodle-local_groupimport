@@ -8,7 +8,8 @@
       "kitVersion": "0.4.153",
       "kitCommit": "4dd60e6ed9c0c1bba4328d4cdec161518fadf8ee",
       "isolatedBuiltConsumerVerified": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261008T190124360Z-43640",
       "humanVisualValidated": false
     },
     "guideG10PhoneLabels20261008": {

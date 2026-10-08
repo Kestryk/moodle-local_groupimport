@@ -1,0 +1,22 @@
+{
+  "batch": "EED-UI-2026-0073/G10-E native checklist",
+  "kitVersion": "0.4.153",
+  "kitCommit": "4dd60e6ed9c0c1bba4328d4cdec161518fadf8ee",
+  "sourceCommit": "e3dcd54b20ac86a78f835b44c517156a73479b74",
+  "testedRuntimeHead": "0b8626ac1d597e8c0fb73078881d7e26d0fab439",
+  "nativeRunId": "easystud-authenticated-20261008T190124360Z-43640",
+  "viewports": [1280, 390],
+  "nativeSelectionPassed": true,
+  "activeHighlightAfter6500msPassed": true,
+  "nativeMoveOpenedAndCancelled": true,
+  "destinationHighlightAligned": true,
+  "pageErrors": 0,
+  "blockedWrites": 0,
+  "fixtureRequested": false,
+  "businessTransactionConfirmed": false,
+  "cleanupPassed": true,
+  "retentionDryRunCandidates": 0,
+  "mediaDeleted": 0,
+  "humanVisualValidated": false,
+  "scope": "Bounded presentation path begins with real selection; full Create/Confirm curriculum and user acceptance remain open."
+}
