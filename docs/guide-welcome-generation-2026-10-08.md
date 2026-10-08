@@ -38,3 +38,14 @@ Verification performed: PHP syntax and isolated in-memory contract harness
 `tests/guide_welcome_test.php` has not run: no PHPUnit installation in local
 Moodle. These checks are not a rendered welcome, native preference or security
 endpoint proof. Human checklist remains OPEN.
+
+Foundations draft: ordinary480x140 composition on Library page, cloned and
+detached only at the Resume root, retaining linked Small primary/neutral actions
+at identical30.4px height. Copy uses existing Inter12.16 and actions12.48, no
+new font. Settled painted copy fits448x46; both labels are centred in their
+canonical button tracks. Exact IDs and open gates are recorded in
+`docs/testing/guide-g10-g-welcome-draft-2026-10-08.json`. Editor raster inspected
+at external `penpot/g10-g-welcome-20261008/foundations-welcome-desktop-draft.png`.
+No Library publication, Standard/Product link, saved readback or native welcome
+claim yet. The one partial empty host left by a read-only-width API error was
+completed in place with documented `resize()`, not duplicated or discarded.
