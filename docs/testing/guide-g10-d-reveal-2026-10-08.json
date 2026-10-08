@@ -1,6 +1,6 @@
 {
   "batch": "EED-UI-2026-0073/G10-D",
-  "status": "implemented-isolated-verified-native-pending-human-open",
+  "status": "implemented-preview-verified-human-open",
   "kitVersion": "0.4.150",
   "baseline": {"cardTop": 78.0271, "bodyTop": 211.7344, "bodyBottom": 569.0156, "result": "offscreen-transfer-reproduced"},
   "isolated": {
@@ -17,6 +17,12 @@
   "playbackRegressionPassed": true,
   "penpotVisualProvidersChanged": false,
   "penpotReason": "Behavior-only reuse of existing scene scroll owner; no new provider geometry, card paint or Motion duration.",
-  "nativePreviewVerified": false,
+  "nativePreviewVerified": true,
+  "nativeRunId": "easystud-authenticated-20261008T182313016Z-48272",
+  "testedRuntimeCommit": "9bf0d418f2858ec83e4776e57b58f57101258b15",
+  "failedNativeRuns": ["easystud-authenticated-20261008T181650311Z-59964", "easystud-authenticated-20261008T182002627Z-55368"],
+  "credentialsChildAndLeaseCleanupPassed": true,
+  "foundationMotionContractTextId": "4ee6f77a-1dfb-809b-8008-c1ebc6fd509e",
+  "foundationMotionTextPaintContained": true,
   "humanVisualValidated": false
 }
