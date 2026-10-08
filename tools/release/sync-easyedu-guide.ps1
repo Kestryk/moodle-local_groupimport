@@ -47,6 +47,13 @@ $canonicalTemplatePath = Resolve-OwnedPath $kitRoot "guide\templates\easyedu_gui
 $canonicalStylesPath = Resolve-OwnedPath $kitRoot "scss\easyedu\components\_guide.scss"
 
 $canonicalJavascript = Read-NormalizedText $canonicalJavascriptPath
+$fullscreenPath = Resolve-OwnedPath $kitRoot "guide\amd\src\easyedu_guide_fullscreen.js"
+$fullscreenSource = Read-NormalizedText $fullscreenPath
+$fullscreenImport = "import {createFullscreenController} from './easyedu_guide_fullscreen';"
+if (-not $canonicalJavascript.Contains($fullscreenImport) -or
+    -not $fullscreenSource.Contains('export const createFullscreenController =')) {
+    throw 'Review changed canonical Fullscreen module boundary before synchronization.'
+}
 foreach ($marker in @("export const destroy =", "export const init =", "export default init;")) {
     if (-not $canonicalJavascript.Contains($marker)) {
         throw "Canonical guide source is missing required marker: $marker"
@@ -54,6 +61,8 @@ foreach ($marker in @("export const destroy =", "export const init =", "export d
 }
 
 $wrappedBody = $canonicalJavascript.Replace("export const destroy =", "const destroy =")
+$wrappedBody = $wrappedBody.Replace($fullscreenImport, '')
+$wrappedBody = $fullscreenSource.Replace('export const createFullscreenController =', 'const createFullscreenController =') + "`n" + $wrappedBody
 $wrappedBody = $wrappedBody.Replace("export const init =", "const init =")
 $wrappedBody = $wrappedBody.Replace("export default init;", "")
 $wrappedBody = $wrappedBody.TrimEnd()
@@ -107,6 +116,12 @@ if (-not $runtimeTemplate.Contains('{{guidehoverlabel}}') -or
 }
 
 $items = @(
+    [pscustomobject]@{
+        Name = "embedded native fullscreen lifecycle"
+        Source = $fullscreenPath
+        Target = Resolve-OwnedPath $pluginRootPath "easyedu-guide-kit\amd\src\easyedu_guide_fullscreen.js"
+        Expected = $fullscreenSource
+    },
     [pscustomobject]@{
         Name = "runtime localized Mustache"
         Source = $canonicalTemplatePath

@@ -1,0 +1,80 @@
+const {test,expect}=require('@playwright/test');
+const fs=require('node:fs');
+
+// Local-supervised presentation only. No fixture, course mutation or reset.
+test('Guide native fullscreen preserves modal and target lifecycle',async({page},info)=>{
+    test.setTimeout(180000);
+    const errors=[],blocked=[],result={courseWrites:false,fixtures:false,nativeFullscreen:false};
+    page.on('pageerror',error=>errors.push(error.message));
+    await page.goto(process.env.EASYEDU_MOODLE_URL,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')){
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(url=>!url.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
+        await page.goto(process.env.EASYEDU_MOODLE_URL,{waitUntil:'domcontentloaded'});
+    }
+    await page.route('**/local/groupimport/**',route=>{
+        if(route.request().method()==='GET')return route.continue();
+        blocked.push('Unexpected plugin write');return route.abort('blockedbyclient');
+    });
+    await page.route('**/lib/ajax/service.php*',route=>{
+        if(route.request().method()!=='POST')return route.continue();
+        const calls=route.request().postDataJSON().map(call=>call.methodname);
+        if(calls.every(name=>name==='core_message_get_unsent_message'))return route.fulfill({contentType:'application/json',
+            body:JSON.stringify(calls.map(()=>({error:false,data:{}})))});
+        const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
+            'core_output_load_template_with_dependencies','core_courseformat_get_state']);
+        if(calls.every(name=>reads.has(name)))return route.continue();
+        blocked.push(calls);return route.abort('blockedbyclient');
+    });
+    try{
+        await page.setViewportSize({width:1280,height:900});
+        await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+        // The bounded welcome predecessor already acknowledged this QA account.
+        expect(await page.evaluate(()=>document.querySelector('[data-easyedu-guide-root]').easyeduGuideConfig.welcomeOffer)).toBe(false);
+        const launcher=page.locator('[data-easyedu-guide-open]:visible').first();
+        const modal=page.locator('[data-easyedu-guide-modal]');
+        const fullscreen=modal.locator('[data-easyedu-guide-fullscreen]');
+        for(const reducedMotion of ['no-preference','reduce']){
+            await page.emulateMedia({reducedMotion});
+            await launcher.click();
+            await expect(modal).toBeVisible();
+            const slide=await modal.locator('[data-easyedu-guide-slide]:visible').first().getAttribute('data-easyedu-guide-slide');
+            await expect(fullscreen).toBeVisible();
+            await fullscreen.click();
+            await page.waitForFunction(()=>document.fullscreenElement?.matches('[data-easyedu-guide-modal]'));
+            await expect(fullscreen).toHaveAttribute('aria-pressed','true');
+            const geometry=await modal.locator('.easyedu-guide-modal__dialog').evaluate(element=>{
+                const rect=element.getBoundingClientRect();
+                return {x:rect.x,y:rect.y,width:rect.width,height:rect.height,viewportWidth:innerWidth,viewportHeight:innerHeight};
+            });
+            expect(Math.abs(geometry.x)).toBeLessThan(1);expect(Math.abs(geometry.y)).toBeLessThan(1);
+            expect(Math.abs(geometry.width-geometry.viewportWidth)).toBeLessThan(1);
+            expect(Math.abs(geometry.height-geometry.viewportHeight)).toBeLessThan(1);
+            await page.keyboard.press('Escape');
+            await page.waitForFunction(()=>document.fullscreenElement===null);
+            await expect(modal).toBeVisible();
+            expect(await modal.locator('[data-easyedu-guide-slide]:visible').first().getAttribute('data-easyedu-guide-slide')).toBe(slide);
+            await fullscreen.click();
+            await page.waitForFunction(()=>document.fullscreenElement!==null);
+            await modal.locator('[data-easyedu-guide-close]').click();
+            await expect(modal).toBeHidden();
+            expect(await page.evaluate(()=>document.fullscreenElement===null)).toBe(true);
+            await expect(launcher).toBeFocused();
+            result[reducedMotion]={geometry,escapeKeepsSlide:true,closeExitsAndReturnsFocus:true};
+        }
+        await launcher.click();await expect(modal).toBeVisible();
+        await fullscreen.click();await page.waitForFunction(()=>document.fullscreenElement!==null);
+        await modal.locator('[data-easyedu-guide-show-target]:visible').first().click();
+        await expect(modal).toBeHidden();
+        expect(await page.evaluate(()=>document.fullscreenElement===null)).toBe(true);
+        result.showInInterfaceExits=true;
+        await page.setViewportSize({width:390,height:900});
+        await expect(fullscreen).toBeHidden();
+        result.mobileControlSuppressed=true;result.nativeFullscreen=true;
+        expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    }finally{
+        fs.writeFileSync(info.outputPath('guide-fullscreen-result.json'),JSON.stringify({...result,errors,blocked},null,2));
+    }
+});

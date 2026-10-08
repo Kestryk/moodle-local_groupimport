@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased - Guide G10-H desktop fullscreen candidate
+
+- Consume canonical native fullscreen lifecycle, translated EN/FR Small header
+  controls and shared fullscreen layout. Escape preserves Guide/slide; close
+  and Show in interface await exit. No responsive fullscreen action.
+- Foundation and Guide linked controls saved/raster checked. Isolated actual
+  built-consumer tests pass normal/reduced, target focus and denial fallback.
+  Scoped native presentation scenario added; Moodle preview and human gates
+  still pending. No course-data changes or private Mustache/SCSS style added.
+
 ## Unreleased - Guide welcome bounded native proof
 
 - Corrected managed preview passes persisted reload, request rejection, equal

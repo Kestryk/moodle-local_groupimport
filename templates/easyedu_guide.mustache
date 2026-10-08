@@ -34,9 +34,19 @@
                     </span>
                 </div>
                 {{/discoverypresentation}}
+                <div class="easyedu-guide-modal__header-actions">
+                {{#guidefullscreenenter}}
+                <button type="button" class="easyedu-guide-modal__fullscreen" data-easyedu-guide-fullscreen hidden
+                    data-enter-label="{{guidefullscreenenter}}" data-exit-label="{{guidefullscreenexit}}"
+                    data-unavailable-label="{{guidefullscreenunavailable}}" aria-label="{{guidefullscreenenter}}" aria-pressed="false">
+                    <span class="fa fa-expand" aria-hidden="true"></span>
+                </button>
+                <span class="sr-only" role="status" data-easyedu-guide-fullscreen-status></span>
+                {{/guidefullscreenenter}}
                 <button type="button" class="btn easyedu-guide-modal__close" data-easyedu-guide-close="1" aria-label="{{guidecloselabel}}">
                     <span class="fa fa-times" aria-hidden="true"></span>
                 </button>
+                </div>
             </header>
 
             <div class="easyedu-guide-nav-wrap">

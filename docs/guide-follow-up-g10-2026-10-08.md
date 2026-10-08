@@ -442,3 +442,14 @@ Show in interface/close; preserve slide/progression/accepted animations;
 translate controls, add scoped shared layout, regression and managed native
 preview. No fullscreen option visible in current Moodle yet. Common intro
 content and all older product lots remain separate/open.
+
+G10-H source integration now consumes shared native lifecycle, Small header
+controls, translated EN/FR labels and public fullscreen layout. Linked Foundation
+Library/Standard4 roots/28 descendants and Guide2 roots/14 descendants saved;
+rasters inspected (bounded controls/compositions, not whole-guide audit).
+Actual built-consumer Chrome PASS normal/reduced entry, Escape preserving Guide
+and slide, close exit, Show in interface exit/focus, denial fallback and phone
+suppression. Existing EN/FR1280/768/390 chrome regression PASS. Native scenario
+added; ordered managed preview must include e18b33b and05a8a91 documentary
+predecessors before this candidate. Runtime proof and human checklist still open.
+Common introduction/curriculum remains a separate writer-dependent remainder.
