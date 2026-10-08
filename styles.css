@@ -4,6 +4,10 @@
   overscroll-behavior: none;
 }
 
+html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
+  scrollbar-gutter: auto;
+}
+
 .easyedu-guide-highlight {
   border: 2px solid var(--easyedu-primary);
   border-radius: 0.9rem;

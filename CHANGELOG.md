@@ -2,6 +2,10 @@
 
 ## Unreleased - Guide G10-H desktop fullscreen candidate
 
+- Settled native diagnostic identifies the host's stable document gutter.
+  Canonical Guide-only fullscreen rule releases/restores it without inline CSS;
+  isolated fixture now reproduces that context. Failed evidence kept.
+
 - Retain native failed15px width oracle; synchronize shared viewport/border-box
   successor, preserving the scenario and ordinary dialog/accepted animations.
 

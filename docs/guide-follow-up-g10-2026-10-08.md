@@ -460,3 +460,11 @@ fixtures; lease/credentials/child cleanup PASS. Preserve unchanged scenario.
 Diagnose native document scrollbar containing-block width; shared fullscreen
 viewport units/border-box/overflow successor only, no plugin-local CSS and no
 weakened oracle. Managed correction/native successor pending.
+
+Viewport-only successor213727637Z-12016 still fails15px. Settled diagnostic
+213848517Z-48728 confirms html scrollbar-gutter:stable,1265px layout vs1280px
+viewport, no transform/padding/margin. Native opening animation is now awaited;
+the strict <1px oracle remains. Shared html lock:has(Guide :fullscreen) releases
+the gutter only for native top-layer ownership; ordinary exit restores host
+policy. Isolated fixture gains stable gutter to reproduce native host context.
+All failed runs retained, no writes/errors, cleanup passes. Native retry pending.
