@@ -1,0 +1,22 @@
+{
+  "batch": "EED-UI-2026-0073/G10-D",
+  "status": "implemented-isolated-verified-native-pending-human-open",
+  "kitVersion": "0.4.150",
+  "baseline": {"cardTop": 78.0271, "bodyTop": 211.7344, "bodyBottom": 569.0156, "result": "offscreen-transfer-reproduced"},
+  "isolated": {
+    "actualLocalizedMoodleMustache": true,
+    "actualBuiltConsumerAmd": true,
+    "rows": [{"language":"en","width":1280},{"language":"fr","width":1280},{"language":"en","width":768},{"language":"fr","width":390}],
+    "compareIntroContained": true,
+    "desktopMovingCardsVisible": true,
+    "backgroundScrollUnchanged": true,
+    "pageErrors": [],
+    "businessWrites": 0,
+    "authentication": false
+  },
+  "playbackRegressionPassed": true,
+  "penpotVisualProvidersChanged": false,
+  "penpotReason": "Behavior-only reuse of existing scene scroll owner; no new provider geometry, card paint or Motion duration.",
+  "nativePreviewVerified": false,
+  "humanVisualValidated": false
+}

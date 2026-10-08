@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Illustrated Guide Move reveals its teaching cards after confirmation closes
+and before reading transfer geometry, through the canonical scene scroll owner.
+Preserve pause/cancellation/reduced motion and the background Moodle scroll.
+No consumer-specific animation clock or accepted card Motion replacement.
+
 Compact selection trays resolve native selection/disabled availability independently
 from desktop workspace-only hidden flags. Preserve saved desktop mode and reapply
 its visibility when leaving responsive mode; do not create another button skin

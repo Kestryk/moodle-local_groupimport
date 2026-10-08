@@ -1467,6 +1467,11 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
       confirm.hidden = true;
       // Move the natural selected cards only after the illustrated confirmation.
       // Compact/reduced modes keep the same outcome without a mouse-only gesture.
+      // Confirmation can leave the scrollport focused on its destination field.
+      // Reveal the cards before measuring displacement; reuse the same paused,
+      // cancellable scene clock rather than scrolling the Moodle page behind it.
+      await reveal(stage);
+      if (controller.signal.aborted) { return; }
       if (!compact && !reduced) {
         const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
         const selected = [...stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person')];
