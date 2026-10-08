@@ -418,3 +418,16 @@ its exact /admin/settings.php section before output; retain tree registration on
 other admin pages. No global reset/course writes; cleanup passes. Native full
 successor/admin-cancel/mobile gates pending. Earlier actual first-opening proof
 remains valid even when the next test correctly sees an already-seen account.
+
+Native successor203632655Z-34796 PASS at75311dd, cache purge verified. Account
+already seen from the previous genuine acknowledgement: welcome remains hidden,
+reload persists, GET/invalid sesskey rejected, admin confirmation opens with
+paired action heights and Cancel preserves state, phone welcome suppressed.
+Zero page errors/blocked writes/course transaction/fixtures; credential, child
+and lease cleanup pass. First actual opening belongs to the retained previous
+run, not artificially repeated. Native global reset remains unconfirmed.
+Admin Penpot80 host consumes existing neutral confirmation provider; settled
+labels/action widths fixed without a new master/font/skin. Saved1 root/15
+visible descendants and raster inspected. Full native/design pixel parity and
+human acceptance remain open. G10-H desktop fullscreen is the next tranche;
+all earlier recorded lots remain retained.

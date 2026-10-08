@@ -1,0 +1,23 @@
+{
+  "runtimeHead": "75311dd276b7a5e09a9e91dd32f41564a0f75d11",
+  "cachePurgeVerified": true,
+  "firstActualOpeningRun": "easystud-authenticated-20261008T203306236Z-52108",
+  "firstActualOpeningAcknowledged": true,
+  "firstOpeningRunOverall": "failed later on admin confirmation header",
+  "successorRun": "easystud-authenticated-20261008T203632655Z-34796",
+  "successorOverall": "passed",
+  "successorAccountAlreadySeen": true,
+  "persistedReloadVerified": true,
+  "getAndInvalidSesskeyRejected": true,
+  "adminCancelDoesNotReset": true,
+  "resetPairedHeightsVerified": true,
+  "mobileSuppressed": true,
+  "errors": [],
+  "blockedWrites": [],
+  "fixtureRequested": false,
+  "courseWrites": false,
+  "globalResetConfirmed": false,
+  "credentialChildLeaseCleanupPassed": true,
+  "humanVisualValidated": false,
+  "remaining": ["Confirmed global reset native gate", "Real PHPUnit unavailable locally", "Welcome native reduced-motion/keyboard matrix", "Complete human checklist"]
+}

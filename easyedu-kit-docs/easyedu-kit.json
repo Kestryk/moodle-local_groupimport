@@ -14,7 +14,10 @@
       "standaloneTokenScopeKitVersion": "0.4.156",
       "standaloneTokenScopeKitCommit": "8222da4f87d4f25df7032804c6b5fcdf1137603e",
       "productSavedVerified": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261008T203632655Z-34796",
+      "firstActualOpeningRunId": "easystud-authenticated-20261008T203306236Z-52108",
+      "nativeGlobalResetVerified": false,
       "humanVisualValidated": false
     },
     "guideG10ChecklistLifetime20261008": {

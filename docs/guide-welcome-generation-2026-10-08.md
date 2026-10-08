@@ -7,7 +7,11 @@ launcher is visible after readiness but the one-shot init had occurred while
 the loading shell hid it. Canonical0.4.157 now observes only launcher ancestry
 attributes/size for at most30s, disconnecting on visibility/open/close/destroy.
 EN/FR normal/reduced built consumer delayed-visibility tests pass. Corrected
-native promotion/proof pending. Historical paragraphs retain earlier states.
+native successor203632655Z-34796 passes at75311dd. Actual first acknowledgement
+and reload belong to previous203306236Z-52108 (which failed later on admin).
+Successor verifies already-seen reload, request rejection, paired admin actions,
+Cancel preserving state and phone suppression. No global reset confirmed.
+Historical paragraphs retain earlier states.
 `guide_welcome.php` requires POST, login, course management permission and sesskey;
 it accepts no user id. `amd/src/guide_welcome.js` qualifies the owned root's real
 opening, coalesces pending requests and aborts on teardown. It does not control

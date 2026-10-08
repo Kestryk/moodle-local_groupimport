@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - Guide welcome bounded native proof
+
+- Corrected managed preview passes persisted reload, request rejection, equal
+  admin confirmation action heights, safe Cancel and phone suppression. Genuine
+  first acknowledgement is retained from the prior run before its admin error.
+- Admin reset composition now linked to existing Foundations neutral dialog,
+  saved/raster checked. Global reset, full curriculum and human checklist remain
+  open; no course writes or synthetic data created.
+
 ## Unreleased - Guide welcome loading reveal successor
 
 - Native successor proves actual first-opening acknowledgement/reload and
