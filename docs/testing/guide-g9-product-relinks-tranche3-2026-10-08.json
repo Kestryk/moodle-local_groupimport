@@ -1,0 +1,3201 @@
+{
+  "programme": "EED-UI-2026-0073",
+  "lot": "G9-E Guide Foundations relinking tranche3",
+  "date": "2026-10-08",
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "kitVersion": "0.4.146",
+  "components": [
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88a731b93210770",
+      "id": "007cab03-0a24-8025-8008-c1f86792c85b",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Desktop",
+      "x": 32,
+      "y": 10770,
+      "width": 750,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d31eb6f9a8",
+          "hidden": false,
+          "name": "Guide / Discovery / Animation step banner / Active"
+        }
+      ],
+      "overrides": {
+        "Instruction": "2 · Ouvrez les actions des membres, puis choisissez Déplacer."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88b1ed503210836",
+      "id": "007cab03-0a24-8025-8008-c1f88f946f85",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88b1ed50",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Finished Desktop",
+      "x": 32,
+      "y": 10836,
+      "width": 750,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d31ec2673b",
+          "hidden": false,
+          "name": "Guide / Discovery / Animation step banner / Finished"
+        }
+      ],
+      "overrides": {
+        "Instruction": "Démonstration terminée · récapitulatif ci-dessous."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88bc893d84610782",
+      "id": "007cab03-0a24-8025-8008-c1f88fd0908c",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Phone",
+      "x": 846,
+      "y": 10782,
+      "width": 358.00000000000045,
+      "height": 76,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d31ecc070a",
+          "hidden": false,
+          "name": "Guide / Discovery / Animation step banner / Phone"
+        }
+      ],
+      "overrides": {
+        "Instruction": "3 · Recherchez le groupe de destination, puis vérifiez votre choix."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9cfb9a723212130",
+      "id": "007cab03-0a24-8025-8008-c1f8902313ab",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cfb9a72",
+      "providerPath": "EasyEdu / Guide Discovery / Resume invitation",
+      "providerName": "Desktop",
+      "x": 32,
+      "y": 12130,
+      "width": 750,
+      "height": 72,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85529137e",
+          "hidden": false,
+          "name": "Resume / Desktop"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85559b55a",
+          "hidden": false,
+          "name": "Resume / Copy"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855820915",
+          "hidden": false,
+          "name": "Resume / Action"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855a49f78",
+          "hidden": false,
+          "name": "Resume / Label"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855d146b1",
+          "hidden": false,
+          "name": "Resume / Cancel"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e855f244dd",
+          "hidden": false,
+          "name": "Resume / Cancel label"
+        }
+      ],
+      "overrides": {
+        "Explanation": "Un parcours guidé est en cours."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9d33f5a53212308",
+      "id": "007cab03-0a24-8025-8008-c1f890daab55",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d33f5a5",
+      "providerPath": "EasyEdu / Guide Discovery / Completion notice",
+      "providerName": "Complete",
+      "x": 32,
+      "y": 12308,
+      "width": 750,
+      "height": 74,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8565307e2",
+          "hidden": false,
+          "name": "Completion / Quiet surface"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8567bbb61",
+          "hidden": false,
+          "name": "Completion / Copy"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dc36c6e051",
+          "hidden": false,
+          "name": "Completion / Semantic success icon"
+        }
+      ],
+      "overrides": {
+        "Completion copy": "Parcours terminé. Revenez au guide pour poursuivre, ou fermez ce parcours."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9cacc3ab83012130",
+      "id": "007cab03-0a24-8025-8008-c1f89183e981",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cacc3ab",
+      "providerPath": "EasyEdu / Guide Discovery / Path invitation",
+      "providerName": "Phone",
+      "x": 830,
+      "y": 12130,
+      "width": 358.00000000000045,
+      "height": 500,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e856a88234",
+          "hidden": false,
+          "name": "Invitation / Phone390"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e856ceef49",
+          "hidden": false,
+          "name": "Invitation / Eyebrow"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e856fc8457",
+          "hidden": false,
+          "name": "Invitation / Title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85732bab8",
+          "hidden": false,
+          "name": "Invitation / Description"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8575c7b68",
+          "hidden": false,
+          "name": "Invitation / Pill 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e857956e8a",
+          "hidden": false,
+          "name": "Invitation / Counter15px 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e857c84a6e",
+          "hidden": false,
+          "name": "Invitation / Counter label 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8580a9172",
+          "hidden": false,
+          "name": "Invitation / Step 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85847db5d",
+          "hidden": false,
+          "name": "Invitation / Pill 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85874478d",
+          "hidden": false,
+          "name": "Invitation / Counter15px 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8589693cc",
+          "hidden": false,
+          "name": "Invitation / Counter label 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e858ca256c",
+          "hidden": false,
+          "name": "Invitation / Step 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e858f5e482",
+          "hidden": false,
+          "name": "Invitation / Pill 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8591eaac7",
+          "hidden": false,
+          "name": "Invitation / Counter15px 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8594610a1",
+          "hidden": false,
+          "name": "Invitation / Counter label 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e8597bcfd7",
+          "hidden": false,
+          "name": "Invitation / Step 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e859a785eb",
+          "hidden": false,
+          "name": "Invitation / Pill 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e859d1eeff",
+          "hidden": false,
+          "name": "Invitation / Counter15px 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e859f1b575",
+          "hidden": false,
+          "name": "Invitation / Counter label 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a1e256e",
+          "hidden": false,
+          "name": "Invitation / Step 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a4359f0",
+          "hidden": false,
+          "name": "Invitation / Pill 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a65ab9c",
+          "hidden": false,
+          "name": "Invitation / Counter15px 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85a851d16",
+          "hidden": false,
+          "name": "Invitation / Counter label 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85abee406",
+          "hidden": false,
+          "name": "Invitation / Step 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85afd687b",
+          "hidden": false,
+          "name": "Invitation / Pill 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85b31c59f",
+          "hidden": false,
+          "name": "Invitation / Counter15px 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85b5bc865",
+          "hidden": false,
+          "name": "Invitation / Counter label 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85b8f020e",
+          "hidden": false,
+          "name": "Invitation / Step 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85bc8f0e7",
+          "hidden": false,
+          "name": "Invitation / Start"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85bf4a3c4",
+          "hidden": false,
+          "name": "Invitation / Start label"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1d9c9fa02ed",
+          "hidden": false,
+          "name": "Invitation / Emblem slot / Phone"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1d9ca275d66",
+          "hidden": false,
+          "name": "Invitation / Route / Foundations"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation à un groupe",
+        "Description": "Six étapes réelles. Seule votre confirmation modifie les données du cours.",
+        "Step copy 0": "Créer un groupe",
+        "Step copy 1": "Ouvrir la vue Participants",
+        "Step copy 2": "Sélectionner un participant",
+        "Step copy 3": "Ouvrir Déplacer les participants",
+        "Step copy 4": "Rechercher et choisir la destination",
+        "Step copy 5": "Vérifier, puis confirmer"
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0e8547f6d754ee6f77a-1dfb-809b-8008-c1ed9cdd4fc083012646",
+      "id": "007cab03-0a24-8025-8008-c1f8933449bc",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0e8547f6d75",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cdd4fc0",
+      "providerPath": "EasyEdu / Guide Discovery / In-progress footer",
+      "providerName": "Phone",
+      "x": 830,
+      "y": 12646,
+      "width": 358.00000000000045,
+      "height": 70,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85c27c5ac",
+          "hidden": false,
+          "name": "Invitation / Reset"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85c4f47dc",
+          "hidden": false,
+          "name": "Invitation / Reset label"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0e85c88780f",
+          "hidden": false,
+          "name": "Invitation / Restart rule"
+        }
+      ],
+      "overrides": {
+        "Progress explanation": "Parcours en cours."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed9bf59c1c3211248",
+      "id": "007cab03-0a24-8025-8008-c1f903b0f1b4",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9bf59c1c",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Expanded Desktop",
+      "x": 32,
+      "y": 11248,
+      "width": 400,
+      "height": 432,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29af9f773",
+          "hidden": false,
+          "name": "Checklist / Expanded"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b36799d",
+          "hidden": false,
+          "name": "Checklist / Title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b53d472",
+          "hidden": false,
+          "name": "Checklist / Progress"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b788c63",
+          "hidden": false,
+          "name": "Checklist / visible step 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29b94ac32",
+          "hidden": false,
+          "name": "Checklist / step copy 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29babde7c",
+          "hidden": false,
+          "name": "Checklist / visible step 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29bc773de",
+          "hidden": false,
+          "name": "Checklist / step copy 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29be525dc",
+          "hidden": false,
+          "name": "Checklist / visible step 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29bffe2b8",
+          "hidden": false,
+          "name": "Checklist / step copy 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c1ddd3e",
+          "hidden": false,
+          "name": "Checklist / scroll hint"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d2ddc6e81f",
+          "hidden": false,
+          "name": "EasyEdu / Buttons / Core action / Secondary / S"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0db8f7065a5",
+          "hidden": false,
+          "name": "Checklist / Minimize / Shared Small"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd2deae4a7",
+          "hidden": false,
+          "name": "Checklist / description 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd36917b68",
+          "hidden": false,
+          "name": "Checklist / description 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd36c66d96",
+          "hidden": false,
+          "name": "Checklist / prerequisite 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd3d7d9b6e",
+          "hidden": false,
+          "name": "Checklist / description 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0dd3db295d1",
+          "hidden": false,
+          "name": "Checklist / prerequisite 2"
+        }
+      ],
+      "overrides": {
+        "Title": "Parcours guidé : créer un groupe",
+        "Progress": "0 / 6 étapes accomplies",
+        "Scroll hint": "Étapes 4–6 : scroll interne · textes non comprimés"
+      },
+      "hiddenGenericRows": true,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed88d329da5311328",
+      "id": "007cab03-0a24-8025-8008-c1f9050ce3d7",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88d329da",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Active",
+      "x": 53,
+      "y": 11328,
+      "width": 358,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Créer un groupe",
+        "Description": "Saisissez le nom, puis utilisez le contrôle de création.",
+        "Step number": "1"
+      },
+      "descriptionHeight": 32,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed8911c0545311430",
+      "id": "007cab03-0a24-8025-8008-c1f9056ad461",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed8911c054",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Locked",
+      "x": 53,
+      "y": 11430,
+      "width": 358,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Ouvrir la vue Participants",
+        "Description": "Passez à Participants et groupes, ou Participants sur mobile.",
+        "Step number": "2",
+        "Prerequisite": "Après : Créer un groupe"
+      },
+      "descriptionHeight": 32,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed8911c0545311532",
+      "id": "007cab03-0a24-8025-8008-c1f906a65c86",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed8911c054",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Locked",
+      "x": 53,
+      "y": 11532,
+      "width": 358,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Sélectionner un participant",
+        "Description": "Utilisez la case du participant. Aucune appartenance ne change.",
+        "Step number": "3",
+        "Prerequisite": "Après : Ouvrir la vue Participants"
+      },
+      "descriptionHeight": 32,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed9c48e86248611248",
+      "id": "007cab03-0a24-8025-8008-c1f907c62b47",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c48e862",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Reduced Phone",
+      "x": 486,
+      "y": 11248,
+      "width": 358,
+      "height": 96,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c3ba132",
+          "hidden": false,
+          "name": "Checklist / Reduced desktop"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c58de82",
+          "hidden": false,
+          "name": "Checklist / Reduced title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c78873b",
+          "hidden": false,
+          "name": "Checklist / Reduced progress"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29c98e853",
+          "hidden": false,
+          "name": "Checklist / Restore"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29cbd366a",
+          "hidden": false,
+          "name": "Checklist / Reduced phone"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d2ddd9b611",
+          "hidden": false,
+          "name": "EasyEdu / Buttons / Core action / Secondary / S"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0db8ffddae3",
+          "hidden": false,
+          "name": "Checklist / Restore / Linked expand"
+        }
+      ],
+      "overrides": {
+        "Title": "Sélectionner un participant",
+        "Progress": "2 / 6 étapes accomplies"
+      },
+      "intrinsicTitleHeight": 40,
+      "progressY": 62,
+      "copyNote": "Active step retained; redundant path-title prefix omitted in reduced presentation.",
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c0d19189672c4ee6f77a-1dfb-809b-8008-c1ed9c48e86248611360",
+      "id": "007cab03-0a24-8025-8008-c1f9086e972f",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c0d19189672c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c48e862",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Reduced Phone",
+      "x": 486,
+      "y": 11360,
+      "width": 358,
+      "height": 96,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29cd61720",
+          "hidden": false,
+          "name": "Checklist / Phone title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29cf52e61",
+          "hidden": false,
+          "name": "Checklist / Phone progress"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d29d0fa21b",
+          "hidden": false,
+          "name": "Checklist / Phone restore"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d3d9a7dd6d",
+          "hidden": false,
+          "name": "EasyEdu / Buttons / Core action / Secondary / S"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0db905337dc",
+          "hidden": false,
+          "name": "Checklist / Restore / Linked expand"
+        }
+      ],
+      "overrides": {
+        "Title": "Sélectionner un participant",
+        "Progress": "2 / 6 étapes accomplies"
+      },
+      "intrinsicTitleHeight": 40,
+      "progressY": 62,
+      "copyNote": "Active step retained; redundant path-title prefix omitted in reduced presentation.",
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed9c2847214814162",
+      "id": "007cab03-0a24-8025-8008-c1f95999fa4d",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c284721",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Expanded Phone",
+      "x": 48,
+      "y": 14162,
+      "width": 357.9999999999998,
+      "height": 346,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd96631f8d",
+          "hidden": false,
+          "name": "Checklist / Surface 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd96a21d78",
+          "hidden": false,
+          "name": "Checklist / Title 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd96f5d5c9",
+          "hidden": false,
+          "name": "Checklist / Minimize 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9746453a",
+          "hidden": false,
+          "name": "Checklist / Progress 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9780a0d5",
+          "hidden": false,
+          "name": "Checklist / Earlier review 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd97b4070a",
+          "hidden": false,
+          "name": "Checklist / Earlier title 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd98011270",
+          "hidden": false,
+          "name": "Checklist / Current 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd984ef0c9",
+          "hidden": false,
+          "name": "Checklist / Current title 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd98939d2c",
+          "hidden": false,
+          "name": "Checklist / Current description 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd98d96973",
+          "hidden": false,
+          "name": "Checklist / Scroll hint 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd992b8180",
+          "hidden": false,
+          "name": "Checklist / Scroll cue 48"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9974fd2a",
+          "hidden": false,
+          "name": "Checklist / Scroll thumb 48"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation\nà un groupe",
+        "Progress": "4 / 6 étapes accomplies",
+        "Scroll hint": "Étape 6 dans le défilement interne"
+      },
+      "intrinsicTitleHeight": 40,
+      "hiddenGenericRows": true,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88e2c48b4814258",
+      "id": "007cab03-0a24-8025-8008-c1f95a9d7d61",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88e2c48b",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Complete",
+      "x": 64,
+      "y": 14258,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Ouvrir Déplacer les participants",
+        "Description": "Étape accomplie · vous pouvez la consulter."
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88d329da4814360",
+      "id": "007cab03-0a24-8025-8008-c1f95adcdb86",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88d329da",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Active",
+      "x": 64,
+      "y": 14360,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Rechercher et choisir le groupe",
+        "Description": "Le champ reste utilisable dans la modale.",
+        "Step number": "5"
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed9c28472187014162",
+      "id": "007cab03-0a24-8025-8008-c1f95c19b142",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c284721",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist panel",
+      "providerName": "Expanded Phone",
+      "x": 870,
+      "y": 14162,
+      "width": 357.9999999999999,
+      "height": 346,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd99b920df",
+          "hidden": false,
+          "name": "Checklist / Surface 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9a0572af",
+          "hidden": false,
+          "name": "Checklist / Title 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9a6245cb",
+          "hidden": false,
+          "name": "Checklist / Minimize 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9abeebe7",
+          "hidden": false,
+          "name": "Checklist / Progress 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9afd382a",
+          "hidden": false,
+          "name": "Checklist / Earlier review 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9b36b1bf",
+          "hidden": false,
+          "name": "Checklist / Earlier title 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9b79cb67",
+          "hidden": false,
+          "name": "Checklist / Current 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9bb7353e",
+          "hidden": false,
+          "name": "Checklist / Current title 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9c02f190",
+          "hidden": false,
+          "name": "Checklist / Current description 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9c538f7e",
+          "hidden": false,
+          "name": "Checklist / Scroll hint 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9caa6eca",
+          "hidden": false,
+          "name": "Checklist / Scroll cue 870"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1dd9cf8f3e9",
+          "hidden": false,
+          "name": "Checklist / Scroll thumb 870"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation\nà un groupe",
+        "Progress": "4 / 6 étapes accomplies",
+        "Scroll hint": "Étape 6 dans le défilement interne"
+      },
+      "intrinsicTitleHeight": 40,
+      "hiddenGenericRows": true,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88e2c48b87014258",
+      "id": "007cab03-0a24-8025-8008-c1f95d550491",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88e2c48b",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Complete",
+      "x": 886,
+      "y": 14258,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Ouvrir Déplacer les participants",
+        "Description": "Étape accomplie · vous pouvez la consulter."
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1dd939450a84ee6f77a-1dfb-809b-8008-c1ed88d329da87014360",
+      "id": "007cab03-0a24-8025-8008-c1f95d9a16cc",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88d329da",
+      "providerPath": "EasyEdu / Guide Discovery / Checklist item",
+      "providerName": "Active",
+      "x": 886,
+      "y": 14360,
+      "width": 326,
+      "height": 94,
+      "archived": [],
+      "overrides": {
+        "Title": "Rechercher et choisir le groupe",
+        "Description": "Le champ reste utilisable dans la modale.",
+        "Step number": "5"
+      },
+      "fitLaneWidth": 326,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f054ee6f77a-1dfb-809b-8008-c1ed9cacc3ab4815760",
+      "id": "007cab03-0a24-8025-8008-c205ebe8ced2",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f05",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9cacc3ab",
+      "providerPath": "EasyEdu / Guide Discovery / Path invitation",
+      "providerName": "Phone",
+      "x": 48,
+      "y": 15760,
+      "width": 358.00000000000045,
+      "height": 500,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf1485493",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Phone390"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf1644026",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Eyebrow"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf17a0fad",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf1918f0c",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Description"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf1b084c3",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Pill 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf1c86a59",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter15px 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf1e0750a",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter label 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf1f9672e",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Step 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf2138edd",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Pill 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf22f914a",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter15px 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf24aaaac",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter label 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf266e7b8",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Step 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf283651e",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Pill 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf29c9a40",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter15px 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf2b946c8",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter label 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf2d3486e",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Step 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf2eda1e7",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Pill 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf307d149",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter15px 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf3239d6a",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter label 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf33c7cb4",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Step 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf35ce76c",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Pill 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf3786116",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter15px 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf3980939",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter label 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf3b8f9f5",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Step 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf3d41893",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Pill 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf3edb0ad",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter15px 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf40a6d2f",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Counter label 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf42a9635",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Step 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf44a0c15",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Start"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf4692f83",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Start label"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf484c399",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Emblem slot / Phone"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf4a07c77",
+          "hidden": false,
+          "name": "Practice mobile / Invitation / Route / Foundations"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation à un groupe",
+        "Description": "Six étapes réelles. Seule votre confirmation modifie les données du cours.",
+        "Step copy 0": "Créer un groupe",
+        "Step copy 1": "Ouvrir la vue Participants",
+        "Step copy 2": "Sélectionner un participant",
+        "Step copy 3": "Ouvrir Déplacer les participants",
+        "Step copy 4": "Rechercher et choisir la destination",
+        "Step copy 5": "Vérifier, puis confirmer"
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f054ee6f77a-1dfb-809b-8008-c1ed9c7893ea131415760",
+      "id": "007cab03-0a24-8025-8008-c205f1d365e8",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f05",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c7893ea",
+      "providerPath": "EasyEdu / Guide Discovery / Path invitation",
+      "providerName": "Desktop",
+      "x": 1314,
+      "y": 15760,
+      "width": 736,
+      "height": 260,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de1f6d8ab6",
+          "hidden": false,
+          "name": "Tablet / Invitation"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de1f9e1b18",
+          "hidden": false,
+          "name": "Tablet / Route"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de1fc68242",
+          "hidden": false,
+          "name": "Tablet / Path eyebrow"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de1ff0349c",
+          "hidden": false,
+          "name": "Tablet / Path title"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de20234094",
+          "hidden": false,
+          "name": "Tablet / Description"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de204e5418",
+          "hidden": false,
+          "name": "Tablet / Step 0"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de20781988",
+          "hidden": false,
+          "name": "Tablet / Step 1"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de20a786ac",
+          "hidden": false,
+          "name": "Tablet / Step 2"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de20d905b4",
+          "hidden": false,
+          "name": "Tablet / Step 3"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de210d3ef8",
+          "hidden": false,
+          "name": "Tablet / Step 4"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de213a0ccf",
+          "hidden": false,
+          "name": "Tablet / Step 5"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de2169a67b",
+          "hidden": false,
+          "name": "Tablet / Start centred"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation à un groupe",
+        "Description": "Six étapes réelles. Seule votre confirmation modifie les données.",
+        "Step copy 0": "Créer un groupe",
+        "Step copy 1": "Ouvrir Participants",
+        "Step copy 2": "Sélectionner un participant",
+        "Step copy 3": "Ouvrir Déplacer",
+        "Step copy 4": "Choisir la destination",
+        "Step copy 5": "Vérifier et confirmer"
+      },
+      "availableWidth": 736,
+      "startInlineEndInset": 20,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f054ee6f77a-1dfb-809b-8008-c1ed88bc893d47015510",
+      "id": "007cab03-0a24-8025-8008-c205f4c275b5",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f05",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Phone",
+      "x": 470,
+      "y": 15510,
+      "width": 358.00000000000045,
+      "height": 76,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf6a33ae3",
+          "hidden": false,
+          "name": "Live / organisation"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1ddf6ced497",
+          "hidden": false,
+          "name": "Live / Copy organisation"
+        }
+      ],
+      "overrides": {
+        "Instruction": "Dans Participants, cochez Alex puis ouvrez Déplacer les participants."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f054ee6f77a-1dfb-809b-8008-c1ed88bc893d89215510",
+      "id": "007cab03-0a24-8025-8008-c205f591af75",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1ddedeb1f05",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88bc893d",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Phone",
+      "x": 892,
+      "y": 15510,
+      "width": 358.00000000000045,
+      "height": 76,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de1a1c10dd",
+          "hidden": false,
+          "name": "Live / actions"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1de1a43c628",
+          "hidden": false,
+          "name": "Live / Copy actions"
+        }
+      ],
+      "overrides": {
+        "Instruction": "Dans Projet Orion, cochez Alex et Léa puis ouvrez les actions de membres."
+      },
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1df8e06fe994ee6f77a-1dfb-809b-8008-c1ed88a731b94817718",
+      "id": "007cab03-0a24-8025-8008-c205f65ed302",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1df8e06fe99",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Desktop",
+      "x": 48,
+      "y": 17718,
+      "width": 735.9999999999999,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1df90f682d6",
+          "hidden": false,
+          "name": "Live / organisation"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1df91358ec4",
+          "hidden": false,
+          "name": "Live / Copy organisation"
+        }
+      ],
+      "overrides": {
+        "Instruction": "Recherchez Projet Horizon, vérifiez la destination, puis confirmez."
+      },
+      "availableWidth": 736,
+      "providerVerified": true
+    },
+    {
+      "key": "4ee6f77a-1dfb-809b-8008-c1df8e06fe994ee6f77a-1dfb-809b-8008-c1ed88a731b984617718",
+      "id": "007cab03-0a24-8025-8008-c205f7b5d7df",
+      "boardId": "4ee6f77a-1dfb-809b-8008-c1df8e06fe99",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Desktop",
+      "x": 846,
+      "y": 17718,
+      "width": 736,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1df984e2284",
+          "hidden": false,
+          "name": "Live / actions"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c1df98b0343d",
+          "hidden": false,
+          "name": "Live / Copy actions"
+        }
+      ],
+      "overrides": {
+        "Instruction": "Recherchez Projet Horizon, vérifiez la destination, puis confirmez."
+      },
+      "availableWidth": 736,
+      "providerVerified": true
+    },
+    {
+      "key": "74a0e4b4-0497-8084-8008-bf9a1b450db44ee6f77a-1dfb-809b-8008-c1ed88a731b9247690",
+      "id": "007cab03-0a24-8025-8008-c206da1fd181",
+      "boardId": "74a0e4b4-0497-8084-8008-bf9a1b450db4",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Desktop",
+      "x": 24,
+      "y": 7690,
+      "width": 1172,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d4744b0b74",
+          "hidden": true,
+          "name": "Guide / Discovery / Animation step banner / Active"
+        }
+      ],
+      "overrides": {
+        "Instruction": "1 · Cliquez et maintenez Alex, puis glissez sa carte vers le groupe Projet Horizon."
+      },
+      "availableWidth": 1172,
+      "providerVerified": true
+    },
+    {
+      "key": "74a0e4b4-0497-8084-8008-bf9a68482f2c4ee6f77a-1dfb-809b-8008-c1ed88a731b913247690",
+      "id": "007cab03-0a24-8025-8008-c206db18e191",
+      "boardId": "74a0e4b4-0497-8084-8008-bf9a68482f2c",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed88a731b9",
+      "providerPath": "EasyEdu / Guide Discovery / Reading banner",
+      "providerName": "Active Desktop",
+      "x": 1324,
+      "y": 7690,
+      "width": 1172,
+      "height": 48,
+      "archived": [
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0d474963c30",
+          "hidden": true,
+          "name": "Guide / Discovery / Animation step banner / Active"
+        }
+      ],
+      "overrides": {
+        "Instruction": "4 · Vérifier la destination, puis cliquer sur « Déplacer » pour valider."
+      },
+      "availableWidth": 1172,
+      "providerVerified": true
+    },
+    {
+      "key": "6208b726-6df8-80e1-8008-bf93bb7f20d54ee6f77a-1dfb-809b-8008-c1ed9c7893ea2419126",
+      "id": "007cab03-0a24-8025-8008-c207023dc782",
+      "boardId": "6208b726-6df8-80e1-8008-bf93bb7f20d5",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9c7893ea",
+      "providerPath": "EasyEdu / Guide Discovery / Path invitation",
+      "providerName": "Desktop",
+      "x": 24,
+      "y": 19126,
+      "width": 1172,
+      "height": 260,
+      "archived": [
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93f41e8110",
+          "hidden": false,
+          "name": "Path invitation"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93f485ca69",
+          "hidden": false,
+          "name": "Path emblem viewport"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93f4f0849b",
+          "hidden": true,
+          "name": "Archive — Local icon / route"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93f561917d",
+          "hidden": false,
+          "name": "Path label"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93f617b272",
+          "hidden": false,
+          "name": "Path title"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93f72b92ee",
+          "hidden": false,
+          "name": "Path description"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93f8779e85",
+          "hidden": false,
+          "name": "Compact route"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93fc99b301",
+          "hidden": false,
+          "name": "Guide / Button / Commencer le parcours"
+        },
+        {
+          "id": "6208b726-6df8-80e1-8008-bf93fd446782",
+          "hidden": true,
+          "name": "Archive — Local icon / arrow"
+        },
+        {
+          "id": "74a0e4b4-0497-8084-8008-bfb573ca043e",
+          "hidden": false,
+          "name": "Guide / Icon / route / Foundations"
+        },
+        {
+          "id": "74a0e4b4-0497-8084-8008-bfb57aa6100b",
+          "hidden": false,
+          "name": "Guide / Icon / arrow / Foundations"
+        }
+      ],
+      "overrides": {
+        "Title": "Votre première affectation à un groupe",
+        "Description": "Six étapes réelles. Seule votre confirmation modifie les données du cours.",
+        "Step copy 0": "Créer un groupe",
+        "Step copy 1": "Ouvrir la vue Participants",
+        "Step copy 2": "Sélectionner un participant",
+        "Step copy 3": "Ouvrir Déplacer les participants",
+        "Step copy 4": "Rechercher et choisir la destination",
+        "Step copy 5": "Vérifier, puis confirmer"
+      },
+      "availableWidth": 1172,
+      "startInlineEndInset": 20,
+      "stepPillWidth": 308,
+      "stepCopyWidth": 271,
+      "stepColumnGap": 10,
+      "contentLaneWidth": 618,
+      "providerVerified": true
+    },
+    {
+      "key": "6b665942-910b-80ef-8008-be638f3435024ee6f77a-1dfb-809b-8008-c1ed9d49c24a1104562",
+      "id": "007cab03-0a24-8025-8008-c2084c10d955",
+      "boardId": "6b665942-910b-80ef-8008-be638f343502",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d49c24a",
+      "providerPath": "EasyEdu / Guide Discovery / Return to guide",
+      "providerName": "Desktop",
+      "x": 1104,
+      "y": 562,
+      "width": 600,
+      "height": 112,
+      "archived": [
+        {
+          "id": "6b665942-910b-80ef-8008-be63921b9c2a",
+          "hidden": false,
+          "name": "Guide / Interface return / Desktop"
+        }
+      ],
+      "overrides": {
+        "Title": "Guide EasyStud",
+        "Description": "Zone mise en évidence : Créer plusieurs groupes. Reprenez le guide à cette étape."
+      },
+      "contentLaneWidth": 306,
+      "returnInlineEndInset": 64,
+      "originalContext": "Créer plusieurs groupes",
+      "providerVerified": true
+    },
+    {
+      "key": "6b665942-910b-80ef-8008-be65e2c021ec4ee6f77a-1dfb-809b-8008-c1ed9d49c24a361480",
+      "id": "007cab03-0a24-8025-8008-c2084e4b6875",
+      "boardId": "6b665942-910b-80ef-8008-be65e2c021ec",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d49c24a",
+      "providerPath": "EasyEdu / Guide Discovery / Return to guide",
+      "providerName": "Desktop",
+      "x": 36,
+      "y": 1480,
+      "width": 600.0000000000001,
+      "height": 111.99999999999977,
+      "archived": [
+        {
+          "id": "5c8be49d-ed45-80bb-8008-bfba0d8ded85",
+          "hidden": false,
+          "name": "Guide / Interface return / Desktop"
+        },
+        {
+          "id": "4ee6f77a-1dfb-809b-8008-c0c2fa2ff73f",
+          "hidden": false,
+          "name": "Guide / Return compass / Linked Foundations"
+        }
+      ],
+      "overrides": {
+        "Title": "Guide EasyStud",
+        "Description": "Vous consultez la zone mise en évidence. Vous pouvez reprendre le guide à la même étape."
+      },
+      "contentLaneWidth": 306,
+      "returnInlineEndInset": 64,
+      "originalContext": "Vous consultez la zone mise en évidence. Vous pouvez reprendre le guide à la même étape.",
+      "providerVerified": true
+    },
+    {
+      "key": "6b665942-910b-80ef-8008-be6bef4427d04ee6f77a-1dfb-809b-8008-c1ed9d49c24a5404180",
+      "id": "007cab03-0a24-8025-8008-c208509035c9",
+      "boardId": "6b665942-910b-80ef-8008-be6bef4427d0",
+      "componentId": "4ee6f77a-1dfb-809b-8008-c1ed9d49c24a",
+      "providerPath": "EasyEdu / Guide Discovery / Return to guide",
+      "providerName": "Desktop",
+      "x": 540,
+      "y": 4180,
+      "width": 600,
+      "height": 112,
+      "archived": [
+        {
+          "id": "5c8be49d-ed45-80bb-8008-bfba168ec1e3",
+          "hidden": false,
+          "name": "Guide / Interface return / Desktop"
+        }
+      ],
+      "overrides": {
+        "Title": "Guide EasyStud",
+        "Description": "Zone mise en évidence : Créer plusieurs groupes. Reprenez le guide à cette étape."
+      },
+      "contentLaneWidth": 306,
+      "returnInlineEndInset": 64,
+      "originalContext": "Créer plusieurs groupes",
+      "providerVerified": true
+    }
+  ],
+  "mobileDestinationShift": [
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9d409738",
+      "fromY": 14452,
+      "toY": 14540
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9d895387",
+      "fromY": 14452,
+      "toY": 14540
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9dd55d61",
+      "fromY": 14466,
+      "toY": 14554
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9e2d9e3c",
+      "fromY": 14461,
+      "toY": 14549
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9e89c183",
+      "fromY": 14516,
+      "toY": 14604
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9ed61306",
+      "fromY": 14544,
+      "toY": 14632
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9f16cb4d",
+      "fromY": 14554,
+      "toY": 14642
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9f540900",
+      "fromY": 14553,
+      "toY": 14641
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9f8bb815",
+      "fromY": 14590,
+      "toY": 14678
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9fbf5363",
+      "fromY": 14600,
+      "toY": 14688
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dd9ff74f74",
+      "fromY": 14540,
+      "toY": 14628
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dda02a972b",
+      "fromY": 14660,
+      "toY": 14748
+    },
+    {
+      "id": "4ee6f77a-1dfb-809b-8008-c1dda048baf5",
+      "fromY": 14660,
+      "toY": 14748
+    }
+  ],
+  "practiceLayout": {
+    "boardId": "6208b726-6df8-80e1-8008-bf93bb7f20d5",
+    "before": {
+      "x": 0,
+      "y": 6500,
+      "width": 1220,
+      "height": 878
+    },
+    "children": [
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bc73e596",
+        "name": "Kit dialog header",
+        "x": 0,
+        "y": 6500,
+        "width": 1220,
+        "height": 64,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bca462fe",
+        "name": "Header separator",
+        "x": 0,
+        "y": 6563,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bccc984b",
+        "name": "Icon viewport",
+        "x": 18,
+        "y": 6516,
+        "width": 32,
+        "height": 32,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bcf7c670",
+        "name": "Archive — Local icon / compass",
+        "x": 25,
+        "y": 6523,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bd3e0dac",
+        "name": "Guide title",
+        "x": 60,
+        "y": 6510,
+        "width": 1100,
+        "height": 22,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bda16b5f",
+        "name": "Guide subtitle",
+        "x": 60,
+        "y": 6535,
+        "width": 1100,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93be993d29",
+        "name": "Guide / Close / Kit linked",
+        "x": 1172,
+        "y": 6517,
+        "width": 30.40000000000009,
+        "height": 30.399999999999636,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93befb793f",
+        "name": "Guide / Subject rail",
+        "x": 18,
+        "y": 6576,
+        "width": 1184,
+        "height": 50,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c6f95416",
+        "name": "Floating previous arrow",
+        "x": 12,
+        "y": 6587,
+        "width": 30,
+        "height": 30,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7330bf7",
+        "name": "Archive — Local icon / chevron",
+        "x": 20,
+        "y": 6595,
+        "width": 24,
+        "height": 24.00000000000091,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7718004",
+        "name": "Floating next arrow",
+        "x": 1178,
+        "y": 6587,
+        "width": 30,
+        "height": 30,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7aa3d8c",
+        "name": "Archive — Local icon / chevron",
+        "x": 1186,
+        "y": 6595,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7fa4aaf",
+        "name": "Progress label",
+        "x": 18,
+        "y": 6638,
+        "width": 200,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c885f061",
+        "name": "Progress track",
+        "x": 18,
+        "y": 6664,
+        "width": 1184,
+        "height": 4,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c8e082e1",
+        "name": "Progress value",
+        "x": 18,
+        "y": 6664,
+        "width": 592,
+        "height": 4,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c93caae6",
+        "name": "Interface toolbar",
+        "x": 0,
+        "y": 7268,
+        "width": 1220,
+        "height": 50,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9876fb8",
+        "name": "Interface divider",
+        "x": 0,
+        "y": 7268,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9d7561a",
+        "name": "Find target label",
+        "x": 18,
+        "y": 7284,
+        "width": 970,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93cfc86614",
+        "name": "Footer divider",
+        "x": 0,
+        "y": 7318,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d379baa2",
+        "name": "Guide / Button / Précédent",
+        "x": 982,
+        "y": 7330,
+        "width": 104,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d7cba6c7",
+        "name": "Guide / Button / Suivant",
+        "x": 1098,
+        "y": 7330,
+        "width": 104,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d8254eeb",
+        "name": "Lesson intent",
+        "x": 24,
+        "y": 6682,
+        "width": 900,
+        "height": 16,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d8c25d3d",
+        "name": "Lesson title",
+        "x": 24,
+        "y": 6704,
+        "width": 1100,
+        "height": 21,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d9f756b5",
+        "name": "Lesson description",
+        "x": 24,
+        "y": 6734,
+        "width": 1120,
+        "height": 36,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93dafc50cb",
+        "name": "Creation scene",
+        "x": 24,
+        "y": 6768,
+        "width": 1172,
+        "height": 340,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93db5c6d77",
+        "name": "Editable example label",
+        "x": 44,
+        "y": 6786,
+        "width": 650,
+        "height": 19,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93dd3c9c6a",
+        "name": "Kit / Text field / Filled",
+        "x": 44,
+        "y": 6814,
+        "width": 1132,
+        "height": 32,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e17b1e23",
+        "name": "Guide / Button / Prévisualiser",
+        "x": 44,
+        "y": 6920,
+        "width": 130,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e5b1ae83",
+        "name": "Guide / Button / Essayer avec @",
+        "x": 190,
+        "y": 6920,
+        "width": 140,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e63a3424",
+        "name": "Syntax meaning",
+        "x": 44,
+        "y": 6866,
+        "width": 1060,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e6e29964",
+        "name": "Preview result title",
+        "x": 44,
+        "y": 6974,
+        "width": 1000,
+        "height": 19,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e8cda068",
+        "name": "Kit / Group / Équipe 1",
+        "x": 44,
+        "y": 7010,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e9a2d6ca",
+        "name": "Kit / Group / Équipe 2",
+        "x": 414,
+        "y": 7010,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93eaecc52e",
+        "name": "Kit / Group / Équipe 3",
+        "x": 784,
+        "y": 7010,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93efb42130",
+        "name": "Guide / Button / ↻ Revoir le geste",
+        "x": 852,
+        "y": 6888,
+        "width": 149.9999999999999,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f39a92e0",
+        "name": "Guide / Button / ↺ Réinitialiser",
+        "x": 1014,
+        "y": 6888,
+        "width": 162,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f41e8110",
+        "name": "Path invitation",
+        "x": 24,
+        "y": 7126,
+        "width": 1172,
+        "height": 108,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f485ca69",
+        "name": "Path emblem viewport",
+        "x": 44,
+        "y": 7142,
+        "width": 34,
+        "height": 34,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f4f0849b",
+        "name": "Archive — Local icon / route",
+        "x": 52,
+        "y": 7150,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f561917d",
+        "name": "Path label",
+        "x": 94,
+        "y": 7142,
+        "width": 550,
+        "height": 16,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f617b272",
+        "name": "Path title",
+        "x": 94,
+        "y": 7164,
+        "width": 650,
+        "height": 21,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f72b92ee",
+        "name": "Path description",
+        "x": 94,
+        "y": 7190,
+        "width": 650,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f8779e85",
+        "name": "Compact route",
+        "x": 94,
+        "y": 7214,
+        "width": 650,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fc99b301",
+        "name": "Guide / Button / Commencer le parcours",
+        "x": 950,
+        "y": 7161,
+        "width": 222,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fd446782",
+        "name": "Archive — Local icon / arrow",
+        "x": 1134,
+        "y": 7173,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fd9ef2be",
+        "name": "Scope note",
+        "x": 24,
+        "y": 7248,
+        "width": 1130,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb548f9280f",
+        "name": "Guide / Icon / compass / Foundations",
+        "x": 25,
+        "y": 6523,
+        "width": 18,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb567749cb4",
+        "name": "Guide / Icon / chevron / Foundations",
+        "x": 20,
+        "y": 6595,
+        "width": 14,
+        "height": 14,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb56e1b783e",
+        "name": "Guide / Icon / chevron / Foundations",
+        "x": 1186,
+        "y": 6595,
+        "width": 14,
+        "height": 14,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb573ca043e",
+        "name": "Guide / Icon / route / Foundations",
+        "x": 52,
+        "y": 7150,
+        "width": 18,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb57aa6100b",
+        "name": "Guide / Icon / arrow / Foundations",
+        "x": 1134,
+        "y": 7169.5,
+        "width": 21,
+        "height": 21,
+        "hidden": false
+      },
+      {
+        "id": "4ee6f77a-1dfb-809b-8008-c0c1426142d6",
+        "name": "Practice / Syntax help",
+        "x": 44,
+        "y": 6890,
+        "width": 1132,
+        "height": 20,
+        "hidden": false
+      },
+      {
+        "id": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+        "name": "Guide / Quiet utility action / Voir dans l’interface",
+        "x": 1022,
+        "y": 7282,
+        "width": 180,
+        "height": 30.399999999999636,
+        "hidden": false
+      }
+    ],
+    "moves": [
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c93caae6",
+        "fromY": 7268,
+        "toY": 7420
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9876fb8",
+        "fromY": 7268,
+        "toY": 7420
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9d7561a",
+        "fromY": 7284,
+        "toY": 7436
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93cfc86614",
+        "fromY": 7318,
+        "toY": 7470
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d379baa2",
+        "fromY": 7330,
+        "toY": 7482
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d7cba6c7",
+        "fromY": 7330,
+        "toY": 7482
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fd9ef2be",
+        "fromY": 7248,
+        "toY": 7400
+      },
+      {
+        "id": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+        "fromY": 7282,
+        "toY": 7434
+      }
+    ],
+    "replayId": "6208b726-6df8-80e1-8008-bf93efb42130",
+    "resetId": "6208b726-6df8-80e1-8008-bf93f39a92e0",
+    "after": {
+      "x": 0,
+      "y": 18500,
+      "width": 1220,
+      "height": 1030
+    },
+    "movedChildren": [
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bc73e596",
+        "x": 0,
+        "y": 18500,
+        "width": 1220,
+        "height": 64,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bca462fe",
+        "x": 0,
+        "y": 18563,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bccc984b",
+        "x": 18,
+        "y": 18516,
+        "width": 32,
+        "height": 32,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bcf7c670",
+        "x": 25,
+        "y": 18523,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bd3e0dac",
+        "x": 60,
+        "y": 18510,
+        "width": 1100,
+        "height": 22,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bda16b5f",
+        "x": 60,
+        "y": 18535,
+        "width": 1100,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93be993d29",
+        "x": 1172,
+        "y": 18517,
+        "width": 30.40000000000009,
+        "height": 30.400000000001455,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93befb793f",
+        "x": 18,
+        "y": 18576,
+        "width": 1184,
+        "height": 50,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c6f95416",
+        "x": 12,
+        "y": 18587,
+        "width": 30,
+        "height": 30,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7330bf7",
+        "x": 20,
+        "y": 18595,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7718004",
+        "x": 1178,
+        "y": 18587,
+        "width": 30,
+        "height": 30,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7aa3d8c",
+        "x": 1186,
+        "y": 18595,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7fa4aaf",
+        "x": 18,
+        "y": 18638,
+        "width": 200,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c885f061",
+        "x": 18,
+        "y": 18664,
+        "width": 1184,
+        "height": 4,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c8e082e1",
+        "x": 18,
+        "y": 18664,
+        "width": 592,
+        "height": 4,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c93caae6",
+        "x": 0,
+        "y": 19420,
+        "width": 1220,
+        "height": 50,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9876fb8",
+        "x": 0,
+        "y": 19420,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9d7561a",
+        "x": 18,
+        "y": 19436,
+        "width": 970,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93cfc86614",
+        "x": 0,
+        "y": 19470,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d379baa2",
+        "x": 982,
+        "y": 19482,
+        "width": 104,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d7cba6c7",
+        "x": 1098,
+        "y": 19482,
+        "width": 104,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d8254eeb",
+        "x": 24,
+        "y": 18682,
+        "width": 900,
+        "height": 16,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d8c25d3d",
+        "x": 24,
+        "y": 18704,
+        "width": 1100,
+        "height": 21,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d9f756b5",
+        "x": 24,
+        "y": 18734,
+        "width": 1120,
+        "height": 36,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93dafc50cb",
+        "x": 24,
+        "y": 18776,
+        "width": 1172,
+        "height": 340,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93db5c6d77",
+        "x": 44,
+        "y": 18794,
+        "width": 650,
+        "height": 19,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93dd3c9c6a",
+        "x": 44,
+        "y": 18822,
+        "width": 1132,
+        "height": 32,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e17b1e23",
+        "x": 44,
+        "y": 18928,
+        "width": 130,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e5b1ae83",
+        "x": 190,
+        "y": 18928,
+        "width": 140,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e63a3424",
+        "x": 44,
+        "y": 18874,
+        "width": 1060,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e6e29964",
+        "x": 44,
+        "y": 18982,
+        "width": 1000,
+        "height": 19,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e8cda068",
+        "x": 44,
+        "y": 19018,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e9a2d6ca",
+        "x": 414,
+        "y": 19018,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93eaecc52e",
+        "x": 784,
+        "y": 19018,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93efb42130",
+        "x": 852,
+        "y": 18888,
+        "width": 149.9999999999999,
+        "height": 38,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f39a92e0",
+        "x": 1014,
+        "y": 18978,
+        "width": 162,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f41e8110",
+        "x": 24,
+        "y": 19126,
+        "width": 1172,
+        "height": 108,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f485ca69",
+        "x": 44,
+        "y": 19142,
+        "width": 34,
+        "height": 34,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f4f0849b",
+        "x": 52,
+        "y": 19150,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f561917d",
+        "x": 94,
+        "y": 19142,
+        "width": 550,
+        "height": 16,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f617b272",
+        "x": 94,
+        "y": 19164,
+        "width": 650,
+        "height": 21,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f72b92ee",
+        "x": 94,
+        "y": 19190,
+        "width": 650,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f8779e85",
+        "x": 94,
+        "y": 19214,
+        "width": 650,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fc99b301",
+        "x": 950,
+        "y": 19161,
+        "width": 222,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fd446782",
+        "x": 1134,
+        "y": 19173,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fd9ef2be",
+        "x": 24,
+        "y": 19400,
+        "width": 1130,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb548f9280f",
+        "x": 25,
+        "y": 18523,
+        "width": 18,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb567749cb4",
+        "x": 20,
+        "y": 18595,
+        "width": 14,
+        "height": 14,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb56e1b783e",
+        "x": 1186,
+        "y": 18595,
+        "width": 14,
+        "height": 14,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb573ca043e",
+        "x": 52,
+        "y": 19150,
+        "width": 18,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb57aa6100b",
+        "x": 1134,
+        "y": 19169.5,
+        "width": 21,
+        "height": 21,
+        "hidden": false
+      },
+      {
+        "id": "4ee6f77a-1dfb-809b-8008-c0c1426142d6",
+        "x": 44,
+        "y": 18898,
+        "width": 1132,
+        "height": 20,
+        "hidden": false
+      },
+      {
+        "id": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+        "x": 1022,
+        "y": 19434,
+        "width": 180,
+        "height": 30.400000000001455,
+        "hidden": false
+      }
+    ],
+    "finalChildren": [
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bc73e596",
+        "x": 0,
+        "y": 18500,
+        "width": 1220,
+        "height": 64,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bca462fe",
+        "x": 0,
+        "y": 18563,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bccc984b",
+        "x": 18,
+        "y": 18516,
+        "width": 32,
+        "height": 32,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bcf7c670",
+        "x": 25,
+        "y": 18523,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bd3e0dac",
+        "x": 60,
+        "y": 18510,
+        "width": 1100,
+        "height": 22,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93bda16b5f",
+        "x": 60,
+        "y": 18535,
+        "width": 1100,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93be993d29",
+        "x": 1172,
+        "y": 18517,
+        "width": 30.40000000000009,
+        "height": 30.400000000001455,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93befb793f",
+        "x": 18,
+        "y": 18576,
+        "width": 1184,
+        "height": 50,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c6f95416",
+        "x": 12,
+        "y": 18587,
+        "width": 30,
+        "height": 30,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7330bf7",
+        "x": 20,
+        "y": 18595,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7718004",
+        "x": 1178,
+        "y": 18587,
+        "width": 30,
+        "height": 30,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7aa3d8c",
+        "x": 1186,
+        "y": 18595,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c7fa4aaf",
+        "x": 18,
+        "y": 18638,
+        "width": 200,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c885f061",
+        "x": 18,
+        "y": 18664,
+        "width": 1184,
+        "height": 4,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c8e082e1",
+        "x": 18,
+        "y": 18664,
+        "width": 592,
+        "height": 4,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c93caae6",
+        "x": 0,
+        "y": 19420,
+        "width": 1220,
+        "height": 50,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9876fb8",
+        "x": 0,
+        "y": 19420,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93c9d7561a",
+        "x": 18,
+        "y": 19436,
+        "width": 970,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93cfc86614",
+        "x": 0,
+        "y": 19470,
+        "width": 1220,
+        "height": 1,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d379baa2",
+        "x": 982,
+        "y": 19482,
+        "width": 104,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d7cba6c7",
+        "x": 1098,
+        "y": 19482,
+        "width": 104,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d8254eeb",
+        "x": 24,
+        "y": 18682,
+        "width": 900,
+        "height": 16,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d8c25d3d",
+        "x": 24,
+        "y": 18704,
+        "width": 1100,
+        "height": 21,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93d9f756b5",
+        "x": 24,
+        "y": 18734,
+        "width": 1120,
+        "height": 36,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93dafc50cb",
+        "x": 24,
+        "y": 18776,
+        "width": 1172,
+        "height": 340,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93db5c6d77",
+        "x": 44,
+        "y": 18794,
+        "width": 650,
+        "height": 19,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93dd3c9c6a",
+        "x": 44,
+        "y": 18822,
+        "width": 1132,
+        "height": 32,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e17b1e23",
+        "x": 44,
+        "y": 18928,
+        "width": 130,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e5b1ae83",
+        "x": 190,
+        "y": 18928,
+        "width": 140,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e63a3424",
+        "x": 44,
+        "y": 18874,
+        "width": 1060,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e6e29964",
+        "x": 44,
+        "y": 18982,
+        "width": 850,
+        "height": 19,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e8cda068",
+        "x": 44,
+        "y": 19018,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93e9a2d6ca",
+        "x": 414,
+        "y": 19018,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93eaecc52e",
+        "x": 784,
+        "y": 19018,
+        "width": 300,
+        "height": 88,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93efb42130",
+        "x": 852,
+        "y": 18888,
+        "width": 149.9999999999999,
+        "height": 38,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f39a92e0",
+        "x": 1014,
+        "y": 18978,
+        "width": 162,
+        "height": 38,
+        "hidden": false
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f41e8110",
+        "x": 24,
+        "y": 19126,
+        "width": 1172,
+        "height": 108,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f485ca69",
+        "x": 44,
+        "y": 19142,
+        "width": 34,
+        "height": 34,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f4f0849b",
+        "x": 52,
+        "y": 19150,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f561917d",
+        "x": 94,
+        "y": 19142,
+        "width": 550,
+        "height": 16,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f617b272",
+        "x": 94,
+        "y": 19164,
+        "width": 650,
+        "height": 21,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f72b92ee",
+        "x": 94,
+        "y": 19190,
+        "width": 650,
+        "height": 18,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93f8779e85",
+        "x": 94,
+        "y": 19214,
+        "width": 650,
+        "height": 18,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fc99b301",
+        "x": 950,
+        "y": 19161,
+        "width": 222,
+        "height": 38,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fd446782",
+        "x": 1134,
+        "y": 19173,
+        "width": 24,
+        "height": 24,
+        "hidden": true
+      },
+      {
+        "id": "6208b726-6df8-80e1-8008-bf93fd9ef2be",
+        "x": 24,
+        "y": 19400,
+        "width": 1130,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb548f9280f",
+        "x": 25,
+        "y": 18523,
+        "width": 18,
+        "height": 18,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb567749cb4",
+        "x": 20,
+        "y": 18595,
+        "width": 14,
+        "height": 14,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb56e1b783e",
+        "x": 1186,
+        "y": 18595,
+        "width": 14,
+        "height": 14,
+        "hidden": false
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb573ca043e",
+        "x": 52,
+        "y": 19150,
+        "width": 18,
+        "height": 18,
+        "hidden": true
+      },
+      {
+        "id": "74a0e4b4-0497-8084-8008-bfb57aa6100b",
+        "x": 1134,
+        "y": 19169.5,
+        "width": 21,
+        "height": 21,
+        "hidden": true
+      },
+      {
+        "id": "4ee6f77a-1dfb-809b-8008-c0c1426142d6",
+        "x": 44,
+        "y": 18898,
+        "width": 1132,
+        "height": 20,
+        "hidden": false
+      },
+      {
+        "id": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+        "x": 1022,
+        "y": 19434,
+        "width": 180,
+        "height": 30.400000000001455,
+        "hidden": false
+      }
+    ]
+  },
+  "descriptionFit": [
+    {
+      "id": "007cab03-0a24-8025-8008-c1f9050d0a6e",
+      "fromHeight": 28,
+      "toHeight": 32
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c1f9056b6702",
+      "fromHeight": 28,
+      "toHeight": 32
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c1f906a6dd18",
+      "fromHeight": 28,
+      "toHeight": 32
+    }
+  ],
+  "quietCopies": [
+    {
+      "id": "007cab03-0a24-8025-8008-c208966cc0f9",
+      "boardId": "74a0e4b4-0497-8084-8008-bf9a1b450db4",
+      "sourceId": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+      "oldId": "74a0e4b4-0497-8084-8008-bf9a1b450dc7",
+      "originalHidden": false,
+      "x": 1022,
+      "y": 8103.799999999999,
+      "width": 180,
+      "height": 30.400000000001455,
+      "fingerprintMatches": true,
+      "descendants": [
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0f9",
+          "x": 1022,
+          "y": 8103.799999999999,
+          "width": 180,
+          "height": 30.400000000001455,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0fa",
+          "x": 1022,
+          "y": 8103.799999999999,
+          "width": 180,
+          "height": 30.400000000001455,
+          "hidden": false,
+          "componentId": "db59201c-3dd6-8004-8008-baad48fd2237"
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0fd",
+          "x": 1045,
+          "y": 8109,
+          "width": 134,
+          "height": 20,
+          "hidden": true
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0fb",
+          "x": 1034,
+          "y": 8112,
+          "width": 14,
+          "height": 14,
+          "hidden": false,
+          "componentId": "32eadb6d-165e-803e-8008-9891fe031706"
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0fe",
+          "x": 1035.1666666666667,
+          "y": 8113.815624999999,
+          "width": 11.666666666666515,
+          "height": 10.368750000001455,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0ff",
+          "x": 1035.1666666666667,
+          "y": 8113.815624999999,
+          "width": 11.666666666666515,
+          "height": 10.368750000001455,
+          "hidden": true
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc100",
+          "x": 1035.167174021403,
+          "y": 8114.463697699168,
+          "width": 11.666159311930187,
+          "height": 9.072732962969894,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc102",
+          "x": 1035.167174021403,
+          "y": 8114.463697699168,
+          "width": 11.666159311930187,
+          "height": 9.072732962969894,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc101",
+          "x": 1035.167174021403,
+          "y": 8114.463697699168,
+          "width": 11.666159311930187,
+          "height": 9.072732962969894,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c208966cc0fc",
+          "x": 1056,
+          "y": 8109.000000000011,
+          "width": 134,
+          "height": 20,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "id": "007cab03-0a24-8025-8008-c2089730b26d",
+      "boardId": "74a0e4b4-0497-8084-8008-bf9a68482f2c",
+      "sourceId": "4ee6f77a-1dfb-809b-8008-c0c1f5f694c2",
+      "oldId": "74a0e4b4-0497-8084-8008-bf9a68486dee",
+      "originalHidden": false,
+      "x": 2322,
+      "y": 8103.799999999999,
+      "width": 180,
+      "height": 30.400000000001455,
+      "fingerprintMatches": true,
+      "descendants": [
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b26d",
+          "x": 2322,
+          "y": 8103.799999999999,
+          "width": 180,
+          "height": 30.400000000001455,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b26e",
+          "x": 2322,
+          "y": 8103.799999999999,
+          "width": 180,
+          "height": 30.400000000001455,
+          "hidden": false,
+          "componentId": "db59201c-3dd6-8004-8008-baad48fd2237"
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b271",
+          "x": 2345,
+          "y": 8109,
+          "width": 134,
+          "height": 20,
+          "hidden": true
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b26f",
+          "x": 2334,
+          "y": 8112,
+          "width": 14,
+          "height": 14,
+          "hidden": false,
+          "componentId": "32eadb6d-165e-803e-8008-9891fe031706"
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b272",
+          "x": 2335.166666666667,
+          "y": 8113.815624999999,
+          "width": 11.66666666666606,
+          "height": 10.368750000001455,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b273",
+          "x": 2335.166666666667,
+          "y": 8113.815624999999,
+          "width": 11.66666666666606,
+          "height": 10.368750000001455,
+          "hidden": true
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b274",
+          "x": 2335.1671740214033,
+          "y": 8114.463697699168,
+          "width": 11.666159311929732,
+          "height": 9.072732962969894,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b276",
+          "x": 2335.1671740214033,
+          "y": 8114.463697699168,
+          "width": 11.666159311929732,
+          "height": 9.072732962969894,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b275",
+          "x": 2335.1671740214033,
+          "y": 8114.463697699168,
+          "width": 11.666159311929732,
+          "height": 9.072732962969894,
+          "hidden": false
+        },
+        {
+          "id": "007cab03-0a24-8025-8008-c2089730b270",
+          "x": 2356,
+          "y": 8109.000000000011,
+          "width": 134,
+          "height": 20,
+          "hidden": false
+        }
+      ]
+    }
+  ],
+  "statusCopy": {
+    "id": "6b665942-910b-80ef-8008-be6befc35633",
+    "before": "Compositions du projet Guide ; primitives Foundations liées. Publication produit et intégration Kit encore à effectuer.",
+    "after": "Composants historiques du Guide ; primitives Foundations liées. Compositions Discovery : planches 72 à 78."
+  },
+  "editorAudit": {
+    "roots": 31,
+    "visible": 429,
+    "texts": 126,
+    "issues": [],
+    "overviewUnchanged": true
+  },
+  "exportsInspected": [
+    "Desktop Organisation after Quiet",
+    "Desktop Actions after Quiet",
+    "02 Checklist/Return",
+    "05 Highlight/Return",
+    "60 Reusable legacy Guide"
+  ],
+  "savedFileVerified": true,
+  "savedFileProof": {
+    "roots": 31,
+    "descendants": 429,
+    "archives": 169,
+    "relocatedDestinationShapes": 13,
+    "practiceChildren": 53,
+    "descriptionFits": 3,
+    "quietCopies": 2,
+    "editorWrites": 0,
+    "moodleWrites": 0,
+    "helperDisconnected": true
+  },
+  "humanVisualValidated": false,
+  "nativeRuntimeChanged": false,
+  "scope": "Return recipes linked; Quiet ordinary copies retain accepted source properties and linked button/eye primitives. Quiet recipe Library promotion still open; legacy checklist providers unchanged."
+}

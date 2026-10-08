@@ -363,5 +363,39 @@ Keep older unfinished EasyStud feedback and combined human checklist open.
 Rollback:hide new instances, restore original archived flags; restore Practice
 board/children from practiceLayout.children/before and earlier dialog offsets.
 No Moodle/data rollback is required.
+
+## Guide consumer relinking tranche3 (2026-10-08)
+
+Three retained Return compositions (boards02/05/60) now use the canonical
+Foundation Return Desktop recipe. Available600px width uses112px intrinsic
+height,306px copy lane and centred inline-end Return; real context is retained.
+The old specimens and standalone prior return glyph remain hidden/recoverable.
+Legacy checklist providers themselves stay unchanged, not replaced globally
+with Discovery. Board60 status now distinguishes historical Guide components
+from the new Discovery compositions rather than claiming unperformed Kit work.
+
+Desktop Organisation/Actions Show controls use exact Board.clone copies of the
+accepted Practice Quiet ordinary host. Linked button/eye primitives and actual
+paint are preserved; this is not yet a published complete Foundation recipe.
+Relative field fingerprints match after isolating translation noise below
+1e-12px (no paint/type/text differences). Both full desktop exports inspected.
+Return full-board exports02/05/60 inspected. No new stylesheet or controller.
+
+Settled links audit PASS31 roots/429 visible shapes/126 Inter texts, zero
+containment/text errors, Overview unchanged. Saved-server successor PASS31
+roots/429 descendants,169 hidden originals,13 dialog offsets,53 Practice
+children,3 description fits and2 Quiet copies with retained provider references.
+All earlier evidence records remain intact. Exact successor:
+docs/testing/guide-g9-product-relinks-tranche3-2026-10-08.json.
+Reader allowlist explicitly covers only the three owned records. No native
+tests/cache/fixtures were rerun for this design-only change.
+
+NEXT:publish the complete accepted Quiet Show utility host as a Foundation
+recipe, not a manual reconstruction; propagate to Guide after saved proof.
+Foundation writer requested asynchronously while finalizing current records.
+Full curriculum and separate Mass Import content still require content-owner
+handoff. Every older EasyStud feedback lot and human checklist remains OPEN.
+Rollback:hide the recorded new roots/Quiet copies, restore each old hidden
+flag and statusCopy.before; earlier layout rollback records remain authoritative.
 Rollback:hide the exact new instances and restore the recorded original hidden
 flags; restore the13 destination y positions from the evidence. No data rollback.
