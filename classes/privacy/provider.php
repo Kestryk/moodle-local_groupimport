@@ -32,7 +32,8 @@ use core_privacy\local\request\writer;
  */
 class provider implements
         \core_privacy\local\metadata\provider,
-        \core_privacy\local\request\plugin\provider {
+        \core_privacy\local\request\plugin\provider,
+        \core_privacy\local\request\user_preference_provider {
     /**
      * Describe personal data stored by EasyStud.
      *
@@ -40,6 +41,8 @@ class provider implements
      * @return collection
      */
     public static function get_metadata(collection $collection): collection {
+        $collection->add_user_preference(\local_groupimport\local\guide_welcome::PREFERENCE,
+            'privacy:metadata:guidewelcomeseen');
         $collection->add_database_table('local_groupimport_history', [
             'courseid' => 'privacy:metadata:history:courseid',
             'userid' => 'privacy:metadata:history:userid',
@@ -56,6 +59,16 @@ class provider implements
         ], 'privacy:metadata:history');
 
         return $collection;
+    }
+
+    /** Export the global welcome preference; core owns preference deletion. */
+    public static function export_user_preferences(int $userid) {
+        $value = get_user_preferences(\local_groupimport\local\guide_welcome::PREFERENCE, null, $userid);
+        if ($value !== null) {
+            writer::with_context(\context_system::instance())->export_user_preference('local_groupimport',
+                \local_groupimport\local\guide_welcome::PREFERENCE, (string)$value,
+                get_string('privacy:metadata:guidewelcomeseen', 'local_groupimport'));
+        }
     }
 
     /**

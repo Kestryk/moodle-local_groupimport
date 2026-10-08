@@ -60,6 +60,15 @@ if (!$animationsenabled) {
     $PAGE->add_body_class('easyedu-motion-disabled');
 }
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
+$PAGE->requires->js_call_amd('local_groupimport/guide_welcome', 'init', [
+    '[data-easyedu-guide-root]', [
+        'eligible' => \local_groupimport\local\guide_welcome::should_offer(),
+        'generation' => \local_groupimport\local\guide_welcome::generation(),
+        'endpoint' => (new moodle_url('/local/groupimport/guide_welcome.php'))->out(false),
+        'courseid' => $course->id,
+        'sesskey' => sesskey(),
+    ],
+]);
 $PAGE->requires->js_call_amd('local_groupimport/easyedu_guide', 'init', [
     '[data-easyedu-guide-root]',
     local_groupimport_build_easyedu_guide_js_config($course->id),
@@ -1429,6 +1438,10 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         'guidereturnbutton' => $templatedata['tutorialreturnbutton'],
         'guidereturndismiss' => $templatedata['tutorialreturndismiss'],
         'guidechecklisttitle' => $templatedata['tutorialguidedpaneltitle'],
+        'guidewelcometitle' => get_string('guidewelcometitle', 'local_groupimport'),
+        'guidewelcomecopy' => get_string('guidewelcomecopy', 'local_groupimport'),
+        'guidewelcomeopen' => get_string('guidewelcomeopen', 'local_groupimport'),
+        'guidewelcomedismiss' => get_string('guidewelcomedismiss', 'local_groupimport'),
         'guideminimizelabel' => $templatedata['tutorialguidedpanelminimize'],
         'guiderestorelabel' => get_string('discovery_restore', 'local_groupimport'),
         'guideresumetitle' => get_string('discovery_resume_title', 'local_groupimport'),
@@ -1456,6 +1469,7 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
         'presentationKey' => 'discovery-20261006',
         'legacySlideOffset' => 4,
         'firstVisit' => false,
+        'welcomeOffer' => \local_groupimport\local\guide_welcome::should_offer(),
         'highlightAutoHideDelay' => 5200,
         'highlightStyle' => 'pulse-blue',
         'targets' => [

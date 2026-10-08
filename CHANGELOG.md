@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased - Guide G10-G welcome/server/admin integration (WIP)
+
+- Activate server eligibility and translated desktop invitation. A separate
+  Moodle adapter acknowledges only actual Guide openings; no shared-engine
+  persistence or business/course mutations. POST/login/course permission and
+  sesskey protect the current-user endpoint; obsolete generations are rejected.
+- Admin reset is an explicit confirmation page using only Kit classes and a
+  capability/sesskey-protected POST. GET and Cancel never reset. Privacy provider
+  declares/exports the preference; core retains its preference deletion owner.
+- Isolated adapter/state/static security gates and PHP syntax pass. Native
+  opening/reload and admin-cancel scenario retained; execution pending. No global
+  reset or automatic human acceptance claimed.
+
 ## Unreleased - Guide G10-G server welcome generation candidate (WIP)
 
 - Add an unconnected server service for actual guide opening, per-user memory,

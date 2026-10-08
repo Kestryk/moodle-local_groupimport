@@ -13,4 +13,8 @@ class html_writer {
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([]),
+    'welcomeReset' => ['title' => get_string('guidewelcomereset', 'local_groupimport'),
+        'description' => get_string('guidewelcomeresetconfirm', 'local_groupimport'),
+        'confirm' => get_string('guidewelcomereset', 'local_groupimport'),
+        'cancel' => ($argv[1] ?? 'en') === 'fr' ? 'Annuler' : 'Cancel'],
     'practicePath' => \local_groupimport\local\guide_discovery::practice_path()], JSON_THROW_ON_ERROR);

@@ -1,0 +1,18 @@
+{{! Server confirmation: shared Kit classes only; no inline style or business script. }}
+<div class="easyedu-ui easyedu-ui--standalone">
+    <section class="easyedu-confirmation-dialog" aria-labelledby="easyedu-welcome-reset-title">
+        <header class="easyedu-dialog-header">
+            <h2 id="easyedu-welcome-reset-title" class="easyedu-modal-title">{{title}}</h2>
+            <a class="easyedu-dialog-close" href="{{cancelurl}}" aria-label="{{cancel}}"><span class="fa fa-times" aria-hidden="true"></span></a>
+        </header>
+        <form class="easyedu-dialog-body" method="post" action="{{action}}">
+            <p class="easyedu-dialog-description">{{description}}</p>
+            <input type="hidden" name="sesskey" value="{{sesskey}}">
+            <input type="hidden" name="confirm" value="1">
+            <div class="easyedu-confirmation-dialog__actions">
+                <a class="easyedu-button--secondary" href="{{cancelurl}}">{{cancel}}</a>
+                <button class="easyedu-button" type="submit">{{confirm}}</button>
+            </div>
+        </form>
+    </section>
+</div>

@@ -24,6 +24,16 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['guidewelcometitle'] = 'Découvrez le guide EasyStud';
+$string['guidewelcomecopy'] = 'Découvrez les cartes et les actions dans un guide interactif. Ouvrez-le quand vous êtes prêt.';
+$string['guidewelcomeopen'] = 'Ouvrir le guide';
+$string['guidewelcomedismiss'] = 'Plus tard';
+$string['guidewelcomereset'] = 'Réinitialiser l’accueil du guide';
+$string['guidewelcomeresethelp'] = 'Proposer à nouveau l’accueil du guide sur ordinateur à tous les utilisateurs. Une confirmation précède toute modification.';
+$string['guidewelcomeresetconfirm'] = 'Proposer à nouveau l’accueil du guide sur ordinateur à tous les utilisateurs lors de leur prochaine visite ? La progression des parcours et les données des cours restent inchangées.';
+$string['guidewelcomeresetdone'] = 'L’accueil du guide sera de nouveau proposé lors de la prochaine visite sur ordinateur.';
+$string['privacy:metadata:guidewelcomeseen'] = 'La version de l’accueil pour laquelle cet utilisateur a réellement ouvert le guide EasyStud. Elle évite de répéter l’invitation de première visite.';
+
 $string['adminidentifierscorefields'] = 'Champs Moodle standards';
 $string['adminidentifierscustomfields'] = 'Champs de profil personnalisés';
 $string['adminidentifiersherobody'] = 'Choisissez les identifiants que les enseignants peuvent utiliser dans les imports massifs, les vérifications par presse-papiers et les ajouts par collage. EasyStud compare chaque valeur avec tous les champs activés pour garder une détection automatique.';

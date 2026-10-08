@@ -1,5 +1,38 @@
 # Guide welcome — server generation candidate
 
+Current successor: source wiring is implemented, not yet promoted/tested in
+Moodle. Historical paragraphs below retain the earlier unconnected state.
+`guide_welcome.php` requires POST, login, course management permission and sesskey;
+it accepts no user id. `amd/src/guide_welcome.js` qualifies the owned root's real
+opening, coalesces pending requests and aborts on teardown. It does not control
+Guide paint or Motion. Failures leave the guide usable and retry on a later
+opening. Server eligibility/translated fields are supplied by `manage.php`.
+
+`reset_guide_welcome.php` renders confirmation on GET. Only confirmed POST with
+valid sesskey and site configuration capability rotates the generation. Cancel
+returns to settings without changes. Its Mustache calls only public Kit classes;
+opt-in body padding is canonical0.4.155, with unchanged header/caption/paired
+actions. Admin settings link to confirmation, never reset while rendering.
+Privacy provider declares and exports the preference through Moodle's API;
+Moodle core remains the owner of preference deletion.
+
+The built-adapter lifecycle harness and server in-memory/state/static wiring
+checks pass. Native candidate `tools/playwright/guide-welcome-native.spec.js`
+is local-supervised: may acknowledge only the current QA user's guide-seen
+preference, checks reload, rejects GET/invalid sesskey and opens/cancels admin
+confirmation. It never confirms global reset or edits a course. Source retained
+for future supervised CI adaptation; Platform registry-owner update pending.
+
+The standalone reset page explicitly calls `easyedu-ui--standalone` (Kit0.4.156)
+to seed canonical defaults without an unrelated workspace parent. Normal
+`easyedu-ui` still inherits custom product colours. Only the exact new token-
+scope hunk is transferred; an unrelated pre-existing filter-track-focus class
+in the Kit is not silently copied by this batch. Actual Mustache reset layout
+passes EN/FR1280/768/390: equal action heights,20px body padding, expected primary
+paint, contained long copy. Guide linked first-visit saved gate passes1 root/7
+visible descendants; settled raster inspected. Admin Penpot reset composition,
+native welcome and human gates remain distinct/open.
+
 G10-G WIP, not connected to the page or served runtime yet. No preference is
 written by the current preview. The invitation must remain desktop-only and
 reuse shared Guide primitives, with a highlighted actual Guide launcher.
