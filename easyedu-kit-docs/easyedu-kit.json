@@ -12,7 +12,8 @@
       "isolatedBuiltAmdVerified": true,
       "foundationReadingProvidersUpdated": true,
       "productHeaderPublicationComplete": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261008T152735563Z-19344",
       "humanVisualValidated": false
     },
     "guideKeyboard20261008": {
