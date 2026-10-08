@@ -10,6 +10,9 @@
 - Served successor: ordered promotion/cache purge and native keyboard test
   pass six routes. No fixtures/course commands; cleanup verified. Human
   checklist remains open; continue bounded focus-boundary/navigation audit.
+- K2 harness diagnostic retained: End opens the real last native slide24,
+  not sample4. Derive the final index from real markup without changing
+  keyboard/controller assets or relaxing interaction deadlines.
 
 ## 2026-10-08 - Guide G9 paired design continuation
 

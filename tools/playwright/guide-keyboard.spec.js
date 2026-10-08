@@ -72,8 +72,12 @@ test('Guide typing Escape and nested-control keyboard priority', async({page}, i
                 await modal.locator('[data-guide-qa-boundary]').evaluateAll(nodes =>
                     nodes.forEach(node => node.removeAttribute('data-guide-qa-boundary')));
                 const close = modal.locator('[data-easyedu-guide-close]').first();
+                // Native Guide retains its reference curriculum after the four
+                // Discovery samples. End targets the real final slide, not3.
+                const slideCount = await modal.locator('[data-easyedu-guide-slide]').count();
                 await close.focus(); await close.press('End');
-                await expect(modal.locator('[data-easyedu-guide-slide="3"]')).toHaveClass(/is-active/);
+                await expect(modal.locator(`[data-easyedu-guide-slide="${slideCount - 1}"]`))
+                    .toHaveClass(/is-active/);
                 await close.press('Home');
                 await expect(modal.locator('[data-easyedu-guide-slide="0"]')).toHaveClass(/is-active/);
                 await modal.locator('[data-easyedu-guide-nav-item="1"]').click();
@@ -97,7 +101,7 @@ test('Guide typing Escape and nested-control keyboard priority', async({page}, i
                 await expect(page.locator('[data-easyedu-guide-open]:focus')).toHaveCount(1);
                 records.push({width, motion, typingEscapeCloses: true, nestedEscapePriority: true,
                     enterPreviewsLocally: true, openerFocusRestored: true, focusableBoundaries: boundaries,
-                    tabWrapsForward: true, tabWrapsBackward: true, homeEndSlideNavigation: true});
+                    tabWrapsForward: true, tabWrapsBackward: true, homeEndSlideNavigation: true, slideCount});
             }
         }
         expect(errors).toEqual([]); expect(blocked).toEqual([]);
