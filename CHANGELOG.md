@@ -14,6 +14,10 @@
 - Native normal-Motion successor passes1280/768/390; preserve the diagnostic
   run separately. Complete tablet compositions and comparison pressed states.
 - Clarify Actions result EN/FR: remove Projet Orion only, preserve other groups.
+- Serve ordered local preview and verify the revised copy at1280/768/390
+  (Native50592). Keep reduced copy proof separate from normal Motion27760.
+- Record Foundations publication allowlist, preserving legacy Checklist56px
+  providers instead of globally replacing them with Discovery multiline rows.
 
 ## 2026-10-08 - Guide G9 review candidate
 

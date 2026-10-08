@@ -125,7 +125,7 @@ capture inspected: complete invitation in its reading viewport, no suppressed
 native sticky element. Credentials/lease/child cleaned; no fixture or writes.
 Both successful runs and failed46276 protected by retention dry-run;0 deletion.
 
-## Current next work — not a completion/acceptance claim
+## Historical next work at dbbf098 — superseded by continuation below
 
 - G9-A..D source and scoped isolated proofs delivered; native lifecycle and
   invitation proof recorded separately. Assets served on private local preview.
@@ -235,3 +235,26 @@ hosted writer asynchronously while continuing work; no wrong-file write or
 credential/browser reconfiguration. Shared providers, full24-slide curriculum
 and separate Mass Import Guide are NOT claimed complete. Existing content-owner
 G8/G9 handoff retains these programme tasks, distinct from current sample fixes.
+
+## Current checkpoint after Native50592
+
+Source c73db75 promoted in ordered sequence (including7c58c54/904fe8c/581cba4)
+to runtime b926ba1, caches purged. Native50592 PASS1280/768/390 verifies explicit
+Actions source-membership removal and preserved other groups. Actual text uses
+EasyEdu Inter/Inter,12.16px; no overflow, no errors/blocked writes. Phone capture
+inspected. Credentials/lease/child cleaned, no fixture. Retention dry-run protects
+50592;0 deletion. This reduced-Motion copy proof does not replace27760 normal
+Motion. No new SCSS/private stylesheet or native business command was added.
+
+Guide boards74..78 final audit:185 text shapes, only Inter, zero outer/painted
+width overflow. Existing Overview unchanged. Shared controls retain linked
+Foundation providers. See docs/guide-foundations-publication-g9.md for exact
+publication allowlist and legacy/Discovery distinction: existing shared56px
+Checklist providers must not be replaced with new multiline Discovery recipes.
+
+G9-A..D and scoped native Motion/copy checks delivered. G9-E Guide-local
+compositions propagated; shared Foundation publication and exhaustive geometry/
+accessibility acceptance stay OPEN. Foundations has been requested on hosted
+MCP; current live identity is still Guide. No wrong-file publication attempted.
+Complete24-slide curriculum and distinct Mass Import Guide remain with the
+content-owner handoff. Global human checklist remains OPEN, no forgotten lots.
