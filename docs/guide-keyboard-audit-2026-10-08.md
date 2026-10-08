@@ -69,3 +69,10 @@ No presentation/controller changes unless the audit establishes an actual defect
 Preserve selected native spec until its owned child exits. Full curriculum,
 separate Mass Import Guide and older programme backlog remain separate lots;
 their completion cannot be inferred from keyboard proof or four sample slides.
+
+K2 diagnostic run easystud-authenticated-20261008T141329950Z-10128 retained:
+both Tab boundaries pass its first route. End correctly opens native slide24,
+but the new test wrongly expected sample slide4. The immutable failure context
+shows Step24 of24. Correct only the test oracle to the actual native slide
+count; preserve the same deadlines and product assets. Cleanup is complete,
+no course writes. Do not relabel the failed run as PASS.
