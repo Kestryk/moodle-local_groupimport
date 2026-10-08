@@ -203,3 +203,35 @@ Successor records active computed weight alongside phase timestamps and checks
 the finished regular state separately; settles two paint frames after actual
 reading-body scroll. No product styles, timeouts or course writes changed.
 Cleanup confirms cleared credentials, released lease, stopped child/no fixture.
+
+## Native27760 and remaining paired publication
+
+Native27760 PASS1280/768/390, Organisation and Actions in normal Motion. Active
+semi-bold, finished regular, actual word-count pauses, sticky gap<1px, contained
+paragraphs, compact Add without mouse ghost, final state and Close cleanup pass.
+Phone Organisation/Actions captures inspected. Zero errors/blocked writes;
+credentials/lease/child cleaned, no fixture. Both27760 and failed39352 protected
+by retention dry-run;0 deletion. Details: docs/testing/guide-g9-motion-native-2026-10-08.json.
+
+- Board77 `4ee6f77a-1dfb-809b-8008-c1df323f791a`: Add/Move selected/unselected
+  states with canonical linked Core Primary/Secondary M providers. Existing
+  Organisation Add state updated; previous neutral instance archived hidden,
+  not deleted. Export inspected; semantic button styling stays Kit-owned.
+- Board78 `4ee6f77a-1dfb-809b-8008-c1df8e06fe99`:768px Organisation and Actions
+  compositions, native-style destination, actual two checked members, equal
+  Cancel/Move and footer controls. Export inspected. Board76 mobile/tablet
+  Previous/Next footer instances completed. Boards75/76 textBounds audit: no
+  outer or painted-width overflow (31 and72 text shapes before footer additions).
+- Native capture review found Actions recap insufficiently explicit about
+  removal from Projet Orion. EN/FR resultactions now states that removal and
+  preservation of all other groups. Product copy only; no Kit style exception.
+- Added local-supervised guide-g9-content.spec.js to verify that explicit result
+  copy and containment at1280/768/390 in the served native interface. Reduced
+  Motion copy proof is intentionally separate from Native27760 normal Motion.
+
+Remaining publication boundary: Guide MCP remains on Guide, connected
+Foundation library is read-only from this file. Requested Foundations on the
+hosted writer asynchronously while continuing work; no wrong-file write or
+credential/browser reconfiguration. Shared providers, full24-slide curriculum
+and separate Mass Import Guide are NOT claimed complete. Existing content-owner
+G8/G9 handoff retains these programme tasks, distinct from current sample fixes.
