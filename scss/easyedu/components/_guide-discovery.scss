@@ -215,7 +215,9 @@
       > small { @include typography.type-caption; color: var(--easyedu-text-muted); }
     }
     &__reset {
-      @include buttons.selection-recovery-action;
+      // Unlike an action inside a bordered selection capsule, this standalone
+      // path recovery needs its own visible canonical neutral border.
+      @include buttons.selection-action(neutral);
       & { @include buttons.button-size(small); }
     }
     [data-easyedu-guide-path-status] {
@@ -715,6 +717,24 @@
       .easyedu-guided-panel__steps,
       .easyedu-guided-panel__message,
       .easyedu-guided-panel__footer { display: none; }
+      &.is-complete {
+        gap: 0.625rem;
+        .easyedu-guided-panel__message.is-complete {
+          display: flex;
+          grid-column: 1;
+          grid-row: auto;
+          height: auto;
+          min-height: 0;
+          overflow: visible;
+          padding: 0.625rem;
+          [data-easyedu-guide-checklist-message-text] {
+            display: block !important;
+            min-width: 0;
+            overflow-wrap: anywhere;
+          }
+          .easyedu-guided-panel__message-compact { display: none !important; }
+        }
+      }
     }
   }
 

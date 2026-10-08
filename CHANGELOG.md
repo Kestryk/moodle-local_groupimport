@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased - Guide G10-E completion presentation (WIP)
+
+- Canonical0.4.151 keeps the full completion message in reduced Discovery
+  checklist and gives standalone path Reset the existing neutral outline recipe.
+- Actual consumer EN/FR completion containment and header/finish checks pass.
+  Foundations saved6 roots/190 descendants and corrected raster pass. Product
+  Guide autosave reports a stale nested Reset component reference; preserve
+  diagnostics/unsaved editor, do not claim saved publication. Native destination
+  highlight test starts at selection, without Create/Move course transactions.
+
 ## Unreleased - Guide G10-D reveal before Move (WIP)
 
 - Synchronize Kit0.4.150: reveal the teaching card stage after illustrated

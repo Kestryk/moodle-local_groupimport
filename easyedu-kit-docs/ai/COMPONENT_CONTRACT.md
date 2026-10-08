@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Completed reduced Discovery checklist exposes its full naturally wrapping
+localized message below the compact header. Standalone path Reset consumes
+canonical bordered neutral small selection-action, not capsule recovery.
+No path event/completion or historical consumer semantics change.
+
 Illustrated Guide Move reveals its teaching cards after confirmation closes
 and before reading transfer geometry, through the canonical scene scroll owner.
 Preserve pause/cancellation/reduced motion and the background Moodle scroll.
