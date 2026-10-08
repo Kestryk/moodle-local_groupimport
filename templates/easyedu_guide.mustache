@@ -1,10 +1,5 @@
 <div class="easyedu-guide{{#rootclass}} {{rootclass}}{{/rootclass}}" data-easyedu-guide-root>
-    <button
-        type="button"
-        class="btn easyedu-guide__launcher"
-        data-easyedu-guide-open="1"
-        aria-label="{{guideopenlabel}}"
-    >
+    <button type="button" class="btn easyedu-guide__launcher" data-easyedu-guide-open="1" aria-label="{{guideopenlabel}}">
         <span class="easyedu-guide__launcher-icon" aria-hidden="true">
             <span class="fa fa-compass" aria-hidden="true"></span>
         </span>
@@ -143,7 +138,7 @@
                                 </div>
                             {{/requires}}
                             {{#discoveryscene}}
-                            {{^concepts}}{{^creation}}<div class="easyedu-guide-scene__live" data-guide-live aria-live="polite"><span data-guide-live-copy>{{initiallabel}}</span></div>{{/creation}}{{/concepts}}
+                            {{^concepts}}{{^creation}}<div class="easyedu-guide-scene__live" data-guide-live aria-live="polite"><span class="fa fa-check-circle" data-guide-live-complete aria-hidden="true" hidden></span><span data-guide-live-copy>{{initiallabel}}</span></div>{{/creation}}{{/concepts}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
                                 <p class="easyedu-guide-scene__caption">{{caption}}</p>
                                 {{#concepts}}

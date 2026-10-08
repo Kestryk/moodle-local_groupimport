@@ -12,6 +12,9 @@
 - Served assets applied with cache purge. First native test caught a premature
   opening-animation float measurement; retain failure and correct only the
   harness settling/serialization assertion. Native successor still pending.
+- Second native test found omitted runtime Mustache synchronization. Extend
+  the canonical sync gate to rendered markup with bounded localization-only
+  adaptations; test the real consumer template, not just its embedded copy.
 
 ## 2026-10-08 - Guide G10 review intake and content handoff
 
