@@ -45,9 +45,25 @@ test('Guide native fullscreen preserves modal and target lifecycle',async({page}
             await fullscreen.click();
             await page.waitForFunction(()=>document.fullscreenElement?.matches('[data-easyedu-guide-modal]'));
             await expect(fullscreen).toHaveAttribute('aria-pressed','true');
+            await modal.evaluate(async element=>{
+                const finite=element.getAnimations({subtree:true}).filter(animation=>
+                    Number.isFinite(animation.effect?.getComputedTiming().iterations));
+                await Promise.all(finite.map(animation=>animation.finished.catch(()=>{})));
+                await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+            });
             const geometry=await modal.locator('.easyedu-guide-modal__dialog').evaluate(element=>{
                 const rect=element.getBoundingClientRect();
                 return {x:rect.x,y:rect.y,width:rect.width,height:rect.height,viewportWidth:innerWidth,viewportHeight:innerHeight};
+            });
+            result.geometryDiagnostic=await modal.evaluate(element=>{
+                const nodes=[element,element.querySelector('.easyedu-guide-modal__dialog'),document.documentElement];
+                return nodes.map(node=>{
+                    const style=getComputedStyle(node),rect=node.getBoundingClientRect();
+                    return {classes:node.className,x:rect.x,y:rect.y,width:rect.width,height:rect.height,
+                        cssWidth:style.width,maxWidth:style.maxWidth,padding:style.padding,margin:style.margin,
+                        overflow:style.overflow,scrollbarGutter:style.scrollbarGutter,transform:style.transform,
+                        boxSizing:style.boxSizing,clientWidth:node.clientWidth,viewportWidth:innerWidth};
+                });
             });
             expect(Math.abs(geometry.x)).toBeLessThan(1);expect(Math.abs(geometry.y)).toBeLessThan(1);
             expect(Math.abs(geometry.width-geometry.viewportWidth)).toBeLessThan(1);
