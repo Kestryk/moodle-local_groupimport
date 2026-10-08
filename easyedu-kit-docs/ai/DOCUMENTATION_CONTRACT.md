@@ -18,6 +18,11 @@ geometry and paint before export. Floating-point translation noise is recorded
 separately from paint differences; publish the exact recipe in Foundations when
 its writer is available, then replace the temporary product copies explicitly.
 
+Source-preserving transfer preparation is not Library publication. Record exact
+temporary provider/main/host IDs and saved descendant references before a file
+switch; retain the accepted ordinary source. Delete only those owned temporary
+identities after canonical Foundation fingerprint parity and saved publication.
+
 Guide product relinking preserves real copy and conditional step states, not
 the generic provider's dummy completed rows. Use ordinary product composition
 hosts for linked state rows; hide old slots without adding structural children

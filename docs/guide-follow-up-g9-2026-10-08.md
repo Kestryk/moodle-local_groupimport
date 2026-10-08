@@ -397,5 +397,28 @@ Full curriculum and separate Mass Import content still require content-owner
 handoff. Every older EasyStud feedback lot and human checklist remains OPEN.
 Rollback:hide the recorded new roots/Quiet copies, restore each old hidden
 flag and statusCopy.before; earlier layout rollback records remain authoritative.
+
+## Quiet utility publication preparation (2026-10-08)
+
+Hosted MCP still points to Guide; dedicated Guide MCP has no connection.
+Prepared a source-preserving transfer without modifying the accepted original:
+temporary component007cab03-0a24-8025-8008-c20b176b5589, main
+007cab03-0a24-8025-8008-c20b16a428f6, framed host
+007cab03-0a24-8025-8008-c20b163e8fda at(1400,18500),500x160, free page space.
+Accepted source4ee6f77a-1dfb-809b-8008-c0c1f5f694c2 remains unchanged.
+Clone before local createComponent retains all10 descendants, geometry, mixed
+paint, typography and nested Foundation button/eye providers. Relative source
+comparison has zero differences (root name excluded, numeric tolerance1e-6).
+Framed export inspected; saved-server exact main/provider/descendant gate PASS.
+Record:docs/testing/guide-g9-quiet-transfer-2026-10-08.json. No Moodle changes.
+
+NEXT when Foundations writer is available: instantiate this exact Guide
+temporary provider into an ordinary framed Library host, detach only its outer
+temporary identity while preserving nested links, publish canonical Quiet Show
+recipe; compare complete fingerprints, linked Standards paint and saved state.
+Then propagate canonical instances to correlated Guide controls. Remove only
+the exact temporary main/provider after successful saved publication/parity.
+Do not rebuild accepted styling manually, mistake transfer for publication, or
+alter another window's browser/channel. No human validation is claimed.
 Rollback:hide the exact new instances and restore the recorded original hidden
 flags; restore the13 destination y positions from the evidence. No data rollback.

@@ -10,7 +10,8 @@ const transit = require(path.resolve(process.argv[3], 'transit-js'));
 const recordName = process.argv[5] || 'guide-g9-product-relinks-2026-10-08.json';
 assert.ok(['guide-g9-product-relinks-2026-10-08.json',
     'guide-g9-product-relinks-tranche2-2026-10-08.json',
-    'guide-g9-product-relinks-tranche3-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
+    'guide-g9-product-relinks-tranche3-2026-10-08.json',
+    'guide-g9-quiet-transfer-2026-10-08.json'].includes(recordName), 'Exact owned evidence record');
 const expected = require(path.resolve(__dirname, '../../docs/testing', recordName));
 const read = (value, field) => (value.rep || value).get(transit.keyword(field));
 const geometry = (shape, field) => {
@@ -105,11 +106,31 @@ const geometry = (shape, field) => {
                 }
             }
         }
+        if (expected.temporaryTransfer) {
+            const transfer = expected.temporaryTransfer;
+            assert.deepEqual(transfer.fingerprintDifferences, [], 'Source-preserving editor comparison');
+            const main = object(transfer.mainId);
+            assert.ok(main, 'Temporary main saved');
+            assert.equal(String(read(main, 'component-id')), transfer.componentId, 'Temporary provider saved');
+            assert.equal(String(read(main, 'component-file')), expected.fileId, 'Owned local provider only');
+            for (const child of transfer.descendants) {
+                const saved = object(child.id);
+                assert.ok(saved, 'Transfer descendant retained');
+                for (const field of ['x', 'y', 'width', 'height']) {
+                    assert.ok(Math.abs(geometry(saved, field) - child[field]) < 0.05, `Transfer child ${field}`);
+                }
+                assert.equal(Boolean(read(saved, 'hidden')), child.hidden, 'Transfer visibility saved');
+                if (child.componentId) {
+                    assert.equal(String(read(saved, 'component-id')), child.componentId, 'Transfer primitive link saved');
+                }
+            }
+        }
         console.log(JSON.stringify({passed: true, roots: expected.components.length, descendants, archives,
             relocatedDestinationShapes: expected.mobileDestinationShift.length, editorWrites: 0, moodleWrites: 0,
             practiceChildren: expected.practiceLayout?.finalChildren.length || 0,
             descriptionFits: expected.descriptionFit?.length || 0,
             quietCopies: expected.quietCopies?.length || 0,
+            temporaryTransferDescendants: expected.temporaryTransfer?.descendants.length || 0,
             helperDisconnected: true, scope: 'Exact saved links/geometry/archive retention only; no native or human acceptance.'}));
     } finally { await browser.close(); }
 })().catch(error => { console.error(error.message); process.exitCode = 1; });
