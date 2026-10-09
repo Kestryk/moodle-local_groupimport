@@ -415,7 +415,8 @@
     padding: var(--easyedu-guide-reading-inset);
   }
 
-  .easyedu-guide-slide:has([data-easyedu-guide-scene]) {
+  .easyedu-guide-slide:has([data-easyedu-guide-scene]),
+  .easyedu-guide-slide:has([data-easyedu-guide-introduction]) {
     animation: none; // The controller owns the cancellable 110/220ms crossfade.
     display: block;
     border: 0;

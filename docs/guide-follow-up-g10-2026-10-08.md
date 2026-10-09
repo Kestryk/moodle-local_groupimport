@@ -503,3 +503,11 @@ and host font are correct. Actual data confirms24 slides/index6/path retention.
 Canonical recipe now owns normal wrapping; isolated fixture includes inherited
 nowrap. Strict overflow oracle unchanged, no plugin CSS fork or course write.
 Runner credentials/child/lease cleanup complete. Managed successor/native pending.
+
+Wrapping successor passes desktop; retained55876/35392 expose an incorrect
+font oracle at768px, not a body font defect. Exact computed labels/captions/slide
+are EasyEdu Inter; the unpainted modal root inherits system UI after responsive
+portal change. Compare actual reading body instead, preserving sizes/overflow.
+Common lesson now opts into existing modern Discovery layout for canonical
+14.08px heading/intro paragraph, matching Foundations. Isolated12 cases PASS.
+No other legacy/card/Overview recipe changed. Managed native successor pending.
