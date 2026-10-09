@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Product completion signals which reveal the next Guide target follow native
+action enablement and responsive replacement rendering. Do not compensate for
+an early business-adapter signal with arbitrary Guide delays or forced hidden
+targets; verify the real selection-to-action transition at the tablet boundary.
+
 Keep layout/copy and workflow target oracles separate: a passing desktop/phone
 Move scenario does not certify tablet visibility. Preserve the768px failure
 with active step/current target/control bounds before selecting an adapter or

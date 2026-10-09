@@ -164,3 +164,14 @@ was cancelled as unnecessary, no files deleted. All G11-A/C/E/F/G/H/I exceptions
 and older unfinished SM/Guide lots remain retained. Next: tablet Move target
 visibility/readiness diagnosis, then complete responsive invitation paint and
 first-slide DOM specimens with backed-up stable-ID reading migration.
+
+## Tablet action-readiness candidate
+
+Static order diagnosis: updateSelectionActions emitted select-participant before
+enabling Move and rendering the responsive action tray. Guide completion can
+synchronously resolve the next target while the native desktop button is hidden
+and the mobile replacement has not been created. Move this product adapter
+signal to the end of the same update, after selection availability, tray and
+pagination synchronization. Same predicate, path IDs, business commands and
+Motion; no Kit style/controller changes. Native successor must confirm the
+768px transition and retain the strict highlight oracle before claiming a fix.

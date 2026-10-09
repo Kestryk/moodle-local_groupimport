@@ -5673,9 +5673,6 @@ const renderMobileActionBar = (root, counts, activetype) => {
 
 const updateSelectionActions = root => {
     const selectedUsers = getSelectedItems(root, 'participant');
-    if (selectedUsers.length) {
-        emitPracticeCompletion(root, 'select-participant');
-    }
     const selectedGroups = getSelectedItems(root, 'group');
     const selectedGroupings = getSelectedItems(root, 'grouping');
     const selectedMembers = getSelectedItems(root, 'member');
@@ -5789,6 +5786,11 @@ const updateSelectionActions = root => {
     updateSelectionAvailability(root);
     syncSelectedGroupingExpansion(root);
     syncPaginationSelectionControls(root);
+    // Completion may synchronously highlight the next action. Publish only
+    // after native enablement and the responsive action tray are ready.
+    if (selectedUsers.length) {
+        emitPracticeCompletion(root, 'select-participant');
+    }
 };
 
 // Bind multi-selection across participant, group, grouping and member items.
