@@ -614,3 +614,26 @@ hosts now have post-publication raster proof. Remaining: intermediate opening ca
 recognition growth Motion/cursor cues, atomic Kit sync/template/AMD build and
 native lifecycle/paint. Served Source0a62ae7/runtimef91554c remain unchanged;
 no membership command, curriculum migration or human acceptance claimed.
+
+### G11-H recognition growth and opening-reference successor —10 October
+
+Canonical candidate recognition now grows the card through the same520ms clock
+before its260ms chip fade. Strengthened24-case product-context matrix passes,
+including separate freeze/resume assertions for opening and recognition growth.
+Historical membership/action body and four templates stay identical. No plugin
+CSS, secondary animation clock or business command is added.
+
+Foundations adds one shared Motion reference, not another control family:
+provider1b9939cf-2f95-805b-8008-c3efef28db99; Library mainc3ef76d1821d and
+Standard instancec3eff92683a3 (same UUID prefix). Four partial-height samples
+retain natural descendants and canonical14.4px rounded clipping.50% means
+height range, not elapsed time. Recursive fingerprints match; saved-file read
+HTTP200 finds11 expected IDs. Clipboard attempts produced no pasted host;
+component publication/instantiation replaced that route without duplicates.
+
+Initial geometry raster inspected; corrected rounded export omitted text and
+does NOT certify complete painted typography. Editor33 visible/nonempty Inter
+text shapes are a narrower check, not a replacement. Full opening-reference
+raster, desktop gesture cues, product wrapping-utility design, atomic consumer
+build and native preview remain. Exact recovery is in Kit’s motion successor
+record. All older G/SM lots and human checklist remain as previously recorded.
