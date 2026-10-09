@@ -37,3 +37,24 @@ User accepted other checklist items on9 October. Retain historical native /
 isolated / design limits honestly; this acceptance does not implement pending
 inspection scenes, curriculum rewrite, new paths or separate Mass Import guide.
 No new checklist requested now. Future review should focus on these exceptions.
+
+## Initial source checkpoint — not served
+
+Canonical Kit candidate centres desktop welcome through fixed insets/auto margin,
+preserving entrance animation, command hooks, responsive suppression and actual
+opening persistence. Compass added to Start; revised product EN/FR copy explains
+participants/groups/groupings and starting now or later. Four actual consumer
+isolated language/Motion cases PASS centred axes0px, equal action heights, no
+overflow, genuine-open notification and responsive suppression.
+
+Activity candidate owns round4px dots, staggered1.35s bounce with3.5px rise.
+Existing actual-consumer playback tests PASS EN1280/FR390 normal and EN768
+reduced, pause/resume/next/finish cleanup. Painted dot/animation/design review
+remains OPEN. Modern Discovery content also gains explicit normal wrapping;
+native Organisation reproduction/successor is still required, not claimed fixed.
+
+Reset confirmation cause verified: current route renders a section after the
+Moodle header, with no fixed modal overlay/lifecycle. G11-B must use a shared
+blocking modal structure and focus/Escape/Cancel rather than a position-only
+patch. No reset transaction or course write performed. All G11-B/D..I remain
+OPEN; Source/Kit candidate not promoted, no newer native proof claimed.

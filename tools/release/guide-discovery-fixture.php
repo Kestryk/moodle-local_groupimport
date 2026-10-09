@@ -20,6 +20,7 @@ foreach (['participant', 'group', 'grouping'] as $type) {
         'commonintroduction' => \local_groupimport\local\guide_discovery::card_explanation($type)];
 }
 echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([]),
+    'welcomeCopy' => get_string('guidewelcomecopy', 'local_groupimport'),
     'cardLessons' => $cardlessons,
     'commonIntroduction' => \local_groupimport\local\guide_discovery::common_introduction(),
     'commonIntroductionTitle' => get_string('guideintro_title', 'local_groupimport'),
