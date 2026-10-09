@@ -7,7 +7,8 @@
     "guideSceneContext20261009": {
       "kitVersion": "0.4.161",
       "kitCommit": "7dbaa6e679ce71d8c8e0fa6bbf858267025e4cfe",
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRun": "easystud-authenticated-20261009T110014096Z-17044",
       "humanVisualValidated": false
     },
     "guideG11Presentation20261009": {

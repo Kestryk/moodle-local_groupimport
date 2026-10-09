@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Keep layout/copy and workflow target oracles separate: a passing desktop/phone
+Move scenario does not certify tablet visibility. Preserve the768px failure
+with active step/current target/control bounds before selecting an adapter or
+shared correction. Do not force hidden native selects: choose visible canonical
+options and never confirm a course transaction in presentation tests.
+
 Native fixed-overlay centring compares the actual root layout bounds, not
 innerWidth/clientWidth alone: a reserved scrollbar gutter can make both differ
 from the fixed containing block. Keep the strict subpixel oracle, persist
