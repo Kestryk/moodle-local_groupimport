@@ -2,6 +2,9 @@
 
 ## Unreleased - Guide activity grouping and final recap
 
+- Served native reading PASS18 cases across six lessons and three widths;
+  all topic texts contained.72 isolated EN/FR/Motion cases PASS. Foundations
+  canonical explanation typography/provider identity read-only refreshed.
 - Modernize existing activity and completion lessons using published explanation
   topics. Separate course memberships from activity group-mode/grouping settings;
   distinguish completed reading from successful real course configuration.
