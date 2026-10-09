@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide fullscreen bounded native proof
+
+- Native Moodle successor passes full viewport, normal/reduced Escape keeping
+  Guide/slide, close exit/focus, Show in interface exit and phone control hiding.
+  No course writes/errors; runner cleanup complete. Failed predecessors retained.
+- Content writer delivery recorded for sequential integration; common intro
+  and full curriculum remain open, as does the combined human checklist.
+
 ## Unreleased - Guide G10-H desktop fullscreen candidate
 
 - Native fullscreen geometry passes; consume tracked modal/document Escape

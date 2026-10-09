@@ -1,0 +1,23 @@
+{
+  "runId":"easystud-authenticated-20261008T214620143Z-50548",
+  "runtimeHead":"ab729f0c034e1dbaac2a4f0f8c1da5183f61dd6c",
+  "sourceHead":"0a388ffd23da6356e7228ba9a86a826e6ff97d1a",
+  "passed":true,
+  "normalAndReducedMotion":true,
+  "desktopGeometry":{"width":1280,"height":900,"x":0,"y":0},
+  "escapeKeepsGuideAndSlide":true,
+  "closeExitsAndRestoresFocus":true,
+  "showInInterfaceExits":true,
+  "phoneFullscreenControlSuppressed":true,
+  "nativePhoneEntryVerified":false,
+  "courseWrites":false,
+  "fixtures":false,
+  "pageErrors":[],
+  "blockedWrites":[],
+  "credentialsCleared":true,
+  "leaseReleased":true,
+  "ownedChildStopped":true,
+  "humanVisualValidated":false,
+  "fullCurriculumVerified":false,
+  "retainedFailures":["213506218Z-46584","213727637Z-12016","213848517Z-48728","214036495Z-16300"]
+}

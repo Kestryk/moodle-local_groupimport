@@ -21,5 +21,9 @@ Escape/close, Show in interface target focus, refusal feedback and phone hiding.
 Native Moodle scenario: tools/playwright/guide-fullscreen-native.spec.js,
 local-supervised candidate. It blocks course writes and uses the already-seen
 QA account; it does not reset the welcome state or manufacture a guided path.
-Native preview/proof pending. Common introduction/curriculum and the combined
-human checklist remain open.
+Native successor214620143Z-50548 PASS at runtimeab729f0:1280x900 full viewport,
+normal/reduced Escape preserves slide/modal, Close exits/restores focus, Show in
+interface exits,390 control hidden. Zero errors/blocked writes/course mutations;
+credentials/child/lease cleanup PASS. Failed geometry/Escape predecessors retained.
+This does not certify native phone entry, all curriculum, real business paths or
+human acceptance. Common introduction/curriculum and the checklist remain open.
