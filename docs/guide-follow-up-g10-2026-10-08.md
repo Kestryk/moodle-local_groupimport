@@ -511,3 +511,12 @@ portal change. Compare actual reading body instead, preserving sizes/overflow.
 Common lesson now opts into existing modern Discovery layout for canonical
 14.08px heading/intro paragraph, matching Foundations. Isolated12 cases PASS.
 No other legacy/card/Overview recipe changed. Managed native successor pending.
+
+Native005402406Z-21616 PASS at6a774476 / Source85e40f6: EN1280/768/390,
+14.08 heading/intro/labels and12.16 captions, common Inter reading-body family,
+contained explanations, desktop-only fullscreen help,24 slides/index6 and
+first-structure retained, completion state unchanged. Native rasters inspected;
+no errors/blocked writes/course actions/fixtures; credentials/child/lease cleanup
+PASS. FR/all Motion matrix remains isolated proof. Human/full curriculum open.
+Next: writer-card lessons reconciled in place with actual controls, preserving
+legacy indices/path IDs until explicit migration; all earlier requested lots stay.

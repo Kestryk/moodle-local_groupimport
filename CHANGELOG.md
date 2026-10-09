@@ -2,6 +2,11 @@
 
 ## Unreleased - Shared Guide common introduction
 
+- Native EN desktop/tablet/mobile open/read/close successor passes contained
+  copy and canonical typography, retaining24 slides and completed state. No
+  business commands/fixtures; inspected rasters and complete runner cleanup.
+  Human checklist and full curriculum remain open.
+
 - Apply existing modern Discovery heading/body hierarchy to the introduction.
   Native responsive labels/captions preserve Inter; verify their reading-body
   role rather than the unpainted outer modal's inherited host font.

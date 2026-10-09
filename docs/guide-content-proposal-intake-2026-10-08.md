@@ -70,3 +70,26 @@ content roots/80 descendants; bounded rasters inspected. No accepted Overview,
 card recipe or old provider removed. Product boards83 are content recipes only,
 not a whole-modal/legacy-curriculum audit. Native preview remains the next gate.
 All older lots and the combined human checklist remain open.
+
+Native successor005402406Z-21616 PASS at6a774476 (Source85e40f6): actual EN
+1280/768/390, canonical14.08 heading/intro/topic and12.16 caption, common Inter
+reading family, no overflow,24 slides/index6/first-structure preserved and no
+completion change. Phone uses one column and omits fullscreen help. Zero
+errors/blocked writes/course commands/fixtures; full runner cleanup PASS.
+Native rasters inspected. FR/all Motion combinations are isolated evidence,
+not native. Retained failed wrapping/font-oracle predecessors remain accessible.
+
+## Immediate content continuation
+
+Writer CROSSWALK.md and all12 student-guide IDs were re-read9 October. Its note
+that use-this-guide has no legacy source is now stale: it is implemented at the
+existing Guided path mode index6. Preserve the writer package read-only and
+record that reconciliation here rather than silently rewriting its delivery.
+
+Next bounded lot: compare read-participant-card/read-group-card/read-grouping-card
+against actual desktop/mobile card controls and current legacy positions8/9/10.
+Modernize verified copy/compositions in place first; do not collapse24 into12 or
+replace first-structure/create-grouping/try-actions before a stable-ID/index
+migration policy. The four discovery scenes/accepted Overview remain intact.
+Unverified shortcuts, pasted identifiers on mobile and source-member actions
+stay explicit content questions. Mass Import remains a separate future guide.
