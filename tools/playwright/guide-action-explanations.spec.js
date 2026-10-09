@@ -33,7 +33,9 @@ test('Guide filter and identifier explanations',async({page},info)=>{
             const modal=page.locator('[data-easyedu-guide-modal]:visible');
             await expect(modal).toBeVisible();
             expect(await modal.locator('[data-easyedu-guide-slide]').count()).toBe(24);
-            for(const index of [7,15]) {
+            // reference-3 (filters) and reference-9 (text add), after the
+            // introduction-first migration; keep historical identities intact.
+            for(const index of [7,13]) {
                 await modal.locator(`[data-easyedu-guide-nav-item="${index}"]`).click();
                 const slide=modal.locator(`[data-easyedu-guide-slide="${index}"]:visible`);
                 await expect(slide).toBeVisible();

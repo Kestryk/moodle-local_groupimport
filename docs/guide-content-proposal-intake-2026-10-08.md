@@ -227,3 +227,15 @@ PASS. Native reading candidate blocks course commands. Native action availabilit
 filter-selection behaviour, identifier inspection animations, curriculum
 deduplication and human review remain OPEN. Existing Foundations explanation
 providers reused: no new design component or slide redraw to publish.
+
+Content4 reading slice31caf0b served at runtime1ba5cd8 after ordered0a00620
+documentation/test predecessor, managed cache purge. Native38236 PASS6 cases
+at1280/768/390: actual topic titles/descriptions/note (7 text nodes per lesson),
+all Inter and painted text contained, three topics,24 retained slides, normal
+Close and focus restoration. Preliminary36504 measured only the note and outer
+frame: retained as narrower proof, never counted as full topic-text validation.
+Successor preserves exact same product assets and adds actual dt/dd selectors.
+24 isolated EN/FR/width/Motion cases also measure all topic text. No native FR
+matrix, Show-in-interface/action availability, business operation or new design
+raster claimed. Zero page errors/blocked writes/fixtures; cleanup complete,
+scoped retention dry-run protects the evidence. Human acceptance stays OPEN.

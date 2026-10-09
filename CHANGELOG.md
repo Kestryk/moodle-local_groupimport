@@ -2,6 +2,9 @@
 
 ## Unreleased - Guide filter and identifier explanations
 
+- Local preview native reading PASS1280/768/390, including every topic title,
+  description and note. EN native and isolated EN/FR scopes recorded separately;
+  no action-availability or course transaction claimed.
 - Modernize two existing lessons with the published shared explanation layout:
   distinguish filtered results from selection and destination cards from enrolment.
   Explain responsive card menus without promising every desktop control on mobile.

@@ -142,3 +142,8 @@ Native Close hover comparisons must wait actual subtree animations before
 sampling final paint. Keep failed transient-colour runs/specs immutable and
 retain strict glyph/frame/focus oracles; never repair a harness race by changing
 the accepted UI Motion. Close parity does not certify Fullscreen or curriculum.
+
+Guide common explanations use dt/dd, not h4/p for their topics. A containment
+test must count all actual title/description/note nodes; outer frame plus note
+alone is narrower evidence. Preserve that preliminary run and create a strict
+successor without changing product assets or weakening painted-text bounds.
