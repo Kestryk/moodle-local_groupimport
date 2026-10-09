@@ -395,3 +395,25 @@ No design mutation made from this read. Therefore the lighter Close correction
 must reconcile canonical control and linked specimens as well as shared template;
 it cannot be certified by changing only the runtime character. Fullscreen needs
 its corresponding canonical glyph treatment. Header correction remains OPEN.
+
+## G11-I Close successor
+
+Kit0.4.166 changes only opt-in Discovery dialog/checklist Close markup to the
+native regular UI multiplication glyph; legacy FontAwesome branch retained.
+Existing30.4px Small frame, caption/title fonts, all SCSS/controllers/Motion
+unchanged. No consumer font-weight override, new font or extra Close family.
+Full screen glyph weight remains separate and OPEN.
+
+Foundations adds Inter Regular multiplication as an icon provider, retaining
+solid xmark. Eight existing owned Library glyph slots and their eight linked
+Standard copies use it at12.48px. Sizes/centres/provider read back; saved16
+roots/32 descendants PASS. Actual Close30.4px export inspected. Only linked
+glyphs changed; canonical Core action Secondary S frames remain intact.
+Record guide-close-glyph-foundations-2026-10-09.json has exact IDs.
+
+Source synchronized localized/embedded templates; existing AMD builder reports
+identical assets. Actual Moodle Mustache contract PASS both Discovery and legacy
+dialog/checklist branches, preserving accessible command labels. Dedicated
+native successor retains ordinary Navigation Close/eye read-open-close and
+asserts real title and Close glyph font/size/weight/content parity at three
+widths. Preview/native remains pending; full curriculum and human review OPEN.

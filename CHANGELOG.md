@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased - Discovery regular Close glyph
+
+- Consume Kit0.4.166: Guide dialog/checklist Close matches the native entity
+  regular multiplication glyph, using the same Small frame. Legacy Guide
+  branch, SCSS, titles, commands, controller and Motion unchanged.
+- Foundations glyph provider and16 linked source/Standard usages saved and
+  contained; actual Close raster inspected. Renderer contract PASS; native
+  same-host successor and human acceptance tracked separately. Fullscreen
+  remains a separate visual correction, not certified by this Close change.
+
 ## Unreleased - Discovery contextual copy
 
 - Label first introduction Guide; clarify Add/Move using the actual illustrated
