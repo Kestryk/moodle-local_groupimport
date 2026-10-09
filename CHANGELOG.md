@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Record recognition-height transition and intermediate Foundations geometry
+  reference; strengthened24-case canonical lifecycle passes. Full new-reference
+  typography raster and consumer/native activation remain open.
 - Prepare inactive EN/FR destination-card inspection data with separate compact
   narration and fictional recognition examples. Four data contexts and PHP lint
   pass; historical adapters/24 lessons/six-step path stay unchanged.
