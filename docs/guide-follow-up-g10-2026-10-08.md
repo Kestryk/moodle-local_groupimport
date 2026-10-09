@@ -496,3 +496,10 @@ Managed preview must include6928625 and0484a1e predecessors before this candidat
 The global Kit audit still reports23 pre-existing pattern findings relative to
 its older29-entry baseline; no baseline rewritten and no whole-Kit PASS claimed.
 New topic SCSS adds no hardcoded colour/keyframes. Native and human gates open.
+
+Native common-introduction runs004630129Z-19148 and004814897Z-22852 retained:
+all five descriptions inherit white-space:nowrap while their14.08/12.16 roles
+and host font are correct. Actual data confirms24 slides/index6/path retention.
+Canonical recipe now owns normal wrapping; isolated fixture includes inherited
+nowrap. Strict overflow oracle unchanged, no plugin CSS fork or course write.
+Runner credentials/child/lease cleanup complete. Managed successor/native pending.
