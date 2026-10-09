@@ -9,6 +9,7 @@ const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
 const transit = require(path.resolve(process.argv[3], 'transit-js'));
 const recordName = process.argv[5] || 'guide-g9-foundations-publication-2026-10-08.json';
 assert.ok(['guide-g9-foundations-publication-2026-10-08.json',
+    'guide-common-introduction-foundations-2026-10-09.json',
     'guide-g10-c-foundations-2026-10-08.json',
     'guide-g10-e-foundations-2026-10-08.json',
     'guide-g10-g-welcome-foundations-2026-10-08.json',
@@ -36,6 +37,7 @@ const geometry = (shape, field) => {
             const url = new URL(page.url());
             const ownedFile = process.argv[6] === 'guide-context-request' &&
                 ['guide-g10-e-foundations-2026-10-08.json',
+                    'guide-common-introduction-foundations-2026-10-09.json',
                     'guide-g10-h-foundations-2026-10-08.json'].includes(recordName) ?
                 'b564c72c-f31f-81ec-8008-ad9958b272bd' : evidence.fileId;
             return url.origin === 'https://design.penpot.app' && url.hash.includes(ownedFile);

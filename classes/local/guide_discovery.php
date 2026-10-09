@@ -8,6 +8,22 @@ defined('MOODLE_INTERNAL') || die();
 
 /** Product-owned discovery content; illustrations never issue Moodle commands. */
 final class guide_discovery {
+    /** Shared introduction data; no slide insertion or persisted-index migration. */
+    public static function common_introduction(): array {
+        $topics = [];
+        foreach (['navigation' => 'fa-compass', 'demonstration' => 'fa-play-circle',
+                'interface' => 'fa-eye', 'path' => 'fa-route', 'fullscreen' => 'fa-expand'] as $key => $icon) {
+            $topic = ['icon' => $icon,
+                'title' => get_string('guideintro_' . $key . '_title', 'local_groupimport'),
+                'description' => get_string('guideintro_' . $key . '_description', 'local_groupimport')];
+            if ($key === 'fullscreen') {
+                $topic['desktopfullscreen'] = true;
+            }
+            $topics[] = $topic;
+        }
+        return ['topics' => $topics, 'note' => get_string('guideintro_note', 'local_groupimport')];
+    }
+
     /** Prepend the four discovery lessons while retaining the reference curriculum. */
     public static function prepend(array $legacy): array {
         $definitions = [

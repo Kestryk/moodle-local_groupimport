@@ -132,6 +132,19 @@
                             <div class="easyedu-guide-slide__content">
                                 {{{content}}}
                             </div>
+                            {{#commonintroduction}}
+                            <div class="easyedu-guide-introduction" data-easyedu-guide-introduction>
+                                <dl class="easyedu-guide-introduction__topics">
+                                    {{#topics}}
+                                    <div class="easyedu-guide-introduction__topic"{{#desktopfullscreen}} data-easyedu-guide-fullscreen-help hidden{{/desktopfullscreen}}>
+                                        <dt><span class="fa {{icon}}" aria-hidden="true"></span><span>{{title}}</span></dt>
+                                        <dd>{{description}}</dd>
+                                    </div>
+                                    {{/topics}}
+                                </dl>
+                                <p class="easyedu-guide-introduction__note">{{note}}</p>
+                            </div>
+                            {{/commonintroduction}}
                             {{#requires}}
                                 <div class="easyedu-guide-slide__locked">
                                     <span class="easyedu-guide-slide__locked-icon fa fa-lock" aria-hidden="true"></span>

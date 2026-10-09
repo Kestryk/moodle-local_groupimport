@@ -484,3 +484,15 @@ PASS. Earlier failures retained. No native phone-entry/full-curriculum/human pro
 G10-H fullscreen bounded implementation is served; common introduction remains
 next. Writer delivery found/read and recorded in guide-content-proposal-intake;
 old curriculum and stored paths remain unchanged until explicit crosswalk policy.
+
+9 October: common Guide introduction implemented in canonical Kit0.4.159 and
+Source, modernizing legacy Guided path mode index6 without renumbering24 slides
+or changing presentationKey/offset/path IDs. EN/FR12 actual-consumer isolated
+width/Motion cases PASS, canonical14.08/12.16 typography, palette, capability-off
+reinit and stored-state preservation. Foundation4 roots/160 descendants and
+Guide2 roots/80 descendants saved/link/containment PASS; content rasters inspected.
+Native candidate is local-supervised open/read/close, no fixture/business command.
+Managed preview must include6928625 and0484a1e predecessors before this candidate.
+The global Kit audit still reports23 pre-existing pattern findings relative to
+its older29-entry baseline; no baseline rewritten and no whole-Kit PASS claimed.
+New topic SCSS adds no hardcoded colour/keyframes. Native and human gates open.

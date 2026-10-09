@@ -1,0 +1,15 @@
+{
+  "passed":true,
+  "combinations":12,
+  "languages":["en","fr"],
+  "widths":[1280,768,390],
+  "motions":["no-preference","reduce"],
+  "typography":{"label":14.08,"caption":12.16,"actualGuideHostFamilyPreserved":true},
+  "palette":{"label":"#264861","caption":"#5c6c7d"},
+  "horizontalOverflow":false,
+  "fakeInstructionButtons":0,
+  "capabilityOffReinitHidden":true,
+  "storedProgressionPreserved":true,
+  "nativeMoodleVerified":false,
+  "scope":"Actual consumer Mustache, CSS and built AMD in an isolated fixture; no native Moodle/icon-font/course proof."
+}

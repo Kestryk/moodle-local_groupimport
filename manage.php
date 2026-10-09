@@ -1369,6 +1369,11 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         }
 
         if (!empty($step['visualguided'])) {
+            // Replace copy at its existing position, never shift persisted slides.
+            $slide['title'] = get_string('guideintro_title', 'local_groupimport');
+            $slide['navtitle'] = get_string('guideintro_navtitle', 'local_groupimport');
+            $slide['content'] = html_writer::tag('p', s(get_string('guideintro_description', 'local_groupimport')));
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::common_introduction();
             $slide['hasguidedpath'] = true;
             $slide['guidedpath'] = 'first-structure';
             $slide['guidedpathtitle'] = $templatedata['tutorialguidedpaneltitle'];

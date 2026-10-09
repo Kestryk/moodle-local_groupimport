@@ -9,6 +9,7 @@ const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
 const transit = require(path.resolve(process.argv[3], 'transit-js'));
 const recordName = process.argv[5] || 'guide-g9-product-relinks-2026-10-08.json';
 assert.ok(['guide-g9-product-relinks-2026-10-08.json',
+    'guide-common-introduction-product-links-2026-10-09.json',
     'guide-g10-b-product-links-2026-10-08.json',
     'guide-g10-c-product-links-2026-10-08.json',
     'guide-g10-e-product-links-2026-10-08.json',

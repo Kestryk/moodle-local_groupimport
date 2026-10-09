@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Common introductions modernize an existing lesson unless an explicit persisted
+index migration is authorized. Preserve count, presentationKey, offset, path IDs
+and real business predicates. Keep isolated typography/palette, paired design,
+native preview and human acceptance separate. Capability-off reinit must hide help.
+
 Native Guide fullscreen activation consumes the canonical helper in the existing
 AMD boundary. Keep shared styling/translated labels separate from native business
 adapters. Assert actual fullscreenElement, first Escape preserving slide, close

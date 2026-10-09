@@ -13,6 +13,9 @@ class html_writer {
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([]),
+    'commonIntroduction' => \local_groupimport\local\guide_discovery::common_introduction(),
+    'commonIntroductionTitle' => get_string('guideintro_title', 'local_groupimport'),
+    'commonIntroductionDescription' => get_string('guideintro_description', 'local_groupimport'),
     'welcomeReset' => ['title' => get_string('guidewelcomereset', 'local_groupimport'),
         'description' => get_string('guidewelcomeresetconfirm', 'local_groupimport'),
         'confirm' => get_string('guidewelcomereset', 'local_groupimport'),

@@ -54,3 +54,19 @@ the canonical Kit: guide-common-introduction.md. It is not yet a rendered slide.
 Next: source-preserving shared composition, capability-aware EN/FR content,
 paired design and responsive proof before activation. Do not insert a new first
 slide by blindly shifting persisted indices; first audit existing state identity.
+
+## 9 October common-introduction implementation
+
+Persistence audit confirms numeric slideIndex with presentationKey and offset4.
+The existing Guided path mode lesson is therefore modernized in place (index6,
+seventh slide), preserving all24 entries, first-structure path and existing
+presentationKey/offset. This is not a new first slide or full writer delivery.
+Shared canonical data/template/SCSS added; translated EN/FR actual-consumer
+fixture passes12 width/Motion combinations, typography, palette, capability-off
+reinit and stored-state preservation. Fullscreen help resets hidden before init.
+
+Foundations Library/Standard4 saved roots/160 descendants; Guide2 saved linked
+content roots/80 descendants; bounded rasters inspected. No accepted Overview,
+card recipe or old provider removed. Product boards83 are content recipes only,
+not a whole-modal/legacy-curriculum audit. Native preview remains the next gate.
+All older lots and the combined human checklist remain open.
