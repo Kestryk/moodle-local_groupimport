@@ -332,3 +332,66 @@ save/immutable backup and safe selection/Move/search/Cancel path. No errors,
 blocked course writes, fixtures or transactions; full cleanup complete.
 Actual desktop reading raster inspected. Scoped retention dry-run protects
 this run, zero candidates/deletions/errors. Human checklist remains OPEN.
+
+## Continuation checkpoint
+
+Content3 first slice contextualizes actual Orion/Horizon Add/Move and source
+member/mobile action sequence; intro category is Guide. Source4df676b served
+at runtimebf3948c, normal-motion native36180 PASS1280/768/390 with retained
+strict reading/path/Compare checks.48 isolated EN/FR/width/Motion copy cases
+and44 historical positions PASS; PHP lint PASS. No course transactions.
+
+Next G11-I is a same-host visible Guide/entity header audit before shared
+correction. Static source reveals differing roles: Guide title is an h2 modal
+title; entity EasyStud is an eyebrow above the entity h3. Close uses FontAwesome
+times in Guide but a text multiplication glyph in entity markup. Shared frame
+mixins alone cannot certify identical paint. Do not reduce a title to eyebrow
+size or approximate glyph weight without comparing actual visible native roles.
+
+Keep G11-E other member/edit targets, G11-H old slide replacement/card inspection
+animations and Content4 responsive filters/pasted-identifier verification open.
+Curriculum24-to12 needs an explicit second stable-ID map and preservation of
+old path/completion backups; Mass Import remains separate. All older SM lots
+and the combined human checklist are retained. No additional review asked now.
+
+## Same-host header diagnostic evidence
+
+Native38368 measured visible desktop Guide and Participant headers at the same
+runtimebf3948c: both real titles use EasyEdu Inter16px/700,19.2px line-height
+and rgb(38,72,97). Entity EasyStud is a separate10px blue uppercase eyebrow,
+not the entity title. Descriptions are12.16px/400. Guide Close and Fullscreen
+use FontAwesome6 Free12.48px/900; entity Close is Inter multiplication text
+12.48px/400. This identifies actual Close glyph divergence, not a title-font
+failure. Do not pretend matching mixins alone fixed the glyph.
+
+The matrix stopped on tablet because the returned Navigation drawer covers
+the eye action. Successor39972 also stopped: its centre-backdrop click falls
+inside the drawer panel. Both immutable specs/failure media retained, zero
+course writes/errors and complete cleanup. Next successor uses the actual
+visible Navigation Close control, not force-click, hidden overlays or a product
+change. Full three-width paint comparison remains pending until that passes.
+
+Quota/process note: unnecessary full-file output and broad wildcard searches
+were avoided after bounded inspection; existing exact Guide sync/build tools
+and test infrastructure reused. The two header failures still cost browser
+time; future read-only audits should select the explicit native Close and set
+bounded per-action timeouts rather than consuming the complete test budget.
+No provider token totals/cost measurements are available, so do not invent them.
+
+Successor4952 PASS1280/768/390 using actual Navigation Close. Same-host title
+font/size/weight/colour parity confirmed at all three widths; actual Close glyph
+divergence also confirmed. No course transactions, errors, blocked writes or
+fixtures; cleanup complete. Record guide-header-native-audit-2026-10-09.json.
+This audit closes the measurement gap, NOT the Close/Fullscreen correction or
+human review. Preserve the two failed specs and their strict visible action
+requirements. Next: reuse entity Close glyph in canonical Guide and reconcile
+actual Foundations header controls before consumer publication; do not shrink
+the Guide title to the separate brand eyebrow or approximate FontAwesome weight.
+
+Foundations connection verified in owned file40e06342/page08.14. Existing
+Discovery Close slot4ee6f77a-1dfb-809b-8008-c1ef1fb17790 currently contains a
+solid xmark vector in12.48px viewport, not the entity text multiplication glyph.
+No design mutation made from this read. Therefore the lighter Close correction
+must reconcile canonical control and linked specimens as well as shared template;
+it cannot be certified by changing only the runtime character. Fullscreen needs
+its corresponding canonical glyph treatment. Header correction remains OPEN.

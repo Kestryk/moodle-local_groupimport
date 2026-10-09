@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "4df676b04407bc4d9f4acf467d1d0ec0404f4915",
+  "runtimeHead": "bf3948c5c864ce2938619464b305202fd6f88615",
+  "runId": "easystud-authenticated-20261009T151503785Z-36180",
+  "spec": "tools/playwright/guide-g11-targetless-cue.spec.js",
+  "result": "passed",
+  "nativeLanguage": "en",
+  "widths": [1280, 768, 390],
+  "motion": "normal",
+  "isolatedTranslatedCopyCases": 48,
+  "historicalPositions": 44,
+  "copyChangeScope": "Guide category and source/destination/mobile contextual narration only",
+  "nativeRegressionScope": "Intro/cue, stable reading save/backup, safe Select/Move/search/Cancel and long Compare containment",
+  "rasterInspected": "Actual mobile Compare context is contained",
+  "credentialsCleared": true,
+  "leaseReleased": true,
+  "ownedChildStopped": true,
+  "courseTransactions": 0,
+  "fixtures": 0,
+  "retention": "Scoped dry-run protects current run; no deletion",
+  "humanVisualValidated": false,
+  "notCertified": ["native FR matrix", "full legacy replacement", "inspection animations", "new paths", "all header/entity parity"]
+}
