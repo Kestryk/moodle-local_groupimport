@@ -62,7 +62,7 @@
     max-height: var(--easyedu-guide-modal-max-height);
     max-width: var(--easyedu-guide-modal-width);
     border-radius: 1rem;
-    &:has(> .easyedu-guide-interface-cue) {
+    &:has(> .easyedu-guide-interface-cue:not([hidden])) {
       grid-template-rows: auto auto auto minmax(0, 1fr) auto auto;
     }
   }
@@ -74,6 +74,7 @@
   }
 
   .easyedu-guide-interface-cue {
+    &[hidden] { display: none; }
     align-items: center;
     display: flex;
     flex-wrap: wrap;

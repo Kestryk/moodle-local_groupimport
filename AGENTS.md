@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Targetless Discovery cue is optional chrome: hide the entire row and reclaim
+its grid track without inventing a target. Preserve original command identity,
+attributes, locks and restoration. This is not a new Penpot family. Isolated
+geometry and synchronized builds are distinct from served-native proof.
+
 For cross-repository EasyEdu context, start with
 `<EASYEDU_PLATFORM_ROOT>\AI\README.md` when it is available locally. Then read
 `AI\easystud\context.md` in the platform repository before editing this plugin.

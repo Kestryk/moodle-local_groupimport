@@ -309,3 +309,18 @@ G11-I same-host entity-header paint comparison remain OPEN; older SM backlog
 retained. Intro currently still carries historical Practice category; the generic
 targetless interface-cue caption reserves a footer row without a target button.
 Record both for the presentation/curriculum successor, not as accepted design.
+
+## Targetless cue successor
+
+Canonical Kit0.4.165 hides the complete optional cue for targetless/locked
+slides and restores the original command on slides with a target. Initial
+markup is hidden to avoid an empty caption before initialization. Hidden rows
+reserve no grid track. Six isolated LTR/RTL1280/768/390 geometry cases and
+identity/attributes/repeated docking/restoration checks PASS. Existing scene
+Motion, reading migration and all course adapters unchanged.
+
+No new visual family or Penpot provider is introduced: this suppresses an empty
+usage of the existing published cue. Source synchronized with localized
+Mustache adapter, AMD/CSS rebuilt. Dedicated native successor retains the prior
+strict no-write path and adds absent cue/no-gap intro plus visible real command
+on Practice. Native preview still pending; full curriculum/header remain OPEN.

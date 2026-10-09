@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide targetless cue
+
+- Consume Kit0.4.165: suppress the empty interface caption/grid track on
+  introductory and locked slides, retaining real commands on targeted slides.
+  Shared source only, no private plugin CSS or course behavior changes.
+- Six isolated geometry cases and repeated command projection PASS; AMD/CSS
+  rebuilt. Native preview and human review tracked separately.
+
 ## Unreleased - G11 first introduction activation candidate
 
 - Move How to use this guide to the first position and show four canonical
