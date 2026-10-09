@@ -80,3 +80,11 @@ provider. Existing sources remain. See canonical Kit design/testing records.
 Remaining gates: paired reusable design; localized product scene data and
 atomic build/sync; actual consumer EN/FR normal/reduced lifecycle and paint;
 served native inspection; human checklist. No new scene/path activated.
+
+State preparation now includes additive Group/Grouping review and
+closed/open-before-input/returned desktop/compact hosts plus compact menu-sheet
+composition. These remain ordinary compositions, not published new Library
+providers. Canonical Kit design record retains exact IDs and corrected action
+providers. Use Small Foundation textarea and icon-only desktop trigger; do not
+reintroduce a text-labelled desktop action or stretch recognition tokens. The
+shared inherited-font longhand correction is private WIP, not served here.

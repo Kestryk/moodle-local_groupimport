@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Record Kit f6701fe state-composition/textarea-density successor and retained
+  activation gates. Additive Foundations specimens are not consumer deployment;
+  embedded Kit, served preview and human acceptance remain unchanged.
 - Record private canonical Kit inspection candidate and six isolated lifecycle
   cases. Existing preview, Kit pin and24 lessons remain unchanged; no new scene
   synchronized or served before paired Foundations/consumer gates.

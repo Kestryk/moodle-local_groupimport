@@ -537,3 +537,39 @@ Next compose closed/opening/review/returned desktop/compact states from those
 sources, verify saved geometry/raster and linked providers, then activate product
 data with atomic build and served-native tests. All older Guide/SM lots and
 human checklist remain OPEN as previously recorded; no new exercise/transaction.
+
+### G11-H state-composition and typography successor
+
+Canonical Kit f6701fe82cde2135614ca3cf2ca8b2cbc9af5138 candidate refinements
+remain unconsumed: native icon-only desktop
+trigger, Small Foundation textarea and non-stretched recognition chips. Shared
+textarea font longhands fix the invalid combined shorthand with an inherited
+family token; six before/after cases pass, retaining explicit-family metrics and
+S/M/L heights. Inspection six-case regression and both textarea/text-field plus
+Guide static contracts pass. No native or built AMD proof added.
+
+Foundations08.14 now has four owned additive hosts at y36000/36800/38000/39600:
+Group/Grouping review and closed/open-before-input/returned, desktop750px and
+compact290px. Visible editor bounds pass (85/85/111/111 shapes; Inter).
+Review raster exposed wrong Add/Cancel providers;32 instances now use canonical
+Selection Small solid/outline Default and16 icon compositions use resting paint.
+Corrected Group review/sequence and Grouping review exports inspected. No existing
+source provider repainted. Compact action-sheet host at y41400 is additive and
+uses the measured shared menu recipe, not the older scaled More-item provider.
+
+Exact IDs, partial-write recovery and remaining gates are in canonical Kit
+docs/design/guide-inspection-states-2026-10-09.json. Kit version0.4.166 and
+served preview remain unchanged. Finish compact-menu/remaining raster, saved persistence and
+Library/Standard pairing before localized consumer data/build/preview. Retain
+all G/SM lots and human checklist; no Add/Move/Save fixture or path migration.
+
+Verified preservation snapshot (two exact owned worktrees, no runtime) is
+ws3-20261009T211003Z-port4719pg3-2817b5f8e8ce, candidate-not-published.
+Initial snapshot attempts retained: local allowlist/pathKey strict-mode
+configuration failures, then bundle verification from a non-repository cwd.
+Successor runs in the Kit repository with an external exact-scope profile;
+bundle/restore verification passes. No shared workstation configuration changed.
+Source AI contract is unchanged: this tranche records private preparation, not
+an additional native behavior. The existing shared-engine/design/runtime gates
+still apply. Header trigger paint reconciliation remains open (geometry-only
+icon-button vs neutral design frame); do not silently bypass it during promotion.
