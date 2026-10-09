@@ -475,3 +475,12 @@ root after fullscreen request. Shared tracked document fallback handles only
 unconsumed Escape while this Guide owns native fullscreen. Existing root and
 nested-popup priority stay intact; no navigation/source-specific patch. Native
 lifecycle successor pending, previous geometry failure remains preserved.
+
+Recovered completed native successor214620143Z-50548 PASS atab729f0 after the
+interruption. Native1280x900, normal/reduced Escape preserves modal/slide, Close
+exits/restores focus, Show in interface exits,390 fullscreen control hidden.
+No errors/blocked writes/course mutations/fixtures; credentials/child/lease cleanup
+PASS. Earlier failures retained. No native phone-entry/full-curriculum/human proof.
+G10-H fullscreen bounded implementation is served; common introduction remains
+next. Writer delivery found/read and recorded in guide-content-proposal-intake;
+old curriculum and stored paths remain unchanged until explicit crosswalk policy.

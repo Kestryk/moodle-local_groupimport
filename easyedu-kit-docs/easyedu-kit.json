@@ -14,7 +14,8 @@
       "foundationSavedVerified": true,
       "productSavedVerified": true,
       "enabledInProduct": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261008T214620143Z-50548",
       "humanVisualValidated": false
     },
     "guideG10Welcome20261008": {
