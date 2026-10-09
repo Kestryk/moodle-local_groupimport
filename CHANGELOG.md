@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased - G11 nested Compare wrapping
+
+- Native successor reproduces remaining nested long Compare-note nowrap
+  overflow, distinct from the passing Organisation main body. Consume shared
+  Kit0.4.161 context wrapping/shrinkage; rebuild CSS without product overrides.
+  Preserve failed diagnostics; native correction successor remains pending.
+
 ## Unreleased - G11 native presentation diagnostic
 
 - Add bounded desktop/phone native destination and confirm-highlight coverage

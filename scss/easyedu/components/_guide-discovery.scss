@@ -645,7 +645,14 @@
       border-block-start: 1px solid var(--easyedu-border);
       @include typography.type-caption;
       color: var(--easyedu-text-muted);
-      > p { margin: 0; line-height: 1.5; }
+      > p {
+        margin: 0;
+        line-height: 1.5;
+        min-inline-size: 0;
+        max-inline-size: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
     }
     &__result { @include typography.type-caption; color: var(--easyedu-text-muted); line-height: 1.5; }
     &__recap {
