@@ -93,3 +93,55 @@ replace first-structure/create-grouping/try-actions before a stable-ID/index
 migration policy. The four discovery scenes/accepted Overview remain intact.
 Unverified shortcuts, pasted identifiers on mobile and source-member actions
 stay explicit content questions. Mass Import remains a separate future guide.
+
+## Explicit writer handoff received from the user (9 October)
+
+User supplied the writer's delivery and deferred checklist/human acceptance.
+The external package remains read-only. Re-read HANDOFF/QUESTIONS, the three
+card lessons and guided-path specifications with explicit UTF8 decoding. The
+writer's dirty-worktree observation is historical: Source and Kit are now clean
+and pushed at3cc9eb5 /1d05f16 before this documentary intake.
+
+All three JSON parse successfully. Immutable delivery hashes (SHA256):
+
+- student-guide.json:1B1A8936D0FB2A46F0DF771B12E2E018447CD9B7AD7D86BD20CB8FBF62E8CBC5
+- mass-import-guide.json:036E9B44BB8FB816F112FCEC8B1517237A41DE964D40D8344208C73FE14A46E7
+- guided-paths.json:0CB008C45F2E21AE7DA6AE81D9E936DE2A76A9C410659FBE5E4AF249E77FDF9F
+
+### Reconciled facts, not new runtime acceptance
+
+1. HANDOFF/QUESTIONS still mark Pause/Next/dots/reading duration/fullscreen and
+   welcome as unavailable. This predates current implementation. Use current
+   G10 evidence and its limits; native global welcome reset remains unconfirmed.
+2. `practice-membership` claims only the final confirmation modifies data.
+   Incorrect: its first step creates a real Moodle group. Teach two mutation
+   points: create group, then confirm membership addition. Reset does not undo
+   either action. Do not copy that misleading description into production.
+3. Source `course_manager.js` confirms context `participant` calls `addusers`,
+   preserving other memberships; context `member` calls `movemembers` with
+   source group/user pairs. The visible Move label is not enough to infer removal.
+4. Ctrl/Meta toggle and Shift range branches exist in `bindSelection`; input,
+   link and button clicks are excluded. This is source evidence only, not a new
+   keyboard/mobile regression PASS. Keep teaching shortcuts behind that check.
+5. `participantFirstCard`, `firstGroup`, `firstGrouping` semantic keys exist.
+   Some fallback selectors point to a list/container, not a card. Do not claim
+   a real example card exists merely because a fallback target resolves.
+6. Current three card lessons use static `visualcarddetail`; proposed inspection
+   animations do not exist. Keep those recipes as requirements, not executable
+   JSON commands. `prepare-activity-grouping` is also a proposed path, not an
+   installed ID. No new engine/importer or fabricated successful step.
+
+### Ordered implementation lots retained
+
+| Lot | Work | Guard |
+| --- | --- | --- |
+| Content1 | Common introduction | Implemented/served, bounded native PASS; human open |
+| Content2 | Participant/Group/Grouping lessons | Verify actual controls/compact availability, replace copy at indices8/9/10; canonical recipes and linked Penpot before preview |
+| Content3 | Four discovery lessons vs writer proposal | Preserve accepted Overview/cards; merge verified explanation/recap without rebuilding Motion |
+| Content4 | Search/filter/action/pasted identifiers | Check responsive visibility, selection scopes and action semantics; no desktop gesture instruction on phone |
+| Content5 | Curriculum deduplication and new paths | Complete24-to12 stable-ID migration map; retain old path state and backup, never silent reset |
+| Content6 | Separate Mass Import guide | Verify its own targets/file-preview/history confirmations; no automatic import or rollback |
+
+All older G/SM feedback lots remain retained in their existing ledgers. This
+intake does not mark them done, authorize course-data tests, or close the human
+checklist. No shared Platform plan or writer artifact changed.

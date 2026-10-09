@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - Guide content handoff reconciliation
+
+- Record the user's writer delivery, three validated JSON hashes and ordered
+  integration lots. Reconcile stale capability claims with current G10 evidence.
+- Flag the real group creation at the first practice step: final membership
+  confirmation is not its only mutation. Keep Add/Move semantics and proposed
+  inspection animations/paths distinct from implemented runtime capabilities.
+  Documentation/source audit only; no UI, business data or human acceptance change.
+
 ## Unreleased - Shared Guide common introduction
 
 - Native EN desktop/tablet/mobile open/read/close successor passes contained
