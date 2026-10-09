@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Native first-introduction checks use versioned stable IDs and explicit supported
+historical maps. Preserve old index-pinned specs; successors must inspect intro
+before navigating to Practice. Synthetic reading history belongs only to isolated
+QA storage, never a user's live key or fabricated Moodle completion.
+
 Introduction specimen data remains opt-in until Foundations and first-slide
 activation gates pass. Static examples reuse Kit classes and have no native
 commands. Preserve card explanations, course actions and reading/path state;

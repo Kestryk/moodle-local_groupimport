@@ -1069,6 +1069,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
     $slides = [];
     foreach ($templatedata['tutorialsteps'] as $index => $step) {
         $slide = [
+            'id' => 'reference-' . $index,
             'index' => $index,
             'navicon' => $step['icon'],
             'icon' => $step['icon'],
@@ -1371,22 +1372,13 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         }
 
         if (!empty($step['visualguided'])) {
-            // Replace copy at its existing position, never shift persisted slides.
+            // This lesson explains the Guide itself, not group creation.
+            // Reading order changes below through the explicit historical contract.
+            $slide['id'] = 'use-this-guide';
             $slide['title'] = get_string('guideintro_title', 'local_groupimport');
             $slide['navtitle'] = get_string('guideintro_navtitle', 'local_groupimport');
             $slide['content'] = html_writer::tag('p', s(get_string('guideintro_description', 'local_groupimport')));
-            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::common_introduction();
-            $slide['hasguidedpath'] = true;
-            $slide['guidedpath'] = 'first-structure';
-            $slide['guidedpathtitle'] = $templatedata['tutorialguidedpaneltitle'];
-            $slide['guidedpathcontent'] = $templatedata['tutorialguidedpanelhint'];
-            $slide['guidedpathsteps'] = [
-                'items' => [
-                    $templatedata['tutorialvisualguidedone'],
-                    $templatedata['tutorialvisualguidedtwo'],
-                    $templatedata['tutorialvisualguidedthree'],
-                ],
-            ];
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::common_introduction(true);
         } else if (!empty($step['visualemptycourse'])) {
             $slide['hasguidedpath'] = true;
             $slide['guidedpath'] = 'create-grouping';
@@ -1417,6 +1409,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
     }
 
     $slides = \local_groupimport\local\guide_discovery::prepend($slides);
+    $slides = \local_groupimport\local\guide_discovery::introduction_first($slides);
     $slidecount = max(1, count($slides));
 
     return [
@@ -1474,10 +1467,8 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
  * @return array
  */
 function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
-    return [
+    return \local_groupimport\local\guide_discovery::reading_contract() + [
         'storageKey' => 'local_groupimport.easyedu_guide.' . $courseid,
-        'presentationKey' => 'discovery-20261006',
-        'legacySlideOffset' => 4,
         'firstVisit' => false,
         'fullscreen' => true,
         'welcomeOffer' => \local_groupimport\local\guide_welcome::should_offer(),
