@@ -2,6 +2,9 @@
 
 ## Unreleased - Guide card identifier availability prerequisite
 
+- Updated copy served and native-tested at three widths, including paragraph
+  paint. Local recognition passes six cases: known email/group ID and unresolved
+  chip, clear/Cancel, no membership submission. New scene contract remains pending.
 - Independent manual open/Cancel proof passes for both card types at all three
   widths. EN/FR lesson now teaches verified mobile menu access and existing
   group names/IDs, with ambiguous-name review. Inspection animation still open.

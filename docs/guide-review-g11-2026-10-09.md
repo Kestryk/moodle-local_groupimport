@@ -483,3 +483,34 @@ Efficiency note: first diagnostic missed committed navigation, second assumed
 Show stayed under its slide. The latter consumed150s by using an unbounded
 click. Successor asserts exact live cue attributes and bounds that click to8s;
 future native tests reuse that readiness contract. No token/cost totals available.
+
+### Served copy and local recognition successor
+
+Source0a62ae7 served at runtimef91554c after ordered271416c predecessor and
+managed cache purge. Native3348 PASS3 widths: exact new single-card menu copy,
+group names/IDs paragraph plus7 explanation texts contained and Inter,24 slides
+retained and Close/focus. Native23812 PASS6 independent manual recognition
+cases: existing synthetic participant email/existing group ID plus unresolved
+entry, one valid and one unresolved chip, explicit clear removes chips, Cancel
+closes. Plugin/non-read AJAX POST guard, zero course transactions/fixtures/
+errors/blocked writes; cleanup complete. Scoped retention protects both runs.
+
+Preserve diagnostic28320 and immutable numeric-user-ID spec. That input is not
+the advertised email/username/configured-identifier case; Group chip was not
+valid. Exact numeric-ID ambiguity/availability not diagnosed. Supported-email
+successor passes without parser/Motion changes; do not invent a stale-map bug.
+Runtime/source byte-hash difference inspected: git no-index reports no semantic
+source diff (line endings). No generated-asset replacement undertaken.
+
+Initial staged whitespace check reports trailing blank lines in the three
+preserved audit specs; retain their loaded sources unchanged. Tracked product
+copy lint/whitespace passes. guide-card-inspection-contract.md records exact
+native reference, future phases and shared-engine/design gates. No new scene,
+Kit implementation/design write, native FR or human acceptance claimed.
+
+Native scenario inventory recorded in docs/testing/guide-card-identifier-scenarios.md
+for Platform-owner registry reconciliation. Existing authenticated course data
+and synthetic Test01 participant remain portable-CI blockers; no required gate
+or fixture created. Add a separate diagnostic lot if numeric Moodle-user-ID
+recognition becomes a supported requirement: establish configured allowed fields,
+exact collisions/source map and server interpretation before changing the parser.
