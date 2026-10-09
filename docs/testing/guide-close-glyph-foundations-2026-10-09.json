@@ -1,0 +1,75 @@
+{
+  "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+  "standardPageId": "4ee6f77a-1dfb-809b-8008-c1eac9c2959e",
+  "libraryPageId": "4ee6f77a-1dfb-809b-8008-c1eac9c6142e",
+  "glyphComponentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+  "glyphMainId": "1b9939cf-2f95-805b-8008-c397d9dca34d",
+  "oldSolidXmarkRetained": true,
+  "smallFrameUnchanged": true,
+  "components": [
+    {
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9bcc17d4",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1fb17790",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    },
+    {
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9c022b9e",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef1ff2d191",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    },
+    {
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9c31b6c0",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef201ec0f0",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    },
+    {
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9d3a7527",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef21361b33",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    },
+    {
+      "mainId": "4ee6f77a-1dfb-809b-8008-c1ed9d508e53",
+      "standardId": "4ee6f77a-1dfb-809b-8008-c1ef21510bcd",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    },
+    {
+      "mainId": "e764db89-4cb1-80d0-8008-c274b8a0cba4",
+      "standardId": "e764db89-4cb1-80d0-8008-c2751a925c2e",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    },
+    {
+      "mainId": "1b9939cf-2f95-805b-8008-c32eb47d0028",
+      "standardId": "1b9939cf-2f95-805b-8008-c32f17796e56",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    },
+    {
+      "mainId": "1b9939cf-2f95-805b-8008-c32eb4bbcfd4",
+      "standardId": "1b9939cf-2f95-805b-8008-c32f178c4860",
+      "componentId": "1b9939cf-2f95-805b-8008-c397da455c05",
+      "width": 12.48,
+      "height": 12.48
+    }
+  ],
+  "scope": "Existing glyph usages in canonical Guide Library and linked Standards; no new Close frame family",
+  "editorLinkedReadback": true,
+  "rasterInspected": true,
+  "savedFileVerified": true,
+  "savedRoots": 16,
+  "savedDescendants": 32,
+  "humanVisualValidated": false,
+  "fullscreenWeightChanged": false
+}

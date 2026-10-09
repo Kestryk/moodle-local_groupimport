@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Discovery Close reuses the native regular multiplication glyph in the existing
+Small frame; legacy Guide icons remain. No invalid FontAwesome weight override,
+consumer CSS or new Close frame family. Canonical glyph/linked Foundation slots
+must precede preview. Keep title-role parity separate from product eyebrow and
+Fullscreen glyph work; preserve controller, state and Motion.
+
 Discovery copy must name the illustrated source/destination before explaining
 Add/Move, distinguish source members from global Participants, and teach mobile
 card actions rather than desktop gestures. Copy-only modernisation preserves

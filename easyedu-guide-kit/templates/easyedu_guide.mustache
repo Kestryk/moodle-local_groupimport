@@ -44,7 +44,8 @@
                 <span class="sr-only" role="status" data-easyedu-guide-fullscreen-status></span>
                 {{/guidefullscreenenter}}
                 <button type="button" class="btn easyedu-guide-modal__close" data-easyedu-guide-close="1" aria-label="{{guidecloselabel}}">
-                    <span class="fa fa-times" aria-hidden="true"></span>
+                    {{#discoverypresentation}}<span aria-hidden="true">&times;</span>{{/discoverypresentation}}
+                    {{^discoverypresentation}}<span class="fa fa-times" aria-hidden="true"></span>{{/discoverypresentation}}
                 </button>
                 </div>
             </header>
@@ -575,7 +576,8 @@
                     <span class="fa fa-minus" aria-hidden="true"></span>
                 </button>
                 <button type="button" class="btn btn-link easyedu-guided-panel__close" data-easyedu-guide-checklist-close="1" aria-label="{{guidecloselabel}}">
-                    <span class="fa fa-times" aria-hidden="true"></span>
+                    {{#discoverypresentation}}<span aria-hidden="true">&times;</span>{{/discoverypresentation}}
+                    {{^discoverypresentation}}<span class="fa fa-times" aria-hidden="true"></span>{{/discoverypresentation}}
                 </button>
                 {{#discoverypresentation}}<button type="button" class="btn btn-outline-secondary easyedu-guided-panel__restore" data-easyedu-guide-checklist-restore="1" aria-expanded="false" hidden><span class="fa fa-expand" aria-hidden="true"></span><span>{{guiderestorelabel}}</span></button>{{/discoverypresentation}}
             </div>
