@@ -212,3 +212,22 @@ Own hosted Penpot identity read confirms Foundations40e06342 / Standards page
 read-only; it currently has explanatory topics, not the requested DOM specimens.
 No Penpot mutation this phase. Next G11-G requires those specimens and first
 position activation; do not call the unactivated engine a finished first slide.
+
+## G11-G optional specimen source successor
+
+Canonical0.4.163 provides static navigation/path/checklist/highlight examples.
+Real Guide navigation classes and the existing Small solid action recipe are
+reused; no native command attributes, focus stops or fabricated course actions.
+Product supplies escaped EN/FR labels through common_introduction(true), used
+only by the isolated renderer. Live manage.php remains unchanged: no first-slide
+activation, no removed invitation or stored user state rewritten in this slice.
+
+Original60-case source fixture PASS (five lesson variants, EN/FR,three widths,
+normal/reduced); preservation covers explanation-only and card explanations.
+Navigation successor reuses the canonical active item instead of a new pill
+skin; the unchanged strict60-case fixture also PASS after this successor.
+Sass build and PHP lint PASS; no browser child remains running.
+Penpot own channel read confirms Foundations; providers inspected read-only.
+Paired reusable recipe publication/raster, native activation and backed-up
+reading migration still OPEN. All G11-E member/edit targets, G11-H/I and older
+unfinished SM/Guide lots remain retained; no human acceptance inferred.

@@ -139,6 +139,29 @@
                                     <div class="easyedu-guide-introduction__topic"{{#desktopfullscreen}} data-easyedu-guide-fullscreen-help hidden{{/desktopfullscreen}}>
                                         <dt><span class="fa {{icon}}" aria-hidden="true"></span><span>{{title}}</span></dt>
                                         <dd>{{description}}</dd>
+                                        {{#specimen}}
+                                        <dd class="easyedu-guide-introduction__specimen" data-easyedu-guide-specimen="{{kind}}">
+                                            {{#navigation}}
+                                            <div class="easyedu-guide-nav easyedu-guide-introduction__navigation">
+                                                <span class="easyedu-guide-nav-item is-active">
+                                                    <span class="easyedu-guide-nav-item__icon"><span class="fa fa-compass" aria-hidden="true"></span></span>
+                                                    <span class="easyedu-guide-nav-copy"><span>{{label}}</span></span>
+                                                </span>
+                                            </div>
+                                            {{/navigation}}
+                                            {{#path}}
+                                            <span class="easyedu-guide-introduction__action"><span class="fa fa-route" aria-hidden="true"></span><span>{{label}}</span></span>
+                                            {{/path}}
+                                            {{#checklist}}
+                                            <ol class="easyedu-guide-introduction__checklist">
+                                                {{#steps}}<li><span class="fa {{icon}}" aria-hidden="true"></span><span>{{label}}</span></li>{{/steps}}
+                                            </ol>
+                                            {{/checklist}}
+                                            {{#highlight}}
+                                            <span class="easyedu-guide-introduction__highlight"><span class="fa fa-eye" aria-hidden="true"></span><span>{{label}}</span></span>
+                                            {{/highlight}}
+                                        </dd>
+                                        {{/specimen}}
                                     </div>
                                     {{/topics}}
                                 </dl>

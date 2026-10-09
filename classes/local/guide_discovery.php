@@ -24,7 +24,7 @@ final class guide_discovery {
     }
 
     /** Shared introduction data; no slide insertion or persisted-index migration. */
-    public static function common_introduction(): array {
+    public static function common_introduction(bool $specimens = false): array {
         $topics = [];
         foreach (['navigation' => 'fa-compass', 'demonstration' => 'fa-play-circle',
                 'interface' => 'fa-eye', 'path' => 'fa-route', 'fullscreen' => 'fa-expand'] as $key => $icon) {
@@ -34,7 +34,26 @@ final class guide_discovery {
             if ($key === 'fullscreen') {
                 $topic['desktopfullscreen'] = true;
             }
+            // Opt-in until the shared catalogue and native first-slide gates pass.
+            // These examples have no command attributes and cannot modify a course.
+            if ($specimens && in_array($key, ['navigation', 'interface', 'path'], true)) {
+                $kind = $key === 'interface' ? 'highlight' : $key;
+                $topic['specimen'] = ['kind' => $kind, $kind => true,
+                    'label' => get_string('guideintro_specimen_' . $kind, 'local_groupimport')];
+            }
             $topics[] = $topic;
+        }
+        if ($specimens) {
+            array_splice($topics, 4, 0, [[
+                'icon' => 'fa-tasks',
+                'title' => get_string('guideintro_checklist_title', 'local_groupimport'),
+                'description' => get_string('guideintro_checklist_description', 'local_groupimport'),
+                'specimen' => ['kind' => 'checklist', 'checklist' => true, 'steps' => [
+                    ['icon' => 'fa-check-circle', 'label' => get_string('guideintro_specimen_done', 'local_groupimport')],
+                    ['icon' => 'fa-circle', 'label' => get_string('guideintro_specimen_current', 'local_groupimport')],
+                    ['icon' => 'fa-lock', 'label' => get_string('guideintro_specimen_locked', 'local_groupimport')],
+                ]],
+            ]]);
         }
         return ['topics' => $topics, 'note' => get_string('guideintro_note', 'local_groupimport')];
     }
