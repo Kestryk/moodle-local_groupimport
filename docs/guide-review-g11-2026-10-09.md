@@ -290,3 +290,22 @@ applied, preserving existing transition, path data and read-only init/open.
 Pure helper tests add real reading save, duplicate no-write and ID-less no-op.
 Settled native successor awaits destination visibility before storage, retaining
 both initial read-only and immutable original-backup oracles. Native proof pending.
+
+Canonical0.4.164 consumed/rebuilt and promoted with prerequisite a5f782d plus
+5566fee to runtime3df0492, managed cache purge complete. Native34312 PASS1280,
+768,390: actual first intro/four specimens/no group exercise, read-only opening,
+real topic navigation saves stable discovery-creation/index2 with immutable
+original backup and retained completion data. Existing normal-motion invitation,
+selection-to-Move/destination/confirm highlights, safe Cancel and strict long
+Compare containment also PASS. No errors/blocked course writes/fixtures; full
+credential,child and lease cleanup. Actual desktop intro and mobile lower-reading
+captures inspected, native EasyEdu Inter consistent across explanatory roles.
+Native keyboard/reduced/reload matrix not inferred from this pointer scenario;
+44 historical mappings/stable restoration have separate exact logic proof.
+
+G11-G is implemented and locally served with bounded proof, human review open.
+G11-E other member/edit target branches, G11-H full legacy modernization and
+G11-I same-host entity-header paint comparison remain OPEN; older SM backlog
+retained. Intro currently still carries historical Practice category; the generic
+targetless interface-cue caption reserves a footer row without a target button.
+Record both for the presentation/curriculum successor, not as accepted design.

@@ -11,6 +11,9 @@
 - Consume canonical0.4.164 explicit settled-navigation reading save; preserve
   path state, backup and existing Motion. Retain initial failed tests and use a
   successor waiting for destination visibility before persistence assertions.
+- Managed local preview/native successor PASS1280/768/390 for the first
+  introduction, real reading save/backup and retained safe native path. No course
+  transactions; full curriculum/header and human validation remain open.
 
 ## Unreleased - G11 introduction specimens, not activated
 
