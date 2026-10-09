@@ -129,3 +129,20 @@ and no horizontal overflow PASS. No console errors, blocked writes, reset,
 course transaction or fixtures; child/credentials/lease cleanup complete.
 This bounds G11-B/D native presentation only: welcome native eligibility/dots,
 G11-E..I and human exception review remain open. Failed diagnostic runs retained.
+
+## Nested Compare copy successor (G11-D remains partial)
+
+The preceding PASS checked Organisation main-body copy, not its nested long
+scene-context note. Expanded15332 then3680 diagnoses a real residual: desktop
+note computed whiteSpace=nowrap, painted width1254.25px versus parent1113px.
+No local scroll overflow, illustrating why parent/paint containment is required.
+Retain failed evidence and completed cleanup. Canonical0.4.161 explicitly wraps
+and shrinks scene-context paragraphs; exact SCSS consumed, Sass build PASS with
+existing deprecations. No private product CSS, template or Motion changes.
+Native successor remains pending, not a closed G11-D claim.
+
+Layout-only run37356 measured desktop centred Start, phone upper-left icon and
+Start below content at1280/768/390, but specimens were off-scroll during capture.
+Expanded successor scrolls normally and settles entrance before measuring;
+its desktop layout gate passed, then stopped on the real Compare defect.
+Do not call the off-scroll captures a full responsive paint review.

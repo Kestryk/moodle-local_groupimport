@@ -15764,6 +15764,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__context > p {
   margin: 0;
   line-height: 1.5;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__result,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__result {
