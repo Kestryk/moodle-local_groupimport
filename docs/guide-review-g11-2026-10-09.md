@@ -281,3 +281,12 @@ No course writes/fixtures; credentials,child and lease cleanup complete.
 Successor first-introduction-save checks original storage/absent backup on open,
 then real topic navigation for saved stable ID and immutable original backup.
 No controller change, manual save or forced storage migration to satisfy a test.
+
+Native19044 then confirmed a missing optional reading-save route: old Guide
+saved slideIndex through path progress only, not reading navigation. Retain this
+failed immutable successor and full cleanup. Canonical0.4.164 now saves an
+explicit topic/Previous/Next/keyboard request after the actual destination is
+applied, preserving existing transition, path data and read-only init/open.
+Pure helper tests add real reading save, duplicate no-write and ID-less no-op.
+Settled native successor awaits destination visibility before storage, retaining
+both initial read-only and immutable original-backup oracles. Native proof pending.

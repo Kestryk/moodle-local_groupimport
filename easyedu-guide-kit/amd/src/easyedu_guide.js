@@ -357,6 +357,16 @@ const saveGuideState = (config, state) => {
   }
 };
 
+// Only an explicit reading-navigation request opts in; initialization, opening
+// and legacy consumers without stable IDs remain read-only.
+const saveGuideReadingPosition = (config, index) => {
+  if (!Array.isArray(config.slideIds) || !Number.isInteger(index) || !config.slideIds[index]) return;
+  const state = loadGuideState(config);
+  if (state.presentationKey === config.presentationKey && state.slideIndex === index &&
+      state.slideId === config.slideIds[index]) return;
+  saveGuideState(config, {...state, slideIndex: index});
+};
+
 const getCompletedSteps = (config, pathName) => {
   const state = loadGuideState(config);
   const completed = state.completed && state.completed[pathName];
@@ -1699,6 +1709,7 @@ const applyActiveSlide = (root, index, config, options = {}) => {
   });
 
   root.setAttribute('data-easyedu-guide-current-slide', String(safeIndex));
+  if (config && options.persistReading) saveGuideReadingPosition(config, safeIndex);
   syncInterfaceCue(root, slides[safeIndex]);
   stopDiscoveryScene(root);
   const modal = root.querySelector(SELECTORS.modal);
@@ -2405,14 +2416,14 @@ const bindGuide = (root, config) => {
     const next = event.target.closest(SELECTORS.next);
     if (next && root.contains(next)) {
       event.preventDefault();
-      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) + 1, activeConfig);
+      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) + 1, activeConfig, {persistReading: true});
       return;
     }
 
     const previous = event.target.closest(SELECTORS.previous);
     if (previous && root.contains(previous)) {
       event.preventDefault();
-      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) - 1, activeConfig);
+      setActiveSlide(root, Number(root.getAttribute('data-easyedu-guide-current-slide') || 0) - 1, activeConfig, {persistReading: true});
       return;
     }
 
@@ -2437,7 +2448,7 @@ const bindGuide = (root, config) => {
       event.preventDefault();
       syncSlideLocks(root, activeConfig);
       setActiveSlide(root, Number(navItem.getAttribute('data-easyedu-guide-nav-item') || 0), activeConfig, {
-        allowLocked: navItem.classList.contains('is-locked')
+        allowLocked: navItem.classList.contains('is-locked'), persistReading: true
       });
       return;
     }
@@ -2561,25 +2572,25 @@ const bindGuide = (root, config) => {
     const rtlMultiplier = window.getComputedStyle(root).direction === 'rtl' ? -1 : 1;
     if (event.key === 'ArrowRight') {
       event.preventDefault();
-      setActiveSlide(root, activeIndex + rtlMultiplier, activeConfig);
+      setActiveSlide(root, activeIndex + rtlMultiplier, activeConfig, {persistReading: true});
       return;
     }
 
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
-      setActiveSlide(root, activeIndex - rtlMultiplier, activeConfig);
+      setActiveSlide(root, activeIndex - rtlMultiplier, activeConfig, {persistReading: true});
       return;
     }
 
     if (event.key === 'Home') {
       event.preventDefault();
-      setActiveSlide(root, 0, activeConfig);
+      setActiveSlide(root, 0, activeConfig, {persistReading: true});
       return;
     }
 
     if (event.key === 'End') {
       event.preventDefault();
-      setActiveSlide(root, slideCount - 1, activeConfig);
+      setActiveSlide(root, slideCount - 1, activeConfig, {persistReading: true});
       return;
     }
 
