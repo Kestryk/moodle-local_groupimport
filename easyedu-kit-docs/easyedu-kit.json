@@ -10,7 +10,9 @@
       "isolatedLogicVerified": true,
       "sourceSynchronizationVerified": true,
       "activated": false,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRun": "easystud-authenticated-20261009T115015391Z-23172",
+      "nativeMigrationActivatedVerified": false,
       "humanVisualValidated": false
     },
     "guideSceneContext20261009": {

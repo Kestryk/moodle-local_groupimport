@@ -202,3 +202,13 @@ Next activation must move the intro, remove its unrelated group invitation,
 provide canonical navigation/path/checklist/highlight specimens, pair important
 recipes in Foundations and supply explicit product historical maps. Keep native
 migration/persistence, curriculum redesign and human review separate.
+
+Preparation58dbac7 promoted to runtimeedf9e5c with managed cache purge.
+Native unchanged expanded scenario20261009T115015391Z-23172 PASS1280/768/390
+after the optional helper update, demonstrating inactive-consumer preservation,
+not activated migration. No writes/fixtures or console errors; complete cleanup.
+Own hosted Penpot identity read confirms Foundations40e06342 / Standards page
+4ee6f77a-c2959e available. Existing common-introduction Mobile provider inspected
+read-only; it currently has explanatory topics, not the requested DOM specimens.
+No Penpot mutation this phase. Next G11-G requires those specimens and first
+position activation; do not call the unactivated engine a finished first slide.
