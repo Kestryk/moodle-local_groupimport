@@ -45,3 +45,12 @@ not the product's business model.
   until an explicit content crosswalk/migration policy is implemented.
 
 No content replacement, new database write or human acceptance is claimed.
+
+## 9 October continuation
+
+Bounded G10-H native proof recovered/persisted (214620143Z-50548 PASS); fullscreen
+is served atab729f0. Common introduction implementation boundary documented in
+the canonical Kit: guide-common-introduction.md. It is not yet a rendered slide.
+Next: source-preserving shared composition, capability-aware EN/FR content,
+paired design and responsive proof before activation. Do not insert a new first
+slide by blindly shifting persisted indices; first audit existing state identity.
