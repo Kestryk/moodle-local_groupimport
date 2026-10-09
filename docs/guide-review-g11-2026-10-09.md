@@ -514,3 +514,26 @@ and synthetic Test01 participant remain portable-CI blockers; no required gate
 or fixture created. Add a separate diagnostic lot if numeric Moodle-user-ID
 recognition becomes a supported requirement: establish configured allowed fields,
 exact collisions/source map and server interpretation before changing the parser.
+
+## G11-H canonical private source candidate
+
+Kit5e4fed6 prepares explicit inspection template/SCSS/engine branch, reusing
+the current reading/Pause/Next/reveal-scroll/abort owner. Existing membership
+choreography and four legacy scene templates preserved. Shared card/field/
+menu/button/token primitives only; no product CSS. Six actual canonical-renderer/
+SCSS/source-engine cases pass: Group+Grouping, EN1280 normal, FR390 normal and
+EN768 reduced. Resize clock Pause, Next, review, natural return, Reset/replay/
+departure/destroy verified; Guide static contract passes. No built AMD/native
+or complete language-width matrix claimed. Kit version unchanged0.4.166;
+private WIP is pushed but NOT consumed here or served.
+
+Owned Foundations08.14 additive source-reference host1b9939cf-2f95-805b-8008-
+c3db15b81a7e at y34000 links existing natural Group/Grouping card and Desktop/
+Phone reading providers, unscaled.50 visible shapes, Inter and editor containment;
+PNG export inspected. This selects sources, not full inspection states or new
+Library publication. Existing accepted boards/providers remain unchanged.
+
+Next compose closed/opening/review/returned desktop/compact states from those
+sources, verify saved geometry/raster and linked providers, then activate product
+data with atomic build and served-native tests. All older Guide/SM lots and
+human checklist remain OPEN as previously recorded; no new exercise/transaction.

@@ -331,3 +331,9 @@ clear/Cancel, no submission. Candidate scene contract records verified routes,
 illustration-only phases and required shared-clock/paired-design boundary.
 Original numeric Moodle-user-ID diagnostic retained without a product-failure
 claim; supported identifiers and configured field IDs are distinct concepts.
+
+Writer-proposed inspection recipe now has canonical private Kit source WIP
+5e4fed6 and six isolated lifecycle cases. No product activation/new path yet.
+Foundations adds linked source references only; full paired scene states and
+native consumer build remain gates. Current preview stays at the identifier
+copy implementation0a62ae7/runtimef91554c (no new scene served).

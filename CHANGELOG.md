@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased - Inspection shared-source preparation
+
+- Record private canonical Kit inspection candidate and six isolated lifecycle
+  cases. Existing preview, Kit pin and24 lessons remain unchanged; no new scene
+  synchronized or served before paired Foundations/consumer gates.
+
 ## Unreleased - Guide card identifier availability prerequisite
 
 - Updated copy served and native-tested at three widths, including paragraph
