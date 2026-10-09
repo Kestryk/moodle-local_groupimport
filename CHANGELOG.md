@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide destination action explanation
+
+- Modernize the existing selection-modal lesson with shared explanation topics.
+  Distinguish participant membership addition, source-member transfer and the
+  original-grouping removal option; explain search/review/Cancel and mobile actions.
+- Existing destination illustration, targets, Motion and persisted lesson/path
+  identities unchanged. No Kit style override or new component family.
+
 ## Unreleased - Guide filter and identifier explanations
 
 - Local preview native reading PASS1280/768/390, including every topic title,

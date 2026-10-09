@@ -1271,6 +1271,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 'note' => $templatedata['tutorialvisualcontextdesc'],
             ];
         } else if (!empty($step['visualactionmodal'])) {
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::action_explanation('destination');
             $slide['visualactionflow'] = [
                 'selection' => [
                     $templatedata['tutorialvisualstudentone'],

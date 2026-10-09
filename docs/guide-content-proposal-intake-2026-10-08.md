@@ -239,3 +239,13 @@ Successor preserves exact same product assets and adds actual dt/dd selectors.
 matrix, Show-in-interface/action availability, business operation or new design
 raster claimed. Zero page errors/blocked writes/fixtures; cleanup complete,
 scoped retention dry-run protects the evidence. Human acceptance stays OPEN.
+
+### Content4 destination reading slice
+
+Existing reference-11 selection-modal lesson now consumes the same published
+explanation composition. EN/FR distinguishes Participant addusers from source
+member movemembers, original Grouping removal option, search/review/Cancel and
+responsive selection actions. Source command branches audited; illustration,
+targets, stable reading/path identities and accepted Motion remain unchanged.
+No new shared recipe or Penpot component; existing explanation provider reused.
+Native reading is a separate gate, not native transfer or mobile-action proof.

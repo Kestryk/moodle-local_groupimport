@@ -26,12 +26,12 @@ const engine = 'window.define=(...args)=>{window.Guide=args.at(-1)();};\n' +
             data.slides = data.actionLessons.map((lesson,index)=>({...lesson,index,content:'',title:lesson.type}));
             Object.assign(data, {discoverypresentation:true, rootclass:'local-groupimport-easystud-easyedu-guide easyedu-guide--discovery',
                 guideopenlabel:'Open', guidecloselabel:'Close', guidetitle:'EasyStud guide', guidesubtitle:'Student Management',
-                guidepreviouslabel:'Previous', guidenextlabel:'Next', guideshowinterfacelabel:'Show', slidecount:2});
+                guidepreviouslabel:'Previous', guidenextlabel:'Next', guideshowinterfacelabel:'Show', slidecount:data.slides.length});
             await page.setContent('<style>*{box-sizing:border-box}[hidden]{display:none!important}'+css+'</style>'+renderer.module.exports.render(template,data));
             await page.addScriptTag({content:engine});
             await page.evaluate(() => Guide.init('[data-easyedu-guide-root]', {firstVisit:false,storageKey:'copy-fixture'}));
             await page.locator('[data-easyedu-guide-open]').click();
-            for (const index of [0,1]) {
+            for (const index of data.slides.map(slide=>slide.index)) {
                 await page.locator(`[data-easyedu-guide-nav-item="${index}"]`).click();
                 const copy = page.locator(`[data-easyedu-guide-slide="${index}"] .easyedu-guide-introduction`).first();
                 await copy.waitFor({state:'visible'});
