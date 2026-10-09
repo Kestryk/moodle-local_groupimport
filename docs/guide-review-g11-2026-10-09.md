@@ -231,3 +231,24 @@ Penpot own channel read confirms Foundations; providers inspected read-only.
 Paired reusable recipe publication/raster, native activation and backed-up
 reading migration still OPEN. All G11-E member/edit targets, G11-H/I and older
 unfinished SM/Guide lots remain retained; no human acceptance inferred.
+
+## G11-G paired Foundations publication
+
+Introduction controls Desktop1100x660 and Mobile342x1150 published in Library
+with linked Standards. Exact owned ordinary hosts transferred using native
+clipboard: recursive relative geometry/paint/type/provider parity before
+publication. Main/Standard parity excludes only inherited outer ownership on
+ordinary descendants; nested canonical provider identity remains checked.
+Old Common introduction providers retained; preparations archived at y30000.
+
+Saved-file gate PASS4 roots/352 visible descendants, provider links and bounds.
+Mobile preparation PNG inspected; desktop API export500 timeout retained as a
+diagnostic. Own CDP9225 editor capture initially exposed the old clipping parent:
+reparent only the two owned new preparations to root, retaining legacy catalogue.
+Contained desktop successor and final linked captures inspected. Media manifested
+outside Git; scoped dry-run protects the run, no deletion/auth export/Moodle write.
+Final narrow capture keeps the introduction below the retained MCP toolbar;
+earlier narrow framing diagnostics are retained, not overwritten.
+Penpot publication is not first-slide activation or human acceptance. Next:
+product first-lesson ordering/data, obsolete group invitation removal, explicit
+stable-ID historical maps and native preservation/migration proof.

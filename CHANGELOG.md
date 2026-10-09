@@ -6,6 +6,10 @@
   and highlight examples. Add EN/FR specimen data to the isolated renderer.
   Existing live introduction data, slide order, path invitation and persistence
   configuration remain unchanged until paired design/activation gates pass.
+- Foundations now publishes Desktop/Mobile reusable introduction-control
+  compositions, paired Library/Standards, with old providers retained. Saved
+  four-root/352-descendant link/geometry proof and inspected paint; native
+  first-slide and reading migration remain separate pending gates.
 
 ## Unreleased - G11 first-slide migration preparation
 

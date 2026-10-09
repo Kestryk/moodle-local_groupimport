@@ -1,0 +1,35 @@
+{
+  "fileId": "40e06342-8830-80d6-8008-96572effc11c",
+  "standardPageId": "4ee6f77a-1dfb-809b-8008-c1eac9c2959e",
+  "libraryPageId": "4ee6f77a-1dfb-809b-8008-c1eac9c6142e",
+  "desktopPreparationId": "1b9939cf-2f95-805b-8008-c380986b2cd2",
+  "mobilePreparationId": "1b9939cf-2f95-805b-8008-c38098b2bc82",
+  "preparationPosition": {"y": 28000, "desktopX": 24, "mobileX": 1274},
+  "oldProvidersRetained": true,
+  "geometry": {"desktopWidth": 1100, "desktopHeight": 660, "mobileWidth": 342, "mobileHeight": 1150},
+  "specimens": [
+    {"host": "1b9939cf-2f95-805b-8008-c380986b2cd2", "navigation": "1b9939cf-2f95-805b-8008-c380f63c17fb", "path": "1b9939cf-2f95-805b-8008-c380f67013d8", "highlight": "1b9939cf-2f95-805b-8008-c380f713d50d", "checklist": "1b9939cf-2f95-805b-8008-c380f76741c1"},
+    {"host": "1b9939cf-2f95-805b-8008-c38098b2bc82", "navigation": "1b9939cf-2f95-805b-8008-c380f8bdd26d", "path": "1b9939cf-2f95-805b-8008-c380f8ebe642", "highlight": "1b9939cf-2f95-805b-8008-c380f95af007", "checklist": "1b9939cf-2f95-805b-8008-c380f9ab0a33"}
+  ],
+  "editorTextContainmentVerified": true,
+  "components": [
+    {"state": "Desktop", "componentId": "1b9939cf-2f95-805b-8008-c3828739bece", "mainId": "1b9939cf-2f95-805b-8008-c38268dcea49", "standardId": "1b9939cf-2f95-805b-8008-c382a69317e9", "width": 1100, "height": 660},
+    {"state": "Mobile", "componentId": "1b9939cf-2f95-805b-8008-c382a5a0c003", "mainId": "1b9939cf-2f95-805b-8008-c3829149de6c", "standardId": "1b9939cf-2f95-805b-8008-c382a73ee969", "width": 342, "height": 1150}
+  ],
+  "published": true,
+  "nativeClipboardFingerprintParity": true,
+  "ancestorClippingCorrected": true,
+  "preparationArchivedY": 30000,
+  "mobilePreparationExportInspected": true,
+  "desktopPreparationEditorCaptureInspected": true,
+  "desktopExportFailed": "Penpot API export 500 ResourceRequest timeout",
+  "savedServerVerified": true,
+  "savedRoots": 4,
+  "savedDescendants": 352,
+  "standardLibraryPaintGeometryParity": true,
+  "ownerInheritanceExcludedFromPaintComparison": true,
+  "rasterInspected": true,
+  "rasterEvidence": "g11-introduction-controls-20261009: retained desktop diagnostic, contained desktop successor, linked desktop and mobile editor captures; complete mobile preparation export inspected",
+  "humanVisualValidated": false,
+  "scope": "Published paired reusable control compositions, source-preserving clipboard transfer and saved-link/geometry proof. Old providers retained, ordinary preparation hosts archived. No product first-slide activation or native migration proof."
+}
