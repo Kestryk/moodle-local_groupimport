@@ -1375,6 +1375,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
             // This lesson explains the Guide itself, not group creation.
             // Reading order changes below through the explicit historical contract.
             $slide['id'] = 'use-this-guide';
+            $slide['category'] = get_string('guideintro_category', 'local_groupimport');
             $slide['title'] = get_string('guideintro_title', 'local_groupimport');
             $slide['navtitle'] = get_string('guideintro_navtitle', 'local_groupimport');
             $slide['content'] = html_writer::tag('p', s(get_string('guideintro_description', 'local_groupimport')));

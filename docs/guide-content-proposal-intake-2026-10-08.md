@@ -184,3 +184,21 @@ inspection animations remain explicit Content2 follow-up, not a closed lot.
 After that, verify filter/action/identifier lessons and define non-destructive
 stable-ID curriculum migration before reducing the24-slide sequence. All older
 G/SM lots and human validation remain retained; no checklist required now.
+
+### Content3 first contextual-copy slice (9 October)
+
+Introduction now carries Guide rather than the historical Practice category.
+Organisation introduces the actual illustrated Projet Orion/Projet Horizon
+comparison before animation, replacing the inconsistent Recherche destination.
+Actions explicitly describes source members, Move, destination search/review,
+mobile card menu and the no-Moodle-data illustration boundary. EN/FR updated.
+Accepted Overview, card paint, scene timing/Motion, path IDs, storage and native
+targets are unchanged. No new layout/provider is introduced in Penpot; existing
+published Discovery composition is reused, not redrawn or duplicated per slide.
+
+Actual PHP/Moodle Mustache/consumer CSS/built AMD48 cases PASS across EN/FR,
+1280/768/390 and normal/reduced motion. Painted introductory copy contained,
+illustrated destination consistent and mobile instruction present. PHP lint
+and44 historical migrations PASS. This is not the24-to12 deduplication or the
+remaining legacy modernisation, inspection animations or new path integration.
+Native serving of this copy slice remains pending; human acceptance OPEN.
