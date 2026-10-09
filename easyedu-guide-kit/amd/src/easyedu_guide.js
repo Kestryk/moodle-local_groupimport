@@ -2268,9 +2268,13 @@ const bindGuide = (root, config) => {
 
   const fullscreenButton = root.querySelector('[data-easyedu-guide-fullscreen]');
   const fullscreenModal = root.querySelector(SELECTORS.modal);
+  root.querySelectorAll('[data-easyedu-guide-fullscreen-help]').forEach(help => { help.hidden = true; });
   if (config.fullscreen && fullscreenButton && fullscreenModal) {
     root.easyeduGuideFullscreen = createFullscreenController(fullscreenModal, state => {
       fullscreenButton.hidden = !state.available;
+      root.querySelectorAll('[data-easyedu-guide-fullscreen-help]').forEach(help => {
+        help.hidden = !state.available;
+      });
       fullscreenButton.disabled = state.pending;
       fullscreenButton.setAttribute('aria-pressed', state.active ? 'true' : 'false');
       fullscreenButton.setAttribute('aria-label', state.active ?

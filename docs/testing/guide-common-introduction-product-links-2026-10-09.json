@@ -1,0 +1,16 @@
+{
+  "fileId":"b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId":"b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components":[
+    {"id":"c53a1fb5-311f-80be-8008-c2caece4dab5","componentId":"c53a1fb5-311f-80be-8008-c2ca9350451f","x":60,"y":21424,"width":1100,"height":430,"archived":[]},
+    {"id":"c53a1fb5-311f-80be-8008-c2caed38db21","componentId":"c53a1fb5-311f-80be-8008-c2ca939e1281","x":1344,"y":21424,"width":342,"height":760,"archived":[]}
+  ],
+  "boards":["c53a1fb5-311f-80be-8008-c2caecbd4146","c53a1fb5-311f-80be-8008-c2caed14af41"],
+  "mobileDestinationShift":[],
+  "savedServerVerified":true,
+  "savedRoots":2,
+  "savedDescendants":80,
+  "rasterInspected":true,
+  "wholeGuideCompositionAudit":false,
+  "humanVisualValidated":false
+}

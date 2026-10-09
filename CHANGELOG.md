@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased - Shared Guide common introduction
+
+- Modernize the existing Guided path mode lesson in place with translated
+  navigation, animation, Show/Return, optional-path and desktop-fullscreen
+  explanations. Keep24 slides, original positions and first-structure path.
+- Consume canonical Kit0.4.159 template/SCSS/AMD, no private typography/style.
+  Twelve isolated EN/FR width/Motion cases pass, including capability-off and
+  retained state. Foundations/Guide content specimens are saved, linked and
+  raster-inspected. Native activation and human acceptance remain separate.
+
 ## Unreleased - Guide fullscreen bounded native proof
 
 - Native Moodle successor passes full viewport, normal/reduced Escape keeping

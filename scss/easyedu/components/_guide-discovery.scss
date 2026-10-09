@@ -152,6 +152,37 @@
     gap: 0.5rem;
     flex: 0 0 auto;
   }
+  .easyedu-guide-introduction {
+    min-width: 0;
+    &__topics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem 1.5rem;
+      margin: 1rem 0;
+    }
+    &__topic {
+      min-width: 0;
+      padding-block-end: 0.75rem;
+      border-block-end: 1px solid var(--easyedu-border);
+      &[hidden] { display: none; }
+      dt {
+        @include typography.type-control-label;
+        display: flex;
+        align-items: center;
+        gap: var(--easyedu-action-icon-gap);
+        color: var(--easyedu-card-identity-title-color);
+        .fa { flex: 0 0 1rem; text-align: center; color: var(--easyedu-primary); }
+      }
+      dd {
+        @include typography.type-caption;
+        margin: 0.375rem 0 0;
+        color: var(--easyedu-text-muted);
+        overflow-wrap: anywhere;
+      }
+    }
+    &__note { @include typography.type-caption; color: var(--easyedu-text-muted); margin: 0; }
+    @media (max-width: 47.999rem) { &__topics { grid-template-columns: minmax(0, 1fr); } }
+  }
   .easyedu-guide-modal__fullscreen { @include buttons.close-button; }
   .easyedu-guide-modal:fullscreen {
     background: var(--easyedu-surface);
