@@ -117,6 +117,12 @@ if (-not $runtimeTemplate.Contains('{{guidehoverlabel}}') -or
 
 $items = @(
     [pscustomobject]@{
+        Name = "canonical native confirmation controller"
+        Source = Resolve-OwnedPath $kitRoot "guide\amd\src\easyedu_confirmation.js"
+        Target = Resolve-OwnedPath $pluginRootPath "amd\src\easyedu_confirmation.js"
+        Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "guide\amd\src\easyedu_confirmation.js")
+    },
+    [pscustomobject]@{
         Name = "embedded native fullscreen lifecycle"
         Source = $fullscreenPath
         Target = Resolve-OwnedPath $pluginRootPath "easyedu-guide-kit\amd\src\easyedu_guide_fullscreen.js"

@@ -6968,6 +6968,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
@@ -6995,6 +6996,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button:hover,
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary:hover,
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -7034,6 +7036,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -7056,6 +7059,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   color: var(--easyedu-secondary-text);
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--secondary:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -7083,6 +7087,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-danger);
@@ -7103,6 +7108,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   color: var(--easyedu-surface);
 }
 .local-groupimport-easystud-message-modal .modal-footer > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-danger);
   color: var(--easyedu-surface);
 }
@@ -23332,6 +23338,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   border-radius: 0.5rem;
@@ -23361,6 +23368,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 .local-groupimport-easystud [data-easystud-add-group-emails]:hover,
 .local-groupimport-easystud [data-easystud-add-grouping-groups]:hover, .local-groupimport-easystud-rename__edit [type=submit]:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -23393,6 +23401,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -23436,6 +23445,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-easystud [data-easystud-cancel-grouping-groups]:hover,
 .local-groupimport-easystud [data-easystud-container-search-cancel]:hover,
 .local-groupimport-easystud [data-easystud-rename-cancel]:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-primary);
 }
@@ -24206,6 +24216,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
@@ -24225,6 +24236,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-button:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -24253,6 +24265,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -24278,6 +24291,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-button--secondary:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -24306,6 +24320,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-danger);
@@ -24326,6 +24341,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-danger);
   color: var(--easyedu-surface);
 }
@@ -26378,6 +26394,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
@@ -26405,6 +26422,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button:hover,
 .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--secondary:hover,
 .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -26444,6 +26462,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -26466,6 +26485,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--secondary:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -26493,6 +26513,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-danger);
@@ -26513,6 +26534,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-entity-dialog__actions > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-danger);
   color: var(--easyedu-surface);
 }
@@ -26556,6 +26578,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
@@ -26583,6 +26606,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button:hover,
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button--secondary:hover,
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -26622,6 +26646,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -26644,6 +26669,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button--secondary:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -26671,6 +26697,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-danger);
@@ -26691,6 +26718,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-dialog-actions > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-danger);
   color: var(--easyedu-surface);
 }
@@ -26739,6 +26767,20 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   background: linear-gradient(180deg, #fff 0%, #fffaf8 100%);
 }
 
+.easyedu-ui dialog.easyedu-confirmation-dialog--modal {
+  position: fixed;
+  inset: 0;
+  inline-size: min(34rem, 100vw - 2rem);
+  block-size: fit-content;
+  max-block-size: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+}
+.easyedu-ui dialog.easyedu-confirmation-dialog--modal::backdrop {
+  background: color-mix(in srgb, var(--easyedu-text) 35%, transparent);
+}
+
 .easyedu-ui .easyedu-dialog-description {
   font-family: var(--easyedu-font-family-ui);
   font-weight: var(--easyedu-font-weight-regular);
@@ -26775,6 +26817,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
@@ -26802,6 +26845,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button:hover,
 .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--secondary:hover,
 .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -26841,6 +26885,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -26863,6 +26908,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--secondary:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -26890,6 +26936,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-danger);
@@ -26910,6 +26957,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-confirmation-dialog__actions > .easyedu-button--danger:hover {
+  text-decoration: none;
   background: var(--easyedu-danger);
   color: var(--easyedu-surface);
 }
@@ -27164,6 +27212,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -27192,6 +27241,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-file-deposit--moodle .fp-btn-choose:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -27278,6 +27328,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -27308,6 +27359,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__remove:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -27417,6 +27469,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   min-inline-size: min(14rem, 100%);
@@ -27437,6 +27490,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-form-actions [type=submit]:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -27520,6 +27574,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -27542,6 +27597,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-button--neutral:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }
@@ -27573,6 +27629,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
   background: var(--easyedu-surface);
@@ -27602,6 +27659,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-secondary-text);
 }
 .easyedu-ui .easyedu-button--icon:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-secondary-text);
 }
@@ -28292,6 +28350,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
@@ -28311,6 +28370,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   color: var(--easyedu-surface);
 }
 .easyedu-ui .easyedu-create-icon-button:hover {
+  text-decoration: none;
   background: var(--easyedu-primary-strong);
   color: var(--easyedu-surface);
 }

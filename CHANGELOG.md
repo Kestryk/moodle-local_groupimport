@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - G11 reset confirmation candidate
+
+- Replace inline confirmation section with canonical native-dialog opt-in and
+  shared controller. Preserve original capability/sesskey/POST/reset handler.
+  Cancel receives focus; Escape follows Cancel without reset; no-JS stays usable.
+- Consume canonical no-underline button role and native-modal geometry.
+  Six EN/FR actual Mustache/CSS/built-AMD isolated cases pass at1280/768/390.
+  Not promoted to preview; design/native presentation gates remain open.
+
 ## Unreleased - G11 review correction candidate (WIP)
 
 - Record user's acceptance of other Guide checklist items and all exceptions.
