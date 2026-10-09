@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+Inspection scene data remains inactive until the matching Kit template, engine
+and SCSS are synchronized atomically. Fictional known/unresolved examples are
+not native recognition or applied memberships; provide separate desktop and
+compact action-menu narration, reject unknown destination types, and preserve
+all historical slide/path adapters. Product PHP plus isolated canonical renderer
+proof is not built AMD or served Moodle proof.
+
 Discovery Close reuses the native regular multiplication glyph in the existing
 Small frame; legacy Guide icons remain. No invalid FontAwesome weight override,
 consumer CSS or new Close frame family. Canonical glyph/linked Foundation slots

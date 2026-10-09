@@ -88,3 +88,28 @@ providers. Canonical Kit design record retains exact IDs and corrected action
 providers. Use Small Foundation textarea and icon-only desktop trigger; do not
 reintroduce a text-labelled desktop action or stretch recognition tokens. The
 shared inherited-font longhand correction is private WIP, not served here.
+
+## Paired design and product-data successor
+
+Canonical private candidate:17b6852046a0f864c1fad3221bf71791cb826bbc.
+This documentation pin is not an embedded Kit synchronization.
+
+Canonical Kit publication record now lists14 Library providers and18 Standard
+links, recursive parity, saved IDs and scoped fresh raster inspection. These
+compose native card-direct-action/mobile-card-menu-trigger, not framed generic
+icon buttons. Intermediate opening/growth Motion and native gates remain open.
+
+`guide_discovery::card_inspection('group'|'grouping')` supplies localized context
+for the shared recipe. It is intentionally not called by curriculum builders.
+Example email `alex@example.test` and `unknown-entry` are fictional; known chips
+are illustration data, not live resolver output. Unknown destination types fail
+before language lookup. Desktop and compact Open narration are distinct.
+
+`node tools/release/test-guide-inspection-data.cjs <php>` checks four EN/FR
+contexts, invalid type rejection and exact preservation of all old adapters.
+The canonical Kit test accepts optional `<product-php-fixture> <php>` arguments
+to run24 language/width/Motion/type cases against this data. Isolated source
+rendering does not certify embedded/build/native adoption. Declared Moodle
+floor remains5.1; no new version-sensitive API, DB/bootstrap, settings or course
+write. [Moodle coding style](https://moodledev.io/general/development/policies/codingstyle)
+consulted for the PHP method/documentation and language-string layout.

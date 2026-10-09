@@ -2,6 +2,14 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare inactive EN/FR destination-card inspection data with separate compact
+  narration and fictional recognition examples. Four data contexts and PHP lint
+  pass; historical adapters/24 lessons/six-step path stay unchanged.
+- Actual product context passes24 canonical source-renderer lifecycle cases
+  against Kit17b6852; no embedded sync, built AMD or native activation asserted.
+- Record14 canonical Foundations Library providers and18 Standard links,
+  saved-ID/recursive parity and scoped raster proof. Native header recipes and
+  terminal action alignment reconciled; embedded/runtime activation still open.
 - Record Kit f6701fe state-composition/textarea-density successor and retained
   activation gates. Additive Foundations specimens are not consumer deployment;
   embedded Kit, served preview and human acceptance remain unchanged.
