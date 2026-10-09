@@ -249,3 +249,15 @@ responsive selection actions. Source command branches audited; illustration,
 targets, stable reading/path identities and accepted Motion remain unchanged.
 No new shared recipe or Penpot component; existing explanation provider reused.
 Native reading is a separate gate, not native transfer or mobile-action proof.
+
+Destination slice17e6d8e served at runtime623722f after871ec00 predecessor.
+Native18888 PASS9 lesson/width cases: filters, identifiers and destination at
+1280/768/390; all7 topic text nodes contained and Inter,24 slides retained,
+Close/focus verified.36 isolated EN/FR/Motion cases PASS. Zero errors/blocked
+writes/transactions/fixtures; complete cleanup. No new Penpot/style recipe or
+native command invoked. Existing paired explanation composition is reused.
+
+Next in-place menu lesson distinguishes desktop right-click from mobile action
+sheet and single-card vs multi-selection scope. Source setVisibleActions and
+showMenu branches audited; full native menu availability remains distinct from
+reading proof. Curriculum dedup/inspection animations/human review stay OPEN.

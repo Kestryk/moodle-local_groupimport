@@ -1259,6 +1259,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 ],
             ];
         } else if (!empty($step['visualcontextmenu'])) {
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::action_explanation('menu');
             $slide['visualcontextmenu'] = [
                 'cardicon' => 'fa-user',
                 'cardlabel' => $templatedata['tutorialparticipantlabel'],
