@@ -435,3 +435,51 @@ guide-close-native-parity-2026-10-09.json; scoped retention dry-run only.
 Close correction now has saved Foundations + renderer + served native proof,
 not new human acceptance. Fullscreen glyph remains OPEN, as do G11-E other
 member/edit branches, G11-H inspection animations and curriculum/Content4..6.
+
+## G11-H identifier-panel availability prerequisite
+
+Native42708 PASS6 read/open cases at1280/768/390. Group text-add lesson opens
+the actual empty Group field. Grouping card lesson opens the real card, then
+native header at1280 or card menu at768/390 opens its empty group field. All
+fields use EasyEdu Inter; no input, Add/Move/Save, recognition, course write,
+fixture or new scene implemented. Complete credentials/child/lease cleanup;
+scoped retention dry-run protects the evidence. Manual Group menu proof is
+the next prerequisite; never infer that route from the Guide adapter's opener.
+
+Preserve failed46156 and43064 plus immutable specs. First used outgoing Show
+before lesson change committed; second wrongly scoped relocated Show into the
+slide. Successor waits committed index, verifies sole visible command's exact
+native opener and awaits interface Return after view/open completion. Product
+Motion/controller/styles unchanged. These harness failures do not justify a
+product animation patch. Record guide-card-identifier-availability-native-2026-10-09.json.
+
+New inspection recipe must reuse canonical cards/controls and existing scene
+clock, Pause/Next/abort/scroll owner. Explicit Group/Grouping branch required:
+the membership run assumes person/menu/destination nodes and cannot serve an
+unknown scene kind. Catalogue reusable desktop/mobile states in Foundations
+before consumer activation. Distinguish illustrated recognition from real
+native recognition and applied business success. G11-H remains OPEN.
+
+Manual14096 PASS6 separate cases: actual workspace selection, header1280 or
+single-card menu768/390, visible focused empty Group/Grouping field and native
+Cancel. No Guide opener used. No transactions/errors/blocked writes/fixtures;
+cleanup complete; retention dry-run protects evidence. Current native mobile
+text-add is available via single-card menu, so do not teach a hidden desktop
+button or claim the feature is absent. Selection/capability combinations not
+exhaustively proved. Source names/ID conflict handling inspected separately.
+
+EN/FR identifier lesson now describes the verified compact route, distinguishes
+the two destination entities, teaches existing group names/IDs and ambiguous
+duplicate-name review. Published explanation recipe, native commands,24 lesson
+identities and Motion unchanged. Recognition and new animated inspection remain
+separate OPEN gates; native availability is not a scene delivery claim.
+
+Updated explanation copy passes72 actual PHP/Moodle Mustache/built AMD EN/FR
+width/normal/reduced cases. Both language files lint; diff whitespace clean.
+No shared recipe or design change: published explanation providers reused.
+Native updated-copy gate remains separate from prior native route proof.
+
+Efficiency note: first diagnostic missed committed navigation, second assumed
+Show stayed under its slide. The latter consumed150s by using an unbounded
+click. Successor asserts exact live cue attributes and bounds that click to8s;
+future native tests reuse that readiness contract. No token/cost totals available.

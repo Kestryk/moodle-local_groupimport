@@ -147,3 +147,9 @@ Guide common explanations use dt/dd, not h4/p for their topics. A containment
 test must count all actual title/description/note nodes; outer frame plus note
 alone is narrower evidence. Preserve that preliminary run and create a strict
 successor without changing product assets or weakening painted-text bounds.
+
+Discovery Show commands are relocated into the common cue row. Native tests
+wait the committed current slide, assert its exact visible command/opener and
+await the interface Return after the view/open callback; modal hidden alone
+is not readiness. Preserve failed harness specs and accepted product Motion.
+Guide-opened identifier fields do not prove manual card-menu access or recognition.
