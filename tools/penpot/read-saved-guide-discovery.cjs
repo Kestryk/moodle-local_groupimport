@@ -9,6 +9,7 @@ const {chromium} = require(path.resolve(process.argv[2], 'playwright'));
 const transit = require(path.resolve(process.argv[3], 'transit-js'));
 const recordName = process.argv[5] || 'guide-g9-foundations-publication-2026-10-08.json';
 assert.ok(['guide-g9-foundations-publication-2026-10-08.json',
+    'guide-g11-foundations-2026-10-09.json',
     'guide-common-introduction-foundations-2026-10-09.json',
     'guide-g10-c-foundations-2026-10-08.json',
     'guide-g10-e-foundations-2026-10-08.json',
@@ -61,6 +62,10 @@ const geometry = (shape, field) => {
             for (const expected of evidence.components) {
                 const root = objects.get(transit.uuid(expected[key]));
                 assert.ok(root, `${expected[key]}: saved root exists`);
+                if (recordName === 'guide-g11-foundations-2026-10-09.json' && key === 'standardId') {
+                    assert.equal(String(read(root, 'parent-id')), '00000000-0000-0000-0000-000000000000',
+                        'Owned Standard specimen must not be clipped by the legacy catalogue frame');
+                }
                 assert.equal(String(read(root, 'component-id')), expected.componentId, 'Canonical provider persisted');
                 close(read(root, 'width'), expected.width, 'Saved width');
                 close(read(root, 'height'), expected.height, 'Saved height');
