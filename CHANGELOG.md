@@ -2,6 +2,9 @@
 
 ## Unreleased - Shared Guide common introduction
 
+- Native failure exposed inherited nowrap on explanations; synchronize the
+  canonical wrapping successor and retain failed runs without weakening tests.
+
 - Modernize the existing Guided path mode lesson in place with translated
   navigation, animation, Show/Return, optional-path and desktop-fullscreen
   explanations. Keep24 slides, original positions and first-structure path.

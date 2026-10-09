@@ -53,23 +53,35 @@ test('Guide common introduction preserves curriculum and responsive typography',
             await expect(intro).toBeVisible();
             const measured = await intro.evaluate(async element => {
                 await document.fonts.ready;
+                const dialog = element.closest('.easyedu-guide-modal__dialog');
+                await Promise.all(dialog.getAnimations().filter(animation =>
+                    animation.effect.getTiming().iterations !== Infinity).map(animation => animation.finished.catch(() => {})));
                 const label = getComputedStyle(element.querySelector('dt'));
                 const caption = getComputedStyle(element.querySelector('dd'));
-                const failures = [];
+                const failures = [], descriptions = [];
                 for (const node of element.querySelectorAll('dt,dd,p')) {
                     if (node.closest('[hidden]')) continue;
                     const r = node.getBoundingClientRect(), p = node.parentElement.getBoundingClientRect();
+                    if (node.tagName === 'DD') {
+                        const s = getComputedStyle(node);
+                        descriptions.push({x:r.x, right:r.right, width:r.width, parentX:p.x, parentRight:p.right,
+                            clientWidth:node.clientWidth, scrollWidth:node.scrollWidth, display:s.display,
+                            margin:s.margin, padding:s.padding, boxSizing:s.boxSizing, cssWidth:s.width,
+                            whiteSpace:s.whiteSpace, position:s.position, transform:s.transform});
+                    }
                     if (r.left < p.left - 1 || r.right > p.right + 1 || node.scrollWidth > node.clientWidth + 1) failures.push(node.tagName);
                 }
                 return {columns:getComputedStyle(element.querySelector('dl')).gridTemplateColumns.split(' ').length,
-                    labelSize:parseFloat(label.fontSize), captionSize:parseFloat(caption.fontSize), failures,
+                    labelSize:parseFloat(label.fontSize), captionSize:parseFloat(caption.fontSize), failures, descriptions,
                     sameHostFont:label.fontFamily === caption.fontFamily &&
                         label.fontFamily === getComputedStyle(element.closest('.easyedu-guide-modal')).fontFamily};
             });
+            rows.push({width, motion, measured});
             expect(measured.failures).toEqual([]); expect(measured.sameHostFont).toBeTruthy();
             expect(measured.labelSize).toBeCloseTo(14.08, 2); expect(measured.captionSize).toBeCloseTo(12.16, 2);
             expect(measured.columns).toBe(width < 768 ? 1 : 2);
             expect(await intro.locator('[data-easyedu-guide-fullscreen-help]').isVisible()).toBe(width >= 1024);
+            await page.screenshot({path:info.outputPath('guide-common-introduction-' + width + '.png')});
             await modal.locator('[data-easyedu-guide-close]').first().click();
             await expect(modal).toBeHidden();
             expect(await page.evaluate(key => JSON.parse(localStorage.getItem(key) || '{}').completed || {}, key)).toEqual(completion);

@@ -154,6 +154,9 @@
   }
   .easyedu-guide-introduction {
     min-width: 0;
+    // Portalled Guides can inherit nowrap from their Navigation launcher.
+    // Explanatory copy owns wrapping, independently of the host action skin.
+    white-space: normal;
     &__topics {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
