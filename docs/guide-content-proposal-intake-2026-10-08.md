@@ -296,3 +296,17 @@ configuration. Final reading is not asserted as business success. Existing
 illustrations, targets, reading/path identities and Motion unchanged; no new
 Penpot recipe or consumer CSS. Native reading gate remains distinct from actual
 activity configuration and future prepare-activity-grouping path predicates.
+
+Activity/recap slicec525ab4 now served at runtimefc92edf, preserving ordered
+597267b offline-candidate and75440fa evidence predecessors. Native25068 PASS18
+cases: six reading lessons at1280/768/390,7 actual topic/note nodes each, Inter
+and painted containment, retained24 slides and Close/focus.72 isolated EN/FR/
+width/Motion cases PASS. No course/setting transactions, errors, blocked writes
+or fixtures; cleanup complete; retention dry-run protects current evidence.
+
+Owned Foundations08.14 connection read-only refreshed: Standard Desktop
+c53a1fb5-311f-80be-8008-c2caa0e772ce and Mobile
+c53a1fb5-311f-80be-8008-c2caa1135062 still link canonical explanation providers;
+actual text Inter14.08 headings and12.16 captions. No editor/design write or
+new full-slide specimen asserted. Existing recipe reused for the new copy.
+Native EN scope differs from isolated FR scope; no new human acceptance.
