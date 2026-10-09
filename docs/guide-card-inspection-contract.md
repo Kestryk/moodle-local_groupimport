@@ -1,6 +1,9 @@
 # Destination-card inspection scenes — G11-H
 
-Implementation contract, not an installed animation. Existing24 lessons and
+Implementation contract, not an installed animation. Private canonical Kit
+candidate5e4fed623ccc509bf1bdfc14cc2dac887823840a now implements an opt-in
+inspection template/SCSS/engine branch; it has not been synchronized here.
+Existing24 lessons and
 all saved paths remain until the separately recorded curriculum migration gate.
 
 ## Verified native reference
@@ -61,6 +64,19 @@ new Guide provider, an adapted responsive layout or saved inspection proof.
 Inspect descendant geometry and existing Guide natural-card representation
 before selecting/cloning a recipe; do not scale1280px cards blindly to mobile.
 
-Remaining gates: paired reusable design; shared opt-in template/data/engine
-branch; actual consumer EN/FR normal/reduced lifecycle and paint; served native
-inspection; human checklist. No new scene or new path currently activated.
+Six isolated canonical candidate cases pass: both types, EN1280 normal,
+FR390 normal and EN768 reduced. Actual resize520ms pauses with narration;
+Next, review, natural return, Reset/replay/departure/destroy pass. Existing
+membership/action run and all four historical templates remain unchanged
+after line-ending/whitespace normalization. This is source-engine proof,
+not built AMD, consumer CSS/native or complete language/width/Motion coverage.
+
+Foundations08.14 has one source-reference host, linking unscaled existing
+Group/Grouping cards and Desktop/Phone reading banners. Editor readback50
+visible shapes, Inter and no host overflow; its PNG export inspected. It is
+not the full closed/opening/review/returned compositions or a new Library
+provider. Existing sources remain. See canonical Kit design/testing records.
+
+Remaining gates: paired reusable design; localized product scene data and
+atomic build/sync; actual consumer EN/FR normal/reduced lifecycle and paint;
+served native inspection; human checklist. No new scene/path activated.
