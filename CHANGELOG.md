@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Guide activity grouping and final recap
+
+- Modernize existing activity and completion lessons using published explanation
+  topics. Separate course memberships from activity group-mode/grouping settings;
+  distinguish completed reading from successful real course configuration.
+- Preserve existing illustration, targets, lesson/path IDs and Motion. No new
+  style recipe, private CSS or native activity-setting command introduced.
+
 ## Unreleased - Offline Guide curriculum migration candidate
 
 - Record explicit24-to12 lesson crosswalk and test68 supported historical
