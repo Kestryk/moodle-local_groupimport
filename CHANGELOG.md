@@ -5,6 +5,9 @@
 - Consume canonical Kit0.4.162 opt-in stable reading IDs/historical index maps.
   Pure logic and canonical synchronization PASS; rebuilt AMD. No PHP config,
   slide order, stored user progress or new lesson design activated yet.
+- Managed preview plus unchanged native1280/768/390 presentation scenario PASS
+  after the optional helper update. Actual reordered-slide migration remains
+  unactivated and requires its own tests and paired component design.
 
 ## Unreleased - G11 responsive selection readiness
 
