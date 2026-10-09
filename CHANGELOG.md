@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased - Guide card identifier availability prerequisite
+
+- Independent manual open/Cancel proof passes for both card types at all three
+  widths. EN/FR lesson now teaches verified mobile menu access and existing
+  group names/IDs, with ambiguous-name review. Inspection animation still open.
+- Native read/open proof for Group and Grouping fields across desktop/tablet/
+  phone; Grouping uses header on desktop and card menu on compact views.
+- Preserve two failed harnesses and strict successor: await committed lesson,
+  actual relocated Show command and completed interface opening. No product
+  Motion/style changes, identifier submission or new inspection scene claimed.
+
 ## Unreleased - Guide activity grouping and final recap
 
 - Served native reading PASS18 cases across six lessons and three widths;

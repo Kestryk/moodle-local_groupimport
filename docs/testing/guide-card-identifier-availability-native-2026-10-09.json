@@ -1,0 +1,40 @@
+{
+  "sourceImplementationCommit": "c525ab4c786e4044bb6050e02c7d37ada3695888",
+  "runtimeHead": "fc92edf73a3aacbc4aeeaa5d766044d92ef62250",
+  "runId": "easystud-authenticated-20261009T200444738Z-42708",
+  "spec": "tools/playwright/guide-card-identifier-committed-availability.spec.js",
+  "scenarioClass": "local-supervised read/open/return only",
+  "result": "passed",
+  "widths": [1280, 768, 390],
+  "cases": 6,
+  "groupRoute": "Guide lesson13 Show-in-interface opens actual empty identifier field",
+  "groupingRoutes": {"1280": "header", "768": "card-menu", "390": "card-menu"},
+  "allFieldsEmptyAndInter": true,
+  "nativeLanguage": "en",
+  "courseTransactions": 0,
+  "fixtures": 0,
+  "errors": [],
+  "blocked": [],
+  "credentialsCleared": true,
+  "ownedChildStopped": true,
+  "leaseReleased": true,
+  "retention": {"mode": "dry-run", "protected": 1, "deleted": 0},
+  "notProved": ["manual Group menu route", "recognition of entered identifiers", "applied membership", "new inspection animation", "native French", "human acceptance"],
+  "preservedFailures": [
+    {
+      "runId": "easystud-authenticated-20261009T195659305Z-46156",
+      "spec": "tools/playwright/guide-card-identifier-availability.spec.js",
+      "cause": "Outgoing visible Show command clicked before requested lesson transition committed; no active-lesson assertion. Failed at768 grouping visibility.",
+      "verifiedRows": 3
+    },
+    {
+      "runId": "easystud-authenticated-20261009T200135131Z-43064",
+      "spec": "tools/playwright/guide-card-identifier-settled-availability.spec.js",
+      "cause": "Scoped Show to slide subtree although Discovery moves the actual command into its common cue row. Native Guide renders command; wrong harness containment assumption.",
+      "verifiedRows": 0
+    }
+  ],
+  "successorWaits": ["committed current slide", "single actual cue command and expected native opener", "interface return after view/open callback"],
+  "productAssetsChangedForTest": false,
+  "humanVisualValidated": false
+}

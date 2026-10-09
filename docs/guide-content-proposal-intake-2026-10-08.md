@@ -310,3 +310,16 @@ c53a1fb5-311f-80be-8008-c2caa1135062 still link canonical explanation providers;
 actual text Inter14.08 headings and12.16 captions. No editor/design write or
 new full-slide specimen asserted. Existing recipe reused for the new copy.
 Native EN scope differs from isolated FR scope; no new human acceptance.
+
+### Content4 actual identifier-panel routes
+
+Guide-opened42708 and independent manual14096 each PASS6 cases across1280/
+768/390. Both Group and Grouping fields are accessible manually: header on
+desktop, single-card menu on compact workspaces; actual focus and Cancel pass.
+No input/recognition/submission/fixture/business transaction. Source accepts
+existing group names/IDs and excludes ambiguous names. EN/FR lesson copy now
+names the verified route and distinct destination entities. This resolves the
+bounded mobile availability question, not every permission/multi-selection
+combination or writer-proposed recognition/inspection animation. New canonical
+inspection composition, responsive saved design, engine branch and actual
+consumer proof remain next; preserve all older unfinished lots and acceptance.
