@@ -6,6 +6,9 @@
   overflow, distinct from the passing Organisation main body. Consume shared
   Kit0.4.161 context wrapping/shrinkage; rebuild CSS without product overrides.
   Preserve failed diagnostics; native correction successor remains pending.
+- Served native1280/768/390 long Compare-note wrapping/paint PASS after managed
+  promotion/cache refresh. Expanded workflow retains a newly reproduced768px
+  selection-to-Move missing highlight, separate from the fixed text issue.
 
 ## Unreleased - G11 native presentation diagnostic
 

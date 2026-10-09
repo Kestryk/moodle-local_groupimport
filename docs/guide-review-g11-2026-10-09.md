@@ -146,3 +146,21 @@ Start below content at1280/768/390, but specimens were off-scroll during capture
 Expanded successor scrolls normally and settles entrance before measuring;
 its desktop layout gate passed, then stopped on the real Compare defect.
 Do not call the off-scroll captures a full responsive paint review.
+
+Managed successor promotedbe78ec7,ab0672e,2438066 in order to runtime56cd71b,
+purged cache and retained clean runtime. Canonical/consumer SCSS SHA256 equal.
+Expanded native18412 proves the nested Compare desktop correction (normal wrap,
+parent1113px, contained paint), then FAIL768 selection-to-Move highlight:
+stepopen-move active, currentTarget null, desktop Move width/height0. Preserve
+this tablet defect under G11-E; do not relax/hide controls or rerun unchanged.
+Its prior desktop/phone focused modal proof remains bounded, not generalised.
+
+Separate exact copy successor17044 PASS1280/768/390 for the actual long
+scene-context Compare note, strict parent/range paint, normal wrapping and no
+local overflow. No errors/writes/fixtures; completed cleanup. This certifies
+G11-D copy correction in served preview, not G11-F whole paint or human review.
+Scoped manifest retention dry-run protected the passing run; broad inventory
+was cancelled as unnecessary, no files deleted. All G11-A/C/E/F/G/H/I exceptions
+and older unfinished SM/Guide lots remain retained. Next: tablet Move target
+visibility/readiness diagnosis, then complete responsive invitation paint and
+first-slide DOM specimens with backed-up stable-ID reading migration.
