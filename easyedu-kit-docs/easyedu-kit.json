@@ -14,7 +14,8 @@
       "productSavedVerified": true,
       "stableExistingSlideIndex": 6,
       "slideCountPreserved": 24,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRunId": "easystud-authenticated-20261009T005402406Z-21616",
       "humanVisualValidated": false
     },
     "guideG10Fullscreen20261008": {

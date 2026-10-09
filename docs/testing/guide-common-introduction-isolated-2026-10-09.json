@@ -9,6 +9,8 @@
   "horizontalOverflow":false,
   "fakeInstructionButtons":0,
   "capabilityOffReinitHidden":true,
+  "inheritedNowrapReproduced":true,
+  "headingAndIntroSize":14.08,
   "storedProgressionPreserved":true,
   "nativeMoodleVerified":false,
   "scope":"Actual consumer Mustache, CSS and built AMD in an isolated fixture; no native Moodle/icon-font/course proof."
