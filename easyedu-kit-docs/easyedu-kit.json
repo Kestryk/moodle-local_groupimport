@@ -4,6 +4,14 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideTargetlessCue20261009": {
+      "kitVersion": "0.4.165",
+      "kitCommit": "22238a3f24bc77feea961772ac5df7fd21cdf1f6",
+      "sourceSynchronizationVerified": true,
+      "isolatedGeometryCases": 6,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false
+    },
     "guideFirstReadingActivation20261009": {
       "kitVersion": "0.4.164",
       "kitCommit": "26fa428f1602d9d636154074bf5e3b1690b152f6",

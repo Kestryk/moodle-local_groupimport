@@ -1114,6 +1114,12 @@ const restoreInterfaceCue = root => {
 const syncInterfaceCue = (root, slide) => {
   restoreInterfaceCue(root);
   const slot = root.querySelector('[data-easyedu-guide-interface-cue-action]');
+  const cue = slot && slot.closest('.easyedu-guide-interface-cue');
+  // A caption without a command is not an interface destination. Hide the
+  // complete optional row, allowing the reading body to reclaim its track.
+  if (cue) {
+    cue.hidden = true;
+  }
   if (!slot || !slide || slide.classList.contains('is-locked')) {
     return;
   }
@@ -1125,6 +1131,9 @@ const syncInterfaceCue = (root, slide) => {
   button.replaceWith(anchor);
   slot.appendChild(button);
   root.easyeduGuideDockedCommand = {anchor, button};
+  if (cue) {
+    cue.hidden = false;
+  }
 };
 
 // Illustrations are DOM-only. They never dispatch business completion events.
