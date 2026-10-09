@@ -74,3 +74,23 @@ background focus, hover, Escape without submit and destroy/reinit. PHP lint,
 AMD/Sass build and canonical synchronization PASS. No global reset/course data
 changed. Foundations overlay/layout and native Moodle open/Cancel remain next
 gates. These source candidates are not served and do not close G11-B.
+
+## Paired design successor
+
+Canonical0.4.160 pairs native-confirmation Desktop/Narrow viewport/backdrop
+recipes, centred welcome and four Active/Paused reading states in Foundations.
+Existing neutral dialog skins and core action providers retained. Seven Library
+and seven linked Standard roots /214 descendants saved; text/glyph containment
+and inspected successor rasters separate from native. New Standard roots had
+initially landed under the old clipped catalogue frame: reparented only those
+exact owned new copies to the page root, preserving the old frame. Persistence
+gate now checks their parent IDs, not local bounds alone. Compass hidden override
+and excess reserved label width corrected; painted gap5.6px,12.48px glyph.
+Retain blank/clipped diagnostics. No new finished Guide slides added.
+
+Prepared one local-supervised native scenario: admin launcher hover, top-layer
+confirmation centring/focus/equal actions and Escape/Cancel at1280/768/390;
+then actual Organisation long paragraph paint containment. No global reset or
+course transaction. Welcome eligibility is not artificially reset to manufacture
+a first-visit result. Earlier documentary predecessors must be promoted in order.
+G11-E..I and animated-dot native/readability proof remain separately open.

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - G11 paired presentation and native candidate
+
+- Foundations viewport/backdrop, centred welcome/compass and Active/Paused4px
+  dot recipes saved and raster-inspected. Existing neutral surfaces retained;
+  owned catalogue-frame clipping/hidden-icon issues corrected and recorded.
+- Pin canonical0.4.160 and retain one safe native admin open/Cancel plus long
+  Organisation-copy scenario. Actual native result remains pending; global
+  reset, curriculum migration and other G11 exceptions are not claimed complete.
+
 ## Unreleased - G11 reset confirmation candidate
 
 - Replace inline confirmation section with canonical native-dialog opt-in and
