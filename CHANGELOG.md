@@ -2,9 +2,13 @@
 
 ## Unreleased - Guide destination action explanation
 
+- Served native text containment and focus PASS9 lesson/width cases;36 isolated
+  EN/FR/normal/reduced cases PASS. Course action behaviour not exercised.
 - Modernize the existing selection-modal lesson with shared explanation topics.
   Distinguish participant membership addition, source-member transfer and the
   original-grouping removal option; explain search/review/Cancel and mobile actions.
+- Context-menu lesson uses the same explanation composition, clarifying desktop
+  right-click, mobile card button/action sheet and multi-selection scope.
 - Existing destination illustration, targets, Motion and persisted lesson/path
   identities unchanged. No Kit style override or new component family.
 
