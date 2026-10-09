@@ -26,6 +26,10 @@ foreach (['participant', 'group', 'grouping'] as $type) {
         'commonintroduction' => \local_groupimport\local\guide_discovery::card_explanation($type)];
 }
 echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([]),
+    'actionLessons' => array_map(static function($type) {
+        return ['id' => 'explanation-' . $type, 'type' => $type,
+            'commonintroduction' => \local_groupimport\local\guide_discovery::action_explanation($type)];
+    }, ['filters', 'identifiers']),
     'welcomeCopy' => get_string('guidewelcomecopy', 'local_groupimport'),
     'cardLessons' => $cardlessons,
     'commonIntroduction' => \local_groupimport\local\guide_discovery::common_introduction(),

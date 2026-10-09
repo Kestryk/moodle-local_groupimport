@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased - Guide filter and identifier explanations
+
+- Modernize two existing lessons with the published shared explanation layout:
+  distinguish filtered results from selection and destination cards from enrolment.
+  Explain responsive card menus without promising every desktop control on mobile.
+- Preserve existing illustrations, native targets,24 stable lesson IDs, reading
+  migration, path state and Motion. No Kit/consumer stylesheet added.
+  EN/FR three-width normal/reduced containment and migration proof recorded;
+  served-native reading and remaining inspection animations are separate gates.
+
 ## Unreleased - Discovery regular Close glyph
 
 - Served native parity PASS at1280/768/390: title role, regular glyph, Small

@@ -54,6 +54,21 @@ final class guide_discovery {
         return ['topics' => $topics, 'note' => get_string('guidecard_' . $type . '_note', 'local_groupimport')];
     }
 
+    /** Modern reading topics reuse the published explanation composition. */
+    public static function action_explanation(string $type): array {
+        if (!in_array($type, ['filters', 'identifiers'], true)) {
+            throw new \InvalidArgumentException('Unknown Guide action explanation.');
+        }
+        $topics = [];
+        foreach (['context' => 'fa-compass', 'review' => 'fa-check-square', 'mobile' => 'fa-eye'] as $key => $icon) {
+            $prefix = 'guideaction_' . $type . '_' . $key;
+            $topics[] = ['icon' => $icon,
+                'title' => get_string($prefix . '_title', 'local_groupimport'),
+                'description' => get_string($prefix . '_description', 'local_groupimport')];
+        }
+        return ['topics' => $topics, 'note' => get_string('guideaction_' . $type . '_note', 'local_groupimport')];
+    }
+
     /** Shared introduction data; no slide insertion or persisted-index migration. */
     public static function common_introduction(bool $specimens = false): array {
         $topics = [];

@@ -210,3 +210,20 @@ Compare context contained. Actual phone Compare raster inspected; native
 language was EN, not a native FR matrix.48 EN/FR cases have isolated renderer
 proof. No transactions/fixtures; cleanup complete and scoped retention dry-run
 protects current evidence. Human review and full curriculum remain OPEN.
+
+### Content4 first reading slice
+
+Filter and pasted-identifier lessons reuse the published common explanation
+composition, retaining existing illustrations and native targets. EN/FR topics
+distinguish filtering from selection, require review before applying, and locate
+identifier addition in destination Group/Grouping cards, not Participant cards.
+Responsive instructions qualify availability through the card menu rather than
+hidden direct desktop buttons. Source confirms the existing context-menu routes;
+this is not native responsive availability proof.
+
+No shared recipe, SCSS, AMD/controller, stable IDs/count or path state changed.
+24 isolated EN/FR/width/Motion cases and44 historical migrations PASS; PHP lint
+PASS. Native reading candidate blocks course commands. Native action availability,
+filter-selection behaviour, identifier inspection animations, curriculum
+deduplication and human review remain OPEN. Existing Foundations explanation
+providers reused: no new design component or slide redraw to publish.
