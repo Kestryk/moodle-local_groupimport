@@ -417,3 +417,21 @@ dialog/checklist branches, preserving accessible command labels. Dedicated
 native successor retains ordinary Navigation Close/eye read-open-close and
 asserts real title and Close glyph font/size/weight/content parity at three
 widths. Preview/native remains pending; full curriculum and human review OPEN.
+
+### G11-I Close served native successor
+
+Sourcea949410 served at runtimeb1a935a after ordered3419f95 documentary
+predecessor and managed cache purge. Native23216 PASS1280/768/390: Guide and
+Participant title font/size/colour, regular Close12.48px/400, Small30.39px
+frame, glyph centre below.001px, settled danger hover rgb(161,43,43), completed
+Close and real opener focus restoration. No page errors, blocked commands,
+course transactions or fixtures; credentials/child/lease cleanup complete.
+
+Predecessor41692 failed by sampling Guide hover mid-transition (rgb158,46,46)
+and comparing it to Entity final paint. Preserve its immutable spec/media.
+Successor waits actual subtree animations to settle; exact colour/geometry
+oracles remain. No style, controller or Motion changes. Native evidence
+guide-close-native-parity-2026-10-09.json; scoped retention dry-run only.
+Close correction now has saved Foundations + renderer + served native proof,
+not new human acceptance. Fullscreen glyph remains OPEN, as do G11-E other
+member/edit branches, G11-H inspection animations and curriculum/Content4..6.

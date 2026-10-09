@@ -10,7 +10,8 @@
       "sourceSynchronizationVerified": true,
       "sourceCssAndControllersUnchanged": true,
       "foundationSavedRoots": 16,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRun": "easystud-authenticated-20261009T154827428Z-23216",
       "humanVisualValidated": false
     },
     "guideTargetlessCue20261009": {
