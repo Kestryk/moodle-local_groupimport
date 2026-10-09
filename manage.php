@@ -1168,6 +1168,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 ],
             ];
         } else if (!empty($step['visualfilters'])) {
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::action_explanation('filters');
             $slide['visualfiltersdemo'] = [
                 'searchlabel' => $templatedata['tutorialvisualsearch'],
                 'actions' => [
@@ -1232,6 +1233,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 ],
             ];
         } else if (!empty($step['visualtextadd'])) {
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::action_explanation('identifiers');
             $slide['visualpaste'] = [
                 'panels' => [
                     [
