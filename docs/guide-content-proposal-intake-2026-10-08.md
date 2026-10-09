@@ -337,3 +337,13 @@ Writer-proposed inspection recipe now has canonical private Kit source WIP
 Foundations adds linked source references only; full paired scene states and
 native consumer build remain gates. Current preview stays at the identifier
 copy implementation0a62ae7/runtimef91554c (no new scene served).
+
+G11-H successor publishes14 reusable Foundations Library recipes and18 Standard
+links, retaining prior compositions. Product now supplies inactive bilingual
+Group/Grouping inspection context, with different desktop/compact narration and
+explicit fictional-illustration boundaries. Four PHP data contexts and lint
+pass. Canonical source runner’s24-case product-copy matrix exposed French phone
+utility overflow; correction wraps those shared candidate actions at unchanged
+density. Corrected24-case matrix passes, not native/served proof. No curriculum
+activation, path migration or human checklist closure. Remaining Motion/design/
+build/native gates are tracked in docs/guide-review-g11-2026-10-09.md.

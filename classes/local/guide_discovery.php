@@ -54,6 +54,53 @@ final class guide_discovery {
         return ['topics' => $topics, 'note' => get_string('guidecard_' . $type . '_note', 'local_groupimport')];
     }
 
+    /**
+     * Prepare illustration-only destination-card data for the shared inspection recipe.
+     *
+     * Not wired into the curriculum until the matching Kit template, engine and
+     * stylesheet are synchronized together. Identifiers are fictional examples;
+     * this method never resolves users/groups or issues membership commands.
+     *
+     * @param string $type Destination identity: group or grouping.
+     * @return array Localized scene context, not a complete slide or guided path.
+     */
+    public static function card_inspection(string $type): array {
+        if (!in_array($type, ['group', 'grouping'], true)) {
+            throw new \InvalidArgumentException('Unknown Guide inspection destination.');
+        }
+        $prefix = 'guideinspection_' . $type . '_';
+        $scene = [
+            'kind' => 'inspection',
+            'inspection' => true,
+            'grouping' => $type === 'grouping',
+            'cardicon' => $type === 'group' ? 'fa-users' : 'fa-sitemap',
+            'actionicon' => $type === 'group' ? 'fa-at' : 'fa-plus',
+        ];
+        foreach (['cardtitle', 'cardmeta', 'actionlabel', 'inputlabel', 'knownlabel', 'note', 'resultlabel'] as $key) {
+            $scene[$key] = get_string($prefix . $key, 'local_groupimport');
+        }
+        foreach (['caption', 'menutitle', 'unknownlabel', 'recaptitle'] as $key) {
+            $scene[$key] = get_string('guideinspection_' . $key, 'local_groupimport');
+        }
+        foreach (['add', 'cancel', 'pause', 'resume', 'nextphase', 'finished'] as $key) {
+            $scene[$key . 'label'] = get_string('discovery_' . $key, 'local_groupimport');
+        }
+        foreach (['replay', 'reset'] as $key) {
+            $scene[$key] = get_string('discovery_' . $key, 'local_groupimport');
+        }
+        $scene['inputvalue'] = ($type === 'group' ? 'alex@example.test' : $scene['knownlabel']) . "\nunknown-entry";
+        $scene['phases'] = [];
+        foreach (['orient', 'open', 'enter', 'review', 'return'] as $phase) {
+            $item = ['name' => $phase, 'label' => get_string($prefix . $phase, 'local_groupimport')];
+            if ($phase === 'open') {
+                $item['compactlabel'] = get_string($prefix . 'open_compact', 'local_groupimport');
+            }
+            $scene['phases'][] = $item;
+        }
+        $scene['initiallabel'] = $scene['phases'][0]['label'];
+        return $scene;
+    }
+
     /** Modern reading topics reuse the published explanation composition. */
     public static function action_explanation(string $type): array {
         if (!in_array($type, ['filters', 'identifiers', 'destination', 'menu', 'activity', 'ready'], true)) {

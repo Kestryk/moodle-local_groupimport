@@ -571,5 +571,46 @@ Successor runs in the Kit repository with an external exact-scope profile;
 bundle/restore verification passes. No shared workstation configuration changed.
 Source AI contract is unchanged: this tranche records private preparation, not
 an additional native behavior. The existing shared-engine/design/runtime gates
-still apply. Header trigger paint reconciliation remains open (geometry-only
-icon-button vs neutral design frame); do not silently bypass it during promotion.
+still apply. Header trigger paint reconciliation was open at this checkpoint
+(geometry-only icon-button vs neutral design frame); see the successor below.
+
+### G11-H native header and paired Library successor
+
+Canonical Kit input is17b6852046a0f864c1fad3221bf71791cb826bbc, pushed private
+WIP on the existing Kit branch, not the embedded consumer manifest. Preservation
+snapshot ws3-20261009T215517Z-port4719pg3-7b682cedf205 verifies both exact owned
+worktrees with a restore drill; runtime is excluded. Both repositories retain
+their existing feature branches. Shared Platform plan/registry are owner-managed:
+these local records are the implementation handoff, not competing shared edits.
+
+Headers now compose the real canonical card-direct-action desktop recipe
+(29.6px transparent target,15.2px glyph) and mobile-card-menu-trigger
+(44px target, transparent at rest). A duplicated compiled host selector kept
+the action next to the title; the corrected title flex lane is regression-tested
+with an actual19px terminal inset. Six source-engine cases pass. Compact
+open/review heights reflect the real touch target, not a scaled desktop button.
+
+Foundations08.14.1 publishes14 reusable state providers, with18 linked Standard
+specimens. All five copied hosts match recursive geometry/type/paint,182 nested
+provider links are retained, and a read-only saved-file check finds46 expected
+provider/main/Standard IDs. Originals and one owned failed Returned-caption
+copy are archived hidden, not deleted. Coordinates compare at0.0001px solely
+for decimal-midpoint roundoff; text/paint remain strict. Fresh Library Group/
+Grouping review and Group closed/open-before-input/returned rasters inspected.
+Exact records live in Kit docs/design/guide-inspection-publication-2026-10-09.json.
+
+Product card_inspection(group|grouping) now prepares localized EN/FR context
+without activating any lesson. Dedicated data test passes four contexts and
+rejects an unsupported destination before string lookup. All historical
+adapters are unchanged;24 lessons and the six-step practice path are preserved.
+PHP lint passes for the helper, both language files and the isolated fixture.
+Full source-engine rendering with actual product PHP copy passes24 cases:
+EN/FR,1280/768/390, normal/reduced, both destination identities. French phone
+utility overflow (322px scene/335px scroll) is retained as a failed predecessor;
+canonical candidate wrapping fixes it without shrinking or cutting labels.
+
+Fresh Grouping sequence and compact menu raster also inspected; all five Library
+hosts now have post-publication raster proof. Remaining: intermediate opening catalogue,
+recognition growth Motion/cursor cues, atomic Kit sync/template/AMD build and
+native lifecycle/paint. Served Source0a62ae7/runtimef91554c remain unchanged;
+no membership command, curriculum migration or human acceptance claimed.
