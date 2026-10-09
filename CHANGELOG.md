@@ -2,6 +2,11 @@
 
 ## Unreleased - Guide card-reading lessons
 
+- Native EN9-case open/read/close proof passes three lessons at1280/768/390,
+ canonical copy typography and retained completion, without course writes.
+ Full illustrations, target activation, proposed inspection animations and
+ human validation remain separately open.
+
 - Clarify participant, group and grouping lessons in EN/FR using existing
  canonical explanation layout, with Read/Actions/Mobile and safety copy.
  Keep24 slides/indices8,9,10, static illustrations and native targets/actions.
