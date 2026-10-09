@@ -2,6 +2,10 @@
 
 ## Unreleased - G11 native presentation diagnostic
 
+- Add bounded desktop/phone native destination and confirm-highlight coverage
+  using visible canonical choices, without creating/transferring participants.
+  Other member/edit targets and full business completion remain open.
+
 - Preserve the failed native centring run and its completed cleanup. Measure
   fixed-layout centring against the layout viewport, record scrollbar dimensions
   and persist geometry before assertions; retain the strict subpixel threshold.

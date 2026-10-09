@@ -95,6 +95,18 @@ course transaction. Welcome eligibility is not artificially reset to manufacture
 a first-visit result. Earlier documentary predecessors must be promoted in order.
 G11-E..I and animated-dot native/readability proof remain separately open.
 
+## G11-E destination/confirmation bounded native proof
+
+Successor20261009T105026159Z-38280 PASS1280/390 normal Motion: native
+participant checkbox completion, persistent Move-action cue, destination choice
+highlight within2px, real enhanced-choice option click and confirm-button
+highlight within2px. Close/Cancel only, no transaction, fixture or blocked write;
+console and full cleanup PASS. Initial diagnostic41012 attempted selectOption
+on the intentionally hidden authoritative select; retained failure, successor
+uses the actual visible canonical choice without force-click or state injection.
+Ephemeral presentation path omits Create prerequisites, not business completion.
+This does not close member/edit-modal coverage or the whole G11-E user report.
+
 ## Native presentation successor diagnostic
 
 Managed preview served the ordered predecessors through933d4a2 with cache purge.
