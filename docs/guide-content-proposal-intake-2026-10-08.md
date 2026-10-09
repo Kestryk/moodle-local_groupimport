@@ -261,3 +261,18 @@ Next in-place menu lesson distinguishes desktop right-click from mobile action
 sheet and single-card vs multi-selection scope. Source setVisibleActions and
 showMenu branches audited; full native menu availability remains distinct from
 reading proof. Curriculum dedup/inspection animations/human review stay OPEN.
+
+### Content5 offline migration preparation, NOT activation
+
+guide-curriculum-migration-candidate-2026-10-09.json maps every one of24
+historical lesson identities to the writer's12 proposed destinations. Existing
+introduction-first24, discovery24 and legacy20 positions are explicit supported
+origins. Offline actual-engine test PASS68 positions: loading read-only, correct
+destination, existing path/active step/completions preserved, first backup
+immutable. Candidate configuration is never imported by manage.php or native
+Guide; live curriculum remains24 and existing presentation key unchanged.
+
+Before activation: finish modern content/inspection illustrations, preserve
+original payload archive, retain old path IDs/predicates, handle unknown origins
+without silent reset and perform served-native/design/human gates. This is
+prepared migration proof, not deduplication delivered or checklist acceptance.

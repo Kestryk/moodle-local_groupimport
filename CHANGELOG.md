@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased - Offline Guide curriculum migration candidate
+
+- Record explicit24-to12 lesson crosswalk and test68 supported historical
+  reading positions against the real shared state engine. Paths, completion
+  predicates and immutable backups preserved. Candidate is not activated;
+  Moodle still serves24 lessons. No runtime/user storage or course data changed.
+
 ## Unreleased - Guide destination action explanation
 
 - Served native text containment and focus PASS9 lesson/width cases;36 isolated
