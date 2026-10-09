@@ -2,6 +2,10 @@
 
 ## Unreleased - Shared Guide common introduction
 
+- Apply existing modern Discovery heading/body hierarchy to the introduction.
+  Native responsive labels/captions preserve Inter; verify their reading-body
+  role rather than the unpainted outer modal's inherited host font.
+
 - Native failure exposed inherited nowrap on explanations; synchronize the
   canonical wrapping successor and retain failed runs without weakening tests.
 

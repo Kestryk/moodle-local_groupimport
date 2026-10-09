@@ -73,12 +73,18 @@ test('Guide common introduction preserves curriculum and responsive typography',
                 }
                 return {columns:getComputedStyle(element.querySelector('dl')).gridTemplateColumns.split(' ').length,
                     labelSize:parseFloat(label.fontSize), captionSize:parseFloat(caption.fontSize), failures, descriptions,
+                    labelFamily:label.fontFamily,captionFamily:caption.fontFamily,
+                    modalFamily:getComputedStyle(element.closest('.easyedu-guide-modal')).fontFamily,
+                    slideFamily:getComputedStyle(element.closest('.easyedu-guide-slide')).fontFamily,
+                    headingSize:parseFloat(getComputedStyle(element.closest('.easyedu-guide-slide').querySelector('h3')).fontSize),
+                    paragraphSize:parseFloat(getComputedStyle(element.closest('.easyedu-guide-slide').querySelector('.easyedu-guide-slide__content p')).fontSize),
                     sameHostFont:label.fontFamily === caption.fontFamily &&
-                        label.fontFamily === getComputedStyle(element.closest('.easyedu-guide-modal')).fontFamily};
+                        label.fontFamily === getComputedStyle(element.closest('.easyedu-guide-modal__body')).fontFamily};
             });
             rows.push({width, motion, measured});
             expect(measured.failures).toEqual([]); expect(measured.sameHostFont).toBeTruthy();
             expect(measured.labelSize).toBeCloseTo(14.08, 2); expect(measured.captionSize).toBeCloseTo(12.16, 2);
+            expect(measured.headingSize).toBeCloseTo(14.08, 2); expect(measured.paragraphSize).toBeCloseTo(14.08, 2);
             expect(measured.columns).toBe(width < 768 ? 1 : 2);
             expect(await intro.locator('[data-easyedu-guide-fullscreen-help]').isVisible()).toBe(width >= 1024);
             await page.screenshot({path:info.outputPath('guide-common-introduction-' + width + '.png')});
