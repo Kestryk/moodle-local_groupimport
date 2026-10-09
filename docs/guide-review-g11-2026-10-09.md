@@ -271,3 +271,13 @@ oracles. Adds actual served first intro/migration/backup checks in isolated QA
 storage, then safe native Select/Move/Search/Cancel at1280/768/390. No real user
 progress rewrite, Create/Confirm course transaction or global welcome reset.
 Not served yet; native, glyph paint and human acceptance remain distinct.
+
+Managed promotion includes cf149d2,dc45c20,274b928,b1735b3 in order, runtime
+e29a4d1 with caches purged. Native7300 displayed the actual first introduction
+and its four specimens, then failed an incorrect persistence expectation:
+opening an already-active slide is read-only; stored slideId is not written
+until a real save. Retain immutable spec b1735b3 and failed media/cleanup.
+No course writes/fixtures; credentials,child and lease cleanup complete.
+Successor first-introduction-save checks original storage/absent backup on open,
+then real topic navigation for saved stable ID and immutable original backup.
+No controller change, manual save or forced storage migration to satisfy a test.
