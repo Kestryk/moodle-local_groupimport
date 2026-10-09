@@ -9,7 +9,9 @@
       "kitCommit": "26fa428f1602d9d636154074bf5e3b1690b152f6",
       "activated": true,
       "isolatedHistoricalPositions": 44,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRun": "easystud-authenticated-20261009T142118752Z-34312",
+      "nativeScope": "Pointer navigation/save/backup and safe selection-move-search-Cancel at1280/768/390; not complete keyboard/reduced/reload matrix",
       "humanVisualValidated": false
     },
     "guideIntroductionSpecimens20261009": {
