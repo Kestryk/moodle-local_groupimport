@@ -323,3 +323,11 @@ bounded mobile availability question, not every permission/multi-selection
 combination or writer-proposed recognition/inspection animation. New canonical
 inspection composition, responsive saved design, engine branch and actual
 consumer proof remain next; preserve all older unfinished lots and acceptance.
+
+Source0a62ae7 now served at runtimef91554c: exact new identifier copy native
+PASS3 widths including main paragraph. Native local recognition PASS6 cases
+with synthetic participant email/course group ID plus unresolved entry; explicit
+clear/Cancel, no submission. Candidate scene contract records verified routes,
+illustration-only phases and required shared-clock/paired-design boundary.
+Original numeric Moodle-user-ID diagnostic retained without a product-failure
+claim; supported identifiers and configured field IDs are distinct concepts.

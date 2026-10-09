@@ -1,0 +1,66 @@
+# Destination-card inspection scenes — G11-H
+
+Implementation contract, not an installed animation. Existing24 lessons and
+all saved paths remain until the separately recorded curriculum migration gate.
+
+## Verified native reference
+
+Both card types expose text-add from their desktop header and compact single-
+card menu. At1280/768/390, real field focus, local recognised/unresolved chips,
+explicit clearing and Cancel pass without submission. Tests use an existing
+synthetic participant email and existing group ID; no new course fixture.
+Do not use a Moodle numeric user ID as an advertised participant identifier.
+
+The first Guide reference names the destination Group, not a Participant card;
+the second names the destination Grouping. Group names or IDs identify existing
+groups; conflicting names are excluded by the source resolver. Exact native
+recognition proof is narrower than all configured identifier types or business
+application. No inspection replay may call Moodle Add/Move/Save or complete a path.
+
+## Shared presentation sequence
+
+| Phase | Group destination | Grouping destination |
+| --- | --- | --- |
+| Orient | Natural Group card, existing members unchanged | Natural Grouping card, existing groups unchanged |
+| Open | Desktop header text-add or compact card action sheet | Desktop header text-add or compact card action sheet |
+| Enter | Illustrated enabled identifiers of existing course participants | Illustrated names/IDs of existing course groups |
+| Review | One recognised name and one unresolved entry | One recognised group and one unresolved entry |
+| Explain | Unresolved entry needs correction; Add is a separate real action | Same boundary, with ambiguous-name warning when relevant |
+| Return | Close the illustrated field and restore the natural card | Close the illustrated field and restore the natural card |
+
+No fake success state or silently added membership. Review/result copy states
+that this is an illustration. A real Add exercise belongs in a separately
+verified optional path with actual business predicates, never this scene.
+
+## Canonical implementation boundary
+
+- Reuse shared natural card/identity, field, label, action-menu and button
+  primitives. No consumer stylesheet, alternate font or guessed icon family.
+- Existing scene clock owns word-count reading, Pause/Play, Next, WAAPI,
+  scrolling, reduced motion and cancellation. An explicit inspection branch
+  must run before the current membership branch, whose person/menu/confirmation
+  nodes are not optional. Do not route unknown scene kinds into that branch.
+- Departure/replay/reset clears pending waits, animation gates and illustrations;
+  preserve existing Organisation/Actions choreography and persistence semantics.
+- Reveal the real responsive gesture: compact card button/action sheet, never
+  a right-click or dragged desktop cursor teaching an unavailable mobile action.
+- Reuse accepted card paint; preserve natural state before and after the scene.
+  Keep fields/chips/readback contained and icon/text/button centres verified.
+
+## Design gate before activation
+
+Foundations08.14 catalogues reusable states, not a copy of every final lesson.
+Pair desktop/compact closed, opening, review and returned states plus shared
+playback/reading control. Important new recipes get a canonical Library provider
+and linked Standard/product specimens; preserve all old accepted sources.
+
+Available canonical card providers read on9 October in Foundations08.9.1:
+Group Expanded `2a31d374-d2a1-80fd-8008-ac4780dcaae2`, Grouping Open
+`2a31d374-d2a1-80fd-8008-ac4782879b41`. These are source candidates, not a
+new Guide provider, an adapted responsive layout or saved inspection proof.
+Inspect descendant geometry and existing Guide natural-card representation
+before selecting/cloning a recipe; do not scale1280px cards blindly to mobile.
+
+Remaining gates: paired reusable design; shared opt-in template/data/engine
+branch; actual consumer EN/FR normal/reduced lifecycle and paint; served native
+inspection; human checklist. No new scene or new path currently activated.
