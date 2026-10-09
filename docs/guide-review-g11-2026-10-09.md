@@ -252,3 +252,22 @@ earlier narrow framing diagnostics are retained, not overwritten.
 Penpot publication is not first-slide activation or human acceptance. Next:
 product first-lesson ordering/data, obsolete group invitation removal, explicit
 stable-ID historical maps and native preservation/migration proof.
+
+## G11-G first lesson activation candidate
+
+Product now supplies introduction-first-20261009,24 stable lesson IDs and explicit
+discovery-20261006/legacy historical maps. Only the intro moves; its group
+invitation is removed while path definitions/storage remain. Common specimens
+enabled through Kit data, no consumer CSS/controller rewrite. Curriculum changes
+must update the explicit historical contract before accepting a different list.
+
+Actual PHP fixture plus synchronized shared state functions PASS44 historical
+positions, all24 retained lesson payloads/native targets, original immutable backup
+and unchanged path/active/completed data. PHP lint PASS. Initial test's substring
+end matched an earlier branch; correction bounds the end search after introStart,
+without changing the implementation or weakening the oracle.
+Native successor retains the old index-pinned spec and existing strict workflow
+oracles. Adds actual served first intro/migration/backup checks in isolated QA
+storage, then safe native Select/Move/Search/Cancel at1280/768/390. No real user
+progress rewrite, Create/Confirm course transaction or global welcome reset.
+Not served yet; native, glyph paint and human acceptance remain distinct.

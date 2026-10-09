@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased - G11 first introduction activation candidate
+
+- Move How to use this guide to the first position and show four canonical
+  read-only control specimens. Remove the unrelated group exercise invitation.
+  Retain24 lessons, native targets and path definitions.
+- Explicitly map all24 discovery and20 pre-discovery reading positions, preserve
+  completed paths/active step and immutable original backup. Pure actual-PHP
+  migration/order tests PASS; native served successor remains pending.
+
 ## Unreleased - G11 introduction specimens, not activated
 
 - Consume canonical Kit0.4.163 optional read-only navigation, path, checklist

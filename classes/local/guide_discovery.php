@@ -8,6 +8,37 @@ defined('MOODLE_INTERNAL') || die();
 
 /** Product-owned discovery content; illustrations never issue Moodle commands. */
 final class guide_discovery {
+    /** Historical IDs describe content, independently from its reading position. */
+    public static function historical_slide_ids(): array {
+        $ids = ['discovery-concepts', 'discovery-creation', 'discovery-membership', 'discovery-actions'];
+        for ($index = 0; $index < 20; $index++) {
+            $ids[] = $index === 2 ? 'use-this-guide' : 'reference-' . $index;
+        }
+        return $ids;
+    }
+
+    /** Explicitly supported reading histories; path IDs and completion stay unchanged. */
+    public static function reading_contract(): array {
+        $old = self::historical_slide_ids();
+        $ids = array_values(array_filter($old, static fn($id) => $id !== 'use-this-guide'));
+        array_unshift($ids, 'use-this-guide');
+        $map = array_map(static fn($id) => array_search($id, $ids, true), $old);
+        return ['presentationKey' => 'introduction-first-20261009', 'slideIds' => $ids,
+            'readingIndexMigrations' => ['discovery-20261006' => $map, 'legacy' => array_slice($map, 4)]];
+    }
+
+    /** Move only the introductory lesson, retaining every other lesson and native target. */
+    public static function introduction_first(array $slides): array {
+        if (array_column($slides, 'id') !== self::historical_slide_ids()) {
+            throw new \LogicException('Update the explicit Guide reading contract before changing the curriculum.');
+        }
+        $byid = array_column($slides, null, 'id');
+        return array_map(static function($id, $index) use ($byid): array {
+            $slide = $byid[$id];
+            $slide['index'] = $index;
+            return $slide;
+        }, self::reading_contract()['slideIds'], range(0, count($slides) - 1));
+    }
     /** Card-reading copy uses the existing shared explanation recipe, not a new scene engine. */
     public static function card_explanation(string $type): array {
         if (!in_array($type, ['participant', 'group', 'grouping'], true)) {
@@ -96,6 +127,7 @@ final class guide_discovery {
                 'local_groupimport');
             $scene['consequence'] = get_string('discovery_consequence', 'local_groupimport');
             $slides[] = [
+                'id' => 'discovery-' . $kind,
                 'index' => $index,
                 'navicon' => $icon,
                 'icon' => $icon,

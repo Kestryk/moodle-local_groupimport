@@ -12,6 +12,12 @@ class html_writer {
     public static function tag($name, $value) { return '<' . $name . '>' . $value . '</' . $name . '>'; }
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
+$reference = [];
+for ($index = 0; $index < 20; $index++) {
+    $reference[] = ['id' => $index === 2 ? 'use-this-guide' : 'reference-' . $index,
+        'target' => 'retained-native-target-' . $index];
+}
+$historicalslides = \local_groupimport\local\guide_discovery::prepend($reference);
 $cardlessons = [];
 foreach (['participant', 'group', 'grouping'] as $type) {
     $cardlessons[] = ['type' => $type,
@@ -24,6 +30,9 @@ echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend(
     'cardLessons' => $cardlessons,
     'commonIntroduction' => \local_groupimport\local\guide_discovery::common_introduction(),
     'commonIntroductionSpecimens' => \local_groupimport\local\guide_discovery::common_introduction(true),
+    'readingContract' => \local_groupimport\local\guide_discovery::reading_contract(),
+    'historicalSlides' => $historicalslides,
+    'readingSlides' => \local_groupimport\local\guide_discovery::introduction_first($historicalslides),
     'commonIntroductionTitle' => get_string('guideintro_title', 'local_groupimport'),
     'commonIntroductionDescription' => get_string('guideintro_description', 'local_groupimport'),
     'welcomeReset' => ['title' => get_string('guidewelcomereset', 'local_groupimport'),
