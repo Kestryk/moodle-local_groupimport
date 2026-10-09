@@ -173,6 +173,11 @@ actions/fixtures, credentials/child/lease cleanup PASS. Three representative
 native reading rasters inspected; FR/full Motion matrix is isolated evidence.
 No shared component changed: existing Foundations explanation provider is reused.
 
+User review9 October now authorizes FIRST common introduction and modernization
+of legacy slides; earlier in-place staging is not the final product direction.
+See guide-review-g11-2026-10-09.md for exceptions, accepted remainder, explicit
+state-migration/design-catalogue rules and new implementation sequence.
+
 Next Content3: reconcile four Discovery copy/recaps with writer proposal while
 preserving accepted Overview and cancellable illustration Motion. Static card
 inspection animations remain explicit Content2 follow-up, not a closed lot.
