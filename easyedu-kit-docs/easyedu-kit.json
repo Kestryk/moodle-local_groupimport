@@ -10,7 +10,8 @@
       "sourceSynchronizationVerified": true,
       "isolatedCases": 60,
       "isolatedBuiltConsumerVerified": true,
-      "foundationSavedVerified": false,
+      "foundationSavedVerified": true,
+      "foundationRecord": "docs/testing/guide-introduction-specimens-foundations-2026-10-09.json",
       "nativePreviewVerified": false,
       "activated": false,
       "humanVisualValidated": false
