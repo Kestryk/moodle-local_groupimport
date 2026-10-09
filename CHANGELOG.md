@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - Discovery contextual copy
+
+- Label first introduction Guide; clarify Add/Move using the actual illustrated
+  group names and contextual source-member/destination/mobile action sequence.
+  EN/FR only; accepted cards, Overview, scene Motion and path state retained.
+-48 actual-renderer/built-AMD containment cases and44 reading migrations PASS;
+  PHP lint PASS. Full legacy replacement and human checklist remain open.
+
 ## Unreleased - Guide targetless cue
 
 - Consume Kit0.4.165: suppress the empty interface caption/grid track on
@@ -7,6 +15,8 @@
   Shared source only, no private plugin CSS or course behavior changes.
 - Six isolated geometry cases and repeated command projection PASS; AMD/CSS
   rebuilt. Native preview and human review tracked separately.
+- Managed local preview/native PASS1280/768/390: absent intro cue/no gap,
+  restored Practice command, retained migration/path regression, no transactions.
 
 ## Unreleased - G11 first introduction activation candidate
 

@@ -324,3 +324,11 @@ usage of the existing published cue. Source synchronized with localized
 Mustache adapter, AMD/CSS rebuilt. Dedicated native successor retains the prior
 strict no-write path and adds absent cue/no-gap intro plus visible real command
 on Practice. Native preview still pending; full curriculum/header remain OPEN.
+
+Managed promotion includes documentary9adc6d6 and candidateef7780d in order;
+runtime3b86ce4, caches purged. Native41548 PASS1280/768/390: hidden intro cue,
+no body/footer gap, one original command restored on Practice, retained reading
+save/immutable backup and safe selection/Move/search/Cancel path. No errors,
+blocked course writes, fixtures or transactions; full cleanup complete.
+Actual desktop reading raster inspected. Scoped retention dry-run protects
+this run, zero candidates/deletions/errors. Human checklist remains OPEN.

@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Discovery copy must name the illustrated source/destination before explaining
+Add/Move, distinguish source members from global Participants, and teach mobile
+card actions rather than desktop gestures. Copy-only modernisation preserves
+accepted Overview/cards/Motion and stable path IDs; it is not curriculum dedup.
+
 Targetless Discovery cue is optional chrome: hide the entire row and reclaim
 its grid track without inventing a target. Preserve original command identity,
 attributes, locks and restoration. This is not a new Penpot family. Isolated
