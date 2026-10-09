@@ -114,6 +114,18 @@
   .easyedu-ui .easyedu-confirmation-dialog--danger {
     @include modals.destructive-confirmation-modal;
   }
+  // Native top-layer opt-in, preserving the existing confirmation surface.
+  .easyedu-ui dialog.easyedu-confirmation-dialog--modal {
+    position: fixed;
+    inset: 0;
+    inline-size: min(34rem, calc(100vw - 2rem));
+    block-size: fit-content;
+    max-block-size: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    &::backdrop { background: color-mix(in srgb, var(--easyedu-text) 35%, transparent); }
+  }
   .easyedu-ui .easyedu-dialog-description {
     @include typography.type-ui-base;
     & {

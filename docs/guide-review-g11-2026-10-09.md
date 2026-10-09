@@ -58,3 +58,19 @@ Moodle header, with no fixed modal overlay/lifecycle. G11-B must use a shared
 blocking modal structure and focus/Escape/Cancel rather than a position-only
 patch. No reset transaction or course write performed. All G11-B/D..I remain
 OPEN; Source/Kit candidate not promoted, no newer native proof claimed.
+
+## G11-B source implementation after restart
+
+Original feedback crosscheck confirms all9 exception lots retained. Canonical
+native confirmation helper/modal opt-in created and consumed through classes
+and AMD call only. Reset PHP POST/capability/sesskey handler is unchanged.
+Initial Cancel focus, native Escape→Cancel, native top layer/background inert,
+idempotent init/destroy and open no-JS fallback. Shared Foundation button recipe
+suppresses hover underline; no product CSS or submit simulation.
+
+Actual consumer isolated EN/FR1280/768/3906 cases PASS centring (0 to.008px),
+paired heights,20px body, wrapping, primary palette, initial focus, blocked
+background focus, hover, Escape without submit and destroy/reinit. PHP lint,
+AMD/Sass build and canonical synchronization PASS. No global reset/course data
+changed. Foundations overlay/layout and native Moodle open/Cancel remain next
+gates. These source candidates are not served and do not close G11-B.

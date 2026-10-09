@@ -10,7 +10,7 @@ if (!terserPackageRoot) {
 
 const pluginRoot = path.resolve(__dirname, '..', '..');
 const stem = process.argv[3] || 'easyedu_guide';
-if (!['easyedu_guide', 'guide_welcome'].includes(stem)) throw new Error('Exact owned Guide module required.');
+if (!['easyedu_guide', 'guide_welcome', 'easyedu_confirmation'].includes(stem)) throw new Error('Exact owned Guide module required.');
 const sourcePath = path.join(pluginRoot, 'amd', 'src', `${stem}.js`);
 const buildPath = path.join(pluginRoot, 'amd', 'build', `${stem}.min.js`);
 const mapPath = `${buildPath}.map`;

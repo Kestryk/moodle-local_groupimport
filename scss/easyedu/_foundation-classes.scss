@@ -27,6 +27,7 @@
   min-block-size: 2.35rem;
   padding: 0.5rem 1rem;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   @include buttons.control-state-transition;
 
@@ -82,6 +83,7 @@
     }
   }
   &:hover {
+    text-decoration: none;
     @if $secondary {
       background: var(--easyedu-primary-soft);
       @if $density == compact { color: var(--easyedu-primary); }
