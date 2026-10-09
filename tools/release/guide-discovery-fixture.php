@@ -12,7 +12,15 @@ class html_writer {
     public static function tag($name, $value) { return '<' . $name . '>' . $value . '</' . $name . '>'; }
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
+$cardlessons = [];
+foreach (['participant', 'group', 'grouping'] as $type) {
+    $cardlessons[] = ['type' => $type,
+        'title' => get_string('tutorial' . $type . 'cardtitle', 'local_groupimport'),
+        'description' => get_string('tutorial' . $type . 'cardcontent', 'local_groupimport'),
+        'commonintroduction' => \local_groupimport\local\guide_discovery::card_explanation($type)];
+}
 echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([]),
+    'cardLessons' => $cardlessons,
     'commonIntroduction' => \local_groupimport\local\guide_discovery::common_introduction(),
     'commonIntroductionTitle' => get_string('guideintro_title', 'local_groupimport'),
     'commonIntroductionDescription' => get_string('guideintro_description', 'local_groupimport'),

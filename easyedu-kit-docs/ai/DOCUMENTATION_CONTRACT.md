@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Card-reading explanation copy may reuse common introduction layout with no
+capability topic. Preserve static illustration and native target/opener IDs.
+Do not advertise proposed inspection animation recipes or new paths as installed.
+Practice creation itself mutates course data; final membership confirmation is
+not the only mutation. Record explained-copy, full illustration and native gates separately.
+
 Common introductions modernize an existing lesson unless an explicit persisted
 index migration is authorized. Preserve count, presentationKey, offset, path IDs
 and real business predicates. Keep isolated typography/palette, paired design,

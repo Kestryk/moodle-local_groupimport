@@ -1,0 +1,87 @@
+{
+  "fileId": "b564c72c-f31f-81ec-8008-ad9958b272bd",
+  "pageId": "b564c72c-f31f-81ec-8008-ad9958b272be",
+  "components": [
+    {
+      "key": "participant-desktop",
+      "id": "c53a1fb5-311f-80be-8008-c30019a78292",
+      "componentId": "c53a1fb5-311f-80be-8008-c2ca9350451f",
+      "hostId": "c53a1fb5-311f-80be-8008-c300197dc0e5",
+      "x": 60,
+      "y": 22624,
+      "width": 1100,
+      "height": 430,
+      "archived": []
+    },
+    {
+      "key": "participant-mobile",
+      "id": "c53a1fb5-311f-80be-8008-c3001a448158",
+      "componentId": "c53a1fb5-311f-80be-8008-c2ca939e1281",
+      "hostId": "c53a1fb5-311f-80be-8008-c3001a1d0a8d",
+      "x": 1344,
+      "y": 22624,
+      "width": 341.9999999999991,
+      "height": 760,
+      "archived": []
+    },
+    {
+      "key": "group-desktop",
+      "id": "c53a1fb5-311f-80be-8008-c3001abc293c",
+      "componentId": "c53a1fb5-311f-80be-8008-c2ca9350451f",
+      "hostId": "c53a1fb5-311f-80be-8008-c3001a9f2c81",
+      "x": 60,
+      "y": 23584,
+      "width": 1100,
+      "height": 430,
+      "archived": []
+    },
+    {
+      "key": "group-mobile",
+      "id": "c53a1fb5-311f-80be-8008-c3001b76a7d6",
+      "componentId": "c53a1fb5-311f-80be-8008-c2ca939e1281",
+      "hostId": "c53a1fb5-311f-80be-8008-c3001b41ca81",
+      "x": 1344,
+      "y": 23584,
+      "width": 341.9999999999991,
+      "height": 760,
+      "archived": []
+    },
+    {
+      "key": "grouping-desktop",
+      "id": "c53a1fb5-311f-80be-8008-c3001c115c3d",
+      "componentId": "c53a1fb5-311f-80be-8008-c2ca9350451f",
+      "hostId": "c53a1fb5-311f-80be-8008-c3001bec87d3",
+      "x": 60,
+      "y": 24544,
+      "width": 1100,
+      "height": 430,
+      "archived": []
+    },
+    {
+      "key": "grouping-mobile",
+      "id": "c53a1fb5-311f-80be-8008-c3001cbd20b3",
+      "componentId": "c53a1fb5-311f-80be-8008-c2ca939e1281",
+      "hostId": "c53a1fb5-311f-80be-8008-c3001c93fbe9",
+      "x": 1344,
+      "y": 24544,
+      "width": 341.9999999999991,
+      "height": 760,
+      "archived": []
+    }
+  ],
+  "boards": [
+    "c53a1fb5-311f-80be-8008-c300197dc0e5",
+    "c53a1fb5-311f-80be-8008-c3001a1d0a8d",
+    "c53a1fb5-311f-80be-8008-c3001a9f2c81",
+    "c53a1fb5-311f-80be-8008-c3001b41ca81",
+    "c53a1fb5-311f-80be-8008-c3001bec87d3",
+    "c53a1fb5-311f-80be-8008-c3001c93fbe9"
+  ],
+  "mobileDestinationShift": [],
+  "savedServerVerified": true,
+  "savedRoots": 6,
+  "savedDescendants": 168,
+  "rasterInspected": true,
+  "humanVisualValidated": false,
+  "scope": "Linked explanation copy recipes only. Existing static card illustration and proposed inspection animations remain separate."
+}

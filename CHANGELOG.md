@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased - Guide card-reading lessons
+
+- Clarify participant, group and grouping lessons in EN/FR using existing
+ canonical explanation layout, with Read/Actions/Mobile and safety copy.
+ Keep24 slides/indices8,9,10, static illustrations and native targets/actions.
+- Distinguish Participants-view membership addition from source-member moves,
+ and group creation from final membership confirmation in the practice path.
+- Six linked Penpot explanation compositions saved/contained and inspected;
+48 isolated language/width/Motion cases pass. Native preview is the next gate;
+ inspection animations, full lesson illustrations and human checklist remain open.
+
 ## Unreleased - Guide content handoff reconciliation
 
 - Record the user's writer delivery, three validated JSON hashes and ordered
