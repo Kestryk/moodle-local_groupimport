@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Stable reading migration preparation is opt-in and must not silently activate
+through a Kit update. Product activation requires a new presentation key, exact
+per-origin maps and stable slide IDs, with original first-save backup preserved.
+Pure migration tests do not certify a rendered first slide or native persistence.
+
 Product completion signals which reveal the next Guide target follow native
 action enablement and responsive replacement rendering. Do not compensate for
 an early business-adapter signal with arbitrary Guide delays or forced hidden

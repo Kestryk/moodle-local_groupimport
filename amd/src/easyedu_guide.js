@@ -353,6 +353,24 @@ const getStorage = () => {
 
 const getStateKey = config => `${config.storageKey}.checklist`;
 
+// Opt-in reading-order migration. Product adapters supply exact historical maps;
+// progress/path data is carried unchanged and loading never writes storage.
+const migrateGuideReadingState = (state, config) => {
+  const ids = config.slideIds;
+  if (!Array.isArray(ids) || !ids.length) return state;
+  if (state.presentationKey === config.presentationKey) {
+    const index = typeof state.slideId === 'string' ? ids.indexOf(state.slideId) : -1;
+    return index >= 0 ? {...state, slideIndex: index} : state;
+  }
+  const origin = state.presentationKey || 'legacy';
+  const map = config.readingIndexMigrations && config.readingIndexMigrations[origin];
+  if (!Array.isArray(map) || !Number.isInteger(state.slideIndex)) return state;
+  const index = map[state.slideIndex];
+  if (!Number.isInteger(index) || index < 0 || index >= ids.length ||
+      typeof ids[index] !== 'string' || !ids[index]) return state;
+  return {...state, slideIndex: index, slideId: ids[index]};
+};
+
 const loadGuideState = config => {
   const storage = getStorage();
   if (!storage) {
@@ -361,6 +379,9 @@ const loadGuideState = config => {
 
   try {
     const state = JSON.parse(storage.getItem(getStateKey(config)) || '{}') || {};
+    if (Array.isArray(config.slideIds) && config.slideIds.length) {
+      return migrateGuideReadingState(state, config);
+    }
     if (config.presentationKey && state.presentationKey !== config.presentationKey &&
         Number.isInteger(state.slideIndex) && Number.isInteger(config.legacySlideOffset)) {
       return {...state, slideIndex: state.slideIndex + config.legacySlideOffset};
@@ -382,7 +403,12 @@ const saveGuideState = (config, state) => {
     if (storage.getItem(backupKey) === null) {
       storage.setItem(backupKey, storage.getItem(getStateKey(config)) || '{}');
     }
-    storage.setItem(getStateKey(config), JSON.stringify({...state, presentationKey: config.presentationKey}));
+    const next = {...state, presentationKey: config.presentationKey};
+    if (Array.isArray(config.slideIds) && Number.isInteger(state.slideIndex) &&
+        typeof config.slideIds[state.slideIndex] === 'string' && config.slideIds[state.slideIndex]) {
+      next.slideId = config.slideIds[state.slideIndex];
+    }
+    storage.setItem(getStateKey(config), JSON.stringify(next));
   } else {
     storage.setItem(getStateKey(config), JSON.stringify(state || {}));
   }

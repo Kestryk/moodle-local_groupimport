@@ -1,11 +1,20 @@
 # Changelog
 
+## Unreleased - G11 first-slide migration preparation
+
+- Consume canonical Kit0.4.162 opt-in stable reading IDs/historical index maps.
+  Pure logic and canonical synchronization PASS; rebuilt AMD. No PHP config,
+  slide order, stored user progress or new lesson design activated yet.
+
 ## Unreleased - G11 responsive selection readiness
 
 - Emit the Practice selection milestone after native action enablement and
   responsive tray rendering, so the next Move highlight resolves a ready target.
   Keep selection/business predicates and Motion unchanged; tablet native proof
   remains pending.
+- Native successor passes the previously failing tablet transition and the
+  full bounded1280/768/390 open/search/Cancel presentation scenario. No course
+  commands performed; other member/edit targets and human review remain open.
 
 ## Unreleased - G11 nested Compare wrapping
 

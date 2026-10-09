@@ -175,3 +175,30 @@ signal to the end of the same update, after selection availability, tray and
 pagination synchronization. Same predicate, path IDs, business commands and
 Motion; no Kit style/controller changes. Native successor must confirm the
 768px transition and retain the strict highlight oracle before claiming a fix.
+
+Managed promotion33adae2+88346a8 to runtimeaa38a20 with cache purge.
+Unchanged expanded scenario20261009T114404327Z-692 PASS1280/768/390:
+selection-to-Move, searchable destination and confirmation highlights, safe
+Cancel, settled/scroll-visible invitation geometry and long Compare paint.
+Phone raster inspected: icon upper-left, centred numbered multiline copy and
+Start below. No course transaction, fixtures, blocked writes or console errors;
+credentials/child/lease cleanup complete. Static preservation test proves
+identical course manager apart from moved signal/comment; AMD rebuild PASS.
+G11-E still retains member/edit targets outside this Practice branch. Human
+exception review and paired product design not inferred from native PASS.
+
+## G11-G reading migration preparation, not activated
+
+Canonical0.4.162 adds opt-in ordered slideIds and explicit per-origin index maps.
+Exact canonical logic tests PASS44 historical positions (24 discovery plus20
+pre-discovery), stable-ID priority, preserved completed paths/active step,
+unknown/invalid states, read-only loading and immutable original backup on the
+first real save. Consumers without IDs retain the old offset behavior.
+Embedded/runtime sources synchronized and AMD built; source preservation test
+still PASS. EasyStud PHP configuration/order is unchanged: common lesson remains
+at its current position, no new DOM specimens, no migration activated or stored
+user state rewritten. No visual Penpot change applies to this logic-only phase.
+Next activation must move the intro, remove its unrelated group invitation,
+provide canonical navigation/path/checklist/highlight specimens, pair important
+recipes in Foundations and supply explicit product historical maps. Keep native
+migration/persistence, curriculum redesign and human review separate.
