@@ -94,3 +94,26 @@ then actual Organisation long paragraph paint containment. No global reset or
 course transaction. Welcome eligibility is not artificially reset to manufacture
 a first-visit result. Earlier documentary predecessors must be promoted in order.
 G11-E..I and animated-dot native/readability proof remain separately open.
+
+## Native presentation successor diagnostic
+
+Managed preview served the ordered predecessors through933d4a2 with cache purge.
+Native run20261009T101031077Z-39680 stopped at horizontal centre7.5px;
+cleanup confirms child stopped, credentials cleared and lease released. No
+global reset/course transaction. The initial harness compared fixed CSS layout
+with innerWidth (including a classic scrollbar gutter), unlike the isolated
+no-scroll document. Successor records inner/client dimensions and measures the
+actual document layout viewport, retaining the strict <1px centre oracle.
+Geometry is persisted before assertions so a subsequent failure is diagnosable.
+This hypothesis is not a native PASS; other G11 gates remain open.
+
+Successor run20261009T104513717Z-38152 PASS at1280/768/390. Actual root
+layout widths1265/753/375 reserve15px although innerWidth/clientWidth report
+1280/768/390. Equal horizontal auto margins and centre0px on both axes prove
+the fixed containing-block alignment; no product CSS workaround. Dialog
+top-layer, initial Cancel focus, equal action heights, Escape and Cancel return
+PASS on all widths. Organisation normal wrapping, all painted text containment
+and no horizontal overflow PASS. No console errors, blocked writes, reset,
+course transaction or fixtures; child/credentials/lease cleanup complete.
+This bounds G11-B/D native presentation only: welcome native eligibility/dots,
+G11-E..I and human exception review remain open. Failed diagnostic runs retained.

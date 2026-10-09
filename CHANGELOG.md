@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased - G11 native presentation diagnostic
+
+- Preserve the failed native centring run and its completed cleanup. Measure
+  fixed-layout centring against the layout viewport, record scrollbar dimensions
+  and persist geometry before assertions; retain the strict subpixel threshold.
+  No product style, global reset or course data changed by this test successor.
+- Native1280/768/390 confirmation modality, paired actions, Escape/Cancel and
+  Organisation paragraph paint-containment PASS. Record the actual15px reserved
+  gutter and keep other Guide gates/human exception review explicitly open.
+
 ## Unreleased - G11 paired presentation and native candidate
 
 - Foundations viewport/backdrop, centred welcome/compass and Active/Paused4px

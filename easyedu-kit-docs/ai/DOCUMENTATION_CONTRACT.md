@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Native fixed-overlay centring compares the actual root layout bounds, not
+innerWidth/clientWidth alone: a reserved scrollbar gutter can make both differ
+from the fixed containing block. Keep the strict subpixel oracle, persist
+geometry before assertions and preserve failed immutable runs. An admin
+open/Cancel and paragraph-containment PASS does not validate welcome eligibility,
+global reset, native dots, modal path targets or the remaining curriculum.
+
 Card-reading explanation copy may reuse common introduction layout with no
 capability topic. Preserve static illustration and native target/opener IDs.
 Do not advertise proposed inspection animation recipes or new paths as installed.
