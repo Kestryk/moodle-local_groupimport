@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Reading navigation saves only when canonical applyActiveSlide applies the real
+destination. Wait for that destination, not the click's outgoing-frame state.
+Initialization/opening stay read-only; retain the prior immutable diagnostic
+and preserve shared Motion and course command identity.
+
 Native first-introduction checks use versioned stable IDs and explicit supported
 historical maps. Preserve old index-pinned specs; successors must inspect intro
 before navigating to Practice. Synthetic reading history belongs only to isolated

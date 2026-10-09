@@ -8,6 +8,9 @@
 - Explicitly map all24 discovery and20 pre-discovery reading positions, preserve
   completed paths/active step and immutable original backup. Pure actual-PHP
   migration/order tests PASS; native served successor remains pending.
+- Consume canonical0.4.164 explicit settled-navigation reading save; preserve
+  path state, backup and existing Motion. Retain initial failed tests and use a
+  successor waiting for destination visibility before persistence assertions.
 
 ## Unreleased - G11 introduction specimens, not activated
 
