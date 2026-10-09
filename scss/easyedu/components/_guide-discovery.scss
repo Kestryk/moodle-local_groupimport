@@ -184,6 +184,60 @@
       }
     }
     &__note { @include typography.type-caption; color: var(--easyedu-text-muted); margin: 0; }
+    // Read-only teaching specimens have no controller attributes or tab stops.
+    // They share the real control primitives without pretending to perform actions.
+    &__specimen {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+    &__topic dd.easyedu-guide-introduction__specimen { margin-block-start: 0.75rem; }
+    &__highlight {
+      @include typography.type-control-label;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--easyedu-action-icon-gap);
+      min-width: 0;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary);
+      > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+    }
+    &__navigation.easyedu-guide-nav {
+      display: flex;
+      padding: 0;
+      width: 100%;
+      min-width: 0;
+      pointer-events: none;
+      .easyedu-guide-nav-item { cursor: default; max-width: 100%; }
+    }
+    &__action {
+      @include buttons.selection-action(primary, true);
+      pointer-events: none;
+      > span:last-child { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+    }
+    &__highlight {
+      background: var(--easyedu-surface);
+      border-color: var(--easyedu-primary);
+      outline: 2px solid var(--easyedu-primary-soft);
+      outline-offset: 2px;
+    }
+    &__checklist {
+      display: grid;
+      gap: 0.5rem;
+      min-width: 0;
+      width: 100%;
+      margin: 0;
+      padding: 0.625rem;
+      list-style: none;
+      background: var(--easyedu-surface);
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      li { display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: 0.5rem; align-items: center; }
+      .fa { text-align: center; color: var(--easyedu-primary); }
+    }
     @media (max-width: 47.999rem) { &__topics { grid-template-columns: minmax(0, 1fr); } }
   }
   .easyedu-guide-modal__fullscreen { @include buttons.close-button; }

@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Introduction specimen data remains opt-in until Foundations and first-slide
+activation gates pass. Static examples reuse Kit classes and have no native
+commands. Preserve card explanations, course actions and reading/path state;
+isolated test success must not be reported as a served first-slide change.
+
 Stable reading migration preparation is opt-in and must not silently activate
 through a Kit update. Product activation requires a new presentation key, exact
 per-origin maps and stable slide IDs, with original first-save backup preserved.

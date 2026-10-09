@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased - G11 introduction specimens, not activated
+
+- Consume canonical Kit0.4.163 optional read-only navigation, path, checklist
+  and highlight examples. Add EN/FR specimen data to the isolated renderer.
+  Existing live introduction data, slide order, path invitation and persistence
+  configuration remain unchanged until paired design/activation gates pass.
+
 ## Unreleased - G11 first-slide migration preparation
 
 - Consume canonical Kit0.4.162 opt-in stable reading IDs/historical index maps.

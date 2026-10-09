@@ -23,6 +23,7 @@ echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend(
     'welcomeCopy' => get_string('guidewelcomecopy', 'local_groupimport'),
     'cardLessons' => $cardlessons,
     'commonIntroduction' => \local_groupimport\local\guide_discovery::common_introduction(),
+    'commonIntroductionSpecimens' => \local_groupimport\local\guide_discovery::common_introduction(true),
     'commonIntroductionTitle' => get_string('guideintro_title', 'local_groupimport'),
     'commonIntroductionDescription' => get_string('guideintro_description', 'local_groupimport'),
     'welcomeReset' => ['title' => get_string('guidewelcomereset', 'local_groupimport'),
