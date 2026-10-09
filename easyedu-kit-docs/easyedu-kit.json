@@ -11,6 +11,9 @@
       "isolatedWelcomeVerified": true,
       "isolatedConfirmationVerified": true,
       "nativePreviewVerified": false,
+      "nativeResetPresentationVerified": true,
+      "nativeOrganisationParagraphVerified": true,
+      "nativePresentationRun": "easystud-authenticated-20261009T104513717Z-38152",
       "humanVisualValidated": false
     },
     "guideCommonIntroduction20261009": {

@@ -40,12 +40,24 @@ test('Guide G11 reset modality and Organisation paragraph presentation', async({
             await launcher.click();
             const dialog=page.locator('#easyedu-welcome-reset');
             await expect(dialog).toHaveAttribute('data-easyedu-dialog-modal','true');
+            await page.waitForLoadState('load');
             const geometry=await dialog.evaluate(n=>{
                 const r=n.getBoundingClientRect(),a=n.querySelector('[data-easyedu-dialog-cancel]'),b=n.querySelector('button[type="submit"]');
-                return {native:n.matches(':modal'),centreX:Math.abs(r.x+r.width/2-innerWidth/2),
-                    centreY:Math.abs(r.y+r.height/2-innerHeight/2),overflow:n.scrollWidth>n.clientWidth,
+                // Fixed layout excludes the classic scrollbar gutter; keep the
+                // subpixel oracle, but measure the actual layout viewport.
+                const viewport=document.documentElement,layout=viewport.getBoundingClientRect();
+                return {native:n.matches(':modal'),centreX:Math.abs(r.x+r.width/2-(layout.left+layout.width/2)),
+                    centreY:Math.abs(r.y+r.height/2-viewport.clientHeight/2),
+                    viewport:{innerWidth,clientWidth:viewport.clientWidth,clientHeight:viewport.clientHeight,
+                        layoutLeft:layout.left,layoutWidth:layout.width},
+                    rect:{x:r.x,y:r.y,width:r.width,height:r.height},
+                    computed:Object.fromEntries(['left','right','top','bottom','margin-left','margin-right',
+                        'padding-left','padding-right','transform','translate','width','max-width',
+                        'scrollbar-gutter','direction'].map(key=>[key,getComputedStyle(n).getPropertyValue(key)])),
+                    overflow:n.scrollWidth>n.clientWidth,
                     pair:Math.abs(a.getBoundingClientRect().height-b.getBoundingClientRect().height),cancelFocus:document.activeElement===a};
             });
+            rows.push({width,reset:geometry,escapeAndCancel:false});
             expect(geometry.native && geometry.cancelFocus && !geometry.overflow).toBeTruthy();
             expect(geometry.centreX).toBeLessThan(1); expect(geometry.centreY).toBeLessThan(1);expect(geometry.pair).toBeLessThan(.1);
             await page.screenshot({path:info.outputPath('reset-modal-'+width+'.png')});
@@ -55,7 +67,7 @@ test('Guide G11 reset modality and Organisation paragraph presentation', async({
             await expect(dialog).toHaveAttribute('data-easyedu-dialog-modal','true');
             await dialog.locator('[data-easyedu-dialog-cancel]').click();
             await page.waitForURL(url=>url.pathname.endsWith('/admin/settings.php'));
-            rows.push({width,reset:geometry,escapeAndCancel:true});
+            rows.at(-1).escapeAndCancel=true;
             await page.goto(process.env.EASYEDU_MOODLE_URL,{waitUntil:'domcontentloaded'});
             await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
             if (!await page.locator('[data-easyedu-guide-open]:visible').count()) {
