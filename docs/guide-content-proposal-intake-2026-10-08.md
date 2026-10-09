@@ -145,3 +145,19 @@ All three JSON parse successfully. Immutable delivery hashes (SHA256):
 All older G/SM feedback lots remain retained in their existing ledgers. This
 intake does not mark them done, authorize course-data tests, or close the human
 checklist. No shared Platform plan or writer artifact changed.
+
+### Content2 source and design candidate
+
+Three card lessons modernized in place at indices8/9/10: short intro plus the
+existing shared explanation recipe, no Kit style/template/engine change. EN/FR
+copy qualifies settings/permissions, member vs Participant move semantics,
+mobile action-menu routing, grouping hierarchy and separate activity settings.
+Practice safety copy now names creation and membership-confirmation mutations.
+
+Six linked Guide explanation instances use the existing Foundations Desktop/
+Mobile provider; settled text wraps/spacing and containment checked, saved6
+roots/168 descendants, editor rasters inspected. These are copy compositions,
+not full-dialog/static-card redraws. Existing visualcarddetail examples are
+preserved, not represented as the proposed unimplemented inspection animations.
+48 isolated common/card language/width/Motion cases PASS. Native candidate added;
+no course writes, new path IDs, progression migration or human acceptance.

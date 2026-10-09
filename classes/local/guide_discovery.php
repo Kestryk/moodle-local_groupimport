@@ -8,6 +8,21 @@ defined('MOODLE_INTERNAL') || die();
 
 /** Product-owned discovery content; illustrations never issue Moodle commands. */
 final class guide_discovery {
+    /** Card-reading copy uses the existing shared explanation recipe, not a new scene engine. */
+    public static function card_explanation(string $type): array {
+        if (!in_array($type, ['participant', 'group', 'grouping'], true)) {
+            throw new \InvalidArgumentException('Unknown Guide card type.');
+        }
+        $topics = [];
+        foreach (['read' => 'fa-compass', 'actions' => 'fa-play-circle', 'mobile' => 'fa-eye'] as $key => $icon) {
+            $prefix = 'guidecard_' . $type . '_' . $key;
+            $topics[] = ['icon' => $icon,
+                'title' => get_string($prefix . '_title', 'local_groupimport'),
+                'description' => get_string($prefix . '_description', 'local_groupimport')];
+        }
+        return ['topics' => $topics, 'note' => get_string('guidecard_' . $type . '_note', 'local_groupimport')];
+    }
+
     /** Shared introduction data; no slide insertion or persisted-index migration. */
     public static function common_introduction(): array {
         $topics = [];

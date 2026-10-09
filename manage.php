@@ -1117,6 +1117,8 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 !empty($step['visualgroupingcard'])) {
             $cardtype = !empty($step['visualparticipantcard']) ? 'participant' :
                 (!empty($step['visualgroupcard']) ? 'group' : 'grouping');
+            // Reuse canonical explanation layout; preserve static card and native targets.
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::card_explanation($cardtype);
             $cardicons = [
                 'participant' => 'fa-user',
                 'group' => 'fa-users',
