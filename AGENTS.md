@@ -137,3 +137,8 @@ versioned plan/state files when a milestone, blocker or next step changes.
 Preserve valuable Playwright specs as versioned candidates for Docker/CI and
 classify them in the shared scenario registry; keep only generated media
 outside Git.
+
+Native Close hover comparisons must wait actual subtree animations before
+sampling final paint. Keep failed transient-colour runs/specs immutable and
+retain strict glyph/frame/focus oracles; never repair a harness race by changing
+the accepted UI Motion. Close parity does not certify Fullscreen or curriculum.

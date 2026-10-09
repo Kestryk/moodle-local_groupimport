@@ -2,6 +2,10 @@
 
 ## Unreleased - Discovery regular Close glyph
 
+- Served native parity PASS at1280/768/390: title role, regular glyph, Small
+  frame, centred paint, settled danger hover and completed Close/focus return.
+  Retain the failed transient-colour harness and its settled successor;
+  no SCSS/Motion adjustment or course transaction was needed.
 - Consume Kit0.4.166: Guide dialog/checklist Close matches the native entity
   regular multiplication glyph, using the same Small frame. Legacy Guide
   branch, SCSS, titles, commands, controller and Motion unchanged.

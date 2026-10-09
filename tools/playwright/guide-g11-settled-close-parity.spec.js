@@ -3,7 +3,7 @@ const fs = require('node:fs');
 
 // Local-supervised read/open/close only. Compare roles and actual glyph paint,
 // not a Guide heading against an entity product eyebrow as if both were titles.
-test('Guide G11 regular Close glyph parity', async({page}, info) => {
+test('Guide G11 settled regular Close glyph parity', async({page}, info) => {
     test.setTimeout(150000);
     page.setDefaultTimeout(15000);
     const rows=[],errors=[],blocked=[];
@@ -49,6 +49,7 @@ test('Guide G11 regular Close glyph parity', async({page}, info) => {
             expect(guidePaint.close.centreDelta).toBeLessThan(1);
             await guide.locator('[data-easyedu-guide-close]').hover();
             await expect.poll(async()=> (await paint(guide.locator('[data-easyedu-guide-close] span'))).color).not.toBe(guidePaint.close.color);
+            await expect.poll(()=>guide.locator('[data-easyedu-guide-close]').evaluate(node=>node.getAnimations({subtree:true}).filter(animation=>animation.playState==='running').length)).toBe(0);
             guidePaint.closeHover=await paint(guide.locator('[data-easyedu-guide-close] span'));
             await guide.locator('[data-easyedu-guide-close]').click();
             await expect(guide).toBeHidden();
@@ -77,6 +78,7 @@ test('Guide G11 regular Close glyph parity', async({page}, info) => {
             expect(Math.abs(guidePaint.close.frameWidth-entityPaint.close.frameWidth)).toBeLessThan(1);
             expect(Math.abs(guidePaint.close.frameHeight-entityPaint.close.frameHeight)).toBeLessThan(1);
             await entity.locator('[data-easystud-close-user-modal]').hover();
+            await expect.poll(()=>entity.locator('[data-easystud-close-user-modal]').evaluate(node=>node.getAnimations({subtree:true}).filter(animation=>animation.playState==='running').length)).toBe(0);
             await expect.poll(async()=> (await paint(entity.locator('[data-easystud-close-user-modal] span'))).color).toBe(guidePaint.closeHover.color);
             entityPaint.closeHover=await paint(entity.locator('[data-easystud-close-user-modal] span'));
             rows.push({width,guide:guidePaint,entity:entityPaint});
@@ -91,3 +93,4 @@ test('Guide G11 regular Close glyph parity', async({page}, info) => {
             scope:'Same-host visible Guide and participant headers; no settings, messages, paths or course transaction'},null,2));
     }
 });
+
