@@ -161,3 +161,21 @@ not full-dialog/static-card redraws. Existing visualcarddetail examples are
 preserved, not represented as the proposed unimplemented inspection animations.
 48 isolated common/card language/width/Motion cases PASS. Native candidate added;
 no course writes, new path IDs, progression migration or human acceptance.
+
+Content2 native EN successor043702961Z-51704 PASS at1aa15a8 / Source42b37ee:
+indices8/9/10 at1280/768/390,9 open/read/close cases; canonical14.08 heading/intro/
+topic and12.16 caption, common reading font, contained explanations,24 slides
+and completion state preserved. Existing static illustration is visible; its
+complete below-fold paint and proposed animated inspection are not certified.
+Native target/opener source and Guide/course JS/assets are unchanged, but this
+scenario does not activate Show in interface. Zero errors/blocked writes/course
+actions/fixtures, credentials/child/lease cleanup PASS. Three representative
+native reading rasters inspected; FR/full Motion matrix is isolated evidence.
+No shared component changed: existing Foundations explanation provider is reused.
+
+Next Content3: reconcile four Discovery copy/recaps with writer proposal while
+preserving accepted Overview and cancellable illustration Motion. Static card
+inspection animations remain explicit Content2 follow-up, not a closed lot.
+After that, verify filter/action/identifier lessons and define non-destructive
+stable-ID curriculum migration before reducing the24-slide sequence. All older
+G/SM lots and human validation remain retained; no checklist required now.
