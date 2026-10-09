@@ -293,8 +293,9 @@
 
   .easyedu-guide-welcome {
     position: fixed;
-    inset-block-end: 1rem;
-    inset-inline-end: 1rem;
+    inset: 0;
+    margin: auto;
+    height: fit-content;
     z-index: 1070;
     width: min(30rem, calc(100vw - 2rem));
     min-height: 8.75rem;
@@ -439,6 +440,9 @@
       @include typography.type-body;
       font-size: var(--easyedu-guide-font-size-body);
       text-align: start;
+      white-space: normal;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
   }
 
@@ -563,13 +567,15 @@
       gap: 0.1875rem;
       flex: 0 0 auto;
       > span {
-        width: 0.1875rem;
-        height: 0.1875rem;
+        display: block;
+        flex: 0 0 0.25rem;
+        width: 0.25rem;
+        height: 0.25rem;
         background: currentColor;
         border-radius: 50%;
-        animation: easyedu-guide-activity 1.2s ease-in-out infinite;
-        &:nth-child(2) { animation-delay: 0.16s; }
-        &:nth-child(3) { animation-delay: 0.32s; }
+        animation: easyedu-guide-activity 1.35s ease-in-out infinite;
+        &:nth-child(2) { animation-delay: 0.18s; }
+        &:nth-child(3) { animation-delay: 0.36s; }
       }
     }
     &__live[data-guide-playback-state="paused"] .easyedu-guide-scene__activity > span {
@@ -904,6 +910,6 @@
 }
 
 @keyframes easyedu-guide-activity {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.55; }
-  30% { transform: translateY(-0.125rem); opacity: 1; }
+  0%, 40%, 100% { transform: translateY(0); opacity: 0.55; }
+  20% { transform: translateY(-0.21875rem); opacity: 1; }
 }

@@ -1,5 +1,16 @@
 # Changelog
 
+## Unreleased - G11 review correction candidate (WIP)
+
+- Record user's acceptance of other Guide checklist items and all exceptions.
+  New direction: first common lesson with DOM-like specimens, modernize legacy
+  slides, explicit persisted-state migration and reusable-only design catalogue.
+- Consume canonical centred welcome, compass start icon, revised EN/FR welcome
+  and round/staggered activity dots. Isolated welcome/playback pass; not served.
+- Discovery paragraph wrapping successor remains a native reproduction candidate.
+  Inline admin reset cause identified; modal structure/focus and other exceptions
+  remain open. No data changes, migration or new acceptance claimed.
+
 ## Unreleased - Guide card-reading lessons
 
 - Native EN9-case open/read/close proof passes three lessons at1280/768/390,

@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['guidewelcometitle'] = 'Découvrez le guide EasyStud';
-$string['guidewelcomecopy'] = 'Découvrez les cartes et les actions dans un guide interactif. Ouvrez-le quand vous êtes prêt.';
+$string['guidewelcomecopy'] = 'Découvrez le guide pas à pas pour comprendre comment organiser les participants, groupes et groupements dans EasyStud. Cliquez sur le bouton boussole ci-dessous pour commencer, ou ouvrez le guide quand vous serez prêt.';
 $string['guidewelcomeopen'] = 'Ouvrir le guide';
 $string['guidefullscreenenter'] = 'Afficher en plein écran';
 $string['guideintro_title'] = 'Comment utiliser ce guide';
