@@ -16,6 +16,9 @@
   original-grouping removal option; explain search/review/Cancel and mobile actions.
 - Context-menu lesson uses the same explanation composition, clarifying desktop
   right-click, mobile card button/action sheet and multi-selection scope.
+- Four action lessons now served and native reading-tested across three widths:
+  all titles/descriptions/notes contained, same Inter family and24 slides retained.
+  Actual menus/business actions and human acceptance remain separate.
 - Existing destination illustration, targets, Motion and persisted lesson/path
   identities unchanged. No Kit style override or new component family.
 

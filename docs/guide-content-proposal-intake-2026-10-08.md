@@ -276,3 +276,13 @@ Before activation: finish modern content/inspection illustrations, preserve
 original payload archive, retain old path IDs/predicates, handle unknown origins
 without silent reset and perform served-native/design/human gates. This is
 prepared migration proof, not deduplication delivered or checklist acceptance.
+
+Menu slice3288678 served at runtimed249a63. Native44192 PASS12 cases:
+filters/identifiers/menu/destination at1280/768/390,7 actual text nodes each,
+Inter and full painted containment, retained24 slides and Close/focus.48
+isolated EN/FR/width/Motion cases PASS. No page errors/blocked writes/fixtures;
+credentials/child/lease cleanup complete and retention dry-run protects evidence.
+This is native reading proof only, not opening every real context menu or
+executing a course action. No private CSS/new Penpot family introduced.
+Next: canonical card-inspection scenes and remaining old lessons; keep
+Fullscreen glyph, G11-E other modal targets, full curriculum and human review OPEN.
