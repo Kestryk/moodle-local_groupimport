@@ -7,6 +7,8 @@
   EN/FR only; accepted cards, Overview, scene Motion and path state retained.
 -48 actual-renderer/built-AMD containment cases and44 reading migrations PASS;
   PHP lint PASS. Full legacy replacement and human checklist remain open.
+- Copy served in local preview; unchanged strict native path/Compare scenario
+  PASS1280/768/390. EN native scope and isolated FR scope recorded separately.
 
 ## Unreleased - Guide targetless cue
 

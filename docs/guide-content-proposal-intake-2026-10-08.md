@@ -202,3 +202,11 @@ illustrated destination consistent and mobile instruction present. PHP lint
 and44 historical migrations PASS. This is not the24-to12 deduplication or the
 remaining legacy modernisation, inspection animations or new path integration.
 Native serving of this copy slice remains pending; human acceptance OPEN.
+
+Managed promotion4df676b now served at runtimebf3948c with caches purged.
+Native36180 PASS1280/768/390 using the unchanged strict targetless-cue/path
+scenario: intro, reading backup, safe selection/Move/search/Cancel and long
+Compare context contained. Actual phone Compare raster inspected; native
+language was EN, not a native FR matrix.48 EN/FR cases have isolated renderer
+proof. No transactions/fixtures; cleanup complete and scoped retention dry-run
+protects current evidence. Human review and full curriculum remain OPEN.
