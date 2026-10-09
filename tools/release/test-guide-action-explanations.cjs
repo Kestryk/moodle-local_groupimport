@@ -41,7 +41,7 @@ const engine = 'window.define=(...args)=>{window.Guide=args.at(-1)();};\n' +
                 });
                 assert.equal(bounds.overflow,false,`${language}/${width}/${motion}/${index}: copy wraps`);
                 assert.ok(bounds.left>=bounds.parentLeft-1 && bounds.right<=bounds.parentRight+1,'Painted copy stays in its container');
-                const textOverflow = await copy.locator('p,h4').evaluateAll(nodes=>nodes.filter(node=>{
+                const textOverflow = await copy.locator('p,dd,dt > span:last-child').evaluateAll(nodes=>nodes.filter(node=>{
                     const range=document.createRange();range.selectNodeContents(node);
                     const ink=range.getBoundingClientRect(),box=node.getBoundingClientRect();
                     return ink.left<box.left-1 || ink.right>box.right+1 || ink.bottom>box.bottom+1;

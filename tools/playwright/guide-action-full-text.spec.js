@@ -2,7 +2,7 @@ const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 
 // Local-supervised reading only, never apply a selection/course command.
-test('Guide filter and identifier explanations',async({page},info)=>{
+test('Guide full filter and identifier text containment',async({page},info)=>{
     test.setTimeout(150000);
     const rows=[],errors=[],blocked=[];
     page.on('pageerror',error=>errors.push(error.message));
@@ -43,7 +43,7 @@ test('Guide filter and identifier explanations',async({page},info)=>{
                 await expect(copy).toBeVisible();
                 await expect(copy.locator('.easyedu-guide-introduction__topic')).toHaveCount(3);
                 const result=await copy.evaluate(node=>{
-                    const texts=[...node.querySelectorAll('p,h4')].map(text=>{
+                    const texts=[...node.querySelectorAll('p,dd,dt > span:last-child')].map(text=>{
                         const range=document.createRange();range.selectNodeContents(text);
                         const ink=range.getBoundingClientRect(),box=text.getBoundingClientRect();
                         return {text:text.textContent,font:getComputedStyle(text).fontFamily,
@@ -52,6 +52,7 @@ test('Guide filter and identifier explanations',async({page},info)=>{
                     return {texts,overflow:node.scrollWidth>node.clientWidth+1};
                 });
                 rows.push({width,index,...result});
+                expect(result.texts).toHaveLength(7);
                 expect(result.overflow).toBe(false);
                 expect(result.texts.every(text=>text.contained)).toBe(true);
                 expect(result.texts.every(text=>text.font.includes('Inter'))).toBe(true);
@@ -68,3 +69,4 @@ test('Guide filter and identifier explanations',async({page},info)=>{
             scope:'Native reading/containment only; availability and business commands not exercised'},null,2));
     }
 });
+
