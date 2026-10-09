@@ -286,3 +286,13 @@ This is native reading proof only, not opening every real context menu or
 executing a course action. No private CSS/new Penpot family introduced.
 Next: canonical card-inspection scenes and remaining old lessons; keep
 Fullscreen glyph, G11-E other modal targets, full curriculum and human review OPEN.
+
+### Content4 activity and recap reading slice
+
+Reference-7 activity assignment and reference-19 completion reuse the published
+explanation composition. EN/FR clarifies Grouping membership vs separate native
+activity settings, availability/permission differences and checking real course
+configuration. Final reading is not asserted as business success. Existing
+illustrations, targets, reading/path identities and Motion unchanged; no new
+Penpot recipe or consumer CSS. Native reading gate remains distinct from actual
+activity configuration and future prepare-activity-grouping path predicates.
