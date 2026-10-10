@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Harmonize Useful shortcuts by reusing the existing method explanation and
+  four original shortcut pills; no duplicated strings, style family, controller,
+  target or progression change. Single-hunk source guard and12 isolated EN/FR
+  width/Motion cases pass; native preview remains a separate gate.
 - Create faster3ce649e served locally with managed cache purge; three native
   EN widths pass39 painted text/formula/result nodes and path preservation.
   No real creation or fixture writes; native FR/raster/human gates remain open.

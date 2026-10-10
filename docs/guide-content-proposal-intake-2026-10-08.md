@@ -530,3 +530,22 @@ AI rules suffice; no new Foundation family. Native FR/whole painted glyph/type/
 raster, shortcuts, explicit curriculum migration, other G11/SM/Mass Import and
 human checklist remain open. Next: remaining shortcut composition using verified
 selection/method behavior, then reconcile full writer crosswalk before dedup.
+
+## Shortcuts shared-recipe adoption - 10 October
+
+Single visualshortcuts adapter reuses action_explanation(method). Preserve all
+original copy and four shortcut pills, language keys/helper, CSS/template/AMD,
+24 lessons, targets/path IDs and accepted Motion. No new Foundation family or
+redundant explanatory strings. Bounded source guard reconstructs exactly one
+manage.php line against2166d77;12 isolated EN/FR width/Motion cases PASS.
+Native scenario is local-supervised, read/open/Close only, denies business writes.
+Existing AI shared-source/proof rules cover this adoption; no new rule required.
+The current24-to12 candidate is not active. Audit confirms that dedup must also
+preserve old reading-origin maps/backups and decide how existing first-structure,
+create-grouping and try-actions invitations remain discoverable. Retaining their
+stored completion alone does not certify continued access. Do not silently
+remove working paths as a side effect of selecting12 slides. Separate native
+modal member/edit targets, fullscreen glyph publication/paint, wider welcome/
+admin eligibility/reset proof and Mass Import remain open; human checklist is
+still deferred. Next: ordered shortcut preview/native proof, then a bounded
+current Guide coverage/remaining-engineering inventory before curriculum changes.
