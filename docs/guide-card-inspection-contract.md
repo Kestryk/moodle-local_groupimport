@@ -100,8 +100,9 @@ links, recursive parity, saved IDs and scoped fresh raster inspection. These
 compose native card-direct-action/mobile-card-menu-trigger, not framed generic
 icon buttons. Intermediate opening/growth Motion and native gates remain open.
 
-`guide_discovery::card_inspection('group'|'grouping')` supplies localized context
-for the shared recipe. It is intentionally not called by curriculum builders.
+At this historical preparation checkpoint,
+`guide_discovery::card_inspection('group'|'grouping')` supplied localized context
+for the shared recipe without being called by curriculum builders.
 Example email `alex@example.test` and `unknown-entry` are fictional; known chips
 are illustration data, not live resolver output. Unknown destination types fail
 before language lookup. Desktop and compact Open narration are distinct.
@@ -147,3 +148,25 @@ Curriculum activation, product Penpot propagation, native Show/Return/Reset and
 all older G/SM/human review gates remain open. No runtime/cache/fixture operation.
 Declared Moodle floor remains5.1, with no new business/core API; existing AMD
 boundary retained per [Moodle5.1 JavaScript guidance](https://moodledev.io/docs/5.1/guides/javascript).
+
+## Existing-lesson activation successor —10 October
+
+After the atomic build gate, manage.php now assigns the canonical inspection
+scene only to the existing Group and Grouping card-reading lessons. Their old
+visualcarddetail is removed so the template renders one illustration, not two.
+Participant keeps its static card. Common explanations, targets, openers,
+historical24-slide count, reading contract and six-step Practice path are retained.
+No new slide, storage key, recognition lookup or membership command is added.
+
+`node tools/release/test-guide-inspection-activation.cjs <php>` reconstructs the
+complete manage.php baseline1657165 by removing only the bounded added branch.
+It checks both languages, Participant retention and no duplicate destination
+specimen. The isolated PHP fixture executes that exact presentation branch,
+without loading manage.php, Moodle, session or database. Its inspectionScenes
+now derive from the activated card lessons rather than independent helper calls.
+The prior data guard still verifies four unchanged Discovery sample scenes;
+that assertion is not a claim that the complete curriculum remains inactive.
+
+PHP lint and activation/data gates pass. This is development-source activation;
+native preview, font paint, real Show/Return/Reset, correlated product design and
+human acceptance remain separate open gates. No runtime or cache mutation here.

@@ -28,7 +28,7 @@ for (const language of ['en', 'fr']) {
     assert.equal(data.readingSlides[0].id, 'use-this-guide');
     assert.equal(data.practicePath.length, 6);
     assert.equal(data.slides.some(slide => slide.discoveryscene.kind === 'inspection'), false,
-        'Prepared inspection data is NOT activated in the curriculum');
+        'The four discovery samples remain unchanged; inspection belongs to existing card lessons');
     scenes[language] = data.inspectionScenes;
     for (const type of ['group', 'grouping']) {
         const scene = data.inspectionScenes[type];
@@ -57,4 +57,4 @@ for (const type of ['group', 'grouping']) {
     assert.notEqual(scenes.en[type].actionlabel, scenes.fr[type].actionlabel);
     assert.notEqual(scenes.en[type].phases[1].compactlabel, scenes.fr[type].phases[1].compactlabel);
 }
-console.log('PASS4 localized inspection contexts; historical adapters/24 slides/six-step path preserved; no curriculum activation.');
+console.log('PASS4 localized inspection contexts; historical adapters/24 slides/six-step path and four discovery samples preserved. Activation is checked separately.');

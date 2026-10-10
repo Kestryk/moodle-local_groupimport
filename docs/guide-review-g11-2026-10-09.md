@@ -669,3 +669,16 @@ No curriculum activation, Moodle preview write/cache purge/authentication,
 database write or path migration. Served Source0a62ae7/runtimef91554c unchanged.
 Native all-adjacent-control proof and product design propagation remain open,
 as do every older unfinished G/SM lot and the combined human checklist.
+
+### G11-H existing Group/Grouping lessons activated —10 October
+
+The atomically synchronized recipe is now selected in the two existing card
+lessons in development Source. Their static illustration is replaced, not
+duplicated; Participant remains static. Exact complete manage.php preservation
+outside the small presentation branch passes. The isolated PHP fixture executes
+that branch and verifies EN/FR explanations,24-slide reading and six-step path
+retention. No migration, native lookup, real action or new curriculum item.
+
+PHP lint and data/activation checks pass. Served runtime remains at its prior
+recorded pin; preview promotion and native gates are next. All other G11/content/
+SM lots and human validation remain open as recorded, not silently completed.
