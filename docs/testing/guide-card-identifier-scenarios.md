@@ -16,6 +16,14 @@ Platform planning owner; do not overwrite the shared registry from this window.
 
 All native scenarios use the supervised saved-credential wrapper and bounded
 runtime ownership. Generated artifacts stay in external manifested runs.
+
+`guide-card-inspection-native.spec.js` is the local-supervised activation
+successor: two existing destination lessons at1280/768/390, normal Motion,
+Next/review/natural return/Reset/Close, native icon font and Small utility density.
+It retains the24-slide count, Participant static illustration and path completion;
+all business writes are denied. It does not supersede historical static-card
+proof, certify Pause/reduced native behavior or require new fixtures. Native
+results remain pending until the managed runtime promotion and owned run finish.
 Diagnostic source stays immutable. Local DOM input in the recognition successor
 is cleared before Cancel; no Add/Move/Save/fixture command is used. Both plugin
 POST and non-read Moodle AJAX are guarded in that successor.

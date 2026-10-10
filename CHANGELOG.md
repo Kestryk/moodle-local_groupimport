@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Add a guarded local-supervised native activation scenario for both existing
+  destination lessons at desktop/tablet/phone widths; preserve the historical
+  static-card scenario. No fixture/course write. Execution remains pending.
 - Activate the synchronized illustration-only inspection recipe in the existing
   Group and Grouping lessons, replacing their static specimen without duplicate
   cards. Participant illustration, lesson explanations, all other manage.php
