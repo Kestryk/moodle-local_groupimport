@@ -1,5 +1,11 @@
 # Current Student Management Guide: remaining engineering
 
+R10-31 source/title propagation now has served-native run4712:36 title paints
+and contained readings across twelve slides/three widths pass. Evidence in
+guide-slide-title-native-2026-10-10.json preserves isolated/native/design scope.
+Human acceptance and whole-page design review stay open. Next: R10-28 dots,
+then R10-30 explicit demo start, retaining every older pending lot.
+
 R10-31 is now prepared in shared Discovery SCSS and eight Foundation title
 specimens.144 isolated actual-title cases and complete unrelated source/CSS
 preservation pass. See guide-slide-title-hierarchy-2026-10-10.md. Saved-file,

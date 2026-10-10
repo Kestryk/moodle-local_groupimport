@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Verify served slide-title hierarchy:36 native twelve-slide readings at three
+  widths pass with exact shared type/colour and contained text, no course or
+  settings writes and complete cleanup. Human/full-page design review stays open.
+
 - Propagate source-backed title paint to eight saved linked Guide compositions
   and four named demonstration usages, preserving copy. Focused mobile-title
   raster passes; prepare a write-blocked native twelve-slide/three-width test.

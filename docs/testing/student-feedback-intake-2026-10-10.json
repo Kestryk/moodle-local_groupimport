@@ -444,11 +444,11 @@
       "title": "Mise en valeur des titres de slide",
       "request": "Les noms des slides doivent être mieux mis en avant et harmonisés.",
       "acceptance": "Hiérarchie partagée de titre de slide, couleur/poids/rythme cohérents avec le Kit, titres longs EN/FR et mobile, sans grossir arbitrairement l'en-tête de modale ou les entêtes de page; propager à toutes les slides.",
-      "status": "approved",
-      "sourceChanged": false,
-      "designPublished": false,
-      "previewServed": false,
-      "nativeVerified": false,
+      "status": "in-progress",
+      "sourceChanged": true,
+      "designPublished": true,
+      "previewServed": true,
+      "nativeVerified": true,
       "humanAccepted": false
     },
     {

@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideSlideTitle20261010": {
+      "kitCommit": "a9eb8836dbcff44aa33dcaa4ad5762e19d05c547",
+      "sourceCommit": "e90a6d8df8cb226bb184fa0f3e0368541d4addf0",
+      "nativePreviewVerified": true,
+      "nativeCases": 36,
+      "nativeProof": "docs/testing/guide-slide-title-native-2026-10-10.json",
+      "scope": "Discovery main slide titles only; other typography and Motion preserved.",
+      "humanVisualValidated": false,
+      "publicRelease": false
+    },
     "guideLightTooltips20261010": {
       "kitCommit": "241e5d25d64dfb9d9a9e46acee8af5a97e2a7803",
       "sourceCommit": "060b533c69fd7a5cb4802b9831767a7c5eb88c42",
