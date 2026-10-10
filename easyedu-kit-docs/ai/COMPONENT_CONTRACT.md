@@ -1,5 +1,13 @@
 # EasyEdu Component Contract
 
+Common Guide explanations use one spaced concept row. Plain desktop separates
+label/copy; compositions with examples keep copy in a shared reading lane and
+read-only specimens beside it. Compact layouts stack them. Count and measure
+all localized consumers and actual lanes, preserving typography, paths and Motion.
+Compare non-family compiled CSS with the established consumer Sass toolchain.
+Native Library update/readback and isolated renderer checks are not saved-server
+or hosted Moodle proof, and never close the postponed human checklist.
+
 Completed reduced Discovery checklist exposes its full naturally wrapping
 localized message below the compact header. Standalone path Reset consumes
 canonical bordered neutral small selection-action, not capsule recovery.

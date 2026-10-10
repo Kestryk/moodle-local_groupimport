@@ -2,6 +2,15 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Recompose all ten common Guide explanations through the canonical Kit layout:
+  one spaced topic row, separate desktop specimen lane and mobile stacking.
+  Rebuild with the established Sass toolchain;120 isolated localized layout
+  checks pass, with non-family CSS unchanged. Local preview/human review pending.
+
+- Start R10-29 family-wide recomposition after user clarification; inventory
+  all ten current explanatory slides and both canonical Foundations families.
+  Preserve copy, state and accepted Motion; design/source/preview gates pending.
+
 - Register33 deduplicated10 October user requests as distinct owned review
   lots; prioritize Guide palette/tooltips/introduction/titles/dots/manual demo
   start and retain older SM/admin/import/loading requests and human checklist.

@@ -163,13 +163,18 @@
     white-space: normal;
     &__topics {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem 1.5rem;
-      margin: 1rem 0;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
     &__topic {
       min-width: 0;
-      padding-block-end: 0.75rem;
+      // One reading row per concept; examples never interrupt explanatory copy.
+      display: grid;
+      grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+      align-items: start;
+      gap: 0.75rem 1.5rem;
+      padding-block-end: 1.5rem;
       border-block-end: 1px solid var(--easyedu-border);
       &[hidden] { display: none; }
       dt {
@@ -182,7 +187,8 @@
       }
       dd {
         @include typography.type-caption;
-        margin: 0.375rem 0 0;
+        min-width: 0;
+        margin: 0;
         color: var(--easyedu-text-muted);
         overflow-wrap: anywhere;
       }
@@ -195,7 +201,16 @@
       align-items: center;
       min-width: 0;
     }
-    &__topic dd.easyedu-guide-introduction__specimen { margin-block-start: 0.75rem; }
+    // Topics with a specimen keep heading/copy together in the reading lane.
+    &__topics:has(.easyedu-guide-introduction__specimen) > .easyedu-guide-introduction__topic {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      > dt, > dd:not(.easyedu-guide-introduction__specimen) { grid-column: 1; }
+      > .easyedu-guide-introduction__specimen {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
+      }
+    }
     &__highlight {
       @include typography.type-control-label;
       display: inline-flex;
@@ -242,7 +257,13 @@
       li { display: grid; grid-template-columns: 1rem minmax(0, 1fr); gap: 0.5rem; align-items: center; }
       .fa { text-align: center; color: var(--easyedu-primary); }
     }
-    @media (max-width: 47.999rem) { &__topics { grid-template-columns: minmax(0, 1fr); } }
+    @media (max-width: 47.999rem) {
+      &__topic, &__topics:has(.easyedu-guide-introduction__specimen) > .easyedu-guide-introduction__topic {
+        grid-template-columns: minmax(0, 1fr);
+        > dt, > dd { grid-column: 1; }
+        > .easyedu-guide-introduction__specimen { grid-column: 1; grid-row: auto; margin-block-start: 0.5rem; }
+      }
+    }
   }
   .easyedu-guide-modal__fullscreen { @include buttons.close-button; }
   // The vector inherits the existing Small control's density and state colour.

@@ -5,6 +5,13 @@ Existing Source/Kit worktrees only. No general SM backlog item is lost or closed
 
 ## User review priority override - 10 October
 
+Latest user clarification starts R10-29 now, ahead of the previously listed
+palette/tooltip order. Recomposition applies to all ten actual explanatory
+consumers, not the first slide alone. Scope, source/provider inventory and
+spacing/containment/native gates are in
+`guide-explanation-recomposition-2026-10-10.md`. Other requests remain queued;
+no rendering or publication PASS is inferred from inventory.
+
 New additive review records33 distinct requests in
 `student-feedback-successor-2026-10-10.md` and its machine-readable intake.
 Guide requests precede the remaining coverage gates below: R10-01 Guide
@@ -15,7 +22,11 @@ continuously. Other new SM/import/admin/loading requests remain queued after
 Guide, alongside every older unfinished requirement. Historical technical PASS
 does not close a renewed user report or the postponed human checklist.
 
-Current first safe step is R10-03 source-to-portal palette audit; source proves
+Current first safe step is R10-29 preview promotion and native reading checks,
+after saved Foundations/product row geometry and120 isolated current-consumer
+layout cases passed. Preserve the distinct Standard/main text-height review;
+do not infer full visual parity from saved root geometry. R10-03 remains queued
+next. Its source-to-portal palette audit proves
 Discovery uses the shared accent token, not that the actual saved palette paints
 correctly in Moodle. No settings Save, runtime mutation or new visual publication
 is claimed by this registration. Source-member FR/reduced/scenes/welcome/reset
