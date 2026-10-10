@@ -689,3 +689,18 @@ preferences. Native Moodle remains untested. Source686b992 is pushed/clean;
 snapshot ws3-20261010T054929Z-port4719pg3-db26fd077a4f is verified. Runtime report
 is clean f91554c/no active lease; preview remains unchanged. Next: prepare the
 native inspection successor and promote all owned prerequisite commits in order.
+
+### G11-H local preview and bounded native proof —10 October
+
+Ordered prerequisite/activation promotion succeeds without conflict, including
+all documentary predecessors; cache purge succeeds. Source bdbecd8 is served
+at clean runtime99f4a41. Native46300 passes six EN normal-Motion cases for Group/
+Grouping at1280/768/390, Next/review/natural return/Reset/Close, no duplicate
+illustration, native icon font and Small12.48px/600/30.390625px utilities.
+24 lessons, static Participant and path completion retained. No course/fixture
+write, errors or blocked requests; child/credential/lease cleanup complete.
+Exact evidence and remaining narrower native/raster gates are recorded in
+guide-card-inspection-contract.md and testing/guide-card-inspection-native-2026-10-10.json.
+Manifest/retention dry-run protects the owned run; no files deleted. Human
+acceptance and every unfinished G11/content/SM lot remain open. Next: the
+affected Show/Return controls and remaining modern-card/action lessons.

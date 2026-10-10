@@ -347,3 +347,11 @@ utility overflow; correction wraps those shared candidate actions at unchanged
 density. Corrected24-case matrix passes, not native/served proof. No curriculum
 activation, path migration or human checklist closure. Remaining Motion/design/
 build/native gates are tracked in docs/guide-review-g11-2026-10-09.md.
+
+10 October successor: existing Group/Grouping lessons now activate the canonical
+inspection recipe after atomic template/engine/SCSS build. Six native EN normal
+cases pass at1280/768/390 in local preview, with24 lessons and path completion
+preserved. Source bdbecd8/runtime99f4a41. This supersedes only the earlier inactive/
+unserved inspection status, not full curriculum replacement, migration or human
+acceptance. Native adjacent Show/Return, broader paint and remaining modern
+lessons stay next; the complete writer crosswalk and Mass Import remain retained.

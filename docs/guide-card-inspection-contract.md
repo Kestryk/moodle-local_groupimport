@@ -183,3 +183,38 @@ Development commit686b992 is pushed with clean Source and Kit worktrees. Verifie
 snapshot ws3-20261010T054929Z-port4719pg3-db26fd077a4f preserves this activation.
 Read-only runtime report confirms clean f91554c on the existing local preview
 branch and no active runtime leases; no promotion/cache/test was performed.
+
+## Served-native successor —10 October
+
+The managed preview subsequently applied every owned prerequisite in order,
+including the documentary predecessors, through Source bdbecd8. Runtime99f4a41
+is clean on the existing local-only preview branch; cache purge succeeds.
+Git blob comparison confirms exact source/runtime CSS, AMD, Mustache and
+manage.php equality (raw Windows checkout hashes differ by line endings).
+
+Native run easystud-authenticated-20261010T062129499Z-46300 passes six cases:
+EN,1280/768/390, Group/Grouping, normal Motion. Real lesson navigation, all five
+phases via Next, readonly example/recognized chips, natural return, Reset/Close,
+24-slide count, Participant static specimen and path completion are preserved.
+Utilities measure12.48px/600/30.390625px; native glyph family is Font Awesome6 Free.
+No horizontal scene overflow, errors, blocked business calls or fixtures. The
+font-family check is not foreground glyph raster or whole-scene visual proof.
+
+Historical static-card spec stays immutable. The new native scenario is
+local-supervised, not automatically CI-enabled. Initial discovery was invoked
+from the dependency-free Source checkout and failed before credentials/leases;
+invoking the runtime wrapper with AllowedSpecRoot fixes that preflight, selects
+exactly one test and keeps source immutable throughout its owned run.
+The local DPAPI adapter stores no decrypted values and remains outside Git.
+
+Cleanup confirms cleared process credentials, stopped child and released lease.
+Manifest registered; the exact-run retention dry-run protects the run, with no
+candidate/deletion. An unsupported ProjectNamespace argument was corrected to
+the documented bounded ArtifactRoot invocation; no destructive cleanup occurred.
+Versioned evidence: docs/testing/guide-card-inspection-native-2026-10-10.json.
+External evidence lives under the configured EasyEdu artifacts/easystud/
+authenticated/<runId> root, with guide-card-inspection-result.json and cleanup.json.
+
+Remaining: native FR/reduced/Pause/replay and all affected Show/Return utilities,
+whole painted cursor/glyph/type checks, correlated product design, remaining
+curriculum/path targets, Mass Import and every older unfinished SM/human lot.

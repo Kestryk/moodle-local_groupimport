@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Publish the ordered inspection prerequisites and activation to local Moodle5.1,
+  with managed cache purge. Six native desktop/tablet/phone cases pass for the
+  existing Group/Grouping lessons, native icon font, Small utilities and preserved
+  path completion. No course/fixture mutation; wider/native visual review stays open.
 - Add a guarded local-supervised native activation scenario for both existing
   destination lessons at desktop/tablet/phone widths; preserve the historical
   static-card scenario. No fixture/course write. Execution remains pending.
