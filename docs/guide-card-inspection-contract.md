@@ -250,3 +250,42 @@ entities remain unverified. EN/FR copy uses the same shared keycap composition;
 no new CSS, template, controller, animation or Foundation family is introduced.
 Bounded source guard and12 isolated keycap cases pass. Native copy publication
 is pending and must not be confused with the tested selection behavior.
+
+## Selection copy served-native successor - 10 October
+
+Source998c85c is now served at clean runtimecec41f8, with every owned predecessor
+applied in order and managed cache purge. Native28880 passes three EN widths:
+all21 main-paragraph/keycap text nodes are contained, localized keycaps retain
+existing composition, and Close preserves path completion. No errors, blocked
+writes, fixtures or course changes. Credential/child/lease cleanup succeeds;
+manifest and bounded retention dry-run protect evidence without deletion.
+Evidence: docs/testing/guide-selection-copy-native-2026-10-10.json.
+
+Twelve isolated EN/FR width/Motion cases cover keycap geometry only; native
+paragraph proof is EN. CSS/AMD/template/curriculum remain unchanged. Existing
+AI selection-narration rule covers this copy-only correction; no new Foundation
+recipe or cross-consumer style is needed. Other G11/content/SM lots, progress
+migration and human acceptance remain open. Next: native French inspection
+normal/reduced/Pause/replay, then remaining method/summary modernization.
+
+## Native French inspection successor - 10 October
+
+Native28748 passes12 cases: actual French action copy asserted, Group/Grouping
+at1280/768/390, normal/reduced Motion, normal Pause/resume, all five phases,
+readonly fictional input, natural return, replay, Reset/Close and preserved
+path completion. Existing24 lessons and Participant static specimen retained.
+Small utilities12.48px/600/30.390625px, no scene horizontal overflow. No course/
+fixture writes, errors or blocked business calls; child/credentials/lease cleanup
+complete. Manifest and protected retention dry-run recorded without deletion.
+Evidence: docs/testing/guide-localized-inspection-native-2026-10-10.json.
+
+46168 passed the same lifecycle but only requested lang=fr; it had no actual-copy
+assertion. Successor22208 failed before the widget audit waiting default login
+load, although the destination DOMContentLoaded occurred. Preserve both sources/
+runs. The final successor waits committed navigation with independent strict
+widget readiness and verifies French copy; no product style/Motion repair.
+Offline migration guard re-run:68 positions PASS; candidate remains inactive.
+No new reusable recipe: existing AI contract already covers the navigation and
+proof distinction. Whole paint, remaining modern lessons, targets, separate
+Mass Import and all older SM/human lots stay open. Next: modernize method and
+recap lessons using the existing explanation recipe, preserving path identities.

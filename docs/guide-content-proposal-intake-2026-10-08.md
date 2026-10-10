@@ -355,3 +355,20 @@ preserved. Source bdbecd8/runtime99f4a41. This supersedes only the earlier inact
 unserved inspection status, not full curriculum replacement, migration or human
 acceptance. Native adjacent Show/Return, broader paint and remaining modern
 lessons stay next; the complete writer crosswalk and Mass Import remain retained.
+
+## Selection copy served-native successor - 10 October
+
+Source998c85c is now served at clean runtimecec41f8, with every owned predecessor
+applied in order and managed cache purge. Native28880 passes three EN widths:
+all21 main-paragraph/keycap text nodes are contained, localized keycaps retain
+existing composition, and Close preserves path completion. No errors, blocked
+writes, fixtures or course changes. Credential/child/lease cleanup succeeds;
+manifest and bounded retention dry-run protect evidence without deletion.
+Evidence: docs/testing/guide-selection-copy-native-2026-10-10.json.
+
+Twelve isolated EN/FR width/Motion cases cover keycap geometry only; native
+paragraph proof is EN. CSS/AMD/template/curriculum remain unchanged. Existing
+AI selection-narration rule covers this copy-only correction; no new Foundation
+recipe or cross-consumer style is needed. Other G11/content/SM lots, progress
+migration and human acceptance remain open. Next: native French inspection
+normal/reduced/Pause/replay, then remaining method/summary modernization.
