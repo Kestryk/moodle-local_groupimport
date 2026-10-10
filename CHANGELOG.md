@@ -2,6 +2,14 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Propagate source-backed title paint to eight saved linked Guide compositions
+  and four named demonstration usages, preserving copy. Focused mobile-title
+  raster passes; prepare a write-blocked native twelve-slide/three-width test.
+
+- Verify saved type/paint for eight Foundation slide titles; repair the
+  read-only evidence decoder's empty fill-array precedence without weakening
+  colour/font assertions. Guide product/native propagation remains pending.
+
 - Prepare R10-31 Discovery slide-title hierarchy using existing section-title
   type and secondary text colour.144 isolated localized title readings and full
   unrelated source/CSS preservation pass; Foundation title raster inspected.

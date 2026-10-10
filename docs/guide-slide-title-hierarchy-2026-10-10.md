@@ -39,3 +39,28 @@ claim current Moodle titles changed: runtimebc9d908 still serves tooltip work.
 Next: finish saved readback, propagate source-linked title updates to Guide
 without overwriting its specific copy, then controlled local preview and native
 long-title/mobile parity. All older Guide/student feedback stays retained.
+
+## Saved Foundation successor
+
+The eight-title saved gate now passes. The reader previously selected a truthy
+empty shape-fill array before reaching the text-content fills. Resolve the
+first nonempty fill collection and retain exact #0b5ea8/Inter/16/600/1.2
+assertions. No design repaint was needed. This corrects evidence parsing,
+not source paint or typography. Product propagation and native proof stay open.
+
+## Guide propagation
+
+Native shared-library update was applied. Eight existing product introduction
+title overrides retained old14.08px paint; explicitly reconcile those slots
+with the16px/600/1.2 secondary-text source while retaining text, widths and
+Foundation provider links. Saved product mode of the readback gate passes all
+eight Introduction/Participant/Group/Grouping desktop/mobile titles. Four named
+standalone Lesson/Discovery title usages are updated too; their saved/raster
+proof remains separate. No whole-page Guide certification is inferred.
+
+The native candidate `guide-slide-title-native.spec.js` reads all twelve slides
+at three widths, blocking business/settings writes. Not run before promotion.
+Its discovery gate selects exactly one test. The saved Foundation/product
+readback and focused product Mobile title raster now pass; external manifested
+run guide-slide-title-product-20261010 retains mobile-title.png, deletion0.
+This certifies the named title, not the entire composed mobile slide.
