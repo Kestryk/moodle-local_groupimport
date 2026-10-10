@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Activate the twelve-slide Student Guide with the matching reading contract in
+  one bounded adapter change. Preserve archived historical payloads, all paths,
+  commands and shared assets; preview/native verification is a separate gate.
 - Complete the inactive curriculum's content merge: retain real creation syntax,
   selection-scope warnings, destination/removal review and the verified keyboard
   lesson in the existing shared explanation recipe. No new CSS or inline styles.
