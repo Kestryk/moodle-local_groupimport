@@ -1,5 +1,12 @@
 # Current Student Management Guide: remaining engineering
 
+Latest successor: R10-30 is served at c698aa72. Twelve native four-scene cases
+at three widths pass Start/running/pause/advance/finish/replay/reset and Small
+paint, without course/settings writes; cleanup complete. Paired design and48
+localized normal/reduced isolated cases remain separate. Human checklist stays
+open. Next: audit remaining Guide portal palette coverage and older Guide gates,
+not general SM implementation or premature programme completion.
+
 R10-28 equal activity-dot grid candidate is prepared without timing/controller
 changes. Guide editor triads are3px versus4px code: source Foundation audit and
 paired design reconciliation must precede preview. See guide-activity-dot-spacing-2026-10-10.md.

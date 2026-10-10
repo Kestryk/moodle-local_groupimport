@@ -435,8 +435,9 @@
       "status": "in_progress",
       "sourceChanged": true,
       "designPublished": true,
-      "previewServed": false,
-      "nativeVerified": false,
+      "previewServed": true,
+      "nativeVerified": true,
+      "nativeScope": "12 four-scene normal-motion cases at1280/768/390: idle/Start/running/pause/phase advance/finish/replay/reset and Small paint. EN/FR reduced-motion48 isolated cases remain distinct.",
       "humanAccepted": false
     },
     {

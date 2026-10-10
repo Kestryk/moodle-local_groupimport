@@ -75,6 +75,17 @@ Before activation,48 isolated cases passed: four scenes, EN/FR,1280/768/390,
 normal/reduced motion. Successor fixture now checks actual consumer opt-ins
 rather than injecting flags. Served/native and human acceptance remain pending.
 
+### Served successor
+
+Source d7a25f6 and its documentary predecessor d80424a are served in order at
+runtime c698aa72 with caches purged. Native run47904 passes12 cases: four scenes
+at1280/768/390, idle, explicit Start, disabled/running, Pause/Resume, phase
+advance, completion, replay, reset and compact Small paint. No page errors or
+business/settings writes; credentials, owned child and lease cleanup completed.
+See guide-demonstration-entry-native-2026-10-10.json. Native configured normal
+motion is not separate native French/reduced-motion proof. Human review stays
+open; the earlier source-only paragraph is retained as chronology, not current status.
+
 ## Reusable integration lessons (R10-33)
 
 SDK text overrides can leave stale paint until native text layout refresh.

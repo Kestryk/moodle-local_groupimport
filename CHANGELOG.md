@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve explicit Guide demonstration entry;12 native four-scene three-width
+  lifecycle/paint cases pass with complete cleanup and no course/settings writes.
+  Preserve48 isolated localized cases and open human/reduced-native review.
+
 - Add Start/In progress/Replay to four timed Guide demonstrations using compact
   Kit buttons. Preserve creation, paths and scene timing; paired linked design
   and48 isolated cases pass, native preview pending.
