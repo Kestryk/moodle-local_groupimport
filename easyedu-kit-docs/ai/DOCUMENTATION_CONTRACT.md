@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Responsive editor availability checks actual direct-control paint, not DOM
+presence. Reuse the original single-entity editor and menu recipe; preserve
+metadata/multiselection gates and return focus to the visible card trigger.
+Native inventory can finish successfully while recording missing entries:
+only a strict successor requiring every entry proves restored access.
+
 Compact checklist review uses its actual Restore control before accessing
 hidden steps. Preserve the immutable failed no-Restore scenario and use a
 separate native successor; do not disable compact reduction, force a hidden

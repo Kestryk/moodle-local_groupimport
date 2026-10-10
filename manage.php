@@ -2487,6 +2487,11 @@ function local_groupimport_build_context_actions_template_data(
             'icon' => 'fa-pen',
             'label' => get_string('contextfocusrenamegrouping', 'local_groupimport'),
         ],
+        'grouping-open-advanced-settings' => [
+            'contexts' => 'grouping',
+            'icon' => 'fa-cog',
+            'label' => get_string('advancedsettings', 'local_groupimport'),
+        ],
         'copy-grouping-name' => [
             'contexts' => 'grouping',
             'icon' => 'fa-copy',
