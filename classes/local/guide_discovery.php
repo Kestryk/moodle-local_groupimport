@@ -323,9 +323,46 @@ final class guide_discovery {
                     return get_string('member_path_step' . $step, 'local_groupimport');
                 }, [1, 2, 3, 4])];
             }
+            if ($source === 'reference-5' || $source === 'reference-6') {
+                $type = $source === 'reference-5' ? 'group' : 'grouping';
+                $slide['hasguidedpath'] = true;
+                $slide['guidedpath'] = 'inspect-' . $type . '-settings';
+                $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
+                $slide['guidedpathtitle'] = get_string('editor_' . $type . '_title', 'local_groupimport');
+                $slide['guidedpathcontent'] = get_string('editor_' . $type . '_content', 'local_groupimport');
+                $slide['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+                    return get_string('editor_path_step' . $step, 'local_groupimport');
+                }, [1, 2, 3, 4])];
+            }
             $result[] = $slide;
         }
         return $result;
+    }
+
+    /** Inspect actual editor fields and Cancel; this path never requires Save. */
+    public static function editor_inspection_path(string $type): array {
+        if (!in_array($type, ['group', 'grouping'], true)) {
+            throw new \InvalidArgumentException('Unknown editor inspection context');
+        }
+        $definitions = [['open-editor', 'Action'], ['inspect-name', 'Name'],
+            ['inspect-description', 'Description'], ['cancel-editor', 'Cancel']];
+        $steps = [];
+        foreach ($definitions as $index => [$id, $suffix]) {
+            $step = ['id' => $id,
+                'title' => get_string('editor_path_step' . ($index + 1), 'local_groupimport'),
+                'description' => get_string('editor_path_desc' . ($index + 1), 'local_groupimport'),
+                'target' => $type . 'Editor' . $suffix,
+                'completionMode' => 'event', 'autoHighlightNext' => true,
+                'open' => 'tutorial:' . $type . '-editor-' . ($index === 0 ? 'entry' : 'dialog'),
+                'openDelay' => 360];
+            if ($index > 0) {
+                $step['requiresStep'] = $definitions[$index - 1][0];
+            } else {
+                $step['beforeHighlight'] = 'tutorial:close-' . $type . '-editor';
+            }
+            $steps[] = $step;
+        }
+        return $steps;
     }
 
     /** Source-member transfer is distinct from assigning global Participants. */

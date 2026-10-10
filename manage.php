@@ -1561,6 +1561,22 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                 '.easyedu-searchable-choice',
             'memberMoveConfirm' => '[data-easystud-move-modal][data-easystud-move-context="member"] ' .
                 '[data-easystud-confirm-move]',
+            'groupEditorAction' => [
+                '[data-easystud-structure-groups] [data-easystud-open-advanced-settings][data-easystud-advanced-target="group"]',
+                '[data-easystud-context-action="group-open-advanced-settings"]:not([hidden])',
+            ],
+            'groupingEditorAction' => [
+                '[data-easystud-tree] [data-easystud-open-advanced-settings][data-easystud-advanced-target="grouping"]',
+                '[data-easystud-context-action="grouping-open-advanced-settings"]:not([hidden])',
+            ],
+            'groupEditorName' => '[data-easystud-editor-context="group"] input[name="name"]',
+            'groupEditorDescription' => '[data-easystud-editor-context="group"] textarea[name="description"]',
+            'groupEditorCancel' => '[data-easystud-editor-context="group"] .easyedu-entity-dialog__actions ' .
+                '[data-easystud-close-advanced-settings]',
+            'groupingEditorName' => '[data-easystud-editor-context="grouping"] input[name="name"]',
+            'groupingEditorDescription' => '[data-easystud-editor-context="grouping"] textarea[name="description"]',
+            'groupingEditorCancel' => '[data-easystud-editor-context="grouping"] .easyedu-entity-dialog__actions ' .
+                '[data-easystud-close-advanced-settings]',
             'firstGroup' => [
                 '[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])',
                 '[data-easystud-group-id]:not([hidden])',
@@ -1600,6 +1616,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'tree' => '[data-easystud-tree]',
         ],
         'pathLabels' => [
+            'inspect-group-settings' => get_string('editor_group_title', 'local_groupimport'),
+            'inspect-grouping-settings' => get_string('editor_grouping_title', 'local_groupimport'),
             'reorganise-source-members' => get_string('member_path_title', 'local_groupimport'),
             'practice-membership' => get_string('discovery_path_title', 'local_groupimport'),
             'first-structure' => get_string('tutorialguidedpaneltitle', 'local_groupimport'),
@@ -1607,6 +1625,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'try-actions' => get_string('tutorialguidedactionstitle', 'local_groupimport'),
         ],
         'paths' => [
+            'inspect-group-settings' => \local_groupimport\local\guide_discovery::editor_inspection_path('group'),
+            'inspect-grouping-settings' => \local_groupimport\local\guide_discovery::editor_inspection_path('grouping'),
             'reorganise-source-members' => \local_groupimport\local\guide_discovery::source_member_path(),
             'practice-membership' => \local_groupimport\local\guide_discovery::practice_path(),
             'first-structure' => [

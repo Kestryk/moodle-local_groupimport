@@ -2169,6 +2169,11 @@ const emitNativePathCompletion = (root, path, step) => {
 
 const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
 const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
+const emitEditorInspectionCompletion = (root, type, step) => {
+    if (type === 'group' || type === 'grouping') {
+        emitNativePathCompletion(root, 'inspect-' + type + '-settings', step);
+    }
+};
 
 const getFixedHeaderOffset = () => {
     const candidates = Array.from(document.body.querySelectorAll('body > *, .navbar, header, [role="navigation"]'));
@@ -4109,6 +4114,7 @@ const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
     modal.setAttribute('data-easystud-advanced-settings-modal', '1');
+    modal.setAttribute('data-easystud-editor-context', type);
     modal.innerHTML =
         '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog easyedu-entity-dialog ' +
                 (isgroup ? 'local-groupimport-easystud-settings-modal__dialog--group' :
@@ -4247,10 +4253,22 @@ const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
             '</div>' +
         '</div>';
 
-    const closeModal = () => hideEasyStudModal(modal, () => {
+    const closeModal = (completeInspection = true) => hideEasyStudModal(modal, () => {
         modal.remove();
         if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
             returnFocus.focus({preventScroll: true});
+        }
+        if (completeInspection) {
+            emitEditorInspectionCompletion(root, type, 'cancel-editor');
+        }
+    });
+    // Guide review awaits the same native exit, without claiming user Cancel.
+    modal.easystudCloseEditor = () => closeModal(false);
+    modal.addEventListener('focusin', event => {
+        if (event.target.matches('input[name="name"]')) {
+            emitEditorInspectionCompletion(root, type, 'inspect-name');
+        } else if (event.target.matches('textarea[name="description"]')) {
+            emitEditorInspectionCompletion(root, type, 'inspect-description');
         }
     });
     modal.addEventListener('click', event => {
@@ -4259,6 +4277,7 @@ const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
         }
     });
     root.appendChild(modal);
+    emitEditorInspectionCompletion(root, type, 'open-editor');
     modal.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
         const content = details.querySelector(':scope > .local-groupimport-easystud-settings-modal__list-scroll, ' +
             ':scope > .local-groupimport-easystud-settings-modal__list-empty');
@@ -8729,9 +8748,63 @@ const bindSharedGuideTargets = root => {
         return structureView || null;
     };
 
+    const openEditorEntry = type => {
+        if (isResponsiveWorkspace() || root.easystudDesktopMode !== 'structure') {
+            ensureWorkspace(type === 'group' ? 'groups' : 'groupings');
+        }
+        const catalogue = type === 'group' ? '[data-easystud-structure-groups]' : '[data-easystud-tree]';
+        const item = Array.from(root.querySelectorAll(catalogue + ' [data-easystud-advanced-type="' + type + '"]'))
+            .find(node => node.getClientRects().length && !node.hidden);
+        if (!item) {
+            return null;
+        }
+        const header = item.querySelector(':scope > .local-groupimport-easystud-' + type + '__header');
+        const direct = header?.querySelector(':scope > [data-easystud-open-advanced-settings]');
+        if (direct?.getClientRects().length) {
+            return direct;
+        }
+        const trigger = item.querySelector(':scope > [data-easystud-card-menu]') ||
+            header?.querySelector(':scope > [data-easystud-card-menu]');
+        if (!trigger?.getClientRects().length) {
+            return null;
+        }
+        if (trigger.getAttribute('aria-expanded') !== 'true') {
+            trigger.click();
+        }
+        const action = root.querySelector('[data-easystud-context-action="' + type + '-open-advanced-settings"]');
+        return action && !action.hidden && action.getClientRects().length ? action : null;
+    };
+
+    const openEditorDialog = type => {
+        const current = root.querySelector('[data-easystud-advanced-settings-modal]');
+        if (current && !current.hidden) {
+            return current.getAttribute('data-easystud-editor-context') === type ? current : null;
+        }
+        if (Array.from(root.querySelectorAll('[role="dialog"]')).some(node =>
+                !node.hidden && node.getClientRects().length)) {
+            return null;
+        }
+        const entry = openEditorEntry(type);
+        if (entry && !entry.disabled) {
+            entry.click();
+        }
+        const modal = root.querySelector('[data-easystud-advanced-settings-modal]');
+        return modal?.getAttribute('data-easystud-editor-context') === type ? modal : null;
+    };
+
     const openTarget = selector => {
         if (!selector) {
             return null;
+        }
+        const editorTargets = {
+            'tutorial:group-editor-entry': ['group', false],
+            'tutorial:grouping-editor-entry': ['grouping', false],
+            'tutorial:group-editor-dialog': ['group', true],
+            'tutorial:grouping-editor-dialog': ['grouping', true],
+        };
+        if (editorTargets[selector]) {
+            const [type, dialog] = editorTargets[selector];
+            return dialog ? openEditorDialog(type) : openEditorEntry(type);
         }
         if (selector === 'tutorial:close-participant-move-dialog') {
             const modal = root.querySelector('[data-easystud-move-modal]');
@@ -8888,6 +8961,15 @@ const bindSharedGuideTargets = root => {
             // Do not discard another native dialog's context during review.
             request.ready = modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') !== 'member' ?
                 Promise.resolve(false) : root.easystudCloseMoveDialog?.() || Promise.resolve(true);
+            return;
+        }
+        if (request.target === 'tutorial:close-group-editor' || request.target === 'tutorial:close-grouping-editor') {
+            const type = request.target === 'tutorial:close-group-editor' ? 'group' : 'grouping';
+            const modal = root.querySelector('[data-easystud-advanced-settings-modal]');
+            request.handled = true;
+            request.ready = !modal || modal.hidden ? Promise.resolve(true) :
+                modal.getAttribute('data-easystud-editor-context') === type ?
+                    modal.easystudCloseEditor?.() || Promise.resolve(false) : Promise.resolve(false);
             return;
         }
         if (openTarget(request.target)) {
