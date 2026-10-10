@@ -51,3 +51,45 @@ Rollback is the bounded context adapter/selector change plus its generated
 AMD/map, not a stylesheet or progression reset. No cleanup of runtime data is
 needed. Shared platform planning remains owned by its planning window; this
 source ledger is the portable continuation record. The user checklist is open.
+
+## Served successor and preserved diagnostic
+
+Source b8cbb1a is pushed and served by clean preview7857a0f after ordered
+documentation predecessors352afe3/f31fa99 and the managed cache purge.
+Snapshot ws3-20261010T104135Z-port4719pg3-c1384f9c670d passes restore verification.
+Earlier staging-only failed snapshots are preserved: Windows line-ending/index
+stat mismatch, not lost source content. Normalize owned working-file endings
+and refresh staging before retrying; do not weaken the snapshot verifier.
+
+Native run20261010T104307686Z-26972 is retained as FAILED. Desktop completed
+selection/Move/destination/confirmation highlight and context cleanup assertions,
+then the harness attempted historical Organisation slide index2. The current
+twelve-slide lesson has a different index; no matching context paragraph exists
+there. There were no page errors or blocked writes. Credentials cleared, owned
+child stopped and lease released. No course transactions or fixtures.
+
+The immutable successor `guide-stable-slide-modal-targets-native.spec.js` locates
+both creation and Organisation through current stable IDs. It preserves all
+strict highlight, context, invitation and painted-copy assertions; no product
+assets were modified to correct the harness. Classification: local-supervised,
+not CI-ready (saved credentials, leased native Moodle and existing course needed).
+Shared registry submission belongs to the Platform planning owner.
+
+The stable-ID native successor43544 passes strict Participant destination/
+confirmation and context cleanup at1280 and768, including Organisation paint.
+At390, selection completes but the Open Move highlight disappears. Native
+diagnostic records current target null, enabled hidden desktop source and the
+real mobile action present. No page errors, blocked writes, fixtures or command
+confirmation; credentials/child/lease cleanup complete. This is retained as a
+product failure, not covered by the desktop/tablet passes.
+
+The native mobile renderer rebuilds all proxy buttons on every selection/density
+refresh. The Guide observes a particular DOM target and clears it when detached;
+replacing proxies can therefore discard an otherwise valid cue. The bounded
+successor keys proxies by their original native action selector, refreshes their
+existing icon/label content, reorders retained buttons and removes stale actions.
+`test-guide-mobile-action-identity.cjs` executes the production renderer and
+compares the entire unrelated source against b8cbb1a. It also replays the immutable
+six-case context guard against reconstructed source. All isolated checks pass.
+Native replay is required to establish whether this repairs the observed failure.
+No new CSS, shared Guide-engine change, action command or fabricated completion.

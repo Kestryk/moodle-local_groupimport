@@ -5646,9 +5646,16 @@ const renderMobileActionBar = (root, counts, activetype) => {
     const template = labels.selectioncounttemplate || '';
     summary.textContent = template.replace('__count__', String(total));
     bar.setAttribute('data-easystud-mobile-actions-type', activetype || '');
-    buttons.innerHTML = '';
+    // Selection/density updates may rerender while a Guide cue or keyboard
+    // focus points at a proxy. Retain its identity for the same native action.
+    const existingActions = new Map(Array.from(buttons.children).map(button => [
+        button.getAttribute('data-easystud-mobile-action-trigger'), button,
+    ]));
+    const retainedActions = new Set();
     actions.forEach(action => {
-        const button = document.createElement('button');
+        const button = existingActions.get(action.selector) || document.createElement('button');
+        retainedActions.add(button);
+        button.replaceChildren();
         const source = action.button;
         const isdanger = source.classList.contains('btn-outline-danger') || source.classList.contains('btn-danger');
         const isprimary = source.classList.contains('btn-primary') || source.classList.contains('btn-outline-primary');
@@ -5667,6 +5674,11 @@ const renderMobileActionBar = (root, counts, activetype) => {
         textNode.textContent = getButtonText(source);
         button.appendChild(textNode);
         buttons.appendChild(button);
+    });
+    Array.from(buttons.children).forEach(button => {
+        if (!retainedActions.has(button)) {
+            button.remove();
+        }
     });
     bar.hidden = false;
 };

@@ -2,6 +2,15 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Retain keyed native mobile action proxies across selection/density refreshes
+  so Guide highlights and focused buttons do not point at replaced nodes.
+  Preserve palette, labels, commands and Motion; isolated identity/preservation
+  passes. Retain the native390px missing-cue diagnostic separately.
+
+- Serve typed Move targets b8cbb1a in local Moodle; preserve a native diagnostic
+  caused by an obsolete comparison-slide index and prepare a stable-ID successor
+  without changing the product or weakening target/paint assertions.
+
 - Qualify Guide Participant destination/confirmation targets by the native
   move-dialog context. Member and Group dialogs no longer satisfy that opener;
   preserve every command, completion predicate and shared animation. Six isolated
