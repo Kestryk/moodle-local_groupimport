@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideDemonstrationEntry20261010": {
+      "kitCommit": "f8215a9fb4c54e8b087b6b0f0eebe2e4bb5f2b38",
+      "sourceCommit": "d7a25f6e6391783c5bd04a2c7e6e1afd84e7ea76",
+      "nativePreviewVerified": true,
+      "nativeWidths": [1280, 768, 390],
+      "nativeProof": "docs/testing/guide-demonstration-entry-native-2026-10-10.json",
+      "scope": "Four timed scenes: idle, explicit Start, running, pause, phase advance, finish, replay, reset; creation and paths unchanged.",
+      "humanVisualValidated": false,
+      "publicRelease": false
+    },
     "guideActivityDots20261010": {
       "sourceCommit": "38c1e3eacbdcb4c7557cf7307dc5116c7b6c7234",
       "nativePreviewVerified": true,
