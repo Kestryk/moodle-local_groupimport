@@ -2,9 +2,12 @@
 // guide-rich-navigation on the same root. Existing engine hooks are retained.
 @use "typography";
 @use "text-fields";
+@use "textareas";
 @use "buttons";
 @use "modals";
 @use "cards";
+@use "card-actions";
+@use "responsive";
 @use "overlays";
 @use "menus";
 @use "feedback";
@@ -525,6 +528,44 @@
     &__concept-arrow { position: absolute; inset-block-start: 2.75rem; inset-inline-end: -2rem; color: var(--easyedu-primary); font-size: 1.25rem; }
     &__card { @include discovery-card(var(--easyedu-group-rail, var(--easyedu-accent))); }
     &__grouping { @include discovery-card(var(--easyedu-grouping-rail, var(--easyedu-text-muted))); }
+    // Opt-in inspection composes the existing card, field, menu and token
+    // families. It is not a private consumer stylesheet or new type scale.
+    &__inspection-card {
+      @include discovery-card(var(--easyedu-group-rail, var(--easyedu-accent)));
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+      box-sizing: border-box;
+      &--grouping {
+        @include cards.object-card(var(--easyedu-grouping-rail, var(--easyedu-text-muted)));
+        border-left-width: 1px;
+        border-inline-start: var(--easyedu-identity-border-width) solid var(--easyedu-grouping-rail, var(--easyedu-text-muted));
+      }
+    }
+    &__inspection-stage { position: relative; }
+    &__inspection-header { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+    // Repeat only the child class: a second & would duplicate the dialog's
+    // outer selector and leave this flex lane inactive in the compiled host.
+    &__inspection-header .easyedu-guide-scene__card-copy { flex: 1 1 10rem; }
+    &__inspection-trigger { @include buttons.selection-action; @include buttons.button-size(small); }
+    &__inspection-submit { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
+    &__inspection-desktop-trigger { @include card-actions.card-direct-action; }
+    &__inspection-mobile-trigger { @include responsive.mobile-card-menu-trigger; }
+    &__inspection-panel { display: grid; gap: 0.75rem; min-width: 0; }
+    &__inspection-panel textarea { @include textareas.foundation-textarea($size: small); width: 100%; resize: none; }
+    &__inspection-menu {
+      @include menus.menu-surface(small);
+      position: static;
+      width: 100%;
+      > span { @include typography.type-caption; }
+      > strong { @include menus.menu-item($size: small); }
+    }
+    &__inspection-chips {
+      @include forms.detected-token-row;
+      align-items: center;
+      > span { @include forms.detected-token; }
+      > .is-unresolved { @include forms.detected-token(error); }
+    }
     &__example { margin-block: 1.25rem; }
     &__person {
       @include discovery-card(var(--easyedu-participant-rail, var(--easyedu-primary)));
@@ -551,6 +592,14 @@
     &__actions .btn { @include buttons.selection-action; @include buttons.button-size(small); }
     &__actions .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
     &__utilities { display: flex; gap: 0.5rem; margin-inline-start: auto; }
+    // Translated utility labels may exceed one phone row. Keep their canonical
+    // density/gap, wrapping the candidate illustration rather than clipping it.
+    &[data-easyedu-guide-scene="inspection"] .easyedu-guide-scene__utilities {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-inline-size: 0;
+      max-inline-size: 100%;
+    }
     &__utilities .btn {
       @include buttons.guide-adjacent-action($size: small);
       white-space: nowrap;

@@ -230,6 +230,29 @@
                                 <template data-guide-name-card><span class="easyedu-guide-scene__card"><span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong data-guide-name></strong><small>{{emptymembers}}</small></span></span></template>
                                 {{/creation}}
                                 {{^concepts}}{{^creation}}
+                                {{#inspection}}
+                                <div class="easyedu-guide-scene__creation-controls easyedu-guide-scene__inspection-stage" data-guide-stage>
+                                    <div class="easyedu-guide-scene__inspection-card{{#grouping}} easyedu-guide-scene__inspection-card--grouping{{/grouping}}" data-guide-inspection-card>
+                                        <span class="easyedu-guide-scene__identity fa {{cardicon}}" aria-hidden="true"></span>
+                                        <div class="easyedu-guide-scene__inspection-header">
+                                            <span class="easyedu-guide-scene__card-copy"><strong>{{cardtitle}}</strong><small>{{cardmeta}}</small></span>
+                                            <span class="easyedu-guide-scene__inspection-desktop-trigger" data-guide-inspection-trigger title="{{actionlabel}}" aria-hidden="true"><span class="fa {{actionicon}}" aria-hidden="true"></span></span>
+                                            <span class="easyedu-guide-scene__inspection-mobile-trigger" data-guide-inspection-mobile-trigger hidden aria-hidden="true"><span class="fa fa-bars" aria-hidden="true"></span></span>
+                                        </div>
+                                        <div class="easyedu-guide-scene__inspection-menu" data-guide-inspection-menu hidden aria-hidden="true"><span>{{menutitle}}</span><strong>{{actionlabel}}</strong></div>
+                                        <div class="easyedu-guide-scene__inspection-panel" data-guide-inspection-panel hidden>
+                                            <label class="easyedu-guide-scene__field"><span>{{inputlabel}}</span><textarea rows="3" readonly tabindex="-1" data-guide-inspection-input data-guide-example-value="{{inputvalue}}"></textarea></label>
+                                            <div class="easyedu-guide-scene__inspection-chips" data-guide-inspection-chips hidden><span>{{knownlabel}}</span><span class="is-unresolved">{{unknownlabel}}</span></div>
+                                            <div class="easyedu-guide-scene__actions" aria-hidden="true"><span class="easyedu-guide-scene__inspection-submit">{{addlabel}}</span><span class="easyedu-guide-scene__inspection-trigger" data-guide-inspection-cancel>{{cancellabel}}</span></div>
+                                        </div>
+                                    </div>
+                                    <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-inspection-cursor hidden aria-hidden="true"></span>
+                                </div>
+                                <section class="easyedu-guide-scene__recap" data-guide-recap hidden><strong>{{recaptitle}}</strong><ol class="easyedu-guide-scene__steps">{{#phases}}<li data-guide-phase="{{name}}"{{#compactlabel}} data-compact="{{compactlabel}}"{{/compactlabel}}>{{label}}</li>{{/phases}}</ol></section>
+                                <div class="easyedu-guide-scene__context"><p class="easyedu-guide-scene__result" data-guide-result data-inspection="{{resultlabel}}" aria-live="polite">{{initiallabel}}</p><p>{{note}}</p></div>
+                                <div class="easyedu-guide-scene__actions"><div class="easyedu-guide-scene__utilities"><button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button><button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button></div></div>
+                                {{/inspection}}
+                                {{^inspection}}
                                 {{#membership}}<p class="easyedu-guide-scene__intro">{{note}}</p>{{/membership}}
                                 <div class="easyedu-guide-scene__stage" data-guide-stage>
                                     <div class="easyedu-guide-scene__source" data-guide-source>
@@ -288,7 +311,7 @@
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>
                                     </div>
                                 </div>
-                                {{/creation}}{{/concepts}}
+                                {{/inspection}}{{/creation}}{{/concepts}}
                             </section>
                             {{/discoveryscene}}
                             {{#hasvisualflow}}

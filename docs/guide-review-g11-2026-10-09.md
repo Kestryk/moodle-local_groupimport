@@ -637,3 +637,35 @@ text shapes are a narrower check, not a replacement. Full opening-reference
 raster, desktop gesture cues, product wrapping-utility design, atomic consumer
 build and native preview remain. Exact recovery is in Kit’s motion successor
 record. All older G/SM lots and human checklist remain as previously recorded.
+
+### G11-H paired cues, Small density and atomic consumer build —10 October
+
+Kit20dbb05 pairs six canonical desktop pointer/card examples and four translated
+utility lanes in Foundations Library/Standard. Fingerprints, saved IDs and fresh
+Standard paint pass. Blank cue exports recovered after zooming the exact owned
+specimen; no scene geometry/paint mutation. The complete Opening raster also
+now includes text. Exact IDs/recoveries remain in Kit's motion successor record.
+
+Shared Small adjacent actions now match their published12.48px/600/30.4px recipe
+instead of overridden regular sizing. All existing quiet paint/focus/Motion is
+retained. This affects Small Show/Return, Reset and utilities, requiring native
+regression. Regular/Large retain their previous family behavior.
+
+Guide synchronization adds the canonical textarea dependency; seven drifted
+files align in one owned development pass. Source AMD/map and full styles.css
+are rebuilt. Thirteen synchronization targets pass; localized PHP/lang/24-slide
+curriculum and paths remain identical. Deterministic AMD/map reproduction and
+whole non-Guide CSS preservation pass, with only font-longhand differences on
+the four existing multiline field roles. No other Kit module drift is imported.
+
+Actual consumer compiled CSS/template/built AMD passes24 inspection fixture
+cases, not only canonical-source rendering. The initial fixture missed the
+real product token host and measured18px instead of19px at the terminal action;
+restoring that actual host passes the unchanged strict geometry oracle.
+No icon-font/native paint claim. Full diagnostics and exact invocation are in
+guide-card-inspection-contract.md. Sass deprecation warnings are retained.
+
+No curriculum activation, Moodle preview write/cache purge/authentication,
+database write or path migration. Served Source0a62ae7/runtimef91554c unchanged.
+Native all-adjacent-control proof and product design propagation remain open,
+as do every older unfinished G/SM lot and the combined human checklist.

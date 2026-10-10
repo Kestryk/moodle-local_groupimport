@@ -620,6 +620,14 @@
     width: 1rem;
   }
 
+  // Small is the published Guide utility density, not a regular-sized action
+  // with a Small argument silently overridden by this family's declarations.
+  // Keep the existing quiet paint, focus and transitions at every density.
+  @if $size == small {
+    & { @include button-size(small); min-width: 0; font-weight: 600; }
+    .fa { font-size: 0.875rem; width: 0.875rem; }
+  }
+
   &:hover,
   &:focus-visible {
     background: var(--easyedu-primary-soft) $priority;

@@ -165,6 +165,12 @@ $items = @(
         Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "scss\easyedu\components\_guide-discovery.scss")
     },
     [pscustomobject]@{
+        Name = "canonical inspection textarea SCSS"
+        Source = Resolve-OwnedPath $kitRoot "scss\easyedu\components\_textareas.scss"
+        Target = Resolve-OwnedPath $pluginRootPath "scss\easyedu\components\_textareas.scss"
+        Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "scss\easyedu\components\_textareas.scss")
+    },
+    [pscustomobject]@{
         Name = "embedded JavaScript"
         Source = $canonicalJavascriptPath
         Target = Resolve-OwnedPath $pluginRootPath "easyedu-guide-kit\amd\src\easyedu_guide.js"

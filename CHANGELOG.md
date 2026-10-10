@@ -2,6 +2,12 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Atomically synchronize private Kit20dbb05 inspection template/engine/SCSS and
+  textarea typography into the development worktree; rebuild Guide AMD/map/CSS.
+  Exact build, non-Guide CSS preservation and24 built-consumer fixture cases pass.
+  Existing curriculum/path adapters remain unchanged; no served/native claim.
+- Consume canonical Small Guide-adjacent density, preserving shared quiet paint,
+  hover/focus and Motion. No product stylesheet exception or real course command.
 - Record recognition-height transition and intermediate Foundations geometry
   reference; strengthened24-case canonical lifecycle passes. Full new-reference
   typography raster and consumer/native activation remain open.
