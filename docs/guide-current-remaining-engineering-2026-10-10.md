@@ -5,12 +5,12 @@ Existing Source/Kit worktrees only. No general SM backlog item is lost or closed
 
 ## Verified latest state
 
-Local Moodle last verified at runtimefd607e7 serves typed modal targets and
-stable mobile action proxies63e4d42, alongside the active twelve-slide
+Local Moodle last verified at runtime374a206 serves source-member path951f787,
+typed modal targets and stable mobile action proxies63e4d42, alongside the active twelve-slide
 curriculum and regular fullscreen glyphs c9c8cf9. EN and FR each pass36 native
 reading cases at three widths. Fullscreen native normal/reduced lifecycle and
 saved Foundations/product glyph relinks have separate scoped proof. Human
-acceptance and member/edit targets remain open; older evidence below is historical.
+acceptance and advanced-edit targets remain open; older evidence below is historical.
 
 Shared Move dialog targets are qualified by native command context. Six
 isolated opener cases and exact baseline preservation pass. Native run7280
@@ -35,7 +35,9 @@ stable action proxies. This does not add or certify member/edit paths. See
    review, modal/checklist stacking, search and Cancel without confirming writes.
    Source-member successor now adds four distinct milestones/typed targets and
    a canonical Organisation invitation. EN/FR source and12 isolated layout cases
-   pass; served/native proof remains pending. Advanced editing remains separate.
+   pass; served native run10124 passes selection/search/highlights/prior review/
+   reopen/Cancel at1280/768/390 without submitting a transfer. Advanced editing,
+   French/reduced native workflow and real business completion remain separate.
    See `guide-source-member-path-2026-10-10.md`.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with

@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve951f787 locally: source-member selection, searchable destination,
+  exact highlights, prior-step review, reopen and Cancel pass at three widths.
+  Preserve the failed no-Restore mobile test and its corrected successor;
+  no product Motion change or course transaction. Human review remains open.
+
 - Add a distinct EN/FR source-member guided path on Organisation, using the
   canonical invitation/checklist and real selection, typed member Move,
   destination and successful transfer signals. Preserve old paths, reading
