@@ -716,3 +716,20 @@ manifest/retention protects both runs without deletion. Detailed evidence is in
 testing/guide-docked-density-native-2026-10-10.json. Wider glyph/focus/hover/FR/
 reduced and all other lots/human acceptance remain open. Next: actual selection
 gesture/keyboard audit, then modernize the remaining method/keyboard copy safely.
+
+### Selection-method accuracy successor - 10 October
+
+Native27324 passes Ctrl-click toggle, Shift-click range and actual local Tab-entry/
+Space checkbox operation at1280/768/390. No fixture/course write or Guide path.
+Predecessor8328 remains immutable: responsive desktop-only Clear locator failure,
+not a product correction. Both cleanup and protected retention dry-runs pass.
+Evidence: testing/guide-selection-methods-native-2026-10-10.json.
+
+EN/FR copy now distinguishes keyboard-only checkboxes from modifier-assisted
+mouse clicks and touch actions. Existing localized Space/Shift keycaps retain
+canonical geometry. All other manage.php code, strings, assets and curriculum
+are identity-guarded against d33ca44. Twelve isolated keycap cases and PHP lint
+pass. Native served copy is pending; human checklist and other lots stay open.
+No new component/style/animation family: no Foundation duplication needed.
+Next: publish ordered prerequisites, verify native copy, then remaining action
+lesson modernization without activating curriculum migration.

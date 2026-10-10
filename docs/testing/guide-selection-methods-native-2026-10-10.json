@@ -1,0 +1,42 @@
+{
+  "runId": "easystud-authenticated-20261010T064748883Z-27324",
+  "runtimeHead": "99f4a415d600d7f876b64d2c17964b632b57cbe4",
+  "scenario": "guide-selection-methods-responsive.spec.js",
+  "classification": "local-supervised",
+  "passed": true,
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "ctrlClickToggle": true,
+  "shiftClickRange": true,
+  "actualLocalTabEntry": true,
+  "spaceSelectDeselect": true,
+  "errors": [],
+  "blockedWrites": [],
+  "fixtures": false,
+  "courseWrites": false,
+  "credentialsCleared": true,
+  "ownedChildStopped": true,
+  "leaseReleased": true,
+  "manifestRegistered": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "diagnosticPredecessor": {
+    "runId": "easystud-authenticated-20261010T064333406Z-8328",
+    "scenario": "guide-selection-methods-native.spec.js",
+    "result": "Desktop Ctrl/Shift-click and Tab/Space pass; tablet clicks pass before desktop-only Clear locator timeout",
+    "preserved": true,
+    "cleanupComplete": true
+  },
+  "notProven": [
+    "Mac Meta-click",
+    "Other entity selection",
+    "Touch modifier gestures",
+    "Human visual acceptance"
+  ]
+}

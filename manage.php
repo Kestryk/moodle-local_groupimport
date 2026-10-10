@@ -1110,8 +1110,10 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
             $slide['visualkeys'] = [
                 'items' => [
                     ['key' => 'Tab', 'label' => $templatedata['tutorialvisualkeyboardtab']],
-                    ['key' => 'Space', 'label' => $templatedata['tutorialvisualkeyboardspace']],
-                    ['key' => 'Shift', 'label' => $templatedata['tutorialvisualselect']],
+                    ['key' => get_string('tutorialkeyboardkeyspace', 'local_groupimport'),
+                        'label' => $templatedata['tutorialvisualkeyboardspace']],
+                    ['key' => get_string('tutorialkeyboardkeyshift', 'local_groupimport'),
+                        'label' => get_string('tutorialvisualkeyboardrange', 'local_groupimport')],
                 ],
             ];
         } else if (!empty($step['visualparticipantcard']) || !empty($step['visualgroupcard']) ||

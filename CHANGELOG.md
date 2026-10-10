@@ -2,6 +2,14 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Correct EN/FR selection explanations from native three-width evidence:
+  distinguish Tab/Space checkbox operation from Ctrl/Shift-assisted clicks.
+  Localize Space/Shift keycaps; retain every other lesson, command and asset.
+  Twelve isolated keycap-containment cases and PHP/source guards pass;
+  served copy containment remains a separate pending gate.
+- Native selection successor passes desktop/tablet/phone Ctrl-click toggling,
+  Shift-click range and actual local Tab-entry/Space toggle; no course writes.
+  Preserve the predecessor's desktop-only Clear locator timeout and cleanup.
 - Prepare a non-mutating native selection-method audit before rewriting the
   legacy keyboard explanation; distinguish modifier-click from Tab/Space.
 - Native docked Show/Return successor passes six routes/twelve Small-density
