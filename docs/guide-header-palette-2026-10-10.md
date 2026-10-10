@@ -1,7 +1,18 @@
 # Guide header palette: bounded R10-01 successor
 
-Status: source candidate, not served; Penpot and native gates remain open.
+Status: served at runtime6152a67; configured-palette native gate passes.
 Human review remains deferred. This does not close the other R10-01 pop-ups.
+
+Native run44232 passes1280/768/390/1280 header/title/icon paints and open/close,
+including the real compact portal. Settings/business writes, errors and blocked
+calls are zero. Credentials, owned child and lease cleanup are complete.
+Custom/restored colours remain isolated proof, not persisted admin changes.
+Exact pins and limits: `testing/guide-header-palette-native-2026-10-10.json`.
+
+Verified pre-publication snapshot: `ws3-20261010T205206Z-port4719pg3-d7fb96e1a4f7`.
+Two earlier snapshot attempts are retained: first bundle verification ran outside
+a repository; second restoration exposed Windows line-ending/index differences.
+Use the owned repo as cwd, normalize only owned files, then stage before snapshot.
 
 ## Cause and shared correction
 

@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve the canonical Guide header palette; native configured paint, compact
+  portal and open/close pass across four viewport readings with complete cleanup.
+  Custom/restored24 isolated cases are separate; other pop-ups/human review open.
+
 - Prepare the Guide header's canonical custom-primary palette opt-in, including
   the portal-safe shared Kit mixin. Twenty-four isolated paints pass; preserve
   default geometry, all controller/Motion data and unrelated CSS. Design/native
