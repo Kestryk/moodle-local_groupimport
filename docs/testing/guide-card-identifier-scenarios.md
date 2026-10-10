@@ -200,3 +200,20 @@ AI shared-recipe contract already applies. Whole glyph/type/raster, native FR,
 other G11/SM/Mass Import lots and human acceptance remain open, not closed by
 these numeric checks. Next: Common mistakes reading composition, preserving
 its warning pills and stable lesson/path identity; curriculum dedup stays separate.
+
+## Common mistakes modernization - 10 October
+
+Existing visualmistakes lesson opts into action_explanation(mistakes), seven
+new EN/FR keys and the published three-topic/note composition. Preserve original
+paragraph and all three warning-state pills; no new reusable style/animation,
+Foundation duplicate, generated CSS/AMD/template change, course command, path
+predicate or index migration. Clarify hierarchy, contextual Move semantics,
+separate activity settings, membership suitability when reusing groups and
+visible mobile actions. Source guard compares complete unrelated code/assets
+against32f31d1. Fixture executes only the bounded actual presentation branch.
+Existing AI shared-recipe and proof-separation rules apply; no new rule needed.
+New local-supervised native scenario opens/reads/closes only and denies business
+writes; isolated EN/FR width/Motion proof is separate from served-native and
+human acceptance. Other G11/SM/Mass Import and migration lots remain open.
+Next: isolated containment, ordered preview, native paragraph/topic/warning-pill
+containment at1280/768/390; then remaining legacy creation/shortcut compositions.
