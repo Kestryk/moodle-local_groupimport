@@ -15,7 +15,12 @@
   }
 
   display: block;
-  font: 400 #{$font-size}/1.2 var(--easyedu-font-family-ui);
+  // `inherit` is a valid family token but invalid inside a font shorthand.
+  // Match the single-line primitive's longhands, retaining native S/M/L metrics.
+  font-family: var(--easyedu-font-family-ui);
+  font-size: $font-size;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: $height;
   min-width: 0;

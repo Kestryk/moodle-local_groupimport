@@ -5721,7 +5721,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .local-groupimport-easystud [data-easystud-group-email-box],
 .local-groupimport-easystud [data-easystud-grouping-groups-box] {
   display: block;
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: 7rem;
   min-width: 0;
@@ -6562,7 +6565,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 }
 .local-groupimport-easystud [data-easystud-paste-box] {
   display: block;
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: 7rem;
   min-width: 0;
@@ -7128,7 +7134,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 }
 .local-groupimport-easystud-message-modal .easyedu-message-dialog__field {
   display: block;
-  font: 400 0.875rem/1.2 var(--easyedu-font-family-ui);
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.2;
   height: auto;
   min-height: 7rem;
   min-width: 0;
@@ -12763,6 +12772,20 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   line-height: 1;
   width: 1rem;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show {
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  min-width: 0;
+  font-weight: 600;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show .fa {
+  font-size: 0.875rem;
+  width: 0.875rem;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show:focus-visible,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show:hover,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-cue [data-easyedu-guide-interface-cue-action] .easyedu-guide-slide__show:focus-visible {
@@ -12927,6 +12950,24 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   font-size: 0.88rem;
   line-height: 1;
   width: 1rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return__button,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__return,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return__button,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__return {
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  min-width: 0;
+  font-weight: 600;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return__button .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__return .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return__button .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__return .fa {
+  font-size: 0.875rem;
+  width: 0.875rem;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return__button:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return__button:focus-visible,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel__return:hover,
@@ -14494,6 +14535,567 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   color: white;
   font-size: 0.75rem;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  border-left: var(--easyedu-identity-border-width) solid var(--easyedu-group-rail, var(--easyedu-accent));
+  border-radius: var(--easyedu-card-radius);
+  box-shadow: var(--easyedu-card-shadow);
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.22s ease, transform 0.22s ease;
+  display: flex;
+  position: relative;
+  align-items: center;
+  min-width: 0;
+  min-height: 4.75rem;
+  padding: 0.875rem 1.125rem;
+  border-left-width: 1px;
+  border-inline-start: var(--easyedu-identity-border-width) solid var(--easyedu-group-rail, var(--easyedu-accent));
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  box-sizing: border-box;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card:hover {
+  border-color: color-mix(in srgb, var(--easyedu-group-rail, var(--easyedu-accent)) 32%, var(--easyedu-card-border) 68%);
+  box-shadow: var(--easyedu-shadow-soft);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card .easyedu-guide-scene__identity,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card .easyedu-guide-scene__identity {
+  position: absolute;
+  inset-inline-start: calc(var(--easyedu-identity-border-width) * -1);
+  inset-block: 0;
+  width: var(--easyedu-identity-border-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.75rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card--grouping,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card--grouping {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-card-border);
+  border-left: var(--easyedu-identity-border-width) solid var(--easyedu-grouping-rail, var(--easyedu-text-muted));
+  border-radius: var(--easyedu-card-radius);
+  box-shadow: var(--easyedu-card-shadow);
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.22s ease, transform 0.22s ease;
+  border-left-width: 1px;
+  border-inline-start: var(--easyedu-identity-border-width) solid var(--easyedu-grouping-rail, var(--easyedu-text-muted));
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card--grouping:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-card--grouping:hover {
+  border-color: color-mix(in srgb, var(--easyedu-grouping-rail, var(--easyedu-text-muted)) 32%, var(--easyedu-card-border) 68%);
+  box-shadow: var(--easyedu-shadow-soft);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-stage,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-stage {
+  position: relative;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-header,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-header .easyedu-guide-scene__card-copy,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-header .easyedu-guide-scene__card-copy {
+  flex: 1 1 10rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger [class*=" fa-"],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:focus,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger[aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger[aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger.disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-trigger.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit [class*=" fa-"],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:focus,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit[aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+  background: var(--easyedu-primary-strong);
+  color: var(--easyedu-surface);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit[aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit.disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-submit.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-primary);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.95rem;
+  height: 1.85rem;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  text-decoration: none;
+  width: 1.85rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger > .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger > .icon, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn > .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn > .icon,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger > .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger > .icon,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn > .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn > .icon {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 0.95rem;
+  font-size: inherit;
+  height: 0.95rem;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  width: 0.95rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:focus-visible, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:focus-visible {
+  background: var(--easyedu-card-action-hover-bg, #f7fbff);
+  border-color: var(--easyedu-card-action-hover-border, #bdd0e5);
+  color: var(--easyedu-primary-strong);
+  text-decoration: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger[aria-pressed=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger[aria-expanded=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.is-active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn[aria-pressed=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn[aria-expanded=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn.is-active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger[aria-expanded=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.is-active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn[aria-expanded=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn.is-active {
+  background: var(--easyedu-card-action-active-bg, #eaf4ff);
+  border-color: var(--easyedu-card-action-active-border, #b8d5ef);
+  color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:focus-visible, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:focus:not(:focus-visible), .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:focus:not(:focus-visible),
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:focus:not(:focus-visible),
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger[aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn[aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn.disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-desktop-trigger.btn.disabled {
+  background: var(--easyedu-card-action-disabled-bg, #f0f4f8);
+  border-color: var(--easyedu-card-action-disabled-border, #d7e1ea);
+  color: var(--easyedu-card-action-disabled-color, #9aa9b8);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger {
+  align-items: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--easyedu-control-radius);
+  color: var(--easyedu-primary-strong);
+  display: inline-flex;
+  flex: 0 0 var(--easyedu-touch-target-min);
+  height: var(--easyedu-touch-target-min);
+  justify-content: center;
+  min-width: var(--easyedu-touch-target-min);
+  padding: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger > :first-child,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger > :first-child {
+  align-items: center;
+  background: transparent;
+  border-radius: calc(var(--easyedu-control-radius) - 0.18rem);
+  display: inline-flex;
+  height: 1.82rem;
+  justify-content: center;
+  transition: background-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease;
+  width: 1.82rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-expanded=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-expanded=true] {
+  color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:hover > :first-child, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-expanded=true] > :first-child,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:hover > :first-child,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-expanded=true] > :first-child {
+  background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:focus-visible {
+  background: transparent;
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:focus-visible > :first-child,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:focus-visible > :first-child {
+  background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-disabled=true] {
+  color: var(--easyedu-text-subtle);
+  cursor: default;
+  opacity: 0.58;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:disabled > :first-child, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-disabled=true] > :first-child,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger:disabled > :first-child,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-mobile-trigger[aria-disabled=true] > :first-child {
+  background: transparent;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea {
+  display: block;
+  font-family: var(--easyedu-font-family-ui);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.2;
+  height: auto;
+  min-height: 5.5rem;
+  min-width: 0;
+  padding: 0.6875rem 0.8125rem;
+  resize: vertical;
+  text-align: start;
+  background: var(--easyedu-surface);
+  border: 0.0625rem solid var(--easyedu-control-border);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--easyedu-field-text);
+  transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;
+  width: 100%;
+  resize: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea::placeholder,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea::placeholder {
+  color: var(--easyedu-text-muted);
+  opacity: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:hover:not(:disabled):not([aria-disabled=true]):not(:focus):not(:focus-visible):not([aria-invalid=true]),
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:hover:not(:disabled):not([aria-disabled=true]):not(:focus):not(:focus-visible):not([aria-invalid=true]) {
+  border-color: var(--easyedu-field-hover-border);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:focus, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:focus,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:focus-visible {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-field-text);
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-invalid=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-invalid=true] {
+  border-color: var(--easyedu-field-error-border);
+  color: var(--easyedu-field-error-text);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-invalid=true]::placeholder,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-invalid=true]::placeholder {
+  color: var(--easyedu-field-error-text);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-disabled=true] {
+  background: var(--easyedu-field-disabled-surface);
+  border-color: var(--easyedu-control-border);
+  box-shadow: none;
+  color: var(--easyedu-field-disabled-text);
+  cursor: not-allowed;
+  opacity: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:disabled::placeholder, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-disabled=true]::placeholder,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea:disabled::placeholder,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea[aria-disabled=true]::placeholder {
+  color: var(--easyedu-field-disabled-text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-panel textarea {
+    transition: none;
+  }
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-dropdown-border);
+  border-radius: var(--easyedu-dropdown-radius);
+  box-shadow: var(--easyedu-dropdown-shadow);
+  color: var(--easyedu-text);
+  display: grid;
+  gap: 0.18rem;
+  min-width: 9.5rem;
+  padding: 0.24rem;
+  z-index: 1052;
+  position: static;
+  width: 100%;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > span,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > span {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0.48rem;
+  color: var(--easyedu-text);
+  display: flex;
+  font-size: 0.8rem;
+  gap: 0.38rem;
+  justify-content: flex-start;
+  line-height: 1.25;
+  min-height: 1.72rem;
+  padding: 0.28rem 0.42rem;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong .fa {
+  color: var(--easyedu-text-muted);
+  flex: 0 0 auto;
+  text-align: center;
+  width: 1rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:focus-visible {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+  outline: 0;
+  text-decoration: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:hover .fa, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:focus-visible .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:hover .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:focus-visible .fa {
+  color: var(--easyedu-primary);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:focus-visible {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong[aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-menu > strong:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-chips,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-height: 1.7rem;
+  align-items: center;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-chips > span,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-chips > span {
+  align-items: center;
+  background: var(--easyedu-success-soft);
+  border: 1px solid #c7e3d1;
+  border-radius: 999px;
+  color: var(--easyedu-success);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  min-height: 1.45rem;
+  padding: 0.16rem 0.54rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-chips > .is-unresolved,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__inspection-chips > .is-unresolved {
+  align-items: center;
+  background: var(--easyedu-danger-soft);
+  border: 1px solid #efc5c5;
+  border-radius: 999px;
+  color: var(--easyedu-danger);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  min-height: 1.45rem;
+  padding: 0.16rem 0.54rem;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__example,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__example {
   margin-block: 1.25rem;
@@ -14874,6 +15476,13 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   gap: 0.5rem;
   margin-inline-start: auto;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene[data-easyedu-guide-scene=inspection] .easyedu-guide-scene__utilities,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene[data-easyedu-guide-scene=inspection] .easyedu-guide-scene__utilities {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn {
   align-items: center;
@@ -14955,6 +15564,20 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   font-size: 0.88rem;
   line-height: 1;
   width: 1rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn {
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  min-width: 0;
+  font-weight: 600;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn .fa {
+  font-size: 0.875rem;
+  width: 0.875rem;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn:focus-visible,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__utilities .btn:hover,
@@ -16418,6 +17041,20 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   line-height: 1;
   width: 1rem;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize {
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  min-width: 0;
+  font-weight: 600;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize .fa {
+  font-size: 0.875rem;
+  width: 0.875rem;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize:focus-visible,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize:hover,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__minimize:focus-visible {
@@ -16526,6 +17163,20 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   font-size: 0.88rem;
   line-height: 1;
   width: 1rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__restore,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__restore {
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  min-width: 0;
+  font-weight: 600;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__restore .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__restore .fa {
+  font-size: 0.875rem;
+  width: 0.875rem;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__restore:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__restore:focus-visible,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel .easyedu-guided-panel__restore:hover,

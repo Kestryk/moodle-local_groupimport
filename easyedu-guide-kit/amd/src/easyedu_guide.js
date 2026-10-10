@@ -1228,6 +1228,11 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     }
     return;
   }
+  // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
+  // not fall through to membership choreography requiring unrelated nodes.
+  if (!['membership', 'actions', 'inspection'].includes(kind)) { return; }
+  if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
+    scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
   const mode = requestedMode || scene.easyeduGuideSceneMode || (kind === 'actions' ? 'actions' : 'add');
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
@@ -1442,6 +1447,126 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
+    if (kind === 'inspection') {
+      const card = stage.querySelector('[data-guide-inspection-card]');
+      const trigger = stage.querySelector('[data-guide-inspection-trigger]');
+      const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
+      const menu = stage.querySelector('[data-guide-inspection-menu]');
+      const panel = stage.querySelector('[data-guide-inspection-panel]');
+      const input = stage.querySelector('[data-guide-inspection-input]');
+      const chips = stage.querySelector('[data-guide-inspection-chips]');
+      const cancel = panel.querySelector('[data-guide-inspection-cancel]');
+      const cursor = stage.querySelector('[data-guide-inspection-cursor]');
+      const value = input.getAttribute('data-guide-example-value') || '';
+      trigger.hidden = compact;
+      if (compactTrigger) { compactTrigger.hidden = !compact; }
+      // Illustration only: never focus, click or resolve a native identifier.
+      // Reuse the shared pointer paint and playback clock, not a mobile mouse.
+      const pointAt = async(element) => {
+        if (!cursor || compact || reduced || controller.signal.aborted) { return; }
+        await gate();
+        if (controller.signal.aborted) { return; }
+        const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
+        const from = getComputedStyle(cursor).transform;
+        cursor.hidden = false;
+        await animate(cursor, [{transform: from}, {transform:
+          `translate(${target.left - frame.left + target.width / 2}px, ${target.top - frame.top + target.height / 2}px)`}], 650);
+      };
+      const hidePointer = async() => {
+        if (!cursor || cursor.hidden) { return; }
+        await animate(cursor, [{opacity: 1}, {opacity: 0}], 180);
+        cursor.hidden = true;
+        animations.forEach(animation => {
+          if (animation.effect?.target === cursor) { animation.cancel(); animations.delete(animation); }
+        });
+      };
+      // Animate the auto-sized card while keeping the natural field's layout.
+      // Same WAAPI set/clock as reading: Pause, Next and departure own both.
+      const resizeCard = async(measure, settle = () => {}) => {
+        await gate();
+        if (controller.signal.aborted) { return; }
+        const from = card.getBoundingClientRect().height;
+        const to = measure();
+        const overflow = card.style.overflow;
+        card.style.overflow = 'hidden';
+        await animate(card, [{height: `${from}px`}, {height: `${to}px`}], 520);
+        if (controller.signal.aborted) { card.style.overflow = overflow; return; }
+        settle();
+        animations.forEach(animation => {
+          if (animation.effect?.target === card) { animation.cancel(); animations.delete(animation); }
+        });
+        card.style.overflow = overflow;
+      };
+      const disclose = open => resizeCard(() => {
+        panel.hidden = !open;
+        const height = card.getBoundingClientRect().height;
+        // Retain the field layout through closing; hide only at its endpoint.
+        if (!open) { panel.hidden = false; }
+        return height;
+      }, () => { panel.hidden = !open; });
+      await reveal(card);
+      await phase('orient');
+      if (controller.signal.aborted) { return; }
+      if (compact) {
+        menu.hidden = false;
+        await reveal(menu);
+        await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
+      }
+      await pointAt(trigger);
+      await phase('open');
+      if (controller.signal.aborted) { return; }
+      await hidePointer();
+      menu.hidden = true;
+      await disclose(true);
+      await reveal(panel);
+      if (controller.signal.aborted) { return; }
+      input.value = value;
+      await pointAt(input);
+      await phase('enter');
+      if (controller.signal.aborted) { return; }
+      await hidePointer();
+      // Recognition grows the natural card through the same pause-aware clock
+      // as disclosure, instead of snapping its final height before the fade.
+      chips.style.opacity = '0';
+      await resizeCard(() => {
+        chips.hidden = false;
+        return card.getBoundingClientRect().height;
+      });
+      if (controller.signal.aborted) { return; }
+      await reveal(chips);
+      await animate(chips, [{opacity: 0}, {opacity: 1}], 260);
+      chips.style.removeProperty('opacity');
+      await phase('review');
+      if (controller.signal.aborted) { return; }
+      if (cancel) { await reveal(cancel); }
+      if (cancel) { await pointAt(cancel); }
+      await phase('return');
+      if (controller.signal.aborted) { return; }
+      await hidePointer();
+      await disclose(false);
+      if (controller.signal.aborted) { return; }
+      input.value = '';
+      chips.hidden = true;
+      result.textContent = result.dataset.inspection || scene.easyeduGuideResultOriginal;
+      await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+      if (controller.signal.aborted) { return; }
+      finished = true;
+      syncPlayback('finished');
+      if (recap) {
+        recap.style.opacity = '0';
+        recap.hidden = false;
+        recap.querySelectorAll('[data-guide-phase]').forEach(item => {
+          item.textContent = ((compact && item.dataset.compact) || item.dataset.original)
+            .replace(/^\d+\s*[\u00b7.]\s*/, '');
+          item.removeAttribute('aria-current');
+        });
+        await reveal(recap);
+        await animate(recap, [{opacity: 0}, {opacity: 1}], 280);
+        recap.style.removeProperty('opacity');
+      }
+      if (!controller.signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
+      return;
+    }
     const person = stage.querySelector('[data-guide-person]');
     const member = stage.querySelector('[data-guide-member]');
     const cursor = stage.querySelector('[data-guide-cursor]');

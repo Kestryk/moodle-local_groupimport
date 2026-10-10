@@ -1,8 +1,9 @@
 # Destination-card inspection scenes — G11-H
 
-Implementation contract, not an installed animation. Private canonical Kit
-candidate5e4fed623ccc509bf1bdfc14cc2dac887823840a now implements an opt-in
-inspection template/SCSS/engine branch; it has not been synchronized here.
+Implementation contract, not an installed curriculum animation. Private canonical
+Kit20dbb05 now supplies the atomically synchronized inspection template/SCSS/
+engine and rebuilt AMD in this development worktree. The earlier inactive
+candidate5e4fed6 remains a historical source-preparation checkpoint.
 Existing24 lessons and
 all saved paths remain until the separately recorded curriculum migration gate.
 
@@ -113,3 +114,36 @@ rendering does not certify embedded/build/native adoption. Declared Moodle
 floor remains5.1; no new version-sensitive API, DB/bootstrap, settings or course
 write. [Moodle coding style](https://moodledev.io/general/development/policies/codingstyle)
 consulted for the PHP method/documentation and language-string layout.
+
+## Atomic consumer build successor —10 October
+
+The allowlisted Guide synchronization gate additionally owns canonical textarea
+SCSS. Seven drifted files were synchronized together; all13 source targets now
+match, preserving localization/fullscreen/native confirmation adapters. Existing
+unrelated Kit module drift stays out of this tranche. Kit metadata stays0.4.166;
+this is a scoped private WIP revision, not a new public package or served preview.
+
+AMD is rebuilt with the existing validated Moodle5.1 Terser fallback and Node22.
+SCSS is compiled from easystud.scss. test-guide-inspection-build.cjs reproduces
+both AMD/map artifacts exactly and verifies all non-Guide emitted CSS rules,
+allowing only font longhands on the four existing native multiline field roles.
+Product PHP/lang adapters,24 existing lessons and saved paths stay unchanged.
+
+The canonical runner accepts an explicit consumer root and source|built mode.
+With this actual localized Mustache, compiled CSS and built AMD,24 EN/FR x
+1280/768/390 xnormal/reduced xGroup/Grouping cases pass. A preliminary consumer
+fixture omitted the real local-groupimport-easystud token host and measured an
+18px header inset rather than19px; the corrected fixture includes that host,
+with the strict geometry oracle unchanged and no product stylesheet repair.
+Icon-font paint and authenticated Moodle remain untested by this isolated run.
+
+Source-map verification initially assumed sourcesContent; the existing builder
+omits it. Deterministic re-minification now verifies exact freshness without
+adding source disclosure. A CSS regression read exceeded Node's default1MB Git
+output buffer; its bounded16MB read preserves the complete comparison. Sass
+reports existing mixed-declaration deprecations; no unrelated refactor here.
+
+Curriculum activation, product Penpot propagation, native Show/Return/Reset and
+all older G/SM/human review gates remain open. No runtime/cache/fixture operation.
+Declared Moodle floor remains5.1, with no new business/core API; existing AMD
+boundary retained per [Moodle5.1 JavaScript guidance](https://moodledev.io/docs/5.1/guides/javascript).
