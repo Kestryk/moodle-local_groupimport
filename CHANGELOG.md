@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve79a4664 locally: twelve-slide native EN three-width proof passes36 cases,
+  284 explanation nodes and preserved reading/path entries without course writes.
+  Record immutable proof and remaining modal/fullscreen/human boundaries.
 - Activate the twelve-slide Student Guide with the matching reading contract in
   one bounded adapter change. Preserve archived historical payloads, all paths,
   commands and shared assets; preview/native verification is a separate gate.

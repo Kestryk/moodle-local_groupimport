@@ -124,3 +124,17 @@ does not start an exercise or confirm a course action. Future CI use needs a
 deterministic non-secret fixture. Served/native status remains pending until the
 ordered preview and supervised test complete. No new design family or AI rule is
 needed: existing migration/identity/isolated-QA rules cover the activation.
+
+## Served curriculum proof
+
+Ordered preview applied20391c7/09dadcb/fd46741/79a4664 and purged caches. Clean
+runtime762ce18 serves the12-slide guide. Native run5216 passes36 EN cases and284
+painted explanation nodes at1280/768/390; exact three invitations and stable IDs,
+current completion retained, no page errors, blocked calls or business/fixture
+writes. Credentials/owned child/lease cleanup is complete; retention dry-run
+protects the run, zero candidates/deletions. Versioned proof:
+testing/guide-active-curriculum-native-2026-10-10.json.136 historical reading and
+144 isolated EN/FR layout cases remain separate. Old24 index-pinned specs are
+historical, not current native assertions. Source and runtime are not human
+acceptance; native French/full-scene paint, other modal targets and Fullscreen
+remain open. No current-Guide or older SM backlog item is silently removed.
