@@ -683,6 +683,8 @@
       @include buttons.guide-adjacent-action($size: small);
       white-space: nowrap;
     }
+    &__entry { display: flex; flex-wrap: wrap; margin-block: 0 1rem; }
+    &__start { @include buttons.selection-action($solid: true); }
     &__actions .btn[data-guide-scene-command="add"],
     &__actions .btn[data-guide-scene-command="move"] {
       @include buttons.selection-action;

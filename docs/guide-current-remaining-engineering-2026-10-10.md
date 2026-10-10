@@ -415,6 +415,8 @@ Guide triads needed correction. Native French/completion/reduced and human
 acceptance remain open;12 isolated state cases are narrower evidence.
 
 R10-30 source inventory and intended state/publication/test contract are retained
-in guide-demonstration-start-2026-10-10.md. No manual-start code is activated yet.
+in guide-demonstration-start-2026-10-10.md. Shared entry and four product opt-ins
+are implemented with paired saved/raster examples. Isolated48 cases pass;
+served/native proof remains pending.
 Do not conflate the timed demonstration gate with the creation exercise or
 Start guided path. All earlier Guide and Student Management lots remain retained.
