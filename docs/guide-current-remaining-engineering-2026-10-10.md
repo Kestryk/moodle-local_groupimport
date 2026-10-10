@@ -1,5 +1,12 @@
 # Current Student Management Guide: remaining engineering
 
+Latest review successor: six French normal/reduced source-member native cases
+pass at1280/768/390, including modal highlights/search/prior review/reopen/Cancel.
+No confirmation/data/style changes; exact scope and complete cleanup are in
+testing/guide-source-member-localized-native-2026-10-10.json. The former French/
+reduced member-review gap is covered; confirmed business workflow and human
+acceptance remain open. Continue the residual Guide audit, preserving SM lots.
+
 Latest served successor: R10-01 Guide header at6152a67 passes four configured
 native viewport readings including compact portal/open/close.24 isolated
 custom/restored cases and96 shared dialog regressions are separate proof.

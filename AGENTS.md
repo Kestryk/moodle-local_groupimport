@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Localized/reduced native Guide proof must assert actual document language and
+media preference, not infer them from a URL or test label. Retain independently
+pinned predecessors and immutable running specs; native Cancel/highlight proof
+does not certify a confirmed transfer or human acceptance.
+
 Discovery custom header paint reuses the canonical dialog-palette mixin and
 explicit primary-header class; never reset a portalled Guide with easyedu-ui.
 Preserve default paint, geometry, Motion and the existing token relay. Isolated

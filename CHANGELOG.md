@@ -2,6 +2,14 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Verify six native source-member Guide review cases in French, normal/reduced
+  Motion and three widths. Modal search/highlights/prior review/reopen/Cancel
+  pass with complete cleanup; no confirmed transfer or production style change.
+
+- Prepare explicit French/reduced-motion source-member Guide review using the
+  existing read-only scenario. Verify document language and media preference;
+  production targets/styles and course data stay unchanged. Native gate pending.
+
 - Serve the canonical Guide header palette; native configured paint, compact
   portal and open/close pass across four viewport readings with complete cleanup.
   Custom/restored24 isolated cases are separate; other pop-ups/human review open.

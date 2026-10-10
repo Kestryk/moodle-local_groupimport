@@ -6,6 +6,9 @@ const fs=require('node:fs');
 test('Source member guide uses real member modal targets and prior-step review',async({page},info)=>{
     test.setTimeout(360000);
     const rows=[],errors=[],blocked=[];
+    const requestedLanguage=new URL(process.env.EASYEDU_MOODLE_URL).searchParams.get('lang');
+    const requestedMotion=process.env.EASYEDU_GUIDE_REVIEW_MOTION||'no-preference';
+    expect(['no-preference','reduce']).toContain(requestedMotion);
     page.on('pageerror',error=>errors.push(error.message));
     await page.goto(process.env.EASYEDU_MOODLE_URL,{waitUntil:'domcontentloaded'});
     if(page.url().includes('/login/')){
@@ -45,7 +48,9 @@ test('Source member guide uses real member modal targets and prior-step review',
     };
     try{
         await expect(workspace).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
-        await page.emulateMedia({reducedMotion:'no-preference'});
+        if(requestedLanguage)await expect(page.locator('html')).toHaveAttribute('lang',new RegExp('^'+requestedLanguage+'(?:-|$)'));
+        await page.emulateMedia({reducedMotion:requestedMotion});
+        expect(await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(requestedMotion==='reduce');
         for(const width of [1280,768,390]){
             await page.setViewportSize({width,height:1000});
             const index=await page.evaluate(async width=>{
@@ -113,7 +118,7 @@ test('Source member guide uses real member modal targets and prior-step review',
             await expect(dialog).toBeHidden();await expect(dialog).not.toHaveAttribute('data-easystud-move-context',/.+/);
             if(await checkbox.isChecked())await selector.click();
             await panel.locator('[data-easyedu-guide-checklist-close]').click();await expect(panel).toBeHidden();
-            rows.push({width,sourceMemberSelected:true,typedMemberDialog:true,searchAndDestination:true,
+            rows.push({width,language:await page.locator('html').getAttribute('lang'),motion:requestedMotion,sourceMemberSelected:true,typedMemberDialog:true,searchAndDestination:true,
                 destinationAndConfirmAligned:true,priorReviewRetainsSelection:true,reopenAndCancel:true,confirmationUncompleted:true});
         }
         expect(errors).toEqual([]);expect(blocked).toEqual([]);
