@@ -1,5 +1,21 @@
 # Current Student Management Guide: remaining engineering
 
+Latest entry coverage:36 new native cases pass (FR normal/reduced, EN reduced)
+alongside the prior12 EN normal cases. This covers all four language/Motion
+combinations for manual-entry lifecycle and Small paint, with unchanged engine.
+Normal pause/next is distinct from reduced static recap. Full artwork, persisted
+preferences/business outcomes, human acceptance and older Guide gates remain
+open. Exact scope: testing/guide-demonstration-localized-native-2026-10-10.json.
+Next: reconcile residual curriculum/path coverage with retained legacy adapters
+and migration maps; no general SM backlog work or destructive progression change.
+
+Latest demonstration review:24 French native cases pass (four scenes, three
+widths, normal and reduced). Normal clocks/pause/next and reduced static recap
+are distinct. The initial reduced test-contract mismatch is retained; no engine,
+style or reading-delay changes. Exact proof:
+testing/guide-demonstration-localized-native-2026-10-10.json. Human/artwork,
+English reduced native and other older Guide workflow gates remain open.
+
 Latest review successor: six French normal/reduced source-member native cases
 pass at1280/768/390, including modal highlights/search/prior review/reopen/Cancel.
 No confirmation/data/style changes; exact scope and complete cleanup are in

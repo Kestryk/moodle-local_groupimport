@@ -17,6 +17,10 @@
       "publicRelease": false
     },
     "guideDemonstrationEntry20261010": {
+      "localizedNativeProof": "docs/testing/guide-demonstration-localized-native-2026-10-10.json",
+      "frenchNormalReducedNativeCases": 24,
+      "englishReducedNativeCases": 12,
+      "reducedModeScope": "manual Start then static finished recap; no paused-clock assertion",
       "kitCommit": "f8215a9fb4c54e8b087b6b0f0eebe2e4bb5f2b38",
       "sourceCommit": "d7a25f6e6391783c5bd04a2c7e6e1afd84e7ea76",
       "nativePreviewVerified": true,

@@ -448,6 +448,15 @@
       "previewServed": true,
       "nativeVerified": true,
       "nativeScope": "12 four-scene normal-motion cases at1280/768/390: idle/Start/running/pause/phase advance/finish/replay/reset and Small paint. EN/FR reduced-motion48 isolated cases remain distinct.",
+      "localizedNativeSuccessor": {
+        "proof": "docs/testing/guide-demonstration-localized-native-2026-10-10.json",
+        "frenchNativeCases": 24,
+        "normalAndReduced": true,
+        "reducedStaticOutcomeNotPausedClock": true,
+        "englishReducedNativeCertified": true,
+        "englishReducedNativeCases": 12,
+        "humanAccepted": false
+      },
       "humanAccepted": false
     },
     {
