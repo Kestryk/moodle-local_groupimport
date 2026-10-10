@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Begin R10-32 tooltip audit and transfer existing long-popover type/spacing to
+  the canonical Kit opt-in. Complete compiled CSS is unchanged; navigation
+  tooltip behavior, paired design and native tooltip proof remain pending.
+
 - Serve the Discovery progression palette correction locally;12 native paint
   checks pass through desktop/tablet/phone/desktop navigation and the real
   compact portal, with no settings or course writes. Human review stays open.

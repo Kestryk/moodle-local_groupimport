@@ -42,6 +42,13 @@ through desktop/tablet/phone/desktop navigation. Exact source preservation,
 proofs. Cleanup completed without settings/course writes; custom persistence,
 historical consumers and human acceptance remain open. Next Guide prerequisite
 is R10-32 shared tooltip audit/publication, followed by titles/dots/manual start.
+
+R10-32 now has a bounded audit and non-visual long-copy recipe extraction in
+guide-tooltip-audit-2026-10-10.md. Complete compiled CSS remains identical and
+all native commands/Motion are untouched. Existing Foundation provider/body
+type differences and absent Guide navigation tooltip integration are recorded,
+not hidden by a broad parity claim. Source/Standard reconciliation awaits
+Foundations; behavior, preview and human gates remain open for this lot.
 Its source-to-portal audit also proves
 Discovery uses the shared accent token, not that the actual saved palette paints
 correctly in Moodle. No settings Save, runtime mutation or new visual publication

@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Tooltip extraction preserves complete emitted CSS and independently pinned
+consumer help-icon/focus additions. Compare the exact new canonical recipe and
+untouched canonical baseline, not a false whole-module equality. Guide tooltip
+portal/fullscreen/keyboard cleanup and paired design remain separate gates.
+
 Discovery progression uses its dedicated4px source recipe and semantic accent
 roles. Preserve historical8px Guide/Checklist families; pair Library/Standards
 and decoded saved paint before product propagation. Default raster, isolated
