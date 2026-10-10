@@ -37,6 +37,19 @@ slide-descendant locator waits180s; no product error or business request occurs.
 Keep that spec and result unchanged. guide-docked-density-native.spec.js is
 the bounded successor, resolving the real docked command after current-slide
 commit. No product Motion, styles or geometry assertion is relaxed.
+
+guide-selection-methods-native.spec.js is a local-supervised content audit:
+existing Participant cards, Ctrl-click toggle, Shift-click range and actual local
+Tab entry/Space toggle at three widths. No Guide path, course command or fixture.
+Modifier-assisted clicks are not keyboard-only selection proof. Content changes
+wait for this native result; other entity/shortcut behavior is not certified.
+
+Initial8328 records desktop Ctrl/Shift-click and real Tab/Space PASS, then768px
+Ctrl/Shift-click PASS before waiting for a desktop-only Clear action. Preserve
+the partial run/spec. guide-selection-methods-responsive.spec.js deselects through
+the same native checkbox labels at all widths instead of an unrelated sticky
+action. It retains exact selection/keyboard oracles and bounds each UI wait
+to15s; no product asset correction. Credential/child/lease cleanup is complete.
 Diagnostic source stays immutable. Local DOM input in the recognition successor
 is cleared before Cancel; no Add/Move/Save/fixture command is used. Both plugin
 POST and non-read Moodle AJAX are guarded in that successor.
