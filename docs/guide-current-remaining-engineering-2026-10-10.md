@@ -5,13 +5,16 @@ Existing Source/Kit worktrees only. No general SM backlog item is lost or closed
 
 ## Verified latest state
 
-Local Moodle serves shortcuts b6cb7c1 at clean runtime55dc2ff. Shared method,
-recap, mistakes and creation explanations are implemented and have bounded
-three-width native EN containment proof. Actual French inspection copy, normal/
-reduced lifecycle, Pause/replay/Reset have separate native proof. First intro,
-Practice animation, guide state, native business adapters and24 slides remain.
-Shortcut native44876 passes36 text nodes, current completion and Close; no course
-writes. Human acceptance is still open.
+Local Moodle last verified at runtime8645902 serves the active twelve-slide
+curriculum and regular fullscreen glyphs c9c8cf9. EN and FR each pass36 native
+reading cases at three widths. Fullscreen native normal/reduced lifecycle and
+saved Foundations/product glyph relinks have separate scoped proof. Human
+acceptance and member/edit targets remain open; older evidence below is historical.
+
+Current source successor qualifies the shared Move dialog by native command
+context. Six isolated opener cases and exact baseline preservation pass. This
+does not add new paths or prove native stacking. See
+`guide-modal-target-context-2026-10-10.md` for branch inventory and next gates.
 
 ## Remaining lots, in execution order
 
