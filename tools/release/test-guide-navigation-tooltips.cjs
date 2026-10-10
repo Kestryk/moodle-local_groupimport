@@ -65,6 +65,11 @@ const css = fs.readFileSync(path.join(root, 'styles.css'), 'utf8');
             await page.keyboard.press('Shift+Tab');
             console.log(width + ': keyboard ' + await page.evaluate(() => document.activeElement.outerHTML.slice(0, 220)));
             await tip.waitFor({state:'visible'});
+            await page.evaluate(() => {
+                document.querySelector('[data-easyedu-guide-nav]').dispatchEvent(new Event('scroll'));
+                return new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+            });
+            await tip.waitFor({state:'visible'});
             await page.keyboard.press('Escape'); assert.equal(await tip.count(), 0);
             await button.hover(); await tip.waitFor({state:'visible'});
             console.log(width + ': scroll cleanup');

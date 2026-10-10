@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Preserve first served Light-tooltip run: native paint/portal pass, compact
+  keyboard persistence fails. Prepare cancellable navigation-scroll re-anchor
+  in the shared controller without changing Guide Motion or native assertions.
+
 - Integrate selected shared Light tooltips for truncated Discovery navigation
   titles, retaining accessible full text and native Guide commands/Motion.
   Nine isolated cases and full baseline preservation pass; two linked Guide

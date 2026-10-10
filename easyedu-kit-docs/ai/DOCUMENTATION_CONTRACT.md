@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+Keyboard navigation can scroll after focusin. Keep its label tooltip anchored
+through that navigation-only scroll and cancel queued frames on teardown;
+do not drop focus help or change existing Guide Motion to obtain a native PASS.
+
 Tooltip fixtures must use the actual consumer root selector and resolved host
 tokens. A pointer still over a target after fullscreen exit cannot certify a
 new pointer-entry event. Keep paint expectations and wait completed cleanup;

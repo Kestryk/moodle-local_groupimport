@@ -460,8 +460,8 @@
       "acceptance": "Inventorier provider existant et usages, revoir Foundations/Guide et Kit avant implémentation: hover/focus/escape, limites viewport, long texte, portals/z-index, mobile équivalent accessible, pas de styles concurrents ou tooltip réservé à la souris. Garder le texte accessible complet, ne pas tooltipiser inutilement les titres qui tiennent.",
       "status": "in-progress",
       "sourceChanged": true,
-      "designPublished": false,
-      "previewServed": false,
+      "designPublished": true,
+      "previewServed": true,
       "nativeVerified": false,
       "humanAccepted": false
     },
