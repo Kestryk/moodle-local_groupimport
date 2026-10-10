@@ -1,0 +1,108 @@
+{
+  "runtimeHead": "374a20682f25ec49d2bd06099a225f9cb65149f1",
+  "runId": "easystud-authenticated-20261010T112845138Z-44372",
+  "rows": [
+    {
+      "width": 1280,
+      "kind": "group",
+      "entryAvailable": true,
+      "entry": "direct",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    },
+    {
+      "width": 1280,
+      "kind": "grouping",
+      "entryAvailable": true,
+      "entry": "direct",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    },
+    {
+      "width": 768,
+      "kind": "group",
+      "entryAvailable": false,
+      "reason": "Visible card menu has no advanced edit action"
+    },
+    {
+      "width": 768,
+      "kind": "grouping",
+      "entryAvailable": false,
+      "reason": "Visible card menu has no advanced edit action"
+    },
+    {
+      "width": 390,
+      "kind": "group",
+      "entryAvailable": false,
+      "reason": "Visible card menu has no advanced edit action"
+    },
+    {
+      "width": 390,
+      "kind": "grouping",
+      "entryAvailable": false,
+      "reason": "Visible card menu has no advanced edit action"
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "fixtureRequested": false,
+  "settingsSaved": false,
+  "scope": "Actual current-width entry and open/read-only disclosure/Cancel inventory; no Guide target or path completion claim.",
+  "humanAcceptance": false,
+  "cleanup": {
+    "credentialsCleared": true,
+    "ownedChildStopped": true,
+    "leaseReleased": true
+  },
+  "sourceRevision": "e42f76d"
+}

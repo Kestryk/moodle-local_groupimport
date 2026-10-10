@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Restore compact Group editor menu access when the desktop cog is hidden;
+  add the same single-entity fallback for Grouping and return focus to its real
+  trigger. Preserve native editor persistence, palette and Motion. Native
+  inventory records four missing entries; isolated successor passes15 guards.
+
 - Serve951f787 locally: source-member selection, searchable destination,
   exact highlights, prior-step review, reopen and Cancel pass at three widths.
   Preserve the failed no-Restore mobile test and its corrected successor;

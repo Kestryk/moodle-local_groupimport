@@ -7342,14 +7342,17 @@ const bindContextMenu = (root, courseId) => {
             'data-easystud-advanced-native-url',
         ];
         if (!isResponsiveWorkspace() || items.length !== 1 || !target ||
-                !target.matches('[data-easystud-group-id][data-easystud-advanced-type="group"]') ||
+                !target.matches('[data-easystud-group-id][data-easystud-advanced-type="group"], ' +
+                    '[data-easystud-grouping-id][data-easystud-advanced-type="grouping"]') ||
                 !metadata.every(attribute => target.hasAttribute(attribute)) ||
                 !target.getAttribute('data-easystud-advanced-native-url')) {
             return false;
         }
 
-        const header = target.querySelector(':scope > .local-groupimport-easystud-group__header');
-        return !!header && !header.querySelector(':scope > [data-easystud-open-advanced-settings]');
+        const header = target.querySelector(':scope > .local-groupimport-easystud-group__header, ' +
+            ':scope > .local-groupimport-easystud-grouping__header');
+        const direct = header?.querySelector(':scope > [data-easystud-open-advanced-settings]');
+        return !!header && (!direct || !direct.getClientRects().length);
     };
 
     const setVisibleActions = (type, target) => {
@@ -7387,7 +7390,8 @@ const bindContextMenu = (root, courseId) => {
                     !items.some(item => getGroupsInGrouping(item).length > 0)) {
                 hidden = true;
             }
-            if (!hidden && button.getAttribute('data-easystud-context-action') === 'group-open-advanced-settings' &&
+            if (!hidden && ['group-open-advanced-settings', 'grouping-open-advanced-settings'].includes(
+                    button.getAttribute('data-easystud-context-action')) &&
                     !canOpenAdvancedSettingsFromContext(items, target)) {
                 hidden = true;
             }
@@ -7735,8 +7739,8 @@ const bindContextMenu = (root, courseId) => {
                     });
                 }
             }
-        } else if (action === 'group-open-advanced-settings') {
-            const opener = document.activeElement;
+        } else if (action === 'group-open-advanced-settings' || action === 'grouping-open-advanced-settings') {
+            const opener = contextOpener || document.activeElement;
             openAdvancedSettingsModal(root, target, opener);
         } else if (action === 'copy-group-name') {
             copyText(getContextItems('group', target).map(group => getGroupName(group)).filter(Boolean).join('\n'));

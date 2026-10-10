@@ -39,6 +39,11 @@ stable action proxies. This does not add or certify member/edit paths. See
    reopen/Cancel at1280/768/390 without submitting a transfer. Advanced editing,
    French/reduced native workflow and real business completion remain separate.
    See `guide-source-member-path-2026-10-10.md`.
+   Native advanced editor inventory44372 confirms desktop fields/Cancel but
+   four compact entries are absent. Bounded single-entity menu fallback is
+   implemented with15 isolated guard/preservation cases; served successor is
+   pending. See `guide-advanced-edit-inventory-2026-10-10.md`. This is access
+   correction, not implemented advanced-field Guide steps or human acceptance.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.
