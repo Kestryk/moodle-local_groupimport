@@ -108,6 +108,19 @@
   }
 }
 
+// Existing dense long-copy help recipe. Consumers opt in explicitly; keep
+// short popovers and tooltip-surface($long: true) unchanged.
+@mixin popover-long-copy {
+  max-width: min(28rem, calc(100vw - 1.5rem));
+
+  .popover-body {
+    font-size: 0.71rem;
+    font-weight: 470;
+    line-height: 1.48;
+    padding: 0.52rem 0.66rem 0.56rem;
+  }
+}
+
 @mixin positioned-popover-arrows($base-class) {
   #{$base-class}--top .popover-arrow,
   #{$base-class}--bottom .popover-arrow {

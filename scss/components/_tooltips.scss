@@ -10,12 +10,5 @@
 @include easyedu.positioned-popover-arrows(".local-groupimport-easystud-hover-popover");
 
 .local-groupimport-easystud-hover-popover--long {
-  max-width: min(28rem, calc(100vw - 1.5rem));
-
-  .popover-body {
-    font-size: 0.71rem;
-    font-weight: 470;
-    line-height: 1.48;
-    padding: 0.52rem 0.66rem 0.56rem;
-  }
+  @include easyedu.popover-long-copy;
 }
