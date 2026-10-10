@@ -64,3 +64,14 @@ Its discovery gate selects exactly one test. The saved Foundation/product
 readback and focused product Mobile title raster now pass; external manifested
 run guide-slide-title-product-20261010 retains mobile-title.png, deletion0.
 This certifies the named title, not the entire composed mobile slide.
+
+## Served native successor
+
+Ordered Source2469155/acdbe83/e90a6d8 promotion serves runtimecc30df0;
+caches purged. Native run4712 passes36 actual twelve-slide titles at three
+widths, exact16/600/19.2px/secondary-blue and painted containment. No page
+errors, blocked writes or settings/business writes. Credentials cleared,
+lease released and owned child stopped. Retention dry run deletes0.
+Evidence is guide-slide-title-native-2026-10-10.json. Native FR/reduced motion
+and full Penpot page acceptance remain separate;144 isolated localized cases
+do not certify them. Human checklist remains open. Next Guide lot: R10-28 dots.
