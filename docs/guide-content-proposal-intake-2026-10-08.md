@@ -372,3 +372,20 @@ AI selection-narration rule covers this copy-only correction; no new Foundation
 recipe or cross-consumer style is needed. Other G11/content/SM lots, progress
 migration and human acceptance remain open. Next: native French inspection
 normal/reduced/Pause/replay, then remaining method/summary modernization.
+
+## Method reading modernization - 10 October
+
+Scope: existing visualworkflow lesson only. Add the canonical three-topic/note
+explanation via action_explanation(method), with seven EN/FR strings. Preserve
+original introductory paragraph, four method pills, slide identity/count, all
+native targets/actions, paths and Motion. No CSS/AMD/template changes and no
+new reusable component or Foundation board duplication: existing published
+explanation composition supplies typography/spacing. Source guard reconstructs
+the exact manage.php line/helper allowlist and excludes only seven new strings.
+New isolated and native scenarios are local-supervised presentation-only;
+open/read/Close, no course actions or fixtures. Native preview remains pending.
+AI contract already requires preserving stable adapters and separating proven
+keyboard selection from modifier-click; no additional reusable rule is needed.
+Other G11/SM/Mass Import/migration/human lots remain open. Next: pass isolated
+EN/FR geometry, promote ordered documentary/source prerequisites, then inspect
+native paragraphs/topics/note/pills at1280/768/390 before the recap lesson.

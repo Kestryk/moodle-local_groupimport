@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Modernize Choose the right method with the existing shared explanation recipe:
+  destination-first search/identifiers, Add/Move consequences, desktop versus
+  mobile actions and verified Tab/Space. Preserve four visual method pills,
+ 24 lessons, native actions, progression and all generated assets.
 - Verify actual French inspection copy across12 native width/Motion cases,
   normal Pause/resume, replay, Reset/Close and completion preservation. Retain
   language-unasserted predecessor and login-load diagnostic; product unchanged.
