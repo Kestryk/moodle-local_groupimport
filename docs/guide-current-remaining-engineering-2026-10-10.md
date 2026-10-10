@@ -63,3 +63,31 @@ Use known page/component IDs and narrow reads. Failed wrong-root lookups and
 oversized outputs are avoidable overhead. No provider token/cost totals are
 available; do not invent precise savings. Preserve current snapshots/pushed WIP,
 and never omit documentary prerequisites during preview promotion.
+
+## Actual curriculum candidate with preserved path entries - 10 October
+
+The full pure production fixture exposes actual24 EN/FR payloads/path definitions,
+not dummy legacy placeholders and not native welcome/configuration availability.
+An initial attempt to invoke native JS configuration reached guide_welcome; that
+boundary was excluded before proof, rather than stubbing database eligibility.
+Actual inventory confirms12-source selection would lose two visible invitations.
+Inactive modern_curriculum preserves create-grouping on the activity lesson and
+try-actions on the Actions lesson, with identical labels/steps/content. Existing
+practice-membership stays on Practice; all four path definitions remain unchanged.
+
+modern_reading_contract supplies explicit legacy20/discovery24/introduction-first24
+maps, distinct curriculum-modern-20261010 key and12 stable IDs. Real shared state
+engine passes136 EN/FR positions, loading read-only, retained path/completion,
+immutable first backup and unknown-history preservation. Actual Mustache/current
+CSS/built AMD passes144 EN/FR/width/Motion explanation cases. Main-only selectors
+include actual introductory paragraphs/topic titles/descriptions/notes; full scene
+raster and native12 proof remain separate. Source guard confirms only additive
+helper methods, all current contracts/manage/assets unchanged. Public fictional
+old payloads are archived in testing/guide-historical-presentation-archive-2026-10-10.json,
+source baseline20391c7. No real user/course/session data or native configuration.
+
+Fixture initially located both main and hidden welcome Open commands; selecting
+the actual visible opener fixed the harness without changing product Motion.
+Next: activate both template selection and JS reading contract atomically, add
+strict successor source/native12 gates, then reconcile remaining modal/fullscreen
+lots. Candidate is not served, human acceptance and every older lot remain open.
