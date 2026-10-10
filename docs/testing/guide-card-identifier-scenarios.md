@@ -24,6 +24,12 @@ It retains the24-slide count, Participant static illustration and path completio
 all business writes are denied. It does not supersede historical static-card
 proof, certify Pause/reduced native behavior or require new fixtures. Native
 results remain pending until the managed runtime promotion and owned run finish.
+
+`guide-adjacent-density-native.spec.js` separately checks the shared Small
+Show/Return actions at the same three widths in both card lessons. It uses
+the real view/open callback and waits for the visible Return action, preserving
+path completion. Local-supervised presentation only, business writes denied;
+native geometry results must be recorded separately from the scene lifecycle.
 Diagnostic source stays immutable. Local DOM input in the recognition successor
 is cleared before Cancel; no Add/Move/Save/fixture command is used. Both plugin
 POST and non-read Moodle AJAX are guarded in that successor.

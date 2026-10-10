@@ -2,6 +2,8 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Add a separate bounded native Small Show/Return density and lifecycle check;
+  preserve the completed inspection scenario and its recorded asset pin.
 - Publish the ordered inspection prerequisites and activation to local Moodle5.1,
   with managed cache purge. Six native desktop/tablet/phone cases pass for the
   existing Group/Grouping lessons, native icon font, Small utilities and preserved
