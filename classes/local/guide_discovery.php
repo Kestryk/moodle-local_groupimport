@@ -103,7 +103,7 @@ final class guide_discovery {
 
     /** Modern reading topics reuse the published explanation composition. */
     public static function action_explanation(string $type): array {
-        if (!in_array($type, ['filters', 'identifiers', 'destination', 'menu', 'activity', 'ready', 'method', 'recap'], true)) {
+        if (!in_array($type, ['filters', 'identifiers', 'destination', 'menu', 'activity', 'ready', 'method', 'recap', 'mistakes'], true)) {
             throw new \InvalidArgumentException('Unknown Guide action explanation.');
         }
         $topics = [];

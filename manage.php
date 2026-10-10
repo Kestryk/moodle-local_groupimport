@@ -1355,6 +1355,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 ],
             ];
         } else if (!empty($step['visualmistakes'])) {
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::action_explanation('mistakes');
             $slide['visualsteps'] = [
                 'layout' => 'warning-grid',
                 'items' => [

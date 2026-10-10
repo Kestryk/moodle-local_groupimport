@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Modernize Common mistakes through the existing shared reading recipe:
+  group-level hierarchy, contextual Move semantics and separate Moodle activity
+  settings. Keep original three warning pills,24 lessons, actions, progression,
+  templates/CSS/AMD and accepted Motion unchanged.
 - Key points30f0d85 is served in local Moodle5.1 with managed cache purge.
  12 isolated EN/FR width/Motion and three native EN width cases pass; all36
   paragraph/topic/note/pill text nodes contained, completion preserved.
