@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+The existing Group/Grouping card lessons now opt into the synchronized inspection
+recipe. Preserve Participant's static illustration and the complete lesson/target/
+opener/progression baseline. The isolated fixture executes only that bounded
+production presentation branch; it must never bootstrap manage.php or fabricate
+native recognition. Four discovery samples remain distinct from these lessons.
+Development activation is not served Moodle or human acceptance.
+
 Inspection scene data remains inactive until the matching Kit template, engine
 and SCSS are synchronized atomically. Fictional known/unresolved examples are
 not native recognition or applied memberships; provide separate desktop and

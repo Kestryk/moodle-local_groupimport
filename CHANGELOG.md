@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Activate the synchronized illustration-only inspection recipe in the existing
+  Group and Grouping lessons, replacing their static specimen without duplicate
+  cards. Participant illustration, lesson explanations, all other manage.php
+  code, native targets/openers and reading/path progression remain unchanged.
+  Production-adapter fixture and PHP checks pass; served preview remains pending.
 - Atomically synchronize private Kit20dbb05 inspection template/engine/SCSS and
   textarea typography into the development worktree; rebuild Guide AMD/map/CSS.
   Exact build, non-Guide CSS preservation and24 built-consumer fixture cases pass.

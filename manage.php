@@ -1158,6 +1158,12 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 ],
                 'details' => $carddetails[$cardtype],
             ];
+            // Illustration-only successor: retain the lesson, opener and native target.
+            // Matching canonical template, engine and stylesheet are synchronized together.
+            if ($cardtype !== 'participant') {
+                $slide['discoveryscene'] = \local_groupimport\local\guide_discovery::card_inspection($cardtype);
+                unset($slide['visualcarddetail']);
+            }
         } else if (!empty($step['visualfirststructure'])) {
             $slide['visualsteps'] = [
                 'layout' => 'workflow',

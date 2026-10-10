@@ -19,16 +19,29 @@ for ($index = 0; $index < 20; $index++) {
 }
 $historicalslides = \local_groupimport\local\guide_discovery::prepend($reference);
 $cardlessons = [];
+$manage = file_get_contents(__DIR__ . '/../../manage.php');
+$start = strpos($manage, '            // Illustration-only successor:');
+$end = strpos($manage, '        } else if (!empty($step[\'visualfirststructure\']))', $start);
+if ($start === false || $end === false) {
+    throw new RuntimeException('Missing production card illustration adapter.');
+}
+$inspectionadapter = substr($manage, $start, $end - $start);
 foreach (['participant', 'group', 'grouping'] as $type) {
-    $cardlessons[] = ['type' => $type,
+    $slide = ['type' => $type,
         'title' => get_string('tutorial' . $type . 'cardtitle', 'local_groupimport'),
         'description' => get_string('tutorial' . $type . 'cardcontent', 'local_groupimport'),
-        'commonintroduction' => \local_groupimport\local\guide_discovery::card_explanation($type)];
+        'commonintroduction' => \local_groupimport\local\guide_discovery::card_explanation($type),
+        'visualcarddetail' => ['retainedStaticFixture' => true]];
+    $cardtype = $type;
+    // Execute only the exact bounded presentation branch; never bootstrap manage.php.
+    eval($inspectionadapter);
+    $cardlessons[] = $slide;
 }
+$cardlessonsbytype = array_column($cardlessons, null, 'type');
 echo json_encode(['slides' => \local_groupimport\local\guide_discovery::prepend([]),
     'inspectionScenes' => [
-        'group' => \local_groupimport\local\guide_discovery::card_inspection('group'),
-        'grouping' => \local_groupimport\local\guide_discovery::card_inspection('grouping'),
+        'group' => $cardlessonsbytype['group']['discoveryscene'],
+        'grouping' => $cardlessonsbytype['grouping']['discoveryscene'],
     ],
     'actionLessons' => array_map(static function($type) {
         return ['id' => 'explanation-' . $type, 'type' => $type,
