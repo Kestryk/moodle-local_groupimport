@@ -170,3 +170,16 @@ that assertion is not a claim that the complete curriculum remains inactive.
 PHP lint and activation/data gates pass. This is development-source activation;
 native preview, font paint, real Show/Return/Reset, correlated product design and
 human acceptance remain separate open gates. No runtime or cache mutation here.
+
+The immutable built-consumer renderer run also passes all24 cases using the
+updated fixture's production-branch lesson data: EN/FR,1280/768/390, normal/
+reduced, Group/Grouping. Opening/recognition pause, natural return, Reset/replay
+and departure cleanup retain their strict oracles. Small utilities measure
+12.48px/600/30.390625px. The runner's consumerActivated:false describes no native
+Moodle activation; the production presentation adapter is independently checked
+by the activation successor. No real icon-font paint or served-page proof.
+
+Development commit686b992 is pushed with clean Source and Kit worktrees. Verified
+snapshot ws3-20261010T054929Z-port4719pg3-db26fd077a4f preserves this activation.
+Read-only runtime report confirms clean f91554c on the existing local preview
+branch and no active runtime leases; no promotion/cache/test was performed.

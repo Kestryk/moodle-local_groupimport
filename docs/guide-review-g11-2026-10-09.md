@@ -682,3 +682,10 @@ retention. No migration, native lookup, real action or new curriculum item.
 PHP lint and data/activation checks pass. Served runtime remains at its prior
 recorded pin; preview promotion and native gates are next. All other G11/content/
 SM lots and human validation remain open as recorded, not silently completed.
+
+The full built-consumer successor finishes24/24 PASS against the activated
+production-branch fixture, covering both languages, three widths and both Motion
+preferences. Native Moodle remains untested. Source686b992 is pushed/clean;
+snapshot ws3-20261010T054929Z-port4719pg3-db26fd077a4f is verified. Runtime report
+is clean f91554c/no active lease; preview remains unchanged. Next: prepare the
+native inspection successor and promote all owned prerequisite commits in order.
