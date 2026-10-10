@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Native docked Show/Return successor passes six routes/twelve Small-density
+  measurements at1280/768/390, preserving current lesson and path completion.
+  Retain the obsolete-parent locator failure; no product asset change needed.
 - Preserve the initial adjacent-action diagnostic and add its docked-command
   locator successor; no product asset change or relaxed Small-density oracle.
 - Add a separate bounded native Small Show/Return density and lifecycle check;

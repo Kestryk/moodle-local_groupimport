@@ -704,3 +704,15 @@ guide-card-inspection-contract.md and testing/guide-card-inspection-native-2026-
 Manifest/retention dry-run protects the owned run; no files deleted. Human
 acceptance and every unfinished G11/content/SM lot remain open. Next: the
 affected Show/Return controls and remaining modern-card/action lessons.
+
+### Small Show/Return native successor —10 October
+
+Native33812 PASS: six EN card-lesson routes and twelve action measurements at
+1280/768/390. Shared Small12.48px/600/30.390625px, no button overflow; actual Show/
+Return/Close preserve current lesson and path completion. No asset correction,
+fixture or business mutation. Diagnostic35752 retains its outdated slide-parent
+locator failure; successor uses the existing shared cue slot. All cleanup passes,
+manifest/retention protects both runs without deletion. Detailed evidence is in
+testing/guide-docked-density-native-2026-10-10.json. Wider glyph/focus/hover/FR/
+reduced and all other lots/human acceptance remain open. Next: actual selection
+gesture/keyboard audit, then modernize the remaining method/keyboard copy safely.
