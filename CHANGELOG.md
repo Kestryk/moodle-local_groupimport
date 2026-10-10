@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Create faster3ce649e served locally with managed cache purge; three native
+  EN widths pass39 painted text/formula/result nodes and path preservation.
+  No real creation or fixture writes; native FR/raster/human gates remain open.
 - Modernize Create faster using the shared explanation recipe and verified
   quick-create syntax. Distinguish real creation fields from the1..6 Practice
   exercise; preserve formula, animation, parser and course/path commands.

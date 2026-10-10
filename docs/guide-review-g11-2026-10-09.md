@@ -912,3 +912,21 @@ and completion using open/read/Close only. Existing AI contracts apply; no new
 reusable rule or Foundation duplicate needed. Human checklist and other lots
 remain open. Next: ordered preview/native creation proof, then shortcut reading
 and the separate backed-up curriculum migration gate.
+
+## Creation syntax served-native proof - 10 October
+
+Ordered preview applies20c5fef documentary predecessor and3ce649e source to clean
+runtimef7ac52d, managed cache purge PASS. Native46676 passes EN1280/768/390:
+13 painted text nodes per case (paragraph, three topic titles/descriptions,
+note, formula and four result captions), all contained. Exact Assignment #*4
+formula retained; real Close preserves path completion. No errors, blocked
+business calls, course/fixture writes or real creation. Credential/child/lease
+cleanup complete; manifested retention dry-run protects run without deletion.
+Evidence: testing/guide-creation-native-2026-10-10.json. Twelve isolated EN/FR
+normal/reduced cases, five actual pure-parser cases, PHP/source guards and68
+offline migration positions PASS. Accepted Practice animation, parser/ajax,
+CSS/AMD/template/Kit remain unchanged. Shared explanation recipe and existing
+AI rules suffice; no new Foundation family. Native FR/whole painted glyph/type/
+raster, shortcuts, explicit curriculum migration, other G11/SM/Mass Import and
+human checklist remain open. Next: remaining shortcut composition using verified
+selection/method behavior, then reconcile full writer crosswalk before dedup.
