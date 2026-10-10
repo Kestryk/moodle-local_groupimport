@@ -1,0 +1,56 @@
+{
+  "runId": "easystud-authenticated-20261010T073326292Z-46676",
+  "sourceHead": "3ce649e6bca2c683825fcd8b830238e9814e5a9a",
+  "runtimeHead": "f7ac52d0f5c0033d03c18efdf229b4a42c6bb247",
+  "scenario": "guide-creation-native.spec.js",
+  "classification": "local-supervised",
+  "passed": true,
+  "language": "en",
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "cases": 3,
+  "paintedTextNodesPerCase": 13,
+  "allContained": true,
+  "sharedTopics": 3,
+  "formula": "Assignment #*4",
+  "formulaResults": 4,
+  "pathCompletionPreserved": true,
+  "errors": [],
+  "blockedWrites": [],
+  "fixtures": false,
+  "businessWrites": false,
+  "cleanupComplete": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "isolated": {
+    "cases": 12,
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "motion": [
+      "no-preference",
+      "reduce"
+    ],
+    "actualProductionBranch": true
+  },
+  "pureActualParserCases": 5,
+  "sourceGuard": true,
+  "phpLint": true,
+  "offlineMigrationCases": 68,
+  "generatedAssetsChanged": false,
+  "humanVisualValidated": false,
+  "remaining": [
+    "French native paragraph/formula paint",
+    "Whole raster/type/icon proof",
+    "Legacy shortcut composition",
+    "Explicit curriculum migration",
+    "Other G11/SM/human lots"
+  ]
+}
