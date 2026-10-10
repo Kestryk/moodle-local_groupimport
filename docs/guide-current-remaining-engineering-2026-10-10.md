@@ -27,9 +27,11 @@ writes. Human acceptance is still open.
    not covered by that proof. Audit their actual targets, opening, prior-step
    review, modal/checklist stacking, search and Cancel without confirming writes.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
-   glyph. Fullscreen Enter/Exit still use solid expand/compress; this is a
-   remaining correction, not completed header parity. Shared Kit first, matching
-   Foundations providers/copies, then consumer and native lifecycle/paint.
+   glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
+   Foundations Library/Standard editor, raster and decoded saved-file geometry.
+   The synchronized Source candidate passes exact engine/template/CSS/build
+   preservation. Product-page relinking, served native lifecycle/paint and
+   human acceptance remain distinct gates.
 4. **Residual native coverage.** Preserve distinct welcome eligibility/global
    reset boundaries, long-copy/glyph/cursor paint, French layouts and mobile
    natural reading. Existing scoped passes do not certify every state. Do not
@@ -138,3 +140,18 @@ testing/guide-active-curriculum-native-2026-10-10.json.136 historical reading an
 historical, not current native assertions. Source and runtime are not human
 acceptance; native French/full-scene paint, other modal targets and Fullscreen
 remain open. No current-Guide or older SM backlog item is silently removed.
+
+## Fullscreen regular glyph source successor
+
+Canonical Kit995616a supplies the vector/template/branch. The deliberate sync
+preserves Moodle AMD wrapping, nine localized empty defaults, hover/completion
+labels, fullscreen helper and all native commands/curriculum. Exact Source gate
+reconstructs previous JS/templates and the complete CSS by removing only the
+glyph adaptation; deterministic Terser/map matches. Sass emits only one extra
+canonical glyph rule; existing mixed-declaration warnings are unchanged.
+
+The native successor retains the historical lifecycle assertions and adds
+actual vector path, frame, density, currentColor and painted centring, unchanged
+path completion and current12-slide Show target navigation. It is immutable
+during its supervised run. No fixture/course/global-reset action is authorized
+by this presentation check. Preview/native results are pending.

@@ -245,6 +245,14 @@
     @media (max-width: 47.999rem) { &__topics { grid-template-columns: minmax(0, 1fr); } }
   }
   .easyedu-guide-modal__fullscreen { @include buttons.close-button; }
+  // The vector inherits the existing Small control's density and state colour.
+  // No icon-font weight override or consumer compensation is necessary.
+  .easyedu-guide-fullscreen-glyph {
+    display: block;
+    inline-size: 1em;
+    block-size: 1em;
+    flex: none;
+  }
   .easyedu-guide-modal:fullscreen {
     background: var(--easyedu-surface);
     padding: 0;
