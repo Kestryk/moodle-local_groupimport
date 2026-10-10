@@ -1,0 +1,32 @@
+{
+  "lot": "R10-30 localized native successor",
+  "runtimeHead": "3e58bf58fbbd5de9aced68050c6c195bfa06ab16",
+  "spec": "tools/playwright/guide-demonstration-entry-native.spec.js",
+  "classification": "local-supervised",
+  "runs": [
+    {"runId": "easystud-authenticated-20261010T210530124Z-45032", "language": "fr", "motion": "reduce", "nativeCases": 12, "exitCode": 0, "scope": "idle/manual Start/static finished recap/Replay/Reset; no paused-clock claim"},
+    {"runId": "easystud-authenticated-20261010T210647921Z-24012", "language": "fr", "motion": "no-preference", "nativeCases": 12, "exitCode": 0, "scope": "idle/manual Start/running/pause/resume/next-phase/finished recap/Replay/Reset"},
+    {"runId": "easystud-authenticated-20261010T211005053Z-40912", "language": "en", "motion": "reduce", "nativeCases": 12, "exitCode": 0, "scope": "idle/manual Start/static finished recap/Replay/Reset; no paused-clock claim"}
+  ],
+  "widths": [1280, 768, 390],
+  "timedScenes": 4,
+  "nativeCases": 36,
+  "actualDocumentLanguageAsserted": true,
+  "actualMotionPreferenceAsserted": true,
+  "smallButtonHeightPx": 30.4,
+  "buttonTextSizePx": 12.48,
+  "buttonGapPx": 5.6,
+  "buttonContained": true,
+  "errors": [],
+  "blockedWrites": [],
+  "businessWrites": false,
+  "settingsWrites": false,
+  "productionSourceChanged": false,
+  "cleanupAllRuns": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true},
+  "retention": {"mode": "dry-run", "protectedRuns": 4, "candidateCount": 0, "deletedCount": 0},
+  "preservedFailure": "easystud-authenticated-20261010T210343124Z-40408",
+  "failureCause": "Native test incorrectly required running state in canonical reduced/static mode; no product or timing correction.",
+  "englishReducedNativeCertified": true,
+  "allAnimationArtworkCertified": false,
+  "humanAccepted": false
+}

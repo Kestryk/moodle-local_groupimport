@@ -2,6 +2,19 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Extend timed-entry native coverage to English reduced mode:12 static recap/
+  Replay/Reset cases pass.36 new cases complement the prior12 English normal
+  cases; no production changes. Artwork/persistence/human review remain open.
+
+- Verify24 French native demonstration cases across three widths: normal
+  playback controls and reduced static outcome/recap. Retain the initial
+  reduced-mode test-contract failure; no engine/clock/style correction or data
+  writes. Cleanup complete, English reduced/artwork/human review remain separate.
+
+- Prepare actual-language/reduced-media assertions for the existing timed Guide
+  demonstration native scenario; retain controls, clocks and prior proofs.
+  No production/component change; new native scope remains pending.
+
 - Verify six native source-member Guide review cases in French, normal/reduced
   Motion and three widths. Modal search/highlights/prior review/reopen/Cancel
   pass with complete cleanup; no confirmed transfer or production style change.
