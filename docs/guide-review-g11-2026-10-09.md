@@ -877,3 +877,21 @@ writes; isolated EN/FR width/Motion proof is separate from served-native and
 human acceptance. Other G11/SM/Mass Import and migration lots remain open.
 Next: isolated containment, ordered preview, native paragraph/topic/warning-pill
 containment at1280/768/390; then remaining legacy creation/shortcut compositions.
+
+## Common mistakes served-native proof - 10 October
+
+Ordered preview applies32f31d1 documentary predecessor andcfb2c1e source to clean
+runtimec13b269, cache purge PASS. Native25032 passes EN1280/768/390:11 painted
+text nodes each (intro paragraph, three topic titles/descriptions, note, three
+warning-pill captions) all contained. Real Close preserves path completion.
+No errors, blocked business calls, course writes or fixtures; credentials/child/
+lease cleanup complete. Manifest/retention dry-run protects run without deletion.
+Evidence: testing/guide-mistakes-native-2026-10-10.json. Twelve isolated EN/FR
+normal/reduced production-branch cases, PHP/source guards and68 offline migration
+positions PASS. CSS/AMD/template/Kit and accepted Motion remain unchanged.
+Existing shared explanation recipe and AI proof rules suffice; no new design
+family or duplicated Foundation specimen is needed. Native FR/whole painted
+glyph/type/raster, remaining legacy compositions, curriculum dedup/migration,
+other G11/SM/Mass Import lots and human checklist stay open. Next: modernize
+Create faster syntax reading while retaining the accepted Practice animation,
+formula specimen, parser behavior and stable lesson/path identities.

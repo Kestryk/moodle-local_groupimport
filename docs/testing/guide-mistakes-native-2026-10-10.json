@@ -1,0 +1,54 @@
+{
+  "runId": "easystud-authenticated-20261010T072707609Z-25032",
+  "sourceHead": "cfb2c1eee695e2484eb52eee8fbe52a56059b9d9",
+  "runtimeHead": "c13b26971c5120d8f949b0988b81cf86e1abfa06",
+  "scenario": "guide-mistakes-native.spec.js",
+  "classification": "local-supervised",
+  "passed": true,
+  "language": "en",
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "cases": 3,
+  "paintedTextNodesPerCase": 11,
+  "allContained": true,
+  "sharedTopics": 3,
+  "warningPills": 3,
+  "pathCompletionPreserved": true,
+  "errors": [],
+  "blockedWrites": [],
+  "fixtures": false,
+  "businessWrites": false,
+  "cleanupComplete": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "isolated": {
+    "cases": 12,
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "motion": [
+      "no-preference",
+      "reduce"
+    ],
+    "actualProductionBranch": true
+  },
+  "sourceGuard": true,
+  "phpLint": true,
+  "offlineMigrationCases": 68,
+  "generatedAssetsChanged": false,
+  "humanVisualValidated": false,
+  "remaining": [
+    "French native paragraph/pill paint",
+    "Whole raster/type/icon proof",
+    "Legacy creation/shortcut compositions",
+    "Explicit curriculum migration",
+    "Other G11/SM/human lots"
+  ]
+}
