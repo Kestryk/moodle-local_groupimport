@@ -64,3 +64,18 @@ No database rollback is needed for this no-Save inspection lot.
 Shared Platform planning/registry files are not written by this product window;
 this ledger and local scenario classification provide the bounded owner handoff.
 Older SM, Mass Import, admin and final human checklist lots remain open.
+
+## Native diagnostic and bounded successor
+
+Ordered promotion213d8df serves runtimef218221 with cache purge. Native run
+46272 passes both desktop paths, then fails compact Group prior-field review:
+the closed responsive Navigation drawer still has a layout rect and role=dialog.
+The new editor opener treated it as an active foreign dialog. No errors, blocked
+business calls, Save or fixtures; credential/child/lease cleanup is complete.
+Preserve that strict native spec and failed evidence unchanged.
+
+Successor checks native aria-hidden in addition to hidden/layout. Actual visible
+foreign dialogs are still preserved; a correctly closed navigation drawer no
+longer blocks editor review. Sixteen typed opener cases include aria-hidden and
+hidden dialog branches. No shared Kit, Navigation code, CSS or Motion change.
+Replay the unchanged strict six-case native scenario after ordered promotion.

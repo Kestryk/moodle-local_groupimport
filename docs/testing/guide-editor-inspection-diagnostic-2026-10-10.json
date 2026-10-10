@@ -1,0 +1,23 @@
+{
+  "sourceCommit": "213d8dfeb88847bfb89a0a0e3896842a08856fa4",
+  "runtimeHead": "f218221e119cdb81d1253514071eec2ff75e31ee",
+  "promotionRecord": "preview-promotions/easystud/20261010T124905Z.json",
+  "runId": "easystud-authenticated-20261010T124920054Z-46272",
+  "spec": "tools/playwright/guide-editor-inspection-native.spec.js",
+  "language": "en",
+  "motion": "no-preference",
+  "exitCode": 1,
+  "completedCases": [
+    {"width": 1280, "type": "group", "entryAndFieldsAligned": true, "focusMilestones": true, "reviewDoesNotCompleteCancel": true, "reopen": true, "userCancelCompletesAfterExit": true},
+    {"width": 1280, "type": "grouping", "entryAndFieldsAligned": true, "focusMilestones": true, "reviewDoesNotCompleteCancel": true, "reopen": true, "userCancelCompletesAfterExit": true}
+  ],
+  "failure": {"width": 768, "type": "group", "stage": "prior Name step review did not reopen editor", "cause": "closed Navigation role=dialog retains rect; adapter ignored aria-hidden"},
+  "pageErrors": [],
+  "blockedWrites": [],
+  "settingsSaved": false,
+  "fixtureRequested": false,
+  "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true, "fixtureCleanupComplete": true},
+  "retention": {"mode": "dry-run", "protectedCount": 1, "candidateCount": 0, "deletedCount": 0},
+  "humanAcceptance": false,
+  "successor": "Respect aria-hidden in native foreign-dialog guard and replay the unchanged strict spec."
+}

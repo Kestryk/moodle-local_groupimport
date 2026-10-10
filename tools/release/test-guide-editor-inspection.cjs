@@ -53,17 +53,19 @@ for(const file of ['styles.css','templates/easyedu_guide.mustache','amd/src/easy
 const start=source.indexOf('    const closeModal = (completeInspection'),end=source.indexOf("    modal.addEventListener('click', event => {",start);
 const openerStart=source.indexOf('    const openEditorDialog ='),openerEnd=source.indexOf('    const openTarget =',openerStart);
 let openerCases=0;
-for(const type of ['group','grouping'])for(const state of ['same','foreign','other','open','missing','disabled']){
+for(const type of ['group','grouping'])for(const state of ['same','foreign','other','aria-hidden','hidden','open','missing','disabled']){
     let current=state==='same'||state==='foreign'?{hidden:false,getAttribute:()=>state==='same'?type:(type==='group'?'grouping':'group')}:null;
     let clicks=0;
-    const host={querySelector:()=>current,querySelectorAll:()=>state==='other'?[{hidden:false,getClientRects:()=>[{}]}]:[]};
+    const host={querySelector:()=>current,querySelectorAll:()=>['other','aria-hidden','hidden'].includes(state)?[{
+        hidden:state==='hidden',getAttribute:()=>state==='aria-hidden'?'true':null,getClientRects:()=>[{}]
+    }]:[]};
     const ctx={root:host,openEditorEntry:()=>state==='missing'?null:{disabled:state==='disabled',click:()=>{
         clicks++;current={getAttribute:()=>type};
     }}};
     vm.runInNewContext(source.slice(openerStart,openerEnd)+'\nthis.openEditor=openEditorDialog;',ctx);
     const result=ctx.openEditor(type);
-    assert.equal(!!result,state==='same'||state==='open');
-    assert.equal(clicks,state==='open'?1:0);openerCases++;
+    assert.equal(!!result,['same','open','aria-hidden','hidden'].includes(state));
+    assert.equal(clicks,['open','aria-hidden','hidden'].includes(state)?1:0);openerCases++;
 }
 const events=[],listeners={},modal={remove:()=>events.push('removed'),addEventListener:(key,value)=>listeners[key]=value};
 let finish;
