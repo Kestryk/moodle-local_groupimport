@@ -483,7 +483,13 @@
     background: var(--easyedu-surface);
   }
   .easyedu-guide-modal__progress-label { @include typography.type-caption; display: block; order: -1; }
-  .easyedu-guide-modal__progress-track { height: 0.25rem; width: 100%; }
+  .easyedu-guide-modal__progress-track {
+    height: 0.25rem;
+    width: 100%;
+    // The track belongs to the same product accent as its reading indicator.
+    background: var(--easyedu-accent-soft);
+    border-color: color-mix(in srgb, var(--easyedu-accent) 22%, var(--easyedu-surface) 78%);
+  }
   .easyedu-guide-modal__step-count { display: none; }
 
   .easyedu-guide-modal__progress-bar {

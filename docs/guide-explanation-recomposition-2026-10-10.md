@@ -131,3 +131,19 @@ current content/templates/engines/builds plus every non-family SCSS/CSS byte.
 Snapshot's first verification failed because it ran from Moodle's non-repository
 root; direct bundle verification passes from the owned repository. Rerun the
 snapshot from the Source worktree, retaining the failed staging candidate.
+
+## Served successor
+
+Ordered promotion applied6814f3c,2c22f1a,b648214 to clean runtimec0200bc;
+caches purged. EN11416 and FR2300 each pass36 actual twelve-slide readings at
+1280/768/390, with complete explanatory paint containment, navigation, reading
+storage/completion preservation and Close. No course writes or fixture changes.
+Both wrappers clear credentials, stop their child and release their runtime
+lease; retention dry-runs protect these runs and delete nothing. This is72
+normal-motion native cases, not a new reduced-motion/native scenario matrix.
+Source/Kit commits are pushed privately; user acceptance remains open.
+
+Native evidence: local EasyEdu artifacts/easystud/authenticated run folders
+easystud-authenticated-20261010T144128242Z-11416 and
+easystud-authenticated-20261010T144348765Z-2300. Results/manifests/cleanup are
+retained there; no screenshot review is requested during this continuation.

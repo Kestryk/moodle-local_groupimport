@@ -14319,6 +14319,8 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-track {
   height: 0.25rem;
   width: 100%;
+  background: var(--easyedu-accent-soft);
+  border-color: color-mix(in srgb, var(--easyedu-accent) 22%, var(--easyedu-surface) 78%);
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count {

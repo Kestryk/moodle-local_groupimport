@@ -4,6 +4,20 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideExplanationRecomposition20261010": {
+      "kitVersion": "0.4.166",
+      "kitCommit": "91e20b98b36b4213f03473c7de14788b59ddaf5a",
+      "sourceCommit": "b64821499be4af72ca93f645d8c02414026c4c81",
+      "sourceSynchronizationVerified": true,
+      "scope": "Ten current explanatory slides use common spaced rows and separate specimen lanes; retained content, engine, paths and non-family CSS.",
+      "savedDesignRoots": 16,
+      "isolatedLayoutCases": 120,
+      "nativePreviewVerified": true,
+      "nativeReadingCases": 72,
+      "nativeProof": "docs/testing/guide-explanation-recomposition-2026-10-10.json",
+      "publicRelease": false,
+      "humanVisualValidated": false
+    },
     "guidePendingHighlight20261010": {
       "kitVersion": "0.4.166",
       "kitCommit": "83a4ce4204d1193c4ea4c5375a00c5fea58f15b5",
