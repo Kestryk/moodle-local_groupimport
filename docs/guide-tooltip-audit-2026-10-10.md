@@ -1,5 +1,86 @@
 # Guide tooltip audit and non-visual extraction - R10-32
 
+## Control-label source successor
+
+USER DECISION: rejected on2026-10-10. The proposed recipe was withdrawn
+before Guide activation or preview promotion. Four exact roots below are now
+hidden and named ARCHIVE, recoverably. The retained snapshot contains the
+candidate; the following test/raster notes describe that historical candidate,
+not the currently selected design. Resume the existing preferred family audit.
+
+## Preferred existing-family correspondence
+
+CONFIRMED USER CHOICE: Light Short/Light Long, not the dark variants. Source
+providers8a2f9f7d-feb6-80ca-8008-9b9a134ce7d0 and
+8a2f9f7d-feb6-80ca-8008-9b9a1386e287; Standard roots
+3ade82ad-bce8-8059-8008-9c01335dce4a and
+3ade82ad-bce8-8059-8008-9c013378cf4b. Their existing pale tokens already match
+the Kit (#f8fbfd,#cfe0ec,#31485f and shadow roles). Short text is
+11.84px/700/1.35 centred with34px surface; Long12.16px/600/1.35 left-aligned
+with64px surface. Existing tooltip-surface defaults differ in weight/Short
+line height and minimum height. Map those explicit source roles through
+`foundation-light-tooltip`, without touching accepted design or legacy defaults.
+This optional recipe does not activate Guide behavior or change served Moodle.
+`test-tooltip-light-source.cjs` passes exact canonical/embedded mapping and
+compiled Short/Long declarations, both full prior modules and complete emitted
+consumer CSS. It also rejects any rejected control-label recipe or placeholder.
+
+Existing Standard dark Single-line root3ade82ad-bce8-8059-8008-9c013389d009
+links provider8a2f9f7d-feb6-80ca-8008-9b9a13e3af70. Existing dark Long
+root3ade82ad-bce8-8059-8008-9bf95e001c1c links
+provider3ade82ad-bce8-8059-8008-9bf93fcbb129. The existing grid also has
+Light Short/Long variants; do not replace them or assume a dark repaint for all.
+
+The Kit already owns the dark gradient endpoints#183a59/#1f6b57, white28%
+border,10.24px corner and shadow roles. Missing correspondence is not absence
+of all styles: actual dark Standard text is12.16px/700/1.35, centred inside
+44px(single) or64px(long) surfaces. Native popover-surface body is
+12.16px/540/1.38 and left-aligned; plugin long opt-in is11.36px/470/1.48.
+Additionally popover-surface retains outer tooltip padding plus body padding.
+Neither native recipe is exact existing-Standard parity. Audit the semantic
+usage and real native paint before composing an existing-family adapter;
+do not globally replace explanatory help with the short control treatment.
+
+Guide navigation still has no custom tooltip controller/attributes. Its
+integration needs owned hover/focus/portal/fullscreen cleanup, preserving the
+existing accessible full label. The recent async request to switch to Guide
+is superseded: remain on Foundations until this preferred-family reconciliation.
+
+Add optional `popover-control-label` after `popover-surface`, changing only
+body weight to500; retain12.16px type,1.38 line height and inherited padding,
+gradient/arrow identity. This recipe is not yet consumed in Guide markup or JS.
+`test-tooltip-control-label-source.cjs` pins Source2e6adc5 and Kit585c6a7:
+both entire prior modules and complete emitted consumer CSS are preserved.
+Existing embedded help/focus additions are deliberately retained.
+
+Foundations file40e06342-8830-80d6-8008-96572effc11c:
+
+| Specimen | Provider | Library root | Standard root |
+| --- | --- | --- | --- |
+| Short | bc7c574d-fc32-80da-8008-c4f05aa57ec2 | bc7c574d-fc32-80da-8008-c4f05a8ad557 | bc7c574d-fc32-80da-8008-c4f155c30960 |
+| Wrapped | bc7c574d-fc32-80da-8008-c4f05abd2c85 | bc7c574d-fc32-80da-8008-c4f05aa7d95e | bc7c574d-fc32-80da-8008-c4f155d8205d |
+
+Library page8a2f9f7d-feb6-80ca-8008-9b9a11d71189;
+Standard page8bd32c67-a6b0-80dd-8008-9a0d4cd34aea.
+Both240px wide; Short40.4608px / Wrapped57.2416px include an8px arrow
+lane. These are specimen dimensions, not a runtime fixed-height rule. The
+Wrapped specimen has an explicit illustrative line break, not product copy.
+
+Remote PNG export timed out. The first owned-editor raster exposed that the
+Wrapped sample fitted on one line and inherited centred alignment. Retain that
+diagnostic; use a two-line successor and explicit source/Standard left alignment.
+Saved readback passes for all four roots after correction, comparing finite
+relative geometry, paint and complete text content/type. The owned-editor
+`standards-left.png` successor is inspected: both labels are contained with
+the same insets and the Wrapped sample occupies two lines. All three captures
+are manifested outside Git under tooltip-control-label-20261010; only the
+corrected successor is pinned. Retention dry run performs no deletion.
+Source/Standard align overrides are explicit; automatic linkage did not replace
+the inherited centre override. The nonexistent `textAlign` API attempt was
+replaced by the documented `align` property and verified after settling.
+No Guide
+propagation, hover/focus/fullscreen lifecycle or native tooltip proof is claimed.
+
 The served palette successor remainsc129230. This successor starts the tooltip
 lot; it does not change navigation, shared Guide engine or rendered paint.
 

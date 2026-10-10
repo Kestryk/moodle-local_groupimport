@@ -47,6 +47,21 @@
   }
 }
 
+// Existing Foundations Light Short/Long specimens, not a new visual family.
+// Opt in explicitly: legacy hover-help and dark informational popovers retain
+// their defaults. Width adapts to the label; minimum height follows the source.
+@mixin foundation-light-tooltip($long: false) {
+  @include tooltip-surface($long);
+
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-weight: if($long, 600, 700);
+  line-height: 1.35;
+  min-height: if($long, 4rem, 2.125rem);
+  text-align: if($long, left, center);
+}
+
 @mixin popover-surface {
   --easyedu-tooltip-bg: linear-gradient(135deg, #183a59 0%, #1f6b57 100%);
   --easyedu-tooltip-border: rgba(255, 255, 255, 0.28);
