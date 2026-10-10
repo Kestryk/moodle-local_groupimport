@@ -166,3 +166,21 @@ Source4c6413e/runtime5f6da55 remains the served method slice. Human acceptance,
 native French paragraphs/pills, full raster/type proof and all older lots stay
 open. Next: modernize the Key points recap using the existing shared recipe,
 then remaining old lesson compositions and explicit curriculum migration gate.
+
+## Key points recap modernization - 10 October
+
+Existing visualtakeaway lesson opts into action_explanation(recap), seven new
+EN/FR strings and the published three-topic/note composition. Its original
+paragraph and four recap pills remain. Topics distinguish participants/groups/
+groupings, Add/source-member Move/Participants Move and separate activity
+configuration. Reading is not business completion. No new component/style,
+Foundation duplication, template/CSS/AMD/animation change, lesson insertion,
+index migration or path predicate change. Existing AI shared-source/proof rules
+cover this bounded copy-only adoption; no new reusable contract is necessary.
+Source successor compares all unrelated code/assets against06ab362. New fixture
+executes only the exact final recap presentation branch; an initial boundary
+mistake included the branch closing brace and was corrected before UI proof.
+Isolated EN/FR width/Motion and native open/read/Close gates stay separate.
+Native scenario is local-supervised, denies business writes and needs no fixture.
+Human checklist, other G11/SM lots and explicit curriculum migration remain open.
+Next: isolated containment, ordered preview and native recap text/pill proof.

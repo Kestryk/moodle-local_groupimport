@@ -1375,6 +1375,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                 ],
             ];
         } else if (!empty($step['visualtakeaway'])) {
+            $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::action_explanation('recap');
             $slide['visualsteps'] = [
                 'layout' => 'workflow',
                 'items' => [

@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Modernize Key points through the published shared explanation recipe:
+  Participant/Group/Grouping hierarchy, contextual membership consequences and
+  separate Moodle activity settings. Retain four visual recap pills,24 slides,
+  all targets/path predicates, CSS/AMD/templates and original Motion.
 - After a healthy read-only login probe, unchanged Method native scenario passes
   three widths/36 painted text nodes, original four pills and path completion.
   Preserve earlier database-error diagnostic; its cause remains unknown.
