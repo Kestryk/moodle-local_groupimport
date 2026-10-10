@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "63e4d4286636be0d8c6c975c4f092b52e0d0001f",
+  "runtimeHead": "fd607e750f2e0a7ca9a2f819630f79c3d9ba8ee6",
+  "promotionRecord": "preview-promotions/easystud/20261010T104942Z.json",
+  "runId": "easystud-authenticated-20261010T104959499Z-7280",
+  "spec": "tools/playwright/guide-stable-slide-modal-targets-native.spec.js",
+  "language": "en",
+  "motion": "no-preference",
+  "fixtureRequested": false,
+  "courseTransactionConfirmed": false,
+  "humanAcceptance": false,
+  "selectedTests": 1,
+  "exitCode": 0,
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "highlightTolerancePx": 2,
+  "persistentCueWaitMs": 6500,
+  "participantMoveContextVerified": true,
+  "contextClearedAfterCompletedExit": true,
+  "destinationHighlightAligned": true,
+  "confirmationHighlightAligned": true,
+  "invitationContained": true,
+  "organisationParagraphPaintContained": true,
+  "pageErrors": [],
+  "blockedWrites": [],
+  "cleanup": {
+    "credentialsCleared": true,
+    "ownedChildStopped": true,
+    "leaseReleased": true,
+    "fixtureRequested": false,
+    "fixtureCleanupComplete": true
+  },
+  "preservedFailures": [
+    "easystud-authenticated-20261010T104307686Z-26972",
+    "easystud-authenticated-20261010T104521423Z-43544"
+  ],
+  "scope": "Native Participant presentation selection, Move, search destination and Cancel. No creation or real confirmation; member/edit paths remain open."
+}

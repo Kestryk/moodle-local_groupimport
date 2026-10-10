@@ -93,3 +93,17 @@ compares the entire unrelated source against b8cbb1a. It also replays the immuta
 six-case context guard against reconstructed source. All isolated checks pass.
 Native replay is required to establish whether this repairs the observed failure.
 No new CSS, shared Guide-engine change, action command or fabricated completion.
+
+## Unchanged native replay PASS
+
+Source63e4d42 served by clean previewfd607e7, cache purged. Unchanged strict
+scenario run20261010T104959499Z-7280 passes1280/768/390 in normal Motion:
+selection completion, persistent Open Move cue, exact Participant context,
+destination and confirmation highlight within2px, real visible option selection,
+Cancel and context cleanup after completed exit. Invitation and Organisation
+paragraph paint remain contained. No errors, blocked writes, fixtures, group
+creation or real transaction confirmation. Credentials cleared, owned child
+stopped, runtime lease released. See versioned typed-modal native proof JSON.
+The two prior failures remain immutable. This resolves the observed390px cue
+loss for this scenario, not every member/edit branch, French workflow or human
+acceptance. Source and Kit styles are unchanged; no new Penpot family required.

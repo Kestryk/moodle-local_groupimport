@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve63e4d42 locally: unchanged native three-width Participant highlight test
+  now passes, including the failed390px cue, exact context and Cancel cleanup.
+  Preserve both failed predecessors and keep member/edit paths/human review open.
+
 - Retain keyed native mobile action proxies across selection/density refreshes
   so Guide highlights and focused buttons do not point at replaced nodes.
   Preserve palette, labels, commands and Motion; isolated identity/preservation

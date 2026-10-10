@@ -5,15 +5,18 @@ Existing Source/Kit worktrees only. No general SM backlog item is lost or closed
 
 ## Verified latest state
 
-Local Moodle last verified at runtime8645902 serves the active twelve-slide
+Local Moodle last verified at runtimefd607e7 serves typed modal targets and
+stable mobile action proxies63e4d42, alongside the active twelve-slide
 curriculum and regular fullscreen glyphs c9c8cf9. EN and FR each pass36 native
 reading cases at three widths. Fullscreen native normal/reduced lifecycle and
 saved Foundations/product glyph relinks have separate scoped proof. Human
 acceptance and member/edit targets remain open; older evidence below is historical.
 
-Current source successor qualifies the shared Move dialog by native command
-context. Six isolated opener cases and exact baseline preservation pass. This
-does not add new paths or prove native stacking. See
+Shared Move dialog targets are qualified by native command context. Six
+isolated opener cases and exact baseline preservation pass. Native run7280
+passes Participant selection, Move/destination/confirm highlights and Cancel at
+1280/768/390; the missing mobile cue diagnostic is retained and resolved through
+stable action proxies. This does not add or certify member/edit paths. See
 `guide-modal-target-context-2026-10-10.md` for branch inventory and next gates.
 
 ## Remaining lots, in execution order
