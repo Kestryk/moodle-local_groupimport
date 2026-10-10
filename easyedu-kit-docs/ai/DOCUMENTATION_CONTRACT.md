@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Native mobile selection proxies are Guide/focus targets. Retain keyed button
+identity across selection/density refreshes; remove only obsolete action keys.
+A visible replacement does not preserve a cue attached to the previous node.
+Keep native commands, labels, palette and Motion unchanged and preserve the
+failed browser run until an unchanged strict successor proves the correction.
+
 Shared native Move dialogs must expose their actual Participant/Member/Group
 context before Guide progression observes them. Qualify product targets and
 openers by that context and clear it only in the completed exit callback.
