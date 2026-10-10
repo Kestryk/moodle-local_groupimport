@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Qualify Guide Participant destination/confirmation targets by the native
+  move-dialog context. Member and Group dialogs no longer satisfy that opener;
+  preserve every command, completion predicate and shared animation. Six isolated
+  opener cases and exact source preservation pass; native proof is separate.
+
 - Relink saved Guide fullscreen examples and nine regular Close glyphs;
   recover rejected pending Library references through the native update, retain
   product content/layout overrides and verify12 saved slots with strict geometry.

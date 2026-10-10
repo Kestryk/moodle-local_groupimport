@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Shared native Move dialogs must expose their actual Participant/Member/Group
+context before Guide progression observes them. Qualify product targets and
+openers by that context and clear it only in the completed exit callback.
+Read-only advanced member/group lists are not selection dropdowns. Adapter
+isolation does not implement a new guided path or prove native modal stacking.
+
 Before editing linked Guide glyphs after a Foundations provider change, check
 pending native Library updates and file referential validation. A failed queued
 save may remain blocked even after local repairs validate. Preserve exact owned

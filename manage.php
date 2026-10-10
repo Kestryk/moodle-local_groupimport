@@ -1547,8 +1547,10 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                 '[data-easystud-move-selected-participants]',
                 '[data-easystud-mobile-action-trigger="[data-easystud-move-selected-participants]"]',
             ],
-            'participantMoveDestination' => '[data-easystud-move-modal] .easyedu-searchable-choice',
-            'participantMoveConfirm' => '[data-easystud-confirm-move]',
+            'participantMoveDestination' => '[data-easystud-move-modal][data-easystud-move-context="participant"] ' .
+                '.easyedu-searchable-choice',
+            'participantMoveConfirm' => '[data-easystud-move-modal][data-easystud-move-context="participant"] ' .
+                '[data-easystud-confirm-move]',
             'firstGroup' => [
                 '[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])',
                 '[data-easystud-group-id]:not([hidden])',

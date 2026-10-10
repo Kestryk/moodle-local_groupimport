@@ -6878,6 +6878,7 @@ const bindMoveModal = (root, courseId) => {
         chooser.close();
         return hideEasyStudModal(modal, () => {
             contextType = '';
+            modal.removeAttribute('data-easystud-move-context');
             memberSnapshot = [];
             if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
                 returnFocus.focus({preventScroll: true});
@@ -6962,6 +6963,9 @@ const bindMoveModal = (root, courseId) => {
         }
         returnFocus = opener;
         contextType = type;
+        // One dialog serves three different native commands. Guide targets
+        // must identify the opened context, not infer it from shared geometry.
+        modal.setAttribute('data-easystud-move-context', type);
         const selectedCount = type === 'member' ? memberSnapshot.length : type === 'participant' ?
             getSelectedItems(root, 'participant').length :
             getSelectedItems(root, 'group').length;
@@ -8712,7 +8716,8 @@ const bindSharedGuideTargets = root => {
                     .find(button => !button.disabled);
                 action?.click();
             }
-            return modal && !modal.hidden ? modal : null;
+            return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'participant' ?
+                modal : null;
         }
         if (selector === 'tutorial:participant-details') {
             const participant = root.querySelector('[data-easystud-participant-list] [data-easystud-user]:not([hidden])');
