@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Targetless Guide viewport refreshes retain an explicit queued target until its
+first paint. Preserve explicit replacement and disconnected-target clearing;
+test the actual frame queue and baseline failure before native integration.
+Do not repair this scheduling race with longer delays, changed Motion or CSS.
+
 Reduced-motion native exits can resolve during an originating Guide click.
 Before opening a compact card menu, await that exit and the next frame so its
 outside-click listener cannot close the just-opened target. Preserve event-order

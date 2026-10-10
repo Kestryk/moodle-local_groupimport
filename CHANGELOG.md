@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare canonical Kit queued-highlight preservation and deliberately sync the
+  exact helper into embedded/Moodle AMD; targetless scroll/resize no longer
+  erases an explicit pending cue. Baseline race and exact source guards pass;
+  native replay remains required. Existing styles, Motion and commands preserved.
+
 - Preserve native French/reduced diagnostic46040 and event-order probe10852.
   Await the originating click's completion before revealing the compact editor
   menu, using an exit/next-frame gate rather than timed delay or changed Motion.

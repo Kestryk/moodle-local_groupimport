@@ -133,3 +133,29 @@ it is not a timed delay or a Guide/Navigation Motion change. Foreign dialogs
 remain rejected. Six isolated exit/frame gates and16 typed opener cases pass,
 with exact preservation outside the inspection adapter; AMD/map rebuilt.
 Replay the unchanged12-case variant spec after ordered local promotion.
+
+## Pending highlight race successor
+
+After the frame gate, native46592 still lacks the first cue; readiness probe
+46364 proves the preparation resolves and the menu remains open. Target probe
+4116 verifies the actual menu control is connected, visible and44px high, with
+the expected configured selectors and zero remaining step-open timers. Probe
+18884 shows the cue never acquires a current target after menu reveal.
+
+An isolated execution of the actual shared frame helpers reproduces another
+race: the step queues an explicit target, then a targetless viewport refresh
+overwrites that pending target with null before its first paint and cancels
+the burst. Canonical Kit successor preserves the queued target on targetless
+refresh, while retaining explicit replacement and absent/removed clearing.
+The real consumer and embedded source receive only this identical change,
+retaining the named AMD wrapper/local defaults and rebuilt source map.
+No stylesheet, scene/card/scroll Motion, native commands or path copy changes.
+No new Penpot component/geometry is required by a scheduling correction.
+
+The first engine fixture remains a historical failing diagnostic. Canonical
+`scripts/test-guide-pending-highlight.cjs` retains that failing baseline and
+passes current pending/replacement/empty/removed cases plus complete engine
+preservation. Product `test-guide-pending-highlight-source.cjs` pins49b840d
+and checks all unrelated adapters, markup, CSS, paths and copy unchanged.
+Public Kit version is not advanced by this private source candidate. Native
+replay remains pending; human checklist and older lots stay open.
