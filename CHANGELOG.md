@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve regular Fullscreen glyphsc9c8cf9 locally; native EN normal/reduced
+  Enter/Exit/Escape/Close/Show/mobile and six paint samples pass without course
+  writes. Keep product design relinking and human acceptance open.
+
 - Synchronize the canonical regular Fullscreen Enter/Exit vectors into the
   embedded/native Guide, retaining labels, legacy fallback, Motion and commands.
   Rebuild exact AMD/map and CSS; native proof remains a separate supervised gate.

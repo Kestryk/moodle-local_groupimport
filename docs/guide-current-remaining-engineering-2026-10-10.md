@@ -30,8 +30,8 @@ writes. Human acceptance is still open.
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.
    The synchronized Source candidate passes exact engine/template/CSS/build
-   preservation. Product-page relinking, served native lifecycle/paint and
-   human acceptance remain distinct gates.
+   preservation. Served native run9760 now verifies glyph/lifecycle in normal
+   and reduced motion. Product-page relinking and human acceptance remain open.
 4. **Residual native coverage.** Preserve distinct welcome eligibility/global
    reset boundaries, long-copy/glyph/cursor paint, French layouts and mobile
    natural reading. Existing scoped passes do not certify every state. Do not
@@ -154,4 +154,15 @@ The native successor retains the historical lifecycle assertions and adds
 actual vector path, frame, density, currentColor and painted centring, unchanged
 path completion and current12-slide Show target navigation. It is immutable
 during its supervised run. No fixture/course/global-reset action is authorized
-by this presentation check. Preview/native results are pending.
+by this presentation check.
+
+Ordered local promotion appliesdd7a314/c9c8cf9 with cache purge; clean runtime
+8645902 serves the candidate. Native run9760 passes actual Enter/Exit, first
+Escape retaining slide/modal, Close exit/opener focus, Show exit, mobile390
+suppression and unchanged path completion. Six vector samples inherit Small
+30.390625px frames,12.46875px viewport, currentColor and centres within0.008px.
+No course/fixture writes, page errors or blocked calls. Credential/child/lease
+cleanup succeeds; retention protects the run, zero deletion candidates.
+testing/guide-fullscreen-glyph-native-2026-10-10.json records this scoped EN proof.
+Product Guide Penpot copies, native French/full-scene and other modal targets
+remain open, as does every human review and older retained lot.
