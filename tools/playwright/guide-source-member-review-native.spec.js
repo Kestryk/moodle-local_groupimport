@@ -128,5 +128,3 @@ test('Source member guide uses real member modal targets and prior-step review',
             diagnostic,fixtureRequested:false,courseTransactionConfirmed:false},null,2));
     }
 });
-
-
