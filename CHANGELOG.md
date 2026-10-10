@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve the activity-dot grid successor and verify actual staggered playback,
+  pause and departure at1280/768/390 without course/settings writes. Preserve
+  bounce timings; native French/completion and human review remain separate.
+
 - Confirm unchanged Foundation activity dots4px/gap3px in eight saved triads;
   reconcile two stale Guide triads with retained centres. Prepare native
   illustration/pause/departure proof; served activation remains pending.

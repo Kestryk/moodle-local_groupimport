@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideActivityDots20261010": {
+      "sourceCommit": "38c1e3eacbdcb4c7557cf7307dc5116c7b6c7234",
+      "nativePreviewVerified": true,
+      "nativeWidths": [1280, 768, 390],
+      "nativeProof": "docs/testing/guide-activity-dots-native-2026-10-10.json",
+      "scope": "Equal 4px circles/3px gaps in actual playback, pause and departure; timing unchanged.",
+      "humanVisualValidated": false,
+      "publicRelease": false
+    },
     "guideSlideTitle20261010": {
       "kitCommit": "a9eb8836dbcff44aa33dcaa4ad5762e19d05c547",
       "sourceCommit": "e90a6d8df8cb226bb184fa0f3e0368541d4addf0",

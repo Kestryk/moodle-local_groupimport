@@ -404,3 +404,17 @@ target pages-index/objects by exact ID rather than traverse an85MB payload or
 print full shape/error proxies. This turn's initial broad decoder probes and
 whole-contract output were avoidable token/latency costs. The final programme
 cost review remains open; no precise per-tool/model token accounting is available.
+
+## Activity spacing successor and next demonstration gate
+
+R10-28 is served on runtime84f02c9. Native run14752 passes actual staggered
+playback, equal4px/gap3px geometry, native pause and departure at three widths,
+with full credential/child/lease cleanup and no business/settings writes.
+Eight Foundation source/Standard triads already matched; only two owned stale
+Guide triads needed correction. Native French/completion/reduced and human
+acceptance remain open;12 isolated state cases are narrower evidence.
+
+R10-30 source inventory and intended state/publication/test contract are retained
+in guide-demonstration-start-2026-10-10.md. No manual-start code is activated yet.
+Do not conflate the timed demonstration gate with the creation exercise or
+Start guided path. All earlier Guide and Student Management lots remain retained.
