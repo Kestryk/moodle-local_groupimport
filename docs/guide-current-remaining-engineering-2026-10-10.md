@@ -1,5 +1,9 @@
 # Current Student Management Guide: remaining engineering
 
+R10-28 equal activity-dot grid candidate is prepared without timing/controller
+changes. Guide editor triads are3px versus4px code: source Foundation audit and
+paired design reconciliation must precede preview. See guide-activity-dot-spacing-2026-10-10.md.
+
 R10-31 source/title propagation now has served-native run4712:36 title paints
 and contained readings across twelve slides/three widths pass. Evidence in
 guide-slide-title-native-2026-10-10.json preserves isolated/native/design scope.

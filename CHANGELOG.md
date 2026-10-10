@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare R10-28 equal grid lanes for activity dots, preserving bounce/playback
+  timing and unrelated CSS. Record3px Penpot versus4px code discrepancy;
+  Foundation reconciliation and preview activation remain pending.
+
 - Verify served slide-title hierarchy:36 native twelve-slide readings at three
   widths pass with exact shared type/colour and contained text, no course or
   settings writes and complete cleanup. Human/full-page design review stays open.
