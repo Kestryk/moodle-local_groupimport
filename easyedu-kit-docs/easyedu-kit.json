@@ -4,6 +4,22 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideProgressPalette20261010": {
+      "kitVersion": "0.4.166",
+      "kitCommit": "3392dc19fd792960590b2aa774b62233ce3ac9ce",
+      "sourceCommit": "1f4cf9fb6629c3428cf66a8849f0646c40f53115",
+      "sourceSynchronizationVerified": true,
+      "scope": "Two active Discovery track paint declarations only; commands, geometry and Motion preserved.",
+      "foundationSavedRoots": 4,
+      "productSavedTracks": 7,
+      "isolatedPaletteCases": 24,
+      "nativePreviewVerified": true,
+      "nativeCases": 12,
+      "nativeProof": "docs/testing/guide-progress-palette-native-2026-10-10.json",
+      "customPalettePersistence": false,
+      "publicRelease": false,
+      "humanVisualValidated": false
+    },
     "guideExplanationRecomposition20261010": {
       "kitVersion": "0.4.166",
       "kitCommit": "91e20b98b36b4213f03473c7de14788b59ddaf5a",

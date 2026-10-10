@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve the Discovery progression palette correction locally;12 native paint
+  checks pass through desktop/tablet/phone/desktop navigation and the real
+  compact portal, with no settings or course writes. Human review stays open.
+
 - Propagate Discovery semantic progress to seven saved Foundation-linked Guide
   tracks, preserving positions/fractions and recoverable predecessors. Prepare
   one guarded native palette/navigation scenario; preview/native gates pending.

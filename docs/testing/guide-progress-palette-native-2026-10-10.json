@@ -1,0 +1,21 @@
+{
+  "lot": "R10-03",
+  "sourceCommit": "1f4cf9fb6629c3428cf66a8849f0646c40f53115",
+  "kitCommit": "3392dc19fd792960590b2aa774b62233ce3ac9ce",
+  "runtimeCommit": "c129230902ebb505dcaedc43f9a9c90eea776965",
+  "previewRecord": "20261010T160350Z.json",
+  "nativeRun": "easystud-authenticated-20261010T160401979Z-23940",
+  "nativeCases": 12,
+  "widthSequence": [1280, 768, 390, 1280],
+  "slideIndices": [0, 5, 11],
+  "result": "PASS actual configured accent, accent-soft, derived border, no gradient and4px density before/after native compact portal",
+  "errors": [],
+  "blockedWrites": [],
+  "settingsWrites": false,
+  "businessWrites": false,
+  "customPalettePersistence": false,
+  "credentialsCleared": true,
+  "leaseReleased": true,
+  "ownedChildStopped": true,
+  "humanAccepted": false
+}

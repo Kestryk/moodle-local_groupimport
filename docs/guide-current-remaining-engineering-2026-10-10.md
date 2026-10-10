@@ -35,6 +35,13 @@ Mobile Standard raster is inspected. Seven Guide product tracks now pass exact
 saved Foundation-link/geometry/fraction/paint readback; paired publication is
 recorded without closing native or human validation. Native palette scenario
 is discovered as exactly one test and awaits the managed preview.
+
+R10-03 served successorc129230 now passes12 native configured-palette paints
+through desktop/tablet/phone/desktop navigation. Exact source preservation,
+24 isolated palettes,4 saved source/Standard roots and7 product links are separate
+proofs. Cleanup completed without settings/course writes; custom persistence,
+historical consumers and human acceptance remain open. Next Guide prerequisite
+is R10-32 shared tooltip audit/publication, followed by titles/dots/manual start.
 Its source-to-portal audit also proves
 Discovery uses the shared accent token, not that the actual saved palette paints
 correctly in Moodle. No settings Save, runtime mutation or new visual publication
