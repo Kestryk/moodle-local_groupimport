@@ -51,3 +51,23 @@ remain on the reading line, with the existing controls and banner preserved.
 Evidence is external and manifested under guide-activity-dots-20261010.
 This scoped raster is not a whole-page or mobile visual certification.
 Served-native playback/pause proof remains pending.
+
+## Served native successor
+
+Ordered preview applies504269b/38c1e3e/95d77c0 with cache purge; clean runtime
+84f02c9 serves the candidate. Supervised run14752 passes at1280/768/390:
+eight real playback samples per width show4px circles and3px horizontal gaps,
+with staggered vertical movement; native Pause removes dot animations and
+departure hides the activity. Zero page errors, blocked writes or course/settings
+changes. Credentials cleared, owned child stopped and runtime lease released.
+Retention dry-run protects the external run with zero deletion candidates.
+Versioned proof: testing/guide-activity-dots-native-2026-10-10.json.
+Native French, completion recap and reduced-motion remain separate from the
+12 isolated cases; neither this proof nor Penpot readback is human acceptance.
+
+Next lot R10-30: replace automatic scene entry with an explicit localized Start
+control, using existing Kit buttons and preserving the playback clock. Inventory
+confirms applyActiveSlide currently starts membership/actions/inspection scenes.
+Creation is an interactive exercise, not this timed-demo gate. Compare Add/Move
+selection, pause/next, completion, reset, departure and re-entry need independent
+oracles. Publish source-linked desktop/mobile control states before activation.
