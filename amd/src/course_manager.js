@@ -2150,9 +2150,9 @@ const emitGuidedCompletion = (root, step, path = 'main') => {
 // Emit only the next unfinished milestone in the distinct Practice path.
 // Presentation/highlights never call business commands or reuse broad legacy
 // completion events (copy/drag/create grouping must not complete this exercise).
-const emitPracticeCompletion = (root, step) => {
+const emitNativePathCompletion = (root, path, step) => {
     const checklist = document.querySelector(
-        '[data-easyedu-guide-checklist][data-easyedu-guide-path="practice-membership"]'
+        '[data-easyedu-guide-checklist][data-easyedu-guide-path="' + path + '"]'
     );
     if (!checklist || checklist.hidden || !root.isConnected) {
         return;
@@ -2163,9 +2163,12 @@ const emitPracticeCompletion = (root, step) => {
     }
     root.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
         bubbles: true,
-        detail: {path: 'practice-membership', step},
+        detail: {path, step},
     }));
 };
+
+const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
+const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
 
 const getFixedHeaderOffset = () => {
     const candidates = Array.from(document.body.querySelectorAll('body > *, .navbar, header, [role="navigation"]'));
@@ -5803,6 +5806,9 @@ const updateSelectionActions = root => {
     if (selectedUsers.length) {
         emitPracticeCompletion(root, 'select-participant');
     }
+    if (selectedMembers.length) {
+        emitMemberPathCompletion(root, 'select-source-member');
+    }
 };
 
 // Bind multi-selection across participant, group, grouping and member items.
@@ -7012,6 +7018,9 @@ const bindMoveModal = (root, courseId) => {
         if (type === 'participant' && selectedCount > 0 && hasDestination) {
             emitPracticeCompletion(root, 'open-move');
         }
+        if (type === 'member' && selectedCount > 0 && hasDestination) {
+            emitMemberPathCompletion(root, 'open-member-move');
+        }
         if (hasDestination) {
             chooser.trigger.focus();
         } else if (emptyState) {
@@ -7025,6 +7034,11 @@ const bindMoveModal = (root, courseId) => {
         if (contextType === 'participant' && destination.value &&
                 getGroupElementsById(root, destination.value).length) {
             emitPracticeCompletion(root, 'choose-destination');
+        }
+        if (contextType === 'member' && destination.value &&
+                getGroupElementsById(root, destination.value).length &&
+                memberSnapshot.some(pair => pair.groupid !== destination.value)) {
+            emitMemberPathCompletion(root, 'choose-member-destination');
         }
     });
 
@@ -7100,6 +7114,7 @@ const bindMoveModal = (root, courseId) => {
                 clearSelectionState(root);
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
+                emitMemberPathCompletion(root, 'confirm-member-move');
             }).catch(() => {
                 setMemberBusy(false);
                 showNotification(root, labels.ajaxerror || '', 'danger');
@@ -8739,6 +8754,33 @@ const bindSharedGuideTargets = root => {
             scheduleParticipantTagOverflow(root);
             return participant;
         }
+        if (selector === 'tutorial:member-move-dialog') {
+            const modal = root.querySelector('[data-easystud-move-modal]');
+            if (modal && modal.hidden) {
+                const action = Array.from(root.querySelectorAll('[data-easystud-move-selected-members]'))
+                    .find(button => !button.disabled);
+                action?.click();
+            }
+            return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'member' ?
+                modal : null;
+        }
+        if (selector === 'tutorial:source-group-members') {
+            if (isResponsiveWorkspace() || root.easystudDesktopMode !== 'structure') {
+                ensureWorkspace('groups');
+            }
+            const group = Array.from(root.querySelectorAll(
+                '[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])'
+            )).find(item => item.getClientRects().length &&
+                item.querySelector('[data-easystud-member-id]:not([hidden])'));
+            if (!group) {
+                return null;
+            }
+            const toggle = group.querySelector('[data-easystud-group-members-toggle]');
+            if (toggle && !toggle.hidden && toggle.getAttribute('aria-expanded') !== 'true') {
+                toggle.click();
+            }
+            return group.querySelector('[data-easystud-group-members]') || group;
+        }
         if (selector === 'tutorial:participant-card-actions') {
             const participant = root.querySelector('[data-easystud-participant-list] [data-easystud-user]:not([hidden])');
             if (!participant) {
@@ -8834,6 +8876,14 @@ const bindSharedGuideTargets = root => {
         if (request.target === 'tutorial:close-participant-move-dialog') {
             request.handled = true;
             request.ready = root.easystudCloseMoveDialog?.() || Promise.resolve(true);
+            return;
+        }
+        if (request.target === 'tutorial:close-member-move-dialog') {
+            const modal = root.querySelector('[data-easystud-move-modal]');
+            request.handled = true;
+            // Do not discard another native dialog's context during review.
+            request.ready = modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') !== 'member' ?
+                Promise.resolve(false) : root.easystudCloseMoveDialog?.() || Promise.resolve(true);
             return;
         }
         if (openTarget(request.target)) {

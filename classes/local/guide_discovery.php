@@ -313,9 +313,55 @@ final class guide_discovery {
             }
             $slide['id'] = $ids[$index];
             $slide['index'] = $index;
+            if ($source === 'discovery-membership') {
+                $slide['hasguidedpath'] = true;
+                $slide['guidedpath'] = 'reorganise-source-members';
+                foreach (['label', 'title', 'content'] as $label) {
+                    $slide['guidedpath' . $label] = get_string('member_path_' . $label, 'local_groupimport');
+                }
+                $slide['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+                    return get_string('member_path_step' . $step, 'local_groupimport');
+                }, [1, 2, 3, 4])];
+            }
             $result[] = $slide;
         }
         return $result;
+    }
+
+    /** Source-member transfer is distinct from assigning global Participants. */
+    public static function source_member_path(): array {
+        $definitions = [
+            ['select-source-member', 'groupMemberSelection'],
+            ['open-member-move', 'memberMoveAction'],
+            ['choose-member-destination', 'memberMoveDestination'],
+            ['confirm-member-move', 'memberMoveConfirm'],
+        ];
+        $steps = [];
+        foreach ($definitions as $index => [$id, $target]) {
+            $step = [
+                'id' => $id,
+                'title' => get_string('member_path_step' . ($index + 1), 'local_groupimport'),
+                'description' => get_string('member_path_desc' . ($index + 1), 'local_groupimport'),
+                'target' => $target,
+                'completionMode' => 'event',
+                'autoHighlightNext' => true,
+            ];
+            if ($index > 0) {
+                $step['requiresStep'] = $definitions[$index - 1][0];
+            }
+            if ($index === 0) {
+                $step['open'] = 'tutorial:source-group-members';
+                $step['openDelay'] = 360;
+            }
+            if ($index < 2) {
+                $step['beforeHighlight'] = 'tutorial:close-member-move-dialog';
+            } else {
+                $step['open'] = 'tutorial:member-move-dialog';
+                $step['openDelay'] = 360;
+            }
+            $steps[] = $step;
+        }
+        return $steps;
     }
 
     /** Six native milestones; the Guide never creates or transfers participants. */

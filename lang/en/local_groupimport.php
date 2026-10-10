@@ -937,3 +937,15 @@ $string['tutorialvisualcompletionfour'] = 'Clear selections when the action is c
 $string['tutorialvisualcompletionone'] = 'Create or import the course structure';
 $string['tutorialvisualcompletionthree'] = 'Verify before using the grouping in Moodle';
 $string['tutorialvisualcompletiontwo'] = 'Move or add users safely';
+
+$string['member_path_label'] = 'Accompanied path';
+$string['member_path_title'] = 'Move members from a source group';
+$string['member_path_content'] = 'Use a course with an existing group member and a different destination group. Move removes the selected source memberships and adds the destination after your confirmation; other memberships stay unchanged.';
+$string['member_path_step1'] = 'Select members inside a source group';
+$string['member_path_desc1'] = 'In the Groups view, select member checkboxes inside a group card, not the checkbox beside the group title. Selection changes no memberships.';
+$string['member_path_step2'] = 'Open the member Move action';
+$string['member_path_desc2'] = 'Use Move for the selected members. On mobile, use the action bar. The dialog opens without changing course data.';
+$string['member_path_step3'] = 'Search and choose a different destination group';
+$string['member_path_desc3'] = 'Search the destination list and choose another existing group. Review the source and destination; Cancel leaves memberships unchanged.';
+$string['member_path_step4'] = 'Confirm the move after checking its consequences';
+$string['member_path_desc4'] = 'Only confirm if you intend to remove these source memberships and add the destination. Other memberships are preserved. This step completes only after a successful native move; the guide does not undo the operation.';

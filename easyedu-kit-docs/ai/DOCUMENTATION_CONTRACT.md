@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Source-member guidance is a distinct optional path, never an alias of global
+Participant assignment. Qualify modal targets by member context and complete
+the last milestone only after successful native movemembers. Review closes only
+the owned dialog context and must not reapply an already-active workspace mode
+that clears selection. Preserve prior paths/storage and distinguish isolated
+signals, native open/search/Cancel and real business completion.
+
 Native mobile selection proxies are Guide/focus targets. Retain keyed button
 identity across selection/density refreshes; remove only obsolete action keys.
 A visible replacement does not preserve a cue attached to the previous node.
