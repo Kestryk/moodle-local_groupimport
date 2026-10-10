@@ -1430,6 +1430,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
 
     $slides = \local_groupimport\local\guide_discovery::prepend($slides);
     $slides = \local_groupimport\local\guide_discovery::introduction_first($slides);
+    $slides = \local_groupimport\local\guide_discovery::modern_curriculum($slides);
     $slidecount = max(1, count($slides));
 
     return [
@@ -1487,7 +1488,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
  * @return array
  */
 function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
-    return \local_groupimport\local\guide_discovery::reading_contract() + [
+    return \local_groupimport\local\guide_discovery::modern_reading_contract() + [
         'storageKey' => 'local_groupimport.easyedu_guide.' . $courseid,
         'firstVisit' => false,
         'fullscreen' => true,

@@ -78,14 +78,16 @@ $array = substr($source, $start + strlen("        'paths' => "),
     $end - $start - strlen("        'paths' => "));
 $paths = eval('return ' . rtrim($array, ", \r\n\t") . ';');
 $data = local_groupimport_build_easyedu_guide_template_data($templatedata);
+$moderncontract = \local_groupimport\local\guide_discovery::modern_reading_contract();
+$active = array_column($data['slides'], 'id') === $moderncontract['slideIds'];
 echo json_encode(['language' => $language,
     'templateData' => $data,
-    'readingContract' => \local_groupimport\local\guide_discovery::reading_contract(),
+    'readingContract' => $active ? $moderncontract : \local_groupimport\local\guide_discovery::reading_contract(),
     'paths' => $paths,
     'modernCandidate' => [
-        'slides' => \local_groupimport\local\guide_discovery::modern_curriculum($data['slides']),
-        'readingContract' => \local_groupimport\local\guide_discovery::modern_reading_contract(),
-        'nativeActivated' => false,
+        'slides' => $active ? $data['slides'] : \local_groupimport\local\guide_discovery::modern_curriculum($data['slides']),
+        'readingContract' => $moderncontract,
+        'nativeActivated' => $active,
     ],
     'scope' => 'Pure presentation and path definitions; native welcome/configuration availability not evaluated'],
     JSON_THROW_ON_ERROR);

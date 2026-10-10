@@ -104,3 +104,23 @@ there are no Mustache styles, new language strings or per-slide CSS. Activity,
 card and recap explanations already cover their merged structure/caution topics.
 The historical24 payload archive remains immutable. Native24 remains active;
 candidate geometry and migration proof do not authorize a completion claim.
+
+## Atomic source activation
+
+The production template adapter now selects modern_curriculum after the existing
+introduction-first build; native JS configuration receives modern_reading_contract
+in the same change. The active fixture detects the actual12 IDs, avoiding a second
+merge. A strict successor reconstructs exactly those two manage.php changes against
+fd46741 and proves all product commands, shared assets and archive unchanged.
+136 actual historical EN/FR reading positions and144 active layout cases pass.
+The old inactive-only tests remain historical; active successors use the immutable
+actual24 archive rather than pretend the native programme remains24.
+
+Native spec guide-active-curriculum-native.spec.js is local-supervised and checks
+all12 reading topics at1280/768/390, intro without a real exercise, the three
+retained invitation identities,5 action topics, painted explanation containment,
+new stable reading IDs and unchanged completed paths. It opens/reads/Closes only,
+does not start an exercise or confirm a course action. Future CI use needs a
+deterministic non-secret fixture. Served/native status remains pending until the
+ordered preview and supervised test complete. No new design family or AI rule is
+needed: existing migration/identity/isolated-QA rules cover the activation.
