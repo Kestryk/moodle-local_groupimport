@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Publish the missing Discovery4px progression recipe in Foundations with
+  linked Desktop/Mobile Standards; four saved paint/geometry checks pass and
+  Mobile Standard raster is inspected. Historical Guide/Checklist recipes stay
+  unchanged; product propagation, preview and human review remain pending.
+
 - Prepare R10-03 canonical Discovery progression-track palette candidate;
  24 isolated default/custom/restored paints pass before/after the exact portal
   helper, preserving geometry/Motion. Foundation/native publication pending.

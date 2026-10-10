@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Discovery progression uses its dedicated4px source recipe and semantic accent
+roles. Preserve historical8px Guide/Checklist families; pair Library/Standards
+and decoded saved paint before product propagation. Default raster, isolated
+custom-palette helper and native configured-palette proof are separate gates.
+
 The10 October additive review is retained in student-feedback-successor-2026-10-10:
 one traceable lot per distinct request, repeated wording merged with full scope,
 previous proof retained and renewed user reports reopened. Prioritize Guide

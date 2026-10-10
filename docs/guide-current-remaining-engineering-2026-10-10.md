@@ -29,7 +29,11 @@ and open human checklist; source/native success is not full design acceptance.
 Current safe step is R10-03 palette publication: its canonical Discovery track
 candidate passes24 isolated default/custom/restored palette paints using the
 actual product portal helper. Foundations source alignment and native palette
-proof remain pending. Its source-to-portal audit also proves
+proof remain pending. Foundations now has canonical Discovery4px Desktop/Mobile
+providers and linked Standards: four saved paint/geometry checks pass and the
+Mobile Standard raster is inspected. Guide product propagation still awaits
+the file switch; this does not make the paired publication gate complete.
+Its source-to-portal audit also proves
 Discovery uses the shared accent token, not that the actual saved palette paints
 correctly in Moodle. No settings Save, runtime mutation or new visual publication
 is claimed by this registration. Source-member FR/reduced/scenes/welcome/reset
