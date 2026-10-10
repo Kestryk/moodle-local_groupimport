@@ -1,0 +1,504 @@
+{
+  "passed": true,
+  "sourceOnly": true,
+  "nativeConfigurationEvaluated": false,
+  "fixtures": false,
+  "courseWrites": false,
+  "candidateActivated": false,
+  "rows": [
+    {
+      "language": "en",
+      "slideCount": 24,
+      "lessons": [
+        {
+          "id": "use-this-guide",
+          "index": 0,
+          "title": "How to use this guide",
+          "explanationTopics": 6,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "discovery-concepts",
+          "index": 1,
+          "title": "Understand your workspace",
+          "explanationTopics": 0,
+          "scene": "concepts",
+          "path": null
+        },
+        {
+          "id": "discovery-creation",
+          "index": 2,
+          "title": "Prepare several groups",
+          "explanationTopics": 0,
+          "scene": "creation",
+          "path": "practice-membership"
+        },
+        {
+          "id": "discovery-membership",
+          "index": 3,
+          "title": "Organise a project and keep other memberships",
+          "explanationTopics": 0,
+          "scene": "membership",
+          "path": null
+        },
+        {
+          "id": "discovery-actions",
+          "index": 4,
+          "title": "Choose the right action",
+          "explanationTopics": 0,
+          "scene": "actions",
+          "path": null
+        },
+        {
+          "id": "reference-0",
+          "index": 5,
+          "title": "Understand the structure",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-1",
+          "index": 6,
+          "title": "Create a first structure",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-3",
+          "index": 7,
+          "title": "Search, filter, select",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-4",
+          "index": 8,
+          "title": "Read a participant card",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-5",
+          "index": 9,
+          "title": "Read a group card",
+          "explanationTopics": 3,
+          "scene": "inspection",
+          "path": null
+        },
+        {
+          "id": "reference-6",
+          "index": 10,
+          "title": "Read a grouping card",
+          "explanationTopics": 3,
+          "scene": "inspection",
+          "path": null
+        },
+        {
+          "id": "reference-7",
+          "index": 11,
+          "title": "Good practice: group assignment",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-8",
+          "index": 12,
+          "title": "Create a grouping for an activity",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": "create-grouping"
+        },
+        {
+          "id": "reference-9",
+          "index": 13,
+          "title": "Add by pasted identifiers",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-10",
+          "index": 14,
+          "title": "Context menus",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-11",
+          "index": 15,
+          "title": "Action buttons and selection modals",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-12",
+          "index": 16,
+          "title": "Move, copy and organise",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": "try-actions"
+        },
+        {
+          "id": "reference-13",
+          "index": 17,
+          "title": "Keyboard-friendly selection",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-14",
+          "index": 18,
+          "title": "Choose the right method",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-15",
+          "index": 19,
+          "title": "Useful shortcuts",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-16",
+          "index": 20,
+          "title": "Create faster",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-17",
+          "index": 21,
+          "title": "Common mistakes to avoid",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-18",
+          "index": 22,
+          "title": "Key points",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-19",
+          "index": 23,
+          "title": "Ready to use EasyStud",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        }
+      ],
+      "paths": [
+        "practice-membership",
+        "first-structure",
+        "create-grouping",
+        "try-actions"
+      ],
+      "invitations": [
+        {
+          "slideId": "discovery-creation",
+          "pathId": "practice-membership",
+          "steps": 6
+        },
+        {
+          "slideId": "reference-8",
+          "pathId": "create-grouping",
+          "steps": 3
+        },
+        {
+          "slideId": "reference-12",
+          "pathId": "try-actions",
+          "steps": 3
+        }
+      ],
+      "candidateSources": [
+        "use-this-guide",
+        "discovery-concepts",
+        "discovery-creation",
+        "reference-4",
+        "reference-5",
+        "reference-6",
+        "discovery-membership",
+        "reference-3",
+        "reference-9",
+        "discovery-actions",
+        "reference-7",
+        "reference-19"
+      ],
+      "candidateAccessGaps": [
+        {
+          "slideId": "reference-8",
+          "pathId": "create-grouping",
+          "steps": 3
+        },
+        {
+          "slideId": "reference-12",
+          "pathId": "try-actions",
+          "steps": 3
+        }
+      ]
+    },
+    {
+      "language": "fr",
+      "slideCount": 24,
+      "lessons": [
+        {
+          "id": "use-this-guide",
+          "index": 0,
+          "title": "Comment utiliser ce guide",
+          "explanationTopics": 6,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "discovery-concepts",
+          "index": 1,
+          "title": "Comprendre son espace",
+          "explanationTopics": 0,
+          "scene": "concepts",
+          "path": null
+        },
+        {
+          "id": "discovery-creation",
+          "index": 2,
+          "title": "Préparer plusieurs groupes",
+          "explanationTopics": 0,
+          "scene": "creation",
+          "path": "practice-membership"
+        },
+        {
+          "id": "discovery-membership",
+          "index": 3,
+          "title": "Organiser un projet sans perdre les autres appartenances",
+          "explanationTopics": 0,
+          "scene": "membership",
+          "path": null
+        },
+        {
+          "id": "discovery-actions",
+          "index": 4,
+          "title": "Choisir son geste au quotidien",
+          "explanationTopics": 0,
+          "scene": "actions",
+          "path": null
+        },
+        {
+          "id": "reference-0",
+          "index": 5,
+          "title": "Comprendre la structure",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-1",
+          "index": 6,
+          "title": "Créer une première structure",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-3",
+          "index": 7,
+          "title": "Rechercher, filtrer, sélectionner",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-4",
+          "index": 8,
+          "title": "Lire une carte participant",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-5",
+          "index": 9,
+          "title": "Lire une carte groupe",
+          "explanationTopics": 3,
+          "scene": "inspection",
+          "path": null
+        },
+        {
+          "id": "reference-6",
+          "index": 10,
+          "title": "Lire une carte groupement",
+          "explanationTopics": 3,
+          "scene": "inspection",
+          "path": null
+        },
+        {
+          "id": "reference-7",
+          "index": 11,
+          "title": "Bonne pratique : devoir de groupe",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-8",
+          "index": 12,
+          "title": "Créer un groupement pour une activité",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": "create-grouping"
+        },
+        {
+          "id": "reference-9",
+          "index": 13,
+          "title": "Ajouter par identifiants collés",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-10",
+          "index": 14,
+          "title": "Menus contextuels",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-11",
+          "index": 15,
+          "title": "Boutons d’action et fenêtres de sélection",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-12",
+          "index": 16,
+          "title": "Déplacer, copier et organiser",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": "try-actions"
+        },
+        {
+          "id": "reference-13",
+          "index": 17,
+          "title": "Sélection accessible au clavier",
+          "explanationTopics": 0,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-14",
+          "index": 18,
+          "title": "Choisir la bonne méthode",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-15",
+          "index": 19,
+          "title": "Raccourcis utiles",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-16",
+          "index": 20,
+          "title": "Créer plus vite",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-17",
+          "index": 21,
+          "title": "Erreurs fréquentes à éviter",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-18",
+          "index": 22,
+          "title": "À retenir",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        },
+        {
+          "id": "reference-19",
+          "index": 23,
+          "title": "Prêt à utiliser EasyStud",
+          "explanationTopics": 3,
+          "scene": null,
+          "path": null
+        }
+      ],
+      "paths": [
+        "practice-membership",
+        "first-structure",
+        "create-grouping",
+        "try-actions"
+      ],
+      "invitations": [
+        {
+          "slideId": "discovery-creation",
+          "pathId": "practice-membership",
+          "steps": 6
+        },
+        {
+          "slideId": "reference-8",
+          "pathId": "create-grouping",
+          "steps": 3
+        },
+        {
+          "slideId": "reference-12",
+          "pathId": "try-actions",
+          "steps": 3
+        }
+      ],
+      "candidateSources": [
+        "use-this-guide",
+        "discovery-concepts",
+        "discovery-creation",
+        "reference-4",
+        "reference-5",
+        "reference-6",
+        "discovery-membership",
+        "reference-3",
+        "reference-9",
+        "discovery-actions",
+        "reference-7",
+        "reference-19"
+      ],
+      "candidateAccessGaps": [
+        {
+          "slideId": "reference-8",
+          "pathId": "create-grouping",
+          "steps": 3
+        },
+        {
+          "slideId": "reference-12",
+          "pathId": "try-actions",
+          "steps": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3527 @@
+{
+  "sourceBaseline": "20391c7e939140d35c9795a6280cb4e4a4ffbf7b",
+  "scope": "Public fictional presentation data only; no Moodle session/user/course data",
+  "nativeConfigurationEvaluated": false,
+  "languages": [
+    {
+      "language": "en",
+      "templateData": {
+        "rootclass": "local-groupimport-easystud-easyedu-guide easyedu-guide--discovery",
+        "discoverypresentation": true,
+        "guideinterfacecuelabel": "Find this area in your workspace",
+        "guideopenlabel": "Open EasyStud guide",
+        "guidefullscreenenter": "Enter fullscreen",
+        "guidefullscreenexit": "Exit fullscreen (Esc)",
+        "guidefullscreenunavailable": "Fullscreen is unavailable. You can continue in the guide window.",
+        "guidehoverlabel": "Open guide",
+        "guidecloselabel": "Close",
+        "guidetitle": "EasyStud guide",
+        "guidesubtitle": "A quick guide to the simplified student management view.",
+        "guidepreviouslabel": "Previous",
+        "guidenextlabel": "Next",
+        "guidenavigationlabel": "EasyStud guide",
+        "guideprogresslabel": "Progress",
+        "guidebadgelabel": "Guide",
+        "guideguidedpathlabel": "Guided path",
+        "guiderequiresbadge": "Locked",
+        "guideshowinterfacelabel": "Show in the interface",
+        "guidemapsource": "Participant",
+        "guidemaplayers": "Group",
+        "guidemapbanner": "Grouping",
+        "guidestartpathlabel": "Start guided path",
+        "guidereturnlabel": "EasyStud guide",
+        "guidereturndesc": "You are viewing the highlighted area. You can reopen the guide at the same step.",
+        "guidereturnbutton": "Return to guide",
+        "guidereturndismiss": "Close guide return",
+        "guidechecklisttitle": "Guided path",
+        "guidewelcometitle": "Discover the EasyStud guide",
+        "guidewelcomecopy": "Discover the step-by-step guide to organising participants, groups and groupings in EasyStud. Use the compass button below to begin now, or open the guide when you are ready.",
+        "guidewelcomeopen": "Open guide",
+        "guidewelcomedismiss": "Later",
+        "guideminimizelabel": "Minimise guided path",
+        "guiderestorelabel": "Restore",
+        "guideresumetitle": "A guided path is in progress.",
+        "guideresumelabel": "Resume demonstration",
+        "guidecancelpathlabel": "Cancel path",
+        "guideresetpathlabel": "Reset this path",
+        "guidechecklisthint": "Choose an objective. EasyStud opens the right area and keeps this checklist visible.",
+        "guidechecklistdonelabel": "Everything is set. You can return to the guide to continue or close this path.",
+        "guidesteplabel": "Step {$a->current} of {$a->total}",
+        "slides": [
+          {
+            "id": "use-this-guide",
+            "index": 0,
+            "navicon": "fa-list-ol",
+            "icon": "fa-list-ol",
+            "category": "Guide",
+            "title": "How to use this guide",
+            "content": "<p>Discover the workspace with demonstrations that do not change Moodle, or follow an optional guided path in the real interface.</p>",
+            "navtitle": "The guide",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Choose a topic",
+                  "description": "Use the topic tabs or Previous and Next. The progress bar shows your reading position, not completed course actions.",
+                  "specimen": {
+                    "kind": "navigation",
+                    "navigation": true,
+                    "label": "Choose a topic"
+                  }
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Watch at your own pace",
+                  "description": "Pause and resume an animation, or advance one phase with Next phase. The animated dots indicate the current explanation. Steps to remember appears when it finishes."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Find the real control",
+                  "description": "Show in interface highlights the relevant area without applying an action. Return to guide brings you back to the same slide.",
+                  "specimen": {
+                    "kind": "highlight",
+                    "highlight": true,
+                    "label": "Highlighted control in the interface"
+                  }
+                },
+                {
+                  "icon": "fa-route",
+                  "title": "Follow an optional path",
+                  "description": "Complete the prerequisites in order. A step is checked only when its real condition is met. Resume, cancel or reset the path; resetting does not undo course changes.",
+                  "specimen": {
+                    "kind": "path",
+                    "path": true,
+                    "label": "Start guided path"
+                  }
+                },
+                {
+                  "icon": "fa-tasks",
+                  "title": "Read the checklist",
+                  "description": "Checked steps are complete. The current step shows where to act. Locked steps become available after their prerequisites.",
+                  "specimen": {
+                    "kind": "checklist",
+                    "checklist": true,
+                    "steps": [
+                      {
+                        "icon": "fa-check-circle",
+                        "label": "Completed step"
+                      },
+                      {
+                        "icon": "fa-circle",
+                        "label": "Current step"
+                      },
+                      {
+                        "icon": "fa-lock",
+                        "label": "Waiting for the previous step"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "icon": "fa-expand",
+                  "title": "Read in fullscreen",
+                  "description": "On desktop, use the expand button in the header. Escape returns to the guide window without changing your slide.",
+                  "desktopfullscreen": true
+                }
+              ],
+              "note": "Demonstrations are examples. Real paths guide your own actions; only your explicit confirmation changes course data. On mobile, use the available views and action buttons."
+            }
+          },
+          {
+            "id": "discovery-concepts",
+            "index": 1,
+            "navicon": "fa-sitemap",
+            "icon": "fa-sitemap",
+            "category": "Overview",
+            "kicker": "Understand",
+            "title": "Understand your workspace",
+            "navtitle": "The basics",
+            "content": "<p>Organise course participants into groups and groupings. Course enrolments are managed through the dedicated Moodle tools.</p>",
+            "discoveryscene": {
+              "concepts": true,
+              "kind": "concepts",
+              "caption": "Practice example — no course data is changed",
+              "note": "A group brings participants together. A grouping brings groups together, for example all tutorial groups.",
+              "replay": "Replay",
+              "reset": "Reset example",
+              "participantlabel": "A person enrolled in the course, such as Alex Dupont.",
+              "grouplabel": "A team of participants, such as Team 1.",
+              "groupinglabel": "A collection of groups, such as Tutorials.",
+              "patternlabel": "Group names",
+              "previewlabel": "Preview names",
+              "letterslabel": "Switch # / @",
+              "syntaxlabel": "Edit the name or count, then preview. This exercise shows up to 6 names; that is not the plugin limit.",
+              "invalidlabel": "Use a name followed by #*3 or @*3, with a count from 1 to 6 in this exercise.",
+              "addlabel": "Compare: add",
+              "movelabel": "Move",
+              "cancellabel": "Cancel",
+              "destinationlabel": "Choose the destination",
+              "selectlabel": "1 · Select the relevant members in Projet Orion.",
+              "menulabel": "2 · Open the member actions and choose Move.",
+              "confirmlabel": "3 · Check the destination, then confirm Move. Nothing changes before confirmation.",
+              "resultaddlabel": "Alex joins Projet Horizon and remains in Projet Orion and TD lundi.",
+              "resultmovelabel": "Alex leaves Projet Orion and joins Projet Horizon. TD lundi is unchanged.",
+              "resultactionslabel": "Alex and Léa leave Projet Orion and join Projet Horizon. Only their Projet Orion membership is removed; their other groups are preserved. This illustration changes no Moodle data.",
+              "mobilelabel": "On mobile, select members and use the card action button. Right-click and dragging are desktop gestures.",
+              "initiallabel": "Initial state: TD lundi and Projet Orion; Projet Horizon is empty.",
+              "keptlabel": "Kept",
+              "removedlabel": "Removed",
+              "addedlabel": "Added",
+              "absentlabel": "Not a member yet",
+              "validatelabel": "4 · Click Move to confirm, then check the new memberships.",
+              "draglabel": "Dragging",
+              "finishedlabel": "Demonstration complete · summary below.",
+              "pauselabel": "Pause demonstration",
+              "resumelabel": "Resume demonstration",
+              "nextphaselabel": "Next demonstration step",
+              "participanttitle": "Participant",
+              "grouptitle": "Group",
+              "groupingtitle": "Grouping",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Simulated result — no groups created in Moodle",
+              "emptymembers": "No members",
+              "sourceempty": "The selected members have left this group.",
+              "destinationcaption": "Destination group",
+              "menutitle": "Selected member actions",
+              "removeaction": "Remove from group",
+              "membershiptitle": "Alex’s memberships",
+              "recaptitle": "Steps to remember",
+              "addselect": "1 · With your mouse, press and hold the participant card in the source group to start dragging it.",
+              "adddrop": "2 · Keep the mouse button held, drag the card onto Projet Horizon, then release to add the participant. Projet Orion is preserved.",
+              "compactselect": "1 · Select the relevant members in the group card.",
+              "compactmenu": "2 · Use the card action button and choose the destination.",
+              "comparemove": "Compare: move",
+              "examplegroup": "Team 1",
+              "examplegrouping": "Semester project",
+              "exampletitle": "Example: prepare teams for a workshop",
+              "examplebody": "Organise participants into teams, bring those teams together in a Workshop grouping, then use that grouping in a Moodle activity.",
+              "syntaxnumbers": "numbers 1, 2, 3",
+              "syntaxletters": "letters A, B, C",
+              "syntaxcount": "multiplier: three groups",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Move participants",
+              "mobileaddconsequence": "This Participants action adds a membership. Projet Orion and other groups are preserved.",
+              "mobileaddselect": "1 · Open the Participants view and tap the participant checkbox. This is not a selection inside a source group.",
+              "mobileaddmenu": "2 · Tap Move participants in the mobile selection action bar. From this view, the action adds a group membership.",
+              "mobileaddconfirm": "3 · Search for and choose Projet Horizon as the destination. Existing memberships are preserved.",
+              "mobileaddvalidate": "4 · Tap Move to confirm the addition. Check Projet Horizon; Projet Orion and the other memberships remain unchanged.",
+              "selectioncaption": "1 selected member: Alex Dupont",
+              "consequence": "Other memberships are preserved. Only the source group membership is removed."
+            },
+            "target": "[data-easystud-participants-panel]",
+            "targetselector": "[data-easystud-participants-panel]",
+            "showopen": "viewParticipants",
+            "showopendelay": 360
+          },
+          {
+            "id": "discovery-creation",
+            "index": 2,
+            "navicon": "fa-route",
+            "icon": "fa-route",
+            "category": "Practice",
+            "kicker": "Prepare",
+            "title": "Prepare several groups",
+            "navtitle": "Create a structure",
+            "content": "<p>In Student Management, the Groups and groupings column has fields and + buttons to create groups and groupings. This safe example shows how to name several groups with the group-creation field. It creates no Moodle data.</p>",
+            "discoveryscene": {
+              "creation": true,
+              "kind": "creation",
+              "caption": "Practice example — no course data is changed",
+              "note": "Select the relevant grouping in the Moodle activity afterwards. Creating a grouping does not configure activities automatically.",
+              "replay": "Replay",
+              "reset": "Reset example",
+              "participantlabel": "A person enrolled in the course, such as Alex Dupont.",
+              "grouplabel": "A team of participants, such as Team 1.",
+              "groupinglabel": "A collection of groups, such as Tutorials.",
+              "patternlabel": "Group names",
+              "previewlabel": "Preview names",
+              "letterslabel": "Switch # / @",
+              "syntaxlabel": "Edit the name or count, then preview. This exercise shows up to 6 names; that is not the plugin limit.",
+              "invalidlabel": "Use a name followed by #*3 or @*3, with a count from 1 to 6 in this exercise.",
+              "addlabel": "Compare: add",
+              "movelabel": "Move",
+              "cancellabel": "Cancel",
+              "destinationlabel": "Choose the destination",
+              "selectlabel": "1 · Select the relevant members in Projet Orion.",
+              "menulabel": "2 · Open the member actions and choose Move.",
+              "confirmlabel": "3 · Check the destination, then confirm Move. Nothing changes before confirmation.",
+              "resultaddlabel": "Alex joins Projet Horizon and remains in Projet Orion and TD lundi.",
+              "resultmovelabel": "Alex leaves Projet Orion and joins Projet Horizon. TD lundi is unchanged.",
+              "resultactionslabel": "Alex and Léa leave Projet Orion and join Projet Horizon. Only their Projet Orion membership is removed; their other groups are preserved. This illustration changes no Moodle data.",
+              "mobilelabel": "On mobile, select members and use the card action button. Right-click and dragging are desktop gestures.",
+              "initiallabel": "Initial state: TD lundi and Projet Orion; Projet Horizon is empty.",
+              "keptlabel": "Kept",
+              "removedlabel": "Removed",
+              "addedlabel": "Added",
+              "absentlabel": "Not a member yet",
+              "validatelabel": "4 · Click Move to confirm, then check the new memberships.",
+              "draglabel": "Dragging",
+              "finishedlabel": "Demonstration complete · summary below.",
+              "pauselabel": "Pause demonstration",
+              "resumelabel": "Resume demonstration",
+              "nextphaselabel": "Next demonstration step",
+              "participanttitle": "Participant",
+              "grouptitle": "Group",
+              "groupingtitle": "Grouping",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Simulated result — no groups created in Moodle",
+              "emptymembers": "No members",
+              "sourceempty": "The selected members have left this group.",
+              "destinationcaption": "Destination group",
+              "menutitle": "Selected member actions",
+              "removeaction": "Remove from group",
+              "membershiptitle": "Alex’s memberships",
+              "recaptitle": "Steps to remember",
+              "addselect": "1 · With your mouse, press and hold the participant card in the source group to start dragging it.",
+              "adddrop": "2 · Keep the mouse button held, drag the card onto Projet Horizon, then release to add the participant. Projet Orion is preserved.",
+              "compactselect": "1 · Select the relevant members in the group card.",
+              "compactmenu": "2 · Use the card action button and choose the destination.",
+              "comparemove": "Compare: move",
+              "examplegroup": "Team 1",
+              "examplegrouping": "Semester project",
+              "exampletitle": "Example: prepare teams for a workshop",
+              "examplebody": "Organise participants into teams, bring those teams together in a Workshop grouping, then use that grouping in a Moodle activity.",
+              "syntaxnumbers": "numbers 1, 2, 3",
+              "syntaxletters": "letters A, B, C",
+              "syntaxcount": "multiplier: three groups",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Move participants",
+              "mobileaddconsequence": "This Participants action adds a membership. Projet Orion and other groups are preserved.",
+              "mobileaddselect": "1 · Open the Participants view and tap the participant checkbox. This is not a selection inside a source group.",
+              "mobileaddmenu": "2 · Tap Move participants in the mobile selection action bar. From this view, the action adds a group membership.",
+              "mobileaddconfirm": "3 · Search for and choose Projet Horizon as the destination. Existing memberships are preserved.",
+              "mobileaddvalidate": "4 · Tap Move to confirm the addition. Check Projet Horizon; Projet Orion and the other memberships remain unchanged.",
+              "selectioncaption": "1 selected member: Alex Dupont",
+              "consequence": "Other memberships are preserved. Only the source group membership is removed."
+            },
+            "target": ".local-groupimport-easystud-create-row",
+            "targetselector": ".local-groupimport-easystud-create-row",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "guidedpath": "practice-membership",
+            "hasguidedpath": true,
+            "guidedpathlabel": "Accompanied path",
+            "guidedpathtitle": "Your first group membership",
+            "guidedpathcontent": "Six steps in the real interface. Creating the group and confirming the membership addition change course data. Resetting the path does not undo those actions.",
+            "guidedpathsteps": {
+              "items": [
+                "Create a group",
+                "Open the Participants view",
+                "Select a participant",
+                "Open Move participants",
+                "Search and choose the destination group",
+                "Check the destination, then confirm"
+              ]
+            }
+          },
+          {
+            "id": "discovery-membership",
+            "index": 3,
+            "navicon": "fa-users",
+            "icon": "fa-users",
+            "category": "Organisation",
+            "kicker": "Organise",
+            "title": "Organise a project and keep other memberships",
+            "navtitle": "Organise",
+            "content": "<p>Compare Add and Move from Projet Orion to Projet Horizon. Add keeps the source membership. Move removes only that source membership after confirmation. The participants’ other groups remain unchanged.</p>",
+            "discoveryscene": {
+              "membership": true,
+              "kind": "membership",
+              "caption": "Practice example — no course data is changed",
+              "note": "Compare Add and Move for members of a group. Add keeps them in Projet Orion and adds them to Projet Horizon. Move removes only their Projet Orion membership, after confirmation; their other groups are preserved.",
+              "replay": "Replay",
+              "reset": "Reset example",
+              "participantlabel": "A person enrolled in the course, such as Alex Dupont.",
+              "grouplabel": "A team of participants, such as Team 1.",
+              "groupinglabel": "A collection of groups, such as Tutorials.",
+              "patternlabel": "Group names",
+              "previewlabel": "Preview names",
+              "letterslabel": "Switch # / @",
+              "syntaxlabel": "Edit the name or count, then preview. This exercise shows up to 6 names; that is not the plugin limit.",
+              "invalidlabel": "Use a name followed by #*3 or @*3, with a count from 1 to 6 in this exercise.",
+              "addlabel": "Compare: add",
+              "movelabel": "Move",
+              "cancellabel": "Cancel",
+              "destinationlabel": "Choose the destination",
+              "selectlabel": "1 · Select the relevant members in Projet Orion.",
+              "menulabel": "2 · Open the member actions and choose Move.",
+              "confirmlabel": "3 · Check the destination, then confirm Move. Nothing changes before confirmation.",
+              "resultaddlabel": "Alex joins Projet Horizon and remains in Projet Orion and TD lundi.",
+              "resultmovelabel": "Alex leaves Projet Orion and joins Projet Horizon. TD lundi is unchanged.",
+              "resultactionslabel": "Alex and Léa leave Projet Orion and join Projet Horizon. Only their Projet Orion membership is removed; their other groups are preserved. This illustration changes no Moodle data.",
+              "mobilelabel": "On mobile, select members and use the card action button. Right-click and dragging are desktop gestures.",
+              "initiallabel": "Initial state: TD lundi and Projet Orion; Projet Horizon is empty.",
+              "keptlabel": "Kept",
+              "removedlabel": "Removed",
+              "addedlabel": "Added",
+              "absentlabel": "Not a member yet",
+              "validatelabel": "4 · Click Move to confirm, then check the new memberships.",
+              "draglabel": "Dragging",
+              "finishedlabel": "Demonstration complete · summary below.",
+              "pauselabel": "Pause demonstration",
+              "resumelabel": "Resume demonstration",
+              "nextphaselabel": "Next demonstration step",
+              "participanttitle": "Participant",
+              "grouptitle": "Group",
+              "groupingtitle": "Grouping",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Simulated result — no groups created in Moodle",
+              "emptymembers": "No members",
+              "sourceempty": "The selected members have left this group.",
+              "destinationcaption": "Destination group",
+              "menutitle": "Selected member actions",
+              "removeaction": "Remove from group",
+              "membershiptitle": "Alex’s memberships",
+              "recaptitle": "Steps to remember",
+              "addselect": "1 · With your mouse, press and hold the participant card in the source group to start dragging it.",
+              "adddrop": "2 · Keep the mouse button held, drag the card onto Projet Horizon, then release to add the participant. Projet Orion is preserved.",
+              "compactselect": "1 · Select the relevant members in the group card.",
+              "compactmenu": "2 · Use the card action button and choose the destination.",
+              "comparemove": "Compare: move",
+              "examplegroup": "Team 1",
+              "examplegrouping": "Semester project",
+              "exampletitle": "Example: prepare teams for a workshop",
+              "examplebody": "Organise participants into teams, bring those teams together in a Workshop grouping, then use that grouping in a Moodle activity.",
+              "syntaxnumbers": "numbers 1, 2, 3",
+              "syntaxletters": "letters A, B, C",
+              "syntaxcount": "multiplier: three groups",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Move participants",
+              "mobileaddconsequence": "This Participants action adds a membership. Projet Orion and other groups are preserved.",
+              "mobileaddselect": "1 · Open the Participants view and tap the participant checkbox. This is not a selection inside a source group.",
+              "mobileaddmenu": "2 · Tap Move participants in the mobile selection action bar. From this view, the action adds a group membership.",
+              "mobileaddconfirm": "3 · Search for and choose Projet Horizon as the destination. Existing memberships are preserved.",
+              "mobileaddvalidate": "4 · Tap Move to confirm the addition. Check Projet Horizon; Projet Orion and the other memberships remain unchanged.",
+              "selectioncaption": "1 selected member: Alex Dupont",
+              "consequence": "Other memberships are preserved. Only the source group membership is removed."
+            },
+            "target": "[data-easystud-structure-panel]",
+            "targetselector": "[data-easystud-structure-panel]",
+            "showopen": "viewGroups",
+            "showopendelay": 360
+          },
+          {
+            "id": "discovery-actions",
+            "index": 4,
+            "navicon": "fa-tasks",
+            "icon": "fa-tasks",
+            "category": "Actions",
+            "kicker": "Act",
+            "title": "Choose the right action",
+            "navtitle": "The actions",
+            "content": "<p>Select the members in the source group, choose Move from its action button or menu, then search for the destination and review the confirmation. On mobile, use the card action menu. This demonstration changes no Moodle data.</p>",
+            "discoveryscene": {
+              "actions": true,
+              "kind": "actions",
+              "caption": "Practice example — no course data is changed",
+              "note": "Mass Import has its own guide covering files, preview and history. This discovery covers Student Management.",
+              "replay": "Replay",
+              "reset": "Reset example",
+              "participantlabel": "A person enrolled in the course, such as Alex Dupont.",
+              "grouplabel": "A team of participants, such as Team 1.",
+              "groupinglabel": "A collection of groups, such as Tutorials.",
+              "patternlabel": "Group names",
+              "previewlabel": "Preview names",
+              "letterslabel": "Switch # / @",
+              "syntaxlabel": "Edit the name or count, then preview. This exercise shows up to 6 names; that is not the plugin limit.",
+              "invalidlabel": "Use a name followed by #*3 or @*3, with a count from 1 to 6 in this exercise.",
+              "addlabel": "Compare: add",
+              "movelabel": "Move",
+              "cancellabel": "Cancel",
+              "destinationlabel": "Choose the destination",
+              "selectlabel": "1 · Select the relevant members in Projet Orion.",
+              "menulabel": "2 · Open the member actions and choose Move.",
+              "confirmlabel": "3 · Check the destination, then confirm Move. Nothing changes before confirmation.",
+              "resultaddlabel": "Alex joins Projet Horizon and remains in Projet Orion and TD lundi.",
+              "resultmovelabel": "Alex leaves Projet Orion and joins Projet Horizon. TD lundi is unchanged.",
+              "resultactionslabel": "Alex and Léa leave Projet Orion and join Projet Horizon. Only their Projet Orion membership is removed; their other groups are preserved. This illustration changes no Moodle data.",
+              "mobilelabel": "On mobile, select members and use the card action button. Right-click and dragging are desktop gestures.",
+              "initiallabel": "Initial state: TD lundi and Projet Orion; Projet Horizon is empty.",
+              "keptlabel": "Kept",
+              "removedlabel": "Removed",
+              "addedlabel": "Added",
+              "absentlabel": "Not a member yet",
+              "validatelabel": "4 · Click Move to confirm, then check the new memberships.",
+              "draglabel": "Dragging",
+              "finishedlabel": "Demonstration complete · summary below.",
+              "pauselabel": "Pause demonstration",
+              "resumelabel": "Resume demonstration",
+              "nextphaselabel": "Next demonstration step",
+              "participanttitle": "Participant",
+              "grouptitle": "Group",
+              "groupingtitle": "Grouping",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Simulated result — no groups created in Moodle",
+              "emptymembers": "No members",
+              "sourceempty": "The selected members have left this group.",
+              "destinationcaption": "Destination group",
+              "menutitle": "Selected member actions",
+              "removeaction": "Remove from group",
+              "membershiptitle": "Alex’s memberships",
+              "recaptitle": "Steps to remember",
+              "addselect": "1 · With your mouse, press and hold the participant card in the source group to start dragging it.",
+              "adddrop": "2 · Keep the mouse button held, drag the card onto Projet Horizon, then release to add the participant. Projet Orion is preserved.",
+              "compactselect": "1 · Select the relevant members in the group card.",
+              "compactmenu": "2 · Use the card action button and choose the destination.",
+              "comparemove": "Compare: move",
+              "examplegroup": "Team 1",
+              "examplegrouping": "Semester project",
+              "exampletitle": "Example: prepare teams for a workshop",
+              "examplebody": "Organise participants into teams, bring those teams together in a Workshop grouping, then use that grouping in a Moodle activity.",
+              "syntaxnumbers": "numbers 1, 2, 3",
+              "syntaxletters": "letters A, B, C",
+              "syntaxcount": "multiplier: three groups",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Move participants",
+              "mobileaddconsequence": "This Participants action adds a membership. Projet Orion and other groups are preserved.",
+              "mobileaddselect": "1 · Open the Participants view and tap the participant checkbox. This is not a selection inside a source group.",
+              "mobileaddmenu": "2 · Tap Move participants in the mobile selection action bar. From this view, the action adds a group membership.",
+              "mobileaddconfirm": "3 · Search for and choose Projet Horizon as the destination. Existing memberships are preserved.",
+              "mobileaddvalidate": "4 · Tap Move to confirm the addition. Check Projet Horizon; Projet Orion and the other memberships remain unchanged.",
+              "selectioncaption": "2 selected members: Alex Dupont and Léa Martin",
+              "consequence": "Other memberships are preserved. Only the source group membership is removed."
+            },
+            "target": "[data-easystud-participants-panel]",
+            "targetselector": "[data-easystud-participants-panel]",
+            "showopen": "viewParticipants",
+            "showopendelay": 360
+          },
+          {
+            "id": "reference-0",
+            "index": 5,
+            "navicon": "fa-sitemap",
+            "icon": "fa-sitemap",
+            "category": "Basics",
+            "title": "Understand the structure",
+            "content": "<p>A participant can belong to one or more groups. A grouping does not contain participants directly: it gathers groups. In practice, think participant -&gt; group -&gt; grouping. This keeps course organisation clear when several activities need different sets of groups.</p>",
+            "target": "slide-0",
+            "targetselector": "firstGrouping",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "hasvisualflow": true
+          },
+          {
+            "id": "reference-1",
+            "index": 6,
+            "navicon": "fa-route",
+            "icon": "fa-route",
+            "category": "Practice",
+            "title": "Create a first structure",
+            "content": "<p>Start small: create the groups you need, create a grouping for the activity, then add the relevant groups into that grouping. On a small screen, Groups and Groupings are separate views: the guide opens the matching view for each step. The next slide lets you launch the adapted path.</p>",
+            "target": "slide-1",
+            "targetselector": "groupCreateInput",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:create-group",
+            "showafteropendelay": 360,
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-users",
+                  "label": "Create the groups"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Create the grouping"
+                },
+                {
+                  "icon": "fa-arrow-right",
+                  "label": "Add the groups to the grouping"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-3",
+            "index": 7,
+            "navicon": "fa-filter",
+            "icon": "fa-filter",
+            "category": "Actions",
+            "title": "Search, filter, select",
+            "content": "<p>Search and filters narrow the current list without changing the course data. Use Select all or Select results when you need to act on every visible match, then clear the selection when the operation is complete. On a small screen, open the Participants view.</p>",
+            "target": "slide-3",
+            "targetselector": "advancedParticipantFilters",
+            "showopen": "viewParticipants",
+            "showopendelay": 800,
+            "showafteropen": "[data-easystud-advanced-filters-toggle=\"participants\"]",
+            "showafteropendelay": 600,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Narrow the list you need",
+                  "description": "Start with the search field in Participants or Groups. More filters offers the criteria available for that view; search inside a choice list to find a role, group or grouping."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Review the selection separately",
+                  "description": "Filtering changes the visible results, not course memberships. Check the selection count before an action. Clear an earlier selection before selecting only the current filtered results."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use the current mobile view",
+                  "description": "On mobile, open Participants, Groups or Groupings first, then use the controls available in that view. Do not expect all desktop columns to remain visible together."
+                }
+              ],
+              "note": "Searching, filtering and selecting do not apply a course action. Review the action and destination before confirming any change."
+            },
+            "visualfiltersdemo": {
+              "searchlabel": "Search groups or participants",
+              "actions": [
+                {
+                  "label": "Select results"
+                },
+                {
+                  "label": "More filters"
+                }
+              ],
+              "badges": [
+                {
+                  "label": "Student",
+                  "type": "participant"
+                },
+                {
+                  "label": "Group A",
+                  "type": "group"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-4",
+            "index": 8,
+            "navicon": "fa-id-badge",
+            "icon": "fa-id-badge",
+            "category": "Cards",
+            "title": "Read a participant card",
+            "content": "<p>A participant card represents a user already enrolled in the course. Read their context before selecting an action.</p>",
+            "target": "slide-4",
+            "targetselector": "participantFirstCard",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:participant-details",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Read the context",
+                  "description": "Roles, groups, groupings and selected profile fields depend on the settings and your permissions. A participant belongs to groups, never directly to a grouping."
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Select, then choose an action",
+                  "description": "The checkbox selects the participant. From the Participants view, Move participants adds membership in the destination group; existing memberships are preserved. Check the destination before confirming."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use the available mobile controls",
+                  "description": "On mobile, use the selection checkbox and the action bar. Compact cards show less information; expand the available details to check memberships. Right-click and dragging are desktop gestures."
+                }
+              ],
+              "note": "Reading or selecting a card changes no course membership. An action changes data only when you explicitly apply it."
+            },
+            "visualcarddetail": {
+              "card": {
+                "type": "participant",
+                "icon": "fa-user",
+                "title": "Participant",
+                "meta": "Roles, groups, groupings"
+              },
+              "details": [
+                {
+                  "icon": "fa-user-tag",
+                  "label": "Student",
+                  "type": "participant"
+                },
+                {
+                  "icon": "fa-users",
+                  "label": "Group A",
+                  "type": "group"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-5",
+            "index": 9,
+            "navicon": "fa-users",
+            "icon": "fa-users",
+            "category": "Cards",
+            "title": "Read a group card",
+            "content": "<p>A group brings together participants already enrolled in the course. Read its member list and related groupings before acting.</p>",
+            "target": "slide-5",
+            "targetselector": "firstGroup",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:first-group",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Check the members",
+                  "description": "Read the member count, expand the member list and check related groupings. A group can belong to several groupings."
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Distinguish adding from moving",
+                  "description": "Pasted identifiers are handled inside the relevant group card. Moving selected source members removes only their membership in this source group after confirmation. Removing a member does not delete the account or unenrol them from the course."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Open the card action menu",
+                  "description": "Mobile groups hide several direct desktop buttons in favour of the card action menu. To add membership from Participants, select a participant and use Move participants. Check the action and destination before confirming."
+                }
+              ],
+              "note": "The illustration is an example. In the real card, only the action you apply changes group memberships; other memberships are preserved unless the chosen action explicitly changes them."
+            },
+            "discoveryscene": {
+              "kind": "inspection",
+              "inspection": true,
+              "grouping": false,
+              "cardicon": "fa-users",
+              "actionicon": "fa-at",
+              "cardtitle": "Projet Horizon",
+              "cardmeta": "2 participants",
+              "actionlabel": "Add participants by identifiers",
+              "inputlabel": "Existing participant identifiers",
+              "knownlabel": "Alex Dupont",
+              "note": "These are fictional entries, not a live search. In your course, identifiers are checked against the fields enabled in the plugin settings. Only your explicit Add action applies an addition; Cancel leaves memberships unchanged.",
+              "resultlabel": "Illustration complete. No participant membership changed.",
+              "caption": "Destination card illustration",
+              "menutitle": "Card actions",
+              "unknownlabel": "unknown-entry",
+              "recaptitle": "Steps to remember",
+              "addlabel": "Compare: add",
+              "cancellabel": "Cancel",
+              "pauselabel": "Pause demonstration",
+              "resumelabel": "Resume demonstration",
+              "nextphaselabel": "Next demonstration step",
+              "finishedlabel": "Demonstration complete · summary below.",
+              "replay": "Replay",
+              "reset": "Reset example",
+              "inputvalue": "alex@example.test\nunknown-entry",
+              "phases": [
+                {
+                  "name": "orient",
+                  "label": "This is the destination group, Projet Horizon. Its two existing participants remain unchanged."
+                },
+                {
+                  "name": "open",
+                  "label": "In the group header, choose the identifier action to open the field for existing course participants.",
+                  "compactlabel": "On mobile, open the destination group’s card action menu, then choose Add participants by identifiers."
+                },
+                {
+                  "name": "enter",
+                  "label": "Paste participant identifiers into the field. This illustration uses an example email and an unresolved entry; it does not enrol new users."
+                },
+                {
+                  "name": "review",
+                  "label": "Review the recognised name, Alex Dupont, and correct the unresolved entry before using Add in the real card."
+                },
+                {
+                  "name": "return",
+                  "label": "Cancel closes the field and restores the natural group card. This demonstration has not added anyone."
+                }
+              ],
+              "initiallabel": "This is the destination group, Projet Horizon. Its two existing participants remain unchanged."
+            }
+          },
+          {
+            "id": "reference-6",
+            "index": 10,
+            "navicon": "fa-layer-group",
+            "icon": "fa-layer-group",
+            "category": "Cards",
+            "title": "Read a grouping card",
+            "content": "<p>A grouping gathers groups, not participants directly. Expand it to check which groups are included.</p>",
+            "target": "slide-6",
+            "targetselector": "firstGrouping",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:first-grouping",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Check the included groups",
+                  "description": "Expand the grouping to read its groups. It does not directly contain participants, and a group can be included in several groupings."
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Organise the container",
+                  "description": "Use the available actions to add groups or manage the grouping. When moving a group, check whether removal from its original grouping is selected before confirming."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use the mobile action menu",
+                  "description": "On mobile, open the card action menu for controls not shown in the header. Expand the grouping to check its content; desktop right-click and drag gestures are not required."
+                }
+              ],
+              "note": "Adding groups to a grouping does not configure a Moodle activity. Choosing that grouping in the activity settings is a separate action."
+            },
+            "discoveryscene": {
+              "kind": "inspection",
+              "inspection": true,
+              "grouping": true,
+              "cardicon": "fa-sitemap",
+              "actionicon": "fa-plus",
+              "cardtitle": "Promotion Horizon",
+              "cardmeta": "2 groups",
+              "actionlabel": "Add existing groups",
+              "inputlabel": "Existing group names or identifiers",
+              "knownlabel": "Projet Orion",
+              "note": "These are fictional entries, not a live search. In your course, use existing group names or identifiers and correct unresolved or ambiguous entries. Only your explicit Add action applies an addition; activity settings remain separate.",
+              "resultlabel": "Illustration complete. No grouping membership changed.",
+              "caption": "Destination card illustration",
+              "menutitle": "Card actions",
+              "unknownlabel": "unknown-entry",
+              "recaptitle": "Steps to remember",
+              "addlabel": "Compare: add",
+              "cancellabel": "Cancel",
+              "pauselabel": "Pause demonstration",
+              "resumelabel": "Resume demonstration",
+              "nextphaselabel": "Next demonstration step",
+              "finishedlabel": "Demonstration complete · summary below.",
+              "replay": "Replay",
+              "reset": "Reset example",
+              "inputvalue": "Projet Orion\nunknown-entry",
+              "phases": [
+                {
+                  "name": "orient",
+                  "label": "This is the destination grouping, Promotion Horizon. Its two existing groups remain unchanged."
+                },
+                {
+                  "name": "open",
+                  "label": "In the grouping header, choose Add groups to open the field for existing course groups.",
+                  "compactlabel": "On mobile, open the destination grouping’s card action menu, then choose Add existing groups."
+                },
+                {
+                  "name": "enter",
+                  "label": "Paste existing group names or identifiers into the field. This illustration contains Projet Orion and an unresolved entry."
+                },
+                {
+                  "name": "review",
+                  "label": "Review Projet Orion and correct the unresolved entry. If a name matches several groups, resolve that ambiguity before adding."
+                },
+                {
+                  "name": "return",
+                  "label": "Cancel closes the field and restores the natural grouping card. No groups have been added, and no Moodle activity settings have changed."
+                }
+              ],
+              "initiallabel": "This is the destination grouping, Promotion Horizon. Its two existing groups remain unchanged."
+            }
+          },
+          {
+            "id": "reference-7",
+            "index": 11,
+            "navicon": "fa-graduation-cap",
+            "icon": "fa-graduation-cap",
+            "category": "Practice",
+            "title": "Good practice: group assignment",
+            "content": "<p>For a Moodle group assignment, one student should not be in several submission groups for the same activity. A good practice is to create dedicated groups, place only those groups inside a dedicated grouping, then set the assignment to use that grouping. This keeps other course groups from interfering with submissions.</p>",
+            "target": "slide-7",
+            "targetselector": "firstGrouping",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:first-grouping",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Prepare the grouping in EasyStud",
+                  "description": "Check the participants in each group, then include the relevant groups in a grouping. A grouping contains groups, not participants directly. Adding a group does not configure any Moodle activity."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Configure the activity separately",
+                  "description": "Open the Moodle activity settings and check its group mode and grouping where those settings are available. Choose the intended grouping there. Available settings and their effect depend on the activity and your permissions."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Verify the resulting memberships",
+                  "description": "Return to the grouping to check its included groups and their members. In the activity, verify that the intended grouping is selected. Reading this illustration or completing a guide step does not save activity settings."
+                }
+              ],
+              "note": "EasyStud organises course memberships. Moodle activity settings are a separate operation; do not assume that naming or creating a grouping makes an activity use it."
+            },
+            "visualassignment": {
+              "rows": [
+                {
+                  "items": [
+                    {
+                      "type": "participant",
+                      "icon": "fa-user",
+                      "title": "Student 1",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "group",
+                      "icon": "fa-users",
+                      "title": "Assignment group A",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "grouping",
+                      "icon": "fa-layer-group",
+                      "title": "Math assignment grouping"
+                    }
+                  ]
+                },
+                {
+                  "items": [
+                    {
+                      "type": "participant",
+                      "icon": "fa-user",
+                      "title": "Student 2",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "group",
+                      "icon": "fa-users",
+                      "title": "Assignment group B",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "grouping",
+                      "icon": "fa-layer-group",
+                      "title": "Math assignment grouping"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-8",
+            "index": 12,
+            "navicon": "fa-seedling",
+            "icon": "fa-seedling",
+            "category": "Basics",
+            "title": "Create a grouping for an activity",
+            "content": "<p>Now that your group exists, create a grouping for the activity and add that group into it. This is the grouping you can then select in the Moodle activity settings.</p>",
+            "target": "slide-8",
+            "targetselector": "groupingCreateInput",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:create-grouping",
+            "showafteropendelay": 360,
+            "visualsteps": {
+              "layout": "status",
+              "items": [
+                {
+                  "icon": "fa-seedling",
+                  "label": "Start from the creation fields"
+                },
+                {
+                  "icon": "fa-users",
+                  "label": "Example card"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Create the grouping"
+                }
+              ]
+            },
+            "hasguidedpath": true,
+            "guidedpath": "create-grouping",
+            "guidedpathtitle": "Guided path: create a grouping",
+            "guidedpathcontent": "Now that your group exists, create a grouping for the activity and add that group into it. This is the grouping you can then select in the Moodle activity settings.",
+            "guidedpathsteps": {
+              "items": [
+                "Create the grouping",
+                "Add the group to the grouping",
+                "Check the grouping"
+              ]
+            }
+          },
+          {
+            "id": "reference-9",
+            "index": 13,
+            "navicon": "fa-at",
+            "icon": "fa-at",
+            "category": "Actions",
+            "title": "Add by pasted identifiers",
+            "content": "<p>Use the destination group card to paste participant identifiers: email addresses, usernames or enabled custom identifiers. Use the destination grouping card to paste existing group names or IDs. Review the recognised chips before applying an addition; duplicate group names may be ambiguous, so prefer an ID in that case.</p>",
+            "target": "slide-9",
+            "targetselector": "firstGroupEmailBox",
+            "showopen": "viewGroups",
+            "showopendelay": 800,
+            "showafteropen": "tutorial:add-users-text",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Open the destination card",
+                  "description": "To add participants, use the identifier field in the destination group card. To add groups, use the group field in the destination grouping card. These fields do not enrol new users in the course."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Check the recognised entries",
+                  "description": "Participant identifiers are compared with the fields enabled in the plugin settings. Review the recognised names and unresolved entries before applying the addition. Group entries must identify existing course groups."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use the destination card menu on mobile",
+                  "description": "For a single destination card, open More actions and choose the text-add action: participants in a group, or groups in a grouping. The direct desktop buttons are hidden on mobile. Alternatively, select users in Participants and choose Move participants to add them to a group while preserving their other memberships."
+                }
+              ],
+              "note": "The example chips are not an applied change. Only your explicit Add action changes the destination membership; Cancel closes the field without applying it."
+            },
+            "visualpaste": {
+              "panels": [
+                {
+                  "icon": "fa-at",
+                  "title": "Add users by identifier",
+                  "input": "student.01@example.com, username02",
+                  "chips": [
+                    "Student 1",
+                    "Student 2",
+                    "Recognised"
+                  ],
+                  "arrowafter": true
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "title": "Groups by ID",
+                  "input": "12, 18, 21",
+                  "chips": [
+                    "Assignment group A",
+                    "Assignment group B"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-10",
+            "index": 14,
+            "navicon": "fa-mouse-pointer",
+            "icon": "fa-mouse-pointer",
+            "category": "Actions",
+            "title": "Context menus",
+            "content": "<p>The context menu opens with a right click, or with a long press on touch screens. It gathers the actions that make sense for the clicked card or for the current multi-selection: copy data, move items, remove items, or select related content.</p>",
+            "target": "slide-10",
+            "targetselector": "participantCardActions",
+            "targetselectorcompact": "participantCardActions",
+            "targetselectordesktop": "participantFirstCard",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:participant-card-actions",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Open the menu for the right card",
+                  "description": "On desktop, right-click the participant, group or grouping card. On mobile, use its card action button. The menu lists actions appropriate to that card, your permissions and the current selection."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Read the scope before choosing",
+                  "description": "With several items selected, an action may apply to that selection rather than just the card used to open the menu. Check the selection count and action label. Single-card actions may be hidden when several cards are selected."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use the touch menu instead of right-click",
+                  "description": "The mobile card button opens the action sheet. Choose the relevant action there, then review any destination or confirmation dialog. Closing the menu applies no course operation."
+                }
+              ],
+              "note": "Copying data and opening details are different from moving or removing memberships. Review the consequence of the action you choose; opening the menu alone changes nothing."
+            },
+            "visualcontextmenu": {
+              "cardicon": "fa-user",
+              "cardlabel": "Participant",
+              "menutitle": "Right click",
+              "items": [
+                {
+                  "icon": "fa-copy",
+                  "label": "Copy info"
+                },
+                {
+                  "icon": "fa-arrow-right",
+                  "label": "Move"
+                },
+                {
+                  "icon": "fa-check-square",
+                  "label": "Multi-selection"
+                }
+              ],
+              "note": "Right click shows card-specific shortcuts; with a selection, actions apply to the selected items."
+            }
+          },
+          {
+            "id": "reference-11",
+            "index": 15,
+            "navicon": "fa-list-check",
+            "icon": "fa-list-check",
+            "category": "Actions",
+            "title": "Action buttons and selection modals",
+            "content": "<p>Action buttons and context menu actions can replace drag and drop. Select one or several cards, choose Move or Remove, then use the modal to pick the destination and confirm the operation.</p>",
+            "target": "slide-11",
+            "targetselector": "participantSelectionInput",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Check where the selection comes from",
+                  "description": "From Participants, Move participants adds the selected users to the destination group and keeps their other memberships. From a group member list, Move transfers the selected source memberships to another group; unrelated memberships remain."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choose and review the destination",
+                  "description": "Open the action, search the destination list and choose the intended group or grouping. When moving groups, check the option to remove them from their original grouping. Review the selection and destination before confirming; Cancel applies no change."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use selection actions on mobile",
+                  "description": "Select using the checkboxes, then use the enabled action bar or card action menu. The destination dialog replaces desktop dragging. An action is available only when the selection and your permissions allow it."
+                }
+              ],
+              "note": "Opening or searching the dialog changes no course membership. Only explicit confirmation applies the chosen action; a Remove action has a different consequence and must be reviewed separately."
+            },
+            "visualactionflow": {
+              "selection": [
+                "Student 1",
+                "Student 2"
+              ],
+              "actionicon": "fa-arrow-right",
+              "actionlabel": "Move action",
+              "destinationtitle": "Choose destination",
+              "destinations": [
+                "Assignment group A",
+                "Assignment group B"
+              ]
+            }
+          },
+          {
+            "id": "reference-12",
+            "index": 16,
+            "navicon": "fa-arrows-alt",
+            "icon": "fa-arrows-alt",
+            "category": "Actions",
+            "title": "Move, copy and organise",
+            "content": "<p>Try the three approaches: drag and drop for visible destinations, action buttons for multi-selection, and context menus for shortcuts linked to a specific card. On a small screen, these actions are practised from the Participants view.</p>",
+            "target": "slide-12",
+            "targetselector": "participantSelectionInput",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "visualdragdrop": {
+              "lanes": [
+                {
+                  "sourcetype": "participant",
+                  "sourceicon": "fa-user",
+                  "sourcelabel": "Participant",
+                  "targeticon": "fa-users",
+                  "targetlabel": "Group"
+                },
+                {
+                  "sourcetype": "group",
+                  "sourceicon": "fa-users",
+                  "sourcelabel": "Group",
+                  "targeticon": "fa-layer-group",
+                  "targetlabel": "Grouping"
+                }
+              ],
+              "selection": [
+                "Student 1",
+                "Student 2"
+              ],
+              "menuitems": [
+                {
+                  "icon": "fa-copy",
+                  "label": "Copy info"
+                },
+                {
+                  "icon": "fa-arrow-right",
+                  "label": "Move"
+                },
+                {
+                  "icon": "fa-mouse-pointer",
+                  "label": "Right click"
+                }
+              ]
+            },
+            "hasguidedpath": true,
+            "guidedpath": "try-actions",
+            "guidedpathtitle": "Guided path: try the actions",
+            "guidedpathcontent": "Try the three approaches: drag and drop for visible destinations, action buttons for multi-selection, and context menus for shortcuts linked to a specific card. On a small screen, these actions are practised from the Participants view.",
+            "guidedpathsteps": {
+              "items": [
+                "Try drag and drop",
+                "Try action buttons",
+                "Try context menu"
+              ]
+            }
+          },
+          {
+            "id": "reference-13",
+            "index": 17,
+            "navicon": "fa-keyboard",
+            "icon": "fa-keyboard",
+            "category": "Actions",
+            "title": "Keyboard-friendly selection",
+            "content": "<p>Use Tab to reach a participant selection checkbox and Space to select or deselect it. With a mouse, Ctrl-click a participant card to toggle it; Shift-click the last card to extend the selection from the previous card. On touch screens, use the checkboxes and visible action buttons. Selecting alone changes no course membership.</p>",
+            "target": "slide-13",
+            "targetselector": "participantFirstCard",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "visualkeys": {
+              "items": [
+                {
+                  "key": "Tab",
+                  "label": "move between controls"
+                },
+                {
+                  "key": "Space",
+                  "label": "toggle the focused selection checkbox"
+                },
+                {
+                  "key": "Shift",
+                  "label": "click a participant to extend the selection"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-14",
+            "index": 18,
+            "navicon": "fa-compass",
+            "icon": "fa-compass",
+            "category": "Practice",
+            "title": "Choose the right method",
+            "content": "<p>When several tools can do the same job, choose the one that creates the least effort: direct drag and drop for a visible target, selection actions for batches, pasted identifiers for precise lists, and filters before reviewing or selecting many cards.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Start with the destination",
+                  "description": "Use search and filters to find the intended items before selecting them. For an exact list, open the identifier field in the destination group to add enrolled participants, or in the destination grouping to add existing groups."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choose the gesture, then check its consequence",
+                  "description": "On desktop, drag a card towards a visible destination or select several items and use their action buttons. Add keeps the source membership; Move can remove the selected source membership. Check where the selection comes from and review the destination before confirming."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use visible actions on a small screen",
+                  "description": "Select with the checkboxes, then use the enabled selection action or card menu. Search for the destination in the dialog instead of dragging. With a keyboard, use Tab to reach a selection checkbox and Space to toggle it."
+                }
+              ],
+              "note": "From Participants, Move participants adds users to the destination group without removing their other memberships. Moving selected members from a group transfers those source memberships. Opening a field or dialog does not apply the action."
+            },
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-arrows-alt",
+                  "label": "Visible target: drag directly"
+                },
+                {
+                  "icon": "fa-check-square",
+                  "label": "Many items: select, then act"
+                },
+                {
+                  "icon": "fa-at",
+                  "label": "Known IDs: paste identifiers"
+                },
+                {
+                  "icon": "fa-filter",
+                  "label": "Need control: filter, review, select"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-15",
+            "index": 19,
+            "navicon": "fa-bolt",
+            "icon": "fa-bolt",
+            "category": "Actions",
+            "title": "Useful shortcuts",
+            "content": "<p>This page sums up the fastest ways to work: right click for contextual actions, multi-select for batches, keyboard selection for accessibility, drag and drop for direct moves, and pasted identifiers for precise additions.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Start with the destination",
+                  "description": "Use search and filters to find the intended items before selecting them. For an exact list, open the identifier field in the destination group to add enrolled participants, or in the destination grouping to add existing groups."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choose the gesture, then check its consequence",
+                  "description": "On desktop, drag a card towards a visible destination or select several items and use their action buttons. Add keeps the source membership; Move can remove the selected source membership. Check where the selection comes from and review the destination before confirming."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Use visible actions on a small screen",
+                  "description": "Select with the checkboxes, then use the enabled selection action or card menu. Search for the destination in the dialog instead of dragging. With a keyboard, use Tab to reach a selection checkbox and Space to toggle it."
+                }
+              ],
+              "note": "From Participants, Move participants adds users to the destination group without removing their other memberships. Moving selected members from a group transfers those source memberships. Opening a field or dialog does not apply the action."
+            },
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-mouse-pointer",
+                  "label": "Right click: open the context menu"
+                },
+                {
+                  "icon": "fa-check-square",
+                  "label": "Multi-select: batch actions"
+                },
+                {
+                  "icon": "fa-keyboard",
+                  "label": "Keyboard: focus, select, act"
+                },
+                {
+                  "icon": "fa-at",
+                  "label": "Text fields: paste identifiers"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-16",
+            "index": 20,
+            "navicon": "fa-magic",
+            "icon": "fa-magic",
+            "category": "Actions",
+            "title": "Create faster",
+            "content": "<p>Create several groups or groupings at once with separators such as commas, semicolons or line breaks. Use formulas such as &quot;Assignment #*4&quot; to create Assignment 1 to 4, or &quot;Workshop @*3&quot; to create Workshop A to C.</p>",
+            "target": "slide-16",
+            "targetselector": "groupCreateInput",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:create-group",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Use the course creation fields",
+                  "description": "In Student Management, enter names in New group name or New grouping name, then use the adjacent creation button. Commas, semicolons or line breaks separate several names. The formula illustration below does not create course items."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choose numbers or letters",
+                  "description": "Write a name followed by #*4 for four numbered names, or @*3 for three lettered names. The number after * is the number of names to generate. Check whether you are creating groups or groupings before submitting."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Separate practice from real creation",
+                  "description": "The Practice demonstration accepts counts from 1 to 6 and changes no Moodle data. That exercise limit is not the limit of the real course fields. On a small screen, open the Groups or Groupings workspace and use its visible creation control."
+                }
+              ],
+              "note": "Creating groups does not add participants; creating a grouping does not add groups or configure an activity. These are separate actions. Submitting a real creation field changes the course; the guide does not automatically remove the created items."
+            },
+            "visualformula": {
+              "expression": "Assignment #*4",
+              "results": [
+                "Assignment 1",
+                "Assignment 2",
+                "Assignment 3",
+                "Assignment 4"
+              ]
+            }
+          },
+          {
+            "id": "reference-17",
+            "index": 21,
+            "navicon": "fa-exclamation-triangle",
+            "icon": "fa-exclamation-triangle",
+            "category": "Practice",
+            "title": "Common mistakes to avoid",
+            "content": "<p>Most problems come from mixing structure levels. Keep participants in groups, use groupings to gather groups, and choose the grouping in Moodle activity settings when the activity depends on a specific set of groups.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Do not skip the group level",
+                  "description": "Add participants to a group, then add that group to a grouping when needed. A grouping contains groups, not participants directly. Check the destination card before opening an add or move action."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Do not assume every Move removes memberships",
+                  "description": "From Participants, Move participants adds users to the destination group and keeps their other memberships. Moving selected members from a group transfers those source memberships. Review the source, destination and any removal option before confirming."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Do not confuse course structure with activity settings",
+                  "description": "An existing grouping is not automatically used by a Moodle assignment. Check which groups it contains, then select the intended grouping and group-work settings in the activity. When reusing groups for several activities, verify that their memberships suit each activity."
+                }
+              ],
+              "note": "On mobile, use the visible checkboxes and action menus instead of desktop dragging or right-clicking. Read the confirmation before applying an action; opening a dialog or reading this guide does not change course memberships."
+            },
+            "visualsteps": {
+              "layout": "warning-grid",
+              "items": [
+                {
+                  "icon": "fa-ban",
+                  "label": "Trying to put a participant directly into a grouping",
+                  "state": "warning"
+                },
+                {
+                  "icon": "fa-random",
+                  "label": "Reusing incompatible groups for several group assignments",
+                  "state": "warning"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Forgetting to select the grouping in the activity settings",
+                  "state": "warning"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-18",
+            "index": 22,
+            "navicon": "fa-check-circle",
+            "icon": "fa-check-circle",
+            "category": "Practice",
+            "title": "Key points",
+            "content": "<p>Keep the hierarchy simple and predictable. Participants belong to groups; groups can be gathered into groupings; activities such as group assignments should target the right grouping.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Participants, groups, then groupings",
+                  "description": "A group contains course participants. A grouping gathers groups, not participants directly. Read the card title and membership list to check which level you are organising."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Check memberships after an action",
+                  "description": "Add preserves the original membership. Moving selected members from a group transfers those source memberships; Move participants from Participants adds users to the destination group. Use search, filters and card details to verify the result."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Configure the Moodle activity separately",
+                  "description": "Creating a grouping does not configure an assignment. Choose the intended grouping in the Moodle activity settings and check its group-work options and availability. EasyStud organises course memberships; the activity has its own settings."
+                }
+              ],
+              "note": "The demonstrations are illustrations, not changes to your course. A guided path can help you carry out a real task, but reading this recap does not prove that memberships or activity settings are correct."
+            },
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-user",
+                  "label": "Participant → group"
+                },
+                {
+                  "icon": "fa-users",
+                  "label": "Group = set of participants"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Grouping = set of groups"
+                },
+                {
+                  "icon": "fa-graduation-cap",
+                  "label": "Use a dedicated grouping for group assignments"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-19",
+            "index": 23,
+            "navicon": "fa-flag-checkered",
+            "icon": "fa-flag-checkered",
+            "category": "Practice",
+            "title": "Ready to use EasyStud",
+            "content": "<p>You now have the complete workflow: build the structure, place participants, verify with filters and counts, then use the right grouping in Moodle activities. You can reopen this guide whenever you need a reminder.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Read the destination and selection",
+                  "description": "Identify the participant, group or grouping you need. Use search and filters, then check the selected items and their current memberships before choosing an action."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choose the appropriate action",
+                  "description": "Use selection actions for a batch, the card menu for a contextual action, or a destination card identifier field for a precise addition. Review the consequence and any removal option before confirming."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Reopen help when needed",
+                  "description": "The guide remains available from navigation. Use Show in interface to locate a control, or start an optional guided path for a real task. Demonstrations change no Moodle data; real actions require your explicit confirmation."
+                }
+              ],
+              "note": "Reaching the end of the guide records reading progress, not proof that your groups or activity settings are correct. Verify your actual course configuration before using it."
+            },
+            "visualsteps": {
+              "layout": "status",
+              "items": [
+                {
+                  "icon": "fa-check-circle",
+                  "label": "Create or import the course structure"
+                },
+                {
+                  "icon": "fa-users-cog",
+                  "label": "Move or add users safely"
+                },
+                {
+                  "icon": "fa-search",
+                  "label": "Verify before using the grouping in Moodle"
+                },
+                {
+                  "icon": "fa-broom",
+                  "label": "Clear selections when the action is complete"
+                }
+              ]
+            }
+          }
+        ],
+        "slidecount": 24,
+        "initialprogress": 4.166666666666667
+      },
+      "readingContract": {
+        "presentationKey": "introduction-first-20261009",
+        "slideIds": [
+          "use-this-guide",
+          "discovery-concepts",
+          "discovery-creation",
+          "discovery-membership",
+          "discovery-actions",
+          "reference-0",
+          "reference-1",
+          "reference-3",
+          "reference-4",
+          "reference-5",
+          "reference-6",
+          "reference-7",
+          "reference-8",
+          "reference-9",
+          "reference-10",
+          "reference-11",
+          "reference-12",
+          "reference-13",
+          "reference-14",
+          "reference-15",
+          "reference-16",
+          "reference-17",
+          "reference-18",
+          "reference-19"
+        ],
+        "readingIndexMigrations": {
+          "discovery-20261006": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            0,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "legacy": [
+            5,
+            6,
+            0,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        }
+      },
+      "paths": {
+        "practice-membership": [
+          {
+            "id": "create-group",
+            "title": "Create a group",
+            "description": "Enter a group name and create it using the normal course control.",
+            "target": "groupCreateInput",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "open": "viewGroups",
+            "openDelay": 360,
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "open-participants",
+            "title": "Open the Participants view",
+            "description": "Switch to Participants & groups, or Participants on mobile.",
+            "target": "viewParticipants",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "create-group",
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "select-participant",
+            "title": "Select a participant",
+            "description": "Use a participant checkbox. No membership changes at this stage.",
+            "target": "participantSelectionInput",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "open-participants",
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "open-move",
+            "title": "Open Move participants",
+            "description": "Use the enabled Move participants action to open the destination dialog.",
+            "target": "participantMoveAction",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "select-participant",
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "choose-destination",
+            "title": "Search and choose the destination group",
+            "description": "Open the searchable choice and explicitly select an existing group. You may cancel without changes.",
+            "target": "participantMoveDestination",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "open-move",
+            "open": "tutorial:participant-move-dialog",
+            "openDelay": 360
+          },
+          {
+            "id": "confirm-move",
+            "title": "Check the destination, then confirm",
+            "description": "Check the group and selection before confirming. This step completes only after Moodle confirms success.",
+            "target": "participantMoveConfirm",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "choose-destination",
+            "open": "tutorial:participant-move-dialog",
+            "openDelay": 360
+          }
+        ],
+        "first-structure": [
+          {
+            "id": "create-structure",
+            "title": "Create groups and groupings",
+            "description": "Open the Groups view to create groups, then the Groupings view for the activity.",
+            "target": "createRow",
+            "highlightTarget": "groupCreateInput",
+            "open": "viewGroups",
+            "feedback": "Creation fields are ready. Start by creating the groups and the grouping for the activity.",
+            "completionMode": "event"
+          },
+          {
+            "id": "add-participants",
+            "title": "Add participants to the right groups",
+            "description": "Open the Participants view, then the Actions button on a participant card to add or move a user into a group.",
+            "target": "participantCardActions",
+            "highlightTargetCompact": "participantCardActions",
+            "highlightTargetDesktop": "participantMoveAction",
+            "open": "viewParticipants",
+            "openDelay": 360,
+            "feedback": "The group area is open. Add participants by drag and drop, selection action or pasted identifiers.",
+            "completionMode": "event"
+          },
+          {
+            "id": "check-filters",
+            "title": "Check with filters",
+            "description": "Open filters to check that the right participants and groups are displayed.",
+            "target": "advancedParticipantFilters",
+            "open": [
+              {
+                "target": "viewParticipants",
+                "delay": 320
+              },
+              {
+                "target": "[data-easystud-advanced-filters-toggle=\"participants\"]",
+                "delay": 220
+              }
+            ],
+            "feedback": "Filters are open. Use search and filters to check that the right list is displayed.",
+            "completionMode": "event"
+          }
+        ],
+        "create-grouping": [
+          {
+            "id": "create-grouping",
+            "title": "Create the grouping",
+            "description": "Open the Groupings view and its creation field.",
+            "target": "createRow",
+            "highlightTarget": "groupingCreateInput",
+            "open": "viewGroupings",
+            "feedback": "The grouping creation field is ready.",
+            "completionMode": "event"
+          },
+          {
+            "id": "add-group-to-grouping",
+            "title": "Add the group to the grouping",
+            "description": "Open the Groupings view, then a grouping and its add-groups field.",
+            "target": "firstGroupingAddPanel",
+            "highlightTarget": "firstGroupingAddBox",
+            "open": [
+              {
+                "target": "viewGroupings",
+                "delay": 800
+              },
+              {
+                "target": "tutorial:first-grouping-add-groups",
+                "delay": 600
+              }
+            ],
+            "feedback": "The grouping is open: you can add the group to it.",
+            "completionMode": "event"
+          },
+          {
+            "id": "verify-grouping",
+            "title": "Check the grouping",
+            "description": "In the Groupings view, expand the grouping to check the groups that were added.",
+            "target": "firstGrouping",
+            "open": [
+              {
+                "target": "viewGroupings",
+                "delay": 320
+              },
+              {
+                "target": "firstGroupingToggle",
+                "delay": 360
+              }
+            ],
+            "feedback": "The grouping is expanded so you can check its content.",
+            "completionMode": "event"
+          }
+        ],
+        "try-actions": [
+          {
+            "id": "try-drag",
+            "title": "Try drag and drop",
+            "description": "Locate a card and a compatible destination to try direct movement.",
+            "target": "participantFirstCard",
+            "open": "viewParticipants",
+            "openDelay": 320,
+            "feedback": "The movement area is highlighted: drag a card to a compatible destination.",
+            "completionMode": "event"
+          },
+          {
+            "id": "try-selection",
+            "title": "Try action buttons",
+            "description": "Locate the action buttons used to move or remove several cards.",
+            "target": "participantSelectionInput",
+            "open": "viewParticipants",
+            "openDelay": 320,
+            "feedback": "The action buttons are highlighted: select one or more cards before using them.",
+            "completionMode": "event"
+          },
+          {
+            "id": "try-context",
+            "title": "Try context menu",
+            "description": "Locate the list and open the context menu with right click or long press.",
+            "target": "participantCardActions",
+            "highlightTargetCompact": "participantCardActions",
+            "highlightTargetDesktop": "participantFirstCard",
+            "open": "viewParticipants",
+            "openDelay": 320,
+            "feedback": "The list is highlighted: right click or long press a card.",
+            "completionMode": "event"
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "templateData": {
+        "rootclass": "local-groupimport-easystud-easyedu-guide easyedu-guide--discovery",
+        "discoverypresentation": true,
+        "guideinterfacecuelabel": "Retrouver le repère dans votre espace",
+        "guideopenlabel": "Ouvrir le guide EasyStud",
+        "guidefullscreenenter": "Afficher en plein écran",
+        "guidefullscreenexit": "Quitter le plein écran (Échap)",
+        "guidefullscreenunavailable": "Le plein écran est indisponible. Vous pouvez continuer dans la fenêtre du guide.",
+        "guidehoverlabel": "Ouvrir le guide",
+        "guidecloselabel": "Fermer",
+        "guidetitle": "Guide EasyStud",
+        "guidesubtitle": "Un guide rapide de la vue de gestion simplifiée.",
+        "guidepreviouslabel": "Précédent",
+        "guidenextlabel": "Suivant",
+        "guidenavigationlabel": "Guide EasyStud",
+        "guideprogresslabel": "Progression",
+        "guidebadgelabel": "Guide",
+        "guideguidedpathlabel": "Parcours guidé",
+        "guiderequiresbadge": "Verrouillé",
+        "guideshowinterfacelabel": "Voir dans l’interface",
+        "guidemapsource": "Participant",
+        "guidemaplayers": "Groupe",
+        "guidemapbanner": "Groupement",
+        "guidestartpathlabel": "Commencer le parcours guidé",
+        "guidereturnlabel": "Guide EasyStud",
+        "guidereturndesc": "Vous regardez la zone mise en avant. Vous pouvez rouvrir le guide à la même étape.",
+        "guidereturnbutton": "Retour au guide",
+        "guidereturndismiss": "Fermer le retour au guide",
+        "guidechecklisttitle": "Parcours guidé",
+        "guidewelcometitle": "Découvrez le guide EasyStud",
+        "guidewelcomecopy": "Découvrez le guide pas à pas pour comprendre comment organiser les participants, groupes et groupements dans EasyStud. Cliquez sur le bouton boussole ci-dessous pour commencer, ou ouvrez le guide quand vous serez prêt.",
+        "guidewelcomeopen": "Ouvrir le guide",
+        "guidewelcomedismiss": "Plus tard",
+        "guideminimizelabel": "Réduire le parcours guidé",
+        "guiderestorelabel": "Rétablir",
+        "guideresumetitle": "Un parcours guidé est en cours.",
+        "guideresumelabel": "Reprendre la démonstration",
+        "guidecancelpathlabel": "Annuler le parcours",
+        "guideresetpathlabel": "Réinitialiser ce parcours",
+        "guidechecklisthint": "Choisissez un objectif. EasyStud ouvre la bonne zone et garde cette checklist visible.",
+        "guidechecklistdonelabel": "Tout est bon. Vous pouvez retourner au guide pour continuer ou fermer ce parcours.",
+        "guidesteplabel": "Étape {$a->current} sur {$a->total}",
+        "slides": [
+          {
+            "id": "use-this-guide",
+            "index": 0,
+            "navicon": "fa-list-ol",
+            "icon": "fa-list-ol",
+            "category": "Guide",
+            "title": "Comment utiliser ce guide",
+            "content": "<p>Découvrez l’espace avec des démonstrations sans effet sur Moodle, ou suivez un parcours facultatif dans la vraie interface.</p>",
+            "navtitle": "Le guide",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Choisir un sujet",
+                  "description": "Utilisez les onglets ou Précédent et Suivant. La barre de progression indique votre position de lecture, pas les actions réalisées dans le cours.",
+                  "specimen": {
+                    "kind": "navigation",
+                    "navigation": true,
+                    "label": "Choisir un sujet"
+                  }
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Regarder à votre rythme",
+                  "description": "Mettez une animation en pause, reprenez-la ou avancez d’une phase. Les points animés signalent l’explication en cours. Les étapes à retenir apparaissent à la fin."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Trouver le vrai contrôle",
+                  "description": "Voir dans l’interface met la zone concernée en évidence sans appliquer d’action. Revenir au guide vous ramène à la même slide.",
+                  "specimen": {
+                    "kind": "highlight",
+                    "highlight": true,
+                    "label": "Contrôle surligné dans l’interface"
+                  }
+                },
+                {
+                  "icon": "fa-route",
+                  "title": "Suivre un parcours facultatif",
+                  "description": "Réalisez les prérequis dans l’ordre. Une étape se coche lorsque sa vraie condition est remplie. Reprenez, annulez ou réinitialisez le parcours ; cela n’annule pas les modifications du cours.",
+                  "specimen": {
+                    "kind": "path",
+                    "path": true,
+                    "label": "Démarrer le parcours"
+                  }
+                },
+                {
+                  "icon": "fa-tasks",
+                  "title": "Lire la checklist",
+                  "description": "Les étapes cochées sont terminées. L’étape active indique où agir. Les étapes verrouillées deviennent disponibles après leurs prérequis.",
+                  "specimen": {
+                    "kind": "checklist",
+                    "checklist": true,
+                    "steps": [
+                      {
+                        "icon": "fa-check-circle",
+                        "label": "Étape terminée"
+                      },
+                      {
+                        "icon": "fa-circle",
+                        "label": "Étape en cours"
+                      },
+                      {
+                        "icon": "fa-lock",
+                        "label": "En attente de l’étape précédente"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "icon": "fa-expand",
+                  "title": "Lire en plein écran",
+                  "description": "Sur ordinateur, utilisez le bouton d’agrandissement de l’en-tête. Échap revient à la fenêtre du guide sans changer de slide.",
+                  "desktopfullscreen": true
+                }
+              ],
+              "note": "Les démonstrations sont des exemples. Les parcours guident vos propres actions : seule votre confirmation explicite modifie les données du cours. Sur mobile, utilisez les vues et boutons disponibles."
+            }
+          },
+          {
+            "id": "discovery-concepts",
+            "index": 1,
+            "navicon": "fa-sitemap",
+            "icon": "fa-sitemap",
+            "category": "Repères",
+            "kicker": "Comprendre",
+            "title": "Comprendre son espace",
+            "navtitle": "Les repères",
+            "content": "<p>Dans cette vue, vous organisez les participants du cours en groupes et en groupements. Les inscriptions au cours se gèrent depuis les outils Moodle prévus à cet effet.</p>",
+            "discoveryscene": {
+              "concepts": true,
+              "kind": "concepts",
+              "caption": "Exemple pratique — aucune donnée du cours n’est modifiée",
+              "note": "Un groupe réunit des participants. Un groupement réunit des groupes : par exemple, tous les groupes de travaux dirigés.",
+              "replay": "Revoir le geste",
+              "reset": "Réinitialiser l’exemple",
+              "participantlabel": "Une personne inscrite au cours, comme Alex Dupont.",
+              "grouplabel": "Une équipe de participants, comme Équipe 1.",
+              "groupinglabel": "Un ensemble de groupes, comme Travaux dirigés.",
+              "patternlabel": "Nom des groupes",
+              "previewlabel": "Prévisualiser les noms",
+              "letterslabel": "Alterner # / @",
+              "syntaxlabel": "Modifiez le nom ou le nombre, puis prévisualisez. Cet exercice affiche jusqu’à 6 noms ; ce n’est pas la limite du plugin.",
+              "invalidlabel": "Utilisez un nom suivi de #*3 ou @*3, avec un nombre de 1 à 6 dans cet exercice.",
+              "addlabel": "Comparer : ajouter",
+              "movelabel": "Déplacer",
+              "cancellabel": "Annuler",
+              "destinationlabel": "Choisir la destination",
+              "selectlabel": "1 · Sélectionner les membres concernés dans Projet Orion.",
+              "menulabel": "2 · Ouvrir les actions des membres et choisir Déplacer.",
+              "confirmlabel": "3 · Vérifier la destination puis confirmer Déplacer. Rien ne change avant confirmation.",
+              "resultaddlabel": "Alex rejoint Projet Horizon et reste dans Projet Orion et TD lundi.",
+              "resultmovelabel": "Alex quitte Projet Orion et rejoint Projet Horizon. TD lundi reste inchangé.",
+              "resultactionslabel": "Alex et Léa quittent Projet Orion et rejoignent Projet Horizon. Seule leur appartenance à Projet Orion est retirée ; leurs autres groupes sont conservés. Cette illustration ne modifie aucune donnée Moodle.",
+              "mobilelabel": "Sur mobile, sélectionnez les membres et utilisez le bouton d’action de la carte. Le clic droit et le glisser-déposer sont des gestes pour ordinateur.",
+              "initiallabel": "Situation initiale : TD lundi et Projet Orion ; Projet Horizon est vide.",
+              "keptlabel": "Conservé",
+              "removedlabel": "Retiré",
+              "addedlabel": "Ajouté",
+              "absentlabel": "Pas encore membre",
+              "validatelabel": "4 · Cliquer sur Déplacer pour valider. Vérifier ensuite les nouvelles appartenances.",
+              "draglabel": "En déplacement",
+              "finishedlabel": "Démonstration terminée · résumé ci-dessous.",
+              "pauselabel": "Mettre la démonstration en pause",
+              "resumelabel": "Reprendre la démonstration",
+              "nextphaselabel": "Étape suivante de la démonstration",
+              "participanttitle": "Participant",
+              "grouptitle": "Groupe",
+              "groupingtitle": "Groupement",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Résultat simulé — aucun groupe créé dans Moodle",
+              "emptymembers": "Aucun membre",
+              "sourceempty": "Les membres sélectionnés ont quitté ce groupe.",
+              "destinationcaption": "Groupe de destination",
+              "menutitle": "Actions des membres sélectionnés",
+              "removeaction": "Retirer du groupe",
+              "membershiptitle": "Appartenances d’Alex",
+              "recaptitle": "Les étapes du geste",
+              "addselect": "1 · Avec la souris, cliquer sur la carte du participant dans le groupe d’origine et maintenir le bouton enfoncé pour la saisir.",
+              "adddrop": "2 · Garder le bouton de la souris enfoncé, glisser la carte sur Projet Horizon, puis relâcher pour ajouter le participant. Projet Orion est conservé.",
+              "compactselect": "1 · Sélectionner les membres concernés dans la carte du groupe.",
+              "compactmenu": "2 · Utiliser le bouton d’action de la carte et choisir la destination.",
+              "comparemove": "Comparer : déplacer",
+              "examplegroup": "Équipe 1",
+              "examplegrouping": "Projet de semestre",
+              "exampletitle": "Exemple : préparer les équipes pour un atelier",
+              "examplebody": "Répartissez les participants en équipes, rassemblez ces équipes dans le groupement « Atelier », puis utilisez ce groupement dans une activité Moodle.",
+              "syntaxnumbers": "numéros 1, 2, 3",
+              "syntaxletters": "lettres A, B, C",
+              "syntaxcount": "multiplicateur : trois groupes",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Déplacer les participants",
+              "mobileaddconsequence": "Cette action de la vue Participants ajoute une appartenance. Projet Orion et les autres groupes sont conservés.",
+              "mobileaddselect": "1 · Ouvrir la vue Participants et toucher la case du participant. Il ne s’agit pas d’une sélection dans un groupe d’origine.",
+              "mobileaddmenu": "2 · Toucher Déplacer les participants dans la barre d’actions mobile. Depuis cette vue, l’action ajoute une appartenance à un groupe.",
+              "mobileaddconfirm": "3 · Rechercher et choisir Projet Horizon comme destination. Les appartenances existantes sont conservées.",
+              "mobileaddvalidate": "4 · Toucher Déplacer pour confirmer l’ajout. Vérifier Projet Horizon ; Projet Orion et les autres appartenances restent inchangés.",
+              "selectioncaption": "1 membre sélectionné : Alex Dupont",
+              "consequence": "Les autres appartenances sont conservées. Seule l’appartenance au groupe d’origine est retirée."
+            },
+            "target": "[data-easystud-participants-panel]",
+            "targetselector": "[data-easystud-participants-panel]",
+            "showopen": "viewParticipants",
+            "showopendelay": 360
+          },
+          {
+            "id": "discovery-creation",
+            "index": 2,
+            "navicon": "fa-route",
+            "icon": "fa-route",
+            "category": "Pratique",
+            "kicker": "Préparer",
+            "title": "Préparer plusieurs groupes",
+            "navtitle": "Créer une structure",
+            "content": "<p>Dans Student Management, la colonne Groupes et groupements propose des champs et des boutons + pour créer les groupes et les groupements. Cet exemple sans risque montre comment nommer plusieurs groupes dans le champ de création de groupe. Il ne crée aucune donnée Moodle.</p>",
+            "discoveryscene": {
+              "creation": true,
+              "kind": "creation",
+              "caption": "Exemple pratique — aucune donnée du cours n’est modifiée",
+              "note": "Dans une activité Moodle, sélectionnez ensuite le groupement concerné. Créer un groupement ne configure pas automatiquement les activités.",
+              "replay": "Revoir le geste",
+              "reset": "Réinitialiser l’exemple",
+              "participantlabel": "Une personne inscrite au cours, comme Alex Dupont.",
+              "grouplabel": "Une équipe de participants, comme Équipe 1.",
+              "groupinglabel": "Un ensemble de groupes, comme Travaux dirigés.",
+              "patternlabel": "Nom des groupes",
+              "previewlabel": "Prévisualiser les noms",
+              "letterslabel": "Alterner # / @",
+              "syntaxlabel": "Modifiez le nom ou le nombre, puis prévisualisez. Cet exercice affiche jusqu’à 6 noms ; ce n’est pas la limite du plugin.",
+              "invalidlabel": "Utilisez un nom suivi de #*3 ou @*3, avec un nombre de 1 à 6 dans cet exercice.",
+              "addlabel": "Comparer : ajouter",
+              "movelabel": "Déplacer",
+              "cancellabel": "Annuler",
+              "destinationlabel": "Choisir la destination",
+              "selectlabel": "1 · Sélectionner les membres concernés dans Projet Orion.",
+              "menulabel": "2 · Ouvrir les actions des membres et choisir Déplacer.",
+              "confirmlabel": "3 · Vérifier la destination puis confirmer Déplacer. Rien ne change avant confirmation.",
+              "resultaddlabel": "Alex rejoint Projet Horizon et reste dans Projet Orion et TD lundi.",
+              "resultmovelabel": "Alex quitte Projet Orion et rejoint Projet Horizon. TD lundi reste inchangé.",
+              "resultactionslabel": "Alex et Léa quittent Projet Orion et rejoignent Projet Horizon. Seule leur appartenance à Projet Orion est retirée ; leurs autres groupes sont conservés. Cette illustration ne modifie aucune donnée Moodle.",
+              "mobilelabel": "Sur mobile, sélectionnez les membres et utilisez le bouton d’action de la carte. Le clic droit et le glisser-déposer sont des gestes pour ordinateur.",
+              "initiallabel": "Situation initiale : TD lundi et Projet Orion ; Projet Horizon est vide.",
+              "keptlabel": "Conservé",
+              "removedlabel": "Retiré",
+              "addedlabel": "Ajouté",
+              "absentlabel": "Pas encore membre",
+              "validatelabel": "4 · Cliquer sur Déplacer pour valider. Vérifier ensuite les nouvelles appartenances.",
+              "draglabel": "En déplacement",
+              "finishedlabel": "Démonstration terminée · résumé ci-dessous.",
+              "pauselabel": "Mettre la démonstration en pause",
+              "resumelabel": "Reprendre la démonstration",
+              "nextphaselabel": "Étape suivante de la démonstration",
+              "participanttitle": "Participant",
+              "grouptitle": "Groupe",
+              "groupingtitle": "Groupement",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Résultat simulé — aucun groupe créé dans Moodle",
+              "emptymembers": "Aucun membre",
+              "sourceempty": "Les membres sélectionnés ont quitté ce groupe.",
+              "destinationcaption": "Groupe de destination",
+              "menutitle": "Actions des membres sélectionnés",
+              "removeaction": "Retirer du groupe",
+              "membershiptitle": "Appartenances d’Alex",
+              "recaptitle": "Les étapes du geste",
+              "addselect": "1 · Avec la souris, cliquer sur la carte du participant dans le groupe d’origine et maintenir le bouton enfoncé pour la saisir.",
+              "adddrop": "2 · Garder le bouton de la souris enfoncé, glisser la carte sur Projet Horizon, puis relâcher pour ajouter le participant. Projet Orion est conservé.",
+              "compactselect": "1 · Sélectionner les membres concernés dans la carte du groupe.",
+              "compactmenu": "2 · Utiliser le bouton d’action de la carte et choisir la destination.",
+              "comparemove": "Comparer : déplacer",
+              "examplegroup": "Équipe 1",
+              "examplegrouping": "Projet de semestre",
+              "exampletitle": "Exemple : préparer les équipes pour un atelier",
+              "examplebody": "Répartissez les participants en équipes, rassemblez ces équipes dans le groupement « Atelier », puis utilisez ce groupement dans une activité Moodle.",
+              "syntaxnumbers": "numéros 1, 2, 3",
+              "syntaxletters": "lettres A, B, C",
+              "syntaxcount": "multiplicateur : trois groupes",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Déplacer les participants",
+              "mobileaddconsequence": "Cette action de la vue Participants ajoute une appartenance. Projet Orion et les autres groupes sont conservés.",
+              "mobileaddselect": "1 · Ouvrir la vue Participants et toucher la case du participant. Il ne s’agit pas d’une sélection dans un groupe d’origine.",
+              "mobileaddmenu": "2 · Toucher Déplacer les participants dans la barre d’actions mobile. Depuis cette vue, l’action ajoute une appartenance à un groupe.",
+              "mobileaddconfirm": "3 · Rechercher et choisir Projet Horizon comme destination. Les appartenances existantes sont conservées.",
+              "mobileaddvalidate": "4 · Toucher Déplacer pour confirmer l’ajout. Vérifier Projet Horizon ; Projet Orion et les autres appartenances restent inchangés.",
+              "selectioncaption": "1 membre sélectionné : Alex Dupont",
+              "consequence": "Les autres appartenances sont conservées. Seule l’appartenance au groupe d’origine est retirée."
+            },
+            "target": ".local-groupimport-easystud-create-row",
+            "targetselector": ".local-groupimport-easystud-create-row",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "guidedpath": "practice-membership",
+            "hasguidedpath": true,
+            "guidedpathlabel": "Parcours accompagné",
+            "guidedpathtitle": "Votre première affectation à un groupe",
+            "guidedpathcontent": "Six étapes dans l’interface réelle. Créer le groupe et confirmer l’ajout d’une appartenance modifient les données du cours. Réinitialiser le parcours n’annule pas ces actions.",
+            "guidedpathsteps": {
+              "items": [
+                "Créer un groupe",
+                "Ouvrir la vue Participants",
+                "Sélectionner un participant",
+                "Ouvrir Déplacer les participants",
+                "Rechercher et choisir le groupe de destination",
+                "Vérifier la destination, puis confirmer"
+              ]
+            }
+          },
+          {
+            "id": "discovery-membership",
+            "index": 3,
+            "navicon": "fa-users",
+            "icon": "fa-users",
+            "category": "Organisation",
+            "kicker": "Organiser",
+            "title": "Organiser un projet sans perdre les autres appartenances",
+            "navtitle": "Organiser",
+            "content": "<p>Comparez Ajouter et Déplacer de Projet Orion vers Projet Horizon. Ajouter conserve l’appartenance source. Déplacer retire uniquement cette appartenance après confirmation. Les autres groupes des participants restent inchangés.</p>",
+            "discoveryscene": {
+              "membership": true,
+              "kind": "membership",
+              "caption": "Exemple pratique — aucune donnée du cours n’est modifiée",
+              "note": "Comparez Ajouter et Déplacer pour les membres d’un groupe. Ajouter les conserve dans Projet Orion et les ajoute à Projet Horizon. Déplacer retire uniquement leur appartenance à Projet Orion, après confirmation ; leurs autres groupes sont conservés.",
+              "replay": "Revoir le geste",
+              "reset": "Réinitialiser l’exemple",
+              "participantlabel": "Une personne inscrite au cours, comme Alex Dupont.",
+              "grouplabel": "Une équipe de participants, comme Équipe 1.",
+              "groupinglabel": "Un ensemble de groupes, comme Travaux dirigés.",
+              "patternlabel": "Nom des groupes",
+              "previewlabel": "Prévisualiser les noms",
+              "letterslabel": "Alterner # / @",
+              "syntaxlabel": "Modifiez le nom ou le nombre, puis prévisualisez. Cet exercice affiche jusqu’à 6 noms ; ce n’est pas la limite du plugin.",
+              "invalidlabel": "Utilisez un nom suivi de #*3 ou @*3, avec un nombre de 1 à 6 dans cet exercice.",
+              "addlabel": "Comparer : ajouter",
+              "movelabel": "Déplacer",
+              "cancellabel": "Annuler",
+              "destinationlabel": "Choisir la destination",
+              "selectlabel": "1 · Sélectionner les membres concernés dans Projet Orion.",
+              "menulabel": "2 · Ouvrir les actions des membres et choisir Déplacer.",
+              "confirmlabel": "3 · Vérifier la destination puis confirmer Déplacer. Rien ne change avant confirmation.",
+              "resultaddlabel": "Alex rejoint Projet Horizon et reste dans Projet Orion et TD lundi.",
+              "resultmovelabel": "Alex quitte Projet Orion et rejoint Projet Horizon. TD lundi reste inchangé.",
+              "resultactionslabel": "Alex et Léa quittent Projet Orion et rejoignent Projet Horizon. Seule leur appartenance à Projet Orion est retirée ; leurs autres groupes sont conservés. Cette illustration ne modifie aucune donnée Moodle.",
+              "mobilelabel": "Sur mobile, sélectionnez les membres et utilisez le bouton d’action de la carte. Le clic droit et le glisser-déposer sont des gestes pour ordinateur.",
+              "initiallabel": "Situation initiale : TD lundi et Projet Orion ; Projet Horizon est vide.",
+              "keptlabel": "Conservé",
+              "removedlabel": "Retiré",
+              "addedlabel": "Ajouté",
+              "absentlabel": "Pas encore membre",
+              "validatelabel": "4 · Cliquer sur Déplacer pour valider. Vérifier ensuite les nouvelles appartenances.",
+              "draglabel": "En déplacement",
+              "finishedlabel": "Démonstration terminée · résumé ci-dessous.",
+              "pauselabel": "Mettre la démonstration en pause",
+              "resumelabel": "Reprendre la démonstration",
+              "nextphaselabel": "Étape suivante de la démonstration",
+              "participanttitle": "Participant",
+              "grouptitle": "Groupe",
+              "groupingtitle": "Groupement",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Résultat simulé — aucun groupe créé dans Moodle",
+              "emptymembers": "Aucun membre",
+              "sourceempty": "Les membres sélectionnés ont quitté ce groupe.",
+              "destinationcaption": "Groupe de destination",
+              "menutitle": "Actions des membres sélectionnés",
+              "removeaction": "Retirer du groupe",
+              "membershiptitle": "Appartenances d’Alex",
+              "recaptitle": "Les étapes du geste",
+              "addselect": "1 · Avec la souris, cliquer sur la carte du participant dans le groupe d’origine et maintenir le bouton enfoncé pour la saisir.",
+              "adddrop": "2 · Garder le bouton de la souris enfoncé, glisser la carte sur Projet Horizon, puis relâcher pour ajouter le participant. Projet Orion est conservé.",
+              "compactselect": "1 · Sélectionner les membres concernés dans la carte du groupe.",
+              "compactmenu": "2 · Utiliser le bouton d’action de la carte et choisir la destination.",
+              "comparemove": "Comparer : déplacer",
+              "examplegroup": "Équipe 1",
+              "examplegrouping": "Projet de semestre",
+              "exampletitle": "Exemple : préparer les équipes pour un atelier",
+              "examplebody": "Répartissez les participants en équipes, rassemblez ces équipes dans le groupement « Atelier », puis utilisez ce groupement dans une activité Moodle.",
+              "syntaxnumbers": "numéros 1, 2, 3",
+              "syntaxletters": "lettres A, B, C",
+              "syntaxcount": "multiplicateur : trois groupes",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Déplacer les participants",
+              "mobileaddconsequence": "Cette action de la vue Participants ajoute une appartenance. Projet Orion et les autres groupes sont conservés.",
+              "mobileaddselect": "1 · Ouvrir la vue Participants et toucher la case du participant. Il ne s’agit pas d’une sélection dans un groupe d’origine.",
+              "mobileaddmenu": "2 · Toucher Déplacer les participants dans la barre d’actions mobile. Depuis cette vue, l’action ajoute une appartenance à un groupe.",
+              "mobileaddconfirm": "3 · Rechercher et choisir Projet Horizon comme destination. Les appartenances existantes sont conservées.",
+              "mobileaddvalidate": "4 · Toucher Déplacer pour confirmer l’ajout. Vérifier Projet Horizon ; Projet Orion et les autres appartenances restent inchangés.",
+              "selectioncaption": "1 membre sélectionné : Alex Dupont",
+              "consequence": "Les autres appartenances sont conservées. Seule l’appartenance au groupe d’origine est retirée."
+            },
+            "target": "[data-easystud-structure-panel]",
+            "targetselector": "[data-easystud-structure-panel]",
+            "showopen": "viewGroups",
+            "showopendelay": 360
+          },
+          {
+            "id": "discovery-actions",
+            "index": 4,
+            "navicon": "fa-tasks",
+            "icon": "fa-tasks",
+            "category": "Actions",
+            "kicker": "Agir",
+            "title": "Choisir son geste au quotidien",
+            "navtitle": "Les actions",
+            "content": "<p>Sélectionnez les membres dans le groupe source, choisissez Déplacer avec son bouton d’action ou son menu, puis recherchez la destination et vérifiez la confirmation. Sur mobile, utilisez le menu d’action de la carte. Cette démonstration ne modifie aucune donnée Moodle.</p>",
+            "discoveryscene": {
+              "actions": true,
+              "kind": "actions",
+              "caption": "Exemple pratique — aucune donnée du cours n’est modifiée",
+              "note": "Mass Import possède son propre guide consacré au fichier, à la prévisualisation et à l’historique. Cette découverte accompagne Student Management.",
+              "replay": "Revoir le geste",
+              "reset": "Réinitialiser l’exemple",
+              "participantlabel": "Une personne inscrite au cours, comme Alex Dupont.",
+              "grouplabel": "Une équipe de participants, comme Équipe 1.",
+              "groupinglabel": "Un ensemble de groupes, comme Travaux dirigés.",
+              "patternlabel": "Nom des groupes",
+              "previewlabel": "Prévisualiser les noms",
+              "letterslabel": "Alterner # / @",
+              "syntaxlabel": "Modifiez le nom ou le nombre, puis prévisualisez. Cet exercice affiche jusqu’à 6 noms ; ce n’est pas la limite du plugin.",
+              "invalidlabel": "Utilisez un nom suivi de #*3 ou @*3, avec un nombre de 1 à 6 dans cet exercice.",
+              "addlabel": "Comparer : ajouter",
+              "movelabel": "Déplacer",
+              "cancellabel": "Annuler",
+              "destinationlabel": "Choisir la destination",
+              "selectlabel": "1 · Sélectionner les membres concernés dans Projet Orion.",
+              "menulabel": "2 · Ouvrir les actions des membres et choisir Déplacer.",
+              "confirmlabel": "3 · Vérifier la destination puis confirmer Déplacer. Rien ne change avant confirmation.",
+              "resultaddlabel": "Alex rejoint Projet Horizon et reste dans Projet Orion et TD lundi.",
+              "resultmovelabel": "Alex quitte Projet Orion et rejoint Projet Horizon. TD lundi reste inchangé.",
+              "resultactionslabel": "Alex et Léa quittent Projet Orion et rejoignent Projet Horizon. Seule leur appartenance à Projet Orion est retirée ; leurs autres groupes sont conservés. Cette illustration ne modifie aucune donnée Moodle.",
+              "mobilelabel": "Sur mobile, sélectionnez les membres et utilisez le bouton d’action de la carte. Le clic droit et le glisser-déposer sont des gestes pour ordinateur.",
+              "initiallabel": "Situation initiale : TD lundi et Projet Orion ; Projet Horizon est vide.",
+              "keptlabel": "Conservé",
+              "removedlabel": "Retiré",
+              "addedlabel": "Ajouté",
+              "absentlabel": "Pas encore membre",
+              "validatelabel": "4 · Cliquer sur Déplacer pour valider. Vérifier ensuite les nouvelles appartenances.",
+              "draglabel": "En déplacement",
+              "finishedlabel": "Démonstration terminée · résumé ci-dessous.",
+              "pauselabel": "Mettre la démonstration en pause",
+              "resumelabel": "Reprendre la démonstration",
+              "nextphaselabel": "Étape suivante de la démonstration",
+              "participanttitle": "Participant",
+              "grouptitle": "Groupe",
+              "groupingtitle": "Groupement",
+              "patternvalue": "Équipe #*3",
+              "resulttitle": "Résultat simulé — aucun groupe créé dans Moodle",
+              "emptymembers": "Aucun membre",
+              "sourceempty": "Les membres sélectionnés ont quitté ce groupe.",
+              "destinationcaption": "Groupe de destination",
+              "menutitle": "Actions des membres sélectionnés",
+              "removeaction": "Retirer du groupe",
+              "membershiptitle": "Appartenances d’Alex",
+              "recaptitle": "Les étapes du geste",
+              "addselect": "1 · Avec la souris, cliquer sur la carte du participant dans le groupe d’origine et maintenir le bouton enfoncé pour la saisir.",
+              "adddrop": "2 · Garder le bouton de la souris enfoncé, glisser la carte sur Projet Horizon, puis relâcher pour ajouter le participant. Projet Orion est conservé.",
+              "compactselect": "1 · Sélectionner les membres concernés dans la carte du groupe.",
+              "compactmenu": "2 · Utiliser le bouton d’action de la carte et choisir la destination.",
+              "comparemove": "Comparer : déplacer",
+              "examplegroup": "Équipe 1",
+              "examplegrouping": "Projet de semestre",
+              "exampletitle": "Exemple : préparer les équipes pour un atelier",
+              "examplebody": "Répartissez les participants en équipes, rassemblez ces équipes dans le groupement « Atelier », puis utilisez ce groupement dans une activité Moodle.",
+              "syntaxnumbers": "numéros 1, 2, 3",
+              "syntaxletters": "lettres A, B, C",
+              "syntaxcount": "multiplicateur : trois groupes",
+              "destinationname": "Projet Horizon",
+              "mobileparticipants": "Participants",
+              "mobileaddaction": "Déplacer les participants",
+              "mobileaddconsequence": "Cette action de la vue Participants ajoute une appartenance. Projet Orion et les autres groupes sont conservés.",
+              "mobileaddselect": "1 · Ouvrir la vue Participants et toucher la case du participant. Il ne s’agit pas d’une sélection dans un groupe d’origine.",
+              "mobileaddmenu": "2 · Toucher Déplacer les participants dans la barre d’actions mobile. Depuis cette vue, l’action ajoute une appartenance à un groupe.",
+              "mobileaddconfirm": "3 · Rechercher et choisir Projet Horizon comme destination. Les appartenances existantes sont conservées.",
+              "mobileaddvalidate": "4 · Toucher Déplacer pour confirmer l’ajout. Vérifier Projet Horizon ; Projet Orion et les autres appartenances restent inchangés.",
+              "selectioncaption": "2 membres sélectionnés : Alex Dupont et Léa Martin",
+              "consequence": "Les autres appartenances sont conservées. Seule l’appartenance au groupe d’origine est retirée."
+            },
+            "target": "[data-easystud-participants-panel]",
+            "targetselector": "[data-easystud-participants-panel]",
+            "showopen": "viewParticipants",
+            "showopendelay": 360
+          },
+          {
+            "id": "reference-0",
+            "index": 5,
+            "navicon": "fa-sitemap",
+            "icon": "fa-sitemap",
+            "category": "Bases",
+            "title": "Comprendre la structure",
+            "content": "<p>Un participant peut appartenir à un ou plusieurs groupes. Un groupement ne contient pas directement des participants : il rassemble des groupes. En pratique, pensez participant -&gt; groupe -&gt; groupement. Cela garde le cours lisible quand plusieurs activités utilisent des ensembles différents.</p>",
+            "target": "slide-0",
+            "targetselector": "firstGrouping",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "hasvisualflow": true
+          },
+          {
+            "id": "reference-1",
+            "index": 6,
+            "navicon": "fa-route",
+            "icon": "fa-route",
+            "category": "Pratique",
+            "title": "Créer une première structure",
+            "content": "<p>Commencez simplement : créez les groupes nécessaires, créez un groupement pour l’activité, puis ajoutez les groupes concernés dans ce groupement. Sur petit écran, les vues Groupes et Groupements sont distinctes : le guide ouvre celle qui correspond à chaque étape. La slide suivante permet de lancer le parcours adapté.</p>",
+            "target": "slide-1",
+            "targetselector": "groupCreateInput",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:create-group",
+            "showafteropendelay": 360,
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-users",
+                  "label": "Créer les groupes"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Créer le groupement"
+                },
+                {
+                  "icon": "fa-arrow-right",
+                  "label": "Ajouter les groupes au groupement"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-3",
+            "index": 7,
+            "navicon": "fa-filter",
+            "icon": "fa-filter",
+            "category": "Actions",
+            "title": "Rechercher, filtrer, sélectionner",
+            "content": "<p>La recherche et les filtres réduisent la liste courante sans modifier les données du cours. Utilisez Tout sélectionner ou Sélectionner les résultats pour agir sur tous les éléments visibles, puis effacez la sélection une fois l’opération terminée. Sur petit écran, ouvrez la vue Participants.</p>",
+            "target": "slide-3",
+            "targetselector": "advancedParticipantFilters",
+            "showopen": "viewParticipants",
+            "showopendelay": 800,
+            "showafteropen": "[data-easystud-advanced-filters-toggle=\"participants\"]",
+            "showafteropendelay": 600,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Réduire la liste utile",
+                  "description": "Commencez par la recherche dans Participants ou Groupes. Plus de filtres propose les critères disponibles pour cette vue ; recherchez dans une liste de choix pour trouver un rôle, un groupe ou un groupement."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Vérifier la sélection séparément",
+                  "description": "Filtrer change les résultats visibles, pas les appartenances au cours. Vérifiez le compteur avant une action. Effacez une sélection antérieure avant de sélectionner uniquement les résultats filtrés actuels."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser la vue mobile courante",
+                  "description": "Sur mobile, ouvrez d’abord Participants, Groupes ou Groupements, puis utilisez les contrôles disponibles dans cette vue. Toutes les colonnes de la version ordinateur ne sont pas visibles ensemble."
+                }
+              ],
+              "note": "Rechercher, filtrer et sélectionner n’applique aucune action au cours. Vérifiez l’action et sa destination avant de confirmer un changement."
+            },
+            "visualfiltersdemo": {
+              "searchlabel": "Rechercher groupes ou participants",
+              "actions": [
+                {
+                  "label": "Sélectionner les résultats"
+                },
+                {
+                  "label": "Plus de filtres"
+                }
+              ],
+              "badges": [
+                {
+                  "label": "Étudiant",
+                  "type": "participant"
+                },
+                {
+                  "label": "Groupe A",
+                  "type": "group"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-4",
+            "index": 8,
+            "navicon": "fa-id-badge",
+            "icon": "fa-id-badge",
+            "category": "Cartes",
+            "title": "Lire une carte participant",
+            "content": "<p>Une carte participant représente un utilisateur déjà inscrit au cours. Vérifiez son contexte avant de sélectionner une action.</p>",
+            "target": "slide-4",
+            "targetselector": "participantFirstCard",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:participant-details",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Vérifier le contexte",
+                  "description": "Les rôles, groupes, groupements et champs de profil affichés dépendent des réglages et de vos droits. Un participant appartient à des groupes, jamais directement à un groupement."
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Sélectionner, puis choisir une action",
+                  "description": "La case sélectionne le participant. Depuis la vue Participants, Déplacer les participants ajoute une appartenance au groupe de destination ; les appartenances existantes sont conservées. Vérifiez la destination avant de confirmer."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser les contrôles disponibles sur mobile",
+                  "description": "Sur mobile, utilisez la case de sélection et la barre d’actions. Les cartes compactes affichent moins d’informations ; dépliez les détails disponibles pour vérifier les appartenances. Le clic droit et le glisser-déposer sont des gestes pour ordinateur."
+                }
+              ],
+              "note": "Lire ou sélectionner une carte ne change aucune appartenance au cours. Une action modifie les données uniquement lorsque vous l’appliquez explicitement."
+            },
+            "visualcarddetail": {
+              "card": {
+                "type": "participant",
+                "icon": "fa-user",
+                "title": "Participant",
+                "meta": "Rôles, groupes, groupements"
+              },
+              "details": [
+                {
+                  "icon": "fa-user-tag",
+                  "label": "Étudiant",
+                  "type": "participant"
+                },
+                {
+                  "icon": "fa-users",
+                  "label": "Groupe A",
+                  "type": "group"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-5",
+            "index": 9,
+            "navicon": "fa-users",
+            "icon": "fa-users",
+            "category": "Cartes",
+            "title": "Lire une carte groupe",
+            "content": "<p>Un groupe réunit des participants déjà inscrits au cours. Vérifiez sa liste de membres et ses groupements avant d’agir.</p>",
+            "target": "slide-5",
+            "targetselector": "firstGroup",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:first-group",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Vérifier les membres",
+                  "description": "Lisez le nombre de membres, dépliez la liste et vérifiez les groupements associés. Un groupe peut appartenir à plusieurs groupements."
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Distinguer ajout et déplacement",
+                  "description": "L’ajout par identifiants se fait dans la carte du groupe concerné. Déplacer les membres sélectionnés retire uniquement leur appartenance au groupe source après confirmation. Retirer un membre ne supprime pas son compte et ne le désinscrit pas du cours."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Ouvrir le menu d’actions de la carte",
+                  "description": "Sur mobile, plusieurs boutons directs du desktop passent dans le menu d’actions de la carte. Pour ajouter une appartenance depuis Participants, sélectionnez un participant puis utilisez Déplacer les participants. Vérifiez l’action et la destination avant de confirmer."
+                }
+              ],
+              "note": "L’illustration est un exemple. Dans la vraie carte, seule l’action que vous appliquez change les appartenances ; les autres sont conservées sauf si l’action choisie les modifie explicitement."
+            },
+            "discoveryscene": {
+              "kind": "inspection",
+              "inspection": true,
+              "grouping": false,
+              "cardicon": "fa-users",
+              "actionicon": "fa-at",
+              "cardtitle": "Projet Horizon",
+              "cardmeta": "2 participants",
+              "actionlabel": "Ajouter des participants par identifiants",
+              "inputlabel": "Identifiants de participants existants",
+              "knownlabel": "Alex Dupont",
+              "note": "Ces entrées fictives ne sont pas une recherche réelle. Dans votre cours, les identifiants sont comparés aux champs activés dans les réglages du plugin. Seule votre action explicite Ajouter applique l’ajout ; Annuler laisse les appartenances inchangées.",
+              "resultlabel": "Illustration terminée. Aucune appartenance de participant modifiée.",
+              "caption": "Illustration de la carte de destination",
+              "menutitle": "Actions de la carte",
+              "unknownlabel": "unknown-entry",
+              "recaptitle": "Étapes à retenir",
+              "addlabel": "Comparer : ajouter",
+              "cancellabel": "Annuler",
+              "pauselabel": "Mettre la démonstration en pause",
+              "resumelabel": "Reprendre la démonstration",
+              "nextphaselabel": "Étape suivante de la démonstration",
+              "finishedlabel": "Démonstration terminée · résumé ci-dessous.",
+              "replay": "Revoir le geste",
+              "reset": "Réinitialiser l’exemple",
+              "inputvalue": "alex@example.test\nunknown-entry",
+              "phases": [
+                {
+                  "name": "orient",
+                  "label": "Voici le groupe de destination, Projet Horizon. Ses deux participants actuels restent inchangés."
+                },
+                {
+                  "name": "open",
+                  "label": "Dans l’en-tête du groupe, choisissez l’ajout par identifiants pour ouvrir le champ de participants déjà inscrits au cours.",
+                  "compactlabel": "Sur mobile, ouvrez le menu d’actions du groupe de destination, puis Ajouter des participants par identifiants."
+                },
+                {
+                  "name": "enter",
+                  "label": "Collez les identifiants des participants dans le champ. Cette illustration utilise un e-mail d’exemple et une entrée non résolue ; elle n’inscrit aucun nouvel utilisateur."
+                },
+                {
+                  "name": "review",
+                  "label": "Vérifiez le nom reconnu, Alex Dupont, et corrigez l’entrée non résolue avant d’utiliser Ajouter dans la vraie carte."
+                },
+                {
+                  "name": "return",
+                  "label": "Annuler referme le champ et rétablit la carte du groupe. Cette démonstration n’a ajouté personne."
+                }
+              ],
+              "initiallabel": "Voici le groupe de destination, Projet Horizon. Ses deux participants actuels restent inchangés."
+            }
+          },
+          {
+            "id": "reference-6",
+            "index": 10,
+            "navicon": "fa-layer-group",
+            "icon": "fa-layer-group",
+            "category": "Cartes",
+            "title": "Lire une carte groupement",
+            "content": "<p>Un groupement rassemble des groupes, pas directement des participants. Dépliez-le pour vérifier les groupes inclus.</p>",
+            "target": "slide-6",
+            "targetselector": "firstGrouping",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:first-grouping",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Vérifier les groupes inclus",
+                  "description": "Dépliez le groupement pour lire ses groupes. Il ne contient pas directement de participants, et un groupe peut figurer dans plusieurs groupements."
+                },
+                {
+                  "icon": "fa-play-circle",
+                  "title": "Organiser le conteneur",
+                  "description": "Utilisez les actions disponibles pour ajouter des groupes ou gérer le groupement. Lors du déplacement d’un groupe, vérifiez si le retrait du groupement d’origine est coché avant de confirmer."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser le menu d’actions mobile",
+                  "description": "Sur mobile, ouvrez le menu d’actions pour les contrôles absents de l’en-tête. Dépliez le groupement pour vérifier son contenu ; les gestes desktop de clic droit et de glisser-déposer ne sont pas nécessaires."
+                }
+              ],
+              "note": "Ajouter des groupes à un groupement ne configure pas une activité Moodle. Choisir ce groupement dans les réglages de l’activité reste une action séparée."
+            },
+            "discoveryscene": {
+              "kind": "inspection",
+              "inspection": true,
+              "grouping": true,
+              "cardicon": "fa-sitemap",
+              "actionicon": "fa-plus",
+              "cardtitle": "Promotion Horizon",
+              "cardmeta": "2 groupes",
+              "actionlabel": "Ajouter des groupes existants",
+              "inputlabel": "Noms ou identifiants de groupes existants",
+              "knownlabel": "Projet Orion",
+              "note": "Ces entrées fictives ne sont pas une recherche réelle. Dans votre cours, utilisez les noms ou identifiants de groupes existants et corrigez les entrées non résolues ou ambiguës. Seule votre action explicite Ajouter applique l’ajout ; les réglages d’activité restent distincts.",
+              "resultlabel": "Illustration terminée. Aucune appartenance de groupement modifiée.",
+              "caption": "Illustration de la carte de destination",
+              "menutitle": "Actions de la carte",
+              "unknownlabel": "unknown-entry",
+              "recaptitle": "Étapes à retenir",
+              "addlabel": "Comparer : ajouter",
+              "cancellabel": "Annuler",
+              "pauselabel": "Mettre la démonstration en pause",
+              "resumelabel": "Reprendre la démonstration",
+              "nextphaselabel": "Étape suivante de la démonstration",
+              "finishedlabel": "Démonstration terminée · résumé ci-dessous.",
+              "replay": "Revoir le geste",
+              "reset": "Réinitialiser l’exemple",
+              "inputvalue": "Projet Orion\nunknown-entry",
+              "phases": [
+                {
+                  "name": "orient",
+                  "label": "Voici le groupement de destination, Promotion Horizon. Ses deux groupes actuels restent inchangés."
+                },
+                {
+                  "name": "open",
+                  "label": "Dans l’en-tête du groupement, choisissez Ajouter des groupes pour ouvrir le champ de groupes existants du cours.",
+                  "compactlabel": "Sur mobile, ouvrez le menu d’actions du groupement de destination, puis Ajouter des groupes existants."
+                },
+                {
+                  "name": "enter",
+                  "label": "Collez les noms ou identifiants de groupes existants dans le champ. Cette illustration contient Projet Orion et une entrée non résolue."
+                },
+                {
+                  "name": "review",
+                  "label": "Vérifiez Projet Orion et corrigez l’entrée non résolue. Si un nom correspond à plusieurs groupes, levez cette ambiguïté avant l’ajout."
+                },
+                {
+                  "name": "return",
+                  "label": "Annuler referme le champ et rétablit la carte du groupement. Aucun groupe n’a été ajouté et aucun réglage d’activité Moodle n’a changé."
+                }
+              ],
+              "initiallabel": "Voici le groupement de destination, Promotion Horizon. Ses deux groupes actuels restent inchangés."
+            }
+          },
+          {
+            "id": "reference-7",
+            "index": 11,
+            "navicon": "fa-graduation-cap",
+            "icon": "fa-graduation-cap",
+            "category": "Pratique",
+            "title": "Bonne pratique : devoir de groupe",
+            "content": "<p>Pour un devoir de groupe Moodle, un étudiant ne devrait pas se trouver dans plusieurs groupes de remise pour la même activité. Une bonne pratique consiste à créer des groupes dédiés, placer uniquement ces groupes dans un groupement dédié, puis paramétrer le devoir pour utiliser ce groupement. Cela évite que d’autres groupes du cours perturbent les remises.</p>",
+            "target": "slide-7",
+            "targetselector": "firstGrouping",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:first-grouping",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Préparer le groupement dans EasyStud",
+                  "description": "Vérifiez les participants de chaque groupe, puis ajoutez les groupes utiles dans un groupement. Un groupement contient des groupes, pas directement des participants. Ajouter un groupe ne configure aucune activité Moodle."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Configurer l’activité séparément",
+                  "description": "Ouvrez les réglages de l’activité Moodle et vérifiez le mode de groupe et le groupement, si ces réglages sont disponibles. Choisissez le groupement voulu à cet endroit. Les réglages disponibles et leurs effets dépendent de l’activité et de vos droits."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Vérifier les appartenances obtenues",
+                  "description": "Revenez au groupement pour vérifier ses groupes et leurs membres. Dans l’activité, vérifiez que le bon groupement est sélectionné. Lire cette illustration ou terminer une étape du guide n’enregistre aucun réglage d’activité."
+                }
+              ],
+              "note": "EasyStud organise les appartenances du cours. Les réglages d’activité Moodle constituent une opération séparée ; nommer ou créer un groupement ne suffit pas à le faire utiliser par une activité."
+            },
+            "visualassignment": {
+              "rows": [
+                {
+                  "items": [
+                    {
+                      "type": "participant",
+                      "icon": "fa-user",
+                      "title": "Étudiant 1",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "group",
+                      "icon": "fa-users",
+                      "title": "Groupe devoir A",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "grouping",
+                      "icon": "fa-layer-group",
+                      "title": "Groupement Devoir Mathématiques"
+                    }
+                  ]
+                },
+                {
+                  "items": [
+                    {
+                      "type": "participant",
+                      "icon": "fa-user",
+                      "title": "Étudiant 2",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "group",
+                      "icon": "fa-users",
+                      "title": "Groupe devoir B",
+                      "arrowafter": true
+                    },
+                    {
+                      "type": "grouping",
+                      "icon": "fa-layer-group",
+                      "title": "Groupement Devoir Mathématiques"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-8",
+            "index": 12,
+            "navicon": "fa-seedling",
+            "icon": "fa-seedling",
+            "category": "Bases",
+            "title": "Créer un groupement pour une activité",
+            "content": "<p>Maintenant que votre groupe est créé, créez un groupement pour l’activité puis ajoutez ce groupe dedans. C’est ce groupement que vous pourrez ensuite choisir dans les paramètres Moodle de l’activité.</p>",
+            "target": "slide-8",
+            "targetselector": "groupingCreateInput",
+            "showopen": "viewGroupings",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:create-grouping",
+            "showafteropendelay": 360,
+            "visualsteps": {
+              "layout": "status",
+              "items": [
+                {
+                  "icon": "fa-seedling",
+                  "label": "Commencer par les champs de création"
+                },
+                {
+                  "icon": "fa-users",
+                  "label": "Carte exemple"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Créer le groupement"
+                }
+              ]
+            },
+            "hasguidedpath": true,
+            "guidedpath": "create-grouping",
+            "guidedpathtitle": "Parcours guidé : créer un groupement",
+            "guidedpathcontent": "Maintenant que votre groupe est créé, créez un groupement pour l’activité puis ajoutez ce groupe dedans. C’est ce groupement que vous pourrez ensuite choisir dans les paramètres Moodle de l’activité.",
+            "guidedpathsteps": {
+              "items": [
+                "Créer le groupement",
+                "Ajouter le groupe au groupement",
+                "Vérifier le groupement"
+              ]
+            }
+          },
+          {
+            "id": "reference-9",
+            "index": 13,
+            "navicon": "fa-at",
+            "icon": "fa-at",
+            "category": "Actions",
+            "title": "Ajouter par identifiants collés",
+            "content": "<p>Dans la carte du groupe destination, collez les identifiants des participants : emails, noms d’utilisateur ou champs personnalisés activés. Dans la carte du groupement destination, collez les noms ou IDs de groupes existants. Vérifiez les étiquettes reconnues avant l’ajout ; des noms de groupes identiques peuvent être ambigus, préférez alors un ID.</p>",
+            "target": "slide-9",
+            "targetselector": "firstGroupEmailBox",
+            "showopen": "viewGroups",
+            "showopendelay": 800,
+            "showafteropen": "tutorial:add-users-text",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Ouvrir la carte de destination",
+                  "description": "Pour ajouter des participants, utilisez le champ d’identifiants de la carte du groupe de destination. Pour ajouter des groupes, utilisez le champ de la carte du groupement de destination. Ces champs n’inscrivent pas de nouveaux utilisateurs au cours."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Vérifier les éléments reconnus",
+                  "description": "Les identifiants des participants sont comparés aux champs activés dans les réglages du plugin. Vérifiez les noms reconnus et les éléments non résolus avant l’ajout. Les groupes indiqués doivent déjà exister dans le cours."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser le menu de la carte destination sur mobile",
+                  "description": "Pour une seule carte destination, ouvrez Plus d’actions puis choisissez l’ajout par texte : des participants dans un groupe, ou des groupes dans un groupement. Les boutons directs de la version ordinateur sont masqués sur mobile. Vous pouvez aussi sélectionner des utilisateurs dans Participants puis choisir Déplacer les participants pour les ajouter au groupe en conservant leurs autres appartenances."
+                }
+              ],
+              "note": "Les étiquettes d’exemple ne représentent pas un changement appliqué. Seule votre action explicite Ajouter modifie l’appartenance à la destination ; Annuler referme le champ sans appliquer l’ajout."
+            },
+            "visualpaste": {
+              "panels": [
+                {
+                  "icon": "fa-at",
+                  "title": "Ajouter des utilisateurs par identifiant",
+                  "input": "etudiant.01@example.com, username02",
+                  "chips": [
+                    "Étudiant 1",
+                    "Étudiant 2",
+                    "Reconnu"
+                  ],
+                  "arrowafter": true
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "title": "Groupes par ID",
+                  "input": "12, 18, 21",
+                  "chips": [
+                    "Groupe devoir A",
+                    "Groupe devoir B"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-10",
+            "index": 14,
+            "navicon": "fa-mouse-pointer",
+            "icon": "fa-mouse-pointer",
+            "category": "Actions",
+            "title": "Menus contextuels",
+            "content": "<p>Le menu contextuel s’ouvre avec un clic droit, ou un appui long sur écran tactile. Il regroupe les actions utiles pour la carte ciblée ou pour la sélection en cours : copier des informations, déplacer, retirer ou sélectionner des éléments liés.</p>",
+            "target": "slide-10",
+            "targetselector": "participantCardActions",
+            "targetselectorcompact": "participantCardActions",
+            "targetselectordesktop": "participantFirstCard",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:participant-card-actions",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Ouvrir le menu de la bonne carte",
+                  "description": "Sur ordinateur, faites un clic droit sur la carte participant, groupe ou groupement. Sur mobile, utilisez son bouton d’actions. Le menu propose les actions adaptées à cette carte, à vos droits et à la sélection courante."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Vérifier la portée avant de choisir",
+                  "description": "Quand plusieurs éléments sont sélectionnés, une action peut concerner cette sélection plutôt que la seule carte qui ouvre le menu. Vérifiez le compteur et le libellé. Les actions destinées à une seule carte peuvent être masquées en sélection multiple."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser le menu tactile plutôt que le clic droit",
+                  "description": "Le bouton de la carte mobile ouvre le panneau d’actions. Choisissez l’action utile, puis vérifiez la destination ou la confirmation éventuelle. Fermer le menu n’applique aucune opération au cours."
+                }
+              ],
+              "note": "Copier des données ou ouvrir des détails ne revient pas à déplacer ou retirer une appartenance. Vérifiez la conséquence de l’action choisie ; ouvrir le menu seul ne change rien."
+            },
+            "visualcontextmenu": {
+              "cardicon": "fa-user",
+              "cardlabel": "Participant",
+              "menutitle": "Clic droit",
+              "items": [
+                {
+                  "icon": "fa-copy",
+                  "label": "Copier les infos"
+                },
+                {
+                  "icon": "fa-arrow-right",
+                  "label": "Déplacer"
+                },
+                {
+                  "icon": "fa-check-square",
+                  "label": "Sélection multiple"
+                }
+              ],
+              "note": "Le clic droit affiche les raccourcis de la carte ; avec une sélection, les actions concernent les éléments sélectionnés."
+            }
+          },
+          {
+            "id": "reference-11",
+            "index": 15,
+            "navicon": "fa-list-check",
+            "icon": "fa-list-check",
+            "category": "Actions",
+            "title": "Boutons d’action et fenêtres de sélection",
+            "content": "<p>Les boutons d’action et les menus contextuels peuvent remplacer le glissé-déposé. Sélectionnez une ou plusieurs cartes, choisissez Déplacer ou Retirer, puis utilisez la fenêtre pour choisir la destination et confirmer.</p>",
+            "target": "slide-11",
+            "targetselector": "participantSelectionInput",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Vérifier l’origine de la sélection",
+                  "description": "Depuis Participants, Déplacer les participants ajoute les utilisateurs sélectionnés au groupe de destination et conserve leurs autres appartenances. Depuis la liste des membres d’un groupe, Déplacer transfère les appartenances sélectionnées vers un autre groupe ; les appartenances sans rapport sont conservées."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choisir et vérifier la destination",
+                  "description": "Ouvrez l’action, recherchez dans la liste des destinations et choisissez le groupe ou groupement voulu. Pour déplacer des groupes, vérifiez l’option de retrait du groupement d’origine. Vérifiez la sélection et la destination avant de confirmer ; Annuler n’applique aucun changement."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser les actions de sélection sur mobile",
+                  "description": "Sélectionnez avec les cases, puis utilisez la barre d’actions activée ou le menu de la carte. La modale de destination remplace le glisser-déposer de la version ordinateur. Une action est disponible seulement si la sélection et vos droits le permettent."
+                }
+              ],
+              "note": "Ouvrir la modale ou y rechercher une destination ne change aucune appartenance. Seule une confirmation explicite applique l’action choisie ; Retirer a une autre conséquence et doit être vérifié séparément."
+            },
+            "visualactionflow": {
+              "selection": [
+                "Étudiant 1",
+                "Étudiant 2"
+              ],
+              "actionicon": "fa-arrow-right",
+              "actionlabel": "Action déplacer",
+              "destinationtitle": "Choisir la destination",
+              "destinations": [
+                "Groupe devoir A",
+                "Groupe devoir B"
+              ]
+            }
+          },
+          {
+            "id": "reference-12",
+            "index": 16,
+            "navicon": "fa-arrows-alt",
+            "icon": "fa-arrows-alt",
+            "category": "Actions",
+            "title": "Déplacer, copier et organiser",
+            "content": "<p>Essayez les trois approches : le glissé-déposé pour les destinations visibles, les boutons d’action pour les sélections multiples, et le menu contextuel pour les raccourcis liés à une carte précise. Sur petit écran, ces actions se pratiquent depuis la vue Participants.</p>",
+            "target": "slide-12",
+            "targetselector": "participantSelectionInput",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "visualdragdrop": {
+              "lanes": [
+                {
+                  "sourcetype": "participant",
+                  "sourceicon": "fa-user",
+                  "sourcelabel": "Participant",
+                  "targeticon": "fa-users",
+                  "targetlabel": "Groupe"
+                },
+                {
+                  "sourcetype": "group",
+                  "sourceicon": "fa-users",
+                  "sourcelabel": "Groupe",
+                  "targeticon": "fa-layer-group",
+                  "targetlabel": "Groupement"
+                }
+              ],
+              "selection": [
+                "Étudiant 1",
+                "Étudiant 2"
+              ],
+              "menuitems": [
+                {
+                  "icon": "fa-copy",
+                  "label": "Copier les infos"
+                },
+                {
+                  "icon": "fa-arrow-right",
+                  "label": "Déplacer"
+                },
+                {
+                  "icon": "fa-mouse-pointer",
+                  "label": "Clic droit"
+                }
+              ]
+            },
+            "hasguidedpath": true,
+            "guidedpath": "try-actions",
+            "guidedpathtitle": "Parcours guidé : tester les actions",
+            "guidedpathcontent": "Essayez les trois approches : le glissé-déposé pour les destinations visibles, les boutons d’action pour les sélections multiples, et le menu contextuel pour les raccourcis liés à une carte précise. Sur petit écran, ces actions se pratiquent depuis la vue Participants.",
+            "guidedpathsteps": {
+              "items": [
+                "Tester le glissé-déposé",
+                "Tester les boutons d’action",
+                "Tester le menu contextuel"
+              ]
+            }
+          },
+          {
+            "id": "reference-13",
+            "index": 17,
+            "navicon": "fa-keyboard",
+            "icon": "fa-keyboard",
+            "category": "Actions",
+            "title": "Sélection accessible au clavier",
+            "content": "<p>Utilisez Tab pour atteindre la case de sélection d’un participant, puis Espace pour la cocher ou la décocher. À la souris, Ctrl-clic sur une carte bascule sa sélection ; Maj-clic sur la dernière carte étend la sélection depuis la carte précédente. Sur écran tactile, utilisez les cases et les boutons d’action visibles. Sélectionner ne modifie aucune appartenance dans le cours.</p>",
+            "target": "slide-13",
+            "targetselector": "participantFirstCard",
+            "showopen": "viewParticipants",
+            "showopendelay": 360,
+            "visualkeys": {
+              "items": [
+                {
+                  "key": "Tab",
+                  "label": "passer d’un contrôle à l’autre"
+                },
+                {
+                  "key": "Espace",
+                  "label": "cocher ou décocher la case ciblée"
+                },
+                {
+                  "key": "Maj",
+                  "label": "cliquer sur un participant pour étendre la sélection"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-14",
+            "index": 18,
+            "navicon": "fa-compass",
+            "icon": "fa-compass",
+            "category": "Pratique",
+            "title": "Choisir la bonne méthode",
+            "content": "<p>Quand plusieurs outils permettent la même action, choisissez celui qui demande le moins d’effort : glissé-déposé si la destination est visible, actions de sélection pour les lots, identifiants collés pour les listes précises, filtres avant de vérifier ou sélectionner beaucoup de cartes.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Partir de la destination",
+                  "description": "Recherchez et filtrez pour retrouver les éléments utiles avant de les sélectionner. Pour une liste précise, ouvrez le champ d’identifiants du groupe de destination pour ajouter des participants inscrits, ou celui du groupement de destination pour ajouter des groupes existants."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choisir le geste, puis vérifier sa conséquence",
+                  "description": "Sur ordinateur, glissez une carte vers une destination visible ou sélectionnez plusieurs éléments et utilisez leurs boutons d’action. Ajouter conserve l’appartenance d’origine ; Déplacer peut retirer l’appartenance sélectionnée dans le groupe source. Vérifiez l’origine de la sélection et la destination avant de confirmer."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser les actions visibles sur petit écran",
+                  "description": "Sélectionnez avec les cases, puis utilisez l’action de sélection disponible ou le menu de carte. Recherchez la destination dans la modale plutôt que de glisser une carte. Au clavier, utilisez Tab pour atteindre une case de sélection et Espace pour la cocher ou la décocher."
+                }
+              ],
+              "note": "Depuis Participants, Déplacer les participants ajoute les utilisateurs au groupe de destination sans retirer leurs autres appartenances. Déplacer des membres sélectionnés dans un groupe transfère ces appartenances d’origine. Ouvrir un champ ou une modale ne valide pas l’action."
+            },
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-arrows-alt",
+                  "label": "Destination visible : glisser directement"
+                },
+                {
+                  "icon": "fa-check-square",
+                  "label": "Beaucoup d’éléments : sélectionner puis agir"
+                },
+                {
+                  "icon": "fa-at",
+                  "label": "IDs connus : coller les identifiants"
+                },
+                {
+                  "icon": "fa-filter",
+                  "label": "Besoin de contrôle : filtrer, vérifier, sélectionner"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-15",
+            "index": 19,
+            "navicon": "fa-bolt",
+            "icon": "fa-bolt",
+            "category": "Actions",
+            "title": "Raccourcis utiles",
+            "content": "<p>Cette page résume les gestes les plus rapides : clic droit pour les actions contextuelles, sélection multiple pour les lots, clavier pour l’accessibilité, glissé-déposé pour les déplacements directs et champs texte pour les ajouts précis.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Partir de la destination",
+                  "description": "Recherchez et filtrez pour retrouver les éléments utiles avant de les sélectionner. Pour une liste précise, ouvrez le champ d’identifiants du groupe de destination pour ajouter des participants inscrits, ou celui du groupement de destination pour ajouter des groupes existants."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choisir le geste, puis vérifier sa conséquence",
+                  "description": "Sur ordinateur, glissez une carte vers une destination visible ou sélectionnez plusieurs éléments et utilisez leurs boutons d’action. Ajouter conserve l’appartenance d’origine ; Déplacer peut retirer l’appartenance sélectionnée dans le groupe source. Vérifiez l’origine de la sélection et la destination avant de confirmer."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Utiliser les actions visibles sur petit écran",
+                  "description": "Sélectionnez avec les cases, puis utilisez l’action de sélection disponible ou le menu de carte. Recherchez la destination dans la modale plutôt que de glisser une carte. Au clavier, utilisez Tab pour atteindre une case de sélection et Espace pour la cocher ou la décocher."
+                }
+              ],
+              "note": "Depuis Participants, Déplacer les participants ajoute les utilisateurs au groupe de destination sans retirer leurs autres appartenances. Déplacer des membres sélectionnés dans un groupe transfère ces appartenances d’origine. Ouvrir un champ ou une modale ne valide pas l’action."
+            },
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-mouse-pointer",
+                  "label": "Clic droit : ouvrir le menu contextuel"
+                },
+                {
+                  "icon": "fa-check-square",
+                  "label": "Sélection multiple : actions en lot"
+                },
+                {
+                  "icon": "fa-keyboard",
+                  "label": "Clavier : cibler, sélectionner, agir"
+                },
+                {
+                  "icon": "fa-at",
+                  "label": "Champs texte : coller des identifiants"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-16",
+            "index": 20,
+            "navicon": "fa-magic",
+            "icon": "fa-magic",
+            "category": "Actions",
+            "title": "Créer plus vite",
+            "content": "<p>Créez plusieurs groupes ou groupements d’un coup avec des séparateurs comme les virgules, points-virgules ou retours à la ligne. Utilisez « Devoir #*4 » pour créer Devoir 1 à 4, ou « Atelier @*3 » pour créer Atelier A à C.</p>",
+            "target": "slide-16",
+            "targetselector": "groupCreateInput",
+            "showopen": "viewGroups",
+            "showopendelay": 360,
+            "showafteropen": "tutorial:create-group",
+            "showafteropendelay": 360,
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Utiliser les champs de création du cours",
+                  "description": "Dans Student Management, saisissez les noms dans Nouveau nom de groupe ou Nouveau nom de groupement, puis utilisez le bouton de création adjacent. Les virgules, points-virgules ou retours à la ligne séparent plusieurs noms. La formule illustrée ci-dessous ne crée aucun élément du cours."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choisir des numéros ou des lettres",
+                  "description": "Écrivez un nom suivi de #*4 pour quatre noms numérotés, ou de @*3 pour trois noms avec des lettres. Le nombre après * indique combien de noms générer. Vérifiez si vous créez des groupes ou des groupements avant de valider."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Distinguer exercice et création réelle",
+                  "description": "La démonstration Practice accepte un nombre de 1 à 6 et ne modifie aucune donnée Moodle. Cette limite de l’exercice n’est pas celle des champs réels du cours. Sur petit écran, ouvrez la vue Groupes ou Groupements et utilisez son contrôle de création visible."
+                }
+              ],
+              "note": "Créer des groupes n’y ajoute pas de participants ; créer un groupement n’y ajoute pas de groupes et ne configure pas une activité. Ces actions sont séparées. Valider un champ de création réel modifie le cours ; le guide ne supprime pas automatiquement les éléments créés."
+            },
+            "visualformula": {
+              "expression": "Devoir #*4",
+              "results": [
+                "Devoir 1",
+                "Devoir 2",
+                "Devoir 3",
+                "Devoir 4"
+              ]
+            }
+          },
+          {
+            "id": "reference-17",
+            "index": 21,
+            "navicon": "fa-exclamation-triangle",
+            "icon": "fa-exclamation-triangle",
+            "category": "Pratique",
+            "title": "Erreurs fréquentes à éviter",
+            "content": "<p>La plupart des problèmes viennent d’un mélange des niveaux de structure. Gardez les participants dans les groupes, utilisez les groupements pour rassembler des groupes, puis choisissez le groupement dans les paramètres Moodle de l’activité quand elle dépend d’un ensemble précis.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Ne pas sauter le niveau groupe",
+                  "description": "Ajoutez les participants à un groupe, puis ce groupe à un groupement si nécessaire. Un groupement contient des groupes, pas directement des participants. Vérifiez la carte de destination avant d’ouvrir une action d’ajout ou de déplacement."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Ne pas supposer que Déplacer retire toujours une appartenance",
+                  "description": "Depuis Participants, Déplacer les participants ajoute les utilisateurs au groupe de destination et conserve leurs autres appartenances. Déplacer des membres sélectionnés dans un groupe transfère ces appartenances d’origine. Vérifiez la source, la destination et toute option de retrait avant de confirmer."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Ne pas confondre structure du cours et réglages d’activité",
+                  "description": "Un groupement existant n’est pas automatiquement utilisé par un devoir Moodle. Vérifiez les groupes qu’il contient, puis choisissez le groupement et les réglages de travail en groupe dans l’activité. Si vous réutilisez des groupes pour plusieurs activités, vérifiez que leurs appartenances conviennent à chacune."
+                }
+              ],
+              "note": "Sur mobile, utilisez les cases et menus d’action visibles plutôt que le glisser-déposer ou le clic droit de la version ordinateur. Lisez la confirmation avant d’appliquer une action ; ouvrir une modale ou lire ce guide ne change aucune appartenance du cours."
+            },
+            "visualsteps": {
+              "layout": "warning-grid",
+              "items": [
+                {
+                  "icon": "fa-ban",
+                  "label": "Essayer de placer un participant directement dans un groupement",
+                  "state": "warning"
+                },
+                {
+                  "icon": "fa-random",
+                  "label": "Réutiliser des groupes incompatibles pour plusieurs devoirs de groupe",
+                  "state": "warning"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Oublier de choisir le groupement dans les paramètres de l’activité",
+                  "state": "warning"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-18",
+            "index": 22,
+            "navicon": "fa-check-circle",
+            "icon": "fa-check-circle",
+            "category": "Pratique",
+            "title": "À retenir",
+            "content": "<p>Gardez une hiérarchie simple et prévisible. Les participants appartiennent à des groupes ; les groupes peuvent être rassemblés dans des groupements ; les activités comme les devoirs de groupe devraient cibler le bon groupement.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Participants, groupes, puis groupements",
+                  "description": "Un groupe contient des participants du cours. Un groupement rassemble des groupes, pas directement des participants. Lisez le titre de la carte et sa liste d’appartenances pour vérifier le niveau que vous organisez."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Vérifier les appartenances après une action",
+                  "description": "Ajouter conserve l’appartenance d’origine. Déplacer des membres sélectionnés dans un groupe transfère ces appartenances ; Déplacer les participants depuis Participants ajoute les utilisateurs au groupe de destination. Vérifiez le résultat avec la recherche, les filtres et les détails des cartes."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Configurer séparément l’activité Moodle",
+                  "description": "Créer un groupement ne configure pas un devoir. Choisissez le groupement voulu dans les réglages de l’activité Moodle et vérifiez ses options de travail en groupe et sa disponibilité. EasyStud organise les appartenances du cours ; l’activité possède ses propres réglages."
+                }
+              ],
+              "note": "Les démonstrations sont des illustrations, pas des modifications du cours. Un parcours peut vous accompagner dans une tâche réelle, mais lire ce récapitulatif ne prouve pas que les appartenances ou les réglages d’activité sont corrects."
+            },
+            "visualsteps": {
+              "layout": "workflow",
+              "items": [
+                {
+                  "icon": "fa-user",
+                  "label": "Participant → groupe"
+                },
+                {
+                  "icon": "fa-users",
+                  "label": "Groupe = ensemble de participants"
+                },
+                {
+                  "icon": "fa-layer-group",
+                  "label": "Groupement = ensemble de groupes"
+                },
+                {
+                  "icon": "fa-graduation-cap",
+                  "label": "Utiliser un groupement dédié pour les devoirs de groupe"
+                }
+              ]
+            }
+          },
+          {
+            "id": "reference-19",
+            "index": 23,
+            "navicon": "fa-flag-checkered",
+            "icon": "fa-flag-checkered",
+            "category": "Pratique",
+            "title": "Prêt à utiliser EasyStud",
+            "content": "<p>Vous avez maintenant le flux complet : construire la structure, placer les participants, vérifier avec les filtres et compteurs, puis utiliser le bon groupement dans les activités Moodle. Vous pouvez rouvrir ce guide à tout moment.</p>",
+            "commonintroduction": {
+              "topics": [
+                {
+                  "icon": "fa-compass",
+                  "title": "Vérifier la destination et la sélection",
+                  "description": "Identifiez le participant, groupe ou groupement utile. Recherchez et filtrez, puis vérifiez les éléments sélectionnés et leurs appartenances avant de choisir une action."
+                },
+                {
+                  "icon": "fa-check-square",
+                  "title": "Choisir l’action adaptée",
+                  "description": "Utilisez les actions de sélection pour un lot, le menu de carte pour une action contextuelle ou le champ d’identifiants de la carte de destination pour un ajout précis. Vérifiez la conséquence et toute option de retrait avant de confirmer."
+                },
+                {
+                  "icon": "fa-eye",
+                  "title": "Rouvrir l’aide au besoin",
+                  "description": "Le guide reste disponible dans la navigation. Utilisez Voir dans l’interface pour repérer un contrôle ou lancez un parcours facultatif pour une tâche réelle. Les démonstrations ne changent aucune donnée Moodle ; les actions réelles nécessitent votre confirmation explicite."
+                }
+              ],
+              "note": "Atteindre la fin du guide enregistre la lecture, pas la preuve que vos groupes ou réglages d’activité sont corrects. Vérifiez la configuration réelle du cours avant de l’utiliser."
+            },
+            "visualsteps": {
+              "layout": "status",
+              "items": [
+                {
+                  "icon": "fa-check-circle",
+                  "label": "Créer ou importer la structure du cours"
+                },
+                {
+                  "icon": "fa-users-cog",
+                  "label": "Déplacer ou ajouter les utilisateurs sereinement"
+                },
+                {
+                  "icon": "fa-search",
+                  "label": "Vérifier avant d’utiliser le groupement dans Moodle"
+                },
+                {
+                  "icon": "fa-broom",
+                  "label": "Effacer les sélections quand l’action est terminée"
+                }
+              ]
+            }
+          }
+        ],
+        "slidecount": 24,
+        "initialprogress": 4.166666666666667
+      },
+      "readingContract": {
+        "presentationKey": "introduction-first-20261009",
+        "slideIds": [
+          "use-this-guide",
+          "discovery-concepts",
+          "discovery-creation",
+          "discovery-membership",
+          "discovery-actions",
+          "reference-0",
+          "reference-1",
+          "reference-3",
+          "reference-4",
+          "reference-5",
+          "reference-6",
+          "reference-7",
+          "reference-8",
+          "reference-9",
+          "reference-10",
+          "reference-11",
+          "reference-12",
+          "reference-13",
+          "reference-14",
+          "reference-15",
+          "reference-16",
+          "reference-17",
+          "reference-18",
+          "reference-19"
+        ],
+        "readingIndexMigrations": {
+          "discovery-20261006": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            0,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "legacy": [
+            5,
+            6,
+            0,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        }
+      },
+      "paths": {
+        "practice-membership": [
+          {
+            "id": "create-group",
+            "title": "Créer un groupe",
+            "description": "Saisissez un nom de groupe et créez-le avec le contrôle habituel du cours.",
+            "target": "groupCreateInput",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "open": "viewGroups",
+            "openDelay": 360,
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "open-participants",
+            "title": "Ouvrir la vue Participants",
+            "description": "Passez à Participants et groupes, ou Participants sur mobile.",
+            "target": "viewParticipants",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "create-group",
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "select-participant",
+            "title": "Sélectionner un participant",
+            "description": "Utilisez la case d’un participant. Aucune appartenance ne change à cette étape.",
+            "target": "participantSelectionInput",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "open-participants",
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "open-move",
+            "title": "Ouvrir Déplacer les participants",
+            "description": "Utilisez l’action Déplacer les participants activée pour ouvrir la modale de destination.",
+            "target": "participantMoveAction",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "select-participant",
+            "beforeHighlight": "tutorial:close-participant-move-dialog"
+          },
+          {
+            "id": "choose-destination",
+            "title": "Rechercher et choisir le groupe de destination",
+            "description": "Ouvrez la liste recherchable et choisissez explicitement un groupe existant. Vous pouvez annuler sans modification.",
+            "target": "participantMoveDestination",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "open-move",
+            "open": "tutorial:participant-move-dialog",
+            "openDelay": 360
+          },
+          {
+            "id": "confirm-move",
+            "title": "Vérifier la destination, puis confirmer",
+            "description": "Vérifiez le groupe et la sélection avant de confirmer. Cette étape se termine uniquement après confirmation du succès par Moodle.",
+            "target": "participantMoveConfirm",
+            "completionMode": "event",
+            "autoHighlightNext": true,
+            "requiresStep": "choose-destination",
+            "open": "tutorial:participant-move-dialog",
+            "openDelay": 360
+          }
+        ],
+        "first-structure": [
+          {
+            "id": "create-structure",
+            "title": "Créer les groupes et groupements",
+            "description": "Ouvrir la vue Groupes pour créer les groupes, puis la vue Groupements pour l’activité.",
+            "target": "createRow",
+            "highlightTarget": "groupCreateInput",
+            "open": "viewGroups",
+            "feedback": "Les champs de création sont prêts. Commencez par créer les groupes et le groupement de l’activité.",
+            "completionMode": "event"
+          },
+          {
+            "id": "add-participants",
+            "title": "Ajouter les participants aux bons groupes",
+            "description": "Ouvrir la vue Participants, puis le bouton Actions d’une carte participant pour ajouter ou déplacer un utilisateur dans un groupe.",
+            "target": "participantCardActions",
+            "highlightTargetCompact": "participantCardActions",
+            "highlightTargetDesktop": "participantMoveAction",
+            "open": "viewParticipants",
+            "openDelay": 360,
+            "feedback": "La zone des groupes est ouverte. Ajoutez les participants par glissé-déposé, action de sélection ou identifiants collés.",
+            "completionMode": "event"
+          },
+          {
+            "id": "check-filters",
+            "title": "Vérifier avec les filtres",
+            "description": "Ouvrir les filtres pour vérifier que les bons participants et groupes sont affichés.",
+            "target": "advancedParticipantFilters",
+            "open": [
+              {
+                "target": "viewParticipants",
+                "delay": 320
+              },
+              {
+                "target": "[data-easystud-advanced-filters-toggle=\"participants\"]",
+                "delay": 220
+              }
+            ],
+            "feedback": "Les filtres sont ouverts. Utilisez la recherche et les filtres pour vérifier que la bonne liste est affichée.",
+            "completionMode": "event"
+          }
+        ],
+        "create-grouping": [
+          {
+            "id": "create-grouping",
+            "title": "Créer le groupement",
+            "description": "Ouvrir la vue Groupements et son champ de création.",
+            "target": "createRow",
+            "highlightTarget": "groupingCreateInput",
+            "open": "viewGroupings",
+            "feedback": "Le champ de création du groupement est prêt.",
+            "completionMode": "event"
+          },
+          {
+            "id": "add-group-to-grouping",
+            "title": "Ajouter le groupe au groupement",
+            "description": "Ouvrir la vue Groupements, puis un groupement et son ajout de groupes.",
+            "target": "firstGroupingAddPanel",
+            "highlightTarget": "firstGroupingAddBox",
+            "open": [
+              {
+                "target": "viewGroupings",
+                "delay": 800
+              },
+              {
+                "target": "tutorial:first-grouping-add-groups",
+                "delay": 600
+              }
+            ],
+            "feedback": "Le groupement est ouvert : vous pouvez ajouter le groupe dedans.",
+            "completionMode": "event"
+          },
+          {
+            "id": "verify-grouping",
+            "title": "Vérifier le groupement",
+            "description": "Dans la vue Groupements, déplier le groupement pour contrôler les groupes ajoutés.",
+            "target": "firstGrouping",
+            "open": [
+              {
+                "target": "viewGroupings",
+                "delay": 320
+              },
+              {
+                "target": "firstGroupingToggle",
+                "delay": 360
+              }
+            ],
+            "feedback": "Le groupement est déplié pour vérifier son contenu.",
+            "completionMode": "event"
+          }
+        ],
+        "try-actions": [
+          {
+            "id": "try-drag",
+            "title": "Tester le glissé-déposé",
+            "description": "Repérer une carte et une destination compatible pour tester le déplacement direct.",
+            "target": "participantFirstCard",
+            "open": "viewParticipants",
+            "openDelay": 320,
+            "feedback": "La zone de déplacement est mise en avant : glissez une carte vers une destination compatible.",
+            "completionMode": "event"
+          },
+          {
+            "id": "try-selection",
+            "title": "Tester les boutons d’action",
+            "description": "Repérer les boutons d’action pour déplacer ou retirer plusieurs cartes.",
+            "target": "participantSelectionInput",
+            "open": "viewParticipants",
+            "openDelay": 320,
+            "feedback": "Les boutons d’action sont mis en avant : sélectionnez une ou plusieurs cartes avant de les utiliser.",
+            "completionMode": "event"
+          },
+          {
+            "id": "try-context",
+            "title": "Tester le menu contextuel",
+            "description": "Repérer la liste et ouvrir le menu contextuel avec clic droit ou appui long.",
+            "target": "participantCardActions",
+            "highlightTargetCompact": "participantCardActions",
+            "highlightTargetDesktop": "participantFirstCard",
+            "open": "viewParticipants",
+            "openDelay": 320,
+            "feedback": "La liste est mise en avant : faites un clic droit ou un appui long sur une carte.",
+            "completionMode": "event"
+          }
+        ]
+      }
+    }
+  ]
+}

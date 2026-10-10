@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare an inactive twelve-slide curriculum from actual production payloads;
+  retain all three visible path invitations and every path definition. Archive
+  public EN/FR24-slide payloads.136 migration positions and144 renderer cases
+  pass; current native curriculum remains24 until explicit activation.
 - Shortcuts b6cb7c1 served locally; native EN three-width/36 text-node containment
   and completion preservation pass without course writes. Record the remaining
   current-Guide engineering ledger and live read-only Foundations Fullscreen

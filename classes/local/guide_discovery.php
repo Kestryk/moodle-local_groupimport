@@ -224,6 +224,78 @@ final class guide_discovery {
         return $slides;
     }
 
+    /** Inactive curriculum successor; native activation remains an explicit adapter step. */
+    public static function modern_reading_contract(): array {
+        $groups = [
+            'use-this-guide' => ['use-this-guide'],
+            'understand-workspace' => ['discovery-concepts', 'reference-0'],
+            'create-structure' => ['discovery-creation', 'reference-1', 'reference-16'],
+            'read-participant-card' => ['reference-4'],
+            'read-group-card' => ['reference-5'],
+            'read-grouping-card' => ['reference-6'],
+            'add-or-move-members' => ['discovery-membership', 'reference-12'],
+            'search-filter-select' => ['reference-3'],
+            'pasted-identifiers' => ['reference-9'],
+            'choose-right-action' => ['discovery-actions', 'reference-10', 'reference-11',
+                'reference-13', 'reference-14', 'reference-15'],
+            'use-groupings-in-activities' => ['reference-7', 'reference-8', 'reference-17'],
+            'ready-to-work' => ['reference-18', 'reference-19'],
+        ];
+        $ids = array_keys($groups);
+        $positions = [];
+        foreach ($groups as $index => $origins) {
+            foreach ($origins as $origin) {
+                $positions[$origin] = array_search($index, $ids, true);
+            }
+        }
+        $map = static function(array $origins) use ($positions): array {
+            return array_map(static function(string $id) use ($positions): int {
+                if (!array_key_exists($id, $positions)) {
+                    throw new \LogicException('Missing explicit Guide migration origin: ' . $id);
+                }
+                return $positions[$id];
+            }, $origins);
+        };
+        $historical = self::historical_slide_ids();
+        $current = self::reading_contract();
+        return ['presentationKey' => 'curriculum-modern-20261010', 'slideIds' => $ids,
+            'readingIndexMigrations' => [
+                $current['presentationKey'] => $map($current['slideIds']),
+                'discovery-20261006' => $map($historical),
+                'legacy' => $map(array_slice($historical, 4)),
+            ]];
+    }
+
+    /** Build twelve modern payloads while retaining every currently visible path invitation. */
+    public static function modern_curriculum(array $slides): array {
+        if (array_column($slides, 'id') !== self::reading_contract()['slideIds']) {
+            throw new \LogicException('Unexpected source curriculum; refuse lossy selection.');
+        }
+        $sources = ['use-this-guide', 'discovery-concepts', 'discovery-creation',
+            'reference-4', 'reference-5', 'reference-6', 'discovery-membership',
+            'reference-3', 'reference-9', 'discovery-actions', 'reference-7', 'reference-19'];
+        $byid = array_column($slides, null, 'id');
+        $ids = self::modern_reading_contract()['slideIds'];
+        $result = [];
+        foreach ($sources as $index => $source) {
+            $slide = $byid[$source];
+            // Keep the optional exercises reachable after their duplicate lessons disappear.
+            $invitation = ['discovery-actions' => 'reference-12', 'reference-7' => 'reference-8'][$source] ?? null;
+            if ($invitation !== null) {
+                foreach (['hasguidedpath', 'guidedpath', 'guidedpathlabel', 'guidedpathtitle',
+                        'guidedpathcontent', 'guidedpathsteps'] as $key) {
+                    if (array_key_exists($key, $byid[$invitation])) {
+                        $slide[$key] = $byid[$invitation][$key];
+                    }
+                }
+            }
+            $slide['id'] = $ids[$index];
+            $slide['index'] = $index;
+            $result[] = $slide;
+        }
+        return $result;
+    }
+
     /** Six native milestones; the Guide never creates or transfers participants. */
     public static function practice_path(): array {
         $definitions = [
