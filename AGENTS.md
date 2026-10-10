@@ -167,3 +167,8 @@ wait the committed current slide, assert its exact visible command/opener and
 await the interface Return after the view/open callback; modal hidden alone
 is not readiness. Preserve failed harness specs and accepted product Motion.
 Guide-opened identifier fields do not prove manual card-menu access or recognition.
+
+Selection-method narration distinguishes Tab/Space checkbox interaction from
+Ctrl/Shift-assisted mouse clicks. Native three-width Participant proof does not
+certify Mac Meta-click or other entities. Reuse localized existing keycaps and
+preserve commands/Motion/path IDs; copy-only accuracy is not curriculum migration.

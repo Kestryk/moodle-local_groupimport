@@ -63,3 +63,13 @@ Existing isolated `tools/release/test-guide-action-explanations.cjs` covers72
 actual-renderer EN/FR width/Motion cases, independently of native availability.
 It is not an inspection-animation or identifier-parser test. Proposed scene
 implementation still needs lifecycle and paired-design tests.
+
+Selection successor27324 passes all six rows at1280/768/390, no errors/blocked
+writes/fixtures/course changes. Retention protects original8328 and successor.
+Versioned evidence: guide-selection-methods-native-2026-10-10.json.
+Guide selection-copy successor is local-supervised, read-only open/navigate/Close
+with painted paragraph/keycap containment and completion preservation. Isolated
+EN/FR normal/reduced12 keycap cases precede native preview; no human acceptance.
+Static whole-file historical inspection guards stay pinned. New selection-copy
+guard reconstructs only the exact visualkeys adapter and three language keys,
+checking complete unrelated CSS/template/controller/curriculum identity.

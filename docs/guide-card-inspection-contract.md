@@ -239,3 +239,14 @@ Next content slice: verify actual Ctrl/Meta-click, Shift-click and native keyboa
 selection before modernizing the keyboard/method lessons. Existing click branches
 exclude buttons/links/inputs; modifier-assisted mouse selection must not be
 described as proven keyboard-only navigation. Preserve all old lesson/path IDs.
+
+## Selection-method successor - 10 October
+
+Native selection audit27324 passes at1280/768/390 without course writes:
+Ctrl-click toggles, Shift-click extends a range, actual local Tab entry reaches
+a checkbox and Space toggles it. Mouse modifiers are not keyboard-only proof.
+Retain diagnostic8328 and responsive successor source. Mac Meta-click and other
+entities remain unverified. EN/FR copy uses the same shared keycap composition;
+no new CSS, template, controller, animation or Foundation family is introduced.
+Bounded source guard and12 isolated keycap cases pass. Native copy publication
+is pending and must not be confused with the tested selection behavior.
