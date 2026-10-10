@@ -1,5 +1,42 @@
 # Guide tooltip audit and non-visual extraction - R10-32
 
+## Shared Guide integration successor
+
+Canonical bindNavigationTooltips is Discovery-only and reads actual existing
+navigation label text. Only scrollWidth>clientWidth+1 labels qualify. No
+template/accessible-name/title replacement or business command is introduced.
+The aria-hidden visual copy uses textContent; pointer mouse entry and keyboard
+focus-visible reveal it. Pointerdown/click, focusout, Escape, slide change,
+close, scroll, resize, fullscreen change and destroy remove it. Root-tracked
+listeners preserve teardown/reinit. The fixed bubble is appended inside the
+real modal, remains in browser fullscreen and clamps body/arrow to the viewport.
+Short/Long CSS consumes foundation-light-tooltip; plugin CSS has no new paint.
+
+test-guide-navigation-tooltips.cjs passes9 isolated Short/Long/EN/FR cases at
+1280/768/390px, keyboard and real browser fullscreen, both viewport-edge
+directions and teardown/rebind. Width390 fullscreen here is a helper fixture,
+not mobile product fullscreen availability. The fixture's original missing
+consumer-root class caused transparent paint; correcting the class retained
+the exact colour/type oracle. Earlier timeout after fullscreen exit was a
+pointer already on the target, not a new hover event. Explicit exit cleanup
+readiness and pointer departure fix the harness, not product timing. Preserve
+these narrower diagnostics; neither requires a Motion change.
+
+test-guide-navigation-tooltip-source.cjs reconstructs complete prior native/
+embedded controller3ce1aac after removing only helper/lifecycle hooks. It also
+compares complete unrelated CSS, ignoring only inter-rule blank lines removed
+with tooltip blocks. Templates/course_manager are unchanged. Canonical sync,
+Sass and named AMD/map generation pass. Native Moodle proof remains pending.
+
+Guide board85 rootbc7c574d-fc32-80da-8008-c507245048aa at0,25500 holds
+Light Shortbc7c574d-fc32-80da-8008-c507250d72a8 and Long
+bc7c574d-fc32-80da-8008-c507254ccf53, linked directly to the selected
+Foundation providers. read-saved-guide-light-tooltips.cjs verifies saved
+provider/file/type/content/geometry/pale paint. The owned-editor usage.png
+raster is inspected and externally manifested underguide-light-tooltips-20261010;
+retention dry run deletes nothing. The shared-library update banner remains:
+this scoped new-usage proof does not certify all existing Guide library copies.
+
 ## Control-label source successor
 
 USER DECISION: rejected on2026-10-10. The proposed recipe was withdrawn

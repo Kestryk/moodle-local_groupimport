@@ -1815,6 +1815,7 @@ const stopSlideTransition = root => {
 
 // One cancellable presentation transition; the existing slide engine still owns state.
 const setActiveSlide = (root, index, config, options = {}) => {
+  root.easyeduGuideTooltipHide?.();
   stopSlideTransition(root);
   const modal = root.querySelector(SELECTORS.modal);
   const outgoing = root.querySelector(SELECTORS.slide + '.is-active');
@@ -2004,6 +2005,7 @@ const openModal = (root, config) => {
 };
 
 const closeModal = (root, preserveHighlight = false, restoreFocus = true, options = {}) => {
+  root.easyeduGuideTooltipHide?.();
   if (root.easyeduGuideFullscreen?.ownsFullscreen()) {
     return root.easyeduGuideFullscreen.exit().then(exited => {
       if (!exited) return;
@@ -2489,12 +2491,86 @@ const bindHighlightAutoRefresh = root => {
 
 };
 
+// The full navigation label remains the button's accessible name. This visual
+// enhancement reveals ellipsised copy only, without repeating its name to AT.
+const bindNavigationTooltips = root => {
+  if (!root.classList.contains('easyedu-guide--discovery')) return;
+  const modal = root.querySelector(SELECTORS.modal);
+  const nav = root.querySelector(SELECTORS.nav);
+  if (!modal || !nav) return;
+  let tooltip = null;
+  let target = null;
+  const hide = () => {
+    tooltip?.remove();
+    tooltip = null;
+    target = null;
+  };
+  root.easyeduGuideTooltipHide = hide;
+  const show = button => {
+    const label = button?.querySelector('.easyedu-guide-nav-copy > span');
+    if (!label || modal.hidden || label.scrollWidth <= label.clientWidth + 1) {
+      hide();
+      return;
+    }
+    if (target === button) return;
+    hide();
+    target = button;
+    tooltip = modal.ownerDocument.createElement('div');
+    tooltip.className = 'easyedu-guide-label-tooltip';
+    tooltip.setAttribute('aria-hidden', 'true');
+    tooltip.textContent = label.textContent.trim();
+    // Append inside the actual fullscreen element, not a global body portal.
+    modal.appendChild(tooltip);
+    const margin = 12;
+    const gap = 10;
+    const anchor = button.getBoundingClientRect();
+    let size = tooltip.getBoundingClientRect();
+    if (size.height > 34.5) {
+      tooltip.classList.add('is-multiline');
+      size = tooltip.getBoundingClientRect();
+    }
+    const viewport = modal.ownerDocument.defaultView;
+    const left = Math.max(margin, Math.min(anchor.left + (anchor.width - size.width) / 2,
+      viewport.innerWidth - size.width - margin));
+    const above = anchor.bottom + gap + size.height > viewport.innerHeight - margin;
+    const top = Math.max(margin, Math.min(above ? anchor.top - size.height - gap : anchor.bottom + gap,
+      viewport.innerHeight - size.height - margin));
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.style.setProperty('--easyedu-tooltip-anchor',
+      `${Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, size.width - 12))}px`);
+    tooltip.classList.toggle('is-above', above);
+  };
+  const buttonFor = element => element?.closest?.(SELECTORS.navItem);
+  addTrackedListener(root, nav, 'pointerover', event => {
+    if (event.pointerType !== 'mouse') return;
+    const button = buttonFor(event.target);
+    if (button && !button.contains(event.relatedTarget)) show(button);
+  });
+  addTrackedListener(root, nav, 'pointerout', event => {
+    const button = buttonFor(event.target);
+    if (button === target && !button?.contains(event.relatedTarget)) hide();
+  });
+  addTrackedListener(root, nav, 'focusin', event => {
+    const button = buttonFor(event.target);
+    if (button?.matches(':focus-visible')) show(button);
+  });
+  addTrackedListener(root, nav, 'focusout', hide);
+  addTrackedListener(root, root, 'pointerdown', hide, true);
+  addTrackedListener(root, root, 'click', hide, true);
+  addTrackedListener(root, root, 'keydown', event => { if (event.key === 'Escape') hide(); }, true);
+  addTrackedListener(root, modal.ownerDocument, 'scroll', hide, true);
+  addTrackedListener(root, modal.ownerDocument, 'fullscreenchange', hide);
+  addTrackedListener(root, window, 'resize', hide);
+};
+
 const bindGuide = (root, config) => {
   root.easyeduGuideConfig = config;
   if (root.dataset.easyeduGuideBound === '1') {
     return;
   }
   root.dataset.easyeduGuideBound = '1';
+  bindNavigationTooltips(root);
 
   const fullscreenButton = root.querySelector('[data-easyedu-guide-fullscreen]');
   const fullscreenModal = root.querySelector(SELECTORS.modal);
@@ -2904,6 +2980,9 @@ const destroy = rootOrSelector => {
   if (!root) {
     return;
   }
+
+  root.easyeduGuideTooltipHide?.();
+  delete root.easyeduGuideTooltipHide;
 
   void root.easyeduGuideFullscreen?.destroy();
   root.easyeduGuideFullscreen = null;
