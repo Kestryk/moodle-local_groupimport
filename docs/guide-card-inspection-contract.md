@@ -218,3 +218,24 @@ authenticated/<runId> root, with guide-card-inspection-result.json and cleanup.j
 Remaining: native FR/reduced/Pause/replay and all affected Show/Return utilities,
 whole painted cursor/glyph/type checks, correlated product design, remaining
 curriculum/path targets, Mass Import and every older unfinished SM/human lot.
+
+## Native adjacent-action successor —10 October
+
+Initial run35752 times out locating Show below its former slide parent. No
+measurement, error or business call occurs; the immutable diagnostic is retained.
+Canonical syncInterfaceCue intentionally relocates that exact command into the
+shared cue slot. The successor selects the visible slot command only after
+current-slide commit; it does not relax sizing or alter any product asset.
+
+Native33812 passes six EN routes at1280/768/390 and twelve Show/Return action
+measurements:12.48px/600/30.390625px, no button horizontal overflow. Actual Show,
+Return and Close preserve current lesson and path completion. No fixtures,
+business calls or errors. Cleanup clears credentials, stops the owned child and
+releases the runtime lease. Both runs are manifested and explicitly protected
+by bounded dry-run retention; no deletion. No requested raster/human acceptance.
+Evidence: docs/testing/guide-docked-density-native-2026-10-10.json.
+
+Next content slice: verify actual Ctrl/Meta-click, Shift-click and native keyboard
+selection before modernizing the keyboard/method lessons. Existing click branches
+exclude buttons/links/inputs; modifier-assisted mouse selection must not be
+described as proven keyboard-only navigation. Preserve all old lesson/path IDs.
