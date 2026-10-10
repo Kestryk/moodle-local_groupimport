@@ -52,7 +52,13 @@ implementation. No historical Checklist progress recipe is repainted.
 Provider IDs: eae888bb-62c5-8040-8008-c4e4add20eb6 and
 eae888bb-62c5-8040-8008-c4e4ae238bfc. Exact source/Standard saved paint and
 geometry are checked by tools/penpot/read-saved-guide-progress-palette.cjs.
-Product correlated publication, native preview and human acceptance remain open.
+Product publication now passes saved readback for seven linked tracks across
+Student Guide desktop, phone and fullscreen examples. Original track/value
+elements are hidden, not deleted. Exact original positions and fractions remain;
+Checklist, storyboard and Mass Import tracks remain outside this bounded lot.
+Mobile creation board progress integration is raster-inspected; unrelated
+pre-existing clipped buttons are not certified by that check.
+Native preview and human acceptance remain open.
 
 Saved readback passes for all four roots, including linked component IDs,
 track/border/indicator paint and decoded4px geometry. Desktop and Mobile
@@ -60,3 +66,8 @@ Standard host rasters are inspected; file validation reports zero errors.
 The bounded source successor compares the complete emitted CSS with served
 Sourceb648214, allowing only the two track declarations, and confirms all
 native AMD/templates/PHP/language/Motion source remains unchanged.
+
+The local-supervised native scenario guide-progress-palette-native.spec.js
+is discovered as exactly one test. It checks actual configured semantic paint
+through desktop/tablet/phone/desktop resizing and three navigation destinations;
+unknown writes are denied. It does not Save settings or prove custom persistence.

@@ -54,7 +54,7 @@
       "acceptance": "Auditer le Guide actif Discovery et les usages conservés; couleur de barre/piste, tokens avant/après portail, défaut/personnalisé, navigation et responsive. Le Guide est maintenant détenu par cette fenêtre, contrairement à l'ancienne attribution historique.",
       "status": "in_progress",
       "sourceChanged": true,
-      "designPublished": false,
+      "designPublished": true,
       "previewServed": false,
       "nativeVerified": false,
       "humanAccepted": false
