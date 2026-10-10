@@ -78,5 +78,29 @@ vm.runInNewContext(source.slice(start,end)+'\nthis.closeUser=closeModal;',contex
     assert.deepEqual(events,['removed'],'Guide review never claims user Cancel');events.length=0;
     const cancel=context.closeUser();assert.deepEqual(events,[]);finish();await cancel;
     assert.deepEqual(events,['removed','group:cancel-editor'],'Cancel completes only after native exit');
-    console.log('PASS EN/FR: distinct editor paths, '+openerCases+' typed opener cases, exact native/CSS/Guide preservation and awaited Cancel/review semantics.');
+    const gateStart=source.indexOf("        if (request.target === 'tutorial:close-group-editor'");
+    const gateEnd=source.indexOf('        if (openTarget(request.target)) {',gateStart);
+    let gateCases=0;
+    for(const type of ['group','grouping'])for(const state of ['absent','same','foreign']){
+        const request={target:'tutorial:close-'+type+'-editor'};let nextFrame,finishExit;
+        const gateContext={request,root:{querySelector:()=>state==='absent'?null:{hidden:false,
+            getAttribute:()=>state==='same'?type:(type==='group'?'grouping':'group'),
+            easystudCloseEditor:()=>new Promise(resolve=>{finishExit=resolve;})}},
+            window:{requestAnimationFrame:callback=>{nextFrame=callback;}}};
+        vm.runInNewContext('(function(){'+source.slice(gateStart,gateEnd)+'})();',gateContext);
+        if(state==='same'){
+            await Promise.resolve();assert.equal(nextFrame,undefined,'Await native exit first');finishExit(true);
+        }
+        await Promise.resolve();await Promise.resolve();
+        if(state==='foreign'){
+            assert.equal(await request.ready,false);assert.equal(nextFrame,undefined);
+        }else{
+            assert.equal(typeof nextFrame,'function','Await a frame after originating click');
+            let ready=false;request.ready.then(()=>{ready=true;});await Promise.resolve();assert.equal(ready,false);
+            nextFrame();assert.equal(await request.ready,true);
+        }
+        gateCases++;
+    }
+    console.log('PASS EN/FR: distinct editor paths, '+openerCases+' typed opener cases, '+gateCases+
+        ' event/exit frame gates, exact native/CSS/Guide preservation and awaited Cancel/review semantics.');
 })().catch(error=>{console.error(error.message);process.exitCode=1;});

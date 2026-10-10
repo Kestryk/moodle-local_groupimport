@@ -5,13 +5,20 @@ Existing Source/Kit worktrees only. No general SM backlog item is lost or closed
 
 ## Verified latest state
 
-Local Moodle last verified at runtimede3eb6d serves compact editor access62ee50f
+Previous verified baseline runtimede3eb6d served compact editor access62ee50f
 and source-member path951f787,
 typed modal targets and stable mobile action proxies63e4d42, alongside the active twelve-slide
 curriculum and regular fullscreen glyphs c9c8cf9. EN and FR each pass36 native
 reading cases at three widths. Fullscreen native normal/reduced lifecycle and
 saved Foundations/product glyph relinks have separate scoped proof. Human
-acceptance and advanced-edit targets remain open; older evidence below is historical.
+acceptance remains open; editor-target successors and older evidence are scoped below.
+
+Latest bounded successor: runtime683dca4 serves3619c8f native editor inspection
+paths. Native46996 passes six EN normal-motion Group/Grouping cases at all
+three widths, including exact field/Cancel cues, review/reopen and user Cancel
+after exit. Both prior diagnostics remain historical; French/reduced workflow
+coverage and human acceptance are separate. The exact original Native/Kit
+styles, commands and Motion are retained.
 
 Shared Move dialog targets are qualified by native command context. Six
 isolated opener cases and exact baseline preservation pass. Native run7280
@@ -62,6 +69,17 @@ stable action proxies. This does not add or certify member/edit paths. See
    diagnostic is retained; a separate successor reviews the actual Cancel
    step before its normal button click, preserving strict paint/progress checks.
    French/reduced native variants are prepared, not yet certified.
+   Explicit-step successor46996 now passes all six EN normal-motion contexts
+   at1280/768/390 with strict target/paint/progress checks and no Save. Both
+   diagnostics remain retained. French/reduced successor is in progress.
+   Variant46040 passes all six French normal-motion and two English reduced
+   desktop cases, then exposes a missing initial compact reduced entry cue.
+   Four compact reduced cases remain open; preserve the failed spec and record
+   native event ordering before choosing an adapter or shared-engine correction.
+   Native probe10852 confirms the initial menu is closed by the original Start
+   click's document listener. A typed exit/next-frame gate now completes that
+   event before menu reveal;6 isolated frame cases and16 opener cases pass.
+   Shared Guide/Navigation/CSS/Motion remain unchanged; strict replay pending.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.

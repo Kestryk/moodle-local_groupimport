@@ -28,7 +28,7 @@ implementations are preserved. EN/FR copy explains that fields need not change.
 
 Desktop uses the real cog; compact layouts use the restored single-card menu
 entry. Workspace switching is avoided when the desktop structure view is
-already active. Existing selection, native form values and save code are not
+already active. Native selection rules, form values and save code are not
 changed by the inspection adapter.
 
 ## Verification boundaries
@@ -39,8 +39,8 @@ reconstruction against source9288b66 of unrelated native commands, existing
 language strings, reading/path definitions, CSS, Mustache and shared Guide AMD.
 
 `tools/release/test-guide-editor-inspection-layout.cjs` passes24 actual
-EN/FR invitation cases at1280/768/390 in normal/reduced motion. All eight title,
-description, four step labels and action text nodes are measured for paint
+EN/FR invitation cases at1280/768/390 in normal/reduced motion. All eight text
+nodes (kicker, title, description, four step labels and action) are measured for paint
 containment. This isolated rendering is not Moodle or human acceptance.
 
 AMD/map rebuilt with the official course-manager builder. PHP lint and JS
@@ -99,3 +99,37 @@ requires native Cancel highlight alignment and still-uncompleted state, then
 clicks Cancel normally. It does not hide/minimise the panel, force-click,
 change Motion or certify arbitrary non-current controls beneath a floating panel.
 The not-yet-run variants adopt the same explicit final-step navigation.
+
+## Served native review proof
+
+Native successor46996 passes all six EN normal-motion Group/Grouping cases
+at1280/768/390 on clean runtime683dca4 serving3619c8f. Actual entry, Name,
+Description and Cancel cues align within2px; real field focus completes the
+intended milestones. Prior first-step review awaits exit without completing
+Cancel; field review reopens the correct editor. The actual Cancel checklist
+row restores its cue, the native button is clicked normally, and completion
+follows removal. No Save, fixtures, errors or blocked calls. Credential/child/
+lease cleanup is complete; protected retention dry-run has zero candidates or
+deletions. Evidence: testing/guide-editor-inspection-review-native-2026-10-10.json.
+
+Both earlier diagnostics remain immutable. This proves guided-step navigation,
+not unrestricted access to every non-current control behind a floating panel.
+French/reduced variant run is a separate gate; human acceptance remains open.
+
+Variant46040 passes all six French normal-motion cases and both English reduced
+desktop cases, then fails the initial768 Group entry cue (hidden highlight,
+no current connected target). Four compact reduced cases are not certified.
+No errors, blocked calls, Save or fixtures; cleanup succeeds. Preserve the
+original variant spec and diagnostic, and inspect native event ordering before
+any correction. The bounded exploratory reduced diagnostic records only menu
+visibility and event/target flags, never user values or authentication state.
+
+Reduced native probe10852 confirms the exact ordering: Start capture, first
+typed preparation, card trigger/menu open, menu hidden, original Start bubble.
+The native outside-click listener closes the new menu before its cue resolves.
+The successor awaits the original editor exit and then the next animation frame
+in the typed first-step adapter. That frame finishes the originating click;
+it is not a timed delay or a Guide/Navigation Motion change. Foreign dialogs
+remain rejected. Six isolated exit/frame gates and16 typed opener cases pass,
+with exact preservation outside the inspection adapter; AMD/map rebuilt.
+Replay the unchanged12-case variant spec after ordered local promotion.

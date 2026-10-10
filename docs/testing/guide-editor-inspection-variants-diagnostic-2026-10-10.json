@@ -1,0 +1,127 @@
+{
+  "sourceCommit": "3619c8fd8d75a04b09e59a6ccf5046795e84512a",
+  "specCommit": "166cddcc10d8eca3c3d3cedbaebc141593c2113e",
+  "runtimeHead": "683dca4b5292688a530346f4dbe39e55df87c189",
+  "runId": "easystud-authenticated-20261010T130116122Z-46040",
+  "spec": "tools/playwright/guide-editor-inspection-variants-native.spec.js",
+  "exitCode": 1,
+  "rows": [
+    {
+      "language": "fr",
+      "motion": "no-preference",
+      "width": 1280,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "language": "fr",
+      "motion": "no-preference",
+      "width": 1280,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "language": "fr",
+      "motion": "no-preference",
+      "width": 768,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "language": "fr",
+      "motion": "no-preference",
+      "width": 768,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "language": "fr",
+      "motion": "no-preference",
+      "width": 390,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "language": "fr",
+      "motion": "no-preference",
+      "width": 390,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "language": "en",
+      "motion": "reduce",
+      "width": 1280,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "language": "en",
+      "motion": "reduce",
+      "width": 1280,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "diagnostic": {
+    "currentTargetConnected": false,
+    "context": null
+  },
+  "settingsSaved": false,
+  "fixtureRequested": false,
+  "failure": {
+    "language": "en",
+    "motion": "reduce",
+    "width": 768,
+    "type": "group",
+    "stage": "initial card editor entry highlight hidden"
+  },
+  "humanAcceptance": false,
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureCleanupComplete": true
+  },
+  "retention": {
+    "mode": "dry-run",
+    "protectedCount": 1,
+    "candidateCount": 0,
+    "deletedCount": 0
+  },
+  "boundary": "Six French normal-motion and two English reduced desktop cases pass; four compact reduced cases are not certified. Preserve this diagnostic and unchanged spec."
+}

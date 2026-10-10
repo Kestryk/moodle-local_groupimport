@@ -1,0 +1,95 @@
+{
+  "sourceCommit": "3619c8fd8d75a04b09e59a6ccf5046795e84512a",
+  "runtimeHead": "683dca4b5292688a530346f4dbe39e55df87c189",
+  "runId": "easystud-authenticated-20261010T130631204Z-10852",
+  "spec": "tools/playwright/guide-editor-inspection-reduced-diagnostic.spec.js",
+  "classification": "exploratory",
+  "exitCode": 1,
+  "language": "en",
+  "motion": "reduce",
+  "width": 768,
+  "type": "group",
+  "rows": [],
+  "errors": [],
+  "blocked": [],
+  "diagnostic": {
+    "currentTargetConnected": false,
+    "flow": [
+      {
+        "phase": "capture",
+        "target": null,
+        "start": true,
+        "card": false,
+        "menuHidden": true
+      },
+      {
+        "phase": "open-target",
+        "target": "tutorial:close-group-editor",
+        "start": false,
+        "card": false,
+        "menuHidden": true
+      },
+      {
+        "phase": "capture",
+        "target": null,
+        "start": false,
+        "card": false,
+        "menuHidden": true
+      },
+      {
+        "phase": "bubble",
+        "target": null,
+        "start": false,
+        "card": false,
+        "menuHidden": true
+      },
+      {
+        "phase": "capture",
+        "target": null,
+        "start": false,
+        "card": true,
+        "menuHidden": true
+      },
+      {
+        "phase": "open-target",
+        "target": "tutorial:group-editor-entry",
+        "start": false,
+        "card": false,
+        "menuHidden": false
+      },
+      {
+        "phase": "menu-visibility",
+        "target": null,
+        "start": false,
+        "card": false,
+        "menuHidden": false
+      },
+      {
+        "phase": "menu-visibility",
+        "target": null,
+        "start": false,
+        "card": false,
+        "menuHidden": true
+      },
+      {
+        "phase": "bubble",
+        "target": null,
+        "start": true,
+        "card": false,
+        "menuHidden": true
+      }
+    ],
+    "context": null
+  },
+  "settingsSaved": false,
+  "fixtureRequested": false,
+  "cleanup": {
+    "credentialsCleared": true,
+    "ownedChildStopped": true,
+    "leaseReleased": true,
+    "fixtureCleanupComplete": true
+  },
+  "humanAcceptance": false,
+  "cause": "The initial card menu opens before the original Start click reaches the native document outside-click listener; that listener closes the new menu.",
+  "successor": "Await actual editor exit then the next animation frame in the typed first-step adapter, without changing Guide/Navigation Motion or introducing a timed delay."
+}

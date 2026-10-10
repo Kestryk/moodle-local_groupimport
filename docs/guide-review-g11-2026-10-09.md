@@ -16,6 +16,13 @@ invitation layout cases pass; ordered preview/native proof is pending.
 See `guide-editor-inspection-paths-2026-10-10.md`. Canonical styles/Motion,
 twelve reading IDs, previous paths and postponed human checklist are preserved.
 
+Served successor46996 now passes six EN normal-motion Group/Grouping cases at
+1280/768/390 on runtime683dca4/source3619c8f. Native fields, focus milestones,
+prior review/reopen and explicit Cancel-step cue/button/exit are verified;
+no Save or course/fixture writes. Both earlier diagnostics are retained.
+French/reduced variants remain a separate in-progress gate. No new Kit design
+family; broader G11 and human acceptance remain distinct.
+
 ## Updated direction (overrides the earlier in-place content staging)
 
 Replace legacy slides with the modern style, add useful new lessons as needed.

@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Reduced-motion native exits can resolve during an originating Guide click.
+Before opening a compact card menu, await that exit and the next frame so its
+outside-click listener cannot close the just-opened target. Preserve event-order
+diagnostics and unchanged strict replay; no timed-delay or shared Motion patch.
+
 Native dialog guards respect aria-hidden as well as layout: a closed offcanvas
 drawer may retain a non-empty rect. Preserve genuinely active foreign dialogs,
 the failed native review evidence and the strict unchanged successor scenario;

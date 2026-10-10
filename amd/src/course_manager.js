@@ -8970,6 +8970,11 @@ const bindSharedGuideTargets = root => {
             request.ready = !modal || modal.hidden ? Promise.resolve(true) :
                 modal.getAttribute('data-easystud-editor-context') === type ?
                     modal.easystudCloseEditor?.() || Promise.resolve(false) : Promise.resolve(false);
+            // Finish the originating click before revealing a compact card menu.
+            // Reduced-motion exit can resolve inside that click's propagation;
+            // its native outside-click listener would otherwise close the new menu.
+            request.ready = Promise.resolve(request.ready).then(completed => completed === false ? false :
+                new Promise(resolve => window.requestAnimationFrame(() => resolve(true))));
             return;
         }
         if (openTarget(request.target)) {
