@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Compact checklist review uses its actual Restore control before accessing
+hidden steps. Preserve the immutable failed no-Restore scenario and use a
+separate native successor; do not disable compact reduction, force a hidden
+row or change product Motion to repair the test's missing user action.
+
 Source-member guidance is a distinct optional path, never an alias of global
 Participant assignment. Qualify modal targets by member context and complete
 the last milestone only after successful native movemembers. Review closes only

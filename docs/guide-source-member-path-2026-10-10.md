@@ -54,6 +54,26 @@ Shared registry submission/planning remains owned by the Platform window.
 Native/served proof and human acceptance remain separate. The last mutating
 milestone is source-guarded only until a separately authorized business exercise.
 French native workflow, reduced native workflow and advanced editing remain open.
+
+## Native review diagnostic
+
+Ordered preview applies6087be5/951f787; clean runtime374a206 serves the path.
+Run30312 passes the full selection/search/prior-review/Cancel route at1280/768.
+At390, selection, typed opening, search and confirmation highlights pass; the
+test then tries a hidden previous row while the compact checklist is reduced.
+The actual accessibility snapshot exposes Restore. Preserve the original spec
+and failed run, with zero page errors/blocked writes and complete credential,
+child and lease cleanup. The successor `guide-source-member-review-native.spec.js`
+uses that real Restore action before accessing previous steps; product assets,
+Motion and strict target assertions are unchanged.
+
+Successor run10124 passes1280/768/390 in EN normal motion: actual selection,
+typed modal, visible search/choice, exact destination and confirm highlights
+(<2px), Restore/prior review retaining selection, reopen and Cancel. Final
+transaction stays uncompleted. No page errors, blocked writes or fixtures;
+credential/child/lease cleanup succeeds. Retention dry-run protects the run
+with zero candidates/deletions. Proof:
+`testing/guide-source-member-targets-native-2026-10-10.json`.
 Older SM/Mass Import lots are retained. Rollback: remove this additive path,
 invitation, strings/adapter signals/openers and matching rebuilt AMD/map; do not
 reset user progress or the older paths. No runtime-data cleanup is required.
