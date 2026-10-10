@@ -678,7 +678,9 @@ const scheduleHighlightRefresh = (root, target, shouldDock = true) => {
     clearHighlight(root);
     return;
   }
-  root.easyeduGuideRefreshTarget = target || null;
+  // A targetless viewport refresh must not erase an explicit target queued
+  // by the current step before its first paint (notably after reduced scroll).
+  root.easyeduGuideRefreshTarget = target || root.easyeduGuideRefreshTarget || null;
   root.easyeduGuideRefreshShouldDock = shouldDock;
   if (root.easyeduGuideRefreshFrame) {
     return;

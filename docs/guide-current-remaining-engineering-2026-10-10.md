@@ -37,6 +37,10 @@ stable action proxies. This does not add or certify member/edit paths. See
    backups; unknown histories must not silently lose progress. Preserve existing
    path IDs/predicates and a discoverable entry for paths retained by the product.
    Selecting12 slides alone is not a completed replacement.
+   Current-source successor inventory at49b840d explicitly lists all12 reading
+   IDs, six invitations and the intentionally archived first-structure entry
+   in `guide-current-curriculum-coverage-2026-10-10.md`. The old inactive
+   content crosswalk remains historical, not today's activation status.
 2. **Modal member/edit targets.** The six-stage practice-membership selection/
    Move/destination/confirm has proof. Other member-selection/edit branches are
    not covered by that proof. Audit their actual targets, opening, prior-step
@@ -80,6 +84,12 @@ stable action proxies. This does not add or certify member/edit paths. See
    click's document listener. A typed exit/next-frame gate now completes that
    event before menu reveal;6 isolated frame cases and16 opener cases pass.
    Shared Guide/Navigation/CSS/Motion remain unchanged; strict replay pending.
+   Replay46592 still lacks a cue; probes46364/4116/18884 verify ready preparation
+   and an actually visible menu, but no current target. Actual frame-helper
+   isolation reproduces targetless viewport refresh erasing a pending target.
+   Canonical Kit successor now retains it while preserving replacement/removal
+   and every unrelated engine branch; deliberate source/embedded sync rebuilt.
+   No new design geometry, CSS or Motion. Native replay is a separate gate.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.
