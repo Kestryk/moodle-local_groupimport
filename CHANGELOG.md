@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Confirm unchanged Foundation activity dots4px/gap3px in eight saved triads;
+  reconcile two stale Guide triads with retained centres. Prepare native
+  illustration/pause/departure proof; served activation remains pending.
+
 - Prepare R10-28 equal grid lanes for activity dots, preserving bounce/playback
   timing and unrelated CSS. Record3px Penpot versus4px code discrepancy;
   Foundation reconciliation and preview activation remain pending.
