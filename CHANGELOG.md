@@ -2,6 +2,15 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Preserve native French/reduced diagnostic46040 and event-order probe10852.
+  Await the originating click's completion before revealing the compact editor
+  menu, using an exit/next-frame gate rather than timed delay or changed Motion.
+  Six isolated frame gates and16 opener cases pass; native replay pending.
+
+- Serve3619c8f editor inspection locally: strict native46996 passes both
+  contexts at1280/768/390, real focus milestones, review/reopen and explicit
+  Cancel-step navigation without Save. Preserve both historical diagnostics.
+
 - Retain native editor review8312 and add a strict explicit-Cancel-step
   successor, plus French/reduced-motion variants. No further product style,
   Motion or command change; native results and human review remain pending.

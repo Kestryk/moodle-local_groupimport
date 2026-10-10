@@ -1,0 +1,89 @@
+{
+  "sourceCommit": "3619c8fd8d75a04b09e59a6ccf5046795e84512a",
+  "specCommit": "166cddcc10d8eca3c3d3cedbaebc141593c2113e",
+  "runtimeHead": "683dca4b5292688a530346f4dbe39e55df87c189",
+  "promotionRecord": "preview-promotions/easystud/20261010T125356Z.json",
+  "runId": "easystud-authenticated-20261010T125831898Z-46996",
+  "spec": "tools/playwright/guide-editor-inspection-review-native.spec.js",
+  "language": "en",
+  "motion": "no-preference",
+  "exitCode": 0,
+  "rows": [
+    {
+      "width": 1280,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 1280,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 768,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 768,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 390,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 390,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "diagnostic": {
+    "currentTargetConnected": false,
+    "context": null
+  },
+  "settingsSaved": false,
+  "fixtureRequested": false,
+  "humanAcceptance": false,
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureCleanupComplete": true
+  },
+  "retention": {
+    "mode": "dry-run",
+    "protectedCount": 1,
+    "candidateCount": 0,
+    "deletedCount": 0
+  },
+  "boundary": "Explicit final-step navigation, no arbitrary non-current-control coverage, no Save/course confirmation, no French/reduced or full-scene proof."
+}
