@@ -1,9 +1,9 @@
-# R10-30: explicit demonstration entry, preparation only
+# R10-30: explicit demonstration entry, source activation
 
 User request: every timed illustration needs an explicit Start demonstration
 button before playback, with an In progress state. This is not the guided-path
-Start command and does not create course data. No implementation is activated
-by this document.
+Start command and does not create course data. Four timed consumer scenes now
+opt into the shared entry. Source activation is not a served-preview claim.
 
 ## Current source inventory
 
@@ -48,7 +48,39 @@ No forced hidden controls or course/settings writes in the native test.
 
 ## Current proof boundary
 
-Inventory is source-only. R10-28 native playing/pause proof is retained as the
-predecessor, not treated as proof of this unimplemented gate. The user has been
-asked to reconnect Foundations for the linked state catalogue. Existing preview
-continues serving the spacing successor while this lot is prepared.
+The common template/engine/SCSS and EN/FR labels are synchronized from the Kit.
+Four timed consumer scenes opt in; concepts and the creation exercise do not.
+Legacy templates without the optional Start control retain autoplay. Add/Move
+is idle mode selection, disabled during playback. Start replaces duplicate Replay;
+Reset, clock, Pause/Next, choreography, paths and native commands retain their roles.
+
+Reuse is Selection action / Small / Primary solid (not icon-only Core S):
+30.4px height, Inter600/12.48px, 5.6px icon gap. Entry invokes the existing mixin,
+with no inline template paint or consumer override.
+
+Foundations Desktop/Phone providers under EasyEdu / Guide Discovery /
+Demonstration entry: bc076afe-ee85-8033-8008-c51d158db93e and
+bc076afe-ee85-8033-8008-c51d15a8dcee. Library/Standards saved readback passes20
+linked controls. Guide copies7aaaed58-7fa9-80c8-8008-c51f3e500479 and
+7aaaed58-7fa9-80c8-8008-c51f3edd44a7 pass10. The reader also checks relative
+rows/insets and containment. Paired desktop/phone captures inspected in both files.
+
+External evidence: EasyEdu/artifacts/easystud/penpot/
+guide-demonstration-entry-20261010 under the local artifact root. Four
+*-contained.png captures are passing focused evidence. Earlier generic-label,
+clipped-parent and wrong-tab captures remain diagnostics, not proof. Owned9225
+manages switching; the user's other channel is untouched.
+
+Before activation,48 isolated cases passed: four scenes, EN/FR,1280/768/390,
+normal/reduced motion. Successor fixture now checks actual consumer opt-ins
+rather than injecting flags. Served/native and human acceptance remain pending.
+
+## Reusable integration lessons (R10-33)
+
+SDK text overrides can leave stale paint until native text layout refresh.
+Measure intrinsic button width afterward without changing source density.
+Append linked roots to the intended page rather than the previously selected
+board. Check child containment after moves. Select preserved editor tabs by
+actual inspector/selection, never unstable CDP order. Retain unknown edits and
+avoid broad pending Library updates. These are avoidable round trips; precise
+model/provider token costs are unavailable.

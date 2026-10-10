@@ -8,6 +8,16 @@ defined('MOODLE_INTERNAL') || die();
 
 /** Product-owned discovery content; illustrations never issue Moodle commands. */
 final class guide_discovery {
+    /** Opt-in timed illustration entry; not a native course or guided-path command. */
+    public static function demonstration_entry(): array {
+        return [
+            'manualstart' => true,
+            'startlabel' => get_string('discovery_demo_start', 'local_groupimport'),
+            'runninglabel' => get_string('discovery_demo_running', 'local_groupimport'),
+            'replaylabel' => get_string('discovery_demo_replay', 'local_groupimport'),
+        ];
+    }
+
     /** Historical IDs describe content, independently from its reading position. */
     public static function historical_slide_ids(): array {
         $ids = ['discovery-concepts', 'discovery-creation', 'discovery-membership', 'discovery-actions'];
@@ -98,6 +108,7 @@ final class guide_discovery {
             $scene['phases'][] = $item;
         }
         $scene['initiallabel'] = $scene['phases'][0]['label'];
+        $scene += self::demonstration_entry();
         return $scene;
     }
 
@@ -173,6 +184,9 @@ final class guide_discovery {
                 'replay' => get_string('discovery_replay', 'local_groupimport'),
                 'reset' => get_string('discovery_reset', 'local_groupimport'),
             ];
+            if (in_array($kind, ['membership', 'actions'], true)) {
+                $scene += self::demonstration_entry();
+            }
             foreach (['participant', 'group', 'grouping', 'pattern', 'preview', 'letters', 'syntax',
                 'invalid', 'add', 'move', 'cancel', 'destination', 'select', 'menu', 'confirm',
                 'resultadd', 'resultmove', 'resultactions', 'mobile', 'initial', 'kept', 'removed', 'added',

@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Add Start/In progress/Replay to four timed Guide demonstrations using compact
+  Kit buttons. Preserve creation, paths and scene timing; paired linked design
+  and48 isolated cases pass, native preview pending.
+
 - Serve the activity-dot grid successor and verify actual staggered playback,
   pause and departure at1280/768/390 without course/settings writes. Preserve
   bounce timings; native French/completion and human review remain separate.

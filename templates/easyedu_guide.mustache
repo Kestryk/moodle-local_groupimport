@@ -208,6 +208,11 @@
                             {{/creation}}{{/concepts}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
                                 <p class="easyedu-guide-scene__caption">{{caption}}</p>
+                                {{#manualstart}}
+                                <div class="easyedu-guide-scene__entry">
+                                    <button type="button" class="btn btn-primary easyedu-guide-scene__start" data-guide-scene-command="start" data-start-label="{{startlabel}}" data-running-label="{{runninglabel}}" data-replay-label="{{replaylabel}}" aria-busy="false"><span class="fa fa-arrow-right" aria-hidden="true"></span><span data-guide-start-label>{{startlabel}}</span></button>
+                                </div>
+                                {{/manualstart}}
                                 {{#concepts}}
                                 <div class="easyedu-guide-scene__concepts">
                                     <div><div class="easyedu-guide-scene__person"><span class="easyedu-guide-scene__identity fa fa-user" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong>Alex Dupont</strong><small>{{participanttitle}}</small></span></div><p>{{participantlabel}}</p><span class="easyedu-guide-scene__concept-arrow fa fa-arrow-right" aria-hidden="true"></span></div>
@@ -258,7 +263,7 @@
                                 </div>
                                 <section class="easyedu-guide-scene__recap" data-guide-recap hidden><strong>{{recaptitle}}</strong><ol class="easyedu-guide-scene__steps">{{#phases}}<li data-guide-phase="{{name}}"{{#compactlabel}} data-compact="{{compactlabel}}"{{/compactlabel}}>{{label}}</li>{{/phases}}</ol></section>
                                 <div class="easyedu-guide-scene__context"><p class="easyedu-guide-scene__result" data-guide-result data-inspection="{{resultlabel}}" aria-live="polite">{{initiallabel}}</p><p>{{note}}</p></div>
-                                <div class="easyedu-guide-scene__actions"><div class="easyedu-guide-scene__utilities"><button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button><button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button></div></div>
+                                <div class="easyedu-guide-scene__actions"><div class="easyedu-guide-scene__utilities">{{^manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button>{{/manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button></div></div>
                                 {{/inspection}}
                                 {{^inspection}}
                                 {{#membership}}<p class="easyedu-guide-scene__intro">{{note}}</p>{{/membership}}
@@ -315,7 +320,7 @@
                                     {{#membership}}<button type="button" class="btn btn-primary" data-guide-scene-command="add">{{addlabel}}</button>
                                     <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="move">{{comparemove}}</button>{{/membership}}
                                     <div class="easyedu-guide-scene__utilities">
-                                        <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button>
+                                        {{^manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button>{{/manualstart}}
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>
                                     </div>
                                 </div>

@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Timed Guide scenes opt into manual entry atomically with template/engine/data.
+Keep creation and guided paths distinct. Start is disabled while playing/paused;
+preserve clocks and legacy autoplay. Check host-relative containment and painted
+labels before activation; select preserved tabs by inspector, not CDP index.
+Isolated localized state proof is not served/native or human acceptance.
+
 Font-name search can return a nearby family such as Inter Tight. Verify exact
 family/id/variant/weight after application and in paired saved/raster readback;
 do not infer typography parity from font size or source link alone.

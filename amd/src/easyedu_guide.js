@@ -1275,7 +1275,7 @@ const renderDiscoveryNames = (root, scene, command) => {
   run().catch(() => { stopDiscoveryScene(root); });
 };
 
-const playDiscoveryScene = (root, scene, requestedMode) => {
+const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   stopDiscoveryScene(root);
   if (!scene) { return; }
   const kind = scene.getAttribute('data-easyedu-guide-scene');
@@ -1313,7 +1313,19 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   const pauseControl = live?.querySelector('[data-guide-playback="pause"]');
   const nextControl = live?.querySelector('[data-guide-playback="next-phase"]');
   const activity = live?.querySelector('[data-guide-activity]');
+  const startControl = scene.querySelector('[data-guide-scene-command="start"]');
   const syncPlayback = (state, advancing = false) => {
+    if (startControl) {
+      const busy = ['playing', 'paused'].includes(state);
+      startControl.disabled = busy;
+      startControl.setAttribute('aria-busy', String(busy));
+      startControl.querySelector('[data-guide-start-label]').textContent = busy ?
+        startControl.dataset.runningLabel : state === 'finished' ?
+          startControl.dataset.replayLabel : startControl.dataset.startLabel;
+      scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
+        button.disabled = busy;
+      });
+    }
     if (!live) { return; }
     live.dataset.guidePlaybackState = state;
     if (activity) { activity.hidden = !['playing', 'paused'].includes(state); }
@@ -1345,7 +1357,14 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
     if (!item.dataset.original) { item.dataset.original = item.textContent; }
     item.textContent = item.dataset.original;
   });
-  if (mode === 'reset') { return; }
+  const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
+  scene.toggleAttribute('data-guide-mobile-actions', compact);
+  if (kind === 'inspection') {
+    stage.querySelector('[data-guide-inspection-trigger]').hidden = compact;
+    const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
+    if (compactTrigger) { compactTrigger.hidden = !compact; }
+  }
+  if (mode === 'reset' || !start) { return; }
 
   const controller = new AbortController();
   const animations = new Set();
@@ -1360,8 +1379,6 @@ const playDiscoveryScene = (root, scene, requestedMode) => {
   const gates = new Set();
   let dropFrame = null;
   const reduced = getScrollBehavior(root) === 'auto';
-  const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
-  scene.toggleAttribute('data-guide-mobile-actions', compact);
   // Reading, illustration and scroll share one lifecycle. Pause retains the
   // unread duration; phase advance drains just this phase's presentation work.
   const releaseGates = () => { gates.forEach(resolve => resolve()); gates.clear(); };
@@ -1908,7 +1925,8 @@ const applyActiveSlide = (root, index, config, options = {}) => {
   stopDiscoveryScene(root);
   const modal = root.querySelector(SELECTORS.modal);
   if (modal && !modal.hidden) {
-    playDiscoveryScene(root, slides[safeIndex]?.querySelector('[data-easyedu-guide-scene]'));
+    const scene = slides[safeIndex]?.querySelector('[data-easyedu-guide-scene]');
+    playDiscoveryScene(root, scene, undefined, !scene?.querySelector('[data-guide-scene-command="start"]'));
   }
   scrollActiveNavItemIntoView(root);
   setTrackedTimeout(root, () => updateNavScrollButtons(root), 80);
@@ -2666,12 +2684,18 @@ const bindGuide = (root, config) => {
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
     if (sceneCommand && root.contains(sceneCommand)) {
       event.preventDefault();
+      if (sceneCommand.disabled) { return; }
       const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
+      if (scene.querySelector('[data-guide-scene-command="start"]') && event.detail > 1) { return; }
       const command = sceneCommand.getAttribute('data-guide-scene-command');
       if (['preview', 'letters', 'clear'].includes(command)) {
         renderDiscoveryNames(root, scene, command);
       } else {
-        playDiscoveryScene(root, scene, command === 'replay' ? undefined : command);
+        const manual = !!scene.querySelector('[data-guide-scene-command="start"]');
+        const mode = ['replay', 'start'].includes(command) ? undefined : command;
+        // Manual mode choices restore a ready illustration; only Start runs it.
+        // Legacy templates keep their existing explicit command behavior.
+        playDiscoveryScene(root, scene, mode, !manual || !['add', 'move'].includes(command));
       }
       return;
     }
