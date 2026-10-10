@@ -33,6 +33,15 @@ Foundations, with canonical Kit lineage. Existing boards remain recoverable.
 
 ## Human acceptance
 
+10 October scoped G11-E successor: source-member path951f787 passes native
+selection/search/highlights/prior-review/Cancel at1280/768/390 (run10124).
+Advanced editor inventory44372 identifies four missing compact entries.
+Source62ee50f restores only their native single-entity menu access; runtime
+de3eb6d/run41824 passes all six current-width editor entries, readonly lists,
+fields and Cancel/focus. This is not advanced-field Guide-step integration,
+real transfer/Save completion, full G11 closure or human acceptance. See current
+remaining-engineering ledger and versioned source-member/editor proof records.
+
 User accepted other checklist items on9 October. Retain historical native /
 isolated / design limits honestly; this acceptance does not implement pending
 inspection scenes, curriculum rewrite, new paths or separate Mass Import guide.

@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve62ee50f locally: both native editors are reachable at1280/768/390;
+  readonly lists, original fields, Cancel and focus return pass without Save.
+  Preserve the cold-navigation diagnostic and unchanged strict widget gates;
+  field-specific Guide steps and human acceptance remain open.
+
 - Restore compact Group editor menu access when the desktop cog is hidden;
   add the same single-entity fallback for Grouping and return focus to its real
   trigger. Preserve native editor persistence, palette and Motion. Native
