@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "79a46646635970481842fe287f3bd7276701e3e4",
+  "runtimeCommit": "762ce18b49d7fee37ae8e454d6821e3d0841333c",
+  "previewRecord": "preview-promotions/easystud/20261010T085435Z.json",
+  "runId": "easystud-authenticated-20261010T085454087Z-5216",
+  "scenario": "guide-active-curriculum-native.spec.js",
+  "classification": "local-supervised",
+  "status": "passed",
+  "language": "en",
+  "widths": [1280, 768, 390],
+  "slidesPerWidth": 12,
+  "cases": 36,
+  "paintedExplanationNodes": 284,
+  "allMeasuredNodesContained": true,
+  "readingPresentationKey": "curriculum-modern-20261010",
+  "invitations": ["practice-membership", "try-actions", "create-grouping"],
+  "completedPathsPreserved": true,
+  "pageErrors": [],
+  "blockedBusinessCalls": [],
+  "businessWrites": false,
+  "fixtureWrites": false,
+  "cleanup": {"credentialsCleared": true, "ownedChildStopped": true, "leaseReleased": true},
+  "retention": {"mode": "dry-run", "protected": 1, "candidates": 0, "deleted": 0},
+  "isolatedProof": {"historicalReadingPositions": 136, "enFrLayoutCases": 144},
+  "limitations": [
+    "Native English only; French containment is isolated-renderer proof.",
+    "Explanation bounds do not certify every scene glyph, cursor or fullscreen paint.",
+    "Optional paths were inspected as entry controls, not executed as course operations.",
+    "Other member/edit modal targets and fullscreen glyph remain separate open engineering lots.",
+    "Human acceptance is still postponed."
+  ]
+}
