@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Register33 deduplicated10 October user requests as distinct owned review
+  lots; prioritize Guide palette/tooltips/introduction/titles/dots/manual demo
+  start and retain older SM/admin/import/loading requests and human checklist.
+  Begin source-only progress-palette audit; no runtime or visual change claimed.
+
 - Complete same-runtime editor regression27880: six English normal-motion
   cases pass alongside7260's twelve French-normal/English-reduced cases.
   Record18 scoped native passes,24 invitation layouts and exact canonical

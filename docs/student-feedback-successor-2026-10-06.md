@@ -1,5 +1,12 @@
 # EasyStud feedback successor - 6 October 2026
 
+Latest additive user review: `student-feedback-successor-2026-10-10.md`
+records33 distinct requests, reopens SM-59..73 user-facing review without
+discarding their evidence, and adds loading/mobile/control/Guide/method lots.
+Guide is now owned by this implementation window after the explicit handoff;
+the older separate-owner notes below remain historical. The10 October Guide
+priority overrides queue order, not prior acceptance or unfinished requirements.
+
 User requested the full lots checkpoint before Guide takeover:
 `lots-before-guide-handoff-2026-10-06.md`. All earlier requirements and human
 gates are retained. Guide artefact handoff is now intake for this Source/Kit

@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+The10 October additive review is retained in student-feedback-successor-2026-10-10:
+one traceable lot per distinct request, repeated wording merged with full scope,
+previous proof retained and renewed user reports reopened. Prioritize Guide
+changes and shared prerequisites; update source/design/served/native/human gates
+separately. Record the reusable transposition method continuously for future CCB
+without modifying that consumer now. Local Skeleton readiness follows real
+component lifecycle, not invented delay or automatic global page replacement.
+
 Targetless Guide viewport refreshes retain an explicit queued target until its
 first paint. Preserve explicit replacement and disconnected-target clearing;
 test the actual frame queue and baseline failure before native integration.

@@ -3,6 +3,24 @@
 This is an implementation ledger, not the postponed human validation checklist.
 Existing Source/Kit worktrees only. No general SM backlog item is lost or closed.
 
+## User review priority override - 10 October
+
+New additive review records33 distinct requests in
+`student-feedback-successor-2026-10-10.md` and its machine-readable intake.
+Guide requests precede the remaining coverage gates below: R10-01 Guide
+portals/R10-03 progress palette, R10-32 shared tooltip prerequisite, R10-29
+first-slide composition, R10-31 slide-title hierarchy, R10-28 dot spacing,
+R10-30 explicit demonstration start/In progress. R10-33 records reusable rules
+continuously. Other new SM/import/admin/loading requests remain queued after
+Guide, alongside every older unfinished requirement. Historical technical PASS
+does not close a renewed user report or the postponed human checklist.
+
+Current first safe step is R10-03 source-to-portal palette audit; source proves
+Discovery uses the shared accent token, not that the actual saved palette paints
+correctly in Moodle. No settings Save, runtime mutation or new visual publication
+is claimed by this registration. Source-member FR/reduced/scenes/welcome/reset
+gates remain required after these newly prioritized Guide changes.
+
 ## Verified latest state
 
 Previous verified baseline runtimede3eb6d served compact editor access62ee50f
