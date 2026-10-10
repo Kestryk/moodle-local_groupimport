@@ -1,0 +1,230 @@
+{
+  "sourceCommit": "62ee50fb78dc55c4f6130700eb3ac9e2637d264f",
+  "runtimeHead": "de3eb6d88c036c80bec39202ee98cd41d71fc4f7",
+  "promotionRecord": "preview-promotions/easystud/20261010T113339Z.json",
+  "runId": "easystud-authenticated-20261010T113523997Z-41824",
+  "spec": "tools/playwright/guide-advanced-edit-readiness-native.spec.js",
+  "language": "en",
+  "motion": "no-preference",
+  "exitCode": 0,
+  "humanAcceptance": false,
+  "rows": [
+    {
+      "width": 1280,
+      "kind": "group",
+      "entryAvailable": true,
+      "entry": "direct",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    },
+    {
+      "width": 1280,
+      "kind": "grouping",
+      "entryAvailable": true,
+      "entry": "direct",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    },
+    {
+      "width": 768,
+      "kind": "group",
+      "entryAvailable": true,
+      "entry": "context-menu",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    },
+    {
+      "width": 768,
+      "kind": "grouping",
+      "entryAvailable": true,
+      "entry": "context-menu",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    },
+    {
+      "width": 390,
+      "kind": "group",
+      "entryAvailable": true,
+      "entry": "context-menu",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    },
+    {
+      "width": 390,
+      "kind": "grouping",
+      "entryAvailable": true,
+      "entry": "context-menu",
+      "fields": [
+        {
+          "name": "name",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "idnumber",
+          "tag": "INPUT",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        },
+        {
+          "name": "description",
+          "tag": "TEXTAREA",
+          "fontFamily": "\"EasyEdu Inter\", Inter, sans-serif",
+          "fontSize": "13.76px"
+        }
+      ],
+      "nativeTargetSelectors": {
+        "name": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"name\"]",
+        "description": "[data-easystud-advanced-settings-modal]:has([name=\"groupingid\"]) [name=\"description\"]"
+      },
+      "readOnlyListsVerified": true,
+      "cancelRemovesDialog": true,
+      "focusReturns": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "fixtureRequested": false,
+  "settingsSaved": false,
+  "scope": "Actual current-width entry and open/read-only disclosure/Cancel inventory; no Guide target or path completion claim.",
+  "cleanup": {
+    "schemaVersion": 1,
+    "runId": "easystud-authenticated-20261010T113523997Z-41824",
+    "credentialsCleared": true,
+    "leaseAcquired": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureRequested": false,
+    "fixtureSetupCompleted": false,
+    "fixtureCleanupComplete": true,
+    "fixtureCleanupError": null,
+    "profileExternal": true
+  },
+  "preservedNavigationFailure": "easystud-authenticated-20261010T113350026Z-29996"
+}

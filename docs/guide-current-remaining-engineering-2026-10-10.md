@@ -5,7 +5,8 @@ Existing Source/Kit worktrees only. No general SM backlog item is lost or closed
 
 ## Verified latest state
 
-Local Moodle last verified at runtime374a206 serves source-member path951f787,
+Local Moodle last verified at runtimede3eb6d serves compact editor access62ee50f
+and source-member path951f787,
 typed modal targets and stable mobile action proxies63e4d42, alongside the active twelve-slide
 curriculum and regular fullscreen glyphs c9c8cf9. EN and FR each pass36 native
 reading cases at three widths. Fullscreen native normal/reduced lifecycle and
@@ -41,8 +42,10 @@ stable action proxies. This does not add or certify member/edit paths. See
    See `guide-source-member-path-2026-10-10.md`.
    Native advanced editor inventory44372 confirms desktop fields/Cancel but
    four compact entries are absent. Bounded single-entity menu fallback is
-   implemented with15 isolated guard/preservation cases; served successor is
-   pending. See `guide-advanced-edit-inventory-2026-10-10.md`. This is access
+   implemented with15 isolated guard/preservation cases. Served successor41824
+   passes all six real current-width entries, fields/lists and Cancel/focus;
+   navigation-only diagnostic29996 is preserved. See
+   `guide-advanced-edit-inventory-2026-10-10.md`. This is access
    correction, not implemented advanced-field Guide steps or human acceptance.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
