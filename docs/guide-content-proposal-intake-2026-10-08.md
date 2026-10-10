@@ -444,3 +444,19 @@ Isolated EN/FR width/Motion and native open/read/Close gates stay separate.
 Native scenario is local-supervised, denies business writes and needs no fixture.
 Human checklist, other G11/SM lots and explicit curriculum migration remain open.
 Next: isolated containment, ordered preview and native recap text/pill proof.
+
+## Key points served-native proof - 10 October
+
+Ordered preview applies06ab362 documentary predecessor and30f0d85 recap to clean
+runtime322e352, cache purge PASS. Native45072 passes three EN widths1280/768/390:
+12 painted text nodes per case (intro paragraph, three topic titles/descriptions,
+note, four recap pills) contained. Actual Close preserves path completion; no
+errors, blocked business requests, course writes or fixtures. Credentials/child/
+lease cleanup complete; manifest and protected retention dry-run no deletion.
+Evidence: testing/guide-recap-native-2026-10-10.json. Twelve isolated EN/FR
+normal/reduced actual-production-branch cases, PHP/source guards and68 offline
+migration positions PASS. No generated CSS/AMD/template or Kit change required.
+AI shared-recipe contract already applies. Whole glyph/type/raster, native FR,
+other G11/SM/Mass Import lots and human acceptance remain open, not closed by
+these numeric checks. Next: Common mistakes reading composition, preserving
+its warning pills and stable lesson/path identity; curriculum dedup stays separate.
