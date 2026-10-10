@@ -2,6 +2,8 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Preserve the initial adjacent-action diagnostic and add its docked-command
+  locator successor; no product asset change or relaxed Small-density oracle.
 - Add a separate bounded native Small Show/Return density and lifecycle check;
   preserve the completed inspection scenario and its recorded asset pin.
 - Publish the ordered inspection prerequisites and activation to local Moodle5.1,
