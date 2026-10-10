@@ -30,6 +30,13 @@ Show/Return actions at the same three widths in both card lessons. It uses
 the real view/open callback and waits for the visible Return action, preserving
 path completion. Local-supervised presentation only, business writes denied;
 native geometry results must be recorded separately from the scene lifecycle.
+
+The initial adjacent-density run35752 fails before any measurement: the Show
+command is intentionally relocated into the shared interface-cue row. Its
+slide-descendant locator waits180s; no product error or business request occurs.
+Keep that spec and result unchanged. guide-docked-density-native.spec.js is
+the bounded successor, resolving the real docked command after current-slide
+commit. No product Motion, styles or geometry assertion is relaxed.
 Diagnostic source stays immutable. Local DOM input in the recognition successor
 is cleared before Cancel; no Add/Move/Save/fixture command is used. Both plugin
 POST and non-read Moodle AJAX are guarded in that successor.
