@@ -27,3 +27,27 @@ checking the active/paused Foundation Reading banner source and paired copies.
 Waiting for requested Foundations connection. Next is exact source/Standard
 dot inventory and reconciliation, product propagation, then native pause/
 completion/spacing proof. Human checklist and all other Guide lots remain open.
+
+## Foundation source resolution
+
+Foundations is reconnected. The four Active/Paused Desktop/Phone providers
+already have4px dots and3px gaps. No source redesign or timing change is needed.
+The3px discrepancy is on the retained product copies only. Source roots:
+4ee6f77a-1dfb-809b-8008-c1ed889a5627 /c1ed88b6c44a and
+e764db89-4cb1-80d0-8008-c25a8178bef6 /c25a819ee4bb.
+The candidate's12 playing/paused/reduced/disabled cases pass at three widths,
+sampling seven animation phases with unchanged timings. Source preservation
+gate passes. Paired saved publication and product/native proof remain separate.
+
+The eight source/Standard triads pass read-saved-guide-activity-dots.cjs:
+three4px circles with3px gaps, no Foundation source edit. Guide board72's two
+owned stale triads are corrected to the same recipe, preserving each triad's
+centre and vertical centre. No unrelated children or banner size is changed.
+Native candidate guide-activity-dots-native.spec.js selects one test, samples
+the real Add illustration while playing, pauses through its native control,
+and checks departure cleanup. Product saved readback passes for both owned
+triads. The desktop editor raster was inspected: three evenly spaced circles
+remain on the reading line, with the existing controls and banner preserved.
+Evidence is external and manifested under guide-activity-dots-20261010.
+This scoped raster is not a whole-page or mobile visual certification.
+Served-native playback/pause proof remains pending.
