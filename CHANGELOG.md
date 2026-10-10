@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Verify corrected Guide Light tooltips in native Moodle at three widths:
+  exact Short paint, hover/keyboard and compact portal, no business/settings
+  writes and complete cleanup. Long/fullscreen proof remains isolated; other
+  plugin help and human acceptance stay open.
+
 - Preserve first served Light-tooltip run: native paint/portal pass, compact
   keyboard persistence fails. Prepare cancellable navigation-scroll re-anchor
   in the shared controller without changing Guide Motion or native assertions.

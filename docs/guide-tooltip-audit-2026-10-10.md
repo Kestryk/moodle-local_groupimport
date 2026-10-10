@@ -1,5 +1,22 @@
 # Guide tooltip audit and non-visual extraction - R10-32
 
+## Verified served successor
+
+The corrected Source060b533 / Kit241e5d2 is served at runtimebc9d908.
+The unchanged native spec passes in run24004
+(easystud-authenticated-20261010T183207600Z-24004): actual truncated
+"Read a participant card" at1280/768/390px has exact Light Short pale paint,
+radius/type, contained geometry, hover and real Tab entry/focusout. Compact
+portal inheritance passes at768/390. Closing removes all bubbles. No page
+errors or blocked writes; no course/settings writes. Credentials cleared,
+lease released, owned child stopped; retention dry run deletes nothing.
+
+Evidence is guide-light-tooltips-native-2026-10-10.json. Keep run36128 as
+the failed keyboard predecessor. Long paint, FR, fullscreen and teardown
+have isolated fixture evidence, not equivalent native Moodle proof. Actual
+touch-device UX and all other plugin help remain open. R10-32 stays in progress
+and humanAccepted=false; advance safe Guide work to R10-31 title hierarchy.
+
 ## Shared Guide integration successor
 
 First managed preview applied the complete owned predecessor chain through

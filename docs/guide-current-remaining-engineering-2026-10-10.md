@@ -60,6 +60,12 @@ First served tooltip run36128 fails compact keyboard persistence after confirmin
 actual1280/768 pale paint and compact portal. Cleanup is complete. A bounded
 shared navigation-scroll re-anchor successor is prepared; preserve the failed
 native spec/run and require fresh proof before advancing to titles/dots.
+That successor now passes unchanged native spec in run24004 at1280/768/390:
+Light Short paint, keyboard persistence and compact portal, complete cleanup,
+no course/settings writes. Source060b533 / Kit241e5d2 / runtimebc9d908 are
+pinned in guide-light-tooltips-native-2026-10-10.json. Long/FR/fullscreen are
+isolated-only; general help and human acceptance stay open. Next Guide lot is
+R10-31 title hierarchy, followed by R10-28 dots and R10-30 manual demo start.
 
 R10-32 now has a bounded audit and non-visual long-copy recipe extraction in
 guide-tooltip-audit-2026-10-10.md. Complete compiled CSS remains identical and
