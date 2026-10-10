@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Common mistakescfb2c1e served locally with cache purge; three native EN widths
+  pass33 painted paragraph/topic/note/warning-pill nodes and completion retention.
+  Twelve isolated EN/FR width/Motion cases pass. No course/fixture writes or
+  generated asset changes; native FR/raster/human acceptance remain separate.
 - Modernize Common mistakes through the existing shared reading recipe:
   group-level hierarchy, contextual Move semantics and separate Moodle activity
   settings. Keep original three warning pills,24 lessons, actions, progression,
