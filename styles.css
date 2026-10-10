@@ -13222,6 +13222,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   min-block-size: 4rem;
   padding: 0.75rem 1.25rem;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__header.easyedu-dialog-header-palette--primary,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__header.easyedu-dialog-header-palette--primary {
+  background: var(--easyedu-dialog-palette-primary-header, var(--easyedu-dialog-palette-base, var(--easyedu-modal-header-bg)));
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__close,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__close {
   align-items: center;

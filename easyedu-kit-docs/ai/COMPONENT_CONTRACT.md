@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Discovery explicitly consumes the canonical primary dialog-header paint mixin.
+No portalled easyedu-ui reset, legacy/destructive repaint or extra gradient.
+Keep default geometry/Motion; isolated colour fixtures and native settings
+persistence remain separate gates.
+
 Discovery reading progression shares accent/soft-track/derived-border roles.
 Keep the actual product portal token relay and existing width Motion/density.
 Palette/helper fixture proof is not live admin persistence or native configured

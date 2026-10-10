@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Discovery custom header paint reuses the canonical dialog-palette mixin and
+explicit primary-header class; never reset a portalled Guide with easyedu-ui.
+Preserve default paint, geometry, Motion and the existing token relay. Isolated
+custom-palette cases do not certify persisted admin settings or native Moodle.
+
 The existing Group/Grouping card lessons now opt into the synchronized inspection
 recipe. Preserve Participant's static illustration and the complete lesson/target/
 opener/progression baseline. The isolated fixture executes only that bounded
