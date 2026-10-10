@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare R10-31 Discovery slide-title hierarchy using existing section-title
+  type and secondary text colour.144 isolated localized title readings and full
+  unrelated source/CSS preservation pass; Foundation title raster inspected.
+  Product propagation and served-native title proof remain pending.
+
 - Verify corrected Guide Light tooltips in native Moodle at three widths:
   exact Short paint, hover/keyboard and compact portal, no business/settings
   writes and complete cleanup. Long/fullscreen proof remains isolated; other

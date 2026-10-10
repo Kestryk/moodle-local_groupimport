@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+Font-name search can return a nearby family such as Inter Tight. Verify exact
+family/id/variant/weight after application and in paired saved/raster readback;
+do not infer typography parity from font size or source link alone.
+
 Keyboard navigation can scroll after focusin. Keep its label tooltip anchored
 through that navigation-only scroll and cancel queued frames on teardown;
 do not drop focus help or change existing Guide Motion to obtain a native PASS.
