@@ -2,6 +2,15 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare R10-03 canonical Discovery progression-track palette candidate;
+ 24 isolated default/custom/restored paints pass before/after the exact portal
+  helper, preserving geometry/Motion. Foundation/native publication pending.
+
+- Serve R10-29 common explanation recomposition locally after ordered
+  prerequisites;72 native EN/FR slide readings pass at three widths with no
+  course writes. Retain isolated120-case and saved16-root evidence separately;
+  human visual review and remaining Guide lots stay open.
+
 - Recompose all ten common Guide explanations through the canonical Kit layout:
   one spaced topic row, separate desktop specimen lane and mobile stacking.
   Rebuild with the established Sass toolchain;120 isolated localized layout

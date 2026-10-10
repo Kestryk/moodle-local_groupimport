@@ -53,7 +53,7 @@
       "request": "La barre de progression du Guide doit suivre les couleurs administrées.",
       "acceptance": "Auditer le Guide actif Discovery et les usages conservés; couleur de barre/piste, tokens avant/après portail, défaut/personnalisé, navigation et responsive. Le Guide est maintenant détenu par cette fenêtre, contrairement à l'ancienne attribution historique.",
       "status": "in_progress",
-      "sourceChanged": false,
+      "sourceChanged": true,
       "designPublished": false,
       "previewServed": false,
       "nativeVerified": false,
@@ -417,10 +417,10 @@
       "request": "La première slide de fonctionnement est brouillonne; réorganiser les représentations et le texte pour une page aérée et harmonieuse. Clarification utilisateur : appliquer cette recomposition à toutes les autres slides du même design, en aérant l'ensemble de cette famille.",
       "acceptance": "Rendu Penpot + preview desktop/tablette/mobile: pillule de nav, parcours/checklist/surbrillance intégrés en zones lisibles; appliquer aux slides analogues. Conserver identité/état, Overview accepté et absence d'exercice de groupe sur cette introduction.",
       "status": "in_progress",
-      "sourceChanged": false,
-      "designPublished": false,
-      "previewServed": false,
-      "nativeVerified": false,
+      "sourceChanged": true,
+      "designPublished": true,
+      "previewServed": true,
+      "nativeVerified": true,
       "humanAccepted": false
     },
     {

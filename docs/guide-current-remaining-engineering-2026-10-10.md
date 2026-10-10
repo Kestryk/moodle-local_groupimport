@@ -22,11 +22,14 @@ continuously. Other new SM/import/admin/loading requests remain queued after
 Guide, alongside every older unfinished requirement. Historical technical PASS
 does not close a renewed user report or the postponed human checklist.
 
-Current first safe step is R10-29 preview promotion and native reading checks,
-after saved Foundations/product row geometry and120 isolated current-consumer
-layout cases passed. Preserve the distinct Standard/main text-height review;
-do not infer full visual parity from saved root geometry. R10-03 remains queued
-next. Its source-to-portal palette audit proves
+R10-29 is now served at runtimec0200bc:72 native EN/FR twelve-slide readings
+pass at three widths, separately from120 isolated normal/reduced layouts and
+16 saved design roots. Preserve the distinct Standard/main text-height review
+and open human checklist; source/native success is not full design acceptance.
+Current safe step is R10-03 palette publication: its canonical Discovery track
+candidate passes24 isolated default/custom/restored palette paints using the
+actual product portal helper. Foundations source alignment and native palette
+proof remain pending. Its source-to-portal audit also proves
 Discovery uses the shared accent token, not that the actual saved palette paints
 correctly in Moodle. No settings Save, runtime mutation or new visual publication
 is claimed by this registration. Source-member FR/reduced/scenes/welcome/reset

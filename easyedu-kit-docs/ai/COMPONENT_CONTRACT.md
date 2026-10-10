@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Discovery reading progression shares accent/soft-track/derived-border roles.
+Keep the actual product portal token relay and existing width Motion/density.
+Palette/helper fixture proof is not live admin persistence or native configured
+paint; do not Save/reset settings merely to manufacture visual evidence.
+
 Common Guide explanations use one spaced concept row. Plain desktop separates
 label/copy; compositions with examples keep copy in a shared reading lane and
 read-only specimens beside it. Compact layouts stack them. Count and measure
