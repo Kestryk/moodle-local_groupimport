@@ -12630,6 +12630,72 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   --easyedu-guide-target-hover-border: var(--easyedu-primary);
   --easyedu-guide-target-hover-color: var(--easyedu-primary);
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip {
+  background: radial-gradient(circle at 1.2rem 0.6rem, var(--easyedu-tooltip-glow), transparent 5.5rem), var(--easyedu-tooltip-bg);
+  border: 1px solid var(--easyedu-tooltip-border);
+  border-radius: 0.64rem;
+  box-shadow: var(--easyedu-tooltip-shadow);
+  color: var(--easyedu-tooltip-text);
+  font-size: 0.74rem;
+  font-weight: 680;
+  line-height: 1.2;
+  max-width: 14rem;
+  padding: 0.34rem 0.46rem;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-weight: 700;
+  line-height: 1.35;
+  min-height: 2.125rem;
+  text-align: center;
+  max-width: min(14rem, 100vw - 1.5rem);
+  pointer-events: none;
+  position: fixed;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  z-index: 2;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip.is-multiline,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip.is-multiline {
+  background: radial-gradient(circle at 1.2rem 0.6rem, var(--easyedu-tooltip-glow), transparent 5.5rem), var(--easyedu-tooltip-bg);
+  border: 1px solid var(--easyedu-tooltip-border);
+  border-radius: 0.64rem;
+  box-shadow: var(--easyedu-tooltip-shadow);
+  color: var(--easyedu-tooltip-text);
+  font-size: 0.76rem;
+  font-weight: 560;
+  line-height: 1.35;
+  max-width: 19rem;
+  padding: 0.48rem 0.58rem;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-weight: 600;
+  line-height: 1.35;
+  min-height: 4rem;
+  text-align: left;
+  max-width: min(19rem, 100vw - 1.5rem);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip::before,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip::before {
+  background: var(--easyedu-tooltip-bg);
+  border-inline-start: 1px solid var(--easyedu-tooltip-border);
+  border-block-start: 1px solid var(--easyedu-tooltip-border);
+  content: "";
+  height: 0.5rem;
+  left: var(--easyedu-tooltip-anchor);
+  position: absolute;
+  top: -0.25rem;
+  transform: translateX(-50%) rotate(45deg);
+  width: 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip.is-above::before,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-label-tooltip.is-above::before {
+  bottom: -0.25rem;
+  top: auto;
+  transform: translateX(-50%) rotate(225deg);
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal {
   align-items: center;

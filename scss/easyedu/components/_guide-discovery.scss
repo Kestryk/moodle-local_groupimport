@@ -12,6 +12,7 @@
 @use "menus";
 @use "feedback";
 @use "forms";
+@use "tooltips";
 
 // A teaching scene composes real card primitives, not a separate visual family.
 @mixin discovery-card($identity) {
@@ -38,6 +39,40 @@
 }
 
 @mixin guide-discovery-shell {
+  .easyedu-guide-label-tooltip {
+    @include tooltips.foundation-light-tooltip;
+    max-width: min(14rem, calc(100vw - 1.5rem));
+    pointer-events: none;
+    position: fixed;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    z-index: 2;
+
+    &.is-multiline {
+      @include tooltips.foundation-light-tooltip(true);
+      max-width: min(19rem, calc(100vw - 1.5rem));
+    }
+
+    &::before {
+      background: var(--easyedu-tooltip-bg);
+      border-inline-start: 1px solid var(--easyedu-tooltip-border);
+      border-block-start: 1px solid var(--easyedu-tooltip-border);
+      content: "";
+      height: 0.5rem;
+      left: var(--easyedu-tooltip-anchor);
+      position: absolute;
+      top: -0.25rem;
+      transform: translateX(-50%) rotate(45deg);
+      width: 0.5rem;
+    }
+
+    &.is-above::before {
+      bottom: -0.25rem;
+      top: auto;
+      transform: translateX(-50%) rotate(225deg);
+    }
+  }
+
   --easyedu-guide-font-size-control: 0.78rem;
   --easyedu-guide-font-size-body: 0.88rem;
   --easyedu-guide-modal-width: 76.25rem;

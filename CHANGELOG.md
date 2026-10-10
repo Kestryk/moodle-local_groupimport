@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Integrate selected shared Light tooltips for truncated Discovery navigation
+  titles, retaining accessible full text and native Guide commands/Motion.
+  Nine isolated cases and full baseline preservation pass; two linked Guide
+  specimens are saved/raster-inspected. Served-native proof remains pending.
+
 - Prepare the selected existing Light Short/Long Foundation recipe in the Kit,
   preserving default CSS. Guide behavior and preview activation remain pending.
 

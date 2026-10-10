@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Tooltip fixtures must use the actual consumer root selector and resolved host
+tokens. A pointer still over a target after fullscreen exit cannot certify a
+new pointer-entry event. Keep paint expectations and wait completed cleanup;
+do not change product Motion to compensate for a harness lifecycle error.
+
 When the user rejects a candidate, withdraw its unconsumed source recipe and
 archive exact owned design specimens recoverably. Reconcile the preferred
 existing source with the Kit before any consumer or preview activation.

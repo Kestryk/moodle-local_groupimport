@@ -51,6 +51,11 @@ The user explicitly selected Light Short/Light Long. Their opt-in existing-famil
 mapping passes test-tooltip-light-source.cjs: canonical/embedded recipe and full
 prior modules/CSS preservation. Next is the shared Guide tooltip lifecycle,
 then existing Light linked examples and served-native proof; no preview claim.
+The canonical Guide helper is now synchronized/built in Source. Nine isolated
+tooltip cases and complete controller/non-tooltip CSS preservation pass. Guide
+board85 has two saved Foundation-linked Light usages and inspected raster.
+Next: controlled local promotion and a focused native hover/keyboard/portal
+scenario. This does not close R10-32, other plugin help or human acceptance.
 
 R10-32 now has a bounded audit and non-visual long-copy recipe extraction in
 guide-tooltip-audit-2026-10-10.md. Complete compiled CSS remains identical and
