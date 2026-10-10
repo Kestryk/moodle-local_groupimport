@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Modernize Create faster using the shared explanation recipe and verified
+  quick-create syntax. Distinguish real creation fields from the1..6 Practice
+  exercise; preserve formula, animation, parser and course/path commands.
+  Five pure-parser examples,12 isolated EN/FR width/Motion cases and source/PHP
+  guards pass. Native preview remains a separate gate.
 - Common mistakescfb2c1e served locally with cache purge; three native EN widths
   pass33 painted paragraph/topic/note/warning-pill nodes and completion retention.
   Twelve isolated EN/FR width/Motion cases pass. No course/fixture writes or
