@@ -1551,6 +1551,16 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                 '.easyedu-searchable-choice',
             'participantMoveConfirm' => '[data-easystud-move-modal][data-easystud-move-context="participant"] ' .
                 '[data-easystud-confirm-move]',
+            'groupMemberSelection' => '[data-easystud-structure-groups] [data-easystud-member-id]:not([hidden]) ' .
+                '.local-groupimport-easystud-selector',
+            'memberMoveAction' => [
+                '[data-easystud-move-selected-members]',
+                '[data-easystud-mobile-action-trigger="[data-easystud-move-selected-members]"]',
+            ],
+            'memberMoveDestination' => '[data-easystud-move-modal][data-easystud-move-context="member"] ' .
+                '.easyedu-searchable-choice',
+            'memberMoveConfirm' => '[data-easystud-move-modal][data-easystud-move-context="member"] ' .
+                '[data-easystud-confirm-move]',
             'firstGroup' => [
                 '[data-easystud-structure-groups] [data-easystud-group-id]:not([hidden])',
                 '[data-easystud-group-id]:not([hidden])',
@@ -1590,12 +1600,14 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'tree' => '[data-easystud-tree]',
         ],
         'pathLabels' => [
+            'reorganise-source-members' => get_string('member_path_title', 'local_groupimport'),
             'practice-membership' => get_string('discovery_path_title', 'local_groupimport'),
             'first-structure' => get_string('tutorialguidedpaneltitle', 'local_groupimport'),
             'create-grouping' => get_string('tutorialguidedgroupingtitle', 'local_groupimport'),
             'try-actions' => get_string('tutorialguidedactionstitle', 'local_groupimport'),
         ],
         'paths' => [
+            'reorganise-source-members' => \local_groupimport\local\guide_discovery::source_member_path(),
             'practice-membership' => \local_groupimport\local\guide_discovery::practice_path(),
             'first-structure' => [
                 [

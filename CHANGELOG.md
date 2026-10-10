@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Add a distinct EN/FR source-member guided path on Organisation, using the
+  canonical invitation/checklist and real selection, typed member Move,
+  destination and successful transfer signals. Preserve old paths, reading
+  migration, all commands and Motion; isolated source/layout proof passes.
+
 - Serve63e4d42 locally: unchanged native three-width Participant highlight test
   now passes, including the failed390px cue, exact context and Cancel cleanup.
   Preserve both failed predecessors and keep member/edit paths/human review open.

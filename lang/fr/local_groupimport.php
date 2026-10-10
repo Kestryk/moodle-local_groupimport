@@ -937,3 +937,15 @@ $string['tutorialvisualcompletionfour'] = 'Effacer les sélections quand l’act
 $string['tutorialvisualcompletionone'] = 'Créer ou importer la structure du cours';
 $string['tutorialvisualcompletionthree'] = 'Vérifier avant d’utiliser le groupement dans Moodle';
 $string['tutorialvisualcompletiontwo'] = 'Déplacer ou ajouter les utilisateurs sereinement';
+
+$string['member_path_label'] = 'Parcours accompagné';
+$string['member_path_title'] = 'Déplacer des membres depuis un groupe source';
+$string['member_path_content'] = 'Utilisez un cours avec un membre dans un groupe existant et un autre groupe de destination. Après votre confirmation, Déplacer retire les appartenances sélectionnées au groupe source et ajoute la destination ; les autres appartenances sont conservées.';
+$string['member_path_step1'] = 'Sélectionner des membres dans un groupe source';
+$string['member_path_desc1'] = 'Dans la vue Groupes, cochez les membres dans une carte de groupe, pas la case à côté du titre du groupe. La sélection ne change aucune appartenance.';
+$string['member_path_step2'] = 'Ouvrir l’action Déplacer les membres';
+$string['member_path_desc2'] = 'Utilisez Déplacer pour les membres sélectionnés. En mobile, utilisez la barre d’actions. La modale s’ouvre sans modifier les données du cours.';
+$string['member_path_step3'] = 'Rechercher et choisir un autre groupe de destination';
+$string['member_path_desc3'] = 'Recherchez dans la liste de destination et choisissez un autre groupe existant. Vérifiez la source et la destination ; Annuler conserve les appartenances.';
+$string['member_path_step4'] = 'Confirmer le déplacement après vérification';
+$string['member_path_desc4'] = 'Confirmez seulement si vous souhaitez retirer ces appartenances au groupe source et ajouter la destination. Les autres appartenances sont conservées. Cette étape se termine uniquement après un déplacement natif réussi ; le guide n’annule pas l’opération.';

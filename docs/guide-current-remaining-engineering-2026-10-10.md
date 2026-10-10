@@ -33,6 +33,10 @@ stable action proxies. This does not add or certify member/edit paths. See
    Move/destination/confirm has proof. Other member-selection/edit branches are
    not covered by that proof. Audit their actual targets, opening, prior-step
    review, modal/checklist stacking, search and Cancel without confirming writes.
+   Source-member successor now adds four distinct milestones/typed targets and
+   a canonical Organisation invitation. EN/FR source and12 isolated layout cases
+   pass; served/native proof remains pending. Advanced editing remains separate.
+   See `guide-source-member-path-2026-10-10.md`.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.
