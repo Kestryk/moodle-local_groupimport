@@ -895,3 +895,20 @@ glyph/type/raster, remaining legacy compositions, curriculum dedup/migration,
 other G11/SM/Mass Import lots and human checklist stay open. Next: modernize
 Create faster syntax reading while retaining the accepted Practice animation,
 formula specimen, parser behavior and stable lesson/path identities.
+
+## Creation syntax reading successor - 10 October
+
+Existing visualcreation lesson adds shared action_explanation(creation), seven
+EN/FR keys. Keep original paragraph, formula/result specimen, accepted Practice
+animation, parser/ajax, all targets/path IDs and24 slides. No Kit/CSS/template/
+AMD change or new design recipe. Format the existing helper type allowlist for
+readability without changing previous accepted types. Pure extracted real
+quick-create functions pass five cases: numbered/lettered examples, separators,
+deduplication and AA rollover. No Moodle bootstrap or course/database writes.
+The demonstration1..6 limit is explicitly separate from real creation fields.
+Twelve isolated EN/FR width/Motion cases, bounded source guard and PHP lint PASS.
+Native local-supervised scenario checks paragraph/topics/note/formula/results
+and completion using open/read/Close only. Existing AI contracts apply; no new
+reusable rule or Foundation duplicate needed. Human checklist and other lots
+remain open. Next: ordered preview/native creation proof, then shortcut reading
+and the separate backed-up curriculum migration gate.
