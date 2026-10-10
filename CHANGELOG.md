@@ -2,6 +2,8 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare a non-mutating native selection-method audit before rewriting the
+  legacy keyboard explanation; distinguish modifier-click from Tab/Space.
 - Native docked Show/Return successor passes six routes/twelve Small-density
   measurements at1280/768/390, preserving current lesson and path completion.
   Retain the obsolete-parent locator failure; no product asset change needed.
