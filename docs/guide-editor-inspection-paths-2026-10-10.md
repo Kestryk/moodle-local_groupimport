@@ -79,3 +79,23 @@ foreign dialogs are still preserved; a correctly closed navigation drawer no
 longer blocks editor review. Sixteen typed opener cases include aria-hidden and
 hidden dialog branches. No shared Kit, Navigation code, CSS or Motion change.
 Replay the unchanged strict six-case native scenario after ordered promotion.
+
+## Residual locale and accessibility coverage
+
+`tools/playwright/guide-editor-inspection-variants-native.spec.js` is a separate
+local-supervised successor preserving the original target, real focus, review,
+reopen and awaited Cancel assertions. It tests native French normal motion and
+English reduced motion, both entities at all three widths (12 cases), and
+asserts the actual document language. QA Guide storage is distinct per variant.
+The original failed/strict scenario is not rewritten. No course commands, Save,
+fixtures, UI force-click or private authentication persistence are introduced.
+Native result is pending; this is not animated-scene or human certification.
+
+Native replay8312 now passes both desktop contexts and768 Group, including
+reopening Name. At768 Grouping its expanded checklist covers the non-current
+Cancel control while reviewing Name. Preserve this second failure and original
+spec. A separate strict review successor uses the actual Cancel checklist row,
+requires native Cancel highlight alignment and still-uncompleted state, then
+clicks Cancel normally. It does not hide/minimise the panel, force-click,
+change Motion or certify arbitrary non-current controls beneath a floating panel.
+The not-yet-run variants adopt the same explicit final-step navigation.

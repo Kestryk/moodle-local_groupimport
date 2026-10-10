@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "3619c8fd8d75a04b09e59a6ccf5046795e84512a",
+  "runtimeHead": "683dca4b5292688a530346f4dbe39e55df87c189",
+  "promotionRecord": "preview-promotions/easystud/20261010T125356Z.json",
+  "runId": "easystud-authenticated-20261010T125407694Z-8312",
+  "spec": "tools/playwright/guide-editor-inspection-native.spec.js",
+  "language": "en",
+  "motion": "no-preference",
+  "exitCode": 1,
+  "completedCases": [{"width": 1280, "type": "group"}, {"width": 1280, "type": "grouping"}, {"width": 768, "type": "group"}],
+  "failure": {"width": 768, "type": "grouping", "stage": "Cancel click after reviewing Name", "observation": "Expanded checklist footer covers a non-current Cancel button while the current Name target remains connected", "successorAction": "Use the actual Cancel checklist step, assert its native highlight and uncompleted state, then click Cancel without force"},
+  "pageErrors": [],
+  "blockedWrites": [],
+  "settingsSaved": false,
+  "fixtureRequested": false,
+  "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true, "fixtureCleanupComplete": true},
+  "retention": {"mode": "dry-run", "protectedCount": 1, "candidateCount": 0, "deletedCount": 0},
+  "humanAcceptance": false,
+  "boundary": "Not an all-width PASS; unchanged original diagnostic retained. Successor does not certify arbitrary non-current controls beneath a floating checklist."
+}

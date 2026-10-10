@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Retain native editor review8312 and add a strict explicit-Cancel-step
+  successor, plus French/reduced-motion variants. No further product style,
+  Motion or command change; native results and human review remain pending.
+
 - Preserve the compact editor review diagnostic: a closed Navigation drawer
   retains layout bounds. Respect its native aria-hidden state before guarding
   against active foreign dialogs;16 isolated opener cases pass. Replay pending.
