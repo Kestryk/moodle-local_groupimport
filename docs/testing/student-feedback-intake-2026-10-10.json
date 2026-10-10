@@ -55,8 +55,8 @@
       "status": "in_progress",
       "sourceChanged": true,
       "designPublished": true,
-      "previewServed": false,
-      "nativeVerified": false,
+      "previewServed": true,
+      "nativeVerified": true,
       "humanAccepted": false
     },
     {

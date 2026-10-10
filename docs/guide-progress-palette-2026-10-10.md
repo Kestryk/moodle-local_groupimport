@@ -71,3 +71,13 @@ The local-supervised native scenario guide-progress-palette-native.spec.js
 is discovered as exactly one test. It checks actual configured semantic paint
 through desktop/tablet/phone/desktop resizing and three navigation destinations;
 unknown writes are denied. It does not Save settings or prove custom persistence.
+
+## Served native successor
+
+Managed previewc129230 applies Sourcea5ceff8,87fcf54,1f4cf9f in order and
+purges caches without conflict. Native run23940 passes12 actual configured
+palette checks at1280/768/390/1280 with slides0/5/11, including the real compact
+portal snapshot. No page errors, blocked writes, settings Save or course writes.
+Credentials cleared, lease released and owned child stopped. Custom settings
+persistence, historical non-Discovery consumers and human review stay open.
+Exact pins and proof are in testing/guide-progress-palette-native-2026-10-10.json.
