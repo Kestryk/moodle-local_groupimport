@@ -13470,6 +13470,13 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);
   color: var(--easyedu-danger);
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-fullscreen-glyph,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-fullscreen-glyph {
+  display: block;
+  inline-size: 1em;
+  block-size: 1em;
+  flex: none;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal:fullscreen,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal:fullscreen {
   background: var(--easyedu-surface);

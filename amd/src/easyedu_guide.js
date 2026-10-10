@@ -2508,9 +2508,14 @@ const bindGuide = (root, config) => {
       fullscreenButton.setAttribute('aria-label', state.active ?
         fullscreenButton.dataset.exitLabel : fullscreenButton.dataset.enterLabel);
       fullscreenButton.title = fullscreenButton.getAttribute('aria-label');
-      const icon = fullscreenButton.querySelector('.fa');
-      icon?.classList.toggle('fa-expand', !state.active);
-      icon?.classList.toggle('fa-compress', state.active);
+      const glyph = fullscreenButton.querySelector('[data-easyedu-guide-fullscreen-glyph]');
+      if (glyph) {
+        glyph.setAttribute('d', state.active ? glyph.dataset.exitPath : glyph.dataset.enterPath);
+      } else {
+        const icon = fullscreenButton.querySelector('.fa');
+        icon?.classList.toggle('fa-expand', !state.active);
+        icon?.classList.toggle('fa-compress', state.active);
+      }
       updateNavScrollButtons(root);
     });
     addTrackedListener(root, fullscreenButton, 'click', async event => {

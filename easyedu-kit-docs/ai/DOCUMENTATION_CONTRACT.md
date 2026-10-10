@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Fullscreen vector adaptation is paint-only. Preserve the entire native engine
+outside the exact glyph branch and keep legacy icon fallback. Saved Foundations
+geometry requires decoded Transit rects, not ID presence or NaN lazy shape fields.
+Check native currentColor, scale, centring, Enter/Exit, Escape and opener focus;
+never treat a deterministic build or saved source as served/human acceptance.
+
 Reading navigation saves only when canonical applyActiveSlide applies the real
 destination. Wait for that destination, not the click's outgoing-frame state.
 Initialization/opening stay read-only; retain the prior immutable diagnostic

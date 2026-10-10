@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Synchronize the canonical regular Fullscreen Enter/Exit vectors into the
+  embedded/native Guide, retaining labels, legacy fallback, Motion and commands.
+  Rebuild exact AMD/map and CSS; native proof remains a separate supervised gate.
+
 - Serve79a4664 locally: twelve-slide native EN three-width proof passes36 cases,
   284 explanation nodes and preserved reading/path entries without course writes.
   Record immutable proof and remaining modal/fullscreen/human boundaries.
