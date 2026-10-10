@@ -2,6 +2,13 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare the selected existing Light Short/Long Foundation recipe in the Kit,
+  preserving default CSS. Guide behavior and preview activation remain pending.
+
+- Withdraw the unselected control-label tooltip proposal before activation;
+  archive its exact Foundation specimens recoverably. Resume the existing
+  preferred tooltip family's Kit/preview correspondence audit.
+
 - Begin R10-32 tooltip audit and transfer existing long-popover type/spacing to
   the canonical Kit opt-in. Complete compiled CSS is unchanged; navigation
   tooltip behavior, paired design and native tooltip proof remain pending.

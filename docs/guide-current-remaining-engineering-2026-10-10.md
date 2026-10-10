@@ -43,6 +43,15 @@ proofs. Cleanup completed without settings/course writes; custom persistence,
 historical consumers and human acceptance remain open. Next Guide prerequisite
 is R10-32 shared tooltip audit/publication, followed by titles/dots/manual start.
 
+R10-32 control-label candidate was rejected by the user before activation.
+Its source recipe is withdrawn and its four Penpot roots recoverably hidden.
+Resume the existing preferred Foundation family's Kit/preview audit; do not
+continue a new density proposal. Details remain in guide-tooltip-audit-2026-10-10.md.
+The user explicitly selected Light Short/Light Long. Their opt-in existing-family
+mapping passes test-tooltip-light-source.cjs: canonical/embedded recipe and full
+prior modules/CSS preservation. Next is the shared Guide tooltip lifecycle,
+then existing Light linked examples and served-native proof; no preview claim.
+
 R10-32 now has a bounded audit and non-visual long-copy recipe extraction in
 guide-tooltip-audit-2026-10-10.md. Complete compiled CSS remains identical and
 all native commands/Motion are untouched. Existing Foundation provider/body

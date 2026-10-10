@@ -1,5 +1,9 @@
 # EasyEdu documentation contract
 
+When the user rejects a candidate, withdraw its unconsumed source recipe and
+archive exact owned design specimens recoverably. Reconcile the preferred
+existing source with the Kit before any consumer or preview activation.
+
 Tooltip extraction preserves complete emitted CSS and independently pinned
 consumer help-icon/focus additions. Compare the exact new canonical recipe and
 untouched canonical baseline, not a false whole-module equality. Guide tooltip
