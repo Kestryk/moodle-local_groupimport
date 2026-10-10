@@ -1,5 +1,13 @@
 # Current Student Management Guide: remaining engineering
 
+Latest served successor: R10-01 Guide header at6152a67 passes four configured
+native viewport readings including compact portal/open/close.24 isolated
+custom/restored cases and96 shared dialog regressions are separate proof.
+Other pop-ups, persisted custom admin settings and human acceptance remain open.
+Exact pins/cleanup are in testing/guide-header-palette-native-2026-10-10.json.
+Next Guide coverage: retained localized/reduced source-member modal review and
+older workflow gates; do not reopen general SM implementation prematurely.
+
 Latest candidate: R10-01 Guide header primary paint is corrected at shared Kit
 source, with24 isolated default/custom/restored portal cases passing. Exact
 source/CSS preservation is checked separately. Penpot and served-native gates

@@ -4,6 +4,18 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideHeaderPalette20261010": {
+      "kitCommit": "e46f5d96ca1df68a547cdea524e8861558d7c57a",
+      "sourceCommit": "fb3416f0e4a64067942974369ed4920518f663db",
+      "nativePreviewVerified": true,
+      "nativeWidths": [1280, 768, 390],
+      "nativeProof": "docs/testing/guide-header-palette-native-2026-10-10.json",
+      "scope": "Discovery primary header paint only; configured native palette and 24 isolated custom/restored portal cases are separate.",
+      "customPalettePersistence": false,
+      "allPopupsCertified": false,
+      "humanVisualValidated": false,
+      "publicRelease": false
+    },
     "guideDemonstrationEntry20261010": {
       "kitCommit": "f8215a9fb4c54e8b087b6b0f0eebe2e4bb5f2b38",
       "sourceCommit": "d7a25f6e6391783c5bd04a2c7e6e1afd84e7ea76",

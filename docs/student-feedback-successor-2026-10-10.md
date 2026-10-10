@@ -135,6 +135,12 @@ R10-01/02/06 et les autres demandes ne sont pas déclarés corrigés par cet aud
 
 ## Capitalisation continue et coût
 
+R10-01, sous-lot en-tête Guide : la recette commune est servie et quatre
+lectures natives desktop/tablette/mobile/desktop passent, avec ouverture et
+fermeture. Les24 cas isolés personnalisés/rétablis restent une preuve distincte.
+Les autres pop-ups, la persistance des réglages et la validation humaine restent
+ouverts. Voir `testing/guide-header-palette-native-2026-10-10.json`.
+
 R10-33 doit conserver des exemples reproductibles de mapping source/design,
 familles communes, état métier versus paint, Motion et limites de preuve.
 À chaque lot : recette réutilisée/créée, classes publiques, usages synchronisés,
