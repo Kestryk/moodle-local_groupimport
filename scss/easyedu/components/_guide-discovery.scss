@@ -557,6 +557,15 @@
     .easyedu-guide-slide__header { justify-content: flex-start; text-align: start; }
     &[hidden] { display: none; }
     h3 { @include typography.type-control-label; font-size: var(--easyedu-guide-font-size-body); text-align: start; }
+    // Main slide title uses the existing section hierarchy, not the body role.
+    // Keep modal headings, illustrated cards and nested topic labels unchanged.
+    .easyedu-guide-slide__header > h3 {
+      @include typography.type-section-title;
+      color: var(--easyedu-secondary-text);
+      min-width: 0;
+      overflow-wrap: anywhere;
+      text-align: start;
+    }
     .easyedu-guide-slide__kicker {
       @include typography.type-eyebrow;
       color: var(--easyedu-accent);

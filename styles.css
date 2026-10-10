@@ -14466,6 +14466,22 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   font-size: var(--easyedu-guide-font-size-body);
   text-align: start;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__header > h3,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-introduction]) .easyedu-guide-slide__header > h3,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__header > h3,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-introduction]) .easyedu-guide-slide__header > h3 {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-section-title);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: var(--easyedu-line-height-title);
+  color: var(--easyedu-secondary-text);
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: start;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__kicker,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-introduction]) .easyedu-guide-slide__kicker,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__kicker,
