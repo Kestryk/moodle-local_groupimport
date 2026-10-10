@@ -279,6 +279,28 @@ final class guide_discovery {
         $result = [];
         foreach ($sources as $index => $source) {
             $slide = $byid[$source];
+            // Merge the unique teaching points, not merely the reading positions.
+            // Reuse existing translated topics and the published dt/dd recipe.
+            if ($source === 'discovery-creation') {
+                $slide['commonintroduction'] = $byid['reference-16']['commonintroduction'];
+            } else if ($source === 'discovery-actions') {
+                $method = $byid['reference-14']['commonintroduction'];
+                $destination = $byid['reference-11']['commonintroduction'];
+                $menu = $byid['reference-10']['commonintroduction'];
+                $keyboard = $byid['reference-13'];
+                $slide['commonintroduction'] = [
+                    'topics' => [
+                        $method['topics'][1],
+                        $method['topics'][2],
+                        $destination['topics'][1],
+                        $menu['topics'][1],
+                        ['icon' => 'fa-keyboard', 'title' => $keyboard['title'],
+                            'description' => html_entity_decode(strip_tags($keyboard['content']),
+                                ENT_QUOTES, 'UTF-8')],
+                    ],
+                    'note' => $destination['note'],
+                ];
+            }
             // Keep the optional exercises reachable after their duplicate lessons disappear.
             $invitation = ['discovery-actions' => 'reference-12', 'reference-7' => 'reference-8'][$source] ?? null;
             if ($invitation !== null) {

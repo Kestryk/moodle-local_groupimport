@@ -91,3 +91,16 @@ the actual visible opener fixed the harness without changing product Motion.
 Next: activate both template selection and JS reading contract atomically, add
 strict successor source/native12 gates, then reconcile remaining modal/fullscreen
 lots. Candidate is not served, human acceptance and every older lot remain open.
+
+## Content-merge successor
+
+Source candidate09dadcb preserved reading and path entries, but selection alone
+would discard unique syntax/keyboard/scope teaching. The successor merges the
+existing creation explanation into Practice and five existing action topics into
+Actions: gesture/consequence, mobile actions, destination/removal review, menu
+selection scope and the verified Participant keyboard paragraph. Keyboard copy
+is decoded to plain text before the canonical escaped description renderer;
+there are no Mustache styles, new language strings or per-slide CSS. Activity,
+card and recap explanations already cover their merged structure/caution topics.
+The historical24 payload archive remains immutable. Native24 remains active;
+candidate geometry and migration proof do not authorize a completion claim.

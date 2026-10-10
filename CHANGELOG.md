@@ -2,6 +2,9 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Complete the inactive curriculum's content merge: retain real creation syntax,
+  selection-scope warnings, destination/removal review and the verified keyboard
+  lesson in the existing shared explanation recipe. No new CSS or inline styles.
 - Prepare an inactive twelve-slide curriculum from actual production payloads;
   retain all three visible path invitations and every path definition. Archive
   public EN/FR24-slide payloads.136 migration positions and144 renderer cases

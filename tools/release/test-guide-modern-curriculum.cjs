@@ -31,6 +31,21 @@ for (const language of ['en', 'fr']) {
     assert.equal(candidate.slides[2].guidedpath, 'practice-membership');
     assert.equal(candidate.slides[9].guidedpath, 'try-actions');
     assert.equal(candidate.slides[10].guidedpath, 'create-grouping');
+    const oldSlide = id => legacy.find(slide => slide.id === id);
+    assert.deepEqual(candidate.slides[2].commonintroduction,
+        oldSlide('reference-16').commonintroduction, 'Real creation syntax survives the merge');
+    const actions = candidate.slides[9].commonintroduction;
+    assert.equal(actions.topics.length, 5, 'Bounded action explanation, not a concatenation of old slides');
+    assert.deepEqual(actions.topics.slice(0, 2), oldSlide('reference-14').commonintroduction.topics.slice(1));
+    assert.deepEqual(actions.topics[2], oldSlide('reference-11').commonintroduction.topics[1]);
+    assert.deepEqual(actions.topics[3], oldSlide('reference-10').commonintroduction.topics[1]);
+    assert.equal(actions.topics[4].title, oldSlide('reference-13').title);
+    assert.ok(actions.topics[4].description.includes('Ctrl'));
+    assert.ok(actions.topics[4].description.includes(language === 'fr' ? 'Maj' : 'Shift'));
+    assert.ok(actions.topics[4].description.includes('Tab'));
+    assert.ok(actions.topics[4].description.includes('Space') || actions.topics[4].description.includes('Espace'));
+    assert.ok(!/<[^>]+>/.test(actions.topics[4].description), 'Text-only shared description, no inline styling');
+    assert.equal(actions.note, oldSlide('reference-11').commonintroduction.note);
     const entries = new Map();
     const config = {...candidate.readingContract, storageKey:'qa-offline-modern-curriculum'};
     const context = vm.createContext({getStorage:() => ({
