@@ -949,3 +949,19 @@ modal member/edit targets, fullscreen glyph publication/paint, wider welcome/
 admin eligibility/reset proof and Mass Import remain open; human checklist is
 still deferred. Next: ordered shortcut preview/native proof, then a bounded
 current Guide coverage/remaining-engineering inventory before curriculum changes.
+
+## Shortcuts served-native and remaining engineering inventory - 10 October
+
+Native44876 PASS1280/768/390,36 text nodes, four pills and retained completion;
+sourceb6cb7c1/runtime55dc2ff, ordered prerequisites/cache purge, no course/fixture
+writes, errors or blocked calls. Cleanup and protected retention dry-run complete.
+Evidence: testing/guide-shortcuts-native-2026-10-10.json. Twelve isolated EN/FR
+width/Motion cases and complete source/asset guard PASS. No new shared recipe.
+
+Current remaining engineering, separated from human review and older SM lots,
+is recorded in guide-current-remaining-engineering-2026-10-10.md. Live owned
+Foundations08.14 readback confirms existing solid Fullscreen Enter/Exit glyphs
+and30.4/12.48 frames; no design write or new parity claim. Next: actual curriculum
+payload/active path entry crosswalk before backed-up dedup, plus outstanding
+native member/edit targets and canonical lighter Fullscreen glyph. The user's
+request for continuous work does not close these engineering or human gates.

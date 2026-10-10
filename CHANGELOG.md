@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Shortcuts b6cb7c1 served locally; native EN three-width/36 text-node containment
+  and completion preservation pass without course writes. Record the remaining
+  current-Guide engineering ledger and live read-only Foundations Fullscreen
+  solid-glyph inventory; this is not completed curriculum or human validation.
 - Harmonize Useful shortcuts by reusing the existing method explanation and
   four original shortcut pills; no duplicated strings, style family, controller,
   target or progression change. Single-hunk source guard and12 isolated EN/FR
