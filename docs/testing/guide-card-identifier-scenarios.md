@@ -112,3 +112,20 @@ No new reusable recipe: existing AI contract already covers the navigation and
 proof distinction. Whole paint, remaining modern lessons, targets, separate
 Mass Import and all older SM/human lots stay open. Next: modernize method and
 recap lessons using the existing explanation recipe, preserving path identities.
+
+## Method reading modernization - 10 October
+
+Scope: existing visualworkflow lesson only. Add the canonical three-topic/note
+explanation via action_explanation(method), with seven EN/FR strings. Preserve
+original introductory paragraph, four method pills, slide identity/count, all
+native targets/actions, paths and Motion. No CSS/AMD/template changes and no
+new reusable component or Foundation board duplication: existing published
+explanation composition supplies typography/spacing. Source guard reconstructs
+the exact manage.php line/helper allowlist and excludes only seven new strings.
+New isolated and native scenarios are local-supervised presentation-only;
+open/read/Close, no course actions or fixtures. Native preview remains pending.
+AI contract already requires preserving stable adapters and separating proven
+keyboard selection from modifier-click; no additional reusable rule is needed.
+Other G11/SM/Mass Import/migration/human lots remain open. Next: pass isolated
+EN/FR geometry, promote ordered documentary/source prerequisites, then inspect
+native paragraphs/topics/note/pills at1280/768/390 before the recap lesson.
