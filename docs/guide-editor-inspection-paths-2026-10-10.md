@@ -159,3 +159,33 @@ preservation. Product `test-guide-pending-highlight-source.cjs` pins49b840d
 and checks all unrelated adapters, markup, CSS, paths and copy unchanged.
 Public Kit version is not advanced by this private source candidate. Native
 replay remains pending; human checklist and older lots stay open.
+
+## Canonical successor served proof
+
+Kit83a4ce4/sourcea08ddf0 is served on clean runtime83dc8b after ordered
+promotion/cache purge. Unchanged native variant7260 passes all12 cases: French
+normal motion and English reduced motion, both editors at1280/768/390. Actual
+document languages, entry/Name/Description/Cancel cues, field-focus milestones,
+first-step close without completion, field reopen and final-step native Cancel
+all pass. No Save, business/fixture writes, errors or blocked calls. Full
+credential/child/lease cleanup; retained dry-run has zero candidates/deletions.
+Evidence: testing/guide-editor-inspection-variants-native-2026-10-10.json.
+
+Private consumerSync records the precise canonical pin, source scope and native
+case boundary without changing historical manifest version/public release.
+EN normal-motion replay on this identical new runtime remains the final
+regression gate. Complete French-reduced combinations, other member paths,
+whole-scene paint and human review remain separate; no broad acceptance claim.
+
+Final English normal regression27880 passes all six cases on the identical
+source/runtime, with zero errors, blocked calls, Save or fixtures. Combined
+current-runtime evidence is18 cases: EN normal, FR normal, EN reduced, both
+types and three widths. Strict actual cue/field/review/Cancel oracles are
+retained. Cleanup succeeds and scoped retention protects both successful runs,
+with zero candidates/deletions. Normal proof:
+testing/guide-editor-inspection-normal-successor-2026-10-10.json.
+
+This closes this editor-guidance engineering slice, not every G11/SM lot or
+human acceptance. Source-member locale/reduced coverage, welcome eligibility/
+global-reset boundaries and complete animated-scene paint stay in the remaining
+ledger. No data mutation is needed to establish these read/open/Cancel results.

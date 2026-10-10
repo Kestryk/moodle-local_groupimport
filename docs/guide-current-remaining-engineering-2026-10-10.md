@@ -20,6 +20,21 @@ after exit. Both prior diagnostics remain historical; French/reduced workflow
 coverage and human acceptance are separate. The exact original Native/Kit
 styles, commands and Motion are retained.
 
+Newest runtime83dc8b serves canonical queued-highlight Kit83a4ce4/sourcea08ddf0.
+Native7260 passes twelve editor cases: French normal and English reduced at
+three widths. Pending-target/compact-start defects have strict successor proof;
+prior failed runs remain immutable. English normal replay on this new runtime
+is in progress. No Save/business/fixture writes or new Penpot geometry. Human
+acceptance and unrelated modal/member/full-scene coverage remain open.
+
+Final current-runtime editor status: native27880 also passes six EN-normal
+cases on this exact source/runtime. Together with7260 this provides18 scoped
+editor cases (EN normal, FR normal, EN reduced; both entities; three widths),
+strict cue/field-focus/review/reopen/Cancel and zero Save/business/fixture writes.
+The editor-guidance slice is engineered and verified, not human-accepted.
+Historical pending statements below describe earlier pins; this paragraph and
+the referenced successor proofs are authoritative for this slice.
+
 Shared Move dialog targets are qualified by native command context. Six
 isolated opener cases and exact baseline preservation pass. Native run7280
 passes Participant selection, Move/destination/confirm highlights and Cancel at
@@ -90,6 +105,13 @@ stable action proxies. This does not add or certify member/edit paths. See
    Canonical Kit successor now retains it while preserving replacement/removal
    and every unrelated engine branch; deliberate source/embedded sync rebuilt.
    No new design geometry, CSS or Motion. Native replay is a separate gate.
+   Canonical native7260 now passes all twelve FR-normal/EN-reduced editor cases
+   at1280/768/390 on runtime83dc8b; EN-normal same-runtime replay in progress.
+   This verifies editor guidance/Cancel, not Save or real membership changes.
+   Final27880 passes six EN-normal cases on the same source/runtime:18 total
+   scoped current editor cases. Next native modal coverage is source-member
+   French/reduced workflow and whole-scene paint, not retesting a fixed editor
+   as if all earlier diagnostic runs were current failures.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.

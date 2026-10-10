@@ -23,6 +23,19 @@ no Save or course/fixture writes. Both earlier diagnostics are retained.
 French/reduced variants remain a separate in-progress gate. No new Kit design
 family; broader G11 and human acceptance remain distinct.
 
+Canonical Kit83a4ce4/sourcea08ddf0 queued-target correction now has native7260
+PASS for12 French-normal/English-reduced editor cases at three widths, including
+the previously missing compact reduced entry. No Save/business/fixture writes,
+errors or blocked calls; cleanup complete. Original diagnostics remain retained.
+English normal replay on the same new runtime is separate; human review open.
+
+Final normal replay27880 passes all six cases on the identical current runtime.
+Together with7260,18 scoped editor cases now pass;24 isolated localized
+invitation layouts and canonical source/build/frame guards also pass. No new
+component geometry, styles, Motion, Save or data writes. G11-E editor guidance
+is verified within this scope; member-path locale/reduced/full-scene and human
+review are not closed by it. All failed diagnostic artifacts remain retained.
+
 ## Updated direction (overrides the earlier in-place content staging)
 
 Replace legacy slides with the modern style, add useful new lessons as needed.
