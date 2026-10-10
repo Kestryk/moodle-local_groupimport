@@ -389,3 +389,40 @@ keyboard selection from modifier-click; no additional reusable rule is needed.
 Other G11/SM/Mass Import/migration/human lots remain open. Next: pass isolated
 EN/FR geometry, promote ordered documentary/source prerequisites, then inspect
 native paragraphs/topics/note/pills at1280/768/390 before the recap lesson.
+
+## Method preview and native availability blocker - 10 October
+
+Source4c6413e served at clean runtime5f6da55 after predecessor611cdc9 and cache
+purge. Twelve isolated actual-renderer EN/FR width/Motion cases PASS, seven
+explanation nodes counted per case. Complete unrelated source/assets guarded,
+PHP lint and68 offline migration positions PASS; native24 lessons unchanged.
+Native35204 fails before Guide audit: login remains on a Moodle Error page,
+Database connection failed. No widget measurements/native PASS or business
+operation. Keep unchanged guide-method-native.spec.js and failed run. Cleanup
+clears credentials, stops child and releases lease; retention protects evidence.
+Read-only diagnostics show both MariaDB processes/listening ports3306/3307 and
+roughly71GiB free on C. These do not establish DB availability or failure cause.
+No service restart, config/database edit, credentials inspection or repeated
+login attempts. Evidence: testing/guide-method-native-2026-10-10.json.
+Native preview check must resume only after database availability is resolved;
+source/isolated success is not full rendering acceptance. Method content remains
+installed but unverified natively. Next: resolve this runtime gate, rerun the
+same immutable method scenario, then modernize the recap. All older lots and
+human checklist remain open. Existing AI database-failure rule applies; no new
+shared style, Foundation specimen or animation was introduced in this lot.
+
+## Method unchanged native successor - 10 October
+
+After an unauthenticated destination GET returned login without database error,
+one unchanged scenario retry45856 passes three EN widths1280/768/390. All36
+painted text nodes contained (paragraph, three headings/descriptions/note, four
+visual pills); Close preserves path completion. No product edits, relaxed
+oracles, service restart, fixture/course write, errors or blocked requests.
+Credential/child/lease cleanup complete; protected retention dry-run no deletion.
+Evidence: testing/guide-method-native-successor-2026-10-10.json.
+Earlier35204 database failure remains preserved. This removes the immediate
+presentation-test blocker, not its unknown intermittent database root cause.
+Source4c6413e/runtime5f6da55 remains the served method slice. Human acceptance,
+native French paragraphs/pills, full raster/type proof and all older lots stay
+open. Next: modernize the Key points recap using the existing shared recipe,
+then remaining old lesson compositions and explicit curriculum migration gate.
