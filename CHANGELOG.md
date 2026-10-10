@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Propagate Discovery semantic progress to seven saved Foundation-linked Guide
+  tracks, preserving positions/fractions and recoverable predecessors. Prepare
+  one guarded native palette/navigation scenario; preview/native gates pending.
+
 - Publish the missing Discovery4px progression recipe in Foundations with
   linked Desktop/Mobile Standards; four saved paint/geometry checks pass and
   Mobile Standard raster is inspected. Historical Guide/Checklist recipes stay
