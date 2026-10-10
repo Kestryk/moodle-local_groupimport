@@ -2,6 +2,16 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Complete same-runtime editor regression27880: six English normal-motion
+  cases pass alongside7260's twelve French-normal/English-reduced cases.
+  Record18 scoped native passes,24 invitation layouts and exact canonical
+  build/source guards; no Save/data writes or human acceptance inferred.
+
+- Serve canonical Kit83a4ce4/sourcea08ddf0 locally; unchanged native7260
+  passes12 French-normal/English-reduced editor cases at three widths, with
+  real cues/review/Cancel and no Save. Record exact private consumer pin and
+  retained diagnostics; English-normal replay and human review stay separate.
+
 - Prepare canonical Kit queued-highlight preservation and deliberately sync the
   exact helper into embedded/Moodle AMD; targetless scroll/resize no longer
   erases an explicit pending cue. Baseline race and exact source guards pass;

@@ -45,6 +45,11 @@ position or path completion is deleted to implement this inventory.
 - Fullscreen native9760, Foundation publication and product relinks each have
   separate saved/native evidence. User visual acceptance is still postponed.
 
+Current editor successor sourcea08ddf0/runtime83dc8b has18 native cases:
+27880 EN normal and7260 FR normal/EN reduced, each covering both editors at
+all three widths. Existing source/member proofs retain their narrower pins;
+this editor result does not certify unrelated paths or whole-scene paint.
+
 Remaining engineering is tracked in `guide-current-remaining-engineering-2026-10-10.md`.
 Keep normal reading, actual field/workflow targets, complete animated-scene
 paint, first-visit eligibility, global admin reset and real business completion

@@ -1,0 +1,89 @@
+{
+  "sourceCommit": "a08ddf0e88c32693bbc3cffe263238df0489cfd9",
+  "kitCommit": "83a4ce4204d1193c4ea4c5375a00c5fea58f15b5",
+  "runtimeHead": "83dc8b0502cf3cc09216c27b762a4de368e5d2eb",
+  "runId": "easystud-authenticated-20261010T133636999Z-27880",
+  "spec": "tools/playwright/guide-editor-inspection-review-native.spec.js",
+  "classification": "local-supervised",
+  "language": "en",
+  "motion": "no-preference",
+  "exitCode": 0,
+  "rows": [
+    {
+      "width": 1280,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 1280,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 768,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 768,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 390,
+      "type": "group",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    },
+    {
+      "width": 390,
+      "type": "grouping",
+      "entryAndFieldsAligned": true,
+      "focusMilestones": true,
+      "reviewDoesNotCompleteCancel": true,
+      "reopen": true,
+      "userCancelCompletesAfterExit": true
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "diagnostic": {
+    "currentTargetConnected": false,
+    "context": null
+  },
+  "settingsSaved": false,
+  "fixtureRequested": false,
+  "humanAcceptance": false,
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true,
+    "fixtureCleanupComplete": true
+  },
+  "retention": {
+    "mode": "dry-run",
+    "protectedCount": 1,
+    "candidateCount": 0,
+    "deletedCount": 0
+  },
+  "boundary": "Real editor inspection/Cancel only; no Save, memberships, fixture writes or entire Guide human acceptance."
+}

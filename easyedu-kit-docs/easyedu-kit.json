@@ -4,6 +4,23 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guidePendingHighlight20261010": {
+      "kitVersion": "0.4.166",
+      "kitCommit": "83a4ce4204d1193c4ea4c5375a00c5fea58f15b5",
+      "sourceCommit": "a08ddf0e88c32693bbc3cffe263238df0489cfd9",
+      "sourceSynchronizationVerified": true,
+      "scope": "Retain explicit queued Guide target across targetless viewport refresh; preserve Motion/styles/commands and AMD defaults.",
+      "nativePreviewVerified": true,
+      "nativeRun": "easystud-authenticated-20261010T132931886Z-7260",
+      "nativeCases": 12,
+      "nativeScope": "Group/Grouping editor inspection: French normal and English reduced, 1280/768/390, no Save.",
+      "normalRegressionNativeRun": "easystud-authenticated-20261010T133636999Z-27880",
+      "normalRegressionNativeCases": 6,
+      "normalRegressionNativeScope": "English normal motion, same source/runtime, both editors at 1280/768/390.",
+      "newPenpotGeometry": false,
+      "publicRelease": false,
+      "humanVisualValidated": false
+    },
     "guideNativeCloseGlyph20261009": {
       "kitVersion": "0.4.166",
       "kitCommit": "486ce84409b87a69bfaa0da6365f5f7269b4806d",
