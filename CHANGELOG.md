@@ -2,6 +2,12 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Verify actual French inspection copy across12 native width/Motion cases,
+  normal Pause/resume, replay, Reset/Close and completion preservation. Retain
+  language-unasserted predecessor and login-load diagnostic; product unchanged.
+- Publish selection-copy correction998c85c to local Moodle5.1 after all owned
+  prerequisites, with managed cache purge. Native three-width paragraph/keycap
+  containment passes21 text nodes; path completion and course data preserved.
 - Correct EN/FR selection explanations from native three-width evidence:
   distinguish Tab/Space checkbox operation from Ctrl/Shift-assisted clicks.
   Localize Space/Shift keycaps; retain every other lesson, command and asset.

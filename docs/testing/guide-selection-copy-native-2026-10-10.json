@@ -1,0 +1,60 @@
+{
+  "runId": "easystud-authenticated-20261010T065533258Z-28880",
+  "sourceHead": "998c85c5e53958f5e0cc943bfc7afa938f3d86a7",
+  "runtimeHead": "cec41f814d3f48d1020b47117dc2a6d7f75d3678",
+  "scenario": "guide-selection-copy-native.spec.js",
+  "classification": "local-supervised",
+  "passed": true,
+  "language": "en",
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "lessonIndex": 17,
+  "paintedTextNodes": 21,
+  "paragraphAndKeycapContainment": true,
+  "keycaps": [
+    "Tab",
+    "Space",
+    "Shift"
+  ],
+  "pathCompletionPreserved": true,
+  "errors": [],
+  "blockedWrites": [],
+  "fixtures": false,
+  "businessWrites": false,
+  "credentialsCleared": true,
+  "ownedChildStopped": true,
+  "leaseReleased": true,
+  "manifestRegistered": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "isolated": {
+    "passedCases": 12,
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "widths": [
+      1280,
+      768,
+      390
+    ],
+    "motion": [
+      "no-preference",
+      "reduce"
+    ],
+    "scope": "Keycap composition, not main paragraph/native cascade"
+  },
+  "humanVisualValidated": false,
+  "remaining": [
+    "French native copy containment",
+    "Remaining modern curriculum",
+    "Other native path targets",
+    "Human checklist"
+  ]
+}
