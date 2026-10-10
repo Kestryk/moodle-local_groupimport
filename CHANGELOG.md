@@ -2,6 +2,14 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Relink saved Guide fullscreen examples and nine regular Close glyphs;
+  recover rejected pending Library references through the native update, retain
+  product content/layout overrides and verify12 saved slots with strict geometry.
+
+- Add immutable French native reading successor:36 cases/284 explanation nodes
+  pass at three widths with original paths retained and no course writes.
+  Record the distinct missing member/edit guided-target branches.
+
 - Serve regular Fullscreen glyphsc9c8cf9 locally; native EN normal/reduced
   Enter/Exit/Escape/Close/Show/mobile and six paint samples pass without course
   writes. Keep product design relinking and human acceptance open.
