@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Add optional Group/Grouping native editor inspection paths: open, focus Name,
+  focus Description, Cancel. Await actual exit, suppress completion during
+  prior-step review, preserve foreign dialogs and reuse canonical Kit visuals.
+  EN/FR source guards,12 opener cases and24 layout cases pass; native pending.
+
 - Serve62ee50f locally: both native editors are reachable at1280/768/390;
   readonly lists, original fields, Cancel and focus return pass without Save.
   Preserve the cold-navigation diagnostic and unchanged strict widget gates;

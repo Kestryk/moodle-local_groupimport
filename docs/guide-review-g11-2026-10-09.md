@@ -5,6 +5,17 @@ the exceptions below remain OPEN. This does not validate unfinished features,
 the global welcome reset transaction, all Penpot/native coverage or older SM lots.
 Existing Source/Kit worktrees only. Writer artifacts remain read-only.
 
+## Native editor inspection successor - 10 October
+
+Group and Grouping card lessons now each offer a distinct optional four-step
+inspection: native editor, Name focus, Description focus, Cancel after exit.
+Prior-step review uses the original exit with completion suppressed; typed
+openers preserve foreign dialogs and existing selections. No Save or business
+transaction is needed. EN/FR source guards,12 opener cases and24 localized
+invitation layout cases pass; ordered preview/native proof is pending.
+See `guide-editor-inspection-paths-2026-10-10.md`. Canonical styles/Motion,
+twelve reading IDs, previous paths and postponed human checklist are preserved.
+
 ## Updated direction (overrides the earlier in-place content staging)
 
 Replace legacy slides with the modern style, add useful new lessons as needed.

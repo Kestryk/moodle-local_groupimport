@@ -47,6 +47,12 @@ stable action proxies. This does not add or certify member/edit paths. See
    navigation-only diagnostic29996 is preserved. See
    `guide-advanced-edit-inventory-2026-10-10.md`. This is access
    correction, not implemented advanced-field Guide steps or human acceptance.
+   Editor inspection successor now adds two optional four-step EN/FR paths to
+   the actual Group/Grouping lessons. Twelve typed opener/guard cases, exact
+   unrelated source preservation and24 localized invitation layout cases pass.
+   Native field focus and awaited Cancel are distinct from Guide review. Ordered
+   preview and the strict native six-case scenario are pending; no Save or new
+   Kit/Penpot visual family. See `guide-editor-inspection-paths-2026-10-10.md`.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.

@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Native editor inspection completes field steps on real typed focus events, not
+Guide highlight. Cancel completes after exit/removal; prior-step review awaits
+that same exit without completion. Preserve foreign dialogs, original save
+code and read-only lists. Reuse canonical invitation/checklist/Motion; isolated
+adapter/layout proof does not certify native fields or human acceptance.
+
 Responsive editor availability checks actual direct-control paint, not DOM
 presence. Reuse the original single-entity editor and menu recipe; preserve
 metadata/multiselection gates and return focus to the visible card trigger.
