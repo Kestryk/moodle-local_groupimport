@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Preserve the compact editor review diagnostic: a closed Navigation drawer
+  retains layout bounds. Respect its native aria-hidden state before guarding
+  against active foreign dialogs;16 isolated opener cases pass. Replay pending.
+
 - Add optional Group/Grouping native editor inspection paths: open, focus Name,
   focus Description, Cancel. Await actual exit, suppress completion during
   prior-step review, preserve foreign dialogs and reuse canonical Kit visuals.

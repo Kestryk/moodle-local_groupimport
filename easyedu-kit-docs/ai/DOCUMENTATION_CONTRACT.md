@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Native dialog guards respect aria-hidden as well as layout: a closed offcanvas
+drawer may retain a non-empty rect. Preserve genuinely active foreign dialogs,
+the failed native review evidence and the strict unchanged successor scenario;
+do not change Navigation/Guide Motion to work around this adapter distinction.
+
 Native editor inspection completes field steps on real typed focus events, not
 Guide highlight. Cancel completes after exit/removal; prior-step review awaits
 that same exit without completion. Preserve foreign dialogs, original save

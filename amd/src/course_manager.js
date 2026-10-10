@@ -8781,7 +8781,7 @@ const bindSharedGuideTargets = root => {
             return current.getAttribute('data-easystud-editor-context') === type ? current : null;
         }
         if (Array.from(root.querySelectorAll('[role="dialog"]')).some(node =>
-                !node.hidden && node.getClientRects().length)) {
+                !node.hidden && node.getAttribute('aria-hidden') !== 'true' && node.getClientRects().length)) {
             return null;
         }
         const entry = openEditorEntry(type);

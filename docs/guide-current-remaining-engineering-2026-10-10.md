@@ -53,6 +53,10 @@ stable action proxies. This does not add or certify member/edit paths. See
    Native field focus and awaited Cancel are distinct from Guide review. Ordered
    preview and the strict native six-case scenario are pending; no Save or new
    Kit/Penpot visual family. See `guide-editor-inspection-paths-2026-10-10.md`.
+   Runtimef218221 now serves213d8df. Native46272 passes both desktop paths,
+   then catches closed Navigation layout blocking compact prior-field review.
+   Sixteen-case aria-hidden guard successor preserves actual foreign dialogs;
+   strict native replay is pending. Failed proof remains versioned separately.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.
