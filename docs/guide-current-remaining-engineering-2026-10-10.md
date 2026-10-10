@@ -4,6 +4,9 @@ R10-31 is now prepared in shared Discovery SCSS and eight Foundation title
 specimens.144 isolated actual-title cases and complete unrelated source/CSS
 preservation pass. See guide-slide-title-hierarchy-2026-10-10.md. Saved-file,
 Guide propagation and native preview gates remain separate and open.
+The eight-title saved Foundation gate now passes after correcting empty
+shape-fill precedence in the evidence reader. Waiting for Guide reconnection
+to propagate source-linked titles; existing tooltip preview remains unchanged.
 
 This is an implementation ledger, not the postponed human validation checklist.
 Existing Source/Kit worktrees only. No general SM backlog item is lost or closed.
