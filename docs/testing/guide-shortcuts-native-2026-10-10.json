@@ -1,0 +1,51 @@
+{
+  "runId": "easystud-authenticated-20261010T081125162Z-44876",
+  "sourceHead": "b6cb7c111130abf7b2586706eb51e13bd4272ab0",
+  "runtimeHead": "55dc2ffa4f331f414df30abf083800efa8a03022",
+  "scenario": "guide-shortcuts-native.spec.js",
+  "classification": "local-supervised",
+  "passed": true,
+  "language": "en",
+  "widths": [
+    1280,
+    768,
+    390
+  ],
+  "cases": 3,
+  "paintedTextNodesPerCase": 12,
+  "allContained": true,
+  "sharedTopics": 3,
+  "shortcutPills": 4,
+  "pathCompletionPreserved": true,
+  "errors": [],
+  "blockedWrites": [],
+  "fixtures": false,
+  "businessWrites": false,
+  "cleanupComplete": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "isolated": {
+    "cases": 12,
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "motion": [
+      "no-preference",
+      "reduce"
+    ]
+  },
+  "sourceGuard": true,
+  "generatedAssetsChanged": false,
+  "humanVisualValidated": false,
+  "remaining": [
+    "Curriculum dedup and path entry preservation",
+    "Fullscreen lighter glyph",
+    "Other native member/edit target branches",
+    "Broader native/raster gates",
+    "Combined human checklist"
+  ]
+}
