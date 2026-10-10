@@ -147,6 +147,12 @@ $items = @(
         Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "scss\easyedu\_dialog-classes.scss")
     },
     [pscustomobject]@{
+        Name = "canonical dialog palette SCSS"
+        Source = Resolve-OwnedPath $kitRoot "scss\easyedu\_dialog-palette-classes.scss"
+        Target = Resolve-OwnedPath $pluginRootPath "scss\easyedu\_dialog-palette-classes.scss"
+        Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "scss\easyedu\_dialog-palette-classes.scss")
+    },
+    [pscustomobject]@{
         Name = "canonical data classes SCSS"
         Source = Resolve-OwnedPath $kitRoot "scss\easyedu\_data-classes.scss"
         Target = Resolve-OwnedPath $pluginRootPath "scss\easyedu\_data-classes.scss"

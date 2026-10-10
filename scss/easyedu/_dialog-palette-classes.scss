@@ -1,6 +1,13 @@
 // Optional semantic header paint. Geometry, Motion, commands and destructive
 // meanings remain with their existing recipes. The host declares only roles
 // whose chosen colours differ from the official palette (space-separated).
+// Portalled shared consumers invoke the same paint without requiring a new
+// easyedu-ui root (which would reset their inherited product token snapshot).
+@mixin primary-header-paint {
+  background: var(--easyedu-dialog-palette-primary-header,
+    var(--easyedu-dialog-palette-base, var(--easyedu-modal-header-bg)));
+}
+
 @mixin dialog-palette-classes {
   .easyedu-ui[data-easyedu-dialog-palette~="primary"] {
     --easyedu-dialog-palette-primary-header:
@@ -21,8 +28,7 @@
   // recipes in JavaScript or copy an entire workspace's structural attributes.
   .easyedu-ui .easyedu-dialog-header-palette--primary,
   .easyedu-ui.easyedu-message-dialog .modal-content .easyedu-dialog-header-palette--primary {
-    background: var(--easyedu-dialog-palette-primary-header,
-      var(--easyedu-dialog-palette-base, var(--easyedu-modal-header-bg)));
+    @include primary-header-paint;
   }
   .easyedu-ui .easyedu-dialog-header-palette--success {
     background: var(--easyedu-dialog-palette-success-header,

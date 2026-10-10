@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Prepare the Guide header's canonical custom-primary palette opt-in, including
+  the portal-safe shared Kit mixin. Twenty-four isolated paints pass; preserve
+  default geometry, all controller/Motion data and unrelated CSS. Design/native
+  publication and human review remain open.
+
 - Serve explicit Guide demonstration entry;12 native four-scene three-width
   lifecycle/paint cases pass with complete cleanup and no course/settings writes.
   Preserve48 isolated localized cases and open human/reduced-native review.

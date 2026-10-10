@@ -1,5 +1,11 @@
 # Current Student Management Guide: remaining engineering
 
+Latest candidate: R10-01 Guide header primary paint is corrected at shared Kit
+source, with24 isolated default/custom/restored portal cases passing. Exact
+source/CSS preservation is checked separately. Penpot and served-native gates
+remain open; no general pop-up or human acceptance is inferred. See
+`guide-header-palette-2026-10-10.md`. Earlier published lots remain served.
+
 Latest successor: R10-30 is served at c698aa72. Twelve native four-scene cases
 at three widths pass Start/running/pause/advance/finish/replay/reset and Small
 paint, without course/settings writes; cleanup complete. Paired design and48

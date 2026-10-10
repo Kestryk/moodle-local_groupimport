@@ -13,6 +13,7 @@
 @use "feedback";
 @use "forms";
 @use "tooltips";
+@use "../dialog-palette-classes" as palette;
 
 // A teaching scene composes real card primitives, not a separate visual family.
 @mixin discovery-card($identity) {
@@ -181,6 +182,7 @@
 
   .easyedu-guide-modal__header {
     @include modals.dialog-header;
+    &.easyedu-dialog-header-palette--primary { @include palette.primary-header-paint; }
   }
 
   .easyedu-guide-modal__close { @include buttons.close-button; }
