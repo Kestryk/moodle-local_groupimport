@@ -2,6 +2,10 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Key points30f0d85 is served in local Moodle5.1 with managed cache purge.
+ 12 isolated EN/FR width/Motion and three native EN width cases pass; all36
+  paragraph/topic/note/pill text nodes contained, completion preserved.
+  No course/fixture writes; broader French native/raster/human review stays open.
 - Modernize Key points through the published shared explanation recipe:
   Participant/Group/Grouping hierarchy, contextual membership consequences and
   separate Moodle activity settings. Retain four visual recap pills,24 slides,
