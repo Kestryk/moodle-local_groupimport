@@ -57,6 +57,11 @@ stable action proxies. This does not add or certify member/edit paths. See
    then catches closed Navigation layout blocking compact prior-field review.
    Sixteen-case aria-hidden guard successor preserves actual foreign dialogs;
    strict native replay is pending. Failed proof remains versioned separately.
+   Replay8312 proves compact Group review but exposes expanded checklist
+   intercepting non-current Cancel in768 Grouping. The unchanged original
+   diagnostic is retained; a separate successor reviews the actual Cancel
+   step before its normal button click, preserving strict paint/progress checks.
+   French/reduced native variants are prepared, not yet certified.
 3. **Fullscreen glyph parity.** Close uses the accepted regular multiplication
    glyph. Regular Fullscreen vectors are now canonical Kit candidates, with
    Foundations Library/Standard editor, raster and decoded saved-file geometry.
@@ -97,6 +102,16 @@ Use known page/component IDs and narrow reads. Failed wrong-root lookups and
 oversized outputs are avoidable overhead. No provider token/cost totals are
 available; do not invent precise savings. Preserve current snapshots/pushed WIP,
 and never omit documentary prerequisites during preview promotion.
+
+Editor-path follow-up: retain the unchanged first native scenario when a
+production guard fails. Expand isolated cases to include closed offcanvas ARIA,
+not only generic hidden dialogs, before native replay. Read documentation in
+bounded relevant sections rather than concatenate long historical ledgers.
+Mechanical EOL preparation must follow git attributes (PHP/Markdown/JSON LF,
+autocrlf JS as configured); normalizing every staged file to CRLF caused one
+failed snapshot status check, corrected without changing content or discarding
+the failed recovery evidence. These are preliminary process observations, not
+the final programme token/cost audit or a claim of measured savings.
 
 ## Actual curriculum candidate with preserved path entries - 10 October
 
