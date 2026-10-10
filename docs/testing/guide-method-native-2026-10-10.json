@@ -1,0 +1,47 @@
+{
+  "runId": "easystud-authenticated-20261010T071222580Z-35204",
+  "sourceHead": "4c6413ef8542391b327e6272454bad4e62647cc4",
+  "runtimeHead": "5f6da55ff6e548f1abb1e1c34fcad6b75b15da93",
+  "scenario": "guide-method-native.spec.js",
+  "classification": "local-supervised",
+  "passed": false,
+  "phase": "Login before widget audit",
+  "failure": "Error: Database connection failed",
+  "nativeWidgetCases": 0,
+  "isolatedCases": 12,
+  "isolatedLanguages": [
+    "en",
+    "fr"
+  ],
+  "isolatedWidths": [
+    1280,
+    768,
+    390
+  ],
+  "isolatedMotion": [
+    "no-preference",
+    "reduce"
+  ],
+  "sourceGuard": true,
+  "phpLint": true,
+  "offlineMigrationCases": 68,
+  "curriculumCount": 24,
+  "previewApplied": true,
+  "cachesPurged": true,
+  "fixtures": false,
+  "cleanupComplete": true,
+  "retentionDryRun": {
+    "protectedRuns": 1,
+    "candidates": 0,
+    "deleted": 0
+  },
+  "readOnlyDiagnostics": {
+    "moodle51MariaDbProcessRunning": true,
+    "port3306Listening": true,
+    "moodle45Port3307Listening": true,
+    "cDriveFreeBytes": 76650745856
+  },
+  "causeNotEstablished": true,
+  "humanVisualValidated": false,
+  "next": "Diagnose/recover native database availability before rerunning unchanged method spec"
+}

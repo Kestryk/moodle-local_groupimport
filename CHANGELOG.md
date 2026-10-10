@@ -2,6 +2,13 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- After a healthy read-only login probe, unchanged Method native scenario passes
+  three widths/36 painted text nodes, original four pills and path completion.
+  Preserve earlier database-error diagnostic; its cause remains unknown.
+- Method lesson4c6413e is served locally after documentary predecessor611cdc9;
+  cache purge succeeds.12 isolated EN/FR width/Motion cases and source/PHP guards
+  pass. Native test stops before widget audit on Database connection failed;
+  retain its immutable scenario/evidence and complete cleanup, no native PASS.
 - Modernize Choose the right method with the existing shared explanation recipe:
   destination-first search/identifiers, Add/Move consequences, desktop versus
   mobile actions and verified Tab/Space. Preserve four visual method pills,
