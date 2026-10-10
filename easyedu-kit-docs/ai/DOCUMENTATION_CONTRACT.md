@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Before editing linked Guide glyphs after a Foundations provider change, check
+pending native Library updates and file referential validation. A failed queued
+save may remain blocked even after local repairs validate. Preserve exact owned
+pending geometry, never reload unknown user edits, reconcile with the native
+Library transaction and restore product copy/layout overrides. Verify saved IDs
+and tagged rects afterward; local validation alone is not successful persistence.
+
 Fullscreen vector adaptation is paint-only. Preserve the entire native engine
 outside the exact glyph branch and keep legacy icon fallback. Saved Foundations
 geometry requires decoded Transit rects, not ID presence or NaN lazy shape fields.

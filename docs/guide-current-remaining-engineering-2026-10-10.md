@@ -17,7 +17,8 @@ writes. Human acceptance is still open.
 
 1. **Curriculum replacement/deduplication.** Reconcile the writer crosswalk with
    actual24 payloads, modern illustrations and all active path invitations.
-   The prepared12-slide map is inactive. Archive original payloads, supply exact
+   The12-slide map is active and served; EN and FR36-case native gates pass.
+   Retain archived original payloads and exact
    legacy20/discovery24/introduction-first24 migration maps and immutable first
    backups; unknown histories must not silently lose progress. Preserve existing
    path IDs/predicates and a discoverable entry for paths retained by the product.
@@ -31,7 +32,8 @@ writes. Human acceptance is still open.
    Foundations Library/Standard editor, raster and decoded saved-file geometry.
    The synchronized Source candidate passes exact engine/template/CSS/build
    preservation. Served native run9760 now verifies glyph/lifecycle in normal
-   and reduced motion. Product-page relinking and human acceptance remain open.
+   and reduced motion. Product boards81/82 are now relinked with saved geometry
+   and two raster exports inspected. Human acceptance remains open.
 4. **Residual native coverage.** Preserve distinct welcome eligibility/global
    reset boundaries, long-copy/glyph/cursor paint, French layouts and mobile
    natural reading. Existing scoped passes do not certify every state. Do not
@@ -166,3 +168,50 @@ cleanup succeeds; retention protects the run, zero deletion candidates.
 testing/guide-fullscreen-glyph-native-2026-10-10.json records this scoped EN proof.
 Product Guide Penpot copies, native French/full-scene and other modal targets
 remain open, as does every human review and older retained lot.
+
+## French native reading and modal-target audit successor
+
+Native run34908 verifies the real fr document language, all12 stable slide IDs,
+284 painted explanation nodes at1280/768/390, French introduction/keyboard copy,
+three original invitations, current reading contract and unchanged completed
+paths. Zero errors, business/fixture writes or blocked methods; complete cleanup
+and retention dry-run protect the run. Immutable EN predecessor remains intact.
+testing/guide-french-curriculum-native-2026-10-10.json is scoped reading proof,
+not the entire animated scene or optional-path business completion.
+
+The current target adapter exposes participantMoveDestination/Confirm for the
+shared destination dialog. Its tutorial opener invokes only enabled global
+Participant Move controls. try-actions contains drag/selection/context targets,
+not member-picker/edit steps. There is no declared guided step for the member
+transfer context or Group/Grouping editor fields. The member transfer remains
+the guarded source-specific movemembers transaction. Do not expand a Participant
+target to certify a different selection or fabricate Save completion. These
+explicit missing target/path branches remain in lot2 for the next integration.
+
+## Product glyph publication and persistence recovery
+
+Guide boards81/82 now use the existing linked Fullscreen Small controls with
+regular Enter/Exit slots; native Kit/Moodle glyphs and Foundations source/Standard
+are unchanged. Saved Guide version10:04:36Z and decoded server gate verify12
+linked glyph slots, two30.4px frames,7.8px paths and0.975px strokes, exact centres,
+nine regular Close copies and the preserved hidden compass archive. Both control
+raster exports inspected. File validation now reports zero errors.
+
+The first save was rejected because old Guide nested glyphs referenced superseded
+providers. Repairing later editor state alone could not unblock the rejected
+pending commit. Preserve exact pending before/after geometry externally, reload
+only the owned session from the saved version, then use the native library update
+transaction. Restore20 product content/layout overrides and the hidden archive
+slot before saving. Comparison covers4827 outside-slot shapes: seven null stroke
+opacity values become explicit1, and remaining geometry noise stays below0.000132px;
+there is no changed outside-slot text, typography, meaningful geometry or palette.
+Source testing/guide-fullscreen-product-relinks-2026-10-10.json retains exact IDs,
+failed-stage boundary and successful successor. Earlier false relink flags remain
+historical, not rewritten as if publication had already passed.
+
+Process follow-up: check native pending Library updates and referential validation
+before the first dependent edit. Reuse the existing Transit reader conventions;
+target pages-index/objects by exact ID rather than traverse an85MB payload or
+print full shape/error proxies. This turn's initial broad decoder probes and
+whole-contract output were avoidable token/latency costs. The final programme
+cost review remains open; no precise per-tool/model token accounting is available.

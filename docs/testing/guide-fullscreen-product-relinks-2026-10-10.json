@@ -1,0 +1,24 @@
+{
+ "fileId":"b564c72c-f31f-81ec-8008-ad9958b272bd",
+ "pageId":"b564c72c-f31f-81ec-8008-ad9958b272be",
+ "foundationFileId":"40e06342-8830-80d6-8008-96572effc11c",
+ "savedVersionLabel":"Guide linked glyph repair and fullscreen parity — 2026-10-10",
+ "savedVersionCreatedAt":"2026-10-10T10:04:36.821Z",
+ "controls":[
+  {"id":"c53a1fb5-311f-80be-8008-c29e688a7149","slot":"c53a1fb5-311f-80be-8008-c29e688ab9ce","provider":"1b9939cf-2f95-805b-8008-c4877be5ed47","path":"a3be24ee-7169-8013-8008-c4952ff30d08"},
+  {"id":"c53a1fb5-311f-80be-8008-c29e6930fae6","slot":"c53a1fb5-311f-80be-8008-c29e69312880","provider":"1b9939cf-2f95-805b-8008-c4877c54a7bf","path":"a3be24ee-7169-8013-8008-c495311d631b"}
+ ],
+ "closeProvider":"1b9939cf-2f95-805b-8008-c397da455c05",
+ "closeSlots":["007cab03-0a24-8025-8008-c2084c10d95c","007cab03-0a24-8025-8008-c2084e4b9803","007cab03-0a24-8025-8008-c208509035d0","007cab03-0a24-8025-8008-c1f903b11976","007cab03-0a24-8025-8008-c1f907c62b4d","007cab03-0a24-8025-8008-c1f9086e9735","c53a1fb5-311f-80be-8008-c27808f75ec5","007cab03-0a24-8025-8008-c1f9599a2a7c","007cab03-0a24-8025-8008-c1f95c1a2952"],
+ "hiddenCompassSlot":"c53a1fb5-311f-80be-8008-c28f490ed659",
+ "hiddenCompassProvider":"32eadb6d-165e-803e-8008-9890ddb9475d",
+ "editorValidationErrors":0,
+ "editorGlyphsCentred":true,
+ "twoControlRasterExportsInspected":true,
+ "savedServerGeometryVerified":true,
+ "savedServerReadOnlyGate":"tools/penpot/read-saved-guide-fullscreen-glyph.cjs",
+ "savedLinkedSlotsVerified":12,
+ "humanVisualValidated":false,
+ "recovery":{"initialPendingCommitRejected":true,"pendingGeometryPreservedExternally":true,"ownedReloadFromSavedVersion":true,"nativeLinkedLibraryUpdate":true,"productOverridesRestored":20,"outsideIconShapesCompared":4827,"remainingPaintNormalizations":7,"normalization":"stroke opacity null becomes explicit1; no colour/width/style change","maximumRemainingGeometryDeltaPx":0.000132,"oldHiddenCompassRestored":true},
+ "notes":["The recovery changes no Moodle source or runtime assets.","Native update reconciles12 stale nested provider IDs in a valid shared-library transaction.","Original failed local glyph IDs are archived externally, not claimed as saved final shapes."]
+}
