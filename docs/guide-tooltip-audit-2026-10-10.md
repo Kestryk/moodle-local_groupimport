@@ -2,6 +2,21 @@
 
 ## Shared Guide integration successor
 
+First managed preview applied the complete owned predecessor chain through
+Source75af95d at runtime260a932, caches purged. Native run36128
+(easystud-authenticated-20261010T182653968Z-36128) confirms exact pale Short
+paint at1280 and768 and real compact portal inheritance. It FAILS keyboard
+tooltip persistence at768 after Tab reaches the actual target. No page errors,
+blocked writes or business/settings mutations; credentials cleared, lease
+released, owned child stopped. The failed spec and externally manifested
+diagnostic run are retained; this is not a native PASS.
+
+The canonical successor re-anchors keyboard-focused labels after navigation
+scroll on the next animation frame. Other scrolling still dismisses; hide,
+close and destroy cancel the frame. The focused isolated successor dispatches
+that scroll after actual Tab entry. No Guide Motion duration/commands or
+native assertions are weakened. This correction needs fresh served proof.
+
 Canonical bindNavigationTooltips is Discovery-only and reads actual existing
 navigation label text. Only scrollWidth>clientWidth+1 labels qualify. No
 template/accessible-name/title replacement or business command is introduced.

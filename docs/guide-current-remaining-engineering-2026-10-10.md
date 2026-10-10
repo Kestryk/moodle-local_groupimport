@@ -56,6 +56,10 @@ tooltip cases and complete controller/non-tooltip CSS preservation pass. Guide
 board85 has two saved Foundation-linked Light usages and inspected raster.
 Next: controlled local promotion and a focused native hover/keyboard/portal
 scenario. This does not close R10-32, other plugin help or human acceptance.
+First served tooltip run36128 fails compact keyboard persistence after confirming
+actual1280/768 pale paint and compact portal. Cleanup is complete. A bounded
+shared navigation-scroll re-anchor successor is prepared; preserve the failed
+native spec/run and require fresh proof before advancing to titles/dots.
 
 R10-32 now has a bounded audit and non-visual long-copy recipe extraction in
 guide-tooltip-audit-2026-10-10.md. Complete compiled CSS remains identical and

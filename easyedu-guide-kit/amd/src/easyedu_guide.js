@@ -2443,7 +2443,10 @@ const bindNavigationTooltips = root => {
   if (!modal || !nav) return;
   let tooltip = null;
   let target = null;
+  let refreshFrame = null;
   const hide = () => {
+    if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
+    refreshFrame = null;
     tooltip?.remove();
     tooltip = null;
     target = null;
@@ -2502,7 +2505,21 @@ const bindNavigationTooltips = root => {
   addTrackedListener(root, root, 'pointerdown', hide, true);
   addTrackedListener(root, root, 'click', hide, true);
   addTrackedListener(root, root, 'keydown', event => { if (event.key === 'Escape') hide(); }, true);
-  addTrackedListener(root, modal.ownerDocument, 'scroll', hide, true);
+  addTrackedListener(root, modal.ownerDocument, 'scroll', event => {
+    const focused = buttonFor(modal.ownerDocument.activeElement);
+    // Native keyboard focus can scroll the horizontal navigation after focusin.
+    // Re-anchor its label on the next paint instead of losing keyboard help.
+    // Other scrolling still dismisses it, and every teardown cancels this frame.
+    if (event.target === nav && focused?.matches(':focus-visible')) {
+      hide();
+      refreshFrame = window.requestAnimationFrame(() => {
+        refreshFrame = null;
+        show(focused);
+      });
+    } else {
+      hide();
+    }
+  }, true);
   addTrackedListener(root, modal.ownerDocument, 'fullscreenchange', hide);
   addTrackedListener(root, window, 'resize', hide);
 };
