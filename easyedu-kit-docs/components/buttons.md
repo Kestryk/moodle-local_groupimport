@@ -1,5 +1,14 @@
 # Buttons
 
+## Field-peer Reset scoped adoption (Kit0.4.168)
+
+`easyedu-filter-reset--field-peer` composes with `easyedu-filter-reset` beside
+Regular fields:38px desktop /44px touch, keeping legacy30.4px, caption type,
+intrinsic width, paint, radius, padding and all existing state Motion. Source
+adopts exactly four native Reset buttons; commands/visibility stay unchanged.
+No full Kit sync or private per-filter CSS. Generic responsive Search specimens
+are42.4px, so compact Reset target proof is distinct from equal-height proof.
+
 ## Quiet selection recovery (0.4.115 opt-in)
 
 Use `easyedu-selection-recovery-action` alongside `foundation-selection-action`

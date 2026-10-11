@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Reset beside Regular fields uses the canonical field-peer opt-in, not generic
+button density or a product height. Preserve caption type, legacy Reset, original
+filter commands and Motion. Desktop peer equality and compact44px targets are
+separate assertions: shared Responsive Search42.4px is not a44px native claim.
+
 Trailing catalogue keyboard focus is an explicit shared track-only opt-in.
 Retain the44px native label target, real sequential Tab/Space entry, disabled
 and forced-colours states; mouse quiet is not permission to remove keyboard

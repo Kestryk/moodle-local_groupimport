@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - R10-08 shared Reset field-peer density
+
+- Opt four filter Reset sites into the canonical Kit38px desktop /44px touch
+  density, preserving type, colour, intrinsic width, commands and Motion.
+- Same-compiler complete consumer CSS/source preservation passes; no private
+  plugin height rule. Native preview and deferred human checklist are separate.
+
 ## 2026-10-11 - R10-07 served native state-peer proof
 
 - Confirm64 native EN/FR focus states on1600/768/390 without data/settings

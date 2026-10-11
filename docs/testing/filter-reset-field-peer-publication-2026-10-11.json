@@ -1,0 +1,32 @@
+{
+  "program": "EED-UI-2026-0073",
+  "lot": "R10-08 / SM-66",
+  "sourceBase": "e2c0fee0fa8a361e7436f90d668660449ab55a28",
+  "kitBase": "006a510438b3b60960d5def3e70683c499c9301c",
+  "compiler": "dart-sass 1.89.2",
+  "sourcePreservation": "passed; exactly two CSS rules and four Mustache opt-ins",
+  "isolatedBrowser": "passed; 48 localized/directional states plus wide coarse pointer",
+  "foundationFile": "40e06342-8830-80d6-8008-96572effc11c",
+  "libraryPage": "3ade82ad-bce8-8059-8008-9c07259b5c06",
+  "standardPage": "d0d0680d-7d36-80da-8008-97a6a5b5b9d6",
+  "libraryHost": "1bfb6fd2-493c-80cf-8008-c62b2916f88c",
+  "standardHost": "1bfb6fd2-493c-80cf-8008-c62b2b63f114",
+  "regularProviders": [
+    "1bfb6fd2-493c-80cf-8008-c62b29f2544f",
+    "1bfb6fd2-493c-80cf-8008-c62b2a4ee747",
+    "1bfb6fd2-493c-80cf-8008-c62b2a9dc65d"
+  ],
+  "productFile": "220f6449-533e-815b-8008-ad9958d032a1",
+  "productPage": "92c1c225-95fb-802e-8008-ae9f13d0b0b9",
+  "productHost": "6999356c-356a-806a-8008-c62e0c916f6f",
+  "savedGeometryPaintAndLinks": true,
+  "standardRasterInspected": true,
+  "productRasterInspected": true,
+  "externalRunIds": [
+    "filter-reset-field-peer-public-20261011-c",
+    "filter-reset-field-peer-design-20261011-a"
+  ],
+  "nativeServedVerified": false,
+  "humanAccepted": false,
+  "limits": "No full existing product-board rollout, separate Disabled design or unrelated responsive Search change claimed."
+}
