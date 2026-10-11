@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-11 - R10-11 compact frame blocker successor
+
+- Zero list reinsertion alone leaves a compact native frame failure. CPU/native
+  callback source identifies the unrelated Participant tag-overflow scan during
+  disclosure. Omit that global card refresh only here; keep actual data/resize
+  refreshes, tag algorithm, filters and all shared Motion unchanged. Preserve
+  the failed strict spec and use a case-before-assert frame successor.
+
 ## 2026-10-11 - R10-11 live filter lists during disclosure
 
 - Native frame diagnosis finds52 list child mutations on every filter open/
