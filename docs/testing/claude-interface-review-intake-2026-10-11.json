@@ -111,10 +111,10 @@
     {
       "id": "T007",
       "receivedScope": "[US1] Penpot « Guide Easystud » : composer la slide « Organiser » avec l'en-tête de scène unique (mode, Démarrer, statut, Pause, Suivant) et les appartenances prévues au repos. Faire valider par Kevin avant le code.",
-      "status": "canonical-selector-and-saved-product-usage-preflight-recorded-Penpot-proposal-and-Kevin-review-pending",
+      "status": "Penpot-three-width-five-state-proposal-saved-geometry-passed-Kevin-review-before-code",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["docs/guide-scene-recomposition-preflight-2026-10-11.md"],
+      "related": ["docs/guide-scene-recomposition-preflight-2026-10-11.md", "docs/guide-scene-header-proposal-2026-10-11.md"],
       "decisionGate": "none"
     },
     {

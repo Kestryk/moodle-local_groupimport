@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-11 - T007 responsive demonstration-header proposal
+
+- Record the saved Guide Penpot proposal at desktop, tablet and phone widths:
+  mode, manual Start, current instruction and existing playback controls share
+  one header; expected Add/Move consequences are readable before Start.
+- Verify 18 active headers, three context boards and six preserved card copies;
+  retain original boards, linked Foundation controls and failed diagnostics.
+- Keep this proposal pending Kevin's review before template/Kit activation.
+  Served preview, course state and Motion are unchanged.
+
 ## 2026-10-11 - Served T006 exact clearance proof
 
 - Record18 native EN-normal/FR-reduced three-width cases with exact24px
