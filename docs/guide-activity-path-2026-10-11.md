@@ -84,3 +84,18 @@ nested Guide host; native event dispatch and Group DOM lookup remain workspace
 owned.320 successor combinations now explicitly assert separate roots, including
 confirmation capture/save. No Kit engine, Motion, UI or business command changes.
 An unchanged strict native retry is required before claiming served success.
+
+The unchanged retry `easystud-authenticated-20261011T083611500Z-41824` proves
+the first three milestones on desktop, then fails tablet entry. A stronger cue-
+readiness successor (`guide-activity-path-cues-native.spec.js`) also fails tablet
+entry in `easystud-authenticated-20261011T083851994Z-16972`: actual aligned cue and
+settled closure do not fix it. Its diagnostic reports `guideNested: false` after
+the compact transition. Thus readiness was a hypothesis, not the remaining cause.
+
+The product's existing responsive launcher portals the same Guide node outside
+the workspace. It now captures a stable consumer-owned reference before moving
+it; the shared target adapter and context APIs reuse that reference, including
+initial compact setup. No arbitrary document-wide Guide lookup or engine fork.
+640 nested/portalled-owner cases pass. Both failed specs stay immutable; the
+cue-readiness successor also corrects cleanup to the actual `.checklist` QA key.
+New native retry is required. No tablet/mobile success is inferred from desktop.

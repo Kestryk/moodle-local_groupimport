@@ -56,7 +56,7 @@ const to = manager.indexOf('// Completion uses the same result authority', from)
 assert.ok(from > 0 && to > from);
 const helpers = manager.slice(from, to);
 let cases = 0;
-for (const connected of [false, true]) for (const hidden of [false, true]) {
+for (const portalled of [false, true]) for (const connected of [false, true]) for (const hidden of [false, true]) {
     for (const disabled of [false, true]) for (const step of ids) {
         for (const matchingDestination of [false, true]) for (const allPresent of [false, true]) {
             for (const current of [false, true]) {
@@ -71,7 +71,11 @@ for (const connected of [false, true]) for (const hidden of [false, true]) {
                 grouping.querySelector = selector => selector.includes('collapse-toggle') ?
                     {getAttribute: () => 'true'} : {hidden: false, querySelectorAll: () => childGroups};
                 const host = {isConnected: connected, querySelectorAll: () => [grouping],
-                    querySelector: selector => {assert.equal(selector, '[data-easyedu-guide-root]'); return guideHost;},
+                    easystudGuideOwner: portalled ? guideHost : null,
+                    querySelector: selector => {
+                        assert.equal(selector, '[data-easyedu-guide-root]');
+                        return portalled ? null : guideHost;
+                    },
                     dispatchEvent: event => events.push(event.detail)};
                 const scope = {document: {querySelector: () => checklist},
                     CustomEvent: class {constructor(name, data) {this.detail = data.detail;}},

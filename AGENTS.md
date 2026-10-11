@@ -4,6 +4,10 @@ Canonical Guide state belongs to the nested data-easyedu-guide-root, not the
 outer Course Manager workspace. Resolve that host for token/get/set calls while
 keeping Group DOM lookups/native events workspace-owned. Isolated evidence must
 model both roots; preserve failed native specs and repeat their strict assertions.
+The existing responsive launcher portals that same Guide node. Capture its
+consumer-owned reference before moving it and reuse it for shared target binding,
+including an initial compact load. Never change Navigation or Guide Motion to
+repair an adapter lookup, and never substitute an arbitrary foreign Guide.
 
 The additive activity Grouping path replaces only its invitation, not historical
 definitions/storage. Verify the persisted destination and every expected Group
