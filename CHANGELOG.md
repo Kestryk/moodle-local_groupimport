@@ -2,6 +2,12 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Synchronize canonical opt-in Guide path context APIs and their explicit Moodle
+  AMD bridge.57 isolated context cases and built five-export/source parity pass;
+  existing paths, product styles/Motion/commands and progress remain unchanged.
+  New activity-path invitation, native context lifecycle and human gates are
+  separate pending stages.
+
 - Verify activity-grouping prerequisites in six native EN-normal/FR-reduced
   desktop/tablet/phone cases: real Group selection, searchable positive Grouping
   destination and Cancel preserve rendered memberships. No course writes/errors;

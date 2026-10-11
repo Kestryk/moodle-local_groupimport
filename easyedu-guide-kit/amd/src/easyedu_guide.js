@@ -367,6 +367,70 @@ const saveGuideReadingPosition = (config, index) => {
   saveGuideState(config, {...state, slideIndex: index});
 };
 
+// Opt-in ID-only context. Product adapters own evidence; the Kit owns its
+// persistence and path-local lifecycle. No context write completes a milestone.
+const normalisePathContext = (config, pathName, data) => {
+  const own = (object, key) => object && Object.prototype.hasOwnProperty.call(object, key);
+  if (!own(config.paths, pathName) || !own(config.pathContextFields, pathName)) { return null; }
+  const schema = config.pathContextFields[pathName];
+  if (!schema || typeof schema !== 'object' || Array.isArray(schema) ||
+      !data || typeof data !== 'object' || Array.isArray(data)) { return null; }
+  const fields = Object.keys(schema);
+  if (!fields.length || fields.length !== Object.keys(data).length) { return null; }
+  const result = {};
+  const isId = value => typeof value === 'string' && /^[1-9]\d*$/.test(value);
+  for (const field of fields) {
+    if (['__proto__', 'constructor', 'prototype'].includes(field) || !own(data, field)) { return null; }
+    const value = data[field];
+    if (schema[field] === 'id' && isId(value)) {
+      result[field] = value;
+    } else if (schema[field] === 'ids' && Array.isArray(value) && value.length &&
+        value.every(isId) && new Set(value).size === value.length) {
+      result[field] = [...value];
+    } else { return null; }
+  }
+  return result;
+};
+
+/** Read a validated copy; loading never writes or restores a checklist. */
+export const getPathContext = (root, pathName) => {
+  const config = root?.easyeduGuideConfig;
+  if (!config) { return null; }
+  const state = loadGuideState(config);
+  return normalisePathContext(config, pathName, state.pathContexts?.[pathName]);
+};
+
+/** Capture before a native asynchronous command, never in its late callback. */
+export const getPathContextToken = (root, pathName) => {
+  const config = root?.easyeduGuideConfig;
+  if (!config || !Object.prototype.hasOwnProperty.call(config.pathContextFields || {}, pathName)) { return null; }
+  const checklist = root.querySelector(SELECTORS.checklist);
+  if (!checklist || checklist.hidden || checklist.getAttribute('data-easyedu-guide-path') !== pathName ||
+      loadGuideState(config).path !== pathName) { return null; }
+  return {root, config, pathName, epoch: root.easyeduGuidePathEpoch || 0};
+};
+
+/** Store explicit product evidence only while its original path session is active. */
+export const setPathContext = (root, pathName, data, token) => {
+  const current = getPathContextToken(root, pathName);
+  if (!current || !token || token.root !== root || token.config !== current.config ||
+      token.pathName !== pathName || token.epoch !== current.epoch) { return false; }
+  const context = normalisePathContext(current.config, pathName, data);
+  if (!context || !getStorage()) { return false; }
+  try {
+    const state = loadGuideState(current.config);
+    saveGuideState(current.config, {...state, pathContexts: {...(state.pathContexts || {}), [pathName]: context}});
+    return JSON.stringify(getPathContext(root, pathName)) === JSON.stringify(context);
+  } catch (error) { return false; }
+};
+
+const withoutPathContext = (state, pathName) => {
+  if (!state.pathContexts || !Object.prototype.hasOwnProperty.call(state.pathContexts, pathName)) { return state; }
+  const pathContexts = {...state.pathContexts};
+  delete pathContexts[pathName];
+  return {...state, pathContexts};
+};
+
 const getCompletedSteps = (config, pathName) => {
   const state = loadGuideState(config);
   const completed = state.completed && state.completed[pathName];
@@ -387,7 +451,7 @@ const isPathComplete = (config, pathName) => {
 
 // Reset this Guide path only, never other progress or Moodle course data.
 const resetPathProgress = (config, pathName) => {
-  const state = loadGuideState(config);
+  const state = withoutPathContext(loadGuideState(config), pathName);
   saveGuideState(config, {...state, path: state.path === pathName ? null : state.path, activeIndex: 0,
     completed: {...(state.completed || {}), [pathName]: []}});
 };
@@ -2738,6 +2802,11 @@ const bindGuide = (root, config) => {
       event.preventDefault();
       dismissResume(root);
       const requestedPath = startPath.getAttribute('data-easyedu-guide-start-path');
+      // New context sessions invalidate obsolete native callbacks, including
+      // leaving another path and then starting this same path again.
+      if (Object.prototype.hasOwnProperty.call(activeConfig.pathContextFields || {}, requestedPath)) {
+        root.easyeduGuidePathEpoch = (root.easyeduGuidePathEpoch || 0) + 1;
+      }
       if (isPathComplete(activeConfig, requestedPath)) { resetPathProgress(activeConfig, requestedPath); }
       syncSlideLocks(root, activeConfig);
       renderChecklist(root, activeConfig, requestedPath);

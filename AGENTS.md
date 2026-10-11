@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Guide native-evidence context uses canonical get/token/set APIs, not direct
+plugin storage or engine forks. Capture the session token before a native
+asynchronous command; late callbacks must not manufacture one after Reset.
+Adapt every explicit Kit export in the AMD synchronizer and execute generated
+exports. Preserve pinned old-engine tests; use separately bounded successors.
+
 Activity-grouping Guide successors cannot inherit broad legacy grouping events:
 member removal/paste and unrelated expansion are not Group assignment evidence.
 Native Group batches use one request per Group, not the atomic Member transfer.
