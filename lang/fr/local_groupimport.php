@@ -1,4 +1,16 @@
 <?php
+$string['activity_path_title'] = 'Préparer un groupement pour une activité';
+$string['activity_path_content'] = 'Utilisez les groupes du cours, ou créez-les au préalable. Seule votre confirmation explicite modifie les associations. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
+$string['activity_path_step1'] = 'Créer ou ouvrir un groupement';
+$string['activity_path_desc1'] = 'Ouvrez un groupement existant avec son chevron, ou créez-en un dans le champ de création de groupement. S’il n’en existe aucun, créez-le d’abord : le guide ne crée jamais de données à votre place.';
+$string['activity_path_step2'] = 'Sélectionner les groupes concernés';
+$string['activity_path_desc2'] = 'Sélectionnez les groupes avec leurs cases à cocher, pas les participants ni les membres d’un groupe. S’il n’existe aucun groupe, créez-en d’abord. Sur mobile, utilisez la vue Groupes.';
+$string['activity_path_step3'] = 'Rechercher et choisir le groupement de destination';
+$string['activity_path_desc3'] = 'Ouvrez l’action des groupes sélectionnés, recherchez dans la liste et choisissez explicitement un groupement. Groupes sans groupement correspond à une suppression d’association et ne convient pas à cet exercice.';
+$string['activity_path_step4'] = 'Vérifier les options, puis confirmer';
+$string['activity_path_desc4'] = 'Vérifiez la destination et Retirer du groupement d’origine. Décoché conserve les autres associations ; coché les retire. Confirmez uniquement lorsque vous êtes prêt. Chaque groupe fait l’objet d’une requête : un échec global n’annule pas les réussites précédentes.';
+$string['activity_path_step5'] = 'Ouvrir la destination et vérifier ses groupes';
+$string['activity_path_desc5'] = 'Ouvrez le même groupement de destination avec son chevron. S’il est déjà ouvert, refermez-le puis rouvrez-le. Tous les groupes confirmés doivent être présents. Effacez les filtres si nécessaire. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify

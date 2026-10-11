@@ -327,6 +327,14 @@ final class guide_discovery {
             }
             $slide['id'] = $ids[$index];
             $slide['index'] = $index;
+            if ($source === 'reference-7') {
+                $slide['hasguidedpath'] = true;
+                $slide['guidedpath'] = 'prepare-activity-grouping';
+                $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
+                $slide['guidedpathtitle'] = get_string('activity_path_title', 'local_groupimport');
+                $slide['guidedpathcontent'] = get_string('activity_path_content', 'local_groupimport');
+                $slide['guidedpathsteps'] = ['items' => array_column(self::activity_grouping_path(), 'title')];
+            }
             if ($source === 'reference-3') {
                 $slide['hasguidedpath'] = true;
                 $slide['guidedpath'] = 'verify-with-filters';
@@ -361,6 +369,28 @@ final class guide_discovery {
             $result[] = $slide;
         }
         return $result;
+    }
+
+    /** New ID: retain legacy grouping progress without treating it as new evidence. */
+    public static function activity_grouping_path(): array {
+        $definitions = [['open-grouping', 'activityGroupingEntry', 'tutorial:activity-grouping-workspace'],
+            ['select-groups', 'activityGroupSelection', 'tutorial:activity-group-workspace'],
+            ['choose-grouping', 'activityGroupDestination', 'tutorial:activity-group-dialog'],
+            ['confirm-groups', 'activityGroupConfirm', 'tutorial:activity-group-dialog'],
+            ['verify-grouping', 'activityGroupingResult', 'tutorial:activity-grouping-result']];
+        $steps = [];
+        foreach ($definitions as $index => [$id, $target, $open]) {
+            $step = ['id' => $id,
+                'title' => get_string('activity_path_step' . ($index + 1), 'local_groupimport'),
+                'description' => get_string('activity_path_desc' . ($index + 1), 'local_groupimport'),
+                'target' => $target, 'open' => $open, 'openDelay' => 360,
+                'completionMode' => 'event', 'autoHighlightNext' => true];
+            if ($index > 0) {
+                $step['requiresStep'] = $definitions[$index - 1][0];
+            }
+            $steps[] = $step;
+        }
+        return $steps;
     }
 
     /** Verify native filtered selection without changing course memberships. */
