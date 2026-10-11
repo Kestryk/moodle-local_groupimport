@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-11 - Canonical timed-scene header and expected outcome
+
+- Synchronize Kit0.4.173's mode/Start/live/playback composition into the actual
+  Moodle template and generated AMD/CSS, using shared classes and recipes.
+- Show expected Add/Move memberships at rest, translated phase counts during
+  play/pause, and default ready state on Reset; preserve scene clocks/cards.
+- Record isolated responsive/localized proof separately from pending native
+  preview and the deferred human checklist. T008/T012 remain queued.
+
 ## 2026-10-11 - T007 responsive demonstration-header proposal
 
 - Record the saved Guide Penpot proposal at desktop, tablet and phone widths:

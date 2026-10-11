@@ -111,7 +111,7 @@
     {
       "id": "T007",
       "receivedScope": "[US1] Penpot « Guide Easystud » : composer la slide « Organiser » avec l'en-tête de scène unique (mode, Démarrer, statut, Pause, Suivant) et les appartenances prévues au repos. Faire valider par Kevin avant le code.",
-      "status": "Penpot-three-width-five-state-proposal-saved-geometry-passed-Kevin-review-before-code",
+      "status": "Penpot-proposal-saved-continuation-authorized-integration-human-checklist-open",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": ["docs/guide-scene-recomposition-preflight-2026-10-11.md", "docs/guide-scene-header-proposal-2026-10-11.md"],
@@ -129,7 +129,7 @@
     {
       "id": "T009",
       "receivedScope": "[US1] Déplacer `__live` dans la `section.easyedu-guide-scene` comme en-tête, et y remonter les boutons `add`/`move` sous forme de sélecteur `aria-pressed` (G1, G2).",
-      "status": "queued",
+      "status": "canonical173-source-implemented-six-isolated-header-cases-passed-native-pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
@@ -138,7 +138,7 @@
     {
       "id": "T010",
       "receivedScope": "[US1] Afficher `__memberships` dès le repos avec l'issue prévue du mode choisi, et la mettre à jour au changement de mode.",
-      "status": "queued",
+      "status": "explicit-mode-outcome-preview-source-isolated-passed-native-pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
@@ -147,7 +147,7 @@
     {
       "id": "T011",
       "receivedScope": "[US1] Statut « Étape n/N · Mode » ; bordure neutre au repos, primaire en lecture ; Pause et Suivant masqués avant le premier démarrage (G5, G6).",
-      "status": "queued",
+      "status": "localized-applicable-phase-caption-and-playback-state-source-isolated-passed-native-pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
