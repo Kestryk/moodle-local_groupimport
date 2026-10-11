@@ -1,0 +1,373 @@
+{
+  "classification": "local-supervised",
+  "sourceProduct": "f6e9143585fc90bd0156862c58521ea30e03de35",
+  "runtimeProduct": "ec4987eee208eb5267d5dc2b09d2b6936754a75b",
+  "widths": [
+    390,
+    768,
+    1280
+  ],
+  "runs": [
+    {
+      "runId": "easystud-authenticated-20261011T093358629Z-48068",
+      "cases": 3,
+      "language": "en",
+      "motion": "no-preference",
+      "rows": [
+        {
+          "width": 390,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true
+        },
+        {
+          "width": 768,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true
+        },
+        {
+          "width": 1280,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true
+        }
+      ],
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true
+      },
+      "errors": [],
+      "blocked": []
+    },
+    {
+      "runId": "easystud-authenticated-20261011T093541834Z-19680",
+      "cases": 3,
+      "language": "fr",
+      "motion": "reduce",
+      "rows": [
+        {
+          "width": 390,
+          "language": "fr",
+          "motion": "reduce",
+          "actualReducedMotion": true,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true
+        },
+        {
+          "width": 768,
+          "language": "fr",
+          "motion": "reduce",
+          "actualReducedMotion": true,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true
+        },
+        {
+          "width": 1280,
+          "language": "fr",
+          "motion": "reduce",
+          "actualReducedMotion": true,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true
+        }
+      ],
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true
+      },
+      "errors": [],
+      "blocked": []
+    },
+    {
+      "runId": "easystud-authenticated-20261011T093914143Z-36164",
+      "cases": 3,
+      "language": "en",
+      "motion": "no-preference",
+      "rows": [
+        {
+          "width": 390,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true
+        },
+        {
+          "width": 768,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true
+        },
+        {
+          "width": 1280,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true
+        }
+      ],
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true
+      },
+      "errors": [],
+      "blocked": []
+    },
+    {
+      "runId": "easystud-authenticated-20261011T094207268Z-41256",
+      "cases": 3,
+      "language": "fr",
+      "motion": "reduce",
+      "rows": [
+        {
+          "width": 390,
+          "language": "fr",
+          "motion": "reduce",
+          "actualReducedMotion": true,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true,
+          "completedPageReloadDoesNotOfferChecklistOrResume": true
+        },
+        {
+          "width": 768,
+          "language": "fr",
+          "motion": "reduce",
+          "actualReducedMotion": true,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true,
+          "completedPageReloadDoesNotOfferChecklistOrResume": true
+        },
+        {
+          "width": 1280,
+          "language": "fr",
+          "motion": "reduce",
+          "actualReducedMotion": true,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true,
+          "completedPageReloadDoesNotOfferChecklistOrResume": true
+        }
+      ],
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true
+      },
+      "errors": [],
+      "blocked": []
+    },
+    {
+      "runId": "easystud-authenticated-20261011T094955995Z-47984",
+      "cases": 3,
+      "language": "en",
+      "motion": "no-preference",
+      "rows": [
+        {
+          "width": 390,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true,
+          "completedPageReloadDoesNotOfferChecklistOrResume": true
+        },
+        {
+          "width": 768,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true,
+          "completedPageReloadDoesNotOfferChecklistOrResume": true
+        },
+        {
+          "width": 1280,
+          "language": "en",
+          "motion": "no-preference",
+          "actualReducedMotion": false,
+          "prerequisiteSetup": "artificial QA only",
+          "exactDestinationCue": true,
+          "missingExpectedGroupRejected": true,
+          "otherGroupingRejected": true,
+          "contextWriteAloneDoesNotComplete": true,
+          "nativeSameGroupingDisclosureCompletesFinal": true,
+          "membershipsPreserved": true,
+          "completedReinitDoesNotOfferResume": true,
+          "actualPageReload": true,
+          "noReseedingAfterReload": true,
+          "explicitResumeRequired": true,
+          "completedPageReloadDoesNotOfferChecklistOrResume": true
+        }
+      ],
+      "cleanup": {
+        "credentialsCleared": true,
+        "leaseReleased": true,
+        "ownedChildStopped": true
+      },
+      "errors": [],
+      "blocked": []
+    }
+  ],
+  "failedPredecessors": [
+    {
+      "runId": "easystud-authenticated-20261011T093738461Z-12732",
+      "failure": "Resume restores checklist, not target opener; test omitted real step review",
+      "preserved": true,
+      "courseWrites": false,
+      "cleanupComplete": true
+    },
+    {
+      "runId": "easystud-authenticated-20261011T094606806Z-46516",
+      "failure": "DOM content navigation wait inherited 15s timeout; required product-ready oracle remains 60s",
+      "preserved": true,
+      "courseWrites": false,
+      "cleanupComplete": true
+    }
+  ],
+  "retention": {
+    "mode": "dry-run",
+    "candidateCount": 0,
+    "deletedCount": 0,
+    "protectedRuns": 7
+  },
+  "artificialPrerequisiteHistory": true,
+  "realUserProgressWritten": false,
+  "confirmedAssignmentProof": false,
+  "humanAccepted": false,
+  "limitations": [
+    "Artificial four-step QA history cannot prove native assignment success.",
+    "Reinitialized QA key after actual page reload is not a production-key migration test.",
+    "Persisted custom admin palette, first-eligible welcome matrix and full animated artwork remain separate."
+  ],
+  "completedPageReloadCoverage": {
+    "cases": 6,
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "motionScopes": [
+      "EN normal",
+      "FR reduced"
+    ],
+    "qaPrerequisitesArtificial": true
+  }
+}

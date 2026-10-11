@@ -1,5 +1,19 @@
 # Current Student Management Guide: remaining engineering
 
+Current engineering projection: guide-engineering-projection-2026-10-11.md
+reconciles G11/R10 requests and residual boundaries, preserving historical pins.
+The activity final-recognition review now passes EN-normal/FR-reduced at all
+three widths without course writes; full reload requires explicit Resume then
+native step review. Scope: guide-activity-final-review-2026-10-11.md. This never
+certifies its artificial prerequisites as a native confirmed assignment.
+Completed/pending reload has six EN-normal/FR-reduced passes at all three widths,
+including explicit step review and no automatically restored completed checklist.
+Current-scene paint now has six natural EN-normal desktop/phone passes for
+Add/Move/Actions: aligned outbound pointer/ghost, under-card dashed overlap,
+compact menus/cursor, two checked members and final cleanup. Scope/evidence:
+guide-current-scene-paint-review-2026-10-11.md. Human acceptance and older SM/
+import/admin lots stay open; assignment is not inferred from QA/fictional scenes.
+
 Latest served activity path: Sourcef6e9143/runtimeec4987e passes six actual
 EN-normal/FR-reduced cold-compact lifecycle cases at390/768/1280. Three native
 milestones/cue alignment/Cancel preserve memberships, no writes/errors, cleanup
