@@ -33,3 +33,16 @@ all12 existing product roots: eight profile-hidden / four profile-visible,
 three role nodes retained per root and unchanged rectangles. No claim of full
 card spacing/palette parity is made. The new native scenario keeps the actual
 selection/control and also records Eye/name delta as R10-18 diagnostic only.
+
+The pushed66b3067 candidate is served at clean runtime b5fc3d8 after managed
+cache refresh. EN/FR native runs15380/28648 pass42 records at390/768/1024 and
+desktop return1280: initial compact, sole/two/second-sole/none, manual full and
+compact. Real optional slots are hidden and unpainted in compact, restored in
+full, and returned to the desktop controller unchanged. No business/settings
+write or page error; credentials/children/runtime ownership cleaned up.
+
+Both sampled card Eye/name centres retain~0.953px delta through those states;
+this is a R10-18 diagnostic, not all-card/long-name/glyph/focus certification.
+The390px native capture shows compact Roles without custom rows, aligned direct
+Eye and unchanged controls. Broader styling and R10-20 control redesign remain
+open. Pinned historic profile-visible specimens/tests remain intact.

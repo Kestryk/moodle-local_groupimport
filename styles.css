@@ -29469,6 +29469,10 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   content: none;
 }
 
+.easyedu-ui .easyedu-workspace-view-switcher--tiled.easyedu-workspace-view-switcher--stable-icon > button .fa {
+  transition: none;
+}
+
 @media (max-width: 48rem) {
   .easyedu-ui .easyedu-search-field,
   .easyedu-ui .easyedu-create-icon-button {

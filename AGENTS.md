@@ -1,5 +1,9 @@
 # EasyEdu agent contract
 
+View-toggle transient colour proof converts Chromium rgb/color(srgb)/oklab
+through native canvas before luminance calculation. Preserve raw failed frames;
+atomic icon/tile paint is a shared opt-in, not a controller or Motion rewrite.
+
 The renewed responsive compact Participant policy includes optional profile
 badge/rows as well as memberships. Preserve Roles/name/email, desktop density,
 payloads and original measured Motion. Keep the old profile-preserving SM-50

@@ -1,0 +1,21 @@
+{
+  "lot":"R10-19",
+  "source":"66b30672034472efc96d0291ec81ad30d4518742",
+  "runtime":"b5fc3d8122c2be4f11d1febad0676448f3d63585",
+  "spec":"mobile-compact-profile-native.spec.js",
+  "languages":["en","fr"],
+  "widths":[390,768,1024],
+  "runs":["easystud-authenticated-20261011T123627705Z-15380","easystud-authenticated-20261011T123806632Z-28648"],
+  "records":42,
+  "states":["compact","sole","two","second sole","none","manual full","manual compact"],
+  "desktopReturnWidth":1280,
+  "status":"passed",
+  "isolatedCases":36,
+  "savedProductUsages":12,
+  "pageErrors":[],
+  "businessWrites":false,
+  "settingsWrites":false,
+  "eyeAlignmentDiagnosticOnly":true,
+  "cleanup":{"credentialsCleared":true,"leaseReleased":true,"ownedChildStopped":true},
+  "humanAccepted":false
+}
