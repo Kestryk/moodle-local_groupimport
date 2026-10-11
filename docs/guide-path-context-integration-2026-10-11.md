@@ -56,11 +56,31 @@ gates. No fabricated native completion, fixture mutation, settings Save or
 business command is needed by the storage proof. No new Penpot component/layout
 exists in this tranche; visual propagation is therefore not applicable.
 
-## Next
+## Served native evidence
 
-Publish the pushed exact engine/build candidate through the managed preview
-with a focused native no-write lifecycle check. Then add activity-specific
-targets, typed success predicates and bilingual invitation using these APIs.
+Feature Source939f243 / Kit4fed6ce is locally served at runtime14c3977 after
+managed preview and cache purge. Six native cases pass: EN normal run
+`easystud-authenticated-20261011T075659624Z-3576` and FR reduced run
+`easystud-authenticated-20261011T075818835Z-22864`, each at1280/768/390.
+The QA-only schema/key demonstrates stored context surviving Guide destruction/
+reinitialization, no automatic checklist restoration, explicit Resume, real
+Reset clearing only its context/completion, other context/legacy progress
+preservation and obsolete-token rejection. Errors/blocked commands are empty;
+credentials/lease/child cleanup is complete. Retention dry-run protects both
+runs without deletion. Sanitized proof:
+`testing/guide-path-context-native-2026-10-11.json`.
+
+This uses the existing filter path with temporary QA schema, not an installed
+activity path or fabricated business success. Full browser page reload,
+FR-normal/EN-reduced combinations and human acceptance are still separate.
+Current bilingual PHP payload remains12 readings/7 invitations/8 definitions.
+Per-lot consumerSync adds the exact canonical/consumer pins without changing
+nominal public metadata or earlier pins. No design-family change is claimed.
+
+## Next integration stage
+
+Add activity-specific targets, typed success predicates and bilingual invitation
+using these now-served APIs, then validate real path cues/resume/reset separately.
 Keep the old create-grouping definition/progress; decide visible invitation
 replacement explicitly, never silently translate its old completion.
 

@@ -1,5 +1,16 @@
 # Current Student Management Guide: remaining engineering
 
+Latest context proof: Kit4fed6ce / Source939f243 / runtime14c3977 passes six
+native EN-normal/FR-reduced QA-context cases at1280/768/390: stored IDs survive
+reinitialization, explicit Resume works, real Reset clears its context only,
+obsolete tokens reject writes and old progress is retained. Complete cleanup;
+no real-user storage/course writes. Full page reload is not claimed.
+Next: add activity-specific targets/typed success signals/bilingual invitation,
+using these APIs. Current12 readings/7 invitations/8 definitions stay unchanged;
+no new activity path or completion migration is installed yet. Canonical/source
+pins and evidence are recorded in guide-path-context-native-2026-10-11.json.
+All older Guide/SM gates and the deferred checklist remain open.
+
 11 October context implementation candidate: canonical Kit ID-only path context
 get/token/set APIs are synchronized and built in EasyStud.57 isolated storage
 cases,15 unchanged product guards and five callable AMD exports pass; unrelated

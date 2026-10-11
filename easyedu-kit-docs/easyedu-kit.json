@@ -4,6 +4,19 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guidePathContext20261011": {
+      "kitCommit": "4fed6cec08a835e12d7e6cde56e7814254f1cf95",
+      "sourceCommit": "939f2436ff585264c6f18271b3faf485d8572565",
+      "nativePreviewVerified": true,
+      "nativeWidths": [1280, 768, 390],
+      "nativeProof": "docs/testing/guide-path-context-native-2026-10-11.json",
+      "scope": "Opt-in ID-only context APIs, QA schema/key, reinitialization and native Resume/Reset; no existing product path opted in.",
+      "actualPageReloadTested": false,
+      "activityPathInstalled": false,
+      "businessCompletionProof": false,
+      "humanVisualValidated": false,
+      "publicRelease": false
+    },
     "guideHeaderPalette20261010": {
       "kitCommit": "e46f5d96ca1df68a547cdea524e8861558d7c57a",
       "sourceCommit": "fb3416f0e4a64067942974369ed4920518f663db",
