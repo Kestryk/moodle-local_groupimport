@@ -99,3 +99,39 @@ initial compact setup. No arbitrary document-wide Guide lookup or engine fork.
 640 nested/portalled-owner cases pass. Both failed specs stay immutable; the
 cue-readiness successor also corrects cleanup to the actual `.checklist` QA key.
 New native retry is required. No tablet/mobile success is inferred from desktop.
+
+## Served lifecycle proof
+
+Product Source `f6e9143585fc90bd0156862c58521ea30e03de35`, runtime
+`ec4987eee208eb5267d5dc2b09d2b6936754a75b`, managed apply/cache purge complete.
+The aligned-cue successor passes EN at1280/768/390 in
+`easystud-authenticated-20261011T084250120Z-41276`. Its FR run
+`easystud-authenticated-20261011T084416324Z-10980` reaches the three milestones
+and Cancel on desktop, then fails during QA cleanup: it reinitializes the Guide
+before deselecting and reopens the dialog. This is retained, not a FR PASS.
+
+The immutable lifecycle successor tears down Guide before deselection and waits
+until the next width to initialize it again. It asserts actual language and
+reduced-motion media, and starts the page at390px before visiting Moodle.
+Six cases pass at390/768/1280: FR-reduced
+`easystud-authenticated-20261011T084622883Z-44244`, EN-normal
+`easystud-authenticated-20261011T084732050Z-7656`.
+Each passes the three real milestones, aligned actual targets, native Cancel,
+unchanged memberships, followed by native selection cleanup. Errors/blocked writes are
+empty; credentials cleared, lease released and child stopped. Both manifested
+runs are protected by scoped retention dry-runs; zero candidates/deletions.
+Sanitized source record: `testing/guide-activity-path-native-2026-10-11.json`.
+
+No confirmed business command was sent. Same-destination confirmation/final
+verification is isolated evidence, not native assignment proof. Full progress
+reload, opposite language/media combinations, custom admin palette and human
+acceptance remain distinct. No Penpot design acceptance is inferred.
+
+## Workflow lessons for the next consumer
+
+Audit the native owner and responsive reparenting before writing state mocks;
+start compact as well as resizing a desktop page. Wait actual cue/Motion readiness
+rather than inventing delays. QA cleanup must not reinitialize a path before
+native selection cleanup. Respect file-specific Git EOL attributes before making
+the recovery snapshot. These prevent repeat diagnostic cycles; provider token
+and monetary totals are unavailable, so no numerical quota saving is claimed.

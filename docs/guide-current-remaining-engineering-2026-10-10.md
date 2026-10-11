@@ -1,5 +1,15 @@
 # Current Student Management Guide: remaining engineering
 
+Latest served activity path: Sourcef6e9143/runtimeec4987e passes six actual
+EN-normal/FR-reduced cold-compact lifecycle cases at390/768/1280. Three native
+milestones/cue alignment/Cancel preserve memberships, no writes/errors, cleanup
+complete.640 isolated cases retain final expected-ID verification and old paths.
+Proof: testing/guide-activity-path-native-2026-10-11.json. Current12 readings,
+7 invitations/9 definitions. Next: bounded native final-cue/expected-membership
+review without pretending a QA setup proves a confirmed business command.
+Native confirmed assignment, full progress reload, human acceptance and all older
+Guide/SM lots remain open. Earlier diagnostic projections below are retained.
+
 Compact owner correction candidate: desktop recognizes three native milestones;
 tablet still fails even in the stronger aligned-cue/settled-closure test. Its
 diagnostic confirms Guide is portalled outside the workspace. Capture the exact
