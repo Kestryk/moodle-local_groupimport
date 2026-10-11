@@ -1,0 +1,48 @@
+{
+  "scope": "Existing Group workflow authority before activity Guide successor integration",
+  "sourceBaseline": "59d42bcc0c5e612dc290d8099711754b1e2ba46c",
+  "runtimeHead": "eec1a3ea8b5cee6a2cce2e60421ed8c8498f7cea",
+  "isolated": {
+    "test": "tools/release/test-guide-activity-grouping-authority.cjs",
+    "actualAdapterCases": 73,
+    "unrelatedLegacyCompletionSites": 2,
+    "protectedFilesUnchanged": 19,
+    "adapterSha256Lf": "5e619cd89a5c7eebb0d3b890dde9e82c0bcd9c2bc41a6adc6a6fd0a0fc540a1e",
+    "backendExecution": false,
+    "databaseProof": false
+  },
+  "native": {
+    "spec": "tools/playwright/guide-activity-grouping-authority-native.spec.js",
+    "classification": "local-supervised",
+    "discoveryRun": "easystud-authenticated-20261011T073226513Z-44832",
+    "selectedTests": 1,
+    "runs": [
+      {"runId": "easystud-authenticated-20261011T073235803Z-48580", "language": "en", "motion": "no-preference", "widths": [1280, 768, 390], "exitCode": 0},
+      {"runId": "easystud-authenticated-20261011T073419615Z-47716", "language": "fr", "motion": "reduce", "widths": [1280, 768, 390], "exitCode": 0}
+    ],
+    "cases": 6,
+    "actualLanguageAndMediaAsserted": true,
+    "typedGroupDialog": true,
+    "destinationSearchAndPositiveOption": true,
+    "removeOriginalUncheckedByDefault": true,
+    "cancelPreservesRenderedMembershipPairs": true,
+    "browserErrors": [],
+    "blockedBusinessRequests": [],
+    "cleanup": {"credentialsCleared": true, "leaseReleased": true, "ownedChildStopped": true},
+    "retention": {"mode": "dry-run", "protectedRuns": 2, "candidates": 0, "deleted": 0}
+  },
+  "newPathInstalled": false,
+  "liveProgressMigrated": false,
+  "courseDataChanged": false,
+  "productAssetsChanged": false,
+  "kitOrPenpotChanged": false,
+  "confirmationOrRollbackProof": false,
+  "humanAccepted": false,
+  "remaining": [
+    "Typed expected-Group/same-destination evidence and scoped resume/reset context",
+    "New additive path integration and explicit old-invitation boundary",
+    "Bilingual payload/storage checks and native checklist cue checks",
+    "Confirmed business outcome proof separate from non-mutating presentation review",
+    "Deferred grouped human checklist and older Guide/SM backlog"
+  ]
+}
