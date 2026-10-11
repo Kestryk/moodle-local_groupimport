@@ -109,6 +109,17 @@ clic et Entrée sans navigation ni POST, avertissement du Kit et focus picker.
 Le démarrage tardif reprend l'état prêt via l'option existante ; pas de délai
 artificiel ni nouveau skeleton. Import réel et acceptation humaine séparés.
 
+R10-27 est servi et vérifié en desktop FR/EN sur une carte basse : première
+ouverture/fermeture conserve chaque frame du conteneur défilant, compteur exact,
+Motion inchangée. Voir participant-overflow-scroll-2026-10-11.md. Le correctif
+évite la repagination d'un simple dépliage ; diagnostics conservés. Mobile et
+acceptation humaine restent distincts, aucun lot antérieur n'est supprimé.
+
+R10-21 reprend le nom Participants & groups dans l'entête du bloc en réutilisant
+la traduction déjà existante du toggle ; navigation mobile inchangée. Copie
+Penpot corrélée et vérification native restent séparées dans
+participant-panel-title-2026-10-11.md. Aucun nouveau style ni changement de typo.
+
 Oui, les états de chargement locaux peuvent s'appuyer sur les véritables phases
 de disponibilité des composants, pas sur un écran entier figé. Le chantier est
 transversal et son estimation reste à établir après l'inventaire. Il n'exige
