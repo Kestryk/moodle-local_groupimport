@@ -2,6 +2,12 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Reconcile current Guide content/path coverage on11 October:12 bilingual
+  readings,6 invitations,7 definitions,54 localized milestones,136 historical
+  positions and14 retained path states pass a new offline successor. Preserve
+  historical tests/progress; filter-verification and activity-grouping proposals
+  remain separate pending lots. No product, Kit, design or runtime change.
+
 - Extend timed-entry native coverage to English reduced mode:12 static recap/
   Replay/Reset cases pass.36 new cases complement the prior12 English normal
   cases; no production changes. Artwork/persistence/human review remain open.

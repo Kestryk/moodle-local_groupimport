@@ -1,5 +1,13 @@
 # Current Student Management curriculum coverage
 
+Current11 October successor at sourcefa794d5 verifies the inventory below in
+both languages,54 localized milestones,136 historical reading positions and14
+retained path-state cases. See guide-current-path-reconciliation-2026-10-11.md
+for the proposal-to-current map and the two absent future paths. Source-member
+FR normal/reduced and timed-entry EN/FR normal/reduced now have separate native
+successors; older narrower evidence descriptions below remain historical.
+This coverage is not native business completion or human acceptance.
+
 Current-source inventory at49b840d, not a new human acceptance or whole-scene
 raster gate. The historical `testing/guide-modern-curriculum-content-crosswalk-2026-10-10.md`
 records the inactive proposal at its original revision; it is not today's active

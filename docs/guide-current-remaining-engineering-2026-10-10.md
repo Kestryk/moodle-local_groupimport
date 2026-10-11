@@ -1,5 +1,16 @@
 # Current Student Management Guide: remaining engineering
 
+11 October current projection: the twelve reading IDs, six visible invitations,
+seven definitions and preserved historical progress pass the bilingual current
+successor (54 milestones /136 reading positions /14 retained path states).
+Two writer proposals remain absent: verify-with-filters and
+prepare-activity-grouping. Historical activity/action paths remain reachable;
+no completion migration or live progress reset is authorized by this audit.
+Next: audit actual filtered-result selection signals for the non-mutating path.
+Current boundaries: guide-current-path-reconciliation-2026-10-11.md.
+Earlier chronological "pending" entries below retain their original scopes;
+do not treat them as the current projection or reopen already proven successors.
+
 Latest entry coverage:36 new native cases pass (FR normal/reduced, EN reduced)
 alongside the prior12 EN normal cases. This covers all four language/Motion
 combinations for manual-entry lifecycle and Small paint, with unchanged engine.
