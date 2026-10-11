@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - French natural-scene and terminal-dot review
+
+- Six unchanged French natural Add/Move/Actions desktop/phone cases pass, with
+  real cursor/ghost/overlay/menu/checkbox and final-state oracles, no course writes.
+- Add a manual-entry French terminal-dot normal/reduced successor; preserve old
+  autoplay-index proof. Claude read-only audit prompt prepared; not yet delegated.
+
 ## 2026-10-11 - Retained global Claude audit request
 
 - Record AUD-CLAUDE-01: read-only EasyStud/Kit and applicable agent-file audit,

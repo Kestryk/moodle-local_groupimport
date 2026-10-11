@@ -1,5 +1,11 @@
 # Current Student Management Guide: remaining engineering
 
+Latest localized scene scope: twelve EN/FR natural desktop/phone Add/Move/Actions
+cases pass, and six actual-FR normal/reduced terminal-dot cases pass at all
+three widths. Details: guide-localized-scene-terminal-review-2026-10-11.md.
+No source/style/Motion/business writes. Tablet artwork and human acceptance
+remain separate; reduced outcome is static and normal terminal uses real Next.
+
 User-added AUD-CLAUDE-01 is retained in claude-global-audit-roadmap-2026-10-11.md:
 global code/agent-instruction/optimization/visual-harmony audit to commission
 with Claude at a stable checkpoint. No audit performed or checklist closed.

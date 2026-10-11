@@ -4,6 +4,9 @@ Demande utilisateur du 11 octobre 2026, ajoutée au programme EED-UI-2026-0073.
 Statut : à confier à Claude après un checkpoint stable ; audit non réalisé.
 Ce lot ne remplace aucun lot Guide/SM existant ni la checklist humaine différée.
 
+Prompt prêt à transmettre : PROMPT-CLAUDE-GLOBAL-AUDIT-2026-10-11.md.
+Ses chemins/SHA doivent être recontrôlés au démarrage réel de l'audit.
+
 ## Mission à transmettre
 
 Lire tous les fichiers agent et instructions applicables des projets EasyStud
