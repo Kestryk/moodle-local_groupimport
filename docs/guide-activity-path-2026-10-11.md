@@ -69,3 +69,18 @@ Recovery checkpoint note: the first snapshot restore rejected mixed worktree
 line endings. The four owned PHP files require LF under repository attributes;
 normalizing only those files preserves staged content. This is a snapshot
 diagnostic, not a Moodle failure or permission to discard unrelated changes.
+
+## Native diagnostic and integration correction
+
+The first served run, `easystud-authenticated-20261011T083221527Z-40620`, fails
+the first native `open-grouping` milestone. No page errors or business writes;
+cleanup is complete and retention dry-run preserves the diagnostic. The native
+spec is retained unchanged. It is not a passing responsive result.
+
+Cause: Course Manager owns the outer workspace while the canonical Guide APIs
+own its nested `[data-easyedu-guide-root]`. The inactive bridge's isolated mocks
+did not represent this distinction. All context/token calls now resolve the real
+nested Guide host; native event dispatch and Group DOM lookup remain workspace
+owned.320 successor combinations now explicitly assert separate roots, including
+confirmation capture/save. No Kit engine, Motion, UI or business command changes.
+An unchanged strict native retry is required before claiming served success.

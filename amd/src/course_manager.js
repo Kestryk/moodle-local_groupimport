@@ -2171,8 +2171,10 @@ const emitNativePathCompletion = (root, path, step) => {
 const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
 const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
 
+const getActivityGuideRoot = root => root.querySelector('[data-easyedu-guide-root]');
+
 const activityGroupingSessionIsCurrent = (root, token) => {
-    const current = Guide.getPathContextToken(root, 'prepare-activity-grouping');
+    const current = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
     return !!token && !!current && token.root === current.root && token.config === current.config &&
         token.epoch === current.epoch;
 };
@@ -2196,7 +2198,7 @@ const emitActivityGroupSelection = root => {
 
 // Only an explicit native disclosure, after Motion settles, can certify this step.
 const verifyActivityGrouping = (root, grouping, token) => {
-    const context = Guide.getPathContext(root, 'prepare-activity-grouping');
+    const context = Guide.getPathContext(getActivityGuideRoot(root), 'prepare-activity-grouping');
     if (!activityGroupingSessionIsCurrent(root, token) || !context ||
             grouping.getAttribute('data-easystud-grouping-id') !== context.destinationId) {
         return;
@@ -2227,7 +2229,7 @@ const captureActivityGroupingConfirmation = (root, destinationId, groups) => {
             !/^[1-9]\d*$/.test(destinationId) || !groups.length) {
         return null;
     }
-    const token = Guide.getPathContextToken(root, path);
+    const token = Guide.getPathContextToken(getActivityGuideRoot(root), path);
     const groupIds = groups.map(group => group.getAttribute('data-easystud-group-id'));
     const knownDestination = Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
         .some(grouping => grouping.getAttribute('data-easystud-grouping-id') === destinationId);
@@ -2252,7 +2254,7 @@ const commitActivityGroupingConfirmation = (root, evidence, responses) => {
     const next = checklist && !checklist.hidden && root.isConnected ?
         checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)') : null;
     if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== 'confirm-groups' ||
-            !Guide.setPathContext(root, 'prepare-activity-grouping', evidence.context, evidence.token)) {
+            !Guide.setPathContext(getActivityGuideRoot(root), 'prepare-activity-grouping', evidence.context, evidence.token)) {
         return false;
     }
     emitNativePathCompletion(root, 'prepare-activity-grouping', 'confirm-groups');
@@ -6158,7 +6160,7 @@ const bindTree = root => {
         toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         section.classList.toggle('is-expanded', !expanded);
         const isUngrouped = section.classList.contains('local-groupimport-easystud-tree__section--ungrouped');
-        const activityToken = Guide.getPathContextToken(root, 'prepare-activity-grouping');
+        const activityToken = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
         animateTreeChildren(children, !expanded, isUngrouped ? {prepare: false, syncAfter: false} : {
             onComplete: () => {
                 if (!expanded) {
@@ -6507,7 +6509,7 @@ const bindQuickCreate = (root, courseId) => {
                 return;
             }
 
-            const activityCreationToken = Guide.getPathContextToken(root, 'prepare-activity-grouping');
+            const activityCreationToken = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
             postAction(payload).then(response => {
                 const createdGroups = response.groups || (response.group ? [response.group] : []);
                 const createdGroupings = response.groupings || (response.grouping ? [response.grouping] : []);
@@ -8966,7 +8968,7 @@ const bindSharedGuideTargets = root => {
                 node.removeAttribute('data-easystud-guide-activity-destination');
             });
             if (selector === 'tutorial:activity-grouping-result') {
-                const context = Guide.getPathContext(root, 'prepare-activity-grouping');
+                const context = Guide.getPathContext(getActivityGuideRoot(root), 'prepare-activity-grouping');
                 const grouping = context ? Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
                     .find(node => node.getAttribute('data-easystud-grouping-id') === context.destinationId) : null;
                 grouping?.setAttribute('data-easystud-guide-activity-destination', 'true');

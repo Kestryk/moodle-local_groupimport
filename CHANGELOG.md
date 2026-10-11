@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - Activity Guide context owner correction
+
+- Resolve the actual nested Guide root for context/session APIs, retaining outer
+  workspace events and Group lookup. First native diagnostic retained unchanged.
+- 320 separate-root guard/confirmation cases pass. Strict native retry pending;
+  no engine, Motion, UI, backend or course-data change.
+
 ## 2026-10-11 - Additive activity Grouping path
 
 - Five bilingual native steps with typed Group selection/destination, canonical

@@ -52,7 +52,7 @@ for (const language of ['en', 'fr']) {
 }
 const manager = read('amd/src/course_manager.js');
 const from = manager.indexOf('const emitNativePathCompletion =');
-const to = manager.indexOf('// Capture before the native asynchronous Group batch,', from);
+const to = manager.indexOf('// Completion uses the same result authority', from);
 assert.ok(from > 0 && to > from);
 const helpers = manager.slice(from, to);
 let cases = 0;
@@ -61,7 +61,8 @@ for (const connected of [false, true]) for (const hidden of [false, true]) {
         for (const matchingDestination of [false, true]) for (const allPresent of [false, true]) {
             for (const current of [false, true]) {
                 const events = [];
-                const token = {root: null, config: {}, epoch: 7};
+                const guideHost = {};
+                const token = {root: guideHost, config: {}, epoch: 7};
                 const next = {disabled, getAttribute: () => step};
                 const checklist = {hidden, querySelector: () => next};
                 const grouping = {getAttribute: () => matchingDestination ? '31' : '32'};
@@ -70,15 +71,27 @@ for (const connected of [false, true]) for (const hidden of [false, true]) {
                 grouping.querySelector = selector => selector.includes('collapse-toggle') ?
                     {getAttribute: () => 'true'} : {hidden: false, querySelectorAll: () => childGroups};
                 const host = {isConnected: connected, querySelectorAll: () => [grouping],
+                    querySelector: selector => {assert.equal(selector, '[data-easyedu-guide-root]'); return guideHost;},
                     dispatchEvent: event => events.push(event.detail)};
-                token.root = host;
                 const scope = {document: {querySelector: () => checklist},
                     CustomEvent: class {constructor(name, data) {this.detail = data.detail;}},
-                    Guide: {getPathContextToken: () => current ? token : null,
-                        getPathContext: () => ({destinationId: '31', groupIds: ['10', '11']})},
+                    Guide: {getPathContextToken: node => {
+                        assert.equal(node, guideHost, 'Session belongs to nested Guide, not workspace');
+                        return current ? token : null;
+                    }, getPathContext: node => {
+                        assert.equal(node, guideHost);
+                        return {destinationId: '31', groupIds: ['10', '11']};
+                    }, setPathContext: (node, name, data, captured) => {
+                        assert.equal(node, guideHost);
+                        assert.equal(captured, token);
+                        assert.equal(name, 'prepare-activity-grouping');
+                        assert.equal(data.destinationId, '31');
+                        return current;
+                    }},
                     getSelectedItems: () => [{getAttribute: () => '10'}]};
                 vm.runInNewContext(helpers + '\nthis.verify = verifyActivityGrouping;' +
-                    '\nthis.entry = emitActivityGroupingEntry;\nthis.selection = emitActivityGroupSelection;', scope);
+                    '\nthis.entry = emitActivityGroupingEntry;\nthis.selection = emitActivityGroupSelection;' +
+                    '\nthis.capture = captureActivityGroupingConfirmation;\nthis.commit = commitActivityGroupingConfirmation;', scope);
                 scope.verify(host, grouping, token);
                 const expected = connected && !hidden && !disabled && step === 'verify-grouping' &&
                     matchingDestination && allPresent && current;
@@ -89,6 +102,13 @@ for (const connected of [false, true]) for (const hidden of [false, true]) {
                 events.length = 0;
                 scope.selection(host);
                 assert.equal(events.length, connected && !hidden && !disabled && step === 'select-groups' ? 1 : 0);
+                events.length = 0;
+                const evidence = scope.capture(host, '31', [{getAttribute: () => '10'}]);
+                const confirmation = connected && !hidden && !disabled && step === 'confirm-groups' &&
+                    matchingDestination && current;
+                assert.equal(!!evidence, confirmation);
+                assert.equal(scope.commit(host, evidence, [{existing: true}]), confirmation);
+                assert.equal(events.length, confirmation ? 1 : 0);
                 cases++;
             }
         }

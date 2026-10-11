@@ -1,5 +1,12 @@
 # Current Student Management Guide: remaining engineering
 
+Native activation diagnostic: first open-grouping milestone fails in run
+20261011T083221527Z-40620, no writes/errors and cleanup complete. The workspace
+is not the nested canonical Guide owner. Context/token API calls are corrected
+to that actual host;320 explicit separate-root cases pass including confirmation.
+Keep the native spec/failed evidence immutable. Next: publish this owned fix,
+then repeat the same strict native path scenario. No responsive PASS claimed yet.
+
 Activity path activation candidate: prepare-activity-grouping has five bilingual
 typed milestones, context schema, native Group-context cues and same-destination
 verification after explicit disclosure/Motion completion.320 isolated guard cases
