@@ -1,5 +1,15 @@
 # Current Student Management Guide: remaining engineering
 
+User-added AUD-CLAUDE-01 is retained in claude-global-audit-roadmap-2026-10-11.md:
+global code/agent-instruction/optimization/visual-harmony audit to commission
+with Claude at a stable checkpoint. No audit performed or checklist closed.
+
+Latest tooltip successor: four FR-normal native profiles pass1280 regular,
+1280 browser Fullscreen,768/390 compact, with real hover/Tab labels and paint.
+Scope: guide-tooltip-localized-review-2026-10-11. All actual labels use Light
+Short; do not infer native Long or touch-device proof. Same styles/commands/Motion,
+complete cleanup, human checklist still deferred and every older lot retained.
+
 Current engineering projection: guide-engineering-projection-2026-10-11.md
 reconciles G11/R10 requests and residual boundaries, preserving historical pins.
 The activity final-recognition review now passes EN-normal/FR-reduced at all

@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Tooltip keyboard oracles follow the actual newly focused label. Tab to another
+truncated navigation item legitimately creates its own tooltip; require its
+exact copy, and require no tooltip only for a nontruncated/non-navigation target.
+Retain original hover/paint/containment and failed immutable locale diagnostics.
+
 Final activity verification reviews may isolate prerequisites under an explicit
 QA key, but artificial history never proves native confirmation. Real reload
 proof must destroy the document and read the same QA state without reseeding;
