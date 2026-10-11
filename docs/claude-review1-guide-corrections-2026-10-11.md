@@ -73,3 +73,18 @@ Calling the same helper from the owned Source checkout resolves that harness
 boundary without changing repositories, shared config or snapshot policy.
 
 Status: source/isolated correction implemented; not served. Human acceptance open.
+
+## Served native diagnostic
+
+Source2083141 / Kit5cba6a6 / runtimea6daf2d are served through the managed
+preview runner with one cache purge. Native35652 passes the first five complete
+cases, then fails FR390/select/paused at98px against the strict96px limit.
+All previous expected membership/phase-target/result assertions remain intact.
+The native dialog is15px narrower than the initial isolated viewport fixture.
+Keep the failure and immutable spec0c04cd8b6f7289d52b075332ec1f1d5d7c9732cc.
+Canonical0.4.176 reduces compact vertical padding from7 to6px only; no text,
+typography, phase clocks or oracle is changed. Corrected native proof pending.
+
+The baseline comparison also recorded five pre-existing Source/runtime differences
+in historical changelog, group-image evidence, embedded manifest and an old
+workspace spec. They are not silently overwritten by this Guide-only promotion.
