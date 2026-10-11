@@ -1,5 +1,12 @@
 # Guide engineering: current projection, not human acceptance
 
+T007 now has a saved three-width/five-state Penpot proposal using existing
+Foundation controls.18 active headers and three contextual compositions pass
+paint containment/centering; six original card copies are preserved. See
+`guide-scene-header-proposal-2026-10-11.md` for exact boards and external evidence.
+Kevin's requested review precedes code activation. This tranche changes no
+Kit/source assets, native preview, course data or Motion; T008–T012 remain open.
+
 Current T006 is served/proven: Kit2437268/0.4.172, Source4e4686e/runtime716369a,
 native44788 passes18 exact24px gaps at1280/768/390, EN normal/FR reduced with
 actual locale/media assertions, sticky status retained and no injected style

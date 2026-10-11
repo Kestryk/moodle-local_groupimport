@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Scene-header proposals compose existing linked controls in ordinary hosts.
+Preserve accepted card fingerprints and distinguish floating-point coordinate
+noise from paint/type changes. Tablet instructions follow compact card actions.
+Saved object presence, painted geometry and human design review are separate
+gates; a review-required proposal never authorizes silent runtime activation.
+
 Authenticated visual successors await committed login navigation and actual
 plugin readiness, not unrelated full-load completion. Retain a failed auth-wait
 spec/run separately; preserve all original geometry/locale/media assertions
