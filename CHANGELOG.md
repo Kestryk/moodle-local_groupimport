@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-11 - Cold tablet natural-scene successor
+
+- Add a strict768px initial-load counterpart for compact Add/Move/Actions,
+  cursor, selected members, source outcomes and recap containment; French passes.
+- Preserve existing desktop/phone scenarios, original Motion and product assets;
+  English same-spec replay also passes, giving18 EN/FR natural cases across
+  desktop/tablet/phone. Human acceptance and real transactions remain separate.
+
 ## 2026-10-11 - French natural-scene and terminal-dot review
 
 - Six unchanged French natural Add/Move/Actions desktop/phone cases pass, with

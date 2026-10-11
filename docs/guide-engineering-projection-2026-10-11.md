@@ -51,7 +51,9 @@ not an audit already performed, and not a substitute for human acceptance.
    scope: guide-current-scene-paint-review-2026-10-11, not all artwork acceptance.
    Unchanged French38092 adds six equivalent natural desktop/phone cases with
    no errors/writes, so twelve EN/FR cases now pass. Tablet/reduced artwork
-   remains a different gate. Terminal French50212 now passes six normal/reduced
+   Cold tablet23880/49992 now adds six EN/FR natural compact cases:18 cases total
+   across1280/768/390. Every glyph/touch/reduced artwork remains separate.
+   Terminal French50212 now passes six normal/reduced
    width cases with equal gaps, normal Pause and both completion check/recap states.
    Tooltip17900 also passes four FR normal regular/Fullscreen/compact profiles;
    all natural labels use Light Short, so native Long is still separate.
