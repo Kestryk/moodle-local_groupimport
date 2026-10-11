@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-11 - Activity Grouping confirmation bridge (inactive successor)
+
+- Capture immutable expected Group/destination IDs and the canonical Guide token
+  before the native batch; save context/emit typed confirmation only on complete
+  success. Old commands, progress, Motion and UI remain unchanged.
+- Build the explicit Guide AMD dependency;63 helper and73 native-adapter cases
+  pass. New activity path/schema/invitation and native activation remain pending.
+
 ## Unreleased - Inspection shared-source preparation
 
 - Serve canonical path-context APIs in preview and verify six EN-normal/FR-

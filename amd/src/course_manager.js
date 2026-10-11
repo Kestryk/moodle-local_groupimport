@@ -22,6 +22,7 @@
  */
 
 import * as Motion from './motion';
+import * as Guide from './easyedu_guide';
 import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './searchable_choices';
 import {snapshotMemberPairs} from './member_selection';
 
@@ -2169,6 +2170,52 @@ const emitNativePathCompletion = (root, path, step) => {
 
 const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
 const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
+
+// Capture before the native asynchronous Group batch, never from its late callback.
+// This bridge stays inert until the additive activity path and schema are installed.
+const captureActivityGroupingConfirmation = (root, destinationId, groups) => {
+    const path = 'prepare-activity-grouping';
+    const checklist = document.querySelector(
+        '[data-easyedu-guide-checklist][data-easyedu-guide-path="' + path + '"]'
+    );
+    const next = checklist && !checklist.hidden && root.isConnected ?
+        checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)') : null;
+    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== 'confirm-groups' ||
+            !/^[1-9]\d*$/.test(destinationId) || !groups.length) {
+        return null;
+    }
+    const token = Guide.getPathContextToken(root, path);
+    const groupIds = groups.map(group => group.getAttribute('data-easystud-group-id'));
+    const knownDestination = Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
+        .some(grouping => grouping.getAttribute('data-easystud-grouping-id') === destinationId);
+    if (!token || !knownDestination || groupIds.some(id => typeof id !== 'string' || !/^[1-9]\d*$/.test(id))) {
+        return null;
+    }
+    return Object.freeze({
+        token,
+        requestCount: groups.length,
+        context: Object.freeze({destinationId, groupIds: Object.freeze([...new Set(groupIds)])}),
+    });
+};
+
+const commitActivityGroupingConfirmation = (root, evidence, responses) => {
+    if (!evidence || responses.length !== evidence.requestCount ||
+            responses.some(response => !response || typeof response !== 'object' || response.success === false)) {
+        return false;
+    }
+    const checklist = document.querySelector(
+        '[data-easyedu-guide-checklist][data-easyedu-guide-path="prepare-activity-grouping"]'
+    );
+    const next = checklist && !checklist.hidden && root.isConnected ?
+        checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)') : null;
+    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== 'confirm-groups' ||
+            !Guide.setPathContext(root, 'prepare-activity-grouping', evidence.context, evidence.token)) {
+        return false;
+    }
+    emitNativePathCompletion(root, 'prepare-activity-grouping', 'confirm-groups');
+    return true;
+};
+
 // Completion uses the same result authority as native Select results, not DOM visibility alone.
 const emitFilterPathCompletion = (root, step) => {
     const list = root.querySelector('[data-easystud-participant-list]');
@@ -7215,6 +7262,7 @@ const bindMoveModal = (root, courseId) => {
             return;
         }
 
+        const activityEvidence = captureActivityGroupingConfirmation(root, value, groups);
         Promise.all(groups.map(group => {
             const groupid = group.getAttribute('data-easystud-group-id');
             return postAction({
@@ -7242,6 +7290,7 @@ const bindMoveModal = (root, courseId) => {
             const added = responses.filter(response => !response.existing).length;
             const existing = responses.filter(response => response.existing).length;
             showNotification(root, formatMoveSummary(labels.groupsmovesummary || '', added, existing), 'success');
+            commitActivityGroupingConfirmation(root, activityEvidence, responses);
             emitGuidedCompletion(root, 1, 'actions');
             emitGuidedCompletion(root, 1, 'grouping');
         }).catch(() => window.location.reload());

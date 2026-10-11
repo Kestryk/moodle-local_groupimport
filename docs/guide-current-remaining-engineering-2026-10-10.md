@@ -1,5 +1,15 @@
 # Current Student Management Guide: remaining engineering
 
+11 October activity bridge candidate: the native Group command captures IDs and
+the canonical session token before its batch, then stores context/emits typed
+confirmation only after complete success.63 helper cases and73 original native
+adapter cases pass;15 unrelated guards and all other interaction source retained.
+The activity definition/schema/invitation is still absent, so this bridge is
+inert. Next: install bilingual steps/targets and same-Grouping verification,
+preserving old progress. Preview/native proof of this bridge is not yet claimed.
+Scope: guide-activity-context-bridge-2026-10-11.md. Other Guide/SM lots and human
+acceptance remain open; do not read older projections below as current failures.
+
 Latest context proof: Kit4fed6ce / Source939f243 / runtime14c3977 passes six
 native EN-normal/FR-reduced QA-context cases at1280/768/390: stored IDs survive
 reinitialization, explicit Resume works, real Reset clears its context only,
