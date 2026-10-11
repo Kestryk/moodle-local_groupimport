@@ -1,5 +1,19 @@
 # Guide engineering: current projection, not human acceptance
 
+T006 source successor: eight saved Foundation Introduction mains/Standards
+already have24px trailing safety-note clearance. Kit0.4.172 now restores it via
+one token and logical padding, with complete unrelated CSS/source preservation.
+No design mutation, new variant, private margin or Motion/cue rewrite. Its
+strict18-case native successor is prepared; serving/native/human remain open.
+See `guide-introduction-clearance-correction-2026-10-11.md`.
+
+Current600 successor is served on Sourcecc341e5/runtimec97225a, canonical
+Kitd40fe42/0.4.171.72 native EN/FR three-width rest/hover/focus/selected text paints
+pass, with original14px/#264861/host family and containment; no data writes,
+all cleanup flags true. Saved30 Foundation/104 Product titles and inspected
+paired source/visible Product rasters precede that adoption. Remaining Guide
+spacing,28px tile, T033 visual details and all older/human gates stay open.
+
 ### Approved600 title publication and source adoption
 
 Foundation Library/Standards now have30 saved Inter14/600 titles, full unrelated

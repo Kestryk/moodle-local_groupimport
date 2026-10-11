@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Reconcile existing saved Foundation component clearance before adding consumer
+spacing. The shared Introduction's24px safety-note boundary is logical padding,
+not a status margin/sticky retiming or another visual family. Keep the native0px
+diagnosis immutable and verify the strict corrected locale/media/width successor.
+
 Penpot shape writes require the owning page active; resolve IDs within that
 page and activate each bounded group before setters. Saved source font600 and
 paired raster must precede weight-only consumer adoption. Preserve Product

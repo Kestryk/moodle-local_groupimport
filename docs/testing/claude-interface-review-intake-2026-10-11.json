@@ -41,7 +41,8 @@
   },
   "approvedPublicationGates": {
     "A3CardTitles600": {
-      "status": "Foundation30-and-Product104-saved600-paired-source-raster-inspected-canonical171-complete-CSS-preservation-native-gate-pending",
+      "status": "Foundation30-Product104-saved600-canonical171-served-72-native-paint-records-passed-human-open",
+      "nativeProof": "docs/testing/card-title-weight-adoption-2026-10-11.json",
       "record": "docs/card-title-600-publication-progress-2026-10-11.md",
       "humanAccepted": false
     },
@@ -101,7 +102,7 @@
     {
       "id": "T006",
       "receivedScope": "[P] [US1] **Espace entre la note d'introduction et la barre d'état (G9).**",
-      "status": "native-zero-gap-reproduced-12-cases-shared-composition-correction-pending",
+      "status": "eight-saved-Foundation-clearances24-reconciled-canonical172-two-declaration-correction-prepared-native-successor-pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],

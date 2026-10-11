@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-11 - Canonical T006 Guide introduction clearance
+
+- Synchronize Kit0.4.172's existing24px Foundation trailing clearance through
+  one shared token/padding; no plugin margin, cue relocation or Motion change.
+- Preserve the native0px baseline; prepare an18-case strict successor with
+  actual locale/reduced-policy checks. Native/human gates remain separate.
+
+## 2026-10-11 - Served600 card identity proof
+
+- Record72 native EN/FR three-width rest/hover/focus/selected title paints:
+ 600, original14px/#264861/host font and contained glyphs; no data writes.
+- Pin canonical/source/runtime assets, saved design and cleanup separately;
+  keep human checklist, broader card work and T033 spacing/details open.
+
 ## 2026-10-11 - Approved shared card identity600 adoption
 
 - Synchronize the canonical Kit0.4.171 `card-title` semibold rule and rebuild

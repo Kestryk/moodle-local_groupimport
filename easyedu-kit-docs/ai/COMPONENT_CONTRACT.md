@@ -1,5 +1,10 @@
 # EasyEdu Component Contract
 
+Common Introduction owns its source-backed24px trailing safety-note clearance.
+Use its canonical logical-padding token, not a plugin note margin or changed
+scene sticky offset. Reconcile saved Desktop/Mobile Library/Standards before
+adoption; preserve dedicated Show cue, chronology, commands and Motion.
+
 Discovery explicitly consumes the canonical primary dialog-header paint mixin.
 No portalled easyedu-ui reset, legacy/destructive repaint or extra gradient.
 Keep default geometry/Motion; isolated colour fixtures and native settings

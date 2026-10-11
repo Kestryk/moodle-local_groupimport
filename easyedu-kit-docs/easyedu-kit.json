@@ -4,14 +4,29 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideIntroductionClearance20261011": {
+      "kitVersion": "0.4.172",
+      "modules": ["scss/easyedu/components/_guide-discovery.scss"],
+      "publicToken": "--easyedu-guide-introduction-trailing-clearance",
+      "scope": "Existing24px paired Introduction safety-note trailing space; all other CSS, commands, type and Motion retained.",
+      "savedSourceStandardRecords": 8,
+      "completeCssPreserved": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "cardIdentityWeight20261011": {
+      "kitCommit": "d40fe4281eaffb90010cb4973aeaf818259ebf22",
       "kitVersion": "0.4.171",
       "modules": ["scss/easyedu/components/_cards.scss"],
       "scope": "Approved optionA: identity titles600 only;14px/#264861, all other CSS, templates, controllers and Motion retained.",
       "foundationSavedTitles": 30,
       "pairedRasterInspected": true,
       "completeCssPreserved": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativePaintRecords": 72,
+      "nativeProof": "docs/testing/card-title-weight-adoption-2026-10-11.json",
       "humanVisualValidated": false,
       "fullKitSync": false,
       "publicRelease": false
