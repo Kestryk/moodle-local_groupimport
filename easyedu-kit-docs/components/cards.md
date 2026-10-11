@@ -64,7 +64,10 @@ This proves compiled equivalence, not a new browser or human visual PASS.
 ## Identity and related-person typography
 
 Foundations shell main `2b5216d9-06a9-80a1-8008-9cf47759bd2b` measures
-14px/700, #16324f. `card-title` uses this one identity size for compact,
+14px/700, #264861, verified in the saved main on2026-10-11. The earlier #16324f
+documentation was stale, not a requested palette change. Kevin's approved600
+weight is a separate pending source/design/consumer lot, not already applied.
+`card-title` uses this one identity size for compact,
 regular and container shells; density is not a second font scale. Consumers
 bind the shared `--easyedu-card-identity-title-color`; semantic identity colour
 remains on rails and badges. Keep all existing header tracks and Motion.

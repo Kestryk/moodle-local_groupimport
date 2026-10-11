@@ -1,0 +1,23 @@
+{
+  "task": "T041",
+  "program": "EED-UI-2026-0073",
+  "sourceCommit": "7f5a4a9ae62231862a47ec113af45d442541aaaa",
+  "runtimeCommit": "81e7e9d1b9bc3361ef132e2a3ec86e3181e1c022",
+  "specBlob": "b4291ab63120fda7b574c83179b59471c80e9a10",
+  "runId": "easystud-authenticated-20261011T162515283Z-34788",
+  "status": "passed",
+  "cases": 18,
+  "widths": [1280, 768, 390],
+  "localeMotionPairs": ["English normal", "French reduced"],
+  "entities": ["Participant", "Group", "Grouping"],
+  "assertions": ["initial native Close focus", "Escape closes", "focus returns to real opener"],
+  "errors": 0,
+  "businessWrites": 0,
+  "fixturesRequested": false,
+  "settingsSaved": false,
+  "cssRawSha256": "C1C841E49057A7B29CA0548170311F9B2C20039BC57ACC5CCA3984377902E63B",
+  "amdRawSha256": "ED7B72480423726C8B4C832A949CC1D57C933F2450A319A924B6FB7906E401B6",
+  "cleanup": {"ownedChildStopped": true, "credentialsCleared": true, "leaseReleased": true},
+  "humanAccepted": false,
+  "limits": "No complete Tab-containment audit, full locale x motion matrix, footer redesign, business action or visual acceptance."
+}

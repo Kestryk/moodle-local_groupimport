@@ -1,5 +1,14 @@
 # Forms And Filters
 
+## Moodle deposit action-group centering — T005
+
+The shared file-deposit adapter gives only the outer `.easyedu-form-actions`
+group/field full width and hides its explicitly empty native label column.
+The adjacent `.easyedu-form-note` is centred. Nested controls and real labels
+stay native; buttons retain shared size/paint/commands. No plugin offset,
+inline style or modal-footer change. Restore the existing centred composition,
+not a new Foundation control size; native proof remains a separate gate.
+
 ## Moodle administration section flow
 
 Shared `moodle-admin-section-spacing` / `easyedu-admin-section-flow` owns only

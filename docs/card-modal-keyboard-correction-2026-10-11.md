@@ -25,7 +25,12 @@ focus semantics and fresh Terser equality for the built AMD plus source map.
 The first isolated harness incorrectly assumed embedded `sourcesContent` in
 that map; it is retained unchanged. The successor checks the real generated
 format, not a changed production build configuration.
-Native served proof is still open until the managed preview and successor run.
+Managed preview of Source7f5a4a9 at runtime81e7e9d is now proven by
+`testing/card-modal-keyboard-native-2026-10-11.json`:18 actual EN-normal /
+FR-reduced cases at1280/768/390 pass initial Close focus, Escape and return-focus.
+No errors, data/settings writes or fixtures; owned child/credentials/lease
+cleanup is complete. This supersedes the pending native gate above, not the
+broader accessibility or human checklist.
 
 No Foundation/Kit visual component change is applicable to this logic-only
 adapter correction. Tab containment and broader modal accessibility stay in

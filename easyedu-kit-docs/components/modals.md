@@ -1,5 +1,14 @@
 # Modals
 
+## Native Moodle Guide drawer yield — T004
+
+`dialog-classes` emits `moodle-guide-drawer-yield`: native `.drawer-toggler`
+controls outside the plugin root yield with visibility/pointer-events only
+while `html.easyedu-guide-dialog-open` is present. The canonical Guide already
+owns and clears that lifetime. Preserve the drawer's state and geometry.
+This native-host bridge adds no Foundation control, controller, z-index or
+Motion policy. Native stacking/restoration proof remains a separate gate.
+
 ## SM-44 canonical header and Message footer - 2026-10-05
 
 Kit 0.4.101 supersedes historical compact Native Message density below: the

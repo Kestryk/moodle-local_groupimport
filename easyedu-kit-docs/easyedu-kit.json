@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "nativeHostLayout20261011": {
+      "kitVersion": "0.4.169",
+      "modules": ["scss/easyedu/components/_modals.scss", "scss/easyedu/_dialog-classes.scss", "scss/easyedu/adapters/_moodle-file-deposit.scss"],
+      "scope": "Guide drawer lifetime and outer deposit action centering; five shared CSS rules only.",
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "filterResetFieldPeer20261011": {
       "kitCommit": "ad07f9c373e57bcf8b447cd4f96377af59167973",
       "kitVersion": "0.4.168",
