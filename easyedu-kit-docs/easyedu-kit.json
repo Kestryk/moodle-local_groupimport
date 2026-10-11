@@ -4,6 +4,19 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "filterTrackFocus20261011": {
+      "kitCommit": "730b0dd50ffdb1f14578d55ad109670e2fedac69",
+      "kitVersion": "0.4.167",
+      "modules": ["scss/easyedu/components/_forms.scss", "scss/easyedu/_foundation-classes.scss"],
+      "publicClass": "easyedu-filter-toggle--track-focus",
+      "scope": "Two trailing catalogue labels;44px hit target, original Motion and legacy switches preserved.",
+      "isolatedRecords": 48,
+      "pairedDesignContract": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "viewIconTransition20261011": {
       "kitCommit": "604a9d79ddfbf92644ed7a90e7ab6409b37737a3",
       "kitVersion": "0.4.167",
