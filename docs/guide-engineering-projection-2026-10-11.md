@@ -11,7 +11,7 @@ nine definitions. Runtime documentary successors do not change that product.
 | --- | --- | --- |
 | G11-A first-visit invitation | Centred canonical welcome composition, bilingual icon/copy; actual opening and reload persistence recorded in guide-g10-g-native and later G11 overlay successors | Wider real first-eligible keyboard/reduced matrix, without resetting real users |
 | G11-B admin reset modal | Blocking centred canonical dialog, real open/Escape/Cancel, equal actions and hover correction | Confirmed global reset/security/real PHPUnit; do not reset all users for a presentation test |
-| G11-C / R10-28 dots | Existing source triads reconciled to 4px/3px; native bounce/pause/departure at three widths | Native FR/completion/reduced dot paint is not inferred from timing-only scenes |
+| G11-C / R10-28 dots | Existing source triads 4px/3px; EN bounce/pause/departure plus six FR normal/reduced terminal checks at three widths | Human natural reading; reduced has static outcome rather than animated dots |
 | G11-D Organisation copy | Current EN and FR twelve-reading audits contain all measured explanation paragraphs at three widths | Whole animated artwork/cursor/drag/drop paint is a separate oracle |
 | G11-E native targets | Participant and source-member Move cues/search/Cancel; both editor paths; filter path; activity first three milestones; expected-membership final review tracked separately | Real creation/assignment/Save outcomes require a separately scoped business fixture gate |
 | G11-F responsive path | Shared numbered labels, top-left icon and below-copy action; current localized invitation/layout and native path scenarios | Human natural reading/whole-composition visual review |
@@ -49,6 +49,10 @@ not an audit already performed, and not a substitute for human acceptance.
    including104 outbound samples, <2px relative drift, under-ghost dashed
    overlap, compact menus/cursor and two illustrated selected checkboxes. Exact
    scope: guide-current-scene-paint-review-2026-10-11, not all artwork acceptance.
+   Unchanged French38092 adds six equivalent natural desktop/phone cases with
+   no errors/writes, so twelve EN/FR cases now pass. Tablet/reduced artwork
+   remains a different gate. Terminal French50212 now passes six normal/reduced
+   width cases with equal gaps, normal Pause and both completion check/recap states.
    Tooltip17900 also passes four FR normal regular/Fullscreen/compact profiles;
    all natural labels use Light Short, so native Long is still separate.
 3. First-eligible welcome and confirmed commands/reset: retain explicit fixture,

@@ -1,0 +1,204 @@
+{
+  "classification": "local-supervised",
+  "runId": "easystud-authenticated-20261011T101509552Z-38092",
+  "sourceProduct": "f6e9143585fc90bd0156862c58521ea30e03de35",
+  "runtimeProduct": "ec4987eee208eb5267d5dc2b09d2b6936754a75b",
+  "status": "passed",
+  "language": "fr",
+  "actualDocumentLanguageAsserted": true,
+  "motion": "no-preference",
+  "widths": [
+    1280,
+    390
+  ],
+  "cases": 6,
+  "rows": [
+    {
+      "width": 1280,
+      "language": "fr",
+      "name": "membership",
+      "mode": "add",
+      "record": {
+        "cursorFrames": 1317,
+        "menuFrames": 0,
+        "ghostFrames": 109,
+        "dropFrames": 56,
+        "outsideDropFrames": 0,
+        "outboundFrames": 102,
+        "maxCursorGhostDrift": 0.00006103515625,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu"
+        ],
+        "dropStyle": {
+          "style": "dashed",
+          "color": "color(srgb 0.429333 0.624 0.525333)",
+          "z": 2,
+          "ghostZ": 3
+        },
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    },
+    {
+      "width": 1280,
+      "language": "fr",
+      "name": "membership",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1562,
+        "menuFrames": 352,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": true
+      }
+    },
+    {
+      "width": 1280,
+      "language": "fr",
+      "name": "actions",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1571,
+        "menuFrames": 373,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 2,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "name": "membership",
+      "mode": "add",
+      "record": {
+        "cursorFrames": 2142,
+        "menuFrames": 588,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "name": "membership",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1625,
+        "menuFrames": 426,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 0,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": true
+      }
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "name": "actions",
+      "mode": "move",
+      "record": {
+        "cursorFrames": 1590,
+        "menuFrames": 398,
+        "ghostFrames": 0,
+        "dropFrames": 0,
+        "outsideDropFrames": 0,
+        "outboundFrames": 0,
+        "maxCursorGhostDrift": 0,
+        "maxSelectedCheckboxes": 2,
+        "phases": [
+          "select",
+          "menu",
+          "confirm",
+          "validate"
+        ],
+        "dropStyle": null,
+        "overflow": [],
+        "recapVisible": true,
+        "cursorHiddenAtEnd": true,
+        "ghostRemovedAtEnd": true,
+        "originRemoved": false
+      }
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true
+  },
+  "businessWrites": false,
+  "realUserProgressWritten": false,
+  "productAssetsChanged": false,
+  "humanAccepted": false,
+  "limitations": [
+    "Natural scene paint EN/FR desktop/phone is not tablet/reduced artwork proof.",
+    "Sampled frames and text overflow do not certify every painted glyph.",
+    "Fictional scene outcomes do not prove native Moodle transactions."
+  ]
+}
