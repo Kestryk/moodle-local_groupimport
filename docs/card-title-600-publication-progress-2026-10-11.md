@@ -1,5 +1,17 @@
 # Approved card identity titles600 — publication checkpoint
 
+Current final checkpoint: canonical Kitd40fe42/0.4.171, Sourcecc341e5 and local
+runtimec97225a are served. Cache purge recorded20261011T191853Z. Native run
+`easystud-authenticated-20261011T191939646Z-10780` passes72 computed text/paint
+records: EN/FR ×1280/768/390 ×Participant/Group/Grouping ×rest/hover/focus/selected.
+All are14px/600/#264861, use the unchanged inherited host family and retain glyph
+containment. No errors, blocked commands, fixtures, settings or course writes;
+credentials/lease/child cleanup all pass. Product visible Participant/Group/
+Grouping exports and the retained13px Participant sample were inspected. Earlier
+whole-viewport crops/hidden legacy exports remain diagnostics, not paint proof.
+See `testing/card-title-weight-adoption-2026-10-11.json`. Human checklist stays
+OPEN, and T033's separate letter-spacing/visual work is not closed by this weight.
+
 ## Current successor: Foundation source saved, canonical adoption prepared
 
 After Kevin authorized closing/reopening the exact Foundation tab, its new

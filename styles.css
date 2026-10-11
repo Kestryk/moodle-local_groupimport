@@ -12619,6 +12619,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery {
   --easyedu-guide-font-size-control: 0.78rem;
   --easyedu-guide-font-size-body: 0.88rem;
+  --easyedu-guide-introduction-trailing-clearance: 1.5rem;
   --easyedu-guide-modal-width: 76.25rem;
   --easyedu-guide-modal-height: min(50rem, calc(100dvh - 3rem));
   --easyedu-guide-modal-max-height: calc(100dvh - 3rem);
@@ -13271,6 +13272,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction {
   min-width: 0;
+  padding-block-end: var(--easyedu-guide-introduction-trailing-clearance);
   white-space: normal;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__topics,
