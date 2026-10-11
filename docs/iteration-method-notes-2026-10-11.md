@@ -23,3 +23,13 @@ available, so no numerical savings or consumption are claimed.
 
 The global Claude code/instruction audit remains a separate open roadmap lot.
 These operational notes do not substitute for that audit or human acceptance.
+
+600 successor: saved-first browser recovery and page-qualified writes resolved
+the unknown Foundation outcome; the explicit inactive-page error identified
+an API gate, not a reason to retry global writes. Derive exact Product IDs from
+the saved file before proxy fingerprinting, then use ten-title chunks. Preserve
+copy-size overrides and verify effective visible ancestry for exports: an
+existing hidden legacy card can yield a blank PNG despite valid saved geometry.
+Penpot2.18 canvas does not expose the previous SVG-ID oracle; use its actual
+text bounds, meaningful framed raster or object export. These are qualitative
+iteration lessons; no numerical token or cost savings are asserted.

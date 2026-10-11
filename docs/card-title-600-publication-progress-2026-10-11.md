@@ -1,5 +1,47 @@
 # Approved card identity titles600 — publication checkpoint
 
+## Current successor: Foundation source saved, canonical adoption prepared
+
+After Kevin authorized closing/reopening the exact Foundation tab, its new
+renderer also failed. He then authorized the dedicated browser9225 restart.
+Only that profile/process tree was restarted; no profile files were deleted,
+and other browser windows/MCP channels were untouched. The reopened saved
+Foundation confirmed all30 titles still700, with the complete initial fingerprint.
+
+An exact-page write returned a real API error: a shape on an inactive page
+cannot be modified. Its readback confirmed all30 remained700. Activating Library
+and Standards separately solved that error. `saved-after-active-page-write.json`
+now proves all30 Inter14/600/variant600 titles saved with retained lanes;
+`active-page-checked.json` proves every unrelated full fingerprint unchanged.
+
+Penpot2.18 uses a canvas renderer: the old SVG-ID capture oracle could not find
+painted shapes. Preserve that failed oracle separately. The qualified successor
+captures each of five states in both pages at80% zoom, checks all30 actual text
+bounds inside their original lanes and retains ten rasters. All ten were inspected:
+the three target cards are readable, centred and contained; unrelated canvas
+neighbours/editor overlays remain real, not hidden. Individual SVG glyph-DOM
+font proof is unavailable in this renderer; decoded saved runs establish font.
+
+Kit0.4.171 and its exact embedded recipe now use the existing semibold token in
+`card-title` only. The complete emitted consumer CSS differs in exactly six
+identity-weight declarations. `test-card-title-weight-preservation.cjs` passes
+whole-source and whole-CSS preservation, including global typography, tokens,
+templates, controllers and Motion. The prior in-memory candidate remains pinned
+to its preactivation baseline and must not be re-labelled as this successor.
+
+The read-only saved Product inventory finds104 exact linked shells on page03.
+Their specific copy, original size (including13px overrides) and geometry remain
+separate from this weight-only change. Product preservation/saved readback,
+served native proof and human acceptance are tracked independently below.
+The28px tile and T006 spacing remain queued; no private plugin font override.
+
+Product successor: all104 linked titles are saved600 in
+`product-saved-after-applied.json`; `product-checked.json` reconstructs every
+complete unrelated root/descendant fingerprint.99 original14px and five13px
+copy overrides remain. Provider IDs and all localized/example characters are
+retained; no new Product main or detached primitive. Native protocol:
+`card-title-600-native-protocol-2026-10-11.md` (72 planned read-only paint records).
+
 Kevin approved optionA: identity titles600, preserving the existing14px Inter
 and #264861 source role. This is not permission to reduce all headers, change
 card palette or override typography inside a plugin. The28px subsection tile

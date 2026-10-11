@@ -23,7 +23,7 @@ membership visibility; roles/profile rows remain untouched. This is not the
 desktop Compact list mode and not a Grouping-card expansion variant. The
 consumer owns its breakpoint, initial mode, selection and localized action.
 
-Use the existing identity title role (14px/700, `#264861` default in the Kit),
+Use the existing identity title role (14px/600, `#264861` default in the Kit),
 fixed header track, checkbox and direct Eye/More actions. Animate actual card
 height changes through existing resize Motion, whole-list mode through swap;
 no-op refreshes must not measure/restart animations. Respect reduced/disabled
@@ -64,9 +64,12 @@ This proves compiled equivalence, not a new browser or human visual PASS.
 ## Identity and related-person typography
 
 Foundations shell main `2b5216d9-06a9-80a1-8008-9cf47759bd2b` measures
-14px/700, #264861, verified in the saved main on2026-10-11. The earlier #16324f
-documentation was stale, not a requested palette change. Kevin's approved600
-weight is a separate pending source/design/consumer lot, not already applied.
+14px/600, #264861, verified in all15 saved mains and15 linked Standards on
+2026-10-11 after Kevin approved optionA. The earlier #16324f documentation was
+stale, not a requested palette change. Kit0.4.171 binds this identity recipe to
+the existing semibold token; global page/modal/section title roles are unchanged.
+The paired five-state rasters and complete unrelated fingerprints were checked.
+Consumer adoption, native Moodle and human acceptance remain separate gates.
 `card-title` uses this one identity size for compact,
 regular and container shells; density is not a second font scale. Consumers
 bind the shared `--easyedu-card-identity-title-color`; semantic identity colour
