@@ -25830,6 +25830,16 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 }
 
+.easyedu-ui .easyedu-filter-reset.easyedu-filter-reset--field-peer {
+  box-sizing: border-box;
+  min-height: 2.375rem;
+}
+@media (max-width: 52rem), (pointer: coarse) {
+  .easyedu-ui .easyedu-filter-reset.easyedu-filter-reset--field-peer {
+    min-height: var(--easyedu-touch-target-min);
+  }
+}
+
 .easyedu-ui .easyedu-toggle-check {
   align-items: center;
   background: var(--easyedu-surface-soft);

@@ -4,6 +4,17 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "filterResetFieldPeer20261011": {
+      "kitVersion": "0.4.168",
+      "modules": ["scss/easyedu/components/_buttons.scss", "scss/easyedu/_foundation-classes.scss"],
+      "publicClass": "easyedu-filter-reset--field-peer",
+      "scope": "Four existing Reset controls;38px Regular /44px touch; legacy type, paint, width and Motion preserved.",
+      "isolatedRecords": 48,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "filterTrackFocus20261011": {
       "kitCommit": "730b0dd50ffdb1f14578d55ad109670e2fedac69",
       "kitVersion": "0.4.167",

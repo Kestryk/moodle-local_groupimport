@@ -246,6 +246,20 @@
   }
 }
 
+// Explicit field-peer density. Compose after filter-reset; retain its caption,
+// paint, intrinsic width, padding and state Motion. Regular fields use 38px,
+// not the generic button's 37.6px. Legacy Reset consumers remain unchanged.
+@mixin filter-reset-field-peer {
+  & {
+    box-sizing: border-box;
+    min-height: 2.375rem;
+  }
+
+  @media (max-width: 52rem), (pointer: coarse) {
+    min-height: var(--easyedu-touch-target-min);
+  }
+}
+
 @mixin close-button($size: small) {
   @include icon-button($size);
 

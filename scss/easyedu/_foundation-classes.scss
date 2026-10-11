@@ -314,6 +314,7 @@
     @include buttons.selection-recovery-action;
   }
   .easyedu-ui .easyedu-filter-reset { @include buttons.filter-reset; }
+  .easyedu-ui .easyedu-filter-reset.easyedu-filter-reset--field-peer { @include buttons.filter-reset-field-peer; }
   .easyedu-ui .easyedu-toggle-check { @include forms.toggle-check; }
   .easyedu-ui .easyedu-filter-toggle { @include forms.filter-toggle; }
   .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--trailing { @include forms.filter-toggle-trailing; }
