@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Canonical Guide state belongs to the nested data-easyedu-guide-root, not the
+outer Course Manager workspace. Resolve that host for token/get/set calls while
+keeping Group DOM lookups/native events workspace-owned. Isolated evidence must
+model both roots; preserve failed native specs and repeat their strict assertions.
+
 The additive activity Grouping path replaces only its invitation, not historical
 definitions/storage. Verify the persisted destination and every expected Group
 only after explicit native disclosure completes, never from a Guide opener or
