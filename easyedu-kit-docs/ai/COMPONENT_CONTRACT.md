@@ -143,10 +143,14 @@ selection/removal semantics, faded extras and native disclosure Motion. Document
 the 52px/32px design specimen versus native row/action gap; do not silently
 resize shared instances or report ownership transfer as pixel parity.
 
-Student identity roles follow measured Foundations card mains: 14px/700
+Student identity roles follow measured Foundations card mains: 14px/600
 #264861 titles; related-person names use 13px/600 and the quieter
 `--easyedu-related-person-name-color` role in the same family. Shell
 density, semantic rails/badges and original disclosure Motion stay separate.
+The approved600 correction belongs only to `card-title` via the existing semibold
+token. Do not reduce global `type-card-title`, page/modal roles or plugin fonts.
+Library and Standard title providers must be saved and raster-checked before
+activation; linked product copy/layout overrides require their own preservation.
 The 2026-10-02 requested workspace hierarchy is 28/22px title, 20px panel and
 12px view labels; description remains 16/13px. This supersedes historical
 30/23px and 22px measurements only for the opt-in workspace. Do not blindly

@@ -1,5 +1,15 @@
 # Guide engineering: current projection, not human acceptance
 
+### Approved600 title publication and source adoption
+
+Foundation Library/Standards now have30 saved Inter14/600 titles, full unrelated
+fingerprint parity, contained text bounds and ten inspected five-state rasters.
+The canonical0.4.171 recipe and exact embedded copy change only six emitted
+identity weights; global headings, templates, business controllers and Motion
+are preserved. Product104 linked-shell propagation and the three-width native
+gate follow in this lot; human checklist stays open. The recovery notes below
+are historical checkpoints, not a continuing unknown Foundation outcome.
+
 ### Card-title recovery successor
 
 The first timed-out30-title publication was reconciled after the window

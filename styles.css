@@ -3668,7 +3668,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: var(--easyedu-card-identity-title-size);
-  font-weight: var(--easyedu-font-weight-strong);
+  font-weight: var(--easyedu-font-weight-semibold);
   display: block;
 }
 .local-groupimport-easystud-user__primary-badge {
@@ -4666,7 +4666,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: var(--easyedu-card-identity-title-size);
-  font-weight: var(--easyedu-font-weight-strong);
+  font-weight: var(--easyedu-font-weight-semibold);
 }
 .local-groupimport-easystud-tree__section[data-easystud-grouping-drop].is-drop-target {
   background: linear-gradient(180deg, #f8fbfd 0%, #eef6fb 100%);
@@ -4797,7 +4797,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: var(--easyedu-card-identity-title-size);
-  font-weight: var(--easyedu-font-weight-strong);
+  font-weight: var(--easyedu-font-weight-semibold);
 }
 .local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-group__name {
   padding-bottom: 0.08em;
@@ -4818,7 +4818,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: var(--easyedu-card-identity-title-size);
-  font-weight: var(--easyedu-font-weight-strong);
+  font-weight: var(--easyedu-font-weight-semibold);
 }
 .local-groupimport-easystud-tree__children {
   align-items: start;
@@ -24666,7 +24666,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: var(--easyedu-card-identity-title-size);
-  font-weight: var(--easyedu-font-weight-strong);
+  font-weight: var(--easyedu-font-weight-semibold);
 }
 .local-groupimport-easystud-grouping__name {
   font-family: var(--easyedu-font-family-ui);
@@ -24684,7 +24684,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: var(--easyedu-card-identity-title-size);
-  font-weight: var(--easyedu-font-weight-strong);
+  font-weight: var(--easyedu-font-weight-semibold);
 }
 
 @font-face {

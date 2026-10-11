@@ -215,9 +215,9 @@
   white-space: nowrap;
 
   // Density changes the shell, not identity typography. Foundations card
-  // mains share 14px/700; retain coloured rails/badges instead of title hues.
+  // mains share 14px/600; retain coloured rails/badges instead of title hues.
   font-size: var(--easyedu-card-identity-title-size);
-  font-weight: var(--easyedu-font-weight-strong);
+  font-weight: var(--easyedu-font-weight-semibold);
 }
 
 // A related participant inside a Group is subordinate to the card identity,

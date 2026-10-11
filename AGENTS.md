@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+Penpot shape writes require the owning page active; resolve IDs within that
+page and activate each bounded group before setters. Saved source font600 and
+paired raster must precede weight-only consumer adoption. Preserve Product
+localized copy and existing size/layout overrides, not generic provider text.
+Penpot2.18 canvas paint has no old SVG shape IDs: retain that failed oracle and
+use framed browser raster plus actual text bounds and decoded saved font runs.
+
 After a timed-out design write, reconcile saved/current exact IDs before any
 retry. Prefer page-qualified lookups over repeated global shape searches in
 large Foundations files. A responsive read and unchanged baseline justify one

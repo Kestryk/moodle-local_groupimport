@@ -4,6 +4,18 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "cardIdentityWeight20261011": {
+      "kitVersion": "0.4.171",
+      "modules": ["scss/easyedu/components/_cards.scss"],
+      "scope": "Approved optionA: identity titles600 only;14px/#264861, all other CSS, templates, controllers and Motion retained.",
+      "foundationSavedTitles": 30,
+      "pairedRasterInspected": true,
+      "completeCssPreserved": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "nativeHostLayout20261011": {
       "kitCommit": "8886e23324eb59b826b91eb960b8abdc31701401",
       "kitVersion": "0.4.170",

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-11 - Approved shared card identity600 adoption
+
+- Synchronize the canonical Kit0.4.171 `card-title` semibold rule and rebuild
+  consumer CSS: exactly six weight declarations change, no plugin overrides.
+- Record30 saved Foundation titles and ten paired state rasters with retained
+  copy/geometry/palette; Product propagation and native/human gates are separate.
+- Preserve failed timeout/inactive-page/SVG-renderer oracles as earlier evidence.
+
 ## 2026-10-11 - Card-title publication recovery preparation
 
 - Reconcile the first timed-out Foundations write as30 saved700 titles with
