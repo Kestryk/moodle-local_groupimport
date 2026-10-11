@@ -1,5 +1,12 @@
 # Current Student Management curriculum coverage
 
+Current11 October activity successor: twelve readings, seven invitations and
+nine definitions. The activity invitation uses prepare-activity-grouping, while
+all eight earlier definitions and their stored progress remain unchanged. See
+guide-activity-path-2026-10-11 and guide-activity-final-review-2026-10-11 for
+native milestone/final-cue/reload scopes. The exact engineering projection is
+guide-engineering-projection-2026-10-11; older inventories below stay pinned.
+
 Current11 October served successor adds verify-with-filters to search-filter-select:
 twelve stable reading IDs, seven invitations and eight definitions. Sourcee0aa7fb
 and runtime522e714 have six native EN-normal/FR-reduced three-width cases,

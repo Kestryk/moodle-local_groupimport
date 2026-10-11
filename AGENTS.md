@@ -1,5 +1,16 @@
 # EasyEdu agent contract
 
+Final activity verification reviews may isolate prerequisites under an explicit
+QA key, but artificial history never proves native confirmation. Real reload
+proof must destroy the document and read the same QA state without reseeding;
+require explicit Resume and exact destination/membership predicates. Preserve
+the native course data, original user storage and failed immutable successors.
+
+Native scene paint oracles compare browser-normalized transform matrices, not
+authored keyframe strings. Require real outbound samples and retain strict
+cursor/ghost drift and overlay assertions. Persist each diagnostic before its
+assertions; do not change scene Motion for a harness normalization mismatch.
+
 Canonical Guide state belongs to the nested data-easyedu-guide-root, not the
 outer Course Manager workspace. Resolve that host for token/get/set calls while
 keeping Group DOM lookups/native events workspace-owned. Isolated evidence must

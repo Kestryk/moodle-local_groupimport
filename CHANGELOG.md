@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-11 - Activity final recognition and reload review
+
+- Add bounded native final-step and real-page-reload scenarios using existing
+  memberships and isolated artificial prerequisite history, never course writes.
+- Preserve exact destination/all-expected-group predicates, canonical Resume,
+  original Motion and real-user progress. Results are pinned in the scoped review;
+  confirmed assignment and the human checklist remain separate.
+- Add a current manual-entry scene-paint successor for natural cursor/ghost,
+  drop overlay, mobile actions and checked illustrated members, with no product
+  style/Motion change or native transfer. Preserve the pinned old G9 scenario.
+
 ## 2026-10-11 - Served activity path lifecycle evidence
 
 - Six EN-normal/FR-reduced native cases at390/768/1280 pass from an initial mobile
