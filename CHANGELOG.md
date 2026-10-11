@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-11 - Scene-header proof byte provenance
+
+- Distinguish LF compiler bytes from the runtime's CRLF checkout hash; both
+  use the same CSS Git blob and exact normalized contents. No asset change,
+  repeated cache purge or broadened native/human validation claim.
+
 ## 2026-10-11 - Compact translated scene-mode correction
 
 - Retain the initial six-case native scene-header PASS with its actual bounded
