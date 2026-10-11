@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Historical activation tests remain pinned to their original invitation counts
+and source baselines. Current path-coverage successors inspect actual bilingual
+payloads and retain all historical progress; a broad legacy completion signal
+does not certify the new proposed workflow or authorize a silent path migration.
+
 Localized/reduced native Guide proof must assert actual document language and
 media preference, not infer them from a URL or test label. Retain independently
 pinned predecessors and immutable running specs; native Cancel/highlight proof
