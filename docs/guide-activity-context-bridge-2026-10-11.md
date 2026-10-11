@@ -57,6 +57,27 @@ steps, dependency targets and no-prerequisite copy are the next activation lot.
 No new browser, confirmed business outcome or human acceptance is claimed here.
 Previous context lifecycle proof remains independently pinned.
 
+## Served regression checkpoint
+
+Source `2e7c0ba39df46340fdb97887b39f0631a0a71824` was applied after its
+documentary predecessor to runtime `fad2076b845851d7f21427c8b8530ffc4d49631e`,
+with managed dry-run/apply and successful Moodle cache purge.
+
+The unchanged native authority scenario passes EN/normal at1280/768/390:
+`easystud-authenticated-20261011T081524608Z-42320`. Real Group selection,
+destination search and Cancel retain memberships; original-removal stays
+unchecked. Errors and blocked writes are empty. Discovery selects exactly one
+test; cleanup confirms credentials cleared, lease released and owned child
+stopped. Scoped retention dry-run protects this run with zero candidates or
+deletions. No confirmed command is submitted and the new path remains absent.
+This proves the new AMD dependency does not break that native workflow, not
+real business confirmation, bilingual successor cues or human acceptance.
+
+The first pre-commit snapshot restore failed its status check while generated
+build files still had LF worktree bytes under CRLF Git attributes. Only these
+two owned build files were mechanically normalized; the retry is verified ready:
+`ws3-20261011T081408Z-port4719pg3-b54509812b9a`. No worktree data was discarded.
+
 Technical docs, changelog, local current-engineering projection and agent rule
 are updated together. No Kit source change, public version bump or new artwork.
 The combined human checklist and all older Guide/SM lots remain open.

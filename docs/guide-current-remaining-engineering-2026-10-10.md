@@ -1,5 +1,13 @@
 # Current Student Management Guide: remaining engineering
 
+Latest bridge checkpoint: Source2e7c0ba/runtimefad2076 is served with managed
+cache purge. Three EN-normal native cases at1280/768/390 pass existing Group
+selection/destination search/Cancel; no business writes/errors and cleanup is
+complete.63 helper/73 adapter cases remain separate from native confirmation.
+The new path is still absent. Next: bilingual activity definition/schema/targets
+and same-Grouping verification. Scope/proof: guide-activity-context-bridge-2026-10-11.
+All older Guide/SM gates and the deferred checklist remain open.
+
 11 October activity bridge candidate: the native Group command captures IDs and
 the canonical session token before its batch, then stores context/emits typed
 confirmation only after complete success.63 helper cases and73 original native
