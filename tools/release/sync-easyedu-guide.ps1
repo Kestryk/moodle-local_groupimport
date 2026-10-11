@@ -81,6 +81,16 @@ $defaults = [regex]::Replace($defaults, $labelPattern, { param($match)
     $match.Groups[1].Value + "''" + $match.Groups[2].Value
 })
 $wrappedBody = $defaults + $wrappedBody.Substring($defaultsEnd)
+foreach ($contextExport in @('getPathContext', 'getPathContextToken', 'setPathContext')) {
+    $exportMarker = "export const $contextExport ="
+    if (-not $wrappedBody.Contains($exportMarker)) {
+        throw "Canonical context export missing: $contextExport"
+    }
+    $wrappedBody = $wrappedBody.Replace($exportMarker, "const $contextExport =")
+}
+if ($wrappedBody -match '(?m)^export ') {
+    throw 'Review unadapted canonical exports before building Moodle AMD.'
+}
 $wrappedBody = $wrappedBody.Replace("config.labels.guidedPath || 'Guided path'", "config.labels.guidedPath || ''")
 $wrappedBody = $wrappedBody.Replace("config.labels.visited || 'visited'", "config.labels.visited || ''")
 
@@ -94,6 +104,9 @@ $wrappedBody
 
 return {
   destroy: destroy,
+  getPathContext: getPathContext,
+  getPathContextToken: getPathContextToken,
+  setPathContext: setPathContext,
   init: init
 };
 });

@@ -1,5 +1,14 @@
 # Current Student Management Guide: remaining engineering
 
+11 October context implementation candidate: canonical Kit ID-only path context
+get/token/set APIs are synchronized and built in EasyStud.57 isolated storage
+cases,15 unchanged product guards and five callable AMD exports pass; unrelated
+engine/styles/Motion are preserved. No current path opts in and no new activity
+invitation is installed yet. Next: managed preview/native no-write lifecycle,
+then activity targets/signals/copy using scoped expected-Group context.
+Scope: guide-path-context-integration-2026-10-11.md. All old progress/gates and
+the deferred human checklist remain open.
+
 Latest activity authority: six native EN-normal/FR-reduced cases pass real Group
 selection, searchable positive Grouping destination and Cancel at1280/768/390.
 Membership pairs preserved, removal unchecked, no writes/errors and cleanup
