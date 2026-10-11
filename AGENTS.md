@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Card-modal initial focus and Escape belong to the actual attached/shown modal.
+Reuse native Close/Cancel and its exit/return-focus callbacks; give nested
+handled Escape priority and avoid document listeners that outlive editors.
+Keyboard-only correction does not authorize new paint, Save or Guide completion.
+
 Reset beside Regular fields uses the canonical field-peer opt-in, not generic
 button density or a product height. Preserve caption type, legacy Reset, original
 filter commands and Motion. Desktop peer equality and compact44px targets are

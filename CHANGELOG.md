@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-11 - T041 card modal focus and Escape
+
+- Participant, Group and Grouping dialogs focus their native Close on opening;
+  Escape reuses existing Cancel, exit Motion and return-focus callbacks.
+- Preserve all unrelated controller, business, CSS and Guide behavior. Retain
+  the native baseline and failing legacy harness; served successor gate open.
+- Record Claude's61-task additive review and Kevin's600 card-title/28px tile
+  choices; retain the dedicated Guide cue row. Human checklist remains open.
+
 ## 2026-10-11 - R10-08 shared Reset field-peer density
 
 - Opt four filter Reset sites into the canonical Kit38px desktop /44px touch
