@@ -2171,7 +2171,8 @@ const emitNativePathCompletion = (root, path, step) => {
 const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
 const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
 
-const getActivityGuideRoot = root => root.querySelector('[data-easyedu-guide-root]');
+// Navigation can portal this exact node outside the workspace on compact screens.
+const getActivityGuideRoot = root => root.easystudGuideOwner || root.querySelector('[data-easyedu-guide-root]');
 
 const activityGroupingSessionIsCurrent = (root, token) => {
     const current = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
@@ -2318,6 +2319,9 @@ const bindResponsiveGuideLauncher = root => {
     const guideLauncher = guideNode ? guideNode.querySelector('[data-easyedu-guide-open]') : null;
     if (!guideNode || !guideSource || !guideSlot || !guideLauncher) {
         return;
+    }
+    if (guideNode.matches('[data-easyedu-guide-root]')) {
+        root.easystudGuideOwner = guideNode;
     }
     const guideAnchor = document.createComment('easyedu-guide-responsive-anchor');
     guideSource.insertBefore(guideAnchor, guideNode);
@@ -8880,7 +8884,10 @@ const bindParticipantModal = root => {
 // email field or a grouping's add-groups field). Keep that adapter active
 // even when the legacy tutorial modal is not rendered.
 const bindSharedGuideTargets = root => {
-    const guideRoot = root.querySelector('[data-easyedu-guide-root]');
+    const guideRoot = getActivityGuideRoot(root);
+    if (guideRoot) {
+        root.easystudGuideOwner = guideRoot;
+    }
     if (!guideRoot || root.dataset.easystudGuideTargetsBound === '1') {
         return;
     }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - Preserve activity Guide owner across compact portalling
+
+- Retain the exact Guide node in the existing responsive launcher and shared
+  target adapter; context APIs now work after reparenting without altering Motion.
+- 640 nested/portalled cases pass. Desktop native progression is proven; failed
+  tablet diagnostics and strict cue successor are retained pending new retry.
+
 ## 2026-10-11 - Activity Guide context owner correction
 
 - Resolve the actual nested Guide root for context/session APIs, retaining outer

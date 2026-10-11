@@ -1,5 +1,12 @@
 # Current Student Management Guide: remaining engineering
 
+Compact owner correction candidate: desktop recognizes three native milestones;
+tablet still fails even in the stronger aligned-cue/settled-closure test. Its
+diagnostic confirms Guide is portalled outside the workspace. Capture the exact
+owner in the existing responsive launcher, reuse it for shared bindings/API calls.
+640 nested/portalled cases pass; native retry still required. Failed runs/specs
+retained. No Navigation/Motion/business changes; older gates remain open.
+
 Native activation diagnostic: first open-grouping milestone fails in run
 20261011T083221527Z-40620, no writes/errors and cleanup complete. The workspace
 is not the nested canonical Guide owner. Context/token API calls are corrected
