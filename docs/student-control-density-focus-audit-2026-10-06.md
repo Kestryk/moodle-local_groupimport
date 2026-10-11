@@ -1,5 +1,10 @@
 # SM-65..68 /71 /73 control audit checkpoint
 
+11 October successor: R10-07 now has a saved paired source/Standard and linked
+product publication, exact optional consumer embedding and complete unrelated
+CSS preservation. Native preview remains pending; older paragraphs below are
+historical, not overwritten. See `filter-track-focus-successor-2026-10-11.md`.
+
 Current preserved status and Guide priority are in
 `lots-before-guide-handoff-2026-10-06.md`. Kit0.4.124 public focus is source-ready
 and pushed, but NOT consumed/served. Source publication timed out; saved GET

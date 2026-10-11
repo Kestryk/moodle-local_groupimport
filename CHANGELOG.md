@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-11 - R10-07 canonical track-only keyboard focus
+
+- Adopt the existing Kit focus modifier on the two ungrouped catalogue switches;
+  mouse stays quiet, keyboard ring stays on the track,44px targets remain.
+- Preserve all unrelated CSS, commands and Motion; retain paired saved
+  Foundations/product examples and48 current isolated states.
+- Native preview and combined human acceptance remain pending. See
+  `docs/filter-track-focus-successor-2026-10-11.md`.
+
 ## 2026-10-11 - R10-04 current existing-data Group fold proof
 
 - Existing fold selection behavior passes eight native current-data cases at

@@ -24,6 +24,16 @@ propagation/native preview are pending and human checklist remains OPEN.
 EasyEdu form primitives style plugin-specific controls while keeping Moodle
 forms and accessibility behaviour intact.
 
+## Catalogue switch keyboard focus
+
+Catalogue switch focus can opt into `easyedu-filter-toggle--track-focus` beside
+`easyedu-filter-toggle--trailing` on the native label. It retains44px targets
+and36x20px tracks, moves keyboard `:focus-visible` to the track and leaves mouse
+paint quiet. Forced-colours uses the existing system outline; unopted switches
+keep their legacy focus. R10-07 adopts it on the two native catalogue labels.
+See `docs/filter-track-focus-successor-2026-10-11.md` for separate source,
+paired design, isolated, preview/native and deferred human evidence gates.
+
 ## Native text fields
 
 `foundation-text-field(small|regular|large)` is the named single-line field

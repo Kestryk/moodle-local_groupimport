@@ -26007,6 +26007,22 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   color: var(--easyedu-primary-strong);
 }
 
+.easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--track-focus:focus-within {
+  box-shadow: none;
+  outline: 0;
+}
+.easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--track-focus input:focus-visible:not(:disabled) + span::before {
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+@media (forced-colors: active) {
+  .easyedu-ui .easyedu-filter-toggle.easyedu-filter-toggle--track-focus input:focus-visible:not(:disabled) + span::before {
+    box-shadow: none;
+    outline-color: Highlight;
+  }
+}
+
 .easyedu-ui .easyedu-filter-actions {
   align-items: center;
   box-sizing: border-box;

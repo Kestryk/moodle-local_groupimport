@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Trailing catalogue keyboard focus is an explicit shared track-only opt-in.
+Retain the44px native label target, real sequential Tab/Space entry, disabled
+and forced-colours states; mouse quiet is not permission to remove keyboard
+focus. Compare complete unrelated CSS/Motion and preserve legacy providers.
+
 View-toggle transient colour proof converts Chromium rgb/color(srgb)/oklab
 through native canvas before luminance calculation. Preserve raw failed frames;
 atomic icon/tile paint is a shared opt-in, not a controller or Motion rewrite.

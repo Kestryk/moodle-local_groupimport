@@ -543,6 +543,27 @@
   }
 }
 
+// Opt-in keyboard focus for a borderless catalogue switch. Keep the native
+// input and 44px label hit target; the existing track owns the small focus ring.
+// This is separate from the original caption-wide and framed toggle recipes.
+@mixin filter-toggle-track-focus {
+  &:focus-within {
+    box-shadow: none;
+    outline: 0;
+  }
+
+  input:focus-visible:not(:disabled) + span::before {
+    @include focus.ring;
+  }
+
+  @media (forced-colors: active) {
+    input:focus-visible:not(:disabled) + span::before {
+      box-shadow: none;
+      outline-color: Highlight;
+    }
+  }
+}
+
 // Catalogue controls stay adjacent rather than sitting at opposite ends of a
 // stretched grid. Native Reset closure/filter predicates remain product-owned.
 @mixin filter-actions {
