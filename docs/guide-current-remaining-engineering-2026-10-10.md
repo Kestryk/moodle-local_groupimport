@@ -1,5 +1,12 @@
 # Current Student Management Guide: remaining engineering
 
+Newest identifier phase-paint successor:12 EN/FR normal current-curriculum cases
+pass for Group/Grouping illustrations at390/768/1280,72 phase/terminal states,
+520 actual text-node bounds, visible readonly fictional fields/recognition and
+contained panel/final return. Record: guide-identifier-phase-paint-review-2026-10-11.
+No style/Motion/business change. This is not native recognition/assignment or
+every painted glyph; older pins and the deferred human checklist remain retained.
+
 Newest natural scene projection:18 EN/FR normal-motion Add/Move/Actions cases
 pass at1280/768/390, including cold tablet entry. All native menu/cursor/member/
 outcome/recap oracles pass without data or style changes. Exact evidence:

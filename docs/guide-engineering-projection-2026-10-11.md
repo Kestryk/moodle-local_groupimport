@@ -50,13 +50,17 @@ not an audit already performed, and not a substitute for human acceptance.
    overlap, compact menus/cursor and two illustrated selected checkboxes. Exact
    scope: guide-current-scene-paint-review-2026-10-11, not all artwork acceptance.
    Unchanged French38092 adds six equivalent natural desktop/phone cases with
-   no errors/writes, so twelve EN/FR cases now pass. Tablet/reduced artwork
+   no errors/writes, so twelve EN/FR cases initially passed.
    Cold tablet23880/49992 now adds six EN/FR natural compact cases:18 cases total
    across1280/768/390. Every glyph/touch/reduced artwork remains separate.
    Terminal French50212 now passes six normal/reduced
    width cases with equal gaps, normal Pause and both completion check/recap states.
    Tooltip17900 also passes four FR normal regular/Fullscreen/compact profiles;
    all natural labels use Light Short, so native Long is still separate.
+   Identifier phase-paint successor now verifies six actual-FR current manual-
+   entry cases, both cards/all widths, including field labels and recognition
+   chips during disclosure, not only final scene bounds. English48620 also passes:
+   twelve EN/FR cases,72 phase states and520 text measurements, no overflow/writes.
 3. First-eligible welcome and confirmed commands/reset: retain explicit fixture,
    runtime and privacy boundaries. No real-user escalation/global reset or course
    assignment merely to manufacture proof. Static/security checks do not replace
