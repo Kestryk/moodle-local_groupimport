@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Claude review1 reopens previous scene-header proofs: containment does not prove
+visible expected memberships or phase clearance. Preserve clocks and original
+card choreography. Move one membership element between ready header and its home
+anchor; restore owned scroll padding and observers at finish/exit. Settle finite
+header transitions before the existing final recap scroll. Reordering explanatory
+blocks never changes stable slide/path IDs, targets or stored reading order.
+
 Timed Guide scenes opt into manual entry atomically with template/engine/data.
 Keep creation and guided paths distinct. Start is disabled while playing/paused;
 preserve clocks and legacy autoplay. Check host-relative containment and painted

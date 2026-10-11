@@ -1,5 +1,16 @@
 # Guide engineering: current projection, not human acceptance
 
+Claude review1 reopens T009–T011 despite their previous scoped native PASS.
+C6/C3/C4/C2, C1 and T008 are implemented in canonical0.4.175 and synchronized
+source; six isolated localized width/lifecycle cases pass, including C5's final
+memberships and full recap on phone after settling the existing header Motion.
+T008 passes24 current localized payload/order checks. Twelve product headers
+are saved in Penpot; initial partial writes were reconciled and archived.
+Native successor `guide-review1-compact-native.spec.js` selects exactly one
+test; publication/execution follow. Keep T009–T011's reservations until then,
+T012's full disclosure scope and all human acceptance gates open. See
+`claude-review1-guide-corrections-2026-10-11.md`.
+
 T009-T011's original native35656 passes six localized three-width command and
 outer-header cases, but raster inspection found clipped French phone mode copy.
 The immutable stricter37804 scenario reproduces that real failure. Canonical

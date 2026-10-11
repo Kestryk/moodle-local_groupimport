@@ -1330,11 +1330,33 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const nextControl = live?.querySelector('[data-guide-playback="next-phase"]');
   const activity = live?.querySelector('[data-guide-activity]');
   const startControl = scene.querySelector('[data-guide-scene-command="start"]');
+  // Clearance belongs to this reading surface and this scene's compact header.
+  // Restore the previous inline value at completion/exit; no page scroll owner.
+  const readingBody = scene.closest('.easyedu-guide-modal__body');
+  const originalScrollPadding = readingBody?.style.getPropertyValue('scroll-padding-top') || '';
+  const originalScrollPaddingPriority = readingBody?.style.getPropertyPriority('scroll-padding-top') || '';
+  const restoreClearance = () => {
+    if (!readingBody) { return; }
+    if (originalScrollPadding) {
+      readingBody.style.setProperty('scroll-padding-top', originalScrollPadding, originalScrollPaddingPriority);
+    } else { readingBody.style.removeProperty('scroll-padding-top'); }
+  };
+  const updateClearance = () => {
+    if (!sceneHeader || !readingBody) { return; }
+    if (['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState)) {
+      readingBody.style.setProperty('scroll-padding-top', `${sceneHeader.getBoundingClientRect().height + 8}px`);
+    } else { restoreClearance(); }
+  };
+  let headerObserver = null;
   const syncPlayback = (state, advancing = false) => {
     if (sceneHeader) {
       sceneHeader.dataset.guidePlaybackState = state;
       const controls = sceneHeader.querySelector('.easyedu-guide-scene__playback');
       if (controls) { controls.hidden = !['playing', 'paused'].includes(state); }
+      // Collapse the useless disabled mode/Start row through canonical CSS
+      // Motion; inert prevents invisible controls retaining keyboard focus.
+      sceneHeader.querySelector('.easyedu-guide-scene__header-controls')?.toggleAttribute('inert',
+        ['playing', 'paused'].includes(state));
       if (phaseCaption) {
         const labels = sceneHeader.dataset;
         const modeLabel = kind === 'membership' ? (mode === 'add' ? labels.addLabel : labels.moveLabel) : '';
@@ -1344,6 +1366,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
           (state === 'paused' ? labels.pausedLabel + ' · ' : '') + labels.stepLabel + ' ' + Math.max(1, current) + '/' + applicablePhases.length;
         if (modeLabel) { phaseCaption.textContent += ' · ' + modeLabel; }
       }
+      updateClearance();
+      if (state === 'finished') { headerObserver?.disconnect(); }
     }
     if (startControl) {
       const busy = ['playing', 'paused'].includes(state);
@@ -1370,6 +1394,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   syncPlayback('idle');
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
+    liveCopy.title = liveCopy.textContent;
     live.removeAttribute('data-guide-live-state');
     const completionIcon = live.querySelector('[data-guide-live-complete]');
     if (completionIcon) { completionIcon.hidden = true; }
@@ -1390,9 +1415,21 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   // At rest, the membership strip is explicitly an expected outcome. Starting
   // restores actual illustrated memberships until the existing final phase.
   const memberships = scene.querySelector('[data-guide-memberships]');
+  if (memberships && sceneHeader) {
+    // One component and one set of IDs/state: only its placement changes.
+    // The anchor survives idle mode changes, Reset and repeated play cycles.
+    if (!memberships.easyeduGuideHome) {
+      memberships.easyeduGuideHome = document.createComment('Guide membership result location');
+      memberships.before(memberships.easyeduGuideHome);
+    }
+  }
   const membershipTitle = memberships?.querySelector('[data-guide-membership-title]');
   if (membershipTitle && !membershipTitle.dataset.original) { membershipTitle.dataset.original = membershipTitle.textContent; }
   const preview = !!sceneHeader && !!startControl && (requestedMode === 'reset' || !start) && kind === 'membership';
+  if (memberships && sceneHeader) {
+    if (preview) { sceneHeader.appendChild(memberships); }
+    else { memberships.easyeduGuideHome.after(memberships); }
+  }
   if (memberships) { memberships.toggleAttribute('data-guide-membership-preview', preview); }
   if (membershipTitle) { membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original; }
   if (preview) {
@@ -1401,7 +1438,19 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       origin.querySelector('b').textContent = mode === 'move' ? origin.dataset.removed : origin.dataset.kept;
     }
     if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
-    if (liveCopy) { liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal; }
+    if (liveCopy) {
+      liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal;
+      liveCopy.title = liveCopy.textContent;
+    }
+    // A phone may not fit title, introduction and the complete ready header at
+    // once. Reveal its bottom with the existing owned/cancellable Guide scroll,
+    // never scroll the Moodle page or leave the expected outcome below the fold.
+    if (readingBody) {
+      const bodyBounds = readingBody.getBoundingClientRect(), headerBounds = sceneHeader.getBoundingClientRect();
+      if (headerBounds.bottom > bodyBounds.bottom - 8) {
+        animateScrollTo(root, readingBody, readingBody.scrollTop + headerBounds.bottom - bodyBounds.bottom + 8);
+      }
+    }
   }
   scene.toggleAttribute('data-guide-mobile-actions', compact);
   if (kind === 'inspection') {
@@ -1475,6 +1524,19 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     }
   };
   syncPlayback('playing');
+  if (sceneHeader && typeof ResizeObserver !== 'undefined') {
+    headerObserver = new ResizeObserver(updateClearance);
+    headerObserver.observe(sceneHeader);
+  }
+  let phaseTarget = null;
+  const settleHeader = async() => {
+    if (!sceneHeader || reduced || controller.signal.aborted) { return; }
+    const transitions = sceneHeader.getAnimations({subtree: true}).filter(animation =>
+      animation.effect?.getComputedTiming().iterations !== Infinity);
+    transitions.forEach(animation => animations.add(animation));
+    await Promise.all(transitions.map(animation => animation.finished.catch(() => {})));
+    transitions.forEach(animation => animations.delete(animation));
+  };
   const animate = async(element, frames, duration, retain = true) => {
     await gate();
     if (controller.signal.aborted || reduced) { return; }
@@ -1491,6 +1553,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (!immediate) { await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false); }
     if (controller.signal.aborted) { return; }
     liveCopy.textContent = text;
+    liveCopy.title = text;
     live.dataset.guideLiveState = state;
     const completionIcon = live.querySelector('[data-guide-live-complete]');
     if (completionIcon) { completionIcon.hidden = state !== 'finished'; }
@@ -1505,8 +1568,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await gate();
     const body = scene.closest('.easyedu-guide-modal__body');
     if (!body || controller.signal.aborted || element.hidden) { return; }
+    phaseTarget = element;
+    updateClearance();
     const bounds = body.getBoundingClientRect(), item = element.getBoundingClientRect();
-    const readingTop = bounds.top + ((sceneHeader || live)?.getBoundingClientRect().height || 0) + 12;
+    const sticky = !sceneHeader || ['playing', 'paused'].includes(sceneHeader.dataset.guidePlaybackState);
+    const readingTop = bounds.top + (sticky ? ((sceneHeader || live)?.getBoundingClientRect().height || 0) : 0) + 8;
     const readingBottom = bounds.bottom - 12;
     if (item.top >= readingTop && item.bottom <= readingBottom) { return; }
     const offset = item.height > readingBottom - readingTop || item.top < readingTop ?
@@ -1547,6 +1613,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     }
     advancing = false;
     syncPlayback(paused ? 'paused' : 'playing');
+    // New narration can wrap and change the sticky height. Re-reveal the real
+    // phase target after that copy update, not just before the phase begins.
+    const validateTarget = ['membership', 'actions'].includes(kind) && name === 'validate' ?
+      scene.querySelector('[data-guide-simulated-submit]') : null;
+    if (validateTarget || phaseTarget) { await reveal(validateTarget || phaseTarget); }
     await gate();
     if (controller.signal.aborted) { return; }
     if (!reduced) {
@@ -1559,6 +1630,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
+    headerObserver?.disconnect();
+    restoreClearance();
     finishWait(); releaseGates();
     root.easyeduGuideScenePlayback = null;
     syncPlayback('idle');
@@ -1673,6 +1746,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       if (controller.signal.aborted) { return; }
       finished = true;
       syncPlayback('finished');
+      await settleHeader();
+      if (controller.signal.aborted) { return; }
       if (recap) {
         recap.style.opacity = '0';
         recap.hidden = false;
@@ -1846,6 +1921,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
     finished = true;
     syncPlayback('finished');
+    await settleHeader();
+    if (controller.signal.aborted) { return; }
     if (recap) {
       // Keep it transparent during insertion/reveal: previously one fully
       // painted frame preceded the fade-in and caused the completion flash.

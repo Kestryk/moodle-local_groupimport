@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-12 - Claude review1 demonstration successor
+
+- Reopen T009–T011 with explicit C1/C2/C3/C4/C6 reservations while preserving
+  the previous scoped native proofs and the full61-task programme.
+- Consume canonical compact reading headers and short localized segmented modes,
+  relocating the same expected membership component before Start. Existing
+  clocks, scene cards, paths, course commands and unrelated CSS remain unchanged.
+- Reorder visual examples before explanatory topics and optional guided paths;
+  suppress only the membership introduction already covered by its preceding
+  paragraph. Record isolated measurements and saved design/native gates separately.
+
 ## 2026-10-11 - Scene-header proof byte provenance
 
 - Distinguish LF compiler bytes from the runtime's CRLF checkout hash; both

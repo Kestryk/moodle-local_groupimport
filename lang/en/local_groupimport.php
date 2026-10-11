@@ -736,6 +736,7 @@ $string['discovery_creation_body'] = 'In Student Management, the Groups and grou
 $string['discovery_creation_note'] = 'Select the relevant grouping in the Moodle activity afterwards. Creating a grouping does not configure activities automatically.';
 $string['discovery_membership_category'] = 'Organisation';
 $string['discovery_membership_title'] = 'Organise a project and keep other memberships';
+$string['discovery_demo_compare'] = 'Compare: add or move';
 $string['discovery_membership_body'] = 'Compare Add and Move from Projet Orion to Projet Horizon. Add keeps the source membership. Move removes only that source membership after confirmation. The participants’ other groups remain unchanged.';
 $string['discovery_membership_note'] = 'Compare Add and Move for members of a group. Add keeps them in Projet Orion and adds them to Projet Horizon. Move removes only their Projet Orion membership, after confirmation; their other groups are preserved.';
 $string['discovery_resume_title'] = 'A guided path is in progress.';

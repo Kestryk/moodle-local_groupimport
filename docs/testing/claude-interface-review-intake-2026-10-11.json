@@ -6,6 +6,16 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "claudeReview1": {
+    "received": "2026-10-11",
+    "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-11.md",
+    "order": ["C6+C3+C4+C2", "C1", "C5-measurement", "T008"],
+    "C3SegmentedMode": "Kevin-approved",
+    "C4CompactOrganization": "Kevin-approved-C6-supersedes-height",
+    "reviewedTasks": ["T009", "T010", "T011"],
+    "preserveHistoricalProof": true,
+    "humanAccepted": false
+  },
   "executionMode": "sequential-existing-Source-and-Kit-worktrees",
   "order": [
     "T001",
@@ -120,17 +130,18 @@
     {
       "id": "T008",
       "receivedScope": "[US1] Réordonner les blocs de slide : titre et phrase, puis scène, puis points à retenir, puis parcours. Fusionner l'intro de scène redondante avec le texte de slide (G4, G8, G12).",
-      "status": "queued",
+      "status": "canonical175-source-24-localized-order-cases-passed-native-pending",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/guide-slide-reading-order-2026-10-11.md"],
       "decisionGate": "none"
     },
     {
       "id": "T009",
       "receivedScope": "[US1] Déplacer `__live` dans la `section.easyedu-guide-scene` comme en-tête, et y remonter les boutons `add`/`move` sous forme de sélecteur `aria-pressed` (G1, G2).",
-      "status": "canonical174-served-six-localized-native-header-and-padded-label-cases-passed-human-open",
-      "nativeVerified": true,
+      "status": "verified-with-reservations-C1-C2-C3-C4-C6-reopened",
+      "nativeVerified": false,
+      "historicalNativeVerified": true,
       "proof": "docs/testing/guide-scene-header-2026-10-11.json",
       "humanAccepted": false,
       "related": [],
@@ -139,8 +150,9 @@
     {
       "id": "T010",
       "receivedScope": "[US1] Afficher `__memberships` dès le repos avec l'issue prévue du mode choisi, et la mettre à jour au changement de mode.",
-      "status": "explicit-mode-outcome-preview-served-six-native-cases-passed-human-open",
-      "nativeVerified": true,
+      "status": "verified-with-reservations-C1-preview-below-reading-viewport",
+      "nativeVerified": false,
+      "historicalNativeVerified": true,
       "proof": "docs/testing/guide-scene-header-2026-10-11.json",
       "humanAccepted": false,
       "related": [],
@@ -149,8 +161,9 @@
     {
       "id": "T011",
       "receivedScope": "[US1] Statut « Étape n/N · Mode » ; bordure neutre au repos, primaire en lecture ; Pause et Suivant masqués avant le premier démarrage (G5, G6).",
-      "status": "localized-phase-caption-and-playback-state-served-six-native-cases-passed-human-open",
-      "nativeVerified": true,
+      "status": "verified-with-reservations-C2-C4-C6-sticky-clearance-and-density",
+      "nativeVerified": false,
+      "historicalNativeVerified": true,
       "proof": "docs/testing/guide-scene-header-2026-10-11.json",
       "humanAccepted": false,
       "related": [],

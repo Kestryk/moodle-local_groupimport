@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Claude review1 reopens header containment proofs where expected outcomes or
+phase targets were outside the reading viewport. Preserve predecessor runs;
+measure real sticky height and finite transition settlement, not just final
+classes. Reuse one memberships node and canonical segmented controls. Explanation
+reordering preserves every slide/path/storage/target ID and native command.
+
 Header containment does not certify labels inside its buttons. Retain scoped
 native PASS evidence when raster inspection finds clipping; add an immutable
 padded-control successor and repair intrinsic responsive flow in the Kit.
