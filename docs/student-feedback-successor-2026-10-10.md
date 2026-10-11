@@ -143,6 +143,20 @@ identiques. Foundations8 états/24 tuiles et trois compositions produit gardent
 le contrat enregistré. Preuve native ciblée, pas validation humaine globale.
 R10-11 reprend par une mesure des frames de filtres sans modifier leurs valeurs.
 
+R10-11 : les scans de cartes inutiles pendant le dépliage sont maintenant
+retirés. La preview conserve le Motion original et passe28 ouvertures/fermetures
+EN/FR à trois tailles avec images intermédiaires et aucune réinsertion de liste.
+La régression indépendante passe39 cas EN de recherche/sélection/effacement,
+fermeture imbriquée et reduced-motion. Le premier échec mobile et ses profils
+CPU sont conservés; ce progrès ne clôt ni les inversions rapides/pointeur tenu,
+ni l'appréciation humaine de la fluidité, ni les autres demandes de style.
+
+R10-04 : l'implémentation existante passe huit cas sur les groupes réellement
+présents à1600/768/390/320, demandes de mouvement normal/réduit. Le groupe
+replié perd ses sélections, l'autre les conserve et la réouverture ne restaure
+rien. Aucun ajout d'inscription ni changement de style; échecs de prérequis et
+de ciblage du nettoyage compact conservés. Voir le successor du11 octobre.
+
 Oui, les états de chargement locaux peuvent s'appuyer sur les véritables phases
 de disponibilité des composants, pas sur un écran entier figé. Le chantier est
 transversal et son estimation reste à établir après l'inventaire. Il n'exige

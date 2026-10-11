@@ -76,11 +76,15 @@
       "title": "Désélection au repli d'un groupe",
       "request": "Replier un groupe doit désélectionner les participants sélectionnés à l'intérieur.",
       "acceptance": "Conserver les sélections des autres groupes; synchroniser cases, boutons du haut, menu et sticky, copies d'un même groupe, repli/réouverture desktop/mobile; conserver la Motion acceptée.",
-      "status": "approved",
+      "status": "in-progress",
       "sourceChanged": false,
+      "existingImplementationVerified": true,
       "designPublished": false,
-      "previewServed": false,
-      "nativeVerified": false,
+      "designChangeRequired": false,
+      "previewServed": true,
+      "nativeVerified": true,
+      "currentProof": "docs/testing/group-fold-member-successor-native-2026-10-11.json",
+      "proofScope": "Eight current existing-data cases/four widths with normal-reduced media requests; same-Group copies cleared, other Group selection and reopen preserved. No fixture/source/style patch; broader keyboard/locale and human gates open.",
       "humanAccepted": false
     },
     {
@@ -181,7 +185,10 @@
       "previewServed": true,
       "nativeVerified": false,
       "currentDiagnostic": "docs/more-filters-frame-successor-2026-10-11.md",
-      "proofScope": "First fix removes list reinsertion; strict compact frames still fail. Local-work successor pending native proof; shared Motion unchanged.",
+      "currentProof": "docs/testing/more-filters-live-frame-native-2026-10-11.json",
+      "liveFrameNativeVerified": true,
+      "nestedSearchSelectionNativeVerified": true,
+      "proofScope": "28 EN/FR openings/closings at three widths keep intermediate heights and zero list reinsertion; 39 EN search/selection/clear/nested/reduced checks also pass. Original Motion unchanged; reversal/held pointer and human fluency open.",
       "humanAccepted": false
     },
     {
