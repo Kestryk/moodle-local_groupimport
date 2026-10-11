@@ -1,0 +1,131 @@
+{
+  "classification": "local-supervised",
+  "runId": "easystud-authenticated-20261011T100843257Z-17900",
+  "sourceProduct": "f6e9143585fc90bd0156862c58521ea30e03de35",
+  "runtimeHeadDuringRun": "d31eb8f866f4692f6137b47858c9ec0d341ad456",
+  "status": "passed",
+  "language": "fr",
+  "actualDocumentLanguageAsserted": true,
+  "actualMotion": "no-preference",
+  "profiles": 4,
+  "rows": [
+    {
+      "width": 1280,
+      "language": "fr",
+      "nativeFullscreen": false,
+      "candidate": {
+        "index": "7",
+        "text": "Rechercher, filtrer, sélectionner"
+      },
+      "paint": {
+        "bg": "rgb(248, 251, 253)",
+        "fg": "rgb(49, 72, 95)",
+        "radius": "10.24px",
+        "weight": "700",
+        "size": "11.84px",
+        "long": false,
+        "x": 532.71875,
+        "y": 237.75,
+        "right": 732.0625,
+        "bottom": 271.75,
+        "owned": true
+      },
+      "portal": null
+    },
+    {
+      "width": 1280,
+      "language": "fr",
+      "nativeFullscreen": true,
+      "candidate": {
+        "index": "7",
+        "text": "Rechercher, filtrer, sélectionner"
+      },
+      "paint": {
+        "bg": "rgb(248, 251, 253)",
+        "fg": "rgb(49, 72, 95)",
+        "radius": "10.24px",
+        "weight": "700",
+        "size": "11.84px",
+        "long": false,
+        "x": 738.71875,
+        "y": 137.75,
+        "right": 938.0625,
+        "bottom": 171.75,
+        "owned": true
+      },
+      "portal": null
+    },
+    {
+      "width": 768,
+      "language": "fr",
+      "nativeFullscreen": false,
+      "candidate": {
+        "index": "7",
+        "text": "Rechercher, filtrer, sélectionner"
+      },
+      "paint": {
+        "bg": "rgb(248, 251, 253)",
+        "fg": "rgb(49, 72, 95)",
+        "radius": "10.24px",
+        "weight": "700",
+        "size": "11.84px",
+        "long": false,
+        "x": 281.984375,
+        "y": 237.75,
+        "right": 470.796875,
+        "bottom": 271.75,
+        "owned": true
+      },
+      "portal": "1"
+    },
+    {
+      "width": 390,
+      "language": "fr",
+      "nativeFullscreen": false,
+      "candidate": {
+        "index": "7",
+        "text": "Rechercher, filtrer, sélectionner"
+      },
+      "paint": {
+        "bg": "rgb(248, 251, 253)",
+        "fg": "rgb(49, 72, 95)",
+        "radius": "10.24px",
+        "weight": "700",
+        "size": "11.84px",
+        "long": false,
+        "x": 92.984375,
+        "y": 171.765625,
+        "right": 281.796875,
+        "bottom": 205.765625,
+        "owned": true
+      },
+      "portal": "1"
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "cleanup": {
+    "credentialsCleared": true,
+    "leaseReleased": true,
+    "ownedChildStopped": true
+  },
+  "retention": {
+    "mode": "dry-run",
+    "protectedRuns": 2,
+    "candidateCount": 0,
+    "deletedCount": 0
+  },
+  "failedPredecessor": {
+    "runId": "easystud-authenticated-20261011T100705721Z-1248",
+    "preserved": true,
+    "reason": "Next real French navigation label is also truncated; blanket all-tooltip-hide Tab oracle was incorrect",
+    "cleanupComplete": true
+  },
+  "nativeLongPaintCertified": false,
+  "settingsWrites": false,
+  "businessWrites": false,
+  "realUserProgressWritten": false,
+  "actualTouchDevice": false,
+  "productAssetsChanged": false,
+  "humanAccepted": false
+}

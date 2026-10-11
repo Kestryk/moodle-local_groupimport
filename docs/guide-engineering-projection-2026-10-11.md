@@ -21,7 +21,7 @@ nine definitions. Runtime documentary successors do not change that product.
 | R10-03 progress | Dedicated 4px shared semantic track, saved source/product links and desktop/compact native configured-token paint | Saved admin palette coverage and unrelated legacy track consumers |
 | R10-30 demonstrations | Manual Start/running/replay; all four scene entries across EN/FR normal/reduced at three widths, with existing Pause/Next retained | Whole artwork, not timing-only acceptance |
 | R10-31 slide titles | Shared hierarchy, saved source/product links; 36 current native title paints | Human visual acceptance |
-| R10-32 tooltips | User-preferred existing Light Short/Long family, canonical controller/recipe; native hover/keyboard compact portal | Native Long/FR/fullscreen and general non-Guide help remain narrower than isolated proof |
+| R10-32 tooltips | User-preferred existing Light Short/Long family, canonical controller/recipe; EN and FR native hover/keyboard compact portal; actual FR Fullscreen | Native Long/touch-device and general non-Guide help remain narrower than isolated proof |
 
 Evidence lives in docs/testing/guide-*.json with explicit source/runtime pins.
 Earlier failures and narrower records are not deleted or silently promoted.
@@ -30,6 +30,11 @@ guide-close-native-parity; old six/seven/eight-path inventories are superseded
 by the installed nine-definition activity fixture, not invalidated retroactively.
 
 ## Remaining engineering queue
+
+Additional user lot AUD-CLAUDE-01: commission a global read-only Claude audit of
+EasyStud/Kit code, all applicable agent files, optimization and visual harmony.
+Scope/delivery: claude-global-audit-roadmap-2026-10-11.md. Pending delegation,
+not an audit already performed, and not a substitute for human acceptance.
 
 1. Bounded activity final-cue/reload review now passes six EN-normal/FR-reduced
    pending/completed reload cases. Artificial QA prerequisites remain distinct
@@ -44,6 +49,8 @@ by the installed nine-definition activity fixture, not invalidated retroactively
    including104 outbound samples, <2px relative drift, under-ghost dashed
    overlap, compact menus/cursor and two illustrated selected checkboxes. Exact
    scope: guide-current-scene-paint-review-2026-10-11, not all artwork acceptance.
+   Tooltip17900 also passes four FR normal regular/Fullscreen/compact profiles;
+   all natural labels use Light Short, so native Long is still separate.
 3. First-eligible welcome and confirmed commands/reset: retain explicit fixture,
    runtime and privacy boundaries. No real-user escalation/global reset or course
    assignment merely to manufacture proof. Static/security checks do not replace

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-11 - Retained global Claude audit request
+
+- Record AUD-CLAUDE-01: read-only EasyStud/Kit and applicable agent-file audit,
+  code optimization, architecture and graphic harmony; prioritized evidence-backed
+  report before any correction. Delegation and human acceptance remain pending.
+
+## 2026-10-11 - French fullscreen tooltip review
+
+- Extend existing Light navigation tooltip proof to real French labels and
+  native Fullscreen/compact ownership with isolated QA progression.
+- Preserve the failed all-Tab-hide harness and a strict actual-next-label
+  successor. No product style, Motion, settings or course command changes;
+  native Long paint and human acceptance remain separate.
+
 ## 2026-10-11 - Activity final recognition and reload review
 
 - Add bounded native final-step and real-page-reload scenarios using existing
