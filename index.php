@@ -1093,6 +1093,7 @@ echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !=
     'data-easystud-loading-state' => 'loading',
     'data-easyedu-loading-bootstrap' => '1',
     'data-easyedu-loading-ready-attribute' => 'data-easyedu-loading-ready',
+    'data-easyedu-loading-recover-late-ready' => '1',
     'data-easyedu-action-busy-label' => get_string('actioninprogress', 'local_groupimport'),
     'data-easyedu-custom-rails' => $themerailroles,
     'data-easyedu-dialog-palette' => $themerailroles,
