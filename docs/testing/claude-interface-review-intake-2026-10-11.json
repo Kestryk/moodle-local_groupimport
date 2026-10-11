@@ -39,6 +39,15 @@
     "GuideHeaderTitle": "Pending non-redundant title proposal.",
     "FoundationTitlePaint": "Saved canonical main verified: #264861, Inter14/700; stale documentation corrected, approved600 adoption separate."
   },
+  "approvedPublicationGates": {
+    "A3CardTitles600": {
+      "status": "paired-30-title-Penpot-write-timed-out-saved-outcome-unknown-no-consumer-activation",
+      "record": "docs/card-title-600-publication-progress-2026-10-11.md",
+      "humanAccepted": false
+    },
+    "A1SubsectionTile28": {"status": "approved-publication-queued", "humanAccepted": false},
+    "GS10DedicatedCue": {"status": "retained-no-footer-merge", "humanAccepted": false}
+  },
   "tasks": [
     {
       "id": "T001",
@@ -70,8 +79,8 @@
     {
       "id": "T004",
       "receivedScope": "[P] [US1] **Tiroir Moodle au-dessus du Guide (G11).** À l'ouverture du Guide, poser une classe sur `body` qui masque `.drawer-toggler`, et la retirer à la fermeture.",
-      "status": "native-defect-reproduced-shared-source-corrected-preview-pending",
-      "nativeVerified": false,
+      "status": "native-proof-passed-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
       "related": [
         "docs/native-host-layout-correction-2026-10-11.md"
@@ -81,8 +90,8 @@
     {
       "id": "T005",
       "receivedScope": "[P] [US3] **Centrage du bouton « Prévisualiser l'import » (M12, M13).** Rendre `.felement` pleine largeur dans `.easyedu-form-actions`, masquer la colonne de libellé vide et centrer la note.",
-      "status": "native-correction-failed-anatomy-measured-shared-priority-successor-ready",
-      "nativeVerified": false,
+      "status": "strict-native-successor-passed-human-open-failed-predecessor-retained",
+      "nativeVerified": true,
       "humanAccepted": false,
       "related": [
         "docs/native-host-layout-correction-2026-10-11.md"
@@ -92,7 +101,7 @@
     {
       "id": "T006",
       "receivedScope": "[P] [US1] **Espace entre la note d'introduction et la barre d'état (G9).**",
-      "status": "queued",
+      "status": "native-zero-gap-reproduced-12-cases-shared-composition-correction-pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
@@ -423,8 +432,8 @@
     {
       "id": "T042",
       "receivedScope": "[P] [US5] **D3** : accents des chaînes FR, dans `lang/fr/local_groupimport.php` et les `aria-label` ou infobulles codés dans le JS.",
-      "status": "five-locale-keys-static-PHP-passed-native-pending",
-      "nativeVerified": false,
+      "status": "five-locale-keys-static-PHP-native-passed-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
       "related": ["docs/french-editor-accents-2026-10-11.md"],
       "decisionGate": "none"

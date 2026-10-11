@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-11 - Served native T004/T005/T042 proof
+
+- Record six EN/FR host-layout cases and six French Group/Grouping label cases,
+  including original drawer restoration, full-width centered Import action,
+  accented ARIA/help and Escape-only modal checks. No data/settings writes.
+- Preserve failed predecessor evidence; human checklist remains open.
+- Reproduce the Guide note/status zero-gap in12 native cases; preserve approved
+ 600/28px decisions and unknown timed-out Penpot title write without activation.
+
 ## 2026-10-11 - T005 actual action-row host priorities
 
 - Correct the measured outer empty row padding and forced empty-label display
