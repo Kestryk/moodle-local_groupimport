@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-11 - Served activity path lifecycle evidence
+
+- Six EN-normal/FR-reduced native cases at390/768/1280 pass from an initial mobile
+  load: three real milestones, aligned cues and Cancel, without course writes.
+- Preserve the cleanup diagnostic and stronger immutable lifecycle successor;
+  document responsive owner/QA cleanup/EOL lessons. Cleanup and retention complete.
+- Confirmed assignment, final native membership verification and human acceptance
+  remain separate; canonical styles and prior progress are preserved.
+
 ## 2026-10-11 - Preserve activity Guide owner across compact portalling
 
 - Retain the exact Guide node in the existing responsive launcher and shared

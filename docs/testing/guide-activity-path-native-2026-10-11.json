@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "sourceProductCommit": "f6e9143585fc90bd0156862c58521ea30e03de35",
+  "runtimeProductCommit": "ec4987eee208eb5267d5dc2b09d2b6936754a75b",
+  "canonicalContextKitCommit": "4fed6cec08a835e12d7e6cde56e7814254f1cf95",
+  "path": "prepare-activity-grouping",
+  "classification": "local-supervised",
+  "spec": "tools/playwright/guide-activity-path-lifecycle-native.spec.js",
+  "runs": [
+    {"id": "easystud-authenticated-20261011T084622883Z-44244", "language": "fr", "actualReducedMotion": true},
+    {"id": "easystud-authenticated-20261011T084732050Z-7656", "language": "en", "actualReducedMotion": false}
+  ],
+  "widthOrder": [390, 768, 1280],
+  "nativeCasesPassed": 6,
+  "coldInitialCompact": true,
+  "nativeMilestonesPassed": ["open-grouping", "select-groups", "choose-grouping"],
+  "cueAlignmentChecked": true,
+  "cancelPreservesMemberships": true,
+  "obsoleteNativeSpecsPreserved": true,
+  "pageErrors": 0,
+  "blockedBusinessRequests": 0,
+  "credentialsCleared": true,
+  "leaseReleased": true,
+  "ownedChildStopped": true,
+  "retentionDryRun": {"protectedRuns": 2, "candidateCount": 0, "deletedCount": 0},
+  "businessWriteRequested": false,
+  "confirmedAssignmentNativeProof": false,
+  "sameGroupingFinalNativeProof": false,
+  "persistedAdminCustomPaletteProof": false,
+  "progressReloadNativeProof": false,
+  "humanAccepted": false,
+  "publicRelease": false
+}
