@@ -21,6 +21,7 @@ final class guide_discovery {
             'addmodelabel' => get_string('discovery_demo_add', 'local_groupimport'),
             'movemodelabel' => get_string('discovery_demo_move', 'local_groupimport'),
             'expectedlabel' => get_string('discovery_demo_expected', 'local_groupimport'),
+            'comparelabel' => get_string('discovery_demo_compare', 'local_groupimport'),
         ];
     }
 
@@ -192,6 +193,11 @@ final class guide_discovery {
             ];
             if (in_array($kind, ['membership', 'actions'], true)) {
                 $scene += self::demonstration_entry();
+            }
+            // The preceding membership paragraph already names Add/Move,
+            // source/destination and preserved memberships. Keep one explanation.
+            if ($kind === 'membership') {
+                $scene['introalreadyexplained'] = true;
             }
             foreach (['participant', 'group', 'grouping', 'pattern', 'preview', 'letters', 'syntax',
                 'invalid', 'add', 'move', 'cancel', 'destination', 'select', 'menu', 'confirm',

@@ -12,6 +12,7 @@
 @use "menus";
 @use "feedback";
 @use "forms";
+@use "focus";
 @use "tooltips";
 @use "../dialog-palette-classes" as palette;
 
@@ -694,51 +695,84 @@
     // surface. The whole header owns sticky clearance, not its live child.
     &__header {
       display: grid;
-      gap: 0.75rem;
+      gap: 0;
       min-inline-size: 0;
-      padding: 0.875rem;
+      padding: 0.5rem 0.75rem;
       margin-block-end: 1rem;
-      border: 2px solid var(--easyedu-border);
+      border: 1px solid var(--easyedu-border);
       border-radius: 0.625rem;
       background: var(--easyedu-surface);
-      position: sticky;
-      inset-block-start: calc(-1 * var(--easyedu-guide-reading-inset));
+      position: relative;
+      inset-block-start: auto;
       z-index: 6;
       &[data-guide-playback-state="playing"],
-      &[data-guide-playback-state="paused"] { border-color: var(--easyedu-primary); }
+      &[data-guide-playback-state="paused"] {
+        border-color: var(--easyedu-primary);
+        position: sticky;
+        inset-block-start: calc(-1 * var(--easyedu-guide-reading-inset));
+        .easyedu-guide-scene__header-controls {
+          grid-template-rows: 0fr; opacity: 0; visibility: hidden;
+          transition-delay: 0s, 0s, var(--easyedu-motion-slow);
+        }
+        .easyedu-guide-scene__reading { padding-block-start: 0; }
+      }
       &[data-guide-playback-state="finished"] {
         border-color: var(--easyedu-accent);
         background: var(--easyedu-accent-soft);
       }
       .easyedu-guide-scene__live {
-        position: static;
-        min-height: 0;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background: transparent;
+        display: contents;
+        &-content { grid-column: 2; grid-row: 1; min-width: 0; }
+        [data-guide-live-copy] {
+          @include typography.type-body;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          white-space: normal;
+          line-height: 1.4;
+        }
       }
       .easyedu-guide-scene__playback[hidden] { display: none; }
       .easyedu-guide-scene__start { @include buttons.button-size(small); margin-inline-start: auto; }
       .easyedu-guide-scene__start .fa { margin: 0; line-height: 1; }
+      .easyedu-guide-scene__playback { grid-column: 3; grid-row: 1; }
     }
-    &__header-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; min-inline-size: 0; }
-    &__reading { display: grid; gap: 0.25rem; min-inline-size: 0; }
-    &__phase-caption { @include typography.type-control-label; font-size: 0.78rem; }
+    &__header-controls {
+      display: grid; grid-template-rows: 1fr; min-inline-size: 0;
+      transition: grid-template-rows var(--easyedu-motion-slow) var(--easyedu-motion-ease),
+        opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease),
+        visibility var(--easyedu-motion-slow);
+    }
+    &__header-controls-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; min-width: 0; min-height: 0; overflow: hidden; }
+    &__reading {
+      display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center; gap: 0.5rem; min-inline-size: 0; padding-block-start: 0.75rem;
+      transition: padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
+    }
+    &__phase-caption { @include typography.type-control-label; font-size: 0.78rem; font-weight: 600; grid-column: 1; grid-row: 1; }
     &__modes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      @include forms.segmented-toggle;
       min-inline-size: 0;
-      .btn { @include buttons.selection-action; @include buttons.button-size(small); }
-      .btn[aria-pressed="true"] { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
+      .btn {
+        @include buttons.button-size(small);
+        @include typography.type-control-label;
+        background: transparent;
+        box-shadow: none;
+        font-weight: 600;
+        &:focus-visible { @include focus.ring; }
+      }
+      .btn[aria-pressed="true"] { background: var(--easyedu-surface); color: var(--easyedu-primary-strong); }
     }
     @media (max-width: 40rem) {
-      &__header-controls { flex-direction: column; align-items: stretch; }
-      // Grow from the actual translated label width. Equal zero-basis tracks
-      // can clip a longer mode even when the whole header is contained.
-      &__modes .btn { flex: 1 0 auto; }
+      &__header { padding-block: 0.4375rem; }
+      &__header-controls-inner { flex-direction: column; align-items: stretch; }
+      &__modes { display: flex; }
+      &__modes .btn { flex: 1 1 0; min-width: 0; }
       &__header .easyedu-guide-scene__start { width: 100%; margin-inline-start: 0; }
+      &__reading { grid-template-columns: minmax(0, 1fr) auto; }
+      &__header .easyedu-guide-scene__live-content { grid-column: 1 / -1; grid-row: 2; }
+      &__header .easyedu-guide-scene__playback { grid-column: 2; grid-row: 1; }
     }
     &__actions .btn[data-guide-scene-command="add"],
     &__actions .btn[data-guide-scene-command="move"] {
