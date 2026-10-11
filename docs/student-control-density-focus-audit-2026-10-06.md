@@ -2,7 +2,7 @@
 
 11 October successor: R10-07 now has a saved paired source/Standard and linked
 product publication, exact optional consumer embedding and complete unrelated
-CSS preservation. Native preview remains pending; older paragraphs below are
+CSS preservation. Native preview now passes64 EN/FR states; older paragraphs below are
 historical, not overwritten. See `filter-track-focus-successor-2026-10-11.md`.
 
 Current preserved status and Guide priority are in

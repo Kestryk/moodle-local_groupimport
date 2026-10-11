@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-11 - R10-07 served native state-peer proof
+
+- Confirm64 native EN/FR focus states on1600/768/390 without data/settings
+  writes, plus unchanged44px layout targets and native reduced-motion policy.
+- Retain three immutable harness diagnoses and all cleanup/manifest records;
+  deferred human checklist and other filter-density lots stay open.
+- Prepare the separate Reset peer-density source inventory; no Reset repaint.
+
 ## 2026-10-11 - R10-07 canonical track-only keyboard focus
 
 - Adopt the existing Kit focus modifier on the two ungrouped catalogue switches;

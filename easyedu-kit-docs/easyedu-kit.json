@@ -12,7 +12,9 @@
       "scope": "Two trailing catalogue labels;44px hit target, original Motion and legacy switches preserved.",
       "isolatedRecords": 48,
       "pairedDesignContract": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRecords": 64,
+      "nativeProof": "docs/testing/filter-track-focus-native-2026-10-11.json",
       "humanVisualValidated": false,
       "fullKitSync": false,
       "publicRelease": false

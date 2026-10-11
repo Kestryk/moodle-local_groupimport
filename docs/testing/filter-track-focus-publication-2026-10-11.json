@@ -23,6 +23,7 @@
   "rastersInspected": ["kit/filter-track-focus-design-20261011-b/standard.png","kit/filter-track-focus-design-20261011-d/library.png","easystud/filter-track-focus-design-20261011-a/product.png"],
   "retainedClippedLibraryCapture": "kit/filter-track-focus-design-20261011-c",
   "retainedFailedCapture": "kit/filter-track-focus-design-20261011-a",
-  "nativeVerified": false,
+  "nativeVerified": true,
+  "nativeProof": "docs/testing/filter-track-focus-native-2026-10-11.json",
   "humanVisualValidated": false
 }

@@ -34,8 +34,10 @@ old focus skin. Reset height/action composition are separate R10-08/13 lots.
   same-style captions completed the retained hosts. Duplicate SVG IDs in the
   editor preview required a qualified renderer-layer screenshot successor;
   the failed capture remains retained. Neither error changed native UI code.
-- Native served successor is **pending**: actual desktop Participants/Structure
+- Native served successor **passes64 EN/FR records**: actual desktop Participants/Structure
   and compact Groups routes at1600/768/390; EN and FR, eight states per route.
+  Final scenario `student-filter-track-focus-state-peers.spec.js`; exact runs
+  and preserved diagnoses are in `testing/filter-track-focus-native-2026-10-11.json`.
   Test source is local-supervised and becomes immutable when a run starts.
   Plugin business POST/unknown core writes are blocked; client filter changes
   and temporary disabled/checked specimens are restored in `finally`.
@@ -45,9 +47,41 @@ Moodle evidence, settings persistence or human acceptance. No new role/data
 fixture is required. Platform planning/scenario owner receives this backlink;
 its shared files are not concurrently edited.
 
+## Retained native diagnostic successors
+
+The first native run150000480Z-51204 fails only on an isolated-fixture zero
+transition assumption. The actual unchanged global reduced-motion policy is
+`0.001ms !important` (computed `1e-06s`). Its eight paint records, no errors/
+blocked commands and complete cleanup are retained. The additive Motion-policy
+successor passes32 English states,150210229Z-25624. French150307996Z-50972
+reaches mobile390 but rejects a transformed DOMRect43.999969482421875px.
+
+The additive layout/paint successor keeps raw bounds, real native Tab/Space
+and exact reduced policy, additionally requires native offsetHeight>=44 and
+computed minimum44px, and bounds DOMRect error to1/1024px. This is a coordinate
+precision allowance, not a smaller touch target or a product style change.
+Original failed/running specs and evidence are preserved unchanged. Reuse these
+strict layout/CSS/raw-paint oracles when future native tests encounter subpixel
+coordinates, avoiding repeated full error dumps and speculative CSS edits.
+
+French150453567Z-21836 then identifies a separate invalid comparison: mobile
+Reset is conditionally hidden while filters are inactive. Activating the filter
+reveals Reset and the translated toggle caption flexes199.5625→164.828125px.
+Mouse and keyboard On both have164.828125px; this is existing responsive layout,
+not focus-induced shrink. The final state-peer successor compares keyboard On
+to mouse On and keyboard Off to rest Off, preserving both exact width oracles
+at equivalent native business/UI states. Controller and all CSS stay unchanged.
+
+Workflow cost: native tests needed three immutable harness successors because
+the isolated-zero policy, strict DOMRect integer and checked-state width premise
+were inappropriate for the consumer cascade. Record this honestly; no model
+token/quota accounting is available. Future tests should qualify Motion policy,
+native layout/raw paint and conditional siblings before a full locale matrix.
+
 ## Next
 
-Promote the pushed bounded consumer commit through the managed local preview
-lane, purge under its own lease, execute the one exact native scenario in EN
-and FR, and retain cleanup/status. Then continue R10-08/09/10/13 in order,
-without colliding with Claude's independent composition audit.
+Managed promotion795b9fe→runtimefbca904c passes with cache purge. Both final
+native runs pass32 records with credentials cleared, leases released and owned
+children stopped. No fixture/data/settings write. Continue R10-08/09/10/13 in
+order, beginning with `filter-reset-peer-density-audit-2026-10-11.md`, without
+colliding with Claude's independent composition audit. Human checklist OPEN.
