@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - Served activity bridge regression checkpoint
+
+- Managed preview/cache purge completed; three EN-normal native cases at
+  1280/768/390 retain Group selection, searchable destination and Cancel.
+- Cleanup complete and no course writes. New activity path, confirmed business
+  outcome, bilingual successor cues and human validation remain separate gates.
+
 ## 2026-10-11 - Activity Grouping confirmation bridge (inactive successor)
 
 - Capture immutable expected Group/destination IDs and the canonical Guide token
