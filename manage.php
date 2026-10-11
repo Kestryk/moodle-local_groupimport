@@ -1496,6 +1496,17 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
         'highlightAutoHideDelay' => 5200,
         'highlightStyle' => 'pulse-blue',
         'targets' => [
+            'activityGroupingEntry' => [
+                '[data-easystud-tree] [data-easystud-grouping-id]:not([hidden]) [data-easystud-collapse-toggle]',
+                '.local-groupimport-easystud-create-row input[name="groupingname"]',
+            ],
+            'activityGroupSelection' => '[data-easystud-tree] [data-easystud-group-id]:not([hidden]) > ' .
+                '.local-groupimport-easystud-selector',
+            'activityGroupDestination' => '[data-easystud-move-modal][data-easystud-move-context="group"] ' .
+                '.easyedu-searchable-choice',
+            'activityGroupConfirm' => '[data-easystud-move-modal][data-easystud-move-context="group"] ' .
+                '[data-easystud-confirm-move]',
+            'activityGroupingResult' => '[data-easystud-guide-activity-destination] [data-easystud-collapse-toggle]',
             'createRow' => '.local-groupimport-easystud-create-row',
             'groupCreateInput' => '.local-groupimport-easystud-create-row input[name="groupname"]',
             'groupingCreateInput' => '.local-groupimport-easystud-create-row input[name="groupingname"]',
@@ -1624,6 +1635,7 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'tree' => '[data-easystud-tree]',
         ],
         'pathLabels' => [
+            'prepare-activity-grouping' => get_string('activity_path_title', 'local_groupimport'),
             'verify-with-filters' => get_string('filter_path_title', 'local_groupimport'),
             'inspect-group-settings' => get_string('editor_group_title', 'local_groupimport'),
             'inspect-grouping-settings' => get_string('editor_grouping_title', 'local_groupimport'),
@@ -1633,7 +1645,11 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'create-grouping' => get_string('tutorialguidedgroupingtitle', 'local_groupimport'),
             'try-actions' => get_string('tutorialguidedactionstitle', 'local_groupimport'),
         ],
+        'pathContextFields' => [
+            'prepare-activity-grouping' => ['destinationId' => 'id', 'groupIds' => 'ids'],
+        ],
         'paths' => [
+            'prepare-activity-grouping' => \local_groupimport\local\guide_discovery::activity_grouping_path(),
             'verify-with-filters' => \local_groupimport\local\guide_discovery::filter_verification_path(),
             'inspect-group-settings' => \local_groupimport\local\guide_discovery::editor_inspection_path('group'),
             'inspect-grouping-settings' => \local_groupimport\local\guide_discovery::editor_inspection_path('grouping'),

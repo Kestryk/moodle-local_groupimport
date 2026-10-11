@@ -2171,6 +2171,49 @@ const emitNativePathCompletion = (root, path, step) => {
 const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
 const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
 
+const activityGroupingSessionIsCurrent = (root, token) => {
+    const current = Guide.getPathContextToken(root, 'prepare-activity-grouping');
+    return !!token && !!current && token.root === current.root && token.config === current.config &&
+        token.epoch === current.epoch;
+};
+
+const emitActivityGroupingEntry = (root, id, token) => {
+    if (activityGroupingSessionIsCurrent(root, token) && typeof id === 'string' && /^[1-9]\d*$/.test(id) &&
+            Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
+                .some(grouping => grouping.getAttribute('data-easystud-grouping-id') === id)) {
+        emitNativePathCompletion(root, 'prepare-activity-grouping', 'open-grouping');
+    }
+};
+
+const emitActivityGroupSelection = root => {
+    const selected = getSelectedItems(root, 'group');
+    if (selected.length && selected.every(group => /^[1-9]\d*$/.test(
+        group.getAttribute('data-easystud-group-id') || ''
+    ))) {
+        emitNativePathCompletion(root, 'prepare-activity-grouping', 'select-groups');
+    }
+};
+
+// Only an explicit native disclosure, after Motion settles, can certify this step.
+const verifyActivityGrouping = (root, grouping, token) => {
+    const context = Guide.getPathContext(root, 'prepare-activity-grouping');
+    if (!activityGroupingSessionIsCurrent(root, token) || !context ||
+            grouping.getAttribute('data-easystud-grouping-id') !== context.destinationId) {
+        return;
+    }
+    const toggle = grouping.querySelector('[data-easystud-collapse-toggle]');
+    const children = grouping.querySelector('.local-groupimport-easystud-tree__children');
+    if (!toggle || toggle.getAttribute('aria-expanded') !== 'true' || !children || children.hidden) {
+        return;
+    }
+    const present = Array.from(children.querySelectorAll('[data-easystud-group-id]'))
+        .filter(group => group.closest('[data-easystud-grouping-id]') === grouping && !group.hidden)
+        .map(group => group.getAttribute('data-easystud-group-id'));
+    if (context.groupIds.length && context.groupIds.every(id => present.includes(id))) {
+        emitNativePathCompletion(root, 'prepare-activity-grouping', 'verify-grouping');
+    }
+};
+
 // Capture before the native asynchronous Group batch, never from its late callback.
 // This bridge stays inert until the additive activity path and schema are installed.
 const captureActivityGroupingConfirmation = (root, destinationId, groups) => {
@@ -5956,6 +5999,9 @@ const bindSelection = root => {
         }
         updateSelectionActions(root);
         requestGuideHighlightRefresh(root);
+        if (type === 'group') {
+            emitActivityGroupSelection(root);
+        }
     });
 
     root.addEventListener('change', event => {
@@ -5984,6 +6030,9 @@ const bindSelection = root => {
             emitGuidedCompletion(root, 2, 'grouping');
         }
         updateSelectionActions(root);
+        if (type === 'group') {
+            emitActivityGroupSelection(root);
+        }
     });
 
     root.addEventListener('click', event => {
@@ -6045,6 +6094,7 @@ const animateTreeChildren = (children, expand, options = {}) => {
         }
         children.classList.remove('is-tree-animating');
         requestGuideHighlightRefresh(root);
+        options.onComplete?.();
     };
 
     if (options.animate === false) {
@@ -6108,7 +6158,15 @@ const bindTree = root => {
         toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         section.classList.toggle('is-expanded', !expanded);
         const isUngrouped = section.classList.contains('local-groupimport-easystud-tree__section--ungrouped');
-        animateTreeChildren(children, !expanded, isUngrouped ? {prepare: false, syncAfter: false} : {});
+        const activityToken = Guide.getPathContextToken(root, 'prepare-activity-grouping');
+        animateTreeChildren(children, !expanded, isUngrouped ? {prepare: false, syncAfter: false} : {
+            onComplete: () => {
+                if (!expanded) {
+                    emitActivityGroupingEntry(root, section.getAttribute('data-easystud-grouping-id'), activityToken);
+                    verifyActivityGrouping(root, section, activityToken);
+                }
+            },
+        });
         if (isUngrouped) {
             const panel = section.querySelector('[data-easystud-container-search-panel="ungrouped"]');
             const input = panel ? panel.querySelector('[data-easystud-container-group-search="ungrouped"]') : null;
@@ -6449,6 +6507,7 @@ const bindQuickCreate = (root, courseId) => {
                 return;
             }
 
+            const activityCreationToken = Guide.getPathContextToken(root, 'prepare-activity-grouping');
             postAction(payload).then(response => {
                 const createdGroups = response.groups || (response.group ? [response.group] : []);
                 const createdGroupings = response.groupings || (response.grouping ? [response.grouping] : []);
@@ -6470,6 +6529,9 @@ const bindQuickCreate = (root, courseId) => {
                 }
                 if (action.value === 'creategrouping') {
                     emitGuidedCompletion(root, 0, 'grouping');
+                    createdGroupings.forEach(grouping => {
+                        emitActivityGroupingEntry(root, String(grouping.id), activityCreationToken);
+                    });
                 }
             }).catch(error => {
                 showNotification(root, error.message || '', 'error');
@@ -7132,6 +7194,12 @@ const bindMoveModal = (root, courseId) => {
     openParticipants.forEach(button => button.addEventListener('click', () => openModal('participant')));
 
     destination.addEventListener('change', () => {
+        if (contextType === 'group' && /^[1-9]\d*$/.test(destination.value) &&
+                getSelectedItems(root, 'group').length &&
+                Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
+                    .some(grouping => grouping.getAttribute('data-easystud-grouping-id') === destination.value)) {
+            emitNativePathCompletion(root, 'prepare-activity-grouping', 'choose-grouping');
+        }
         if (contextType === 'participant' && destination.value &&
                 getGroupElementsById(root, destination.value).length) {
             emitPracticeCompletion(root, 'choose-destination');
@@ -8882,6 +8950,37 @@ const bindSharedGuideTargets = root => {
     const openTarget = selector => {
         if (!selector) {
             return null;
+        }
+        if (selector === 'tutorial:activity-grouping-workspace' || selector === 'tutorial:activity-group-workspace' ||
+                selector === 'tutorial:activity-grouping-result') {
+            const workspace = selector === 'tutorial:activity-group-workspace' ? 'groups' : 'groupings';
+            if (!isResponsiveWorkspace() && root.easystudDesktopMode !== 'structure') {
+                root.easystudApplyDesktopMode?.('structure', false);
+            } else if (isResponsiveWorkspace()) {
+                const view = root.querySelector('[data-easystud-mobile-view="' + workspace + '"]');
+                if (view && view.getAttribute('aria-pressed') !== 'true') {
+                    view.click();
+                }
+            }
+            root.querySelectorAll('[data-easystud-guide-activity-destination]').forEach(node => {
+                node.removeAttribute('data-easystud-guide-activity-destination');
+            });
+            if (selector === 'tutorial:activity-grouping-result') {
+                const context = Guide.getPathContext(root, 'prepare-activity-grouping');
+                const grouping = context ? Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
+                    .find(node => node.getAttribute('data-easystud-grouping-id') === context.destinationId) : null;
+                grouping?.setAttribute('data-easystud-guide-activity-destination', 'true');
+                return grouping;
+            }
+            return root.querySelector(workspace === 'groups' ? '[data-easystud-structure-groups]' : '[data-easystud-tree]');
+        }
+        if (selector === 'tutorial:activity-group-dialog') {
+            const modal = root.querySelector('[data-easystud-move-modal]');
+            if (modal && modal.hidden) {
+                Array.from(root.querySelectorAll('[data-easystud-move-selected-groups]'))
+                    .find(button => !button.disabled)?.click();
+            }
+            return modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'group' ? modal : null;
         }
         if (selector === 'tutorial:participant-filter-workspace' ||
                 selector === 'tutorial:participant-filter-controls') {

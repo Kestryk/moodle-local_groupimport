@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+The additive activity Grouping path replaces only its invitation, not historical
+definitions/storage. Verify the persisted destination and every expected Group
+only after explicit native disclosure completes, never from a Guide opener or
+the first visible card. Capture canonical session tokens before native Motion
+or creation; missing prerequisites are explained, not automatically created.
+
 Activity confirmation context is captured before the real Group batch and saved
 only after complete success with the original canonical session token. Keep the
 bridge inert until additive path/schema/targets are installed together. Reset

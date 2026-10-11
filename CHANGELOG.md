@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-11 - Additive activity Grouping path
+
+- Five bilingual native steps with typed Group selection/destination, canonical
+  expected-ID context and verification of the same Grouping after disclosure.
+- Replace only the activity invitation; preserve all prior path definitions and
+  progress. Reuse accepted styles/Motion; no new business or automatic command.
+- 320 isolated guards, complete legacy-definition preservation, PHP syntax and
+  AMD build pass. Native candidate and human acceptance remain separate gates.
+
 ## 2026-10-11 - Served activity bridge regression checkpoint
 
 - Managed preview/cache purge completed; three EN-normal native cases at

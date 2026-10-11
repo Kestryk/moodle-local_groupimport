@@ -1,5 +1,15 @@
 # Current Student Management Guide: remaining engineering
 
+Activity path activation candidate: prepare-activity-grouping has five bilingual
+typed milestones, context schema, native Group-context cues and same-destination
+verification after explicit disclosure/Motion completion.320 isolated guard cases
+and actual bilingual payloads pass; all eight earlier definitions retained.
+The activity invitation now uses the new ID without remapping old progress.
+Current12 readings/7 invitations/9 definitions. Next: ordered preview and native
+three-width real-entry/disclosure/selection/search/Cancel. No native confirmed
+assignment or human acceptance is claimed. Scope: guide-activity-path-2026-10-11.
+All earlier Guide/SM lots and the deferred human checklist remain open.
+
 Latest bridge checkpoint: Source2e7c0ba/runtimefad2076 is served with managed
 cache purge. Three EN-normal native cases at1280/768/390 pass existing Group
 selection/destination search/Cancel; no business writes/errors and cleanup is
