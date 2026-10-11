@@ -64,7 +64,12 @@ objects; settled no-cache successor confirms all31. Original source providers
 are unchanged. This adds no Foundation master or alternative button family.
 
 The corrected shared rule is served at Source2c34295/Kit27045fe/runtimed6f8df1,
-CSS SHA256 AA3471B81A24BDF94D480C76DB7075C326149FFFF271A409D5670B6E984E7445.
+Runtime CRLF CSS SHA256
+3F6CEAE725CE84D686E670C0D08E09083C890C721CF56D8935AFE4A9AC6EF313.
+The source compiler's LF bytes hash to
+AA3471B81A24BDF94D480C76DB7075C326149FFFF271A409D5670B6E984E7445;
+both resolve to Git blob3673ddd338dc99272c07b39881c12275e8f01339, with exact
+normalized content parity. The documentary5908d80 successor changes no assets.
 Native18132 passes the identical stricter six EN/FR1280/768/390 cases in normal
 motion: own padded-label containment, unchanged30.4px Small Start, mode preview,
 Pause/count, Reset and Escape. French phone ready/paused rasters were inspected;
