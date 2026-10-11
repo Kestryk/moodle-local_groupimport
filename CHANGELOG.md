@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-12 - Strict native compact-header successor
+
+- Retain native35652's narrower French phone failure: paused header98px versus
+  the approved96px limit. Synchronize canonical0.4.176's6px compact padding;
+  keep the identical native spec, all fonts, commands and Motion unchanged.
+
 ## 2026-10-12 - Claude review1 demonstration successor
 
 - Reopen T009–T011 with explicit C1/C2/C3/C4/C6 reservations while preserving

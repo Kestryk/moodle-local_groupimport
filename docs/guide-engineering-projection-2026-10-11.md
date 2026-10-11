@@ -1,5 +1,11 @@
 # Guide engineering: current projection, not human acceptance
 
+Review1 initial candidate is served at Source2083141/Kit5cba6a6/runtimea6daf2d.
+Native35652 passes five complete cases but fails the sixth FR phone paused header
+at98px, against the unchanged96px limit. Canonical0.4.176/Kit51b4711 adjusts only
+compact vertical padding7→6px. Cleanup is complete; the same immutable native
+scenario will test its served successor. Do not close T009–T011 reservations yet.
+
 Claude review1 reopens T009–T011 despite their previous scoped native PASS.
 C6/C3/C4/C2, C1 and T008 are implemented in canonical0.4.175 and synchronized
 source; six isolated localized width/lifecycle cases pass, including C5's final
