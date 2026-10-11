@@ -88,3 +88,49 @@ typography, phase clocks or oracle is changed. Corrected native proof pending.
 The baseline comparison also recorded five pre-existing Source/runtime differences
 in historical changelog, group-image evidence, embedded manifest and an old
 workspace spec. They are not silently overwritten by this Guide-only promotion.
+
+## Corrected served successor and stronger native proof
+
+Source932cbb6 / Kit51b4711 (0.4.176) / runtimeb0e23b7 are served through the
+managed promotion. The same immutable compact scenario passes all six cases
+in run15480. Its top-clearance oracle does not alone prove complete target
+visibility: retain that narrow PASS, rather than claiming broader coverage.
+
+The full-target successor16928 failed after Playwright's locator Pause click
+auto-scrolled the body away from its settled reveal position. A separate painted
+pointer successor27328 checks the actual centre hit before Pause/Resume/Next,
+without force click, DOM click or scroll injection. It passes all24 phase targets,
+six ready expected-result cases and six finished membership/recap cases, EN/FR
+at1600/1280/390 in normal Motion. Desktop height is48.390625px maximum; phone
+height is96px maximum. Credentials are cleared, lease released and child stopped;
+no fixture or business command was requested. This harness correction changes
+no product source or Motion.
+
+Inspected FR390 confirmation/finished and FR1280 validation rasters show the
+complete active confirmation/submit target and the final phone recap. Phase4
+first confirms through the dialog, then the existing animation reveals the
+cards before their transfer; a paused submit capture is not a transfer capture.
+Full T015 scene/media/keyboard proof and V1/V2 are still open.
+
+C5's final-result measurement is satisfied at all three sizes in both locales.
+No duplicate recap or scroll engine is introduced. T012's requested manual Motion
+disclosure is a wider contract and is not certified by those measurements alone.
+T009–T011's C1/C2/C3/C4/C6 reservations are now resolved for this measured scene;
+their original proofs remain historical and human acceptance is still open.
+
+## Final product token paint checkpoint
+
+All18 linked expected tokens had the correct saved text but stale Group1 glyph
+metrics in the2.18 canvas. A native unchanged-value submission did not invalidate
+them; a reversible native metric reflow restores the exact original Inter12
+size in finally. Six long destination labels require intrinsic176px width,
+not smaller type or another token family. All18 real textBounds fit their token
+and text lane after reflow. Desktop/phone rasters were inspected and saved
+content/font verification is separate. Prior captures remain retained; the
+owned Guide tab alone was refreshed after saved-content proof, never another
+window or shared Foundation provider. Product ordering references remain open.
+
+T008 native51416 passes all72 current slide/locale/width settled-order cases;
+35392's preliminary entry-transform measurement is preserved. The owned
+three-repository recovery checkpoint has a verified restore drill:
+`ws3-20261011T230426Z-port4719pg3-64c3b9d1c658`.

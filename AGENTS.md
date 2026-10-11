@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+Native playback visibility proof uses actual painted pointer hits: a locator
+click can auto-scroll a sticky command after the scene reveal already settled.
+Retain both immutable oracles and complete targets, not a weakened top-only
+check. Reading order waits finite entry transforms, leaving decorative loops
+and product Motion unchanged. Penpot saved override text and cached glyph paint
+are separate gates; an API label is not proof of a displayed linked token.
+
 Claude review1 reopens header containment proofs where expected outcomes or
 phase targets were outside the reading viewport. Preserve predecessor runs;
 measure real sticky height and finite transition settlement, not just final
