@@ -15810,6 +15810,263 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   opacity: 0.62;
   pointer-events: none;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header {
+  display: grid;
+  gap: 0.75rem;
+  min-inline-size: 0;
+  padding: 0.875rem;
+  margin-block-end: 1rem;
+  border: 2px solid var(--easyedu-border);
+  border-radius: 0.625rem;
+  background: var(--easyedu-surface);
+  position: sticky;
+  inset-block-start: calc(-1 * var(--easyedu-guide-reading-inset));
+  z-index: 6;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=playing], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=paused],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=playing],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=paused] {
+  border-color: var(--easyedu-primary);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=finished] {
+  border-color: var(--easyedu-accent);
+  background: var(--easyedu-accent-soft);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__live,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__live {
+  position: static;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__playback[hidden],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__playback[hidden] {
+  display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start {
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  margin-inline-start: auto;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start .fa {
+  margin: 0;
+  line-height: 1;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header-controls,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__reading,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__reading {
+  display: grid;
+  gap: 0.25rem;
+  min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__phase-caption,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__phase-caption {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text);
+  font-size: var(--easyedu-font-size-control);
+  font-weight: var(--easyedu-font-weight-semibold);
+  line-height: 1.35;
+  font-size: 0.78rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-inline-size: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn [class*=" fa-"],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:focus,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn.disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn.disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] {
+  align-items: center;
+  column-gap: 0.35rem;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1.2;
+  row-gap: 0.35rem;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+  transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  min-width: 1.9rem;
+  padding: 0.22rem 0.5rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] [class*=" fa-"],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] [class*=" fa-"] {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  line-height: 1;
+  margin-inline: 0;
+  min-inline-size: 1em;
+  width: 1em;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] {
+  background: var(--easyedu-surface);
+  border: 1px solid var(--easyedu-primary);
+  border-radius: var(--easyedu-control-radius);
+  box-shadow: none;
+  color: var(--easyedu-primary);
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true] {
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:focus,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:focus {
+  background: var(--easyedu-surface);
+  color: var(--easyedu-primary);
+  background: var(--easyedu-primary);
+  color: var(--easyedu-surface);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true][aria-pressed=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:hover,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true][aria-pressed=true] {
+  background: var(--easyedu-primary-soft);
+  color: var(--easyedu-primary-strong);
+  background: var(--easyedu-primary-strong);
+  color: var(--easyedu-surface);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:focus-visible,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:focus-visible {
+  border-color: var(--easyedu-control-focus-border);
+  box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);
+  outline: var(--easyedu-focus-outline-width) solid transparent;
+  outline-offset: var(--easyedu-focus-outline-offset);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:disabled, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true][aria-disabled=true], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true].disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true]:disabled,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true][aria-disabled=true],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn[aria-pressed=true].disabled {
+  background: var(--easyedu-surface-soft);
+  border-color: var(--easyedu-card-border);
+  box-shadow: none;
+  color: var(--easyedu-text-muted);
+  cursor: not-allowed;
+  opacity: 0.62;
+  pointer-events: none;
+}
+@media (max-width: 40rem) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header-controls,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn {
+    flex: 1 1 0;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__actions .btn[data-guide-scene-command=add], .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__actions .btn[data-guide-scene-command=move],
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__actions .btn[data-guide-scene-command=add],
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__actions .btn[data-guide-scene-command=move] {

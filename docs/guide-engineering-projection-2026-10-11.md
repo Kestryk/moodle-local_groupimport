@@ -1,5 +1,12 @@
 # Guide engineering: current projection, not human acceptance
 
+T009–T011 successor is implemented in canonical0.4.173 and embedded/runtime
+sources: scene-owned header, expected memberships at rest and localized phase
+caption, with original clocks/cards. The user's continuation authorizes this
+integration; it is not a completed human checklist. Isolated six-case header
+proof passes; native publication/proof follows. T008/T012 remain queued. See
+`guide-scene-header-integration-2026-10-11.md` for gates and external runs.
+
 T007 now has a saved three-width/five-state Penpot proposal using existing
 Foundation controls.18 active headers and three contextual compositions pass
 paint containment/centering; six original card copies are preserved. See

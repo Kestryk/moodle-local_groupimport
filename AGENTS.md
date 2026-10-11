@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Unified scene headers remain scene-owned; preserve the sibling live fallback
+for historical templates and measure the full sticky header during reveal.
+Expected membership previews are explicitly labelled and restored to actual
+initial state on Start. Phase counts follow applicable narration, never timers.
+Reset returns to the default ready mode; preserve all existing clocks/Motion.
+
 Scene-header proposals compose existing linked controls in ordinary hosts.
 Preserve accepted card fingerprints and distinguish floating-point coordinate
 noise from paint/type changes. Tablet instructions follow compact card actions.

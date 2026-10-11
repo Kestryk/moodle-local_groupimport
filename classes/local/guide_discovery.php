@@ -15,6 +15,12 @@ final class guide_discovery {
             'startlabel' => get_string('discovery_demo_start', 'local_groupimport'),
             'runninglabel' => get_string('discovery_demo_running', 'local_groupimport'),
             'replaylabel' => get_string('discovery_demo_replay', 'local_groupimport'),
+            'steplabel' => get_string('discovery_demo_step', 'local_groupimport'),
+            'readylabel' => get_string('discovery_demo_ready', 'local_groupimport'),
+            'pausedlabel' => get_string('discovery_demo_paused', 'local_groupimport'),
+            'addmodelabel' => get_string('discovery_demo_add', 'local_groupimport'),
+            'movemodelabel' => get_string('discovery_demo_move', 'local_groupimport'),
+            'expectedlabel' => get_string('discovery_demo_expected', 'local_groupimport'),
         ];
     }
 

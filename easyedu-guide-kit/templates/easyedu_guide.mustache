@@ -193,7 +193,23 @@
                                 </div>
                             {{/requires}}
                             {{#discoveryscene}}
+                            <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
+                                <p class="easyedu-guide-scene__caption">{{caption}}</p>
                             {{^concepts}}{{^creation}}
+                            <header class="easyedu-guide-scene__header" data-guide-scene-header data-step-label="{{steplabel}}" data-ready-label="{{readylabel}}" data-paused-label="{{pausedlabel}}" data-add-label="{{addmodelabel}}" data-move-label="{{movemodelabel}}">
+                                <div class="easyedu-guide-scene__header-controls">
+                                    {{#membership}}
+                                    <div class="easyedu-guide-scene__modes">
+                                        <button type="button" class="btn btn-primary" data-guide-scene-command="add" aria-pressed="true">{{addlabel}}</button>
+                                        <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="move" aria-pressed="false">{{comparemove}}</button>
+                                    </div>
+                                    {{/membership}}
+                                    {{#manualstart}}
+                                    <button type="button" class="btn btn-primary easyedu-guide-scene__start" data-guide-scene-command="start" data-start-label="{{startlabel}}" data-running-label="{{runninglabel}}" data-replay-label="{{replaylabel}}" aria-busy="false"><span class="fa fa-play" aria-hidden="true"></span><span data-guide-start-label>{{startlabel}}</span></button>
+                                    {{/manualstart}}
+                                </div>
+                            <div class="easyedu-guide-scene__reading">
+                            <span class="easyedu-guide-scene__phase-caption" data-guide-phase-caption hidden></span>
                             <div class="easyedu-guide-scene__live" data-guide-live>
                                 <span class="easyedu-guide-scene__live-content">
                                     <span class="fa fa-check-circle" data-guide-live-complete aria-hidden="true" hidden></span>
@@ -205,14 +221,9 @@
                                     <button type="button" class="easyedu-guide-scene__playback-button" data-guide-playback="next-phase" aria-label="{{nextphaselabel}}" disabled><span class="fa fa-forward" aria-hidden="true"></span></button>
                                 </span>
                             </div>
+                            </div>
+                            </header>
                             {{/creation}}{{/concepts}}
-                            <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
-                                <p class="easyedu-guide-scene__caption">{{caption}}</p>
-                                {{#manualstart}}
-                                <div class="easyedu-guide-scene__entry">
-                                    <button type="button" class="btn btn-primary easyedu-guide-scene__start" data-guide-scene-command="start" data-start-label="{{startlabel}}" data-running-label="{{runninglabel}}" data-replay-label="{{replaylabel}}" aria-busy="false"><span class="fa fa-arrow-right" aria-hidden="true"></span><span data-guide-start-label>{{startlabel}}</span></button>
-                                </div>
-                                {{/manualstart}}
                                 {{#concepts}}
                                 <div class="easyedu-guide-scene__concepts">
                                     <div><div class="easyedu-guide-scene__person"><span class="easyedu-guide-scene__identity fa fa-user" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong>Alex Dupont</strong><small>{{participanttitle}}</small></span></div><p>{{participantlabel}}</p><span class="easyedu-guide-scene__concept-arrow fa fa-arrow-right" aria-hidden="true"></span></div>
@@ -295,8 +306,8 @@
                                     <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"></span>
                                 </div>
                                 {{#membership}}
-                                <div class="easyedu-guide-scene__memberships">
-                                    <strong>{{membershiptitle}}</strong>
+                                <div class="easyedu-guide-scene__memberships" data-guide-memberships>
+                                    <strong data-guide-membership-title data-expected="{{expectedlabel}}">{{membershiptitle}}</strong>
                                     <span>TD lundi <b>{{keptlabel}}</b></span>
                                     <span data-guide-membership-origin data-kept="{{keptlabel}}" data-removed="{{removedlabel}}">Projet Orion <b>{{keptlabel}}</b></span>
                                     <span data-guide-membership-target data-added="{{addedlabel}}" data-absent="{{absentlabel}}" class="is-absent">{{destinationname}} <b>{{absentlabel}}</b></span>
@@ -317,8 +328,6 @@
                                     <p>{{note}}</p>
                                 </div>
                                 <div class="easyedu-guide-scene__actions">
-                                    {{#membership}}<button type="button" class="btn btn-primary" data-guide-scene-command="add">{{addlabel}}</button>
-                                    <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="move">{{comparemove}}</button>{{/membership}}
                                     <div class="easyedu-guide-scene__utilities">
                                         {{^manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button>{{/manualstart}}
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>

@@ -1299,7 +1299,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   if (!['membership', 'actions', 'inspection'].includes(kind)) { return; }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
     scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
-  const mode = requestedMode || scene.easyeduGuideSceneMode || (kind === 'actions' ? 'actions' : 'add');
+  const defaultMode = kind === 'actions' ? 'actions' : 'add';
+  const mode = requestedMode === 'reset' ? defaultMode : requestedMode || scene.easyeduGuideSceneMode || defaultMode;
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
   if (!stage || !result) { return; }
@@ -1315,13 +1316,35 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
     button.setAttribute('aria-pressed', String(button.dataset.guideSceneCommand === mode));
   });
-  const live = scene.parentElement.querySelector('[data-guide-live]');
+  // New compositions own their live region; historical templates keep the
+  // sibling fallback. Never attach playback to another scene's header.
+  const live = scene.querySelector('[data-guide-live]') || scene.parentElement.querySelector('[data-guide-live]');
+  const sceneHeader = scene.querySelector('[data-guide-scene-header]');
+  const phaseCaption = sceneHeader?.querySelector('[data-guide-phase-caption]');
+  const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
+  // Count the applicable explanation phases, not animation frames or timers.
+  const applicablePhases = [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
+    !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
   const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
   const pauseControl = live?.querySelector('[data-guide-playback="pause"]');
   const nextControl = live?.querySelector('[data-guide-playback="next-phase"]');
   const activity = live?.querySelector('[data-guide-activity]');
   const startControl = scene.querySelector('[data-guide-scene-command="start"]');
   const syncPlayback = (state, advancing = false) => {
+    if (sceneHeader) {
+      sceneHeader.dataset.guidePlaybackState = state;
+      const controls = sceneHeader.querySelector('.easyedu-guide-scene__playback');
+      if (controls) { controls.hidden = !['playing', 'paused'].includes(state); }
+      if (phaseCaption) {
+        const labels = sceneHeader.dataset;
+        const modeLabel = kind === 'membership' ? (mode === 'add' ? labels.addLabel : labels.moveLabel) : '';
+        const current = applicablePhases.findIndex(item => item.dataset.guidePhase === scene.dataset.guidePhase) + 1;
+        phaseCaption.hidden = !labels.stepLabel || state === 'finished';
+        phaseCaption.textContent = state === 'idle' ? labels.readyLabel :
+          (state === 'paused' ? labels.pausedLabel + ' · ' : '') + labels.stepLabel + ' ' + Math.max(1, current) + '/' + applicablePhases.length;
+        if (modeLabel) { phaseCaption.textContent += ' · ' + modeLabel; }
+      }
+    }
     if (startControl) {
       const busy = ['playing', 'paused'].includes(state);
       startControl.disabled = busy;
@@ -1364,14 +1387,29 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (!item.dataset.original) { item.dataset.original = item.textContent; }
     item.textContent = item.dataset.original;
   });
-  const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
+  // At rest, the membership strip is explicitly an expected outcome. Starting
+  // restores actual illustrated memberships until the existing final phase.
+  const memberships = scene.querySelector('[data-guide-memberships]');
+  const membershipTitle = memberships?.querySelector('[data-guide-membership-title]');
+  if (membershipTitle && !membershipTitle.dataset.original) { membershipTitle.dataset.original = membershipTitle.textContent; }
+  const preview = !!sceneHeader && !!startControl && (requestedMode === 'reset' || !start) && kind === 'membership';
+  if (memberships) { memberships.toggleAttribute('data-guide-membership-preview', preview); }
+  if (membershipTitle) { membershipTitle.textContent = preview ? membershipTitle.dataset.expected : membershipTitle.dataset.original; }
+  if (preview) {
+    if (origin) {
+      origin.classList.toggle('is-removed', mode === 'move');
+      origin.querySelector('b').textContent = mode === 'move' ? origin.dataset.removed : origin.dataset.kept;
+    }
+    if (target) { target.classList.remove('is-absent'); target.querySelector('b').textContent = target.dataset.added; }
+    if (liveCopy) { liveCopy.textContent = result.dataset[mode] || scene.easyeduGuideResultOriginal; }
+  }
   scene.toggleAttribute('data-guide-mobile-actions', compact);
   if (kind === 'inspection') {
     stage.querySelector('[data-guide-inspection-trigger]').hidden = compact;
     const compactTrigger = stage.querySelector('[data-guide-inspection-mobile-trigger]');
     if (compactTrigger) { compactTrigger.hidden = !compact; }
   }
-  if (mode === 'reset' || !start) { return; }
+  if (requestedMode === 'reset' || !start) { return; }
 
   const controller = new AbortController();
   const animations = new Set();
@@ -1468,7 +1506,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const body = scene.closest('.easyedu-guide-modal__body');
     if (!body || controller.signal.aborted || element.hidden) { return; }
     const bounds = body.getBoundingClientRect(), item = element.getBoundingClientRect();
-    const readingTop = bounds.top + (live?.getBoundingClientRect().height || 0) + 12;
+    const readingTop = bounds.top + ((sceneHeader || live)?.getBoundingClientRect().height || 0) + 12;
     const readingBottom = bounds.bottom - 12;
     if (item.top >= readingTop && item.bottom <= readingBottom) { return; }
     const offset = item.height > readingBottom - readingTop || item.top < readingTop ?
