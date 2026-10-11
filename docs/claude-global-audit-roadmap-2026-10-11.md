@@ -1,7 +1,10 @@
 # Lot AUD-CLAUDE-01 — audit global EasyStud et Kit
 
 Demande utilisateur du 11 octobre 2026, ajoutée au programme EED-UI-2026-0073.
-Statut : à confier à Claude après un checkpoint stable ; audit non réalisé.
+Statut : revue UX/UI partielle reçue le11/10 ; audit global code/instructions
+toujours ouvert. Voir `claude-interface-review-recheck-2026-10-11.md` et le
+registre de61 tâches. La revue reçue ne prouve pas la lecture complète des
+fichiers agent, la correspondance Penpot ni les performances mesurées.
 Ce lot ne remplace aucun lot Guide/SM existant ni la checklist humaine différée.
 
 Prompt prêt à transmettre : PROMPT-CLAUDE-GLOBAL-AUDIT-2026-10-11.md.

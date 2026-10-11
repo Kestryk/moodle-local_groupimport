@@ -1,5 +1,15 @@
 # Guide engineering: current projection, not human acceptance
 
+## Claude interface review received — 2026-10-11
+
+The61-task successor is retained in `claude-interface-review-plan-2026-10-11.md`
+and `testing/claude-interface-review-intake-2026-10-11.json`. T001's rechecked
+pins, native card-keyboard baseline and decision gates are recorded in
+`claude-interface-review-recheck-2026-10-11.md`. Execute those additive lots in
+the existing worktrees; do not replace the historical queue below or mark the
+global code/all-agent audit or human checklist complete. The older pins below
+describe their recorded checkpoint, not today's current HEAD.
+
 This projection reconciles the chronological ledgers without rewriting pinned
 historical evidence. The current product is Source f6e9143 / runtime ec4987e,
 canonical Kit 7bff6ed. Current payload: 12 stable readings, seven invitations,

@@ -110,6 +110,27 @@ const hideEasyStudModal = (modal, callback = null) => {
     });
 };
 
+// Card dialogs reuse their native Close/Cancel and existing exit Motion.
+// A nested control gets first refusal on Escape; never invent a Save action.
+// Keep listeners on the owned dialog, so removed editors need no global cleanup.
+const bindCardModalKeyboard = (modal, closeModal) => {
+    modal.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || event.defaultPrevented || modal.hidden ||
+                modal.classList.contains('is-closing')) {
+            return;
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        closeModal();
+    });
+    return () => {
+        const close = modal.querySelector('[data-easystud-close-user-modal], [data-easystud-close-advanced-settings]');
+        if (close && !close.disabled) {
+            close.focus({preventScroll: true});
+        }
+    };
+};
+
 // Normalise text for filtering.
 const normalise = value => (value || '').toString().toLowerCase();
 
@@ -4396,6 +4417,8 @@ const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
         }
     });
     root.appendChild(modal);
+    const focusModal = bindCardModalKeyboard(modal, closeModal);
+    focusModal();
     emitEditorInspectionCompletion(root, type, 'open-editor');
     modal.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
         const content = details.querySelector(':scope > .local-groupimport-easystud-settings-modal__list-scroll, ' +
@@ -8845,6 +8868,7 @@ const bindParticipantModal = root => {
             '</div>';
         bindParticipantDetailLists(body);
         showEasyStudModal(modal);
+        focusModal();
     };
 
     root.addEventListener('click', event => {
@@ -8875,6 +8899,7 @@ const bindParticipantModal = root => {
         }
         participantReturnFocus = null;
     });
+    const focusModal = bindCardModalKeyboard(modal, closeParticipantModal);
     close.addEventListener('click', closeParticipantModal);
     modal.addEventListener('click', event => {
         if (event.target === modal) {

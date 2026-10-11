@@ -1,0 +1,602 @@
+{
+  "program": "EED-UI-2026-0073",
+  "received": "2026-10-11",
+  "externalHandoff": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROMPT-PASSATION-CODEX.md",
+  "immutablePlan": "docs/claude-interface-review-plan-2026-10-11.md",
+  "taskCount": 61,
+  "replacesOlderLots": false,
+  "humanChecklistDeferred": true,
+  "executionMode": "sequential-existing-Source-and-Kit-worktrees",
+  "order": [
+    "T001",
+    "T041",
+    "T004",
+    "T005",
+    "T042",
+    "T006",
+    "Guide-US1",
+    "Modal-US5",
+    "Student-US2",
+    "Import-US3",
+    "Visual-US4",
+    "Performance-US6"
+  ],
+  "decisionGates": [
+    "A1",
+    "A2",
+    "A3",
+    "GS10",
+    "GS3",
+    "GuideHeaderTitle",
+    "FoundationTitlePaint"
+  ],
+  "decisionsReceived20261011": {
+    "A1": "Kevin chose the small28px subsection tile; Foundation publication precedes adoption.",
+    "A2": "Pending: container or viewport breakpoint has not been answered.",
+    "A3": "Kevin chose optionA: card titles600; update Foundations/Kit/consumers, not local overrides.",
+    "GS10": "Kevin chose to retain the dedicated Show in interface cue row; do not merge it into the footer.",
+    "GS3": "Pending short translated tab labels proposal.",
+    "GuideHeaderTitle": "Pending non-redundant title proposal.",
+    "FoundationTitlePaint": "Pending saved source paint readback, not a preference assumed from token documentation."
+  },
+  "tasks": [
+    {
+      "id": "T001",
+      "receivedScope": "Relever les SHA Source, Kit et runtime, et l'état des fichiers, puis comparer avec `HANDOFF.md` (`1c1fcb8` / `730b0dd` / `02d8c78`). Recontrôler les constats si un SHA a bougé.",
+      "status": "sha-rechecked-revalidation-pending",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T002",
+      "receivedScope": "[P] Obtenir de Kevin l'arbitrage A1 (tuile de sous-section) et A2 (ratio par conteneur ou viewport) de `ARBITRAGES-FOUNDATIONS.md`.",
+      "status": "A1-approved-A2-pending",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T003",
+      "receivedScope": "[P] Comparer les propositions aux compositions Penpot « Guide Easystud » (`b564c72c…`) et « EasyStud » (`220f6449…`), sur le canal MCP de l'intégrateur. Cette revue n'a pas pu le faire.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T004",
+      "receivedScope": "[P] [US1] **Tiroir Moodle au-dessus du Guide (G11).** À l'ouverture du Guide, poser une classe sur `body` qui masque `.drawer-toggler`, et la retirer à la fermeture.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T005",
+      "receivedScope": "[P] [US3] **Centrage du bouton « Prévisualiser l'import » (M12, M13).** Rendre `.felement` pleine largeur dans `.easyedu-form-actions`, masquer la colonne de libellé vide et centrer la note.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T006",
+      "receivedScope": "[P] [US1] **Espace entre la note d'introduction et la barre d'état (G9).**",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T007",
+      "receivedScope": "[US1] Penpot « Guide Easystud » : composer la slide « Organiser » avec l'en-tête de scène unique (mode, Démarrer, statut, Pause, Suivant) et les appartenances prévues au repos. Faire valider par Kevin avant le code.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T008",
+      "receivedScope": "[US1] Réordonner les blocs de slide : titre et phrase, puis scène, puis points à retenir, puis parcours. Fusionner l'intro de scène redondante avec le texte de slide (G4, G8, G12).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T009",
+      "receivedScope": "[US1] Déplacer `__live` dans la `section.easyedu-guide-scene` comme en-tête, et y remonter les boutons `add`/`move` sous forme de sélecteur `aria-pressed` (G1, G2).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T010",
+      "receivedScope": "[US1] Afficher `__memberships` dès le repos avec l'issue prévue du mode choisi, et la mettre à jour au changement de mode.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T011",
+      "receivedScope": "[US1] Statut « Étape n/N · Mode » ; bordure neutre au repos, primaire en lecture ; Pause et Suivant masqués avant le premier démarrage (G5, G6).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T012",
+      "receivedScope": "[US1] Fin de démo : faire défiler jusqu'au bas des appartenances ; récapitulatif en divulgation Motion ouverte d'office (G3). Motion des divulgations conservé.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T013",
+      "receivedScope": "[P] [US1] Allègement du cadre (G7) : afficher `easyedu-guide-modal__step-count` dans le pied et retirer la rangée de libellé de progression (piste conservée, palette R10-03) ; sous 40rem, masquer le sous-titre d'en-tête.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T014",
+      "receivedScope": "[P] [US1] Slide 1 (G10) : spécimens pour « Regarder à votre rythme » et « Lire en plein écran » ; spécimens en contour, jamais en bouton primaire plein ; légende « Aperçu ». Pas d'exercice de groupe (contrat R10-29).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T015",
+      "receivedScope": "[US1] Preuve native : 18 cas de scène existants (EN/FR × 1280/768/390), plus ce nouveau critère : mode visible avant Démarrer ; appartenances visibles en fin de démo sans défilement manuel à 1280×800.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T016",
+      "receivedScope": "[US2] Penpot « EasyStud » : vérifier la marge de page de référence et les ratios proposés sur les trois vues, puis faire valider par Kevin.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T017",
+      "receivedScope": "[US2] Gouttière unique de 1.5rem dans les trois vues (S1).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T018",
+      "receivedScope": "[US2] Ratios asymétriques au-dessus du seuil retenu en T002 (S2).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T019",
+      "receivedScope": "[P] [US2] Aligner le départ de `structure-groups__list` sur le panneau de filtres (S3). Vérifier d'abord le rôle du `padding-left` de 0.72rem (ombre, glisser).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T020",
+      "receivedScope": "[US2] Vue complète : barre de liste de la structure dans la bande réservée, avec adaptation de `scheduleCompleteListAlignment` ; ligne de création sur 2 lignes entre 1 025 et 1 399 px (S4, S5).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T021",
+      "receivedScope": "[P] [US2] Carte groupe : retirer la bordure de la zone membres et remplacer l'état vide pointillé par une légende, si ce n'est pas une zone de dépôt (S6).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T022",
+      "receivedScope": "[US2] Preuve native, 3 vues à 1600 et 1280, plus 1 000 px (empilement) :",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T023",
+      "receivedScope": "[US3] Hiérarchie des sous-sections (M8) selon l'arbitrage A1 : `type-card-title` en 600 et glyphe sans tuile, ou tuile `small`.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T024",
+      "receivedScope": "[US3] Deux bords gauches au plus dans la carte de dépôt ; même surface pour les deux sous-sections ; « Formats acceptés » en légende sans surface (M9, M10).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T025",
+      "receivedScope": "[US3] Densité du dépôt : 4 px / 12 px / 8 px (M11).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T026",
+      "receivedScope": "[US3] État vide en `1.12fr / 0.88fr`, ratios de `has-preview` inchangés (M1). À faire après T023 à T025.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T027",
+      "receivedScope": "[US3] Mesurer avec un fixture de prévisualisation **existant** les états M2 et M3 : colonne CSV ouverte et repliée, centrage de la tuile. Ne rien importer.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T028",
+      "receivedScope": "[US3] Historique : pastilles de statut si la valeur est > 0, actions sur une ligne (M15, M16). **Après coordination** avec les lots couleurs et pop-ups R10.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T029",
+      "receivedScope": "[US3] Preuve native à 1600, 1280 et 390, vide et historique, puis prévisualisation via fixture.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T030",
+      "receivedScope": "[P] Marge de page commune Student Management / Mass Import (S9, M4) et navigation identique entre les deux pages (M6), une fois la référence Penpot tranchée en T016.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T031",
+      "receivedScope": "Mettre à jour les registres EasyStud (projection, intake) avec un lot et une preuve par tâche, sans fermer la checklist humaine.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T032",
+      "receivedScope": "[US4] Vérifier dans Penpot Foundations la couleur peinte du titre de carte (#16324f ou #264861, contradiction dans `docs/components/cards.md:70` et `:75` du Kit) ; faire trancher A3 par Kevin.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T033",
+      "receivedScope": "[US4] Titres de carte, option retenue : couleur via `--easyedu-card-identity-title-color`, letter-spacing 0 dans `card-title`. Côté Kit si la recette change, puis Foundations, puis synchronisation EasyStud.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T034",
+      "receivedScope": "[P] [US4] Compteurs « n membre(s) / groupe(s) » : pastille remplacée par `card-title-context`. Pastille de groupement en `--easyedu-grouping-soft` sans bordure.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [
+        "R10-09",
+        "R10-10"
+      ],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T035",
+      "receivedScope": "[P] [US4] Actions de carte : teinte de repos `--easyedu-text-muted`, primaire au survol, au focus et sur carte sélectionnée. Contraste ≥ 3:1 à vérifier.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T036",
+      "receivedScope": "[US4] Couloirs : fond `--easyedu-surface-soft`, rayon 12px, padding 14px par colonne ; panneau de filtres sans cadre ni ombre en tête de couloir ; cartes sans ombre au repos (ombre au survol et sur la carte saisie).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T037",
+      "receivedScope": "[P] [US4] Guide GS1, GS2, GS5, GS8 et GS9 : largeur de lecture 42rem, titre en encre (**coordination R10-31**), étiquette de démo, étiquettes de zone, points à retenir en 3 colonnes.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T038",
+      "receivedScope": "[US4] Guide GS3 et GS4 : onglets par chapitre et numérotés, libellés courts (chaînes FR/EN validées par Kevin), pictogramme de parcours au lieu du badge « GUIDE » (**coordination R10-32**).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T039",
+      "receivedScope": "[US4] Guide GS10 : **seulement si Kevin accepte de modifier le contrat** de la ligne de cue commune (EasyStud AGENTS.md:265-269).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [
+        "R10-29"
+      ],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T040",
+      "receivedScope": "[US4] Preuve native : captures avant / après à 1600, 1280 et 390, FR et EN, sans acceptation humaine revendiquée.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T041",
+      "receivedScope": "[P] [US5] **D1 (défaut avéré)** : modales de carte (participant, groupe, groupement). Déplacer le focus dans le dialogue à l'ouverture, faire fermer par Escape et rendre le focus au déclencheur.",
+      "status": "native-defect-reproduced-source-corrected-preview-pending",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T042",
+      "receivedScope": "[P] [US5] **D3** : accents des chaînes FR, dans `lang/fr/local_groupimport.php` et les `aria-label` ou infobulles codés dans le JS.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T043",
+      "receivedScope": "[US5] Kit : recette publique `dialog-header`, unifiant `entity-dialog__header`, `easyedu-dialog-header` et confirmation, avec eyebrow, titre, tuile et variantes `--danger` / `--success`. Une seule classe de fermeture : `easyedu-dialog-close`, 30px.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T044",
+      "receivedScope": "[US5] Kit : recette publique `dialog-footer`, extraite du pied du Guide.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T045",
+      "receivedScope": "[US5] Penpot Foundations : mettre à jour la famille Modal ou Dialog (Library + Standards) avec T043 et T044, puis faire valider par Kevin. Publier Foundations.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T046",
+      "receivedScope": "[US5] EasyStud : adopter le contrat dans `easystud-modal` (Déplacer, Confirmer la suppression), puis dans `import-modal` (Restaurer). Le pied centré Bootstrap 36px disparaît.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T047",
+      "receivedScope": "[US5] Historique des imports : en-tête au contrat ; pied avec résumé (« n imports ») et Fermer.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T048",
+      "receivedScope": "[US5] Modales de carte : structure commune « entity dialog » (identité, informations sans cartes de champ, relations en `card-disclosure` + `related-person-row` / `related-tags` sans défilement imbriqué, image via `easyedu-file-deposit`), pied collant avec « Modifier dans Moodle » à gauche. Corriger les libellés D5.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T049",
+      "receivedScope": "[US5] Guide : en-tête avec l'eyebrow « GUIDE EASYSTUD », l'exception décidée par Kevin le 11/10 ; toutes les autres modales ont « EASYSTUD », et les autres plugins le nom de leur plugin. Sous-titre retiré de l'en-tête. Proposer en Penpot un titre qui ne répète pas l'eyebrow. Pied déjà conforme.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [
+        "R10-01"
+      ],
+      "decisionGate": "Kevin"
+    },
+    {
+      "id": "T050",
+      "receivedScope": "[US5] Modale Message (Moodle core) : habiller `modal-header` et `modal-footer` avec les classes du contrat, sans réécrire la modale core. Titre court « Envoyer un message » ; titre visible pendant le chargement (D4).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T051",
+      "receivedScope": "[US5] Preuve native, les 9 modales à 1600, 1280×800 et 390, FR et EN :",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T052",
+      "receivedScope": "[US6] **Audit mesuré**, prérequis de toute optimisation.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T053",
+      "receivedScope": "[P] [US6] **Poids CSS.**",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T054",
+      "receivedScope": "[US6] **Rendu à la demande côté navigateur** (après T052, US2 et US5, pour travailler sur une mise en page stable ; derrière un drapeau de configuration).",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T055",
+      "receivedScope": "[P] [US6] **Découpage JS.** Charger à la première utilisation les modules modales, glisser-déposer, filtres avancés, ainsi que le Guide à son ouverture. Mesurer le poids initial avant / après.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T056",
+      "receivedScope": "[P] [US6] **Tests de non-régression visuelle par contrat.**",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T057",
+      "receivedScope": "[P] [US6] **Contrôle automatique des textes FR et EN** : accents manquants, pluriels « (s) », capitales, chaînes et `aria-label` codés en dur dans le JS hors fichiers de langue.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T058",
+      "receivedScope": "[P] [US6] **Passe d'accessibilité complète** : focus, Escape et retour du focus sur **toutes** les modales et panneaux (D1 laisse penser qu'il y a d'autres cas), contraste des éléments neutres d'US4, mouvement réduit, alternative clavier au glisser-déposer.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T059",
+      "receivedScope": "[US6] **Passe tablette (768–1024) et mobile (390)** des trois surfaces et des modales, non couverte par la revue Claude.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T060",
+      "receivedScope": "[P] [US6] **Hygiène des tokens** : remplacer les tailles en dur du SCSS Discovery (`.88rem`, `.78rem`, `.68rem`) par les rôles typographiques du Kit, et réduire les surcharges locales.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [],
+      "decisionGate": "none"
+    },
+    {
+      "id": "T061",
+      "receivedScope": "[P] [US6] **États de chargement et états vides unifiés** : squelettes Kit, titres présents pendant le chargement (D4), même composant d'état vide partout.",
+      "status": "queued",
+      "nativeVerified": false,
+      "humanAccepted": false,
+      "related": [
+        "R10-16"
+      ],
+      "decisionGate": "none"
+    }
+  ]
+}
