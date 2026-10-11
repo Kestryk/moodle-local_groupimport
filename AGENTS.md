@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Filter-verification paths use a new additive ID, never a renamed old progress
+key. Native disclosure completion follows onComplete; selection completion
+requires an exact non-empty filtered scope without excluded selected cards.
+Review must not reapply the current workspace or silently reset its filters.
+
 Guide filter verification reuses native filter-exclusion/result-selection
 authorities, including matching off-page results. Generic legacy filter events
 also fire on closure; they cannot certify opened filters or selected scope.

@@ -2,6 +2,12 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Add the optional four-stage filter-verification Guide candidate with typed
+  native signals, exact filtered-result selection and Clear completion. Reuse
+  canonical Guide/control styles; old paths/storage/Motion stay unchanged.
+  Bilingual/static/build and768 completion/136 migration cases pass; served
+  responsive/native and human gates remain pending.
+
 - Specify the non-mutating filter-verification Guide candidate using current
   result-scope authorities.256 exclusion/page/entity cases and16 filter cases
   pass actual-helper execution, alongside the existing source/build contract.

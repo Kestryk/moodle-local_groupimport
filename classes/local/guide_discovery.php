@@ -327,6 +327,16 @@ final class guide_discovery {
             }
             $slide['id'] = $ids[$index];
             $slide['index'] = $index;
+            if ($source === 'reference-3') {
+                $slide['hasguidedpath'] = true;
+                $slide['guidedpath'] = 'verify-with-filters';
+                $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
+                $slide['guidedpathtitle'] = get_string('filter_path_title', 'local_groupimport');
+                $slide['guidedpathcontent'] = get_string('filter_path_content', 'local_groupimport');
+                $slide['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+                    return get_string('filter_path_step' . $step, 'local_groupimport');
+                }, [1, 2, 3, 4])];
+            }
             if ($source === 'discovery-membership') {
                 $slide['hasguidedpath'] = true;
                 $slide['guidedpath'] = 'reorganise-source-members';
@@ -351,6 +361,28 @@ final class guide_discovery {
             $result[] = $slide;
         }
         return $result;
+    }
+
+    /** Verify native filtered selection without changing course memberships. */
+    public static function filter_verification_path(): array {
+        $definitions = [['open-filters', 'participantFilterToggle'],
+            ['apply-filter', 'participantFilterSearch'],
+            ['select-results', 'participantFilteredResults'],
+            ['clear-selection', 'participantClearSelection']];
+        $steps = [];
+        foreach ($definitions as $index => [$id, $target]) {
+            $step = ['id' => $id,
+                'title' => get_string('filter_path_step' . ($index + 1), 'local_groupimport'),
+                'description' => get_string('filter_path_desc' . ($index + 1), 'local_groupimport'),
+                'target' => $target, 'completionMode' => 'event', 'autoHighlightNext' => true,
+                'open' => $index === 1 ? 'tutorial:participant-filter-controls' :
+                    'tutorial:participant-filter-workspace', 'openDelay' => 360];
+            if ($index > 0) {
+                $step['requiresStep'] = $definitions[$index - 1][0];
+            }
+            $steps[] = $step;
+        }
+        return $steps;
     }
 
     /** Inspect actual editor fields and Cancel; this path never requires Save. */
