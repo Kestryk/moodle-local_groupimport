@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+An allocated Moodle draft item ID does not certify an uploaded file. Preview
+validation follows the actual completed picker callback and in-progress marker;
+bind one form-scoped capture guard, reuse the Kit notice and clear invalid state
+on readiness. Preserve upload/delete/server validation and accepted Motion.
+
 Tooltip keyboard oracles follow the actual newly focused label. Tab to another
 truncated navigation item legitimately creates its own tooltip; require its
 exact copy, and require no tooltip only for a nontruncated/non-navigation target.
