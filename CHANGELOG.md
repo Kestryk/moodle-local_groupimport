@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-11 - Identifier illustration phase-paint review
+
+- Add current manual-entry Group/Grouping phase-text/card-panel proof; six
+  French cases and260 text measurements pass across390/768/1280 without writes.
+- Preserve historical autoplay24-slide evidence, canonical Motion/styles and
+  user progression. English replay also passes:12 bilingual cases,72 states and
+  520 text measurements. Every glyph and human acceptance remain distinct.
+
 ## 2026-10-11 - Cold tablet natural-scene successor
 
 - Add a strict768px initial-load counterpart for compact Add/Move/Actions,
