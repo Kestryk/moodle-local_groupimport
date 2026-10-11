@@ -8439,9 +8439,9 @@ const bindAdvancedFilters = root => {
         }
         toggleAdvancedFilters(key);
         emitGuidedCompletion(root, 2);
-        // Disclosure changes no result order, page or filtering scope. Keep
-        // the live lists attached while Motion measures their ancestors.
-        scheduleResponsiveUiRefresh(root, {pagination: false});
+        // Disclosure changes only its own panel. Its completion callbacks
+        // already refresh alignment and Guide targets; unrelated card/tag
+        // scans force synchronous layout and block compact Motion frames.
         animateCompleteListAlignment(root);
         scheduleCompleteListAlignment(root);
         return true;
