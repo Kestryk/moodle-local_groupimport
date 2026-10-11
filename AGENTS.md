@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Authenticated visual successors await committed login navigation and actual
+plugin readiness, not unrelated full-load completion. Retain a failed auth-wait
+spec/run separately; preserve all original geometry/locale/media assertions
+and product assets when correcting only the harness's navigation boundary.
+
 Reconcile existing saved Foundation component clearance before adding consumer
 spacing. The shared Introduction's24px safety-note boundary is logical padding,
 not a status margin/sticky retiming or another visual family. Keep the native0px
