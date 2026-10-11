@@ -4,6 +4,10 @@ View-toggle transient colour proof converts Chromium rgb/color(srgb)/oklab
 through native canvas before luminance calculation. Preserve raw failed frames;
 atomic icon/tile paint is a shared opt-in, not a controller or Motion rewrite.
 
+More Filters disclosure changes no pagination/filter-result scope. Preserve
+live lists with pagination:false; measure real intermediate height frames and
+list child mutations before retiming shared Motion. Keep diagnosis immutable.
+
 The renewed responsive compact Participant policy includes optional profile
 badge/rows as well as memberships. Preserve Roles/name/email, desktop density,
 payloads and original measured Motion. Keep the old profile-preserving SM-50

@@ -136,6 +136,13 @@ cartes gardent l'œil sur la première ligne dans ces relevés; R10-18 reste un
 lot distinct à couvrir plus largement. R10-25 commence par les couleurs réelles
 frame par frame du sélecteur avant toute modification de Motion ou de SCSS.
 
+R10-25 est maintenant servi avec l'option commune Kit0.4.167 : six changements
+réels EN/FR,94 frames et un contraste minimal de4.2626:1, contre1.4298:1 dans
+le diagnostic précédent. Les géométries et Motion de vues/cartes restent
+identiques. Foundations8 états/24 tuiles et trois compositions produit gardent
+le contrat enregistré. Preuve native ciblée, pas validation humaine globale.
+R10-11 reprend par une mesure des frames de filtres sans modifier leurs valeurs.
+
 Oui, les états de chargement locaux peuvent s'appuyer sur les véritables phases
 de disponibilité des composants, pas sur un écran entier figé. Le chantier est
 transversal et son estimation reste à établir après l'inventaire. Il n'exige

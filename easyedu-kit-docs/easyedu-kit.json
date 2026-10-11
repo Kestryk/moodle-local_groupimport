@@ -13,7 +13,9 @@
       "isolatedPalettes": 3,
       "historicalPaletteChecks": 43,
       "pairedDesignContract": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeProof": "docs/testing/view-toggle-transition-native-2026-10-11.json",
+      "nativeMinimumContrast": 4.262556760983851,
       "humanVisualValidated": false,
       "fullKitSync": false,
       "publicRelease": false
