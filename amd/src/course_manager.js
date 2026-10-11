@@ -8658,10 +8658,12 @@ const bindTagToggles = root => {
         const card = container.closest('[data-easystud-user]');
         Motion.resize(card, () => {
             toggle.setAttribute('data-expanded', expanded ? '0' : '1');
-            syncParticipantTagOverflow(root);
+            syncParticipantTagOverflow(card);
         }, {
             duration: Motion.timing.normal,
-            onComplete: () => scheduleResponsiveUiRefresh(root),
+            // A local disclosure changes no result order or page. Reinserting
+            // sorted cards here destroys the native drawer's scroll anchor.
+            onComplete: () => scheduleResponsiveUiRefresh(root, {pagination: false}),
         });
     });
 };
