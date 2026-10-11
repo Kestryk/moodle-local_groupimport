@@ -2,6 +2,12 @@
 
 ## Claude interface review received — 2026-10-11
 
+T041's bounded native keyboard correction is served and proven in18 cases;
+see `testing/card-modal-keyboard-native-2026-10-11.json`. T004/T005 now have
+measured baselines and canonical shared host-layout corrections, with their
+own successor still pending. R10-08 is served, not yet native/human accepted.
+Saved Foundations title paint is #264861; approved600 adoption is not done.
+
 The61-task successor is retained in `claude-interface-review-plan-2026-10-11.md`
 and `testing/claude-interface-review-intake-2026-10-11.json`. T001's rechecked
 pins, native card-keyboard baseline and decision gates are recorded in

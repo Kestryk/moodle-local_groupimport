@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - T004/T005 shared native host layout
+
+- Synchronize five canonical Kit rules for Guide/native drawer yield and
+  deposit action/note centering. Complete unrelated CSS and Motion retained.
+- Record18 served T041 keyboard cases and actual T004/T005 baseline measurements;
+  their own corrected native gate remains separate. Human checklist stays open.
+
 ## 2026-10-11 - T041 card modal focus and Escape
 
 - Participant, Group and Grouping dialogs focus their native Close on opening;

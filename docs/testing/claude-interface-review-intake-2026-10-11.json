@@ -37,13 +37,13 @@
     "GS10": "Kevin chose to retain the dedicated Show in interface cue row; do not merge it into the footer.",
     "GS3": "Pending short translated tab labels proposal.",
     "GuideHeaderTitle": "Pending non-redundant title proposal.",
-    "FoundationTitlePaint": "Pending saved source paint readback, not a preference assumed from token documentation."
+    "FoundationTitlePaint": "Saved canonical main verified: #264861, Inter14/700; stale documentation corrected, approved600 adoption separate."
   },
   "tasks": [
     {
       "id": "T001",
       "receivedScope": "Relever les SHA Source, Kit et runtime, et l'état des fichiers, puis comparer avec `HANDOFF.md` (`1c1fcb8` / `730b0dd` / `02d8c78`). Recontrôler les constats si un SHA a bougé.",
-      "status": "sha-rechecked-revalidation-pending",
+      "status": "sha-rechecked-T041-T004-T005-native-findings-revalidated",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
@@ -70,19 +70,23 @@
     {
       "id": "T004",
       "receivedScope": "[P] [US1] **Tiroir Moodle au-dessus du Guide (G11).** À l'ouverture du Guide, poser une classe sur `body` qui masque `.drawer-toggler`, et la retirer à la fermeture.",
-      "status": "queued",
+      "status": "native-defect-reproduced-shared-source-corrected-preview-pending",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": [
+        "docs/native-host-layout-correction-2026-10-11.md"
+      ],
       "decisionGate": "none"
     },
     {
       "id": "T005",
       "receivedScope": "[P] [US3] **Centrage du bouton « Prévisualiser l'import » (M12, M13).** Rendre `.felement` pleine largeur dans `.easyedu-form-actions`, masquer la colonne de libellé vide et centrer la note.",
-      "status": "queued",
+      "status": "native-defect-reproduced-shared-source-corrected-preview-pending",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": [
+        "docs/native-host-layout-correction-2026-10-11.md"
+      ],
       "decisionGate": "none"
     },
     {
@@ -322,11 +326,12 @@
     {
       "id": "T032",
       "receivedScope": "[US4] Vérifier dans Penpot Foundations la couleur peinte du titre de carte (#16324f ou #264861, contradiction dans `docs/components/cards.md:70` et `:75` du Kit) ; faire trancher A3 par Kevin.",
-      "status": "queued",
+      "status": "saved-main-paint-rechecked-documentation-corrected",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
-      "decisionGate": "Kevin"
+      "decisionGate": "Kevin",
+      "evidence": "claude-foundation-title-readback-20261011-a: Inter14/700 #264861"
     },
     {
       "id": "T033",
@@ -408,11 +413,12 @@
     {
       "id": "T041",
       "receivedScope": "[P] [US5] **D1 (défaut avéré)** : modales de carte (participant, groupe, groupement). Déplacer le focus dans le dialogue à l'ouverture, faire fermer par Escape et rendre le focus au déclencheur.",
-      "status": "native-defect-reproduced-source-corrected-preview-pending",
-      "nativeVerified": false,
+      "status": "native-proof-passed-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
       "related": [],
-      "decisionGate": "none"
+      "decisionGate": "none",
+      "proof": "docs/testing/card-modal-keyboard-native-2026-10-11.json"
     },
     {
       "id": "T042",

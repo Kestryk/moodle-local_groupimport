@@ -10,6 +10,7 @@
 
 @mixin dialog-classes {
   @include choices.searchable-choice-classes;
+  @include modals.moodle-guide-drawer-yield;
   .easyedu-ui .easyedu-modal-yield-control {
     @include modals.modal-yield-control;
   }

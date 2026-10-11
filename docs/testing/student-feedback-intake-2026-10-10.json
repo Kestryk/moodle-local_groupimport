@@ -139,14 +139,15 @@
       "title": "Hauteur du Reset de filtre",
       "request": "Reset est trop bas face aux champs de recherche; reprendre une densité commune comparable au Cancel de recherche.",
       "acceptance": "Choisir une taille existante du Kit, hauteur/padding/radius alignés aux voisins, EN/FR/mobile et hover/focus; aucune hauteur exceptionnelle du plugin.",
-      "status": "approved",
-      "currentDiagnostic": "docs/filter-reset-peer-density-audit-2026-10-11.md",
-      "statusDetail": "Canonical38px /44px opt-in prepared with complete CSS preservation; native serving and human acceptance remain open.",
+      "status": "source-design-published-served-native-gate-open",
+      "currentDiagnostic": "docs/filter-reset-field-peer-successor-2026-10-11.md",
+      "statusDetail": "Canonical38px/44px, saved Foundation/product comparisons and source/isolated preservation pass; managed preview served, own native Reset/human gate open.",
       "sourceChanged": true,
-      "designPublished": false,
-      "previewServed": false,
+      "designPublished": true,
+      "previewServed": true,
       "nativeVerified": false,
-      "humanAccepted": false
+      "humanAccepted": false,
+      "currentDesign": "docs/testing/filter-reset-field-peer-publication-2026-10-11.json"
     },
     {
       "id": "R10-09",

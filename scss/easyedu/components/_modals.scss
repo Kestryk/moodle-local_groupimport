@@ -21,6 +21,15 @@
   }
 }
 
+// Moodle controls are outside the plugin root. Reuse the existing blocking
+// Guide lifetime, not a new controller, z-index escalation or navigation state.
+@mixin moodle-guide-drawer-yield {
+  html.easyedu-guide-dialog-open .drawer-toggler {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 @mixin modal-surface {
   background: var(--easyedu-surface);
   border: 1px solid var(--easyedu-modal-border);

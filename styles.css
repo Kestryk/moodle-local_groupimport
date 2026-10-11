@@ -27281,6 +27281,11 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {
     --easyedu-choice-disclosure-duration: 0.01ms;
   }
 }
+html.easyedu-guide-dialog-open .drawer-toggler {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not([hidden]):not([aria-hidden=true])) .easyedu-ui .easyedu-modal-yield-control {
   visibility: hidden;
   pointer-events: none;
@@ -28514,6 +28519,16 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   border: 0;
   background: transparent;
 }
+.easyedu-ui .easyedu-form-actions > .fitem {
+  inline-size: 100%;
+  max-inline-size: 100%;
+}
+.easyedu-ui .easyedu-form-actions > .femptylabel > .col-form-label {
+  display: none;
+}
+.easyedu-ui .easyedu-form-actions > .fitem > .felement {
+  flex: 0 0 100%;
+}
 .easyedu-ui .easyedu-form-actions .fitem_actionbuttons .felement,
 .easyedu-ui .easyedu-form-actions .femptylabel .felement,
 .easyedu-ui .easyedu-form-actions .femptylabel .form-inline {
@@ -28572,6 +28587,10 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-form-actions [type=submit]:disabled {
   background: var(--easyedu-surface-soft);
   color: var(--easyedu-text-muted);
+}
+
+.easyedu-ui .easyedu-form-actions + .easyedu-form-note {
+  text-align: center;
 }
 
 .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__heading {

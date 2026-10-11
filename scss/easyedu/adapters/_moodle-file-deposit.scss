@@ -255,6 +255,10 @@
 
   .easyedu-ui .easyedu-form-actions {
     .fitem { margin: 0; padding: 0; border: 0; background: transparent; }
+    // Only the outer action group replaces Moodle's empty label/column split.
+    > .fitem { inline-size: 100%; max-inline-size: 100%; }
+    > .femptylabel > .col-form-label { display: none; }
+    > .fitem > .felement { flex: 0 0 100%; }
     .fitem_actionbuttons .felement,
     .femptylabel .felement,
     .femptylabel .form-inline {
@@ -269,6 +273,9 @@
       @include foundations.foundation-button;
       min-inline-size: min(14rem, 100%);
     }
+  }
+  .easyedu-ui .easyedu-form-actions + .easyedu-form-note {
+    text-align: center;
   }
   // Explicit embedded-heading density. Keep the standalone regular picker
   // unchanged; the tile and its text track must shrink together.
