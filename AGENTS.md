@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Guide filter verification reuses native filter-exclusion/result-selection
+authorities, including matching off-page results. Generic legacy filter events
+also fire on closure; they cannot certify opened filters or selected scope.
+Preserve typed dependency gating, native selection refresh and disclosure Motion.
+
 Historical activation tests remain pinned to their original invitation counts
 and source baselines. Current path-coverage successors inspect actual bilingual
 payloads and retain all historical progress; a broad legacy completion signal
