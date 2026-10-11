@@ -735,7 +735,9 @@
     }
     @media (max-width: 40rem) {
       &__header-controls { flex-direction: column; align-items: stretch; }
-      &__modes .btn { flex: 1 1 0; }
+      // Grow from the actual translated label width. Equal zero-basis tracks
+      // can clip a longer mode even when the whole header is contained.
+      &__modes .btn { flex: 1 0 auto; }
       &__header .easyedu-guide-scene__start { width: 100%; margin-inline-start: 0; }
     }
     &__actions .btn[data-guide-scene-command="add"],

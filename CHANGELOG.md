@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-11 - Compact translated scene-mode correction
+
+- Retain the initial six-case native scene-header PASS with its actual bounded
+  scope; inspect its raster and reproduce both clipped French phone captions
+  in a separately immutable padded-control containment scenario.
+- Synchronize canonical0.4.174's intrinsic-width wrapping rule, preserving
+  Small density, translations, every engine command and all original Motion.
+- Record saved linked Penpot examples, source preservation and isolated proof;
+  corrected native proof and human acceptance are separate gates.
+
 ## 2026-10-11 - Canonical timed-scene header and expected outcome
 
 - Synchronize Kit0.4.173's mode/Start/live/playback composition into the actual
