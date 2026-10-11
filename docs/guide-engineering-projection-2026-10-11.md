@@ -1,5 +1,12 @@
 # Guide engineering: current projection, not human acceptance
 
+T009-T011's original native35656 passes six localized three-width command and
+outer-header cases, but raster inspection found clipped French phone mode copy.
+The immutable stricter37804 scenario reproduces that real failure. Canonical
+0.4.174 restores intrinsic-width compact button wrapping; source/isolated and
+saved linked Penpot proof pass. Corrected native publication follows. Keep all
+earlier runs/scenarios scoped, and the human checklist open.
+
 T009–T011 successor is implemented in canonical0.4.173 and embedded/runtime
 sources: scene-owned header, expected memberships at rest and localized phase
 caption, with original clocks/cards. The user's continuation authorizes this

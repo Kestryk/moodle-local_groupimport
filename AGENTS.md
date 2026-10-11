@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Header containment does not certify labels inside its buttons. Retain scoped
+native PASS evidence when raster inspection finds clipping; add an immutable
+padded-control successor and repair intrinsic responsive flow in the Kit.
+Never shorten translations or shrink typography to hide that layout defect.
+
 Unified scene headers remain scene-owned; preserve the sibling live fallback
 for historical templates and measure the full sticky header during reveal.
 Expected membership previews are explicitly labelled and restored to actual

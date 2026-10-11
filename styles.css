@@ -16059,7 +16059,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__modes .btn {
-    flex: 1 1 0;
+    flex: 1 0 auto;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__start {
