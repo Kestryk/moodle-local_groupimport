@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-11 - R10-19 native proof and R10-25 colour-frame diagnosis
+
+- EN/FR compact profile successor passes42 native state records and desktop
+  return, no course/settings writes. Eye position is scoped diagnostic only.
+- View-switch raw frames reproduce low transient icon contrast; correct native
+  colour conversion preserves oklab/sRGB frames. Consume the canonical Kit
+  stable-icon opt-in with one class/rule, paired design contract, three isolated
+  palettes and complete unrelated CSS/controller preservation. Native successor
+  remains separate until the managed preview is served and measured.
+
 ## 2026-10-11 - R10-19 responsive compact profile slots
 
 - Optional Participant badges/profile rows now follow responsive compact/full

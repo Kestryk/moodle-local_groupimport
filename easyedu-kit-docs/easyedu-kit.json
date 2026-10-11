@@ -4,6 +4,20 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "viewIconTransition20261011": {
+      "kitCommit": "604a9d79ddfbf92644ed7a90e7ab6409b37737a3",
+      "kitVersion": "0.4.167",
+      "modules": ["scss/easyedu/_workspace-control-classes.scss"],
+      "publicClass": "easyedu-workspace-view-switcher--stable-icon",
+      "scope": "Atomic tiled icon/tile paint; plain tabs, layout and existing view/card Motion unchanged.",
+      "isolatedPalettes": 3,
+      "historicalPaletteChecks": 43,
+      "pairedDesignContract": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "guidePathContext20261011": {
       "kitCommit": "4fed6cec08a835e12d7e6cde56e7814254f1cf95",
       "sourceCommit": "939f2436ff585264c6f18271b3faf485d8572565",

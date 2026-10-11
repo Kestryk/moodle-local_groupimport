@@ -130,6 +130,12 @@ qui les gardait toujours visibles; rôles et identité restent présents. Source
 et douze usages Penpot avancent, tests/build/preview séparés dans
 mobile-compact-profile-successor-2026-10-11.md; R10-18/20 restent ouverts.
 
+R10-19 est maintenant servi et vérifié :42 relevés FR/EN à390/768/1024, sept
+états de sélection/dépliage et retour desktop1280, zéro commande/erreur. Deux
+cartes gardent l'œil sur la première ligne dans ces relevés; R10-18 reste un
+lot distinct à couvrir plus largement. R10-25 commence par les couleurs réelles
+frame par frame du sélecteur avant toute modification de Motion ou de SCSS.
+
 Oui, les états de chargement locaux peuvent s'appuyer sur les véritables phases
 de disponibilité des composants, pas sur un écran entier figé. Le chantier est
 transversal et son estimation reste à établir après l'inventaire. Il n'exige

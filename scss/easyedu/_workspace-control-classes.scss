@@ -139,6 +139,13 @@
     }
   }
 
+  // Opt-in state changes keep foreground/background paint atomic. Interpolating
+  // both simultaneously can briefly produce a blue glyph on a blue tile.
+  // Retain the existing hover movement, native view Motion and plain-tab recipe.
+  .easyedu-ui .easyedu-workspace-view-switcher--tiled.easyedu-workspace-view-switcher--stable-icon > button .fa {
+    transition: none;
+  }
+
   @media (max-width: 48rem) {
     .easyedu-ui .easyedu-search-field,
     .easyedu-ui .easyedu-create-icon-button {
