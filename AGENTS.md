@@ -4,6 +4,9 @@ Native Moodle controls outside the plugin consume the shared host bridge;
 reuse the canonical Guide blocking marker, not another lifecycle or z-index.
 Deposit centering affects only outer action groups/empty labels, never real
 labels, nested fields or modal footers. Prove actual paint hits and native centres.
+Moodle empty action rows retain required-note padding and forced d-flex display.
+Resolve both in the canonical host adapter, not the plugin. A full flex basis
+is not full content width; retain native failures and inspect actual ancestry.
 
 Card-modal initial focus and Escape belong to the actual attached/shown modal.
 Reuse native Close/Cancel and its exit/return-focus callbacks; give nested

@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-11 - T005 actual action-row host priorities
+
+- Correct the measured outer empty row padding and forced empty-label display
+  through the identical canonical Kit adapter; no plugin style compensation.
+- Preserve the genuine failed centering result and diagnose actual ancestry.
+  Native successor proof and human acceptance remain separate gates.
+
+## 2026-10-11 - T042 French advanced-editor accents
+
+- Correct five existing French localization strings, including native ARIA/help
+  and modal labels through their original Moodle keys. Preserve English,
+  controllers, commands, markup and all styles. Native serving gate is separate.
+
 ## 2026-10-11 - T004/T005 shared native host layout
 
 - Synchronize five canonical Kit rules for Guide/native drawer yield and
