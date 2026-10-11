@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Participant metadata disclosure changes no sort/filter/page scope. Reuse the
+existing pagination:false refresh rather than reinserting sorted cards after
+Motion. Measure the actual scrolling Moodle ancestor, not just window.scrollY;
+preserve failed lower-card frames and exact first open/close/count assertions.
+
 An allocated Moodle draft item ID does not certify an uploaded file. Preview
 validation follows the actual completed picker callback and in-progress marker;
 bind one form-scoped capture guard, reuse the Kit notice and clear invalid state

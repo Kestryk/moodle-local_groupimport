@@ -104,6 +104,11 @@ et de huit cas isolés réussis, sans style privé ni modification du picker nat
 La preview et le scénario navigateur sont distincts ; voir
 mass-import-file-required-2026-10-11.md. Les autres lots ci-dessus restent ouverts.
 
+R10-17 est maintenant servi et vérifié : six cas natifs FR/EN à390/768/1280,
+clic et Entrée sans navigation ni POST, avertissement du Kit et focus picker.
+Le démarrage tardif reprend l'état prêt via l'option existante ; pas de délai
+artificiel ni nouveau skeleton. Import réel et acceptation humaine séparés.
+
 Oui, les états de chargement locaux peuvent s'appuyer sur les véritables phases
 de disponibilité des composants, pas sur un écran entier figé. Le chantier est
 transversal et son estimation reste à établir après l'inventaire. Il n'exige

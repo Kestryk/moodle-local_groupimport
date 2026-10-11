@@ -44,3 +44,12 @@ arrives after fail-open and Mass remains degraded. Zero errors/business writes
 and complete cleanup; original strict scenario remains unchanged. A one-root
 existing late-ready opt-in successor is scoped in mass-import-late-ready-2026-10-11.
 This diagnostic does not disprove or certify the empty-file guard.
+
+After the existing late-ready opt-in, unchanged strict native27164 FR and15668
+EN pass all six390/768/1280 cases. Real click and Enter preserve the document,
+show one contained canonical Warning, return focus/invalid state to the real
+picker, and send no POST. A positive draft ID exists while no file anchor exists.
+No errors/blocked writes; credentials cleared, leases released, children stopped.
+All three runs protected by retention dry-run, no deletion. Exact evidence:
+testing/mass-import-file-required-native-2026-10-11.json. Actual upload/import
+readiness recovery is isolated evidence, not native lifecycle/human acceptance.

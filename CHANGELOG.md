@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - R10-27 participant disclosure scroll anchor
+
+- Avoid repagination after local +N membership disclosure and measure only its
+  affected card, retaining accepted Motion and all other responsive updates.
+- Preserve the native1427px drawer-jump diagnostic and stronger ancestor test;
+  no scroll override, CSS exception, filtering or sorting behavior change.
+
 ## 2026-10-11 - Mass Import real late-ready recovery
 
 - Consume the existing bounded loading-recovery opt-in after native AMD becomes
