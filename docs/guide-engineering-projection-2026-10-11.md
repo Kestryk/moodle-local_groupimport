@@ -1,5 +1,16 @@
 # Guide engineering: current projection, not human acceptance
 
+Current review1 corrected preview is Source932cbb6 / Kit51b4711 (0.4.176) /
+runtimeb0e23b7. Native15480 passes the immutable96px successor. Stronger painted
+pointer run27328 passes24 whole-target phases and six ready/final cases EN/FR
+at1600/1280/390: desktop48.390625px, phone96px maximum. Native16928's locator
+autoscroll failure is retained; no product Motion changed to repair a harness.
+C5 final-result measurements pass; T012's full disclosure scope remains open.
+T008 native51416 passes all72 localized/three-width slide-order cases after
+finite entry transitions settle. Product reference composition remains open,
+then T013/T014/T015. Preliminary35392 remains an immutable narrower failure.
+The61-task intake and older R10 lots remain intact; human acceptance is deferred.
+
 Review1 initial candidate is served at Source2083141/Kit5cba6a6/runtimea6daf2d.
 Native35652 passes five complete cases but fails the sixth FR phone paused header
 at98px, against the unchanged96px limit. Canonical0.4.176/Kit51b4711 adjusts only

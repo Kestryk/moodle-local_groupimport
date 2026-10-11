@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Native viewport proof separates a settled phase reveal from locator-induced
+autoscroll on sticky playback controls. Preserve failed specs and use painted
+hit-tested pointer successors, not force/DOM clicks or weaker bounds. Reading
+order waits finite slide-entry motion. Saved Penpot override strings alone do
+not certify cached glyph paint; retain the original type while reflowing it.
+
 Claude review1 reopens previous scene-header proofs: containment does not prove
 visible expected memberships or phase clearance. Preserve clocks and original
 card choreography. Move one membership element between ready header and its home

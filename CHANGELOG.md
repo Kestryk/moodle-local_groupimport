@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-12 - Review1 served verification successors
+
+- Record strict normal-motion EN/FR three-width Moodle proof: compact reading
+  headers, expected memberships before Start,24 fully revealed phase targets,
+  and six complete final-result measurements. Keep historical failures intact.
+- Verify all72 current native slide order cases after finite entry transitions
+  settle. Preserve the preliminary harness failure, all product assets/Motion,
+  business commands and the61-task intake; design and human gates stay explicit.
+- Keep the owned Penpot token cached-paint discrepancy separate from18 correct
+  saved overrides; source/API text alone does not certify the displayed labels.
+
 ## 2026-10-12 - Strict native compact-header successor
 
 - Retain native35652's narrower French phone failure: paused header98px versus
