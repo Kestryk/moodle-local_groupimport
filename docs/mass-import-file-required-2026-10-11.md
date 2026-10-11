@@ -38,3 +38,9 @@ Runtime promotion must apply the pushed source commit and purge changed AMD;
 do not copy the worktree directly into the serving checkout. Changelog and local
 contract are updated; shared Platform plans/registry belong to their owner.
 All older Guide/SM/admin/Mass Import requests and the human checklist stay retained.
+
+Initial native43272 stops before the real Preview interaction: AMD readiness
+arrives after fail-open and Mass remains degraded. Zero errors/business writes
+and complete cleanup; original strict scenario remains unchanged. A one-root
+existing late-ready opt-in successor is scoped in mass-import-late-ready-2026-10-11.
+This diagnostic does not disprove or certify the empty-file guard.

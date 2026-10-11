@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - Mass Import real late-ready recovery
+
+- Consume the existing bounded loading-recovery opt-in after native AMD becomes
+  ready following fail-open; retain deadline, reveal, focus, Skeleton and Motion.
+- Preserve the failed strict empty-picker startup run; native replay pending.
+  This is a readiness sub-lot, not the whole intelligent Skeleton programme.
+
 ## 2026-10-11 - R10-17 empty file preview guard
 
 - Block an empty or still-uploading Mass Import picker before form navigation,
