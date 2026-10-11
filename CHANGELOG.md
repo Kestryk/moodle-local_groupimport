@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-11 - R10-11 live filter lists during disclosure
+
+- Native frame diagnosis finds52 list child mutations on every filter open/
+  close, although its result scope is unchanged. Preserve live lists with the
+  existing no-pagination refresh; shared Motion/timing/paint remain untouched.
+  Strict frame continuity and behavior successor remain separate native gates.
+
+## 2026-10-11 - R10-25 served native icon contrast
+
+- Atomic shared icon paint is served with cache purge. Six EN/FR view switches
+  retain readable contrast across94 real frames, minimum4.2626:1. No layout,
+  view/card Motion, data or settings changes; cleanup complete. Human acceptance
+  and persisted custom palettes remain separate from this bounded proof.
+
 ## 2026-10-11 - R10-19 native proof and R10-25 colour-frame diagnosis
 
 - EN/FR compact profile successor passes42 native state records and desktop

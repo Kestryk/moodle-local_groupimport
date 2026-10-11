@@ -8439,7 +8439,9 @@ const bindAdvancedFilters = root => {
         }
         toggleAdvancedFilters(key);
         emitGuidedCompletion(root, 2);
-        scheduleResponsiveUiRefresh(root);
+        // Disclosure changes no result order, page or filtering scope. Keep
+        // the live lists attached while Motion measures their ancestors.
+        scheduleResponsiveUiRefresh(root, {pagination: false});
         animateCompleteListAlignment(root);
         scheduleCompleteListAlignment(root);
         return true;

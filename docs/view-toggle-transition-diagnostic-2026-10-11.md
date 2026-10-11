@@ -27,7 +27,15 @@ rewritten or broad consumer style substituted. R10-11 filters stay separate.
 The isolated successor reproduces legacy contrast below3:1 and passes three
 atomic-paint palettes (minimum5.3604/6.9846/6.9823:1), unchanged28px icon geometry.
 Glyph transition:none introduces no new movement timing; existing hover
-movement and view/card animations remain unchanged. Native successor pending.
+movement and view/card animations remain unchanged.
+
+Managed preview applies Source61bf51b to runtime1eb75ae, with cache purge.
+The strict EN/FR successor passes six actual switches/94 native frames at1280px,
+minimum4.2626:1 (required3:1), actual language and opt-in host asserted. No
+page errors, business/settings writes or fixture changes; cleanup complete.
+Both retention dry runs protect their evidence and delete nothing. See
+testing/view-toggle-transition-native-2026-10-11.json. Custom persisted palettes,
+all native keyboard/reduced states and human acceptance remain separate.
 
 Source/Kit preservation snapshot ws3-20261011T130405Z-port4719pg3-1f6595b35507
 is verified. Kit604a9d7 is pushed on the existing work branch, version0.4.167.
