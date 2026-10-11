@@ -197,8 +197,9 @@ R10-07 avance par l'option commune déjà publiée dans le Kit : seul le clavier
 peint un contour autour de l'interrupteur, sans encadrer tout le texte. Les
 cibles44px et les animations restent identiques. Les trois exemples enregistrés
 Foundations Library/Standard et EasyStud sont liés,48 cas publics et la totalité
-du CSS non concerné passent. Preview et preuve native restent à réaliser dans
-le successor du11 octobre; aucune validation humaine n'est déduite de ces tests.
+du CSS non concerné passent. Preview et preuve native passent maintenant64
+états FR/EN à1600/768/390 dans le successor du11 octobre; aucune validation
+humaine n'est déduite de ces tests.
 
 R10-01, sous-lot en-tête Guide : la recette commune est servie et quatre
 lectures natives desktop/tablette/mobile/desktop passent, avec ouverture et

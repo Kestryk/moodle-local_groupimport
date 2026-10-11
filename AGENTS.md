@@ -5,6 +5,16 @@ Retain the44px native label target, real sequential Tab/Space entry, disabled
 and forced-colours states; mouse quiet is not permission to remove keyboard
 focus. Compare complete unrelated CSS/Motion and preserve legacy providers.
 
+Native focus successors assert the consumer's global0.001ms reduced policy,
+not an isolated fixture's zero duration. Compare exact44px CSS/layout targets
+alongside raw transformed DOMRect bounds with only subpixel precision tolerance;
+preserve failed immutable predecessors instead of changing product Motion.
+
+Focus geometry compares equivalent checked/UI states. Compact Reset appears
+only when filters become active and can flex a translated caption; compare
+keyboard On to mouse On and keyboard Off to resting Off. That conditional
+sibling flow is not permission to suppress Reset or rewrite accepted Motion.
+
 View-toggle transient colour proof converts Chromium rgb/color(srgb)/oklab
 through native canvas before luminance calculation. Preserve raw failed frames;
 atomic icon/tile paint is a shared opt-in, not a controller or Motion rewrite.
