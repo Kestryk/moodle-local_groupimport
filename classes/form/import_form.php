@@ -83,6 +83,15 @@ class import_form extends \moodleform {
 
         $submitlabel = $this->_customdata['submitlabel'] ?? get_string('previewimport', 'local_groupimport');
 
+        // Reuse the canonical warning notice; the adapter blocks an empty or
+        // still-uploading picker before navigation, without bypassing Moodle validation.
+        $mform->addElement('html', \html_writer::div(
+            \html_writer::span('', 'fa fa-exclamation-triangle', ['aria-hidden' => 'true']) .
+            \html_writer::tag('p', get_string('importfilerequired', 'local_groupimport')),
+            'easyedu-notice easyedu-notice--warning',
+            ['role' => 'alert', 'hidden' => 'hidden', 'data-local-groupimport-file-required' => '1']
+        ));
+
         // Submit button. The import is only executed after the preview confirmation.
         $mform->addElement('html', \html_writer::start_div('easyedu-form-actions'));
         $this->add_action_buttons(false, $submitlabel);

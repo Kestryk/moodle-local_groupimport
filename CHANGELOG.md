@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-11 - R10-17 empty file preview guard
+
+- Block an empty or still-uploading Mass Import picker before form navigation,
+  showing the shared Warning and returning focus to the actual picker action.
+- Restore valid submission after native file readiness; preserve Moodle upload,
+  delete, parser/server validation, Guide and all shared styles/Motion. EN/FR copy.
+
 ## 2026-10-11 - Identifier illustration phase-paint review
 
 - Add current manual-entry Group/Grouping phase-text/card-panel proof; six

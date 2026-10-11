@@ -99,6 +99,11 @@ pour chaque demande. R10-16 démarre par son inventaire avant généralisation.
 
 ## Skeleton ciblé : réponse technique et étapes
 
+11 octobre, reprise des modifications R10 : R10-17 dispose d'un correctif source
+et de huit cas isolés réussis, sans style privé ni modification du picker natif.
+La preview et le scénario navigateur sont distincts ; voir
+mass-import-file-required-2026-10-11.md. Les autres lots ci-dessus restent ouverts.
+
 Oui, les états de chargement locaux peuvent s'appuyer sur les véritables phases
 de disponibilité des composants, pas sur un écran entier figé. Le chantier est
 transversal et son estimation reste à établir après l'inventaire. Il n'exige

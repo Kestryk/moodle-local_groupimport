@@ -248,6 +248,45 @@ const notifyFilePickerChange = picker => {
     }
 };
 
+// A draft item ID is allocated before any file exists. Only Moodle's completed
+// filename callback certifies this single-file picker; raw local files and a
+// progress bar must not submit the preview form while an upload is in flight.
+const isImportFileReady = deposit => {
+    const filename = deposit.querySelector('.filepicker-filename a');
+    return Boolean(filename && filename.textContent.trim() &&
+        !deposit.querySelector('.dndupload-inprogress'));
+};
+
+const clearImportFileRequirement = deposit => {
+    const form = deposit.closest('form');
+    const notice = form?.querySelector('[data-local-groupimport-file-required]');
+    if (notice && isImportFileReady(deposit)) {
+        notice.hidden = true;
+        deposit.querySelector('[id^="filepicker-button-"]')?.removeAttribute('aria-invalid');
+    }
+};
+
+const initImportFileRequirement = root => {
+    const deposit = root.querySelector('.easyedu-file-deposit--moodle');
+    const form = deposit?.closest('form');
+    const notice = form?.querySelector('[data-local-groupimport-file-required]');
+    if (!form || !notice || form.dataset.easyeduImportRequirementBound === '1') { return; }
+    form.dataset.easyeduImportRequirementBound = '1';
+    form.addEventListener('submit', event => {
+        if (isImportFileReady(deposit)) {
+            clearImportFileRequirement(deposit);
+            return;
+        }
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        notice.hidden = false;
+        const pickerButton = deposit.querySelector('[id^="filepicker-button-"]');
+        pickerButton?.setAttribute('aria-invalid', 'true');
+        pickerButton?.focus();
+        notice.scrollIntoView({block: 'nearest', behavior: 'auto'});
+    }, true);
+};
+
 const deleteSelectedFile = async(root, filename) => {
     const picker = findFilePicker(root);
     if (!picker || !filename || !window.M || !M.cfg || !M.cfg.sesskey || !picker.options.itemid) {
@@ -324,6 +363,7 @@ const syncSelectedFileState = root => {
     }
     remove.setAttribute('aria-label', deposit.dataset.easyeduRemoveLabel || 'Remove selected file');
     deposit.classList.add('has-selected-file');
+    clearImportFileRequirement(deposit);
 };
 
 const initSelectedFileState = root => {
@@ -729,6 +769,7 @@ export const init = (rootId) => {
     Motion.init(root);
 
     initSelectedFileState(root);
+    initImportFileRequirement(root);
     initUploadCollapse(root);
     initPreviewTools(root);
     initHistoryModal(root);

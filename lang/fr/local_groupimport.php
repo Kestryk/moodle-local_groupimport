@@ -1,4 +1,5 @@
 <?php
+$string['importfilerequired'] = 'Ajoutez un fichier CSV ou Excel et attendez la fin de son chargement avant de prévisualiser l’import.';
 $string['activity_path_title'] = 'Préparer un groupement pour une activité';
 $string['activity_path_content'] = 'Utilisez les groupes du cours, ou créez-les au préalable. Seule votre confirmation explicite modifie les associations. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
 $string['activity_path_step1'] = 'Créer ou ouvrir un groupement';
