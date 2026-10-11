@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-11 - R10-19 responsive compact profile slots
+
+- Optional Participant badges/profile rows now follow responsive compact/full
+  disclosure alongside memberships; preserve roles, identity, desktop density,
+  details/search payloads and original measured Motion. No new styles.
+- Twelve product specimens reflect eight compact/four full profile states;
+  native current-policy and complete composition acceptance remain separate.
+- R10-21 native EN/FR panel headings pass at390/768/1280 with compact navigation
+  unchanged, four saved product copies and no course/settings writes.
+
 ## 2026-10-11 - R10-21 participant workspace heading copy
 
 - Reuse the existing localized Participants & groups view name in its main

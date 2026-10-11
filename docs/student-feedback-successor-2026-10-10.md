@@ -120,6 +120,16 @@ la traduction déjà existante du toggle ; navigation mobile inchangée. Copie
 Penpot corrélée et vérification native restent séparées dans
 participant-panel-title-2026-10-11.md. Aucun nouveau style ni changement de typo.
 
+R10-21 est servi et vérifié en FR/EN à390/768/1280 : titre complet contenu,
+navigation compacte conservée, zéro erreur/commande métier. Quatre copies
+Penpot sont sauvegardées avec texte SVG réel et géométrie d'origine.
+
+R10-19 : nouveau correctif de visibilité des champs optionnels et badge dans
+les cartes mobiles compactes. Il remplace explicitement l'ancienne règle SM-50
+qui les gardait toujours visibles; rôles et identité restent présents. Source
+et douze usages Penpot avancent, tests/build/preview séparés dans
+mobile-compact-profile-successor-2026-10-11.md; R10-18/20 restent ouverts.
+
 Oui, les états de chargement locaux peuvent s'appuyer sur les véritables phases
 de disponibilité des composants, pas sur un écran entier figé. Le chantier est
 transversal et son estimation reste à établir après l'inventaire. Il n'exige

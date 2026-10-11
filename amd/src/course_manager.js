@@ -10145,8 +10145,8 @@ const bindTutorialModal = root => {
 /**
  * Keep compact membership visibility independent from the desktop card density.
  *
- * Only participant membership rows opt in. Roles, identity, profile fields and
- * Grouping cards are never hidden by this mode. Existing Motion measures the
+ * Participant membership and optional profile slots opt in. Roles, name/email
+ * and Grouping cards stay visible. Existing Motion measures the
  * card around the mutation; manual whole-list changes retain Motion.swap.
  *
  * @param {HTMLElement} root The management workspace.
@@ -10173,7 +10173,9 @@ const syncParticipantDensity = (root, {animate = true} = {}) => {
     const cards = Array.from(root.querySelectorAll('[data-easystud-participant-list] [data-easystud-user]'));
     cards.forEach(card => {
         const hidden = responsive && state.mobileCompact && card !== expanded;
-        const rows = Array.from(card.querySelectorAll('[data-easystud-participant-memberships]'));
+        const rows = Array.from(card.querySelectorAll(
+            '[data-easystud-participant-memberships], [data-easystud-participant-profile]'
+        ));
         if (!rows.some(row => row.hidden !== hidden)) {
             return;
         }

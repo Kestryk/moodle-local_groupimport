@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+The renewed responsive compact Participant policy includes optional profile
+badge/rows as well as memberships. Preserve Roles/name/email, desktop density,
+payloads and original measured Motion. Keep the old profile-preserving SM-50
+specimens/tests pinned; use an explicit current-policy successor, not edits that
+relabel historical proof. A native eye-position diagnostic is not its correction.
+
 Participant metadata disclosure changes no sort/filter/page scope. Reuse the
 existing pagination:false refresh rather than reinserting sorted cards after
 Motion. Measure the actual scrolling Moodle ancestor, not just window.scrollY;
