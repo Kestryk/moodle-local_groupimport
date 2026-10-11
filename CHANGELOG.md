@@ -8,7 +8,9 @@
 - Synchronize canonical0.4.174's intrinsic-width wrapping rule, preserving
   Small density, translations, every engine command and all original Motion.
 - Record saved linked Penpot examples, source preservation and isolated proof;
-  corrected native proof and human acceptance are separate gates.
+  corrected native18132 passes the strict six-case successor with complete
+  cleanup, no writes and inspected French mobile paint. Human acceptance is
+  still open; full scene/reduced/keyboard T015 remains a separate lot.
 
 ## 2026-10-11 - Canonical timed-scene header and expected outcome
 

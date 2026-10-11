@@ -63,7 +63,16 @@ completed and was reconciled, never replayed. Initial readback saw no saved new
 objects; settled no-cache successor confirms all31. Original source providers
 are unchanged. This adds no Foundation master or alternative button family.
 
-Native corrected label-fit proof and human acceptance remain open.
+The corrected shared rule is served at Source2c34295/Kit27045fe/runtimed6f8df1,
+CSS SHA256 AA3471B81A24BDF94D480C76DB7075C326149FFFF271A409D5670B6E984E7445.
+Native18132 passes the identical stricter six EN/FR1280/768/390 cases in normal
+motion: own padded-label containment, unchanged30.4px Small Start, mode preview,
+Pause/count, Reset and Escape. French phone ready/paused rasters were inspected;
+no page errors, attempted business writes or fixture mutations. Cleanup confirms
+the owned child stopped, credentials cleared and runtime lease released.
+The saved Penpot settled raster and native artifact manifests are retained.
+The failed37804 and narrower35656 remain immutable predecessor evidence.
+This is not the full T015 scene/reduced/focus matrix. Human acceptance stays open.
 T008 full-slide ordering and T012 expandable recap are separate pending lots;
 this integration must not be reported as the complete Claude review delivery.
 The T007 product proposal uses existing linked Foundation primitives; this
