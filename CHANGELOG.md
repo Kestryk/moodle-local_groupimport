@@ -2,6 +2,18 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Verify activity-grouping prerequisites in six native EN-normal/FR-reduced
+  desktop/tablet/phone cases: real Group selection, searchable positive Grouping
+  destination and Cancel preserve rendered memberships. No course writes/errors;
+  credentials/lease/child cleanup complete. This is not a newly installed path,
+  confirmed assignment, backend rollback or human approval.
+
+- Prepare activity-grouping Guide authority with73 isolated executions of the
+  native Group dialog: Add/Move/zero, already present, Cancel and partial failure.
+  Reject unrelated legacy completion signals and preserve existing progress.
+  Native open/search/Cancel candidate is separate; no new path/product styles,
+  migration, course writes or human acceptance are claimed.
+
 - Serve filter-verification in local Moodle preview with six native EN-normal/
   FR-reduced desktop/tablet/phone cases passing all four milestones, filtered
   selection, Clear and aligned highlights. No business/fixture writes, complete

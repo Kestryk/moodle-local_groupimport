@@ -1,5 +1,25 @@
 # Current Student Management Guide: remaining engineering
 
+Latest activity authority: six native EN-normal/FR-reduced cases pass real Group
+selection, searchable positive Grouping destination and Cancel at1280/768/390.
+Membership pairs preserved, removal unchecked, no writes/errors and cleanup
+complete.73 isolated adapter cases and19 unchanged-product guards pass.
+No new activity path, progress migration or UI change is installed. Next:
+typed same-destination/expected-Group proof and scoped reload/reset context,
+then additive path/invitation integration without deleting legacy progress.
+Evidence: testing/guide-activity-grouping-authority-2026-10-11.json.
+The older Guide gates and postponed grouped human checklist remain open.
+
+11 October activity successor preparation:73 isolated cases execute the actual
+native Group destination adapter and retain its Add/Move/zero/Cancel/failure
+semantics. Two unrelated legacy grouping-completion call sites are confirmed;
+they cannot certify the new workflow. Native open/search/Cancel candidate is
+prepared; no new path or completion migration is installed. Scope and durable
+resume requirements: guide-activity-grouping-authority-2026-10-11.md.
+Next: verify native Group controls across three widths, then implement typed
+same-destination/expected-Group evidence and an explicit resume-context policy.
+Current12 readings/7 invitations/8 definitions and all older gates remain.
+
 Latest served filter path: Sourcee0aa7fb/runtime522e714 passes six native
 EN-normal/FR-reduced cases at1280/768/390: four milestones, exact filtered
 selection, zero excluded selections and aligned cues, then zero selection.

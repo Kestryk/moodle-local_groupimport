@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+Activity-grouping Guide successors cannot inherit broad legacy grouping events:
+member removal/paste and unrelated expansion are not Group assignment evidence.
+Native Group batches use one request per Group, not the atomic Member transfer.
+Freeze destination/expected IDs, retain progress on additive path IDs and define
+reload/reset context before certifying same-grouping verification. Opening,
+searching and Cancel never authorize a business command or automatic data creation.
+
 Filter-verification paths use a new additive ID, never a renamed old progress
 key. Native disclosure completion follows onComplete; selection completion
 requires an exact non-empty filtered scope without excluded selected cards.
