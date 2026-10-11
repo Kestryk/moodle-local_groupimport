@@ -1,5 +1,14 @@
 # Current Student Management Guide: remaining engineering
 
+Latest served filter path: Sourcee0aa7fb/runtime522e714 passes six native
+EN-normal/FR-reduced cases at1280/768/390: four milestones, exact filtered
+selection, zero excluded selections and aligned cues, then zero selection.
+Cleanup complete; no business/fixture writes. Isolated partial/stale/off-page
+cases remain separate. See guide-filter-verification-native-2026-10-11.json.
+Next: bound prepare-activity-grouping signals and its new-ID/old-progress
+boundary without silently migrating legacy create-grouping completion. Other
+Guide gates, all older SM lots and human checklist remain open.
+
 11 October implementation candidate: verify-with-filters now has four typed
 native milestones/targets and a seventh optional invitation, with unchanged
 reading contract/old paths/styles/Motion.768 completion cases and136 historical

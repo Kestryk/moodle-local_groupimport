@@ -1,5 +1,11 @@
 # Non-mutating filter-verification path
 
+Served successor: Sourcee0aa7fb / runtime522e714, with ordered documentary
+predecessors and managed cache purge. Six native cases PASS: EN normal and FR
+reduced, each at1280/768/390. Exact scope/cleanup is in
+`testing/guide-filter-verification-native-2026-10-11.json`; the candidate proof
+and broader isolated combinations below remain independently scoped.
+
 Owner: existing EasyStud Source worktree/branch, EED-UI-2026-0073.
 Baseline: `0980a2bff71be76890a0d3b1c65d597b9807f3dc`.
 Includes: additive product path/data/targets, localized copy, typed native
@@ -84,3 +90,24 @@ remain unchanged but new PHP/string/AMD assets require the managed cache gate.
 Run the exact native scenario only after one discovery and a serialized lease.
 Retain a failed run immutably and diagnose from its loaded spec/assets.
 Final human checklist and activity-grouping proposal remain open.
+
+## Native result and remaining coverage
+
+Both actual-language/media runs complete the four milestones on existing
+participants. Each narrows to one matching participant, selects one with zero
+outside-filter selections, aligns every cue within2px, then returns selection
+to zero. No page error, denied business write or fixture request occurs. Owned
+children, runtime leases and process credentials are cleaned in both runs.
+Retention dry-run protects both artifacts, with zero candidates/deletions.
+
+These six cases do not certify native multi-page/partial/stale selection, every
+locale/media combination, long-copy raster containment or human approval.
+Those scope combinations have isolated evidence, not invented native results.
+The prior source-lanceur discovery attempt failed before credentials/lease
+because that checkout has no Playwright dependencies. The runtime lanceur's
+discovery selected exactly one scenario; product code was not changed to repair
+that environment choice.
+
+No source/style fix was needed after native execution. Rollback, if requested,
+must preserve the new stored path key as well as all old keys; never erase users'
+progress merely to hide the new invitation. No rollback or reset was performed.
