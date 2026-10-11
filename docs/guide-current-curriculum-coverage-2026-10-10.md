@@ -1,5 +1,13 @@
 # Current Student Management curriculum coverage
 
+Current11 October served successor adds verify-with-filters to search-filter-select:
+twelve stable reading IDs, seven invitations and eight definitions. Sourcee0aa7fb
+and runtime522e714 have six native EN-normal/FR-reduced three-width cases,
+separate from768 isolated completion and136 historical migration positions.
+No old path/progress/style is changed. Details:
+guide-filter-verification-path-2026-10-11.md. Historical inventories below remain
+pinned; human acceptance and the activity-grouping proposal remain open.
+
 Current11 October successor at sourcefa794d5 verifies the inventory below in
 both languages,54 localized milestones,136 historical reading positions and14
 retained path-state cases. See guide-current-path-reconciliation-2026-10-11.md

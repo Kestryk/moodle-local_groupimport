@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve filter-verification in local Moodle preview with six native EN-normal/
+  FR-reduced desktop/tablet/phone cases passing all four milestones, filtered
+  selection, Clear and aligned highlights. No business/fixture writes, complete
+  cleanup. Isolated scope combinations and human acceptance remain separate.
+
 - Add the optional four-stage filter-verification Guide candidate with typed
   native signals, exact filtered-result selection and Clear completion. Reuse
   canonical Guide/control styles; old paths/storage/Motion stay unchanged.
