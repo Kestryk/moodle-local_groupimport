@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-11 - Card-title publication recovery preparation
+
+- Reconcile the first timed-out Foundations write as30 saved700 titles with
+  unchanged complete fingerprints; retain a second unknown timeout without
+  activating consumer styles or replaying unknown writes.
+- Prepare exact-page missing-only recovery and an in-memory three-density600
+  candidate test; unrelated heading/member declarations remain unchanged.
+- No Kit, product asset, runtime or human-acceptance claim in this checkpoint.
+- Inventory ten Discovery text-size overrides for T060 without conflating
+  compact control, caption and icon roles; canonical correction remains open.
+
 ## 2026-10-11 - Served native T004/T005/T042 proof
 
 - Record six EN/FR host-layout cases and six French Group/Grouping label cases,

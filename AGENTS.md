@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+After a timed-out design write, reconcile saved/current exact IDs before any
+retry. Prefer page-qualified lookups over repeated global shape searches in
+large Foundations files. A responsive read and unchanged baseline justify one
+bounded new write, not a claim of saved publication; if that write times out,
+reopen the unknown-outcome gate. In-memory candidate CSS is not activation.
+
 Native Moodle controls outside the plugin consume the shared host bridge;
 reuse the canonical Guide blocking marker, not another lifecycle or z-index.
 Deposit centering affects only outer action groups/empty labels, never real
