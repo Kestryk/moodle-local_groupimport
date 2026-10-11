@@ -2,6 +2,11 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Specify the non-mutating filter-verification Guide candidate using current
+  result-scope authorities.256 exclusion/page/entity cases and16 filter cases
+  pass actual-helper execution, alongside the existing source/build contract.
+  No new path, product change or native gesture proof is claimed.
+
 - Reconcile current Guide content/path coverage on11 October:12 bilingual
   readings,6 invitations,7 definitions,54 localized milestones,136 historical
   positions and14 retained path states pass a new offline successor. Preserve

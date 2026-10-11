@@ -88,3 +88,41 @@ unchanged. No screenshot, credential, user-progress or course-data artifact is
 created. Historical ledger entries remain recoverable, with a current projection
 at its top rather than deleting chronology. Changelog and local AGENTS record
 the successor rule; shared Platform planning remains with its named owner.
+
+## Filter-path authority follow-up
+
+The current controller already separates filter exclusion from pagination:
+`hasActiveListFilters`, `isItemFilteredOut` and `getSelectableResultItems` are
+the authority, not a new Guide-owned list predicate. Matching results on another
+page belong to Select results; filtered-out cards do not. Existing filtered
+Deselect results clears stale selections from an earlier unfiltered Select all.
+
+`test-guide-filter-scope-authority.cjs` executes those actual bounded helpers
+with DOM-shaped inputs:256 entity/exclusion/hidden/page combinations and16
+Participant filter combinations PASS. The existing
+`test-student-filtered-select-all-contract.ps1` also PASSes the source/built
+selection contract. These are offline helper/static guards, not native clicks
+or an installed path. No product code or acceptance state changes.
+
+The candidate should be an additive new ID, preserving all old keys:
+
+| Candidate milestone | Completion authority | Target intent |
+| --- | --- | --- |
+| Open Participant filters | Actual participant panel expanded/accessibility state after its original Motion completes | Existing More filters control/panel |
+| Apply a filter or search | Actual native applyFilters result with a non-empty filter/search | Actual Participant search/filter controls |
+| Select and check filtered results | Non-empty authoritative result set selected, no selected Participant outside that set | Existing Select results control/count |
+| Clear the selection | Native clear action leaves the Participant selection empty | Existing visible Clear selection action |
+
+Do not equate a generic old guided-complete event with any of these four
+conditions: it also fires when filters close and on unrelated changes. New
+signals must follow current selection-action refresh, preserve next-unfinished
+dependency gating and use actual compact proxies. Do not force a whole page
+layout or change accepted More filters Motion. Stage target/signal/data together
+and test prior-step review, partial selections, unmatched/off-page results and
+Cancel/reset persistence before adding a visible invitation to search-filter-select.
+
+Next implementation is this bounded new path, not replacement of the activity
+path or silent mapping of first-structure/check-filters completion. It reuses
+the existing canonical invitation/checklist; no new design family is presently
+required. Any genuinely new layout must still pass Foundations/Guide lineage
+before preview. Other missing content/workflow/human gates remain open.

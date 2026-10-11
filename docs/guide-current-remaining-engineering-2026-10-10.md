@@ -6,7 +6,11 @@ successor (54 milestones /136 reading positions /14 retained path states).
 Two writer proposals remain absent: verify-with-filters and
 prepare-activity-grouping. Historical activity/action paths remain reachable;
 no completion migration or live progress reset is authorized by this audit.
-Next: audit actual filtered-result selection signals for the non-mutating path.
+Filter authority successor now passes256 exclusion/page/entity combinations
+and16 Participant filter combinations using actual existing helpers. A bounded
+four-milestone additive candidate is specified; no path is installed yet.
+Next: implement typed signals/targets for verify-with-filters, retaining existing
+filter/result-selection authorities and accepted disclosure Motion.
 Current boundaries: guide-current-path-reconciliation-2026-10-11.md.
 Earlier chronological "pending" entries below retain their original scopes;
 do not treat them as the current projection or reopen already proven successors.
