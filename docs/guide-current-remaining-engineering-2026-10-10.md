@@ -1,5 +1,12 @@
 # Current Student Management Guide: remaining engineering
 
+Newest natural scene projection:18 EN/FR normal-motion Add/Move/Actions cases
+pass at1280/768/390, including cold tablet entry. All native menu/cursor/member/
+outcome/recap oracles pass without data or style changes. Exact evidence:
+guide-tablet-scene-review-2026-10-11.md. Earlier tablet-open statements below
+are historical narrower scopes, not today's failed coverage. Human acceptance,
+full glyph/touch artwork and real business completion remain separate.
+
 Latest localized scene scope: twelve EN/FR natural desktop/phone Add/Move/Actions
 cases pass, and six actual-FR normal/reduced terminal-dot cases pass at all
 three widths. Details: guide-localized-scene-terminal-review-2026-10-11.md.
