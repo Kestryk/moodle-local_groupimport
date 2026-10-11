@@ -54,3 +54,11 @@ guessed an inlined ARIA statement; production correctly uses the reusable
 `createIconActionButton` helper. Keep that failed test; the new explicit label
 contract verifies the actual shared ARIA/help pipeline, original controller
 and all unrelated strings. CSS preservation belongs to the separate gate above.
+
+The strict same-spec successor now passes all six EN/FR1600/1280/390 cases
+on Source cbf99c2 / runtime0722045, canonical Kit8886e23/.170. The field is
+exactly host-wide, the empty label hidden and the note centred. Maximum button
+centre delta is0.0078125px (subpixel rounding). Every drawer yields while the
+Guide is blocking and restores its original display/visibility/size/z-index.
+No errors, blocked writes, submitted import, settings Save or fixture mutation;
+credentials/leases/children are cleaned. See the versioned paired evidence JSON.

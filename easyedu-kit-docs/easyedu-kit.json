@@ -9,7 +9,7 @@
       "kitVersion": "0.4.170",
       "modules": ["scss/easyedu/components/_modals.scss", "scss/easyedu/_dialog-classes.scss", "scss/easyedu/adapters/_moodle-file-deposit.scss"],
       "scope": "Guide drawer lifetime and outer deposit action centering, including actual empty-row host utilities; bounded shared CSS only.",
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "humanVisualValidated": false,
       "fullKitSync": false,
       "publicRelease": false

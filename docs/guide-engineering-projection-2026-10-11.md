@@ -5,14 +5,24 @@
 T041's bounded native keyboard correction is served and proven in18 cases;
 see `testing/card-modal-keyboard-native-2026-10-11.json`. T004/T005 now have
 measured baselines and canonical shared host-layout corrections, with their
-own successor still pending. R10-08 is served, not yet native/human accepted.
+six-case native successor passed below. R10-08 is served, not yet native/human accepted.
 Saved Foundations title paint is #264861; approved600 adoption is not done.
+Its30-title paired publication attempt is retained in
+`card-title-600-publication-progress-2026-10-11.md`; reconcile the timed-out
+owned write before replay or consumer activation.28px tile remains queued.
 
-The first T004/T005 successor proves drawer yield only in its first EN1600
-case; remaining Import centering genuinely failed. Actual outer-row anatomy
-is now recorded, and the shared0.4.170 host-priority successor passes complete
-CSS preservation. T042's five French accents pass static/PHP syntax; both
-native gates remain pending, not accepted. No older lot is closed by this work.
+The first T004/T005 successor failed genuine Import centering. Actual outer-row
+anatomy and that failure remain recorded. The shared0.4.170 host-priority
+successor passes complete CSS preservation and six EN/FR1600/1280/390 native
+cases (maximum centre delta0.0078125px). T042's five French accents pass static,
+PHP syntax and six FR1280/768/390 Group/Grouping native cases. See
+`testing/native-host-layout-and-french-labels-2026-10-11.json`; no Save/data
+mutation, no human acceptance, and no older lot is closed by these results.
+
+T006's current native baseline confirms0px note-to-status spacing in twelve
+EN/FR1280/390 cases on slides4/5/9. See
+`guide-introduction-scene-spacing-baseline-2026-10-11.md`. This is diagnosis,
+not corrected composition or human acceptance; shared source correction follows.
 
 The61-task successor is retained in `claude-interface-review-plan-2026-10-11.md`
 and `testing/claude-interface-review-intake-2026-10-11.json`. T001's rechecked

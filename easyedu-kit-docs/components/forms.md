@@ -15,6 +15,12 @@ only on the outer `.fitem.femptylabel` and hides its direct label with the
 necessary host-utility priority. Full CSS reconstruction preserves all other
 recipes; native centering must still be measured after preview activation.
 
+EasyStud's strict native successor passed six EN/FR1600/1280/390 cases on
+Source cbf99c2 / runtime0722045 with Kit8886e23/.170: full host-width field,
+hidden empty label, centred note and maximum action-centre delta0.0078125px.
+Evidence: consumer `docs/testing/native-host-layout-and-french-labels-2026-10-11.json`.
+No import execution/settings writes; no human acceptance or other-consumer claim.
+
 ## Moodle administration section flow
 
 Shared `moodle-admin-section-spacing` / `easyedu-admin-section-flow` owns only

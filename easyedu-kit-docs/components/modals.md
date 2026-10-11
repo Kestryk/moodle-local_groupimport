@@ -9,6 +9,11 @@ owns and clears that lifetime. Preserve the drawer's state and geometry.
 This native-host bridge adds no Foundation control, controller, z-index or
 Motion policy. Native stacking/restoration proof remains a separate gate.
 
+That bounded EasyStud gate now passes six EN/FR1600/1280/390 cases on
+Source cbf99c2 / runtime0722045, Kit8886e23/.170. Each drawer yields actual
+paint while the Guide blocks, then restores original display/visibility/size/
+z-index on Close. No native drawer action, business write or human acceptance.
+
 ## SM-44 canonical header and Message footer - 2026-10-05
 
 Kit 0.4.101 supersedes historical compact Native Message density below: the

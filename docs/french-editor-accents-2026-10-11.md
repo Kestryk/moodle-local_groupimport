@@ -18,3 +18,10 @@ helper for the test. `french-editor-accents-native.spec.js` is local-supervised:
 FR1280/768/390 native entry, original ARIA/help, no-file and configuration copy,
 Escape only; a pre-existing image is never removed to invent an empty state.
 Native serving and results remain pending until the pushed preview runs.
+
+That native successor passed on Source cbf99c2 / runtime0722045: six actual
+FR Group/Grouping entries at1280/768/390, accented ARIA/help plus modal copy,
+Escape only. No errors or blocked writes; no-image text is checked only where
+the pre-existing image state permits it. No data/settings changed. Evidence:
+`testing/native-host-layout-and-french-labels-2026-10-11.json`. Human review
+remains open; this does not certify all French strings or full modal layout.
