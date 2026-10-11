@@ -780,7 +780,7 @@ function local_groupimport_build_manage_template_data(
             ],
         ],
         'selectionmodelabel' => get_string('selectionmode', 'local_groupimport'),
-        'participantstitle' => get_string('participants', 'local_groupimport'),
+        'participantstitle' => get_string('layoutmodeparticipants', 'local_groupimport'),
         'participantscountlabel' => get_string('participantscount', 'local_groupimport', count($users)),
         'layoutmodetoggles' => $layoutmodetoggles,
         'participantactions' => [

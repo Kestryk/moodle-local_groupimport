@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-10-11 - R10-21 participant workspace heading copy
+
+- Reuse the existing localized Participants & groups view name in its main
+  panel/column heading; keep compact navigation Participants/Groups/Groupings.
+- No typography, styles, identifiers, Guide or commands changed. Four correlated
+  Penpot title copies retain their lanes and paint the full saved label after
+  text remeasurement; native heading verification remains separately tracked.
+
+## 2026-10-11 - R10-17 and R10-27 native successor evidence
+
+- Six actual EN/FR empty-picker click/Enter cases pass at390/768/1280 with the
+  Kit warning, picker focus, no reload/write and real late-ready recovery.
+- EN/FR first lower-card +N open/close retains every document/drawer scroll
+  frame after real density settlement. Preserve diagnostics and accepted Motion;
+  mobile/reversal, actual uploads and human acceptance remain separate.
+
 ## 2026-10-11 - R10-27 participant disclosure scroll anchor
 
 - Avoid repagination after local +N membership disclosure and measure only its
