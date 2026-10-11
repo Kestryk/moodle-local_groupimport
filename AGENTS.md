@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Activity confirmation context is captured before the real Group batch and saved
+only after complete success with the original canonical session token. Keep the
+bridge inert until additive path/schema/targets are installed together. Reset
+rejects late Guide completion, not an already submitted Moodle business command.
+Preserve immutable predecessor fixtures and exact unrelated-source reconstruction.
+
 Guide native-evidence context uses canonical get/token/set APIs, not direct
 plugin storage or engine forks. Capture the session token before a native
 asynchronous command; late callbacks must not manufacture one after Reset.
