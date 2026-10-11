@@ -41,7 +41,7 @@
   },
   "approvedPublicationGates": {
     "A3CardTitles600": {
-      "status": "paired-30-title-Penpot-write-timed-out-saved-outcome-unknown-no-consumer-activation",
+      "status": "first-attempt-reconciled-saved-700-successor-write-timed-out-exact-page-recovery-prepared-no-consumer-activation",
       "record": "docs/card-title-600-publication-progress-2026-10-11.md",
       "humanAccepted": false
     },
@@ -596,10 +596,10 @@
     {
       "id": "T060",
       "receivedScope": "[P] [US6] **Hygiène des tokens** : remplacer les tailles en dur du SCSS Discovery (`.88rem`, `.78rem`, `.68rem`) par les rôles typographiques du Kit, et réduire les surcharges locales.",
-      "status": "queued",
+      "status": "ten-declaration-role-inventory-prepared-canonical-correction-and-native-gates-pending",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/guide-typography-token-inventory-2026-10-11.md"],
       "decisionGate": "none"
     },
     {

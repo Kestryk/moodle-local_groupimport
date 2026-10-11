@@ -1,5 +1,15 @@
 # Guide engineering: current projection, not human acceptance
 
+### Card-title recovery successor
+
+The first timed-out30-title publication was reconciled after the window
+responded: all exact saved titles700 and complete current fingerprint unchanged.
+A subsequent write timed out again; its saved/current outcome remains unknown.
+Keep600 adoption and28px tile publication gated, with no preview asset changes.
+The exact-page recovery helper and three-density in-memory weight-preservation
+test are prepared; see `card-title-600-publication-progress-2026-10-11.md`.
+Static candidate proof does not close any native or human checklist item.
+
 ## Claude interface review received — 2026-10-11
 
 T041's bounded native keyboard correction is served and proven in18 cases;
