@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-10-11 - R10-04 current existing-data Group fold proof
+
+- Existing fold selection behavior passes eight native current-data cases at
+  four widths/normal-reduced requests, with unrelated Group selection and
+  reopening preserved. No product/Kit behavior or style patch, data mutation
+  or fixture. Preserve older dataset and compact cleanup-locator failures.
+
+## 2026-10-11 - R10-11 served EN/FR native frames
+
+- Twenty-eight native filter open/close cases at1280/768/390 now keep actual
+  intermediate heights and zero list reinsertions. Original Motion/timing is
+  unchanged; no course/settings writes and complete cleanup. Broader search/
+  selection, held-pointer/reversal and human fluency acceptance stay separate.
+
+- Unchanged native filter behavior regression also passes39 EN records: search,
+  retained selection/clear/Escape, one-click parent close/reopen with a nested
+  choice and reduced-motion choice cleanup. Held-pointer/reversal and human
+  fluency acceptance still remain separate.
+
 ## 2026-10-11 - R10-11 compact frame blocker successor
 
 - Zero list reinsertion alone leaves a compact native frame failure. CPU/native

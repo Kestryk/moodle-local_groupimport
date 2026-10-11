@@ -126,3 +126,19 @@ entered, Add/Move/Send or settings Save; transient properties restored. Broader
 responsive/provider/human gates remain separate; a private hover fix is not
 justified in these sampled routes. Both native runs cleaned credentials,
 children and leases; no fixtures/errors/blocked commands.
+
+## 11 October continuation - R10-07 preparation, not adoption
+
+The own Foundation connection is responsive. Exact source read confirms the
+old Focus main still190.1x44, its outer caption ring2.88px/Primary/.22 and track
+36x20; the provider was not changed. Current canonical Kit0.4.167 retains the
+public opt-in track-focus recipe. The consumer forms module differs only by
+that21-line optional mixin, and its Foundation wrapper/labels do not opt in.
+This explains why a source-ready recipe alone cannot change Moodle paint.
+
+Next: publish a paired keyboard track-focus state from the existing source,
+preserve old caption Focus recoverably, link Standard/product examples, then
+sync the canonical mixin/class and qualify exactly the two trailing labels.
+Keep44px target, native checkbox, disabled/reduced/forced-colour behavior,
+original Motion and all unopted controls. No Source CSS/template change or
+new focus component is claimed yet. Crosswalks remain the two SM-43B JSONs.

@@ -35,6 +35,28 @@ Keep density/tag algorithms, their real data/resize refreshes and all Motion
 byte-identical. A strict successor saves each case before assertions and keeps
 both zero-reinsertion and intermediate-height oracles. Native proof pending.
 
+Managed preview Source1c1fcb8/runtime02d8c78 is served with cache purge.
+Strict EN/FR successor passes28 open/close cases at1280/768/390, with actual
+language asserted, zero list mutations and intermediate native heights in
+every case. In the EN mobile cases,7 intermediate heights replace the earlier
+endpoint-only paint. Original118..148ms measured effects stay unchanged; the
+removed blocking work, not a longer timer, permits the real frames to render.
+No page errors, writes or fixtures; both manifests/cleanup/retention dry runs
+are complete and no files deleted. See
+`testing/more-filters-live-frame-native-2026-10-11.json`. Independent unchanged
+stable behavior run132925721Z-15880 also passes39 records at1600/768/390:
+11 search/select/clear/Escape cases,21 nested parent closes/reopens and7 reduced
+choice states. No errors, blocked commands or writes, complete cleanup. This
+regression is EN; the28 natural-frame cases cover actual EN/FR.
+rapid reversal/held pointer and human fluency acceptance remain separate.
+
+R10-33 workflow learning: a native frame oracle must persist its case before
+assertions, so a failure retains its exact last geometry. CPU names alone can
+merge distinct anonymous callbacks: retain sanitized script coordinates and
+retrieve a bounded public-code excerpt if required. Do not blame another
+plugin or alter shared Motion from an unidentified callback. No provider
+token/cost total or measured quota saving is available.
+
 Source reconstruction and official existing AMD build are required. The two
 native specs are local-supervised candidates; preservation is ci-reusable.
 Platform batch/registry ownership stays unchanged; EED-UI-2026-0073 backlink
