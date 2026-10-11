@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-11 - Served T006 exact clearance proof
+
+- Record18 native EN-normal/FR-reduced three-width cases with exact24px
+  note/status clearance, sticky status and all original commands/Motion.
+- Preserve the authentication-load predecessor failure and its strict unchanged
+  geometry successor; no injected styles or course writes, complete cleanup.
+- Prepare the next scene recomposition's selector/design preflight, without
+  activating it or claiming human approval.
+
 ## 2026-10-11 - Canonical T006 Guide introduction clearance
 
 - Synchronize Kit0.4.172's existing24px Foundation trailing clearance through

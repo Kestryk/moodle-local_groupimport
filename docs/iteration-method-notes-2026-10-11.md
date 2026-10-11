@@ -33,3 +33,9 @@ existing hidden legacy card can yield a blank PNG despite valid saved geometry.
 Penpot2.18 canvas does not expose the previous SVG-ID oracle; use its actual
 text bounds, meaningful framed raster or object export. These are qualitative
 iteration lessons; no numerical token or cost savings are asserted.
+
+T006's first corrected scenario reached manage.php but waited the full `load`
+event during authentication and expired before any layout measurement. Retain
+that immutable failure and require a committed-navigation successor followed
+by actual plugin readiness. Do not reinterpret the transport wait as a CSS
+failure or weaken24px/locale/media oracles. Record new native proof separately.

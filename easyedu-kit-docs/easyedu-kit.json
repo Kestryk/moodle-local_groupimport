@@ -5,13 +5,16 @@
   "status": "stable",
   "consumerSync": {
     "guideIntroductionClearance20261011": {
+      "kitCommit": "2437268a24fc6596af527680d4642d5bdc02e11b",
       "kitVersion": "0.4.172",
       "modules": ["scss/easyedu/components/_guide-discovery.scss"],
       "publicToken": "--easyedu-guide-introduction-trailing-clearance",
       "scope": "Existing24px paired Introduction safety-note trailing space; all other CSS, commands, type and Motion retained.",
       "savedSourceStandardRecords": 8,
       "completeCssPreserved": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeRecords": 18,
+      "nativeProof": "docs/testing/guide-introduction-clearance-correction-2026-10-11.json",
       "humanVisualValidated": false,
       "fullKitSync": false,
       "publicRelease": false

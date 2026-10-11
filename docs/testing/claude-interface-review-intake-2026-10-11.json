@@ -102,19 +102,19 @@
     {
       "id": "T006",
       "receivedScope": "[P] [US1] **Espace entre la note d'introduction et la barre d'état (G9).**",
-      "status": "eight-saved-Foundation-clearances24-reconciled-canonical172-two-declaration-correction-prepared-native-successor-pending",
-      "nativeVerified": false,
+      "status": "canonical172-served-exact24px-18-native-locale-media-width-records-passed-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/testing/guide-introduction-clearance-correction-2026-10-11.json"],
       "decisionGate": "none"
     },
     {
       "id": "T007",
       "receivedScope": "[US1] Penpot « Guide Easystud » : composer la slide « Organiser » avec l'en-tête de scène unique (mode, Démarrer, statut, Pause, Suivant) et les appartenances prévues au repos. Faire valider par Kevin avant le code.",
-      "status": "queued",
+      "status": "canonical-selector-and-saved-product-usage-preflight-recorded-Penpot-proposal-and-Kevin-review-pending",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/guide-scene-recomposition-preflight-2026-10-11.md"],
       "decisionGate": "none"
     },
     {

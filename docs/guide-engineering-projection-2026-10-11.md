@@ -1,5 +1,15 @@
 # Guide engineering: current projection, not human acceptance
 
+Current T006 is served/proven: Kit2437268/0.4.172, Source4e4686e/runtime716369a,
+native44788 passes18 exact24px gaps at1280/768/390, EN normal/FR reduced with
+actual locale/media assertions, sticky status retained and no injected style
+or data writes. Authentication-wait failure38092 is retained separately; every
+strict layout oracle is unchanged in the committed-navigation successor.
+Cleanup passes. See `testing/guide-introduction-clearance-correction-2026-10-11.json`.
+Approved600 source/native proof remains pinned independently; all human/older
+gates remain open. Next T007 preflight records current selector dependencies
+and Product fixed-height discrepancies before a reviewable Penpot proposal.
+
 T006 source successor: eight saved Foundation Introduction mains/Standards
 already have24px trailing safety-note clearance. Kit0.4.172 now restores it via
 one token and logical padding, with complete unrelated CSS/source preservation.

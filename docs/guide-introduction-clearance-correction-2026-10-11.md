@@ -1,5 +1,21 @@
 # T006 — canonical source clearance correction
 
+Current served proof: Kit2437268/0.4.172, Source4e4686e/runtime716369a;
+cache purge20261011T193621Z. Native run44788 passes18 exact24px gaps/paddings
+on three current scene introductions at1280/768/390, EN normal/FR reduced.
+Actual language/media, positive text heights, retained sticky status and zero
+note margin are asserted. No Start, injected styles, errors, blocked commands,
+course/settings/fixture writes; all credential/child/lease cleanup flags pass.
+See `testing/guide-introduction-clearance-correction-2026-10-11.json`.
+
+The first corrected scenario (38092) reached manage.php but waited the full
+authentication `load` event and expired before geometry. Preserve its original
+spec/blob/raw evidence. The committed-navigation successor keeps every strict
+layout/media/locale assertion and waits actual plugin readiness after navigation;
+no product source/style was changed to address that harness wait. Human review
+and the larger Guide scene recomposition remain OPEN. Preparation notes below
+describe the checkpoint before this served successor, not its current status.
+
 The native baseline confirmed0px note-to-status gap. Saved Foundations readback
 now confirms the intended source: all eight Introduction controls/Common
 introduction Desktop/Mobile mains and linked Standards retain24px between the
