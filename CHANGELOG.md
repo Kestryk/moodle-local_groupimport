@@ -2,6 +2,12 @@
 
 ## Unreleased - Inspection shared-source preparation
 
+- Serve canonical path-context APIs in preview and verify six EN-normal/FR-
+  reduced native QA cases across desktop/tablet/phone: reinitialization retains
+  evidence, explicit Resume and real Reset preserve unrelated progress, obsolete
+  tokens reject writes. No real-user storage/course mutation; full page reload,
+  new activity path, business completion and human approval remain separate.
+
 - Synchronize canonical opt-in Guide path context APIs and their explicit Moodle
   AMD bridge.57 isolated context cases and built five-export/source parity pass;
   existing paths, product styles/Motion/commands and progress remain unchanged.
