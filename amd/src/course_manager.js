@@ -2169,6 +2169,29 @@ const emitNativePathCompletion = (root, path, step) => {
 
 const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
 const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
+// Completion uses the same result authority as native Select results, not DOM visibility alone.
+const emitFilterPathCompletion = (root, step) => {
+    const list = root.querySelector('[data-easystud-participant-list]');
+    if (!list) {
+        return;
+    }
+    const items = getSelectableResultItems(list, {selector: '[data-easystud-user]'});
+    const selected = getSelectedItems(root, 'participant');
+    const filtered = hasActiveListFilters(root, list);
+    const panel = root.querySelector('[data-easystud-advanced-filters="participants"]');
+    const completed = {
+        'open-filters': !!panel && !panel.hidden && panel.classList.contains('is-expanded') &&
+            panel.getAttribute('aria-hidden') !== 'true' && !panel.inert,
+        'apply-filter': filtered && items.length > 0,
+        'select-results': filtered && items.length > 0 &&
+            items.every(item => item.classList.contains(selectedClass)) &&
+            selected.length === items.length && selected.every(item => items.includes(item)),
+        'clear-selection': selected.length === 0,
+    };
+    if (completed[step]) {
+        emitNativePathCompletion(root, 'verify-with-filters', step);
+    }
+};
 const emitEditorInspectionCompletion = (root, type, step) => {
     if (type === 'group' || type === 'grouping') {
         emitNativePathCompletion(root, 'inspect-' + type + '-settings', step);
@@ -4657,6 +4680,9 @@ const getPagination = (list, inside, position) => {
         // creating it: late lifecycle children stay above the bottom pager.
         list.appendChild(pagination);
     }
+    if (list.matches('[data-easystud-participant-list]')) {
+        pagination.setAttribute('data-easystud-guide-result-scope', 'participants');
+    }
     return pagination;
 };
 
@@ -5128,6 +5154,9 @@ const bindPagination = root => {
             }
             updateSelectionActions(root);
             requestGuideHighlightRefresh(root);
+            if (type === 'participant') {
+                emitFilterPathCompletion(root, deselect ? 'clear-selection' : 'select-results');
+            }
             return;
         }
         const current = parseInt(list.getAttribute('data-easystud-page') || '0', 10) || 0;
@@ -5249,6 +5278,7 @@ const bindFilters = root => {
     if (searchControl) {
         searchControl.addEventListener('input', () => {
             applyFilters(root);
+            emitFilterPathCompletion(root, 'apply-filter');
             emitGuidedCompletion(root, 2);
         });
     }
@@ -5257,6 +5287,7 @@ const bindFilters = root => {
         roleSelect.addEventListener('change', () => {
             syncRoleFilterState(root);
             applyFilters(root);
+            emitFilterPathCompletion(root, 'apply-filter');
             emitGuidedCompletion(root, 2);
         });
     }
@@ -5264,6 +5295,7 @@ const bindFilters = root => {
     if (groupSelect) {
         groupSelect.addEventListener('change', () => {
             applyFilters(root);
+            emitFilterPathCompletion(root, 'apply-filter');
             emitGuidedCompletion(root, 2);
         });
     }
@@ -5271,6 +5303,7 @@ const bindFilters = root => {
     if (groupingSelect) {
         groupingSelect.addEventListener('change', () => {
             applyFilters(root);
+            emitFilterPathCompletion(root, 'apply-filter');
             emitGuidedCompletion(root, 2);
         });
     }
@@ -5290,6 +5323,7 @@ const bindFilters = root => {
             applyFilters(root);
             refreshFilterChoice(roleSelect);
             updateRoleFilterMode(root);
+            emitFilterPathCompletion(root, 'apply-filter');
             emitGuidedCompletion(root, 2);
         });
     });
@@ -5913,6 +5947,7 @@ const bindSelection = root => {
         clearSelectionState(root);
         updateSelectionActions(root);
         requestGuideHighlightRefresh(root);
+        emitFilterPathCompletion(root, 'clear-selection');
     });
 
     root.addEventListener('click', event => {
@@ -8245,6 +8280,9 @@ const bindAdvancedFilters = root => {
                 onComplete: () => {
                     scheduleCompleteListAlignment(root);
                     requestGuideHighlightRefresh(root);
+                    if (key === 'participants') {
+                        emitFilterPathCompletion(root, 'open-filters');
+                    }
                 },
             });
         } else {
@@ -8795,6 +8833,24 @@ const bindSharedGuideTargets = root => {
     const openTarget = selector => {
         if (!selector) {
             return null;
+        }
+        if (selector === 'tutorial:participant-filter-workspace' ||
+                selector === 'tutorial:participant-filter-controls') {
+            if (isResponsiveWorkspace()) {
+                const view = root.querySelector('[data-easystud-mobile-view="participants"]');
+                if (view && view.getAttribute('aria-pressed') !== 'true') {
+                    view.click();
+                }
+            } else if (root.easystudDesktopMode !== 'participants') {
+                root.easystudApplyDesktopMode?.('participants', false);
+            }
+            if (selector === 'tutorial:participant-filter-controls') {
+                const toggle = root.querySelector('[data-easystud-advanced-filters-toggle="participants"]');
+                if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+                    toggle.click();
+                }
+            }
+            return root.querySelector('[data-easystud-search]');
         }
         const editorTargets = {
             'tutorial:group-editor-entry': ['group', false],

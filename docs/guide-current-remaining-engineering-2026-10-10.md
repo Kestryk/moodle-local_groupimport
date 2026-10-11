@@ -1,5 +1,13 @@
 # Current Student Management Guide: remaining engineering
 
+11 October implementation candidate: verify-with-filters now has four typed
+native milestones/targets and a seventh optional invitation, with unchanged
+reading contract/old paths/styles/Motion.768 completion cases and136 historical
+positions pass the actual successor; native/served responsive proof is pending.
+Current scope: guide-filter-verification-path-2026-10-11.md. Next: ordered
+preview with both documentary predecessors, then focused three-width native
+filter/search/select/clear cue checks. Do not infer acceptance from candidate proof.
+
 11 October current projection: the twelve reading IDs, six visible invitations,
 seven definitions and preserved historical progress pass the bilingual current
 successor (54 milestones /136 reading positions /14 retained path states).

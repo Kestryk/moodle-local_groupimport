@@ -1501,6 +1501,14 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'groupingCreateInput' => '.local-groupimport-easystud-create-row input[name="groupingname"]',
             'filters' => '[data-easystud-filters]',
             'advancedParticipantFilters' => '[data-easystud-advanced-filters="participants"]',
+            'participantFilterToggle' => '[data-easystud-advanced-filters-toggle="participants"]',
+            'participantFilterSearch' => '[data-easystud-search]',
+            'participantFilteredResults' => '[data-easystud-guide-result-scope="participants"] ' .
+                '[data-easystud-select-results]',
+            'participantClearSelection' => [
+                '[data-easystud-clear-all-selection]',
+                '[data-easystud-mobile-action-trigger="[data-easystud-clear-all-selection]"]',
+            ],
             'layoutBoth' => [
                 '[data-easystud-mobile-view="participants"]',
                 '[data-easystud-layout-mode="both"]',
@@ -1616,6 +1624,7 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'tree' => '[data-easystud-tree]',
         ],
         'pathLabels' => [
+            'verify-with-filters' => get_string('filter_path_title', 'local_groupimport'),
             'inspect-group-settings' => get_string('editor_group_title', 'local_groupimport'),
             'inspect-grouping-settings' => get_string('editor_grouping_title', 'local_groupimport'),
             'reorganise-source-members' => get_string('member_path_title', 'local_groupimport'),
@@ -1625,6 +1634,7 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'try-actions' => get_string('tutorialguidedactionstitle', 'local_groupimport'),
         ],
         'paths' => [
+            'verify-with-filters' => \local_groupimport\local\guide_discovery::filter_verification_path(),
             'inspect-group-settings' => \local_groupimport\local\guide_discovery::editor_inspection_path('group'),
             'inspect-grouping-settings' => \local_groupimport\local\guide_discovery::editor_inspection_path('grouping'),
             'reorganise-source-members' => \local_groupimport\local\guide_discovery::source_member_path(),
