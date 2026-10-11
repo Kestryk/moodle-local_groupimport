@@ -28523,8 +28523,11 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   inline-size: 100%;
   max-inline-size: 100%;
 }
+.easyedu-ui .easyedu-form-actions > .fitem.femptylabel {
+  padding: 0 !important;
+}
 .easyedu-ui .easyedu-form-actions > .femptylabel > .col-form-label {
-  display: none;
+  display: none !important;
 }
 .easyedu-ui .easyedu-form-actions > .fitem > .felement {
   flex: 0 0 100%;

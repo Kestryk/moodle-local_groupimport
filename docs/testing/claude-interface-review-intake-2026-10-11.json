@@ -81,7 +81,7 @@
     {
       "id": "T005",
       "receivedScope": "[P] [US3] **Centrage du bouton « Prévisualiser l'import » (M12, M13).** Rendre `.felement` pleine largeur dans `.easyedu-form-actions`, masquer la colonne de libellé vide et centrer la note.",
-      "status": "native-defect-reproduced-shared-source-corrected-preview-pending",
+      "status": "native-correction-failed-anatomy-measured-shared-priority-successor-ready",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [
@@ -423,10 +423,10 @@
     {
       "id": "T042",
       "receivedScope": "[P] [US5] **D3** : accents des chaînes FR, dans `lang/fr/local_groupimport.php` et les `aria-label` ou infobulles codés dans le JS.",
-      "status": "queued",
+      "status": "five-locale-keys-static-PHP-passed-native-pending",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/french-editor-accents-2026-10-11.md"],
       "decisionGate": "none"
     },
     {

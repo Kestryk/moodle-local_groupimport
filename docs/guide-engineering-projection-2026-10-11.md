@@ -8,6 +8,12 @@ measured baselines and canonical shared host-layout corrections, with their
 own successor still pending. R10-08 is served, not yet native/human accepted.
 Saved Foundations title paint is #264861; approved600 adoption is not done.
 
+The first T004/T005 successor proves drawer yield only in its first EN1600
+case; remaining Import centering genuinely failed. Actual outer-row anatomy
+is now recorded, and the shared0.4.170 host-priority successor passes complete
+CSS preservation. T042's five French accents pass static/PHP syntax; both
+native gates remain pending, not accepted. No older lot is closed by this work.
+
 The61-task successor is retained in `claude-interface-review-plan-2026-10-11.md`
 and `testing/claude-interface-review-intake-2026-10-11.json`. T001's rechecked
 pins, native card-keyboard baseline and decision gates are recorded in

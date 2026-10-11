@@ -9,6 +9,12 @@ stay native; buttons retain shared size/paint/commands. No plugin offset,
 inline style or modal-footer change. Restore the existing centred composition,
 not a new Foundation control size; native proof remains a separate gate.
 
+The first native successor exposed the remaining28.16px outer-row padding and
+Bootstrap `d-flex` priority on the empty label. Version0.4.170 resets padding
+only on the outer `.fitem.femptylabel` and hides its direct label with the
+necessary host-utility priority. Full CSS reconstruction preserves all other
+recipes; native centering must still be measured after preview activation.
+
 ## Moodle administration section flow
 
 Shared `moodle-admin-section-spacing` / `easyedu-admin-section-flow` owns only

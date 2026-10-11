@@ -30,3 +30,27 @@ EN/FR1600/1280/390 outcome is a separate managed preview gate, still open here.
 The saved Foundation identity main was independently read as Inter14/700,
 #264861. Correct its stale documentation;600 weight adoption stays a separate
 approved shared-publication lot. Human checklist remains OPEN.
+
+## Actual native failure and bounded successor
+
+Run `easystud-authenticated-20261011T164436322Z-46420` failed at the first
+EN1600 Import case: the Guide drawer yielded/restored correctly and the note
+centred, but Preview remained14.0859375px left. This is a genuine incomplete
+product correction, not a harness error; do not certify the six-case matrix.
+The immutable original spec and failure JSON are retained.
+
+Read-only anatomy run `easystud-authenticated-20261011T164753083Z-15020`
+passed without blocked writes or errors and released its lease/credentials.
+The action row is559.390625px wide with28.16px right padding; its content is
+531.234375px despite100% flex basis. Its empty label owns Bootstrap `d-flex`.
+The successor in Kit0.4.170 removes only that empty outer row's padding and
+overrides the forced label display. No width offset, new size or private CSS.
+`test-native-action-row-priority.cjs` reconstructs complete prior CSS and the
+canonical adapter, preserving every unrelated rule/Motion. Re-run the same
+strict immutable native oracle after managed preview; its gate remains open.
+
+T042 independently corrects only five French labels. Its initial static test
+guessed an inlined ARIA statement; production correctly uses the reusable
+`createIconActionButton` helper. Keep that failed test; the new explicit label
+contract verifies the actual shared ARIA/help pipeline, original controller
+and all unrelated strings. CSS preservation belongs to the separate gate above.
