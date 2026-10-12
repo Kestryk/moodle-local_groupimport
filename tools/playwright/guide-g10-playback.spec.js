@@ -105,6 +105,9 @@ test('Guide playback interruption reading and close lifecycle', async ({page}, i
             await page.locator('[data-easyedu-guide-open]:visible').first().click();await expect(modal).toBeVisible();
             await assertIdle(scene,row,'reopenIdle');
             for(const phase of ['initial','select','menu','confirm','validate']){
+                // Reset intentionally restores Add. Select Move explicitly
+                // before exercising its confirmation phases on each cycle.
+                await scene.locator('[data-guide-scene-command="move"]').click();
                 await start.click();
                 if(phase!=='initial'){
                     await expect(scene).toHaveAttribute('data-guide-phase','select',{timeout:20000});await pause.click();
