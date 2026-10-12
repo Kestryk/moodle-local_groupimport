@@ -6,10 +6,20 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "mobileLongPressCompatibility20261012": {
+    "level": 0,
+    "status": "native-cause-confirmed-capture-guard-implemented",
+    "cause": "touchEnd click hit the newly opened backdrop before the old bubble-phase suppression",
+    "failedNativeRun": "easystud-authenticated-20261012T181735634Z-39536",
+    "desktopAndMobileButtonCasesAlreadyPassed": true,
+    "surfaceScript": "tools/playwright/guide-filter-verification-native.spec.js",
+    "motionAndHoldTimingUnchanged": true,
+    "humanAccepted": false
+  },
   "guideResumeTarget20261012": {
     "level": 0,
     "kitVersion": "0.4.188",
-    "status": "active-target-restored-native-check-pending",
+    "status": "active-target-restored-and-native1280-390-verified; final-combined-check-pending",
     "cause": "Resume rendered the checklist without calling the current step opener/highlight",
     "nativeScript": "tools/playwright/guide-filter-verification-native.spec.js",
     "failedRunsPreserved": ["easystud-authenticated-20261012T181058531Z-53464", "easystud-authenticated-20261012T181326929Z-19404"],
@@ -50,7 +60,7 @@
   "acceleration20261012": {
     "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
     "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
-    "readyQueue": ["AP-A1", "PG-A2+A1+A3", "AP-B1+B2+B3+B4", "PG-S1-remaining-modal-targets", "AP-A10+B6"],
+    "readyQueue": ["PG-A2+A1+A3-native-final", "AP-B1+B2+B3+B4", "PG-S1-remaining-modal-targets", "AP-A10+B6", "AP-A6-measurement"],
     "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
     "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",
     "surfaceScriptsOnly": true,

@@ -82,6 +82,8 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
         !source.includes("emitGuidedCompletion(root, 1, 'actions')") && !source.includes("emitGuidedCompletion(root, 2, 'actions')"));
     check('Menu reveal certifies only owned Participant cards',source.includes(
         "type === 'participant' && target && target.isConnected && root.contains(target)"));
+    check('Long-press compatibility click intercepted before backdrop target',
+        /document\.addEventListener\('click', event => \{\s*if \(suppressNextDocumentClick\)[\s\S]*?event\.stopPropagation\(\);\s*\}\s*\}, true\);/.test(source));
     const manage=fs.readFileSync(path.join(rootPath,'manage.php'),'utf8');
     check('Actions path opts into the canonical session-token API',
         /'pathContextFields' => \[[\s\S]*?'try-actions' => \[\]/.test(manage));
