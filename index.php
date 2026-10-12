@@ -951,7 +951,8 @@ $preview = null;
 $currenthistoryid = 0;
 
 $rollbackhistoryid = optional_param('rollbackhistoryid', 0, PARAM_INT);
-if ($rollbackhistoryid) {
+// Rollback rewrites course memberships: accept it only from the POST confirmation form, never from a link.
+if ($rollbackhistoryid && data_submitted()) {
     global $USER, $DB;
 
     require_sesskey();
@@ -970,7 +971,8 @@ if ($rollbackhistoryid) {
 
 $confirmimport = optional_param('confirmimport', 0, PARAM_BOOL);
 
-if ($confirmimport) {
+// Applying an import writes enrolment data: accept it only from the POST preview form.
+if ($confirmimport && data_submitted()) {
     global $USER;
 
     require_sesskey();
