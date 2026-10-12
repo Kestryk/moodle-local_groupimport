@@ -177,6 +177,11 @@ Routine N0/N1 deployment does not snapshot the prior plugin. Use
 
 ## AP-E5 grouped-read comparison
 
+Large SM-RENDU fixtures accept up to 10,000 participants: 3,000 uses 300
+groups/60 groupings; 10,000 uses 1,000/150. Three distinct group memberships
+per participant and two grouping assignments per group remain. The shape is
+stored in the ownership manifest; cleanup uses that manifest's original size.
+
 `-Mode sql -Participants 800` extends the same native test. Before uses the
 unchanged served copy; after evaluates actual candidate PHP in separate owned
 workers, with only `__DIR__`/`__FILE__` pointing at the native runtime bootstrap.
