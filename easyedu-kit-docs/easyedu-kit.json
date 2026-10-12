@@ -5,8 +5,9 @@
   "status": "stable",
   "consumerSync": {
     "guideMobileExpected20261012": {
-      "kitCommit": "e8bb63242bc4352bfb11e4f261e823b47214dc28",
-      "kitVersion": "0.4.180",
+      "kitCommit": "a2d324deeaca59b8984adcfb4d8dfc57d4aec22d",
+      "kitVersion": "0.4.181",
+      "fitSuccessor": "181 shares the available scene gutter;180/51692 failed212.72px; preserved",
       "previousCandidate": "c532f85/0.4.179; native29736 failed255px; preserved",
       "modules": ["guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
       "scope": "Kevin-approved R2-5: actual caption role, short expected heading and no duplicated idle sentence; mobile preview only, desktop/playing/final tokens and complete178 engine retained.",

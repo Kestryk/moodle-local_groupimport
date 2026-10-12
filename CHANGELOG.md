@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-12 - Compact reading-lane successor
+
+- Preserve180/51692's212.72px failure. Shared181 reading header uses the existing
+  mobile scene gutter, aligning its copy with cards without changing the cards.
+- Keep header width stable through playback and original illustration clocks.
+- Use compact2px text gap/zero old pill-label margin; same200px/same-row native
+  assertions and previous failures remain immutable.
+
 ## 2026-10-12 - Compact preview native-fit successor
 
 - Preserve179 native29736 failure at254.89px and its immutable200px/same-row test.
