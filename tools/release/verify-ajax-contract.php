@@ -3,6 +3,7 @@
 define('MOODLE_INTERNAL', true);
 define('PARAM_INT', 'int');
 define('MUST_EXIST', true);
+define('SQL_PARAMS_NAMED', true);
 
 $root = dirname(__DIR__, 2);
 $source = file_get_contents($root . '/ajax.php');
@@ -28,6 +29,31 @@ class fixture_database {
         return (object)['id' => 11, 'courseid' => 123, 'name' => 'Synthetic grouping'];
     }
 }
+class identifier_database {
+    public $fields = [];
+    public $users;
+    public function __construct() {
+        $this->users = [(object)['id' => 42, 'deleted' => 0, 'firstname' => 'SyntheticFirst',
+            'lastname' => 'SyntheticLast', 'username' => 'synthetic-user', 'email' => 'synthetic@example.test',
+            'idnumber' => 'SYN-42']];
+    }
+    public function get_record($table, $conditions, $fields) {
+        $this->fields[] = array_keys($conditions)[0];
+        foreach ($this->users as $user) {
+            if (count(array_filter($conditions, static fn($value, $field) =>
+                    !isset($user->$field) || $user->$field != $value, ARRAY_FILTER_USE_BOTH)) === 0) {
+                return $user;
+            }
+        }
+        return null;
+    }
+    public function get_in_or_equal($fields, $style, $prefix) { return ['IN (:field0)', ['field0' => $fields[0]]]; }
+    public function get_records_sql($sql, $params, $start, $limit) {
+        $this->fields[] = 'profile_field_' . $params['field0'];
+        return $params['data'] === 'SyntheticSchool' && $params['field0'] === 'School' ? $this->users : [];
+    }
+}
+function get_config($component) { global $allowedfields; return (object)['alloweduserfields' => $allowedfields]; }
 function required_param($name, $type) { return 11; }
 function groups_get_group($id) {
     global $injected;
@@ -112,6 +138,29 @@ foreach (['rollbackhistoryid' => $index, 'confirmimport' => $index, 'action' => 
         }
     }
 }
+$resolverstart = strpos($source, 'function local_groupimport_find_user_by_identifier(');
+$resolverend = strpos($source, "\n/**", $resolverstart);
+check('Bounded actual identifier resolver', $resolverstart !== false && $resolverend > $resolverstart);
+eval(substr($source, $resolverstart, $resolverend - $resolverstart));
+$DB = new identifier_database();
+foreach (['email', 'username', 'idnumber', 'profile_field_School', ''] as $allowedfields) {
+    $DB->fields = [];
+    check('Moodle ID retained under ' . ($allowedfields ?: 'defaults'),
+        local_groupimport_find_user_by_identifier('42')->id === 42);
+    check('Bare first name rejected under ' . ($allowedfields ?: 'defaults'),
+        local_groupimport_find_user_by_identifier('SyntheticFirst') === null);
+    check('Bare last name rejected under ' . ($allowedfields ?: 'defaults'),
+        local_groupimport_find_user_by_identifier('SyntheticLast') === null);
+    check('Name fields never queried under ' . ($allowedfields ?: 'defaults'),
+        !array_intersect(['firstname', 'lastname'], $DB->fields));
+    foreach (['email' => 'synthetic@example.test', 'username' => 'synthetic-user', 'idnumber' => 'SYN-42',
+            'profile_field_School' => 'SyntheticSchool'] as $field => $token) {
+        $enabled = $allowedfields === $field || ($allowedfields === '' && in_array($field, ['email', 'username']));
+        check($field . ' respects setting ' . ($allowedfields ?: 'defaults'),
+            (local_groupimport_find_user_by_identifier($token) !== null) === $enabled);
+    }
+}
+check('Empty identifier rejected', local_groupimport_find_user_by_identifier('  ') === null);
 echo json_encode(['surface' => 'ajax-and-language', 'level' => 0, 'passed' => count($checks),
     'checks' => $checks, 'scope' => 'Actual dispatch with isolated service doubles; no native course writes'],
     JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR) . PHP_EOL;

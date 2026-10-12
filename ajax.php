@@ -755,7 +755,7 @@ function local_groupimport_extract_user_tokens(string $text): array {
 }
 
 /**
- * Find a non-deleted user by enabled identifiers.
+ * Find a non-deleted user by Moodle id or by one of the identifier fields enabled in the plugin settings.
  *
  * @param string $token Identifier token.
  * @return \stdClass|null
@@ -789,16 +789,8 @@ function local_groupimport_find_user_by_identifier(string $token): ?\stdClass {
         }
     }
 
-    foreach (['firstname', 'lastname'] as $field) {
-        $matches = $DB->get_records('user', [$field => $token, 'deleted' => 0], '', 'id, firstname, lastname, email', 0, 2);
-        if (count($matches) === 1) {
-            return reset($matches);
-        }
-        if (count($matches) > 1) {
-            return null;
-        }
-    }
-
+    // Only the Moodle id (copied with "Copy Moodle ID") and the fields enabled in the plugin settings are
+    // used: a bare first name or last name is not an identifier and is no longer matched.
     $customshortnames = [];
     foreach ($allowed as $fieldkey) {
         if (strpos($fieldkey, 'profile_field_') === 0) {
