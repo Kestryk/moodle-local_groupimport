@@ -1,0 +1,351 @@
+{
+  "lot": "T052",
+  "level": 0,
+  "passed": false,
+  "fixture": {
+    "users": 800,
+    "groups": 150,
+    "groupings": 40,
+    "idempotent": true
+  },
+  "server": [
+    {
+      "surface": "manage",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 3485.426,
+      "sqlReads": 900,
+      "sqlWrites": 1,
+      "sqlMs": 398.457,
+      "htmlBytes": 43362356,
+      "peakMemoryBytes": 167772160,
+      "outcome": {
+        "passed": true
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    },
+    {
+      "surface": "course-state",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 681.858,
+      "sqlReads": 807,
+      "sqlWrites": 0,
+      "sqlMs": 123.808,
+      "htmlBytes": 2169941,
+      "peakMemoryBytes": 39845888,
+      "outcome": {
+        "passed": true,
+        "users": 800
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    },
+    {
+      "surface": "addemails",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 764.467,
+      "sqlReads": 605,
+      "sqlWrites": 152,
+      "sqlMs": 290.747,
+      "htmlBytes": 2114,
+      "peakMemoryBytes": 29360128,
+      "outcome": {
+        "passed": true,
+        "added": 50,
+        "missing": 0
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    },
+    {
+      "surface": "duplicategroup",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 269.849,
+      "sqlReads": 131,
+      "sqlWrites": 52,
+      "sqlMs": 79.459,
+      "htmlBytes": 2432,
+      "peakMemoryBytes": 29360128,
+      "outcome": {
+        "passed": true,
+        "members": 16
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    },
+    {
+      "surface": "deletegroupings",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 61.348,
+      "sqlReads": 25,
+      "sqlWrites": 41,
+      "sqlMs": 31.35,
+      "htmlBytes": 50,
+      "peakMemoryBytes": 20971520,
+      "outcome": {
+        "passed": true,
+        "deleted": 10
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    },
+    {
+      "surface": "movemembers",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 888.315,
+      "sqlReads": 907,
+      "sqlWrites": 303,
+      "sqlMs": 287.978,
+      "htmlBytes": 138,
+      "peakMemoryBytes": 29360128,
+      "outcome": {
+        "passed": true,
+        "added": 50,
+        "removed": 50
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    },
+    {
+      "surface": "import-preview",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 8135.107,
+      "sqlReads": 14113,
+      "sqlWrites": 0,
+      "sqlMs": 6237.7,
+      "htmlBytes": 1758520,
+      "peakMemoryBytes": 69206016,
+      "outcome": {
+        "passed": true,
+        "rows": 2000
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    },
+    {
+      "surface": "rollback",
+      "level": 0,
+      "passed": true,
+      "environment": "CLI process with native web bootstrap; excludes config/fixture preparation/cleanup",
+      "generationMs": 1332.685,
+      "sqlReads": 656,
+      "sqlWrites": 154,
+      "sqlMs": 262.518,
+      "htmlBytes": 325021,
+      "peakMemoryBytes": 56623104,
+      "outcome": {
+        "passed": true,
+        "restored": 50
+      },
+      "cacheSettings": {
+        "cachejs": true,
+        "cachetemplates": true,
+        "themedesignermode": false,
+        "disableallcaches": false
+      },
+      "failure": null
+    }
+  ],
+  "browser": [
+    {
+      "surface": "site-home",
+      "css": {
+        "pluginRulesPresent": true,
+        "bundledStylesheets": [
+          {
+            "pathname": "/theme/styles.php/boost/1791832580_1780323562/all",
+            "transferredBytes": 0,
+            "decodedBodyBytes": 3059209,
+            "pluginRulesPresent": true
+          }
+        ],
+        "interpretation": "Moodle bundles plugin styles; bytes describe the complete containing stylesheet."
+      }
+    },
+    {
+      "surface": "course",
+      "css": {
+        "pluginRulesPresent": true,
+        "bundledStylesheets": [
+          {
+            "pathname": "/theme/styles.php/boost/1791832580_1780323562/all",
+            "transferredBytes": 0,
+            "decodedBodyBytes": 3059209,
+            "pluginRulesPresent": true
+          }
+        ],
+        "interpretation": "Moodle bundles plugin styles; bytes describe the complete containing stylesheet."
+      }
+    },
+    {
+      "surface": "manage",
+      "domElements": 136180,
+      "state": "loading",
+      "initialized": "1",
+      "workspaceElements": 135256,
+      "responseMs": 3670.5,
+      "responseEndMs": 5770.100000023842,
+      "domContentLoadedMs": 6552.300000011921,
+      "readyObservedMs": 359037.90000003576,
+      "transferredBytes": 43362663,
+      "decodedBodyBytes": 43362363,
+      "longTasks": [
+        {
+          "startMs": 4649.900000035763,
+          "durationMs": 50
+        },
+        {
+          "startMs": 4757.100000023842,
+          "durationMs": 65
+        },
+        {
+          "startMs": 5003.199999988079,
+          "durationMs": 85
+        },
+        {
+          "startMs": 5163.600000023842,
+          "durationMs": 52
+        },
+        {
+          "startMs": 5825.900000035763,
+          "durationMs": 166
+        },
+        {
+          "startMs": 6014.400000035763,
+          "durationMs": 266
+        },
+        {
+          "startMs": 6303.199999988079,
+          "durationMs": 260
+        },
+        {
+          "startMs": 6753.5,
+          "durationMs": 403
+        },
+        {
+          "startMs": 7157.400000035763,
+          "durationMs": 124402
+        },
+        {
+          "startMs": 131559.90000003576,
+          "durationMs": 110848
+        },
+        {
+          "startMs": 242537.30000001192,
+          "durationMs": 114824
+        },
+        {
+          "startMs": 357367.90000003576,
+          "durationMs": 135
+        },
+        {
+          "startMs": 357515.8000000119,
+          "durationMs": 718
+        },
+        {
+          "startMs": 358235.60000002384,
+          "durationMs": 64
+        },
+        {
+          "startMs": 358343.40000003576,
+          "durationMs": 116
+        },
+        {
+          "startMs": 358523.1999999881,
+          "durationMs": 77
+        },
+        {
+          "startMs": 358614.40000003576,
+          "durationMs": 91
+        },
+        {
+          "startMs": 358850,
+          "durationMs": 109
+        }
+      ],
+      "participantNodes": 0,
+      "sample": 0,
+      "readinessDeadlinePassed": false,
+      "htmlBytes": 43362363,
+      "htmlBytesSource": "navigation-decodedBodySize",
+      "inspectorBodyEvicted": true
+    }
+  ],
+  "errors": [],
+  "failures": [
+    {
+      "surface": "manage",
+      "sample": 0,
+      "reason": "Native workspace did not become ready within 30000ms"
+    }
+  ],
+  "measurementComplete": true,
+  "runtimeHead": "750353b9d30252f3e9f9bcffe977952c78587211",
+  "sourceHead": "9fc30849c1e039a1ba0435b46d49d6df38cf2c62",
+  "runtimeHashes": {
+    "manage.php": "5bd79af77cf2da44e98dad443a8ba42bb301869d3631c00467c93017f7a189bf",
+    "ajax.php": "d79358b1728fc37d3abf8073f1ac40eb324363e425db2c04e7d73d49718eb85f",
+    "index.php": "f5f5d8c70c9d3ee13b7fa4613d8c190281e42769bfa2e285a853c70aac4af502",
+    "classes/service/course_structure.php": "64503baff2ebea2976c9fa721a9355fd5d5c0d46468e218ed6da4272f8c4c5f5"
+  },
+  "stylesSourceBytes": 1364920,
+  "skippedSamples": [
+    1,
+    2
+  ],
+  "cleanup": {
+    "complete": true,
+    "preExistingRelationshipsUnchanged": true,
+    "userTombstonesRetained": true
+  },
+  "evidence": "C:/dev/artifacts/easystud-perf-server-20261012/easystud/authenticated/easystud-authenticated-20261012T191943818Z-22228"
+}

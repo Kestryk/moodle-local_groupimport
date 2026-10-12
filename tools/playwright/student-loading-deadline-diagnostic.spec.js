@@ -3,6 +3,11 @@ const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
 test('Student startup records deadline and native resource timing', async ({page}, testInfo) => {
+    if (process.env.EASYEDU_PERF_BASELINE) {
+        test.setTimeout(900000);
+        await require('../perf/browser-baseline.cjs').runBaseline(page, testInfo, expect);
+        return;
+    }
     test.setTimeout(180000);
     const records = [], errors = [], blocked = [], unexpectedWrites = [];
     page.on('pageerror', e => errors.push(e.message));

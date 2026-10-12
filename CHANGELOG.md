@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] T052: add isolated Moodle-generator fixture, native PHP/SQL and existing-scenario browser/CSS baseline tools; eight PHP cases pass, 800-user workspace scale failure retained (136,180 DOM elements), exact fixture cleanup verified.
+
 - 2026-10-12 [N0] Integrate Claude2726f02 (AP-A5), Kevin-approved: pasted identifiers use Moodle ID or enabled fields only, not bare names; resolver setting/default/custom-field cases added to the shared API verifier, Mass Import unchanged.
 
 - 2026-10-12 [N0] Integrate Claude73085bf (AP-A4): import/rollback and non-JS create/rename require POST and an explicit valid session key; actual guard verification added to the shared AJAX surface script.
