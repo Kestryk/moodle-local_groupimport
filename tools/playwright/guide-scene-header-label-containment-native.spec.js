@@ -55,6 +55,13 @@ test('R3 no-mode scene rows and activity spacing stay consistent',async({page},i
                     expect(geometry.start.y).toBeGreaterThanOrEqual(geometry.reading.y+geometry.reading.height-1);
                     expect(Math.abs(geometry.start.width-geometry.reading.width)).toBeLessThan(1);
                 }
+                // Mobile idle intentionally hides detailed narration. Measure dots
+                // in the real paused surface, not inside that hidden ancestor.
+                await scene.locator('[data-guide-scene-command="start"]').click();
+                await expect(header).toHaveAttribute('data-guide-playback-state','playing');
+                await scene.locator('[data-guide-playback="pause"]').click();
+                await expect(header).toHaveAttribute('data-guide-playback-state','paused');
+                rows.at(-1).paused=true;
                 const samples=['Prêt.','Ready to learn.','Vérifiez le nom reconnu et corrigez l’entrée avant de continuer.',
                     'Check the recognised name and fix the unresolved entry before continuing in the real card.'];
                 const spacings=await header.evaluate((header,samples)=>{
@@ -75,12 +82,23 @@ test('R3 no-mode scene rows and activity spacing stay consistent',async({page},i
                     expect(Math.abs(sample.gaps[0]-sample.gaps[1])).toBeLessThanOrEqual(0.5);
                     for(const size of sample.widths)expect(Math.abs(size-sample.rem*0.25)).toBeLessThanOrEqual(0.5);
                     for(const gap of sample.gaps)expect(Math.abs(gap-sample.rem*0.1875)).toBeLessThanOrEqual(0.5);
-                    expect(sample.whiteSpace).toBe('nowrap');expect(sample.letterSpacing).toBe('0px');
+                    expect(sample.whiteSpace).toBe('nowrap');
+                    // Chromium serializes zero letter spacing as "normal".
+                    // Keep fixed dot geometry assertions as the independent oracle.
+                    expect(sample.letterSpacing==='normal'||parseFloat(sample.letterSpacing)===0).toBe(true);
                     expect(Math.abs(sample.copyToDots-spacings[0].copyToDots)).toBeLessThanOrEqual(0.5);
                 }
                 await page.emulateMedia({reducedMotion:'reduce'});
                 expect(await scene.locator('[data-guide-activity] > span').evaluateAll(nodes=>nodes.every(node=>getComputedStyle(node).animationName==='none'))).toBe(true);
-                await scene.locator('[data-guide-scene-command="start"]').click();
+                // Live media changes test CSS only; the engine captures Motion at init.
+                await page.emulateMedia({reducedMotion:'no-preference'});
+                await scene.locator('[data-guide-playback="pause"]').click();
+                for(let phase=0;phase<14&&await header.getAttribute('data-guide-playback-state')!=='finished';phase++){
+                    await page.waitForFunction(node=>node.dataset.guidePlaybackState==='finished'||
+                        !node.querySelector('[data-guide-playback="next-phase"]').disabled,await header.elementHandle());
+                    if(await header.getAttribute('data-guide-playback-state')==='finished')break;
+                    await scene.locator('[data-guide-playback="next-phase"]').click();
+                }
                 await expect(header).toHaveAttribute('data-guide-playback-state','finished');
                 await expect(scene.locator('[data-guide-scene-command="start"]')).toBeEnabled();
                 await modal.evaluate(node=>Promise.all(node.getAnimations({subtree:true})
@@ -94,14 +112,6 @@ test('R3 no-mode scene rows and activity spacing stay consistent',async({page},i
                 rows.at(-1).finished=finished;
                 if(width===1280)expect(Math.abs(finished.reading.y+finished.reading.height/2-finished.start.y-finished.start.height/2)).toBeLessThan(1);
                 else expect(finished.start.y).toBeGreaterThanOrEqual(finished.reading.y+finished.reading.height-1);
-                await scene.locator('[data-guide-scene-command="reset"]').click();
-                await expect(header).toHaveAttribute('data-guide-playback-state','idle');
-                await page.emulateMedia({reducedMotion:'no-preference'});
-                await scene.locator('[data-guide-scene-command="start"]').click();
-                await expect(header).toHaveAttribute('data-guide-playback-state','playing');
-                await scene.locator('[data-guide-playback="pause"]').click();
-                await expect(header).toHaveAttribute('data-guide-playback-state','paused');
-                rows.at(-1).paused=true;
                 await scene.locator('[data-guide-scene-command="reset"]').click();
                 await expect(header).toHaveAttribute('data-guide-playback-state','idle');
             }
