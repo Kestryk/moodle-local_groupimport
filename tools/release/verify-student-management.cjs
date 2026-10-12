@@ -135,8 +135,14 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
     const css=fs.readFileSync(path.join(rootPath,'styles.css'),'utf8').replace(/\r\n/g,'\n');
     check('No unscoped universal policy selector',!/(?:^|\n)(?:\.easyedu-motion-disabled )?\[data-easyedu-motion-policy[^\]]*\](?:\s*\{|\s+\*(?:::before|::after)?\s*[,\{])/.test(css));
     check('Mass Import policy keeps explicit scope',css.includes('.local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy=disabled]'));
-    const priorCSS=execFileSync('git',['show','4e4eae50345d4234d4ab4ef02196f504a7621078:styles.css'],
+    let priorCSS=execFileSync('git',['show','4e4eae50345d4234d4ab4ef02196f504a7621078:styles.css'],
         {cwd:rootPath,encoding:'utf8',maxBuffer:2e6}).replace(/\r\n/g,'\n');
+    // Subsequent PG-S1 lot reuses this exact dialog budget at every width.
+    // Admit only the media-boundary move, preserving its full selector/body.
+    const budget=/@media \(max-width: 64rem\) \{\n(  \.local-groupimport-easystud-easyedu-guide[^\n]*\[data-easyedu-guide-target-in-dialog\][^\n]*\n[\s\S]*?    max-height: 6rem;\n  \}\n)\}\n/;
+    const scopedBudget=priorCSS.match(budget);
+    check('One pinned dialog checklist budget',scopedBudget && priorCSS.split(scopedBudget[0]).length===2);
+    priorCSS=priorCSS.replace(scopedBudget[0],scopedBudget[1].replace(/^  /gm,''));
     const scope=':is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)';
     const unscoped=css.replace(/\.easyedu-guide-highlight\[data-easyedu-motion-policy=disabled\] \{\n  animation: none !important;\n  transition: none !important;\n  scroll-behavior: auto !important;\n\}\n\n/,'')
         .replaceAll(scope+'[data-easyedu-motion-policy=disabled]', '[data-easyedu-motion-policy=disabled]')
