@@ -1,5 +1,10 @@
 # T012 — recap disclosure candidate, not human acceptance
 
+Current assets are served from Source6e6f90e / Kitbfaf059 (0.4.184) at
+runtime7b6aef7, with managed caches purged. Native12160 is running its immutable
+60-case matrix. Separate policy/destroy isolation passes12 additional cases;
+all product assets remain unchanged by that extra test. No native PASS yet.
+
 Programme `EED-UI-2026-0073`. Source baseline `dbaa237`, Kit `78d7dd5`, runtime
 `4d8045a`. Existing Source/Kit worktrees/branches only; Guide priority unchanged.
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-12 - Recap cancellation and native gate preparation
+
+- Twelve additional actual-AMD isolated cases verify disabled animation policy
+  and destruction of a pending recap effect, with no leftover styles/effects.
+- Record the served184 pins and immutable60-case native successor. Native
+  result and final continuous/keyboard regressions remain separate pending gates.
+
 ## 2026-10-12 - Shared final recap disclosure candidate
 
 - Synchronize canonical184 optional recap button/body and the existing Motion
