@@ -1,5 +1,14 @@
 # Retour à Claude — revue1 du Guide
 
+Mise à jour T008/T013 : référence Produit87 desktop/phone sauvegardée et vérifiée.
+Le compteur est maintenant dans le pied du Guide, la piste reste4px et le sous-
+titre disparaît seulement sur petit écran. Native28592 passe huit cas FR/EN
+1600/1280/390/320, avec gains réels de lecture25.02/42.23/32.23px. Les boutons
+gardent leur type/hauteur et la ligne dédiée Voir dans l'interface est intacte.
+Assets testés Sourcee0eeadf / Kitfead185 (0.4.177) / runtimef9e0283; les commits
+documentaires ultérieurs n'altèrent pas ces assets. Suite : T014 puis T015/V1/V2.
+Les anciens checkpoints ci-dessous restent conservés, sans acceptation humaine.
+
 Les corrections C6+C3+C4+C2 et C1 sont appliquées au Kit0.4.176 et servies dans
 Moodle5.1 local. Aucun changement de donnée de cours ni publication en production.
 
