@@ -1,5 +1,23 @@
 # PG-S1 — external-dialog cue, integration candidate
 
+## Served state and retained native predecessor
+
+After Kevin's external database repair, login HTTP200 without database error.
+This window performed no DB repair. Controlled promotion173023 applies
+b48bd20→28fb767→ae870ed→0ba1497 and purges Moodle caches; runtime7d24f13.
+Served CSS4ead64b862e72732fdbf0adb652dc2100eccb837 and named AMD
+760538f2ea73cea9509cf0a6195d8dc687e36b88 match Source exactly. No course writes.
+
+Native43732 is retained: page cue1020; first real Group Name cue1071, panel1072,
+all four border probes unobstructed, pointer-none restored, errors/blocked empty.
+It fails because the helper applies Number() to a valid public calc() role,
+yielding NaN. This is scoped native paint evidence, not a completed32-case run.
+All wrapper credential/profile/lease/owned-child cleanup passes, no fixture.
+Keep original spec/helper immutable. The separately named resolved-role successor
+uses a transient hidden inert span under the actual root to resolve z-index via
+the browser, removes it in finally and retains all original strict oracles.
+No product/controller/SCSS/build change for this harness correction.
+
 Programme EED-UI-2026-0073 / EXEC-01. Existing Source/Kit worktrees. Candidate,
 not full native12-target proof or human acceptance. Interrupted documentation
 write was confirmed absent after reboot before this recovery; source edits

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-12 - Native S1 role-resolution oracle successor
+
+- Moodle availability is restored (HTTP200); ordered four-commit preview and
+  cache purge pass. Source/runtime CSS and named AMD blobs match exactly.
+- Retain native43732: first Name target has actual1071/1072, four unobstructed
+  frame edges and pointer-none; test fails on Number(calc(...)), not layer paint.
+- New immutable helper/spec resolve the public role through the browser cascade;
+  keep original32 workflows and every paint/geometry/close assertion. Product
+  source/assets unchanged; native successor remains pending, human gate open.
+
 ## 2026-10-12 - Reboot recovery and native-signal preflight
 
 - Recover the interrupted S1 documentation without replaying source/design
