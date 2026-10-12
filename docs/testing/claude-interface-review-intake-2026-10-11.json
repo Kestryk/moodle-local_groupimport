@@ -6,6 +6,7 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "codex2APE720261012": {"status":"isolated-parity-and-boundary-verified","functions":["local_groupimport_load_custom_user_field_values","local_groupimport_enrich_users_with_copy_fields"],"maxUserInValues":1000,"nativeSqlServerProof":false,"versionChanged":false},
   "codex2APE520261012": {
     "owner": "Codex2",
     "branch": "work/port4719pg3/easystud-perf-server-20261012",
