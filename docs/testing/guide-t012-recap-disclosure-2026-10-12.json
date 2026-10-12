@@ -1,0 +1,46 @@
+{
+  "program": "EED-UI-2026-0073",
+  "task": "T012",
+  "sourceAssetCommit": "6e6f90ec9768f8824db80f042ad94cc41158840b",
+  "kitCommit": "bfaf05940c173d8f62aef945188c1900c9651007",
+  "kitVersion": "0.4.184",
+  "runtimeAssetCommit": "7b6aef7111cffc34bfd4a9ed30931a7ee41932fd",
+  "cssGitBlob": "96a100026140a2c245d3ec3c8489ea5f0a2b19e6",
+  "isolatedDisclosureCases": 12,
+  "isolatedPolicyDestroyCases": 12,
+  "nativeDisclosure": {
+    "runId": "easystud-authenticated-20261012T111641020Z-12160",
+    "status": "passed",
+    "cases": 60,
+    "languages": ["en", "fr"],
+    "widths": [1280, 768, 390],
+    "motion": ["no-preference", "reduce"],
+    "allFourEntriesBothMembershipModes": true,
+    "openDefaultClickEnterReversal": true,
+    "existingStartPauseNextReplayResetPreserved": true,
+    "leftoverEffectsMaximum": 0,
+    "maxCaseElapsedMs": 10059,
+    "errors": [],
+    "blockedBusinessRequests": [],
+    "cleanupComplete": true
+  },
+  "continuousRegression": "26880-running; no complete proof yet",
+  "finalKeyboardRegression": "pending",
+  "preservation": {
+    "completeCanonicalEngineOutsideExplicitRecapBridge": true,
+    "completeUnrelatedCssTypeTemplate": true,
+    "nativeBusinessCurriculumLangAndMotionBytes": true,
+    "namedBuiltGuideAndActualMotionExportsExecuted": true,
+    "noPrivateConsumerPaintOrMotion": true
+  },
+  "design": {
+    "sourceAndStandardSavedStates": 8,
+    "productSavedLinkedStates": 4,
+    "pairedRastersInspected": true,
+    "externalArtifactRun": "guide-t012-20261012-a",
+    "sourceChequeChevronOrientationReconciled": true
+  },
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "remaining": ["final continuous R2 and keyboard regression", "T037 reading/completion-emphasis successor", "older61-task and feedback backlog", "human checklist"]
+}

@@ -1,5 +1,12 @@
 # T012 — recap disclosure candidate, not human acceptance
 
+Native12160 passes60 cases, including both Inspection entries, Add/Move,
+three widths/locales/media, actual final→close→Enter/reversal and Reset.
+Zero errors/business requests/leftover effects; full credential/lease/child
+cleanup. Continuous26880 and final keyboard are separate pending regressions.
+Evidence: `testing/guide-t012-recap-disclosure-2026-10-12.json`. Prior paragraphs
+remain chronological, not current status. Human checklist stays open.
+
 Current assets are served from Source6e6f90e / Kitbfaf059 (0.4.184) at
 runtime7b6aef7, with managed caches purged. Native12160 is running its immutable
 60-case matrix. Separate policy/destroy isolation passes12 additional cases;
