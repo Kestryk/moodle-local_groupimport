@@ -90,6 +90,22 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
             'nogrouping' => get_string('nogrouping', 'local_groupimport'),
             'showless' => get_string('showless', 'local_groupimport'),
         ],
+        // Labels of the catalog group card rendered in the browser (templates/sm/group_card).
+        'groupstrings' => [
+            'memberscount' => get_string('memberscount', 'local_groupimport', '__count__'),
+            'removeuserfromgroup' => get_string('removeuserfromgroup', 'local_groupimport', '__name__'),
+            'nomemberslabel' => get_string('nogroupmembers', 'local_groupimport'),
+            'removefromgroupinglabel' => get_string('removegroupfromgrouping', 'local_groupimport'),
+            'addemailstolabel' => get_string('addemailstogroup', 'local_groupimport'),
+            'pasteemailsplaceholder' => get_string('pasteemailsplaceholder', 'local_groupimport'),
+            'addemailsbutton' => get_string('addemails', 'local_groupimport'),
+            'renamelabel' => get_string('rename', 'local_groupimport'),
+            'savelabel' => get_string('save'),
+            'cancellabel' => get_string('cancel'),
+            'sesskey' => sesskey(),
+            'renameurl' => (new moodle_url('/local/groupimport/manage.php', ['id' => $course->id]))->out(false),
+            'groupnativeurl' => (new moodle_url('/group/group.php', ['courseid' => $course->id]))->out(false),
+        ],
     ] : ['renderingmode' => 'legacy'],
 ]);
 $action = optional_param('action', '', PARAM_ALPHA);
@@ -1070,13 +1086,16 @@ function local_groupimport_build_manage_template_data(
         }
     }
 
-    $templatedata['participantfocusgroups'] = local_groupimport_build_group_catalog_template_data(
+    // SM-RENDU on-demand mode: the browser renders the current page of both group catalogs.
+    $templatedata['participantfocusgroups'] = $templatedata['smondemand'] ? [] : local_groupimport_build_group_catalog_template_data(
         $course->id,
         $groups,
         $groupings,
         $users
     );
     $templatedata['structurefocusgroups'] = $templatedata['participantfocusgroups'];
+    // The Structure catalog renders templates/sm/group_card with its e-mail panel variant.
+    $templatedata['structurecatalog'] = ['structureemail' => true];
 
     return $templatedata;
 }
