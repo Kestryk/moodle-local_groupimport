@@ -16015,7 +16015,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header {
     padding-block: 0.375rem;
-    margin-inline: -0.75rem;
+    margin-inline: -1rem;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header-controls-inner,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header-controls-inner {

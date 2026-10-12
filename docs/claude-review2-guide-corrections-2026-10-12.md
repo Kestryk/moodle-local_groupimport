@@ -140,3 +140,7 @@ cards without moving/resizing those cards. The outset remains during playback,
 so Start does not jump header edges. Resting text gap2px/zero inherited pill-label
 margin replaces padding already accounted for by the caption composition.
 No smaller font or relaxed limit; the immutable native scenario is replayed.
+Native181/8400 passes English Add187.70px but Move wraps because its two labels
+plus2px gap total273.25px in273px.182 uses the canonical16px outset step,
+retaining4px clearance in the20px scene gutter. Cards, text size, engine and
+Motion remain unchanged; the same strict test is replayed, not rounded away.
