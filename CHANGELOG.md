@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Compact preview native-fit successor
+
+- Preserve179 native29736 failure at254.89px and its immutable200px/same-row test.
+- Canonical180 uses the real caption400 role and Source short expected heading;
+  remove only the duplicated mobile-idle initial sentence, kept in scene context.
+- Align linked compact Source/Standard/Product caption paint/leading to the
+  recipe. No smaller font, desktop changes, engine/AMD or animation retiming.
+- Replay the same native scenario after managed preview; acceptance stays open.
+
 ## 2026-10-12 - Guide review2 native proof and approved compact phone candidate
 
 - Canonical178 passes12 continuous EN/FR Add/Move cases,1331 samples and six

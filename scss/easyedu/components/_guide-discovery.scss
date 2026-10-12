@@ -976,8 +976,12 @@
       .is-absent { background: var(--easyedu-surface); opacity: 0.7; }
       .is-removed { background: var(--easyedu-surface-soft); text-decoration: line-through; }
     }
-    &__unchanged-label--compact { display: none; }
+    &__unchanged-label--compact, &__expected-label--compact { display: none; }
     @media (max-width: 40rem) {
+      // Initial memberships are already explained by the scene's result
+      // paragraph. Do not repeat that sentence in compact resting chrome;
+      // playing/paused/finished narration remains visible and fully announced.
+      &__header[data-guide-playback-state="idle"] .easyedu-guide-scene__live-content { display: none; }
       // Approved mobile resting preview: changes on one compact text lane,
       // unchanged membership as a quiet caption. Playing/final results and
       // the complete desktop token strip retain their original presentation.
@@ -985,7 +989,10 @@
         gap: 0.25rem;
         margin-block: 0.5rem 0;
         > strong { flex-basis: 100%; white-space: normal; }
+        [data-guide-membership-title] { display: none; }
+        .easyedu-guide-scene__expected-label--compact { display: block; font-weight: var(--easyedu-font-weight-semibold); }
         > span {
+          @include typography.type-caption;
           display: inline;
           min-height: 0;
           padding: 0;

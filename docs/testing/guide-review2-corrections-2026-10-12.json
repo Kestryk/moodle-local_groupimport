@@ -10,7 +10,7 @@
   "testedSourceCommit": "5188f61f65408710641812306a7d60c54f6eddf0",
   "testedRuntimeCommit": "d0bea09b3eb8d959a813fe966b141d6b95109a0e",
   "humanAccepted": false,
-  "R2-5": "Kevin-decision-required-not-authorized",
+  "R2-5": "Kevin-approved-after178-proof; separate180-mobile-successor-pending",
   "baseline": {
     "runId": "easystud-authenticated-20261012T062909884Z-48920",
     "status": "failed-final-Escape-assertion-preserved",

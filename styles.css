@@ -17105,11 +17105,16 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   background: var(--easyedu-surface-soft);
   text-decoration: line-through;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__unchanged-label--compact,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__unchanged-label--compact {
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__unchanged-label--compact, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__expected-label--compact,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__unchanged-label--compact,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__expected-label--compact {
   display: none;
 }
 @media (max-width: 40rem) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=idle] .easyedu-guide-scene__live-content,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header[data-guide-playback-state=idle] .easyedu-guide-scene__live-content {
+    display: none;
+  }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview],
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] {
     gap: 0.25rem;
@@ -17120,8 +17125,23 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
     flex-basis: 100%;
     white-space: normal;
   }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-title],
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-title] {
+    display: none;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] .easyedu-guide-scene__expected-label--compact,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] .easyedu-guide-scene__expected-label--compact {
+    display: block;
+    font-weight: var(--easyedu-font-weight-semibold);
+  }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span {
+    font-family: var(--easyedu-font-family-ui);
+    font-weight: var(--easyedu-font-weight-regular);
+    letter-spacing: 0;
+    color: var(--easyedu-text-muted);
+    font-size: var(--easyedu-font-size-caption);
+    line-height: 1.4;
     display: inline;
     min-height: 0;
     padding: 0;
