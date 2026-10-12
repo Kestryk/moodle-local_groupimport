@@ -1,5 +1,14 @@
 # Guide engineering: current projection, not human acceptance
 
+New Claude12Oct supplement is retained in
+`claude-guide-paths-skeleton-intake-2026-10-12.md`. Priority now PG-S1 (modal
+highlight), then PG-A2/A1/A3, then browser diagnosis PG-A6. PG-A4/A5/A7 await
+Kevin; PG-A8 audited last. Prefix PG separates these from approved A1/A2/A3
+visual arbitrages. T037 reading requests remain pending, not discarded.
+Skeleton/load work requires I1–I13 before/after: T052 measured baseline → Kit/
+Foundations recipes → R10-16 local regions → T055 → T054 last/default-off flag.
+No per-click network or inferred completion; original61 scopes/human gates open.
+
 T037-A is technically verified:185/7728357, Source3d97eb0/runtime8b23583,
 native42796/60 cases (actual four scene entries, Add/Move, two languages,
 three widths and motion policies),16 isolated records and saved paired paint.
