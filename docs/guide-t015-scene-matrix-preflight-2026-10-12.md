@@ -49,6 +49,14 @@ global calculé pour une matrice, pas d'une hausse des délais individuels.
 Le budget se fixe après inventaire des phases/mesures des cas et respecte les
 durées réelles ; jamais une longue attente sans progression ou communication.
 
-Statut : préflight enregistré, pas de code produit ou de test natif T015 lancé.
-Le successeur T014/49364 est encore le propriétaire de la recette native.
+Successeur préparé : `tools/playwright/guide-t015-scene-matrix-native.spec.js`,
+scénario `T015 current four scenes across locale viewport media and Add Move`.
+Budget global1800s, watchdog borné ; progression/timings après chaque cas.
+Quatre navigations initiales (une par langue/média), puis vrais changements de
+viewport et de scène ; T014 conserve la preuve distincte des16 chargements initiaux.
+Le test reproduit les controles/densités/lifecycle de la référence et ajoute les
+deux modes, la vraie hauteur800 et la visibilité finale des appartenances.
+
+Statut : syntaxe/préflight passés, aucun code produit modifié ; exécution T015
+à lancer après checkpoint poussé. T014/49364 est terminé avec cleanup complet.
 Les preuves Penpot, source, native et humaine restent séparées ; checklist ouverte.

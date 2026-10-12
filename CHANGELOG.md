@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-12 - T015 current scene-matrix candidate
+
+- Prepare one QA-isolated read-only lifecycle scenario for the current four
+  timed entries, both Organiser modes, EN/FR and three widths/media preferences.
+- Retain the original18-kind scope while covering both Inspection entries:
+ 60 records, actual1280×800 final memberships and per-case progress/bounded budget.
+- No product assets/commands/Motion changed; native result remains pending.
+
 ## 2026-10-12 - T014 full native verification
 
 - Verify all16 EN/FR desktop/tablet/phone/narrow-phone normal/reduced cases on

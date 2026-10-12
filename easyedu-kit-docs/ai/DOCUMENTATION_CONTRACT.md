@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Scene matrices enumerate real current Start entries, not inert introduction
+specimens or historical kind counts. Cover both Inspection entities and Add/Move,
+normal lifecycle versus reduced static outcome, and actual1280x800 final view.
+Use QA storage/cleanup, retain historical oracles and measure bounded case costs;
+fewer initial GETs via real resize does not replace cold compact initialization.
+Lifecycle/endpoint proof does not certify every continuous illustrated target.
+
 Guide introduction specimens reuse real Small outline/control/vector recipes
 as inert spans, never button commands, target IDs, path exercises or tab stops.
 Preview captions identify them as examples; capability still controls Fullscreen.
