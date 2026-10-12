@@ -48,6 +48,12 @@ async function run(page, testInfo, expect) {
                         const chunks = [];
                         const gzip = response.headers['content-encoding'] === 'gzip';
                         const stream = gzip ? response.pipe(zlib.createGunzip()) : response;
+                        const referenceGzip = surface === 'manage' && !gzip ? zlib.createGzip() : null;
+                        let referenceGzipBytes = 0;
+                        if (referenceGzip) {
+                            referenceGzip.on('data', chunk => { referenceGzipBytes += chunk.length; });
+                            stream.pipe(referenceGzip);
+                        }
                         response.on('data', chunk => {wireBytes += chunk.length;});
                         stream.on('data', chunk => {rawBytes += chunk.length; if (surface === 'state') chunks.push(chunk);});
                         stream.on('error', error => {
@@ -56,9 +62,13 @@ async function run(page, testInfo, expect) {
                                 rawBytes, encodedBodyBytes: wireBytes, httpMs: performance.now() - start,
                                 incompleteResponse: true, transportError: error.message});
                         });
-                        stream.on('end', () => resolve({surface, sample: i, requestId, status: response.statusCode,
+                        const finish = () => resolve({surface, sample: i, requestId, status: response.statusCode,
                             gzip, rawBytes, encodedBodyBytes: wireBytes, httpMs: performance.now() - start,
+                            ...(referenceGzip ? {calculatedGzipBytes: referenceGzipBytes,
+                                gzipScope: 'Client stream compression estimate, not Apache transfer'} : {}),
                             ...(surface === 'state' ? {response: JSON.parse(Buffer.concat(chunks).toString('utf8'))} : {})}));
+                        if (referenceGzip) referenceGzip.on('end', finish);
+                        else stream.on('end', finish);
                     });
                     request.setTimeout(360000, () => request.destroy(new Error('Owned Perf HTTP timeout')));
                     request.on('error', reject);
