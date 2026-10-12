@@ -16,7 +16,7 @@ if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
 }
-$options = getopt('', ['moodle-root:', 'manifest:', 'output:', 'case:', 'service-root:', 'defer-details', 'help']);
+$options = getopt('', ['moodle-root:', 'manifest:', 'output:', 'case:', 'service-root:', 'entry-root:', 'defer-details', 'help']);
 if (isset($options['help'])) {
     echo "--moodle-root PATH --manifest EXTERNAL.json --output EXTERNAL.json --case " .
         "manage|course-state|addemails|duplicategroup|deletegroupings|movemembers|import-preview|rollback\n";
@@ -61,6 +61,17 @@ if (!$manifest['complete']) {
 // persisted configuration remain untouched; these are native API candidate
 // measurements, never claimed as a deployed localhost implementation.
 $candidate = null;
+$entrycandidate = null;
+if (isset($options['entry-root'])) {
+    $entrycandidate = realpath($options['entry-root']);
+    if (!$entrycandidate || !is_file($entrycandidate . '/ajax.php') || !is_file($entrycandidate . '/index.php')) {
+        throw new RuntimeException('Invalid explicit entry-point source.');
+    }
+    if (is_file($entrycandidate . '/classes/local/batch_reader.php')) {
+        require_once($entrycandidate . '/classes/local/batch_reader.php');
+    }
+    require_once($entrycandidate . '/classes/service/membership_transfer.php');
+}
 if (isset($options['service-root'])) {
     $candidate = realpath($options['service-root']);
     if (!$candidate || !is_file($candidate . '/version.php') ||
@@ -188,7 +199,7 @@ ob_start();
 $outcome = ['passed' => false];
 $failure = null;
 register_shutdown_function(static function() use (&$outcome, &$failure, $start, $reads, $writes, $querytime,
-        $bufferlevel, $options, $case, &$cleanup, $manifest, $expected, $cache, $candidate): void {
+        $bufferlevel, $options, $case, &$cleanup, $manifest, $expected, $cache, $candidate, $entrycandidate): void {
     global $DB;
     $elapsed = (microtime(true) - $start) * 1000;
     $measuredreads = $DB->perf_get_reads() - $reads;
@@ -208,6 +219,14 @@ register_shutdown_function(static function() use (&$outcome, &$failure, $start, 
         if ($case === 'duplicategroup' && !empty($response['group']['id'])) {
             $cleanup['groups'][] = (int)$response['group']['id'];
             $outcome['members'] = count($response['group']['members'] ?? []);
+            $generatedid = $response['group']['id'];
+            $response['group']['id'] = 'generated-group';
+            $response['group']['nativeurl'] = preg_replace('/([?&]id=)' . $generatedid . '(?=&|$)/',
+                '$1generated-group', $response['group']['nativeurl']);
+            foreach ($response['group']['members'] as &$member) {
+                $member['selectableid'] = 'generated-group:' . $member['userid'];
+            }
+            unset($member);
         } else if ($case === 'addemails') {
             $outcome['added'] = count($response['users'] ?? []);
             $outcome['missing'] = count($response['missing'] ?? []);
@@ -218,6 +237,22 @@ register_shutdown_function(static function() use (&$outcome, &$failure, $start, 
             $outcome['deleted'] = 0;
             foreach ($cleanup['groupings'] as $id) {
                 $outcome['deleted'] += !$DB->record_exists('groupings', ['id' => $id]);
+            }
+        }
+    }
+    if (in_array($case, ['addemails', 'duplicategroup', 'deletegroupings', 'movemembers'], true)) {
+        $outcome['functional'] = ['response' => $response];
+        if (in_array($case, ['addemails', 'movemembers', 'duplicategroup'], true) && $outcome['passed']) {
+            $destinationid = $case === 'duplicategroup' ? $generatedid : $cleanup['groups'][0];
+            $memberids = $DB->get_fieldset_select('groups_members', 'userid', 'groupid = :groupid',
+                ['groupid' => $destinationid]);
+            sort($memberids, SORT_NUMERIC);
+            $outcome['functional']['destinationMembers'] = array_map('intval', $memberids);
+            if ($case === 'movemembers') {
+                $memberids = $DB->get_fieldset_select('groups_members', 'userid', 'groupid = :groupid',
+                    ['groupid' => $cleanup['groups'][1]]);
+                sort($memberids, SORT_NUMERIC);
+                $outcome['functional']['sourceMembers'] = array_map('intval', $memberids);
             }
         }
     }
@@ -252,6 +287,7 @@ register_shutdown_function(static function() use (&$outcome, &$failure, $start, 
         'peakMemoryBytes' => memory_get_peak_usage(true), 'outcome' => $outcome,
         'cacheSettings' => $cache, 'failure' => $failure,
         'sourceCandidate' => $candidate !== null, 'detailsDeferredInProcess' => isset($options['defer-details']),
+        'entryCandidate' => $entrycandidate !== null,
     ];
     if ($case === 'manage') {
         require_once(__DIR__ . '/decompose.php');
@@ -325,14 +361,40 @@ try {
         $outcome = ['passed' => !in_array(false, $checks, true), 'checks' => $checks];
         echo json_encode($outcome, JSON_THROW_ON_ERROR);
     } else {
-        require($CFG->dirroot . '/local/groupimport/' . $entry);
+        if ($entrycandidate === null) {
+            require($CFG->dirroot . '/local/groupimport/' . $entry);
+        } else {
+            // Actual candidate entry in an isolated worker; only magic paths
+            // point to the already bootstrapped native runtime. No file writes.
+            $rewritten = '';
+            foreach (token_get_all(file_get_contents($entrycandidate . '/' . $entry)) as $token) {
+                if (is_array($token) && $token[0] === T_OPEN_TAG) {
+                    continue;
+                }
+                if (is_array($token) && $token[0] === T_DIR) {
+                    $rewritten .= var_export($CFG->dirroot . '/local/groupimport', true);
+                } else if (is_array($token) && $token[0] === T_FILE) {
+                    $rewritten .= var_export($CFG->dirroot . '/local/groupimport/' . $entry, true);
+                } else {
+                    $rewritten .= is_array($token) ? $token[1] : $token;
+                }
+            }
+            eval($rewritten);
+        }
         if ($case === 'manage') {
             $outcome = ['passed' => true];
         } else if ($case === 'import-preview') {
-            $outcome = ['passed' => isset($preview['rows']), 'rows' => count($preview['rows'] ?? [])];
+            $outcome = ['passed' => isset($preview['rows']), 'rows' => count($preview['rows'] ?? []),
+                'functional' => ['rows' => $preview['rows'] ?? [], 'messages' => $preview['messages'] ?? [],
+                    'errors' => $errors, 'success' => $success]];
         } else if ($case === 'rollback') {
             $outcome = ['passed' => empty($errors), 'restored' => $DB->count_records('groups_members',
                 ['groupid' => $cleanup['groups'][0]])];
+            $memberids = $DB->get_fieldset_select('groups_members', 'userid', 'groupid = :groupid',
+                ['groupid' => $cleanup['groups'][0]]);
+            sort($memberids, SORT_NUMERIC);
+            $outcome['functional'] = ['errors' => $errors, 'success' => $success,
+                'members' => array_map('intval', $memberids)];
         }
     }
 } catch (Throwable $exception) {

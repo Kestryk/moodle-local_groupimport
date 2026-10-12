@@ -62,6 +62,8 @@ final class membership_transfer {
         $transaction = $DB->start_delegated_transaction();
         try {
             $pairs = [];
+            $enrolled = \local_groupimport\local\batch_reader::enrolled($context);
+            [$memberships] = \local_groupimport\local\batch_reader::relationships($courseid);
             // Validate the whole request before emitting any native membership mutation.
             foreach ($members as $member) {
                 if (!is_array($member)) {
@@ -82,7 +84,7 @@ final class membership_transfer {
                 if (!$origin || (int)$origin->courseid !== $courseid) {
                     throw new \moodle_exception('invalidgroupid', 'error');
                 }
-                if (!groups_is_member($groupid, $userid) || !is_enrolled($context, $userid)) {
+                if (!isset($memberships[$groupid][$userid]) || !isset($enrolled[$userid])) {
                     throw new \moodle_exception('invaliddata', 'error');
                 }
                 if ($groupid !== $destinationid && !groups_remove_member_allowed($origin, $userid)) {
@@ -97,13 +99,14 @@ final class membership_transfer {
                     $result['unchanged']++;
                     continue;
                 }
-                if (!groups_is_member($destinationid, $pair['userid'])) {
+                if (!isset($memberships[$destinationid][$pair['userid']])) {
                     // Moodle may return false without throwing (for example, unenrolment).
                     // Never remove the origin unless native destination creation succeeded.
                     if (!groups_add_member($destination, $pair['userid'])) {
                         throw new \moodle_exception('invaliddata', 'error');
                     }
                     $result['added']++;
+                    $memberships[$destinationid][$pair['userid']] = true;
                 }
                 if (!groups_remove_member($pair['groupid'], $pair['userid'])) {
                     throw new \moodle_exception('invaliddata', 'error');

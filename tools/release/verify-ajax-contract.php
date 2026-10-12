@@ -6,6 +6,7 @@ define('MUST_EXIST', true);
 define('SQL_PARAMS_NAMED', true);
 
 $root = dirname(__DIR__, 2);
+require_once($root . '/classes/local/batch_reader.php');
 $source = file_get_contents($root . '/ajax.php');
 $start = strpos($source, "\ntry {");
 $end = strpos($source, "\nheader('Content-Type:", $start);

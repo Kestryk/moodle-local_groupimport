@@ -417,6 +417,42 @@ function local_groupimport_find_import_user(string $identifier, array &$errors):
     return null;
 }
 
+/** Batch import matching; unlike pasted IDs, import compares every enabled field. */
+function local_groupimport_find_import_users(array $identifiers): array {
+    $identifiers = array_values(array_unique($identifiers));
+    $matches = array_fill_keys($identifiers, []);
+    foreach (local_groupimport_get_allowed_import_userfields() as $field => $label) {
+        $values = [];
+        foreach ($identifiers as $identifier) {
+            $values[$identifier] = $field === 'email'
+                ? strtolower(preg_replace('/\s+/u', '', $identifier)) : $identifier;
+        }
+        $custom = strpos($field, 'profile_field_') === 0;
+        $fieldmatches = \local_groupimport\local\batch_reader::users(array_values($values),
+            $custom ? 'profile' : $field, $custom ? [substr($field, strlen('profile_field_'))] : []);
+        foreach ($values as $identifier => $value) {
+            $users = $fieldmatches[$value] ?? [];
+            // Retain the original two-row limit and database first-row behavior
+            // for exceptional non-unique core/profile values.
+            if (count($users) > 1) {
+                $users = local_groupimport_find_import_users_by_field((string)$identifier, $field);
+            }
+            foreach ($users as $user) {
+                $matches[$identifier][$user->id] = $user;
+            }
+        }
+    }
+    $result = [];
+    foreach ($matches as $identifier => $users) {
+        $result[$identifier] = ['user' => count($users) === 1 ? reset($users) : null, 'errors' => []];
+        if (count($users) !== 1) {
+            $result[$identifier]['errors'][] = get_string(count($users) > 1
+                ? 'userautomaticmultiplematches' : 'userautomaticnotfound', 'local_groupimport', $identifier);
+        }
+    }
+    return $result;
+}
+
 /**
  * Validate preview rows for user feedback before final confirmation.
  *
@@ -428,6 +464,24 @@ function local_groupimport_validate_preview_rows(array $rows, context_course $co
     global $DB;
 
     $messages = [];
+    $identifiers = [];
+    $groupnames = [];
+    $groupingnames = [];
+    foreach ($rows as $row) {
+        $identifier = local_groupimport_clean_cell((string)($row['identifier'] ?? ''));
+        $groupname = local_groupimport_clean_cell((string)($row['groupname'] ?? ''));
+        if ($identifier !== '' && $groupname !== '') {
+            $identifiers[] = $identifier;
+            $groupnames[] = $groupname;
+            $groupingnames[] = local_groupimport_clean_cell((string)($row['groupingname'] ?? ''));
+        }
+    }
+    $resolved = local_groupimport_find_import_users($identifiers);
+    $enrolled = \local_groupimport\local\batch_reader::enrolled($context);
+    $groups = \local_groupimport\local\batch_reader::names('groups', (int)$context->instanceid, $groupnames);
+    $groupings = \local_groupimport\local\batch_reader::names('groupings', (int)$context->instanceid,
+        array_filter($groupingnames, static fn(string $name): bool => $name !== ''));
+    [$members, $assignments] = \local_groupimport\local\batch_reader::relationships((int)$context->instanceid);
 
     foreach ($rows as $index => $row) {
         $rowmessages = [];
@@ -438,27 +492,27 @@ function local_groupimport_validate_preview_rows(array $rows, context_course $co
         if ($identifier === '' || $groupname === '') {
             $rowmessages[] = get_string('csvinvalidrowmissing', 'local_groupimport');
         } else {
-            $lookupmessages = [];
-            $user = local_groupimport_find_import_user($identifier, $lookupmessages);
+            $lookupmessages = $resolved[$identifier]['errors'];
+            $user = $resolved[$identifier]['user'];
             if (!$user) {
                 $rowmessages = array_merge($rowmessages, $lookupmessages);
-            } else if (!is_enrolled($context, $user->id)) {
+            } else if (!isset($enrolled[$user->id])) {
                 $rowmessages[] = get_string('usernotenrolled', 'local_groupimport', $identifier);
             } else {
-                $groupid = groups_get_group_by_name($context->instanceid, $groupname);
-                if ($groupid && groups_is_member($groupid, $user->id)) {
+                $groupmatches = $groups[$groupname] ?? [];
+                $groupid = count($groupmatches) > 1 ? groups_get_group_by_name($context->instanceid, $groupname) :
+                    ($groupmatches[0]->id ?? false);
+                if ($groupid && isset($members[$groupid][$user->id])) {
                     $rowmessages[] = get_string('previewuseralreadyingroup', 'local_groupimport');
                 }
 
                 if ($groupid && $groupingname !== '') {
-                    $groupingid = $DB->get_field('groupings', 'id', [
+                    $groupingmatches = $groupings[$groupingname] ?? [];
+                    $groupingid = count($groupingmatches) > 1 ? $DB->get_field('groupings', 'id', [
                         'courseid' => $context->instanceid,
                         'name' => $groupingname,
-                    ]);
-                    if ($groupingid && $DB->record_exists('groupings_groups', [
-                        'groupingid' => $groupingid,
-                        'groupid' => $groupid,
-                    ])) {
+                    ]) : ($groupingmatches[0]->id ?? false);
+                    if ($groupingid && isset($assignments[$groupid][$groupingid])) {
                         $rowmessages[] = get_string('previewgroupalreadyingrouping', 'local_groupimport');
                     }
                 }
@@ -606,7 +660,6 @@ function local_groupimport_process_import_rows(
     ];
     $targetmembers = [];
     $targetgroupings = [];
-
     foreach ($rows as $row) {
         $identifier = local_groupimport_clean_cell((string)($row['identifier'] ?? ''));
         $groupname = local_groupimport_clean_cell((string)($row['groupname'] ?? ''));
@@ -832,48 +885,78 @@ function local_groupimport_rollback_import(stdClass $history, int $userid): stdC
 
     $targetmembers = [];
     $targetgroupings = [];
+    $memberids = array_map(static fn(array $row): int => (int)($row['userid'] ?? 0), $desiredstate);
+    $existingusers = \local_groupimport\local\batch_reader::records('user', $memberids, [], 'id');
+    $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
+    $groupnames = array_map(static fn(array $row): string =>
+        clean_param((string)($row['groupname'] ?? ''), PARAM_TEXT), $desiredstate);
+    $groupingnames = array_map(static fn(array $row): string =>
+        clean_param((string)($row['groupingname'] ?? ''), PARAM_TEXT), $desiredstate);
+    $groups = \local_groupimport\local\batch_reader::names('groups', (int)$history->courseid, $groupnames);
+    $groupings = \local_groupimport\local\batch_reader::names('groupings', (int)$history->courseid, $groupingnames);
+    [$members, $assignments] = \local_groupimport\local\batch_reader::relationships((int)$history->courseid);
+    $createdgroups = false;
+    $createdgroupings = false;
     foreach ($desiredstate as $row) {
         $memberid = (int)($row['userid'] ?? 0);
         $groupname = clean_param((string)($row['groupname'] ?? ''), PARAM_TEXT);
         $groupingname = clean_param((string)($row['groupingname'] ?? ''), PARAM_TEXT);
-        if (!$memberid || $groupname === '' || !$DB->record_exists('user', ['id' => $memberid]) ||
-                !is_enrolled($context, $memberid)) {
+        if (!$memberid || $groupname === '' || !isset($existingusers[$memberid]) ||
+                !isset($enrolledusers[$memberid])) {
             $result->skipped++;
             continue;
         }
 
-        $groupid = groups_get_group_by_name((int)$history->courseid, $groupname);
+        $groupmatches = $groups[$groupname] ?? [];
+        $groupid = count($groupmatches) > 1 ? groups_get_group_by_name((int)$history->courseid, $groupname) :
+            ($groupmatches[0]->id ?? false);
+        // Native group lookup uses PHP equality, including numeric-name aliases.
+        // Newly created names were absent from the original snapshot.
+        if (!$groupid && $createdgroups) {
+            $groupid = groups_get_group_by_name((int)$history->courseid, $groupname);
+        }
         if (!$groupid) {
             $groupid = groups_create_group((object)[
                 'courseid' => (int)$history->courseid,
                 'name' => $groupname,
             ]);
             $result->groups++;
+            $createdgroups = true;
         }
+        $groups[$groupname] = [(object)['id' => $groupid]];
         $targetmembers[$groupid][$memberid] = true;
 
-        if (!groups_is_member($groupid, $memberid)) {
-            groups_add_member($groupid, $memberid);
+        if (!isset($members[$groupid][$memberid])) {
+            if (groups_add_member($groupid, $memberid)) {
+                $members[$groupid][$memberid] = true;
+            }
             $result->members++;
         }
 
         if ($groupingname === '') {
             continue;
         }
-        $groupingid = $DB->get_field('groupings', 'id', [
+        $groupingmatches = $groupings[$groupingname] ?? [];
+        $groupingid = count($groupingmatches) > 1 ? $DB->get_field('groupings', 'id', [
             'courseid' => (int)$history->courseid,
             'name' => $groupingname,
-        ]);
+        ]) : ($groupingmatches[0]->id ?? false);
+        if (!$groupingid && $createdgroupings) {
+            $groupingid = $DB->get_field('groupings', 'id', ['courseid' => (int)$history->courseid, 'name' => $groupingname]);
+        }
         if (!$groupingid) {
             $groupingid = groups_create_grouping((object)[
                 'courseid' => (int)$history->courseid,
                 'name' => $groupingname,
             ]);
             $result->groupings++;
+            $createdgroupings = true;
         }
+        $groupings[$groupingname] = [(object)['id' => $groupingid]];
         $targetgroupings[$groupid][$groupingid] = true;
-        if (!$DB->record_exists('groupings_groups', ['groupingid' => $groupingid, 'groupid' => $groupid])) {
+        if (!isset($assignments[$groupid][$groupingid])) {
             groups_assign_grouping($groupingid, $groupid);
+            $assignments[$groupid][$groupingid] = true;
             $result->assignments++;
         }
     }

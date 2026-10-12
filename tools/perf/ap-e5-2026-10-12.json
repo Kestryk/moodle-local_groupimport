@@ -1,0 +1,29 @@
+{
+  "lot": "AP-E5",
+  "level": 0,
+  "runtimeUrl": "http://localhost:8051",
+  "beforeHead": "5d3f41c2183583690a20ca26665959404146210c",
+  "candidateSourceHashes": {
+    "ajax.php": "8b2f477fb9da14f96112836f1984028b3aa6dc4fa4bb29cd7bda31960c6b33af",
+    "index.php": "618a9088001cc96d60ba3ab9c8e091d600adf3050484539f0dc6c4f60ae59ddd",
+    "classes/local/batch_reader.php": "0b9f2d3f5585ea8ecb1487215a7ca13f38cfd4458b2ac66247f2d692eb9f38aa",
+    "classes/service/membership_transfer.php": "dbc276b8ff2b90408a0c339a9c34887d5f20e1483e43cd7c4cd55195ed838966"
+  },
+  "fixture": {"participants": 800, "groups": 150, "groupings": 40},
+  "comparisons": [
+    {"surface": "addemails", "equal": true, "beforeReads": 605, "afterReads": 508, "beforeMs": 898.500, "afterMs": 664.494},
+    {"surface": "duplicategroup", "equal": true, "beforeReads": 131, "afterReads": 130, "beforeMs": 333.459, "afterMs": 310.571},
+    {"surface": "deletegroupings", "equal": true, "beforeReads": 24, "afterReads": 15, "beforeMs": 56.824, "afterMs": 70.812},
+    {"surface": "movemembers", "equal": true, "beforeReads": 907, "afterReads": 661, "beforeMs": 1311.075, "afterMs": 1081.199},
+    {"surface": "import-preview", "equal": true, "beforeReads": 14124, "afterReads": 114, "beforeMs": 11015.750, "afterMs": 3695.548},
+    {"surface": "rollback", "equal": true, "beforeReads": 657, "afterReads": 463, "beforeMs": 1919.659, "afterMs": 1610.167}
+  ],
+  "nativeEdgeChecks": {"passed": 141, "failed": 0, "temporaryMutationsRolledBack": true},
+  "isolatedAjaxContractChecks": {"passed": 82, "failed": 0},
+  "cleanupComplete": true,
+  "preExistingRelationshipsUnchanged": true,
+  "normalization": "Only generated duplicate-group ID, native URL and member selectable IDs; all existing IDs and messages exact",
+  "scope": "Native PHP before/after; no new browser paint/readiness or human acceptance",
+  "raw": "C:/dev/artifacts/easystud-perf-server-20261012/ap-e5/candidate-final/easystud-t052-f492aaf9d0c84a29838390231751bf8d-baseline.json",
+  "cleanup": "C:/dev/artifacts/easystud-perf-server-20261012/ap-e5/candidate-final/easystud-t052-f492aaf9d0c84a29838390231751bf8d-fixture.json"
+}
