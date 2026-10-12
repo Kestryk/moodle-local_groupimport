@@ -40,8 +40,14 @@ if (!$root || !is_file($root . '/config.php')) {
 // Follow actual web output instead of cli_renderer. This script is CLI-only.
 define('CLI_SCRIPT', false);
 define('NO_MOODLE_COOKIES', true);
-$_SERVER['HTTP_HOST'] = 'localhost';
-$_SERVER['SERVER_PORT'] = '80';
+$measurementurl = getenv('EASYEDU_MOODLE_URL') ?: 'http://localhost';
+$measurementhost = parse_url($measurementurl, PHP_URL_HOST);
+if (!in_array($measurementhost, ['localhost', '127.0.0.1', '::1'], true)) {
+    throw new RuntimeException('Measurements require an explicit local URL.');
+}
+$measurementport = parse_url($measurementurl, PHP_URL_PORT) ?: 80;
+$_SERVER['HTTP_HOST'] = $measurementhost . ($measurementport === 80 ? '' : ':' . $measurementport);
+$_SERVER['SERVER_PORT'] = (string)$measurementport;
 $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
 $_SERVER['REQUEST_METHOD'] = 'GET';

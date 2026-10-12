@@ -252,7 +252,20 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
             confirmButton.textContent===(type==='participant'?'Add':selectedCount===1?'Move selected item':'Move selected items'));
     }
     const oldManager=execFileSync('git',['show','1e32048:amd/src/course_manager.js'],{cwd:rootPath,encoding:'utf8',maxBuffer:2e6});
-    const restoredManager=source.replace(/\r\n/g,'\n').replace("    const title = modal.querySelector('.easyedu-modal-title');\n    const moveTitle = title?.textContent || '';\n",'')
+    const normalizedManager=source.replace(/\r\n/g,'\n');
+    const producerManager=execFileSync('git',['show','ad62069:amd/src/course_manager.js'],{cwd:rootPath,encoding:'utf8',maxBuffer:2e6}).replace(/\r\n/g,'\n');
+    check('SM2a complete controller matches approved producer',normalizedManager===producerManager);
+    const smStart=normalizedManager.indexOf('// Initialise the manager.\n/**\n * SM-RENDU:'),
+        smEnd=normalizedManager.indexOf('export const init =',smStart);
+    check('SM2a bounded initialization helper',smStart>=0&&smEnd>smStart);
+    const preSmManager=normalizedManager.slice(0,smStart)+'// Initialise the manager.\n'+normalizedManager.slice(smEnd);
+    const restoredManager=preSmManager
+        .replace("import Log from 'core/log';\n",'')
+        .replace("import {createStore} from './local/sm/store';\n",'')
+        .replace("import {buildParticipantIndex, filterParticipantIds} from './local/sm/index';\n",'')
+        .replace('export const init = (rootId, courseId, options = {}) => {','export const init = (rootId, courseId) => {')
+        .replace("        if (options && options.renderingmode === 'reactive') {\n            runSafely(() => startOnDemandState(root, courseId));\n        }\n",'')
+        .replace("    const title = modal.querySelector('.easyedu-modal-title');\n    const moveTitle = title?.textContent || '';\n",'')
         .replace("        if (title) { title.textContent = type === 'participant' ? (labels.addparticipanttitle || moveTitle) : moveTitle; }\n",'')
         .replace("confirmButton.textContent = type === 'participant' ? (labels.addparticipantconfirm || '') : selectedCount === 1 ?",'confirmButton.textContent = selectedCount === 1 ?');
     check('Every native course command unchanged by approved copy',restoredManager.replace(/\r\n/g,'\n')===oldManager.replace(/\r\n/g,'\n'));

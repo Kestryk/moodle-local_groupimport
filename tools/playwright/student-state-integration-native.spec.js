@@ -4,10 +4,10 @@ const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 const crypto=require('node:crypto');
 
-async function login(page,path){
+async function login(page,path,language='fr'){
     const base=new URL(process.env.EASYEDU_MOODLE_URL);
     if(!['localhost','127.0.0.1'].includes(base.hostname))throw Error('Local Moodle only');
-    const url=new URL(path,base);url.searchParams.set('lang','fr');
+    const url=new URL(path,base);url.searchParams.set('lang',language);
     await page.goto(url.href,{waitUntil:'domcontentloaded'});
     if(page.url().includes('/login/')){
         await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
@@ -95,4 +95,67 @@ test('SM schema upgrade through the native Moodle admin page',async({page},info)
     expect(stages.length).toBeGreaterThan(0);
     expect(body).not.toMatch(/Exception -|Coding error detected|Erreur de programmation|DDL sql execution error/);
     // Persisted version/table/function checks are verified read-only in PHP after this test.
+});
+
+test('Grouped server lots preserve legacy view settings and CSV preview',async({page},info)=>{
+    test.setTimeout(240000);
+    if(!process.env.EASYEDU_SM_BASELINE)throw Error('Explicit external baseline JSON required');
+    const before=JSON.parse(fs.readFileSync(process.env.EASYEDU_SM_BASELINE,'utf8'));
+    const actual=await pageProof(page,info);
+    expect(actual.counts).toEqual(before.counts);expect(actual.textHash).toBe(before.textHash);
+    expect(actual.geometry.length).toBe(before.geometry.length);
+    actual.geometry.forEach((row,index)=>{
+        for(const key of ['x','y','width','height'])expect(Math.abs(row[key]-before.geometry[index][key])).toBeLessThanOrEqual(1);
+        for(const key of ['font','size','color'])expect(row[key]).toBe(before.geometry[index][key]);
+    });
+    const writes=[],errors=[],settings=[];let csvPreview=false,draftRemoved=false;
+    page.on('pageerror',e=>errors.push(e.message));
+    page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+    try{
+        for(const language of ['fr','en']){
+            await login(page,'/admin/settings.php?section=local_groupimport',language);
+            await expect(page.locator('html')).toHaveAttribute('lang',language);
+            const field=page.locator('select[name="s_local_groupimport_renderingmode"]');
+            await expect(field).toHaveValue('legacy');
+            const options=await field.locator('option').allTextContents();
+            expect(options).toEqual(language==='fr'?['Actuel','À la demande (aperçu)']:['Current','On demand (preview)']);
+            settings.push({language,value:await field.inputValue(),options});
+        }
+        // Replace the read-only page guard only for the owned picker upload and
+        // preview POST. A confirmed import/rollback stays blocked absolutely.
+        await page.unroute('**/local/groupimport/**');
+        await page.route('**/local/groupimport/**',route=>{
+            const request=route.request(),data=request.postData()||'';
+            if(request.method()!=='GET'){
+                if(/(?:confirmimport|rollbackhistoryid|action)=/.test(data)){writes.push('blocked course command');return route.abort();}
+                writes.push({path:new URL(request.url()).pathname,kind:'draft-or-preview'});
+            }
+            return route.continue();
+        });
+        await login(page,'/local/groupimport/index.php?id=5');
+        const root=page.locator('#local-groupimport-import');
+        await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+        await root.locator('.fp-btn-choose').click();
+        await page.locator('.fp-upload-form input[type="file"]').waitFor({state:'attached'}).catch(async()=>{
+            await page.getByText(/^(Déposer un fichier|Upload a file)$/).click();
+        });
+        await page.locator('.fp-upload-form input[type="file"]').setInputFiles({name:'server-integration-qa.csv',mimeType:'text/csv',
+            buffer:Buffer.from('student;group;grouping\ntest.etudiant.01@example.com;Integration QA;Integration QA\nunknown.integration@example.invalid;Integration QA;Integration QA')});
+        await page.locator('.fp-upload-btn').click();
+        await expect(root.locator('.filepicker-filename')).toContainText('server-integration-qa.csv',{timeout:30000});
+        await root.locator('.local-groupimport-import-card--upload [type="submit"]').click();
+        await expect(root).toHaveClass(/has-preview/,{timeout:60000});
+        await expect(root.locator('.local-groupimport-import-preview__table')).toBeVisible();
+        csvPreview=true;
+        await page.screenshot({path:info.outputPath('csv-preview-fr1280.png')});
+        await root.locator('[data-local-groupimport-upload-toggle]').click();
+        const remove=root.locator('.easyedu-file-deposit__remove');
+        await expect(remove).toBeVisible();await remove.click();
+        await expect(root.locator('.easyedu-file-deposit__selected-file')).toHaveCount(0,{timeout:15000});
+        draftRemoved=true;
+        expect(errors).toEqual([]);expect(writes).not.toContain('blocked course command');
+    }finally{
+        fs.writeFileSync(info.outputPath('grouped-server-native.json'),JSON.stringify({surface:'grouped-server-preview',niveau:1,
+            legacyViewCompared:true,settings,csvPreview,draftRemoved,errors,writes,importConfirmed:false},null,2));
+    }
 });

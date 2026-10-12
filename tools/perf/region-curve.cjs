@@ -8,10 +8,11 @@ async function run(page, testInfo, expect) {
     const manifestPath = process.env.EASYEDU_PERF_MANIFEST;
     const fixture = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     const runtime = path.join(process.env.EASYEDU_PERF_MOODLE_ROOT, 'local', 'groupimport');
-    const head = spawnSync('git', ['-C', runtime, 'rev-parse', 'HEAD'], {encoding: 'utf8'});
+    const identity = require('./runtime-identity.cjs').read(runtime);
     const result = {lot: 'T052-bis', participants: fixture.userIds.length,
         groups: fixture.groupIds.length, groupings: fixture.groupingIds.length,
-        mode: process.env.EASYEDU_PERF_MODE, runtimeHead: head.stdout.trim(), server: [],
+        mode: process.env.EASYEDU_PERF_MODE, runtimeHead: identity.head,
+        deployment: identity.deployment, runtimeUrl: process.env.EASYEDU_MOODLE_URL, server: [],
         runtimeHashes: Object.fromEntries(['manage.php', 'templates/manage.mustache', 'amd/build/course_manager.min.js',
             'classes/service/course_structure.php'].map(file => [file,
             createHash('sha256').update(fs.readFileSync(path.join(runtime, file))).digest('hex')])),
