@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] Grouped server proof: required legacy-view/FR-EN setting/CSV preview checks pass with no console errors; retain cleanup-only UI failure, verify/remove exact QA draft and correct the harness's fresh-picker assumption without changing product code.
+
 - 2026-10-12 [N1] Group validated AP-E6/AP-E5/SM2a and QA successor for localhost; retain complete Perf-copy tooling/guards, legacy rendering mode and committed AMD, extend the existing integration surface for FR/EN settings and unconfirmed CSV preview.
 
 - 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.

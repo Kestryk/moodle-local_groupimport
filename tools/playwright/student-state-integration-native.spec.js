@@ -108,7 +108,7 @@ test('Grouped server lots preserve legacy view settings and CSV preview',async({
         for(const key of ['x','y','width','height'])expect(Math.abs(row[key]-before.geometry[index][key])).toBeLessThanOrEqual(1);
         for(const key of ['font','size','color'])expect(row[key]).toBe(before.geometry[index][key]);
     });
-    const writes=[],errors=[],settings=[];let csvPreview=false,draftRemoved=false;
+    const writes=[],errors=[],settings=[];let csvPreview=false,freshPickerEmpty=false,draftId=null;
     page.on('pageerror',e=>errors.push(e.message));
     page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
     try{
@@ -143,19 +143,21 @@ test('Grouped server lots preserve legacy view settings and CSV preview',async({
             buffer:Buffer.from('student;group;grouping\ntest.etudiant.01@example.com;Integration QA;Integration QA\nunknown.integration@example.invalid;Integration QA;Integration QA')});
         await page.locator('.fp-upload-btn').click();
         await expect(root.locator('.filepicker-filename')).toContainText('server-integration-qa.csv',{timeout:30000});
+        draftId=await root.locator('input[name="importfile"]').inputValue();
         await root.locator('.local-groupimport-import-card--upload [type="submit"]').click();
         await expect(root).toHaveClass(/has-preview/,{timeout:60000});
         await expect(root.locator('.local-groupimport-import-preview__table')).toBeVisible();
         csvPreview=true;
         await page.screenshot({path:info.outputPath('csv-preview-fr1280.png')});
         await root.locator('[data-local-groupimport-upload-toggle]').click();
-        const remove=root.locator('.easyedu-file-deposit__remove');
-        await expect(remove).toBeVisible();await remove.click();
-        await expect(root.locator('.easyedu-file-deposit__selected-file')).toHaveCount(0,{timeout:15000});
-        draftRemoved=true;
+        // Preview returns a new empty upload form. Its previous draft is not a
+        // selected file in this form; exact external draft cleanup follows the run.
+        await expect(root.locator('.filepicker-filename a')).toHaveCount(0);
+        freshPickerEmpty=true;
         expect(errors).toEqual([]);expect(writes).not.toContain('blocked course command');
     }finally{
         fs.writeFileSync(info.outputPath('grouped-server-native.json'),JSON.stringify({surface:'grouped-server-preview',niveau:1,
-            legacyViewCompared:true,settings,csvPreview,draftRemoved,errors,writes,importConfirmed:false},null,2));
+            legacyViewCompared:true,settings,csvPreview,freshPickerEmpty,draftId,
+            draftCleanup:'exact owned-draft external verification required',errors,writes,importConfirmed:false},null,2));
     }
 });
