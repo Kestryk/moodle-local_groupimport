@@ -1,135 +1,140 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
-// Local supervised: actual Moodle template and built controller. No fixtures,
-// no Create/Move/Send or preference request. Route policy fails on unexpected writes.
-test('Guide G10 playback pause resume next and departure', async({page}, info) => {
-    test.setTimeout(240000);
-    const rows = [], errors = [], blocked = [];
-    page.on('pageerror', error => errors.push(error.message));
-    await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
-    if (page.url().includes('/login/')) {
+// One playback surface, actual Moodle assets, no business writes.
+// QA command injection covers retained legacy Reset/mode handlers;
+// it does not claim the current manual-start template exposes Reset.
+test('Guide playback interruption reading and close lifecycle', async ({page}, info) => {
+    test.setTimeout(720000);
+    const rows=[], errors=[], blocked=[];
+    page.on('pageerror',error=>errors.push(error.message));
+    const url=new URL(process.env.EASYEDU_MOODLE_URL);url.searchParams.set('lang','fr');
+    await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')){
         await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
         await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
-        await page.locator('#loginbtn').click({noWaitAfter: true});
-        // The server redirect commits successfully before optional Moodle assets
-        // finish loading. Product readiness below is the explicit test boundary.
-        await page.waitForURL(url => !url.pathname.includes('/login/'), {waitUntil: 'commit', timeout: 60000});
-        if (page.url() !== process.env.EASYEDU_MOODLE_URL) {
-            await page.goto(process.env.EASYEDU_MOODLE_URL, {waitUntil: 'domcontentloaded'});
-        }
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
     }
-    // Bound missing controls, not login or optional external asset loading.
-    page.setDefaultTimeout(15000);
-    page.setDefaultNavigationTimeout(60000);
-    await page.route('**/local/groupimport/**', route => {
-        if (route.request().method() === 'GET') return route.continue();
-        blocked.push('plugin write'); return route.abort('blockedbyclient');
+    page.setDefaultTimeout(15000);page.setDefaultNavigationTimeout(60000);
+    await page.route('**/local/groupimport/**',route=>{
+        if(route.request().method()==='GET')return route.continue();
+        blocked.push('plugin write');return route.abort('blockedbyclient');
     });
-    await page.route('**/lib/ajax/service.php*', route => {
-        if (route.request().method() !== 'POST') return route.continue();
-        const methods = route.request().postDataJSON().map(call => call.methodname);
-        if (methods.every(method => method === 'core_message_get_unsent_message')) {
-            return route.fulfill({status: 200, contentType: 'application/json',
-                body: JSON.stringify(methods.map(() => ({error: false, data: {}})))});
-        }
-        const allowed = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
-            'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.every(method => allowed.has(method))) return route.continue();
-        blocked.push(methods); return route.abort('blockedbyclient');
+    await page.route('**/lib/ajax/service.php*',route=>{
+        if(route.request().method()!=='POST')return route.continue();
+        const calls=route.request().postDataJSON(), methods=calls.map(call=>call.methodname);
+        if(methods.every(method=>method==='core_message_get_unsent_message'))return route.fulfill({
+            contentType:'application/json',body:JSON.stringify(calls.map(()=>({error:false,data:{}})))});
+        const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
+            'core_output_load_template_with_dependencies','core_courseformat_get_state']);
+        if(methods.every(method=>reads.has(method)))return route.continue();
+        blocked.push(methods);return route.abort('blockedbyclient');
     });
-    try {
-        await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
-        for (const [width, motion] of [[1280, 'no-preference'], [390, 'no-preference'], [768, 'reduce']]) {
-            await page.setViewportSize({width, height: 1000});
-            await page.emulateMedia({reducedMotion: motion});
-            if (!await page.locator('[data-easyedu-guide-open]:visible').count()) {
+    const workspace=page.locator('#local-groupimport-easystud');
+    const modal=page.locator('.easyedu-guide--discovery [data-easyedu-guide-modal]');
+    const baseline=process.env.EASYEDU_GUIDE_PLAYBACK_BASELINE==='1';
+    const scenarios=baseline?[{width:1280,motion:'reduce'}]:
+        [1600,1280,390].flatMap(width=>['no-preference','reduce'].map(motion=>({width,motion})));
+    const command=async(scene,name)=>scene.evaluate((scene,name)=>{
+        const control=document.createElement('button');
+        control.type='button';control.setAttribute('data-guide-scene-command',name);
+        control.hidden=true;control.setAttribute('aria-hidden','true');scene.appendChild(control);
+        try{control.click();}finally{control.remove();}
+    },name);
+    const assertIdle=async(scene,row,label)=>{
+        await expect(scene.locator('[data-guide-scene-header]')).toHaveAttribute('data-guide-playback-state','idle');
+        await page.waitForTimeout(100); // drain stopped async continuations, no Motion override.
+        const state=await scene.evaluate(scene=>({
+            phase:scene.dataset.guidePhase||null,
+            state:scene.querySelector('[data-guide-scene-header]').dataset.guidePlaybackState,
+            checked:scene.querySelectorAll('[data-guide-stage] input:checked').length,
+            selected:scene.querySelectorAll('[data-guide-stage] .is-selected').length,
+            ghost:scene.querySelectorAll('[data-guide-ghost]').length,
+            current:scene.querySelectorAll('[data-guide-phase][aria-current]').length,
+            started:scene.querySelector('[data-guide-scene-command="start"]').getAttribute('aria-busy')}));
+        row.samples[label]=state;
+        expect(state).toEqual({phase:null,state:'idle',checked:0,selected:0,ghost:0,current:0,started:'false'});
+        row.checks[label]=true;
+    };
+    try{
+        for(const {width,motion} of scenarios){
+            const row={width,motion,language:'fr',checks:{},samples:{}};rows.push(row);
+            await page.setViewportSize({width,height:1000});await page.emulateMedia({reducedMotion:motion});
+            await page.goto(url.href,{waitUntil:'domcontentloaded'});
+            await expect(workspace).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+            await expect(page.locator('html')).toHaveAttribute('lang','fr');
+            expect(await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(motion==='reduce');
+            await page.evaluate(async({width,motion})=>{
+                const root=document.querySelector('[data-easyedu-guide-root]'),config=root.easyeduGuideConfig;
+                const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+                Guide.destroy(root);Guide.init(root,{...config,firstVisit:false,welcomeOffer:false,
+                    storageKey:'playback-lifecycle-qa-'+width+'-'+motion});
+            },{width,motion});
+            if(!await page.locator('[data-easyedu-guide-open]:visible').count())
                 await page.locator('[data-easyedu-navigation-open]:visible').first().click();
-            }
-            await page.locator('[data-easyedu-guide-open]:visible').first().click();
-            const modal = page.locator('.easyedu-guide--discovery [data-easyedu-guide-modal]');
-            await expect(modal).toBeVisible();
-            await modal.locator('[data-easyedu-guide-nav-item="3"]').click();
-            const slide = modal.locator('[data-easyedu-guide-slide="3"]');
-            const scene = slide.locator('[data-easyedu-guide-scene="actions"]');
-            // The sticky reading banner is a sibling above the teaching scene.
-            const live = slide.locator('[data-guide-live]');
-            const pause = live.locator('[data-guide-playback="pause"]');
-            const next = live.locator('[data-guide-playback="next-phase"]');
-            if (motion === 'reduce') {
-                await expect(scene).toHaveAttribute('data-guide-scene-finished', 'true');
-            } else {
-                await expect(scene).toHaveAttribute('data-guide-phase', 'select', {timeout: 20000});
-                await pause.click();
-                await expect(pause).toHaveAttribute('aria-pressed', 'true');
-                await expect(pause.locator('.fa-play')).toHaveCount(1);
-                const copy = await live.locator('[data-guide-live-copy]').textContent();
-                await page.waitForTimeout(600);
-                await expect(scene).toHaveAttribute('data-guide-phase', 'select');
-                expect(await live.locator('[data-guide-live-copy]').textContent()).toEqual(copy);
-                await next.dblclick();
-                await expect(scene).toHaveAttribute('data-guide-phase', 'menu');
-                await expect(live).toHaveAttribute('data-guide-playback-state', 'paused');
-                await page.waitForTimeout(600);
-                await expect(scene).toHaveAttribute('data-guide-phase', 'menu');
-                await pause.click();
-                await expect(live).toHaveAttribute('data-guide-playback-state', 'playing');
-                await pause.click();
-                for (const phase of ['confirm', 'validate']) {
-                    await next.click();
-                    await expect(scene).toHaveAttribute('data-guide-phase', phase);
-                    await expect(live).toHaveAttribute('data-guide-playback-state', 'paused');
-                }
-                // G10-D: confirmation may have scrolled the cards out of view.
-                // Resume naturally, rather than skipping the transfer itself.
-                const backgroundScroll = await page.evaluate(() => window.scrollY);
-                await modal.locator('.easyedu-guide-modal__body').evaluate(n => { n.scrollTop = n.scrollHeight; });
-                await pause.evaluate(n => n.click());
-                if (width > 768) {
-                    await page.waitForFunction(() => document.getAnimations().some(a =>
-                        a.effect?.target?.classList.contains('easyedu-guide-scene__person') &&
-                        a.effect.getTiming().duration === 1200 && a.playState === 'running'), null, {timeout: 30000});
-                    const visibility = await scene.locator('[data-guide-source] .easyedu-guide-scene__person').first().evaluate(n => {
-                        const body = n.closest('.easyedu-guide-modal__body').getBoundingClientRect();
-                        const card = n.getBoundingClientRect();
-                        return {cardTop:card.top,cardBottom:card.bottom,top:body.top,bottom:body.bottom};
-                    });
-                    expect(visibility.cardTop).toBeGreaterThanOrEqual(visibility.top);
-                    expect(visibility.cardTop).toBeLessThan(visibility.bottom);
-                    expect(visibility.cardBottom).toBeGreaterThan(visibility.top);
-                }
-                // Natural playback retains word-count reading and reveal clocks;
-                // the default5s assertion deadline only suits skipped phases.
-                await expect(scene).toHaveAttribute('data-guide-scene-finished', 'true', {timeout: 30000});
-                expect(await page.evaluate(() => window.scrollY)).toEqual(backgroundScroll);
-            }
-            await expect(pause).toBeDisabled(); await expect(next).toBeDisabled();
-            await expect(live.locator('[data-guide-activity]')).toBeHidden();
-            await expect(scene.locator('[data-guide-recap]')).toBeVisible();
-            const geometry = await live.evaluate(node => {
-                const controls = [...node.querySelectorAll('[data-guide-playback]')].map(c => {
-                    const r = c.getBoundingClientRect(); return {width:r.width,height:r.height};
-                });
-                return {overflow:node.scrollWidth > node.clientWidth + 1, controls};
+            await page.locator('[data-easyedu-guide-open]:visible').first().click();await expect(modal).toBeVisible();
+            const scene=modal.locator('[data-easyedu-guide-scene="membership"]');
+            const index=await scene.evaluate(scene=>scene.closest('[data-easyedu-guide-slide]').dataset.easyeduGuideSlide);
+            await modal.locator('[data-easyedu-guide-nav-item="'+index+'"]').click();await expect(scene).toBeVisible();
+            await scene.locator('[data-guide-scene-command="move"]').click();
+            const start=scene.locator('[data-guide-scene-command="start"]'),live=scene.locator('[data-guide-live]');
+            const pause=scene.locator('[data-guide-playback="pause"]'),next=scene.locator('[data-guide-playback="next-phase"]');
+            await start.click();await page.waitForTimeout(300);
+            row.samples.reading=await scene.evaluate(scene=>({phase:scene.dataset.guidePhase,
+                finished:scene.dataset.guideSceneFinished==='true',copy:scene.querySelector('[data-guide-live-copy]').textContent}));
+            expect(row.samples.reading.finished,'Reduced motion must not collapse all narration').toBe(false);
+            await expect(scene).toHaveAttribute('data-guide-phase','select',{timeout:20000});
+            const copy=await live.locator('[data-guide-live-copy]').textContent();
+            await page.waitForTimeout(2200);
+            await expect(scene).toHaveAttribute('data-guide-phase','select');
+            await expect(live.locator('[data-guide-live-copy]')).toHaveText(copy);row.checks.readingMinimumPreserved=true;
+            await pause.click();await expect(pause).toHaveAttribute('aria-label','Reprendre la démonstration');
+            await expect(live).toHaveAttribute('data-guide-playback-state','paused');row.checks.pauseResumeLabel=true;
+            row.samples.close=await modal.evaluate(async modal=>{
+                const live=modal.querySelector('[data-easyedu-guide-slide].is-active [data-guide-live]');
+                const before=live.dataset.guidePlaybackState;
+                modal.querySelector('[data-easyedu-guide-close]').click();
+                const immediate=live.dataset.guidePlaybackState,hidden=modal.hidden;
+                await new Promise(resolve=>requestAnimationFrame(resolve));return {before,immediate,hidden};
             });
-            expect(geometry.overflow).toBe(false);
-            expect(Math.abs(geometry.controls[0].height - geometry.controls[1].height)).toBeLessThan(0.01);
-            await scene.locator('[data-guide-scene-command="reset"]').click();
-            await expect(live).toHaveAttribute('data-guide-playback-state', 'idle');
-            await modal.locator('[data-easyedu-guide-nav-item="2"]').click();
-            const intro = modal.locator('[data-easyedu-guide-slide="2"] .easyedu-guide-scene__intro');
-            await expect(intro).toBeVisible();
-            const introGeometry = await intro.evaluate(n => ({width:n.clientWidth,scroll:n.scrollWidth}));
-            expect(introGeometry.width).toBeGreaterThan(0);
-            expect(introGeometry.scroll).toBeLessThanOrEqual(introGeometry.width + 1);
-            await modal.locator('[data-easyedu-guide-close]').first().click();
+            if(motion==='no-preference'){expect(row.samples.close.hidden).toBe(false);expect(row.samples.close.immediate).toBe('paused');}
             await expect(modal).toBeHidden();
-            expect(await page.evaluate(() => document.querySelector('[data-easyedu-guide-root]').easyeduGuideScenePlayback)).toBeNull();
-            rows.push({width,motion,geometry,introGeometry,moveRevealVerified:motion !== 'reduce',finishedAndReset:true});
+            expect(await page.evaluate(()=>document.querySelector('[data-easyedu-guide-root]').easyeduGuideScenePlayback)).toBeNull();
+            row.checks.closeStopsAfterFade=true;
+            await page.locator('[data-easyedu-guide-open]:visible').first().click();await expect(modal).toBeVisible();
+            await assertIdle(scene,row,'reopenIdle');
+            for(const phase of ['initial','select','menu','confirm','validate']){
+                await start.click();
+                if(phase!=='initial'){
+                    await expect(scene).toHaveAttribute('data-guide-phase','select',{timeout:20000});await pause.click();
+                    for(const step of ['menu','confirm','validate']){
+                        if(phase==='select')break;
+                        await next.click();await expect(scene).toHaveAttribute('data-guide-phase',step);
+                        if(step===phase)break;
+                    }
+                }
+                await command(scene,'reset');await assertIdle(scene,row,'reset-'+phase);
+            }
+            await start.click();await expect(scene).toHaveAttribute('data-guide-phase','select',{timeout:20000});
+            await pause.click();await command(scene,'add');await assertIdle(scene,row,'modeChangeIdle');
+            await expect(scene).toHaveAttribute('data-guide-mode','add');
+            await scene.locator('[data-guide-scene-command="move"]').click();
+            await start.click();await expect(scene).toHaveAttribute('data-guide-phase','select',{timeout:20000});await pause.click();
+            for(const phase of ['menu','confirm','validate']){
+                await next.click();await expect(scene).toHaveAttribute('data-guide-phase',phase);
+            }
+            await next.click();await expect(scene).toHaveAttribute('data-guide-scene-finished','true',{timeout:20000});
+            await expect(pause).toBeDisabled();await expect(next).toBeDisabled();
+            await expect(start).toBeEnabled();await expect(start).toHaveAttribute('aria-busy','false');
+            await expect(scene.locator('[data-guide-recap]')).toBeVisible();
+            expect(await scene.locator('[data-guide-ghost]').count()).toBe(0);row.checks.lastAdvanceSettlesAndReplayEnabled=true;
+            await modal.locator('[data-easyedu-guide-close]').first().click();await expect(modal).toBeHidden();
         }
-        expect(errors).toEqual([]); expect(blocked).toEqual([]);
-    } finally {
-        fs.writeFileSync(info.outputPath('guide-g10-playback-result.json'), JSON.stringify({rows,errors,blocked,
-            fixtureRequested:false,businessTransactionConfirmed:false},null,2));
+        expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    }finally{
+        fs.writeFileSync(info.outputPath('guide-g10-playback-result.json'),JSON.stringify({
+            surface:'guide-playback',level:2,rows,errors,blocked,businessWrites:false,qaLegacyCommands:true,baseline
+        },null,2));
     }
 });
