@@ -161,6 +161,21 @@ test('Actions path observes Participant selection and all native menu entry meth
             const card=workspace.locator('[data-easystud-participant-list] [data-easystud-user]:visible').first();
             const checkbox=card.locator('[data-easystud-selector-input]');
             const label=card.locator('.local-groupimport-easystud-selector');
+            // Resume schedules its native opener/highlight; readiness is its
+            // actual owned target, not merely a rendered checklist container.
+            await expect.poll(()=>card.evaluate(card=>
+                document.querySelector('[data-easyedu-guide-root]')?.easyeduGuideCurrentTarget
+                    ?.closest('[data-easystud-user]')===card),{timeout:15000}).toBe(true);
+            await page.evaluate(()=>{
+                const root=document.querySelector('#local-groupimport-easystud');
+                const menu=root.querySelector('[data-easystud-context-menu]');
+                window.guideActionsDiagnostic=[];
+                const record=(kind,value)=>window.guideActionsDiagnostic.push({kind,value,time:performance.now()});
+                root.addEventListener('contextmenu',event=>record('contextmenu',event.target.tagName),true);
+                root.addEventListener('click',event=>record('click',event.target.tagName),true);
+                window.addEventListener('scroll',event=>record('scroll',event.target.tagName||'document'),true);
+                new MutationObserver(()=>record('menu-hidden',menu.hidden)).observe(menu,{attributes:true,attributeFilter:['hidden']});
+            });
             // Menu auto-selection must not impersonate the explicit checkbox exercise.
             await card.scrollIntoViewIfNeeded();await settled();
             if(width===1280)await card.locator('.local-groupimport-easystud-user__name').click({button:'right'});
@@ -199,8 +214,9 @@ test('Actions path observes Participant selection and all native menu entry meth
         }
         expect(errors).toEqual([]);expect(blocked).toEqual([]);
     }finally{
+        const diagnostic=await page.evaluate(()=>window.guideActionsDiagnostic||[]).catch(()=>[]);
         fs.writeFileSync(info.outputPath('guide-actions-verification.json'),JSON.stringify({
-            surface:'guide-paths',level:0,rows,errors,blocked,businessWrites:false
+            surface:'guide-paths',level:0,rows,errors,blocked,diagnostic,businessWrites:false
         },null,2));
     }
 });
