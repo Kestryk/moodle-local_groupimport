@@ -49,7 +49,7 @@
     "previewServed": false,
     "nativeVerified": false,
     "humanAccepted": false,
-    "A2": "Viewport-versus-container-threshold-still-pending; proposal-refers-to-A2-not-a-new-breakpoint",
+    "A2": "Kevin-approved20261012: ratio follows real available panel width via container query; preserve existing stacking rules",
     "paginationDetail": "Retained-separately: current-JS-hides-first-last-at-pages<=2; CSS-cannot-disable; do-not-force-hidden-controls-visible; functional-authorization-required",
     "original61ReceivedScopesPreserved": true
   },
@@ -79,7 +79,7 @@
   ],
   "decisionsReceived20261011": {
     "A1": "Kevin chose the small28px subsection tile; Foundation publication precedes adoption.",
-    "A2": "Pending: container or viewport breakpoint has not been answered.",
+    "A2": "Kevin approved actual available panel width on20261012; container-query ratios, existing stacking rules preserved.",
     "A3": "Kevin chose optionA: card titles600; update Foundations/Kit/consumers, not local overrides.",
     "GS10": "Kevin chose to retain the dedicated Show in interface cue row; do not merge it into the footer.",
     "GS3": "Pending short translated tab labels proposal.",
@@ -109,7 +109,7 @@
     {
       "id": "T002",
       "receivedScope": "[P] Obtenir de Kevin l'arbitrage A1 (tuile de sous-section) et A2 (ratio par conteneur ou viewport) de `ARBITRAGES-FOUNDATIONS.md`.",
-      "status": "A1-approved-A2-pending",
+      "status": "A1-and-A2-approved-source-publication-and-implementation-queued",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
@@ -236,7 +236,7 @@
     {
       "id": "T015",
       "receivedScope": "[US1] Preuve native : 18 cas de scène existants (EN/FR × 1280/768/390), plus ce nouveau critère : mode visible avant Démarrer ; appartenances visibles en fin de démo sans défilement manuel à 1280×800.",
-      "status": "current-four-entry-Add-Move-normal-reduced-60-case-native-candidate-ready",
+      "status": "current60-scene-lifecycle-cases-native-passed-keyboard-Tab-Escape-focus-gate-open",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
@@ -264,7 +264,7 @@
     {
       "id": "T018",
       "receivedScope": "[US2] Ratios asymétriques au-dessus du seuil retenu en T002 (S2).",
-      "approvedScope20261012": "Groups/Groupings1.1fr/0.9fr above A2 threshold,1fr/1fr below; creation/list grids agree; A2 remains open, no JS/Motion change.",
+      "approvedScope20261012": "Groups/Groupings1.1fr/0.9fr above real available panel-width threshold,1fr/1fr below; A2 approved; creation/list grids agree; no JS/Motion change.",
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,

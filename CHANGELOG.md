@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-12 - T015 lifecycle proof and A2 approval
+
+- Verify60 existing scene lifecycle cases and eight1280×800 final memberships,
+  with no errors/course writes and full cleanup. Keep T015 keyboard gate open.
+- Record Kevin's A2 choice: ratios follow actual available panel width, with
+  container-query composition and unchanged existing stacking thresholds.
+- Keep pagination disabled semantics outside the CSS-only corridor lot.
+
 ## 2026-10-12 - T015 current scene-matrix candidate
 
 - Prepare one QA-isolated read-only lifecycle scenario for the current four
