@@ -4,6 +4,17 @@ Source: `tools/playwright/guide-introduction-t014-native.spec.js`.
 Scenario: `T014 six inert introduction specimens in native Moodle`.
 Status before preview: candidate, not executed; no CI/Docker claim.
 
+Run28596 is preserved: ten of16 native records passed (eightEN and twoFR1280),
+with no page error or blocked business request. The global360s budget expired
+during a later French navigation; this is not a failed layout assertion.
+Credential/lease/child/fixture cleanup completed. Do not relabel the run PASS.
+
+Successor: `guide-introduction-t014-budget-successor.spec.js`, scenario
+`T014 six inert introduction specimens with bounded matrix budget`.
+Only the global budget becomes900s, with per-case elapsed/progress reporting.
+All original geometry/type/capability/interaction assertions and individual
+navigation/readiness deadlines remain unchanged; product assets are identical.
+
 EN/FR × 1280/768/390/320 × normal/reduced (16 native cases). Uses real login via
 the saved-credential wrapper, actual loading-ready/language/media, first reading,
 caption/type/contour/overflow and capability-specific visibility. No fake group
