@@ -2142,27 +2142,8 @@ const emitGuidedCompletion = (root, step, path = 'main') => {
         detail: {path, step},
     }));
 
-    const easyeduPaths = {
-        main: {
-            path: 'first-structure',
-            steps: ['create-structure', 'add-participants', 'check-filters'],
-        },
-        grouping: {
-            path: 'create-grouping',
-            steps: ['create-grouping', 'add-group-to-grouping', 'verify-grouping'],
-        },
-    };
-    const easyeduPath = easyeduPaths[path];
-    const easyeduStep = easyeduPath && easyeduPath.steps[step];
-    if (easyeduPath && easyeduStep) {
-        root.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
-            bubbles: true,
-            detail: {
-                path: easyeduPath.path,
-                step: easyeduStep,
-            },
-        }));
-    }
+    // Historical tutorial notifications remain; retired Kit paths no longer
+    // receive broad numeric completions from these unrelated actions.
 };
 
 // Emit only the next unfinished milestone in the distinct Practice path.
@@ -3887,7 +3868,7 @@ const bindAdvancedSettings = root => {
             }
             const modal = form.closest('[data-easystud-advanced-settings-modal]');
             if (modal) {
-                modal.remove();
+                modal.easystudCompleteEditorClose();
             }
             showNotification(root, response.message || '', 'success');
         }).catch(error => {
@@ -4426,6 +4407,9 @@ const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
     });
     // Guide review awaits the same native exit, without claiming user Cancel.
     modal.easystudCloseEditor = () => closeModal(false);
+    // Successful native Save closes through the same exit/focus/completion
+    // callback as Cancel or Escape. Guide review still opts out explicitly.
+    modal.easystudCompleteEditorClose = () => closeModal();
     modal.addEventListener('focusin', event => {
         if (event.target.matches('input[name="name"]')) {
             emitEditorInspectionCompletion(root, type, 'inspect-name');
