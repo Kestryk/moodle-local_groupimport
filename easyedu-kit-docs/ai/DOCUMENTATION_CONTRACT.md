@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Recap disclosure vendors the existing Motion dependency atomically with Guide
+template/controller/SCSS. Preserve scene clocks/scroll/fade and legacy static
+fallback. Execute actual generated named AMD and callable dependency exports;
+do not rely on the old zero-dependency string replacement. Stop/reset cancels
+effects and restores local open state. Isolated reversal is not native final
+entry or every-phase target proof; retain distinct source/design/native gates.
+
 Keyboard successors inspect current rendered lesson controls instead of an
 old numeric Practice index. Retain real Tab/Shift-Tab, Home/End, typing/nested
 Escape and surviving-opener focus. Isolate QA reading state without altering

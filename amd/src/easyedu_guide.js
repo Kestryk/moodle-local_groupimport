@@ -2,7 +2,7 @@
 // Keep behaviour aligned with easyedu-guide-kit/amd/src/easyedu_guide.js, then pass
 // selectors, paths and labels from plugin-specific PHP/Mustache data.
 
-define([], function() {
+define(['local_groupimport/motion'], function(Motion) {
 // Opt-in native fullscreen lifecycle. The caller owns translated controls,
 // shared paint and modal focus. Never request fullscreen without a user action.
 const createFullscreenController = (element, onChange = () => {}) => {
@@ -55,7 +55,10 @@ const createFullscreenController = (element, onChange = () => {}) => {
   return {available, ownsFullscreen, toggle, exit, destroy};
 };
 
+const disclosePanel = Motion.disclosePanel;
+const cancelRecapPanel = Motion.cancel;
 // Generic EasyEdu guide foundation for Moodle plugins.
+
 
 //
 // Plugins should copy this module into their AMD source folder and configure
@@ -1260,7 +1263,38 @@ const syncInterfaceCue = (root, slide) => {
 };
 
 // Illustrations are DOM-only. They never dispatch business completion events.
+let recapPanelSequence = 0;
+
+// Only the optional recap body uses shared Framed Motion. The illustration's
+// existing scroll, reveal fade, clocks and card choreography remain its owner.
+const prepareRecapDisclosure = recap => {
+  const body = recap?.querySelector('[data-guide-recap-body]');
+  const toggle = recap?.querySelector('[data-guide-recap-toggle]');
+  if (!body || !toggle) { return; }
+  cancelRecapPanel(body);
+  if (!body.id) { body.id = `easyedu-guide-recap-panel-${++recapPanelSequence}`; }
+  toggle.setAttribute('aria-controls', body.id);
+  toggle.setAttribute('aria-expanded', 'true');
+  body.hidden = false;
+  body.classList.add('is-open');
+};
+
+const toggleRecapDisclosure = recap => {
+  const body = recap?.querySelector('[data-guide-recap-body]');
+  const toggle = recap?.querySelector('[data-guide-recap-toggle]');
+  if (!body || !toggle) { return; }
+  const open = toggle.getAttribute('aria-expanded') !== 'true';
+  const transition = disclosePanel(body, open, {collapseMargins: true});
+  // The real shared effect is the duration authority, including reversals and
+  // reduced/disabled policy. Do not duplicate its distance/timing calculation.
+  const effect = body.getAnimations().find(animation => animation.playState === 'running');
+  toggle.style.setProperty('--easyedu-guide-recap-motion-duration', `${effect?.effect.getTiming().duration || 0}ms`);
+  toggle.setAttribute('aria-expanded', String(open));
+  void transition;
+};
+
 const stopDiscoveryScene = root => {
+  root.querySelectorAll('[data-guide-recap-body]').forEach(cancelRecapPanel);
   if (root.easyeduGuideSceneStop) {
     root.easyeduGuideSceneStop();
     root.easyeduGuideSceneStop = null;
@@ -1460,7 +1494,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   }
   delete scene.dataset.guidePhase;
   const recap = scene.querySelector('[data-guide-recap]');
-  if (recap) { recap.hidden = true; }
+  if (recap) { prepareRecapDisclosure(recap); recap.hidden = true; }
   const origin = scene.querySelector('[data-guide-membership-origin]');
   const target = scene.querySelector('[data-guide-membership-target]');
   if (origin) { origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept; }
@@ -2910,6 +2944,13 @@ const bindGuide = (root, config) => {
       }
       return;
     }
+    const recapToggle = event.target.closest('[data-guide-recap-toggle]');
+    if (recapToggle && root.contains(recapToggle)) {
+      event.preventDefault();
+      toggleRecapDisclosure(recapToggle.closest('[data-guide-recap]'));
+      return;
+    }
+
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
     if (sceneCommand && root.contains(sceneCommand)) {
       event.preventDefault();

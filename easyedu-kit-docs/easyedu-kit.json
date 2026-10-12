@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideRecapDisclosureT012": {
+      "kitCommit": "bfaf05940c173d8f62aef945188c1900c9651007",
+      "kitVersion": "0.4.184",
+      "scope": "Two optional recap bodies with canonical Motion dependency and named AMD; clocks/business/curriculum preserved",
+      "record": "docs/guide-t012-recap-disclosure-progress-2026-10-12.md",
+      "isolatedCasesPassed": 12,
+      "foundationAndProductSaved": true,
+      "nativeVerified": false,
+      "humanAccepted": false
+    },
     "guideIntroductionSpecimensT014": {
       "kitCommit": "78d7dd551842cf39ffa5c6f88486414c6ee9fa2b",
       "kitVersion": "0.4.183",

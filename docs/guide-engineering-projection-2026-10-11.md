@@ -1,5 +1,14 @@
 # Guide engineering: current projection, not human acceptance
 
+T012 canonical184/Kitbfaf059 candidate now consumes existing Framed Motion for
+two optional recap bodies.12 actual AMD/template localized/media isolated cases
+and whole unrelated-engine/CSS/template/type/business preservation pass. Named
+AMD build guard repairs the old zero-dependency naming diagnostic; Motion bytes
+are unchanged. Four source/Standard and four linked Product91 states are saved
+and raster inspected. Native60-case disclosure successor and continuous R2 replay
+are next, not claimed passed. See `guide-t012-recap-disclosure-progress-2026-10-12.md`.
+T014/T015 prior native proof, A2 approval and all61/older human gates stay intact.
+
 T015 now passes lifecycle42628 (60) and keyboard25316 (12): current four
 timed entries, Add/Move, EN/FR normal/reduced, three widths, final1280x800 strips,
 Tab/Shift-Tab, Home/End, typed Enter, nested/typing Escape and real opener focus.
