@@ -11,7 +11,9 @@
       "record": "docs/guide-t037-reading-progress-2026-10-12.md",
       "isolatedCasesPassed": 16,
       "designSaved": true,
-      "nativeVerified": false,
+      "nativeEvidence": "docs/testing/guide-t037-finished-paint-2026-10-12.json",
+      "nativeCasesPassed": 60,
+      "nativeVerified": true,
       "humanAccepted": false
     },
     "guideRecapDisclosureT012": {

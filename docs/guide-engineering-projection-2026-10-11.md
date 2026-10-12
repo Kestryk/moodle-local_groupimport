@@ -1,5 +1,13 @@
 # Guide engineering: current projection, not human acceptance
 
+T037-A is technically verified:185/7728357, Source3d97eb0/runtime8b23583,
+native42796/60 cases (actual four scene entries, Add/Move, two languages,
+three widths and motion policies),16 isolated records and saved paired paint.
+Only two completion declarations change; active/reset metrics and all engines/
+template/Motion/CSS remain preserved. Predecessor42356 retained; cleanup passes.
+T037 itself is PARTIAL: GS1/GS2/GS5/GS8/GS9 next, exact scope recorded in
+`guide-t037-reading-layout-scope-2026-10-12.md`. Human checklist and61 scopes open.
+
 T037-A completion paint is now source/design/isolated-ready (Kit185/7728357):
 finished copy uses existing accent/strong in the unified header; other CSS,
 metrics, engines/template/Motion unchanged.16 corrected isolated records and

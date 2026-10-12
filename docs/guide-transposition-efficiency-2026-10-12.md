@@ -48,6 +48,29 @@ fournisseur par action/modèle n'est disponible ici. Ne pas inventer un quota.
 8. Source/Penpot/native ne ferment jamais automatiquement l'acceptation humaine.
    CCB reste hors périmètre ; cette note prépare sa méthode, pas son intégration.
 
+## Complément T037-A : garde-fous de reprise
+
+- Pour retrouver Sass, commencer par `Get-Command sass` et `sass --version`
+  (ici1.79.1). Les recherches larges dans plusieurs caches ont trouvé d'autres
+  versions et coûté des appels inutiles ; elles ne justifient pas changer le build.
+- Ne pas envoyer plusieurs gros contrats dans un seul résultat plafonné : la
+  troncature impose une seconde lecture. Utiliser le checkpoint de lecture et
+  des sorties bornées pour les seules parties nouvelles, sans sauter un contrat.
+- `rg` ne développe pas les globs de fichiers dans un argument Windows comme
+  le shell attendu. Utiliser des racines existantes + `-g`, et récupérer un chemin
+  exact par `rg --files` avant la lecture. Éviter les chemins supposés.
+- Lire les paramètres de la commande avant son invocation, puis employer leur
+  nom réel : statut preview utilise ProfileName, publication ProjectNamespace.
+  Une erreur de paramètre reste un diagnostic sans write, pas une étape réussie.
+- Le premier natif T037-A a mesuré l'icône pendant la transition de palette.
+  Attendre les effets finis réels pour l'oracle d'endpoint, pas un délai augmenté
+  arbitraire ou une suppression du Motion. Garder les attentes et le run échoué.
+- Les exemples Finished déjà corrects ont été réutilisés avec lecture sauvegardée
+  et raster. Ajouter uniquement l'usage Phone manquant au produit ; ne pas créer
+  une autre famille de primitive pour deux déclarations de couleur/graisse.
+
+Ces constats ne sont ni un relevé de tokens ni un gain fournisseur mesuré.
+
 ## À faire après la tranche
 
 Le bilan global demandé par Kevin et l'audit Claude restent des lots distincts.

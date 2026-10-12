@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Native completion-paint verification
+
+- T037-A passes60 actual scene/locale/width/media cases, including finished
+  copy/icon semantic accent and strong weight, reversible custom palette and
+  reset/type preservation. No course writes; wrapper cleanup complete.
+- Preserve transient sampling predecessor and paired design/isolated proof.
+  Public185 SCSS-only package excludes internal files. T037 reading layout
+  and all human validation remain open; no complete-plan claim.
+
 ## 2026-10-12 - Guide palette sampling successor
 
 - Retain the native T037-A transient-icon failure and original spec. A separate
