@@ -22,6 +22,49 @@ async function run(page, testInfo, expect) {
     };
     page.on('pageerror', error => result.errors.push(error.message));
     try {
+        if (result.mode === 'sql') {
+            result.lot = 'AP-E5';
+            result.sourceDirty = spawnSync('git', ['-C', path.resolve(__dirname, '..', '..'), 'status', '--porcelain'],
+                {encoding: 'utf8', windowsHide: true}).stdout.trim().length > 0;
+            result.sourceHashes = Object.fromEntries(['ajax.php', 'index.php', 'classes/local/batch_reader.php',
+                'classes/service/membership_transfer.php'].map(file => [file, createHash('sha256')
+                .update(fs.readFileSync(path.join(__dirname, '..', '..', file))).digest('hex')]));
+            result.comparisons = [];
+            for (const surface of ['addemails', 'duplicategroup', 'deletegroupings', 'movemembers',
+                'import-preview', 'rollback']) {
+                const records = [];
+                for (const variant of ['before', 'after']) {
+                    const output = testInfo.outputPath(`sql-${surface}-${variant}.json`);
+                    const args = [path.join(__dirname, 'measure.php'), '--moodle-root', process.env.EASYEDU_PERF_MOODLE_ROOT,
+                        '--manifest', manifestPath, '--output', output, '--case', surface];
+                    if (variant === 'after') args.push('--entry-root', path.resolve(__dirname, '..', '..'));
+                    const child = spawnSync(process.env.EASYEDU_PERF_PHP, args,
+                        {encoding: 'utf8', timeout: 120000, windowsHide: true});
+                    expect(child.status, `${surface}/${variant} worker exit`).toBe(0);
+                    const measurement = JSON.parse(fs.readFileSync(output, 'utf8'));
+                    records.push(measurement);
+                    result.server.push({...measurement, variant});
+                    save();
+                    expect(measurement.passed, `${surface}/${variant} result`).toBe(true);
+                }
+                const equal = JSON.stringify(records[0].outcome.functional) === JSON.stringify(records[1].outcome.functional);
+                result.comparisons.push({surface, equal, beforeReads: records[0].sqlReads, afterReads: records[1].sqlReads,
+                    beforeMs: records[0].generationMs, afterMs: records[1].generationMs});
+                save();
+                expect(equal, surface + ' strict logical response/memberships/messages equality').toBe(true);
+            }
+            const edgeOutput = testInfo.outputPath('sql-edge-checks.json');
+            const edge = spawnSync(process.env.EASYEDU_PERF_PHP, [path.join(__dirname, 'verify-batch-edges.php'),
+                '--moodle-root', process.env.EASYEDU_PERF_MOODLE_ROOT, '--manifest', manifestPath,
+                '--before-root', runtime, '--after-root', path.resolve(__dirname, '..', '..'), '--output', edgeOutput],
+            {encoding: 'utf8', timeout: 120000, windowsHide: true});
+            result.edges = JSON.parse(fs.readFileSync(edgeOutput, 'utf8'));
+            save();
+            expect(edge.status, 'Native edge worker exit').toBe(0);
+            expect(result.edges.passed, 'Native edge-case equality').toBe(true);
+            result.measurementComplete = true;
+            return;
+        }
         for (const surface of ['manage', 'course-state']) {
             const output = testInfo.outputPath(`t052-bis-${surface}.json`);
             const child = spawnSync(process.env.EASYEDU_PERF_PHP, [path.join(__dirname, 'measure.php'),

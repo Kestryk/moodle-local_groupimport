@@ -79,6 +79,36 @@
     "normalReadingFormulaAndMotionDurationsUnchanged":true,
     "humanAccepted":false
   },
+  "codex2APE520261012": {
+    "owner": "Codex2",
+    "branch": "work/port4719pg3/easystud-perf-server-20261012",
+    "runtime": "http://localhost:8051",
+    "status": "six-native-comparisons-exact-141-edge-checks-pass-cleanup-complete",
+    "preserves": ["AP-A3", "AP-A4", "AP-A5", "native mutation APIs and transactions"],
+    "measurement": "tools/perf/Invoke-Baseline.ps1 -Mode sql",
+    "rawExternal": "C:/dev/artifacts/easystud-perf-server-20261012/ap-e5/candidate-final/",
+    "nativeEvidence": "Server/actual-source candidate, not browser acceptance",
+    "preview2000SqlReads": {"before": 14124, "after": 114},
+    "nativeMutationsRemain": true,
+    "humanAccepted": false
+  },
+  "smRenduOwnershipKevin20261012": {
+    "architecture": "ARCHITECTURE-SM-RENDU-2026-10-12.md",
+    "codeAndCommits": "Claude",
+    "integration": "Codex1",
+    "measurements": "Codex2 on :8051 only",
+    "decision": "Confirmed by Kevin after the architecture arrived; Codex2 does not duplicate step1",
+    "APE7": "Not started; conditional architecture wait no longer applies"
+  },
+  "codex2PerfCopy20261012": {
+    "url": "http://localhost:8051",
+    "database": "moodle51perf",
+    "runtimeGit": false,
+    "principalFixtureCleanup": "T052-bis complete; live users and fixture courses both zero",
+    "sourceTools": "Explicit URL, independent leases, clean-HEAD tracked-file snapshot and all-file hash manifest; QA tools retained despite public export-ignore",
+    "nativeCopyValidation": "Recorded separately in RETOUR-CODEX2-PERF-COPY-2026-10-12.md",
+    "next": "AP-E5 on dedicated copy; retain Moodle4.5 APIs and PHP8.1 syntax; version.php unchanged"
+  },
   "claudeA4A5Coordination20261012": {
     "AP-A4": {"upstream":"73085bfd900c32102a81df23023e8a73dcfcca3e","level":0,"status":"served-native-GET-and-invalid-POST8-verified","nativeFormsOnDedicatedCourse":"accepted writes pending"},
     "AP-A5": {"upstream":"2726f02179102be329a8fe9e5ae703e42daec5e1","owner":"Claude","status":"integrated-source-resolver-checks","kevinDecision":"Moodle ID retained; bare first/last name removed","nativeKnownIdentifierWrites":"Dedicated course pending"},

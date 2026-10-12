@@ -2,6 +2,10 @@
 
 - 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.
 
+- 2026-10-12 [N0] AP-E5: group identifier, enrolment, membership and import-preview/rollback reads; preserve AP-A5 priority, native mutations and database/native-name matching; strict before/after responses/messages/memberships and rolled-back edge fixtures verified on the dedicated Perf copy.
+
+- 2026-10-12 [N0] Codex2 Perf-copy transition: explicit local URL/port and separate runtime/fixture leases, non-Git deployment snapshot/hash manifest, guarded native copy-cache purge; principal T052/T052-bis results retained unchanged.
+
 - 2026-10-12 [N0] AP-E6-server: add default-off deferred profile HTML/description option and authorized single-participant details endpoint; native candidate parity/security checks pass, 800-user page gains 276,800 bytes (0.638%); JS consumption and activation remain pending.
 
 - 2026-10-12 [N0] T052-bis: exact HTML region attribution and fixed-code 100/300/500 load curve; both 5MB and 30s limits exceeded at 100, four fixtures cleaned, source/live DOM counts distinguished; main weight is repeated member/group markup.

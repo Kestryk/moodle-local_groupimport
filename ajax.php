@@ -364,8 +364,10 @@ try {
 
         $groupingids = [];
         $records = $DB->get_records('groupings_groups', ['groupid' => $groupid], '', 'id, groupingid');
+        $groupings = \local_groupimport\local\batch_reader::records('groupings',
+            array_column($records, 'groupingid'), ['courseid' => $course->id]);
         foreach ($records as $record) {
-            $grouping = $DB->get_record('groupings', ['id' => $record->groupingid, 'courseid' => $course->id], '*');
+            $grouping = $groupings[$record->groupingid] ?? null;
             if ($grouping) {
                 groups_assign_grouping((int)$grouping->id, $newgroupid);
                 $groupingids[] = (int)$grouping->id;
@@ -512,9 +514,11 @@ try {
         $existing = 0;
         $missing = [];
 
+        $resolvedusers = local_groupimport_find_users_by_identifiers($tokens);
+        $enrolledusers = \local_groupimport\local\batch_reader::enrolled($context);
         foreach ($tokens as $token) {
-            $user = local_groupimport_find_user_by_identifier($token);
-            if (!$user || !is_enrolled($context, $user->id)) {
+            $user = $resolvedusers[$token] ?? null;
+            if (!$user || !isset($enrolledusers[$user->id])) {
                 $missing[] = $token;
                 continue;
             }
@@ -673,8 +677,10 @@ try {
         $groupingids = required_param_array('groupingids', PARAM_INT);
         $deleted = 0;
 
+        $groupings = \local_groupimport\local\batch_reader::records('groupings',
+            $groupingids, ['courseid' => $course->id]);
         foreach (array_unique($groupingids) as $groupingid) {
-            $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id]);
+            $grouping = $groupings[$groupingid] ?? null;
             if (!$grouping) {
                 continue;
             }
@@ -822,6 +828,66 @@ function local_groupimport_find_user_by_identifier(string $token): ?\stdClass {
     $matches = $DB->get_records_sql($sql, $params, 0, 2);
 
     return count($matches) === 1 ? reset($matches) : null;
+}
+
+/** Resolve a paste in bulk, retaining numeric ID, core priority and custom ambiguity. */
+function local_groupimport_find_users_by_identifiers(array $tokens): array {
+    $pending = array_fill_keys(array_values(array_unique(array_map('trim', $tokens))), null);
+    $result = [];
+    $numericids = [];
+    foreach ($pending as $token => $unused) {
+        if (ctype_digit((string)$token)) {
+            $numericids[] = (int)$token;
+        }
+    }
+    $users = \local_groupimport\local\batch_reader::records('user', $numericids, ['deleted' => 0],
+        'id, firstname, lastname, email');
+    foreach ($pending as $token => $unused) {
+        if (isset($users[(int)$token]) && ctype_digit((string)$token)) {
+            $result[$token] = $users[(int)$token];
+            unset($pending[$token]);
+        } else if ((string)$token === '') {
+            unset($pending[$token]);
+        }
+    }
+    $config = get_config('local_groupimport');
+    $allowed = !empty($config->alloweduserfields)
+        ? array_map('trim', explode(',', $config->alloweduserfields)) : ['username', 'email'];
+    foreach (['email', 'username', 'idnumber'] as $field) {
+        if (!$pending || !in_array($field, $allowed, true)) {
+            continue;
+        }
+        $matches = \local_groupimport\local\batch_reader::users(array_keys($pending), $field);
+        foreach ($matches as $token => $records) {
+            if (!$records) {
+                continue;
+            }
+            // Historical core get_record returns its first row and emits a debug
+            // notice for duplicates. Keep that API for this exceptional case.
+            $result[$token] = count($records) > 1 ? local_groupimport_find_user_by_identifier((string)$token) :
+                (object)array_intersect_key((array)$records[0], array_flip(['id', 'firstname', 'lastname', 'email']));
+            unset($pending[$token]);
+        }
+    }
+    $shortnames = [];
+    foreach ($allowed as $field) {
+        if (strpos($field, 'profile_field_') === 0) {
+            $shortnames[] = substr($field, strlen('profile_field_'));
+        }
+    }
+    if ($pending && $shortnames) {
+        $matches = \local_groupimport\local\batch_reader::users(array_keys($pending), 'profile', $shortnames);
+        foreach ($matches as $token => $records) {
+            if (count($records) === 1) {
+                $result[$token] = (object)array_intersect_key((array)$records[0],
+                    array_flip(['id', 'firstname', 'lastname', 'email']));
+            } else if (count($records) > 1) {
+                // Preserve the legacy two-row limit even across duplicate profile rows.
+                $result[$token] = local_groupimport_find_user_by_identifier((string)$token);
+            }
+        }
+    }
+    return $result;
 }
 
 /**
