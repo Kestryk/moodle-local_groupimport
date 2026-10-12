@@ -1586,9 +1586,16 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const reduced = getScrollBehavior(root) === 'auto';
   // Reading, illustration and scroll share one lifecycle. Pause retains the
   // unread duration; phase advance drains just this phase's presentation work.
+  const assertActive = () => {
+    if (controller.signal.aborted) { throw controller.signal.reason; }
+  };
   const releaseGates = () => { gates.forEach(resolve => resolve()); gates.clear(); };
-  const gate = () => !paused || skipping || controller.signal.aborted ? Promise.resolve() :
-    new Promise(resolve => gates.add(resolve));
+  const gate = async() => {
+    if (paused && !skipping && !controller.signal.aborted) {
+      await new Promise(resolve => gates.add(resolve));
+    }
+    assertActive();
+  };
   const finishWait = () => {
     if (timer !== null) { window.clearTimeout(timer); }
     timer = null; waitRemaining = 0;
@@ -1601,10 +1608,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   };
   const wait = async duration => {
     await gate();
-    if (controller.signal.aborted || skipping) { return; }
+    assertActive();
+    if (skipping) { return; }
     await new Promise(resolve => {
       resolveWait = resolve; waitRemaining = duration; scheduleWait();
     });
+    assertActive();
   };
   root.easyeduGuideScenePlayback = {
     scene,
@@ -1641,26 +1650,31 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   }
   let phaseTarget = null;
   const settleHeader = async() => {
-    if (!sceneHeader || reduced || controller.signal.aborted) { return; }
+    assertActive();
+    if (!sceneHeader || reduced) { return; }
     const transitions = sceneHeader.getAnimations({subtree: true}).filter(animation =>
       animation.effect?.getComputedTiming().iterations !== Infinity);
     transitions.forEach(animation => animations.add(animation));
     await Promise.all(transitions.map(animation => animation.finished.catch(() => {})));
     transitions.forEach(animation => animations.delete(animation));
+    assertActive();
   };
   const animate = async(element, frames, duration, retain = true) => {
     await gate();
-    if (controller.signal.aborted || reduced) { return; }
+    assertActive();
+    if (reduced) { return; }
     const animation = element.animate(frames, {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
     animations.add(animation);
     if (skipping) { animation.finish(); }
     try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
     if (!retain) { animation.cancel(); animations.delete(animation); }
+    assertActive();
   };
   // Fade the instruction copy, not the entire teaching scene. Its reading pause
   // starts only after the new sentence is visible; no business state is changed.
   const writeLive = async(text, state = 'active', immediate = false) => {
-    if (!live || controller.signal.aborted) { return; }
+    assertActive();
+    if (!live) { return; }
     if (!immediate) { await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false); }
     if (controller.signal.aborted) { return; }
     // The phase caption already supplies the visible number. Keep complete
@@ -1681,8 +1695,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   // cancellable animation set owns illustration and scroll, including exit.
   const reveal = async element => {
     await gate();
+    assertActive();
     const body = scene.closest('.easyedu-guide-modal__body');
-    if (!body || controller.signal.aborted || element.hidden) { return; }
+    if (!body || element.hidden) { return; }
     phaseTarget = element;
     updateClearance();
     const bounds = body.getBoundingClientRect(), item = element.getBoundingClientRect();
@@ -1711,10 +1726,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       tick();
     });
     clock.cancel(); animations.delete(clock);
+    assertActive();
   };
   // Reserve the real target's layout before scrolling, without painting it at
   // its old offscreen position. Keep the existing fade and cancellable clock.
   const revealPrepared = async(element, prepare = () => {}) => {
+    assertActive();
     const visibility = element.style.visibility;
     const opacity = element.style.opacity;
     element.style.visibility = 'hidden';
@@ -1732,6 +1749,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     }
   };
   const phase = async(name, prepareTarget) => {
+    assertActive();
     const jumped = skipping;
     skipping = false;
     const item = scene.querySelector(`[data-guide-phase="${name}"]`);
@@ -1755,13 +1773,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (validateTarget || phaseTarget) { await reveal(validateTarget || phaseTarget); }
     await gate();
     if (controller.signal.aborted) { return; }
-    if (!reduced) {
-      const words = item?.textContent.trim().split(/\s+/).filter(Boolean).length || 0;
-      const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
-      const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
-      const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
-      await wait(Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
-    }
+    // Reduced motion removes movement, never the time needed to read a phase.
+    const words = item?.textContent.trim().split(/\s+/).filter(Boolean).length || 0;
+    const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
+    const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+    const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+    await wait(Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
   };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
@@ -1792,9 +1809,10 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       // Illustration only: never focus, click or resolve a native identifier.
       // Reuse the shared pointer paint and playback clock, not a mobile mouse.
       const pointAt = async(element) => {
-        if (!cursor || compact || reduced || controller.signal.aborted) { return; }
+        assertActive();
+        if (!cursor || compact || reduced) { return; }
         await gate();
-        if (controller.signal.aborted) { return; }
+        assertActive();
         const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
         const from = getComputedStyle(cursor).transform;
         cursor.hidden = false;
@@ -1802,6 +1820,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
           `translate(${target.left - frame.left + target.width / 2}px, ${target.top - frame.top + target.height / 2}px)`}], 650);
       };
       const hidePointer = async() => {
+        assertActive();
         if (!cursor || cursor.hidden) { return; }
         await animate(cursor, [{opacity: 1}, {opacity: 0}], 180);
         cursor.hidden = true;
@@ -1813,18 +1832,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       // Same WAAPI set/clock as reading: Pause, Next and departure own both.
       const resizeCard = async(measure, settle = () => {}) => {
         await gate();
-        if (controller.signal.aborted) { return; }
+        assertActive();
         const from = card.getBoundingClientRect().height;
         const to = measure();
         const overflow = card.style.overflow;
         card.style.overflow = 'hidden';
-        await animate(card, [{height: `${from}px`}, {height: `${to}px`}], 520);
-        if (controller.signal.aborted) { card.style.overflow = overflow; return; }
-        settle();
-        animations.forEach(animation => {
-          if (animation.effect?.target === card) { animation.cancel(); animations.delete(animation); }
-        });
-        card.style.overflow = overflow;
+        try {
+          await animate(card, [{height: `${from}px`}, {height: `${to}px`}], 520);
+          settle();
+          animations.forEach(animation => {
+            if (animation.effect?.target === card) { animation.cancel(); animations.delete(animation); }
+          });
+        } finally { card.style.overflow = overflow; }
       };
       const disclose = open => resizeCard(() => {
         panel.hidden = !open;
@@ -1880,6 +1899,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
       if (controller.signal.aborted) { return; }
       finished = true;
+      advancing = false;
       syncPlayback('finished');
       await settleHeader();
       if (controller.signal.aborted) { return; }
@@ -1932,6 +1952,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     }
     let cursorPoint = null;
     const travelPoint = async(point, duration) => {
+      assertActive();
       cursorPoint = point;
       const from = getComputedStyle(cursor).transform;
       cursor.hidden = false;
@@ -1939,7 +1960,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         {transform: `translate(${point.x}px, ${point.y}px)`}], duration);
     };
     const travel = async(element, duration = 750, cardAnchor = false) => {
-      if (reduced || controller.signal.aborted) { return; }
+      assertActive();
+      if (reduced) { return; }
       const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
       const point = {
         x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
@@ -2070,6 +2092,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     result.textContent = result.getAttribute(`data-${mode}`) || '';
     await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
     finished = true;
+    advancing = false;
     syncPlayback('finished');
     await settleHeader();
     if (controller.signal.aborted) { return; }
@@ -2094,7 +2117,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (controller.signal.aborted) { return; }
     scene.dataset.guideSceneFinished = 'true';
   };
-  run().catch(() => { stopDiscoveryScene(root); });
+  // A stopped run may reject after its replacement starts. It must never
+  // stop that newer run or write back into its restored illustration.
+  run().catch(() => { if (!controller.signal.aborted) { stopDiscoveryScene(root); } });
 };
 
 const stopSlideTransition = root => {
@@ -2303,15 +2328,16 @@ const closeModal = (root, preserveHighlight = false, restoreFocus = true, option
     });
   }
   stopSlideTransition(root);
-  stopDiscoveryScene(root);
   const modal = root.querySelector(SELECTORS.modal);
   if (!modal) {
+    stopDiscoveryScene(root);
     return Promise.resolve();
   }
 
   const finish = () => {
     modal.classList.remove('is-open');
     modal.hidden = true;
+    stopDiscoveryScene(root);
     modal.removeAttribute('aria-modal');
     unlockPageScroll(root);
     if (!preserveHighlight) {

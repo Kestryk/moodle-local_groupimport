@@ -6,6 +6,18 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "apBPlayback20261012": {
+    "ids":["AP-B1","AP-B2","AP-B3","AP-B4"],
+    "level":2,
+    "kitVersion":"0.4.189",
+    "status":"implemented-contract11-native-check-pending",
+    "surfaceScript":"tools/playwright/guide-g10-playback.spec.js",
+    "unitScript":"scripts/test-guide-playback.cjs --contracts (Kit)",
+    "baselineFailedRun":"easystud-authenticated-20261012T183753855Z-2452",
+    "baselineCause":"Reduced-motion narration completed before300ms",
+    "normalReadingFormulaAndMotionDurationsUnchanged":true,
+    "humanAccepted":false
+  },
   "claudeA4A5Coordination20261012": {
     "AP-A4": {"upstream":"73085bfd900c32102a81df23023e8a73dcfcca3e","level":0,"status":"integrated-source-guard-checks","nativeFormsOnDedicatedCourse":"pending"},
     "AP-A5": {"upstream":"2726f02179102be329a8fe9e5ae703e42daec5e1","owner":"Claude","status":"integrated-source-resolver-checks","kevinDecision":"Moodle ID retained; bare first/last name removed","nativeKnownIdentifierWrites":"Dedicated course pending"},
@@ -68,7 +80,7 @@
   "acceleration20261012": {
     "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
     "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
-    "readyQueue": ["PG-A2+A1+A3-native-final", "AP-B1+B2+B3+B4", "PG-S1-remaining-modal-targets", "AP-A10+B6", "AP-A6-measurement"],
+    "readyQueue": ["AP-B1+B2+B3+B4", "PG-S1-remaining-modal-targets", "AP-A10+B6", "AP-A6-after-Codex2-T052", "AP-B7+B8"],
     "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
     "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",
     "surfaceScriptsOnly": true,
