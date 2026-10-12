@@ -2033,24 +2033,28 @@ function local_groupimport_load_custom_user_field_values(array $users, array $fi
         return [];
     }
 
-    [$usersql, $userparams] = $DB->get_in_or_equal(array_keys($users), SQL_PARAMS_NAMED, 'user');
     [$fieldsql, $fieldparams] = $DB->get_in_or_equal($shortnames, SQL_PARAMS_NAMED, 'field');
-    $recordset = $DB->get_recordset_sql(
+    $values = [];
+    foreach (array_chunk(array_keys($users), 1000) as $userids) {
+        [$usersql, $userparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED, 'user');
+        $recordset = $DB->get_recordset_sql(
         "SELECT d.id, d.userid, f.shortname, d.data
            FROM {user_info_data} d
            JOIN {user_info_field} f ON f.id = d.fieldid
           WHERE d.userid $usersql
             AND f.shortname $fieldsql",
         $userparams + $fieldparams
-    );
-
-    $values = [];
-    foreach ($recordset as $record) {
-        $fieldkey = 'profile_field_' . $record->shortname;
-        $values[(int)$record->userid][$fieldkey] =
-            local_groupimport_normalise_participant_label_value($record->data);
+        );
+        try {
+            foreach ($recordset as $record) {
+                $fieldkey = 'profile_field_' . $record->shortname;
+                $values[(int)$record->userid][$fieldkey] =
+                    local_groupimport_normalise_participant_label_value($record->data);
+            }
+        } finally {
+            $recordset->close();
+        }
     }
-    $recordset->close();
 
     return $values;
 }
@@ -2143,19 +2147,21 @@ function local_groupimport_enrich_users_with_copy_fields(array $users, array $al
 
     $customvalues = [];
     if (!empty($customshortnames)) {
-        [$usersql, $userparams] = $DB->get_in_or_equal(array_keys($users), SQL_PARAMS_NAMED);
         [$fieldsql, $fieldparams] = $DB->get_in_or_equal($customshortnames, SQL_PARAMS_NAMED, 'field');
-        $records = $DB->get_records_sql(
+        foreach (array_chunk(array_keys($users), 1000) as $userids) {
+            [$usersql, $userparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
+            $records = $DB->get_records_sql(
             "SELECT d.userid, f.shortname, d.data
                FROM {user_info_data} d
                JOIN {user_info_field} f ON f.id = d.fieldid
               WHERE d.userid $usersql
                 AND f.shortname $fieldsql",
             $userparams + $fieldparams
-        );
+            );
 
-        foreach ($records as $record) {
-            $customvalues[(int)$record->userid]['profile_field_' . $record->shortname] = (string)$record->data;
+            foreach ($records as $record) {
+                $customvalues[(int)$record->userid]['profile_field_' . $record->shortname] = (string)$record->data;
+            }
         }
     }
 
