@@ -34,10 +34,15 @@ class course_structure {
      *
      * @param \stdClass $course Course record.
      * @param \context_course $context Course context.
+     * @param bool|null $includedetails Explicit diagnostic override; null follows the default-off defer option.
      * @return array
      */
-    public static function get_state(\stdClass $course, \context_course $context): array {
+    public static function get_state(\stdClass $course, \context_course $context, ?bool $includedetails = null): array {
         global $DB, $OUTPUT;
+
+        // No setting/JS activation is shipped here. Missing or false preserves
+        // the complete historical payload until the consumer is ready.
+        $includedetails = $includedetails ?? !get_config('local_groupimport', 'deferparticipantdetails');
 
         $users = get_enrolled_users(
             $context,
@@ -45,7 +50,7 @@ class course_structure {
             0,
             'u.id, u.firstname, u.lastname, u.firstnamephonetic, u.lastnamephonetic, u.middlename, u.alternatename, ' .
                 'u.username, u.email, u.picture, u.imagealt, u.idnumber, u.institution, u.department, ' .
-                'u.city, u.country, u.lang, u.description',
+                'u.city, u.country, u.lang' . ($includedetails ? ', u.description' : ''),
             'u.lastname ASC, u.firstname ASC, u.id ASC'
         );
 
@@ -75,11 +80,11 @@ class course_structure {
                 'id' => (int)$user->id,
                 'fullname' => fullname($user),
                 'email' => (string)$user->email,
-                'profileimage' => $OUTPUT->user_picture($user, [
+                'profileimage' => $includedetails ? $OUTPUT->user_picture($user, [
                     'courseid' => $course->id,
                     'size' => 100,
                     'link' => false,
-                ]),
+                ]) : '',
                 'profileurl' => (new \moodle_url('/user/profile.php', ['id' => $user->id, 'course' => $course->id]))->out(false),
                 'username' => (string)$user->username,
                 'idnumber' => (string)$user->idnumber,
@@ -88,7 +93,8 @@ class course_structure {
                 'city' => (string)$user->city,
                 'country' => (string)$user->country,
                 'lang' => (string)$user->lang,
-                'description' => format_text((string)$user->description, FORMAT_HTML, ['context' => $context]),
+                'description' => $includedetails
+                    ? format_text((string)$user->description, FORMAT_HTML, ['context' => $context]) : '',
                 'roles' => array_values($roles[$user->id] ?? []),
                 'groups' => array_values(array_map(static function($groupid) use ($groups): string {
                     return isset($groups[$groupid]) ? format_string($groups[$groupid]->name) : '';
@@ -97,6 +103,9 @@ class course_structure {
                 'groupings' => array_values($usergroupings),
                 'groupingids' => array_values(array_map('intval', array_keys($usergroupings))),
             ];
+            if (!$includedetails) {
+                $useritems[$user->id]['detailsdeferred'] = true;
+            }
         }
 
         $groupitems = [];
@@ -144,6 +153,41 @@ class course_structure {
             'groups' => $groupitems,
             'groupings' => $groupingitems,
             'ungroupedgroupids' => self::get_ungrouped_group_ids($groupitems),
+        ];
+    }
+
+    /**
+     * Load deferred heavy fields for exactly one enrolled course participant.
+     *
+     * Merge these fields into the existing light payload; memberships, card
+     * metadata, allowed copy fields and selection remain consumer-owned.
+     * The API uses the same course permission as the existing full-state page.
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Matching course context.
+     * @param int $userid Enrolled user id.
+     * @return array Deferred profile fields with the existing HTML formatting.
+     */
+    public static function get_user_details(\stdClass $course, \context_course $context, int $userid): array {
+        global $DB, $OUTPUT;
+
+        if ((int)$course->id !== (int)$context->instanceid) {
+            throw new \coding_exception('Course and context must match.');
+        }
+        require_capability('moodle/course:managegroups', $context);
+        if ($userid < 1 || !is_enrolled($context, $userid)) {
+            throw new \moodle_exception('invaliduser', 'error');
+        }
+        $user = $DB->get_record('user', ['id' => $userid, 'deleted' => 0], '*', MUST_EXIST);
+        return [
+            'id' => $userid,
+            'profileimage' => $OUTPUT->user_picture($user, [
+                'courseid' => $course->id,
+                'size' => 100,
+                'link' => false,
+            ]),
+            'description' => format_text((string)$user->description, FORMAT_HTML, ['context' => $context]),
+            'detailsdeferred' => false,
         ];
     }
 

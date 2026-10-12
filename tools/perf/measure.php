@@ -16,7 +16,7 @@ if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
 }
-$options = getopt('', ['moodle-root:', 'manifest:', 'output:', 'case:', 'help']);
+$options = getopt('', ['moodle-root:', 'manifest:', 'output:', 'case:', 'service-root:', 'defer-details', 'help']);
 if (isset($options['help'])) {
     echo "--moodle-root PATH --manifest EXTERNAL.json --output EXTERNAL.json --case " .
         "manage|course-state|addemails|duplicategroup|deletegroupings|movemembers|import-preview|rollback\n";
@@ -30,7 +30,7 @@ foreach (['moodle-root', 'manifest', 'output', 'case'] as $key) {
 }
 $case = $options['case'];
 if (!in_array($case, ['manage', 'course-state', 'addemails', 'duplicategroup', 'deletegroupings',
-        'movemembers', 'import-preview', 'rollback'], true)) {
+        'movemembers', 'import-preview', 'rollback', 'userdetails-checks'], true)) {
     throw new RuntimeException('Unknown measurement case.');
 }
 $root = realpath($options['moodle-root']);
@@ -57,6 +57,24 @@ easystud_perf_validate($manifest);
 if (!$manifest['complete']) {
     throw new RuntimeException('The fixture is incomplete.');
 }
+// Load a source candidate into this owned process only. The served files and
+// persisted configuration remain untouched; these are native API candidate
+// measurements, never claimed as a deployed localhost implementation.
+$candidate = null;
+if (isset($options['service-root'])) {
+    $candidate = realpath($options['service-root']);
+    if (!$candidate || !is_file($candidate . '/version.php') ||
+            !is_file($candidate . '/classes/service/course_structure.php')) {
+        throw new RuntimeException('Invalid source service checkout.');
+    }
+    require_once($candidate . '/classes/service/course_structure.php');
+}
+if (isset($options['defer-details'])) {
+    if ($candidate === null) {
+        throw new RuntimeException('The defer diagnostic requires an explicit source candidate.');
+    }
+    $CFG->forced_plugin_settings['local_groupimport']['deferparticipantdetails'] = 1;
+}
 \core\session\manager::set_user(get_admin());
 $courseid = (int)$manifest['courseId'];
 $course = get_course($courseid);
@@ -73,7 +91,7 @@ $post = ['courseid' => $courseid, 'sesskey' => sesskey()];
 $expected = [];
 $entry = 'ajax.php';
 
-if ($case === 'manage' || $case === 'course-state') {
+if ($case === 'manage' || $case === 'course-state' || $case === 'userdetails-checks') {
     $entry = 'manage.php';
 } else if ($case === 'addemails' || $case === 'movemembers') {
     $destination = groups_create_group((object)[
@@ -154,7 +172,7 @@ if ($case === 'manage' || $case === 'course-state') {
     $expected = ['restored' => 50];
 }
 
-if ($case !== 'manage' && $case !== 'course-state') {
+if (!in_array($case, ['manage', 'course-state', 'userdetails-checks'], true)) {
     $_SERVER['REQUEST_METHOD'] = 'POST';
     $_POST = $post;
 }
@@ -170,7 +188,7 @@ ob_start();
 $outcome = ['passed' => false];
 $failure = null;
 register_shutdown_function(static function() use (&$outcome, &$failure, $start, $reads, $writes, $querytime,
-        $bufferlevel, $options, $case, &$cleanup, $manifest, $expected, $cache): void {
+        $bufferlevel, $options, $case, &$cleanup, $manifest, $expected, $cache, $candidate): void {
     global $DB;
     $elapsed = (microtime(true) - $start) * 1000;
     $measuredreads = $DB->perf_get_reads() - $reads;
@@ -233,15 +251,79 @@ register_shutdown_function(static function() use (&$outcome, &$failure, $start, 
         'sqlMs' => round($measuredquerytime, 3), 'htmlBytes' => strlen($output),
         'peakMemoryBytes' => memory_get_peak_usage(true), 'outcome' => $outcome,
         'cacheSettings' => $cache, 'failure' => $failure,
+        'sourceCandidate' => $candidate !== null, 'detailsDeferredInProcess' => isset($options['defer-details']),
     ];
+    if ($case === 'manage') {
+        require_once(__DIR__ . '/decompose.php');
+        $result['decomposition'] = easystud_perf_decompose($output);
+    }
     easystud_perf_write($options['output'], $result);
     echo json_encode($result, JSON_THROW_ON_ERROR) . "\n";
 });
 try {
     if ($case === 'course-state') {
         $state = \local_groupimport\service\course_structure::get_state($course, $context);
-        $outcome = ['passed' => count($state['users']) === 800, 'users' => count($state['users'])];
+        $outcome = ['passed' => count($state['users']) === count($manifest['userIds']), 'users' => count($state['users']),
+            'payloadHash' => hash('sha256', json_encode($state))];
         echo json_encode($state, JSON_THROW_ON_ERROR);
+    } else if ($case === 'userdetails-checks') {
+        if ($candidate === null) {
+            throw new RuntimeException('Userdetails checks require the explicit source candidate.');
+        }
+        $full = \local_groupimport\service\course_structure::get_state($course, $context, true);
+        $light = \local_groupimport\service\course_structure::get_state($course, $context, false);
+        $checks = ['default-payload-unchanged' =>
+            \local_groupimport\service\course_structure::get_state($course, $context) === $full,
+            'group-structure-unchanged' => $light['groups'] === $full['groups'] &&
+                $light['groupings'] === $full['groupings'] && $light['ungroupedgroupids'] === $full['ungroupedgroupids']];
+        $checks['all-light-identities-memberships-roles-preserved'] = true;
+        foreach ($full['users'] as $id => $item) {
+            $other = $light['users'][$id];
+            if ($other['profileimage'] !== '' || $other['description'] !== '' || empty($other['detailsdeferred'])) {
+                $checks['all-light-identities-memberships-roles-preserved'] = false;
+            }
+            unset($item['profileimage'], $item['description'], $other['profileimage'], $other['description'],
+                $other['detailsdeferred']);
+            $checks['all-light-identities-memberships-roles-preserved'] =
+                $checks['all-light-identities-memberships-roles-preserved'] && $item === $other;
+        }
+        $userid = (int)$manifest['userIds'][0];
+        $details = \local_groupimport\service\course_structure::get_user_details($course, $context, $userid);
+        $checks['one-participant-original-heavy-fields'] = $details['id'] === $userid &&
+            $details['profileimage'] === $full['users'][$userid]['profileimage'] &&
+            $details['description'] === $full['users'][$userid]['description'] && !$details['detailsdeferred'];
+        $source = file_get_contents($candidate . '/ajax.php');
+        $start = strpos($source, "\ntry {");
+        $end = strpos($source, "\nheader('Content-Type:", $start);
+        if ($start === false || $end === false) {
+            throw new RuntimeException('AJAX dispatch boundaries changed.');
+        }
+        $_POST = ['userid' => $userid];
+        $action = 'userdetails';
+        $response = ['success' => false];
+        eval(substr($source, $start, $end - $start));
+        $checks['native-source-dispatch'] = !empty($response['success']) && $response['details'] === $details;
+        $checks['existing-sesskey-course-capability-gates-retained'] =
+            str_contains(substr($source, 0, $start), 'require_sesskey();') &&
+            str_contains(substr($source, 0, $start), "require_capability('moodle/course:managegroups', \$context);");
+        try {
+            \local_groupimport\service\course_structure::get_user_details($course, $context, 0);
+            $checks['invalid-user-rejected'] = false;
+        } catch (\moodle_exception $exception) {
+            $checks['invalid-user-rejected'] = true;
+        }
+        $actor = $USER;
+        try {
+            \core\session\manager::set_user($DB->get_record('user', ['id' => $userid], '*', MUST_EXIST));
+            \local_groupimport\service\course_structure::get_user_details($course, $context, $userid);
+            $checks['student-without-managegroups-rejected'] = false;
+        } catch (\required_capability_exception $exception) {
+            $checks['student-without-managegroups-rejected'] = true;
+        } finally {
+            \core\session\manager::set_user($actor);
+        }
+        $outcome = ['passed' => !in_array(false, $checks, true), 'checks' => $checks];
+        echo json_encode($outcome, JSON_THROW_ON_ERROR);
     } else {
         require($CFG->dirroot . '/local/groupimport/' . $entry);
         if ($case === 'manage') {

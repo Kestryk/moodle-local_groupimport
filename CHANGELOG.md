@@ -2,6 +2,10 @@
 
 - 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.
 
+- 2026-10-12 [N0] AP-E6-server: add default-off deferred profile HTML/description option and authorized single-participant details endpoint; native candidate parity/security checks pass, 800-user page gains 276,800 bytes (0.638%); JS consumption and activation remain pending.
+
+- 2026-10-12 [N0] T052-bis: exact HTML region attribution and fixed-code 100/300/500 load curve; both 5MB and 30s limits exceeded at 100, four fixtures cleaned, source/live DOM counts distinguished; main weight is repeated member/group markup.
+
 - 2026-10-12 [N0] SM-RENDU-1 (Claude): compact course state external functions `local_groupimport_get_state` / `local_groupimport_get_details`, per-course state version (table `local_groupimport_statever`, core event observers), `tools/sm/check-state.php` parity check; legacy page unchanged. 800/150/40: state 236 KB vs 2.17 MB, 70 ms / 9 reads vs 2,309 ms / 817 reads, parity PASS.
 
 - 2026-10-12 [N0] R3 proof successor: normalize Chromium zero-letter-spacing serialization, measure dots in the actual visible paused mobile lane and advance through native controls; preserve all failed predecessor reports and unchanged product assets.

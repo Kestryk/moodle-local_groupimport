@@ -68,3 +68,73 @@ HTML, cookies, sesskeys, passwords or authentication storage is persisted.
 The historical startup diagnostic remains unchanged unless the supervisor opts
 into T052. This baseline does not certify every I1-I13 interaction; no product
 selector, Guide completion, selection, Motion or focus implementation is changed.
+
+## T052-bis: regions and participant load curve
+
+The same supervisor accepts `-Participants 100` (1..800) and `-Mode curve`.
+Use separate runs for 100, 300 and 500; groups/groupings remain 150/40 and each
+participant has three memberships. `-Mode regions -Participants 800` measures
+PHP/source attribution only, without repeating the already-failed 800-user
+browser run. Every run uses its own manifest and the same native cleanup.
+
+The generator's original default long descriptions for groups/groupings are
+preserved to keep the fixture comparable with T052. They are a deliberate stress
+case, not an assumption that every production group has that much text.
+
+`decompose.php` attributes exclusive spans in the original rendered UTF-8 HTML:
+participant cards, group member lists, group card chrome, grouping chrome, data
+attributes/JSON, profile image markup, Guide and other page shell. Region bytes
+sum exactly to total HTML; nested group/member regions do not count twice.
+Attribute bytes include their original source spacing and HTML entity escaping.
+Data attributes themselves create no additional elements. Per-field decoded
+participant JSON bytes are a separate diagnostic and must not be added to source
+region totals. HTML-looking strings inside raw script/style text are excluded
+from source element counts. `verify-decomposition.php` checks independent cases.
+
+Source tag counts describe server markup before JavaScript. The load curve also
+records the live browser DOM, which includes native enhancement nodes. The two
+counts are intentionally named separately. Browser readiness is measured from
+navigation, with a 30s threshold. A blocked main thread can postpone the actual
+observation beyond that threshold; its observed time is not reported as a
+successful ready time. `readinessPassed: false` remains explicit even when the
+measurement scenario completes successfully and cleans its fixture.
+
+The reported 5MB threshold uses 5,000,000 original HTML bytes. If the first 100-user
+sample already exceeds both limits, the measured crossing is at or below 100;
+no exact lower crossing is claimed without additional smaller samples.
+
+## AP-E6 server candidate (inactive by default)
+
+`course_structure::get_state()` retains the complete historical result unless
+the future `local_groupimport/deferparticipantdetails` option is true. There is
+no settings UI or activation in this server lot. An explicit third argument can
+select full/deferred data in a diagnostic. Deferred state excludes description
+from the initial user query, skips profile HTML/description rendering and marks
+`detailsdeferred: true`, retaining empty compatibility keys and all identities,
+roles, memberships and existing short profile/copy fields.
+
+`ajax.php?action=userdetails&courseid=...&userid=...&sesskey=...` returns
+`{success:true,details:{id,profileimage,description,detailsdeferred:false}}`.
+Existing login, sesskey and course `moodle/course:managegroups` gates apply. The
+service independently checks the same capability, matching course/context and
+enrolment. Merge the returned fields into the existing user payload, not over its
+memberships or configured metadata. Photo/description formatting matches the old
+100px HTML/native `format_text(..., FORMAT_HTML)` behavior.
+
+Codex1 owns the JS consumer, loading/focus/error behavior and any activation.
+The server lot must not be enabled before that consumer is implemented and the
+I1-I13 gates are met. No click-network or T054 policy is silently changed here.
+
+Use `-Mode details -Participants 800` for the same fixture/cleanup supervisor.
+It measures the served baseline and full/deferred **source candidate** in owned
+PHP processes against native Moodle APIs. `--service-root` loads the source
+class in that process only. The defer flag is forced process-locally, never
+saved; no runtime file is overwritten. The native checks execute the actual
+source dispatch, compare every light identity/role/membership, verify heavy-field
+restoration, and reject invalid users and synthetic students lacking managegroups.
+
+Measured page gain: 276,800 bytes (0.638%) at 800 users, from 43,403,146 to
+43,126,346 bytes. Course-state JSON falls from 2,172,941 to 2,024,941 bytes.
+No SQL read reduction is claimed: both state variants measured 807 reads.
+Default candidate payload hash matches the served version exactly. This is
+server/native API evidence, not served browser activation or human acceptance.
