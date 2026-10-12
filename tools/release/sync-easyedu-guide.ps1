@@ -62,6 +62,12 @@ foreach ($marker in @("export const destroy =", "export const init =", "export d
 
 $wrappedBody = $canonicalJavascript.Replace("export const destroy =", "const destroy =")
 $wrappedBody = $wrappedBody.Replace($fullscreenImport, '')
+$recapMotionImport = "import {disclosePanel, cancel as cancelRecapPanel} from '../../../motion/amd/src/easyedu_motion';"
+if (-not $canonicalJavascript.Contains($recapMotionImport)) {
+    throw 'Review changed canonical recap Motion boundary before synchronization.'
+}
+$wrappedBody = $wrappedBody.Replace($recapMotionImport, '')
+$wrappedBody = "const disclosePanel = Motion.disclosePanel;`nconst cancelRecapPanel = Motion.cancel;`n" + $wrappedBody
 $wrappedBody = $fullscreenSource.Replace('export const createFullscreenController =', 'const createFullscreenController =') + "`n" + $wrappedBody
 $wrappedBody = $wrappedBody.Replace("export const init =", "const init =")
 $wrappedBody = $wrappedBody.Replace("export default init;", "")
@@ -99,7 +105,7 @@ $runtimeJavascript = @"
 // Keep behaviour aligned with easyedu-guide-kit/amd/src/easyedu_guide.js, then pass
 // selectors, paths and labels from plugin-specific PHP/Mustache data.
 
-define([], function() {
+define(['local_groupimport/motion'], function(Motion) {
 $wrappedBody
 
 return {

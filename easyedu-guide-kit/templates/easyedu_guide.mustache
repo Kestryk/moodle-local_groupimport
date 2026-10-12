@@ -239,7 +239,10 @@
                                     </div>
                                     <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-inspection-cursor hidden aria-hidden="true"></span>
                                 </div>
-                                <section class="easyedu-guide-scene__recap" data-guide-recap hidden><strong>{{recaptitle}}</strong><ol class="easyedu-guide-scene__steps">{{#phases}}<li data-guide-phase="{{name}}"{{#compactlabel}} data-compact="{{compactlabel}}"{{/compactlabel}}>{{label}}</li>{{/phases}}</ol></section>
+                                <section class="easyedu-guide-scene__recap" data-guide-recap hidden>
+                                    <button type="button" class="easyedu-guide-scene__recap-toggle" data-guide-recap-toggle aria-expanded="true"><strong>{{recaptitle}}</strong><span class="fa fa-chevron-down" aria-hidden="true"></span></button>
+                                    <div class="easyedu-guide-scene__recap-body" data-guide-recap-body><ol class="easyedu-guide-scene__steps">{{#phases}}<li data-guide-phase="{{name}}"{{#compactlabel}} data-compact="{{compactlabel}}"{{/compactlabel}}>{{label}}</li>{{/phases}}</ol></div>
+                                </section>
                                 <div class="easyedu-guide-scene__context"><p class="easyedu-guide-scene__result" data-guide-result data-inspection="{{resultlabel}}" aria-live="polite">{{initiallabel}}</p><p>{{note}}</p></div>
                                 <div class="easyedu-guide-scene__actions"><div class="easyedu-guide-scene__utilities">{{^manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="replay"><span class="fa fa-rotate-right" aria-hidden="true"></span><span>{{replay}}</span></button>{{/manualstart}}<button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button></div></div>
                                 {{/inspection}}
@@ -282,13 +285,15 @@
                                 </div>
                                 {{/membership}}
                                 <section class="easyedu-guide-scene__recap" data-guide-recap hidden>
-                                    <strong>{{recaptitle}}</strong>
+                                    <button type="button" class="easyedu-guide-scene__recap-toggle" data-guide-recap-toggle aria-expanded="true"><strong>{{recaptitle}}</strong><span class="fa fa-chevron-down" aria-hidden="true"></span></button>
+                                    <div class="easyedu-guide-scene__recap-body" data-guide-recap-body>
                                     <ol class="easyedu-guide-scene__steps">
                                         <li data-guide-phase="select" data-add="{{addselect}}" data-compact="{{compactselect}}" data-compact-add="{{mobileaddselect}}">{{selectlabel}}</li>
                                         <li data-guide-phase="menu" data-add="{{adddrop}}" data-compact="{{compactmenu}}" data-compact-add="{{mobileaddmenu}}">{{menulabel}}</li>
                                         <li data-guide-phase="confirm" data-add="{{resultaddlabel}}" data-compact-add="{{mobileaddconfirm}}">{{confirmlabel}}</li>
                                         <li data-guide-phase="validate" data-compact-add="{{mobileaddvalidate}}">{{validatelabel}}</li>
                                     </ol>
+                                    </div>
                                 </section>
                                 <div class="easyedu-guide-scene__context">
                                     <p class="easyedu-guide-scene__result" data-guide-result aria-live="polite" data-add="{{resultaddlabel}}" data-move="{{resultmovelabel}}" data-actions="{{resultactionslabel}}">{{initiallabel}}</p>

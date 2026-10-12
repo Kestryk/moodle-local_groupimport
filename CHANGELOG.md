@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Shared final recap disclosure candidate
+
+- Synchronize canonical184 optional recap button/body and the existing Motion
+  dependency; open by default, click/keyboard/reversal/reset use shared animation.
+- Guard named AMD generation with callable exports after the retained anonymous
+  build diagnostic. Preserve native Motion, business/controller/curriculum/type.
+- Twelve isolated localized/media cases and whole unrelated-source/CSS checks
+  pass. Paired source/product states are saved; native/human gates follow.
+
 ## 2026-10-12 - T015 complete lifecycle and keyboard gates
 
 - Twelve EN/FR three-width/media keyboard routes pass with actual current

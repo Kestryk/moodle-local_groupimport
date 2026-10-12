@@ -970,6 +970,21 @@
       .easyedu-guide-scene__steps { display: grid; gap: 0.75rem; margin: 0.875rem 0 0; }
       li { padding-inline-start: 0.25rem; line-height: 1.6; }
     }
+    &__recap-toggle {
+      @include cards.card-disclosure-title;
+      @include typography.type-caption;
+      width: 100%;
+      justify-content: space-between;
+      > .fa {
+        @include cards.card-disclosure-icon;
+        transition-duration: var(--easyedu-guide-recap-motion-duration, var(--easyedu-motion-normal));
+      }
+      &[aria-expanded="true"] > .fa { transform: rotate(180deg); }
+    }
+    &__recap-body {
+      min-width: 0;
+      &[hidden] { display: none; }
+    }
     &__memberships {
       display: flex;
       align-items: center;
