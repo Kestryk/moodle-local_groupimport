@@ -60,7 +60,7 @@ class course_state {
      * @return array
      */
     public static function build(\stdClass $course, \context_course $context): array {
-        global $CFG, $OUTPUT, $PAGE;
+        global $CFG, $OUTPUT;
 
         self::assert_context($course, $context);
 
@@ -97,6 +97,7 @@ class course_state {
         })));
         $customvalues = self::get_custom_field_values($userids, $customkeys);
 
+        $canviewfullnames = has_capability('moodle/site:viewfullnames', $context);
         $usepictures = !empty($CFG->enablegravatar);
         foreach ($users as $user) {
             if (!empty($user->picture)) {
@@ -146,10 +147,21 @@ class course_state {
                 $item['display'] = $displayvalues;
             }
 
-            if ($usepictures && (!empty($user->picture) || !empty($CFG->enablegravatar))) {
-                $picture = new \user_picture($user);
-                $picture->size = self::PICTURE_SIZE;
-                $item['pictureurl'] = $picture->get_url($PAGE)->out(false);
+            // Avatar exactly as the legacy card renders it: the picture markup when there is
+            // one (rare), otherwise only the initials, from which the browser rebuilds Moodle's
+            // initials markup (identical in 4.5 and 5.1).
+            if (!empty($user->picture) || !empty($CFG->enablegravatar) || defined('BEHAT_SITE_RUNNING')) {
+                $item['avatarhtml'] = $OUTPUT->user_picture($user, [
+                    'courseid' => $course->id,
+                    'size' => self::PICTURE_SIZE,
+                    'link' => false,
+                ]);
+            } else {
+                $item['initials'] = \core_user::get_initials($user);
+                $avatarname = fullname($user, $canviewfullnames);
+                if ($avatarname !== $item['fullname']) {
+                    $item['avatarname'] = $avatarname;
+                }
             }
 
             $useritems[] = $item;
@@ -199,7 +211,6 @@ class course_state {
                 ],
                 'identifierfields' => self::to_label_list($identifierfields),
                 'display' => $display,
-                'defaultpictureurl' => $OUTPUT->image_url('u/f1')->out(false),
             ],
             'roles' => $roles,
             'users' => $useritems,

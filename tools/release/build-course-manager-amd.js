@@ -23,10 +23,14 @@ const membersImport = "import {snapshotMemberPairs} from './member_selection';";
 // SM-RENDU (on-demand rendering) dependencies.
 const logImport = "import Log from 'core/log';";
 const smStoreImport = "import {createStore} from './local/sm/store';";
-const smIndexImport = "import {buildParticipantIndex, filterParticipantIds} from './local/sm/index';";
+const smIndexImport = "import {filterParticipantIds} from './local/sm/index';";
+// Multi-line import: matched whatever the checkout line endings are.
+const smParticipantsImport = /import \{([^}]*)\} from '\.\/local\/sm\/participants';/;
+const notificationImport = "import Notification from 'core/notification';";
 if (!source.includes(motionImport) || !source.includes(guideImport) || !source.includes(choicesImport) ||
         !source.includes(membersImport) || !source.includes(logImport) || !source.includes(smStoreImport) ||
-        !source.includes(smIndexImport) || !source.includes('export const init =')) {
+        !source.includes(smIndexImport) || !smParticipantsImport.test(source) || !source.includes(notificationImport) ||
+        !source.includes('export const init =')) {
     throw new Error('The course manager AMD source does not contain its expected Motion import and init export.');
 }
 
@@ -37,12 +41,16 @@ const namedSource = source
     .replace(membersImport, 'const {snapshotMemberPairs} = MemberSelection;')
     .replace(logImport, '')
     .replace(smStoreImport, 'const {createStore} = SmStore;')
-    .replace(smIndexImport, 'const {buildParticipantIndex, filterParticipantIds} = SmIndex;')
+    .replace(smIndexImport, 'const {filterParticipantIds} = SmIndex;')
+    .replace(smParticipantsImport, (match, names) => 'const {' + names.replace(/\s+/g, ' ').trim().replace(/,$/, '') +
+        '} = SmParticipants;')
+    .replace(notificationImport, '')
     .replace('export const init =', 'const init =');
 const wrappedSource = `define("${moduleName}", ["local_groupimport/motion", "local_groupimport/searchable_choices", ` +
     `"local_groupimport/member_selection", "local_groupimport/easyedu_guide", "core/log", ` +
-    `"local_groupimport/local/sm/store", "local_groupimport/local/sm/index"], ` +
-    `function(Motion, Choices, MemberSelection, Guide, Log, SmStore, SmIndex) {\n` +
+    `"local_groupimport/local/sm/store", "local_groupimport/local/sm/index", "local_groupimport/local/sm/participants", ` +
+    `"core/notification"], ` +
+    `function(Motion, Choices, MemberSelection, Guide, Log, SmStore, SmIndex, SmParticipants, Notification) {\n` +
     `${namedSource}\nreturn {init: init};\n});`;
 
 terser.minify(
