@@ -17,10 +17,11 @@
   },
   "pgS1Destinations20261012": {
     "level":1,
-    "kitVersion":"0.4.190",
-    "status":"desktop-dialog-docking-corrected-native-check-pending",
+    "kitVersion":"0.4.192",
+    "status":"desktop-dialog-docking-and-existing-height-budget-corrected-native-check-pending",
     "cause":"Full-width destination right edge occluded by desktop checklist; vertical docking was mobile-only",
     "failedRun":"easystud-authenticated-20261012T185503788Z-17320",
+    "closeOverlapRun":"easystud-authenticated-20261012T190521431Z-40168",
     "surfaceScript":"tools/playwright/guide-modal-layer-s1-editors-diagnostic-native.spec.js",
     "businessPrerequisites":"QA history only; no creation or assignment confirmed",
     "humanAccepted":false
