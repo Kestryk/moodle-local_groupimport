@@ -1,5 +1,6 @@
 // Local-supervised SM integration surface. Upgrade is an explicitly selected test;
-// no course mutation, external-function writes, auth-state export or synthetic timers.
+// No business writes except the explicitly selected SM3a test's single owned
+// synthetic-user/group pair, always restored under runtime/fixture leases.
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 const crypto=require('node:crypto');
@@ -222,6 +223,102 @@ test('SM2b participant detail fields match the current mode',async({page},info)=
     }finally{
         mode('legacy');report.restoredLegacy=true;
         fs.writeFileSync(info.outputPath('sm2b-details-parity.json'),JSON.stringify(report,null,2));
+    }
+});
+
+test('SM3a legacy member search and reactive Add Remove refresh the state',async({page},info)=>{
+    test.setTimeout(360000);
+    if(!process.env.EASYEDU_SM_MEMBERSHIP_MANIFEST||!process.env.EASYEDU_SM_MEMBERSHIP_HELPER)
+        throw Error('Explicit owned membership baseline and cleanup helper required');
+    const pair=JSON.parse(fs.readFileSync(process.env.EASYEDU_SM_MEMBERSHIP_MANIFEST,'utf8'));
+    expect(pair.courseid).toBe(5);expect(pair.userid).toBe(29);expect(pair.groupid).toBe(342);
+    expect(pair.pairInitiallyAbsent).toBe(true);
+    const report={surface:'SM3a-native',niveau:1,viewport:1280,language:'fr',pair:{userid:pair.userid,groupid:pair.groupid},
+        controls:{},actions:[],blocked:[],errors:[],versions:[],stateLoads:0,restoredLegacy:false,cleanup:null};
+    const mode=value=>{
+        const result=JSON.parse(execFileSync(process.env.EASYEDU_SM_PHP,
+            [process.env.EASYEDU_SM_MODE_HELPER,process.env.EASYEDU_SM_MOODLE_ROOT,value],{encoding:'utf8',timeout:60000}));
+        expect(result.mode).toBe(value==='get'?'legacy':value);
+    };
+    const pairCheck=phase=>JSON.parse(execFileSync(process.env.EASYEDU_SM_PHP,
+        [process.env.EASYEDU_SM_MEMBERSHIP_HELPER,process.env.EASYEDU_SM_MOODLE_ROOT,phase,
+            process.env.EASYEDU_SM_MEMBERSHIP_MANIFEST],{encoding:'utf8',timeout:60000}));
+    page.on('pageerror',e=>report.errors.push(e.message));
+    page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
+    page.on('response',r=>{if(r.url().includes('local_groupimport_get_state'))report.stateLoads++;});
+    try{
+        mode('get');expect(pairCheck('verify').passed).toBe(true);
+        const actual=await pageProof(page,info);
+        const prior=JSON.parse(fs.readFileSync(process.env.EASYEDU_SM_BASELINE,'utf8'));
+        expect(actual.counts).toEqual(prior.counts);expect(actual.textHash).toBe(prior.textHash);
+        actual.geometry.forEach((row,i)=>{
+            for(const k of ['x','y','width','height'])expect(Math.abs(row[k]-prior.geometry[i][k])).toBeLessThanOrEqual(1);
+            for(const k of ['font','size','color'])expect(row[k]).toBe(prior.geometry[i][k]);
+        });
+        report.controls.legacy1280FR=true;
+        let root=page.locator('#local-groupimport-easystud');
+        const group=root.locator('[data-easystud-group-id]:visible')
+            .filter({has:page.locator('[data-easystud-member-id]:visible')}).first();
+        const member=group.locator('[data-easystud-member-id]:visible').first();
+        const memberid=await member.getAttribute('data-easystud-member-id');
+        const name=await member.locator('.local-groupimport-easystud-member__name').innerText();
+        await group.locator('[data-easystud-group-member-search-toggle]').click();
+        const query=group.locator('[data-easystud-group-member-search]');
+        await query.fill(name);
+        await expect(group.locator('[data-easystud-member-id="'+memberid+'"]')).toBeVisible();
+        await query.fill('sm3a-no-such-member');await expect(group.locator('[data-easystud-member-id]:visible')).toHaveCount(0);
+        await query.fill('');await expect(group.locator('[data-easystud-member-id="'+memberid+'"]')).toBeVisible();
+        await group.locator('[data-easystud-group-member-search-cancel]').click();
+        report.controls.legacyMemberSearch=true;
+        mode('reactive');await login(page,'/local/groupimport/manage.php?id=5');
+        root=page.locator('#local-groupimport-easystud');
+        await expect(root).toHaveAttribute('data-easystud-sm-ready','1',{timeout:60000});
+        await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+        await page.unroute('**/local/groupimport/**');
+        await page.route('**/local/groupimport/**',route=>{
+            const request=route.request();if(request.method()==='GET')return route.continue();
+            const p=new URLSearchParams(request.postData()||''),action=p.get('action');
+            const allowed=request.method()==='POST'&&new URL(request.url()).pathname==='/local/groupimport/ajax.php'
+                &&p.get('courseid')==='5'&&p.get('groupid')===String(pair.groupid)&&!!p.get('sesskey')
+                &&((action==='addusers'&&p.getAll('userids[]').join(',')===String(pair.userid))
+                    ||(action==='removeuser'&&p.get('userid')===String(pair.userid)))
+                &&!report.actions.includes(action);
+            if(!allowed){report.blocked.push({method:request.method(),action});return route.abort();}
+            report.actions.push(action);return route.continue();
+        });
+        const userCard=()=>root.locator('[data-easystud-participant-list] > [data-user-id="'+pair.userid+'"]');
+        // Locator evaluation supplies the canonical root, never a synthetic state.
+        const hasMembership=()=>root.evaluate((n,p)=>n.easystudSm.model.byId.get(p.userid).groupids.includes(p.groupid),pair);
+        const version=()=>root.evaluate(n=>Number(n.easystudSm.raw.meta.version));
+        expect(await hasMembership()).toBe(false);report.versions.push(await version());
+        await userCard().locator('[data-easystud-selector-input]').check();
+        await root.locator('[data-easystud-move-selected-participants]:visible').click();
+        const modal=root.locator('[data-easystud-move-modal]');await expect(modal).toBeVisible();
+        await modal.locator('.easyedu-searchable-choice__trigger').click();
+        await modal.locator('.easyedu-searchable-choice__search input').fill(pair.groupname);
+        await modal.locator('.easyedu-searchable-choice__option').filter({hasText:new RegExp('^'+pair.groupname+'$')}).click();
+        await expect(modal.locator('[data-easystud-move-destination]')).toHaveValue(String(pair.groupid));
+        await modal.locator('[data-easystud-confirm-move]').click();await expect(modal).toBeHidden();
+        await expect.poll(hasMembership,{timeout:30000}).toBe(true);report.versions.push(await version());
+        const density=root.locator('[data-easystud-density-toggle]');
+        if(await density.getAttribute('aria-pressed')==='true')await density.click();
+        await expect(userCard().locator('[data-easystud-participant-memberships="groups"]')).toContainText(pair.groupname);
+        await expect(userCard().locator('[data-easystud-participant-memberships="groups"]')).toBeVisible();
+        report.controls.addModelAndCard=true;
+        await root.locator('[data-easystud-catalog-search="participants"]').fill(pair.groupname);
+        const targetGroup=root.locator('[data-easystud-group-id="'+pair.groupid+'"]:visible').first();
+        const newMember=targetGroup.locator('[data-easystud-member-id="'+pair.userid+'"]');
+        await expect(newMember).toBeVisible();await newMember.locator('[data-easystud-remove-member]').click();
+        await expect.poll(hasMembership,{timeout:30000}).toBe(false);report.versions.push(await version());
+        await expect(userCard().locator('[data-easystud-participant-memberships="groups"]')).not.toContainText(pair.groupname);
+        report.controls.removeModelAndCard=true;
+        expect(report.versions[1]).toBeGreaterThan(report.versions[0]);
+        expect(report.versions[2]).toBeGreaterThan(report.versions[1]);report.controls.serverVersionRefresh=true;
+        expect(report.actions).toEqual(['addusers','removeuser']);expect(report.blocked).toEqual([]);expect(report.errors).toEqual([]);
+    }finally{
+        try{report.cleanup=pairCheck('cleanup');expect(report.cleanup.passed).toBe(true);}
+        finally{mode('legacy');report.restoredLegacy=true;
+            fs.writeFileSync(info.outputPath('sm3a-native.json'),JSON.stringify(report,null,2));}
     }
 });
 
