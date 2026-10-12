@@ -76,6 +76,19 @@ Le PASS isolé et la paire de compositions sauvegardées ne sont pas une preuve
 Moodle. Ce test natif candidat couvre EN/FR,1280/768/390/320, normal/reduced ;
 il bloque les writes et nettoie uniquement son espace QA, backups inclus.
 
+La preview Source442d95f est servie à runtime583fdca (caches purgés). Native28596
+a validé dix cas sans erreur/commande métier, puis son budget global360s s'est
+terminé pendant une navigation FR. Échec et nettoyage complet conservés.
+Le successeur borné900s ajoute seulement des timings/progress de cas ; pas de
+délais individuels augmentés, assertions retirées ou changement produit.
+
+Après rechargement du Guide, une notification de bibliothèque est devenue
+disponible. Son clic natif a expiré côté Playwright mais avait été appliqué.
+Le contrôle strict a trouvé deux anciennes largeurs de labels162→97 et leurs
+glyphes recentrés. Les copies ont été réconciliées sans rejeu de mise à jour :
+les deux lanes162 sont restaurées et les quatre références87/88 passent ensuite
+le même fingerprint complet. Aucun changement de police, de texte ou de code.
+
 Artefacts externes manifestables : `%LOCALAPPDATA%/EasyEdu/artifacts/easystud/guide-t014-20261012-a`.
 Captures initiales, finales, timeouts et réconciliations sont conservés séparément.
 Scénario candidat local-supervised ; CI/Docker et fixtures métier hors périmètre.

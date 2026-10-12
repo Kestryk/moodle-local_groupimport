@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - T014 native matrix budget successor
+
+- Retain native28596's ten passing records and global360s timeout during French
+  navigation; credential, lease and child cleanup completed. Not a matrix PASS.
+- Add a bounded900s successor and per-case progress/timing only. Preserve all
+  layout/type/media assertions, individual deadlines and exact served assets.
+- Reconcile timed-out Penpot Library update; restore two existing162px label
+  lanes and verify the four accepted reference fingerprints unchanged.
+
 ## 2026-10-12 - T014 complete inert Guide introduction specimens
 
 - Synchronize canonical183 Playback/Fullscreen specimens and Preview captions,
