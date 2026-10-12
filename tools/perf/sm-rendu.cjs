@@ -66,7 +66,7 @@ async function run(page, testInfo, expect) {
                             gzip, rawBytes, encodedBodyBytes: wireBytes, httpMs: performance.now() - start,
                             ...(referenceGzip ? {calculatedGzipBytes: referenceGzipBytes,
                                 gzipScope: 'Client stream compression estimate, not Apache transfer'} : {}),
-                            ...(surface === 'state' ? {response: JSON.parse(Buffer.concat(chunks).toString('utf8'))} : {})}));
+                            ...(surface === 'state' ? {response: JSON.parse(Buffer.concat(chunks).toString('utf8'))} : {})});
                         if (referenceGzip) referenceGzip.on('end', finish);
                         else stream.on('end', finish);
                     });
