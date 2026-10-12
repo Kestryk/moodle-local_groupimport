@@ -133,3 +133,10 @@ and muted/text roles to the actual canonical recipe, retaining12.16px Inter and
 the600 short heading. Provider IDs stay unchanged. Final saved/raster successors
 are `*-caption.png` and the source/product saved-caption-role records. They are
 separate from the initial179 candidate examples; native180 proof is pending.
+Native180 run51692 fails the same strict oracle at212.72px. The reading header's
+third nested inset leaves only249px for two complete group names.181 uses the
+existing scene gutter (12px inline outset), aligning header copy with natural
+cards without moving/resizing those cards. The outset remains during playback,
+so Start does not jump header edges. Resting text gap2px/zero inherited pill-label
+margin replaces padding already accounted for by the caption composition.
+No smaller font or relaxed limit; the immutable native scenario is replayed.
