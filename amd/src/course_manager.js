@@ -3040,6 +3040,13 @@ const trackActionRequest = promise => {
     });
 };
 
+// Request failures must preserve drafts, selection and the currently open UI.
+// The request tracker already restores busy controls in finally.
+const handleActionError = (root, error) => {
+    const labels = getLabels(root);
+    showNotification(root, error && error.message ? error.message : labels.ajaxerror || '', 'error');
+};
+
 // Post an EasyStud action.
 const postAction = data => {
     const root = document.getElementById('local-groupimport-easystud');
@@ -6360,9 +6367,7 @@ const bindGroupDragDrop = (root, courseId) => {
             clearSelectionState(root);
             updateSelectionActions(root);
             showNotification(root, message, 'success');
-        }).catch(() => {
-            window.location.reload();
-        });
+        }).catch(error => handleActionError(root, error));
 
         if (!root.classList.contains(participantFocusClass) && targetGroupingId !== '0' && hasGroupingOrigin) {
             openGroupDropModeModal(root, () => runChangingMove(false), () => runChangingMove(true));
@@ -6756,7 +6761,7 @@ const bindGroupMemberActions = (root, courseId) => {
                 clearSelectionState(root);
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -6771,7 +6776,7 @@ const bindGroupMemberActions = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1, 'grouping');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
         }
     });
 
@@ -6824,7 +6829,7 @@ const bindGroupingGroupActions = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1);
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -6895,7 +6900,7 @@ const bindGroupingGroupActions = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1, 'grouping');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
         }
     });
 
@@ -6982,7 +6987,7 @@ const bindBulkActions = (root, courseId) => {
                     clearSelectionState(root);
                     updateSelectionActions(root);
                     showNotification(root, response.message || '', 'success');
-                }).catch(() => window.location.reload());
+                }).catch(error => handleActionError(root, error));
             };
 
             if (hasmembers) {
@@ -7015,7 +7020,7 @@ const bindBulkActions = (root, courseId) => {
                     clearSelectionState(root);
                     updateSelectionActions(root);
                     showNotification(root, response.message || '', 'success');
-                }).catch(() => window.location.reload());
+                }).catch(error => handleActionError(root, error));
             };
 
             if (hasgroups) {
@@ -7037,14 +7042,14 @@ const bindBulkActions = (root, courseId) => {
                 clearSelectionState(root);
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
         });
     });
 
     root.querySelectorAll('[data-easystud-remove-selected-groups-from-groupings]').forEach(removeGroupsButton => {
         removeGroupsButton.addEventListener('click', () => {
             removeGroupsFromGroupings(root, courseId, getSelectedItems(root, 'group'))
-                .catch(() => window.location.reload());
+                .catch(error => handleActionError(root, error));
         });
     });
 };
@@ -7313,9 +7318,9 @@ const bindMoveModal = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitMemberPathCompletion(root, 'confirm-member-move');
-            }).catch(() => {
+            }).catch(error => {
                 setMemberBusy(false);
-                showNotification(root, labels.ajaxerror || '', 'danger');
+                handleActionError(root, error);
             });
             return;
         }
@@ -7350,7 +7355,7 @@ const bindMoveModal = (root, courseId) => {
                 emitGuidedCompletion(root, 1);
                 emitGuidedCompletion(root, 1, 'actions');
                 emitPracticeCompletion(root, 'confirm-move');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -7390,7 +7395,7 @@ const bindMoveModal = (root, courseId) => {
             commitActivityGroupingConfirmation(root, activityEvidence, responses);
             emitGuidedCompletion(root, 1, 'actions');
             emitGuidedCompletion(root, 1, 'grouping');
-        }).catch(() => window.location.reload());
+        }).catch(error => handleActionError(root, error));
     });
 };
 
@@ -7416,7 +7421,7 @@ const bindDuplicateActions = (root, courseId) => {
                     insertGroupData(root, response.group);
                 }
                 showNotification(root, response.message || '', 'success');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
             return;
         }
 
@@ -7432,7 +7437,7 @@ const bindDuplicateActions = (root, courseId) => {
                     insertGroupingData(root, response.grouping);
                 }
                 showNotification(root, response.message || '', 'success');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
         }
     });
 };
@@ -7951,7 +7956,7 @@ const bindContextMenu = (root, courseId) => {
             }
         } else if (action === 'group-remove-from-grouping') {
             removeGroupsFromGroupings(root, courseId, getContextItems('group', target))
-                .catch(() => window.location.reload());
+                .catch(error => handleActionError(root, error));
         } else if (action === 'group-delete-selected') {
             const button = root.querySelector('[data-easystud-delete-selected-groups]');
             if (button) {
@@ -8015,7 +8020,7 @@ const bindContextMenu = (root, courseId) => {
                 clearSelectionState(root);
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
-            }).catch(() => window.location.reload());
+            }).catch(error => handleActionError(root, error));
         } else if (action === 'paste-field') {
             pasteIntoField(target).catch(() => {});
         }

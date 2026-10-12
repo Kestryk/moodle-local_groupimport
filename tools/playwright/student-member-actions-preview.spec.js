@@ -101,3 +101,59 @@ test('Selected group members expose themed move actions without modifying member
     }
     expect(blocked,'Open/search/Cancel must not invoke a business command').toEqual([]);save();
 });
+
+// N0: fulfill/abort every action locally; real UI, no server-side membership write.
+test('Action failures show an error and preserve the typed draft without reloading', async ({page}, info) => {
+    test.setTimeout(180000);
+    await page.setViewportSize({width:1280,height:1000});
+    const url = new URL(process.env.EASYEDU_MOODLE_URL);
+    url.searchParams.set('lang','fr');
+    await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')) {
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
+        await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    }
+    const root = page.locator('#local-groupimport-easystud');
+    await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    await root.locator('[data-easystud-layout-mode="structure"]:visible').first().click();
+    const toggle = root.locator('[data-easystud-toggle-group-email]:visible').first();
+    await toggle.click();
+    const card = toggle.locator('xpath=ancestor::*[@data-easystud-group-id][1]');
+    const box = card.locator('[data-easystud-group-email-box]:visible');
+    const draft = 'synthetic-unresolved@example.test';
+    await box.fill(draft);
+    const submit = card.locator('[data-easystud-add-group-emails]:visible');
+    let navigation = 0, calls = 0, mode = 'server';
+    page.on('framenavigated',frame=>{if(frame===page.mainFrame())navigation++;});
+    await page.route('**/local/groupimport/ajax.php',route=> {
+        calls++;
+        return mode==='network' ? route.abort('failed') : route.fulfill({status:200,
+            contentType:'application/json',body:JSON.stringify({success:false,error:'Erreur simulée : saisie conservée.'})});
+    });
+    const checks = {};
+    try {
+        await submit.click();
+        await expect(page.getByText('Erreur simulée : saisie conservée.',{exact:true})).toBeVisible();
+        await expect(box).toHaveValue(draft);
+        await expect(root).toHaveAttribute('aria-busy','false');
+        expect(navigation).toBe(0);
+        checks.serverErrorVisibleDraftKept = true;
+        mode = 'network';
+        await submit.click();
+        await expect(page.getByText('Failed to fetch',{exact:true})).toBeVisible();
+        await expect(box).toHaveValue(draft);
+        await expect(root).toHaveAttribute('aria-busy','false');
+        expect(navigation).toBe(0);
+        expect(calls).toBe(2);
+        checks.networkErrorVisibleDraftKept = true;
+        checks.noReload = true;
+        checks.busyRestored = true;
+    } finally {
+        fs.writeFileSync(info.outputPath('student-management-verification.json'),JSON.stringify({
+            surface:'student-management',level:0,checks,calls,navigation,businessWrites:false
+        },null,2));
+    }
+});

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] AP-A1: replace fifteen error-triggered reloads with the existing notification surface and preserve drafts/selection; retain request cleanup and server messages, including member moves.
+
 - 2026-10-12 [N1] PG-S1: consume Kit187 native drawer yield for visible shared dialogs; retain strict highlight paint/Cancel checks in one modal surface script, including the reproduced mobile overlap.
 
 - 2026-10-12 [N0] Integrate Claude db2c429 (AP-A2/A3/A7/A8/A9): JSON AJAX bootstrap, safe errors and distinct localized Guide/duplication labels; isolated dispatch and language checks, native preview tracked in the review return.
