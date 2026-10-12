@@ -144,6 +144,7 @@ $string['guideaction_identifiers_mobile_title'] = 'Utiliser le menu de la carte 
 $string['guideaction_identifiers_mobile_description'] = 'Pour une seule carte destination, ouvrez Plus d’actions puis choisissez l’ajout par texte : des participants dans un groupe, ou des groupes dans un groupement. Les boutons directs de la version ordinateur sont masqués sur mobile. Vous pouvez aussi sélectionner des utilisateurs dans Participants puis choisir Déplacer les participants pour les ajouter au groupe en conservant leurs autres appartenances.';
 $string['guideaction_identifiers_note'] = 'Les étiquettes d’exemple ne représentent pas un changement appliqué. Seule votre action explicite Ajouter modifie l’appartenance à la destination ; Annuler referme le champ sans appliquer l’ajout.';
 $string['guideintro_specimen_navigation'] = 'Choisir un sujet';
+$string['guideintro_specimen_preview'] = 'Aperçu';
 $string['guideintro_specimen_path'] = 'Démarrer le parcours';
 $string['guideintro_specimen_highlight'] = 'Contrôle surligné dans l’interface';
 $string['guideintro_checklist_title'] = 'Lire la checklist';

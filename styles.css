@@ -13343,8 +13343,26 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__specimen,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__specimen {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
   min-width: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__specimen-caption,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__specimen-caption {
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  color: var(--easyedu-text-muted);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__controls,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--easyedu-action-icon-gap);
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__topics:has(.easyedu-guide-introduction__specimen) > .easyedu-guide-introduction__topic,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__topics:has(.easyedu-guide-introduction__specimen) > .easyedu-guide-introduction__topic {
@@ -13439,17 +13457,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   text-decoration: none;
   white-space: nowrap;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action {
-  background: var(--easyedu-primary);
-  color: var(--easyedu-surface);
-}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action:focus,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action:focus {
   background: var(--easyedu-surface);
   color: var(--easyedu-primary);
-  background: var(--easyedu-primary);
-  color: var(--easyedu-surface);
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action:hover, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action:active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action[aria-pressed=true],
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action:hover,
@@ -13457,8 +13468,6 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action[aria-pressed=true] {
   background: var(--easyedu-primary-soft);
   color: var(--easyedu-primary-strong);
-  background: var(--easyedu-primary-strong);
-  color: var(--easyedu-surface);
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action:focus-visible,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__action:focus-visible {

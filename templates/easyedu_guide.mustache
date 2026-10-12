@@ -502,6 +502,7 @@
                                         <dd>{{description}}</dd>
                                         {{#specimen}}
                                         <dd class="easyedu-guide-introduction__specimen" data-easyedu-guide-specimen="{{kind}}">
+                                            {{#previewlabel}}<small class="easyedu-guide-introduction__specimen-caption">{{previewlabel}}</small>{{/previewlabel}}
                                             {{#navigation}}
                                             <div class="easyedu-guide-nav easyedu-guide-introduction__navigation">
                                                 <span class="easyedu-guide-nav-item is-active">
@@ -521,6 +522,19 @@
                                             {{#highlight}}
                                             <span class="easyedu-guide-introduction__highlight"><span class="fa fa-eye" aria-hidden="true"></span><span>{{label}}</span></span>
                                             {{/highlight}}
+                                            {{#playback}}
+                                            <span class="easyedu-guide-introduction__controls">
+                                                <span class="easyedu-guide-scene__playback-button" role="img" aria-label="{{pauselabel}}"><span class="fa fa-pause" aria-hidden="true"></span></span>
+                                                <span class="easyedu-guide-scene__playback-button" role="img" aria-label="{{nextphaselabel}}"><span class="fa fa-forward" aria-hidden="true"></span></span>
+                                            </span>
+                                            {{/playback}}
+                                            {{#fullscreen}}
+                                            <span class="easyedu-guide-modal__fullscreen" role="img" aria-label="{{label}}">
+                                                <svg class="easyedu-guide-fullscreen-glyph" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                                    <path d="M3 6V3H6M10 3H13V6M13 10V13H10M6 13H3V10" />
+                                                </svg>
+                                            </span>
+                                            {{/fullscreen}}
                                         </dd>
                                         {{/specimen}}
                                     </div>

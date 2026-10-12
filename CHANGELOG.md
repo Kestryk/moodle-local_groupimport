@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - T014 complete inert Guide introduction specimens
+
+- Synchronize canonical183 Playback/Fullscreen specimens and Preview captions,
+  with outlined Small path appearance. Examples are not focusable commands.
+- Preserve all Guide engines/AMD/Motion, curriculum outside the optional
+  introduction data and complete CSS outside specimen appearance/layout.
+-60 isolated localized/common/card/media cases pass; retain two historical
+  oracle failures. Paired design and served-native evidence follow separately.
+
 ## 2026-10-12 - Approved Student identity-corridor planning supplement
 
 - Retain Kevin-approved Claude corridor proposal in T017/T018/T019/T021/T036,

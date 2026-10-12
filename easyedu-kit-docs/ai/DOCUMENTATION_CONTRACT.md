@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Guide introduction specimens reuse real Small outline/control/vector recipes
+as inert spans, never button commands, target IDs, path exercises or tab stops.
+Preview captions identify them as examples; capability still controls Fullscreen.
+Preserve stale-oracle predecessors when correcting list-versus-topic geometry
+or a pre-existing approved title role. Compare complete unrelated CSS and engines;
+source/design/isolated/native/human proof remain separate gates.
+
 Approved identity-corridor composition is CSS-only: preserve markup/classes,
 data attributes, PHP, JS/AMD and Motion. Add scope to the original61-task intake,
 never replace received wording/proof. Use semantic rail/surface tokens and Kit

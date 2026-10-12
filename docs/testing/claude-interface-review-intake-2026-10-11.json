@@ -227,7 +227,7 @@
     {
       "id": "T014",
       "receivedScope": "[P] [US1] Slide 1 (G10) : spécimens pour « Regarder à votre rythme » et « Lire en plein écran » ; spécimens en contour, jamais en bouton primaire plein ; légende « Aperçu ». Pas d'exercice de groupe (contrat R10-29).",
-      "status": "queued",
+      "status": "canonical183-60-isolated-passed-Foundation-saved-product-preview-native-pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],

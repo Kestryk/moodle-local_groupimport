@@ -144,6 +144,7 @@ $string['guideaction_identifiers_mobile_title'] = 'Use the destination card menu
 $string['guideaction_identifiers_mobile_description'] = 'For a single destination card, open More actions and choose the text-add action: participants in a group, or groups in a grouping. The direct desktop buttons are hidden on mobile. Alternatively, select users in Participants and choose Move participants to add them to a group while preserving their other memberships.';
 $string['guideaction_identifiers_note'] = 'The example chips are not an applied change. Only your explicit Add action changes the destination membership; Cancel closes the field without applying it.';
 $string['guideintro_specimen_navigation'] = 'Choose a topic';
+$string['guideintro_specimen_preview'] = 'Preview';
 $string['guideintro_specimen_path'] = 'Start guided path';
 $string['guideintro_specimen_highlight'] = 'Highlighted control in the interface';
 $string['guideintro_checklist_title'] = 'Read the checklist';
