@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] AP-E5: group identifier, enrolment, membership and import-preview/rollback reads; preserve AP-A5 priority, native mutations and database/native-name matching; strict before/after responses/messages/memberships and rolled-back edge fixtures verified on the dedicated Perf copy.
+
 - 2026-10-12 [N0] Codex2 Perf-copy transition: explicit local URL/port and separate runtime/fixture leases, non-Git deployment snapshot/hash manifest, guarded native copy-cache purge; principal T052/T052-bis results retained unchanged.
 
 - 2026-10-12 [N0] AP-E6-server: add default-off deferred profile HTML/description option and authorized single-participant details endpoint; native candidate parity/security checks pass, 800-user page gains 276,800 bytes (0.638%); JS consumption and activation remain pending.

@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)][string]$TargetPlugin,
-    [Parameter(Mandatory = $true)][string]$ArtifactRoot
+    [Parameter(Mandatory = $true)][string]$ArtifactRoot,
+    [switch]$MilestoneSnapshot
 )
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
@@ -24,15 +25,17 @@ foreach ($boundary in @($source, $target)) {
     }
 }
 New-Item -ItemType Directory -Path $output -Force | Out-Null
-$snapshot = Join-Path $output 'previous-plugin.tar'
+$snapshot = if ($MilestoneSnapshot) { Join-Path $output 'previous-plugin.tar' } else { $null }
 $archive = Join-Path $output 'source-plugin.tar'
 $manifest = Join-Path $output 'deployment.json'
 $staging = Join-Path $output 'committed-source'
-foreach ($file in @($snapshot, $archive, $manifest, $staging)) {
+foreach ($file in @($archive, $manifest, $staging) + @($snapshot | Where-Object { $_ })) {
     if (Test-Path -LiteralPath $file) { throw 'Use a new artifact directory; retain prior deployments.' }
 }
-& tar.exe --exclude='./tools/playwright/node_modules' --exclude='./node_modules' -cf $snapshot -C $target .
-if ($LASTEXITCODE -ne 0) { throw 'Previous plugin snapshot failed; no deployment.' }
+if ($MilestoneSnapshot) {
+    & tar.exe --exclude='./tools/playwright/node_modules' --exclude='./node_modules' -cf $snapshot -C $target .
+    if ($LASTEXITCODE -ne 0) { throw 'Previous plugin snapshot failed; no deployment.' }
+}
 $files = @(& git -C $source ls-tree -r --name-only HEAD)
 if ($LASTEXITCODE -ne 0) { throw 'Unable to enumerate committed source files.' }
 New-Item -ItemType Directory -Path $staging | Out-Null

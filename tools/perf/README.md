@@ -154,7 +154,7 @@ live fixture counts without exposing credentials. Its optional `--purge
 native `purge_all_caches()` only on that exact copy, under the copy cache lease.
 
 Deploy clean committed source using `Deploy-PerfCopy.ps1 -TargetPlugin PATH
--ArtifactRoot EXTERNAL`. The helper snapshots the prior plugin and the clean
+-ArtifactRoot EXTERNAL`. The helper packages the clean
 HEAD's tracked files (no `.git`), preserves runtime dependencies/untracked files and checks SHA256 for
 every committed file. Deployment/purge require `groupimport-perf-runtime-write`
 and `moodle51-perf-cache-write`; the principal leases are never acquired.
@@ -171,3 +171,36 @@ Use the copy's runner and Moodle root. The same exact-one native discovery,
 saved process-local credentials, fixture ownership and final cleanup still apply.
 The manifest is verified again before measures; no ancestor Git revision is
 inferred from a non-Git runtime. Historical principal measurements stay immutable.
+
+Routine N0/N1 deployment does not snapshot the prior plugin. Use
+`-MilestoneSnapshot` only at an actual milestone, following BRIEF-CODEX.
+
+## AP-E5 grouped-read comparison
+
+`-Mode sql -Participants 800` extends the same native test. Before uses the
+unchanged served copy; after evaluates actual candidate PHP in separate owned
+workers, with only `__DIR__`/`__FILE__` pointing at the native runtime bootstrap.
+No served file, setting or cache policy changes between the two variants.
+Record dirty candidate status and hashes explicitly; commit only after parity.
+
+Compare complete logical AJAX responses, final memberships, preview rows and
+per-row messages, and restoration summary/errors/members. Only freshly allocated
+duplicate-group IDs (including their native URL/selectable IDs) are normalized
+to one declared symbol; existing user/group/grouping IDs are never normalized.
+Result checks and disposable cleanup are outside the SQL counters for AJAX.
+
+`verify-batch-edges.php` executes both revisions' pure helpers under separate
+names on the owned fixture, with process-only identification settings. Its
+temporary custom field, synthetic-user deleted flag and synthetic unenrolment
+are inside a rolled-back transaction. Verify field removal, restored deleted
+flag/enrolment and exact fixture membership hash before fixture cleanup.
+Test duplicates, empty values, disabled identifiers/bare names, numeric Moodle
+IDs, field priority, SQL case equivalence, ambiguous custom values, native group
+name policy and 1,000-value/profile-field boundaries.
+
+Reads are grouped, not writes: original native APIs, transaction, removal
+restrictions, events and hooks remain. Their internal SQL still scales with
+mutations. In rare non-unique field/name cases, preserve the legacy first/two-row
+API behavior rather than impose a new ordering or ambiguity policy. Dynamically
+created rollback names use native lookup on snapshot misses. No global/request
+cache or invalidation contract is invented in this lot.

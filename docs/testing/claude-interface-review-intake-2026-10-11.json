@@ -6,6 +6,27 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "codex2APE520261012": {
+    "owner": "Codex2",
+    "branch": "work/port4719pg3/easystud-perf-server-20261012",
+    "runtime": "http://localhost:8051",
+    "status": "six-native-comparisons-exact-141-edge-checks-pass-cleanup-complete",
+    "preserves": ["AP-A3", "AP-A4", "AP-A5", "native mutation APIs and transactions"],
+    "measurement": "tools/perf/Invoke-Baseline.ps1 -Mode sql",
+    "rawExternal": "C:/dev/artifacts/easystud-perf-server-20261012/ap-e5/candidate-final/",
+    "nativeEvidence": "Server/actual-source candidate, not browser acceptance",
+    "preview2000SqlReads": {"before": 14124, "after": 114},
+    "nativeMutationsRemain": true,
+    "humanAccepted": false
+  },
+  "smRenduOwnershipKevin20261012": {
+    "architecture": "ARCHITECTURE-SM-RENDU-2026-10-12.md",
+    "codeAndCommits": "Claude",
+    "integration": "Codex1",
+    "measurements": "Codex2 on :8051 only",
+    "decision": "Confirmed by Kevin after the architecture arrived; Codex2 does not duplicate step1",
+    "APE7": "Not started; conditional architecture wait no longer applies"
+  },
   "codex2PerfCopy20261012": {
     "url": "http://localhost:8051",
     "database": "moodle51perf",
