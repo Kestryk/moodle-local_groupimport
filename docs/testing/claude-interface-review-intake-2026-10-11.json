@@ -236,8 +236,8 @@
     {
       "id": "T015",
       "receivedScope": "[US1] Preuve native : 18 cas de scène existants (EN/FR × 1280/768/390), plus ce nouveau critère : mode visible avant Démarrer ; appartenances visibles en fin de démo sans défilement manuel à 1280×800.",
-      "status": "current60-scene-lifecycle-cases-native-passed-keyboard-Tab-Escape-focus-gate-open",
-      "nativeVerified": false,
+      "status": "current60-scene-and12-keyboard-native-cases-passed-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
       "related": [],
       "decisionGate": "none"

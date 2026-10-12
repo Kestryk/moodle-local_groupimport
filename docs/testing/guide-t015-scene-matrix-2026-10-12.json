@@ -25,8 +25,21 @@
   },
   "productAssetsChangedForThisGate": false,
   "continuousEveryPhaseTargetsCertifiedByThisRun": false,
-  "keyboardGate": "Current-curriculum QA-isolated successor prepared; native result pending",
-  "nativeVerified": false,
+  "keyboardGate": {
+    "sourceHarnessCommit": "3204b83b0c71f12c7315d0b807fb04001e671726",
+    "testedRuntimeCommit": "4d8045abc09069e004dc20dabce975e9766672ac",
+    "runId": "easystud-authenticated-20261012T103159292Z-25316",
+    "status": "passed",
+    "records": 12,
+    "currentPracticeIndex": 2,
+    "TabShiftTabHomeEnd": true,
+    "typingEnterAndNestedEscape": true,
+    "EscapeClosesAndReturnsRealOpenerFocus": true,
+    "errors": [],
+    "blockedBusinessRequests": [],
+    "cleanupComplete": true
+  },
+  "nativeVerified": true,
   "humanAccepted": false,
-  "remaining": ["T015 Tab Escape return-focus gate", "T012 full recap disclosure", "older61-task and feedback backlog", "human checklist"]
+  "remaining": ["T012 full recap disclosure", "older61-task and feedback backlog", "human checklist"]
 }

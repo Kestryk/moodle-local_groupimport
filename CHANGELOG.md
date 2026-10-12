@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - T015 complete lifecycle and keyboard gates
+
+- Twelve EN/FR three-width/media keyboard routes pass with actual current
+  Practice index2, Tab/Shift-Tab, Home/End, Enter, nested/typing Escape and focus.
+- Combine with the60-case lifecycle proof; errors/course writes zero and all
+  credentials/runtime/owned-child cleanup complete. Human checklist remains open.
+- Preserve all product assets, historical tests and the separate T012 disclosure
+  requirement. Keep every-phase animation paint distinct from endpoint proof.
+
 ## 2026-10-12 - T015 lifecycle proof and A2 approval
 
 - Verify60 existing scene lifecycle cases and eight1280×800 final memberships,

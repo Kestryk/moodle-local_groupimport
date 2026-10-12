@@ -1,5 +1,15 @@
 # Guide engineering: current projection, not human acceptance
 
+T015 now passes lifecycle42628 (60) and keyboard25316 (12): current four
+timed entries, Add/Move, EN/FR normal/reduced, three widths, final1280x800 strips,
+Tab/Shift-Tab, Home/End, typed Enter, nested/typing Escape and real opener focus.
+The current Practice index is2, discovered from the actual input rather than
+the historical1. Assets remain442d95f/Kit78d7dd5; metadata3204b83/runtime4d8045a.
+All cleanup complete, errors/writes zero; every-phase continuous targets remain
+separate R2 evidence. Next T012 shared recap disclosure; no new private Motion.
+Kevin's A2 real panel-width decision is recorded; Student corridors stay queued.
+All61 original scopes, older feedback and human acceptance remain open/intact.
+
 T015 lifecycle42628 passes60 cases, four existing timed entries plus Add/Move,
 EN/FR×1280/768/390×normal/reduced. Eight desktop final strips fit the actual800px
 body viewport; errors/writes zero, cleanup complete. T015 keyboard is still open:

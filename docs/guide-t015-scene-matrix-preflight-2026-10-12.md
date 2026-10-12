@@ -1,5 +1,12 @@
 # T015 — matrice native des scènes, après T014
 
+État final : lifecycle42628/60 et clavier25316/12 passent, avec cleanup complet,
+zéro erreur/commande métier. Le champ Practice actuel se trouve à l'index2,
+découvert dans le vrai DOM ; aucun renommage de slide/storage ou produit modifié.
+La preuve `testing/guide-t015-scene-matrix-2026-10-12.json` conserve les deux
+gates et leurs pins distincts. Les paragraphes plus bas sont chronologiques.
+Acceptation humaine ouverte, prochaine tâche Guide T012.
+
 ## Résultat de la matrice lifecycle
 
 Run42628 passe les60 cas, EN/FR ×1280/768/390 ×normal/reduced : les deux
