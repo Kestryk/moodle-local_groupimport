@@ -1,5 +1,9 @@
 # T014 native scenario — local-supervised candidate
 
+Current successor49364 passes16 cases, with full cleanup and no errors/writes.
+See `guide-introduction-t014-2026-10-12.json`; the original28596 failure stays
+pinned. Local-supervised verified; CI/Docker/human acceptance are not claimed.
+
 Source: `tools/playwright/guide-introduction-t014-native.spec.js`.
 Scenario: `T014 six inert introduction specimens in native Moodle`.
 Status before preview: candidate, not executed; no CI/Docker claim.

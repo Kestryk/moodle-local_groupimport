@@ -1,0 +1,50 @@
+{
+  "program": "EED-UI-2026-0073",
+  "task": "T014",
+  "scope": "Six inert introductory specimens; outline and Preview captions; no group exercise",
+  "kitCommit": "78d7dd551842cf39ffa5c6f88486414c6ee9fa2b",
+  "kitVersion": "0.4.183",
+  "sourceAssetCommit": "442d95f71e53b84ef604c1e89d426f26be174a8a",
+  "runtimeAssetCommit": "583fdca7f8a3a530ee262a363e15cb195a03ff7c",
+  "nativeHarnessCommit": "e0b035fcf8d9932ebbe3c7c661813a2b3b24efdf",
+  "testedRuntimeCommit": "3011fcd76dded3a57a9cb9c72f342366f51af74e",
+  "cssGitBlob": "6d244f26a28e4c7cce4cc2b4ee34bdac57578daa",
+  "sourcePreservation": "complete unrelated CSS/type and full engines/AMD/Motion/business preserved",
+  "isolatedCases": 60,
+  "design": {
+    "foundationProviders": ["1b9939cf-2f95-805b-8008-c3828739bece", "1b9939cf-2f95-805b-8008-c382a5a0c003"],
+    "standardInstances": ["c8f59096-02cd-803e-8008-c71721d7ae00", "c8f59096-02cd-803e-8008-c71723183721"],
+    "productChapter": "90 / Guide / Introduction controls / Desktop and Phone",
+    "savedSourceStandardAndProduct": true,
+    "pairedRastersInspected": true,
+    "oldCopiesRecoverablyArchived": true,
+    "referenceFingerprintRestored": 4,
+    "externalArtifactRun": "guide-t014-20261012-a"
+  },
+  "nativeRun": {
+    "runId": "easystud-authenticated-20261012T095314238Z-49364",
+    "status": "passed",
+    "cases": 16,
+    "languages": ["en", "fr"],
+    "widths": [1280, 768, 390, 320],
+    "motion": ["no-preference", "reduce"],
+    "sixKindsFiveVisibleOnCompact": true,
+    "noFocusableCommandOrGroupExercise": true,
+    "captionControlTypographyAndContainment": true,
+    "maxCaseElapsedMs": 41057,
+    "errors": [],
+    "blockedBusinessRequests": [],
+    "cleanupComplete": true
+  },
+  "preservedFailures": [
+    "isolated stale list-column oracle",
+    "isolated stale14.08px title oracle",
+    "Standards publication timeout reconciled by exact created IDs",
+    "initial generic cached-label rasters and temporary-font recovery",
+    "native28596:10 passed records then global360s navigation timeout",
+    "native Library-update timeout and two existing label lanes reset162to97; strict four-reference fingerprint restored"
+  ],
+  "nativeVerified": true,
+  "humanAccepted": false,
+  "remainingGates": ["T015 full scene matrix", "older61-task and user-feedback backlog", "human checklist"]
+}

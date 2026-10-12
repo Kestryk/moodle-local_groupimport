@@ -1,5 +1,16 @@
 # Guide engineering: current projection, not human acceptance
 
+T014 is now served/native-verified: Source442d95f / Kit78d7dd5 (0.4.183) /
+runtime583fdca assets, harness e0b035f/runtime3011fcd. Native49364 passes all16
+EN/FR×1280/768/390/320×normal/reduced records, no overflow/commands/errors.
+28596 retains its10 passing records and global360s timeout; its bounded900s
+successor reconstructs all original assertions/deadlines. Cleanup is complete.
+Source/Standard/Product90 are saved/paint-inspected; two existing reference
+label lanes were restored after the timed-out native Library update, with the
+strict four-root fingerprint passing. See T014 evidence JSON/progress record.
+Next T015 preflight covers both Inspection entries, Add/Move, actual1280×800
+result visibility and reduced static outcome; old61 scopes/human gates stay open.
+
 T014 canonical183/Kit78d7dd5 adds inert Playback/Fullscreen and six Preview
 captions, with outlined Small path.60 isolated cases and complete unrelated
 CSS/controller/Motion/type preservation pass. Existing Foundations providers

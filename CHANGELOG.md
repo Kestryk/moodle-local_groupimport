@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - T014 full native verification
+
+- Verify all16 EN/FR desktop/tablet/phone/narrow-phone normal/reduced cases on
+  served183 assets. Inert specimens, Preview captions, outline/type and containment
+  pass without errors or course writes; all runner cleanup completed.
+- Preserve10-record timeout and all design/harness predecessors. Record the
+  saved/painted source-product pair and prepare the separate T015 scene matrix.
+- Keep human checklist, all61 received scopes and older feedback open.
+
 ## 2026-10-12 - T014 native matrix budget successor
 
 - Retain native28596's ten passing records and global360s timeout during French

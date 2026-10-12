@@ -1,5 +1,15 @@
 # T014 — six aperçus non interactifs
 
+## État final technique
+
+Les16 cas natifs du successeur49364 passent : EN/FR,1280/768/390/320,
+normal/reduced, aperçus non interactifs, texte contenu, bonne typographie et
+contour. Zéro erreur/commande métier ; credential/lease/child cleanup complet.
+La preuve est `testing/guide-introduction-t014-2026-10-12.json` ; elle conserve
+le code testé442d95f, Kit78d7dd5, runtime assets583fdca et metadata3011fcd.
+Les anciennes étapes ci-dessous restent chronologiques, pas des statuts actuels.
+La checklist humaine reste ouverte ; T015 est le prochain lot Guide.
+
 Programme `EED-UI-2026-0073`, Guide prioritaire, complément aux 61 tâches.
 Source baseline `7332375`, Kit baseline `cb9edab`, preview baseline `a453c47`.
 Worktrees Source/Kit et branches existants seulement ; aucune donnée Moodle.
