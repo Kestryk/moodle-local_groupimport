@@ -81,7 +81,7 @@ try {
     $lease = @{
         Resource = $RuntimeLeaseResource; ProjectNamespace = 'easystud'; RunId = $runId
         Repository = $runtime; Purpose = 'T052 baseline; fixture lease owned by the saved-credentials runner'
-        LeaseSeconds = 7200; OwnerPid = $PID
+        LeaseSeconds = 3600; OwnerPid = $PID
     }
     if ($WaitForLease) {
         Wait-EasyEduResourceLease @lease -MaxWaitSeconds $LeaseWaitTimeoutSeconds -PollSeconds 5 | Out-Null
