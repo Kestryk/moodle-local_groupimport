@@ -2151,10 +2151,6 @@ const emitGuidedCompletion = (root, step, path = 'main') => {
             path: 'create-grouping',
             steps: ['create-grouping', 'add-group-to-grouping', 'verify-grouping'],
         },
-        actions: {
-            path: 'try-actions',
-            steps: ['try-drag', 'try-selection', 'try-context'],
-        },
     };
     const easyeduPath = easyeduPaths[path];
     const easyeduStep = easyeduPath && easyeduPath.steps[step];
@@ -2194,6 +2190,25 @@ const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 
 
 // Navigation can portal this exact node outside the workspace on compact screens.
 const getActivityGuideRoot = root => root.easystudGuideOwner || root.querySelector('[data-easyedu-guide-root]');
+
+// The retained Actions path shares the modern ordered milestone authority.
+// A completed drag must also belong to the session that submitted the action.
+const emitTryActionsCompletion = (root, step, token = null) => {
+    if (step === 'try-drag') {
+        const current = Guide.getPathContextToken(getActivityGuideRoot(root), 'try-actions');
+        if (!token || !current || token.root !== current.root || token.config !== current.config ||
+                token.epoch !== current.epoch) {
+            return;
+        }
+    }
+    emitNativePathCompletion(root, 'try-actions', step);
+};
+
+const emitTryActionsSelection = root => {
+    if (getSelectedItems(root, 'participant').length) {
+        emitTryActionsCompletion(root, 'try-selection');
+    }
+};
 
 const activityGroupingSessionIsCurrent = (root, token) => {
     const current = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
@@ -5282,6 +5297,9 @@ const bindPagination = root => {
             requestGuideHighlightRefresh(root);
             if (type === 'participant') {
                 emitFilterPathCompletion(root, deselect ? 'clear-selection' : 'select-results');
+                if (!deselect) {
+                    emitTryActionsSelection(root);
+                }
             }
             return;
         }
@@ -6035,6 +6053,9 @@ const bindSelection = root => {
         }
         updateSelectionActions(root);
         requestGuideHighlightRefresh(root);
+        if (type === 'participant') {
+            emitTryActionsSelection(root);
+        }
         if (type === 'group') {
             emitActivityGroupSelection(root);
         }
@@ -6066,6 +6087,9 @@ const bindSelection = root => {
             emitGuidedCompletion(root, 2, 'grouping');
         }
         updateSelectionActions(root);
+        if (type === 'participant') {
+            emitTryActionsSelection(root);
+        }
         if (type === 'group') {
             emitActivityGroupSelection(root);
         }
@@ -6505,12 +6529,13 @@ const bindUserDragDrop = (root, courseId) => {
         root.classList.remove('is-dragging-participants');
         syncEmptyGroupingDropState(false);
         dropTarget.classList.remove(dropTargetClass);
+        const tryActionsToken = Guide.getPathContextToken(getActivityGuideRoot(root), 'try-actions');
         addUsersToGroup(draggedUsers, dropTarget).then(response => {
             clearSelectionState(root);
             updateSelectionActions(root);
             showNotification(root, response.message || '', 'success');
             emitGuidedCompletion(root, 1);
-            emitGuidedCompletion(root, 0, 'actions');
+            emitTryActionsCompletion(root, 'try-drag', tryActionsToken);
         }).catch(() => {
             showNotification(root, labels.ajaxerror || '', 'error');
         });
@@ -7353,7 +7378,6 @@ const bindMoveModal = (root, courseId) => {
                 updateSelectionActions(root);
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1);
-                emitGuidedCompletion(root, 1, 'actions');
                 emitPracticeCompletion(root, 'confirm-move');
             }).catch(error => handleActionError(root, error));
             return;
@@ -7393,7 +7417,6 @@ const bindMoveModal = (root, courseId) => {
             const existing = responses.filter(response => response.existing).length;
             showNotification(root, formatMoveSummary(labels.groupsmovesummary || '', added, existing), 'success');
             commitActivityGroupingConfirmation(root, activityEvidence, responses);
-            emitGuidedCompletion(root, 1, 'actions');
             emitGuidedCompletion(root, 1, 'grouping');
         }).catch(error => handleActionError(root, error));
     });
@@ -7676,6 +7699,9 @@ const bindContextMenu = (root, courseId) => {
         if (first) {
             first.focus({preventScroll: true});
         }
+        if (type === 'participant' && target && target.isConnected && root.contains(target)) {
+            emitTryActionsCompletion(root, 'try-context');
+        }
     };
 
     const getContextTarget = event => {
@@ -7786,7 +7812,6 @@ const bindContextMenu = (root, courseId) => {
         }
         prepareContextSelection(item);
         showMenu(event, item.type, item.target);
-        emitGuidedCompletion(root, 2, 'actions');
     });
 
     let longPressTimer = null;

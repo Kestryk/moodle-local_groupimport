@@ -110,3 +110,97 @@ test('Guide filter path verifies matching results and clears selection', async({
             fixtureRequested: false, businessWriteRequested: false}, null, 2));
     }
 });
+
+// N0: real selection/menu gestures; prior drag completion is QA history only.
+test('Actions path observes Participant selection and all native menu entry methods',async({page},info)=>{
+    test.setTimeout(240000);
+    const rows=[],errors=[],blocked=[];
+    page.on('pageerror',error=>errors.push(error.message));
+    const url=new URL(process.env.EASYEDU_MOODLE_URL);url.searchParams.set('lang','fr');
+    await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')){
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
+    }
+    await page.route('**/local/groupimport/**',route=>{
+        if(route.request().method()==='GET')return route.continue();
+        blocked.push('plugin write');return route.abort('blockedbyclient');
+    });
+    const workspace=page.locator('#local-groupimport-easystud');
+    const checklist=page.locator('[data-easyedu-guide-checklist]');
+    const menu=workspace.locator('[data-easystud-context-menu]');
+    const settled=async()=>page.evaluate(()=>new Promise(resolve=>{
+        let timer;
+        const done=()=>{window.removeEventListener('scroll',onScroll,true);resolve();};
+        const onScroll=()=>{clearTimeout(timer);timer=setTimeout(done,180);};
+        window.addEventListener('scroll',onScroll,true);onScroll();
+    }));
+    try{
+        for(const {width,entry} of [{width:1280,entry:'right-click'},{width:390,entry:'button'},
+            {width:390,entry:'long-press'}]){
+            await page.setViewportSize({width,height:1000});
+            await page.goto(url.href,{waitUntil:'domcontentloaded'});
+            await expect(workspace).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+            await page.evaluate(async({width,entry})=>{
+                const root=document.querySelector('[data-easyedu-guide-root]'),config=root.easyeduGuideConfig;
+                const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+                const key='actions-native-qa-'+width+'-'+entry;
+                Guide.destroy(root);
+                localStorage.setItem(key+'.checklist',JSON.stringify({path:'try-actions',activeIndex:1,
+                    presentationKey:config.presentationKey,completed:{'try-actions':['try-drag']}}));
+                Guide.init(root,{...config,firstVisit:false,welcomeOffer:false,storageKey:key});
+            },{width,entry});
+            const resume=page.locator('[data-easyedu-guide-resume-path]:visible');
+            await expect(resume).toHaveText('Reprendre');await resume.click();
+            await expect(checklist).toBeVisible();
+            const selection=checklist.locator('[data-easyedu-guide-step-id="try-selection"]');
+            const context=checklist.locator('[data-easyedu-guide-step-id="try-context"]');
+            await expect(context).toHaveClass(/is-locked/);
+            const card=workspace.locator('[data-easystud-participant-list] [data-easystud-user]:visible').first();
+            const checkbox=card.locator('[data-easystud-selector-input]');
+            const label=card.locator('.local-groupimport-easystud-selector');
+            // Menu auto-selection must not impersonate the explicit checkbox exercise.
+            await card.scrollIntoViewIfNeeded();await settled();
+            if(width===1280)await card.locator('.local-groupimport-easystud-user__name').click({button:'right'});
+            else await card.locator('[data-easystud-card-menu]:visible').click();
+            await expect(menu).toBeVisible();await expect(selection).not.toHaveClass(/is-complete/);
+            await page.keyboard.press('Escape');await expect(menu).toBeHidden();
+            if(await checkbox.isChecked())await label.click();
+            await label.click();await expect(checkbox).toBeChecked();
+            await expect(selection).toHaveClass(/is-complete/);
+            await expect(context).not.toHaveClass(/is-locked/);
+            if(width===1280){
+                const group=workspace.locator('[data-easystud-user-drop]:visible').first();
+                await group.scrollIntoViewIfNeeded();await settled();
+                await group.locator('.local-groupimport-easystud-group__name').first().click({button:'right'});
+                await expect(menu).toBeVisible();await expect(context).not.toHaveClass(/is-complete/);
+                await page.keyboard.press('Escape');await expect(menu).toBeHidden();
+            }
+            await card.scrollIntoViewIfNeeded();await settled();
+            if(entry==='right-click')await card.locator('.local-groupimport-easystud-user__name').click({button:'right'});
+            if(entry==='button')await card.locator('[data-easystud-card-menu]:visible').click();
+            if(entry==='long-press'){
+                const point=await card.locator('.local-groupimport-easystud-user__name').boundingBox();
+                const client=await page.context().newCDPSession(page);
+                try{
+                    await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[
+                        {x:point.x+point.width/2,y:point.y+point.height/2}]});
+                    await expect(menu).toBeVisible({timeout:3000});
+                    await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+                }finally{await client.detach();}
+            }
+            await expect(menu).toBeVisible();await expect(context).toHaveClass(/is-complete/);
+            await page.keyboard.press('Escape');
+            rows.push({width,entry,resumeLabel:true,explicitSelection:true,menuAutoSelectionNotCompletion:true,
+                participantMenuCompletion:true,groupMenuNegative:width===1280,
+                priorDrag:'QA history, not native business proof'});
+        }
+        expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    }finally{
+        fs.writeFileSync(info.outputPath('guide-actions-verification.json'),JSON.stringify({
+            surface:'guide-paths',level:0,rows,errors,blocked,businessWrites:false
+        },null,2));
+    }
+});

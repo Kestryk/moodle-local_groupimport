@@ -1647,6 +1647,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
         ],
         'pathContextFields' => [
             'prepare-activity-grouping' => ['destinationId' => 'id', 'groupIds' => 'ids'],
+            // Session token only; no course evidence payload is stored by this path.
+            'try-actions' => [],
         ],
         'paths' => [
             'prepare-activity-grouping' => \local_groupimport\local\guide_discovery::activity_grouping_path(),
@@ -1741,6 +1743,7 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                 ],
                 [
                     'id' => 'try-selection',
+                    'requiresStep' => 'try-drag',
                     'title' => get_string('tutorialguidedtryselection', 'local_groupimport'),
                     'description' => get_string('tutorialguidedactionsdescselection', 'local_groupimport'),
                     'target' => 'participantSelectionInput',
@@ -1751,6 +1754,7 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                 ],
                 [
                     'id' => 'try-context',
+                    'requiresStep' => 'try-selection',
                     'title' => get_string('tutorialguidedtrycontext', 'local_groupimport'),
                     'description' => get_string('tutorialguidedactionsdesccontext', 'local_groupimport'),
                     'target' => 'participantCardActions',
