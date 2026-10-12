@@ -1469,7 +1469,7 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         'guideminimizelabel' => $templatedata['tutorialguidedpanelminimize'],
         'guiderestorelabel' => get_string('discovery_restore', 'local_groupimport'),
         'guideresumetitle' => get_string('discovery_resume_title', 'local_groupimport'),
-        'guideresumelabel' => get_string('discovery_resume', 'local_groupimport'),
+        'guideresumelabel' => get_string('guideresumepath', 'local_groupimport'),
         'guidecancelpathlabel' => get_string('discovery_cancel_path', 'local_groupimport'),
         'guideresetpathlabel' => get_string('discovery_reset_path', 'local_groupimport'),
         'guidechecklisthint' => $templatedata['tutorialguidedpanelhint'],

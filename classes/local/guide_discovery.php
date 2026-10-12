@@ -104,6 +104,8 @@ final class guide_discovery {
         foreach (['add', 'cancel', 'pause', 'resume', 'nextphase', 'finished'] as $key) {
             $scene[$key . 'label'] = get_string('discovery_' . $key, 'local_groupimport');
         }
+        // The illustrated inspection submit is the real "Add" action, not the Add/Move comparison mode.
+        $scene['addlabel'] = get_string('discovery_demo_add', 'local_groupimport');
         foreach (['replay', 'reset'] as $key) {
             $scene[$key] = get_string('discovery_' . $key, 'local_groupimport');
         }
