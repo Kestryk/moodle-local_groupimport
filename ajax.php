@@ -22,6 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+define('AJAX_SCRIPT', true);
+
 require_once(__DIR__ . '/../../config.php');
 require_once($CFG->dirroot . '/group/lib.php');
 require_once($CFG->libdir . '/gdlib.php');
@@ -338,7 +340,7 @@ try {
 
         $newgroup = (object)[
             'courseid' => $course->id,
-            'name' => $group->name . ' (copie)',
+            'name' => get_string('duplicatedname', 'local_groupimport', $group->name),
         ];
         $newgroupid = groups_create_group($newgroup);
 
@@ -397,7 +399,7 @@ try {
         $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id], '*', MUST_EXIST);
         $newgrouping = (object)[
             'courseid' => $course->id,
-            'name' => $grouping->name . ' (copie)',
+            'name' => get_string('duplicatedname', 'local_groupimport', $grouping->name),
         ];
         $newgroupingid = groups_create_grouping($newgrouping);
 
@@ -676,8 +678,16 @@ try {
         $response['success'] = true;
         $response['message'] = get_string('groupingsdeleted', 'local_groupimport', $deleted);
     }
-} catch (Throwable $exception) {
+} catch (dml_exception $exception) {
+    // Database errors may carry SQL in their debug details: log them, never return them.
+    error_log('local_groupimport ajax ' . $action . ': ' . $exception->getMessage() . ' ' . ($exception->debuginfo ?? ''));
+    $response['error'] = get_string('ajaxunexpectederror', 'local_groupimport');
+} catch (moodle_exception $exception) {
     $response['error'] = $exception->getMessage();
+} catch (Throwable $exception) {
+    // Unexpected PHP errors are logged server side and reported with a generic message.
+    error_log('local_groupimport ajax ' . $action . ': ' . get_class($exception) . ': ' . $exception->getMessage());
+    $response['error'] = get_string('ajaxunexpectederror', 'local_groupimport');
 }
 
 header('Content-Type: application/json; charset=utf-8');
