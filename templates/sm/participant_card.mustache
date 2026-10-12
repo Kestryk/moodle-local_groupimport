@@ -1,0 +1,183 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_groupimport/sm/participant_card
+
+    One Student Management participant card. Rendered by the server for every participant
+    in the legacy mode (manage.mustache), and by the browser for the current page only in
+    the on-demand mode (SM-RENDU). Both must produce the same markup.
+
+    Heavy attributes (data-user-detail, data-search-text...) are optional: the on-demand
+    renderer reads them from its state instead.
+
+    Example context (json):
+    {
+        "id": 3,
+        "fullname": "Ada Lovelace",
+        "email": "ada@example.com",
+        "selectionmodelabel": "Select",
+        "profileimage": "<img src=\"https://example.com/pic.png\" class=\"userpicture\" width=\"100\" height=\"100\" alt=\"\">",
+        "usercopyfieldsjson": "[]",
+        "groupidscsv": "",
+        "groupingidscsv": "",
+        "viewdetailslabel": "View details",
+        "rolesmeta": {"label": "Roles", "tokens": [{"label": "Student", "class": "local-groupimport-easystud-token"}]}
+    }
+}}
+<div
+    class="local-groupimport-easystud-user"
+    tabindex="0"
+    data-easystud-user="1"
+    data-selectable-type="participant"
+    data-selectable-id="{{id}}"
+    data-user-id="{{id}}"
+    data-user-email="{{email}}"
+    {{#userdetailjson}}data-user-detail="{{userdetailjson}}"{{/userdetailjson}}
+    data-user-copy-fields="{{usercopyfieldsjson}}"
+    data-search-text="{{searchtext}}"
+    data-role-text="{{roletext}}"
+    data-group-ids="{{groupidscsv}}"
+    data-grouping-ids="{{groupingidscsv}}"
+    draggable="true"
+>
+    <label class="local-groupimport-easystud-selector" aria-label="{{selectionmodelabel}}">
+        <input type="checkbox" data-easystud-selector-input="1">
+        <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
+    </label>
+    <div class="local-groupimport-easystud-user__rail">
+        <div class="local-groupimport-easystud-user__avatar">{{{profileimage}}}</div>
+    </div>
+    <div class="local-groupimport-easystud-user__main">
+        <div class="local-groupimport-easystud-user__headline">
+            <div class="local-groupimport-easystud-user__headline-main">
+                <strong class="local-groupimport-easystud-user__name">{{fullname}}</strong>
+                {{#primarybadge}}
+                    <span
+                        class="local-groupimport-easystud-user__primary-badge"
+                        data-easystud-participant-profile="badge"
+                        style="{{style}}"
+                        title="{{label}}"
+                    >{{value}}</span>
+                {{/primarybadge}}
+            </div>
+            <span class="local-groupimport-easystud-user__email">{{email}}</span>
+            <button
+                type="button"
+                class="btn btn-link p-0 local-groupimport-easystud-user__detail-button"
+                data-easystud-open-user="{{id}}"
+                aria-label="{{viewdetailslabel}}"
+                data-easystud-hover-help="{{viewdetailslabel}}"
+            >
+                <span class="fa fa-eye" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="local-groupimport-easystud-user__meta">
+            {{#rolesmeta}}
+                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline">
+                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                    <div class="local-groupimport-easystud-user__meta-tags">
+                        {{#tokens}}
+                            <span
+                                class="{{class}}"
+                                {{#hidden}}hidden{{/hidden}}
+                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
+                            >{{label}}</span>
+                        {{/tokens}}
+                        {{#hasmore}}
+                                <button
+                                    type="button"
+                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token"
+                                    data-easystud-toggle-tags="1"
+                                    data-more-label="+0"
+                                    data-less-label="{{showless}}"
+                            >+0</button>
+                        {{/hasmore}}
+                    </div>
+                </div>
+            {{/rolesmeta}}
+            {{#groupsmeta}}
+                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groups">
+                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                    <div class="local-groupimport-easystud-user__meta-tags">
+                        {{#tokens}}
+                            <span
+                                class="{{class}}"
+                                {{#hidden}}hidden{{/hidden}}
+                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
+                            >{{label}}</span>
+                        {{/tokens}}
+                        {{#hasmore}}
+                                <button
+                                    type="button"
+                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token"
+                                    data-easystud-toggle-tags="1"
+                                    data-more-label="+0"
+                                    data-less-label="{{showless}}"
+                            >+0</button>
+                        {{/hasmore}}
+                    </div>
+                </div>
+            {{/groupsmeta}}
+            {{#groupingsmeta}}
+                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groupings">
+                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                    <div class="local-groupimport-easystud-user__meta-tags">
+                        {{#tokens}}
+                            <span
+                                class="{{class}}"
+                                {{#hidden}}hidden{{/hidden}}
+                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
+                            >{{label}}</span>
+                        {{/tokens}}
+                        {{#hasmore}}
+                                <button
+                                    type="button"
+                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token"
+                                    data-easystud-toggle-tags="1"
+                                    data-more-label="+0"
+                                    data-less-label="{{showless}}"
+                            >+0</button>
+                        {{/hasmore}}
+                    </div>
+                </div>
+            {{/groupingsmeta}}
+            {{#customfieldsmeta}}
+                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-profile="field">
+                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                    <div class="local-groupimport-easystud-user__meta-tags">
+                        {{#tokens}}
+                            <span
+                                class="{{class}}"
+                                {{#hidden}}hidden{{/hidden}}
+                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
+                            >{{label}}</span>
+                        {{/tokens}}
+                        {{#hasmore}}
+                                <button
+                                    type="button"
+                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token local-groupimport-easystud-token--custom-info"
+                                    data-easystud-toggle-tags="1"
+                                    data-more-label="+0"
+                                    data-less-label="{{showless}}"
+                            >+0</button>
+                        {{/hasmore}}
+                    </div>
+                </div>
+            {{/customfieldsmeta}}
+        </div>
+    </div>
+</div>

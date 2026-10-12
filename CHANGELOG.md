@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N1] SM-RENDU-2b (Claude): in On demand mode the participant list renders only its current page from the state (shared `sm/participant_card` partial, also used by the legacy page with byte-identical HTML); filters, sort, pagination, counters, empty state, Select all and cross-page selection (id set plus detached cards) run on the state; memberships changed by actions update it. Legacy mode unchanged except a batched layout read in participant tag overflow (6.2 s to 1.1 s at 800 participants). 800 fixture: HTML 43.4 to 32.0 MB, 20 participant cards instead of 800; group views still legacy (step 3).
+
 - 2026-10-12 [N0] Grouped server proof: required legacy-view/FR-EN setting/CSV preview checks pass with no console errors; retain cleanup-only UI failure, verify/remove exact QA draft and correct the harness's fresh-picker assumption without changing product code.
 
 - 2026-10-12 [N1] Group validated AP-E6/AP-E5/SM2a and QA successor for localhost; retain complete Perf-copy tooling/guards, legacy rendering mode and committed AMD, extend the existing integration surface for FR/EN settings and unconfirmed CSV preview.

@@ -355,155 +355,22 @@
                             data-empty-filtered-label="{{noparticipantsstate}}"
                         >
                             {{#participants}}
-                                <div
-                                    class="local-groupimport-easystud-user"
-                                    tabindex="0"
-                                    data-easystud-user="1"
-                                    data-selectable-type="participant"
-                                    data-selectable-id="{{id}}"
-                                    data-user-id="{{id}}"
-                                    data-user-email="{{email}}"
-                                    data-user-detail="{{userdetailjson}}"
-                                    data-user-copy-fields="{{usercopyfieldsjson}}"
-                                    data-search-text="{{searchtext}}"
-                                    data-role-text="{{roletext}}"
-                                    data-group-ids="{{groupidscsv}}"
-                                    data-grouping-ids="{{groupingidscsv}}"
-                                    draggable="true"
-                                >
-                                    <label class="local-groupimport-easystud-selector" aria-label="{{selectionmodelabel}}">
-                                        <input type="checkbox" data-easystud-selector-input="1">
-                                        <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
-                                    </label>
-                                    <div class="local-groupimport-easystud-user__rail">
-                                        <div class="local-groupimport-easystud-user__avatar">{{{profileimage}}}</div>
-                                    </div>
-                                    <div class="local-groupimport-easystud-user__main">
-                                        <div class="local-groupimport-easystud-user__headline">
-                                            <div class="local-groupimport-easystud-user__headline-main">
-                                                <strong class="local-groupimport-easystud-user__name">{{fullname}}</strong>
-                                                {{#primarybadge}}
-                                                    <span
-                                                        class="local-groupimport-easystud-user__primary-badge"
-                                                        data-easystud-participant-profile="badge"
-                                                        style="{{style}}"
-                                                        title="{{label}}"
-                                                    >{{value}}</span>
-                                                {{/primarybadge}}
-                                            </div>
-                                            <span class="local-groupimport-easystud-user__email">{{email}}</span>
-                                            <button
-                                                type="button"
-                                                class="btn btn-link p-0 local-groupimport-easystud-user__detail-button"
-                                                data-easystud-open-user="{{id}}"
-                                                aria-label="{{viewdetailslabel}}"
-                                                data-easystud-hover-help="{{viewdetailslabel}}"
-                                            >
-                                                <span class="fa fa-eye" aria-hidden="true"></span>
-                                            </button>
-                                        </div>
-                                        <div class="local-groupimport-easystud-user__meta">
-                                            {{#rolesmeta}}
-                                                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline">
-                                                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
-                                                    <div class="local-groupimport-easystud-user__meta-tags">
-                                                        {{#tokens}}
-                                                            <span
-                                                                class="{{class}}"
-                                                                {{#hidden}}hidden{{/hidden}}
-                                                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
-                                                            >{{label}}</span>
-                                                        {{/tokens}}
-                                                        {{#hasmore}}
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token"
-                                                                    data-easystud-toggle-tags="1"
-                                                                    data-more-label="+0"
-                                                                    data-less-label="{{showless}}"
-                                                            >+0</button>
-                                                        {{/hasmore}}
-                                                    </div>
-                                                </div>
-                                            {{/rolesmeta}}
-                                            {{#groupsmeta}}
-                                                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groups">
-                                                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
-                                                    <div class="local-groupimport-easystud-user__meta-tags">
-                                                        {{#tokens}}
-                                                            <span
-                                                                class="{{class}}"
-                                                                {{#hidden}}hidden{{/hidden}}
-                                                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
-                                                            >{{label}}</span>
-                                                        {{/tokens}}
-                                                        {{#hasmore}}
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token"
-                                                                    data-easystud-toggle-tags="1"
-                                                                    data-more-label="+0"
-                                                                    data-less-label="{{showless}}"
-                                                            >+0</button>
-                                                        {{/hasmore}}
-                                                    </div>
-                                                </div>
-                                            {{/groupsmeta}}
-                                            {{#groupingsmeta}}
-                                                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groupings">
-                                                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
-                                                    <div class="local-groupimport-easystud-user__meta-tags">
-                                                        {{#tokens}}
-                                                            <span
-                                                                class="{{class}}"
-                                                                {{#hidden}}hidden{{/hidden}}
-                                                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
-                                                            >{{label}}</span>
-                                                        {{/tokens}}
-                                                        {{#hasmore}}
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token"
-                                                                    data-easystud-toggle-tags="1"
-                                                                    data-more-label="+0"
-                                                                    data-less-label="{{showless}}"
-                                                            >+0</button>
-                                                        {{/hasmore}}
-                                                    </div>
-                                                </div>
-                                            {{/groupingsmeta}}
-                                            {{#customfieldsmeta}}
-                                                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-profile="field">
-                                                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
-                                                    <div class="local-groupimport-easystud-user__meta-tags">
-                                                        {{#tokens}}
-                                                            <span
-                                                                class="{{class}}"
-                                                                {{#hidden}}hidden{{/hidden}}
-                                                                {{#extra}}data-easystud-extra-tag="1"{{/extra}}
-                                                            >{{label}}</span>
-                                                        {{/tokens}}
-                                                        {{#hasmore}}
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn btn-link p-0 local-groupimport-easystud-tags-toggle local-groupimport-easystud-token local-groupimport-easystud-token--custom-info"
-                                                                    data-easystud-toggle-tags="1"
-                                                                    data-more-label="+0"
-                                                                    data-less-label="{{showless}}"
-                                                            >+0</button>
-                                                        {{/hasmore}}
-                                                    </div>
-                                                </div>
-                                            {{/customfieldsmeta}}
-                                        </div>
-                                    </div>
-                                </div>
+                                {{> local_groupimport/sm/participant_card }}
                             {{/participants}}
+                            {{#smondemand}}
+                                <div class="local-groupimport-easystud__loading-participant-list" data-easystud-sm-loading="participants" aria-hidden="true">
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                </div>
+                            {{/smondemand}}
                             {{^participants}}
+                                {{^smondemand}}
                                 <div class="local-groupimport-easystud__empty-state" data-easystud-empty-state="participants">
                                     <span class="fa fa-users" aria-hidden="true"></span>
                                     <p class="mb-0">{{noparticipantsstate}}</p>
                                 </div>
+                                {{/smondemand}}
                             {{/participants}}
                         </div>
                     </div>
