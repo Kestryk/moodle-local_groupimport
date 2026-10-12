@@ -10,8 +10,12 @@ test('S1 native border diagnostic preserves strict editor paint assertions',asyn
         {form:{courseid:'5',action:'duplicategroup',groupid:'0',sesskey:'expired-session-contract-probe'}});
     const expiredBody=await expired.json();
     expect(expiredBody.error || expiredBody.exception).toBeTruthy();
-    expect(typeof expiredBody.message).toBe('string');
-    rows.push({ajaxExpiredSession:{json:true,messagePresent:true,authenticated:false,businessWrite:false}});
+    // Native Moodle AJAX bootstrap errors use `error`/`errorcode`, not the
+    // core web-service `message` envelope. Never persist its debug stack.
+    expect(typeof expiredBody.error).toBe('string');
+    expect(expiredBody.errorcode).toBe('invalidsesskey');
+    rows.push({ajaxExpiredSession:{json:true,messagePresent:true,errorcode:expiredBody.errorcode,
+        authenticated:false,businessWrite:false}});
     page.on('pageerror',error=>errors.push(error.message));
     await page.goto(process.env.EASYEDU_MOODLE_URL,{waitUntil:'domcontentloaded'});
     if(page.url().includes('/login/')){
