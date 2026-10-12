@@ -1,5 +1,20 @@
 # T015 — matrice native des scènes, après T014
 
+## Résultat de la matrice lifecycle
+
+Run42628 passe les60 cas, EN/FR ×1280/768/390 ×normal/reduced : les deux
+Inspection, Organiser Add/Move et Actions. Les huit résultats Organiser à1280×800
+sont dans le viewport du body sans défilement manuel supplémentaire.
+Zéro erreur/commande métier ; credential/lease/child cleanup complet, environ5m46s,
+cas le plus long7.93s. Aucun asset/clock/Motion modifié pour cette recette.
+
+**T015 n'est pas encore clos** : le plan reçu demande aussi Tab, Escape et focus
+de retour. L'ancien `guide-keyboard.spec.js` conserve un index Practice1 antérieur
+au curriculum actuel. Préparer un successeur QA-isolé qui découvre le vrai index
+du champ illustratif, conserve ces oracles et couvre EN/FR et trois tailles/médias.
+Lifecycle/endpoint proof n'est pas une preuve continue de toutes les phases ;
+les captures250ms R2 restent leurs preuves distinctes.
+
 Programme `EED-UI-2026-0073`, tâche Claude T015 ; plan de recette, pas résultat.
 Priorité Guide conservée ; couloirs Student et anciens retours restent en attente.
 La preuve R2/12108 couvre membership Add/Move en normal à1600/1280/390,

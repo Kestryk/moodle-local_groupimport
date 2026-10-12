@@ -4,6 +4,16 @@ Programme : `EED-UI-2026-0073`, complément aux 61 tâches Claude existantes.
 État : proposition approuvée et enregistrée ; pas encore implémentée.
 Date de réception et d'approbation par Kevin : 2026-10-12.
 
+## A2 reçu après le premier enregistrement
+
+Kevin choisit **la largeur réellement disponible du panneau**, notamment lorsque
+les tiroirs Moodle sont ouverts. Les ratios utiliseront donc une container query
+sur l'enveloppe commune de la paire de colonnes, pas sur chaque couloir étroit.
+Conserver les seuils d'empilement existants ; vérifier le seuil de ratio proposé
+1400px utiles et ses bords natifs dans les trois vues. A2 ne bloque plus T018.
+Les mentions « A2 ouvert » plus bas sont l'historique du premier enregistrement.
+Le détail pagination reste séparé, car CSS ne peut attribuer `disabled`.
+
 ## Périmètre et ordre
 
 | Champ | Valeur |

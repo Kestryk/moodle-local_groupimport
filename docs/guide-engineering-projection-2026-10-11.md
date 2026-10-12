@@ -1,5 +1,13 @@
 # Guide engineering: current projection, not human acceptance
 
+T015 lifecycle42628 passes60 cases, four existing timed entries plus Add/Move,
+EN/FR×1280/768/390×normal/reduced. Eight desktop final strips fit the actual800px
+body viewport; errors/writes zero, cleanup complete. T015 keyboard is still open:
+the current successor discovers the actual Practice index and isolates storage,
+retaining Tab, nested/typing Escape, Home/End and return-focus oracles. No assets
+changed. Kevin approved A2 actual panel-width ratios; corridor plan/intake retain
+the decision, CSS-only boundary and separate functional pagination limitation.
+
 T014 is now served/native-verified: Source442d95f / Kit78d7dd5 (0.4.183) /
 runtime583fdca assets, harness e0b035f/runtime3011fcd. Native49364 passes all16
 EN/FR×1280/768/390/320×normal/reduced records, no overflow/commands/errors.

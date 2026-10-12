@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Keyboard successors inspect current rendered lesson controls instead of an
+old numeric Practice index. Retain real Tab/Shift-Tab, Home/End, typing/nested
+Escape and surviving-opener focus. Isolate QA reading state without altering
+tabindex or invoking course actions; preserve the original historical spec.
+A scene lifecycle matrix does not complete its separate keyboard gate.
+
 Scene matrices enumerate real current Start entries, not inert introduction
 specimens or historical kind counts. Cover both Inspection entities and Add/Move,
 normal lifecycle versus reduced static outcome, and actual1280x800 final view.
