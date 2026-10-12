@@ -6,6 +6,15 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "codex2PerfCopy20261012": {
+    "url": "http://localhost:8051",
+    "database": "moodle51perf",
+    "runtimeGit": false,
+    "principalFixtureCleanup": "T052-bis complete; live users and fixture courses both zero",
+    "sourceTools": "Explicit URL, independent leases, committed archive deployment and all-file hash manifest",
+    "nativeCopyValidation": "Recorded separately in RETOUR-CODEX2-PERF-COPY-2026-10-12.md",
+    "next": "AP-E5 on dedicated copy; retain Moodle4.5 APIs and PHP8.1 syntax; version.php unchanged"
+  },
   "claudeA4A5Coordination20261012": {
     "AP-A4": {"upstream":"73085bfd900c32102a81df23023e8a73dcfcca3e","level":0,"status":"integrated-source-guard-checks","nativeFormsOnDedicatedCourse":"pending"},
     "AP-A5": {"upstream":"2726f02179102be329a8fe9e5ae703e42daec5e1","owner":"Claude","status":"integrated-source-resolver-checks","kevinDecision":"Moodle ID retained; bare first/last name removed","nativeKnownIdentifierWrites":"Dedicated course pending"},

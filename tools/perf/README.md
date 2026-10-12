@@ -138,3 +138,33 @@ Measured page gain: 276,800 bytes (0.638%) at 800 users, from 43,403,146 to
 No SQL read reduction is claimed: both state variants measured 807 reads.
 Default candidate payload hash matches the served version exactly. This is
 server/native API evidence, not served browser activation or human acceptance.
+
+## Dedicated Perf runtime (after T052-bis)
+
+Kevin allocated the non-Git plugin at `C:/dev/Moodle 51 Perf/moodle/local/groupimport`,
+URL `http://localhost:8051`, database `moodle51perf`, separate moodledata and Apache.
+MySQL/CPU remain shared: record concurrent machine load when comparing timings.
+Never use the principal preview runtime for subsequent Codex2 measurements.
+
+After all principal fixtures are cleaned, run the supplied copy database refresh
+script once; it replaces only the Perf database and clears its disposable caches.
+`inspect-runtime.php --moodle-root PATH` verifies URL/database/data directory and
+live fixture counts without exposing credentials. Its optional `--purge
+--expected-url http://localhost:8051 --expected-db moodle51perf` calls Moodle's
+native `purge_all_caches()` only on that exact copy, under the copy cache lease.
+
+Deploy clean committed source using `Deploy-PerfCopy.ps1 -TargetPlugin PATH
+-ArtifactRoot EXTERNAL`. The helper snapshots the prior plugin, uses `git archive`
+(no `.git`), preserves runtime dependencies/untracked files and checks SHA256 for
+every committed file. Deployment/purge require `groupimport-perf-runtime-write`
+and `moodle51-perf-cache-write`; the principal leases are never acquired.
+
+Pass these additional supervisor arguments for all subsequent measurements:
+`-MoodleUrl http://localhost:8051/local/groupimport/manage.php?id=5
+-RuntimeLeaseResource groupimport-perf-runtime-write
+-FixtureLeaseResource moodle51-perf-fixture-write
+-DeploymentManifestPath EXTERNAL/deployment.json`.
+Use the copy's runner and Moodle root. The same exact-one native discovery,
+saved process-local credentials, fixture ownership and final cleanup still apply.
+The manifest is verified again before measures; no ancestor Git revision is
+inferred from a non-Git runtime. Historical principal measurements stay immutable.

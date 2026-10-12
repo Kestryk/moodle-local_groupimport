@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] Codex2 Perf-copy transition: explicit local URL/port and separate runtime/fixture leases, non-Git deployment snapshot/hash manifest, guarded native copy-cache purge; principal T052/T052-bis results retained unchanged.
+
 - 2026-10-12 [N0] AP-E6-server: add default-off deferred profile HTML/description option and authorized single-participant details endpoint; native candidate parity/security checks pass, 800-user page gains 276,800 bytes (0.638%); JS consumption and activation remain pending.
 
 - 2026-10-12 [N0] T052-bis: exact HTML region attribution and fixed-code 100/300/500 load curve; both 5MB and 30s limits exceeded at 100, four fixtures cleaned, source/live DOM counts distinguished; main weight is repeated member/group markup.
