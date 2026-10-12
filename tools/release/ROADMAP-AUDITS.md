@@ -85,3 +85,33 @@ there is no product build, source change or preview deployment.
 Both require the saved-credentials wrapper/:8051/-perf- lease. Whole containing
 Moodle theme bundles must not be labelled isolated plugin transfer. Unvisited
 modals, phone/palette/pseudo states are not dead rules even after coverage works.
+
+## T058 — accessibility diagnosis, no product fixes
+
+`node tools/release/accessibility-inventory.cjs --self-test`
+
+`node tools/release/accessibility-inventory.cjs --output <external-json>`
+
+Run each native test through the saved-credentials wrapper, one exact grep,
+AllowedSpecRoot, :8051 URL, EASYEDU_AUDIT_RUNTIME_ROOT, -perf- lease, external
+manifested outputs. No fixture, cache, product deployment or business submit.
+Read ACCESSIBILITY-FINDINGS.md before interpreting booleans/case coverage.
+
+| Scenario | Class | Purpose / CI blocker |
+| --- | --- | --- |
+| roadmap-accessibility.spec.js | local-supervised | primary FR1280 modal/Tab/Escape/axe diagnosis; live data/DPAPI |
+| roadmap-accessibility-panels.spec.js | local-supervised | expanded filters/panels/rollback/admin and direct Escape; live history |
+| roadmap-accessibility-menu-entry.spec.js | exploratory | settled context menus, retained open-qualified navigation timeout |
+| roadmap-accessibility-navigation.spec.js | local-supervised | stable compact panel identity/focus; desktop load then resize |
+| roadmap-accessibility-small-menus.spec.js | local-supervised | paint-qualified sort/overflow menus; conditional live selection |
+
+Raw completion is separate from passed=false findings/gaps. Ordinary nonmodal
+disclosures do not inherit modal-trap/Escape semantics. Do not silently weaken
+focus oracles or treat role attribute presence as correct accessible naming.
+Source4.5/PHP8.1 compatibility unchanged; no native4.5 execution claimed.
+
+`node tools/release/summarize-roadmap-audits.cjs <external-artifact-root>`
+
+Creates an evidence/cleanup index without changing raw predecessors. Redacts
+auth query values only in completed owned Playwright-generated error contexts.
+Leaves active/unmanifested foreign files alone; no deletion or profile scanning.
