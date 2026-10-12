@@ -685,6 +685,7 @@
     },
     {
       "id": "T052",
+      "followUp": {"id":"T052-bis","status":"measured-and-cleaned","summary":"tools/perf/t052-bis-2026-10-12.json","thresholdCrossing":"at-or-below-100","codeComparable":true,"next":"AP-E6-server-default-off"},
       "receivedScope": "[US6] **Audit mesuré**, prérequis de toute optimisation.",
       "status": "baseline-captured-native-scale-failure",
       "owner": "Codex2",

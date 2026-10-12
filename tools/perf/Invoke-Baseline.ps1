@@ -6,6 +6,8 @@ param(
     [Parameter(Mandatory = $true)][string]$RuntimeRunnerPath,
     [Parameter(Mandatory = $true)][string]$PhpPath,
     [Parameter(Mandatory = $true)][string]$OutputRoot,
+    [ValidateRange(1, 800)][int]$Participants = 800,
+    [ValidateSet('baseline', 'regions', 'curve')][string]$Mode = 'baseline',
     [switch]$WaitForLease,
     [ValidateRange(1, 900)][int]$LeaseWaitTimeoutSeconds = 900,
     [switch]$DiscoveryOnly
@@ -38,7 +40,7 @@ $arguments = @{
     LeaseWaitTimeoutSeconds = $LeaseWaitTimeoutSeconds
 }
 $names = @('EASYEDU_PERF_BASELINE', 'EASYEDU_PERF_MANIFEST', 'EASYEDU_PERF_MOODLE_ROOT',
-    'EASYEDU_PERF_PHP', 'EASYEDU_PERF_SOURCE_HEAD', 'PATH')
+    'EASYEDU_PERF_PHP', 'EASYEDU_PERF_SOURCE_HEAD', 'EASYEDU_PERF_PARTICIPANTS', 'EASYEDU_PERF_MODE', 'PATH')
 $previous = @{}
 foreach ($name in $names) { $previous[$name] = [Environment]::GetEnvironmentVariable($name, 'Process') }
 $runId = 'easystud-t052-' + [Guid]::NewGuid().ToString('N')
@@ -52,6 +54,8 @@ try {
     [Environment]::SetEnvironmentVariable('EASYEDU_PERF_BASELINE', $baseline, 'Process')
     [Environment]::SetEnvironmentVariable('EASYEDU_PERF_MOODLE_ROOT', $MoodleRoot, 'Process')
     [Environment]::SetEnvironmentVariable('EASYEDU_PERF_PHP', $php, 'Process')
+    [Environment]::SetEnvironmentVariable('EASYEDU_PERF_PARTICIPANTS', [string]$Participants, 'Process')
+    [Environment]::SetEnvironmentVariable('EASYEDU_PERF_MODE', $Mode, 'Process')
     [Environment]::SetEnvironmentVariable('EASYEDU_PERF_SOURCE_HEAD',
         ((& git -C $sourceRoot rev-parse HEAD) -join '').Trim(), 'Process')
     & $runner @arguments -DiscoveryOnly

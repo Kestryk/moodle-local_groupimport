@@ -68,3 +68,37 @@ HTML, cookies, sesskeys, passwords or authentication storage is persisted.
 The historical startup diagnostic remains unchanged unless the supervisor opts
 into T052. This baseline does not certify every I1-I13 interaction; no product
 selector, Guide completion, selection, Motion or focus implementation is changed.
+
+## T052-bis: regions and participant load curve
+
+The same supervisor accepts `-Participants 100` (1..800) and `-Mode curve`.
+Use separate runs for 100, 300 and 500; groups/groupings remain 150/40 and each
+participant has three memberships. `-Mode regions -Participants 800` measures
+PHP/source attribution only, without repeating the already-failed 800-user
+browser run. Every run uses its own manifest and the same native cleanup.
+
+The generator's original default long descriptions for groups/groupings are
+preserved to keep the fixture comparable with T052. They are a deliberate stress
+case, not an assumption that every production group has that much text.
+
+`decompose.php` attributes exclusive spans in the original rendered UTF-8 HTML:
+participant cards, group member lists, group card chrome, grouping chrome, data
+attributes/JSON, profile image markup, Guide and other page shell. Region bytes
+sum exactly to total HTML; nested group/member regions do not count twice.
+Attribute bytes include their original source spacing and HTML entity escaping.
+Data attributes themselves create no additional elements. Per-field decoded
+participant JSON bytes are a separate diagnostic and must not be added to source
+region totals. HTML-looking strings inside raw script/style text are excluded
+from source element counts. `verify-decomposition.php` checks independent cases.
+
+Source tag counts describe server markup before JavaScript. The load curve also
+records the live browser DOM, which includes native enhancement nodes. The two
+counts are intentionally named separately. Browser readiness is measured from
+navigation, with a 30s threshold. A blocked main thread can postpone the actual
+observation beyond that threshold; its observed time is not reported as a
+successful ready time. `readinessPassed: false` remains explicit even when the
+measurement scenario completes successfully and cleans its fixture.
+
+The reported 5MB threshold uses 5,000,000 original HTML bytes. If the first 100-user
+sample already exceeds both limits, the measured crossing is at or below 100;
+no exact lower crossing is claimed without additional smaller samples.

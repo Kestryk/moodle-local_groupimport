@@ -234,13 +234,17 @@ register_shutdown_function(static function() use (&$outcome, &$failure, $start, 
         'peakMemoryBytes' => memory_get_peak_usage(true), 'outcome' => $outcome,
         'cacheSettings' => $cache, 'failure' => $failure,
     ];
+    if ($case === 'manage') {
+        require_once(__DIR__ . '/decompose.php');
+        $result['decomposition'] = easystud_perf_decompose($output);
+    }
     easystud_perf_write($options['output'], $result);
     echo json_encode($result, JSON_THROW_ON_ERROR) . "\n";
 });
 try {
     if ($case === 'course-state') {
         $state = \local_groupimport\service\course_structure::get_state($course, $context);
-        $outcome = ['passed' => count($state['users']) === 800, 'users' => count($state['users'])];
+        $outcome = ['passed' => count($state['users']) === count($manifest['userIds']), 'users' => count($state['users'])];
         echo json_encode($state, JSON_THROW_ON_ERROR);
     } else {
         require($CFG->dirroot . '/local/groupimport/' . $entry);
