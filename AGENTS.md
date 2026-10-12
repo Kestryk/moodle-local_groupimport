@@ -1,5 +1,11 @@
 # EasyEdu agent contract
 
+Continuous demo containment samples hidden-paint preparation and real250ms
+playback, not only paused endpoints. Preserve a baseline even if its final
+cleanup assertion fails. Disabled Start can relinquish focus to body: a Close
+presentation probe must not be relabelled as an Escape/focus regression. Keep
+full accessible narration when removing duplicate visible phase numbering.
+
 Discovery reading count reuses the existing footer slot; preserve the top4px
 accent track and dedicated interface cue. Legacy compact footer column/240px
 basis cannot be inherited beside a caption: use the canonical Small intrinsic

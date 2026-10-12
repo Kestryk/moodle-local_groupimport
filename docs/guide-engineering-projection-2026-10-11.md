@@ -1,5 +1,10 @@
 # Guide engineering: current projection, not human acceptance
 
+Claude review2 is read and retained in `claude-review2-guide-corrections-2026-10-12.md`.
+Current priority: R2-1 dialog wrapping, R2-3 reveal sequencing, then R2-2/R2-4.
+R2-5 is NOT authorized; Kevin must decide its mobile-content proposal. Original
+61 tasks, prior source/native evidence and the human checklist remain intact.
+
 T008/T013 successor is now served at Sourcee0eeadf / Kitfead185 (0.4.177) /
 runtimef9e0283. Native28592 passes eight localized1600/1280/390/320 cases and24
 first/contextual/last records, retaining count binding, original4px palette track,

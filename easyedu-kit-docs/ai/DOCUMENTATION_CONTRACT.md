@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Continuous demo containment reserves invisible target layout before its owned
+scroll/reveal; preserve existing clocks and cursor/ghost choreography. Number-free
+visible narration retains a complete polite accessible announcement. Resize and
+rotation reveal the active tab with tracked cleanup. Keep source, served/native,
+paired design and human gates separate; mobile content reduction needs approval.
+
 Discovery reading chrome uses canonical caption/Small primitives and the same
 existing progress-label slot. No new template, controller, reading-state key or
 consumer CSS. Keep baseline and successor helpers immutable and scoped: an

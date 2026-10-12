@@ -1018,13 +1018,13 @@ const highlightChecklistStep = (root, config, step, callback = () => {}) => {
   begin();
 };
 
-const scrollActiveNavItemIntoView = root => {
+const scrollActiveNavItemIntoView = (root, inline = 'center') => {
   const active = root.querySelector(`${SELECTORS.navItem}.is-active`);
   if (active) {
     active.scrollIntoView({
       behavior: getScrollBehavior(root),
       block: 'nearest',
-      inline: 'center'
+      inline
     });
   }
 };
@@ -1326,6 +1326,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const applicablePhases = [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
     !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
   const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
+  const liveAnnouncement = live?.querySelector('[data-guide-live-announcement]');
   const pauseControl = live?.querySelector('[data-guide-playback="pause"]');
   const nextControl = live?.querySelector('[data-guide-playback="next-phase"]');
   const activity = live?.querySelector('[data-guide-activity]');
@@ -1394,6 +1395,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   syncPlayback('idle');
   if (live) {
     liveCopy.textContent = scene.easyeduGuideResultOriginal;
+    if (liveAnnouncement) { liveAnnouncement.textContent = scene.easyeduGuideResultOriginal; }
     liveCopy.title = liveCopy.textContent;
     live.removeAttribute('data-guide-live-state');
     const completionIcon = live.querySelector('[data-guide-live-complete]');
@@ -1552,7 +1554,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     if (!live || controller.signal.aborted) { return; }
     if (!immediate) { await animate(liveCopy, [{opacity: 1}, {opacity: 0}], 100, false); }
     if (controller.signal.aborted) { return; }
-    liveCopy.textContent = text;
+    // The phase caption already supplies the visible number. Keep complete
+    // narration for assistive technology and the historical template fallback.
+    if (liveAnnouncement) { liveAnnouncement.textContent = text; }
+    liveCopy.textContent = liveAnnouncement && phaseCaption && !phaseCaption.hidden && state === 'active' ?
+      text.replace(/^\d+\s*[\u00b7.]\s*/, '') : text;
     liveCopy.title = text;
     live.dataset.guideLiveState = state;
     const completionIcon = live.querySelector('[data-guide-live-complete]');
@@ -1597,7 +1603,26 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     });
     clock.cancel(); animations.delete(clock);
   };
-  const phase = async name => {
+  // Reserve the real target's layout before scrolling, without painting it at
+  // its old offscreen position. Keep the existing fade and cancellable clock.
+  const revealPrepared = async(element, prepare = () => {}) => {
+    const visibility = element.style.visibility;
+    const opacity = element.style.opacity;
+    element.style.visibility = 'hidden';
+    element.style.opacity = '0';
+    element.hidden = false;
+    try {
+      prepare();
+      await reveal(element);
+      if (controller.signal.aborted) { return; }
+      element.style.visibility = visibility;
+      await animate(element, [{opacity: 0}, {opacity: 1}], 280);
+    } finally {
+      element.style.visibility = visibility;
+      element.style.opacity = opacity;
+    }
+  };
+  const phase = async(name, prepareTarget) => {
     const jumped = skipping;
     skipping = false;
     const item = scene.querySelector(`[data-guide-phase="${name}"]`);
@@ -1613,10 +1638,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     }
     advancing = false;
     syncPlayback(paused ? 'paused' : 'playing');
+    if (prepareTarget) { await prepareTarget(); }
     // New narration can wrap and change the sticky height. Re-reveal the real
     // phase target after that copy update, not just before the phase begins.
     const validateTarget = ['membership', 'actions'].includes(kind) && name === 'validate' ?
-      scene.querySelector('[data-guide-simulated-submit]') : null;
+      scene.querySelector('[data-guide-confirm]') : null;
     if (validateTarget || phaseTarget) { await reveal(validateTarget || phaseTarget); }
     await gate();
     if (controller.signal.aborted) { return; }
@@ -1768,6 +1794,24 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const cursor = stage.querySelector('[data-guide-cursor]');
     const menu = stage.querySelector('[data-guide-menu]');
     const confirm = stage.querySelector('[data-guide-confirm]');
+    // The pointer keeps its original travel/drag clock. It is decorative and
+    // must not paint through sticky chrome while its stage is being scrolled.
+    let cursorVisibilityFrame = null;
+    const cursorVisibility = cursor.style.visibility;
+    const updateCursorVisibility = () => {
+      if (controller.signal.aborted || finished) { return; }
+      const body = readingBody?.getBoundingClientRect();
+      const header = sceneHeader?.getBoundingClientRect();
+      const point = cursor.getBoundingClientRect();
+      const top = body && header && header.top <= body.top + 2 ? header.bottom : body?.top;
+      cursor.style.visibility = body && (point.top < top || point.bottom > body.bottom) ? 'hidden' : cursorVisibility;
+      cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility);
+    };
+    updateCursorVisibility();
+    controller.signal.addEventListener('abort', () => {
+      cancelAnimationFrame(cursorVisibilityFrame);
+      cursor.style.visibility = cursorVisibility;
+    }, {once: true});
     if (compact && mode === 'add') {
       // Native mobile Add uses Participants > Move participants (addusers),
       // not the member-transfer action that removes the source membership.
@@ -1801,20 +1845,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await phase('select');
     if (controller.signal.aborted) { return; }
     if (mode !== 'add' || compact) {
-      menu.hidden = false;
       // Desktop follows the illustrated click. Compact/reduced scenes anchor
       // to the same card without implying a mouse-only mobile interaction.
       const stageBounds = stage.getBoundingClientRect(), cardBounds = person.getBoundingClientRect();
       const point = cursorPoint || {x: cardBounds.left - stageBounds.left + 24,
         y: cardBounds.bottom - stageBounds.top};
-      const menuBounds = menu.getBoundingClientRect();
-      stage.style.setProperty('--easyedu-guide-menu-x',
-        `${Math.max(0, Math.min(point.x + 12, stageBounds.width - menuBounds.width))}px`);
-      stage.style.setProperty('--easyedu-guide-menu-y',
-        `${Math.max(0, Math.min(point.y + 12, stageBounds.height - menuBounds.height))}px`);
-      await reveal(menu);
-      await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
-      await phase('menu');
+      await phase('menu', () => revealPrepared(menu, () => {
+        const menuBounds = menu.getBoundingClientRect();
+        stage.style.setProperty('--easyedu-guide-menu-x',
+          `${Math.max(0, Math.min(point.x + 12, stageBounds.width - menuBounds.width))}px`);
+        stage.style.setProperty('--easyedu-guide-menu-y',
+          `${Math.max(0, Math.min(point.y + 12, stageBounds.height - menuBounds.height))}px`);
+      }));
       if (controller.signal.aborted) { return; }
       await travel(menu.querySelector('strong'));
       if (!compact) {
@@ -1823,10 +1865,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
       if (controller.signal.aborted) { return; }
       menu.hidden = true;
-      confirm.hidden = false;
-      await reveal(confirm);
-      await animate(confirm, [{opacity: 0}, {opacity: 1}], 280);
-      await phase('confirm');
+      await phase('confirm', () => revealPrepared(confirm));
       if (controller.signal.aborted) { return; }
       const submit = confirm.querySelector('[data-guide-simulated-submit]');
       await phase('validate');
@@ -1908,6 +1947,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await animate(cursor, [{opacity: 1}, {opacity: 0}], 220);
     if (controller.signal.aborted) { return; }
     cursor.hidden = true;
+    cancelAnimationFrame(cursorVisibilityFrame);
+    cursor.style.visibility = cursorVisibility;
     stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.remove('is-selected'));
     stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = false; });
     if (mode !== 'add') {
@@ -2607,7 +2648,16 @@ const bindNavWheel = root => {
     });
     updateNavScrollButtons(root);
   }, {passive: false});
-  addTrackedListener(root, window, 'resize', () => updateNavScrollButtons(root));
+  const refreshActiveNav = () => {
+    updateNavScrollButtons(root);
+    clearTrackedTimeout(root, root.easyeduGuideNavResizeTimer);
+    root.easyeduGuideNavResizeTimer = setTrackedTimeout(root, () => {
+      root.easyeduGuideNavResizeTimer = null;
+      if (isModalOpen(root)) { scrollActiveNavItemIntoView(root, 'nearest'); }
+    }, 120);
+  };
+  addTrackedListener(root, window, 'resize', refreshActiveNav);
+  addTrackedListener(root, window, 'orientationchange', refreshActiveNav);
   updateNavScrollButtons(root);
 };
 
@@ -3166,6 +3216,7 @@ export const destroy = rootOrSelector => {
   unlockPageScroll(root);
   clearTrackedListeners(root);
   clearTrackedTimeouts(root);
+  delete root.easyeduGuideNavResizeTimer;
   clearHighlightAutoHideTimer(root);
   hideInterfaceReturn(root, false);
   clearHighlightedTarget(root);

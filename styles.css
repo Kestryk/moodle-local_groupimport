@@ -16723,6 +16723,9 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   color: var(--easyedu-text-muted);
   font-size: var(--easyedu-font-size-caption);
   line-height: 1.4;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__dialog footer,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__dialog footer {
