@@ -26,7 +26,7 @@ import * as Guide from './easyedu_guide';
 import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './searchable_choices';
 import {snapshotMemberPairs} from './member_selection';
 import Log from 'core/log';
-import {createStore} from './local/sm/store';
+import {createStore, fetchState} from './local/sm/store';
 import {filterParticipantIds} from './local/sm/index';
 import {
     createParticipantModel, refreshModel, getDetachedCard, applyParticipantFilters, sortParticipantIds, renderParticipantPage,
@@ -837,62 +837,6 @@ const rehydrateParticipantMembershipDetails = root => {
             // Preserve the server-rendered detail payload if it is malformed.
         }
     });
-
-    syncOnDemandMemberships(root, {groups, groupings, memberships, groupingMemberships});
-};
-
-/**
- * SM-RENDU: copy memberships recomputed from the group tree into the on-demand state.
- *
- * The legacy group tree stays the source of truth after an action until step 4 brings
- * server deltas. Only changes trigger a new index and a re-render of the current page.
- *
- * @param {HTMLElement} root EasyStud root.
- * @param {Object} tree Maps built by rehydrateParticipantMembershipDetails().
- */
-const syncOnDemandMemberships = (root, tree) => {
-    const model = getOnDemandModel(root);
-    if (!model) {
-        return;
-    }
-    const sortedIds = ids => Array.from(ids || []).map(Number).sort((left, right) => left - right);
-    let changed = false;
-    model.raw.users.forEach(user => {
-        const groupids = sortedIds(tree.memberships.get(String(user.id)));
-        if (groupids.join(',') !== (user.groupids || []).join(',')) {
-            user.groupids = groupids;
-            changed = true;
-        }
-    });
-    const knownGroups = new Set(model.raw.groups.map(group => String(group.id)));
-    tree.groups.forEach((name, groupid) => {
-        if (!knownGroups.has(groupid) && /^\d+$/.test(groupid)) {
-            model.raw.groups.push({id: Number(groupid), name, groupingids: []});
-            changed = true;
-        }
-    });
-    model.raw.groups = model.raw.groups.filter(group => {
-        const kept = tree.groups.has(String(group.id));
-        changed = changed || !kept;
-        return kept;
-    });
-    model.raw.groups.forEach(group => {
-        const groupingids = sortedIds(tree.groupingMemberships.get(String(group.id)));
-        if (groupingids.join(',') !== (group.groupingids || []).join(',')) {
-            group.groupingids = groupingids;
-            changed = true;
-        }
-    });
-    const knownGroupings = new Set(model.raw.groupings.map(grouping => String(grouping.id)));
-    tree.groupings.forEach((name, groupingid) => {
-        if (!knownGroupings.has(groupingid) && /^\d+$/.test(groupingid)) {
-            model.raw.groupings.push({id: Number(groupingid), name, groupids: []});
-            changed = true;
-        }
-    });
-    if (changed) {
-        refreshModel(model);
-    }
 };
 
 const updateCatalogGroupingTags = (root, groupid) => {
@@ -1918,6 +1862,27 @@ const syncGroupMemberSearchEmptyState = (root, group, query, visibleCount) => {
     empty.hidden = !query || visibleCount > 0;
 };
 
+/**
+ * Search text of a group member row: the row itself plus the participant's own search text.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Object|null} model On-demand participant model, or null in legacy mode.
+ * @param {HTMLElement} member Member row.
+ * @returns {String}
+ */
+const memberSearchText = (root, model, member) => {
+    const userid = member.getAttribute('data-easystud-member-id') || '';
+    let usertext = '';
+    if (model) {
+        const entry = model.indexById.get(Number(userid));
+        usertext = entry ? entry.text : '';
+    } else {
+        const user = userid ? findParticipantCard(root, userid) : null;
+        usertext = user ? (user.getAttribute('data-search-text') || user.textContent || '') : '';
+    }
+    return normalise((member.getAttribute('data-search-text') || member.textContent || '') + ' ' + usertext);
+};
+
 const applyGroupMemberSearch = (root, options = {}) => {
     root.querySelectorAll('[data-easystud-group-id]').forEach(group => {
         ensureGroupMemberSearchControls(root, group);
@@ -1926,16 +1891,13 @@ const applyGroupMemberSearch = (root, options = {}) => {
             '[data-easystud-group-member-search="' + groupid + '"]');
         const query = normalise(input ? input.value : '');
         const members = Array.from(group.querySelectorAll(':scope > [data-easystud-group-members] [data-easystud-member-id]'));
+        const model = getOnDemandModel(root);
         let visibleCount = 0;
 
         members.forEach(member => {
-            const userid = member.getAttribute('data-easystud-member-id') || '';
-            const user = userid ? findParticipantCard(root, userid) : null;
-            const text = normalise(
-                (member.getAttribute('data-search-text') || member.textContent || '') + ' ' +
-                (user ? (user.getAttribute('data-search-text') || user.textContent || '') : '')
-            );
-            const hidden = !!query && text.indexOf(query) === -1;
+            // The participant search text is only needed while a query is typed. On demand it comes from the
+            // state index: looking up participant cards would build a detached card for every member.
+            const hidden = !!query && memberSearchText(root, model, member).indexOf(query) === -1;
             member.hidden = hidden;
             member.setAttribute('data-easystud-member-search-hidden', hidden ? '1' : '0');
             if (!hidden) {
@@ -3154,6 +3116,7 @@ const postAction = data => {
         if (!result.success) {
             throw new Error(result.error || labels.ajaxerror || '');
         }
+        scheduleOnDemandStateRefresh(root);
         return result;
     }));
 };
@@ -3269,6 +3232,7 @@ const postFormAction = formData => {
         if (!result.success) {
             throw new Error(result.error || labels.ajaxerror || '');
         }
+        scheduleOnDemandStateRefresh(root);
         return result;
     }));
 };
@@ -5463,8 +5427,7 @@ const applyFilters = (root, options = {}) => {
 
     const model = getOnDemandModel(root);
     if (model) {
-        // SM-RENDU: pick up membership changes made by actions, then filter the state.
-        rehydrateParticipantMembershipDetails(root);
+        // SM-RENDU: the state is refreshed from the server after each action (scheduleOnDemandStateRefresh).
         applyParticipantFilters(model, {
             query,
             roles: selectedroles,
@@ -10664,6 +10627,48 @@ const renderOnDemandParticipantPage = (root, list, config) => {
     return {total: ordered.length, pages, page};
 };
 
+let onDemandRefreshTimer = null;
+
+/**
+ * SM-RENDU: reload the course state after a successful action (step 3a).
+ *
+ * The server state becomes the source of truth for memberships, groups and groupings,
+ * instead of the group tree rendered in the page. Several actions in a row (moving ten
+ * groups sends ten requests) give one reload. The id selection is kept for the ids that
+ * still exist.
+ *
+ * @param {HTMLElement|null} root EasyStud root.
+ */
+const scheduleOnDemandStateRefresh = root => {
+    if (!root || !getOnDemandModel(root)) {
+        return;
+    }
+    window.clearTimeout(onDemandRefreshTimer);
+    onDemandRefreshTimer = window.setTimeout(() => {
+        const {model, courseId} = onDemandParticipants;
+        fetchState(courseId).then(raw => {
+            if (getOnDemandModel(root) !== model) {
+                return null;
+            }
+            const userids = new Set(raw.users.map(user => user.id));
+            model.selected.forEach(userid => {
+                if (!userids.has(userid)) {
+                    model.selected.delete(userid);
+                }
+            });
+            model.raw = raw;
+            if (root.easystudSm) {
+                root.easystudSm.raw = raw;
+            }
+            refreshModel(model);
+            applyFilters(root);
+            updateSelectionActions(root);
+            root.setAttribute('data-easystud-sm-version', raw.meta.version);
+            return raw;
+        }).catch(error => Log.error(error));
+    }, 250);
+};
+
 /**
  * SM-RENDU: load the compact course state and render the participant list from it.
  *
@@ -10681,7 +10686,7 @@ const startOnDemandState = (root, courseId, strings) => {
         })
         .then(model => {
             const {reactive, raw, loadMs} = store;
-            onDemandParticipants = {root, model};
+            onDemandParticipants = {root, model, courseId};
             const renderStarted = window.performance.now();
             applyFilters(root);
             updateSelectionActions(root);
