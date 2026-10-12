@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.
+
 - 2026-10-12 [N0] SM-RENDU-1 (Claude): compact course state external functions `local_groupimport_get_state` / `local_groupimport_get_details`, per-course state version (table `local_groupimport_statever`, core event observers), `tools/sm/check-state.php` parity check; legacy page unchanged. 800/150/40: state 236 KB vs 2.17 MB, 70 ms / 9 reads vs 2,309 ms / 817 reads, parity PASS.
 
 - 2026-10-12 [N0] R3 proof successor: normalize Chromium zero-letter-spacing serialization, measure dots in the actual visible paused mobile lane and advance through native controls; preserve all failed predecessor reports and unchanged product assets.

@@ -75,7 +75,13 @@ test('SM schema upgrade through the native Moodle admin page',async({page},info)
     // Follow only the native upgrade controls; never install optional updates or
     // save unrelated settings. PHP preflight must have named only local_groupimport.
     for(let step=0;step<5;step++){
-        const form=page.locator('form').filter({has:page.locator('input[name="confirmrelease"],input[name="confirmplugincheck"]')});
+        // The update-search form also carries current confirmation flags.
+        // Only value=1 on the native continuation form authorizes this upgrade.
+        const pluginForm=page.locator('form').filter({has:page.locator('input[name="confirmplugincheck"][value="1"]')})
+            .filter({hasNot:page.locator('input[name="fetchupdates"]')});
+        const form=await pluginForm.count()?pluginForm:page.locator('form')
+            .filter({has:page.locator('input[name="confirmrelease"][value="1"]')})
+            .filter({hasNot:page.locator('input[name="fetchupdates"]')});
         if(!await form.count())break;
         const flags=await form.locator('input[type="hidden"]').evaluateAll(nodes=>nodes.map(n=>n.name));
         stages.push({flags});
