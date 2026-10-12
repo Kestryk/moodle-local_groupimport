@@ -3082,7 +3082,12 @@ const bindGuide = (root, config) => {
     const activeConfig = root.easyeduGuideConfig || config;
     const path = root.querySelector('[data-easyedu-guide-resume]').dataset.easyeduGuideResumePathName;
     dismissResume(root);
-    if (!isPathComplete(activeConfig, path)) { renderChecklist(root, activeConfig, path); }
+    if (!isPathComplete(activeConfig, path)) {
+      renderChecklist(root, activeConfig, path);
+      const activeItem = root.querySelector(`${SELECTORS.checklist} [data-easyedu-guide-step-index].is-active`);
+      const activeIndex = Number(activeItem?.getAttribute('data-easyedu-guide-step-index') || 0);
+      highlightChecklistStep(root, activeConfig, activeConfig.paths[path]?.[activeIndex]);
+    }
   }); }
   const cancelPath = root.querySelector('[data-easyedu-guide-cancel-path]');
   if (cancelPath) { addTrackedListener(root, cancelPath, 'click', () => {

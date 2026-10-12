@@ -1,5 +1,6 @@
 // Reusable Student Management logic verifier. No browser, database or business writes.
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm');
+const {execFileSync} = require('node:child_process');
 const assert = require('node:assert/strict');
 const rootPath = path.resolve(__dirname, '../..');
 const source = fs.readFileSync(path.join(rootPath, 'amd/src/course_manager.js'), 'utf8');
@@ -96,6 +97,35 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
         actualToken && actualToken.root===owner && actualToken.epoch===3);
     check('Token-only path rejects course evidence storage',
         actualGuide.setPathContext(owner,'try-actions',{},actualToken)===false);
+    const guideSource=fs.readFileSync(path.join(rootPath,'amd/src/easyedu_guide.js'),'utf8').replace(/\r\n/g,'\n');
+    const resumeStart=guideSource.indexOf("  const resume = root.querySelector('[data-easyedu-guide-resume-path]');");
+    const resumeEnd=guideSource.indexOf('  const cancelPath =',resumeStart);
+    const resumeCode=guideSource.slice(resumeStart,resumeEnd);
+    const resumeCalls=[];
+    let clickResume, completedPath=false;
+    const resumeRoot={easyeduGuideConfig:{paths:{'try-actions':[{id:'try-drag'},{id:'try-selection'}]}},
+        querySelector:selector=>selector.includes('.is-active')?{getAttribute:()=> '1'}:
+            {dataset:{easyeduGuideResumePathName:'try-actions'}}};
+    vm.runInNewContext(resumeCode, {root:resumeRoot,config:resumeRoot.easyeduGuideConfig,
+        SELECTORS:{checklist:'[data-easyedu-guide-checklist]'},
+        addTrackedListener:(root,control,event,handler)=>{clickResume=handler;},
+        dismissResume:()=>resumeCalls.push('dismiss'),isPathComplete:()=>completedPath,
+        renderChecklist:()=>resumeCalls.push('render'),
+        highlightChecklistStep:(root,config,step)=>resumeCalls.push(step.id)});
+    clickResume();
+    check('Actual Resume handler restores only the current target',
+        JSON.stringify(resumeCalls)===JSON.stringify(['dismiss','render','try-selection']));
+    completedPath=true;resumeCalls.length=0;clickResume();
+    check('Completed paths never resume a checklist',JSON.stringify(resumeCalls)===JSON.stringify(['dismiss']));
+    const addedResume="    if (!isPathComplete(activeConfig, path)) {\n"+
+        "      renderChecklist(root, activeConfig, path);\n"+
+        "      const activeItem = root.querySelector(`${SELECTORS.checklist} [data-easyedu-guide-step-index].is-active`);\n"+
+        "      const activeIndex = Number(activeItem?.getAttribute('data-easyedu-guide-step-index') || 0);\n"+
+        "      highlightChecklistStep(root, activeConfig, activeConfig.paths[path]?.[activeIndex]);\n    }";
+    const oldGuide=execFileSync('git',['show','57e6d43344f6b63a4888897fc67c43d1cda3ae58:amd/src/easyedu_guide.js'],
+        {cwd:rootPath,encoding:'utf8',maxBuffer:2e6}).replace(/\r\n/g,'\n');
+    check('Complete unrelated Guide engine and Motion unchanged',guideSource.replace(addedResume,
+        '    if (!isPathComplete(activeConfig, path)) { renderChecklist(root, activeConfig, path); }')===oldGuide);
     check('Actions dependencies preserve original IDs',
         /'id' => 'try-selection',\s*'requiresStep' => 'try-drag'/.test(manage) &&
         /'id' => 'try-context',\s*'requiresStep' => 'try-selection'/.test(manage));

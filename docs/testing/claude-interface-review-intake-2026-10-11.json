@@ -6,6 +6,16 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "guideResumeTarget20261012": {
+    "level": 0,
+    "kitVersion": "0.4.188",
+    "status": "active-target-restored-native-check-pending",
+    "cause": "Resume rendered the checklist without calling the current step opener/highlight",
+    "nativeScript": "tools/playwright/guide-filter-verification-native.spec.js",
+    "failedRunsPreserved": ["easystud-authenticated-20261012T181058531Z-53464", "easystud-authenticated-20261012T181326929Z-19404"],
+    "progressIdsUnchanged": true,
+    "humanAccepted": false
+  },
   "pgActionsSignals20261012": {
     "level": 0,
     "ids": ["PG-A2", "PG-A1", "PG-A3"],
