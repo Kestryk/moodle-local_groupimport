@@ -6,12 +6,16 @@ const rootPath = path.resolve(__dirname, '../..');
 // Keep the historical SM2a reconstruction below pinned. SM2b deliberately
 // changes selection/pagination authorities; its successor verifies the exact
 // approved producer and relies on the shared native surface for behavior.
-if (process.argv[2] === '--sm2b') {
+if (['--sm2b', '--sm3a'].includes(process.argv[2])) {
+    const sm3a = process.argv[2] === '--sm3a';
+    const changed3a = sm3a ? execFileSync('git', ['diff-tree', '--no-commit-id', '--name-only', '-r', 'fe28c6b'],
+        {cwd:rootPath, encoding:'utf8'}).trim().split('\n').filter(p => p !== 'CHANGELOG.md') : [];
     const paths = execFileSync('git', ['diff-tree', '--no-commit-id', '--name-only', '-r', '90ea17b'],
         {cwd:rootPath, encoding:'utf8'}).trim().split('\n').filter(p => p !== 'CHANGELOG.md');
     const checks = {};
     for (const file of paths) {
-        const approved = execFileSync('git', ['show', '90ea17b:' + file], {cwd:rootPath, maxBuffer:4e6});
+        const producer = changed3a.includes(file) ? 'fe28c6b' : '90ea17b';
+        const approved = execFileSync('git', ['show', producer + ':' + file], {cwd:rootPath, maxBuffer:4e6});
         // Windows autocrlf is checkout transport, not a generated-code change.
         assert.equal(fs.readFileSync(path.join(rootPath, file), 'utf8').replace(/\r\n/g, '\n'),
             approved.toString('utf8').replace(/\r\n/g, '\n'), file);
@@ -19,11 +23,13 @@ if (process.argv[2] === '--sm2b') {
     }
     assert.deepEqual(fs.readFileSync(path.join(rootPath, 'version.php')),
         execFileSync('git', ['show', '6ac8a45:version.php'], {cwd:rootPath}));
-    checks['Schema/version unchanged by SM2b'] = true;
-    const output = JSON.stringify({surface:'student-management-sm2b', niveau:0,
-        producer:'90ea17b', passed:Object.keys(checks).length, failed:0, checks,
+    checks['Schema/version unchanged by ' + (sm3a ? 'SM3a' : 'SM2b')] = true;
+    const output = JSON.stringify({surface:sm3a ? 'student-management-sm3a' : 'student-management-sm2b', niveau:0,
+        producer:sm3a ? ['90ea17b', 'fe28c6b'] : '90ea17b', passed:Object.keys(checks).length, failed:0, checks,
         historicalSM2aVerifier:'retained unchanged; not a current-controller proof',
-        nativeRequired:['legacy1280FR','reactive page1','pagination','search','select all','participant details','restore legacy']}, null, 2);
+        nativeRequired:sm3a ? ['legacy1280FR','legacy member search','reactive Add','reactive Remove',
+            'server version and card memberships','exact initial relationships restored','restore legacy'] :
+            ['legacy1280FR','reactive page1','pagination','search','select all','participant details','restore legacy']}, null, 2);
     if (process.argv[3]) fs.writeFileSync(path.resolve(process.argv[3]), output + '\n');
     console.log(output);
     process.exit(0);
