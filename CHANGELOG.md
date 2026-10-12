@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] T052: integrate Codex2 7397919 isolated fixture and PHP/SQL/browser baseline tools; eight PHP cases pass, 800-user readiness failure retained (136,180 DOM elements), exact fixture cleanup verified.
+
 - 2026-10-12 [N1] Consume Kit193 AP-B7/B8 checklist focus/status and interaction-safe notices; use Moodle's existing translated state labels, preserve Claude guards/Guide resume keys and reserved server functions.
 
 - 2026-10-12 [N1] PG-S1: consume Kit192 shared dialog checklist height budget so desktop Close remains clickable; retain failed40168 overlap and unchanged native destination/confirmation assertions.
