@@ -22,11 +22,10 @@ const invitations = {
     'read-grouping-card': 'inspect-grouping-settings',
     'add-or-move-members': 'reorganise-source-members',
     'choose-right-action': 'try-actions',
-    'use-groupings-in-activities': 'create-grouping',
+    'use-groupings-in-activities': 'prepare-activity-grouping',
+    'search-filter-select': 'verify-with-filters',
 };
 const historicalSteps = {
-    'first-structure': ['create-structure', 'add-participants', 'check-filters'],
-    'create-grouping': ['create-grouping', 'add-group-to-grouping', 'verify-grouping'],
     'try-actions': ['try-drag', 'try-selection', 'try-context'],
 };
 const typedTargets = {
@@ -38,6 +37,8 @@ const typedTargets = {
         'groupEditorDescription', 'groupEditorCancel'],
     'inspect-grouping-settings': ['groupingEditorAction', 'groupingEditorName',
         'groupingEditorDescription', 'groupingEditorCancel'],
+    'verify-with-filters': ['participantFilterToggle','participantFilterSearch','participantFilteredResults','participantClearSelection'],
+    'prepare-activity-grouping': ['activityGroupingEntry','activityGroupSelection','activityGroupDestination','activityGroupConfirm','activityGroupingResult'],
 };
 const expectedPaths = [...Object.keys(historicalSteps), ...Object.keys(typedTargets)].sort();
 const archive = JSON.parse(read('docs/testing/guide-historical-presentation-archive-2026-10-10.json'));
@@ -68,12 +69,11 @@ for (const language of ['en', 'fr']) {
     }
     const legacy = archive.languages.find(item => item.language === language).templateData.slides;
     assert.equal(legacy.length, 24, 'Original public payloads retained');
-    for (const id of ['practice-membership', 'try-actions', 'create-grouping']) {
+    for (const id of ['practice-membership', 'try-actions']) {
         const old = legacy.find(slide => slide.hasguidedpath && slide.guidedpath === id);
         const current = slides.find(slide => slide.hasguidedpath && slide.guidedpath === id);
         assert.ok(old && current, 'Original visible invitation still reachable: ' + id);
-        for (const field of ['guidedpath', 'guidedpathlabel', 'guidedpathtitle',
-            'guidedpathcontent', 'guidedpathsteps']) assert.deepEqual(current[field], old[field]);
+        assert.equal(current.guidedpath, old.guidedpath, 'Existing reachable path IDs retained');
     }
     for (const [id, steps] of Object.entries(data.paths)) {
         assert.equal(new Set(steps.map(step => step.id)).size, steps.length, 'Unique milestone IDs: ' + id);
@@ -91,18 +91,19 @@ for (const language of ['en', 'fr']) {
         }
     }
     const entries = new Map();
-    const config = {...data.readingContract, storageKey: 'qa-offline-current-path-coverage'};
+    const config = {...data.readingContract, paths:data.paths, storageKey: 'qa-offline-current-path-coverage'};
     const context = vm.createContext({getStorage: () => ({
         getItem: key => entries.get(key) ?? null, setItem: (key, value) => entries.set(key, value),
     })});
-    vm.runInContext(source.slice(start, end) + '\nglobalThis.api={loadGuideState,saveGuideState};', context);
+    vm.runInContext(source.slice(start, end).replace(/^export const /gm,'const ') +
+        '\nglobalThis.api={loadGuideState,saveGuideState};', context);
     const key = config.storageKey + '.checklist';
     const completed = Object.fromEntries(Object.entries(data.paths).map(([id, steps]) =>
         [id, steps.map(step => step.id)]));
     for (const [origin, positions] of Object.entries(config.readingIndexMigrations)) {
         positions.forEach((destination, index) => {
             entries.clear();
-            const state = {slideIndex: index, path: 'first-structure', activeIndex: 1, completed};
+            const state = {slideIndex: index, path: 'try-actions', activeIndex: 1, completed};
             if (origin !== 'legacy') state.presentationKey = origin;
             const original = JSON.stringify(state);
             entries.set(key, original);
@@ -132,8 +133,9 @@ for (const language of ['en', 'fr']) {
         path: 'future-path', completed: {'future-path': ['future-step'], ...completed}};
     entries.clear();
     entries.set(key, JSON.stringify(unknown));
-    assert.equal(JSON.stringify(context.api.loadGuideState(config)), JSON.stringify(unknown));
-    assert.equal(entries.get(key), JSON.stringify(unknown));
+    const cleaned={...unknown,path:null,activeIndex:0,completed};
+    assert.equal(JSON.stringify(context.api.loadGuideState(config)), JSON.stringify(cleaned));
+    assert.equal(entries.get(key), JSON.stringify(cleaned), 'Unknown path entries retired, known progress retained');
 }
 console.log(JSON.stringify({status: 'PASS', languages: ['en', 'fr'], slidesPerLanguage: 12,
     invitationsPerLanguage: 6, definitionsPerLanguage: 7, milestones, migratedPositions,

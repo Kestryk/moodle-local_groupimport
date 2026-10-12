@@ -377,6 +377,22 @@ const migrateGuideReadingState = (state, config) => {
   return {...state, slideIndex: index, slideId: ids[index]};
 };
 
+const pruneUnknownPaths = (state, paths) => {
+  if (!state || typeof state !== 'object' || Array.isArray(state)) { return {}; }
+  let result = state;
+  const own = name => Object.prototype.hasOwnProperty.call(paths, name);
+  for (const field of ['completed', 'pathContexts']) {
+    const entries = state[field];
+    if (!entries || typeof entries !== 'object' || Array.isArray(entries)) { continue; }
+    const retained = Object.entries(entries).filter(([name]) => own(name));
+    if (retained.length !== Object.keys(entries).length) {
+      result = {...result, [field]: Object.fromEntries(retained)};
+    }
+  }
+  if (state.path && !own(state.path)) { result = {...result, path: null, activeIndex: 0}; }
+  return result;
+};
+
 const loadGuideState = config => {
   const storage = getStorage();
   if (!storage) {
@@ -384,7 +400,14 @@ const loadGuideState = config => {
   }
 
   try {
-    const state = JSON.parse(storage.getItem(getStateKey(config)) || '{}') || {};
+    const original = JSON.parse(storage.getItem(getStateKey(config)) || '{}') || {};
+    const state = Object.prototype.hasOwnProperty.call(config, 'paths') ?
+      pruneUnknownPaths(original, config.paths || {}) : original;
+    if (state !== original) {
+      // Retire unknown path IDs only; reading state and known progress remain.
+      // A blocked/quota-limited store must not discard the cleaned in-memory state.
+      try { storage.setItem(getStateKey(config), JSON.stringify(state)); } catch (error) { /* Storage unavailable. */ }
+    }
     if (Array.isArray(config.slideIds) && config.slideIds.length) {
       return migrateGuideReadingState(state, config);
     }

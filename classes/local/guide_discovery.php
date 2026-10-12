@@ -441,7 +441,7 @@ final class guide_discovery {
         return $steps;
     }
 
-    /** Inspect actual editor fields and Cancel; this path never requires Save. */
+    /** Inspect actual fields and close; Save is allowed but never required. */
     public static function editor_inspection_path(string $type): array {
         if (!in_array($type, ['group', 'grouping'], true)) {
             throw new \InvalidArgumentException('Unknown editor inspection context');

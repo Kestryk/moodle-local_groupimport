@@ -1401,18 +1401,6 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
             $slide['navtitle'] = get_string('guideintro_navtitle', 'local_groupimport');
             $slide['content'] = html_writer::tag('p', s(get_string('guideintro_description', 'local_groupimport')));
             $slide['commonintroduction'] = \local_groupimport\local\guide_discovery::common_introduction(true);
-        } else if (!empty($step['visualemptycourse'])) {
-            $slide['hasguidedpath'] = true;
-            $slide['guidedpath'] = 'create-grouping';
-            $slide['guidedpathtitle'] = $templatedata['tutorialguidedgroupingtitle'];
-            $slide['guidedpathcontent'] = $templatedata['tutorialemptycoursecontent'];
-            $slide['guidedpathsteps'] = [
-                'items' => [
-                    $templatedata['tutorialguidedcreategrouping'],
-                    $templatedata['tutorialguidedaddgrouptogrouping'],
-                    $templatedata['tutorialguidedverifygrouping'],
-                ],
-            ];
         } else if (!empty($step['visualactions'])) {
             $slide['hasguidedpath'] = true;
             $slide['guidedpath'] = 'try-actions';
@@ -1643,8 +1631,6 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'inspect-grouping-settings' => get_string('editor_grouping_title', 'local_groupimport'),
             'reorganise-source-members' => get_string('member_path_title', 'local_groupimport'),
             'practice-membership' => get_string('discovery_path_title', 'local_groupimport'),
-            'first-structure' => get_string('tutorialguidedpaneltitle', 'local_groupimport'),
-            'create-grouping' => get_string('tutorialguidedgroupingtitle', 'local_groupimport'),
             'try-actions' => get_string('tutorialguidedactionstitle', 'local_groupimport'),
         ],
         'pathContextFields' => [
@@ -1659,79 +1645,6 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'inspect-grouping-settings' => \local_groupimport\local\guide_discovery::editor_inspection_path('grouping'),
             'reorganise-source-members' => \local_groupimport\local\guide_discovery::source_member_path(),
             'practice-membership' => \local_groupimport\local\guide_discovery::practice_path(),
-            'first-structure' => [
-                [
-                    'id' => 'create-structure',
-                    'title' => get_string('tutorialvisualguidedone', 'local_groupimport'),
-                    'description' => get_string('tutorialguidedpaneldescstructure', 'local_groupimport'),
-                    'target' => 'createRow',
-                    'highlightTarget' => 'groupCreateInput',
-                    'open' => 'viewGroups',
-                    'feedback' => get_string('tutorialguidedpanelfeedbackstructure', 'local_groupimport'),
-                    'completionMode' => 'event',
-                ],
-                [
-                    'id' => 'add-participants',
-                    'title' => get_string('tutorialvisualguidedtwo', 'local_groupimport'),
-                    'description' => get_string('tutorialguidedpaneldescparticipants', 'local_groupimport'),
-                    'target' => 'participantCardActions',
-                    'highlightTargetCompact' => 'participantCardActions',
-                    'highlightTargetDesktop' => 'participantMoveAction',
-                    'open' => 'viewParticipants',
-                    'openDelay' => 360,
-                    'feedback' => get_string('tutorialguidedpanelfeedbackparticipants', 'local_groupimport'),
-                    'completionMode' => 'event',
-                ],
-                [
-                    'id' => 'check-filters',
-                    'title' => get_string('tutorialvisualguidedthree', 'local_groupimport'),
-                    'description' => get_string('tutorialguidedpaneldescfilters', 'local_groupimport'),
-                    'target' => 'advancedParticipantFilters',
-                    'open' => [
-                        ['target' => 'viewParticipants', 'delay' => 320],
-                        ['target' => '[data-easystud-advanced-filters-toggle="participants"]', 'delay' => 220],
-                    ],
-                    'feedback' => get_string('tutorialguidedpanelfeedbackfilters', 'local_groupimport'),
-                    'completionMode' => 'event',
-                ],
-            ],
-            'create-grouping' => [
-                [
-                    'id' => 'create-grouping',
-                    'title' => get_string('tutorialguidedcreategrouping', 'local_groupimport'),
-                    'description' => get_string('tutorialguidedgroupingdesccreate', 'local_groupimport'),
-                    'target' => 'createRow',
-                    'highlightTarget' => 'groupingCreateInput',
-                    'open' => 'viewGroupings',
-                    'feedback' => get_string('tutorialguidedfeedbackgroupingcreate', 'local_groupimport'),
-                    'completionMode' => 'event',
-                ],
-                [
-                    'id' => 'add-group-to-grouping',
-                    'title' => get_string('tutorialguidedaddgrouptogrouping', 'local_groupimport'),
-                    'description' => get_string('tutorialguidedgroupingdescadd', 'local_groupimport'),
-                    'target' => 'firstGroupingAddPanel',
-                    'highlightTarget' => 'firstGroupingAddBox',
-                    'open' => [
-                        ['target' => 'viewGroupings', 'delay' => 800],
-                        ['target' => 'tutorial:first-grouping-add-groups', 'delay' => 600],
-                    ],
-                    'feedback' => get_string('tutorialguidedfeedbackgroupingadd', 'local_groupimport'),
-                    'completionMode' => 'event',
-                ],
-                [
-                    'id' => 'verify-grouping',
-                    'title' => get_string('tutorialguidedverifygrouping', 'local_groupimport'),
-                    'description' => get_string('tutorialguidedgroupingdescverify', 'local_groupimport'),
-                    'target' => 'firstGrouping',
-                    'open' => [
-                        ['target' => 'viewGroupings', 'delay' => 320],
-                        ['target' => 'firstGroupingToggle', 'delay' => 360],
-                    ],
-                    'feedback' => get_string('tutorialguidedfeedbackgroupingverify', 'local_groupimport'),
-                    'completionMode' => 'event',
-                ],
-            ],
             'try-actions' => [
                 [
                     'id' => 'try-drag',

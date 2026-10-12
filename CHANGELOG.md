@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] D5/D6: retire two unused Guide paths and their dedicated signals, consume Kit195 unknown-path cleanup, and finish editor inspection only after Cancel/Escape/successful Save closes its window; preserve shared creation openers and Claude guards.
+
 - 2026-10-12 [N0] D7: consume Kit19445s/30s notice countdown paused during hover/focus; preserve existing polite status, Guide commands and Claude guards.
 
 - 2026-10-12 [N0] T052: integrate Codex2 7397919 isolated fixture and PHP/SQL/browser baseline tools; eight PHP cases pass, 800-user readiness failure retained (136,180 DOM elements), exact fixture cleanup verified.

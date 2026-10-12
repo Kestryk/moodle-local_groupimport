@@ -163,6 +163,9 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
             "          !checklist.classList.contains('is-minimized') && checklist.contains(event.target)) {\n"+
             "        event.preventDefault();\n"+
             "        root.querySelector('[data-easyedu-guide-checklist-minimize]')?.click();\n      }\n",'');
+    // D5 explicitly retires unknown path state; compare every other engine byte.
+    beforeAccessibility=beforeAccessibility.replace(section(beforeAccessibility,'const pruneUnknownPaths =',
+        'const saveGuideState ='),section(a11yBase,'const loadGuideState =','const saveGuideState ='));
     check('Complete unrelated Guide engine and Motion unchanged',beforeAccessibility.replace(portalPolicy,'')
         .replace("  highlight.removeAttribute('data-easyedu-motion-policy');\n",'')===oldGuide);
     const css=fs.readFileSync(path.join(rootPath,'styles.css'),'utf8').replace(/\r\n/g,'\n');
@@ -191,5 +194,47 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
     check('Actions dependencies preserve original IDs',
         /'id' => 'try-selection',\s*'requiresStep' => 'try-drag'/.test(manage) &&
         /'id' => 'try-context',\s*'requiresStep' => 'try-selection'/.test(manage));
-    console.log(JSON.stringify({surface:'student-management',level:0,passed:Object.keys(checks).length,checks},null,2));
+    check('Retired path definitions and dedicated emissions removed',
+        !/'(?:first-structure|create-grouping)'/.test(manage+source));
+    check('Shared native creation openers retained',
+        source.includes("selector === 'tutorial:create-group'") &&
+        source.includes("selector === 'tutorial:create-grouping'") &&
+        manage.includes("'highlightopen' => 'tutorial:create-grouping'"));
+    const closeStart=source.indexOf('    const closeModal = (completeInspection = true)'),
+        closeEnd=source.indexOf("    modal.addEventListener('focusin'",closeStart);
+    check('Editor exit section bounded',closeStart>=0&&closeEnd>closeStart);
+    for(const type of ['group','grouping'])for(const review of [false,true]){
+        let finish,removed=false,focused=false,completed=[];
+        const modal={},returnFocus={isConnected:true,getClientRects:()=>[{}],focus:()=>{focused=true;}};
+        modal.remove=()=>{removed=true;};
+        vm.runInNewContext(source.slice(closeStart,closeEnd),{modal,returnFocus,root:{},type,
+            hideEasyStudModal:(node,callback)=>{finish=callback;},
+            emitEditorInspectionCompletion:(root,type,step)=>completed.push(step)});
+        (review?modal.easystudCloseEditor:modal.easystudCompleteEditorClose)();
+        check(type+' '+(review?'review':'native close')+' cannot complete before exit',
+            !removed&&!focused&&completed.length===0);
+        finish();
+        check(type+' '+(review?'review':'native close')+' completes only correct exit',
+            removed&&focused&&JSON.stringify(completed)===JSON.stringify(review?[]:['cancel-editor']));
+    }
+    const bindStart=source.indexOf('const bindAdvancedSettings =');
+    const submitStart=source.indexOf("    root.addEventListener('submit', event => {",bindStart),
+        submitEnd=source.indexOf("    root.addEventListener('change', event => {",submitStart);
+    check('Native Save reuses completed exit',source.slice(submitStart,submitEnd)
+        .includes('modal.easystudCompleteEditorClose();'));
+    for(const successful of [true,false]){
+        let handler,closed=0;const submit={disabled:false},modal={easystudCompleteEditorClose:()=>{closed++;}};
+        const form={querySelector:()=>submit,closest:()=>modal};
+        vm.runInNewContext(source.slice(submitStart,submitEnd),{
+            root:{addEventListener:(name,callback)=>{handler=callback;},contains:()=>true},
+            FormData:function(){},postFormAction:()=>successful?Promise.resolve({}):Promise.reject(Error('Expected error')),
+            showNotification(){},applyAdvancedGroupUpdate(){},applyAdvancedGroupingUpdate(){},resetAdvancedDeletePictureCommand(){}});
+        handler({target:{closest:()=>form},preventDefault(){}});
+        for(let n=0;n<12;n++)await Promise.resolve();
+        check('Save '+(successful?'success':'failure')+' closes only after accepted outcome',
+            closed===(successful?1:0)&&submit.disabled===false);
+    }
+    const result=JSON.stringify({surface:'student-management',level:0,passed:Object.keys(checks).length,failed:0,checks},null,2);
+    if(process.argv[2])fs.writeFileSync(path.resolve(process.argv[2]),result+'\n');
+    console.log(result);
 })().catch(error=>{console.error(error);process.exitCode=1;});
