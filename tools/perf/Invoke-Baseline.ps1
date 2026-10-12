@@ -11,7 +11,7 @@ param(
     [string]$FixtureLeaseResource = 'moodle51-active-fixture-write',
     [string]$DeploymentManifestPath,
     [ValidateRange(1, 10000)][int]$Participants = 800,
-    [ValidateSet('baseline', 'regions', 'curve', 'details', 'sql')][string]$Mode = 'baseline',
+    [ValidateSet('baseline', 'regions', 'curve', 'details', 'sql', 'sm')][string]$Mode = 'baseline',
     [switch]$WaitForLease,
     [ValidateRange(1, 900)][int]$LeaseWaitTimeoutSeconds = 900,
     [switch]$DiscoveryOnly
@@ -44,7 +44,7 @@ $arguments = @{
     Spec = 'student-loading-deadline-diagnostic.spec.js'
     Grep = 'Student startup records deadline and native resource timing'
     LeaseResource = $FixtureLeaseResource
-    WatchdogSeconds = 1200
+    WatchdogSeconds = 1800
     ArtifactRoot = $output
     WaitForLease = $WaitForLease
     LeaseWaitTimeoutSeconds = $LeaseWaitTimeoutSeconds
@@ -81,7 +81,7 @@ try {
     $lease = @{
         Resource = $RuntimeLeaseResource; ProjectNamespace = 'easystud'; RunId = $runId
         Repository = $runtime; Purpose = 'T052 baseline; fixture lease owned by the saved-credentials runner'
-        LeaseSeconds = 1800; OwnerPid = $PID
+        LeaseSeconds = 7200; OwnerPid = $PID
     }
     if ($WaitForLease) {
         Wait-EasyEduResourceLease @lease -MaxWaitSeconds $LeaseWaitTimeoutSeconds -PollSeconds 5 | Out-Null

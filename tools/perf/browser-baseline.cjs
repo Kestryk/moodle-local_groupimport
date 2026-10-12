@@ -5,6 +5,7 @@ const {spawnSync} = require('node:child_process');
 const {createHash} = require('node:crypto');
 
 async function runBaseline(page, testInfo, expect) {
+    if (process.env.EASYEDU_PERF_MODE === 'sm') { await require('./sm-rendu.cjs').run(page, testInfo, expect); return; }
     if (['regions', 'curve', 'details', 'sql'].includes(process.env.EASYEDU_PERF_MODE)) {
         await require('./region-curve.cjs').run(page, testInfo, expect);
         return;
