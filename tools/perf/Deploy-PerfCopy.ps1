@@ -33,13 +33,19 @@ foreach ($file in @($snapshot, $archive, $manifest, $staging)) {
 }
 & tar.exe --exclude='./tools/playwright/node_modules' --exclude='./node_modules' -cf $snapshot -C $target .
 if ($LASTEXITCODE -ne 0) { throw 'Previous plugin snapshot failed; no deployment.' }
-& git -C $source archive --format=tar --output=$archive HEAD
-if ($LASTEXITCODE -ne 0) { throw 'Source archive failed; no deployment.' }
-New-Item -ItemType Directory -Path $staging | Out-Null
-& tar.exe -xf $archive -C $staging
-if ($LASTEXITCODE -ne 0) { throw 'Source extraction failed; no deployment.' }
 $files = @(& git -C $source ls-tree -r --name-only HEAD)
 if ($LASTEXITCODE -ne 0) { throw 'Unable to enumerate committed source files.' }
+New-Item -ItemType Directory -Path $staging | Out-Null
+# git archive intentionally export-ignores tools and documentation for public
+# releases. This private QA copy needs its tracked harness as well. Snapshot
+# exactly the clean checkout's tracked files, preserving Windows checkout EOL.
+foreach ($file in $files) {
+    $stagedFile = Join-Path $staging $file
+    New-Item -ItemType Directory -Path (Split-Path -Parent $stagedFile) -Force | Out-Null
+    Copy-Item -LiteralPath (Join-Path $source $file) -Destination $stagedFile
+}
+& tar.exe -cf $archive -C $staging .
+if ($LASTEXITCODE -ne 0) { throw 'Tracked source snapshot failed; no deployment.' }
 foreach ($file in $files) {
     $parent = Join-Path $target $file
     while ($parent -ne $target) {
@@ -55,7 +61,7 @@ foreach ($file in $files) {
 if ($LASTEXITCODE -ne 0) { throw 'Deployment extraction failed; retain snapshot for recovery.' }
 $hashes = [ordered]@{}
 foreach ($file in $files) {
-    # Compare Git archive bytes, not autocrlf-normalized working-tree files.
+    # Compare snapshot bytes, including the clean checkout's EOL convention.
     $expected = (Get-FileHash -LiteralPath (Join-Path $staging $file) -Algorithm SHA256).Hash.ToLowerInvariant()
     $actual = (Get-FileHash -LiteralPath (Join-Path $target $file) -Algorithm SHA256).Hash.ToLowerInvariant()
     if ($expected -ne $actual) { throw "Deployed hash differs: $file" }
@@ -64,7 +70,8 @@ foreach ($file in $files) {
 $record = [ordered]@{
     source = $source; sourceHead = $head; sourceDirty = $false
     target = $target; url = 'http://localhost:8051'; snapshot = $snapshot
-    archive = $archive; deployedAt = [DateTime]::UtcNow.ToString('o'); hashes = $hashes
+    archive = $archive; snapshotKind = 'clean-HEAD-tracked-files-with-checkout-EOL'
+    deployedAt = [DateTime]::UtcNow.ToString('o'); hashes = $hashes
 }
 [IO.File]::WriteAllText($manifest, ($record | ConvertTo-Json -Depth 5), [Text.UTF8Encoding]::new($false))
 Write-Output "Verified $($files.Count) committed files; deployment manifest: $manifest"

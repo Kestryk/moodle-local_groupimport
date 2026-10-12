@@ -154,10 +154,13 @@ live fixture counts without exposing credentials. Its optional `--purge
 native `purge_all_caches()` only on that exact copy, under the copy cache lease.
 
 Deploy clean committed source using `Deploy-PerfCopy.ps1 -TargetPlugin PATH
--ArtifactRoot EXTERNAL`. The helper snapshots the prior plugin, uses `git archive`
-(no `.git`), preserves runtime dependencies/untracked files and checks SHA256 for
+-ArtifactRoot EXTERNAL`. The helper snapshots the prior plugin and the clean
+HEAD's tracked files (no `.git`), preserves runtime dependencies/untracked files and checks SHA256 for
 every committed file. Deployment/purge require `groupimport-perf-runtime-write`
 and `moodle51-perf-cache-write`; the principal leases are never acquired.
+The private QA snapshot deliberately includes tracked tools excluded from public
+`git archive` exports, and preserves checkout line endings. A failed initial
+export-ignore deployment remains recorded separately, never relabelled as PASS.
 
 Pass these additional supervisor arguments for all subsequent measurements:
 `-MoodleUrl http://localhost:8051/local/groupimport/manage.php?id=5
