@@ -2,6 +2,10 @@
 
 - 2026-10-13 [N0/N1] T058: source overlay inventory and read-only Perf accessibility audits of dialogs, expanded filters, menus, history/rollback, administration and compact navigation. Record focus/Tab/Escape, contrast/labels and conditional gaps; no product corrections or full accessibility acceptance claimed.
 
+- 2026-10-12 [N0] SM-RENDU-1 (Claude): compact course state external functions `local_groupimport_get_state` / `local_groupimport_get_details`, per-course state version (table `local_groupimport_statever`, core event observers), `tools/sm/check-state.php` parity check; legacy page unchanged. 800/150/40: state 236 KB vs 2.17 MB, 70 ms / 9 reads vs 2,309 ms / 817 reads, parity PASS.
+
+- 2026-10-12 [N1] R3: consume Kit197 single-row no-mode scene headers and fixed activity-dot frame; focused desktop/mobile proof in the existing Guide surface test, unchanged comparison scenes/course commands/Motion.
+
 - 2026-10-13 [N0/N1] T053: measure CSS bytes/gzip, exact duplicate blocks, repeated declarations, long selector lists and unreferenced literal candidates; quantify a reduction plan without modifying Sass or product CSS. Retain incomplete browser coverage/readiness evidence.
 
 - 2026-10-13 [N1] T056: catalogue 72 immutable source contracts; add Perf-only supervised visual capture/repeatability and explicit approved-external-baseline comparison. Retain failed predecessors, report native overflow rather than repairing product CSS.

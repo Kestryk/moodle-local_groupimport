@@ -174,5 +174,22 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026071300, 'local', 'groupimport');
     }
 
+    if ($oldversion < 2026101200) {
+        // SM-RENDU: per-course version of the Student Management state.
+        $dbman = $DB->get_manager();
+        $table = new xmldb_table('local_groupimport_statever');
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('courseid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('version', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, '0');
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+        $table->add_key('courseid', XMLDB_KEY_FOREIGN_UNIQUE, ['courseid'], 'course', ['id']);
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        upgrade_plugin_savepoint(true, 2026101200, 'local', 'groupimport');
+    }
+
     return true;
 }
