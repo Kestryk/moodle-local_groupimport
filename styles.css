@@ -15898,6 +15898,11 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   white-space: normal;
   line-height: 1.4;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__live[data-guide-live-state=finished] [data-guide-live-copy],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__live[data-guide-live-state=finished] [data-guide-live-copy] {
+  color: var(--easyedu-accent);
+  font-weight: var(--easyedu-font-weight-strong);
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__playback[hidden],
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__header .easyedu-guide-scene__playback[hidden] {
   display: none;

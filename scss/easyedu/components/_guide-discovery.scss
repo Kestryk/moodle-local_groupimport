@@ -747,6 +747,13 @@
           white-space: normal;
           line-height: 1.4;
         }
+        // type-body paints the child explicitly; finished paint cannot rely
+        // on inheriting from the display:contents live region. Keep active
+        // narration and all metrics intact, using the existing semantic roles.
+        &[data-guide-live-state="finished"] [data-guide-live-copy] {
+          color: var(--easyedu-accent);
+          font-weight: var(--easyedu-font-weight-strong);
+        }
       }
       .easyedu-guide-scene__playback[hidden] { display: none; }
       .easyedu-guide-scene__start { @include buttons.button-size(small); margin-inline-start: auto; }

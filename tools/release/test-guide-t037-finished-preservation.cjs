@@ -1,0 +1,11 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
+const root=path.resolve(__dirname,'../..'),kit=path.resolve(process.argv[2]),norm=t=>t.replace(/\r\n/g,'\n');
+const read=(r,f)=>norm(fs.readFileSync(path.join(r,f),'utf8')),before=(r,p,f)=>norm(execFileSync('git',['show',p+':'+f],{cwd:r,encoding:'utf8',maxBuffer:8*1024*1024}));
+for(const f of ['amd/src/course_manager.js','amd/src/easyedu_guide.js','amd/build/easyedu_guide.min.js','amd/build/easyedu_guide.min.js.map','amd/src/motion.js','amd/build/motion.min.js','templates/easyedu_guide.mustache','templates/manage.mustache','classes/local/guide_discovery.php','manage.php','lang/en/local_groupimport.php','lang/fr/local_groupimport.php'])assert.equal(read(root,f),before(root,'22b0d16',f),f+' unchanged');
+for(const f of ['guide/amd/src/easyedu_guide.js','guide/templates/easyedu_guide.mustache','motion/amd/src/easyedu_motion.js'])assert.equal(read(kit,f),before(kit,'bfaf059',f),f+' canonical unchanged');
+const css=read(root,'styles.css'),beforeCss=before(root,'22b0d16','styles.css');
+const blocks=css.match(/[^{}]+\{[^{}]*\}/g).filter(b=>b.includes('__header .easyedu-guide-scene__live[data-guide-live-state=finished] [data-guide-live-copy]'));
+assert.equal(blocks.length,1);assert.match(blocks[0],/color: var\(--easyedu-accent\);\s+font-weight: var\(--easyedu-font-weight-strong\);/);
+assert.equal(css.replace(blocks[0],''),beforeCss,'Complete unrelated emitted CSS unchanged');
+assert.equal(read(root,'scss/easyedu/components/_guide-discovery.scss'),read(kit,'scss/easyedu/components/_guide-discovery.scss'),'Canonical recipe parity');
+console.log('PASS two finished paint declarations only; complete other CSS, engines, template, copy, Motion and course commands preserved');

@@ -1,5 +1,13 @@
 # Guide engineering: current projection, not human acceptance
 
+T037-A completion paint is now source/design/isolated-ready (Kit185/7728357):
+finished copy uses existing accent/strong in the unified header; other CSS,
+metrics, engines/template/Motion unchanged.16 corrected isolated records and
+paired saved source/Standard/product Desktop/Phone paint pass; baseline ink400
+failure retained. Native60-case gate is next. T037's five reading-layout requests
+remain pending, all61 received scopes and human checklist preserved.
+See `guide-t037-reading-progress-2026-10-12.md`.
+
 T012's final technical gates pass: canonical184/Kitbfaf059, Source6e6f90e,
 runtime7b6aef7; disclosure12160/60, continuous26880/12/1336samples/six resizes,
 keyboard48596/12. No clipped dialog text/consecutive drift/errors/course writes;

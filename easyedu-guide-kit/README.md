@@ -1,6 +1,57 @@
 # EasyEdu Guide Kit
 
+### Completion paint in the unified header
+
+The explicit body role on the live copy must opt back into semantic accent and
+strong weight for finished state. Preserve normal copy metrics and all original
+scene commands/Motion; consumers copy the canonical recipe, not local CSS.
+
+### Optional recap Motion dependency
+
+The current Guide imports `disclosePanel` and `cancel` from the vendorable Motion
+package for its optional recap body only. Preserve that module, then adapt the
+dependency to the consumer namespace at the existing AMD synchronization/build
+boundary. Runtime builds must name the Guide module with its dependency and
+execute its callable exports; the historical zero-dependency replacement is
+not sufficient. Templates without recap-toggle/body retain static behavior.
+
 Reusable onboarding foundation for EasyEdu Moodle plugins.
+
+### Unified timed-scene header
+
+Timed scenes compose mode choice, manual Start and the live instruction in
+`easyedu-guide-scene__header`. Its Small controls retain their existing command
+attributes and one scene-owned live region. Pause/Next appear only during
+playing/paused states. The header owns sticky positioning and scroll clearance;
+the engine keeps the sibling live-region fallback for historical templates.
+Mode choice does not start a manual scene. All phase clocks, pause remaining
+time, next-phase gates and card choreography remain unchanged. This first
+composition also shows the mode's expected memberships at rest, explicitly
+labelled as a preview. Start restores the actual illustrated starting state.
+The phase caption counts only applicable steps (desktop Add has two, compact
+Add/Move have four); translated caption labels belong to the consumer payload.
+Reset returns to the default ready mode. Recap disclosure/reordering is separate.
+
+On phones, mode buttons grow from their intrinsic translated label width and
+wrap as whole controls when necessary. Do not force equal zero-basis tracks or
+shrink the caption. Check painted text inside each padded button, not only the
+header boundary; a contained header can still hide part of its mode caption.
+
+### Discovery creation composition
+
+The opt-in discovery scene groups its labelled pattern field and preview/letter
+actions in `easyedu-guide-scene__creation-controls`. Desktop controls share a
+bottom baseline; the field has a bounded, shrinkable width and controls wrap on
+compact screens. Syntax help follows the controls with the caption role. This
+layout does not change the name-pattern parser, scene lifecycle or real commands.
+Consumer-adapted runtime templates must receive this wrapper as well as the
+embedded shared template; synchronization of the latter alone is insufficient.
+
+Discovery slides can supply a translated `navtitle` for the topic rail; the
+full `title` remains the content heading. Other consumers omit it to retain
+their existing title. The optional path marker occupies the category lane,
+not the title's horizontal space. Discovery body paragraphs consume the same
+compact body role as the illustration instead of the legacy larger copy size.
 
 The guide kit is not a complete guide for a specific plugin. It provides the
 common behaviour that plugins can embed and configure:
