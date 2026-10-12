@@ -23,6 +23,8 @@
 - 2026-10-12 [N1] Group validated AP-E6/AP-E5/SM2a and QA successor for localhost; retain complete Perf-copy tooling/guards, legacy rendering mode and committed AMD, extend the existing integration surface for FR/EN settings and unconfirmed CSV preview.
 
 - 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.
+- 2026-10-13 [N1] T056: catalogue 72 immutable source contracts; add Perf-only supervised visual capture/repeatability and explicit approved-external-baseline comparison. Retain failed predecessors, report native overflow rather than repairing product CSS.
+
 - 2026-10-13 [N0] T057: add deterministic EN/FR key, placeholder, accent/plural/case and hardcoded-JS-text audit; replace 60 parenthesised-plural translations without changing keys/placeholders or JavaScript. JS/case candidate inventory remains for the product owners.
 
 - 2026-10-12 [N0] Perf fixtures: support 3,000 participants/300 groups/60 groupings and 10,000/1,000/150, keeping three memberships per participant and exact-owner idempotent cleanup; preserve existing 800/150/40 shape.
