@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N1] Group validated AP-E6/AP-E5/SM2a and QA successor for localhost; retain complete Perf-copy tooling/guards, legacy rendering mode and committed AMD, extend the existing integration surface for FR/EN settings and unconfirmed CSV preview.
+
 - 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.
 
 - 2026-10-12 [N0] AP-E5: group identifier, enrolment, membership and import-preview/rollback reads; preserve AP-A5 priority, native mutations and database/native-name matching; strict before/after responses/messages/memberships and rolled-back edge fixtures verified on the dedicated Perf copy.

@@ -16,9 +16,9 @@ if (PHP_SAPI !== 'cli') {
     exit;
 }
 define('CLI_SCRIPT', true);
-$options = getopt('', ['moodle-root:', 'manifest:', 'action:', 'run-id:', 'purge', 'help']);
+$options = getopt('', ['moodle-root:', 'manifest:', 'action:', 'run-id:', 'participants:', 'purge', 'help']);
 if (isset($options['help'])) {
-    echo "--moodle-root PATH --manifest EXTERNAL.json [--action setup|cleanup|verify] [--purge]\n";
+    echo "--moodle-root PATH --manifest EXTERNAL.json [--action setup|cleanup|verify] [--participants 100..800] [--purge]\n";
     exit;
 }
 if (empty($options['moodle-root']) || empty($options['manifest'])) {
@@ -50,6 +50,14 @@ $manifest = is_file($path) ? easystud_perf_manifest($path) : [
     'courseId' => 0, 'userIds' => [], 'groupIds' => [], 'groupingIds' => [],
     'runId' => $options['run-id'] ?? 'manual', 'complete' => false,
 ];
+$participants = (int)($options['participants'] ?? getenv('EASYEDU_PERF_PARTICIPANTS') ?: 800);
+if ($participants < 1 || $participants > 800) {
+    throw new RuntimeException('Fixture participant count must be between 1 and 800.');
+}
+if (isset($manifest['participants']) && $manifest['participants'] !== $participants && $action === 'setup') {
+    throw new RuntimeException('A fixture manifest cannot change size; use a new manifest after cleanup.');
+}
+$manifest['participants'] = $manifest['participants'] ?? $participants;
 if ($action !== 'setup' && !is_file($path)) {
     throw new RuntimeException('Cleanup/verification requires an existing ownership manifest.');
 }
@@ -109,7 +117,7 @@ if ($action === 'setup') {
     if (!$DB->record_exists('enrol', ['courseid' => $courseid, 'enrol' => 'manual'])) {
         $manual->add_instance(get_course($courseid), ['status' => ENROL_INSTANCE_ENABLED]);
     }
-    for ($i = 0; $i < 800; $i++) {
+    for ($i = 0; $i < $manifest['participants']; $i++) {
         if (!isset($manifest['userIds'][$i])) {
             $username = $manifest['prefix'] . sprintf('%04d', $i);
             if ($DB->record_exists('user', ['username' => $username, 'deleted' => 0])) {

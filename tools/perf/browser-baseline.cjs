@@ -20,9 +20,10 @@ async function runBaseline(page, testInfo, expect) {
     }, server, browser: records, errors, failures, measurementComplete: false};
     const rootPath = process.env.EASYEDU_PERF_MOODLE_ROOT;
     const runtime = path.join(rootPath, 'local', 'groupimport');
-    const revision = spawnSync('git', ['-C', runtime, 'rev-parse', 'HEAD'], {encoding: 'utf8'});
-    expect(revision.status).toBe(0);
-    baseline.runtimeHead = revision.stdout.trim();
+    const identity = require('./runtime-identity.cjs').read(runtime);
+    baseline.runtimeHead = identity.head;
+    baseline.deployment = identity.deployment;
+    baseline.runtimeUrl = process.env.EASYEDU_MOODLE_URL;
     baseline.sourceHead = process.env.EASYEDU_PERF_SOURCE_HEAD;
     baseline.runtimeHashes = Object.fromEntries(['manage.php', 'ajax.php', 'index.php',
         'classes/service/course_structure.php'].map(file => [file,
