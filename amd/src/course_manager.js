@@ -25,6 +25,9 @@ import * as Motion from './motion';
 import * as Guide from './easyedu_guide';
 import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './searchable_choices';
 import {snapshotMemberPairs} from './member_selection';
+import Log from 'core/log';
+import {createStore} from './local/sm/store';
+import {buildParticipantIndex, filterParticipantIds} from './local/sm/index';
 
 const selectedClass = 'is-selected';
 const disabledSelectionClass = 'is-selection-disabled';
@@ -10387,7 +10390,38 @@ const bindPastePreview = root => {
 };
 
 // Initialise the manager.
-export const init = (rootId, courseId) => {
+/**
+ * SM-RENDU: load the compact course state next to the legacy page (on-demand mode only).
+ *
+ * Step 2a renders nothing from it yet; it exposes the store and the participant index on
+ * the root so parity with the legacy filters can be checked on the same page.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Number} courseId Course id.
+ */
+const startOnDemandState = (root, courseId) => {
+    root.setAttribute('data-easystud-rendering-mode', 'reactive');
+    createStore(root, courseId).then(({reactive, raw, loadMs}) => {
+        const indexStarted = window.performance.now();
+        const index = buildParticipantIndex(raw);
+        root.easystudSm = {
+            reactive,
+            raw,
+            index,
+            loadMs,
+            indexMs: Math.round(window.performance.now() - indexStarted),
+            filterParticipantIds: filters => filterParticipantIds(index, filters),
+        };
+        root.setAttribute('data-easystud-sm-ready', '1');
+        root.dispatchEvent(new CustomEvent('local_groupimport/sm:ready', {detail: {loadMs}}));
+        return root.easystudSm;
+    }).catch(error => {
+        root.setAttribute('data-easystud-sm-ready', 'error');
+        Log.error(error);
+    });
+};
+
+export const init = (rootId, courseId, options = {}) => {
     onReady(() => {
         const root = document.getElementById(rootId);
         if (!root) {
@@ -10405,6 +10439,9 @@ export const init = (rootId, courseId) => {
         const loadingController = root.easystudLoadingController;
 
         Motion.init(root);
+        if (options && options.renderingmode === 'reactive') {
+            runSafely(() => startOnDemandState(root, courseId));
+        }
 
         [
             () => bindFilters(root),

@@ -548,6 +548,18 @@ if ($hassiteconfig) {
         1
     ));
 
+    // SM-RENDU: on-demand Student Management rendering, kept off until the parity milestone.
+    $settings->add(new admin_setting_configselect(
+        'local_groupimport/renderingmode',
+        get_string('renderingmode', 'local_groupimport'),
+        get_string('renderingmode_desc', 'local_groupimport'),
+        'legacy',
+        [
+            'legacy' => get_string('renderingmode_legacy', 'local_groupimport'),
+            'reactive' => get_string('renderingmode_reactive', 'local_groupimport'),
+        ]
+    ));
+
     $settings->add(new admin_setting_heading(
         'local_groupimport/appearanceoverview',
         get_string('adminappearancetitle', 'local_groupimport'),

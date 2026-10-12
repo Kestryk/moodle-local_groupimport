@@ -76,6 +76,7 @@ $PAGE->requires->js_call_amd('local_groupimport/easyedu_guide', 'init', [
 $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
     'local-groupimport-easystud',
     $course->id,
+    ['renderingmode' => get_config('local_groupimport', 'renderingmode') === 'reactive' ? 'reactive' : 'legacy'],
 ]);
 $action = optional_param('action', '', PARAM_ALPHA);
 // Create/rename write course data: only accept them from the plugin's POST forms, and fail loudly on a bad session key.
