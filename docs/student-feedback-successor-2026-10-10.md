@@ -163,6 +163,14 @@ transversal et son estimation reste à établir après l'inventaire. Il n'exige
 pas de dessiner une illustration différente à la main pour chaque zone.
 
 R10-16 reste un seul lot, réalisé en phases :
+
+Complément Claude12Oct conservé dans
+`claude-guide-paths-skeleton-intake-2026-10-12.md` : baseline mesurée T052,
+grille I1–I13 avant/après, recettes Kit/Foundations et déploiement local AJAX →
+modales → Mass Import → régions initiales, puis T055. T054 est en dernier,
+désactivé par défaut, depuis les données en mémoire ; aucun réseau au clic.
+L'inventaire ci-dessous reste requis ; ce complément ne le marque pas terminé.
+
 1. Inventorier les promesses, initialisations AMD, ajouts de DOM et états ready
    réellement différés; identifier quelles actions deviennent utilisables quand.
 2. Définir les primitives et le cycle loading/ready/error/fail-open partagé;

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Claude path audit and local-loading prevention intake
+
+- Retain new PG-S1/A1–A8 batches with S1→A2→A1→A3 priority; A4/A5/A7 are
+  human decision gates. Recheck current highlight1020/modal stacking diagnosis.
+- Bind R10-16/T052/T055/T054/T061 to before/after I1–I13; no click-network,
+  no false completion, measured baseline and default-off on-demand flag last.
+- Preserve all61 initial scopes, prior feedback and deferred human checklist.
+  This intake is not implementation/native verification of these new requests.
+
 ## 2026-10-12 - Native completion-paint verification
 
 - T037-A passes60 actual scene/locale/width/media cases, including finished

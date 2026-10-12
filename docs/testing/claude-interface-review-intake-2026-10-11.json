@@ -6,6 +6,21 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "claudePathsAndSkeletonSupplement20261012": {
+    "record": "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",
+    "pathsAuditSha256": "3e5ed7a9bdd03098d794abde76b018aa51555501d7efe54d5f6f29a793d48212",
+    "skeletonPreventionSha256": "dfb7b3ef4080f7ea6c3c9ad0f7b7d239e450f64ae4300af65abe22a81eb7710c",
+    "priority": ["PG-S1", "PG-A2", "PG-A1", "PG-A3", "PG-A6-browser-diagnosis", "PG-A8"],
+    "humanDecisionsPending": ["PG-A4", "PG-A5", "PG-A7"],
+    "guidanceFor": ["R10-16", "R10-17", "T052", "T055", "T054", "T061"],
+    "loadingOrder": ["T052", "Kit-Foundations-recipes", "R10-16-AJAX", "R10-16-modals", "R10-16-import", "R10-16-initial-regions", "T055", "T054-last-default-off"],
+    "requiredBeforeAfter": ["I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10", "I11", "I12", "I13"],
+    "noPerClickNetwork": true,
+    "noRealDataBusinessTests": true,
+    "original61ScopesUnchanged": true,
+    "nativeVerified": false,
+    "humanAccepted": false
+  },
   "claudeReview1": {
     "received": "2026-10-11",
     "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-11.md",
@@ -586,7 +601,7 @@
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/claude-guide-paths-skeleton-intake-2026-10-12.md"],
       "decisionGate": "none"
     },
     {
@@ -604,7 +619,7 @@
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/claude-guide-paths-skeleton-intake-2026-10-12.md", "I1-I13-before-after", "T054-last-default-off"],
       "decisionGate": "none"
     },
     {
@@ -613,7 +628,7 @@
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/claude-guide-paths-skeleton-intake-2026-10-12.md", "I1-I13-before-after"],
       "decisionGate": "none"
     },
     {
@@ -668,7 +683,9 @@
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [
-        "R10-16"
+        "R10-16",
+        "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",
+        "I1-I13-before-after"
       ],
       "decisionGate": "none"
     }

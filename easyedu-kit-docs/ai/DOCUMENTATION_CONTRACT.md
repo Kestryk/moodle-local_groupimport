@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+Local loading/on-demand successors require the recorded I1–I13 before/after
+grid in docs/claude-guide-paths-skeleton-intake-2026-10-12.md. Preserve data*,
+model selection/counts, Guide readiness/signals, card Motion and modal focus.
+T052 measured baseline precedes loading work; T054 runs last/default-off using
+in-memory data, never network at click. Inapplicable invariants need reasons,
+not invented native PASS. Guide audit PG-A4/A5/A7 remain human decisions.
+
 Unified narration child typography owns its paint, even beneath a finished
 display:contents live region. Reapply only existing semantic completion roles
 on that child; prove active/reset metrics and engine/template bytes unchanged.
