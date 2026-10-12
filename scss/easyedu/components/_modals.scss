@@ -22,9 +22,11 @@
 }
 
 // Moodle controls are outside the plugin root. Reuse the existing blocking
-// Guide lifetime, not a new controller, z-index escalation or navigation state.
+// Guide lifetime and actual shared dialogs, not a new controller, z-index
+// escalation or navigation state. Hidden dialogs restore native controls.
 @mixin moodle-guide-drawer-yield {
-  html.easyedu-guide-dialog-open .drawer-toggler {
+  html.easyedu-guide-dialog-open .drawer-toggler,
+  body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal="true"]:not([hidden]):not([aria-hidden="true"])) .drawer-toggler {
     visibility: hidden;
     pointer-events: none;
   }

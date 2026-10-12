@@ -6,6 +6,16 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "pgS1NativeDrawer20261012": {
+    "level": 1,
+    "kitVersion": "0.4.187",
+    "status": "common-host-bridge-fixed-native-check-pending",
+    "cause": "Moodle drawer toggler at layer1200 occluded the mobile Cancel highlight",
+    "surfaceScript": "tools/playwright/guide-modal-layer-s1-editors-diagnostic-native.spec.js",
+    "scope": "FR1280 and exact390 regression; original full milestone matrix remains opt-in",
+    "otherSixModalTargetsPending": true,
+    "humanAccepted": false
+  },
   "acceleration20261012": {
     "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
     "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",

@@ -27694,7 +27694,8 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {
     --easyedu-choice-disclosure-duration: 0.01ms;
   }
 }
-html.easyedu-guide-dialog-open .drawer-toggler {
+html.easyedu-guide-dialog-open .drawer-toggler,
+body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not([hidden]):not([aria-hidden=true])) .drawer-toggler {
   visibility: hidden;
   pointer-events: none;
 }
