@@ -32,6 +32,12 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   box-shadow: 0 0 0 0.28rem rgba(11, 117, 209, 0.2), 0 0 0 0.65rem rgba(11, 117, 209, 0.08), 0 0.85rem 2rem rgba(15, 33, 50, 0.16);
 }
 
+.easyedu-guide-highlight[data-easyedu-motion-policy=disabled] {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
 [dir=rtl] .easyedu-guide-nav-arrow .fa,
 [dir=rtl] .easyedu-guide-modal__map-arrow,
 [dir=rtl] .easyedu-guide-flow-arrow {
@@ -23992,8 +23998,9 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-easystud.is-easyedu-motion-off,
 .local-groupimport-motion-disabled .local-groupimport-easystud,
 .local-groupimport-prefers-reduced-motion .local-groupimport-easystud,
-[data-easyedu-motion-policy=disabled],
-.easyedu-motion-disabled [data-easyedu-motion-policy] {
+:is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy=disabled],
+#page-admin-setting-local_groupimport [data-easyedu-motion-policy=disabled],
+.easyedu-motion-disabled :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] {
   scroll-behavior: auto !important;
 }
 .local-groupimport-easystud.is-easyedu-motion-off *,
@@ -24005,12 +24012,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .local-groupimport-prefers-reduced-motion .local-groupimport-easystud *,
 .local-groupimport-prefers-reduced-motion .local-groupimport-easystud *::before,
 .local-groupimport-prefers-reduced-motion .local-groupimport-easystud *::after,
-[data-easyedu-motion-policy=disabled] *,
-[data-easyedu-motion-policy=disabled] *::before,
-[data-easyedu-motion-policy=disabled] *::after,
-.easyedu-motion-disabled [data-easyedu-motion-policy] *,
-.easyedu-motion-disabled [data-easyedu-motion-policy] *::before,
-.easyedu-motion-disabled [data-easyedu-motion-policy] *::after {
+:is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy=disabled] *,
+:is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy=disabled] *::before,
+:is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy=disabled] *::after,
+#page-admin-setting-local_groupimport [data-easyedu-motion-policy=disabled] *,
+#page-admin-setting-local_groupimport [data-easyedu-motion-policy=disabled] *::before,
+#page-admin-setting-local_groupimport [data-easyedu-motion-policy=disabled] *::after,
+.easyedu-motion-disabled :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] *,
+.easyedu-motion-disabled :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] *::before,
+.easyedu-motion-disabled :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] *::after {
   animation-delay: 0s !important;
   animation-duration: 0.001ms !important;
   animation-iteration-count: 1 !important;
@@ -24040,7 +24050,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 @media (prefers-reduced-motion: reduce) {
   .local-groupimport-easystud,
   .local-groupimport-easystud-message-modal,
-  [data-easyedu-motion-policy] {
+  :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy],
+  #page-admin-setting-local_groupimport [data-easyedu-motion-policy] {
     scroll-behavior: auto !important;
   }
   .local-groupimport-easystud *,
@@ -24049,9 +24060,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   .local-groupimport-easystud-message-modal *,
   .local-groupimport-easystud-message-modal *::before,
   .local-groupimport-easystud-message-modal *::after,
-  [data-easyedu-motion-policy] *,
-  [data-easyedu-motion-policy] *::before,
-  [data-easyedu-motion-policy] *::after {
+  :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] *,
+  :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] *::before,
+  :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] *::after,
+  #page-admin-setting-local_groupimport [data-easyedu-motion-policy] *,
+  #page-admin-setting-local_groupimport [data-easyedu-motion-policy] *::before,
+  #page-admin-setting-local_groupimport [data-easyedu-motion-policy] *::after {
     animation-delay: 0s !important;
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;

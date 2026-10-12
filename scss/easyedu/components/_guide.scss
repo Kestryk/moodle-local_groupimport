@@ -3207,6 +3207,12 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
     0 0.85rem 2rem rgba(15, 33, 50, 0.16);
 }
 
+.easyedu-guide-highlight[data-easyedu-motion-policy="disabled"] {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
 [dir="rtl"] {
   .easyedu-guide-nav-arrow .fa,
   .easyedu-guide-modal__map-arrow,

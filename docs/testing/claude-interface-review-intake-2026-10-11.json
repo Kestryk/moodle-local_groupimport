@@ -6,6 +6,15 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "apMotionScope20261012": {
+    "ids":["AP-A10","AP-B6"],
+    "level":1,
+    "kitVersion":"0.4.191",
+    "status":"source-policy-relay-and-host-scope-implemented; native pending runtime owner",
+    "guardsRead":"COORDINATION-LOTS.md §5 ter",
+    "serverAndIdentifierContractsUnchanged":true,
+    "humanAccepted":false
+  },
   "pgS1Destinations20261012": {
     "level":1,
     "kitVersion":"0.4.190",
