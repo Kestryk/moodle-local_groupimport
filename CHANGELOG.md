@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] Integrate Claude73085bf (AP-A4): import/rollback and non-JS create/rename require POST and an explicit valid session key; actual guard verification added to the shared AJAX surface script.
+
 - 2026-10-12 [N0] Mobile long-press menus retain their open state after finger release: consume the compatibility click in capture before the backdrop; original hold timing and ordinary outside-click dismissal unchanged.
 
 - 2026-10-12 [N0] Consume Kit188 Resume-target recovery discovered during native Actions-path checks; preserve progress and completed-path suppression, extend the same surface diagnostics.

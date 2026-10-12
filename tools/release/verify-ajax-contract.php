@@ -93,6 +93,32 @@ check('EN FR key parity', $keysets['en'] === $keysets['fr']);
 $manage = file_get_contents($root . '/manage.php');
 check('Path adapter uses distinct resume', strpos($manage,
     "'guideresumelabel' => get_string('guideresumepath', 'local_groupimport')") !== false);
+$index = file_get_contents($root . '/index.php');
+// Execute the actual three guard expressions, not a copied policy predicate.
+foreach (['rollbackhistoryid' => $index, 'confirmimport' => $index, 'action' => $manage] as $variable => $text) {
+    $pattern = '/if \((\$' . $variable . ' && data_submitted\(\))\) \{\s*(?:global [^;]+;\s*)?require_sesskey\(\);/';
+    check($variable . ' POST guard and explicit sesskey', preg_match($pattern, $text, $match) === 1);
+    foreach ([false, true] as $submitted) {
+        foreach ([false, true] as $validkey) {
+            $guardcalls = 0;
+            $$variable = 1;
+            try {
+                eval('if (' . $match[1] . ') { require_sesskey(); }');
+                check($variable . ' ' . ($submitted ? 'POST' : 'GET') . ' key' . (int)$validkey,
+                    $guardcalls === (int)$submitted && (!$submitted || $validkey));
+            } catch (moodle_exception $error) {
+                check($variable . ' invalid POST rejected', $submitted && !$validkey && $guardcalls === 1);
+            }
+        }
+    }
+}
 echo json_encode(['surface' => 'ajax-and-language', 'level' => 0, 'passed' => count($checks),
     'checks' => $checks, 'scope' => 'Actual dispatch with isolated service doubles; no native course writes'],
     JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR) . PHP_EOL;
+
+function data_submitted() { global $submitted; return $submitted; }
+function require_sesskey() {
+    global $validkey, $guardcalls;
+    $guardcalls++;
+    if (!$validkey) { throw new moodle_exception('Invalid session key'); }
+}

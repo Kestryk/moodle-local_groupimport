@@ -78,7 +78,9 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
     $course->id,
 ]);
 $action = optional_param('action', '', PARAM_ALPHA);
-if ($action && confirm_sesskey()) {
+// Create/rename write course data: only accept them from the plugin's POST forms, and fail loudly on a bad session key.
+if ($action && data_submitted()) {
+    require_sesskey();
     if ($action === 'creategroup') {
         $names = local_groupimport_extract_create_names(required_param('groupname', PARAM_TEXT));
         $created = 0;
