@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] SM-RENDU-3b (Claude): in On demand mode both flat group catalogs (Participants and Structure views) render only their current page from the state (shared `sm/group_card` partial, also used by the legacy page with byte-identical HTML); grouping filter, ungrouped toggle, search, sort, pagination, empty state, Select all and cross-page group selection run on the state. 800 fixture: HTML 32.0 to 17.1 MB. Member selection inside catalog cards stays per page; the groupings tree is still legacy (step 3c).
+
 - 2026-10-13 [N1] SM3a principal N1 PASS: legacy appearance/member search, synthetic29/Group342 native Add then Remove, server versions0/1/2 and matching participant card; exact relationship hashes restored and legacy mode verified. Retain failed dynamic-group locator run with no writes, use an explicit group-ID QA successor, preserve native timestamps/events/state version and the separate SM2b detail-field reserve.
 
 - 2026-10-13 [N1] Prepare SM3a principal integration proof on the shared native surface: pin Claude builds, test legacy member search and authorize only synthetic29/Group342 Add then Remove; preserve exact relationship baselines and native audit timestamps, restore legacy and owned pair in both test/supervisor cleanup. SM2b detail-parity reserve remains open.

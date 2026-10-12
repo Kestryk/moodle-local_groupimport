@@ -33,6 +33,7 @@
 import Mustache from 'core/mustache';
 import Loader from 'core/local/templates/loader';
 import {buildParticipantIndex, filterParticipantIds, normalise} from './index';
+import {refreshGroupIndex} from './groups';
 
 const templateName = 'local_groupimport/sm/participant_card';
 const tokenClass = 'local-groupimport-easystud-token';
@@ -124,7 +125,8 @@ export const refreshModel = model => {
     model.index = buildParticipantIndex(raw);
     model.indexById = new Map(model.index.map(entry => [entry.id, entry]));
     model.detached.clear();
-    // Lets the list skip re-rendering an unchanged page.
+    refreshGroupIndex(model);
+    // Lets the lists skip re-rendering an unchanged page.
     model.revision = (model.revision || 0) + 1;
 };
 
