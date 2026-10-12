@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-12 - Final recap continuous and keyboard verification
+
+- Native184 regression passes12 continuous scenes,1336 samples and six resized
+  tabs, without dialog clipping/repeated target drift. Twelve final keyboard
+  routes also pass. Sixty disclosure cases and24 isolated cases stay recorded.
+- Verify credential/runtime/child cleanup, preserved source/type/Motion and
+  paired saved states. No course writes; human checklist remains open.
+- Keep the separately observed completion-copy emphasis in next T037, without
+  claiming these technical gates validate all remaining Guide appearance.
+
 ## 2026-10-12 - Sixty native recap disclosure cases
 
 - Native12160 passes all60 localized/three-width/media cases, including final

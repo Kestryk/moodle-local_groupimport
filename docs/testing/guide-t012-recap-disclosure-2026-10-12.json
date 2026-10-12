@@ -24,8 +24,31 @@
     "blockedBusinessRequests": [],
     "cleanupComplete": true
   },
-  "continuousRegression": "26880-running; no complete proof yet",
-  "finalKeyboardRegression": "pending",
+  "continuousRegression": {
+    "runId": "easystud-authenticated-20261012T112342810Z-26880",
+    "status": "passed",
+    "cases": 12,
+    "samples": 1336,
+    "samplingMs": 250,
+    "dialogCopyOverflows": 0,
+    "consecutiveTargetViolations": 0,
+    "resizeOrientationChecks": 6,
+    "errors": [],
+    "blockedBusinessRequests": [],
+    "cleanupComplete": true
+  },
+  "finalKeyboardRegression": {
+    "runId": "easystud-authenticated-20261012T113157762Z-48596",
+    "status": "passed",
+    "cases": 12,
+    "languages": ["en", "fr"],
+    "widths": [1280, 768, 390],
+    "motion": ["no-preference", "reduce"],
+    "TabShiftTabHomeEndTypingNestedEscapeAndReturnFocus": true,
+    "errors": [],
+    "blockedBusinessRequests": [],
+    "cleanupComplete": true
+  },
   "preservation": {
     "completeCanonicalEngineOutsideExplicitRecapBridge": true,
     "completeUnrelatedCssTypeTemplate": true,
@@ -38,9 +61,9 @@
     "productSavedLinkedStates": 4,
     "pairedRastersInspected": true,
     "externalArtifactRun": "guide-t012-20261012-a",
-    "sourceChequeChevronOrientationReconciled": true
+    "sourceChevronOrientationReconciled": true
   },
-  "nativeVerified": false,
+  "nativeVerified": true,
   "humanAccepted": false,
-  "remaining": ["final continuous R2 and keyboard regression", "T037 reading/completion-emphasis successor", "older61-task and feedback backlog", "human checklist"]
+  "remaining": ["T037 reading/completion-emphasis successor", "older61-task and feedback backlog", "human checklist"]
 }

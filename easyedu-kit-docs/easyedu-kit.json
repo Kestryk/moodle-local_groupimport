@@ -11,7 +11,8 @@
       "record": "docs/guide-t012-recap-disclosure-progress-2026-10-12.md",
       "isolatedCasesPassed": 12,
       "foundationAndProductSaved": true,
-      "nativeVerified": false,
+      "nativeProof": "docs/testing/guide-t012-recap-disclosure-2026-10-12.json",
+      "nativeVerified": true,
       "humanAccepted": false
     },
     "guideIntroductionSpecimensT014": {
