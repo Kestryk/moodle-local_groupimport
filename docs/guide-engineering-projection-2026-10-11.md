@@ -1,5 +1,12 @@
 # Guide engineering: current projection, not human acceptance
 
+PG-S1 recovery: Kit186/27a5030 paired design and isolated gates pass. Source
+Guide sync/AMD/CSS build and complete unrelated-CSS/controller/type preservation
+pass. Native editor six-target candidate discovered once through the runtime
+wrapper; full12 native gates/human acceptance pending. Reboot left Moodle and
+owned Penpot stopped; automatic stack startup was refused before process creation.
+State/next step: `guide-modal-layer-s1-progress-2026-10-12.md`.
+
 Kevin20261012 now authorizes whole-backlog prioritization by urgency/impact/
 dependency, not Guide-only or latest-feedback-first. Effective execution order:
 `execution-priority-2026-10-12.md` + JSON. Every SM/R10/T/PG and residual G11

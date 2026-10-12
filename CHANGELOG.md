@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-12 - External-dialog Guide cue integration candidate
+
+- Consume canonical Kit186's body-portal modal-layer relay and scoped
+  highlight/checklist layers. Normal page1020 and all unrelated CSS, typography,
+  templates, native commands, clocks and Motion remain unchanged.
+- Build named AMD/map and CSS; eight helper/sixteen isolated cases and six
+  linked saved Foundation/Product usage examples pass. Keep native editor,
+  other six modal targets and human acceptance as separate pending gates.
+- Preserve all backlog priorities and original61+33 scopes. No settings or
+  course writes are authorized by a presentation check.
+
 ## 2026-10-12 - Whole-program dependency prioritization
 
 - Reprioritize every SM/R10/Claude/PG and residual Guide request by current

@@ -64,6 +64,7 @@ const SELECTORS = {
 };
 
 const HIGHLIGHT_TARGET_CLASS = 'is-easyedu-guide-highlight-target';
+const HIGHLIGHT_DIALOG_CLASS = 'easyedu-guide-highlight--in-dialog';
 const PAGE_SCROLL_LOCK_CLASS = 'easyedu-guide-dialog-open';
 const FOCUSABLE_SELECTOR = [
   'a[href]',
@@ -646,7 +647,16 @@ const clearHighlight = root => {
   clearHighlightRefresh(root);
   const highlight = createHighlight(root);
   highlight.hidden = true;
+  highlight.classList.remove(HIGHLIGHT_DIALOG_CLASS);
+  highlight.style.removeProperty('--easyedu-modal-layer');
+  root.removeAttribute('data-easyedu-guide-target-in-dialog');
+  root.removeAttribute('data-easyedu-guide-dialog-dock');
   clearHighlightedTarget(root);
+};
+
+const getExternalTargetDialog = (root, target) => {
+  const dialog = isVisibleElement(target) ? target.closest('[role="dialog"][aria-modal="true"]') : null;
+  return dialog && dialog !== root.querySelector(SELECTORS.modal) ? dialog : null;
 };
 
 const updateHighlight = (root, target) => {
@@ -663,6 +673,15 @@ const updateHighlight = (root, target) => {
   root.easyeduGuideCurrentTarget = target;
   target.classList.add(HIGHLIGHT_TARGET_CLASS);
   observeHighlightedTarget(root, target);
+  // The frame is portalled to body, outside the Guide's public layer tokens.
+  // Re-evaluate on each paint, including target reparenting; keep page cues low.
+  const inDialog = !!getExternalTargetDialog(root, target);
+  root.toggleAttribute('data-easyedu-guide-target-in-dialog', inDialog);
+  if (!inDialog) { root.removeAttribute('data-easyedu-guide-dialog-dock'); }
+  highlight.classList.toggle(HIGHLIGHT_DIALOG_CLASS, inDialog);
+  const modalLayer = inDialog ? window.getComputedStyle(root).getPropertyValue('--easyedu-modal-layer').trim() : '';
+  if (modalLayer) { highlight.style.setProperty('--easyedu-modal-layer', modalLayer); }
+  else { highlight.style.removeProperty('--easyedu-modal-layer'); }
   highlight.classList.toggle(
     'easyedu-guide-highlight--pulse-blue',
     root.dataset.easyeduGuideHighlightStyle === 'pulse-blue'
@@ -731,8 +750,7 @@ const scheduleHighlightRefreshBurst = (root, target, shouldDock = true) => {
 
 const dockChecklistAwayFromTarget = (root, target) => {
   const checklist = root.querySelector(SELECTORS.checklist);
-  const dialog = isVisibleElement(target) ? target.closest('[role="dialog"][aria-modal="true"]') : null;
-  const externalDialog = dialog && dialog !== root.querySelector(SELECTORS.modal);
+  const externalDialog = getExternalTargetDialog(root, target);
   root.toggleAttribute('data-easyedu-guide-target-in-dialog', !!externalDialog);
   if (externalDialog) {
     const bounds = target.getBoundingClientRect();
