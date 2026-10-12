@@ -1,5 +1,22 @@
 # T012 — recap disclosure candidate, not human acceptance
 
+## Final technical checkpoint
+
+T012 passes native12160/60 disclosure cases, continuous26880/12 cases and1336
+250ms samples with six resized tabs, and final keyboard48596/12 cases. No dialog
+copy overflow, consecutive target drift, error or course write; credential,
+lease and owned-child cleanup complete. Real final EN1600 raster inspected.
+The saved source/Standard/Product compositions and12+12 isolated cases remain
+separate proof. This closes the defined technical gate, not human acceptance.
+Assets Source6e6f90e / Kitbfaf059 / runtime7b6aef7 remain unchanged throughout
+the three native tests. Evidence: `testing/guide-t012-recap-disclosure-2026-10-12.json`.
+
+Older paragraphs below are chronology. T037 reading/finishing-emphasis successor
+is next; all61 original scopes and older feedback stay intact. Legacy R2 helper
+cleans its primary QA keys; its synthetic migration backup may remain in the
+external owned test profile, never a real user's namespace. Do not claim that
+run as complete removal of every browser storage key. Wrapper cleanup is verified.
+
 Native12160 passes60 cases, including both Inspection entries, Add/Move,
 three widths/locales/media, actual final→close→Enter/reversal and Reset.
 Zero errors/business requests/leftover effects; full credential/lease/child

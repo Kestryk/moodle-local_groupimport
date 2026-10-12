@@ -1,5 +1,10 @@
 # T012 native disclosure — local-supervised candidate
 
+Current native status: verified locally on canonical184. Disclosure12160 passes
+60 cases, continuous26880 passes12/1336 samples/six resizes, keyboard48596 passes
+12. All errors/writes zero and credential/runtime/child cleanup complete. See
+`guide-t012-recap-disclosure-2026-10-12.json`. Not CI/Docker or human acceptance.
+
 Program `EED-UI-2026-0073`, Source6e6f90e / canonical Kitbfaf059 (0.4.184),
 managed runtime7b6aef7. Scenario `T012 shared recap disclosure preserves all
 current scene lifecycles`, `tools/playwright/guide-t012-recap-native.spec.js`.

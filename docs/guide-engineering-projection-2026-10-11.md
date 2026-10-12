@@ -1,5 +1,15 @@
 # Guide engineering: current projection, not human acceptance
 
+T012's final technical gates pass: canonical184/Kitbfaf059, Source6e6f90e,
+runtime7b6aef7; disclosure12160/60, continuous26880/12/1336samples/six resizes,
+keyboard48596/12. No clipped dialog text/consecutive drift/errors/course writes;
+all credential/lease/child cleanup passes.12+12 isolated cases and paired saved
+Source/Standard/Product91 remain distinct proof; human checklist stays open.
+Next T037 reading/airiness plus observed completion-copy emphasis audit, then
+remaining Guide decisions/Student corridors. A2 real-panel width is approved;
+pagination functional semantics remain excluded from the CSS-only corridor lot.
+Original61 scopes, every retained failure and older lots stay intact.
+
 T012 canonical184/Kitbfaf059 candidate now consumes existing Framed Motion for
 two optional recap bodies.12 actual AMD/template localized/media isolated cases
 and whole unrelated-engine/CSS/template/type/business preservation pass. Named

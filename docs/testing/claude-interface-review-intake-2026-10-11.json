@@ -209,8 +209,8 @@
     {
       "id": "T012",
       "receivedScope": "[US1] Fin de démo : faire défiler jusqu'au bas des appartenances ; récapitulatif en divulgation Motion ouverte d'office (G3). Motion des divulgations conservé.",
-      "status": "canonical184-60-native-disclosure-cases-passed-continuous-and-keyboard-regressions-pending",
-      "nativeVerified": false,
+      "status": "canonical184-paired-saved-60-disclosure-12-continuous-12-keyboard-native-cases-passed-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
       "related": [],
       "decisionGate": "none"
