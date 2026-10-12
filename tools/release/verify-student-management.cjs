@@ -142,8 +142,12 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
         .replaceAll(scope+'[data-easyedu-motion-policy=disabled]', '[data-easyedu-motion-policy=disabled]')
         .replaceAll('.easyedu-motion-disabled '+scope+'[data-easyedu-motion-policy]', '.easyedu-motion-disabled [data-easyedu-motion-policy]')
         .replaceAll(scope+'[data-easyedu-motion-policy]', '[data-easyedu-motion-policy]')
-        .replace(/,\n[ \t]*#page-admin-setting-local_groupimport \[data-easyedu-motion-policy(?:=disabled)?\](?: \*(?:::before|::after)?)?(?= \{)/g,'')
-        .replace(/^[ \t]*#page-admin-setting-local_groupimport \[data-easyedu-motion-policy(?:=disabled)?\](?: \*(?:::before|::after)?)?,\n/gm,'');
+        .replace(/^[ \t]*#page-admin-setting-local_groupimport \[data-easyedu-motion-policy(?:=disabled)?\](?: \*(?:::before|::after)?)?,\n/gm,'')
+        .replace(/,\n[ \t]*#page-admin-setting-local_groupimport \[data-easyedu-motion-policy(?:=disabled)?\](?: \*(?:::before|::after)?)?(?= \{)/g,'');
+    if(unscoped!==priorCSS){
+        let at=0;while(at<unscoped.length && unscoped[at]===priorCSS[at])at++;
+        console.error(JSON.stringify({cssMismatchAt:at,current:unscoped.slice(at-100,at+200),prior:priorCSS.slice(at-100,at+200)}));
+    }
     check('Complete unrelated emitted CSS unchanged',unscoped===priorCSS);
     check('Actions dependencies preserve original IDs',
         /'id' => 'try-selection',\s*'requiresStep' => 'try-drag'/.test(manage) &&
