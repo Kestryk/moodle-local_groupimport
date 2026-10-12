@@ -1,6 +1,127 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
+test('R3 no-mode scene rows and activity spacing stay consistent',async({page},info)=>{
+    test.setTimeout(180000);const rows=[],errors=[],blocked=[];
+    page.on('pageerror',error=>errors.push(error.message));
+    const url=new URL(process.env.EASYEDU_MOODLE_URL);url.searchParams.set('lang','fr');
+    await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')){
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
+        await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    }
+    await page.route('**/local/groupimport/**',route=>{
+        if(route.request().method()==='GET')return route.continue();
+        blocked.push('plugin write');return route.abort();
+    });
+    const workspace=page.locator('#local-groupimport-easystud'),modal=page.locator('.easyedu-guide--discovery [data-easyedu-guide-modal]');
+    try{
+        await expect(workspace).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+        await expect(page.locator('html')).toHaveAttribute('lang','fr');
+        await page.evaluate(async()=>{
+            const root=document.querySelector('[data-easyedu-guide-root]'),config=root.easyeduGuideConfig;
+            const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+            root.r3OriginalConfig=config;
+            Guide.destroy(root);Guide.init(root,{...config,firstVisit:false,welcomeOffer:false,storageKey:'r3-header-dots-qa'});
+        });
+        for(const width of [1280,390]){
+            await page.setViewportSize({width,height:1000});
+            if(!await page.locator('[data-easyedu-guide-open]:visible').count())
+                await page.locator('[data-easyedu-navigation-open]:visible').first().click();
+            await page.locator('[data-easyedu-guide-open]:visible').first().click();await expect(modal).toBeVisible();
+            for(const id of ['read-group-card','read-grouping-card']){
+                const index=await page.evaluate(id=>document.querySelector('[data-easyedu-guide-root]').easyeduGuideConfig.slideIds.indexOf(id),id);
+                await modal.locator('[data-easyedu-guide-nav-item="'+index+'"]').click();
+                const scene=modal.locator('[data-easyedu-guide-slide="'+index+'"] [data-easyedu-guide-scene]');
+                await expect(scene).toBeVisible();
+                const header=scene.locator('[data-guide-scene-header]');
+                await expect(header).toHaveClass(/header--single/);
+                await modal.evaluate(node=>Promise.all(node.getAnimations({subtree:true})
+                    .filter(animation=>Number.isFinite(animation.effect?.getComputedTiming().endTime))
+                    .map(animation=>animation.finished.catch(()=>{}))));
+                const geometry=await header.evaluate(header=>{
+                    const rect=node=>{const r=node.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};};
+                    return {header:rect(header),reading:rect(header.querySelector('.easyedu-guide-scene__reading')),
+                        start:rect(header.querySelector('[data-guide-scene-command="start"]'))};
+                });
+                rows.push({width,id,geometry,dots:[]});
+                if(width===1280){
+                    expect(Math.abs(geometry.reading.y+geometry.reading.height/2-geometry.start.y-geometry.start.height/2)).toBeLessThan(1);
+                    expect(geometry.start.x).toBeGreaterThan(geometry.reading.x+geometry.reading.width);
+                }else{
+                    expect(geometry.start.y).toBeGreaterThanOrEqual(geometry.reading.y+geometry.reading.height-1);
+                    expect(Math.abs(geometry.start.width-geometry.reading.width)).toBeLessThan(1);
+                }
+                const samples=['Prêt.','Ready to learn.','Vérifiez le nom reconnu et corrigez l’entrée avant de continuer.',
+                    'Check the recognised name and fix the unresolved entry before continuing in the real card.'];
+                const spacings=await header.evaluate((header,samples)=>{
+                    const copy=header.querySelector('[data-guide-live-copy]'),dots=header.querySelector('[data-guide-activity]');
+                    const original=copy.textContent,hidden=dots.hidden;dots.hidden=false;
+                    try{return samples.map(text=>{
+                        copy.textContent=text;const c=copy.getBoundingClientRect(),d=dots.getBoundingClientRect(),
+                            points=[...dots.children].map(node=>node.getBoundingClientRect());
+                        return {text,copyToDots:d.left-c.right,widths:points.map(p=>p.width),
+                            gaps:[points[1].left-points[0].right,points[2].left-points[1].right],
+                            rem:parseFloat(getComputedStyle(document.documentElement).fontSize),
+                            whiteSpace:getComputedStyle(dots).whiteSpace,letterSpacing:getComputedStyle(dots).letterSpacing};
+                    });}finally{copy.textContent=original;dots.hidden=hidden;}
+                },samples);
+                rows.at(-1).dots=spacings;
+                for(const sample of spacings){
+                    expect(Math.max(...sample.widths)-Math.min(...sample.widths)).toBeLessThanOrEqual(0.5);
+                    expect(Math.abs(sample.gaps[0]-sample.gaps[1])).toBeLessThanOrEqual(0.5);
+                    for(const size of sample.widths)expect(Math.abs(size-sample.rem*0.25)).toBeLessThanOrEqual(0.5);
+                    for(const gap of sample.gaps)expect(Math.abs(gap-sample.rem*0.1875)).toBeLessThanOrEqual(0.5);
+                    expect(sample.whiteSpace).toBe('nowrap');expect(sample.letterSpacing).toBe('0px');
+                    expect(Math.abs(sample.copyToDots-spacings[0].copyToDots)).toBeLessThanOrEqual(0.5);
+                }
+                await page.emulateMedia({reducedMotion:'reduce'});
+                expect(await scene.locator('[data-guide-activity] > span').evaluateAll(nodes=>nodes.every(node=>getComputedStyle(node).animationName==='none'))).toBe(true);
+                await scene.locator('[data-guide-scene-command="start"]').click();
+                await expect(header).toHaveAttribute('data-guide-playback-state','finished');
+                await expect(scene.locator('[data-guide-scene-command="start"]')).toBeEnabled();
+                await modal.evaluate(node=>Promise.all(node.getAnimations({subtree:true})
+                    .filter(animation=>Number.isFinite(animation.effect?.getComputedTiming().endTime))
+                    .map(animation=>animation.finished.catch(()=>{}))));
+                const finished=await header.evaluate(node=>{
+                    const r=node.querySelector('.easyedu-guide-scene__reading').getBoundingClientRect(),
+                        s=node.querySelector('[data-guide-scene-command="start"]').getBoundingClientRect();
+                    return {reading:{x:r.x,y:r.y,width:r.width,height:r.height},start:{x:s.x,y:s.y,width:s.width,height:s.height}};
+                });
+                rows.at(-1).finished=finished;
+                if(width===1280)expect(Math.abs(finished.reading.y+finished.reading.height/2-finished.start.y-finished.start.height/2)).toBeLessThan(1);
+                else expect(finished.start.y).toBeGreaterThanOrEqual(finished.reading.y+finished.reading.height-1);
+                await scene.locator('[data-guide-scene-command="reset"]').click();
+                await expect(header).toHaveAttribute('data-guide-playback-state','idle');
+                await page.emulateMedia({reducedMotion:'no-preference'});
+                await scene.locator('[data-guide-scene-command="start"]').click();
+                await expect(header).toHaveAttribute('data-guide-playback-state','playing');
+                await scene.locator('[data-guide-playback="pause"]').click();
+                await expect(header).toHaveAttribute('data-guide-playback-state','paused');
+                rows.at(-1).paused=true;
+                await scene.locator('[data-guide-scene-command="reset"]').click();
+                await expect(header).toHaveAttribute('data-guide-playback-state','idle');
+            }
+            await modal.locator('[data-easyedu-guide-close]').click();await expect(modal).toBeHidden();
+        }
+        expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    }finally{
+        await page.evaluate(async()=>{
+            const root=document.querySelector('[data-easyedu-guide-root]');
+            if(root?.r3OriginalConfig){
+                const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+                Guide.destroy(root);Guide.init(root,root.r3OriginalConfig);delete root.r3OriginalConfig;
+            }
+            localStorage.removeItem('r3-header-dots-qa');localStorage.removeItem('r3-header-dots-qa.checklist');
+        }).catch(()=>{});
+        fs.writeFileSync(info.outputPath('r3-header-dots-native.json'),JSON.stringify({surface:'guide-R3',niveau:1,rows,errors,blocked,
+            samples:'QA text variations in actual component; no state/business confirmation'},null,2));
+    }
+});
+
 // N1 approved copy: existing live controls/scenes, no membership writes.
 test('Approved Guide copy navigation and contextual Add fit in Moodle', async({page}, info) => {
     test.setTimeout(240000);
@@ -58,12 +179,14 @@ test('Approved Guide copy navigation and contextual Add fit in Moodle', async({p
                     const geometry=await scene.locator('[data-guide-live-copy]').evaluate(copy=>{
                         const range=document.createRange();range.selectNodeContents(copy);
                         const lines=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0);
+                        const bounds=node=>{const rect=node.getBoundingClientRect();return {width:rect.width,height:rect.height,x:rect.x,y:rect.y};};
                         return {text:copy.textContent,lines:new Set(lines.map(rect=>Math.round(rect.top*2)/2)).size,
-                            clientWidth:copy.clientWidth,scrollWidth:copy.scrollWidth};
+                            clientWidth:copy.clientWidth,scrollWidth:copy.scrollWidth,font:getComputedStyle(copy).font,
+                            header:bounds(copy.closest('[data-guide-scene-header]')),
+                            reading:bounds(copy.closest('.easyedu-guide-scene__reading')),
+                            content:bounds(copy.parentElement)};
                     });
                     row.phases.push({id,phase,...geometry});
-                    expect(geometry.lines).toBeLessThanOrEqual(2);
-                    expect(geometry.scrollWidth).toBeLessThanOrEqual(geometry.clientWidth+1);
                 }
             }
             await modal.locator('[data-easyedu-guide-close]').click();await expect(modal).toBeHidden();
@@ -79,6 +202,10 @@ test('Approved Guide copy navigation and contextual Add fit in Moodle', async({p
             await expect(destination.locator('[data-easystud-confirm-move]')).toHaveText('Ajouter');
             await destination.locator('.easyedu-dialog-actions [data-easystud-close-move-modal]').click();
             await expect(destination).toBeHidden();row.nativeAddOpenCancel=true;
+        }
+        for(const row of rows)for(const geometry of row.phases){
+            expect(geometry.lines).toBeLessThanOrEqual(2);
+            expect(geometry.scrollWidth).toBeLessThanOrEqual(geometry.clientWidth+1);
         }
         expect(errors).toEqual([]);expect(blocked).toEqual([]);
     }finally{
