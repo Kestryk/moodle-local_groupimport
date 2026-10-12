@@ -734,10 +734,10 @@
     {
       "id": "T053",
       "receivedScope": "[P] [US6] **Poids CSS.**",
-      "status": "queued",
+      "status": "delivered-analysis-browser-coverage-incomplete",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["tools/release/audit-css.cjs", "tools/release/CSS-REDUCTION-PLAN.md", "RETOUR-CODEX2-T053-2026-10-13.md"],
       "decisionGate": "none"
     },
     {

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0/N1] T053: measure CSS bytes/gzip, exact duplicate blocks, repeated declarations, long selector lists and unreferenced literal candidates; quantify a reduction plan without modifying Sass or product CSS. Retain incomplete browser coverage/readiness evidence.
+
 - 2026-10-13 [N1] T056: catalogue 72 immutable source contracts; add Perf-only supervised visual capture/repeatability and explicit approved-external-baseline comparison. Retain failed predecessors, report native overflow rather than repairing product CSS.
 
 - 2026-10-13 [N0] T057: add deterministic EN/FR key, placeholder, accent/plural/case and hardcoded-JS-text audit; replace 60 parenthesised-plural translations without changing keys/placeholders or JavaScript. JS/case candidate inventory remains for the product owners.

@@ -63,3 +63,25 @@ and human acceptance remain separate. Geometry tolerance is0.5px; overflow1px.
 
 Registry handoff is documented here for the Platform planning owner; no competing
 write to the shared cross-project registry in this bounded lot.
+
+## T053 — CSS analysis only
+
+`node tools/release/audit-css.cjs --self-test`
+
+`node tools/release/audit-css.cjs --output <external-json>`
+
+Balanced generated-CSS block accounting respects quoted braces/comments and
+at-rule contexts. Preserves quoted whitespace when comparing duplicates. Five
+auto-tests; structural metrics and literal-reference candidates are not a full
+CSS AST/liveness or specificity proof. Plan in CSS-REDUCTION-PLAN.md.
+CSS-only Sass compression is written externally for byte/gzip measurement;
+there is no product build, source change or preview deployment.
+
+| Scenario | Class | Status | CI blockers |
+| --- | --- | --- | --- |
+| roadmap-css-coverage.spec.js | exploratory | retained failed second-navigation readiness | immutable predecessor |
+| roadmap-css-coverage-entry.spec.js | local-supervised | incomplete native initial readiness | DPAPI, existing course, current readiness failure |
+
+Both require the saved-credentials wrapper/:8051/-perf- lease. Whole containing
+Moodle theme bundles must not be labelled isolated plugin transfer. Unvisited
+modals, phone/palette/pseudo states are not dead rules even after coverage works.
