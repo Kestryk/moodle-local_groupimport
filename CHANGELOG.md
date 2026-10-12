@@ -1,6 +1,7 @@
 # Changelog
 
 - 2026-10-13 [N0/N1] T058: source overlay inventory and read-only Perf accessibility audits of dialogs, expanded filters, menus, history/rollback, administration and compact navigation. Record focus/Tab/Escape, contrast/labels and conditional gaps; no product corrections or full accessibility acceptance claimed.
+- 2026-10-12 [N1] SM-RENDU-2b (Claude): in On demand mode the participant list renders only its current page from the state (shared `sm/participant_card` partial, also used by the legacy page with byte-identical HTML); filters, sort, pagination, counters, empty state, Select all and cross-page selection (id set plus detached cards) run on the state; memberships changed by actions update it. Legacy mode unchanged except a batched layout read in participant tag overflow (6.2 s to 1.1 s at 800 participants). 800 fixture: HTML 43.4 to 32.0 MB, 20 participant cards instead of 800; group views still legacy (step 3).
 
 - 2026-10-12 [N1] SM-RENDU-2a (Claude): `renderingmode` setting (Current by default / On demand preview), core/reactive store loading `get_state`, participant search index reproducing the legacy filters; nothing rendered from it yet. Parity: course 5, 202 filter cases and per-participant index text identical; 800 fixture, 21 cases identical, state 236 KB loaded in about 1 s, index built in 4 ms.
 
