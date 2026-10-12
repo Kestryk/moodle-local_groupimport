@@ -417,6 +417,8 @@ function local_groupimport_build_manage_template_data(
         'advancedsettingsnotset' => get_string('advancedsettingsnotset', 'local_groupimport'),
         'moveconfirmone' => get_string('moveconfirmone', 'local_groupimport'),
         'moveconfirmmany' => get_string('moveconfirmmany', 'local_groupimport'),
+        'addparticipantconfirm' => get_string('discovery_demo_add', 'local_groupimport'),
+        'addparticipanttitle' => get_string('moveselectedparticipants', 'local_groupimport'),
         'messagesendunavailable' => get_string('cannotsendmessages', 'core_message'),
     ];
 

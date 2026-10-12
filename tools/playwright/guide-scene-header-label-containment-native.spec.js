@@ -1,6 +1,91 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
+// N1 approved copy: existing live controls/scenes, no membership writes.
+test('Approved Guide copy navigation and contextual Add fit in Moodle', async({page}, info) => {
+    test.setTimeout(240000);
+    const rows=[],errors=[],blocked=[];
+    page.on('pageerror',error=>errors.push(error.message));
+    const url=new URL(process.env.EASYEDU_MOODLE_URL);url.searchParams.set('lang','fr');
+    await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')){
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
+        await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    }
+    await page.route('**/local/groupimport/**',route=>{
+        if(route.request().method()==='GET')return route.continue();
+        blocked.push('plugin write');return route.abort('blockedbyclient');
+    });
+    const workspace=page.locator('#local-groupimport-easystud'),modal=page.locator('.easyedu-guide--discovery [data-easyedu-guide-modal]');
+    try{
+        await expect(workspace).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+        await expect(page.locator('html')).toHaveAttribute('lang','fr');
+        await page.emulateMedia({reducedMotion:'no-preference'});
+        for(const width of [1280,390]){
+            await page.setViewportSize({width,height:1000});
+            await page.evaluate(async width=>{
+                const root=document.querySelector('[data-easyedu-guide-root]'),config=root.easyeduGuideConfig;
+                const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+                Guide.destroy(root);Guide.init(root,{...config,firstVisit:false,welcomeOffer:false,storageKey:'approved-copy-qa-'+width});
+            },width);
+            if(!await page.locator('[data-easyedu-guide-open]:visible').count())
+                await page.locator('[data-easyedu-navigation-open]:visible').first().click();
+            await page.locator('[data-easyedu-guide-open]:visible').first().click();await expect(modal).toBeVisible();
+            const nav=await modal.locator('[data-easyedu-guide-nav-item]').evaluateAll(nodes=>nodes.map(node=>{
+                const copy=node.querySelector('.easyedu-guide-nav-copy > span');
+                return {text:copy.textContent.trim(),fits:copy.scrollWidth<=copy.clientWidth+1,
+                    chapters:node.querySelectorAll('.easyedu-guide-nav-copy > small').length};
+            }));
+            expect(nav.map(item=>item.text)).toEqual(['1 · Le guide','2 · Repères','3 · Structure','4 · Participant',
+                '5 · Groupe','6 · Groupement','7 · Organiser','8 · Filtrer','9 · Identifiants','10 · Actions','11 · Devoir de groupe','12 · Prêt']);
+            expect(nav.every(item=>item.fits)).toBe(true);
+            const row={width,nav,phases:[]};rows.push(row);
+            for(const id of ['read-group-card','read-grouping-card']){
+                const index=await page.evaluate(id=>document.querySelector('[data-easyedu-guide-root]').easyeduGuideConfig.slideIds.indexOf(id),id);
+                await modal.locator('[data-easyedu-guide-nav-item="'+index+'"]').click();
+                const scene=modal.locator('[data-easyedu-guide-slide="'+index+'"] [data-easyedu-guide-scene="inspection"]');
+                await expect(scene).toBeVisible();
+                if(id==='read-group-card')await expect(scene.locator('[data-guide-inspection-card]')).toContainText('2 membres');
+                await scene.locator('[data-guide-scene-command="start"]').click();
+                await expect(scene).toHaveAttribute('data-guide-phase','orient');
+                await scene.locator('[data-guide-playback="pause"]').click();
+                for(const phase of ['open','enter','review','return']){
+                    await scene.locator('[data-guide-playback="next-phase"]').click();
+                    await expect(scene).toHaveAttribute('data-guide-phase',phase);
+                    const geometry=await scene.locator('[data-guide-live-copy]').evaluate(copy=>{
+                        const range=document.createRange();range.selectNodeContents(copy);
+                        const lines=[...range.getClientRects()].filter(rect=>rect.width>0&&rect.height>0);
+                        return {text:copy.textContent,lines:new Set(lines.map(rect=>Math.round(rect.top*2)/2)).size,
+                            clientWidth:copy.clientWidth,scrollWidth:copy.scrollWidth};
+                    });
+                    row.phases.push({id,phase,...geometry});
+                    expect(geometry.lines).toBeLessThanOrEqual(2);
+                    expect(geometry.scrollWidth).toBeLessThanOrEqual(geometry.clientWidth+1);
+                }
+            }
+            await modal.locator('[data-easyedu-guide-close]').click();await expect(modal).toBeHidden();
+            const card=workspace.locator('[data-easystud-participant-list] [data-easystud-user]:visible').first();
+            const checkbox=card.locator('[data-easystud-selector-input]');
+            if(!await checkbox.isChecked())await card.locator('.local-groupimport-easystud-selector').click();
+            const action=workspace.locator('[data-easystud-move-selected-participants]:visible, '+
+                '[data-easystud-mobile-action-trigger="[data-easystud-move-selected-participants]"]:visible').first();
+            await expect(action).toHaveText('Ajouter à un groupe');await action.click();
+            const destination=workspace.locator('[data-easystud-move-modal][data-easystud-move-context="participant"]');
+            await expect(destination).toBeVisible();
+            await expect(destination.locator('.easyedu-modal-title')).toHaveText('Ajouter à un groupe');
+            await expect(destination.locator('[data-easystud-confirm-move]')).toHaveText('Ajouter');
+            await destination.locator('.easyedu-dialog-actions [data-easystud-close-move-modal]').click();
+            await expect(destination).toBeHidden();row.nativeAddOpenCancel=true;
+        }
+        expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    }finally{
+        fs.writeFileSync(info.outputPath('approved-guide-copy-native.json'),JSON.stringify({surface:'guide-copy',niveau:1,rows,errors,blocked,businessWrites:false},null,2));
+    }
+});
+
 // local-supervised: actual Moodle Guide, fictional scenes, isolated progress key.
 test('Localized Guide header labels fit their own padded controls in Moodle', async ({page}, info) => {
     test.setTimeout(300000);

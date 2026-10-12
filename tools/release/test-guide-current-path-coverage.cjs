@@ -49,6 +49,15 @@ for (const language of ['en', 'fr']) {
     const data = JSON.parse(execFileSync(process.argv[2],
         [path.join(__dirname, 'guide-current-curriculum-fixture.php'), language], {encoding: 'utf8'}));
     const slides = data.templateData.slides;
+    const navLabels=language==='fr'?['Le guide','Repères','Structure','Participant','Groupe','Groupement','Organiser','Filtrer','Identifiants','Actions','Devoir de groupe','Prêt']:
+        ['The guide','Landmarks','Structure','Participant','Group','Grouping','Organise','Filter','Identifiers','Actions','Group assignment','Ready'];
+    assert.deepEqual(slides.map(slide=>slide.navtitle),navLabels);
+    let previousCategory=null;
+    slides.forEach((slide,index)=>{
+        assert.equal(slide.navnumber,index+1);assert.equal(slide.navcategorymanaged,true);
+        assert.equal(slide.navcategorylabel,slide.category!==previousCategory?slide.category:'');
+        previousCategory=slide.category;
+    });
     assert.deepEqual(slides.map(slide => slide.id), slideIds);
     assert.deepEqual(data.readingContract.slideIds, slideIds);
     assert.equal(data.modernCandidate.nativeActivated, true);

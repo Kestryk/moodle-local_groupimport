@@ -2040,6 +2040,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       menu.querySelector('strong').textContent = scene.dataset.guideMobileAddAction;
       menu.querySelector('[data-guide-member-remove]').hidden = true;
       confirm.querySelector('header strong').textContent = scene.dataset.guideMobileAddAction;
+      confirm.querySelector('[data-guide-simulated-submit]').textContent = scene.dataset.guideMobileAddSubmit ||
+        confirm.querySelector('[data-guide-simulated-submit]').textContent;
       confirm.querySelector('[data-guide-consequence]').textContent = scene.dataset.guideMobileAddConsequence;
     }
     let cursorPoint = null;
