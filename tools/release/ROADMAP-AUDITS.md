@@ -31,3 +31,35 @@ N0 self-tests and PHP lint only; native display/human language review remains.
 Translations retain all 973 keys and every original interpolation token. Count
 summaries use labels where practical, avoiding grammatical singular guessing
 without introducing JS or plural-selection APIs.
+
+## T056 — contract-oriented visual tooling
+
+`node tools/release/visual-contracts.cjs --self-test`
+
+`node tools/release/visual-contracts.cjs --output <external-json>`
+
+72 existing release contracts catalogued/hashed, with historical-pin and browser
+references; they are not all re-executed or silently updated to current pins.
+Current native scenario: `roadmap-visual-contracts-current.spec.js`, one test.
+Run through the existing saved-credentials wrapper, AllowedSpecRoot pointing
+to this source checkout, URL on :8051 only, lease `groupimport-perf-runtime-write`.
+Set process-local EASYEDU_AUDIT_RUNTIME_ROOT to the copy's plugin directory.
+No deployment or purge is needed: the report hashes actual served files.
+
+FR1280 Student initial / More Filters / Mass Import controls captured externally;
+font, paint, geometry and relational overflow measured after native readiness
+and finite animations. Preserve prior non-ready and short-picker diagnostics.
+Repeated measurements certify repeatability, not correctness. For future
+regression comparison set EASYEDU_VISUAL_BASELINE_JSON to a reviewed external
+report with approval=human-approved and matching viewport/locale/states. This
+tool never automatically approves or overwrites its reference. Raster review
+and human acceptance remain separate. Geometry tolerance is0.5px; overflow1px.
+
+| Scenario | Class | Status | CI blockers |
+| --- | --- | --- | --- |
+| roadmap-visual-contracts.spec.js | exploratory | retained failed non-ready predecessor | historical harness only |
+| roadmap-visual-contracts-ready.spec.js | exploratory | retained short-picker predecessor | historical harness only |
+| roadmap-visual-contracts-current.spec.js | local-supervised | current candidate, native findings open | DPAPI, existing course, reviewed baseline |
+
+Registry handoff is documented here for the Platform planning owner; no competing
+write to the shared cross-project registry in this bounded lot.
