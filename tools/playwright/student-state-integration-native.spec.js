@@ -226,7 +226,7 @@ test('SM2b participant detail fields match the current mode',async({page},info)=
     }
 });
 
-test('SM3a legacy member search and reactive Add Remove refresh the state',async({page},info)=>{
+async function sm3aNative(page,info,pinnedGroup=false){
     test.setTimeout(360000);
     if(!process.env.EASYEDU_SM_MEMBERSHIP_MANIFEST||!process.env.EASYEDU_SM_MEMBERSHIP_HELPER)
         throw Error('Explicit owned membership baseline and cleanup helper required');
@@ -257,8 +257,12 @@ test('SM3a legacy member search and reactive Add Remove refresh the state',async
         });
         report.controls.legacy1280FR=true;
         let root=page.locator('#local-groupimport-easystud');
-        const group=root.locator('[data-easystud-group-id]:visible')
+        let group=root.locator('[data-easystud-group-id]:visible')
             .filter({has:page.locator('[data-easystud-member-id]:visible')}).first();
+        if(pinnedGroup){
+            const groupid=await group.getAttribute('data-easystud-group-id');
+            group=root.locator('[data-easystud-group-id="'+groupid+'"]:visible').first();
+        }
         const member=group.locator('[data-easystud-member-id]:visible').first();
         const memberid=await member.getAttribute('data-easystud-member-id');
         const name=await member.locator('.local-groupimport-easystud-member__name').innerText();
@@ -320,7 +324,10 @@ test('SM3a legacy member search and reactive Add Remove refresh the state',async
         finally{mode('legacy');report.restoredLegacy=true;
             fs.writeFileSync(info.outputPath('sm3a-native.json'),JSON.stringify(report,null,2));}
     }
-});
+}
+
+test('SM3a legacy member search and reactive Add Remove refresh the state',async({page},info)=>sm3aNative(page,info));
+test('SM3a pinned group search and reactive Add Remove refresh the state',async({page},info)=>sm3aNative(page,info,true));
 
 test('SM schema upgrade through the native Moodle admin page',async({page},info)=>{
     test.setTimeout(180000);
