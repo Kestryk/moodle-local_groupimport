@@ -45,3 +45,20 @@ The candidate synchronizes only canonical Discovery SCSS and rebuilt CSS. Entire
 controller/AMD/template/curriculum/legacy Guide and unrelated CSS preservation
 pass. No JS rebuild is needed because complete generated AMD bytes are unchanged.
 No private consumer CSS or inline Mustache style is added. Human checklist open.
+
+## Served/native successor
+
+Sourcee0eeadf / Kitfead185 / runtimef9e0283 are served through the managed runner,
+with one approved cache purge. Native28592 passes eight EN/FR width cases
+(1600/1280/390/320),24 first/contextual/last records. Header subtitle is hidden
+only on phone; the original first slide correctly has no interface target, while
+membership slide6 retains the dedicated cue. Visible counts update1→12 without
+a second authority; all controls/text fit and use Inter.
+
+Compared to retained baseline24796, actual reading height gains25.015625px on
+desktop,42.234375px at390 and32.234375px at320, in both locales. Track height/paint
+and button font/height are unchanged. At320 the existing footer wrap adds one
+row, still yielding a net gain and no clipped label. FR1280/390/320 captures were
+inspected. Credentials cleared, lease released, child stopped, no fixture/data
+write requested. Tablet/reduced/full scene/focus proof belongs to T015, not this
+bounded result. Human acceptance remains deferred.

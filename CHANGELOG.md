@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Guide reading-chrome native proof
+
+- Verify eight EN/FR desktop/phone/narrow-phone cases in Moodle, including first
+  and last reading counts and the dedicated contextual interface cue. Retain
+  the native baseline and actual existing320px footer wrap without clipping.
+- Measured reading height gains25.02px desktop,42.23px at390,32.23px at320, while
+  preserving track paint/height, control type/height, all commands and Motion.
+- Keep the full scene/media/keyboard matrix and human acceptance separate.
+
 ## 2026-10-12 - Guide reading order and chrome candidate
 
 - Complete the paired saved Product reading-order references with existing

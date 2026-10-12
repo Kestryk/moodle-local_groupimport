@@ -1,5 +1,14 @@
 # Guide engineering: current projection, not human acceptance
 
+T008/T013 successor is now served at Sourcee0eeadf / Kitfead185 (0.4.177) /
+runtimef9e0283. Native28592 passes eight localized1600/1280/390/320 cases and24
+first/contextual/last records, retaining count binding, original4px palette track,
+control type/height and dedicated contextual cue. Reading-space gains are25.02px
+desktop,42.23px at390 and32.23px at320; narrow footer wrap is contained. Baseline
+24796 and its helper are preserved. Source/Standard/Product examples are saved
+and inspected; all cleanup passes. T014 preparation is next, then T015 and V1/V2.
+The61 tasks, older R10 scope and human checklist remain open and intact.
+
 T008 now has two saved/paint-checked Product reading-order references (87), with
 accepted original paint preserved. T013 canonical0.4.177/Kitfead185 is synchronized
 as a candidate: existing footer caption,4px track, compact subtitle suppression

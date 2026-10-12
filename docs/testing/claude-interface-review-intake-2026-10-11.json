@@ -181,10 +181,10 @@
     {
       "id": "T013",
       "receivedScope": "[P] [US1] Allègement du cadre (G7) : afficher `easyedu-guide-modal__step-count` dans le pied et retirer la rangée de libellé de progression (piste conservée, palette R10-03) ; sous 40rem, masquer le sous-titre d'en-tête.",
-      "status": "canonical177-source-and-paired-composition-candidate-native-baseline-measured-successor-pending",
-      "nativeVerified": false,
+      "status": "canonical177-paired-source-product-saved-and-eight-native-locale-width-cases-verified-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
-      "related": ["docs/guide-chrome-density-preflight-2026-10-12.md"],
+      "related": ["docs/guide-chrome-density-preflight-2026-10-12.md", "docs/testing/guide-chrome-density-2026-10-12.json"],
       "decisionGate": "none"
     },
     {
