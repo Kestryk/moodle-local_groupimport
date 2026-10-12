@@ -1,5 +1,13 @@
 # EasyEdu documentation contract
 
+Approved identity-corridor composition is CSS-only: preserve markup/classes,
+data attributes, PHP, JS/AMD and Motion. Add scope to the original61-task intake,
+never replace received wording/proof. Use semantic rail/surface tokens and Kit
+recipes before linked Foundations/product propagation. CSS cannot assign disabled
+to native hidden pagination controls; retain that functional gap separately.
+Verify drag/auto-scroll, sticky/pagination, swaps, Complete alignment and Guide
+paint natively. Planning/design approval is not implemented or human-tested UI.
+
 Compact reading lanes retain complete localized group names and both modes.
 Preserve fractional-wrap/height failures and reuse scene gutters/caption roles;
 never shrink type or round away a whole-row change. Settled Reset and final

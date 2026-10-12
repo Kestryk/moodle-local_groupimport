@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Approved Student identity-corridor planning supplement
+
+- Retain Kevin-approved Claude corridor proposal in T017/T018/T019/T021/T036,
+  with Kit → Foundations → three-view lineage and native section4 test gates.
+- Record24px gutter,16px inset, semantic3px rails, matching list edges/baselines
+  and subtle card shadows without replacing the original61 received scopes.
+- Preserve CSS-only scope, Guide priority, open A2 and separate pagination
+  functional limitation. No product assets, Penpot, runtime or Moodle data changed.
+
 ## 2026-10-12 - Review2 final native verification
 
 - Canonical182 passes18 compact/desktop/localized Start/Reset records:187.70px

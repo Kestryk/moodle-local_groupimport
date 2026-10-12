@@ -1,5 +1,17 @@
 # Guide engineering: current projection, not human acceptance
 
+Kevin-approved Student corridor successor is retained in
+`student-identity-corridors-plan-2026-10-12.md` and the existing61-task intake:
+T017/T018/T019/T021/T036, Kit → Foundations → three Product views → consumer CSS.
+CSS only: markup/classes/data-attributes/controllers/AMD/PHP/Motion remain frozen.
+R2-1/R2-3 prerequisites already pass current182 native12108; no corridor styles
+are implemented/served/tested yet. Shared24px gutter,16px symmetric inset,
+semantic3px rail, aligned filters/bars/cards and light rest-card shadow are queued.
+A2 threshold is still open; first/last disabled pagination needs separate
+functional authority because currentJS hides them. Do not reveal hidden active
+buttons via CSS. T014/T015 Guide priority, original61 scopes, older feedback and
+human checklist remain intact; this planning supplement does not reorder them.
+
 Review2 R2-1..5 is now served/tested at Source86e777b / Kit98cfcc7 (0.4.182) /
 runtimef65e77b. Native27696 passes18 compact/desktop/320/Start/Reset records;
 390 header187.70px in both locales/modes. Current combined12108 passes12 normal

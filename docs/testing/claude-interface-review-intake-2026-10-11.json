@@ -31,6 +31,28 @@
     "preserveHistoricalProof": true,
     "humanAccepted": false
   },
+  "claudeStudentCorridors20261012": {
+    "received": "2026-10-12",
+    "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROPOSITION-SM-COULOIRS-2026-10-12.md",
+    "externalSha256": "8012fc8516ca2771f374fdd6f8d76f1b2a41ad116aeed6b22691f14c1c2df2ec",
+    "record": "docs/student-identity-corridors-plan-2026-10-12.md",
+    "status": "Kevin-approved-planned-not-implemented",
+    "tasks": ["T017", "T018", "T019", "T021", "T036"],
+    "priorityAfter": ["R2-1", "R2-3"],
+    "prerequisitesNativeVerified": true,
+    "prerequisiteProof": "docs/testing/guide-review2-mobile-2026-10-12.json",
+    "preserveGuidePriorityAndOlderLots": true,
+    "implementationBoundary": "SCSS-CSS-only-no-template-markup-class-data-attribute-PHP-JS-AMD-or-Motion-change",
+    "lineage": ["Kit", "Foundations-Library-and-Standards", "EasyStud-three-linked-views", "consumer-SCSS-includes", "compiled-CSS", "managed-preview", "native-section4-tests"],
+    "sourceImplemented": false,
+    "designPublished": false,
+    "previewServed": false,
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "A2": "Viewport-versus-container-threshold-still-pending; proposal-refers-to-A2-not-a-new-breakpoint",
+    "paginationDetail": "Retained-separately: current-JS-hides-first-last-at-pages<=2; CSS-cannot-disable; do-not-force-hidden-controls-visible; functional-authorization-required",
+    "original61ReceivedScopesPreserved": true
+  },
   "executionMode": "sequential-existing-Source-and-Kit-worktrees",
   "order": [
     "T001",
@@ -232,6 +254,7 @@
     {
       "id": "T017",
       "receivedScope": "[US2] Gouttière unique de 1.5rem dans les trois vues (S1).",
+      "approvedScope20261012": "Couloirs: shared24px gutter across all three views; CSS-only; see claudeStudentCorridors20261012.",
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
@@ -241,6 +264,7 @@
     {
       "id": "T018",
       "receivedScope": "[US2] Ratios asymétriques au-dessus du seuil retenu en T002 (S2).",
+      "approvedScope20261012": "Groups/Groupings1.1fr/0.9fr above A2 threshold,1fr/1fr below; creation/list grids agree; A2 remains open, no JS/Motion change.",
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
@@ -250,6 +274,7 @@
     {
       "id": "T019",
       "receivedScope": "[P] [US2] Aligner le départ de `structure-groups__list` sur le panneau de filtres (S3). Vérifier d'abord le rôle du `padding-left` de 0.72rem (ombre, glisser).",
+      "approvedScope20261012": "Symmetric16px corridor inset; filters/list bar/cards share both edges(delta0); remove extra list/tree offsets; align list-bar baselines; native drag/scroll proof required.",
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
@@ -268,6 +293,7 @@
     {
       "id": "T021",
       "receivedScope": "[P] [US2] Carte groupe : retirer la bordure de la zone membres et remplacer l'état vide pointillé par une légende, si ce n'est pas une zone de dépôt (S6).",
+      "approvedScope20261012": "Add matching canonical card radius(target12.8px) and subtle rest shadow(0 1px 2px rgba(31,42,55,.05)); retain original member-contour scope and active drop-target paint.",
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
@@ -407,6 +433,7 @@
     {
       "id": "T036",
       "receivedScope": "[US4] Couloirs : fond `--easyedu-surface-soft`, rayon 12px, padding 14px par colonne ; panneau de filtres sans cadre ni ombre en tête de couloir ; cartes sans ombre au repos (ombre au survol et sur la carte saisie).",
+      "approvedScope20261012": "Canonical opt-in corridor recipe, soft continuous surface,3px semantic identity top rail;16px inset supersedes historical14px; subtle rest card shadow supersedes shadowless draft; Kit->Foundations->three views; stacked16px gap.",
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
