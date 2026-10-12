@@ -209,3 +209,39 @@ mutations. In rare non-unique field/name cases, preserve the legacy first/two-ro
 API behavior rather than impose a new ordering or ambiguity policy. Dynamically
 created rollback names use native lookup on snapshot misses. No global/request
 cache or invalidation contract is invented in this lot.
+
+## SM-RENDU-1 measurement branch only
+
+The product performance branch contains AP-E7 and large-fixture tools only.
+Claude's `282f1bc` is cherry-picked only into the separate measurement branch;
+never merge that branch back into the product performance branch. Resolve the
+changelog-only conflict preserving both histories. Product PHP stays unchanged.
+
+`upgrade-perf.php --moodle-root PATH` guards the exact `:8051`/`moodle51perf`
+identity before `upgrade_noncore()`; verify version 2026101200, state-version
+table and both external function registrations. This is an authorized test-copy
+schema upgrade, not a principal preview or public release.
+
+`-Mode sm` runs Claude's `tools/sm/check-state.php` on each exact owned fixture,
+then authenticates using the existing saved-credential wrapper and calls the
+real Apache `/lib/ajax/service.php` three times plus the real legacy manage
+page once. Keep API counts/parity, raw envelope bytes (state is an escaped JSON
+string), actual gzip body bytes, HTTP timing and whole-request SQL reads separate
+from CLI service construction time/reads. Nothing rendered is persisted.
+
+The optional copy-only temporary `.htaccess` uses `http-meter.php` as
+auto_prepend_file. The meter is inert without port8051 plus a random valid
+X-EasyEdu-Perf-Id; it records no cookies, sesskeys, request body or HTML.
+Correlate the request token with `sm-http-meter.jsonl` beside moodledata.
+Temporarily enable PHP gzip for `service.php` only. Legacy output buffering must
+stay unchanged: a predecessor enabling it on manage.php produced a PHP output
+buffering fatal at 3,000; preserve that failed predecessor. For uncompressed
+legacy HTTP, stream-compute gzip size on the client and label it an estimate,
+never an actual Apache transfer. Retain partial-byte counts/fatal memory evidence
+if legacy rendering cannot finish under the unchanged PHP limit.
+
+Remove only the exact temporary `.htaccess` after all owned runs, retaining its
+contents in this protocol and all measurement JSON. No Apache restart, global
+php.ini change, settings persistence, principal cache purge or real-user fixture.
+`summarize-sm-rendu.cjs ROOT OUTPUT` assembles condensed rows plus separate raw
+samples and cleanup records for the under-150-line review return.

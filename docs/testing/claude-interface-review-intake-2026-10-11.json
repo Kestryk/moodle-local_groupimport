@@ -6,6 +6,20 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "codex2SMRenduMeasurements20261013": {
+    "measurementBranch": "work/port4719pg3/easystud-sm-rendu-measure-20261012",
+    "claudeCommit": "282f1bc8dc9b0295df680370faae6add4b5bebc2",
+    "measuredHead": "43b5b4b",
+    "productBranchContainsSMRendu": false,
+    "nativeParity": {"800":"PASS","3000":"PASS","10000":"PASS"},
+    "httpTotalReads": {"800":17,"3000":19,"10000":26},
+    "legacy10000": "FAIL: 512MiB memory exhausted; HTTP200 error body is not complete HTML",
+    "cleanup": "Four native fixtures cleaned, relationships unchanged, four owned orphan state-version rows removed",
+    "temporaryHttpConfigRemoved": true,
+    "rawExternal": "C:/dev/artifacts/easystud-perf-server-20261012/sm-rendu/RAW-SM-RENDU1-2026-10-13.json",
+    "humanAccepted": false,
+    "browserReadinessVerified": false
+  },
   "codex2APE720261012": {"status":"isolated-parity-and-boundary-verified","functions":["local_groupimport_load_custom_user_field_values","local_groupimport_enrich_users_with_copy_fields"],"maxUserInValues":1000,"nativeSqlServerProof":false,"versionChanged":false},
   "codex2APE520261012": {
     "owner": "Codex2",

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] Measurement-only SM-RENDU-1: native parity PASS at 800/3,000/10,000; actual Apache state responses/gzip/SQL recorded, legacy 10,000 hits unchanged 512MiB limit; owned fixtures/orphan version rows cleaned and temporary HTTP meter configuration removed, no product SM-RENDU changes.
+
 - 2026-10-12 [N0] Perf fixtures: support 3,000 participants/300 groups/60 groupings and 10,000/1,000/150, keeping three memberships per participant and exact-owner idempotent cleanup; preserve existing 800/150/40 shape.
 - 2026-10-12 [N0] SM-RENDU-1 (Claude): compact course state external functions `local_groupimport_get_state` / `local_groupimport_get_details`, per-course state version (table `local_groupimport_statever`, core event observers), `tools/sm/check-state.php` parity check; legacy page unchanged. 800/150/40: state 236 KB vs 2.17 MB, 70 ms / 9 reads vs 2,309 ms / 817 reads, parity PASS.
 
