@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Reboot recovery and native-signal preflight
+
+- Recover the interrupted S1 documentation without replaying source/design
+  writes; rerun8 helper/16 isolated cases and retain harness diagnostics.
+- Verify one-test native discovery, ordered preview dry-run and a recovery
+  snapshot. Moodle startup remains unavailable; no Apply or native PASS claimed.
+- Record current-source PG-A2/A1/A3 menu/selection/order defects and bounded
+  native criteria without changing controllers, business callbacks or history.
+
 ## 2026-10-12 - External-dialog Guide cue integration candidate
 
 - Consume canonical Kit186's body-portal modal-layer relay and scoped
