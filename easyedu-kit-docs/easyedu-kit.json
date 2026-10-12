@@ -11,7 +11,8 @@
       "record": "docs/guide-introduction-t014-progress-2026-10-12.md",
       "isolatedCasesPassed": 60,
       "foundationAndProductSaved": true,
-      "nativeVerified": false,
+      "nativeProof": "docs/testing/guide-introduction-t014-2026-10-12.json",
+      "nativeVerified": true,
       "humanAccepted": false
     },
     "guideMobileExpected20261012": {
