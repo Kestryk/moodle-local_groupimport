@@ -14,7 +14,8 @@
       "foundationProviders": ["c8f59096-02cd-803e-8008-c6fcdffa5e3e", "c8f59096-02cd-803e-8008-c6fce026897f"],
       "productReference": "eca88a24-093d-80d0-8008-c700c8829146",
       "pairedSavedPaintVerified": true,
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
+      "nativeProof": "docs/testing/guide-review2-mobile-2026-10-12.json",
       "humanVisualValidated": false,
       "fullKitSync": false,
       "publicRelease": false

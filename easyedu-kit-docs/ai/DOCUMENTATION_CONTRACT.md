@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Compact reading lanes retain complete localized group names and both modes.
+Preserve fractional-wrap/height failures and reuse scene gutters/caption roles;
+never shrink type or round away a whole-row change. Settled Reset and final
+continuous playback are separate native gates. Human checklist remains open.
+
 Continuous demo containment reserves invisible target layout before its owned
 scroll/reveal; preserve existing clocks and cursor/ghost choreography. Number-free
 visible narration retains a complete polite accessible announcement. Resize and

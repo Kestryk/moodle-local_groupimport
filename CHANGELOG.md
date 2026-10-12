@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Review2 final native verification
+
+- Canonical182 passes18 compact/desktop/localized Start/Reset records:187.70px
+  phone header, complete changed memberships on one line, no smaller type.
+- Repeat the continuous regression on final assets:12 cases,1332 samples, six
+  resize/rotation checks; no dialog overflow, repeated target drift or errors.
+- Record paired source/product evidence, all predecessor failures and cleanup.
+  No course writes; human checklist and T014/T015/remaining backlog stay open.
+
 ## 2026-10-12 - Whole-label mobile lane verification
 
 - Preserve181/8400's Move wrap at0.25px beyond its available lane; English Add

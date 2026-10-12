@@ -25,3 +25,16 @@ styles on assertion failure. Measure the actual native baseline before compact
 layout adaptation, and preserve its immutable helper. Keep all media outside Git
 with explicit manifests; no full-directory Kit/agent-doc import is needed for a
 bounded canonical SCSS sync.
+
+Review2 transposition lessons for future CCB: before compacting a framed token
+into text, measure its actual descendant font/weight, margin and available lane
+in both locales/modes. Removing borders alone leaves token-pill700 typography;
+complete words can wrap a whole flex item for0.25px. Reuse caption roles/gutters,
+retain the strict failed geometry and test settled Reset plus continuous final
+assets. Source definitions saved in Penpot and connected-library availability
+are separate: reconcile first, verify saved prior text/type before an owned-tab
+reload, then instantiate; never redraw a missing cached provider. Map SDK
+property aliases explicitly in fingerprints (`width`, not stored `w`) and emit
+only bounded differences. Exact token expenditure is unavailable; the identified
+avoidable work was repeat native promotions and oversized diagnostic output,
+not a reason to skip final native or human gates.
