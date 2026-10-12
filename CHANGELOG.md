@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] Mobile long-press menus retain their open state after finger release: consume the compatibility click in capture before the backdrop; original hold timing and ordinary outside-click dismissal unchanged.
+
 - 2026-10-12 [N0] Consume Kit188 Resume-target recovery discovered during native Actions-path checks; preserve progress and completed-path suppression, extend the same surface diagnostics.
 
 - 2026-10-12 [N0] PG-A2/A1/A3: ordered Actions-path signals follow real Participant selection and menu reveal across entry methods; drag success is session-bound, retained IDs/history and business commands unchanged.

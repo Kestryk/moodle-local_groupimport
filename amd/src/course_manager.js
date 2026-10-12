@@ -8051,13 +8051,16 @@ const bindContextMenu = (root, courseId) => {
         }
     });
 
+    // A long press opens the mobile backdrop under the held finger. Consume
+    // the resulting compatibility click before its target can close the menu.
     document.addEventListener('click', event => {
         if (suppressNextDocumentClick) {
             suppressNextDocumentClick = false;
             event.preventDefault();
             event.stopPropagation();
-            return;
         }
+    }, true);
+    document.addEventListener('click', event => {
         if (!menu.hidden && !menu.contains(event.target)) {
             hideMenu();
         }
