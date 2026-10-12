@@ -4,6 +4,17 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideExternalDialogLayerS1": {
+      "kitCommit": "27a5030616afd2796671f3df239e6681c9ac67b0",
+      "kitVersion": "0.4.186",
+      "scope": "Only external-dialog frame/public-layer relay and checklist layering; page1020, pointer-none and unrelated CSS/controller/markup/Motion preserved",
+      "record": "docs/guide-modal-layer-s1-progress-2026-10-12.md",
+      "isolatedHelperCasesPassed": 8,
+      "isolatedBrowserCasesPassed": 16,
+      "foundationAndProductSaved": true,
+      "nativeVerified": false,
+      "humanAccepted": false
+    },
     "guideFinishedPaintT037A": {
       "kitCommit": "7728357dfc9cff32dccab054eb3e5ee0bc941996",
       "kitVersion": "0.4.185",

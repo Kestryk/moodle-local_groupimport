@@ -6,7 +6,9 @@
   "receivedScopesAndEvidenceUnchanged": true,
   "humanChecklistOpen": true,
   "mode": "sequential-existing-Source-Kit-worktrees",
+  "dependencyMeaning": "Required technical implementation/protocol slice, not all umbrella scope or human closure; gated business proof stays explicit and does not block independent safe lots",
   "active": "EXEC-01",
+  "activeProgress": {"id":"PG-S1","record":"docs/guide-modal-layer-s1-progress-2026-10-12.md","canonicalKitVersion":"0.4.186","sourceBuilt":true,"pairedDesignSaved":true,"nativeVerified":false,"humanAccepted":false},
   "sources": [
     "docs/student-management-completion-queue-2026-10-03.md",
     "docs/student-feedback-successor-2026-10-04.md",

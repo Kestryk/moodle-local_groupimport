@@ -3186,6 +3186,18 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   z-index: 1020;
 }
 
+.easyedu-guide-highlight--in-dialog {
+  // Body portals do not inherit the Guide root. The controller relays this
+  // public role; the fallback also supports older consumers without tokens.
+  z-index: calc(var(--easyedu-modal-layer, 1070) + 1);
+}
+
+.easyedu-guide[data-easyedu-guide-root][data-easyedu-guide-target-in-dialog] .easyedu-guided-panel {
+  // Explicit root qualification wins over the Discovery default panel layer.
+  // Outside a native dialog the historical checklist/1020 cue layers remain.
+  z-index: calc(var(--easyedu-modal-layer, 1070) + 2);
+}
+
 .easyedu-guide-highlight--pulse-blue {
   animation: easyedu-guide-highlight-pulse 1.45s ease-in-out infinite;
   border-color: #0b75d1;

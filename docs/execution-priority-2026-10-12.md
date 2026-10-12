@@ -63,6 +63,12 @@ repli/sélection et R10-25 flash ont une preuve scoped ; garder le correctif et
 faire la couverture manquante. Les sources portant encore `queued` sont des
 intakes historiques, pas la preuve que chaque sous-partie n'existe pas.
 
+Les dépendances portent sur la tranche technique nécessaire, pas sur toute la
+portée d'un lot parapluie (SM-19) ou sur sa validation humaine. Une preuve métier
+qui attend une fixture/autorité ne bloque pas les composants indépendants :
+conserver sa porte explicite et poursuivre une tranche réalisable. T054, lui,
+reste interdit tant que les invariants natifs prérequis ne sont pas prouvés.
+
 ## Exhaustivité et décisions
 
 Le JSON associé mappe chaque SM-01..73, chaque R10-01..33, chaque T001..T061,
@@ -85,6 +91,16 @@ Un test de couverture vérifie absence d'oubli/doublon/cycle et scopes intacts.
   fenêtre choisie par Kevin ; la revue UX reçue n'est pas cet audit complet.
 
 ## Lot actif et prochaine action
+
+PG-S1 candidat Kit186/27a5030 synchronisé et compilé.8 helpers/16 cas browser
+isolés,6 exemples liés sauvegardés et préservation CSS/source passent. Scénario
+natif des6 cibles d'éditeur préparé et découvert (1test), pas encore exécuté.
+Moodle arrêté après reboot ; restauration automatique refusée par l'outil,
+sans création de processus/bail. Demande non bloquante d'ouvrir Start Moodle.
+Le wrapper Source n'a pas de node_modules : utiliser le wrapper runtime avec
+AllowedSpecRoot Source. Aucune installation de dépendances ni fixture nouvelle.
+Voir `guide-modal-layer-s1-progress-2026-10-12.md`. La suite de l'ordre reste
+PG-A2→A1→A3 après les portes natives S1 ; aucune tâche ancienne n'est supprimée.
 
 PG-S1. Diagnostic actuel confirmé par CSS HTTP200/1020 et inventaire offline
 9 définitions/12 cibles par langue. Premier patch borné : classe du highlight

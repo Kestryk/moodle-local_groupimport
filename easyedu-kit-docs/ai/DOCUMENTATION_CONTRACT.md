@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+S1 external-dialog cues consume Kit186's public layering role; page cues remain
+1020 and pointer-events:none. The body portal relays only --easyedu-modal-layer.
+Check actual inert frame paint through a restored test-only edge probe, never
+change product pointer behavior. Native editor proof covers six of twelve
+current modal targets; destination/member/activity gates remain distinct.
+Preserve every original path/storage ID, command and accepted Motion.
+
 Kevin's12Oct whole-backlog directive replaces historical Guide-first ordering,
 not scope or proof. Use docs/execution-priority-2026-10-12.json and its coverage
 gate before choosing a lot. Shared prerequisites precede compositions; already
