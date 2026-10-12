@@ -23,6 +23,8 @@
 - 2026-10-12 [N1] Group validated AP-E6/AP-E5/SM2a and QA successor for localhost; retain complete Perf-copy tooling/guards, legacy rendering mode and committed AMD, extend the existing integration surface for FR/EN settings and unconfirmed CSV preview.
 
 - 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.
+- 2026-10-13 [N0/N1] T053: measure CSS bytes/gzip, exact duplicate blocks, repeated declarations, long selector lists and unreferenced literal candidates; quantify a reduction plan without modifying Sass or product CSS. Retain incomplete browser coverage/readiness evidence.
+
 - 2026-10-13 [N1] T056: catalogue 72 immutable source contracts; add Perf-only supervised visual capture/repeatability and explicit approved-external-baseline comparison. Retain failed predecessors, report native overflow rather than repairing product CSS.
 
 - 2026-10-13 [N0] T057: add deterministic EN/FR key, placeholder, accent/plural/case and hardcoded-JS-text audit; replace 60 parenthesised-plural translations without changing keys/placeholders or JavaScript. JS/case candidate inventory remains for the product owners.
