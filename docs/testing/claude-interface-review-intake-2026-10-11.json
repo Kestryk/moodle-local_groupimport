@@ -6,6 +6,7 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "smRenduStep120261012":{"producer":"282f1bc8dc9b0295df680370faae6add4b5bebc2","status":"lint9 and native1280FR baseline-PASS; publication-web-upgrade-parity-pending","baselineRun":"easystud-authenticated-20261012T212558803Z-19348","level":0,"nativeLevel":1,"version":2026101200,"requiresUnchanged":2025100600,"noAmdBuild":true,"writeTestForbiddenOnPrincipal":true,"producerReservedFilesPreserved":true,"D8":"Penpot9227 still blank; no styles applied blind","groupedPreviewIncludes":"06f0abc plus this integration; D8 only if editor available"},
   "claudeReviewR320261012": {
     "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
     "R3-1":{"scope":"No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states","level":1,"status":"served37ac57f; source59 and native-FR1280-390-PASS"},
@@ -13,14 +14,15 @@
     "nativeRun":"easystud-authenticated-20261012T210609958Z-34376",
     "failedPredecessors":["easystud-authenticated-20261012T205646787Z-2524","easystud-authenticated-20261012T210008058Z-8292","easystud-authenticated-20261012T210235423Z-34132"],
     "proofCorrections":"No product change: zero CSS serialization; live media change is not engine reinit; mobile idle narration intentionally hidden, so dots measured paused",
-    "humanAccepted":false
+    "humanAccepted":true,
+    "acceptedBy":"Kevin user message2026-10-12: R3 and Platform validated; combined checklist remains open"
   },
-  "compatibilityRule20261012":{"targetNow":"Moodle5.1","futurePass":"Moodle4.5 after final5.1","effective":"Next lot D1–D4","PHP":"8.1","noNewBS5OnlyDependencies":true,"versionPhpUnchanged":true,"otherMoodle45RuntimeUntouched":true},
+  "compatibilityRule20261012":{"targetNow":"Moodle5.1","futurePass":"Moodle4.5 after final5.1","effective":"Next lot D1–D4","PHP":"8.1","noNewBS5OnlyDependencies":true,"versionPhpUnchanged":false,"versionChangeException":"Kevin explicitly authorized2026101200 for SM-RENDU-1 schema/services; requires remains2025100600","otherMoodle45RuntimeUntouched":true},
   "kevinDecisions20261012": {
     "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/DECISIONS-KEVIN-2026-10-12.md",
     "D7":{"status":"served-and-native10-plus-contract16-PASS","nativeRun":"easystud-authenticated-20261012T194847620Z-27072","countdownsMs":[45000,30000],"pause":"remaining time retained during hover/focus","level":0},
     "D5D6":{"status":"served7d47118; source50-contract8-bilingual-current7paths-PASS","remainingPathCount":7,"retired":["first-structure","create-grouping"],"sharedCreationOpenersRetained":true,"orphanStrings":"No orphan removal: same labels remain referenced by legacy template; do not delete live fallback","editorCloseSignal":"Existing stable cancel-editor ID now accepts completed Cancel/Escape/Save; review opt-out unchanged","level":0},
-    "nextLots":["R3-1+R3-2","Platform-ac90d61-publication-under-Perf-lease","D8-Penpot-then-code","SM-RENDU-after-architecture-handoff"],
+    "nextLots":["SM-RENDU-step1-integration","D8-Penpot-then-code-when-editor-ready","SM-RENDU-next-Claude-commits","AP-A6-after-server-measurements"],
     "D1D4":{"status":"served7d47118; source58-api138-PASS; native-desktop-PASS-mobile-reserve","nativeRun":"easystud-authenticated-20261012T204015059Z-16536","reserve":"390px group inspection open narration has4 lines in253px; unchanged approved compact copy, no font shrink or hidden overflow claimed as PASS","level":1,"Kit":"0.4.196","phaseIdsAndCourseCommandsUnchanged":true},
     "D9":{"status":"already-served; reuse R2-5 accepted proof, no reimplementation","nativeRun":"easystud-authenticated-20261012T074626324Z-27696","header390px":187.703125,"limitPx":200},
     "claudeEvidenceReview":{"AP-B7B8D7":"accepted-on-proof","D5D6":"accepted-on-proof; served7d47118","humanChecklistStillOpen":true},

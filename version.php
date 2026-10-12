@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_groupimport';
-$plugin->version = 2026071300;   // YYYYMMDDXX. Legacy-safe migration and current Mass Import tour.
+$plugin->version = 2026101200;   // YYYYMMDDXX. SM-RENDU: external functions, state version table and observers.
 $plugin->requires = 2025100600;  // Moodle 5.1 minimum.
 $plugin->maturity = MATURITY_BETA;
 $plugin->release = '0.4.2-beta';

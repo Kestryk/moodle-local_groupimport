@@ -1,0 +1,666 @@
+<?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+namespace local_groupimport\service;
+
+defined('MOODLE_INTERNAL') || die();
+
+global $CFG;
+require_once($CFG->dirroot . '/group/lib.php');
+require_once($CFG->dirroot . '/local/groupimport/lib.php');
+
+use local_groupimport\local\state_version;
+
+/**
+ * Compact, normalised course state for the on-demand Student Management renderer (SM-RENDU).
+ *
+ * Every participant, group and grouping is sent exactly once and relations are id lists,
+ * so the payload grows linearly with the course instead of with the number of rendered
+ * copies. No HTML and no precomputed search text: the browser renders and indexes it.
+ * Heavy, rarely displayed fields are served by {@see self::get_details()}.
+ *
+ * The legacy page still uses {@see course_structure::get_state()}; both coexist until
+ * the parity milestone (ARCHITECTURE-SM-RENDU, step 6).
+ *
+ * @package    local_groupimport
+ * @copyright  2026 Kevin Jarniac
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class course_state {
+
+    /** @var int Maximum values per IN () clause; keeps SQL Server under its parameter limit. */
+    const CHUNK_SIZE = 1000;
+
+    /** @var int Maximum ids accepted by one details request. */
+    const MAX_DETAIL_IDS = 200;
+
+    /** @var int Size of the participant picture, identical to the legacy card. */
+    const PICTURE_SIZE = 100;
+
+    /**
+     * Build the compact state of a course.
+     *
+     * The caller is responsible for login, context validation and capability checks.
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Matching course context.
+     * @return array
+     */
+    public static function build(\stdClass $course, \context_course $context): array {
+        global $CFG, $OUTPUT, $PAGE;
+
+        self::assert_context($course, $context);
+
+        // Same population and order as the legacy page (course_structure::get_state()).
+        $users = get_enrolled_users(
+            $context,
+            '',
+            0,
+            'u.id, u.firstname, u.lastname, u.firstnamephonetic, u.lastnamephonetic, u.middlename, u.alternatename, ' .
+                'u.username, u.email, u.picture, u.imagealt, u.idnumber',
+            'u.lastname ASC, u.firstname ASC, u.id ASC'
+        );
+        $userids = array_map('intval', array_keys($users));
+
+        $groups = groups_get_all_groups(
+            $course->id,
+            0,
+            0,
+            'g.id, g.courseid, g.idnumber, g.name, g.description, g.picture, g.hidepicture, g.enrolmentkey'
+        );
+        $groupings = groups_get_all_groupings($course->id);
+        $memberships = self::get_group_memberships((int)$course->id);
+        $groupingmemberships = self::get_grouping_memberships(array_map('intval', array_keys($groupings)));
+        [$roles, $userroles] = self::get_roles($context);
+
+        $identifierfields = self::get_identifier_field_definitions();
+        $display = self::get_display_settings();
+        $customkeys = array_values(array_unique(array_filter(array_merge(
+            array_keys($identifierfields),
+            [$display['primary']['key'] ?? ''],
+            array_column($display['details'], 'key')
+        ), static function(string $key): bool {
+            return strpos($key, 'profile_field_') === 0;
+        })));
+        $customvalues = self::get_custom_field_values($userids, $customkeys);
+
+        $usepictures = !empty($CFG->enablegravatar);
+        foreach ($users as $user) {
+            if (!empty($user->picture)) {
+                $usepictures = true;
+                break;
+            }
+        }
+        if ($usepictures) {
+            self::preload_user_contexts($userids);
+        }
+
+        $useritems = [];
+        foreach ($users as $user) {
+            $userid = (int)$user->id;
+            $item = [
+                'id' => $userid,
+                'fullname' => fullname($user),
+                'email' => (string)$user->email,
+                'roleids' => array_values($userroles[$userid] ?? []),
+                'groupids' => array_values($memberships['byuser'][$userid] ?? []),
+            ];
+
+            $identifiers = [];
+            foreach (array_keys($identifierfields) as $fieldkey) {
+                $value = strpos($fieldkey, 'profile_field_') === 0
+                    ? (string)($customvalues[$userid][$fieldkey] ?? '')
+                    : (string)($user->{$fieldkey} ?? '');
+                if ($value !== '') {
+                    $identifiers[$fieldkey] = $value;
+                }
+            }
+            if ($identifiers) {
+                $item['identifiers'] = $identifiers;
+            }
+
+            $displayvalues = [];
+            foreach (array_merge([$display['primary']['key'] ?? ''], array_column($display['details'], 'key')) as $fieldkey) {
+                if ($fieldkey === '') {
+                    continue;
+                }
+                $value = local_groupimport_normalise_participant_label_value($customvalues[$userid][$fieldkey] ?? '');
+                if ($value !== '') {
+                    $displayvalues[$fieldkey] = $value;
+                }
+            }
+            if ($displayvalues) {
+                $item['display'] = $displayvalues;
+            }
+
+            if ($usepictures && (!empty($user->picture) || !empty($CFG->enablegravatar))) {
+                $picture = new \user_picture($user);
+                $picture->size = self::PICTURE_SIZE;
+                $item['pictureurl'] = $picture->get_url($PAGE)->out(false);
+            }
+
+            $useritems[] = $item;
+        }
+
+        $groupitems = [];
+        foreach ($groups as $group) {
+            $groupid = (int)$group->id;
+            $pictureurl = get_group_picture_url($group, $course->id, true);
+            $groupitems[] = [
+                'id' => $groupid,
+                'name' => format_string($group->name, true, ['context' => $context]),
+                'rawname' => (string)$group->name,
+                'idnumber' => (string)($group->idnumber ?? ''),
+                'memberids' => array_values($memberships['bygroup'][$groupid] ?? []),
+                'groupingids' => array_values($groupingmemberships['bygroup'][$groupid] ?? []),
+                'hasdescription' => trim((string)($group->description ?? '')) !== '',
+                'enrolmentkey' => !empty($group->enrolmentkey),
+                'pictureurl' => !empty($pictureurl) ? $pictureurl->out(false) : '',
+                'hidepicture' => !empty($group->hidepicture),
+            ];
+        }
+
+        $groupingitems = [];
+        foreach ($groupings as $grouping) {
+            $groupingid = (int)$grouping->id;
+            $groupingitems[] = [
+                'id' => $groupingid,
+                'name' => format_string($grouping->name, true, ['context' => $context]),
+                'rawname' => (string)$grouping->name,
+                'idnumber' => (string)($grouping->idnumber ?? ''),
+                'groupids' => array_values($groupingmemberships['bygrouping'][$groupingid] ?? []),
+                'hasdescription' => trim((string)($grouping->description ?? '')) !== '',
+            ];
+        }
+
+        return [
+            'meta' => [
+                'schema' => 1,
+                'courseid' => (int)$course->id,
+                'version' => state_version::get((int)$course->id),
+                'counts' => [
+                    'users' => count($useritems),
+                    'groups' => count($groupitems),
+                    'groupings' => count($groupingitems),
+                    'memberships' => $memberships['count'],
+                ],
+                'identifierfields' => self::to_label_list($identifierfields),
+                'display' => $display,
+                'defaultpictureurl' => $OUTPUT->image_url('u/f1')->out(false),
+            ],
+            'roles' => $roles,
+            'users' => $useritems,
+            'groups' => $groupitems,
+            'groupings' => $groupingitems,
+        ];
+    }
+
+    /**
+     * Load the heavy fields of a few entities, for a modal or a detail panel.
+     *
+     * Ids outside the course (or users not enrolled in it) are refused as a whole,
+     * so a request never mixes visible and hidden records.
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Matching course context.
+     * @param string $type user, group or grouping.
+     * @param int[] $ids Entity ids.
+     * @return array Items in the requested order.
+     */
+    public static function get_details(\stdClass $course, \context_course $context, string $type, array $ids): array {
+        self::assert_context($course, $context);
+
+        $ids = array_values(array_unique(array_filter(array_map('intval', $ids), static function(int $id): bool {
+            return $id > 0;
+        })));
+        if (!$ids) {
+            return [];
+        }
+        if (count($ids) > self::MAX_DETAIL_IDS) {
+            throw new \invalid_parameter_exception('Too many ids: at most ' . self::MAX_DETAIL_IDS . ' per request.');
+        }
+
+        switch ($type) {
+            case 'user':
+                return self::get_user_details($course, $context, $ids);
+            case 'group':
+                return self::get_group_details($course, $context, $ids);
+            case 'grouping':
+                return self::get_grouping_details($course, $context, $ids);
+        }
+        throw new \invalid_parameter_exception('Unknown details type: ' . $type);
+    }
+
+    /**
+     * Participant details: the fields the legacy card exposed in data-user-detail, without memberships.
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Course context.
+     * @param int[] $ids User ids.
+     * @return array
+     */
+    protected static function get_user_details(\stdClass $course, \context_course $context, array $ids): array {
+        global $DB, $OUTPUT;
+
+        [$enrolsql, $enrolparams] = get_enrolled_sql($context);
+        [$insql, $inparams] = $DB->get_in_or_equal($ids, SQL_PARAMS_NAMED, 'detailuser');
+        $users = $DB->get_records_sql(
+            "SELECT u.*
+               FROM {user} u
+               JOIN ($enrolsql) je ON je.id = u.id
+              WHERE u.id $insql AND u.deleted = 0",
+            $enrolparams + $inparams
+        );
+        if (count($users) !== count($ids)) {
+            throw new \moodle_exception('invaliduser', 'error');
+        }
+
+        self::preload_user_contexts($ids);
+        $identifierfields = self::get_identifier_field_definitions();
+        $customvalues = self::get_custom_field_values($ids, array_values(array_filter(
+            array_keys($identifierfields),
+            static function(string $key): bool {
+                return strpos($key, 'profile_field_') === 0;
+            }
+        )));
+
+        $items = [];
+        foreach ($ids as $userid) {
+            $user = $users[$userid];
+            $copyfields = [];
+            foreach ($identifierfields as $fieldkey => $label) {
+                $copyfields[] = [
+                    'key' => $fieldkey,
+                    'label' => $label,
+                    'value' => strpos($fieldkey, 'profile_field_') === 0
+                        ? (string)($customvalues[$userid][$fieldkey] ?? '')
+                        : (string)($user->{$fieldkey} ?? ''),
+                ];
+            }
+            $items[] = [
+                'id' => (int)$userid,
+                'fullname' => fullname($user),
+                'email' => (string)$user->email,
+                'profileimage' => $OUTPUT->user_picture($user, [
+                    'courseid' => $course->id,
+                    'size' => self::PICTURE_SIZE,
+                    'link' => false,
+                ]),
+                'profileurl' => (new \moodle_url('/user/profile.php', ['id' => $userid, 'course' => $course->id]))->out(false),
+                'username' => (string)$user->username,
+                'idnumber' => (string)$user->idnumber,
+                'institution' => (string)$user->institution,
+                'department' => (string)$user->department,
+                'city' => (string)$user->city,
+                'country' => (string)$user->country,
+                'lang' => (string)$user->lang,
+                'description' => format_text((string)$user->description, FORMAT_HTML, [
+                    'context' => $context,
+                ]),
+                'copyfields' => $copyfields,
+            ];
+        }
+
+        return $items;
+    }
+
+    /**
+     * Group details used by the advanced settings modal.
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Course context.
+     * @param int[] $ids Group ids.
+     * @return array
+     */
+    protected static function get_group_details(\stdClass $course, \context_course $context, array $ids): array {
+        global $DB;
+
+        [$insql, $params] = $DB->get_in_or_equal($ids, SQL_PARAMS_NAMED, 'detailgroup');
+        $params['courseid'] = $course->id;
+        $groups = $DB->get_records_select('groups', "id $insql AND courseid = :courseid", $params);
+        if (count($groups) !== count($ids)) {
+            throw new \moodle_exception('invalidgroupid', 'error');
+        }
+
+        $items = [];
+        foreach ($ids as $groupid) {
+            $group = $groups[$groupid];
+            $pictureurl = get_group_picture_url($group, $course->id, true);
+            $items[] = [
+                'id' => (int)$groupid,
+                'description' => format_text((string)($group->description ?? ''), $group->descriptionformat ?? FORMAT_HTML, [
+                    'context' => $context,
+                ]),
+                'rawdescription' => (string)($group->description ?? ''),
+                'idnumber' => (string)($group->idnumber ?? ''),
+                'enrolmentkey' => !empty($group->enrolmentkey),
+                'pictureurl' => !empty($pictureurl) ? $pictureurl->out(false) : '',
+                'hidepicture' => !empty($group->hidepicture),
+            ];
+        }
+
+        return $items;
+    }
+
+    /**
+     * Grouping details used by the advanced settings modal.
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Course context.
+     * @param int[] $ids Grouping ids.
+     * @return array
+     */
+    protected static function get_grouping_details(\stdClass $course, \context_course $context, array $ids): array {
+        global $DB;
+
+        [$insql, $params] = $DB->get_in_or_equal($ids, SQL_PARAMS_NAMED, 'detailgrouping');
+        $params['courseid'] = $course->id;
+        $groupings = $DB->get_records_select('groupings', "id $insql AND courseid = :courseid", $params);
+        if (count($groupings) !== count($ids)) {
+            throw new \moodle_exception('invalidgroupid', 'error');
+        }
+
+        $items = [];
+        foreach ($ids as $groupingid) {
+            $grouping = $groupings[$groupingid];
+            $items[] = [
+                'id' => (int)$groupingid,
+                'description' => format_text((string)($grouping->description ?? ''), $grouping->descriptionformat ?? FORMAT_HTML, [
+                    'context' => $context,
+                ]),
+                'rawdescription' => (string)($grouping->description ?? ''),
+                'idnumber' => (string)($grouping->idnumber ?? ''),
+                'configdata' => (string)($grouping->configdata ?? ''),
+            ];
+        }
+
+        return $items;
+    }
+
+    /**
+     * Identification fields enabled in the plugin settings (AP-A5: Moodle id + these fields only).
+     *
+     * Mirrors local_groupimport_get_allowed_user_field_definitions() in manage.php,
+     * which cannot be loaded from a class. Remove the legacy copy at step 7.
+     *
+     * @return array Field key => label, in settings order.
+     */
+    public static function get_identifier_field_definitions(): array {
+        global $DB;
+
+        $definitions = [
+            'username' => get_string('username'),
+            'email' => get_string('email'),
+            'idnumber' => get_string('idnumber'),
+        ];
+        foreach ($DB->get_records('user_info_field', null, 'name ASC', 'id, shortname, name') as $field) {
+            $definitions['profile_field_' . $field->shortname] = format_string($field->name);
+        }
+
+        $config = get_config('local_groupimport');
+        $allowed = !empty($config->alloweduserfields)
+            ? array_map('trim', explode(',', $config->alloweduserfields))
+            : ['username', 'email'];
+
+        $result = [];
+        foreach ($allowed as $fieldkey) {
+            if (isset($definitions[$fieldkey])) {
+                $result[$fieldkey] = $definitions[$fieldkey];
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Participant card badge and detail fields configured in the plugin settings.
+     *
+     * Mirrors local_groupimport_get_participant_display_settings() in manage.php.
+     *
+     * @return array {primary: ?array, details: array}
+     */
+    protected static function get_display_settings(): array {
+        global $DB;
+
+        $customfields = [];
+        foreach ($DB->get_records('user_info_field', null, 'name ASC', 'id, shortname, name') as $field) {
+            $customfields['profile_field_' . $field->shortname] = format_string($field->name);
+        }
+
+        $config = get_config('local_groupimport');
+        $primarykey = !empty($config->participantprimarybadgefield) && isset($customfields[$config->participantprimarybadgefield])
+            ? (string)$config->participantprimarybadgefield
+            : '';
+
+        $details = [];
+        foreach (['participantdetailfield1', 'participantdetailfield2'] as $settingname) {
+            $fieldkey = !empty($config->{$settingname}) ? (string)$config->{$settingname} : '';
+            if ($fieldkey !== '' && isset($customfields[$fieldkey]) && $fieldkey !== $primarykey &&
+                    !in_array($fieldkey, array_column($details, 'key'), true)) {
+                $details[] = ['key' => $fieldkey, 'label' => $customfields[$fieldkey]];
+            }
+        }
+
+        return [
+            'primary' => $primarykey === '' ? null : [
+                'key' => $primarykey,
+                'label' => $customfields[$primarykey],
+                'bgcolor' => self::normalise_hex_colour($config->participantprimarybadgebgcolor ?? '', '#e8f4ff'),
+                'textcolor' => self::normalise_hex_colour($config->participantprimarybadgetextcolor ?? '', '#0b4f8a'),
+            ],
+            'details' => $details,
+        ];
+    }
+
+    /**
+     * Custom profile values for many users, read in chunks.
+     *
+     * @param int[] $userids User ids.
+     * @param string[] $fieldkeys Keys of the form profile_field_<shortname>.
+     * @return array User id => field key => raw value.
+     */
+    protected static function get_custom_field_values(array $userids, array $fieldkeys): array {
+        global $DB;
+
+        $shortnames = [];
+        foreach ($fieldkeys as $fieldkey) {
+            if (strpos($fieldkey, 'profile_field_') === 0) {
+                $shortnames[] = substr($fieldkey, strlen('profile_field_'));
+            }
+        }
+        if (!$userids || !$shortnames) {
+            return [];
+        }
+
+        [$fieldsql, $fieldparams] = $DB->get_in_or_equal($shortnames, SQL_PARAMS_NAMED, 'field');
+        $values = [];
+        foreach (array_chunk($userids, self::CHUNK_SIZE) as $chunk) {
+            [$usersql, $userparams] = $DB->get_in_or_equal($chunk, SQL_PARAMS_NAMED, 'user');
+            $recordset = $DB->get_recordset_sql(
+                "SELECT d.id, d.userid, f.shortname, d.data
+                   FROM {user_info_data} d
+                   JOIN {user_info_field} f ON f.id = d.fieldid
+                  WHERE d.userid $usersql
+                    AND f.shortname $fieldsql",
+                $userparams + $fieldparams
+            );
+            foreach ($recordset as $record) {
+                $values[(int)$record->userid]['profile_field_' . $record->shortname] = (string)$record->data;
+            }
+            $recordset->close();
+        }
+
+        return $values;
+    }
+
+    /**
+     * Group memberships of the course, indexed both ways, in one query.
+     *
+     * @param int $courseid Course id.
+     * @return array {byuser, bygroup, count}
+     */
+    protected static function get_group_memberships(int $courseid): array {
+        global $DB;
+
+        $recordset = $DB->get_recordset_sql(
+            "SELECT gm.id, gm.userid, gm.groupid
+               FROM {groups_members} gm
+               JOIN {groups} g ON g.id = gm.groupid
+              WHERE g.courseid = :courseid
+           ORDER BY gm.userid ASC, gm.groupid ASC",
+            ['courseid' => $courseid]
+        );
+        $byuser = [];
+        $bygroup = [];
+        $count = 0;
+        foreach ($recordset as $record) {
+            $byuser[(int)$record->userid][] = (int)$record->groupid;
+            $bygroup[(int)$record->groupid][] = (int)$record->userid;
+            $count++;
+        }
+        $recordset->close();
+
+        return ['byuser' => $byuser, 'bygroup' => $bygroup, 'count' => $count];
+    }
+
+    /**
+     * Grouping memberships indexed both ways, read in chunks.
+     *
+     * @param int[] $groupingids Grouping ids.
+     * @return array {bygroup, bygrouping}
+     */
+    protected static function get_grouping_memberships(array $groupingids): array {
+        global $DB;
+
+        $bygroup = [];
+        $bygrouping = [];
+        foreach (array_chunk($groupingids, self::CHUNK_SIZE) as $chunk) {
+            [$insql, $params] = $DB->get_in_or_equal($chunk, SQL_PARAMS_NAMED);
+            $recordset = $DB->get_recordset_select('groupings_groups', "groupingid $insql", $params,
+                'groupingid ASC, groupid ASC', 'id, groupingid, groupid');
+            foreach ($recordset as $record) {
+                $bygroup[(int)$record->groupid][] = (int)$record->groupingid;
+                $bygrouping[(int)$record->groupingid][] = (int)$record->groupid;
+            }
+            $recordset->close();
+        }
+
+        return ['bygroup' => $bygroup, 'bygrouping' => $bygrouping];
+    }
+
+    /**
+     * Course role names (sent once) and role ids per user, in the legacy order.
+     *
+     * @param \context_course $context Course context.
+     * @return array [roles list, user id => role ids]
+     */
+    protected static function get_roles(\context_course $context): array {
+        global $DB;
+
+        $recordset = $DB->get_recordset_sql(
+            "SELECT ra.id, ra.userid, r.id AS roleid, r.name, r.shortname, r.sortorder
+               FROM {role_assignments} ra
+               JOIN {role} r ON r.id = ra.roleid
+              WHERE ra.contextid = :contextid
+           ORDER BY r.sortorder ASC, r.shortname ASC",
+            ['contextid' => $context->id]
+        );
+        $roles = [];
+        $userroles = [];
+        foreach ($recordset as $record) {
+            $roleid = (int)$record->roleid;
+            if (!isset($roles[$roleid])) {
+                $roles[$roleid] = [
+                    'id' => $roleid,
+                    'name' => role_get_name((object)[
+                        'id' => $roleid,
+                        'name' => $record->name,
+                        'shortname' => $record->shortname,
+                    ], $context),
+                ];
+            }
+            $userroles[(int)$record->userid][$roleid] = $roleid;
+        }
+        $recordset->close();
+
+        return [array_values($roles), $userroles];
+    }
+
+    /**
+     * Load user contexts in chunks so user_picture does not query them one by one.
+     *
+     * @param int[] $userids User ids.
+     */
+    protected static function preload_user_contexts(array $userids): void {
+        global $DB;
+
+        $select = \context_helper::get_preload_record_columns_sql('ctx');
+        foreach (array_chunk($userids, self::CHUNK_SIZE) as $chunk) {
+            [$insql, $params] = $DB->get_in_or_equal($chunk, SQL_PARAMS_NAMED, 'ctxuser');
+            $params['contextlevel'] = CONTEXT_USER;
+            $recordset = $DB->get_recordset_sql(
+                "SELECT $select
+                   FROM {context} ctx
+                  WHERE ctx.contextlevel = :contextlevel AND ctx.instanceid $insql",
+                $params
+            );
+            foreach ($recordset as $record) {
+                \context_helper::preload_from_record($record);
+            }
+            $recordset->close();
+        }
+    }
+
+    /**
+     * Normalise a stored colour before the browser injects it into inline CSS variables.
+     *
+     * Mirrors local_groupimport_normalise_hex_colour() in manage.php.
+     *
+     * @param string|null $colour Stored colour.
+     * @param string $fallback Fallback colour.
+     * @return string Safe lowercase hex colour.
+     */
+    protected static function normalise_hex_colour(?string $colour, string $fallback): string {
+        $colour = trim((string)$colour);
+        return preg_match('/^#[0-9a-fA-F]{6}$/', $colour) ? \core_text::strtolower($colour) : $fallback;
+    }
+
+    /**
+     * Convert a key => label map to a list, preserving order.
+     *
+     * @param array $map Key => label.
+     * @return array
+     */
+    protected static function to_label_list(array $map): array {
+        $list = [];
+        foreach ($map as $key => $label) {
+            $list[] = ['key' => (string)$key, 'label' => (string)$label];
+        }
+        return $list;
+    }
+
+    /**
+     * Refuse a course/context mismatch early.
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Course context.
+     */
+    protected static function assert_context(\stdClass $course, \context_course $context): void {
+        if ((int)$course->id !== (int)$context->instanceid) {
+            throw new \coding_exception('Course and context must match.');
+        }
+    }
+}
