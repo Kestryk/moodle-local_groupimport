@@ -1,5 +1,13 @@
 # Guide engineering: current projection, not human acceptance
 
+Kevin20261012 now authorizes whole-backlog prioritization by urgency/impact/
+dependency, not Guide-only or latest-feedback-first. Effective execution order:
+`execution-priority-2026-10-12.md` + JSON. Every SM/R10/T/PG and residual G11
+request is mapped without altering original scope/proof. PG-S1 remains first
+because it breaks12 current targets and I13, then reliable native signals;
+shared modal/type/field recipes precede compositions, measured loading follows
+stable layouts, T054 last/default-off. Human gates/old completed proof preserved.
+
 New Claude12Oct supplement is retained in
 `claude-guide-paths-skeleton-intake-2026-10-12.md`. Priority now PG-S1 (modal
 highlight), then PG-A2/A1/A3, then browser diagnosis PG-A6. PG-A4/A5/A7 await

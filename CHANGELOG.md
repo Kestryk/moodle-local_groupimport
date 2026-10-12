@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Whole-program dependency prioritization
+
+- Reprioritize every SM/R10/Claude/PG and residual Guide request by current
+  functional urgency and shared dependencies, not feedback recency.
+- Preserve original scopes, proofs and decisions; source-backed coverage
+  guards every primary cohort and dependency. PG-S1 stays first on impact.
+- Shared contracts precede layouts; measured local loading precedes deferred
+  AMD; default-off on-demand rendering remains last. Human checklist stays open.
+
 ## 2026-10-12 - Claude path audit and local-loading prevention intake
 
 - Retain new PG-S1/A1–A8 batches with S1→A2→A1→A3 priority; A4/A5/A7 are
