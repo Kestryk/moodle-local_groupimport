@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideIntroductionSpecimensT014": {
+      "kitCommit": "78d7dd551842cf39ffa5c6f88486414c6ee9fa2b",
+      "kitVersion": "0.4.183",
+      "scope": "Inert Playback/Fullscreen, Preview captions and outlined Small path; engines/Motion/type unchanged",
+      "record": "docs/guide-introduction-t014-progress-2026-10-12.md",
+      "isolatedCasesPassed": 60,
+      "foundationAndProductSaved": true,
+      "nativeVerified": false,
+      "humanAccepted": false
+    },
     "guideMobileExpected20261012": {
       "kitCommit": "98cfcc747e778e24303ecce0d2ff735438539044",
       "kitVersion": "0.4.182",

@@ -1,5 +1,16 @@
 # Guide engineering: current projection, not human acceptance
 
+T014 canonical183/Kit78d7dd5 adds inert Playback/Fullscreen and six Preview
+captions, with outlined Small path.60 isolated cases and complete unrelated
+CSS/controller/Motion/type preservation pass. Existing Foundations providers
+are enriched, paired Standard IDs are saved, old copies recoverably archived.
+Retain the timed-out publication, exact-ID reconciliation and stale-glyph raster.
+The Guide Library cache was still old: five current saved compositions were
+checked before the exact owned Product reload. Two linked Product90 examples
+are now saved/paint inspected; preview/native T014 gates are next. See
+`guide-introduction-t014-progress-2026-10-12.md`.
+Human checklist, T015,61 tasks and the Student corridor backlog remain open.
+
 Kevin-approved Student corridor successor is retained in
 `student-identity-corridors-plan-2026-10-12.md` and the existing61-task intake:
 T017/T018/T019/T021/T036, Kit → Foundations → three Product views → consumer CSS.

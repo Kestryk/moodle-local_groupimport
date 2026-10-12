@@ -152,10 +152,19 @@ final class guide_discovery {
             }
             // Opt-in until the shared catalogue and native first-slide gates pass.
             // These examples have no command attributes and cannot modify a course.
-            if ($specimens && in_array($key, ['navigation', 'interface', 'path'], true)) {
-                $kind = $key === 'interface' ? 'highlight' : $key;
+            if ($specimens) {
+                $kind = ['interface' => 'highlight', 'demonstration' => 'playback'][$key] ?? $key;
                 $topic['specimen'] = ['kind' => $kind, $kind => true,
-                    'label' => get_string('guideintro_specimen_' . $kind, 'local_groupimport')];
+                    'previewlabel' => get_string('guideintro_specimen_preview', 'local_groupimport')];
+                if ($kind === 'playback') {
+                    $topic['specimen'] += [
+                        'pauselabel' => get_string('discovery_pause', 'local_groupimport'),
+                        'nextphaselabel' => get_string('discovery_nextphase', 'local_groupimport'),
+                    ];
+                } else {
+                    $labelkey = $kind === 'fullscreen' ? 'guidefullscreenenter' : 'guideintro_specimen_' . $kind;
+                    $topic['specimen']['label'] = get_string($labelkey, 'local_groupimport');
+                }
             }
             $topics[] = $topic;
         }
@@ -164,7 +173,8 @@ final class guide_discovery {
                 'icon' => 'fa-tasks',
                 'title' => get_string('guideintro_checklist_title', 'local_groupimport'),
                 'description' => get_string('guideintro_checklist_description', 'local_groupimport'),
-                'specimen' => ['kind' => 'checklist', 'checklist' => true, 'steps' => [
+                'specimen' => ['kind' => 'checklist', 'checklist' => true,
+                    'previewlabel' => get_string('guideintro_specimen_preview', 'local_groupimport'), 'steps' => [
                     ['icon' => 'fa-check-circle', 'label' => get_string('guideintro_specimen_done', 'local_groupimport')],
                     ['icon' => 'fa-circle', 'label' => get_string('guideintro_specimen_current', 'local_groupimport')],
                     ['icon' => 'fa-lock', 'label' => get_string('guideintro_specimen_locked', 'local_groupimport')],

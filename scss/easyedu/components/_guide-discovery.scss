@@ -239,9 +239,13 @@
     // They share the real control primitives without pretending to perform actions.
     &__specimen {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
       min-width: 0;
     }
+    &__specimen-caption { @include typography.type-caption; color: var(--easyedu-text-muted); }
+    &__controls { display: inline-flex; align-items: center; gap: var(--easyedu-action-icon-gap); }
     // Topics with a specimen keep heading/copy together in the reading lane.
     &__topics:has(.easyedu-guide-introduction__specimen) > .easyedu-guide-introduction__topic {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -274,7 +278,7 @@
       .easyedu-guide-nav-item { cursor: default; max-width: 100%; }
     }
     &__action {
-      @include buttons.selection-action(primary, true);
+      @include buttons.selection-action(primary);
       pointer-events: none;
       > span:last-child { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
     }
