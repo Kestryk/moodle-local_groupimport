@@ -5,6 +5,10 @@ const {spawnSync} = require('node:child_process');
 const {createHash} = require('node:crypto');
 
 async function runBaseline(page, testInfo, expect) {
+    if (['regions', 'curve', 'details'].includes(process.env.EASYEDU_PERF_MODE)) {
+        await require('./region-curve.cjs').run(page, testInfo, expect);
+        return;
+    }
     const manifestPath = process.env.EASYEDU_PERF_MANIFEST;
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
     const outputDirectory = testInfo.outputPath('t052');
