@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] R3 proof successor: normalize Chromium zero-letter-spacing serialization, measure dots in the actual visible paused mobile lane and advance through native controls; preserve all failed predecessor reports and unchanged product assets.
+
 - 2026-10-12 [N1] R3: consume Kit197 single-row no-mode scene headers and fixed activity-dot frame; focused desktop/mobile proof in the existing Guide surface test, unchanged comparison scenes/course commands/Motion.
 
 - 2026-10-12 [N1] D1–D4: approved concise FR/EN narration/glossary, Participants Add-to-group labels without changing commands, numbered short Guide navigation with deduplicated chapters and explicit grouping opener copy; preserve Claude guards and Moodle4.5/PHP8.1 boundary.

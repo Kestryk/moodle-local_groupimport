@@ -8,8 +8,11 @@
   "humanChecklistDeferred": true,
   "claudeReviewR320261012": {
     "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
-    "R3-1":{"scope":"No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states","level":1,"status":"Kit197-source59-PASS; native-publication-pending"},
-    "R3-2":{"scope":"Separate dots, fixed0.25rem columns/0.1875rem gap, constant copy-to-dots gap; four short/long/multiline EN/FR cases, static reduced motion","level":1,"status":"Kit197-source59-PASS; native-publication-pending"},
+    "R3-1":{"scope":"No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states","level":1,"status":"served37ac57f; source59 and native-FR1280-390-PASS"},
+    "R3-2":{"scope":"Separate dots, fixed0.25rem columns/0.1875rem gap, constant copy-to-dots gap; four short/long/multiline EN/FR cases, static reduced motion","level":1,"status":"served37ac57f;16 native samples4px-3px-10.390625px-PASS; reduced CSS static"},
+    "nativeRun":"easystud-authenticated-20261012T210609958Z-34376",
+    "failedPredecessors":["easystud-authenticated-20261012T205646787Z-2524","easystud-authenticated-20261012T210008058Z-8292","easystud-authenticated-20261012T210235423Z-34132"],
+    "proofCorrections":"No product change: zero CSS serialization; live media change is not engine reinit; mobile idle narration intentionally hidden, so dots measured paused",
     "humanAccepted":false
   },
   "compatibilityRule20261012":{"targetNow":"Moodle5.1","futurePass":"Moodle4.5 after final5.1","effective":"Next lot D1–D4","PHP":"8.1","noNewBS5OnlyDependencies":true,"versionPhpUnchanged":true,"otherMoodle45RuntimeUntouched":true},
