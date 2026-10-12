@@ -275,6 +275,7 @@
                                 {{#membership}}
                                 <div class="easyedu-guide-scene__memberships" data-guide-memberships>
                                     <strong data-guide-membership-title data-expected="{{expectedlabel}}">{{membershiptitle}}</strong>
+                                    <strong class="easyedu-guide-scene__expected-label--compact">{{#expectedcompactlabel}}{{expectedcompactlabel}}{{/expectedcompactlabel}}{{^expectedcompactlabel}}{{expectedlabel}}{{/expectedcompactlabel}}</strong>
                                     <span>TD lundi <b class="easyedu-guide-scene__unchanged-label--regular">{{keptlabel}}</b><b class="easyedu-guide-scene__unchanged-label--compact">{{#unchangedlabel}}{{unchangedlabel}}{{/unchangedlabel}}{{^unchangedlabel}}{{keptlabel}}{{/unchangedlabel}}</b></span>
                                     <span data-guide-membership-origin data-kept="{{keptlabel}}" data-removed="{{removedlabel}}">Projet Orion <b>{{keptlabel}}</b></span>
                                     <span data-guide-membership-target data-added="{{addedlabel}}" data-absent="{{absentlabel}}" class="is-absent">{{destinationname}} <b>{{absentlabel}}</b></span>

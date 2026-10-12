@@ -789,6 +789,7 @@ $string['discovery_resultactions'] = 'Alex and Léa leave Projet Orion and join 
 $string['discovery_mobile'] = 'On mobile, select members and use the card action button. Right-click and dragging are desktop gestures.';
 $string['discovery_initial'] = 'Initial state: TD lundi and Projet Orion; Projet Horizon is empty.';
 $string['discovery_demo_unchanged'] = 'unchanged';
+$string['discovery_demo_expected_compact'] = 'Expected result';
 $string['discovery_kept'] = 'Kept';
 $string['discovery_removed'] = 'Removed';
 $string['discovery_added'] = 'Added';

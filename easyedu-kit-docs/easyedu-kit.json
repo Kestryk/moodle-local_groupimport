@@ -5,10 +5,11 @@
   "status": "stable",
   "consumerSync": {
     "guideMobileExpected20261012": {
-      "kitCommit": "c532f857805dab2ec5bd8086af94bb7c7f62f980",
-      "kitVersion": "0.4.179",
+      "kitCommit": "e8bb63242bc4352bfb11e4f261e823b47214dc28",
+      "kitVersion": "0.4.180",
+      "previousCandidate": "c532f85/0.4.179; native29736 failed255px; preserved",
       "modules": ["guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
-      "scope": "Kevin-approved R2-5: compact mobile resting outcome only; one membership authority, desktop/playing/final tokens and complete178 engine retained.",
+      "scope": "Kevin-approved R2-5: actual caption role, short expected heading and no duplicated idle sentence; mobile preview only, desktop/playing/final tokens and complete178 engine retained.",
       "foundationProviders": ["c8f59096-02cd-803e-8008-c6fcdffa5e3e", "c8f59096-02cd-803e-8008-c6fce026897f"],
       "productReference": "eca88a24-093d-80d0-8008-c700c8829146",
       "pairedSavedPaintVerified": true,

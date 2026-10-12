@@ -113,3 +113,23 @@ passed without replaying creation. Human review remains separate.
 Native R2-5 successor is queued:16 localized resting Add/Move measurements at
 1600/1280/390/320, phone header<=200 and same-row changes at390, unchanged desktop
 tokens, correct caption/font and settled Start/Reset preview restoration.
+
+## Compact native-fit successor — canonical180
+
+Run29736 on179 fails the unchanged200px oracle: English390 ready header254.89px,
+with changed memberships on separate rows. Four desktop states still pass.
+The complete failed run/spec is retained and cleanup passes. Caption descendants
+were inheriting the old pill700/12.48px role instead of Source caption400/12.16px;
+the mobile header also repeated the initial memberships sentence already in
+the scene context.180 corrects those shared roles, retains that sentence in
+context, and uses the Source short expected-result heading. It changes no
+desktop/playing/final tokens, original178 engine/AMD or active narration.
+The exact immutable native scenario will be replayed; no height/row oracle was
+relaxed. A separate complete-CSS preservation successor accepts only these
+mobile-preview/idle rules and two product caption data/strings additions.
+
+Source/Standard/Product compact compositions now align caption1.4 line height
+and muted/text roles to the actual canonical recipe, retaining12.16px Inter and
+the600 short heading. Provider IDs stay unchanged. Final saved/raster successors
+are `*-caption.png` and the source/product saved-caption-role records. They are
+separate from the initial179 candidate examples; native180 proof is pending.
