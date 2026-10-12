@@ -6,6 +6,33 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "acceleration20261012": {
+    "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
+    "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
+    "readyQueue": ["AP-A2+A3+A7+A8+A9", "PG-S1", "AP-A1+A6", "PG-A2+A1+A3", "AP-B1+B2+B3+B4"],
+    "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
+    "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",
+    "surfaceScriptsOnly": true,
+    "historicalScopesPreserved": true
+  },
+  "claudeDeepAudit20261012": {
+    "source": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/AUDIT-APPROFONDI-2026-10-12.md",
+    "codexOwned": ["AP-A1", "AP-A6", "AP-A10", "AP-B1", "AP-B2", "AP-B3", "AP-B4", "AP-B5", "AP-B6", "AP-B7", "AP-B8", "AP-B9", "AP-B10", "AP-B11", "AP-C1", "AP-C2", "AP-C3", "AP-C4", "AP-C5", "AP-D1", "AP-D2", "AP-D3", "AP-D4", "AP-D5", "AP-D6", "AP-D7", "AP-E1", "AP-E2", "AP-E3", "AP-E4", "AP-E5", "AP-E6", "AP-E7", "AP-E8", "AP-E9"],
+    "claudeReserved": ["AP-A4", "AP-A5"],
+    "decisionGates": ["AP-C1", "AP-C3", "AP-E9", "AP-B8-auto-dismiss"],
+    "performanceRequiresT052": true,
+    "T054LastDefaultOff": true,
+    "humanAccepted": false
+  },
+  "claudePilotAP20261012": {
+    "upstreamCommit": "db2c429abd4a82da483c915fef94d35bb7550743",
+    "ids": ["AP-A2", "AP-A3", "AP-A7", "AP-A8", "AP-A9"],
+    "level": 0,
+    "status": "integrated-source-targeted-verification",
+    "verificationScript": "tools/release/verify-ajax-contract.php",
+    "nativeResults": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-2026-10-12.md",
+    "humanAccepted": false
+  },
   "effectiveExecutionPriority20261012": "docs/execution-priority-2026-10-12.json",
   "claudePathsAndSkeletonSupplement20261012": {
     "record": "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",

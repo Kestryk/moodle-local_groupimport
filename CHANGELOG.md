@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] Integrate Claude db2c429 (AP-A2/A3/A7/A8/A9): JSON AJAX bootstrap, safe errors and distinct localized Guide/duplication labels; isolated dispatch and language checks, native preview tracked in the review return.
+
 ## 2026-10-12 - Native S1 role-resolution oracle successor
 
 - Moodle availability is restored (HTTP200); ordered four-commit preview and
