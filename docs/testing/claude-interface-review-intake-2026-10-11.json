@@ -6,11 +6,20 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "kevinDecisions20261012": {
+    "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/DECISIONS-KEVIN-2026-10-12.md",
+    "D7":{"status":"implemented-kit194; verification-pending","countdownsMs":[45000,30000],"pause":"remaining time retained during hover/focus","level":0},
+    "nextLots":["D5+D6","D1+D2+D3+D4","D9","D8-Penpot-then-code"],
+    "D10":"no-action; awaiting decision",
+    "olderBacklogPreserved":true,
+    "humanAccepted":false
+  },
   "apGuideAccessibility20261012": {
     "ids":["AP-B7","AP-B8"],
     "level":1,
     "kitVersion":"0.4.193",
-    "status":"keyed-checklist-focus-and-notice-protection-implemented; native-pending",
+    "status":"14-contracts36-regressions-and9-native-FR1280-checks-pass",
+    "nativeRun":"easystud-authenticated-20261012T194207463Z-11068",
     "unitScript":"scripts/test-guide-keyboard.cjs --contracts (Kit)",
     "nativeSurface":"tools/playwright/guide-filter-verification-native.spec.js",
     "noticeDeadlinesUnchanged":[20000,12000],
@@ -119,7 +128,7 @@
   "acceleration20261012": {
     "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
     "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
-    "readyQueue": ["AP-B7+B8", "AP-B5", "AP-A6-after-Codex2-T052", "AP-C2+C4", "AP-E1-lifecycle-after-T052"],
+    "readyQueue": ["D7", "D5+D6", "D1+D2+D3+D4", "D9", "D8-Penpot-then-code"],
     "condensedReturns": ["C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-A4-A5-PLAYBACK-2026-10-12.md", "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-S1-MOTION-2026-10-12.md"],
     "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
     "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",
