@@ -48,6 +48,19 @@ Isolated CSS states do not certify actual engine completion or native preview.
 
 ## Next bounded work
 
+### Retained native predecessor and strict successor
+
+Run `easystud-authenticated-20261012T115532027Z-42356` stops on its first
+reversible custom-palette icon comparison. The actual default finished copy
+and icon already pass accent/700. After changing the test root to #8b3470,
+copy changes immediately while the icon inherits the existing live colour
+transition: its sampled rgb(120,64,108) is between endpoints, not the expected
+settled rgb(139,52,112). Credential/lease/child cleanup is complete; no writes.
+Retain the immutable predecessor and unchanged assets. The separately named
+`guide-t037-finished-paint-settled-native.spec.js` waits actual finite modal
+effects before both custom paint sampling and restoration; same strict colours,
+60 routes and metrics. It does not change product transitions or assertion values.
+
 GS1 paragraph-only42rem reading width; GS2 source-confirmed title ink without
 reverting approved16px; GS5 discrete safe-demo caption; GS8 semantic Source/
 Destination scene labels; GS9 existing dl/dt/dd lesson reading points in3 desktop
