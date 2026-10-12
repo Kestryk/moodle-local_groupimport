@@ -1,5 +1,369 @@
 # Guide
 
+## Unified scene completion emphasis (0.4.185)
+
+In the unified scene header, the actual `[data-guide-live-copy]` child consumes
+accent colour and strong weight only while its live parent reports finished.
+The body typography mixin gives this child its own paint, so relying on the
+parent's inherited finished colour/weight is insufficient with display:contents.
+Keep active/reset body role, size, line height, clocks and visibility unchanged.
+Palette overrides remain semantic `--easyedu-accent`, never a product hex.
+
+The existing saved Foundation Reading banner / Finished Desktop and Phone
+providers already use accent/700. Reconcile source, Standards and product copies
+without redrawing those accepted controls. This is paint-role parity, not a
+claim that their historical caption density equals current native narration
+metrics; full reading recomposition remains a separate successor.
+
+## Timed-scene recap disclosure (0.4.184)
+
+The two opt-in Discovery recap regions expose an actual button with expanded
+state and a generated body ID/aria-controls pair. Final illustration entry keeps
+the original scroll/fade and opens the body by default. The same button closes
+and reopens with canonical Motion.disclosePanel({collapseMargins:true}); the
+Chevron follows the actual effect duration, including reversal/reduced policy.
+
+Guide imports the existing Motion module; vendor/adapt this explicit dependency
+in each consumer AMD namespace. Do not duplicate height/padding calculations.
+Scene stop/reset/exit cancels every recap-body effect; initialization restores
+the open state without completing a path or writing course data. Legacy templates
+without the optional body/button keep their original static recap behavior.
+
+The underlying illustration clocks, card choreography, phase copy, membership
+consequences and all reading/path state remain unchanged. Source preservation,
+paired Foundation/Product states, real generated AMD execution and native
+lifecycle/continuous regressions are separate from human acceptance.
+
+## Compact expected memberships (0.4.179; corrected180–182)
+
+Kevin approved R2-5 on12 October. At40rem and below, only the resting preview
+of the existing memberships strip becomes one unframed changed-membership lane
+plus an unchanged-membership caption. Keep the same authoritative origin/target
+nodes and mode values; allow wrapping on smaller screens without shrinking type.
+The product may provide `unchangedlabel`; older consumers fall back to keptlabel.
+Desktop and playing/final membership tokens remain unchanged. No engine or
+Motion changes; compound state applies only while membership-preview is present.
+
+Foundations provides Add/Move compact expected-outcome compositions using the
+existing Inter caption role, without new controls, colours or framing. Preserve
+natural cards and original desktop outcomes. Source/design/static/native/human
+gates are recorded independently in the consumer's review2 checkpoint.
+
+Native179 measured255px because the text still inherited token-pill700 density
+and chrome repeated the scene's initial-result paragraph.180 explicitly uses
+type-caption400 for compact outcome copy, an optional short expected-result
+heading and semibold heading role. Hide only the duplicate initial sentence
+inside mobile idle chrome; the same initial result remains in the scene context.
+Playing/paused/finished narration and complete accessible phase copy are unchanged.
+Keep the strict200px native oracle and failed179 evidence; never shrink type.
+Native180 still measured212.72px: the two changes did not fit the third nested
+249px inset.181 outsets mobile reading headers12px into the scene's existing
+gutter, keeping the same width through playback rather than retiming transitions.
+Cards and all clocks stay unchanged. Compact preview gap2px and zero inherited
+pill-label margin make the intended line fit without clipping or smaller type.
+Native181 passes English Add at187.70px but Move wraps for just0.25px of missing
+lane width.182 uses the existing16px spacing step as outset, leaving4px clearance
+inside the20px scene gutter. Keep the original strict locale/row/height checks;
+no subpixel relaxation, font shrinking or alternate shortened group names.
+
+## Discovery review2 containment (0.4.178)
+
+Illustrated confirmation body copy explicitly wraps at every width, even when
+the portalled host inherits Navigation nowrap. Typography and field/control
+densities are unchanged; no translation is shortened.
+
+Menu/dialog preparation reserves the actual hidden-paint layout, scrolls the
+Guide body with its existing cancellable420ms clock, then reveals with the
+existing280ms fade. Narration is installed before target clearance is measured.
+Validation keeps the entire confirmation inside the reading viewport, not just
+its action. The decorative cursor retains its original travel/drag clocks and
+is visibility-gated when covered by sticky chrome or outside the body; its frame
+loop is cancelled on completion/abort. There is no course command in this flow.
+
+Discovery templates expose one sr-only polite narration and one aria-hidden
+visible copy. A visible phase caption replaces the duplicate numeric prefix;
+complete numbered narration remains available to assistive technology. Legacy
+templates without the announcement slot retain their original live text.
+
+Tracked resize/orientation events debounce120ms and reveal the active tab with
+inline nearest only while the Guide is open. Destroy clears listeners/timers.
+No path/slide IDs, storage rules, membership consequences or card Motion change.
+The mobile resting-header content proposal R2-5 is NOT adopted pending Kevin.
+
+## Discovery reading chrome (0.4.177)
+
+The existing footer `data-easyedu-guide-progress-label` slot is the visible
+reading count. Hide only the duplicate top label, retain the4px semantic-accent
+track and keep the original controller updating all slots. It describes reading
+position, never course business completion. No new template slot or state key.
+
+Footer captions reuse type-caption. Discovery uses row flow with the count
+leading and Small actions trailing; compact actions take their intrinsic width
+and retain the canonical5.75rem minimum. Existing footer wrapping handles narrower
+layouts without shortening labels. At40rem and below, only the header's subtitle
+paragraph is hidden; the title/icon/Close, dedicated interface cue and Fullscreen
+policy remain intact. Legacy Guide, Checklist and generic modals are excluded.
+
+Paired source/Standard compositions reference the already-correct4px Discovery
+Progress masters and linked Small actions. Those source providers are unchanged;
+this is a composition change, not another progress/button/type family. Source,
+saved/painted design, isolated, native and human gates are separate.
+
+## Claude review1 compact scene header (0.4.175)
+
+Ready/finished headers remain in ordinary flow. Playing/paused headers are
+sticky and collapse their mode/Start row through the existing motion tokens;
+that row is inert during playback. Desktop puts phase, instruction and playback
+on one row; phone puts phase/actions above the two-line instruction. The full
+sentence stays in the polite live region and its native title tooltip.
+
+Modes reuse the segmented-toggle recipe, short localized labels and preserved
+`aria-pressed`; only Start is primary. Supply `comparelabel` for the group name.
+Expected memberships reuse the same element inside the ready header and return
+to their original anchor below the scene on Start. A short viewport reveals the
+complete ready header through the existing cancellable Guide scroll owner.
+
+The controller derives scroll clearance from actual sticky height plus8px,
+refreshes it with ResizeObserver and restores the original inline value at
+finish/exit. Re-reveal a phase target after its narration wraps. Settle finite
+header transitions before final recap scrolling; preserve all reading clocks
+and card choreography. These are layout gates, not business completion.
+
+Visual examples now precede `commonintroduction` and optional path invitations.
+`introalreadyexplained` suppresses a redundant scene introduction/context note
+only when the consumer's preceding paragraph supplies all its meaning; omit it
+to retain the legacy default. Stable slide/path IDs and reading order stay intact.
+
+## Common introduction trailing clearance (0.4.172)
+
+Scoped EasyStud native run44788 passes18 exact24px cases on Source4e4686e /
+runtime716369a (EN normal/FR reduced,1280/768/390), retaining sticky status,
+zero note margins and complete cleanup without injected styles/data writes.
+The first auth-load wait failure is not a CSS failure; its successor preserved
+every strict geometry/locale/media assertion. Human and other-consumer gates
+remain open, as do the separate Guide scene-header composition proposals.
+
+`--easyedu-guide-introduction-trailing-clearance: 1.5rem` supplies logical
+block-end padding on `.easyedu-guide-introduction`, matching24px below the
+safety note in the eight saved Library/Standard Desktop/Mobile Introduction
+providers. This is source parity, not a new frame or product-specific margin.
+Keep the note/status margins, sticky offsets, scene commands, dedicated interface
+cue, type roles and Motion unchanged. Native T006 previously measured0px;
+compiled reconstruction and corrected native proof are independent gates.
+
+## Path-local context candidate
+
+Optional native-evidence persistence is documented in
+[guide-path-context.md](guide-path-context.md). Named get/token/set exports
+store validated ID-only context; they never submit commands or complete steps.
+Old consumers are not opted in. Storage/build proof is separate from native
+activity-path activation, paired visuals and human acceptance.
+
+## Timed demonstration entry
+
+Scene data opts in with `manualstart`, `startlabel`, `runninglabel`, `replaylabel`.
+The shared button uses existing solid Small selection-action density. Entry is
+idle until Start; playing/paused disable it and show In progress; finished offers
+Replay. Add/Move chooses idle mode, and cannot restart busy scenes. Reset and
+re-entry restore Ready. Legacy non-opted scenes retain autoplay. Creation exercises
+and guided paths are not timed demonstrations. The existing clock, animations,
+Pause/Next and business adapters remain unchanged. EasyStud has four opted scenes;
+48 isolated EN/FR three-width normal/reduced cases pass. Source/product linked
+state specimens are saved and inspected; served/native and human gates are separate.
+
+EasyStud successor d7a25f6 is now locally served; native run47904 passes12
+normal-motion cases across all four scenes/three widths, including Start,
+running, pause, phase advance, finish, replay/reset and density. No course or
+settings writes; credential/child/lease cleanup complete. Human acceptance and
+separate native French/reduced-motion validation are not implied.
+
+## Pending highlight refresh
+
+An explicit current-step target queued for the next frame survives targetless
+scroll/resize refreshes. A later explicit target still replaces it; absent or
+removed targets still clear. This avoids losing the initial cue during reduced
+scroll without changing scroll/scene Motion, completion, styles or geometry.
+`scripts/test-guide-pending-highlight.cjs` preserves the original failing race,
+checks pending/replacement/empty/removed cases and complete engine preservation.
+Consumer/native proof remains separate; no new Penpot component is introduced.
+
+Scoped EasyStud successor: sourcea08ddf0/runtime83dc8b/native7260 passes12
+Group/Grouping editor cases in French normal and English reduced motion at
+1280/768/390. Native cues, review/reopen and Cancel pass without Save or data
+writes. Complete engine preservation and exact consumer AMD/map tests pass.
+This is not a public release, other-consumer certification, whole-scene paint
+or human acceptance. No new visual geometry or Penpot relinking is required.
+
+Final EN-normal native27880 passes six cases on the same source/runtime,
+bringing this bounded editor proof to18 cases. Existing no-Save/data-write,
+other-consumer, whole-scene and postponed human boundaries are unchanged.
+
+Destination-card inspection is a private source candidate, documented in
+`guide-inspection-candidate.md`. It reuses the shared scene clock and canonical
+primitives but is not yet paired/published or activated in any consumer.
+
+## Desktop fullscreen (opt-in)
+
+Discovery glyph successor is documented in
+`guide-fullscreen-glyph-2026-10-10.md`: lightweight currentColor vectors retain
+Small density and all native lifecycle rules. Legacy consumers keep the original
+FontAwesome branch. Shared source/design tests are not consumer preview proof.
+
+Set `fullscreen: true` and supply `guidefullscreenenter`, `guidefullscreenexit`
+and `guidefullscreenunavailable` translated template labels. The header uses
+the shared Small control recipe and native Expand/Compress icons. The browser
+must expose the Fullscreen API and the viewport must be at least1024px wide.
+Only a real click requests it; browsers may refuse without closing the guide.
+Escape exits fullscreen first. Close and Show in interface await native exit
+before ordinary modal motion and target focus. Slide, progression and existing
+animations are preserved. Compact resize and destroy exit only the owned Guide
+session. Never activate this option on responsive-only guide chrome.
+
+`scripts/test-guide-fullscreen-integrated.cjs` verifies actual consumer-rendered
+Mustache, compiled CSS and built AMD in Chrome (normal/reduced motion). This is
+isolated browser proof, not native Moodle, all guide content or human acceptance.
+
+Welcome reset confirmations use the existing public confirmation/header/caption
+and paired-action roles, with opt-in `easyedu-dialog-body`20px body padding.
+The body lane does not change any existing entity body or field arrangement.
+
+## First-visit desktop invitation (0.4.154)
+
+Foundations provider and linked Standard copy are recorded in
+`docs/design/guide-welcome-foundations-2026-10-08.json`:480x140, preserved nested
+Small action providers, saved2 roots/14 visible descendants and inspected
+raster. Product linkage and real welcome persistence remain separate open gates.
+
+Opt in with `welcomeOffer: true` only when the product server says the current
+user is eligible. Supply translated `guidewelcometitle`, `guidewelcomecopy`,
+`guidewelcomeopen`, `guidewelcomedismiss` template fields. Default is disabled.
+`welcomeTarget` optionally names the actual launcher; otherwise use this root's
+launcher. A hidden target fails open without displaying a detached cue.
+
+At1024px and above, offer a480px auto-height surface, caption and same-height
+Small neutral/primary actions. Opening uses existing modal-in Motion tokens;
+browser and server reduced-motion policies suppress it. Below1024px there is
+no first-visit invitation. Resizing below the threshold clears the cue. An
+unfinished resumable task takes precedence over this invitation.
+
+Listen to `easyedu:guide-opened` on document, qualifying `event.detail.root`.
+This event means the real guide modal has opened, not a welcome impression or
+dismissal. Product adapters own authentication, preferences, CSRF, stale-page
+generations, admin reset and Privacy API; the shared engine never writes them.
+Do not replace this opt-in offer with legacy `firstVisit` auto-opening.
+
+`scripts/test-guide-welcome.cjs` exercises actual EasyStud rendering and built
+AMD in EN/FR normal/reduced Motion, dismissal, real opening, destroy and compact
+suppression. This is isolated proof, not native persistence or human approval.
+
+## Active checklist highlight lifetime (0.4.153)
+
+A checklist step is a current task, not a transient interface location cue.
+Keep its highlight while the visitor reads or acts, including a native modal
+destination. Change/stop/reset/close retains existing cleanup. Ordinary Show in
+interface remains timed through `highlightAutoHideDelay`. No new independent
+clock or scene/card animation is introduced. Native repeated transition proof
+is required before declaring intermittent selection guidance fixed.
+
+## G10-F phone invitation labels (0.4.152)
+
+Only below40rem, a label's counter occupies a fixed0.9375rem left grid track;
+the remaining anonymous text item centres each wrapped line independently.
+Preserve desktop/tablet flex layout and the existing upper-left phone route icon.
+No added font or density exception. This matches existing Foundations Phone
+provider4ee6f77a-1dfb-809b-8008-c1ed9cacc3ab: all six Step copy nodes already
+centre within their dedicated tracks. Source implementation catches up with
+that design contract rather than creating a divergent visual provider.
+
+## G10-E reduced completion presentation (0.4.151)
+
+Discovery's completed minimized checklist keeps its header/Restore action and
+the entire completion message in a naturally growing caption notice. It does
+not silently replace the sentence with a short hidden alternative. Wrap long
+localized text on phones; retain non-complete minimized behavior. This opt-in
+does not change historical checklist consumers or path completion semantics.
+
+Reset in the invitation progress row is a standalone small neutral bordered
+`selection-action`, not `selection-recovery-action` (which assumes an already
+framed capsule). No new button skin. EN/FR actual-consumer completion containment
+passes desktop/phone, with existing header and green finish checks unchanged.
+Foundations publishes Reduced Complete Phone and updates two In-progress footer
+Reset links. These footers are adjacent to invitations, not descendants of them.
+Native milestone highlights/product propagation/human acceptance remain separate.
+
+## G10-D reveal before Move (0.4.150, 2026-10-08)
+
+After the illustrated destination confirmation closes, reveal the card stage
+before reading its geometry or starting transfer. This uses the existing Guide
+scroll owner: pause, skip, reduced motion and scene departure retain their
+normal semantics. It must never scroll the underlying product page. No new
+card appearance, duration, course command or provider geometry is introduced.
+
+`scripts/test-guide-move-reveal.cjs` exercises the actual localized Moodle
+Mustache and built consumer AMD at EN/FR1280, EN768 and FR390. It reproduces
+cards above the visible Guide body on the previous controller, then verifies
+visible transfer, contained Compare text, completion and unchanged background
+scroll on the successor. Native serving/design documentation and human review
+are tracked separately; this isolated proof is not acceptance.
+
+## G10-C playback (0.4.149, 2026-10-08)
+
+Discovery narration now exposes localized Pause/Resume and Next-phase icon
+buttons. These consume `selection-action` and the shared small `icon-button`
+recipe; no consumer-specific button skin is introduced. Three staggered dots
+indicate explanation in progress. Pause and reduced motion suppress bouncing;
+idle/completion hides the indicator and disables controls.
+
+The scene's existing cancellable owner controls reading, WAAPI illustration,
+copy fade and reveal scroll together. Pause retains remaining reading time.
+Next drains only the current phase's presentation effects and stops at the
+next phase boundary, retaining pause if active. Serialize advancement and
+ignore the second click of a double click. Reset, navigation, close and destroy
+abort pending timers/gates and remove drag ghosts. No course command is called.
+
+Adapter data must provide `discovery_pause`, `discovery_resume` and
+`discovery_nextphase`; button labels change with state and `aria-pressed`.
+Future scenes using this narration/phase engine inherit the same lifecycle.
+
+Built-consumer playback checks pass EN1280/FR390 normal motion and EN768 reduced
+motion, including paused final-phase completion and ghost cleanup. Six keyboard
+routes still pass. Foundations has Active/Paused/Finished desktop/phone reading
+providers and linked Standard specimens. Nine playback control specimens reuse
+canonical selection-action states. Painted phone dots were corrected after the
+first raster exposed overlap. Guide-product propagation, additional hover/focus
+specimens and saved-server proof were completed in the successor. All nine
+Guide links now retain their copy and host coordinates, with phone clearance
+adjusted. Saved proof passes30 Foundation roots/260 visible descendants and9
+Guide roots/128 visible descendants. Native preview and human acceptance stay
+separate; neither is implied by this canonical release checkpoint.
+
+The [playback successor mapping](../design/guide-playback-foundations-2026-10-08.json)
+pins all15 provider/main/linked-Standard IDs. It supersedes only the Reading
+recipes in the historical Discovery mapping, not the other families or their
+recorded fingerprints. Preserve historical mapping evidence unchanged.
+
+## Discovery Foundations catalogue (2026-10-08)
+
+The19 Discovery recipes are published separately from historical Guide controls
+on Foundations08.14 Standards and08.14.1 Library. Exact provider/main/example IDs,
+sizes and bounded verification flags are in
+[the design mapping](../design/guide-discovery-foundations-2026-10-08.json).
+The canonical source remains Kit0.4.146; this documentation-only publication
+does not change VERSION, shared SCSS, templates, controllers or public archives.
+Standards instantiate the canonical Library components. Legacy Checklist56px
+providers remain unchanged; intrinsic Discovery rows are not global replacements.
+Phone358px examples are inner-view compositions, not full Moodle viewports.
+
+Source-to-Library and linked-Standard recursive fingerprints match for all19;
+final checklist/full-host exports inspected.88 Inter texts and12 linked glyphs
+have scoped containment/centring proof. Saved-server persistence, Guide-product
+relinking, complete curriculum and human acceptance are separately recorded.
+Saved-server gate passes38 roots/570 descendants; Guide-product relinking and
+human acceptance remain pending. Tagged Path selrect is decoded explicitly;
+the initial scalar-reader diagnostic was not a product geometry failure.
+Product wording remains consumer-owned; generic repeated labels are specimens.
+No finished/unfinished progress semantics are inferred from a design snapshot.
+
 The reusable language examples under `guide/lang/` include complete Moodle
 GPL headers and use the placeholder component `local_easyedu_guide`. Consumer
 plugins should retain the header and replace the package value with their own
@@ -100,7 +464,9 @@ Expected interaction:
   or end of the scroll range. Recalculate this after opening the modal, after
   nav scrolling, after slide changes and after window resizing.
 - Footer progress text should use the visible `Step X of Y` wording from the
-  language string/template and sit directly next to the Previous/Next buttons.
+  language string/template. On wide layouts it can share the action row; in
+  the compact bottom sheet it follows the Previous/Next row as a centred
+  secondary label.
 - `Show in the interface`, guided-path start buttons, checklist return buttons
   and footer next/previous actions are primary guide actions. Keep them on the
   shared EasyEdu blue surface unless a product has an explicit accessibility
@@ -112,6 +478,18 @@ Expected interaction:
 - Guided checklist rows and messages must never create nested horizontal
   scrolling. Long step labels, completion messages and translated strings should
   wrap inside the fixed guided panel width.
+- On compact or short viewports, the Guide becomes a bottom sheet. Use balanced
+  header slots so the compass, title and subtitle are centred while the close
+  action remains at the inline end. Change each slide to one centred content
+  column, use a top identity accent instead of an asymmetric left rail, and
+  place `Show in the interface` on its own full-width row. Footer actions come
+  before the centred Step label. Learning scenes and guided-path cards stack
+  vertically, with arrows pointing down the reading flow and child icons sized
+  below their parent heading/icon hierarchy. The guided-path start action is a
+  full-width final row with a visible primary border; it must never share the
+  icon/body columns, and both its body and action stretch across the stacked
+  card width. Compact slide and learning-card left rails are removed
+  completely once their top identity accent is present.
 
 Guided checklist steps may need to open a Moodle modal before their target is
 available. In that case, define `open` with either a configured target key or a
@@ -350,14 +728,9 @@ explain what the path will do:
 
 The card uses `.easyedu-guide-guided-card`, keeps the start action attached to
 the explanation and should be preferred over plugin-owned guided path previews.
-At desktop, the icon and wrapping explanation occupy the first row while the
-full-width bordered start action occupies its own final row. The text must stay
-inside the green card and must never run under or beyond the action. At compact
-breakpoints the card becomes one full-width vertical flex flow: centred icon,
-full-width explanation, then that same full-width final action. It must not
-retain a visual column split. The title and explanation explicitly restore
-normal wrapping so a broad consumer `white-space: nowrap` rule cannot expand
-the card beyond its track.
+At compact breakpoints it becomes one full-width vertical flex flow: centred
+icon, full-width explanation, then the full-width bordered start action. It
+must not retain a visual column split.
 
 The green guided-path frame is available as a reusable surface mixin:
 
@@ -445,13 +818,37 @@ The highlight is intentionally `position: fixed`; target calculations should use
 `getBoundingClientRect()` coordinates directly so the selector remains anchored
 correctly while the page scrolls.
 
+Opening the Guide, closing the checklist or using either return action only
+changes the visible surface. These transitions must preserve the current path,
+active step and completed steps; only a consumer-provided explicit reset may
+clear saved checklist progress.
+
+If the target belongs to a hidden responsive view, the slide may declare
+`data-easyedu-guide-show-open` (and an optional delay) with the configured
+view opener. It may then declare `data-easyedu-guide-show-after-open` for a
+consumer-owned detail control, such as an expanded card or a form field. The
+controller closes the modal, opens the view, emits `easyedu:guide-open-target`
+for that detail control, then resolves and highlights the now-visible target.
+If the target remains unavailable, it reopens the Guide instead of stranding
+the visitor on the page.
+
+Consumers with a compact navigation drawer may listen for
+`easyedu:guide-interface-transition` and close that drawer on departures to
+an interface target or guided path. The shared controller emits this event but
+does not couple itself to a consumer's navigation implementation.
+
 The return panel and its highlight are temporary. They auto-hide after a short
 delay, matching EasyStud, and the highlight is cleared at the same time. If the
 user dismisses the return panel manually, the highlight must be cleared
 immediately. Opening the guide normally while the temporary return panel is
-active must also clear the old highlight. Guided checklists keep the checklist
-panel visible, but the highlighted outline is temporary: after a short delay the
-selector disappears while the guided checklist remains available.
+active must also clear the old highlight. Cleanup also cancels any queued
+highlight-refresh frames, so an in-flight scroll transition cannot redraw a
+highlight after the visitor has returned to the Guide. Guided checklists keep
+the checklist panel visible, but the highlighted outline is temporary: after a
+short delay the selector disappears while the guided checklist remains
+available. When a visitor activates a checklist step, the resolved interface
+target also shows the same return panel, so the visitor can reopen the Guide
+without manually finding its launcher.
 
 The interface return panel uses a two-column layout on desktop: explanatory
 text first, actions second. Keep the action column `max-content` so translated
@@ -861,15 +1258,27 @@ should vary by plugin.
 
 ## Minimized guided checklist
 
-When the guided checklist is minimized, the header remains visible and must show
-the current pending step, not only the generic checklist title. The reusable AMD
-updates `[data-easyedu-guide-checklist-title]` with
-`Guided path: {active step title}` and
-`[data-easyedu-guide-checklist-subtitle]` with the visited counter. Plugins can
-localise these two parts through `labels.guidedPath` and `labels.visited`.
-The close action is hidden in this minimized state: users can expand the panel
-again before closing, which prevents a tiny persistent close icon from floating
-beside the compact checklist.
+On compact or short viewports, the guided checklist starts minimized each time a
+path is entered; a manual expansion only lasts for that current path. Its
+footprint shows the actual active checklist row — index, title and explanation
+— rather than a title-only chip. Because this is the original button, selecting
+it still opens and highlights its real interface target. The expand control
+reveals the complete list without losing path progress. On completion, that
+same row carries the completion banner and its Return to guide action. The
+close action remains hidden while minimized so the user can expand before
+dismissing the path. On compact viewports the row takes the full available
+panel width; on wide viewports it remains the normal checklist-step width, not
+a full-screen bar.
+
+When a compact checklist sends a visitor to a target, the Guide measures its
+fixed bottom surface and scrolls the target above that surface before applying
+the highlight. This applies to direct checklist activation and automatic
+guided-path transitions, including targets inside a scrollable workspace.
+
+When expanded, wide viewports continue to show the active
+step title and visited counter through `[data-easyedu-guide-checklist-title]`
+and `[data-easyedu-guide-checklist-subtitle]`. Plugins localise these through
+`labels.guidedPath` and `labels.visited`.
 
 Recommended plugin-owned hooks:
 
@@ -951,7 +1360,81 @@ in the kit first and must include responsive and reduced-motion behaviour.
 
 ## Extraction status
 
+Quiet Show Foundation resting recipe is catalogued under
+`EasyEdu / Buttons / Guide utility / Small / Quiet`, canonical component
+`e764db89-4cb1-80d0-8008-c20c94fe7fc3`,180x30.4. Exact Library/Standard record:
+`docs/design/guide-quiet-foundations-2026-10-08.json`. It preserves the accepted
+ordinary Guide host with linked button/eye primitives; no SCSS/controller or
+VERSION change. Fingerprint/saved proof passes; Practice/Organisation/Actions
+Guide canonical relink has saved3-root/24-descendant proof. Raster and temporary
+transfer cleanup were subsequently verified using contained real-editor browser
+captures and saved absence checks (external run g9-quiet-browser-20261008).
+The remote export failure is bypassed, not repaired. This resting specimen does not
+certify additional states, complete curriculum or human acceptance.
+
 The generic guide now owns the shell, navigation, locked states, highlights,
 checklists, return panel, guided-path cards and the rich learning scenes listed
 above. Plugins own their Moodle strings, selectors, business events and example
 content only.
+# Launcher close / focus restoration
+
+## Shared header and narration (0.4.148)
+
+Fullscreen lifecycle candidate (G10-H, not integrated):
+`guide/amd/src/easyedu_guide_fullscreen.js` owns only native browser state.
+Caller must invoke toggle from a real desktop action, await exit before modal
+close or Show in interface, and bind keyboard/focus/translated feedback through
+the existing Guide engine. Width below1024 is unavailable. Refusal preserves
+ordinary mode; never emulate browser fullscreen with a CSS-only promise.
+Destroy/compact-resize races exit only this element's session, not another
+component. No default activation, template/style or consumer sync yet.
+See https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API and
+https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen.
+Native isolated proof is not whole-Guide keyboard, Penpot or Moodle acceptance.
+
+Welcome lifecycle (0.4.157): initialize while a loading shell hides navigation
+without losing the invitation. Observe launcher size and ancestry attributes
+for at most30s; disconnect after visibility, opening, dismissal, compact resize
+or destroy. No document-subtree observer, polling or automatic Guide opening.
+
+Discovery uses `modals.dialog-header`, `dialog-heading` and
+`dialog-heading-icon`, the same recipes as public entity dialogs. Keep the
+compass; do not reintroduce legacy mobile stacked/icon geometry. Heading text
+uses the modal title role and identity title colour, with a caption subtitle.
+
+Narration has a two-pixel primary border on every side. The finished state uses
+accent surface/text/border, strong weight and an aria-hidden validation icon;
+the live copy remains the sole spoken message. Reset/replay hides that icon.
+This is presentation only: phase durations, scene lifecycle and native commands
+are unchanged. Pause/Play/Skip controls belong to the subsequent G10-C lot.
+
+Since0.4.147, Escape is handled before typing-target navigation suppression.
+Text editing still owns arrows/Home/End; Escape uses the existing modal close
+and opener-focus lifecycle. If a nested control already prevented Escape,
+Guide must not close underneath it. The isolated canonical keyboard scenario
+uses the actual template/controller and real Moodle Mustache renderer; six
+1280/768/390 normal/reduced routes pass. Native served proof remains separate.
+
+On compact viewports, external-dialog highlights expose shared target-in-dialog
+and vertical dock attributes. Expanded checklist steps retain bounded scroll;
+both the real dialog choice and checklist review must pass native pointer checks.
+Never solve one target by covering the other, hiding the checklist or force-click.
+
+Discovery checklists use the public modal layer plus one, so optional path
+review stays clickable while a native destination dialog is open. A visible
+panel is not a hit-target proof: assert `elementFromPoint` and click an earlier
+step normally, never force-click through the modal backdrop.
+
+The shared launcher uses `:hover` for pointer hover and `:focus-visible` for
+keyboard focus paint. Ordinary restored `:focus` after pointer closure keeps
+the resting palette. Do not blur the opener: preserve focus restoration and
+keyboard access. Check computed icon paint after Close and Escape with the
+pointer away, then verify real hover and Tab focus separately.
+
+Activity-dot lanes are three explicit4px grid tracks with3px gaps. Dot padding
+and margins are zero; their existing1.35s staggered bounce remains unchanged.
+Foundations Active/Paused Desktop/Phone source and Standard examples already
+match this recipe; reconcile stale product overrides rather than redesigning
+the source. EasyStud R10-28 native playback/pause/departure passes at three
+widths. Isolated reduced/disabled and native completion/localization/human
+review are separate gates, not implied by the spacing result.

@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideFinishedPaintT037A": {
+      "kitCommit": "7728357dfc9cff32dccab054eb3e5ee0bc941996",
+      "kitVersion": "0.4.185",
+      "scope": "Finished unified scene-copy accent/strong only; complete unrelated CSS and native engine/template metrics unchanged",
+      "record": "docs/guide-t037-reading-progress-2026-10-12.md",
+      "isolatedCasesPassed": 16,
+      "designSaved": true,
+      "nativeVerified": false,
+      "humanAccepted": false
+    },
     "guideRecapDisclosureT012": {
       "kitCommit": "bfaf05940c173d8f62aef945188c1900c9651007",
       "kitVersion": "0.4.184",

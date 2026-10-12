@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Unified narration child typography owns its paint, even beneath a finished
+display:contents live region. Reapply only existing semantic completion roles
+on that child; prove active/reset metrics and engine/template bytes unchanged.
+Already-correct saved source/Standard/product examples are reused, not redrawn.
+Paint-role parity is not exact caption/body density or human acceptance.
+
 Recap disclosure vendors the existing Motion dependency atomically with Guide
 template/controller/SCSS. Preserve scene clocks/scroll/fade and legacy static
 fallback. Execute actual generated named AMD and callable dependency exports;

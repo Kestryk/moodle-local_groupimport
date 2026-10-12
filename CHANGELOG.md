@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-10-12 - Guide completion emphasis, T037-A
+
+- Consume Kit185's finished narration accent/strong child paint. Keep every
+  other CSS rule, font metric, template/controller/Motion and course command.
+- Reuse accepted saved Foundation/Desktop product paint and catalogue the
+  missing linked Phone usage. Retain strict isolated baseline/corrected proof;
+  native gate and the rest of T037 reading composition remain separate.
+- All61 original corrections and human checklist remain open/preserved.
+
 ## 2026-10-12 - Final recap continuous and keyboard verification
 
 - Native184 regression passes12 continuous scenes,1336 samples and six resized
