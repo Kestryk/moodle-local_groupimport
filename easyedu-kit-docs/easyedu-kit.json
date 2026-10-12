@@ -5,8 +5,8 @@
   "status": "stable",
   "consumerSync": {
     "guideMobileExpected20261012": {
-      "kitCommit": "a2d324deeaca59b8984adcfb4d8dfc57d4aec22d",
-      "kitVersion": "0.4.181",
+      "kitCommit": "98cfcc747e778e24303ecce0d2ff735438539044",
+      "kitVersion": "0.4.182",
       "fitSuccessor": "181 shares the available scene gutter;180/51692 failed212.72px; preserved",
       "previousCandidate": "c532f85/0.4.179; native29736 failed255px; preserved",
       "modules": ["guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],

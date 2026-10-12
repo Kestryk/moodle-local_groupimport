@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-12 - Whole-label mobile lane verification
+
+- Preserve181/8400's Move wrap at0.25px beyond its available lane; English Add
+  passes187.70px.182 reserves the full labels using the shared16px spacing step,
+  retaining4px scene-frame clearance, original type/cards and all clocks.
+- Keep the same strict200px/same-row native scenario and all predecessor proof.
+
 ## 2026-10-12 - Compact reading-lane successor
 
 - Preserve180/51692's212.72px failure. Shared181 reading header uses the existing
