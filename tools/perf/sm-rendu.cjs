@@ -50,7 +50,12 @@ async function run(page, testInfo, expect) {
                         const stream = gzip ? response.pipe(zlib.createGunzip()) : response;
                         response.on('data', chunk => {wireBytes += chunk.length;});
                         stream.on('data', chunk => {rawBytes += chunk.length; if (surface === 'state') chunks.push(chunk);});
-                        stream.on('error', reject);
+                        stream.on('error', error => {
+                            if (surface === 'state') { reject(error); return; }
+                            resolve({surface, sample: i, requestId, status: response.statusCode, gzip,
+                                rawBytes, encodedBodyBytes: wireBytes, httpMs: performance.now() - start,
+                                incompleteResponse: true, transportError: error.message});
+                        });
                         stream.on('end', () => resolve({surface, sample: i, requestId, status: response.statusCode,
                             gzip, rawBytes, encodedBodyBytes: wireBytes, httpMs: performance.now() - start,
                             ...(surface === 'state' ? {response: JSON.parse(Buffer.concat(chunks).toString('utf8'))} : {})}));
