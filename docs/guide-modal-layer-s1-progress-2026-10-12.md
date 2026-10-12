@@ -67,6 +67,22 @@ scroll, normal navigation and close cleanup. Transactional completion requires
 separately supervised dedicated course fixtures; no course5 data mutation.
 Human checklist open; isolated/design/source gates never close it automatically.
 
+Reboot recovery at Sourceae870ed: canonical eight helpers and16 browser cases
+rerun successfully in external `guide-s1-20261012-b`. Retain the first ENOENT
+report-directory diagnostic; explicit caller directory creation fixes the
+harness, with no product change. Manifest registered, retention dry-run only.
+Runtime-wrapper discovery30400 selects exactly one editor test, no auth/native
+test. Controlled preview dry-run20261012T161713Z verifies clean runtime9135235,
+no active lease, locally available ordered prerequisitesb48bd20→28fb767→ae870ed.
+No Apply/cache purge/browser against Moodle yet: login HTTP remains unavailable
+and automatic startup was refused before process creation. Kevin was asked
+non-blockingly to open the installed Start Moodle launcher. No server recovery
+or native gate is inferred from the runtime's previouslyPreviewed metadata.
+Verified snapshot `ws3-20261012T162134Z-port4719pg3-59cd9d95566e` preserves
+Sourceae870ed, Kit27a5030 and unchanged runtime9135235; candidate-not-published.
+PG-A2/A1/A3 current-source preflight prepared independently, no activation;
+see `guide-native-signals-pg-a2-a1-a3-preflight-2026-10-12.md`.
+
 ## I1–I13 before/after
 
 | Invariant | Source/isolated result and native limitation |
