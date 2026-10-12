@@ -1,6 +1,108 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
+// N1: keyboard/focus and notice lifecycle, isolated history; no course writes.
+test('Guide checklist keyboard focus and notice interaction survive progress', async({page}, info) => {
+    test.setTimeout(180000);
+    const checks = {}, errors = [], blocked = [];
+    const url = new URL(process.env.EASYEDU_MOODLE_URL); url.searchParams.set('lang', 'fr');
+    page.on('pageerror', error => errors.push(error.message));
+    await page.setViewportSize({width: 1280, height: 1000});
+    await page.goto(url.href, {waitUntil: 'domcontentloaded'});
+    if (page.url().includes('/login/')) {
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter: true});
+        await page.waitForURL(u => !u.pathname.includes('/login/'), {waitUntil: 'commit', timeout: 60000});
+        await page.goto(url.href, {waitUntil: 'domcontentloaded'});
+    }
+    await page.route('**/local/groupimport/**', route => {
+        if (route.request().method() === 'GET') return route.continue();
+        blocked.push('plugin write'); return route.abort('blockedbyclient');
+    });
+    const workspace = page.locator('#local-groupimport-easystud');
+    const checklist = page.locator('[data-easyedu-guide-checklist]');
+    const title = checklist.locator('[data-easyedu-guide-checklist-title]');
+    const resume = page.locator('[data-easyedu-guide-resume]');
+    const initialize = async suffix => page.evaluate(async suffix => {
+        const root = document.querySelector('[data-easyedu-guide-root]'), config = root.easyeduGuideConfig;
+        const Guide = await new Promise(resolve => require(['local_groupimport/easyedu_guide'], resolve));
+        const key = 'guide-a11y-native-qa-' + suffix;
+        Guide.destroy(root);
+        localStorage.setItem(key + '.checklist', JSON.stringify({path: 'try-actions', activeIndex: 1,
+            presentationKey: config.presentationKey, completed: {'try-actions': ['try-drag']}}));
+        Guide.init(root, {...config, storageKey: key, firstVisit: false, welcomeOffer: false});
+    }, suffix);
+    try {
+        await expect(workspace).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
+        await expect(page.locator('html')).toHaveAttribute('lang', /^fr(?:-|$)/);
+        await initialize('hover');
+        await expect(resume).toBeVisible();
+        await expect(resume).toHaveAttribute('role', 'status');
+        await expect(resume).toHaveAttribute('aria-live', 'polite');
+        await resume.hover();
+        await page.waitForTimeout(20500);
+        await expect(resume).toBeVisible(); checks.hoverDefersDeadline = true;
+        await page.mouse.move(1, 1);
+        await expect(resume).toBeHidden({timeout: 3000}); checks.expiryAfterHover = true;
+
+        await initialize('focus');
+        const resumeButton = resume.locator('[data-easyedu-guide-resume-path]');
+        await resumeButton.focus();
+        await page.waitForTimeout(20500);
+        await expect(resume).toBeVisible(); await expect(resumeButton).toBeFocused();
+        checks.keyboardDefersDeadline = true;
+        await resumeButton.press('Enter');
+        await expect(checklist).toBeVisible(); await expect(title).toBeFocused();
+        checks.resumeFocusesChecklistHeading = true;
+
+        const selection = checklist.locator('[data-easyedu-guide-step-id="try-selection"]');
+        const context = checklist.locator('[data-easyedu-guide-step-id="try-context"]');
+        const labels = await page.evaluate(() => document.querySelector('[data-easyedu-guide-root]').easyeduGuideConfig.labels);
+        await expect(context).toBeDisabled();
+        await expect(context).toHaveAccessibleName(new RegExp(labels.stepLocked));
+        checks.lockedStateIsAnnounced = true;
+        await page.evaluate(() => { window.guideA11yRetainedButton = document.querySelector(
+            '[data-easyedu-guide-step-id="try-selection"]'); });
+        const card = workspace.locator('[data-easystud-participant-list] [data-easystud-user]:visible').first();
+        await expect.poll(() => card.evaluate(card => document.querySelector('[data-easyedu-guide-root]')
+            ?.easyeduGuideCurrentTarget?.closest('[data-easystud-user]') === card)).toBe(true);
+        const checkbox = card.locator('[data-easystud-selector-input]');
+        if (await checkbox.isChecked()) await card.locator('.local-groupimport-easystud-selector').click();
+        await card.locator('.local-groupimport-easystud-selector').click();
+        await expect(selection).toHaveClass(/is-complete/);
+        await expect(selection).toHaveAccessibleName(new RegExp(labels.stepCompleted));
+        expect(await page.evaluate(() => window.guideA11yRetainedButton === document.querySelector(
+            '[data-easyedu-guide-step-id="try-selection"]'))).toBe(true);
+        checks.realSelectionRetainsButtonAndCompletionName = true;
+
+        // Isolated QA replay of an already observed native completion tests focus
+        // preservation during rerender; this is not business-action evidence.
+        await selection.focus();
+        await page.evaluate(() => document.querySelector('[data-easyedu-guide-root]').dispatchEvent(
+            new CustomEvent('easyedu:guide-step-complete', {bubbles: true,
+                detail: {path: 'try-actions', step: 'try-selection'}})));
+        await expect(selection).toBeFocused(); checks.focusSurvivesProgressRender = true;
+        await expect(checklist.locator('[aria-current="step"]')).toHaveCount(1);
+        await selection.press('Escape');
+        await expect(checklist).toHaveClass(/is-minimized/);
+        const restore = checklist.locator('[data-easyedu-guide-checklist-restore]');
+        await expect(restore).toBeFocused(); await restore.press('Enter');
+        const minimize = checklist.locator('[data-easyedu-guide-checklist-minimize]');
+        await expect(minimize).toBeFocused(); checks.escapeAndRestoreRetainVisibleFocus = true;
+        const launcher = page.locator('[data-easyedu-guide-open]:visible').first();
+        await checklist.locator('[data-easyedu-guide-checklist-close]').press('Enter');
+        await expect(checklist).toBeHidden(); await expect(launcher).toBeFocused();
+        checks.closeRestoresLauncher = true;
+        expect(errors).toEqual([]); expect(blocked).toEqual([]);
+    } finally {
+        fs.writeFileSync(info.outputPath('guide-accessibility-native.json'), JSON.stringify({
+            surface: 'guide-accessibility', niveau: 1, checks, errors, blocked,
+            businessWrites: false, history: 'isolated QA; prior drag is not business proof'
+        }, null, 2));
+    }
+});
+
 // local-supervised: existing participants, filters and selection only; no business writes.
 test('Guide filter path verifies matching results and clears selection', async({page}, info) => {
     test.setTimeout(360000);

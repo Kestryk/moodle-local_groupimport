@@ -6,6 +6,18 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "apGuideAccessibility20261012": {
+    "ids":["AP-B7","AP-B8"],
+    "level":1,
+    "kitVersion":"0.4.193",
+    "status":"keyed-checklist-focus-and-notice-protection-implemented; native-pending",
+    "unitScript":"scripts/test-guide-keyboard.cjs --contracts (Kit)",
+    "nativeSurface":"tools/playwright/guide-filter-verification-native.spec.js",
+    "noticeDeadlinesUnchanged":[20000,12000],
+    "B8DecisionScope":"Preserve accepted automatic expiry; only suspend while hover/focus retains controls",
+    "guardsRead":"COORDINATION-LOTS.md §5 ter",
+    "humanAccepted":false
+  },
   "apMotionScope20261012": {
     "ids":["AP-A10","AP-B6"],
     "level":1,
