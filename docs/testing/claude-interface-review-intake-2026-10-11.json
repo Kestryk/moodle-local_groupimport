@@ -9,7 +9,7 @@
   "claudeA4A5Coordination20261012": {
     "AP-A4": {"upstream":"73085bfd900c32102a81df23023e8a73dcfcca3e","level":0,"status":"integrated-source-guard-checks","nativeFormsOnDedicatedCourse":"pending"},
     "AP-A5": {"upstream":"2726f02179102be329a8fe9e5ae703e42daec5e1","owner":"Claude","status":"integrated-source-resolver-checks","kevinDecision":"Moodle ID retained; bare first/last name removed","nativeKnownIdentifierWrites":"Dedicated course pending"},
-    "codex2": {"branch":"work/port4719pg3/easystud-perf-server-20261012","owns":["T052","AP-E5","AP-E6-server","AP-E7","AP-E8"],"manageServerReservations":"COORDINATION-LOTS.md; do not edit reserved data functions","integrationOwner":"Codex1"},
+    "codex2": {"branch":"work/port4719pg3/easystud-perf-server-20261012","owns":["T052","AP-E5","AP-E6-server","AP-E7","AP-E8"],"manageServerReservations":"COORDINATION-LOTS.md; do not edit reserved data functions","integrationOwner":"Codex1","AP-E6-server":{"status":"source-native-api-verified-default-off","pageByteGain":276800,"defaultPayloadMatchesServed":true,"JSConsumer":"pending-Codex1","browserActivated":false,"humanAccepted":false}},
     "codex1Retained":["AP-E1","AP-E2","AP-E3","AP-E4","AP-A6","T054"],
     "returnContract":"Under150 lines, condensed JSON; raw JSON in referenced external file",
     "humanAccepted":false

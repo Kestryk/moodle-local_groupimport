@@ -7,7 +7,7 @@ param(
     [Parameter(Mandatory = $true)][string]$PhpPath,
     [Parameter(Mandatory = $true)][string]$OutputRoot,
     [ValidateRange(1, 800)][int]$Participants = 800,
-    [ValidateSet('baseline', 'regions', 'curve')][string]$Mode = 'baseline',
+    [ValidateSet('baseline', 'regions', 'curve', 'details')][string]$Mode = 'baseline',
     [switch]$WaitForLease,
     [ValidateRange(1, 900)][int]$LeaseWaitTimeoutSeconds = 900,
     [switch]$DiscoveryOnly

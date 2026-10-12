@@ -34,7 +34,38 @@ async function run(page, testInfo, expect) {
             expect(measurement.passed, surface + ' PHP result').toBe(true);
             if (surface === 'manage') expect(measurement.decomposition.exactByteSum).toBe(true);
         }
-        if (result.mode === 'regions') {
+        if (result.mode === 'details') {
+            const candidate = path.resolve(__dirname, '..', '..');
+            result.lot = 'AP-E6-server';
+            const variants = [
+                ['manage-source-full', 'manage', false], ['manage-source-deferred', 'manage', true],
+                ['state-source-full', 'course-state', false], ['state-source-deferred', 'course-state', true],
+                ['userdetails-checks', 'userdetails-checks', false],
+            ];
+            for (const [label, surface, deferred] of variants) {
+                const output = testInfo.outputPath(label + '.json');
+                const args = [path.join(__dirname, 'measure.php'), '--moodle-root', process.env.EASYEDU_PERF_MOODLE_ROOT,
+                    '--manifest', manifestPath, '--output', output, '--case', surface, '--service-root', candidate];
+                if (deferred) args.push('--defer-details');
+                const child = spawnSync(process.env.EASYEDU_PERF_PHP, args,
+                    {encoding: 'utf8', timeout: 120000, windowsHide: true});
+                expect(child.status, label + ' process exit').toBe(0);
+                const measurement = JSON.parse(fs.readFileSync(output, 'utf8'));
+                result.server.push({...measurement, variant: label});
+                save();
+                expect(measurement.passed, label + ' native API checks').toBe(true);
+            }
+            const full = result.server.find(m => m.variant === 'manage-source-full');
+            const light = result.server.find(m => m.variant === 'manage-source-deferred');
+            result.byteGain = full.htmlBytes - light.htmlBytes;
+            result.byteGainPercent = result.byteGain / full.htmlBytes * 100;
+            result.defaultStateMatchesServed = result.server.find(m => m.variant === 'state-source-full').outcome.payloadHash ===
+                result.server.find(m => m.surface === 'course-state' && !m.sourceCandidate).outcome.payloadHash;
+            expect(result.defaultStateMatchesServed).toBe(true);
+            expect(result.byteGain).toBeGreaterThan(0);
+            result.activation = 'Source/native API candidate only; persisted option unchanged; default off; no browser activation.';
+        }
+        if (result.mode === 'regions' || result.mode === 'details') {
             result.measurementComplete = true;
             return;
         }

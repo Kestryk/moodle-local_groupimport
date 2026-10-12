@@ -102,3 +102,39 @@ measurement scenario completes successfully and cleans its fixture.
 The reported 5MB threshold uses 5,000,000 original HTML bytes. If the first 100-user
 sample already exceeds both limits, the measured crossing is at or below 100;
 no exact lower crossing is claimed without additional smaller samples.
+
+## AP-E6 server candidate (inactive by default)
+
+`course_structure::get_state()` retains the complete historical result unless
+the future `local_groupimport/deferparticipantdetails` option is true. There is
+no settings UI or activation in this server lot. An explicit third argument can
+select full/deferred data in a diagnostic. Deferred state excludes description
+from the initial user query, skips profile HTML/description rendering and marks
+`detailsdeferred: true`, retaining empty compatibility keys and all identities,
+roles, memberships and existing short profile/copy fields.
+
+`ajax.php?action=userdetails&courseid=...&userid=...&sesskey=...` returns
+`{success:true,details:{id,profileimage,description,detailsdeferred:false}}`.
+Existing login, sesskey and course `moodle/course:managegroups` gates apply. The
+service independently checks the same capability, matching course/context and
+enrolment. Merge the returned fields into the existing user payload, not over its
+memberships or configured metadata. Photo/description formatting matches the old
+100px HTML/native `format_text(..., FORMAT_HTML)` behavior.
+
+Codex1 owns the JS consumer, loading/focus/error behavior and any activation.
+The server lot must not be enabled before that consumer is implemented and the
+I1-I13 gates are met. No click-network or T054 policy is silently changed here.
+
+Use `-Mode details -Participants 800` for the same fixture/cleanup supervisor.
+It measures the served baseline and full/deferred **source candidate** in owned
+PHP processes against native Moodle APIs. `--service-root` loads the source
+class in that process only. The defer flag is forced process-locally, never
+saved; no runtime file is overwritten. The native checks execute the actual
+source dispatch, compare every light identity/role/membership, verify heavy-field
+restoration, and reject invalid users and synthetic students lacking managegroups.
+
+Measured page gain: 276,800 bytes (0.638%) at 800 users, from 43,403,146 to
+43,126,346 bytes. Course-state JSON falls from 2,172,941 to 2,024,941 bytes.
+No SQL read reduction is claimed: both state variants measured 807 reads.
+Default candidate payload hash matches the served version exactly. This is
+server/native API evidence, not served browser activation or human acceptance.

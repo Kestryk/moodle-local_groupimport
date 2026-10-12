@@ -42,7 +42,15 @@ require_capability('moodle/course:managegroups', $context);
 $response = ['success' => false];
 
 try {
-    if ($action === 'creategroup') {
+    if ($action === 'userdetails') {
+        $userid = required_param('userid', PARAM_INT);
+        $response['details'] = \local_groupimport\service\course_structure::get_user_details(
+            $course,
+            $context,
+            $userid
+        );
+        $response['success'] = true;
+    } else if ($action === 'creategroup') {
         $names = local_groupimport_extract_create_names(required_param('groupname', PARAM_TEXT));
         if (!$names) {
             throw new moodle_exception('invaliddata', 'error');
