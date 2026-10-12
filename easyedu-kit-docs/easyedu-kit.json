@@ -4,13 +4,26 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideMobileExpected20261012": {
+      "kitCommit": "c532f857805dab2ec5bd8086af94bb7c7f62f980",
+      "kitVersion": "0.4.179",
+      "modules": ["guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
+      "scope": "Kevin-approved R2-5: compact mobile resting outcome only; one membership authority, desktop/playing/final tokens and complete178 engine retained.",
+      "foundationProviders": ["c8f59096-02cd-803e-8008-c6fcdffa5e3e", "c8f59096-02cd-803e-8008-c6fce026897f"],
+      "productReference": "eca88a24-093d-80d0-8008-c700c8829146",
+      "pairedSavedPaintVerified": true,
+      "nativePreviewVerified": false,
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "guideReview220261012": {
       "kitCommit": "9407d02f8802bbc2bbb0b01c3b3815f58a0f7d00",
       "kitVersion": "0.4.178",
       "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
       "scope": "R2-1/R2-3/R2-2/R2-4: wrap confirmation copy, scroll-before-reveal, complete accessible narration and resize/rotation active-tab containment.",
       "sourceRecipePreserved": "Existing card/control/type/palette recipes; no new Foundation family or density.",
-      "nativePreviewVerified": false,
+      "nativePreviewVerified": true,
       "nativeProof": "docs/testing/guide-review2-corrections-2026-10-12.json",
       "humanVisualValidated": false,
       "R2-5": "Kevin-decision-required-not-adopted",

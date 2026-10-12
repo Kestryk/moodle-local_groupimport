@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-12 - Guide review2 native proof and approved compact phone candidate
+
+- Canonical178 passes12 continuous EN/FR Add/Move cases,1331 samples and six
+  resized/rotated tab checks, without dialog clipping or repeated target drift.
+- Adopt Kevin-approved canonical179 mobile resting outcome composition, with
+  paired saved Foundation/Guide references and an optional unchanged caption.
+- Preserve desktop, playing/final tokens, all178 engine/AMD/business/Motion.
+- Dedicated179 native height/restore successor remains pending at this checkpoint;
+  human acceptance and the original61-task/older-feedback backlog stay open.
+
 ## 2026-10-12 - Claude review2 Guide corrections
 
 - Retain review2 priorities and Kevin's unapproved R2-5 mobile-content gate.
