@@ -770,10 +770,10 @@
     {
       "id": "T057",
       "receivedScope": "[P] [US6] **Contrôle automatique des textes FR et EN** : accents manquants, pluriels « (s) », capitales, chaînes et `aria-label` codés en dur dans le JS hors fichiers de langue.",
-      "status": "queued",
+      "status": "delivered-source-audit-native-review-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["tools/release/audit-texts.cjs", "tools/release/ROADMAP-AUDITS.md", "RETOUR-CODEX2-T057-2026-10-13.md"],
       "decisionGate": "none"
     },
     {

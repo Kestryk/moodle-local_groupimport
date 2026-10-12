@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] T057: add deterministic EN/FR key, placeholder, accent/plural/case and hardcoded-JS-text audit; replace 60 parenthesised-plural translations without changing keys/placeholders or JavaScript. JS/case candidate inventory remains for the product owners.
+
 - 2026-10-12 [N0] Perf fixtures: support 3,000 participants/300 groups/60 groupings and 10,000/1,000/150, keeping three memberships per participant and exact-owner idempotent cleanup; preserve existing 800/150/40 shape.
 
 - 2026-10-12 [N0] AP-E7: split the two manage.php custom-profile reads into 1,000-user batches, retain exact field/copy output semantics, close each recordset; isolated parity at empty/999/1,000/1,001/3,000/10,000 boundaries.
