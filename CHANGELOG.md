@@ -1,6 +1,9 @@
 # Changelog
 
 - 2026-10-12 [N0] Perf fixtures: support 3,000 participants/300 groups/60 groupings and 10,000/1,000/150, keeping three memberships per participant and exact-owner idempotent cleanup; preserve existing 800/150/40 shape.
+- 2026-10-12 [N0] SM-RENDU-1 (Claude): compact course state external functions `local_groupimport_get_state` / `local_groupimport_get_details`, per-course state version (table `local_groupimport_statever`, core event observers), `tools/sm/check-state.php` parity check; legacy page unchanged. 800/150/40: state 236 KB vs 2.17 MB, 70 ms / 9 reads vs 2,309 ms / 817 reads, parity PASS.
+
+- 2026-10-12 [N1] R3: consume Kit197 single-row no-mode scene headers and fixed activity-dot frame; focused desktop/mobile proof in the existing Guide surface test, unchanged comparison scenes/course commands/Motion.
 
 - 2026-10-12 [N0] AP-E7: split the two manage.php custom-profile reads into 1,000-user batches, retain exact field/copy output semantics, close each recordset; isolated parity at empty/999/1,000/1,001/3,000/10,000 boundaries.
 
