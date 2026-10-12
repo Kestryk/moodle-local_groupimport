@@ -1215,14 +1215,11 @@
     bottom: auto;
   }
 
-  // A small viewport cannot fit a full checklist beside a native dialog.
-  // Keep steps scrollable and dock vertically away from its current field,
-  // without hiding the checklist or disabling dialog pointer interaction.
-  @media (max-width: 64rem) {
-    &[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) {
-      max-height: min(20rem, 35dvh);
-      .easyedu-guided-panel__steps { max-height: 6rem; }
-    }
+  // A native dialog needs clearance for its fields and Close, even on desktop.
+  // Reuse the compact dialog's scrollable checklist budget at every width.
+  &[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) {
+    max-height: min(20rem, 35dvh);
+    .easyedu-guided-panel__steps { max-height: 6rem; }
   }
 
   @media (max-width: 40rem) {
