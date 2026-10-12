@@ -10,7 +10,7 @@ param(
     [string]$RuntimeLeaseResource = 'groupimport-active-runtime-write',
     [string]$FixtureLeaseResource = 'moodle51-active-fixture-write',
     [string]$DeploymentManifestPath,
-    [ValidateRange(1, 800)][int]$Participants = 800,
+    [ValidateRange(1, 10000)][int]$Participants = 800,
     [ValidateSet('baseline', 'regions', 'curve', 'details', 'sql')][string]$Mode = 'baseline',
     [switch]$WaitForLease,
     [ValidateRange(1, 900)][int]$LeaseWaitTimeoutSeconds = 900,
