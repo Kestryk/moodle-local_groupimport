@@ -1,5 +1,13 @@
 # Guide engineering: current projection, not human acceptance
 
+Review2 R2-1..5 is now served/tested at Source86e777b / Kit98cfcc7 (0.4.182) /
+runtimef65e77b. Native27696 passes18 compact/desktop/320/Start/Reset records;
+390 header187.70px in both locales/modes. Current combined12108 passes12 normal
+scenes,1332 continuous250ms samples and six resized tabs with zero dialog text
+overflow/consecutive target drift. All prior failures and human gates remain.
+Next T014 first-slide specimens, then broader T015; the61 tasks/old lots stay
+intact. Current return: `claude-review2-return-2026-10-12.md`.
+
 Review2 R2-1/R2-3/R2-2/R2-4 now pass native1380:12 cases,1331 continuous250ms
 samples, zero clipped texts/consecutive target violations, six resized tabs.
 Canonical179/Kitc532f85 adds Kevin-approved compact mobile resting expectations;

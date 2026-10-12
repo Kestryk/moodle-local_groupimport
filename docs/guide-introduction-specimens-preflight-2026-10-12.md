@@ -26,3 +26,9 @@ Small playback controls, Fullscreen glyph and outlined action recipe are reusabl
 
 Status: inspected/planned, not implemented. Human acceptance deferred. T015,
 V1/V2 and the other Guide/modal/Student/Admin/Mass Import lots are retained.
+
+Review2 now precedes this lot and is complete at canonical182: current native
+continuous/mode/resize proof and compact resting states pass. Preserve those
+assets/IDs while introducing inert specimens. Begin with source specimen-role
+and true host-width/type baseline, then paired Foundation/Product composition;
+do not infer available viewport width from the outer390px authoring board.

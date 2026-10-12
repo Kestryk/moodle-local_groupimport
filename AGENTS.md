@@ -1,5 +1,10 @@
 # EasyEdu agent contract
 
+Compact Guide fit must cover both Add and Move with full EN/FR names. A0.25px
+sum can wrap a whole flex item; preserve that strict failure, not a relaxed row
+oracle. Prefer existing scene gutters/caption roles to smaller fonts or duplicate
+initial copy. Verify settled Reset and rerun continuous targets on final assets.
+
 Continuous demo containment samples hidden-paint preparation and real250ms
 playback, not only paused endpoints. Preserve a baseline even if its final
 cleanup assertion fails. Disabled Start can relinquish focus to body: a Close
