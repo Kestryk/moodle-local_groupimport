@@ -166,6 +166,8 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
     // D5 explicitly retires unknown path state; compare every other engine byte.
     beforeAccessibility=beforeAccessibility.replace(section(beforeAccessibility,'const pruneUnknownPaths =',
         'const saveGuideState ='),section(a11yBase,'const loadGuideState =','const saveGuideState ='));
+    beforeAccessibility=beforeAccessibility.replace("      confirm.querySelector('[data-guide-simulated-submit]').textContent = scene.dataset.guideMobileAddSubmit ||\n"+
+        "        confirm.querySelector('[data-guide-simulated-submit]').textContent;\n",'');
     check('Complete unrelated Guide engine and Motion unchanged',beforeAccessibility.replace(portalPolicy,'')
         .replace("  highlight.removeAttribute('data-easyedu-motion-policy');\n",'')===oldGuide);
     const css=fs.readFileSync(path.join(rootPath,'styles.css'),'utf8').replace(/\r\n/g,'\n');
@@ -234,6 +236,22 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
         check('Save '+(successful?'success':'failure')+' closes only after accepted outcome',
             closed===(successful?1:0)&&submit.disabled===false);
     }
+    const captionStart=source.indexOf("        if (title) { title.textContent = type === 'participant'"),
+        captionEnd=source.indexOf('        if (removeOriginWrap)',captionStart);
+    check('Bounded destination captions',captionStart>=0&&captionEnd>captionStart);
+    for(const type of ['participant','member','group'])for(const selectedCount of [1,2]){
+        const title={},confirmButton={},labels={addparticipanttitle:'Add to group',addparticipantconfirm:'Add',
+            moveconfirmone:'Move selected item',moveconfirmmany:'Move selected items'};
+        vm.runInNewContext(source.slice(captionStart,captionEnd),{title,confirmButton,labels,type,selectedCount,moveTitle:'Move selection'});
+        check(type+' caption preserves its native meaning '+selectedCount,
+            title.textContent===(type==='participant'?'Add to group':'Move selection')&&
+            confirmButton.textContent===(type==='participant'?'Add':selectedCount===1?'Move selected item':'Move selected items'));
+    }
+    const oldManager=execFileSync('git',['show','1e32048:amd/src/course_manager.js'],{cwd:rootPath,encoding:'utf8',maxBuffer:2e6});
+    const restoredManager=source.replace(/\r\n/g,'\n').replace("    const title = modal.querySelector('.easyedu-modal-title');\n    const moveTitle = title?.textContent || '';\n",'')
+        .replace("        if (title) { title.textContent = type === 'participant' ? (labels.addparticipanttitle || moveTitle) : moveTitle; }\n",'')
+        .replace("confirmButton.textContent = type === 'participant' ? (labels.addparticipantconfirm || '') : selectedCount === 1 ?",'confirmButton.textContent = selectedCount === 1 ?');
+    check('Every native course command unchanged by approved copy',restoredManager.replace(/\r\n/g,'\n')===oldManager.replace(/\r\n/g,'\n'));
     const result=JSON.stringify({surface:'student-management',level:0,passed:Object.keys(checks).length,failed:0,checks},null,2);
     if(process.argv[2])fs.writeFileSync(path.resolve(process.argv[2]),result+'\n');
     console.log(result);

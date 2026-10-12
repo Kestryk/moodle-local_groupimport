@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N1] D1–D4: approved concise FR/EN narration/glossary, Participants Add-to-group labels without changing commands, numbered short Guide navigation with deduplicated chapters and explicit grouping opener copy; preserve Claude guards and Moodle4.5/PHP8.1 boundary.
+
 - 2026-10-12 [N0] D5/D6: retire two unused Guide paths and their dedicated signals, consume Kit195 unknown-path cleanup, and finish editor inspection only after Cancel/Escape/successful Save closes its window; preserve shared creation openers and Claude guards.
 
 - 2026-10-12 [N0] D7: consume Kit19445s/30s notice countdown paused during hover/focus; preserve existing polite status, Guide commands and Claude guards.

@@ -7093,6 +7093,8 @@ const bindMoveModal = (root, courseId) => {
         empty: labels.noresultsfiltered || '',
     });
     const chooser = enhanceSelect(destination, chooserLabels(), {motion: Motion});
+    const title = modal.querySelector('.easyedu-modal-title');
+    const moveTitle = title?.textContent || '';
 
     const closeModal = () => {
         // Cancel cannot undo an atomic command already in flight.
@@ -7197,7 +7199,8 @@ const bindMoveModal = (root, courseId) => {
             type === 'participant' ? 'data-move-participants-help' : 'data-move-groups-help') || '';
         label.textContent = body.getAttribute(type === 'participant' || type === 'member' ?
             'data-move-participants-label' : 'data-move-groups-label') || '';
-        confirmButton.textContent = selectedCount === 1 ?
+        if (title) { title.textContent = type === 'participant' ? (labels.addparticipanttitle || moveTitle) : moveTitle; }
+        confirmButton.textContent = type === 'participant' ? (labels.addparticipantconfirm || '') : selectedCount === 1 ?
             (labels.moveconfirmone || '') :
             (labels.moveconfirmmany || '');
         if (removeOriginWrap) {

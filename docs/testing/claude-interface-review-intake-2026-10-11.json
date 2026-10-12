@@ -6,11 +6,20 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "claudeReviewR320261012": {
+    "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
+    "R3-1":{"scope":"No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states","level":1,"status":"queued-after-D9"},
+    "R3-2":{"scope":"Separate dots, fixed0.25rem columns/0.1875rem gap, constant copy-to-dots gap; four short/long/multiline EN/FR cases, static reduced motion","level":1,"status":"queued-after-D9"},
+    "humanAccepted":false
+  },
+  "compatibilityRule20261012":{"targetNow":"Moodle5.1","futurePass":"Moodle4.5 after final5.1","effective":"Next lot D1–D4","PHP":"8.1","noNewBS5OnlyDependencies":true,"versionPhpUnchanged":true,"otherMoodle45RuntimeUntouched":true},
   "kevinDecisions20261012": {
     "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/DECISIONS-KEVIN-2026-10-12.md",
     "D7":{"status":"served-and-native10-plus-contract16-PASS","nativeRun":"easystud-authenticated-20261012T194847620Z-27072","countdownsMs":[45000,30000],"pause":"remaining time retained during hover/focus","level":0},
     "D5D6":{"status":"source50-contract8-bilingual-current7paths-PASS; preview-pending","remainingPathCount":7,"retired":["first-structure","create-grouping"],"sharedCreationOpenersRetained":true,"orphanStrings":"No orphan removal: same labels remain referenced by legacy template; do not delete live fallback","editorCloseSignal":"Existing stable cancel-editor ID now accepts completed Cancel/Escape/Save; review opt-out unchanged","level":0},
-    "nextLots":["D5+D6","D1+D2+D3+D4","D9","D8-Penpot-then-code"],
+    "nextLots":["D1+D2+D3+D4","D9","R3-1+R3-2","D8-Penpot-then-code"],
+    "D1D4":{"status":"implemented-copy-and-context-adapters; verification-pending","level":1,"Kit":"0.4.196","phaseIdsAndCourseCommandsUnchanged":true},
+    "claudeEvidenceReview":{"AP-B7B8D7":"accepted-on-proof","D5D6":"accepted-on-proof; preview-pending","humanChecklistStillOpen":true},
     "D10":"no-action; awaiting decision",
     "olderBacklogPreserved":true,
     "humanAccepted":false
@@ -129,7 +138,7 @@
   "acceleration20261012": {
     "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
     "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
-    "readyQueue": ["D5+D6", "D1+D2+D3+D4", "D9", "D8-Penpot-then-code"],
+    "readyQueue": ["publish-D5D6-with-D1D4", "D1+D2+D3+D4", "D9", "R3-1+R3-2", "D8-Penpot-then-code"],
     "condensedReturns": ["C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-A4-A5-PLAYBACK-2026-10-12.md", "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-S1-MOTION-2026-10-12.md"],
     "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
     "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",

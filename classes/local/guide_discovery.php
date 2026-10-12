@@ -230,6 +230,7 @@ final class guide_discovery {
             }
             $scene['selectioncaption'] = get_string('discovery_selection_' . ($kind === 'actions' ? 'many' : 'one'),
                 'local_groupimport');
+            $scene['mobileaddsubmit'] = get_string('discovery_demo_add', 'local_groupimport');
             $scene['consequence'] = get_string('discovery_consequence', 'local_groupimport');
             $slides[] = [
                 'id' => 'discovery-' . $kind,
@@ -317,6 +318,7 @@ final class guide_discovery {
         $byid = array_column($slides, null, 'id');
         $ids = self::modern_reading_contract()['slideIds'];
         $result = [];
+        $previouscategory = null;
         foreach ($sources as $index => $source) {
             $slide = $byid[$source];
             // Merge the unique teaching points, not merely the reading positions.
@@ -353,6 +355,12 @@ final class guide_discovery {
             }
             $slide['id'] = $ids[$index];
             $slide['index'] = $index;
+            $slide['navtitle'] = get_string('guide_nav_' . ($index + 1), 'local_groupimport');
+            $slide['navnumber'] = $index + 1;
+            $slide['navcategorymanaged'] = true;
+            $category = $slide['category'] ?? '';
+            $slide['navcategorylabel'] = $category !== $previouscategory ? $category : '';
+            $previouscategory = $category;
             if ($source === 'reference-7') {
                 $slide['hasguidedpath'] = true;
                 $slide['guidedpath'] = 'prepare-activity-grouping';

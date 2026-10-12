@@ -85,6 +85,24 @@ foreach (['en', 'fr'] as $language) {
     preg_match_all('/^\$string\[\x27([^\x27]+)\x27\]\s*=/m', $langsource, $keys);
     check($language . ' unique language keys', count($keys[1]) === count(array_unique($keys[1])));
     require $root . '/lang/' . $language . '/local_groupimport.php';
+    foreach (['discovery_addselect', 'discovery_adddrop', 'discovery_mobileaddselect', 'discovery_mobileaddmenu', 'discovery_mobileaddvalidate', 'guideinspection_group_open', 'guideinspection_group_enter', 'guideinspection_group_review', 'guideinspection_grouping_open', 'guideinspection_grouping_enter', 'guideinspection_grouping_review', 'guideinspection_grouping_return'] as $key) {
+        check($language . ' concise phase ' . $key, mb_strlen($string[$key]) <= 110);
+    }
+    check($language . ' participant action says Add', $string['moveselectedparticipants'] ===
+        ($language === 'fr' ? 'Ajouter à un groupe' : 'Add to group'));
+    check($language . ' core Add caption retained', $string['discovery_demo_add'] ===
+        ($language === 'fr' ? 'Ajouter' : 'Add'));
+    check($language . ' group members named correctly', $string['guideinspection_group_cardmeta'] ===
+        ($language === 'fr' ? '2 membres' : '2 members'));
+    for ($index = 1; $index <= 12; $index++) {
+        check($language . ' short navigation ' . $index, isset($string['guide_nav_' . $index]) &&
+            mb_strlen($string['guide_nav_' . $index]) <= 16);
+    }
+    if ($language === 'fr') {
+        check('French Guide glossary has no old borrowed terms',
+            !preg_match('/\\b(?:checklist|desktop|slides?|Practice)\\b/i', implode("\\n", $string)));
+        check('French lock uses angle quotes', $string['guidesteplocked'] === 'Terminer « {$a} » d’abord');
+    }
     $keysets[$language] = array_keys($string);
     foreach (['duplicategroup' => 'group', 'duplicategrouping' => 'grouping'] as $action => $kind) {
         $response = ['success' => false];
@@ -161,9 +179,11 @@ foreach (['email', 'username', 'idnumber', 'profile_field_School', ''] as $allow
     }
 }
 check('Empty identifier rejected', local_groupimport_find_user_by_identifier('  ') === null);
-echo json_encode(['surface' => 'ajax-and-language', 'level' => 0, 'passed' => count($checks),
+$report = json_encode(['surface' => 'ajax-and-language', 'level' => 0, 'passed' => count($checks), 'failed' => 0,
     'checks' => $checks, 'scope' => 'Actual dispatch with isolated service doubles; no native course writes'],
     JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR) . PHP_EOL;
+if (!empty($argv[1])) { file_put_contents($argv[1], $report); }
+echo $report;
 
 function data_submitted() { global $submitted; return $submitted; }
 function require_sesskey() {
