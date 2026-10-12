@@ -6,11 +6,22 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "pgS1Destinations20261012": {
+    "level":1,
+    "kitVersion":"0.4.190",
+    "status":"desktop-dialog-docking-corrected-native-check-pending",
+    "cause":"Full-width destination right edge occluded by desktop checklist; vertical docking was mobile-only",
+    "failedRun":"easystud-authenticated-20261012T185503788Z-17320",
+    "surfaceScript":"tools/playwright/guide-modal-layer-s1-editors-diagnostic-native.spec.js",
+    "businessPrerequisites":"QA history only; no creation or assignment confirmed",
+    "humanAccepted":false
+  },
   "apBPlayback20261012": {
     "ids":["AP-B1","AP-B2","AP-B3","AP-B4"],
     "level":2,
     "kitVersion":"0.4.189",
-    "status":"implemented-contract11-native-check-pending",
+    "status":"native6-cases-and-contract11-verified",
+    "nativeRun":"easystud-authenticated-20261012T184946025Z-43340",
     "surfaceScript":"tools/playwright/guide-g10-playback.spec.js",
     "unitScript":"scripts/test-guide-playback.cjs --contracts (Kit)",
     "baselineFailedRun":"easystud-authenticated-20261012T183753855Z-2452",
@@ -19,7 +30,7 @@
     "humanAccepted":false
   },
   "claudeA4A5Coordination20261012": {
-    "AP-A4": {"upstream":"73085bfd900c32102a81df23023e8a73dcfcca3e","level":0,"status":"integrated-source-guard-checks","nativeFormsOnDedicatedCourse":"pending"},
+    "AP-A4": {"upstream":"73085bfd900c32102a81df23023e8a73dcfcca3e","level":0,"status":"served-native-GET-and-invalid-POST8-verified","nativeFormsOnDedicatedCourse":"accepted writes pending"},
     "AP-A5": {"upstream":"2726f02179102be329a8fe9e5ae703e42daec5e1","owner":"Claude","status":"integrated-source-resolver-checks","kevinDecision":"Moodle ID retained; bare first/last name removed","nativeKnownIdentifierWrites":"Dedicated course pending"},
     "codex2": {"branch":"work/port4719pg3/easystud-perf-server-20261012","owns":["T052","AP-E5","AP-E6-server","AP-E7","AP-E8"],"manageServerReservations":"COORDINATION-LOTS.md; do not edit reserved data functions","integrationOwner":"Codex1"},
     "codex1Retained":["AP-E1","AP-E2","AP-E3","AP-E4","AP-A6","T054"],

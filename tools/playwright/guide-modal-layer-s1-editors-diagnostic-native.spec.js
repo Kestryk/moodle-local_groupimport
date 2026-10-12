@@ -147,3 +147,106 @@ test('S1 native border diagnostic preserves strict editor paint assertions',asyn
         },null,2));
     }
 });
+
+// Same modal surface: six remaining destination/confirm targets, no confirmations.
+test('S1 destination and confirmation frames paint above real move dialogs',async({page},info)=>{
+    test.setTimeout(480000);
+    const rows=[],errors=[],blocked=[];
+    page.on('pageerror',error=>errors.push(error.message));
+    const url=new URL(process.env.EASYEDU_MOODLE_URL);url.searchParams.set('lang','fr');
+    await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')){
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
+    }
+    page.setDefaultTimeout(15000);page.setDefaultNavigationTimeout(60000);
+    await page.route('**/local/groupimport/**',route=>{
+        if(route.request().method()==='GET')return route.continue();
+        blocked.push('plugin write');return route.abort('blockedbyclient');
+    });
+    await page.route('**/lib/ajax/service.php*',route=>{
+        if(route.request().method()!=='POST')return route.continue();
+        const calls=route.request().postDataJSON(),methods=calls.map(call=>call.methodname);
+        if(methods.every(method=>method==='core_message_get_unsent_message'))return route.fulfill({
+            contentType:'application/json',body:JSON.stringify(calls.map(()=>({error:false,data:{}})))});
+        const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
+            'core_output_load_template_with_dependencies','core_courseformat_get_state']);
+        if(methods.every(method=>reads.has(method)))return route.continue();
+        blocked.push(methods);return route.abort('blockedbyclient');
+    });
+    const workspace=page.locator('#local-groupimport-easystud'),panel=page.locator('[data-easyedu-guide-checklist]');
+    const highlight=page.locator('[data-easyedu-guide-highlight]');
+    const aligned=async target=>{
+        await expect(target).toBeVisible();await expect(highlight).toBeVisible();
+        await expect.poll(async()=>{
+            const a=await highlight.boundingBox(),b=await target.boundingBox();
+            return a&&b?Math.max(Math.abs(a.x-b.x),Math.abs(a.y-b.y),
+                Math.abs(a.width-b.width),Math.abs(a.height-b.height)):Infinity;
+        }).toBeLessThan(2);
+        await assertModalLayer(target,rows);
+    };
+    const cases=[{path:'practice-membership',type:'participant',choose:'choose-destination',confirm:'confirm-move'},
+        {path:'reorganise-source-members',type:'member',choose:'choose-member-destination',confirm:'confirm-member-move'},
+        {path:'prepare-activity-grouping',type:'group',choose:'choose-grouping',confirm:'confirm-groups'}];
+    try{
+        for(const width of [1280,390])for(const item of cases){
+            await page.setViewportSize({width,height:1000});await page.emulateMedia({reducedMotion:'no-preference'});
+            await page.goto(url.href,{waitUntil:'domcontentloaded'});
+            await expect(workspace).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+            const view=item.type==='participant'?'participants':'groups';
+            const mode=width<=1024?'[data-easystud-mobile-view="'+view+'"]:visible':
+                '[data-easystud-layout-mode="'+(view==='participants'?'participants':'structure')+'"]:visible';
+            await workspace.locator(mode).first().click();
+            if(item.type==='member')await page.evaluate(()=>{
+                const root=document.querySelector('[data-easyedu-guide-root]');
+                document.dispatchEvent(new CustomEvent('easyedu:guide-open-target',{detail:{
+                    root,target:'tutorial:source-group-members',handled:false}}));
+            });
+            const selector=item.type==='participant'?
+                workspace.locator('[data-easystud-participant-list] [data-easystud-user]:visible > .local-groupimport-easystud-selector:visible').first():
+                item.type==='member'?
+                    workspace.locator('[data-easystud-structure-groups] [data-easystud-member-id]:visible .local-groupimport-easystud-selector:visible').first():
+                    workspace.locator('[data-easystud-structure-groups] [data-easystud-group-id]:visible > .local-groupimport-easystud-selector:visible').first();
+            await expect(selector).toBeVisible();await selector.click();
+            await page.evaluate(async({width,item})=>{
+                const root=document.querySelector('[data-easyedu-guide-root]'),config=root.easyeduGuideConfig;
+                const steps=config.paths[item.path],index=steps.findIndex(step=>step.id===item.choose);
+                if(index<1)throw Error('Actual ordered path definition missing');
+                const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+                const key='s1-destination-qa-'+width+'-'+item.type;Guide.destroy(root);
+                localStorage.setItem(key+'.checklist',JSON.stringify({path:item.path,activeIndex:index,
+                    presentationKey:config.presentationKey,completed:{[item.path]:steps.slice(0,index).map(step=>step.id)}}));
+                Guide.init(root,{...config,firstVisit:false,welcomeOffer:false,storageKey:key});
+            },{width,item});
+            await page.locator('[data-easyedu-guide-resume-path]:visible').click();await expect(panel).toBeVisible();
+            const dialog=workspace.locator('[data-easystud-move-modal]');
+            await expect(dialog).toBeVisible();await expect(dialog).toHaveAttribute('data-easystud-move-context',item.type);
+            const choice=dialog.locator('.easyedu-searchable-choice');await aligned(choice);
+            const select=dialog.locator('[data-easystud-move-destination]'),before=await select.inputValue();
+            const option=await select.locator('option').evaluateAll((nodes,before)=>nodes.map(node=>({value:node.value,label:node.textContent.trim()}))
+                .find(option=>option.value!==before&&/^[1-9]\d*$/.test(option.value)),before);
+            expect(option,'Existing alternate destination required, no fixture invented').toBeTruthy();
+            await choice.locator('.easyedu-searchable-choice__trigger').click();
+            await choice.getByRole('searchbox').fill(option.label);
+            await choice.getByRole('button',{name:option.label,exact:true}).click();
+            await expect(panel.locator('[data-easyedu-guide-step-id="'+item.choose+'"]')).toHaveClass(/is-complete/);
+            const confirm=dialog.locator('[data-easystud-confirm-move]');await aligned(confirm);
+            const final=panel.locator('[data-easyedu-guide-step-id="'+item.confirm+'"]');
+            await expect(final).not.toHaveClass(/is-complete/);
+            await dialog.locator('[data-easystud-close-move-modal]').first().click();await expect(dialog).toBeHidden();
+            await expect(final).not.toHaveClass(/is-complete/);
+            await expect.poll(()=>page.evaluate(()=>document.querySelector('[data-easyedu-guide-highlight]')
+                ?.classList.contains('easyedu-guide-highlight--in-dialog')||false)).toBe(false);
+            rows.push({width,...item,twoTargetsPainted:true,choiceNative:true,cancelDoesNotConfirm:true,
+                prerequisites:'QA history only, not native creation/assignment proof'});
+            await panel.locator('[data-easyedu-guide-checklist-close]').click();await expect(panel).toBeHidden();
+        }
+        expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    }finally{
+        fs.writeFileSync(info.outputPath('guide-modal-destinations.json'),JSON.stringify({
+            surface:'modals',level:1,rows,errors,blocked,businessWrites:false,fixtureRequested:false
+        },null,2));
+    }
+});
