@@ -69,7 +69,7 @@ test('SM registered server integration preserves legacy page',async({page},info)
     });
 });
 
-test('SM2b current and on-demand participants preserve native behavior',async({page},info)=>{
+async function sm2bNative(page,info,settledPage=false){
     test.setTimeout(300000);
     const controls={},errors=[],blocked=[];
     let restored=false,baseline;
@@ -109,6 +109,14 @@ test('SM2b current and on-demand participants preserve native behavior',async({p
             for(const k of ['font','size','color'])expect(row[k]).toBe(prior.geometry[i][k]);
         });
         controls.legacy1280FR=true;
+        if(settledPage){
+            await page.unroute('**/local/groupimport/**');
+            await page.route('**/local/groupimport/**',route=>{
+                if(route.request().method()==='GET')return route.continue();
+                blocked.push({method:route.request().method(),path:new URL(route.request().url()).pathname});
+                return route.abort();
+            });
+        }
         let root=page.locator('#local-groupimport-easystud');
         const legacy=await paint(root),firstIds=await ids(root);
         expect(firstIds).toHaveLength(20);
@@ -127,11 +135,13 @@ test('SM2b current and on-demand participants preserve native behavior',async({p
             for(const k of ['width','height'])expect(Math.abs(row[k]-legacy[i][k])).toBeLessThanOrEqual(1);
         });
         controls.page1Same=true;
+        if(settledPage)await cards(root).first().scrollIntoViewIfNeeded();
         await page.screenshot({path:info.outputPath('sm2b-reactive-fr1280.png')});
         const pager=root.locator('[data-easystud-participant-list] > [data-easystud-pagination="top"]');
         await pager.locator('[data-easystud-page-next]').click();
         await expect(cards(root)).toHaveCount(4);expect(await ids(root)).not.toEqual(firstIds);
         await pager.locator('[data-easystud-page-prev]').click();
+        if(settledPage)await expect.poll(()=>ids(root)).toEqual(firstIds);
         expect(await ids(root)).toEqual(firstIds);controls.pagination=true;
         await pager.locator('[data-easystud-select-results]').click();
         await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selected.size)).toBe(24);
@@ -158,12 +168,60 @@ test('SM2b current and on-demand participants preserve native behavior',async({p
         await expect(modal).toBeVisible();
         await expect(modal.locator('.local-groupimport-easystud-detail__identity h4')).toHaveText(legacy[0].title);
         await modal.locator('[data-easystud-close-user-modal]').click();await expect(modal).toBeHidden();
+        if(settledPage)await expect(cards(root).first().locator('[data-easystud-open-user]')).toBeFocused();
         controls.participantDetails=true;
         expect(errors).toEqual([]);expect(blocked).toEqual([]);
     }finally{
         mode('legacy');restored=true;
         fs.writeFileSync(info.outputPath('sm2b-native.json'),JSON.stringify({surface:'SM2b-principal',niveau:1,
             viewport:1280,language:'fr',controls,restoredLegacy:restored,errors,blocked,courseWrite:false},null,2));
+    }
+}
+
+// Preserve the predecessor's immediate-page-read oracle and source in Git.
+test('SM2b current and on-demand participants preserve native behavior',async({page},info)=>sm2bNative(page,info));
+test('SM2b settled pagination preserves current and on-demand native behavior',async({page},info)=>sm2bNative(page,info,true));
+
+test('SM2b participant detail fields match the current mode',async({page},info)=>{
+    test.setTimeout(300000);
+    const report={surface:'SM2b-participant-detail-parity',niveau:1,viewport:1280,language:'fr',
+        fields:{},errors:[],detailsRequests:0,restoredLegacy:false,courseWrite:false};
+    const mode=value=>{
+        if(!process.env.EASYEDU_SM_PHP||!process.env.EASYEDU_SM_MODE_HELPER||!process.env.EASYEDU_SM_MOODLE_ROOT)
+            throw Error('Explicit supervised mode helper required');
+        const r=JSON.parse(execFileSync(process.env.EASYEDU_SM_PHP,
+            [process.env.EASYEDU_SM_MODE_HELPER,process.env.EASYEDU_SM_MOODLE_ROOT,value],{encoding:'utf8',timeout:60000}));
+        expect(r.mode).toBe(value);return r;
+    };
+    page.on('pageerror',e=>report.errors.push(e.message));
+    page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
+    page.on('request',r=>{if(r.url().includes('local_groupimport_get_details'))report.detailsRequests++;});
+    await page.route('**/local/groupimport/**',r=>r.request().method()==='GET'?r.continue():r.abort());
+    await page.setViewportSize({width:1280,height:900});
+    try{
+        for(const renderingmode of ['legacy','reactive']){
+            mode(renderingmode);await login(page,'/local/groupimport/manage.php?id=5');
+            const root=page.locator('#local-groupimport-easystud');
+            await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+            if(renderingmode==='reactive')await expect(root).toHaveAttribute('data-easystud-sm-ready','1',{timeout:60000});
+            const card=root.locator('[data-easystud-participant-list] > [data-easystud-user]')
+                .filter({has:page.locator('.local-groupimport-easystud-user__name',{hasText:'Test15 Etudiant'})});
+            await expect(card).toHaveCount(1);
+            await card.locator('[data-easystud-open-user]').click();
+            const modal=root.locator('[data-easystud-user-modal]');await expect(modal).toBeVisible();
+            await expect(modal.locator('.local-groupimport-easystud-detail__identity h4')).toHaveText('Test15 Etudiant');
+            await modal.evaluate(n=>Promise.all(n.getAnimations({subtree:true})
+                .filter(a=>Number.isFinite(a.effect?.getComputedTiming().endTime)).map(a=>a.finished.catch(()=>{}))));
+            report.fields[renderingmode]=await modal.locator('.local-groupimport-easystud-detail__field').evaluateAll(nodes=>
+                nodes.map(n=>({label:n.querySelector('span').textContent,value:n.querySelector('strong').textContent})));
+            await page.screenshot({path:info.outputPath('sm2b-details-'+renderingmode+'-fr1280.png')});
+            await modal.locator('[data-easystud-close-user-modal]').click();await expect(modal).toBeHidden();
+        }
+        expect(report.errors).toEqual([]);
+        expect(report.fields.reactive).toEqual(report.fields.legacy);
+    }finally{
+        mode('legacy');report.restoredLegacy=true;
+        fs.writeFileSync(info.outputPath('sm2b-details-parity.json'),JSON.stringify(report,null,2));
     }
 });
 

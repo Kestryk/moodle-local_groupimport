@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] SM2b principal native proof: legacy/page1/pagination/search/cross-page selection/modal open-Close-focus pass; retain strict failed detail-parity diagnostic (City/Country/Language omitted in on-demand mode) for Claude's reserved product successor. Preserve failed immediate-page oracle/interrupted run, await real pagination Motion and verify legacy restoration/course-state parity; no product changes or AGENTS additions.
+
 - 2026-10-13 [N1] Prepare SM2b integration proof on the existing native surface: preserve approved producer/AMD, historical SM2a verifier and legacy baseline; test page rendering, pagination, search, cross-page selection and participant details with a leased temporary mode change and guaranteed legacy restoration. No course mutations or schema change.
 
 - 2026-10-12 [N1] SM-RENDU-2b (Claude): in On demand mode the participant list renders only its current page from the state (shared `sm/participant_card` partial, also used by the legacy page with byte-identical HTML); filters, sort, pagination, counters, empty state, Select all and cross-page selection (id set plus detached cards) run on the state; memberships changed by actions update it. Legacy mode unchanged except a batched layout read in participant tag overflow (6.2 s to 1.1 s at 800 participants). 800 fixture: HTML 43.4 to 32.0 MB, 20 participant cards instead of 800; group views still legacy (step 3).
