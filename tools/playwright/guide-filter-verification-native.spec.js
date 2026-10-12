@@ -36,22 +36,29 @@ test('Guide checklist keyboard focus and notice interaction survive progress', a
     try {
         await expect(workspace).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
         await expect(page.locator('html')).toHaveAttribute('lang', /^fr(?:-|$)/);
+        // D7: browser-controlled clock measures actual scheduled production
+        // timers without waiting90+wall seconds or changing product defaults.
+        await page.clock.install(); await page.clock.pauseAt(new Date());
         await initialize('hover');
         await expect(resume).toBeVisible();
         await expect(resume).toHaveAttribute('role', 'status');
         await expect(resume).toHaveAttribute('aria-live', 'polite');
-        await resume.hover();
-        await page.waitForTimeout(20500);
+        await page.clock.fastForward(5000); await resume.hover();
+        await page.clock.fastForward(50000);
         await expect(resume).toBeVisible(); checks.hoverDefersDeadline = true;
         await page.mouse.move(1, 1);
+        await page.clock.fastForward(39999);
+        await expect(resume).toBeVisible(); checks.hoverPreservesRemaining40s = true;
+        await page.clock.fastForward(1);
         await expect(resume).toBeHidden({timeout: 3000}); checks.expiryAfterHover = true;
 
         await initialize('focus');
         const resumeButton = resume.locator('[data-easyedu-guide-resume-path]');
-        await resumeButton.focus();
-        await page.waitForTimeout(20500);
+        await page.clock.fastForward(5000); await resumeButton.focus();
+        await page.clock.fastForward(50000);
         await expect(resume).toBeVisible(); await expect(resumeButton).toBeFocused();
         checks.keyboardDefersDeadline = true;
+        await page.clock.resume();
         await resumeButton.press('Enter');
         await expect(checklist).toBeVisible(); await expect(title).toBeFocused();
         checks.resumeFocusesChecklistHeading = true;

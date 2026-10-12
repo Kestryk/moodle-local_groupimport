@@ -141,17 +141,18 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
     };
     let beforeAccessibility=guideSource;
     for(const [from,to] of [
-        ['// Keep the existing deadline,','const saveChecklistProgress ='],
+        ['// Count only time outside pointer/keyboard interaction.','const saveChecklistProgress ='],
         ['const showInterfaceReturn =','const hideInterfaceReturn ='],
         ['const captureChecklistFocus =','const getScrollTopOffset ='],
         ['const renderChecklist =','const updateChecklistMessage =']]){
-        const originalFrom=from==='// Keep the existing deadline,'?'const offerResume =':
+        const originalFrom=from==='// Count only time outside pointer/keyboard interaction.'?'const offerResume =':
             from==='const captureChecklistFocus ='?'const hideChecklist =':from;
         beforeAccessibility=beforeAccessibility.replace(section(beforeAccessibility,from,to),
             section(a11yBase,originalFrom,to));
     }
     beforeAccessibility=beforeAccessibility
         .replace("    stepCompleted: 'Completed',\n    stepLocked: 'Locked',\n",'')
+        .replace('  delete root.easyeduGuideNoticeClocks;\n','')
         .replace(/^[ ]*(?:captureChecklistFocus\(root, (?:startPath|resume)\);|focusChecklist\(root\);|root\.easyeduGuideChecklistReturnFocus = null;)\n/gm,'')
         .replace("      hideChecklist(root, config, false, true);","      hideChecklist(root, config);")
         .replace("        const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :\n"+

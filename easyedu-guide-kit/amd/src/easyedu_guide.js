@@ -483,20 +483,44 @@ const dismissResume = (root, animate = false) => {
   motion.finished.then(() => { notice.hidden = true; motion.cancel(); }).catch(() => {});
 };
 
-// Keep the existing deadline, but never dismiss controls currently in use.
-// The timer belongs to this root and is cleared by the normal Guide teardown.
+// Count only time outside pointer/keyboard interaction. One listener set per
+// notice/root survives repeated offers and is cleared by normal Guide teardown.
 const scheduleNoticeExpiry = (root, notice, timerKey, delay, expire) => {
   clearTrackedTimeout(root, root[timerKey]);
-  const finish = () => {
-    root[timerKey] = null;
-    if (notice.hidden) { return; }
-    if (notice.matches(':hover') || notice.contains(document.activeElement)) {
-      root[timerKey] = setTrackedTimeout(root, finish, 1000);
+  const clocks = root.easyeduGuideNoticeClocks || (root.easyeduGuideNoticeClocks = new Map());
+  const update = event => {
+    const clock = clocks.get(timerKey);
+    if (!clock || !clock.active || notice.hidden) { return; }
+    if (event?.type === 'pointerenter') { clock.hovered = true; }
+    if (event?.type === 'pointerleave') { clock.hovered = false; }
+    if (event?.type === 'focusin') { clock.focused = true; }
+    if (event?.type === 'focusout') { clock.focused = notice.contains(event.relatedTarget); }
+    const now = performance.now();
+    if (clock.hovered || clock.focused) {
+      if (clock.started !== null) {
+        clock.remaining = Math.max(0, clock.remaining - (now - clock.started));
+        clock.started = null;
+        clearTrackedTimeout(root, root[timerKey]);
+        root[timerKey] = null;
+      }
       return;
     }
-    expire();
+    if (clock.started !== null) { return; }
+    clock.started = now;
+    root[timerKey] = setTrackedTimeout(root, () => {
+      root[timerKey] = null;
+      clock.active = false;
+      if (!notice.hidden) { clock.expire(); }
+    }, clock.remaining);
   };
-  root[timerKey] = setTrackedTimeout(root, finish, delay);
+  if (!clocks.has(timerKey)) {
+    ['pointerenter', 'pointerleave', 'focusin', 'focusout'].forEach(type =>
+      addTrackedListener(root, notice, type, update));
+  }
+  clocks.set(timerKey, {remaining: delay, started: null, expire, active: true,
+    hovered: notice.matches(':hover'), focused: notice.contains(document.activeElement)});
+  root[timerKey] = null;
+  update();
 };
 
 const offerResume = (root, config, pathName) => {
@@ -504,7 +528,7 @@ const offerResume = (root, config, pathName) => {
   if (!notice || isPathComplete(config, pathName)) { return; }
   notice.dataset.easyeduGuideResumePathName = pathName;
   notice.hidden = false;
-  scheduleNoticeExpiry(root, notice, 'easyeduGuideResumeTimer', 20000, () => dismissResume(root, true));
+  scheduleNoticeExpiry(root, notice, 'easyeduGuideResumeTimer', 45000, () => dismissResume(root, true));
 };
 
 const saveChecklistProgress = (root, config, pathName, activeIndex = 0) => {
@@ -815,7 +839,7 @@ const showInterfaceReturn = root => {
     }
     root.easyeduGuideInterfaceHighlightActive = true;
     returnPanel.hidden = false;
-    scheduleNoticeExpiry(root, returnPanel, 'easyeduGuideReturnTimer', 12000, () => {
+    scheduleNoticeExpiry(root, returnPanel, 'easyeduGuideReturnTimer', 30000, () => {
       if (root.easyeduGuideInterfaceHighlightActive) {
         returnPanel.hidden = true;
         root.easyeduGuideInterfaceHighlightActive = false;
@@ -3375,6 +3399,7 @@ export const destroy = rootOrSelector => {
   unlockPageScroll(root);
   clearTrackedListeners(root);
   clearTrackedTimeouts(root);
+  delete root.easyeduGuideNoticeClocks;
   delete root.easyeduGuideNavResizeTimer;
   clearHighlightAutoHideTimer(root);
   hideInterfaceReturn(root, false);
