@@ -766,6 +766,19 @@
         opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease),
         visibility var(--easyedu-motion-slow);
     }
+    // No comparison mode: narration and Start/Replay share one desktop row.
+    // The existing control collapse still owns playback entry/exit Motion.
+    &__header--single {
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 0.75rem;
+      .easyedu-guide-scene__reading { grid-column: 1; grid-row: 1; padding-block-start: 0; }
+      .easyedu-guide-scene__header-controls { grid-column: 2; grid-row: 1; }
+      .easyedu-guide-scene__start { margin-inline-start: 0; }
+      &[data-guide-playback-state="playing"], &[data-guide-playback-state="paused"] {
+        grid-template-columns: minmax(0, 1fr);
+        .easyedu-guide-scene__header-controls { grid-column: 1; inline-size: 0; }
+      }
+    }
     &__header-controls-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; min-width: 0; min-height: 0; overflow: hidden; }
     &__reading {
       display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
@@ -797,6 +810,11 @@
       &__reading { grid-template-columns: minmax(0, 1fr) auto; }
       &__header .easyedu-guide-scene__live-content { grid-column: 1 / -1; grid-row: 2; }
       &__header .easyedu-guide-scene__playback { grid-column: 2; grid-row: 1; }
+      &__header--single {
+        grid-template-columns: minmax(0, 1fr);
+        .easyedu-guide-scene__reading { grid-column: 1; grid-row: 1; }
+        .easyedu-guide-scene__header-controls { grid-column: 1; grid-row: 2; inline-size: auto; }
+      }
     }
     &__actions .btn[data-guide-scene-command="add"],
     &__actions .btn[data-guide-scene-command="move"] {
@@ -868,6 +886,10 @@
       flex: 0 0 auto;
       padding: 0;
       margin: 0;
+      inline-size: 1.125rem;
+      block-size: 0.25rem;
+      white-space: nowrap;
+      letter-spacing: 0;
       > span {
         display: block;
         box-sizing: border-box;

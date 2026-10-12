@@ -182,7 +182,11 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
     check('One pinned dialog checklist budget',scopedBudget && priorCSS.split(scopedBudget[0]).length===2);
     priorCSS=priorCSS.replace(scopedBudget[0],scopedBudget[1].replace(/^  /gm,''));
     const scope=':is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)';
-    const unscoped=css.replace(/\.easyedu-guide-highlight\[data-easyedu-motion-policy=disabled\] \{\n  animation: none !important;\n  transition: none !important;\n  scroll-behavior: auto !important;\n\}\n\n/,'')
+    const singleBlocks=css.match(/(?:^[^{}\n]*header--single[^\n]*\n)*^[^{}\n]*header--single[^\n]*\{\n[^}]*\}\n/gm)||[];
+    check('R3 admits only nine additive no-mode rules',singleBlocks.length===9);
+    const withoutR3=css.replace(/(?:^[^{}\n]*header--single[^\n]*\n)*^[^{}\n]*header--single[^\n]*\{\n[^}]*\}\n/gm,'')
+        .replace('  inline-size: 1.125rem;\n  block-size: 0.25rem;\n  white-space: nowrap;\n  letter-spacing: 0;\n','');
+    const unscoped=withoutR3.replace(/\.easyedu-guide-highlight\[data-easyedu-motion-policy=disabled\] \{\n  animation: none !important;\n  transition: none !important;\n  scroll-behavior: auto !important;\n\}\n\n/,'')
         .replaceAll(scope+'[data-easyedu-motion-policy=disabled]', '[data-easyedu-motion-policy=disabled]')
         .replaceAll('.easyedu-motion-disabled '+scope+'[data-easyedu-motion-policy]', '.easyedu-motion-disabled [data-easyedu-motion-policy]')
         .replaceAll(scope+'[data-easyedu-motion-policy]', '[data-easyedu-motion-policy]')
