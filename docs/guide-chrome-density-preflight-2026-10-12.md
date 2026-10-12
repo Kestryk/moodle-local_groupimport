@@ -19,3 +19,29 @@ composition and native reading-height/long-FR-label containment remain required.
 T049's unified header/eyebrow is a separate lot, not implicitly completed here.
 
 Status: inspected/prepared, not implemented or served. Human checklist deferred.
+
+## Bounded implementation successor
+
+Canonical0.4.177 implements the existing footer caption and hides the top duplicate
+label. Legacy compact Guide CSS had a column footer and240px action host; Discovery
+now uses row flow and intrinsic canonical Small actions with5.75rem minimum width.
+The existing wrap handles320px without shrinking copy. At40rem and below, only
+the header subtitle is hidden. Interface cue, title/icon/Close, track palette,
+track4px geometry and all controllers/Motion remain unchanged.
+
+Both Discovery progression masters in Foundation Library are already4px; no
+primitive repaint or duplicate master is necessary. Four paired Library/Standard
+composition examples reuse them plus existing Small actions and caption type.
+Existing provider fingerprints and painted containment pass; saved/raster and
+native gates are recorded independently in the successor evidence JSON.
+
+Native baseline24796 measures eight first/last EN/FR cases at1600/1280/390/320,
+on runtime4492a10. It is retained with its original helper. Its introductory
+slide deliberately has no interface cue; the actual dedicated cue is checked
+on membership slide6 in the separate after-helper. First/last counts, labels,
+fonts, footer containment and real reading-space gains remain native gates.
+
+The candidate synchronizes only canonical Discovery SCSS and rebuilt CSS. Entire
+controller/AMD/template/curriculum/legacy Guide and unrelated CSS preservation
+pass. No JS rebuild is needed because complete generated AMD bytes are unchanged.
+No private consumer CSS or inline Mustache style is added. Human checklist open.

@@ -523,7 +523,9 @@
     gap: 0.5rem;
     background: var(--easyedu-surface);
   }
-  .easyedu-guide-modal__progress-label { @include typography.type-caption; display: block; order: -1; }
+  // The existing footer slot carries the reading count. Keep the top track,
+  // without a second visible label or another controller/storage contract.
+  .easyedu-guide-modal__progress-label { @include typography.type-caption; display: none; order: -1; }
   .easyedu-guide-modal__progress-track {
     height: 0.25rem;
     width: 100%;
@@ -531,7 +533,16 @@
     background: var(--easyedu-accent-soft);
     border-color: color-mix(in srgb, var(--easyedu-accent) 22%, var(--easyedu-surface) 78%);
   }
-  .easyedu-guide-modal__step-count { display: none; }
+  .easyedu-guide-modal__footer { flex-direction: row; }
+  .easyedu-guide-modal__step-count {
+    @include typography.type-caption;
+    display: block;
+    margin-inline-end: auto;
+    min-width: 0;
+    order: 0;
+    text-align: start;
+    width: auto;
+  }
 
   .easyedu-guide-modal__progress-bar {
     background: var(--easyedu-accent);
@@ -1135,6 +1146,7 @@
   }
 
   @media (max-width: 40rem) {
+    .easyedu-guide-modal__title-wrap > div > p { display: none; }
     .easyedu-guide-guided-card {
       grid-template-columns: minmax(0, 1fr);
       .easyedu-guide-guided-card__icon { justify-self: start; grid-row: 1; }
@@ -1178,8 +1190,10 @@
     .easyedu-guide-scene__concepts { gap: 1rem; padding: 0; }
     .easyedu-guide-scene__concept-arrow { display: none; }
     .easyedu-guide-modal__body { --easyedu-guide-reading-inset: 1rem; }
-    .easyedu-guide-modal__footer-actions { width: min(100%, 15rem); flex: 0 1 15rem; align-items: stretch; }
-    .easyedu-guide-modal__footer-actions .btn { width: auto; min-width: 0; }
+    // Intrinsic Small actions leave room for the caption at390px. At narrower
+    // widths the existing footer wrap remains available, without clipping copy.
+    .easyedu-guide-modal__footer-actions { width: auto; flex: 0 0 auto; align-items: stretch; }
+    .easyedu-guide-modal__footer-actions .btn { width: auto; min-width: 5.75rem; }
     .easyedu-guide-interface-return { inset-inline: 1rem; width: auto; }
   }
   @media (prefers-reduced-motion: reduce) {

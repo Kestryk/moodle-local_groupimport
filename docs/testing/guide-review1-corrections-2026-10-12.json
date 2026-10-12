@@ -66,10 +66,13 @@
   "nativeReadingOrderRastersInspected": ["fr-390-slide-5", "fr-1280-slide-6"],
   "designSavedTokenLabels": 18,
   "designTokenPaintVerified": true,
+  "readingOrderReferenceRun": "guide-reading-order-20261012-a",
+  "savedPairedReadingOrderReferences": 2,
+  "readingOrderReferencePaintVerified": true,
   "designTokenPaintRecovery": "18 saved linked overrides had stale Group1 cached metrics. Native inspector reflow restored exact Inter12 size; six long destination tokens use intrinsic176px width. All18 actual ink bounds contained; desktop/phone rasters inspected.",
   "previewServed": true,
   "paddingSuccessorServed": true,
   "nativeVerified": true,
   "humanAccepted": false,
-  "remaining": ["T008 design successor", "T012 complete disclosure scope", "T013", "T014", "T015", "V1/V2 verification", "human checklist"]
+  "remaining": ["T012 complete disclosure scope", "T013", "T014", "T015", "V1/V2 verification", "human checklist"]
 }

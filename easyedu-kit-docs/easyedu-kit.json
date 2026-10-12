@@ -4,6 +4,21 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideReadingChrome20261012": {
+      "kitCommit": "fead185b170ca233d3370fcf8a619d8d66d69586",
+      "kitVersion": "0.4.177",
+      "modules": ["scss/easyedu/components/_guide-discovery.scss"],
+      "scope": "Discovery footer reading count and compact subtitle; existing4px accent track, Small actions, templates/controllers/curriculum/Motion preserved.",
+      "foundationSavedCompositions": 4,
+      "productSavedCompositions": 2,
+      "sourceProvidersUnchanged": true,
+      "pairedRasterInspected": true,
+      "nativePreviewVerified": false,
+      "nativeProof": "docs/testing/guide-chrome-density-2026-10-12.json",
+      "humanVisualValidated": false,
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "guideIntroductionClearance20261011": {
       "kitCommit": "2437268a24fc6596af527680d4642d5bdc02e11b",
       "kitVersion": "0.4.172",

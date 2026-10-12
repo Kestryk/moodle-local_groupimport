@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Discovery reading chrome uses canonical caption/Small primitives and the same
+existing progress-label slot. No new template, controller, reading-state key or
+consumer CSS. Keep baseline and successor helpers immutable and scoped: an
+introductory slide can intentionally have no interface target. Test its dedicated
+cue on a real contextual slide, and retain narrow-width footer wrapping.
+
 Native viewport proof separates a settled phase reveal from locator-induced
 autoscroll on sticky playback controls. Preserve failed specs and use painted
 hit-tested pointer successors, not force/DOM clicks or weaker bounds. Reading
