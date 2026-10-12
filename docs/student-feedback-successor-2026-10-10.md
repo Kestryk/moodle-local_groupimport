@@ -1,5 +1,9 @@
 # EasyStud — nouveaux retours du 10 octobre 2026
 
+Mise à jour d'ordre Kevin12Oct : `execution-priority-2026-10-12.md` remplace
+seulement la priorité historique Guide-first ci-dessous. Toutes les33 demandes,
+anciennes preuves et portes humaines restent intactes ; pas de suppression.
+
 Programme : EED-UI-2026-0073. Registre additif : **33 demandes distinctes**,
 une ligne/un lot par demande. Les répétitions du collage, dont More Filters,
 sont regroupées sans supprimer de portée. Les demandes déjà connues renvoient

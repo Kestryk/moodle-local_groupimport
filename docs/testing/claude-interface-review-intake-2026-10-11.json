@@ -6,6 +6,7 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "effectiveExecutionPriority20261012": "docs/execution-priority-2026-10-12.json",
   "claudePathsAndSkeletonSupplement20261012": {
     "record": "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",
     "pathsAuditSha256": "3e5ed7a9bdd03098d794abde76b018aa51555501d7efe54d5f6f29a793d48212",

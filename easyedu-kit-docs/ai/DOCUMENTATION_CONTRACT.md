@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Kevin's12Oct whole-backlog directive replaces historical Guide-first ordering,
+not scope or proof. Use docs/execution-priority-2026-10-12.json and its coverage
+gate before choosing a lot. Shared prerequisites precede compositions; already
+verified fixes need remaining gates, not reimplementation. Never drop older
+SM/R10/Guide requests or treat a rejected alternative as required implementation.
+
 Local loading/on-demand successors require the recorded I1–I13 before/after
 grid in docs/claude-guide-paths-skeleton-intake-2026-10-12.md. Preserve data*,
 model selection/counts, Guide readiness/signals, card Motion and modal focus.

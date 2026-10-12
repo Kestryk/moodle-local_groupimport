@@ -7,6 +7,7 @@
   "previousRequirementsRetained": true,
   "previousPassDoesNotOverrideNewFeedback": true,
   "humanChecklistDeferred": true,
+  "effectiveExecutionPriority20261012": "docs/execution-priority-2026-10-12.json",
   "guideFirstOrder": [
     "R10-01 (Guide portals only)",
     "R10-03",
