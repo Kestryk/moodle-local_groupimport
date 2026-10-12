@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N1] SM-RENDU-2b (Claude): in On demand mode the participant list renders only its current page from the state (shared `sm/participant_card` partial, also used by the legacy page with byte-identical HTML); filters, sort, pagination, counters, empty state, Select all and cross-page selection (id set plus detached cards) run on the state; memberships changed by actions update it. Legacy mode unchanged except a batched layout read in participant tag overflow (6.2 s to 1.1 s at 800 participants). 800 fixture: HTML 43.4 to 32.0 MB, 20 participant cards instead of 800; group views still legacy (step 3).
+
 - 2026-10-12 [N1] SM-RENDU-2a (Claude): `renderingmode` setting (Current by default / On demand preview), core/reactive store loading `get_state`, participant search index reproducing the legacy filters; nothing rendered from it yet. Parity: course 5, 202 filter cases and per-participant index text identical; 800 fixture, 21 cases identical, state 236 KB loaded in about 1 s, index built in 4 ms.
 
 - 2026-10-12 [N0] SM-RENDU-1 (Claude): compact course state external functions `local_groupimport_get_state` / `local_groupimport_get_details`, per-course state version (table `local_groupimport_statever`, core event observers), `tools/sm/check-state.php` parity check; legacy page unchanged. 800/150/40: state 236 KB vs 2.17 MB, 70 ms / 9 reads vs 2,309 ms / 817 reads, parity PASS.

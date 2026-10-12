@@ -27,7 +27,11 @@ import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './search
 import {snapshotMemberPairs} from './member_selection';
 import Log from 'core/log';
 import {createStore} from './local/sm/store';
-import {buildParticipantIndex, filterParticipantIds} from './local/sm/index';
+import {filterParticipantIds} from './local/sm/index';
+import {
+    createParticipantModel, refreshModel, getDetachedCard, applyParticipantFilters, sortParticipantIds, renderParticipantPage,
+} from './local/sm/participants';
+import Notification from 'core/notification';
 
 const selectedClass = 'is-selected';
 const disabledSelectionClass = 'is-selection-disabled';
@@ -181,7 +185,7 @@ const getParticipantFromContextItem = (root, item) => {
         return item;
     }
     const userid = item.getAttribute('data-easystud-member-id') || item.getAttribute('data-user-id') || '';
-    return userid ? root.querySelector('[data-easystud-user][data-user-id="' + userid + '"]') : null;
+    return userid ? findParticipantCard(root, userid) : null;
 };
 
 const getParticipantItemsForContext = (root, type, target) => {
@@ -391,14 +395,26 @@ const getKnownUserIdentifiers = root => {
         known.set(key, display || value);
     };
 
-    Array.from(root.querySelectorAll('[data-easystud-user]')).forEach(user => {
-        const name = (user.querySelector('.local-groupimport-easystud-user__name') || {}).textContent || '';
-        const display = name.trim();
-        const userid = user.getAttribute('data-user-id') || display;
-        [user.getAttribute('data-user-id'), user.getAttribute('data-user-email')].filter(Boolean).forEach(value => {
+    const model = getOnDemandModel(root);
+    // On demand, read every participant from the state: only one page has cards.
+    const records = model ? model.raw.users.map(user => ({
+        name: user.fullname,
+        userid: String(user.id),
+        email: user.email,
+        copyfields: Object.keys(user.identifiers || {}).map(key => ({key, value: user.identifiers[key]})),
+    })) : Array.from(root.querySelectorAll('[data-easystud-user]')).map(user => ({
+        name: (user.querySelector('.local-groupimport-easystud-user__name') || {}).textContent || '',
+        userid: user.getAttribute('data-user-id'),
+        email: user.getAttribute('data-user-email'),
+        copyfields: getUserCopyFields(user),
+    }));
+    records.forEach(record => {
+        const display = record.name.trim();
+        const userid = record.userid || display;
+        [record.userid, record.email].filter(Boolean).forEach(value => {
             addIdentifier(value, display || value, userid);
         });
-        getUserCopyFields(user).forEach(field => {
+        record.copyfields.forEach(field => {
             if (field.value) {
                 addIdentifier(field.value, display || field.value, userid);
             }
@@ -821,6 +837,62 @@ const rehydrateParticipantMembershipDetails = root => {
             // Preserve the server-rendered detail payload if it is malformed.
         }
     });
+
+    syncOnDemandMemberships(root, {groups, groupings, memberships, groupingMemberships});
+};
+
+/**
+ * SM-RENDU: copy memberships recomputed from the group tree into the on-demand state.
+ *
+ * The legacy group tree stays the source of truth after an action until step 4 brings
+ * server deltas. Only changes trigger a new index and a re-render of the current page.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Object} tree Maps built by rehydrateParticipantMembershipDetails().
+ */
+const syncOnDemandMemberships = (root, tree) => {
+    const model = getOnDemandModel(root);
+    if (!model) {
+        return;
+    }
+    const sortedIds = ids => Array.from(ids || []).map(Number).sort((left, right) => left - right);
+    let changed = false;
+    model.raw.users.forEach(user => {
+        const groupids = sortedIds(tree.memberships.get(String(user.id)));
+        if (groupids.join(',') !== (user.groupids || []).join(',')) {
+            user.groupids = groupids;
+            changed = true;
+        }
+    });
+    const knownGroups = new Set(model.raw.groups.map(group => String(group.id)));
+    tree.groups.forEach((name, groupid) => {
+        if (!knownGroups.has(groupid) && /^\d+$/.test(groupid)) {
+            model.raw.groups.push({id: Number(groupid), name, groupingids: []});
+            changed = true;
+        }
+    });
+    model.raw.groups = model.raw.groups.filter(group => {
+        const kept = tree.groups.has(String(group.id));
+        changed = changed || !kept;
+        return kept;
+    });
+    model.raw.groups.forEach(group => {
+        const groupingids = sortedIds(tree.groupingMemberships.get(String(group.id)));
+        if (groupingids.join(',') !== (group.groupingids || []).join(',')) {
+            group.groupingids = groupingids;
+            changed = true;
+        }
+    });
+    const knownGroupings = new Set(model.raw.groupings.map(grouping => String(grouping.id)));
+    tree.groupings.forEach((name, groupingid) => {
+        if (!knownGroupings.has(groupingid) && /^\d+$/.test(groupingid)) {
+            model.raw.groupings.push({id: Number(groupingid), name, groupids: []});
+            changed = true;
+        }
+    });
+    if (changed) {
+        refreshModel(model);
+    }
 };
 
 const updateCatalogGroupingTags = (root, groupid) => {
@@ -1000,16 +1072,21 @@ const syncParticipantTagOverflow = scope => {
         return;
     }
     const pendingMeasurements = [];
-    scope.querySelectorAll('.local-groupimport-easystud-user__meta-tags').forEach(container => {
+    const rows = Array.from(scope.querySelectorAll('.local-groupimport-easystud-user__meta-tags')).map(container => {
         const tokens = Array.from(container.querySelectorAll('.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty)'));
-        let toggle = container.querySelector('[data-easystud-toggle-tags]');
-        const expanded = toggle && toggle.getAttribute('data-expanded') === '1';
-
         tokens.forEach(token => {
             token.hidden = false;
         });
+        return {container, tokens};
+    });
+    // Read every row width after all the writes above: one layout pass instead of one per row,
+    // which costs seconds on large pages.
+    const rowWidths = rows.map(({container}) => container.clientWidth);
+    rows.forEach(({container, tokens}, rowIndex) => {
+        let toggle = container.querySelector('[data-easystud-toggle-tags]');
+        const expanded = toggle && toggle.getAttribute('data-expanded') === '1';
 
-        if (!tokens.length || container.clientWidth < 1) {
+        if (!tokens.length || rowWidths[rowIndex] < 1) {
             if (toggle) {
                 toggle.hidden = true;
             }
@@ -1853,7 +1930,7 @@ const applyGroupMemberSearch = (root, options = {}) => {
 
         members.forEach(member => {
             const userid = member.getAttribute('data-easystud-member-id') || '';
-            const user = userid ? root.querySelector('[data-easystud-user][data-user-id="' + userid + '"]') : null;
+            const user = userid ? findParticipantCard(root, userid) : null;
             const text = normalise(
                 (member.getAttribute('data-search-text') || member.textContent || '') + ' ' +
                 (user ? (user.getAttribute('data-search-text') || user.textContent || '') : '')
@@ -2288,18 +2365,23 @@ const emitFilterPathCompletion = (root, step) => {
     if (!list) {
         return;
     }
-    const items = getSelectableResultItems(list, {selector: '[data-easystud-user]'});
-    const selected = getSelectedItems(root, 'participant');
+    const model = getOnDemandModel(root);
+    const items = model ? model.filteredIds : getSelectableResultItems(list, {selector: '[data-easystud-user]'});
     const filtered = hasActiveListFilters(root, list);
     const panel = root.querySelector('[data-easystud-advanced-filters="participants"]');
+    // On demand, compare id sets: building a card per result is far too slow on large courses.
+    const allResultsSelected = model ?
+        items.every(userid => model.selected.has(userid)) && model.selected.size === items.length :
+        items.every(item => item.classList.contains(selectedClass)) && (() => {
+            const selected = getSelectedItems(root, 'participant');
+            return selected.length === items.length && selected.every(item => items.includes(item));
+        })();
     const completed = {
         'open-filters': !!panel && !panel.hidden && panel.classList.contains('is-expanded') &&
             panel.getAttribute('aria-hidden') !== 'true' && !panel.inert,
         'apply-filter': filtered && items.length > 0,
-        'select-results': filtered && items.length > 0 &&
-            items.every(item => item.classList.contains(selectedClass)) &&
-            selected.length === items.length && selected.every(item => items.includes(item)),
-        'clear-selection': selected.length === 0,
+        'select-results': filtered && items.length > 0 && allResultsSelected,
+        'clear-selection': model ? model.selected.size === 0 : getSelectedItems(root, 'participant').length === 0,
     };
     if (completed[step]) {
         emitNativePathCompletion(root, 'verify-with-filters', step);
@@ -3314,7 +3396,7 @@ const removeMembers = (root, courseId, members) => {
             const group = member.closest('[data-easystud-group-id]');
             const groupid = group ? group.getAttribute('data-easystud-group-id') : '';
             const userid = member.getAttribute('data-easystud-member-id');
-            const user = root.querySelector('[data-easystud-user][data-user-id="' + userid + '"]');
+            const user = findParticipantCard(root, userid);
             if (user) {
                 const current = (user.getAttribute('data-group-ids') || '').split(',').filter(Boolean);
                 user.setAttribute('data-group-ids', current.filter(id => id !== groupid).join(','));
@@ -4001,7 +4083,7 @@ const escapeHtml = value => {
 const getAdvancedValue = (item, key) => item ? (item.getAttribute('data-easystud-advanced-' + key) || '') : '';
 
 const getUserById = (root, userid) => {
-    return userid ? root.querySelector('[data-easystud-user][data-user-id="' + userid + '"]') : null;
+    return userid ? findParticipantCard(root, userid) : null;
 };
 
 const getAdvancedGroupMemberRows = (root, item) => {
@@ -4855,6 +4937,11 @@ const isItemFilteredOut = item => item.hasAttribute('data-easystud-filter-hidden
     item.getAttribute('data-easystud-grouping-filter-hidden') === '1';
 
 const getSelectableResultItems = (list, config) => {
+    const root = list.closest('.local-groupimport-easystud');
+    if (isOnDemandParticipantList(root, list)) {
+        // All filtered results across pages; off-page ones are detached cards.
+        return getOnDemandModel(root).filteredIds.map(userid => findParticipantCard(root, userid)).filter(Boolean);
+    }
     return Array.from(list.children).filter(item => {
         if (!item.matches(config.selector) || isItemFilteredOut(item)) {
             return false;
@@ -4934,7 +5021,9 @@ const updateResultSelectionControl = (root, list, config, select) => {
         return;
     }
     const labels = getLabels(root);
-    const items = getSelectableResultItems(list, config);
+    const model = isOnDemandParticipantList(root, list) ? getOnDemandModel(root) : null;
+    // On demand, count from the state rather than building a card per result.
+    const items = model ? model.filteredIds : getSelectableResultItems(list, config);
     const filtered = hasActiveListFilters(root, list);
     const show = items.length > 0;
     const label = select.querySelector('[data-easystud-select-results-label]') || select;
@@ -4946,7 +5035,8 @@ const updateResultSelectionControl = (root, list, config, select) => {
             (labels.selectall || '');
         return;
     }
-    const allselected = items.every(item => item.classList.contains(selectedClass));
+    const allselected = model ? items.every(userid => model.selected.has(userid)) :
+        items.every(item => item.classList.contains(selectedClass));
     select.setAttribute('data-easystud-deselect-results', allselected ? '1' : '0');
     label.textContent = allselected ?
         (filtered ? (labels.deselectresults || '') : (labels.deselectall || '')) :
@@ -5054,39 +5144,51 @@ const syncPagination = root => {
             return;
         }
 
-        Array.from(list.querySelectorAll('[data-easystud-page-hidden="1"]')).forEach(item => {
-            item.removeAttribute('data-easystud-page-hidden');
-            if (!isItemFilteredOut(item)) {
-                item.hidden = false;
+        const ondemand = isOnDemandParticipantList(root, list);
+        let items;
+        let pages;
+        let page;
+        if (ondemand) {
+            // SM-RENDU: only the current page exists; filters and sort run on the state.
+            const pageWindow = renderOnDemandParticipantPage(root, list, config);
+            items = {length: pageWindow.total};
+            pages = pageWindow.pages;
+            page = pageWindow.page;
+        } else {
+            Array.from(list.querySelectorAll('[data-easystud-page-hidden="1"]')).forEach(item => {
+                item.removeAttribute('data-easystud-page-hidden');
+                if (!isItemFilteredOut(item)) {
+                    item.hidden = false;
+                }
+            });
+
+            sortListItems(list, config);
+            items = Array.from(list.children).filter(item => item.matches(config.selector) && !item.hidden);
+            pages = Math.ceil(items.length / config.limit);
+            page = parseInt(list.getAttribute('data-easystud-page') || '0', 10);
+            if (Number.isNaN(page) || page < 0) {
+                page = 0;
             }
-        });
-
-        sortListItems(list, config);
-        const items = Array.from(list.children).filter(item => item.matches(config.selector) && !item.hidden);
-        const pages = Math.ceil(items.length / config.limit);
-        let page = parseInt(list.getAttribute('data-easystud-page') || '0', 10);
-        if (Number.isNaN(page) || page < 0) {
-            page = 0;
+            page = Math.min(page, Math.max(pages - 1, 0));
+            list.setAttribute('data-easystud-page', page);
         }
-        page = Math.min(page, Math.max(pages - 1, 0));
-        list.setAttribute('data-easystud-page', page);
 
-        const paginations = config.inside ? Array.from(list.querySelectorAll(':scope > [data-easystud-pagination]')) :
-            [list.previousElementSibling, list.nextElementSibling].filter(node => node && node.matches('[data-easystud-pagination]'));
         if (pages <= 1) {
             syncSinglePageResultSelection(root, list, config, pages, items);
             return;
         }
 
-        const start = page * config.limit;
-        const end = start + config.limit;
-        items.forEach((item, index) => {
-            const hidden = index < start || index >= end;
-            item.hidden = hidden;
-            if (hidden) {
-                item.setAttribute('data-easystud-page-hidden', '1');
-            }
-        });
+        if (!ondemand) {
+            const start = page * config.limit;
+            const end = start + config.limit;
+            items.forEach((item, index) => {
+                const hidden = index < start || index >= end;
+                item.hidden = hidden;
+                if (hidden) {
+                    item.setAttribute('data-easystud-page-hidden', '1');
+                }
+            });
+        }
 
         ['top', 'bottom'].forEach(position => {
             const controls = getPagination(list, config.inside, position);
@@ -5262,8 +5364,13 @@ const bindPagination = root => {
             return;
         }
         if (button.matches('[data-easystud-select-results]')) {
-            const items = getSelectableResultItems(list, config);
-            const type = items[0] ? items[0].getAttribute('data-selectable-type') : '';
+            const model = isOnDemandParticipantList(root, list) ? getOnDemandModel(root) : null;
+            // On demand, select ids directly instead of building a card per result.
+            const items = model ? [] : getSelectableResultItems(list, config);
+            let type = items[0] ? items[0].getAttribute('data-selectable-type') : '';
+            if (model) {
+                type = model.filteredIds.length ? 'participant' : '';
+            }
             const active = getActiveSelectionType(root);
             if (!type || (active && active !== type)) {
                 return;
@@ -5274,6 +5381,8 @@ const bindPagination = root => {
                 // outside the current result set. Deselect results establishes
                 // a clean filtered scope before the next Select results action.
                 clearSelection(root, type);
+            } else if (model) {
+                setOnDemandParticipantsSelected(root, model.filteredIds, !deselect);
             } else {
                 items.forEach(item => setItemSelected(item, !deselect));
             }
@@ -5295,23 +5404,11 @@ const bindPagination = root => {
         if (button.matches('[data-easystud-page-first]')) {
             nextpage = 0;
         } else if (button.matches('[data-easystud-page-last]')) {
-            const limit = config.limit;
-            const total = Array.from(list.children).filter(item => {
-                if (!item.matches(config.selector)) {
-                    return false;
-                }
-                return !item.hidden || item.getAttribute('data-easystud-page-hidden') === '1';
-            }).length;
-            nextpage = Math.max(Math.ceil(total / limit) - 1, 0);
+            nextpage = Math.max(Math.ceil(getPaginationTotal(root, list, config) / config.limit) - 1, 0);
         } else {
             nextpage = current + (button.matches('[data-easystud-page-next]') ? 1 : -1);
         }
-        const total = Array.from(list.children).filter(item => {
-            if (!item.matches(config.selector)) {
-                return false;
-            }
-            return !item.hidden || item.getAttribute('data-easystud-page-hidden') === '1';
-        }).length;
+        const total = getPaginationTotal(root, list, config);
         const maxpage = Math.max(Math.ceil(total / config.limit) - 1, 0);
         nextpage = Math.max(0, Math.min(nextpage, maxpage));
         const fromBottom = pagination.getAttribute('data-easystud-pagination') === 'bottom';
@@ -5364,7 +5461,18 @@ const applyFilters = (root, options = {}) => {
         root.getAttribute('data-easystud-mobile-view-active') === 'participants') ?
         getSelectedFilterValues(groupingControl) : [];
 
-    root.querySelectorAll('[data-easystud-user]').forEach(user => {
+    const model = getOnDemandModel(root);
+    if (model) {
+        // SM-RENDU: pick up membership changes made by actions, then filter the state.
+        rehydrateParticipantMembershipDetails(root);
+        applyParticipantFilters(model, {
+            query,
+            roles: selectedroles,
+            groups: selectedgroups,
+            groupings: selectedgroupings,
+        });
+    }
+    (model ? [] : root.querySelectorAll('[data-easystud-user]')).forEach(user => {
         const text = normalise(user.getAttribute('data-search-text'));
         const roles = normalise(user.getAttribute('data-role-text')).split('|').filter(Boolean);
         const groups = (user.getAttribute('data-group-ids') || '').split(',').filter(Boolean);
@@ -5479,6 +5587,14 @@ const bindFilters = root => {
 };
 
 const getSelectedItems = (root, type) => {
+    const model = getOnDemandModel(root);
+    if (model && (!type || type === 'participant')) {
+        // SM-RENDU: the participant selection is a set of ids that may span pages.
+        const participants = model.raw.users.filter(user => model.selected.has(user.id))
+            .map(user => findParticipantCard(root, user.id)).filter(Boolean);
+        return type ? participants : participants.concat(Array.from(root.querySelectorAll(
+            '[data-selectable-type].' + selectedClass + ':not([data-selectable-type="participant"])')));
+    }
     const selector = type ? '[data-selectable-type="' + type + '"].' + selectedClass : '[data-selectable-type].' + selectedClass;
     return Array.from(root.querySelectorAll(selector));
 };
@@ -5573,9 +5689,37 @@ const setItemSelected = (item, selected) => {
     if (input) {
         input.checked = selected;
     }
+    const model = getOnDemandModel();
+    if (model && item.getAttribute('data-selectable-type') === 'participant') {
+        const userid = Number(item.getAttribute('data-user-id'));
+        if (selected) {
+            model.selected.add(userid);
+        } else {
+            model.selected.delete(userid);
+        }
+        // Keep the page card and its detached copy in step.
+        const twin = item.isConnected ? model.detached.get(userid) :
+            onDemandParticipants.root.querySelector(`[data-easystud-user][data-user-id="${userid}"]`);
+        if (twin && twin !== item) {
+            twin.classList.toggle(selectedClass, selected);
+            const twinInput = getSelectionInput(twin);
+            if (twinInput) {
+                twinInput.checked = selected;
+            }
+        }
+    }
 };
 
 const clearSelectionForType = (root, type, except) => {
+    if (type === 'participant' && getOnDemandModel(root)) {
+        const exceptid = except ? except.getAttribute('data-user-id') : null;
+        getSelectedItems(root, 'participant').forEach(entry => {
+            if (entry !== except && entry.getAttribute('data-user-id') !== exceptid) {
+                setItemSelected(entry, false);
+            }
+        });
+        return;
+    }
     root.querySelectorAll('[data-selectable-type="' + type + '"].' + selectedClass).forEach(entry => {
         if (entry !== except) {
             setItemSelected(entry, false);
@@ -5589,6 +5733,17 @@ const clearSelectionForType = (root, type, except) => {
 const clearSelection = (root, type) => {
     const selector = type ? '[data-selectable-type="' + type + '"]' : '[data-selectable-type]';
     root.querySelectorAll(selector).forEach(item => setItemSelected(item, false));
+    const model = getOnDemandModel(root);
+    if (model && (!type || type === 'participant')) {
+        model.selected.clear();
+        model.detached.forEach(card => {
+            card.classList.remove(selectedClass);
+            const input = getSelectionInput(card);
+            if (input) {
+                input.checked = false;
+            }
+        });
+    }
     if (type === 'grouping') {
         collapseAllGroupings(root);
     }
@@ -5644,8 +5799,10 @@ const updateParticipantEmptyState = root => {
         return;
     }
 
-    const users = Array.from(list.querySelectorAll('[data-easystud-user]'));
-    const visibleUsers = users.filter(user => !user.hidden);
+    const model = getOnDemandModel(root);
+    // On demand, totals come from the state: only the current page has cards.
+    const users = model ? model.raw.users : Array.from(list.querySelectorAll('[data-easystud-user]'));
+    const visibleUsers = model ? model.filteredIds : users.filter(user => !user.hidden);
     let state = list.querySelector('[data-easystud-empty-state="participants"]');
 
     if (!state) {
@@ -8899,7 +9056,7 @@ const bindParticipantModal = root => {
         if (!button || !root.contains(button)) {
             return;
         }
-        const user = root.querySelector('[data-easystud-user][data-user-id="' + button.getAttribute('data-easystud-open-user') + '"]');
+        const user = findParticipantCard(root, button.getAttribute('data-easystud-open-user'));
         if (user) {
             openForUser(user, button);
         }
@@ -10376,37 +10533,179 @@ const bindPastePreview = root => {
     box.addEventListener('paste', () => window.setTimeout(render, 0));
 };
 
-// Initialise the manager.
 /**
- * SM-RENDU: load the compact course state next to the legacy page (on-demand mode only).
+ * SM-RENDU on-demand participant list, set once the state is loaded: {root, model}.
  *
- * Step 2a renders nothing from it yet; it exposes the store and the participant index on
- * the root so parity with the legacy filters can be checked on the same page.
+ * While it is null (legacy mode, or state still loading) every helper below falls back
+ * to the legacy DOM behaviour.
+ */
+let onDemandParticipants = null;
+
+const getOnDemandModel = root => (onDemandParticipants && (!root || root === onDemandParticipants.root)) ?
+    onDemandParticipants.model : null;
+
+const isOnDemandParticipantList = (root, list) => !!list && !!getOnDemandModel(root) &&
+    list.matches('[data-easystud-participant-list]');
+
+/**
+ * Reflect the id-based selection on one card (page card or detached copy).
+ *
+ * @param {Object} model Participant model.
+ * @param {HTMLElement} card Participant card.
+ * @returns {HTMLElement}
+ */
+const syncCardSelection = (model, card) => {
+    const selected = model.selected.has(Number(card.getAttribute('data-user-id')));
+    card.classList.toggle(selectedClass, selected);
+    const input = getSelectionInput(card);
+    if (input) {
+        input.checked = selected;
+    }
+    return card;
+};
+
+/**
+ * The card of a participant: on the current page, or else (on demand) a detached copy.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {String|Number} userid User id.
+ * @returns {HTMLElement|null}
+ */
+const findParticipantCard = (root, userid) => {
+    if (!userid) {
+        return null;
+    }
+    const model = getOnDemandModel(root);
+    if (!model) {
+        return root.querySelector('[data-easystud-user][data-user-id="' + userid + '"]');
+    }
+    // Page cards are indexed at render time: a document-wide query per id is far too slow on large courses.
+    const card = model.pageCards.get(Number(userid));
+    if (card && card.isConnected) {
+        return card;
+    }
+    const detached = getDetachedCard(model, Number(userid));
+    return detached ? syncCardSelection(model, detached) : null;
+};
+
+/**
+ * Number of results of a paginated list, across all its pages.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {HTMLElement} list Paginated list.
+ * @param {Object} config Pagination config.
+ * @returns {Number}
+ */
+const getPaginationTotal = (root, list, config) => {
+    if (isOnDemandParticipantList(root, list)) {
+        return getOnDemandModel(root).filteredIds.length;
+    }
+    return Array.from(list.children).filter(item => {
+        if (!item.matches(config.selector)) {
+            return false;
+        }
+        return !item.hidden || item.getAttribute('data-easystud-page-hidden') === '1';
+    }).length;
+};
+
+/**
+ * Select or deselect many participants by id (Select all / Select results).
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Number[]} ids User ids.
+ * @param {Boolean} selected New state.
+ */
+const setOnDemandParticipantsSelected = (root, ids, selected) => {
+    const model = getOnDemandModel(root);
+    ids.forEach(userid => {
+        if (selected) {
+            model.selected.add(userid);
+        } else {
+            model.selected.delete(userid);
+        }
+    });
+    root.querySelectorAll('[data-easystud-participant-list] [data-easystud-user]').forEach(card => syncCardSelection(model, card));
+    model.detached.forEach(card => syncCardSelection(model, card));
+};
+
+/**
+ * Render the current page of the on-demand participant list.
+ *
+ * Unchanged pages (same ids, same state revision) are kept as they are, so a refresh
+ * does not reset focus, hover or open menus.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {HTMLElement} list Participant list.
+ * @param {Object} config Pagination config (page size).
+ * @returns {{total: Number, pages: Number, page: Number}}
+ */
+const renderOnDemandParticipantPage = (root, list, config) => {
+    const model = getOnDemandModel(root);
+    const ordered = sortParticipantIds(model, model.filteredIds, list.getAttribute('data-easystud-sort') || 'alpha');
+    const pages = Math.ceil(ordered.length / config.limit);
+    let page = parseInt(list.getAttribute('data-easystud-page') || '0', 10);
+    if (Number.isNaN(page) || page < 0) {
+        page = 0;
+    }
+    page = Math.min(page, Math.max(pages - 1, 0));
+    list.setAttribute('data-easystud-page', page);
+
+    const pageIds = ordered.slice(page * config.limit, (page + 1) * config.limit);
+    const key = model.revision + '|' + pageIds.join(',');
+    if (list.easystudSmRenderedKey !== key) {
+        model.pageCards = new Map(renderParticipantPage(model, list, pageIds).map(card =>
+            [Number(card.getAttribute('data-user-id')), syncCardSelection(model, card)]));
+        list.easystudSmRenderedKey = key;
+        updateSelectionAvailability(root);
+        syncResponsiveDragAvailability(root);
+        scheduleParticipantTagOverflow(root);
+        syncParticipantDensity(root, {animate: false});
+    }
+    return {total: ordered.length, pages, page};
+};
+
+/**
+ * SM-RENDU: load the compact course state and render the participant list from it.
  *
  * @param {HTMLElement} root EasyStud root.
  * @param {Number} courseId Course id.
+ * @param {Object} strings Participant card labels from manage.php.
  */
-const startOnDemandState = (root, courseId) => {
+const startOnDemandState = (root, courseId, strings) => {
     root.setAttribute('data-easystud-rendering-mode', 'reactive');
-    createStore(root, courseId).then(({reactive, raw, loadMs}) => {
-        const indexStarted = window.performance.now();
-        const index = buildParticipantIndex(raw);
-        root.easystudSm = {
-            reactive,
-            raw,
-            index,
-            loadMs,
-            indexMs: Math.round(window.performance.now() - indexStarted),
-            filterParticipantIds: filters => filterParticipantIds(index, filters),
-        };
-        root.setAttribute('data-easystud-sm-ready', '1');
-        root.dispatchEvent(new CustomEvent('local_groupimport/sm:ready', {detail: {loadMs}}));
-        return root.easystudSm;
-    }).catch(error => {
-        root.setAttribute('data-easystud-sm-ready', 'error');
-        Log.error(error);
-    });
+    let store = null;
+    createStore(root, courseId)
+        .then(loaded => {
+            store = loaded;
+            return createParticipantModel(loaded.raw, strings);
+        })
+        .then(model => {
+            const {reactive, raw, loadMs} = store;
+            onDemandParticipants = {root, model};
+            const renderStarted = window.performance.now();
+            applyFilters(root);
+            updateSelectionActions(root);
+            root.easystudSm = {
+                reactive,
+                raw,
+                model,
+                loadMs,
+                firstRenderMs: Math.round(window.performance.now() - renderStarted),
+                filterParticipantIds: filters => filterParticipantIds(model.index, filters),
+            };
+            root.setAttribute('data-easystud-sm-ready', '1');
+            root.dispatchEvent(new CustomEvent('local_groupimport/sm:ready', {detail: {loadMs}}));
+            return root.easystudSm;
+        })
+        .catch(error => {
+            root.setAttribute('data-easystud-sm-ready', 'error');
+            root.querySelectorAll('[data-easystud-sm-loading]').forEach(node => node.remove());
+            Notification.exception(error);
+            Log.error(error);
+        });
 };
+
+// Initialise the manager.
 
 export const init = (rootId, courseId, options = {}) => {
     onReady(() => {
@@ -10427,7 +10726,7 @@ export const init = (rootId, courseId, options = {}) => {
 
         Motion.init(root);
         if (options && options.renderingmode === 'reactive') {
-            runSafely(() => startOnDemandState(root, courseId));
+            runSafely(() => startOnDemandState(root, courseId, options.cardstrings || {}));
         }
 
         [

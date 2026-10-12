@@ -76,7 +76,21 @@ $PAGE->requires->js_call_amd('local_groupimport/easyedu_guide', 'init', [
 $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
     'local-groupimport-easystud',
     $course->id,
-    ['renderingmode' => get_config('local_groupimport', 'renderingmode') === 'reactive' ? 'reactive' : 'legacy'],
+    local_groupimport_is_on_demand_rendering() ? [
+        'renderingmode' => 'reactive',
+        // Labels of the participant card rendered in the browser (templates/sm/participant_card).
+        'cardstrings' => [
+            'selectionmodelabel' => get_string('selectionmode', 'local_groupimport'),
+            'viewdetailslabel' => get_string('viewparticipantdetails', 'local_groupimport'),
+            'roleslabel' => get_string('roleslabel', 'local_groupimport'),
+            'groupslabel' => get_string('groupslabel', 'local_groupimport'),
+            'groupingslabel' => get_string('groupingslabel', 'local_groupimport'),
+            'norole' => get_string('norole', 'local_groupimport'),
+            'nogroup' => get_string('nogroup', 'local_groupimport'),
+            'nogrouping' => get_string('nogrouping', 'local_groupimport'),
+            'showless' => get_string('showless', 'local_groupimport'),
+        ],
+    ] : ['renderingmode' => 'legacy'],
 ]);
 $action = optional_param('action', '', PARAM_ALPHA);
 // Create/rename write course data: only accept them from the plugin's POST forms, and fail loudly on a bad session key.
@@ -982,7 +996,10 @@ function local_groupimport_build_manage_template_data(
     $templatedata['useeasyeduguide'] = true;
     $templatedata['easyeduguide'] = local_groupimport_build_easyedu_guide_template_data($templatedata);
 
-    foreach ($users as $user) {
+    // SM-RENDU on-demand mode: the browser renders the current page of participant cards
+    // from the compact state (local_groupimport_get_state); none is rendered here.
+    $templatedata['smondemand'] = local_groupimport_is_on_demand_rendering();
+    foreach ($templatedata['smondemand'] ? [] : $users as $user) {
         $customsearchvalues = [];
         foreach ($user['participantdisplayfields'] ?? [] as $field) {
             $customsearchvalues[] = $field['label'];

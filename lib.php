@@ -124,6 +124,15 @@ function local_groupimport_is_simplified_view_enabled(): bool {
 }
 
 /**
+ * Whether Student Management renders participants on demand in the browser (SM-RENDU preview).
+ *
+ * @return bool
+ */
+function local_groupimport_is_on_demand_rendering(): bool {
+    return get_config('local_groupimport', 'renderingmode') === 'reactive';
+}
+
+/**
  * Return the normalized Student Management workspace preferences.
  *
  * Missing values preserve the historical three-view experience for existing
