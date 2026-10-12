@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-12 - Guide palette sampling successor
+
+- Retain the native T037-A transient-icon failure and original spec. A separate
+  strict successor waits existing finite effects before sampling the reversible
+  test palette; no product assets/Motion or expected colours change.
+- Record complete wrapper cleanup and leave native verification pending.
+
 ## 2026-10-12 - Guide completion emphasis, T037-A
 
 - Consume Kit185's finished narration accent/strong child paint. Keep every
