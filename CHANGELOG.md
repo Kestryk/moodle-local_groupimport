@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N0] PG-A2/A1/A3: ordered Actions-path signals follow real Participant selection and menu reveal across entry methods; drag success is session-bound, retained IDs/history and business commands unchanged.
+
 - 2026-10-12 [N0] AP-A1: replace fifteen error-triggered reloads with the existing notification surface and preserve drafts/selection; retain request cleanup and server messages, including member moves.
 
 - 2026-10-12 [N1] PG-S1: consume Kit187 native drawer yield for visible shared dialogs; retain strict highlight paint/Cancel checks in one modal surface script, including the reproduced mobile overlap.

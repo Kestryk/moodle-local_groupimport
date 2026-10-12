@@ -6,6 +6,15 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "pgActionsSignals20261012": {
+    "level": 0,
+    "ids": ["PG-A2", "PG-A1", "PG-A3"],
+    "status": "implemented-targeted-verification",
+    "surfaceScript": "tools/release/verify-student-management.cjs",
+    "businessDragNativeProof": "Dedicated fixture still required; no real course write",
+    "mobileFirstDragStep": "Existing drag-only first instruction retained; mobile equivalent content not silently invented",
+    "humanAccepted": false
+  },
   "apA1RequestErrors20261012": {
     "level": 0,
     "status": "implemented-targeted-verification",
