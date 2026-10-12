@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-12 - Sixty native recap disclosure cases
+
+- Native12160 passes all60 localized/three-width/media cases, including final
+  default-open, click/Enter/reversal, replay/reset and zero leftover effects.
+- Keep final continuous R2/keyboard proof pending. Record the separate observed
+  completion-copy emphasis question in T037; lifecycle PASS does not prove it.
+- Preserve every earlier failure/proof and human checklist; no course writes.
+
 ## 2026-10-12 - Recap cancellation and native gate preparation
 
 - Twelve additional actual-AMD isolated cases verify disabled animation policy
