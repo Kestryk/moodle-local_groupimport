@@ -1,5 +1,14 @@
 # T037 — reading composition, bounded completion-paint successor
 
+Final T037-A gate: Source3d97eb0/Kit7728357/runtime8b23583 passes60 actual
+native routes in run42796 (EN/FR,1600/768/390, normal/reduced, all four entries,
+Add/Move). Default and reversible custom accent, completion icon, active/reset
+metrics pass; errors/writes zero, credential/lease/child cleanup complete.
+Retained predecessor42356 is a transient-icon sampling failure, not overwritten.
+Six saved paired design rasters and16 isolated records are separate gates.
+Public SCSS-only archive contract passes at185. Human acceptance and the five
+T037 reading requests remain OPEN. Evidence: `testing/guide-t037-finished-paint-2026-10-12.json`.
+
 Programme `EED-UI-2026-0073`. T037 remains PARTIAL: GS1/GS2/GS5/GS8/GS9 reading
 changes are not implemented yet. Human checklist and original61 received scopes
 remain open. This first successor fixes the independently observed completion
@@ -37,6 +46,9 @@ and product JSON/rasters remain outside Git. Owned CDP9225/MCP4411 only; no othe
 window's connection is altered. No Moodle fixture or persisted setting changed.
 
 ## Native gate (pending at this checkpoint)
+
+The following preparation is historical. Final run42796 uses the separately
+named settled successor below; the original spec/run remains unchanged.
 
 `tools/playwright/guide-t037-finished-paint-native.spec.js` is local-supervised,
 not CI. It covers actual Start/Next/finish/reset on all four current entries,
