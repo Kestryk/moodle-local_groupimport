@@ -10,6 +10,8 @@
 
 - 2026-10-12 [N0] T052-bis: exact HTML region attribution and fixed-code 100/300/500 load curve; both 5MB and 30s limits exceeded at 100, four fixtures cleaned, source/live DOM counts distinguished; main weight is repeated member/group markup.
 
+- 2026-10-12 [N1] SM-RENDU-2a (Claude): `renderingmode` setting (Current by default / On demand preview), core/reactive store loading `get_state`, participant search index reproducing the legacy filters; nothing rendered from it yet. Parity: course 5, 202 filter cases and per-participant index text identical; 800 fixture, 21 cases identical, state 236 KB loaded in about 1 s, index built in 4 ms.
+
 - 2026-10-12 [N0] SM-RENDU-1 (Claude): compact course state external functions `local_groupimport_get_state` / `local_groupimport_get_details`, per-course state version (table `local_groupimport_statever`, core event observers), `tools/sm/check-state.php` parity check; legacy page unchanged. 800/150/40: state 236 KB vs 2.17 MB, 70 ms / 9 reads vs 2,309 ms / 817 reads, parity PASS.
 
 - 2026-10-12 [N0] R3 proof successor: normalize Chromium zero-letter-spacing serialization, measure dots in the actual visible paused mobile lane and advance through native controls; preserve all failed predecessor reports and unchanged product assets.
