@@ -752,6 +752,7 @@ $string['discovery_resultmove'] = 'Alex quitte Projet Orion et rejoint Projet Ho
 $string['discovery_resultactions'] = 'Alex et Léa quittent Projet Orion et rejoignent Projet Horizon. Seule leur appartenance à Projet Orion est retirée ; leurs autres groupes sont conservés. Cette illustration ne modifie aucune donnée Moodle.';
 $string['discovery_mobile'] = 'Sur mobile, sélectionnez les membres et utilisez le bouton d’action de la carte. Le clic droit et le glisser-déposer sont des gestes pour ordinateur.';
 $string['discovery_initial'] = 'Situation initiale : TD lundi et Projet Orion ; Projet Horizon est vide.';
+$string['discovery_demo_unchanged'] = 'inchangé';
 $string['discovery_kept'] = 'Conservé';
 $string['discovery_removed'] = 'Retiré';
 $string['discovery_added'] = 'Ajouté';

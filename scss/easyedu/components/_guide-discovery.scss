@@ -976,6 +976,38 @@
       .is-absent { background: var(--easyedu-surface); opacity: 0.7; }
       .is-removed { background: var(--easyedu-surface-soft); text-decoration: line-through; }
     }
+    &__unchanged-label--compact { display: none; }
+    @media (max-width: 40rem) {
+      // Approved mobile resting preview: changes on one compact text lane,
+      // unchanged membership as a quiet caption. Playing/final results and
+      // the complete desktop token strip retain their original presentation.
+      &__memberships[data-guide-membership-preview] {
+        gap: 0.25rem;
+        margin-block: 0.5rem 0;
+        > strong { flex-basis: 100%; white-space: normal; }
+        > span {
+          display: inline;
+          min-height: 0;
+          padding: 0;
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          text-decoration: none;
+          white-space: normal;
+        }
+        > span:first-of-type {
+          order: 1;
+          flex-basis: 100%;
+          color: var(--easyedu-text-muted);
+          b { color: inherit; font-weight: 400; }
+        }
+        [data-guide-membership-origin]::after { content: " ·"; }
+        [data-guide-membership-origin] b::before,
+        [data-guide-membership-target] b::before { content: ": "; }
+        .easyedu-guide-scene__unchanged-label--regular { display: none; }
+        .easyedu-guide-scene__unchanged-label--compact { display: inline; }
+      }
+    }
     &__results { display: grid; gap: 0.75rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
     [data-guide-ghost] {
       @include overlays.drag-preview-surface(var(--easyedu-participant-rail, var(--easyedu-primary)));

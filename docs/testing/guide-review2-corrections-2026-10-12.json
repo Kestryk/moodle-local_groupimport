@@ -6,7 +6,9 @@
   "kitVersion": "0.4.178",
   "runtimeBase": "329b606ca4ea65a874a12bd4388416c519931457",
   "implemented": ["R2-1", "R2-3", "R2-2", "R2-4"],
-  "nativeVerified": false,
+  "nativeVerified": true,
+  "testedSourceCommit": "5188f61f65408710641812306a7d60c54f6eddf0",
+  "testedRuntimeCommit": "d0bea09b3eb8d959a813fe966b141d6b95109a0e",
   "humanAccepted": false,
   "R2-5": "Kevin-decision-required-not-authorized",
   "baseline": {
@@ -32,7 +34,12 @@
     "penpot": "owned-channel-live-existing87-reference-readback-no-primitive-paint-change"
   },
   "nativeSuccessor": {
-    "status": "queued",
+    "status": "passed",
+    "runId": "easystud-authenticated-20261012T064124146Z-1380",
+    "samples": 1331,
+    "textOverflow": 0,
+    "consecutiveTargetViolations": 0,
+    "cleanupComplete": true,
     "spec": "tools/playwright/guide-review2-continuous-native.spec.js",
     "cases": 12,
     "samplingMs": 250,

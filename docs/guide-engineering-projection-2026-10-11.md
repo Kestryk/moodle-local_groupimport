@@ -1,5 +1,11 @@
 # Guide engineering: current projection, not human acceptance
 
+Review2 R2-1/R2-3/R2-2/R2-4 now pass native1380:12 cases,1331 continuous250ms
+samples, zero clipped texts/consecutive target violations, six resized tabs.
+Canonical179/Kitc532f85 adds Kevin-approved compact mobile resting expectations;
+paired saved Foundation/Guide89 references pass. Native179 successor is next,
+then resume T014/T015 and the retained61-task/older-feedback queue. Human open.
+
 Claude review2 is read and retained in `claude-review2-guide-corrections-2026-10-12.md`.
 Current priority: R2-1 dialog wrapping, R2-3 reveal sequencing, then R2-2/R2-4.
 R2-5 is NOT authorized; Kevin must decide its mobile-content proposal. Original

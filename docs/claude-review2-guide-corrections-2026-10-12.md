@@ -22,7 +22,7 @@ Claude's previous verdicts must not be silently repinned to these assets.
 | R2-3 | Scroll before revealing menu/dialog; suppress occluded illustrated cursor; preserve clocks/Motion | Queued second |
 | R2-2 | Remove duplicate visible phase number; retain complete live announcement and ordered recap | Queued third |
 | R2-4 | Reveal active navigation item after resize/rotation; tracked lifecycle | Queued fourth |
-| R2-5 | Compact expected memberships in mobile resting header, target <=200px | Kevin decision required; NOT authorized |
+| R2-5 | Compact expected memberships in mobile resting header, target <=200px | Kevin approved on12 October; next after native verification of R2-1..4 |
 
 Claude independently verifies C1-C6 on Organiser and T008 on that slide only.
 V2 is conforming on cold phone load; resize is a separate R2-4 regression.
@@ -72,3 +72,44 @@ full confirmation text and menu/dialog/cursor clearance;6 resize/rotation checks
 It retains exact text-overflow and consecutive-violation criteria. Course commands
 are denied, QA reading progress is isolated/restored. Run is pending at this
 checkpoint; R2-1/R2-3 reservations remain open until it completes.
+
+## Continuous native result — canonical178
+
+Run1380 (`easystud-authenticated-20261012T064124146Z-1380`) passes12 actual
+EN/FR×1600/1280/390×Add/Move cases with1331 continuous250ms samples. Dialog text
+overflow and repeated target violations are both zero. Six resized/rotated
+active-tab checks pass. Source5188f61/Kit9407d02/runtimed0bea09 are the tested pins;
+do not repin this proof to179. Errors/blocked course writes are empty; credential,
+child and runtime-lease cleanup is complete. Human acceptance remains deferred.
+
+## Approved R2-5 candidate — canonical179
+
+Kevin approved compact phone expected outcomes during this integration. Canonical
+0.4.179/Kitc532f85 affects only mobile membership-preview paint/flow. Desktop,
+playing/final token strip, complete178 engine/AMD and card Motion are preserved.
+Only one optional localized unchanged-caption datum is added in product PHP.
+The complete unrelated-CSS/controller/curriculum successor and24 rendered payload
+checks pass; the old178 static/native evidence stays pinned.
+
+Foundation Library rootc8f59096-02cd-803e-8008-c6fba8f2cfb8 and Standard root
+c8f59096-02cd-803e-8008-c6fbafa8c96e contain Add/Move compact compositions.
+Providers c8f59096-02cd-803e-8008-c6fcdffa5e3e and
+c8f59096-02cd-803e-8008-c6fce026897f are saved and paint-checked, using existing
+Inter caption roles. Old unlinked Standard usages are recoverably hidden.
+Guide rooteca88a24-093d-80d0-8008-c700c8829146 (89 / Compact expected outcome /
+Phone) contains linked instances. Source/Standard/Product saved text/type and
+paired raster are verified in external `guide-review2-mobile-20261012-a`.
+
+Native Library update timed out only after its click executed. Reconciliation
+found two previously stale Participant titles now correctly600 (approved A3)
+and24 coordinate updates inside hidden footer glyphs, not visible layout drift.
+Provider definitions were saved but the connected-library list stayed stale.
+After verifying all four existing references' saved texts/type, the exact owned
+Guide tab was reloaded and local4410/4411 reconnected; new providers became
+available. No other channel/tab or unknown changes were discarded. The first
+new-root server read was earlier than autosave; a bounded read-only successor
+passed without replaying creation. Human review remains separate.
+
+Native R2-5 successor is queued:16 localized resting Add/Move measurements at
+1600/1280/390/320, phone header<=200 and same-row changes at390, unchanged desktop
+tokens, correct caption/font and settled Start/Reset preview restoration.

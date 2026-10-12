@@ -17105,6 +17105,62 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   background: var(--easyedu-surface-soft);
   text-decoration: line-through;
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__unchanged-label--compact,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__unchanged-label--compact {
+  display: none;
+}
+@media (max-width: 40rem) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview],
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] {
+    gap: 0.25rem;
+    margin-block: 0.5rem 0;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > strong,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > strong {
+    flex-basis: 100%;
+    white-space: normal;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span {
+    display: inline;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    text-decoration: none;
+    white-space: normal;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span:first-of-type,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span:first-of-type {
+    order: 1;
+    flex-basis: 100%;
+    color: var(--easyedu-text-muted);
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span:first-of-type b,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] > span:first-of-type b {
+    color: inherit;
+    font-weight: 400;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-origin]::after,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-origin]::after {
+    content: " ·";
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-origin] b::before,
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-target] b::before,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-origin] b::before,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] [data-guide-membership-target] b::before {
+    content: ": ";
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] .easyedu-guide-scene__unchanged-label--regular,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] .easyedu-guide-scene__unchanged-label--regular {
+    display: none;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] .easyedu-guide-scene__unchanged-label--compact,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__memberships[data-guide-membership-preview] .easyedu-guide-scene__unchanged-label--compact {
+    display: inline;
+  }
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__results,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__results {
   display: grid;
