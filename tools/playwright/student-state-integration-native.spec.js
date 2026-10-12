@@ -3,6 +3,7 @@
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 const crypto=require('node:crypto');
+const {execFileSync}=require('node:child_process');
 
 async function login(page,path,language='fr'){
     const base=new URL(process.env.EASYEDU_MOODLE_URL);
@@ -66,6 +67,104 @@ test('SM registered server integration preserves legacy page',async({page},info)
         for(const key of ['x','y','width','height'])expect(Math.abs(row[key]-baseline.geometry[index][key])).toBeLessThanOrEqual(1);
         for(const key of ['font','size','color'])expect(row[key]).toBe(baseline.geometry[index][key]);
     });
+});
+
+test('SM2b current and on-demand participants preserve native behavior',async({page},info)=>{
+    test.setTimeout(300000);
+    const controls={},errors=[],blocked=[];
+    let restored=false,baseline;
+    const mode=value=>{
+        for(const name of ['EASYEDU_SM_PHP','EASYEDU_SM_MODE_HELPER','EASYEDU_SM_MOODLE_ROOT']) {
+            if(!process.env[name])throw Error('Explicit supervised mode helper required: '+name);
+        }
+        const result=JSON.parse(execFileSync(process.env.EASYEDU_SM_PHP,
+            [process.env.EASYEDU_SM_MODE_HELPER,process.env.EASYEDU_SM_MOODLE_ROOT,value],
+            {encoding:'utf8',timeout:60000}));
+        expect(result.mode).toBe(value==='get'?'legacy':value);
+        return result;
+    };
+    const settle=async root=>root.evaluate(node=>Promise.all(node.getAnimations({subtree:true})
+        .filter(a=>Number.isFinite(a.effect?.getComputedTiming().endTime)).map(a=>a.finished.catch(()=>{}))));
+    const cards=root=>root.locator('[data-easystud-participant-list] > [data-easystud-user]:visible');
+    const ids=async root=>cards(root).evaluateAll(nodes=>nodes.map(n=>n.getAttribute('data-user-id')));
+    const paint=async root=>cards(root).evaluateAll(nodes=>nodes.map(node=>{
+        const r=node.getBoundingClientRect(),s=getComputedStyle(node);
+        const text=n=>n.textContent.replace(/\s+/g,' ').trim();
+        const title=node.querySelector('.local-groupimport-easystud-user__name');
+        const t=getComputedStyle(title);
+        return {id:node.dataset.userId,text:node.innerText.replace(/\s+/g,' ').trim(),title:text(title),
+            width:r.width,height:r.height,font:s.fontFamily,size:s.fontSize,color:s.color,
+            titleFont:t.fontFamily,titleSize:t.fontSize,titleColor:t.color};
+    }));
+    page.on('pageerror',e=>errors.push(e.message));
+    page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+    try{
+        mode('get');
+        if(!process.env.EASYEDU_SM_BASELINE)throw Error('Explicit legacy baseline required');
+        baseline=await pageProof(page,info);
+        const prior=JSON.parse(fs.readFileSync(process.env.EASYEDU_SM_BASELINE,'utf8'));
+        expect(baseline.counts).toEqual(prior.counts);expect(baseline.textHash).toBe(prior.textHash);
+        baseline.geometry.forEach((row,i)=>{
+            for(const k of ['x','y','width','height'])expect(Math.abs(row[k]-prior.geometry[i][k])).toBeLessThanOrEqual(1);
+            for(const k of ['font','size','color'])expect(row[k]).toBe(prior.geometry[i][k]);
+        });
+        controls.legacy1280FR=true;
+        let root=page.locator('#local-groupimport-easystud');
+        const legacy=await paint(root),firstIds=await ids(root);
+        expect(firstIds).toHaveLength(20);
+        mode('reactive');
+        await login(page,'/local/groupimport/manage.php?id=5');
+        root=page.locator('#local-groupimport-easystud');
+        await expect(root).toHaveAttribute('data-easystud-sm-ready','1',{timeout:60000});
+        await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+        await expect(page.locator('html')).toHaveAttribute('lang','fr');await settle(root);
+        await expect(cards(root)).toHaveCount(20);
+        const reactive=await paint(root);
+        fs.writeFileSync(info.outputPath('sm2b-page1-paint.json'),JSON.stringify({legacy,reactive},null,2));
+        expect(await ids(root)).toEqual(firstIds);
+        reactive.forEach((row,i)=>{
+            for(const k of ['text','title','font','size','color','titleFont','titleSize','titleColor'])expect(row[k]).toBe(legacy[i][k]);
+            for(const k of ['width','height'])expect(Math.abs(row[k]-legacy[i][k])).toBeLessThanOrEqual(1);
+        });
+        controls.page1Same=true;
+        await page.screenshot({path:info.outputPath('sm2b-reactive-fr1280.png')});
+        const pager=root.locator('[data-easystud-participant-list] > [data-easystud-pagination="top"]');
+        await pager.locator('[data-easystud-page-next]').click();
+        await expect(cards(root)).toHaveCount(4);expect(await ids(root)).not.toEqual(firstIds);
+        await pager.locator('[data-easystud-page-prev]').click();
+        expect(await ids(root)).toEqual(firstIds);controls.pagination=true;
+        await pager.locator('[data-easystud-select-results]').click();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selected.size)).toBe(24);
+        await expect(cards(root).locator('[data-easystud-selector-input]:checked')).toHaveCount(20);
+        await pager.locator('[data-easystud-page-next]').click();
+        await expect(cards(root).locator('[data-easystud-selector-input]:checked')).toHaveCount(4);
+        await pager.locator('[data-easystud-select-results]').click();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selected.size)).toBe(0);
+        controls.selectAllCrossPage=true;
+        const search=root.locator('[data-easystud-search]');
+        await search.fill(legacy[0].title);
+        await expect(cards(root)).toHaveCount(1);expect(await ids(root)).toEqual([firstIds[0]]);
+        await pager.locator('[data-easystud-select-results]').click();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selected.size)).toBe(1);
+        await pager.locator('[data-easystud-select-results]').click();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selected.size)).toBe(0);
+        await search.fill('no-such-student-sm2b-qa');
+        await expect(cards(root)).toHaveCount(0);
+        await expect(root.locator('[data-easystud-empty-state="participants"]')).toBeVisible();
+        await search.fill('');await expect(cards(root)).toHaveCount(20);
+        controls.searchAndFilteredSelection=true;
+        await cards(root).first().locator('[data-easystud-open-user]').click();
+        const modal=root.locator('[data-easystud-user-modal]');
+        await expect(modal).toBeVisible();
+        await expect(modal.locator('.local-groupimport-easystud-detail__identity h4')).toHaveText(legacy[0].title);
+        await modal.locator('[data-easystud-close-user-modal]').click();await expect(modal).toBeHidden();
+        controls.participantDetails=true;
+        expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    }finally{
+        mode('legacy');restored=true;
+        fs.writeFileSync(info.outputPath('sm2b-native.json'),JSON.stringify({surface:'SM2b-principal',niveau:1,
+            viewport:1280,language:'fr',controls,restoredLegacy:restored,errors,blocked,courseWrite:false},null,2));
+    }
 });
 
 test('SM schema upgrade through the native Moodle admin page',async({page},info)=>{
