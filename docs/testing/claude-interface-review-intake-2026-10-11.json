@@ -845,10 +845,10 @@
     {
       "id": "T056",
       "receivedScope": "[P] [US6] **Tests de non-régression visuelle par contrat.**",
-      "status": "queued",
+      "status": "delivered-tooling-native-findings-review-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["tools/release/visual-contracts.cjs", "tools/playwright/roadmap-visual-contracts-current.spec.js", "RETOUR-CODEX2-T056-2026-10-13.md"],
       "decisionGate": "none"
     },
     {
