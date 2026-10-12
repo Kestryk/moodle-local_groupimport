@@ -10,7 +10,8 @@
     "ids":["AP-A10","AP-B6"],
     "level":1,
     "kitVersion":"0.4.191",
-    "status":"source-policy-relay-and-host-scope-implemented; native pending runtime owner",
+    "status":"source36-contract15-and-native-enabled-disabled-restored-verified",
+    "nativeRun":"easystud-authenticated-20261012T191902831Z-45480",
     "guardsRead":"COORDINATION-LOTS.md §5 ter",
     "serverAndIdentifierContractsUnchanged":true,
     "humanAccepted":false
@@ -18,7 +19,9 @@
   "pgS1Destinations20261012": {
     "level":1,
     "kitVersion":"0.4.192",
-    "status":"desktop-dialog-docking-and-existing-height-budget-corrected-native-check-pending",
+    "status":"native6-cases-verified; all12-dialog-targets-covered-with-prior-editor-proof",
+    "nativeRun":"easystud-authenticated-20261012T191624845Z-42700",
+    "nativeBusinessConfirmations":"not-executed; dedicated course still required",
     "cause":"Full-width destination right edge occluded by desktop checklist; vertical docking was mobile-only",
     "failedRun":"easystud-authenticated-20261012T185503788Z-17320",
     "closeOverlapRun":"easystud-authenticated-20261012T190521431Z-40168",
@@ -49,7 +52,8 @@
   },
   "mobileLongPressCompatibility20261012": {
     "level": 0,
-    "status": "native-cause-confirmed-capture-guard-implemented",
+    "status": "native3-entry-methods-verified",
+    "nativeRun": "easystud-authenticated-20261012T182121531Z-29844",
     "cause": "touchEnd click hit the newly opened backdrop before the old bubble-phase suppression",
     "failedNativeRun": "easystud-authenticated-20261012T181735634Z-39536",
     "desktopAndMobileButtonCasesAlreadyPassed": true,
@@ -60,7 +64,7 @@
   "guideResumeTarget20261012": {
     "level": 0,
     "kitVersion": "0.4.188",
-    "status": "active-target-restored-and-native1280-390-verified; final-combined-check-pending",
+    "status": "native1280-390-and-combined-actions-verified",
     "cause": "Resume rendered the checklist without calling the current step opener/highlight",
     "nativeScript": "tools/playwright/guide-filter-verification-native.spec.js",
     "failedRunsPreserved": ["easystud-authenticated-20261012T181058531Z-53464", "easystud-authenticated-20261012T181326929Z-19404"],
@@ -70,7 +74,7 @@
   "pgActionsSignals20261012": {
     "level": 0,
     "ids": ["PG-A2", "PG-A1", "PG-A3"],
-    "status": "implemented-targeted-verification",
+    "status": "native-selection-and3-menu-entry-methods-verified; business-drag-proof-open",
     "surfaceScript": "tools/release/verify-student-management.cjs",
     "businessDragNativeProof": "Dedicated fixture still required; no real course write",
     "mobileFirstDragStep": "Existing drag-only first instruction retained; mobile equivalent content not silently invented",
@@ -78,7 +82,8 @@
   },
   "apA1RequestErrors20261012": {
     "level": 0,
-    "status": "implemented-targeted-verification",
+    "status": "native-server-network-errors-draft-preservation-verified",
+    "nativeRun": "easystud-authenticated-20261012T180247501Z-11320",
     "surfaceScript": "tools/release/verify-student-management.cjs",
     "nativeScript": "tools/playwright/student-member-actions-preview.spec.js",
     "reloadsReplaced": 15,
@@ -93,7 +98,8 @@
     "cause": "Moodle drawer toggler at layer1200 occluded the mobile Cancel highlight",
     "surfaceScript": "tools/playwright/guide-modal-layer-s1-editors-diagnostic-native.spec.js",
     "scope": "FR1280 and exact390 regression; original full milestone matrix remains opt-in",
-    "otherSixModalTargetsPending": true,
+    "otherSixModalTargetsPending": false,
+    "remainingTargetProof": "easystud-authenticated-20261012T191624845Z-42700",
     "nativeRun": "easystud-authenticated-20261012T175627299Z-12004",
     "nativeCasesPassed": 4,
     "humanAccepted": false
@@ -101,7 +107,8 @@
   "acceleration20261012": {
     "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
     "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
-    "readyQueue": ["AP-B1+B2+B3+B4", "PG-S1-remaining-modal-targets", "AP-A10+B6", "AP-A6-after-Codex2-T052", "AP-B7+B8"],
+    "readyQueue": ["AP-B7+B8", "AP-B5", "AP-A6-after-Codex2-T052", "AP-C2+C4", "AP-E1-lifecycle-after-T052"],
+    "condensedReturns": ["C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-A4-A5-PLAYBACK-2026-10-12.md", "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-S1-MOTION-2026-10-12.md"],
     "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
     "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",
     "surfaceScriptsOnly": true,
