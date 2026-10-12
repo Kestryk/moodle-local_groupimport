@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] SM3a principal N1 PASS: legacy appearance/member search, synthetic29/Group342 native Add then Remove, server versions0/1/2 and matching participant card; exact relationship hashes restored and legacy mode verified. Retain failed dynamic-group locator run with no writes, use an explicit group-ID QA successor, preserve native timestamps/events/state version and the separate SM2b detail-field reserve.
+
 - 2026-10-13 [N1] Prepare SM3a principal integration proof on the shared native surface: pin Claude builds, test legacy member search and authorize only synthetic29/Group342 Add then Remove; preserve exact relationship baselines and native audit timestamps, restore legacy and owned pair in both test/supervisor cleanup. SM2b detail-parity reserve remains open.
 
 - 2026-10-13 [N1] SM-RENDU-3a (Claude): in On demand mode the course state is reloaded from the server after every successful action (one reload for a burst) and is the source of truth for memberships, instead of the rendered group tree; the 2b tree-to-state copy is removed. Group member search reads the participant text from the state index instead of building a detached card per member (2b regression).
