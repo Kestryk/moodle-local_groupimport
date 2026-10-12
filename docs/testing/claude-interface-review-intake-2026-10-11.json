@@ -236,7 +236,7 @@
     {
       "id": "T015",
       "receivedScope": "[US1] Preuve native : 18 cas de scène existants (EN/FR × 1280/768/390), plus ce nouveau critère : mode visible avant Démarrer ; appartenances visibles en fin de démo sans défilement manuel à 1280×800.",
-      "status": "queued",
+      "status": "current-four-entry-Add-Move-normal-reduced-60-case-native-candidate-ready",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
