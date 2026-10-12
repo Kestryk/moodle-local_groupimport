@@ -1,5 +1,14 @@
 # Guide engineering: current projection, not human acceptance
 
+T008 now has two saved/paint-checked Product reading-order references (87), with
+accepted original paint preserved. T013 canonical0.4.177/Kitfead185 is synchronized
+as a candidate: existing footer caption,4px track, compact subtitle suppression
+and intrinsic Small row/wrap. Four Foundation Library/Standard plus two Product
+examples are saved; native baseline24796 measures eight localized width cases.
+Complete unrelated CSS/controller/AMD/template/curriculum/Motion preservation
+passes. Serving and native successor follow; T014/T015 and human gates stay open.
+See `guide-design-code-crosswalk-2026-10-12.md` and T013 evidence JSON.
+
 Current review1 corrected preview is Source932cbb6 / Kit51b4711 (0.4.176) /
 runtimeb0e23b7. Native15480 passes the immutable96px successor. Stronger painted
 pointer run27328 passes24 whole-target phases and six ready/final cases EN/FR

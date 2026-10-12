@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-12 - Guide reading order and chrome candidate
+
+- Complete the paired saved Product reading-order references with existing
+  illustration cards, consequence summaries and linked optional path. Retain
+  the timed-out creation and exact reconciliation; no curriculum/style family.
+- Consume canonical0.4.177 Discovery chrome: existing footer caption, retained
+  accent track, compact subtitle suppression and intrinsic Small actions.
+- Preserve all templates, controllers, AMD, curriculum and unrelated CSS/Motion.
+  Record eight native baseline cases separately from successor/native acceptance.
+
 ## 2026-10-12 - Review1 served verification successors
 
 - Record strict normal-motion EN/FR three-width Moodle proof: compact reading

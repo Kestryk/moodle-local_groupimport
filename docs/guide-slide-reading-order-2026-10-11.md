@@ -51,3 +51,28 @@ without changing product assets or weakening its order/containment assertions.
 FR390 Group and FR1280 Grouping captures were inspected. No business writes,
 fixture or real Guide progress change; cleanup is complete. Product reference
 composition work remains open, separately from source/native order proof.
+
+## Saved reference composition successor (2026-10-12)
+
+Product page Guide easystud now contains two ordinary reference compositions:
+`87 / Guide / Reading order / Desktop` a3ef2130-e651-80b2-8008-c6e3242c4363,
+and Phone a3ef2130-e651-80b2-8008-c6e33aadb804. They show title/intent, the existing
+ready header and natural cards, existing Add/Move consequence summaries, then
+an optional linked path invitation.24px separates these reading blocks.
+These catalogue examples are not another curriculum or copies of every slide.
+
+Existing linked controls/path and accepted ordinary illustration/summary paint
+are reused. No new style family, Foundation primitive, product stylesheet or
+native behavior is introduced. Accepted original composition is unchanged.
+Desktop invitation fills the existing1172px lane; phone stacks summaries and
+keeps its existing invitation layout. Saved exact-ID order and inspected paired
+rasters pass in external run `guide-reading-order-20261012-a`.
+
+The initial creation timed out after30s but finished: an exact readback found
+both complete roots and the retained completion record. It was not replayed.
+Four cloned summary headings needed a native metric reflow, with their original
+font size restored. The preliminary0.1px caption-bound check found the existing
+Inter0.8px ascent; the established catalogue1px glyph tolerance is retained.
+Saved shape stacking is reversed, while actual column layout is title→scene→
+summary→path; saved verification measures those positions, not stack order.
+Human acceptance remains open.

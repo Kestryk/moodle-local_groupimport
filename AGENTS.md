@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+Discovery reading count reuses the existing footer slot; preserve the top4px
+accent track and dedicated interface cue. Legacy compact footer column/240px
+basis cannot be inherited beside a caption: use the canonical Small intrinsic
+actions and existing wrap, never smaller translated type. Source design masters
+already matching the contract stay unchanged; catalogue compositions carry the
+usage change. Verify saved visual order separately from reverse shape stacking.
+
 Native playback visibility proof uses actual painted pointer hits: a locator
 click can auto-scroll a sticky command after the scene reveal already settled.
 Retain both immutable oracles and complete targets, not a weakened top-only

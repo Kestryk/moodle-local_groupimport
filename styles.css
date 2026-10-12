@@ -14384,7 +14384,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   color: var(--easyedu-text-muted);
   font-size: var(--easyedu-font-size-caption);
   line-height: 1.4;
-  display: block;
+  display: none;
   order: -1;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-track,
@@ -14394,9 +14394,24 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   background: var(--easyedu-accent-soft);
   border-color: color-mix(in srgb, var(--easyedu-accent) 22%, var(--easyedu-surface) 78%);
 }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer {
+  flex-direction: row;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__step-count {
-  display: none;
+  font-family: var(--easyedu-font-family-ui);
+  font-weight: var(--easyedu-font-weight-regular);
+  letter-spacing: 0;
+  color: var(--easyedu-text-muted);
+  font-size: var(--easyedu-font-size-caption);
+  line-height: 1.4;
+  display: block;
+  margin-inline-end: auto;
+  min-width: 0;
+  order: 0;
+  text-align: start;
+  width: auto;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-bar,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__progress-bar {
@@ -17818,6 +17833,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   }
 }
 @media (max-width: 40rem) {
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap > div > p,
+  .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__title-wrap > div > p {
+    display: none;
+  }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-guided-card,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-guided-card {
     grid-template-columns: minmax(0, 1fr);
@@ -17903,14 +17922,14 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions {
-    width: min(100%, 15rem);
-    flex: 0 1 15rem;
+    width: auto;
+    flex: 0 0 auto;
     align-items: stretch;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer-actions .btn {
     width: auto;
-    min-width: 0;
+    min-width: 5.75rem;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return,
   .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-interface-return {
