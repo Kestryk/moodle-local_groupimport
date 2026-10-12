@@ -141,3 +141,63 @@ test('Guide playback interruption reading and close lifecycle', async ({page}, i
         },null,2));
     }
 });
+
+test('Guide highlight honors instance Motion policy without affecting foreign controls',async({page},info)=>{
+    test.setTimeout(180000);
+    await page.setViewportSize({width:1280,height:1000});await page.emulateMedia({reducedMotion:'no-preference'});
+    const url=new URL(process.env.EASYEDU_MOODLE_URL);url.searchParams.set('lang','fr');
+    await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    if(page.url().includes('/login/')){
+        await page.locator('#username').fill(process.env.EASYEDU_MOODLE_USERNAME);
+        await page.locator('#password').fill(process.env.EASYEDU_MOODLE_PASSWORD);
+        await page.locator('#loginbtn').click({noWaitAfter:true});
+        await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
+        await page.goto(url.href,{waitUntil:'domcontentloaded'});
+    }
+    const workspace=page.locator('#local-groupimport-easystud');
+    await expect(workspace).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    await page.route('**/local/groupimport/**',route=>route.request().method()==='GET'?
+        route.continue():route.abort('blockedbyclient'));
+    await page.evaluate(async()=>{
+        const root=document.querySelector('[data-easyedu-guide-root]'),config=root.easyeduGuideConfig;
+        const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+        const key='guide-motion-portal-native-qa';Guide.destroy(root);
+        localStorage.setItem(key+'.checklist',JSON.stringify({path:'try-actions',activeIndex:1,
+            presentationKey:config.presentationKey,completed:{'try-actions':['try-drag']}}));
+        Guide.init(root,{...config,firstVisit:false,welcomeOffer:false,storageKey:key});
+        const foreign=document.createElement('div');foreign.id='qa-foreign-motion';
+        foreign.setAttribute('data-easyedu-motion-policy','disabled');
+        foreign.style.transition='opacity 7s linear';foreign.textContent='QA foreign control';
+        document.body.appendChild(foreign);
+    });
+    await page.locator('[data-easyedu-guide-resume-path]:visible').click();
+    const frame=page.locator('[data-easyedu-guide-highlight]:visible'),panel=page.locator('[data-easyedu-guide-checklist]');
+    const rows=[];
+    const policy=async(value)=>{
+        await page.evaluate(value=>{
+            const root=document.querySelector('[data-easyedu-guide-root]');
+            root.setAttribute('data-easyedu-motion-policy',value);
+            document.dispatchEvent(new CustomEvent('easyedu:guide-refresh-highlight',{detail:{root,dock:true}}));
+        },value);
+        await expect(frame).toHaveAttribute('data-easyedu-motion-policy',value);
+        return frame.evaluate(node=>{const css=getComputedStyle(node);return {
+            policy:node.getAttribute('data-easyedu-motion-policy'),animation:css.animationName,
+            transition:css.transitionDuration,foreignTransition:getComputedStyle(document.querySelector('#qa-foreign-motion')).transitionDuration,
+            pointer:css.pointerEvents,frameParent:node.parentElement.tagName};});
+    };
+    try{
+        await expect(frame).toBeVisible();
+        const enabled=await policy('enabled');rows.push(enabled);expect(enabled.animation).toBe('easyedu-guide-highlight-pulse');
+        const disabled=await policy('disabled');rows.push(disabled);expect(disabled.animation).toBe('none');
+        expect(disabled.transition).toBe('0s');expect(disabled.foreignTransition).toBe('7s');
+        expect(disabled.pointer).toBe('none');expect(disabled.frameParent).toBe('BODY');
+        const restored=await policy('enabled');rows.push(restored);expect(restored.animation).toBe(enabled.animation);
+        await panel.locator('[data-easyedu-guide-checklist-close]').click();await expect(panel).toBeHidden();
+        expect(await page.locator('[data-easyedu-guide-highlight]').getAttribute('data-easyedu-motion-policy')).toBeNull();
+    }finally{
+        await page.evaluate(()=>{document.querySelector('#qa-foreign-motion')?.remove();
+            document.querySelector('[data-easyedu-guide-root]')?.removeAttribute('data-easyedu-motion-policy');});
+        fs.writeFileSync(info.outputPath('guide-motion-policy.json'),JSON.stringify({surface:'guide-motion',
+            level:1,rows,adminConfigurationChanged:false,businessWrites:false},null,2));
+    }
+});

@@ -124,10 +124,27 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
         "      const activeItem = root.querySelector(`${SELECTORS.checklist} [data-easyedu-guide-step-index].is-active`);\n"+
         "      const activeIndex = Number(activeItem?.getAttribute('data-easyedu-guide-step-index') || 0);\n"+
         "      highlightChecklistStep(root, activeConfig, activeConfig.paths[path]?.[activeIndex]);\n    }";
-    const oldGuide=execFileSync('git',['show','57e6d43344f6b63a4888897fc67c43d1cda3ae58:amd/src/easyedu_guide.js'],
+    const oldGuide=execFileSync('git',['show','4e4eae50345d4234d4ab4ef02196f504a7621078:amd/src/easyedu_guide.js'],
         {cwd:rootPath,encoding:'utf8',maxBuffer:2e6}).replace(/\r\n/g,'\n');
-    check('Complete unrelated Guide engine and Motion unchanged',guideSource.replace(addedResume,
-        '    if (!isPathComplete(activeConfig, path)) { renderChecklist(root, activeConfig, path); }')===oldGuide);
+    check('Resume target handler remains intact',guideSource.includes(addedResume));
+    const portalPolicy="  // A body portal cannot inherit the root's policy. Relay this instance's\n"+
+        "  // resolved policy, never a global body mutation affecting another Guide.\n"+
+        "  highlight.setAttribute('data-easyedu-motion-policy', isMotionEnabled(root) ? 'enabled' : 'disabled');\n";
+    check('Complete unrelated Guide engine and Motion unchanged',guideSource.replace(portalPolicy,'')
+        .replace("  highlight.removeAttribute('data-easyedu-motion-policy');\n",'')===oldGuide);
+    const css=fs.readFileSync(path.join(rootPath,'styles.css'),'utf8').replace(/\r\n/g,'\n');
+    check('No unscoped universal policy selector',!/(?:^|\n)(?:\.easyedu-motion-disabled )?\[data-easyedu-motion-policy[^\]]*\](?:\s*\{|\s+\*(?:::before|::after)?\s*[,\{])/.test(css));
+    check('Mass Import policy keeps explicit scope',css.includes('.local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy=disabled]'));
+    const priorCSS=execFileSync('git',['show','4e4eae50345d4234d4ab4ef02196f504a7621078:styles.css'],
+        {cwd:rootPath,encoding:'utf8',maxBuffer:2e6}).replace(/\r\n/g,'\n');
+    const scope=':is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)';
+    const unscoped=css.replace(/\.easyedu-guide-highlight\[data-easyedu-motion-policy=disabled\] \{\n  animation: none !important;\n  transition: none !important;\n  scroll-behavior: auto !important;\n\}\n\n/,'')
+        .replaceAll(scope+'[data-easyedu-motion-policy=disabled]', '[data-easyedu-motion-policy=disabled]')
+        .replaceAll('.easyedu-motion-disabled '+scope+'[data-easyedu-motion-policy]', '.easyedu-motion-disabled [data-easyedu-motion-policy]')
+        .replaceAll(scope+'[data-easyedu-motion-policy]', '[data-easyedu-motion-policy]')
+        .replace(/,\n[ \t]*#page-admin-setting-local_groupimport \[data-easyedu-motion-policy(?:=disabled)?\](?: \*(?:::before|::after)?)?(?= \{)/g,'')
+        .replace(/^[ \t]*#page-admin-setting-local_groupimport \[data-easyedu-motion-policy(?:=disabled)?\](?: \*(?:::before|::after)?)?,\n/gm,'');
+    check('Complete unrelated emitted CSS unchanged',unscoped===priorCSS);
     check('Actions dependencies preserve original IDs',
         /'id' => 'try-selection',\s*'requiresStep' => 'try-drag'/.test(manage) &&
         /'id' => 'try-context',\s*'requiresStep' => 'try-selection'/.test(manage));

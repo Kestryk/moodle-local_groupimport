@@ -706,6 +706,7 @@ const clearHighlight = root => {
   clearHighlightRefresh(root);
   const highlight = createHighlight(root);
   highlight.hidden = true;
+  highlight.removeAttribute('data-easyedu-motion-policy');
   highlight.classList.remove(HIGHLIGHT_DIALOG_CLASS);
   highlight.style.removeProperty('--easyedu-modal-layer');
   root.removeAttribute('data-easyedu-guide-target-in-dialog');
@@ -745,6 +746,9 @@ const updateHighlight = (root, target) => {
     'easyedu-guide-highlight--pulse-blue',
     root.dataset.easyeduGuideHighlightStyle === 'pulse-blue'
   );
+  // A body portal cannot inherit the root's policy. Relay this instance's
+  // resolved policy, never a global body mutation affecting another Guide.
+  highlight.setAttribute('data-easyedu-motion-policy', isMotionEnabled(root) ? 'enabled' : 'disabled');
   highlight.hidden = false;
   highlight.style.height = `${Math.max(rect.height, 1)}px`;
   highlight.style.left = `${rect.left}px`;

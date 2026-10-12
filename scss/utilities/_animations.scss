@@ -435,8 +435,9 @@
 .local-groupimport-easystud.is-easyedu-motion-off,
 .local-groupimport-motion-disabled .local-groupimport-easystud,
 .local-groupimport-prefers-reduced-motion .local-groupimport-easystud,
-[data-easyedu-motion-policy="disabled"],
-.easyedu-motion-disabled [data-easyedu-motion-policy] {
+:is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy="disabled"],
+#page-admin-setting-local_groupimport [data-easyedu-motion-policy="disabled"],
+.easyedu-motion-disabled :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] {
   scroll-behavior: auto !important;
 
   *,
@@ -467,7 +468,8 @@
 @media (prefers-reduced-motion: reduce) {
   .local-groupimport-easystud,
   .local-groupimport-easystud-message-modal,
-  [data-easyedu-motion-policy] {
+  :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy],
+  #page-admin-setting-local_groupimport [data-easyedu-motion-policy] {
     scroll-behavior: auto !important;
 
     *,

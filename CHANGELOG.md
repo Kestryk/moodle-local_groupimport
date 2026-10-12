@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N1] AP-A10/AP-B6: scope legacy Motion overrides to EasyStud surfaces and consume Kit191 instance-policy relay for body-portalled highlights; no server guards, identifiers or Guide labels changed.
+
 - 2026-10-12 [N1] PG-S1: consume Kit190 desktop dialog docking, verify the six destination/confirmation targets using the existing modal surface; retain native playback PASS and corrected Reset-to-Add test preparation.
 
 - 2026-10-12 [N2] Consume Kit189 AP-B1/B2/B3/B4 playback cancellation/reading/exit repair; reuse the Guide playback surface test across1600/1280/390 FR, normal and reduced motion, without course writes.
