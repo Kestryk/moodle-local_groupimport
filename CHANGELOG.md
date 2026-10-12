@@ -23,6 +23,8 @@
 - 2026-10-12 [N1] Group validated AP-E6/AP-E5/SM2a and QA successor for localhost; retain complete Perf-copy tooling/guards, legacy rendering mode and committed AMD, extend the existing integration surface for FR/EN settings and unconfirmed CSV preview.
 
 - 2026-10-12 [N0] SM integration proof successor: scope native web continuation to confirmed non-update-search forms; retain failed predecessor, verify registered schema/services and course5 read-only parity, with unchanged1280FR legacy view and product code.
+- 2026-10-12 [N0] Perf fixtures: support 3,000 participants/300 groups/60 groupings and 10,000/1,000/150, keeping three memberships per participant and exact-owner idempotent cleanup; preserve existing 800/150/40 shape.
+
 - 2026-10-12 [N0] AP-E7: split the two manage.php custom-profile reads into 1,000-user batches, retain exact field/copy output semantics, close each recordset; isolated parity at empty/999/1,000/1,001/3,000/10,000 boundaries.
 
 - 2026-10-12 [N0] AP-E5: group identifier, enrolment, membership and import-preview/rollback reads; preserve AP-A5 priority, native mutations and database/native-name matching; strict before/after responses/messages/memberships and rolled-back edge fixtures verified on the dedicated Perf copy.

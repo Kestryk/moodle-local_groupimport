@@ -18,7 +18,7 @@ if (PHP_SAPI !== 'cli') {
 define('CLI_SCRIPT', true);
 $options = getopt('', ['moodle-root:', 'manifest:', 'action:', 'run-id:', 'participants:', 'purge', 'help']);
 if (isset($options['help'])) {
-    echo "--moodle-root PATH --manifest EXTERNAL.json [--action setup|cleanup|verify] [--participants 100..800] [--purge]\n";
+    echo "--moodle-root PATH --manifest EXTERNAL.json [--action setup|cleanup|verify] [--participants 1..10000] [--purge]\n";
     exit;
 }
 if (empty($options['moodle-root']) || empty($options['manifest'])) {
@@ -50,14 +50,18 @@ $manifest = is_file($path) ? easystud_perf_manifest($path) : [
     'courseId' => 0, 'userIds' => [], 'groupIds' => [], 'groupingIds' => [],
     'runId' => $options['run-id'] ?? 'manual', 'complete' => false,
 ];
-$participants = (int)($options['participants'] ?? getenv('EASYEDU_PERF_PARTICIPANTS') ?: 800);
-if ($participants < 1 || $participants > 800) {
-    throw new RuntimeException('Fixture participant count must be between 1 and 800.');
+$participants = (int)($options['participants'] ?? getenv('EASYEDU_PERF_PARTICIPANTS') ?: $manifest['participants'] ?? 800);
+if ($participants < 1 || $participants > 10000) {
+    throw new RuntimeException('Fixture participant count must be between 1 and 10000.');
 }
+$groupcount = $participants <= 800 ? 150 : ($participants <= 3000 ? 300 : 1000);
+$groupingcount = $participants <= 800 ? 40 : ($participants <= 3000 ? 60 : 150);
 if (isset($manifest['participants']) && $manifest['participants'] !== $participants && $action === 'setup') {
     throw new RuntimeException('A fixture manifest cannot change size; use a new manifest after cleanup.');
 }
 $manifest['participants'] = $manifest['participants'] ?? $participants;
+$manifest['groups'] = $manifest['groups'] ?? $groupcount;
+$manifest['groupings'] = $manifest['groupings'] ?? $groupingcount;
 if ($action !== 'setup' && !is_file($path)) {
     throw new RuntimeException('Cleanup/verification requires an existing ownership manifest.');
 }
@@ -139,7 +143,7 @@ if ($action === 'setup') {
             }
         }
     }
-    foreach (['groupIds' => 150, 'groupingIds' => 40] as $key => $count) {
+    foreach (['groupIds' => $manifest['groups'], 'groupingIds' => $manifest['groupings']] as $key => $count) {
         for ($i = 0; $i < $count; $i++) {
             if (!isset($manifest[$key][$i])) {
                 $record = ['courseid' => $courseid, 'name' => $manifest['prefix'] .
@@ -152,7 +156,7 @@ if ($action === 'setup') {
     }
     foreach ($manifest['userIds'] as $i => $userid) {
         foreach ([0, 17, 61] as $offset) {
-            $groupid = $manifest['groupIds'][($i + $offset) % 150];
+            $groupid = $manifest['groupIds'][($i + $offset) % $manifest['groups']];
             if (!groups_is_member($groupid, $userid)) {
                 $generator->create_group_member(['groupid' => $groupid, 'userid' => $userid]);
             }
@@ -160,7 +164,7 @@ if ($action === 'setup') {
     }
     foreach ($manifest['groupIds'] as $i => $groupid) {
         foreach ([0, 7] as $offset) {
-            $groupingid = $manifest['groupingIds'][($i + $offset) % 40];
+            $groupingid = $manifest['groupingIds'][($i + $offset) % $manifest['groupings']];
             if (!$DB->record_exists('groupings_groups', ['groupingid' => $groupingid, 'groupid' => $groupid])) {
                 $generator->create_grouping_group(['groupingid' => $groupingid, 'groupid' => $groupid]);
             }
