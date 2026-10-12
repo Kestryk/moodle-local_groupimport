@@ -4,6 +4,19 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideReview220261012": {
+      "kitCommit": "9407d02f8802bbc2bbb0b01c3b3815f58a0f7d00",
+      "kitVersion": "0.4.178",
+      "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
+      "scope": "R2-1/R2-3/R2-2/R2-4: wrap confirmation copy, scroll-before-reveal, complete accessible narration and resize/rotation active-tab containment.",
+      "sourceRecipePreserved": "Existing card/control/type/palette recipes; no new Foundation family or density.",
+      "nativePreviewVerified": false,
+      "nativeProof": "docs/testing/guide-review2-corrections-2026-10-12.json",
+      "humanVisualValidated": false,
+      "R2-5": "Kevin-decision-required-not-adopted",
+      "fullKitSync": false,
+      "publicRelease": false
+    },
     "guideReadingChrome20261012": {
       "kitCommit": "fead185b170ca233d3370fcf8a619d8d66d69586",
       "kitVersion": "0.4.177",

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-12 - Claude review2 Guide corrections
+
+- Retain review2 priorities and Kevin's unapproved R2-5 mobile-content gate.
+- Synchronize canonical0.4.178 wrapping, scroll-before-reveal, full accessible
+  narration without repeated visible numbering and resize/rotation tab reveal.
+- Preserve native baseline48920:111 samples reproduce555px nowrap copy in342px;
+  its closing Escape assertion failed separately, with complete runner cleanup.
+- Continuous native successor uses real Close and isolated progress. Native
+  outcome remains pending until its recorded run completes; no course writes.
+
 ## 2026-10-12 - Guide reading-chrome native proof
 
 - Verify eight EN/FR desktop/phone/narrow-phone cases in Moodle, including first

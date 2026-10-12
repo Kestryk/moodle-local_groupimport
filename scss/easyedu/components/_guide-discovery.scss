@@ -912,7 +912,15 @@
     }
     &__menu strong { @include menus.menu-item($size: small); background: var(--easyedu-primary-soft); color: var(--easyedu-primary); }
     &__dialog header { @include modals.dialog-header; padding: 0.625rem 0.75rem; display: flex; justify-content: space-between; }
-    &__dialog > div { padding: 0.75rem; @include typography.type-caption; }
+    &__dialog > div {
+      padding: 0.75rem;
+      @include typography.type-caption;
+      // Navigation can portal a Guide from a nowrap launcher. Demo copy is
+      // paragraph content at every width, not a single-line field summary.
+      min-width: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
     &__dialog footer { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.625rem 0.75rem; border-top: 1px solid var(--easyedu-border); }
     &__dialog footer > * { @include buttons.selection-action; @include buttons.button-size(small); flex: 0 1 6rem; text-align: center; }
     &__dialog footer strong { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
