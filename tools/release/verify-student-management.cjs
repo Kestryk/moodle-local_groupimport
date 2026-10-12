@@ -112,13 +112,14 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
         SELECTORS:{checklist:'[data-easyedu-guide-checklist]'},
         addTrackedListener:(root,control,event,handler)=>{clickResume=handler;},
         dismissResume:()=>resumeCalls.push('dismiss'),isPathComplete:()=>completedPath,
+        captureChecklistFocus:()=>resumeCalls.push('capture'),focusChecklist:()=>resumeCalls.push('focus'),
         renderChecklist:()=>resumeCalls.push('render'),
         highlightChecklistStep:(root,config,step)=>resumeCalls.push(step.id)});
     clickResume();
     check('Actual Resume handler restores only the current target',
-        JSON.stringify(resumeCalls)===JSON.stringify(['dismiss','render','try-selection']));
+        JSON.stringify(resumeCalls)===JSON.stringify(['capture','dismiss','render','focus','try-selection']));
     completedPath=true;resumeCalls.length=0;clickResume();
-    check('Completed paths never resume a checklist',JSON.stringify(resumeCalls)===JSON.stringify(['dismiss']));
+    check('Completed paths never resume a checklist',JSON.stringify(resumeCalls)===JSON.stringify(['capture','dismiss']));
     const addedResume="    if (!isPathComplete(activeConfig, path)) {\n"+
         "      renderChecklist(root, activeConfig, path);\n"+
         "      const activeItem = root.querySelector(`${SELECTORS.checklist} [data-easyedu-guide-step-index].is-active`);\n"+
@@ -126,11 +127,42 @@ vm.runInNewContext(executable + '\nglobalThis.api={postAction,postFormAction,han
         "      highlightChecklistStep(root, activeConfig, activeConfig.paths[path]?.[activeIndex]);\n    }";
     const oldGuide=execFileSync('git',['show','4e4eae50345d4234d4ab4ef02196f504a7621078:amd/src/easyedu_guide.js'],
         {cwd:rootPath,encoding:'utf8',maxBuffer:2e6}).replace(/\r\n/g,'\n');
-    check('Resume target handler remains intact',guideSource.includes(addedResume));
+    check('Resume target handler remains intact',resumeCode.replace('      focusChecklist(root);\n','').includes(addedResume));
     const portalPolicy="  // A body portal cannot inherit the root's policy. Relay this instance's\n"+
         "  // resolved policy, never a global body mutation affecting another Guide.\n"+
         "  highlight.setAttribute('data-easyedu-motion-policy', isMotionEnabled(root) ? 'enabled' : 'disabled');\n";
-    check('Complete unrelated Guide engine and Motion unchanged',guideSource.replace(portalPolicy,'')
+    // AP-B7/B8 admit only the explicit accessibility functions/call sites.
+    // Whole-engine equality still guards all playback, targets, data and Motion.
+    const a11yBase=execFileSync('git',['show','90408a35b91db1330b68597e4ede9fa984108b67:amd/src/easyedu_guide.js'],
+        {cwd:rootPath,encoding:'utf8',maxBuffer:2e6}).replace(/\r\n/g,'\n');
+    const section=(text,from,to)=>{
+        const start=text.indexOf(from),end=text.indexOf(to,start);
+        assert.ok(start>=0&&end>start,'Bounded accessibility section '+from);return text.slice(start,end);
+    };
+    let beforeAccessibility=guideSource;
+    for(const [from,to] of [
+        ['// Keep the existing deadline,','const saveChecklistProgress ='],
+        ['const showInterfaceReturn =','const hideInterfaceReturn ='],
+        ['const captureChecklistFocus =','const getScrollTopOffset ='],
+        ['const renderChecklist =','const updateChecklistMessage =']]){
+        const originalFrom=from==='// Keep the existing deadline,'?'const offerResume =':
+            from==='const captureChecklistFocus ='?'const hideChecklist =':from;
+        beforeAccessibility=beforeAccessibility.replace(section(beforeAccessibility,from,to),
+            section(a11yBase,originalFrom,to));
+    }
+    beforeAccessibility=beforeAccessibility
+        .replace("    stepCompleted: 'Completed',\n    stepLocked: 'Locked',\n",'')
+        .replace(/^[ ]*(?:captureChecklistFocus\(root, (?:startPath|resume)\);|focusChecklist\(root\);|root\.easyeduGuideChecklistReturnFocus = null;)\n/gm,'')
+        .replace("      hideChecklist(root, config, false, true);","      hideChecklist(root, config);")
+        .replace("        const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :\n"+
+            "          '[data-easyedu-guide-checklist-minimize]');\n"+
+            "        if (isVisibleElement(nextControl)) { nextControl.focus({preventScroll: true}); }\n",'')
+        .replace("      const checklist = root.querySelector(SELECTORS.checklist);\n"+
+            "      if (event.key === 'Escape' && !event.defaultPrevented && checklist && !checklist.hidden &&\n"+
+            "          !checklist.classList.contains('is-minimized') && checklist.contains(event.target)) {\n"+
+            "        event.preventDefault();\n"+
+            "        root.querySelector('[data-easyedu-guide-checklist-minimize]')?.click();\n      }\n",'');
+    check('Complete unrelated Guide engine and Motion unchanged',beforeAccessibility.replace(portalPolicy,'')
         .replace("  highlight.removeAttribute('data-easyedu-motion-policy');\n",'')===oldGuide);
     const css=fs.readFileSync(path.join(rootPath,'styles.css'),'utf8').replace(/\r\n/g,'\n');
     check('No unscoped universal policy selector',!/(?:^|\n)(?:\.easyedu-motion-disabled )?\[data-easyedu-motion-policy[^\]]*\](?:\s*\{|\s+\*(?:::before|::after)?\s*[,\{])/.test(css));

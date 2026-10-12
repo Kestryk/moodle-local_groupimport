@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-12 [N1] Consume Kit193 AP-B7/B8 checklist focus/status and interaction-safe notices; use Moodle's existing translated state labels, preserve Claude guards/Guide resume keys and reserved server functions.
+
 - 2026-10-12 [N1] PG-S1: consume Kit192 shared dialog checklist height budget so desktop Close remains clickable; retain failed40168 overlap and unchanged native destination/confirmation assertions.
 
 - 2026-10-12 [N1] AP-A10/AP-B6: scope legacy Motion overrides to EasyStud surfaces and consume Kit191 instance-policy relay for body-portalled highlights; no server guards, identifiers or Guide labels changed.

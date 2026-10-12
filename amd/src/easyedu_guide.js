@@ -89,6 +89,8 @@ const DEFAULTS = {
     complete: '',
     guidedPath: '',
     visited: '',
+    stepCompleted: 'Completed',
+    stepLocked: 'Locked',
     completeStepFirst: '',
     pathReset: 'Path reset. Start again when you are ready.',
     pathCancelled: 'Path cancelled. Your course data has not changed.'
@@ -540,12 +542,28 @@ const dismissResume = (root, animate = false) => {
   motion.finished.then(() => { notice.hidden = true; motion.cancel(); }).catch(() => {});
 };
 
+// Keep the existing deadline, but never dismiss controls currently in use.
+// The timer belongs to this root and is cleared by the normal Guide teardown.
+const scheduleNoticeExpiry = (root, notice, timerKey, delay, expire) => {
+  clearTrackedTimeout(root, root[timerKey]);
+  const finish = () => {
+    root[timerKey] = null;
+    if (notice.hidden) { return; }
+    if (notice.matches(':hover') || notice.contains(document.activeElement)) {
+      root[timerKey] = setTrackedTimeout(root, finish, 1000);
+      return;
+    }
+    expire();
+  };
+  root[timerKey] = setTrackedTimeout(root, finish, delay);
+};
+
 const offerResume = (root, config, pathName) => {
   const notice = root.querySelector('[data-easyedu-guide-resume]');
   if (!notice || isPathComplete(config, pathName)) { return; }
   notice.dataset.easyeduGuideResumePathName = pathName;
   notice.hidden = false;
-  root.easyeduGuideResumeTimer = setTrackedTimeout(root, () => dismissResume(root, true), 20000);
+  scheduleNoticeExpiry(root, notice, 'easyeduGuideResumeTimer', 20000, () => dismissResume(root, true));
 };
 
 const saveChecklistProgress = (root, config, pathName, activeIndex = 0) => {
@@ -856,13 +874,13 @@ const showInterfaceReturn = root => {
     }
     root.easyeduGuideInterfaceHighlightActive = true;
     returnPanel.hidden = false;
-    root.easyeduGuideReturnTimer = setTrackedTimeout(root, () => {
+    scheduleNoticeExpiry(root, returnPanel, 'easyeduGuideReturnTimer', 12000, () => {
       if (root.easyeduGuideInterfaceHighlightActive) {
         returnPanel.hidden = true;
         root.easyeduGuideInterfaceHighlightActive = false;
         clearHighlight(root);
       }
-    }, 12000);
+    });
   }
 };
 
@@ -886,7 +904,29 @@ const hideInterfaceReturn = (root, shouldClearHighlight = false) => {
   }
 };
 
-const hideChecklist = (root, config, clearProgress = false) => {
+const captureChecklistFocus = (root, opener) => {
+  root.easyeduGuideChecklistReturnFocus = root.easyeduGuideReturnFocus ||
+    Array.from(root.querySelectorAll(SELECTORS.open)).find(isVisibleElement) || opener;
+};
+
+const focusChecklist = root => {
+  const title = root.querySelector(SELECTORS.checklistTitle);
+  if (!isVisibleElement(title)) { return; }
+  title.setAttribute('tabindex', '-1');
+  title.focus({preventScroll: true});
+};
+
+const restoreChecklistFocus = (root, formerTarget) => {
+  // Closing the checklist does not close a native dialog. Keep its focus
+  // inside that dialog instead of returning to a launcher behind the backdrop.
+  const dialog = getExternalTargetDialog(root, formerTarget);
+  const destination = dialog ? formerTarget : root.easyeduGuideChecklistReturnFocus;
+  if (isVisibleElement(destination)) { focusTarget(destination); }
+  root.easyeduGuideChecklistReturnFocus = null;
+};
+
+const hideChecklist = (root, config, clearProgress = false, restoreFocus = false) => {
+  const formerTarget = root.easyeduGuideCurrentTarget;
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
     checklist.hidden = true;
@@ -902,6 +942,7 @@ const hideChecklist = (root, config, clearProgress = false) => {
   if (clearProgress) {
     clearChecklistProgress(config);
   }
+  if (restoreFocus) { restoreChecklistFocus(root, formerTarget); }
 };
 
 // Unlike Return to Guide, Stop invalidates pending native-dialog work.
@@ -909,7 +950,7 @@ const stopPath = (root, config, pathName, reset = false) => {
   root.easyeduGuidePathEpoch = (root.easyeduGuidePathEpoch || 0) + 1;
   clearStepOpenTimers(root);
   dismissResume(root);
-  hideChecklist(root, config);
+  hideChecklist(root, config, false, true);
   if (reset) {
     resetPathProgress(config, pathName);
   } else {
@@ -2448,6 +2489,9 @@ const renderChecklist = (root, config, pathName) => {
     return;
   }
 
+  const previousItems = Array.from(list.children);
+  const reusable = checklist.getAttribute('data-easyedu-guide-path') === pathName ?
+    new Map(previousItems.map(item => [item.getAttribute('data-easyedu-guide-step-id'), item])) : new Map();
   checklist.hidden = false;
   hideInterfaceReturn(root, true);
   const wasMinimized = checklist.classList.contains('is-minimized');
@@ -2458,28 +2502,31 @@ const renderChecklist = (root, config, pathName) => {
   checklist.classList.toggle('is-unlock-path', config.unlockPaths.includes(pathName));
   checklist.classList.toggle('has-guided-feedback', steps.some(step => !!step.feedback));
   checklist.setAttribute('data-easyedu-guide-path', pathName);
-  list.innerHTML = '';
   checklist.toggleAttribute('data-easyedu-guide-checklist-scroll', steps.length > 3);
+  const retained = new Set();
 
   steps.forEach((step, index) => {
     const stepComplete = isStepComplete(config, pathName, step, index);
     const dependencyMissing = step.requiresStep ? !getCompletedSteps(config, pathName).includes(step.requiresStep) : false;
     const locked = (step.requires ? !isRequirementMet(config, step.requires) : false) || dependencyMissing;
-    const item = document.createElement('button');
+    const id = step.id || String(index);
+    const item = reusable.get(id) || document.createElement('button');
+    retained.add(item);
     item.type = 'button';
     item.className = 'easyedu-guide-checklist__item easyedu-guided-panel__step';
     item.classList.toggle('is-locked', locked);
     item.classList.toggle('is-complete', stepComplete);
     item.disabled = locked;
-    item.setAttribute('data-easyedu-guide-step-id', step.id || String(index));
+    item.setAttribute('data-easyedu-guide-step-id', id);
     item.setAttribute('data-easyedu-guide-step-index', String(index));
     item.setAttribute('aria-disabled', locked ? 'true' : 'false');
+    item.removeAttribute('aria-current');
     if (locked) {
       item.setAttribute('data-easyedu-guide-lock-message', getLockedStepRequirement(config, steps, step));
-    }
+    } else { item.removeAttribute('data-easyedu-guide-lock-message'); }
     if (step.feedback) {
       item.setAttribute('data-easyedu-guide-feedback', step.feedback);
-    }
+    } else { item.removeAttribute('data-easyedu-guide-feedback'); }
     const marker = document.createElement('span');
     marker.className = 'easyedu-guide-checklist__marker easyedu-guided-panel__index';
     marker.textContent = String(index + 1);
@@ -2498,9 +2545,16 @@ const renderChecklist = (root, config, pathName) => {
       requirement.textContent = getLockedStepRequirement(config, steps, step);
       label.appendChild(requirement);
     }
-    item.append(marker, label);
-    list.appendChild(item);
+    const stateLabel = document.createElement('span');
+    stateLabel.className = 'sr-only';
+    stateLabel.setAttribute('data-easyedu-guide-step-state', '');
+    stateLabel.textContent = stepComplete ? config.labels.stepCompleted : locked ? config.labels.stepLocked : '';
+    item.replaceChildren(marker, label, stateLabel);
+    // Moving even an existing focused button can blur it. Only insert when
+    // the semantic order actually changed; progress alone keeps the node.
+    if (list.children[index] !== item) { list.insertBefore(item, list.children[index] || null); }
   });
+  previousItems.filter(item => !retained.has(item)).forEach(item => item.remove());
 
   const state = loadGuideState(config);
   const preferredItem = state.path === pathName ?
@@ -3072,6 +3126,9 @@ const bindGuide = (root, config) => {
           checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
         }
         syncChecklistMinimizeControl(root);
+        const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :
+          '[data-easyedu-guide-checklist-minimize]');
+        if (isVisibleElement(nextControl)) { nextControl.focus({preventScroll: true}); }
       }
       return;
     }
@@ -3111,6 +3168,7 @@ const bindGuide = (root, config) => {
     const startPath = event.target.closest(SELECTORS.startPath);
     if (startPath && root.contains(startPath)) {
       event.preventDefault();
+      captureChecklistFocus(root, startPath);
       dismissResume(root);
       const requestedPath = startPath.getAttribute('data-easyedu-guide-start-path');
       // New context sessions invalidate obsolete native callbacks, including
@@ -3124,6 +3182,7 @@ const bindGuide = (root, config) => {
       syncPathInvitation(root, activeConfig);
       closeModal(root, false, false).then(() => {
         if (!root.querySelector(SELECTORS.modal).hidden) { return; }
+        focusChecklist(root);
         notifyInterfaceTransition(root, 'guided-path');
         const checklist = root.querySelector(SELECTORS.checklist);
         const activeItem = checklist ?
@@ -3170,9 +3229,11 @@ const bindGuide = (root, config) => {
   if (resume) { addTrackedListener(root, resume, 'click', () => {
     const activeConfig = root.easyeduGuideConfig || config;
     const path = root.querySelector('[data-easyedu-guide-resume]').dataset.easyeduGuideResumePathName;
+    captureChecklistFocus(root, resume);
     dismissResume(root);
     if (!isPathComplete(activeConfig, path)) {
       renderChecklist(root, activeConfig, path);
+      focusChecklist(root);
       const activeItem = root.querySelector(`${SELECTORS.checklist} [data-easyedu-guide-step-index].is-active`);
       const activeIndex = Number(activeItem?.getAttribute('data-easyedu-guide-step-index') || 0);
       highlightChecklistStep(root, activeConfig, activeConfig.paths[path]?.[activeIndex]);
@@ -3187,6 +3248,12 @@ const bindGuide = (root, config) => {
   addTrackedListener(root, root, 'keydown', event => {
     const activeConfig = root.easyeduGuideConfig || config;
     if (!isModalOpen(root)) {
+      const checklist = root.querySelector(SELECTORS.checklist);
+      if (event.key === 'Escape' && !event.defaultPrevented && checklist && !checklist.hidden &&
+          !checklist.classList.contains('is-minimized') && checklist.contains(event.target)) {
+        event.preventDefault();
+        root.querySelector('[data-easyedu-guide-checklist-minimize]')?.click();
+      }
       return;
     }
     const modal = root.querySelector(SELECTORS.modal);
@@ -3312,7 +3379,7 @@ const bindGuide = (root, config) => {
   const closeChecklist = root.querySelector(SELECTORS.checklistClose);
   if (closeChecklist) {
     addTrackedListener(root, closeChecklist, 'click', () => {
-      hideChecklist(root, config);
+      hideChecklist(root, config, false, true);
     });
   }
 
@@ -3419,6 +3486,7 @@ const destroy = rootOrSelector => {
   delete root.dataset.easyeduGuideHighlightStyle;
   root.easyeduGuideConfig = null;
   root.easyeduGuideReturnFocus = null;
+  root.easyeduGuideChecklistReturnFocus = null;
 };
 
 const init = (rootOrSelector, rawConfig) => {
