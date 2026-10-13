@@ -830,19 +830,19 @@
     {
       "id": "T058",
       "receivedScope": "[P] [US6] **Passe d'accessibilité complète** : focus, Escape et retour du focus sur **toutes** les modales et panneaux (D1 laisse penser qu'il y a d'autres cas), contraste des éléments neutres d'US4, mouvement réduit, alternative clavier au glisser-déposer.",
-      "status": "queued",
+      "status": "remaining-audit-blocked-by-unserved-focus-prerequisite-332e47a5; Message-normal-PASS; two-contrast-findings",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["docs/t058-remaining-blocker-2026-10-13.md", "tools/playwright/t058-remaining-audit.spec.js", "332e47a5", "5e27b71b", "128416e8"],
       "decisionGate": "none"
     },
     {
       "id": "T059",
       "receivedScope": "[US6] **Passe tablette (768–1024) et mobile (390)** des trois surfaces et des modales, non couverte par la revue Claude.",
-      "status": "queued",
+      "status": "prior-partial-audit-002596d0-retained; remaining-pass-deferred-until-T058-focus-integration",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["002596d0", "docs/t058-remaining-blocker-2026-10-13.md"],
       "decisionGate": "none"
     },
     {

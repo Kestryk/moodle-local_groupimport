@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] T058 remaining audit: Message keyboard lifecycle passes; stop on Move focus escape because the previously delivered focus correction is absent from the served parity base. Record two 4.17:1 contrast findings and preserve unexecuted coverage as open.
+
 - 2026-10-13 [N0] Close the targeted SM rendering parity rerun: themed Add passes in both modes; aggregate remains 10 paired passes and 14 identical failures, with no remaining mode discrepancy and no human acceptance implied.
 
 - 2026-10-13 [N2] Framed Add spec: await the native search disclosure completion, then Tab from its real input to Cancel; retain strict focus-visible/paint assertions and both original failed/PASS captures. This fixes a test focus race without retiming product Motion.
