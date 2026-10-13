@@ -428,6 +428,28 @@ const getKnownUserIdentifiers = root => {
     return known;
 };
 
+/**
+ * Known participant identifiers, read when first needed and again after a state reload.
+ *
+ * On demand, the participants arrive with the state, after the bindings that need them.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @returns {Function} Returns the identifier Map.
+ */
+const lazyKnownUserIdentifiers = root => {
+    let known = null;
+    let revision = null;
+    return () => {
+        const model = getOnDemandModel(root);
+        const current = model ? model.revision : 0;
+        if (!known || revision !== current) {
+            known = getKnownUserIdentifiers(root);
+            revision = current;
+        }
+        return known;
+    };
+};
+
 const renderIdentifierPreview = (box, results, knownIdentifiers, separator = /[\s,;|]+/u) => {
     if (!box || !results) {
         return;
@@ -5686,8 +5708,19 @@ const getSelectedItems = (root, type) => {
         if (model.selectedGroups && (!type || type === 'group')) {
             model.selectedGroups.forEach((key, groupid) => items.push(findCatalogGroupCard(root, groupid, key)));
         }
+        if (model.selectedMembers && (!type || type === 'member')) {
+            model.selectedMembers.forEach((key, memberkey) => {
+                const [groupid, userid] = memberkey.split(':');
+                const card = findCatalogGroupCard(root, Number(groupid), key);
+                items.push(card ? card.querySelector('[data-easystud-member-id="' + userid + '"]') : null);
+            });
+        }
         root.querySelectorAll((type ? '[data-selectable-type="' + type + '"]' : '[data-selectable-type]') + '.' + selectedClass +
-            ':not([data-selectable-type="participant"]):not([data-easystud-sm-catalog])').forEach(item => items.push(item));
+            ':not([data-selectable-type="participant"]):not([data-easystud-sm-catalog])').forEach(item => {
+            if (!item.closest('[data-easystud-sm-catalog]')) {
+                items.push(item);
+            }
+        });
         return items.filter(Boolean);
     }
     const selector = type ? '[data-selectable-type="' + type + '"].' + selectedClass : '[data-selectable-type].' + selectedClass;
@@ -5778,6 +5811,24 @@ const openGroupDropModeModal = (root, oncopy, onmove) => {
 
 const getSelectionInput = item => item.querySelector(':scope > .local-groupimport-easystud-selector [data-easystud-selector-input]');
 
+/**
+ * On demand, keep the page card and its detached copy (or the reverse) in step.
+ *
+ * @param {HTMLElement} item Item the user selected.
+ * @param {HTMLElement|null} twin Other copy of the same item.
+ * @param {Boolean} selected New state.
+ */
+const syncSelectionTwin = (item, twin, selected) => {
+    if (!twin || twin === item) {
+        return;
+    }
+    twin.classList.toggle(selectedClass, selected);
+    const input = getSelectionInput(twin);
+    if (input) {
+        input.checked = selected;
+    }
+};
+
 const setItemSelected = (item, selected) => {
     item.classList.toggle(selectedClass, selected);
     const input = getSelectionInput(item);
@@ -5792,16 +5843,25 @@ const setItemSelected = (item, selected) => {
         } else {
             model.selected.delete(userid);
         }
-        // Keep the page card and its detached copy in step.
         const twin = item.isConnected ? model.detached.get(userid) :
             onDemandParticipants.root.querySelector(`[data-easystud-user][data-user-id="${userid}"]`);
-        if (twin && twin !== item) {
-            twin.classList.toggle(selectedClass, selected);
-            const twinInput = getSelectionInput(twin);
-            if (twinInput) {
-                twinInput.checked = selected;
-            }
+        syncSelectionTwin(item, twin, selected);
+    }
+    const membercard = item.getAttribute('data-selectable-type') === 'member' ?
+        item.closest('[data-easystud-sm-catalog]') : null;
+    if (model && model.selectedMembers && membercard) {
+        const memberkey = item.getAttribute('data-selectable-id');
+        const catalogkey = membercard.getAttribute('data-easystud-sm-catalog');
+        if (selected) {
+            model.selectedMembers.set(memberkey, catalogkey);
+        } else {
+            model.selectedMembers.delete(memberkey);
         }
+        const groupid = Number(membercard.getAttribute('data-easystud-group-id'));
+        const catalog = model.catalogs[catalogkey];
+        const twincard = membercard.isConnected ? catalog.detached.get(groupid) : catalog.pageCards.get(groupid);
+        const twin = twincard ? twincard.querySelector('[data-selectable-id="' + memberkey + '"]') : null;
+        syncSelectionTwin(item, twin, selected);
     }
     const key = item.getAttribute('data-easystud-sm-catalog');
     if (model && model.selectedGroups && key && item.getAttribute('data-selectable-type') === 'group') {
@@ -5813,19 +5873,13 @@ const setItemSelected = (item, selected) => {
         }
         const catalog = model.catalogs[key];
         const twin = item.isConnected ? catalog.detached.get(groupid) : catalog.pageCards.get(groupid);
-        if (twin && twin !== item) {
-            twin.classList.toggle(selectedClass, selected);
-            const twinInput = getSelectionInput(twin);
-            if (twinInput) {
-                twinInput.checked = selected;
-            }
-        }
+        syncSelectionTwin(item, twin, selected);
     }
 };
 
 const clearSelectionForType = (root, type, except) => {
-    if ((type === 'participant' || type === 'group') && getOnDemandModel(root)) {
-        const idattribute = type === 'participant' ? 'data-user-id' : 'data-easystud-group-id';
+    if ((type === 'participant' || type === 'group' || type === 'member') && getOnDemandModel(root)) {
+        const idattribute = {participant: 'data-user-id', group: 'data-easystud-group-id', member: 'data-selectable-id'}[type];
         const exceptid = except ? except.getAttribute(idattribute) : null;
         getSelectedItems(root, type).forEach(entry => {
             if (entry !== except && entry.getAttribute(idattribute) !== exceptid) {
@@ -5862,6 +5916,11 @@ const clearSelection = (root, type) => {
     if (model && model.selectedGroups && (!type || type === 'group')) {
         model.selectedGroups.clear();
         Object.values(model.catalogs).forEach(catalog => catalog.detached.forEach(unselectDetached));
+    }
+    if (model && model.selectedMembers && (!type || type === 'member')) {
+        model.selectedMembers.clear();
+        Object.values(model.catalogs).forEach(catalog => catalog.detached.forEach(card =>
+            card.querySelectorAll('[data-selectable-type="member"]').forEach(unselectDetached)));
     }
     if (type === 'grouping') {
         collapseAllGroupings(root);
@@ -6992,7 +7051,7 @@ const ensureGroupEmailPanel = (group, groupid, labels) => {
 // Bind direct group email paste and member removal actions.
 const bindGroupMemberActions = (root, courseId) => {
     const labels = JSON.parse(root.getAttribute('data-easystud-detail-labels') || '{}');
-    const knownIdentifiers = getKnownUserIdentifiers(root);
+    const knownIdentifiers = lazyKnownUserIdentifiers(root);
 
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-toggle-group-email]');
@@ -7005,7 +7064,7 @@ const bindGroupMemberActions = (root, courseId) => {
                 const box = panel.querySelector('[data-easystud-group-email-box]');
                 if (open && box) {
                     const result = panel.querySelector('[data-easystud-group-email-result="' + groupid + '"]');
-                    renderIdentifierPreview(box, result, knownIdentifiers);
+                    renderIdentifierPreview(box, result, knownIdentifiers());
                 }
                 const transition = setInlinePanelOpen(panel, open);
                 if (open && box) {
@@ -7081,7 +7140,7 @@ const bindGroupMemberActions = (root, courseId) => {
         const groupid = box.getAttribute('data-easystud-group-email-box');
         const panel = box.closest('[data-easystud-group-email-panel]');
         const result = panel ? panel.querySelector('[data-easystud-group-email-result="' + groupid + '"]') : null;
-        renderIdentifierPreview(box, result, knownIdentifiers);
+        renderIdentifierPreview(box, result, knownIdentifiers());
     });
 
     root.addEventListener('paste', event => {
@@ -7093,7 +7152,7 @@ const bindGroupMemberActions = (root, courseId) => {
             const groupid = box.getAttribute('data-easystud-group-email-box');
             const panel = box.closest('[data-easystud-group-email-panel]');
             const result = panel ? panel.querySelector('[data-easystud-group-email-result="' + groupid + '"]') : null;
-            renderIdentifierPreview(box, result, knownIdentifiers);
+            renderIdentifierPreview(box, result, knownIdentifiers());
         }, 0);
     });
 };
@@ -10716,8 +10775,8 @@ const bindPastePreview = root => {
         return;
     }
 
-    const knownIdentifiers = getKnownUserIdentifiers(root);
-    const render = () => renderIdentifierPreview(box, results, knownIdentifiers);
+    const knownIdentifiers = lazyKnownUserIdentifiers(root);
+    const render = () => renderIdentifierPreview(box, results, knownIdentifiers());
 
     box.addEventListener('input', render);
     box.addEventListener('paste', () => window.setTimeout(render, 0));
@@ -10840,13 +10899,21 @@ const catalogKeyOf = list => {
  * @returns {HTMLElement}
  */
 const syncGroupCardSelection = (model, card) => {
-    const selected = model.selectedGroups.get(Number(card.getAttribute('data-easystud-group-id'))) ===
-        card.getAttribute('data-easystud-sm-catalog');
+    const key = card.getAttribute('data-easystud-sm-catalog');
+    const selected = model.selectedGroups.get(Number(card.getAttribute('data-easystud-group-id'))) === key;
     card.classList.toggle(selectedClass, selected);
     const input = getSelectionInput(card);
     if (input) {
         input.checked = selected;
     }
+    card.querySelectorAll('[data-easystud-member-id][data-selectable-type="member"]').forEach(row => {
+        const rowselected = model.selectedMembers.get(row.getAttribute('data-selectable-id')) === key;
+        row.classList.toggle(selectedClass, rowselected);
+        const rowinput = getSelectionInput(row);
+        if (rowinput) {
+            rowinput.checked = rowselected;
+        }
+    });
     return card;
 };
 
@@ -10948,7 +11015,95 @@ const applyOnDemandCatalogFilters = root => {
 };
 
 /**
+ * Remember the state a user gives to the group cards of a list, before the list is redrawn:
+ * unfolded members and open member searches.
+ *
+ * The legacy page keeps every card, so this state survives an action or a page change; the
+ * on-demand lists redraw their cards and restore it from this memory.
+ *
+ * @param {HTMLElement} container List or tree section holding group cards.
+ * @returns {Object} {unfolded: Set, searches: Map}, keyed by group id (string).
+ */
+const rememberGroupCardStates = container => {
+    const memory = container.easystudSmCardStates || {unfolded: new Set(), searches: new Map()};
+    container.querySelectorAll(':scope > [data-easystud-group-id], :scope > * > [data-easystud-group-id]').forEach(card => {
+        const groupid = card.getAttribute('data-easystud-group-id');
+        const toggle = card.querySelector('[data-easystud-group-members-toggle]');
+        if (toggle && toggle.getAttribute('aria-expanded') === 'true') {
+            memory.unfolded.add(groupid);
+        } else {
+            memory.unfolded.delete(groupid);
+        }
+        const panel = card.querySelector(':scope > [data-easystud-group-member-search-panel]');
+        const input = panel ? panel.querySelector('[data-easystud-group-member-search]') : null;
+        if (panel && !panel.hidden && panel.classList.contains('is-open')) {
+            memory.searches.set(groupid, input ? input.value : '');
+        } else {
+            memory.searches.delete(groupid);
+        }
+    });
+    container.easystudSmCardStates = memory;
+    return memory;
+};
+
+/**
+ * Give redrawn (and decorated) group cards back their remembered state, without motion.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {HTMLElement[]} cards New group cards.
+ * @param {Object} memory From rememberGroupCardStates.
+ */
+const restoreGroupCardStates = (root, cards, memory) => {
+    cards.forEach(card => {
+        const groupid = card.getAttribute('data-easystud-group-id');
+        const unfolded = memory.unfolded.has(groupid);
+        const searching = memory.searches.has(groupid);
+        if (!unfolded && !searching) {
+            return;
+        }
+        const toggle = card.querySelector('[data-easystud-group-members-toggle]');
+        if (toggle && unfolded) {
+            toggle.setAttribute('aria-expanded', 'true');
+        }
+        const panel = card.querySelector(':scope > [data-easystud-group-member-search-panel]');
+        if (panel && searching) {
+            const input = panel.querySelector('[data-easystud-group-member-search]');
+            if (input) {
+                input.value = memory.searches.get(groupid);
+            }
+            panel.hidden = false;
+            panel.classList.add('is-open');
+            const searchtoggle = card.querySelector('[data-easystud-group-member-search-toggle]');
+            if (searchtoggle) {
+                searchtoggle.classList.add('is-active');
+            }
+        }
+        applyGroupMemberSearchToGroup(root, card);
+    });
+};
+
+/**
+ * Whether a group catalog is on screen, mirroring the stylesheet: the participants catalog
+ * in the participant focus, the structure catalog in the structure focus or the mobile
+ * Groups view.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {String} key Catalog key.
+ * @returns {Boolean}
+ */
+const isCatalogShown = (root, key) => {
+    if (key === 'participants') {
+        return root.classList.contains(participantFocusClass);
+    }
+    return root.classList.contains(structureFocusClass) ||
+        root.getAttribute('data-easystud-mobile-view-active') === 'groups';
+};
+
+/**
  * Render the current page of an on-demand group catalog.
+ *
+ * A hidden catalog keeps no cards: it renders when its view opens, since every view switch
+ * runs the pagination again.
  *
  * @param {HTMLElement} root EasyStud root.
  * @param {HTMLElement} list Catalog list.
@@ -10968,14 +11123,25 @@ const renderOnDemandCatalogPage = (root, list, config) => {
     page = Math.min(page, Math.max(pages - 1, 0));
     list.setAttribute('data-easystud-page', page);
 
+    if (!isCatalogShown(root, key)) {
+        if (list.easystudSmRenderedKey !== null) {
+            rememberGroupCardStates(list);
+            renderGroupPage(model, list, key, []);
+            catalog.pageCards = new Map();
+            list.easystudSmRenderedKey = null;
+        }
+        return {total: ordered.length, pages, page};
+    }
     const pageIds = ordered.slice(page * config.limit, (page + 1) * config.limit);
     const renderkey = model.revision + '|' + pageIds.join(',');
     if (list.easystudSmRenderedKey !== renderkey) {
+        const memory = rememberGroupCardStates(list);
         const cards = renderGroupPage(model, list, key, pageIds);
         catalog.pageCards = new Map(cards.map(card =>
             [Number(card.getAttribute('data-easystud-group-id')), syncGroupCardSelection(model, card)]));
         list.easystudSmRenderedKey = renderkey;
         decorateOnDemandGroupCards(root, cards);
+        restoreGroupCardStates(root, cards, memory);
     }
     return {total: ordered.length, pages, page};
 };
@@ -10999,8 +11165,10 @@ const ensureTreeSection = (root, section) => {
         return;
     }
     container.easystudSmRenderedKey = model.revision;
+    const memory = rememberGroupCardStates(container);
     const cards = renderTreeSection(model, container, key);
     decorateOnDemandGroupCards(root, cards);
+    restoreGroupCardStates(root, cards, memory);
     const labels = getLabels(root);
     if (key === 'ungrouped') {
         syncUngroupedState(root, labels);
@@ -11120,6 +11288,13 @@ const scheduleOnDemandStateRefresh = root => {
                     model.selected.delete(userid);
                 }
             });
+            const memberkeys = new Set(raw.groups.reduce((all, group) =>
+                all.concat((group.memberids || []).map(userid => group.id + ':' + userid)), []));
+            (model.selectedMembers || new Map()).forEach((key, memberkey) => {
+                if (!memberkeys.has(memberkey)) {
+                    model.selectedMembers.delete(memberkey);
+                }
+            });
             const groupids = new Set(raw.groups.map(group => group.id));
             (model.selectedGroups || new Map()).forEach((key, groupid) => {
                 if (!groupids.has(groupid)) {
@@ -11155,11 +11330,13 @@ const scheduleOnDemandStateRefresh = root => {
  * @param {HTMLElement} root EasyStud root.
  * @param {Number} courseId Course id.
  * @param {Object} strings Participant card labels from manage.php.
+ * @param {Object} groupStrings Group card labels from manage.php.
+ * @returns {Promise} Settles once the first render is done or has failed.
  */
 const startOnDemandState = (root, courseId, strings, groupStrings) => {
     root.setAttribute('data-easystud-rendering-mode', 'reactive');
     let store = null;
-    createStore(root, courseId)
+    return createStore(root, courseId)
         .then(loaded => {
             store = loaded;
             return createParticipantModel(loaded.raw, strings);
@@ -11214,7 +11391,11 @@ export const init = (rootId, courseId, options = {}) => {
 
         Motion.init(root);
         if (options && options.renderingmode === 'reactive') {
-            runSafely(() => startOnDemandState(root, courseId, options.cardstrings || {}, options.groupstrings || {}));
+            // The page reports ready only once the state has drawn the lists, like the server render.
+            runSafely(() => {
+                root.easystudSmStarting = startOnDemandState(root, courseId, options.cardstrings || {},
+                    options.groupstrings || {});
+            });
         }
 
         [
@@ -11284,7 +11465,7 @@ export const init = (rootId, courseId, options = {}) => {
         ].forEach(runSafely);
 
         scheduleResponsiveUiRefresh(root, {guide: false});
-        window.requestAnimationFrame(() => {
+        const markInitialised = () => window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => {
                 root.removeAttribute('data-easystud-manager-initialising');
                 root.setAttribute('data-easystud-manager-initialised', '1');
@@ -11293,5 +11474,6 @@ export const init = (rootId, courseId, options = {}) => {
                 }
             });
         });
+        (root.easystudSmStarting || Promise.resolve()).then(markInitialised).catch(markInitialised);
     });
 };
