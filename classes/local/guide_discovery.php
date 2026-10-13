@@ -70,7 +70,14 @@ final class guide_discovery {
                 'title' => get_string($prefix . '_title', 'local_groupimport'),
                 'description' => get_string($prefix . '_description', 'local_groupimport')];
         }
-        return ['topics' => $topics, 'note' => get_string('guidecard_' . $type . '_note', 'local_groupimport')];
+        return [
+            'topics' => $topics,
+            'note' => get_string('guidecard_' . $type . '_note', 'local_groupimport'),
+            // The template keeps the first introduction's teaching specimens
+            // distinct; only short card lessons use the three-column reading
+            // composition when their actual dialog lane can support it.
+            'lessonreading' => true,
+        ];
     }
 
     /**
@@ -138,7 +145,11 @@ final class guide_discovery {
                 'title' => get_string($prefix . '_title', 'local_groupimport'),
                 'description' => get_string($prefix . '_description', 'local_groupimport')];
         }
-        return ['topics' => $topics, 'note' => get_string('guideaction_' . $type . '_note', 'local_groupimport')];
+        return [
+            'topics' => $topics,
+            'note' => get_string('guideaction_' . $type . '_note', 'local_groupimport'),
+            'lessonreading' => true,
+        ];
     }
 
     /** Shared introduction data; no slide insertion or persisted-index migration. */
@@ -220,7 +231,7 @@ final class guide_discovery {
                 $scene[$label . 'label'] = get_string('discovery_' . $label, 'local_groupimport');
             }
             foreach (['participanttitle', 'grouptitle', 'groupingtitle', 'patternvalue', 'resulttitle',
-                'emptymembers', 'sourceempty', 'destinationcaption', 'menutitle', 'removeaction',
+                'emptymembers', 'sourceempty', 'sourcecaption', 'destinationcaption', 'menutitle', 'removeaction',
                 'membershiptitle', 'recaptitle', 'addselect', 'adddrop', 'compactselect', 'compactmenu',
                 'comparemove', 'examplegroup', 'examplegrouping', 'exampletitle', 'examplebody',
                 'syntaxnumbers', 'syntaxletters', 'syntaxcount', 'destinationname',
@@ -341,6 +352,7 @@ final class guide_discovery {
                                 ENT_QUOTES, 'UTF-8')],
                     ],
                     'note' => $destination['note'],
+                    'lessonreading' => true,
                 ];
             }
             // Keep the optional exercises reachable after their duplicate lessons disappear.

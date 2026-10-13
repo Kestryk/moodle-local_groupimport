@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N2] T037: consume Kit 0.4.199's bounded Guide reading composition: 42rem direct explanatory copy, semantic heading ink, a quiet localized demonstration caption, Source/Destination scene labels, and container-query reading points for short card/action lessons only. Preserve the first six teaching specimens, ordered recap, scene width, controls, guide engine, paths and Motion. Foundation/Penpot, served native rendering and human acceptance remain separate open gates.
+
 - 2026-10-13 [N1] T053/T058: emit the existing SCSS through a conservative value-preserving delivery formatter and import Kit 0.4.198 neutral-text foregrounds; Student Management structural headings bind to the same `--easyedu-text-muted` token. Geometry, typography roles, Motion, templates and controllers are unchanged; native preview, Foundation paint and human acceptance remain separate gates.
 
 - 2026-10-13 [N1] Prepare grouped validated detail fix/AP-E7/fixtures/T053/T056/T057/T058 preview: retain prior3a/3b and D1 Add labels, pin exact producer bodies/assets/tooling, compare only approved T057 copy substitutions and record native FilePicker initialization separately; reuse scoped modal/catalogue surfaces, restore legacy/Complete settings, no business actions or large fixtures on principal.

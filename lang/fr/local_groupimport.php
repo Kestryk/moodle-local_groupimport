@@ -771,6 +771,7 @@ $string['discovery_patternvalue'] = 'Équipe #*3';
 $string['discovery_resulttitle'] = 'Résultat simulé — aucun groupe créé dans Moodle';
 $string['discovery_emptymembers'] = 'Aucun membre';
 $string['discovery_sourceempty'] = 'Les membres sélectionnés ont quitté ce groupe.';
+$string['discovery_sourcecaption'] = 'Groupe source';
 $string['discovery_destinationcaption'] = 'Groupe de destination';
 $string['discovery_menutitle'] = 'Actions des membres sélectionnés';
 $string['discovery_removeaction'] = 'Retirer du groupe';

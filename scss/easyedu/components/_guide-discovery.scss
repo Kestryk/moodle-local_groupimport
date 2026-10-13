@@ -41,6 +41,11 @@
 }
 
 @mixin guide-discovery-shell {
+  // Long explanatory copy has a comfortable reading measure without narrowing
+  // the illustrated scene, cards, controls or recap. Consumers can override
+  // the token for an intentionally narrower Guide host.
+  --easyedu-guide-reading-measure: 42rem;
+
   .easyedu-guide-label-tooltip {
     @include tooltips.foundation-light-tooltip;
     max-width: min(14rem, calc(100vw - 1.5rem));
@@ -232,6 +237,34 @@
         margin: 0;
         color: var(--easyedu-text-muted);
         overflow-wrap: anywhere;
+      }
+    }
+    // Card/action lessons opt in explicitly. The six first-slide specimens
+    // retain their established two-lane anatomy instead of becoming dense
+    // three-column tiles. A container query follows the actual Guide reading
+    // lane, so a constrained dialog keeps the one-column mobile order.
+    &--lesson-reading {
+      container-type: inline-size;
+
+      .easyedu-guide-introduction__topics {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+      }
+
+      .easyedu-guide-introduction__topic {
+        grid-template-columns: minmax(0, 1fr);
+        align-content: start;
+        gap: 0.5rem;
+        padding-block-end: 0;
+        border-block-end: 0;
+
+        dt { align-items: flex-start; }
+      }
+
+      @container (min-width: 42rem) {
+        .easyedu-guide-introduction__topics {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
       }
     }
     &__note { @include typography.type-caption; color: var(--easyedu-text-muted); margin: 0; }
@@ -582,7 +615,9 @@
     // Keep modal headings, illustrated cards and nested topic labels unchanged.
     .easyedu-guide-slide__header > h3 {
       @include typography.type-section-title;
-      color: var(--easyedu-secondary-text);
+      // Keep the approved 16px/600 section role; only restore its semantic
+      // reading ink so this is not mistaken for a navigation label.
+      color: var(--easyedu-text);
       min-width: 0;
       overflow-wrap: anywhere;
       text-align: start;
@@ -602,6 +637,11 @@
       min-width: 0;
       overflow-wrap: anywhere;
     }
+    // Direct explanatory prose is deliberately bounded; the scene wrapper,
+    // illustration cards, controls, topic dl and ordered recap stay full lane.
+    .easyedu-guide-slide__content > p {
+      max-inline-size: min(100%, var(--easyedu-guide-reading-measure));
+    }
   }
 
   .easyedu-guide-scene {
@@ -619,6 +659,20 @@
     // retain their own paragraph padding/margins after the Guide is portalled.
     > p { margin-block: 0.5rem 0.75rem; }
     &__caption, small { @include typography.type-caption; }
+    // A quiet, localized reminder that scenes are demonstrations. This remains
+    // a caption role, not a warning or a second status component.
+    &__caption--safe-example {
+      display: inline-flex;
+      inline-size: fit-content;
+      max-inline-size: 100%;
+      margin: 0 0 0.75rem;
+      padding: 0.1875rem 0.5rem;
+      border: 1px solid var(--easyedu-border);
+      border-radius: 999px;
+      background: var(--easyedu-surface);
+      color: var(--easyedu-text-muted);
+      overflow-wrap: anywhere;
+    }
     &__concepts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3rem; padding: 1rem; }
     &__concepts > div { position: relative; min-width: 0; }
     &__concepts > div > p { @include typography.type-caption; margin-block: 1rem; }
@@ -673,11 +727,26 @@
       &.is-selected { background: var(--easyedu-primary-soft); border-color: var(--easyedu-primary); }
     }
     &__card-copy { display: grid; gap: 0.375rem; min-width: 0; }
+    // These labels describe the illustrated lanes, rather than inferring a
+    // business context from example names such as "Projet Orion".
+    &__lane-label {
+      @include typography.type-caption;
+      display: block;
+      color: var(--easyedu-text-muted);
+      font-weight: var(--easyedu-font-weight-semibold);
+      line-height: 1.2;
+    }
     &__card-copy > strong { @include typography.type-control-label; font-size: 0.88rem; }
     &__source-title { @include typography.type-control-label; display: block; font-size: 0.88rem; }
     [data-guide-source-empty] { display: block; margin-block-start: 0.5rem; }
     [data-guide-source-empty][hidden] { display: none; }
-    &__source { border: 1px solid var(--easyedu-border); border-radius: 0.75rem; padding: 0.75rem; background: var(--easyedu-surface); }
+    &__source {
+      border: 1px solid var(--easyedu-border);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      background: var(--easyedu-surface);
+      .easyedu-guide-scene__lane-label { margin-block-end: 0.25rem; }
+    }
     &__member { @include typography.type-caption; color: var(--easyedu-accent); }
     &__field { display: grid; gap: 0.5rem; }
     &__field input { @include text-fields.foundation-text-field($size: small); width: 100%; }

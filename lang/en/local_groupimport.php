@@ -807,6 +807,7 @@ $string['discovery_patternvalue'] = 'Équipe #*3';
 $string['discovery_resulttitle'] = 'Simulated result — no groups created in Moodle';
 $string['discovery_emptymembers'] = 'No members';
 $string['discovery_sourceempty'] = 'The selected members have left this group.';
+$string['discovery_sourcecaption'] = 'Source group';
 $string['discovery_destinationcaption'] = 'Destination group';
 $string['discovery_menutitle'] = 'Selected member actions';
 $string['discovery_removeaction'] = 'Remove from group';
