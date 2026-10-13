@@ -661,7 +661,8 @@
 
 @mixin metadata-empty {
   border-top: 1px solid #e5edf4;
-  color: #71869b;
+  // Empty-state copy is metadata, but still needs the shared minimum contrast.
+  color: var(--easyedu-text-muted);
   font-size: 0.8rem;
   padding: 0.65rem;
   text-align: center;

@@ -4,6 +4,15 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "neutralTextContrastT058_20261013": {
+      "kitCommit": "bc26c04d613fd878d4dcdba71f0874e1c811a91b",
+      "kitVersion": "0.4.198",
+      "scope": "Bounded import of entity-field captions and empty states plus modal metadata empty copy; EasyStud keeps its late-bound structural-heading selector.",
+      "sourceVerification": "Kit entity-field contract PASS; full consumer compiled-CSS and native visual gates are recorded separately.",
+      "foundationPaintPending": true,
+      "nativeVerified": false,
+      "humanAccepted": false
+    },
     "guideExternalDialogLayerS1": {
       "kitCommit": "27a5030616afd2796671f3df239e6681c9ac67b0",
       "kitVersion": "0.4.186",

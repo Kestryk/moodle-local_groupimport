@@ -16,7 +16,7 @@
   &-column-heading__title {
     @include easyedu.type-eyebrow;
 
-    color: #6a7a8a;
+    color: var(--easyedu-text-muted);
   }
 
   &-tree__section--ungrouped > &-tree__toggle {

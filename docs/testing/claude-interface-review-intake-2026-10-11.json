@@ -819,10 +819,10 @@
     {
       "id": "T053",
       "receivedScope": "[P] [US6] **Poids CSS.**",
-      "status": "delivered-analysis-browser-coverage-incomplete",
+      "status": "conservative-css-candidate-proved-static-native-preview-deferred-runtime-down",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["tools/release/audit-css.cjs", "tools/release/CSS-REDUCTION-PLAN.md", "RETOUR-CODEX2-T053-2026-10-13.md"],
+      "related": ["tools/release/audit-css.cjs", "tools/release/build-styles.cjs", "tools/release/verify-css-equivalence.cjs", "tools/release/CSS-REDUCTION-PLAN.md", "RETOUR-CODEX2-T053-2026-10-13.md"],
       "decisionGate": "none"
     },
     {
@@ -864,10 +864,10 @@
     {
       "id": "T058",
       "receivedScope": "[P] [US6] **Passe d'accessibilité complète** : focus, Escape et retour du focus sur **toutes** les modales et panneaux (D1 laisse penser qu'il y a d'autres cas), contraste des éléments neutres d'US4, mouvement réduit, alternative clavier au glisser-déposer.",
-      "status": "delivered-audit-findings-and-coverage-gaps-open",
+      "status": "neutral-text-contrast-source-kit-prepared-native-preview-deferred-runtime-down",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["tools/release/accessibility-inventory.cjs", "tools/release/ACCESSIBILITY-FINDINGS.md", "tools/playwright/roadmap-accessibility.spec.js", "RETOUR-CODEX2-T058-2026-10-13.md"],
+      "related": ["tools/release/accessibility-inventory.cjs", "tools/release/ACCESSIBILITY-FINDINGS.md", "tools/release/verify-css-equivalence.cjs", "tools/playwright/student-state-integration-native.spec.js", "RETOUR-CODEX2-T058-2026-10-13.md"],
       "decisionGate": "none"
     },
     {
