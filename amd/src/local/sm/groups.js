@@ -32,6 +32,12 @@ import {normalise} from './index';
 const templateName = 'local_groupimport/sm/group_card';
 
 /**
+ * Member rows a page or tree card renders at first: the folded card shows two rows, the
+ * others are added when the card unfolds (lever 2).
+ */
+export const LEAN_MEMBER_ROWS = 2;
+
+/**
  * Load the group card template once and attach it to the participant model.
  *
  * @param {Object} model Participant model (shared on-demand model).
@@ -119,7 +125,7 @@ export const groupingSearchText = (model, grouping) => {
  *
  * @param {Object} model Participant model.
  * @param {Object} group State group.
- * @param {Object} variant {structureemail, treecard, withingrouping}.
+ * @param {Object} variant {structureemail, treecard, withingrouping, memberlimit}.
  * @returns {Object}
  */
 export const buildGroupCardContext = (model, group, variant) => {
@@ -168,7 +174,7 @@ export const buildGroupCardContext = (model, group, variant) => {
             .map(groupingid => model.groupings.get(groupingid).name) :
             (model.groupCatalogNames.get(group.id) || [])).map(label => ({label})),
         removefromgroupinglabel: strings.removefromgroupinglabel || '',
-        members,
+        members: variant.memberlimit ? members.slice(0, variant.memberlimit) : members,
         hasmembers: memberids.length > 0,
         nomemberslabel: strings.nomemberslabel || '',
         searchtext: (variant.treecard ? model.groupTreeSearch : model.groupSearch).get(group.id) || '',
@@ -179,17 +185,68 @@ export const buildGroupCardContext = (model, group, variant) => {
 };
 
 /**
+ * Note on a freshly rendered card whose member rows are not all rendered how many it has
+ * (see renderMissingMemberRows). Complete cards are counted from their rows.
+ *
+ * @param {Object} model Participant model.
+ * @param {HTMLElement} card Group card.
+ * @param {Number} memberlimit Member rows rendered, 0 for all.
+ */
+const markMemberRows = (model, card, memberlimit) => {
+    const group = model.groups.get(Number(card.getAttribute('data-easystud-group-id')));
+    const total = group ? (group.memberids || []).filter(userid => model.byId.has(userid)).length : 0;
+    if (memberlimit && total > memberlimit) {
+        card.setAttribute('data-easystud-member-total', total);
+        card.setAttribute('data-easystud-sm-members-partial', '1');
+    }
+};
+
+/**
+ * Render the member rows a lean card does not have yet, at the end of its member list.
+ *
+ * @param {Object} model Participant model.
+ * @param {HTMLElement} card Group card rendered with LEAN_MEMBER_ROWS rows.
+ * @returns {HTMLElement[]} New member rows.
+ */
+export const renderMissingMemberRows = (model, card) => {
+    card.removeAttribute('data-easystud-sm-members-partial');
+    card.removeAttribute('data-easystud-member-total');
+    const group = model.groups.get(Number(card.getAttribute('data-easystud-group-id')));
+    const list = card.querySelector('[data-easystud-group-members]');
+    if (!group || !list) {
+        return [];
+    }
+    const variant = {
+        structureemail: card.getAttribute('data-easystud-sm-catalog') === 'structure',
+        treecard: !card.hasAttribute('data-easystud-sm-catalog'),
+        withingrouping: !!card.querySelector('[data-easystud-remove-from-grouping]'),
+    };
+    const holder = document.createElement('div');
+    holder.innerHTML = Mustache.render(model.groupSource, buildGroupCardContext(model, group, variant));
+    const known = new Set(Array.from(list.querySelectorAll('[data-easystud-member-id]'))
+        .map(row => row.getAttribute('data-easystud-member-id')));
+    const rows = Array.from(holder.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]'))
+        .filter(row => !known.has(row.getAttribute('data-easystud-member-id')));
+    const fragment = document.createDocumentFragment();
+    rows.forEach(row => fragment.appendChild(row));
+    const empty = list.querySelector(':scope > .local-groupimport-easystud-tree__empty');
+    list.insertBefore(fragment, empty);
+    return rows;
+};
+
+/**
  * Group card markup.
  *
  * @param {Object} model Participant model.
  * @param {Number} groupid Group id.
  * @param {String} key Catalog key: participants or structure.
+ * @param {Number} memberlimit Member rows to render, 0 for all.
  * @returns {String}
  */
-export const renderGroupCardHtml = (model, groupid, key) => {
+export const renderGroupCardHtml = (model, groupid, key, memberlimit = 0) => {
     const group = model.groups.get(groupid);
-    return group ?
-        Mustache.render(model.groupSource, buildGroupCardContext(model, group, {structureemail: key === 'structure'})) : '';
+    return group ? Mustache.render(model.groupSource,
+        buildGroupCardContext(model, group, {structureemail: key === 'structure', memberlimit})) : '';
 };
 
 /**
@@ -273,9 +330,12 @@ export const sortGroupIds = (model, ids, mode) => {
 export const renderGroupPage = (model, list, key, pageIds) => {
     list.querySelectorAll(':scope > [data-easystud-group-id], :scope > [data-easystud-sm-loading]').forEach(node => node.remove());
     const holder = document.createElement('div');
-    holder.innerHTML = pageIds.map(id => renderGroupCardHtml(model, id, key)).join('');
+    holder.innerHTML = pageIds.map(id => renderGroupCardHtml(model, id, key, LEAN_MEMBER_ROWS)).join('');
     const cards = Array.from(holder.children);
-    cards.forEach(card => card.setAttribute('data-easystud-sm-catalog', key));
+    cards.forEach(card => {
+        card.setAttribute('data-easystud-sm-catalog', key);
+        markMemberRows(model, card, LEAN_MEMBER_ROWS);
+    });
     const top = list.querySelector(':scope > [data-easystud-pagination="top"]');
     const fragment = document.createDocumentFragment();
     cards.forEach(card => fragment.appendChild(card));
@@ -310,11 +370,12 @@ export const getTreeSectionGroupIds = (model, key) => {
 export const renderTreeSection = (model, container, key) => {
     container.querySelectorAll(':scope > [data-easystud-group-id], :scope > .local-groupimport-easystud-tree__empty' +
         ':not([data-easystud-container-filter-empty])').forEach(node => node.remove());
-    const variant = {treecard: true, withingrouping: key !== 'ungrouped'};
+    const variant = {treecard: true, withingrouping: key !== 'ungrouped', memberlimit: LEAN_MEMBER_ROWS};
     const holder = document.createElement('div');
     holder.innerHTML = getTreeSectionGroupIds(model, key).map(groupid =>
         Mustache.render(model.groupSource, buildGroupCardContext(model, model.groups.get(groupid), variant))).join('');
     const cards = Array.from(holder.children);
+    cards.forEach(card => markMemberRows(model, card, LEAN_MEMBER_ROWS));
     const fragment = document.createDocumentFragment();
     cards.forEach(card => fragment.appendChild(card));
     container.insertBefore(fragment, container.firstChild);
