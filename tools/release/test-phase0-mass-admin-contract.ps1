@@ -12,14 +12,16 @@ $kitManifest = Get-Content -Raw -LiteralPath (Join-Path $pluginRoot 'easyedu-kit
 
 # Git blob hashes compare normalized source, independently of checkout CRLF.
 $canonicalModules = @{
-    'scss/easyedu/_workspace-classes.scss' = 'bed06f107e9b2bc9745e87a2464cede1840585e9'
-    'scss/easyedu/_data-classes.scss' = '14ca45c65aa149e2aa5806e72d0af9a85b470b39'
-    'scss/easyedu/_foundation-classes.scss' = '7db8370d6f41fe18b87d738fa215a4eb55c9fbd4'
-    'scss/easyedu/_tokens.scss' = '71f3da0a22082b9e87b5869c39bf1198af426c08'
-    'scss/easyedu/adapters/_moodle-file-deposit.scss' = 'c8f7f6bb8f30a07f43d2051e870bee6a8aab442f'
-    'scss/easyedu/components/_animations.scss' = '9dc31bb53c38984f8d69a1c06e9aec848208aa52'
-    'scss/easyedu/components/_buttons.scss' = '355a054392c9ece426a7e49fbfa99ba86f0124d8'
-    'scss/easyedu/components/_forms.scss' = '8885202dacd8a78fc06a2719c2828666d16aa0a4'
+    'scss/easyedu/_workspace-classes.scss' = 'b61bf590a58b83957d88f9237d316ed5a0eb057a'
+    'scss/easyedu/_data-classes.scss' = 'cbcbc8ff3dc3a08631df65a02d47f6d7bd303e60'
+    'scss/easyedu/_foundation-classes.scss' = '209f9946a22de22f7d6d09972b5c062303ce04de'
+    'scss/easyedu/_tokens.scss' = '29d63f60ebb3b7b35605e1434f047495566f0a20'
+    'scss/easyedu/adapters/_moodle-file-deposit.scss' = '4b786cfe902fe2a062f92b84434c561b284c80e7'
+    'scss/easyedu/components/_panels.scss' = '173c9208b4f7062a4bccb946a3fc300f0f0426a3'
+    'scss/easyedu/components/_typography.scss' = 'a7b0023677dd3b9d0221b567cc2ffe060ede6d83'
+    'scss/easyedu/components/_animations.scss' = '3111923198ef5c8ff739bcc764ca2714a1ec6465'
+    'scss/easyedu/components/_buttons.scss' = '41339db7c143bb41cf2815ff84d8acdcecb9a694'
+    'scss/easyedu/components/_forms.scss' = 'eb70edaf060645da95b194924952ca63eb71fc78'
 }
 foreach ($path in $canonicalModules.Keys) {
     $actual = & git -C $pluginRoot hash-object $path

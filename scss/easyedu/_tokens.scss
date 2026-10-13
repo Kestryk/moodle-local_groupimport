@@ -160,6 +160,10 @@
   --easyedu-action-icon-gap: 0.65rem;
   --easyedu-section-icon-size: 2.55rem;
   --easyedu-section-icon-size-compact: 2.2rem;
+  // Secondary content headings use the deliberately quieter 28 px tile.
+  // A named token keeps the glyph, track and supporting copy aligned in every
+  // consumer instead of inviting local dimension overrides.
+  --easyedu-section-icon-size-small: 1.75rem;
   --easyedu-section-icon-radius: 0.75rem;
   --easyedu-dropdown-border: #cbdcea;
   --easyedu-dropdown-radius: 0.78rem;
