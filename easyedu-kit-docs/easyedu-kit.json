@@ -5,9 +5,9 @@
   "status": "stable",
   "consumerSync": {
     "guideNavigationT038_20261013": {
-      "kitCommit": "c771328975f78366b8283e75f82295c0ead65c94",
-      "kitVersion": "0.4.200",
-      "scope": "Route pictogram replaces visible guided-path text badge; short numbered chapter labels wrap without truncation; state, paths, controls and Motion unchanged.",
+      "kitCommit": "63abbfc75b4457ca848471b80634b4b4646c5013",
+      "kitVersion": "0.4.201",
+      "scope": "Route pictogram replaces visible guided-path text badge; short numbered chapter labels wrap without truncation; the direct chapter-icon selector excludes the compact route marker; state, paths, controls and Motion unchanged.",
       "sourceStaticScript": "tools/release/test-guide-t038-navigation.cjs",
       "sourceStaticPassed": true,
       "foundationPaintPending": true,

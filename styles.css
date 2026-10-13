@@ -3698,14 +3698,14 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item {align-items: center;appearance: none;background: #fff;border: 1px solid #d8e4ef;border-radius: 0.82rem;color: #4b6075;cursor: pointer;display: inline-flex;flex: 0 0 12.25rem;font-size: 0.78rem;font-weight: 650;gap: 0.5rem;justify-content: flex-start;min-height: 3rem;padding: 0.45rem 0.65rem;scroll-snap-align: center;text-align: left;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
 }
-.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa,
+.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path),
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon,
-.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa,
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path),
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon {align-items: center;background: color-mix(in srgb, var(--easyedu-primary) 8%, #fff 92%);border: 1px solid color-mix(in srgb, var(--easyedu-primary) 16%, #fff 84%);border-radius: 0.62rem;color: var(--easyedu-primary);flex: 0 0 auto;display: inline-flex;height: 1.7rem;justify-content: center;width: 1.7rem;
 }
-.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa .fa,
+.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path) .fa,
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon .fa,
-.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa .fa,
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path) .fa,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon .fa {font-size: 0.78rem;line-height: 1;
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item:hover, .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item:focus-visible,

@@ -1,5 +1,10 @@
 # Changelog
 
+- 2026-10-13 [N0] T038 follow-up: preserve the compact inline route pictogram
+  for guided paths by excluding it from the generic direct Guide topic-icon
+  selector. Numbered navigation labels, state, paths, controls and Motion are
+  unchanged.
+
 - 2026-10-13 [N2] T038: consume Kit 0.4.200 Guide navigation lanes. Keep stable slide IDs/order and the existing accessible guided-label data; render the guided-path state as a compact route pictogram instead of the visible text badge, retain approved numbered FR/EN short labels and one chapter label per consecutive group, and allow those labels to wrap rather than truncate. Foundation/Penpot, native rendering and human acceptance remain separate open gates.
 
 - 2026-10-13 [N2] T037: consume Kit 0.4.199's bounded Guide reading composition: 42rem direct explanatory copy, semantic heading ink, a quiet localized demonstration caption, Source/Destination scene labels, and container-query reading points for short card/action lessons only. Preserve the first six teaching specimens, ordered recap, scene width, controls, guide engine, paths and Motion. The read-only French native proof passes at 1600/1280/390; Foundation/Penpot and human acceptance remain separate open gates.

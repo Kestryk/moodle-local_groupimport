@@ -1266,7 +1266,9 @@
       color var(--easyedu-motion-fast) ease,
       transform var(--easyedu-motion-fast) ease;
 
-    > .fa,
+    // Direct Font Awesome icons are the topic marker. The path marker is also
+    // a direct `.fa`, but owns its compact route treatment below.
+    > .fa:not(.easyedu-guide-nav-item__path),
     .easyedu-guide-nav-item__icon {
       align-items: center;
       background: color-mix(in srgb, var(--easyedu-primary) 8%, #fff 92%);

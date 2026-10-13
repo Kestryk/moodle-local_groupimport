@@ -29,6 +29,8 @@ const discovery = read(path.join(root, 'classes', 'local', 'guide_discovery.php'
 assert(normalize(guideScss) === normalize(read(kitGuide)), 'shared Guide SCSS is identical in Kit and consumer');
 assert(normalize(discoveryScss) === normalize(read(kitDiscovery)), 'shared Discovery SCSS is identical in Kit and consumer');
 assert(guideScss.includes('.easyedu-guide-nav-item__path'), 'Guide supplies an explicit path glyph role');
+assert(guideScss.includes('> .fa:not(.easyedu-guide-nav-item__path),'),
+    'generic chapter-icon paint does not override the compact route pictogram');
 assert(!guideScss.includes('content: attr(data-easyedu-guided-label)'), 'Guide no longer paints a text path badge');
 assert(guideScss.includes('overflow-wrap: anywhere;') && guideScss.includes('white-space: normal;'),
     'Guide navigation labels may wrap instead of truncating');
