@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // Local-supervised. Transient form editing only, never Create or Save.
 test('Student creation and Rename consume Foundation native text fields', async({page}, testInfo) => {
@@ -85,12 +86,7 @@ test('Student creation and Rename consume Foundation native text fields', async(
             // populated grouping normally, as in the inline-feedback scenario;
             // never force hidden card actions or change the fixture.
             if (width > 1024 && await root.locator('[data-easystud-group-id]:visible').count() === 0) {
-                const populated = root.locator('[data-easystud-grouping-id]:visible').filter({
-                    has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]'),
-                }).first();
-                await expect(populated).toBeVisible({timeout: 15000});
-                const toggle = populated.locator(':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
-                if (await toggle.getAttribute('aria-expanded') === 'false') await toggle.click();
+                const populated = await openPopulatedGrouping(root);
                 await settle(populated);
             }
             const card = root.locator('[data-easystud-group-id]:visible').first();

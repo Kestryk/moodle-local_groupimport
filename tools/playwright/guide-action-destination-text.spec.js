@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 // Local-supervised reading only, never apply a selection/course command.
@@ -19,7 +20,7 @@ test('Guide full action explanation containment',async({page},info)=>{
         if(route.request().method()!=='POST')return route.continue();
         const methods=route.request().postDataJSON().map(call=>call.methodname);
         const reads=['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state'];
-        if(methods.every(method=>reads.includes(method)))return route.continue();
+        if(areSafeAjaxReads(methods, reads))return route.continue();
         blocked.push(methods);return route.abort('blockedbyclient');
     });
     try {

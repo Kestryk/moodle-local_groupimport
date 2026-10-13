@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 const baseUrl = process.env.EASYEDU_MOODLE_URL ||
     'http://localhost/local/groupimport/manage.php?id=5';
@@ -35,16 +36,8 @@ test('expanded Group More-actions menu stays above revealed participant members'
     }
     await expect(completeView).toHaveAttribute('aria-pressed', 'true');
 
-    const grouping = root.locator(
-        '[data-easystud-tree] [data-easystud-grouping-id]:has(.local-groupimport-easystud-group):visible'
-    ).first();
+    const grouping = await openPopulatedGrouping(root);
     await expect(grouping).toBeVisible();
-    const groupingToggle = grouping.locator(
-        ':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]'
-    );
-    if ((await groupingToggle.getAttribute('aria-expanded')) !== 'true') {
-        await groupingToggle.click();
-    }
 
     const group = grouping.locator(
         ':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]:visible'

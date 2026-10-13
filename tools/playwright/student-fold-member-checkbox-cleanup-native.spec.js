@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // local-supervised: existing course-5 cards, local checkbox/fold/reopen only.
@@ -21,7 +22,7 @@ test('Group fold clears its members and preserves another Group across widths', 
         }
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.length && methods.every(name => reads.has(name))) return route.continue();
+        if (methods.length && areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push({scope: 'core', methods}); return route.abort('blockedbyclient');
     });
     await page.route('**/local/groupimport/**', route => {

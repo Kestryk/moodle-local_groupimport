@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 // local-supervised inventory: actual current-width entry, inspect and Cancel only.
@@ -28,7 +29,7 @@ test('Advanced edit inventory uses actual responsive entries and preserves nativ
         });
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(methods.every(method=>reads.has(method)))return route.continue();
+        if(areSafeAjaxReads(methods, reads))return route.continue();
         blocked.push(methods);return route.abort('blockedbyclient');
     });
 

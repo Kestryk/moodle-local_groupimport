@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // local-supervised: actual Moodle Guide, fictional scenes, isolated progress key.
@@ -22,7 +23,7 @@ test('Unified Guide header keeps scene commands and responsive playback in Moodl
         const methods = route.request().postDataJSON().map(call => call.methodname);
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state', 'core_message_get_unsent_message']);
-        if (methods.every(method => reads.has(method))) return route.continue();
+        if (areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push(methods); return route.abort();
     });
     await page.emulateMedia({reducedMotion: 'no-preference'});

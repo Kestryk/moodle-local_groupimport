@@ -1,6 +1,7 @@
 // Local-supervised T041: actual desktop/compact entry, focus, Escape and Cancel.
 // EN normal / FR reduced are18 bounded cases, not the complete locale/motion matrix.
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 test('T041 card dialogs focus and Escape preserve native Cancel on desktop and mobile', async({page}, info) => {
@@ -29,7 +30,7 @@ test('T041 card dialogs focus and Escape preserve native Cancel on desktop and m
         });
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.every(method => reads.has(method))) return route.continue();
+        if (areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push(methods); return route.abort('blockedbyclient');
     });
     const root = page.locator('#local-groupimport-easystud');

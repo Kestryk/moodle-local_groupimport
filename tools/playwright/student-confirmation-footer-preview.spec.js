@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // local-supervised. Existing populated entities only, native open/Cancel.
 // A request guard blocks accidental writes even if a conditional branch drifts.
@@ -41,21 +42,13 @@ test('Student conditional confirmations retain native content and matched action
                 await page.route('**/local/groupimport/**', guard);
                 try {
                     await root.locator('[data-easystud-layout-mode="both"]:visible').click();
+                    await openPopulatedGrouping(root);
                     const selector = kind === 'groups' ? '[data-easystud-group-id]' : '[data-easystud-grouping-id]';
                     const candidates = root.locator(selector + ':visible');
                     const populatedIndex = () => candidates.evaluateAll((nodes, entityKind) => nodes.findIndex(node =>
                         entityKind === 'groups' ? !!node.querySelector('[data-easystud-member-id]') :
                             node.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length > 0), kind);
-                    let index = await populatedIndex();
-                    if (kind === 'groups' && index < 0) {
-                        const parent = root.locator('[data-easystud-grouping-id]:visible').filter({
-                            has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
-                        }).first();
-                        await expect(parent).toBeVisible();
-                        await parent.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]').click();
-                        await expect(candidates.first()).toBeVisible();
-                        index = await populatedIndex();
-                    }
+                    const index = await populatedIndex();
                     expect(index, 'Existing visible populated entity required; never create a fixture or click an empty Delete').toBeGreaterThanOrEqual(0);
                     const entity = candidates.nth(index);
                     await expect(entity).toBeVisible();

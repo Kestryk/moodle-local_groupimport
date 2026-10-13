@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // Local-supervised, read-only: no membership, import, message or settings action
 // is activated. Run through the saved-credentials wrapper after preview apply.
@@ -26,11 +27,7 @@ test('Student card direct actions match Foundations across responsive widths', a
         await page.setViewportSize({width, height: 1100});
         await page.evaluate(() => document.fonts.ready);
         if (width===1600) {
-            const grouping=root.locator('[data-easystud-grouping-id]:visible').filter({
-                has:page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
-            }).first();
-            const toggle=grouping.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
-            if (await toggle.getAttribute('aria-expanded')==='false') await toggle.click();
+            const grouping = await openPopulatedGrouping(root);
             await expect(grouping.locator('.local-groupimport-easystud-group__unlink-button:visible').first()).toBeVisible();
         }
         const eye = root.locator('.local-groupimport-easystud-user__detail-button:visible').first();

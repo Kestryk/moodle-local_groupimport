@@ -1,6 +1,7 @@
 // SM55 remaining consumer gate. Existing selection/Search/Escape/Cancel only.
 // No destination Move, form Save, fixture or Guide action.
 const {test, expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 test('Native mobile menu and framed choices retain terminal layout and focus',async({page},testInfo)=>{
@@ -15,7 +16,7 @@ test('Native mobile menu and framed choices retain terminal layout and focus',as
             contentType:'application/json',body:JSON.stringify(methods.map(()=>({error:false,data:{}})))});
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(methods.length&&methods.every(n=>reads.has(n)))return route.continue();
+        if(methods.length&&areSafeAjaxReads(methods, reads))return route.continue();
         blocked.push({scope:'core',methods});return route.abort('blockedbyclient');
     });
     await page.route('**/local/groupimport/**',route=>{

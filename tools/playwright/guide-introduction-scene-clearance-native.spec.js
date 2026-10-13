@@ -1,5 +1,6 @@
 // T006 strict successor. Preserve the immutable0px baseline and actual Guide behavior.
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 test('T006 preserves canonical24px introduction clearance before scene status',async({page},info)=>{
  test.setTimeout(360000);const records=[],errors=[],blocked=[];
@@ -17,7 +18,7 @@ test('T006 preserves canonical24px introduction clearance before scene status',a
  await page.route('**/lib/ajax/service.php*',route=>{
   if(route.request().method()!=='POST')return route.continue();const methods=route.request().postDataJSON().map(call=>call.methodname);
   if(methods.every(method=>method==='core_message_get_unsent_message'))return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(methods.map(()=>({error:false,data:{}})))});
-  if(methods.every(method=>['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state'].includes(method)))return route.continue();
+  if(areSafeAjaxReads(methods, ['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state']))return route.continue();
   blocked.push(methods);return route.abort('blockedbyclient');
  });
  try{

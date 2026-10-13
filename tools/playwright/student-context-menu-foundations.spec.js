@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 const fs = require('node:fs');
 
 // Local-supervised: view switching, context selection and menu open/close only.
@@ -58,14 +59,8 @@ test('Student context menus preserve responsive geometry and focus', async({page
                 if (responsive) {
                     await root.locator(`[data-easystud-mobile-view="${view}"]`).click();
                     await expect(root).toHaveAttribute('data-easystud-mobile-view-active', view);
-                } else if (view === 'groups') {
-                    const grouping = root.locator('[data-easystud-grouping-id]:visible').filter({
-                        has:page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]'),
-                    }).first();
-                    const disclosure = grouping.locator(
-                        ':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
-                    if (await disclosure.getAttribute('aria-expanded') === 'false') await disclosure.click();
                 }
+                if (view === 'groups') await openPopulatedGrouping(root);
                 const card = root.locator(`${selector}:visible`).first();
                 await expect(card).toBeVisible();
                 await card.scrollIntoViewIfNeeded();

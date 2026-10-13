@@ -1,6 +1,7 @@
 // Local-supervised T041 diagnosis: real entry, focus, Escape and Cancel only.
 // No business writes, settings changes, injected modal or Guide progression.
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 test('T041 records native card modal keyboard baseline without writes', async({page}, info) => {
@@ -25,7 +26,7 @@ test('T041 records native card modal keyboard baseline without writes', async({p
         const methods = route.request().postDataJSON().map(call => call.methodname);
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.every(method => reads.has(method))) return route.continue();
+        if (areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push(methods); return route.abort('blockedbyclient');
     });
     const root = page.locator('#local-groupimport-easystud');

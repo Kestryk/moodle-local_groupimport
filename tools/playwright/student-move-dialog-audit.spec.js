@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // local-supervised: existing course data only; selection, open and cancel.
 // Never confirm a move, change memberships, manufacture empty data or submit.
@@ -48,12 +49,7 @@ test('Student move dialogs preserve native participant and group branches', asyn
                 const toggle = width <= 1024 ? '[data-easystud-mobile-view="groups"]:visible' :
                     '[data-easystud-layout-mode="structure"]:visible';
                 await root.locator(toggle).first().click();
-                if (!await root.locator('[data-easystud-group-id]:visible').count()) {
-                    const parent = root.locator('[data-easystud-grouping-id]:visible').filter({
-                        has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
-                    }).first();
-                    await parent.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]').click();
-                }
+                await openPopulatedGrouping(root);
             }
             const candidates = root.locator('[data-easystud-group-id]:visible');
             const groupedIndex = branch === 'groups-in-grouping' ? await candidates.evaluateAll(nodes => nodes.findIndex(node => {

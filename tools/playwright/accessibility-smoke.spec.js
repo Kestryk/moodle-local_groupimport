@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const AxeBuilder = require('@axe-core/playwright').default;
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 const managementUrl = process.env.EASYEDU_MOODLE_URL ||
     'http://localhost/local/groupimport/manage.php?id=5';
@@ -162,9 +163,7 @@ test('group and grouping cards expose contained keyboard focus context', async({
     await expect(structureMode).toBeVisible();
     await structureMode.click();
 
-    const groupingCard = page.locator(
-        '[data-easystud-tree] [data-easystud-grouping-id]:has(.local-groupimport-easystud-group):visible'
-    ).first();
+    const groupingCard = await openPopulatedGrouping(root);
     await expect(groupingCard).toBeVisible();
     const groupingToggle = groupingCard.locator('[data-easystud-collapse-toggle]:visible').first();
     await expect(groupingToggle).toBeVisible();
@@ -183,9 +182,6 @@ test('group and grouping cards expose contained keyboard focus context', async({
         fullPage: false,
     });
 
-    if ((await groupingToggle.getAttribute('aria-expanded')) !== 'true') {
-        await groupingToggle.click();
-    }
     const nestedGroupAction = groupingCard.locator(
         '.local-groupimport-easystud-tree__children [data-easystud-group-member-search-toggle]:visible'
     ).first();

@@ -1,4 +1,5 @@
 const {test, expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 // Read-only diagnostic; no presentation change, selection, Save or fixture.
@@ -13,7 +14,7 @@ test('Diagnose More Filters pointer lifecycle and reduced reopening',async({page
             contentType:'application/json',body:JSON.stringify(calls.map(()=>({error:false,data:{}})))});
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(calls.length&&calls.every(c=>reads.has(c)))return route.continue();
+        if(calls.length&&areSafeAjaxReads(calls, reads))return route.continue();
         blocked.push({calls});return route.abort();
     });
     try{

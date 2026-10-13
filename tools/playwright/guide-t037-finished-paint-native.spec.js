@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 test('T037 finished narration accent preserves actual Guide lifecycle and metrics',async({page},info)=>{
@@ -15,7 +16,7 @@ test('T037 finished narration accent preserves actual Guide lifecycle and metric
  await page.route('**/local/groupimport/**',r=>{if(r.request().method()==='GET')return r.continue();blocked.push('plugin write');return r.abort();});
  await page.route('**/lib/ajax/service.php*',r=>{
   if(r.request().method()!=='POST')return r.continue();const calls=r.request().postDataJSON();
-  if(calls.every(c=>['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state'].includes(c.methodname)))return r.continue();
+  if(areSafeAjaxReads(calls, ['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state']))return r.continue();
   if(calls.every(c=>c.methodname==='core_message_get_unsent_message'))return r.fulfill({contentType:'application/json',body:JSON.stringify(calls.map(()=>({error:false,data:[]})))});
   blocked.push(calls.map(c=>c.methodname));return r.abort();
  });

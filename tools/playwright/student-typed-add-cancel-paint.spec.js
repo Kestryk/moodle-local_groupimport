@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // SM-73 local-supervised. Open/Cancel only, no typed identifiers or Add action.
@@ -33,7 +34,7 @@ test('Typed-add Cancel inherits canonical compact button paint in native Moodle'
         }
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.length && methods.every(method => reads.has(method))) return route.continue();
+        if (methods.length && areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push({scope: 'core', methods});
         return route.abort('blockedbyclient');
     });

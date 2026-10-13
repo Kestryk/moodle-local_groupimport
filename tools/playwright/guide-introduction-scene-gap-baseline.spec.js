@@ -1,5 +1,6 @@
 // Local-supervised T006 measurement: real Guide slides, no injected layout.
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 test('T006 measures actual introduction to scene status spacing', async({page}, info) => {
     test.setTimeout(240000);
@@ -24,7 +25,7 @@ test('T006 measures actual introduction to scene status spacing', async({page}, 
         });
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.every(method => reads.has(method))) return route.continue();
+        if (areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push(methods); return route.abort('blockedbyclient');
     });
     try {

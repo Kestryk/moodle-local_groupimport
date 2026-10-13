@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 test('review2 approved compact expected outcome in actual Moodle', async ({page}, info) => {
     test.setTimeout(360000);
@@ -17,7 +18,7 @@ test('review2 approved compact expected outcome in actual Moodle', async ({page}
     await page.route('**/lib/ajax/service.php*',route=>{
         if(route.request().method()!=='POST')return route.continue();const calls=route.request().postDataJSON();
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(calls.every(call=>reads.has(call.methodname)))return route.continue();
+        if(areSafeAjaxReads(calls, reads))return route.continue();
         if(calls.every(call=>call.methodname==='core_message_get_unsent_message'))return route.fulfill({contentType:'application/json',body:JSON.stringify(calls.map(()=>({error:false,data:[]})))});
         blocked.push(calls.map(call=>call.methodname));return route.abort();
     });

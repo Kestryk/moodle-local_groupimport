@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // Local-supervised, read-only visual audit. Open native disclosures/navigation
 // and cancel only. Never submit an identifier, save, send, import or drop.
@@ -97,11 +98,7 @@ test('Student visual roles match Foundations typography and surfaces', async({pa
     };
     try {
         // Show an existing populated native Grouping; leave Motion untouched.
-        const grouping = root.locator('[data-easystud-grouping-id]').filter({
-            has:page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]'),
-        }).first();
-        const disclosure = grouping.locator(':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
-        if (await disclosure.getAttribute('aria-expanded') === 'false') await disclosure.click();
+        const grouping = await openPopulatedGrouping(root);
         await expect(grouping.locator('.local-groupimport-easystud-member__name').first()).toBeVisible();
         const record = {width:1600, roles:{}, inline:{}};
         reports.push(record);

@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 // Local-supervised, read-only: real template/AMD, fictional demonstrations only.
@@ -23,7 +24,7 @@ test('Guide demonstrations wait for Start and expose running replay and reset st
   if(r.request().method()!=='POST')return r.continue();const methods=r.request().postDataJSON().map(c=>c.methodname);
   if(methods.every(m=>m==='core_message_get_unsent_message'))return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(methods.map(()=>({error:false,data:{}})))});
   const reads=new Set(['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state']);
-  if(methods.every(m=>reads.has(m)))return r.continue();blocked.push(methods);return r.abort('blockedbyclient');
+  if(areSafeAjaxReads(methods, reads))return r.continue();blocked.push(methods);return r.abort('blockedbyclient');
  });
  try{
   await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});

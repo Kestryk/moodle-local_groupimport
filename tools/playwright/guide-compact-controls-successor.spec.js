@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // Local-supervised G7 successor. No creation, transfer, message or settings Save.
@@ -29,7 +30,7 @@ test('Guide G7 compact controls successor native preview', async({page}, info) =
         }
         const allowed = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.every(method => allowed.has(method))) return route.continue();
+        if (areSafeAjaxReads(methods, allowed)) return route.continue();
         blocked.push(methods); return route.abort('blockedbyclient');
     });
     await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});

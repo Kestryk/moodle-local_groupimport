@@ -1,4 +1,5 @@
 const {test,expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // Actual native availability, including intentionally hidden desktop Groupings.
@@ -18,7 +19,7 @@ test('More Filters capsule preserves native Motion and nested closure',async({pa
                 body:JSON.stringify(methods.map(()=>({error:false,data:{}})))});
         }
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies']);
-        if(methods.length&&methods.every(m=>reads.has(m)))return route.continue();
+        if(methods.length&&areSafeAjaxReads(methods, reads))return route.continue();
         blocked.push({coreMethods:methods});return route.abort();
     });
     await page.emulateMedia({reducedMotion:'no-preference'});

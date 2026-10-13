@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 const fs = require('node:fs');
 
 // Native start/over/leave/end only. Never drop or confirm a membership operation.
@@ -27,10 +28,7 @@ test('Drag previews match Foundations flair and multiple-only stacks', async({pa
     const reports=[];
     for (const type of ['participant','group']) {
         if (type==='participant' && !await root.locator('[data-easystud-user-drop]:visible').count()) {
-            const grouping=root.locator('[data-easystud-grouping-id]:visible').filter({
-                has:page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
-            }).first();
-            await grouping.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]').click();
+            await openPopulatedGrouping(root);
             await expect(root.locator('[data-easystud-user-drop]:visible').first()).toBeVisible({timeout:10000});
         }
         if (type==='group') {

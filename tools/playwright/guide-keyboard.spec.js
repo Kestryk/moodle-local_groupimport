@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // Local-supervised native keyboard successor; no course mutations or fixtures.
@@ -29,7 +30,7 @@ test('Guide typing Escape and nested-control keyboard priority', async({page}, i
         }
         const allowed = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (calls.every(call => allowed.has(call.methodname))) return route.continue();
+        if (areSafeAjaxReads(calls, allowed)) return route.continue();
         blocked.push(calls.map(call => call.methodname)); return route.abort('blockedbyclient');
     });
     try {

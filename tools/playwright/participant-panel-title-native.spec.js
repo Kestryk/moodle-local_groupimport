@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 // local-supervised: existing course read-only; no settings/course mutations.
@@ -25,7 +26,7 @@ test('Participant panel heading keeps localized copy and compact navigation',asy
   if(route.request().method()!=='POST')return route.continue();
   const methods=route.request().postDataJSON().map(c=>c.methodname);
   if(methods.every(m=>m==='core_message_get_unsent_message'))return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(methods.map(()=>({error:false,data:{}})))});
-  if(methods.every(m=>['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state'].includes(m)))return route.continue();
+  if(areSafeAjaxReads(methods, ['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state']))return route.continue();
   blocked.push(methods);return route.abort('blockedbyclient');
  });
  try{

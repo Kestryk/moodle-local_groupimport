@@ -1,6 +1,7 @@
 // SM-52 successor: preserve the historical sticky scenario and test the quiet
 // public skin on the actual desktop capsule; responsive proxies stay separate.
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 test('Quiet desktop recovery preserves focus geometry clearing and mobile proxy', async ({page}, testInfo) => {
@@ -22,7 +23,7 @@ test('Quiet desktop recovery preserves focus geometry clearing and mobile proxy'
         }
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.length && methods.every(name => reads.has(name))) return route.continue();
+        if (methods.length && areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push({scope: 'core', methods});
         return route.abort('blockedbyclient');
     });

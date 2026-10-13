@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // local-supervised, read-only product audit. Open/cancel dialogs and start/end
 // decorative drags only. Never confirm, send, drop, create or mutate fixtures.
@@ -182,12 +183,7 @@ test('Student harmonisation records native controls dialogs and drag anatomy', a
     for (const type of ['participant', 'group']) {
         if (type === 'group') {
             await root.locator('[data-easystud-layout-mode="structure"]:visible').first().click();
-            if (!await root.locator('[data-easystud-group-id]:visible').count()) {
-                const parent = root.locator('[data-easystud-grouping-id]:visible').filter({
-                    has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]')
-                }).first();
-                await parent.locator('.local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]').click();
-            }
+            await openPopulatedGrouping(root);
         }
         const source = root.locator(type === 'participant' ? '[data-easystud-user]:visible' : '[data-easystud-group-id]:visible').first();
         await expect(source).toBeVisible();

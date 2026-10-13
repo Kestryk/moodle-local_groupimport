@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // Additive R10-07 successor: native global reduced policy is exactly0.001ms.
@@ -26,7 +27,7 @@ test('Ungrouped filter equal-state focus preserves native track geometry', async
         if (route.request().method() !== 'POST') return route.continue();
         const names = route.request().postDataJSON().map(call => call.methodname);
         if (names.every(name => name === 'core_message_get_unsent_message')) return route.fulfill({status: 200, contentType: 'application/json', body: JSON.stringify(names.map(() => ({error: false, data: {}})))});
-        if (names.every(name => ['core_get_string', 'core_get_strings', 'core_output_load_template', 'core_output_load_template_with_dependencies', 'core_courseformat_get_state'].includes(name))) return route.continue();
+        if (areSafeAjaxReads(names, ['core_get_string', 'core_get_strings', 'core_output_load_template', 'core_output_load_template_with_dependencies', 'core_courseformat_get_state'])) return route.continue();
         blocked.push(names); return route.abort('blockedbyclient');
     });
     const root = page.locator('#local-groupimport-easystud');

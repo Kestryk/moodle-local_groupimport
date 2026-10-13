@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 // local-supervised: current course read-only; retained native selection only.
@@ -20,7 +21,7 @@ test('Mobile compact optional profile follows existing participant disclosure',a
  await page.route('**/lib/ajax/service.php*',r=>{
   if(r.request().method()!=='POST')return r.continue();const names=r.request().postDataJSON().map(c=>c.methodname);
   if(names.every(n=>n==='core_message_get_unsent_message'))return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(names.map(()=>({error:false,data:{}})))});
-  if(names.every(n=>['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state'].includes(n)))return r.continue();
+  if(areSafeAjaxReads(names, ['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state']))return r.continue();
   blocked.push(names);return r.abort('blockedbyclient');
  });
  try{

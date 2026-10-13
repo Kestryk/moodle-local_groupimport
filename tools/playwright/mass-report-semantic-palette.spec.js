@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // local-supervised cascade proof. The native GET root and real Moodle styles
@@ -36,7 +37,7 @@ test('Mass report palette follows independent roles in the served Moodle cascade
         }
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(methods.length&&methods.every(m=>reads.has(m)))return route.continue();
+        if(methods.length&&areSafeAjaxReads(methods, reads))return route.continue();
         blocked.push({scope:'core',methods});return route.abort('blockedbyclient');
     });
     const root=page.locator('#local-groupimport-import');

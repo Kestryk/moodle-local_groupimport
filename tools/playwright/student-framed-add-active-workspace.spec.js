@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // Local-supervised: native tools and transient lookup previews only.
 // Never submit Add/Save, remove membership, send messages or mutate fixtures.
@@ -73,13 +74,7 @@ test('Framed Add uses active workspace and retains feedback at three widths', as
                     await root.locator('[data-easystud-layout-mode="structure"]:visible').click();
                     await settle(root);
                 }
-                if (!responsive && kind === 'group') {
-                    const populated = root.locator('[data-easystud-grouping-id]:visible').filter({
-                        has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]'),
-                    }).first();
-                    const toggle = populated.locator(':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
-                    if (await toggle.getAttribute('aria-expanded') === 'false') await toggle.click({timeout: 10000});
-                }
+                if (kind === 'group') await openPopulatedGrouping(root);
                 const card = root.locator(`[data-easystud-${kind}-id]:visible`).first();
                 await card.scrollIntoViewIfNeeded();
                 await settle(card);

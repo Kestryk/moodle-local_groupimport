@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // SM-58 local-supervised successor. Native settings are never saved. The
@@ -34,7 +35,7 @@ test('Administration enlarged colour draft preview preserves native settings', a
         }
         const allowed = new Set(['core_get_string', 'core_get_strings',
             'core_output_load_template', 'core_output_load_template_with_dependencies']);
-        if (pathname === '/lib/ajax/service.php' && methods.length && methods.every(method => allowed.has(method))) {
+        if (pathname === '/lib/ajax/service.php' && methods.length && areSafeAjaxReads(methods, allowed)) {
             bootstrapReads.push(...methods);
             return route.continue();
         }

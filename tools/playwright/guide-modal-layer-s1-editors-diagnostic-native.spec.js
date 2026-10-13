@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 const {assertModalLayer}=require('./guide-modal-layer-s1-diagnostic-native-helper.cjs');
 
@@ -40,7 +41,7 @@ test('S1 native border diagnostic preserves strict editor paint assertions',asyn
         });
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(methods.every(method=>reads.has(method)))return route.continue();
+        if(areSafeAjaxReads(methods, reads))return route.continue();
         blocked.push(methods);return route.abort('blockedbyclient');
     });
 
@@ -173,7 +174,7 @@ test('S1 destination and confirmation frames paint above real move dialogs',asyn
             contentType:'application/json',body:JSON.stringify(calls.map(()=>({error:false,data:{}})))});
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(methods.every(method=>reads.has(method)))return route.continue();
+        if(areSafeAjaxReads(methods, reads))return route.continue();
         blocked.push(methods);return route.abort('blockedbyclient');
     });
     const workspace=page.locator('#local-groupimport-easystud'),panel=page.locator('[data-easyedu-guide-checklist]');

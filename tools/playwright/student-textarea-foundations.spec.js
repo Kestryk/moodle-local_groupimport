@@ -1,5 +1,6 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 // Local-supervised: native tools and transient lookup previews only.
 // Never submit Add/Save, remove membership, send messages or mutate fixtures.
@@ -47,13 +48,7 @@ test('Student identifier Textareas consume Foundation multiline fields', async({
             for (const kind of ['group', 'grouping']) {
                 const responsive = width <= 1024;
                 if (responsive) await root.locator(`[data-easystud-mobile-view="${kind}s"]`).click();
-                if (!responsive && kind === 'group') {
-                    const populated = root.locator('[data-easystud-grouping-id]:visible').filter({
-                        has: page.locator('.local-groupimport-easystud-tree__children > [data-easystud-group-id]'),
-                    }).first();
-                    const toggle = populated.locator(':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]');
-                    if (await toggle.getAttribute('aria-expanded') === 'false') await toggle.click();
-                }
+                if (kind === 'group') await openPopulatedGrouping(root);
                 const card = root.locator(`[data-easystud-${kind}-id]:visible`).first();
                 await card.scrollIntoViewIfNeeded();
                 await settle(card);

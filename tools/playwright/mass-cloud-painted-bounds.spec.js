@@ -1,6 +1,7 @@
 // SM-53 read-only diagnostic. Measure native screenshot pixels, not just the
 // centred FA line box. Generated tile captures stay in the external run root.
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 test('Mass Import cloud diagnostic measures native painted bounds', async ({page}, testInfo) => {
@@ -21,7 +22,7 @@ test('Mass Import cloud diagnostic measures native painted bounds', async ({page
         }
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
             'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
-        if (methods.length && methods.every(name => reads.has(name))) return route.continue();
+        if (methods.length && areSafeAjaxReads(methods, reads)) return route.continue();
         blocked.push({scope: 'core', methods});
         return route.abort('blockedbyclient');
     });

@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const {execFileSync} = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -49,7 +50,7 @@ test('Native workspace rails consume custom palette without geometry drift', asy
             // deny other POSTs and log no arguments or message contents.
             const allowed = new Set(['core_get_string', 'core_get_strings',
                 'core_output_load_template', 'core_output_load_template_with_dependencies']);
-            if (pathname === '/lib/ajax/service.php' && methods.length && methods.every(method => allowed.has(method))) {
+            if (pathname === '/lib/ajax/service.php' && methods.length && areSafeAjaxReads(methods, allowed)) {
                 bootstrapReads.push(...methods);
                 return route.continue();
             }

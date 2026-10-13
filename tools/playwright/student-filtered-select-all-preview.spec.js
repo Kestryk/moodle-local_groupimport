@@ -39,9 +39,12 @@ test('Select results targets only the current filtered set after clearing a glob
             '[data-easystud-layout-mode="participants"]:visible' :
             '[data-easystud-mobile-view="participants"]:visible').click();
 
-        const users = root.locator('[data-easystud-participant-list] > [data-easystud-user]');
-        const total = await users.count();
-        expect(total).toBeGreaterThan(1);
+        // A renderer may retain past pages in its DOM. Selection assertions are
+        // deliberately scoped to the visible first page, which is the only
+        // page the on-demand renderer materialises.
+        const users = root.locator('[data-easystud-participant-list] > [data-easystud-user]:visible');
+        const pageTotal = await users.count();
+        expect(pageTotal).toBeGreaterThan(1);
         const selectResults = root.locator(
             '[data-easystud-participant-list] [data-easystud-pagination="top"] ' +
             '[data-easystud-select-results]:visible'
@@ -51,24 +54,22 @@ test('Select results targets only the current filtered set after clearing a glob
         // Reproduce the prior global state before narrowing the result set.
         await selectResults.click();
         await expect.poll(() => users.evaluateAll(nodes => nodes.filter(node =>
-            node.classList.contains('is-selected')).length)).toBe(total);
+            node.classList.contains('is-selected')).length)).toBe(pageTotal);
 
         const more = root.locator('[data-easystud-advanced-filters-toggle="participants"]:visible').first();
         if (await more.getAttribute('aria-expanded') !== 'true') {
             await more.click();
         }
         const nativeGroups = root.locator('[data-easystud-group-filter]').first();
-        const candidate = await nativeGroups.evaluate((select, expectedTotal) => {
-            const users = [...document.querySelectorAll(
-                '#local-groupimport-easystud [data-easystud-participant-list] > [data-easystud-user]'
-            )];
-            return [...select.options].map(option => ({
-                value: option.value,
-                text: option.textContent.trim(),
-                count: users.filter(user => (user.getAttribute('data-group-ids') || '')
-                    .split(',').includes(option.value)).length,
-            })).find(option => option.value && option.count > 0 && option.count < expectedTotal) || null;
-        }, total);
+        const options = await nativeGroups.locator('option').evaluateAll(nodes => nodes.map(option => ({
+            value: option.value,
+            text: option.textContent.trim(),
+        })));
+        const candidate = await users.evaluateAll((nodes, groupOptions) => groupOptions.map(option => ({
+            ...option,
+            count: nodes.filter(user => (user.getAttribute('data-group-ids') || '')
+                .split(',').includes(option.value)).length,
+        })).find(option => option.value && option.count > 0 && option.count < nodes.length) || null, options);
         expect(candidate, 'Existing course needs one non-global group; no fixture is created').not.toBeNull();
         const choice = nativeGroups.locator('xpath=following-sibling::*[1]');
         await choice.locator('.easyedu-searchable-choice__trigger').click();
@@ -81,7 +82,7 @@ test('Select results targets only the current filtered set after clearing a glob
             .filter(node => !node.hasAttribute('data-easystud-filter-hidden'))
             .map(node => node.getAttribute('data-user-id')));
         expect(expectedIds.length).toBe(candidate.count);
-        expect(expectedIds.length).toBeLessThan(total);
+        expect(expectedIds.length).toBeLessThan(pageTotal);
         await expect(selectResults.locator('[data-easystud-select-results-label]')).toContainText(/result/i);
 
         // Deselect results after filtering must also clear the selected entities
@@ -115,7 +116,7 @@ test('Select results targets only the current filtered set after clearing a glob
             .map(node => node.getAttribute('data-user-id')));
         expect([...reselectedIds].sort()).toEqual([...expectedIds].sort());
 
-        records.push({width, total, filtered: expectedIds.length, selectedIds: reselectedIds});
+        records.push({width, pageTotal, filtered: expectedIds.length, selectedIds: reselectedIds});
         save();
     }
 

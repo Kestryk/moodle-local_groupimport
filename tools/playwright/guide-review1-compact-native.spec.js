@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs=require('node:fs');
 
 // local-supervised: actual Moodle route, original user storage untouched, no business commands.
@@ -20,7 +21,7 @@ test('Claude review1 Guide compact header and visible phase outcomes in Moodle',
         if(route.request().method()!=='POST')return route.continue();
         const calls=route.request().postDataJSON(),methods=calls.map(c=>c.methodname);
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template','core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if(methods.every(m=>reads.has(m)))return route.continue();
+        if(areSafeAjaxReads(methods, reads))return route.continue();
         if(methods.every(m=>m==='core_message_get_unsent_message'))return route.fulfill({contentType:'application/json',body:JSON.stringify(calls.map(()=>({error:false,data:[]})))});
         blocked.push(methods);return route.abort();
     });

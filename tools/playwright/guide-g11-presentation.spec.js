@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {areSafeAjaxReads} = require('./easystud-safe-ajax-reads.cjs');
 const fs = require('node:fs');
 
 // Presentation only: never submit the global welcome reset or course commands.
@@ -27,7 +28,7 @@ test('Guide G11 reset modality and Organisation paragraph presentation', async({
             body:JSON.stringify(calls.map(()=>({error:false,data:{}})))});
         const reads=new Set(['core_get_string','core_get_strings','core_output_load_template',
             'core_output_load_template_with_dependencies','core_courseformat_get_state']);
-        if (calls.every(name=>reads.has(name))) return route.continue();
+        if (areSafeAjaxReads(calls, reads)) return route.continue();
         blocked.push(calls); return route.abort('blockedbyclient');
     });
     try {

@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 const baseUrl = process.env.EASYEDU_MOODLE_URL ||
     'http://localhost/local/groupimport/manage.php?id=5';
@@ -35,15 +36,7 @@ test('responsive Group menu falls back to Advanced settings without duplicating 
 
     await page.locator('[data-easystud-mobile-view="groupings"]').click();
     await expect(root).toHaveAttribute('data-easystud-mobile-view-active', 'groupings');
-    const grouping = root.locator(
-        '[data-easystud-tree] [data-easystud-grouping-id]:has(.local-groupimport-easystud-group):visible'
-    ).first();
-    const groupingToggle = grouping.locator(
-        ':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]'
-    );
-    if ((await groupingToggle.getAttribute('aria-expanded')) !== 'true') {
-        await groupingToggle.click();
-    }
+    const grouping = await openPopulatedGrouping(root);
 
     const nestedGroup = grouping.locator(
         ':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]:visible'

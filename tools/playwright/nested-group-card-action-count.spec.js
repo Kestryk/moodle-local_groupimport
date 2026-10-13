@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 
 const baseUrl = process.env.EASYEDU_MOODLE_URL ||
     'http://localhost/local/groupimport/manage.php?id=5';
@@ -53,17 +54,12 @@ test('nested Group member count and compact actions remain separate at responsiv
             await expect(completeView).toHaveAttribute('aria-pressed', 'true');
         }
 
-        const grouping = root.locator(
-            '[data-easystud-tree] [data-easystud-grouping-id]:has(.local-groupimport-easystud-group):visible'
-        ).first();
+        const grouping = await openPopulatedGrouping(root);
         await expect(grouping).toBeVisible();
         const groupingHeader = grouping.locator(':scope > .local-groupimport-easystud-grouping__header');
         const groupingToggle = grouping.locator(
             ':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]'
         );
-        if ((await groupingToggle.getAttribute('aria-expanded')) !== 'true') {
-            await groupingToggle.click();
-        }
         const groupingSelector = grouping.locator(':scope > .local-groupimport-easystud-selector');
         const groupingSelectionUi = groupingSelector.locator(':scope > .local-groupimport-easystud-selector__ui');
         const groupingGeometry = await Promise.all([
