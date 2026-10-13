@@ -6,8 +6,11 @@ const rootPath = path.resolve(__dirname, '../..');
 // Keep the historical SM2a reconstruction below pinned. SM2b deliberately
 // changes selection/pagination authorities; its successor verifies the exact
 // approved producer and relies on the shared native surface for behavior.
-if (['--sm2b', '--sm3a', '--sm3b'].includes(process.argv[2])) {
-    const sm3b = process.argv[2] === '--sm3b';
+if (['--sm2b', '--sm3a', '--sm3b', '--grouped-20261013'].includes(process.argv[2])) {
+    const grouped = process.argv[2] === '--grouped-20261013';
+    const sm3b = process.argv[2] === '--sm3b' || grouped;
+    const changedDetails = grouped ? execFileSync('git', ['diff-tree', '--no-commit-id', '--name-only', '-r', '31e30d1'],
+        {cwd:rootPath, encoding:'utf8'}).trim().split('\n').filter(p => p !== 'CHANGELOG.md') : [];
     const sm3a = process.argv[2] === '--sm3a' || sm3b;
     const changed3b = sm3b ? execFileSync('git', ['diff-tree', '--no-commit-id', '--name-only', '-r', '09793fe'],
         {cwd:rootPath, encoding:'utf8'}).trim().split('\n').filter(p => p !== 'CHANGELOG.md') : [];
@@ -17,18 +20,55 @@ if (['--sm2b', '--sm3a', '--sm3b'].includes(process.argv[2])) {
         {cwd:rootPath, encoding:'utf8'}).trim().split('\n').filter(p => p !== 'CHANGELOG.md');
     const checks = {};
     for (const file of [...new Set([...paths, ...changed3b])]) {
-        const producer = changed3b.includes(file) ? '09793fe' : changed3a.includes(file) ? 'fe28c6b' : '90ea17b';
+        const producer = changedDetails.includes(file) ? '31e30d1' : changed3b.includes(file) ? '09793fe' : changed3a.includes(file) ? 'fe28c6b' : '90ea17b';
         const approved = execFileSync('git', ['show', producer + ':' + file], {cwd:rootPath, maxBuffer:4e6});
+        let actual = fs.readFileSync(path.join(rootPath, file), 'utf8').replace(/\r\n/g, '\n');
+        if(grouped && file==='manage.php'){
+            const chunkProducer=execFileSync('git',['show','1ecebab:manage.php'],{cwd:rootPath,encoding:'utf8',maxBuffer:4e6}).replace(/\r\n/g,'\n');
+            const body=(text,name)=>{const start=text.indexOf('function '+name+'('),end=text.indexOf('\n}\n',start)+3;
+                assert(start>=0&&end>start,'Exact function boundary: '+name);return text.slice(start,end);};
+            for(const name of ['local_groupimport_load_custom_user_field_values','local_groupimport_enrich_users_with_copy_fields']){
+                const currentBody=body(actual,name);
+                assert.equal(currentBody,body(chunkProducer,name),'AP-E7 producer body: '+name);
+                actual=actual.replace(currentBody,body(approved.toString('utf8').replace(/\r\n/g,'\n'),name));
+                checks['AP-E7 exact bounded function: '+name]=true;
+            }
+        }
         // Windows autocrlf is checkout transport, not a generated-code change.
-        assert.equal(fs.readFileSync(path.join(rootPath, file), 'utf8').replace(/\r\n/g, '\n'),
+        assert.equal(actual,
             approved.toString('utf8').replace(/\r\n/g, '\n'), file);
         checks['Approved producer content (LF-normalized): ' + file] = true;
     }
     assert.deepEqual(fs.readFileSync(path.join(rootPath, 'version.php')),
         execFileSync('git', ['show', '6ac8a45:version.php'], {cwd:rootPath}));
     checks['Schema/version unchanged by ' + (sm3b ? 'SM3b' : sm3a ? 'SM3a' : 'SM2b')] = true;
-    const output = JSON.stringify({surface:sm3b ? 'student-management-sm3b' : sm3a ? 'student-management-sm3a' : 'student-management-sm2b', niveau:0,
-        producer:sm3b ? ['90ea17b', 'fe28c6b', '09793fe'] : sm3a ? ['90ea17b', 'fe28c6b'] : '90ea17b', passed:Object.keys(checks).length, failed:0, checks,
+    if(grouped){
+        const {languages}=require('./audit-texts.cjs');
+        for(const locale of ['fr','en']){
+            const file='lang/'+locale+'/local_groupimport.php';
+            const parse=text=>new Map(languages(text).map(r=>[r.key,r.value]));
+            const old=parse(execFileSync('git',['show','15c8203:'+file],{cwd:rootPath,encoding:'utf8'}));
+            const before=parse(execFileSync('git',['show','3ba8f6c^:'+file],{cwd:rootPath,encoding:'utf8'}));
+            const changed=parse(execFileSync('git',['show','3ba8f6c:'+file],{cwd:rootPath,encoding:'utf8'}));
+            for(const [key,value] of changed){
+                if(before.get(key)!==value&&!['contextmoveparticipant','contextmoveparticipants','moveselectedparticipants'].includes(key))old.set(key,value);
+            }
+            const actual=parse(fs.readFileSync(path.join(rootPath,file),'utf8'));
+            assert.deepEqual([...actual].sort(),[...old].sort(),'Approved T057 with D1 Add labels preserved: '+locale);
+            checks['T057 complete language map and D1 guards: '+locale]=true;
+        }
+        const lots=['1ecebab','590eb78','3ba8f6c','7a49a0d','3579e0f','cbccc7e'];
+        for(const producer of lots){
+            const files=execFileSync('git',['diff-tree','--no-commit-id','--name-only','-r',producer],{cwd:rootPath,encoding:'utf8'}).trim().split('\n');
+            for(const file of files.filter(f=>f.startsWith('tools/'))){
+                const approved=execFileSync('git',['show','cbccc7e:'+file],{cwd:rootPath,encoding:'utf8',maxBuffer:4e6}).replace(/\r\n/g,'\n');
+                assert.equal(fs.readFileSync(path.join(rootPath,file),'utf8').replace(/\r\n/g,'\n'),approved,'Validated tooling: '+file);
+                checks['Validated tooling: '+file]=true;
+            }
+        }
+    }
+    const output = JSON.stringify({surface:grouped ? 'grouped-validated-20261013' : sm3b ? 'student-management-sm3b' : sm3a ? 'student-management-sm3a' : 'student-management-sm2b', niveau:0,
+        producer:grouped ? ['90ea17b','fe28c6b','09793fe','31e30d1','1ecebab','590eb78','3ba8f6c','7a49a0d','3579e0f','cbccc7e'] : sm3b ? ['90ea17b', 'fe28c6b', '09793fe'] : sm3a ? ['90ea17b', 'fe28c6b'] : '90ea17b', passed:Object.keys(checks).length, failed:0, checks,
         historicalSM2aVerifier:'retained unchanged; not a current-controller proof',
         nativeRequired:sm3b ? ['legacy three views1280FR','reactive Structure page1','group pagination','group search',
             'ungrouped filter','group Select all/results across pages','restore legacy and Complete setting'] : sm3a ? ['legacy1280FR','legacy member search','reactive Add','reactive Remove',

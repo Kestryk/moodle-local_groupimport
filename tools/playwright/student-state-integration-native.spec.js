@@ -183,7 +183,7 @@ async function sm2bNative(page,info,settledPage=false){
 test('SM2b current and on-demand participants preserve native behavior',async({page},info)=>sm2bNative(page,info));
 test('SM2b settled pagination preserves current and on-demand native behavior',async({page},info)=>sm2bNative(page,info,true));
 
-test('SM2b participant detail fields match the current mode',async({page},info)=>{
+async function participantDetailParity(page,info,deferredReady=false){
     test.setTimeout(300000);
     const report={surface:'SM2b-participant-detail-parity',niveau:1,viewport:1280,language:'fr',
         fields:{},errors:[],detailsRequests:0,restoredLegacy:false,courseWrite:false};
@@ -213,10 +213,21 @@ test('SM2b participant detail fields match the current mode',async({page},info)=
             await expect(modal.locator('.local-groupimport-easystud-detail__identity h4')).toHaveText('Test15 Etudiant');
             await modal.evaluate(n=>Promise.all(n.getAnimations({subtree:true})
                 .filter(a=>Number.isFinite(a.effect?.getComputedTiming().endTime)).map(a=>a.finished.catch(()=>{}))));
+            if(deferredReady)await expect(modal.locator('[data-easystud-user-modal-body]')).not.toHaveAttribute('aria-busy','true',{timeout:30000});
             report.fields[renderingmode]=await modal.locator('.local-groupimport-easystud-detail__field').evaluateAll(nodes=>
                 nodes.map(n=>({label:n.querySelector('span').textContent,value:n.querySelector('strong').textContent})));
             await page.screenshot({path:info.outputPath('sm2b-details-'+renderingmode+'-fr1280.png')});
             await modal.locator('[data-easystud-close-user-modal]').click();await expect(modal).toBeHidden();
+            if(deferredReady&&renderingmode==='reactive'){
+                expect(report.detailsRequests).toBe(1);
+                await card.locator('[data-easystud-open-user]').click();await expect(modal).toBeVisible();
+                await expect(modal.locator('[data-easystud-user-modal-body]')).not.toHaveAttribute('aria-busy','true');
+                const again=await modal.locator('.local-groupimport-easystud-detail__field').evaluateAll(nodes=>
+                    nodes.map(n=>({label:n.querySelector('span').textContent,value:n.querySelector('strong').textContent})));
+                expect(again).toEqual(report.fields.legacy);expect(report.detailsRequests).toBe(1);report.cachedReopen=true;
+                await modal.locator('[data-easystud-close-user-modal]').click();await expect(modal).toBeHidden();
+                await expect(card.locator('[data-easystud-open-user]')).toBeFocused();
+            }
         }
         expect(report.errors).toEqual([]);
         expect(report.fields.reactive).toEqual(report.fields.legacy);
@@ -224,7 +235,9 @@ test('SM2b participant detail fields match the current mode',async({page},info)=
         mode('legacy');report.restoredLegacy=true;
         fs.writeFileSync(info.outputPath('sm2b-details-parity.json'),JSON.stringify(report,null,2));
     }
-});
+}
+test('SM2b participant detail fields match the current mode',async({page},info)=>participantDetailParity(page,info));
+test('SM2b completed deferred details match Current and reopen from cache',async({page},info)=>participantDetailParity(page,info,true));
 
 async function sm3aNative(page,info,pinnedGroup=false){
     test.setTimeout(360000);
@@ -329,7 +342,7 @@ async function sm3aNative(page,info,pinnedGroup=false){
 test('SM3a legacy member search and reactive Add Remove refresh the state',async({page},info)=>sm3aNative(page,info));
 test('SM3a pinned group search and reactive Add Remove refresh the state',async({page},info)=>sm3aNative(page,info,true));
 
-async function sm3bViews(page,info){
+async function sm3bViews(page,info,retainText=false){
     const errors=[],blocked=[];
     page.on('pageerror',e=>errors.push(e.message));
     page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
@@ -369,7 +382,8 @@ async function sm3bViews(page,info){
                 participantCatalog:cards('.local-groupimport-easystud-participant-groups__list'),
                 structureCatalog:cards('.local-groupimport-easystud-structure-groups__list')};
         });
-        views[view].textHash=crypto.createHash('sha256').update(views[view].text).digest('hex');delete views[view].text;
+        views[view].textHash=crypto.createHash('sha256').update(views[view].text).digest('hex');
+        if(!retainText)delete views[view].text;
         await page.screenshot({path:info.outputPath('sm3b-legacy-'+view+'-fr1280.png')});
     }
     const catalog=await root.locator('.local-groupimport-easystud-structure-groups__list').evaluate(list=>
@@ -387,10 +401,19 @@ test('SM3b legacy three-view baseline before catalog integration',async({page},i
     expect(report.views.structure.structureCatalog).toHaveLength(10);
 });
 
-test('SM3b legacy views and on-demand Structure catalog preserve native behavior',async({page},info)=>{
+async function sm3bNative(page,info,t057Aware=false){
     test.setTimeout(420000);
     if(!process.env.EASYEDU_SM_CATALOG_BASELINE)throw Error('Explicit pre3b legacy three-view baseline required');
     const before=JSON.parse(fs.readFileSync(process.env.EASYEDU_SM_CATALOG_BASELINE,'utf8'));
+    if(t057Aware){
+        const changes=approvedLanguageChanges();
+        for(const view of Object.values(before.views)){
+            if(typeof view.text!=='string')throw Error('Explicit pre-T057 retained-text baseline required');
+            view.text=translateApprovedCopy(view.text,changes);
+            view.textHash=crypto.createHash('sha256').update(view.text).digest('hex');
+            for(const key of ['participantCatalog','structureCatalog'])view[key].forEach(card=>card.text=translateApprovedCopy(card.text,changes));
+        }
+    }
     const report={surface:'SM3b-native',niveau:1,controls:{},errors:[],blocked:[],restoredLegacy:false};
     const mode=value=>{
         const r=JSON.parse(execFileSync(process.env.EASYEDU_SM_PHP,
@@ -472,6 +495,75 @@ test('SM3b legacy views and on-demand Structure catalog preserve native behavior
     }finally{
         mode('legacy');report.restoredLegacy=true;fs.writeFileSync(info.outputPath('sm3b-native.json'),JSON.stringify(report,null,2));
     }
+}
+test('SM3b legacy views and on-demand Structure catalog preserve native behavior',async({page},info)=>sm3bNative(page,info));
+test('Grouped T057 copy-aware legacy views and reactive catalog remain equivalent',async({page},info)=>sm3bNative(page,info,true));
+
+function approvedLanguageChanges(){
+    const path=require('node:path'),cp=require('node:child_process');
+    const repo=path.resolve(__dirname,'../..'),{languages}=require('../release/audit-texts.cjs');
+    const old=new Map(languages(cp.execFileSync('git',['show','15c8203:lang/fr/local_groupimport.php'],{cwd:repo,encoding:'utf8'})).map(r=>[r.key,r.value]));
+    return languages(fs.readFileSync(path.join(repo,'lang/fr/local_groupimport.php'),'utf8'))
+        .filter(r=>old.has(r.key)&&old.get(r.key)!==r.value).map(r=>({key:r.key,old:old.get(r.key),value:r.value}))
+        .sort((a,b)=>b.old.length-a.old.length);
+}
+
+function translateApprovedCopy(text,changes){
+    const escape=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    for(const entry of changes){
+        for(const upper of [false,true]){
+            const from=upper?entry.old.toLocaleUpperCase('fr'):entry.old,to=upper?entry.value.toLocaleUpperCase('fr'):entry.value;
+            const tokens=[...from.matchAll(/\{\$[aA](?:->[\w]+)?\}|__[a-zA-Z_]+__/g)].map(m=>m[0]);
+            let pattern=escape(from);tokens.forEach(token=>pattern=pattern.replace(escape(token),'(\\d+)'));
+            text=text.replace(new RegExp(pattern,'g'),(...matches)=>{
+                let result=to;tokens.forEach((token,i)=>result=result.split(token).join(matches[i+1]));return result;
+            });
+        }
+    }
+    return text;
+}
+
+async function indexReference(page,diagnostic=false){
+    await login(page,'/local/groupimport/index.php?id=5');
+    const root=page.locator('#local-groupimport-import');
+    await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    if(diagnostic)await expect(root.locator('.fp-btn-choose')).toBeAttached();
+    else await expect(root.locator('.fp-btn-choose')).toBeVisible({timeout:30000});
+    return root.evaluate(n=>({text:n.innerText.replace(/\s+/g,' ').trim(),picker:{
+        wrapper:n.querySelector('.filepicker')?.className,
+        buttonDisplay:getComputedStyle(n.querySelector('.fp-btn-choose')).display,
+        coreInstances:Object.keys(window.M?.core_filepicker?.instances||{}).length,
+        formInstances:Object.keys(window.M?.form_filepicker?.instances||{}).length},cards:[...n.querySelectorAll('.local-groupimport-import-card')]
+        .filter(e=>e.getBoundingClientRect().width>10).map(e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);
+            return {width:r.width,height:r.height,font:s.fontFamily,size:s.fontSize,color:s.color};})}));
+}
+
+test('Grouped validated lots pre-publication legacy and Mass Import reference',async({page},info)=>{
+    test.setTimeout(360000);
+    const report=await sm3bViews(page,info,true);report.index=await indexReference(page);
+    fs.writeFileSync(info.outputPath('grouped-legacy-reference.json'),JSON.stringify(report,null,2));
+    expect(report.errors).toEqual([]);expect(report.blocked).toEqual([]);
+});
+test('Grouped references record native filepicker initialization separately',async({page},info)=>{
+    test.setTimeout(360000);const report=await sm3bViews(page,info,true);
+    fs.writeFileSync(info.outputPath('grouped-legacy-reference.json'),JSON.stringify(report,null,2));
+    report.index=await indexReference(page,true);
+    fs.writeFileSync(info.outputPath('grouped-legacy-reference.json'),JSON.stringify(report,null,2));
+    expect(report.errors).toEqual([]);expect(report.blocked).toEqual([]);
+});
+
+test('Grouped Mass Import remains unchanged and French plurals are rendered',async({page},info)=>{
+    test.setTimeout(240000);await page.setViewportSize({width:1280,height:900});
+    const errors=[],blocked=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+    await page.route('**/local/groupimport/**',r=>r.request().method()==='GET'?r.continue():(blocked.push(r.request().method()),r.abort()));
+    const prior=JSON.parse(fs.readFileSync(process.env.EASYEDU_SM_CATALOG_BASELINE,'utf8')).index;
+    const actual=await indexReference(page,true);
+    fs.writeFileSync(info.outputPath('grouped-index-fr1280.json'),JSON.stringify({actual,prior,errors,blocked},null,2));
+    expect(actual).toEqual(prior);expect(errors).toEqual([]);expect(blocked).toEqual([]);
+    await login(page,'/local/groupimport/manage.php?id=5');
+    const root=page.locator('#local-groupimport-easystud');await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    await expect(root.locator('.local-groupimport-easystud__panel-badge').first()).toContainText('24 participants');
+    expect((await root.innerText()).includes('membre(s)')).toBe(false);
 });
 
 test('SM schema upgrade through the native Moodle admin page',async({page},info)=>{
