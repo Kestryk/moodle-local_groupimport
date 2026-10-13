@@ -89,6 +89,9 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
             'nogroup' => get_string('nogroup', 'local_groupimport'),
             'nogrouping' => get_string('nogrouping', 'local_groupimport'),
             'showless' => get_string('showless', 'local_groupimport'),
+            // Shown in the list when the course state cannot be loaded.
+            'loaderror' => get_string('smstateloaderror', 'local_groupimport'),
+            'reload' => get_string('reload'),
         ],
         // Labels of the catalog group card rendered in the browser (templates/sm/group_card).
         'groupstrings' => [
