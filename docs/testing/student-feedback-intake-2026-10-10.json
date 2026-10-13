@@ -1,4 +1,13 @@
 {
+  "r10AutoScrollIntegration20261013": {
+    "sourceCommit": "ddbac51f",
+    "owner": "Codex1 integrates Claude",
+    "isolatedChecks": 11,
+    "ghostAndBusinessBodiesUnchanged": true,
+    "nativeVerified": false,
+    "documentation": "docs/testing/r10-23-integration-2026-10-13.md",
+    "publication": "next grouped series A publication"
+  },
   "programme": "EED-UI-2026-0073",
   "date": "2026-10-10",
   "scope": "Additive user review; Guide priority; existing Source/Kit worktrees; no CCB implementation.",
@@ -368,8 +377,8 @@
       "title": "Auto-scroll déclenché plus tôt",
       "request": "La détection en haut/bas pendant un drag doit démarrer avant d'être trop proche des bords de la fenêtre/colonne.",
       "acceptance": "Mesurer zone d'activation, vitesse/direction et conteneur réel; garder ghost et souris synchronisés, aucun faux drop; desktop/native et illustrations Guide si elles réemploient la mécanique.",
-      "status": "approved",
-      "sourceChanged": false,
+      "status": "source-integrated-built-isolated-pass-pending-grouped-preview-native-human",
+      "sourceChanged": true,
       "designPublished": false,
       "previewServed": false,
       "nativeVerified": false,
