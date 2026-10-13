@@ -11606,6 +11606,8 @@ export const init = (rootId, courseId, options = {}) => {
         const loadingController = root.easystudLoadingController;
 
         Motion.init(root);
+        // Card labels, for the on-demand lists and the Guide specimens (local/sm/specimen).
+        root.easystudCardStrings = {cards: options.cardstrings || {}, groups: options.groupstrings || {}};
         if (options && options.renderingmode === 'reactive') {
             // The page reports ready only once the state has drawn the lists, like the server render.
             runSafely(() => {
