@@ -34,3 +34,29 @@ T048 (K18, participant/group/grouping details redesign) comes first in series B;
 Claude supplies its Penpot design before Source integration. The other pending
 series A and R10 requests retain their recorded order. No shared AI rule is
 added: existing focus/ownership contracts already cover this bounded fix.
+
+## Served native result
+
+Source adf8f8e6 maps to runtime071cc1bc; A-ICONE1cf71729 maps to preview
+5ec0a626. One grouped purge at2026-10-13T22:31:53Z; relevant committed Source
+and runtime blobs match. R10-23 remains served, without another cherry-pick.
+Its production11-case isolated gate passes after K14/K15 as well.
+
+easystud-authenticated-20261013T223248851Z-47492: one selected test, one pass,
+FR1280, Current and On demand complete. Each of the four native panel opens
+observes is-easyedu-disclosing, one focus call with preventScroll:true and
+the actual field focused. Every ancestor's scrollTop/scrollLeft remains
+identical before/after that call. No page error or attempted course write.
+The test respects lazy creation of the identifier panel by its native click.
+
+Artifacts: %LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated/<run-id>/,
+k14-k15-a-icone.json and six PNGs. The manifest is passed, six captures pinned
+30 days; scoped retention dry-run has zero candidates/deletions/unmanaged
+files. Credentials, owned child and lease cleared; no course fixture created.
+Current mode is restored under a lease and fresh CLI checks configuration and
+DB legacy; final-state evidence k14-k15-current-final-20261014.json.
+
+Human acceptance, a fresh frame-timing benchmark, other seven source focus
+sites, EN native and Moodle4.5 native remain outside this bounded browser proof.
+The Source spec is a supervised read-only-course regression candidate; its
+render-mode configuration changes are temporary and runtime-leased.
