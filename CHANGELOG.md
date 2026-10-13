@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] T058 remaining on 49072e22: Message/Move/Guide pass normal and reduced motion in both modes; preserve Rollback Tab escape and missing return-focus failures with a native capture. No business mutation; incomplete contrast and panel checks remain open.
+
 - 2026-10-13 [N1] T058 reconciled runtime 49072e22: deploy and purge dedicated Perf copy; targeted FR1280/390 successor passes in both rendering modes (24 modal cases), including History390. Broader accessibility and human acceptance remain open.
 
 - 2026-10-13 [N0] T058 native successor: enter Group/Grouping settings through the native card menu when direct controls are hidden; await History binding, compact navigation closure and actual focus restoration. Static discovery passes; native stabilization awaits the reconciled runtime publication.
