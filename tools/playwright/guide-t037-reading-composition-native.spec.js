@@ -56,12 +56,30 @@ test('T037 Guide reading composition keeps prose, scenes and lesson lanes distin
         const modal = page.locator('[data-easyedu-guide-modal]:visible');
         await expect(modal).toHaveCount(1);
 
+        // Do not bind this reading contract to a curriculum position: the
+        // modern Guide deliberately maps its semantic membership lesson to a
+        // different index from the historical four-scene curriculum.
+        const membershipIndex = await modal.locator('[data-easyedu-guide-scene="membership"]').evaluate(node =>
+            node.closest('[data-easyedu-guide-slide]').getAttribute('data-easyedu-guide-slide')
+        );
+        const lessonIndices = await modal.locator('.easyedu-guide-introduction--lesson-reading').evaluateAll(nodes =>
+            [...new Set(nodes.map(node => node.closest('[data-easyedu-guide-slide]').getAttribute('data-easyedu-guide-slide')))]
+        );
+        const specimenIntroductionIndex = await modal.locator('[data-easyedu-guide-introduction]').evaluateAll(nodes => {
+            const introduction = nodes.find(node => node.querySelector('[data-easyedu-guide-specimen]'));
+            return introduction?.closest('[data-easyedu-guide-slide]')?.getAttribute('data-easyedu-guide-slide') || null;
+        });
+        expect(membershipIndex).not.toBeNull();
+        expect(lessonIndices.length).toBeGreaterThan(0);
+        expect(specimenIntroductionIndex).not.toBeNull();
+
         for (const width of [1600, 1280, 390]) {
             await page.setViewportSize({width, height: width === 390 ? 844 : 1000});
-            await modal.locator('[data-easyedu-guide-nav-item="2"]').click();
+            await modal.locator(`[data-easyedu-guide-nav-item="${membershipIndex}"]`).click();
             await settle(modal);
-            const sceneSlide = modal.locator('[data-easyedu-guide-slide="2"]');
-            const scene = sceneSlide.locator('[data-easyedu-guide-scene]');
+            const sceneSlide = modal.locator(`[data-easyedu-guide-slide="${membershipIndex}"]`);
+            const scene = sceneSlide.locator('[data-easyedu-guide-scene="membership"]');
+            await expect(scene).toBeVisible();
             const reading = await sceneSlide.evaluate(slide => {
                 const paragraph = slide.querySelector('.easyedu-guide-slide__content > p');
                 const content = paragraph.parentElement;
@@ -102,7 +120,7 @@ test('T037 Guide reading composition keeps prose, scenes and lesson lanes distin
             expect(reading.destination).toBe('Groupe de destination');
 
             const lessons = [];
-            for (const index of [8, 13]) {
+            for (const index of lessonIndices) {
                 await modal.locator(`[data-easyedu-guide-nav-item="${index}"]`).click();
                 await settle(modal);
                 const intro = modal.locator(`[data-easyedu-guide-slide="${index}"] .easyedu-guide-introduction--lesson-reading`);
@@ -122,9 +140,9 @@ test('T037 Guide reading composition keeps prose, scenes and lesson lanes distin
                 expect(lesson.divider).toBe('0px');
                 lessons.push({index, ...lesson});
             }
-            await modal.locator('[data-easyedu-guide-nav-item="0"]').click();
+            await modal.locator(`[data-easyedu-guide-nav-item="${specimenIntroductionIndex}"]`).click();
             await settle(modal);
-            const introduction = modal.locator('[data-easyedu-guide-slide="0"] .easyedu-guide-introduction');
+            const introduction = modal.locator(`[data-easyedu-guide-slide="${specimenIntroductionIndex}"] .easyedu-guide-introduction`);
             await expect(introduction).toBeVisible();
             await expect(introduction).not.toHaveClass(/easyedu-guide-introduction--lesson-reading/);
             rows.push({language: 'fr', width, reading, lessons, specimenIntroductionPreserved: true});
