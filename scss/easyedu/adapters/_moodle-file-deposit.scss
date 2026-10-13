@@ -323,9 +323,32 @@
       padding-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
     }
   }
+  // Opt-in paired subsection: caption stays on the heading text rail at all widths.
+  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned {
+    background: var(--easyedu-surface);
+    .easyedu-file-deposit__support {
+      margin-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
+    }
+    [id^="filepicker-wrapper-"] {
+      padding-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
+    }
+    [id^="filepicker-wrapper-"] > div:first-child { text-align: start; }
+    .easyedu-file-deposit__requirements {
+      @include typography.type-caption;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      min-block-size: 0;
+      padding: 0;
+      margin-inline: calc(var(--easyedu-section-icon-size-small) + 0.75rem) 0;
+      align-items: baseline;
+      flex-direction: row;
+      strong { font-size: inherit; margin-inline-end: 0; }
+    }
+  }
   @media (max-width: 40rem) {
     .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon,
-    .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon {
+    .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon:not(.easyedu-file-deposit--aligned) {
       .easyedu-file-deposit__support { margin-inline-start: 0; }
       [id^="filepicker-wrapper-"] { padding-inline-start: 0; }
     }

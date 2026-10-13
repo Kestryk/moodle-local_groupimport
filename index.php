@@ -1319,7 +1319,7 @@ echo html_writer::tag('div',
         'class' => 'local-groupimport-import-fields__label easyedu-information__label',
     ]) .
     html_writer::tag('div', implode("\n", $fieldtags), ['class' => 'local-groupimport-import-fields__tags easyedu-tag-list']),
-    ['class' => 'local-groupimport-import-fields easyedu-information']
+    ['class' => 'local-groupimport-import-fields easyedu-information easyedu-information--deposit-aligned']
 );
 
 // Moodle form (with filepicker).
