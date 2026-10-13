@@ -22,7 +22,7 @@ const choicesImport = "import {enhanceSelect, enhanceMultipleSelect, closeChoice
 const membersImport = "import {snapshotMemberPairs} from './member_selection';";
 // SM-RENDU (on-demand rendering) dependencies.
 const logImport = "import Log from 'core/log';";
-const smStoreImport = "import {createStore, fetchState} from './local/sm/store';";
+const smStoreImport = "import {createStore, fetchState, fetchDetails} from './local/sm/store';";
 const smIndexImport = "import {filterParticipantIds} from './local/sm/index';";
 // Multi-line import: matched whatever the checkout line endings are.
 const smParticipantsImport = /import \{([^}]*)\} from '\.\/local\/sm\/participants';/;
@@ -42,7 +42,7 @@ const namedSource = source
     .replace(choicesImport, 'const {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} = Choices;')
     .replace(membersImport, 'const {snapshotMemberPairs} = MemberSelection;')
     .replace(logImport, '')
-    .replace(smStoreImport, 'const {createStore, fetchState} = SmStore;')
+    .replace(smStoreImport, 'const {createStore, fetchState, fetchDetails} = SmStore;')
     .replace(smIndexImport, 'const {filterParticipantIds} = SmIndex;')
     .replace(smParticipantsImport, (match, names) => 'const {' + names.replace(/\s+/g, ' ').trim().replace(/,$/, '') +
         '} = SmParticipants;')
