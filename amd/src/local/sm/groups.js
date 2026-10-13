@@ -27,7 +27,7 @@
 
 import Mustache from 'core/mustache';
 import Loader from 'core/local/templates/loader';
-import {normalise} from './index';
+import {normalise, countLabel} from './index';
 
 const templateName = 'local_groupimport/sm/group_card';
 
@@ -155,7 +155,7 @@ export const buildGroupCardContext = (model, group, variant) => {
         picture: group.pictureurl || '',
         hidepicture: group.hidepicture ? '1' : '0',
         nativeurl: (strings.groupnativeurl || '') + '&id=' + group.id,
-        membercountlabel: (strings.memberscount || '').replace('__count__', String(memberids.length)),
+        membercountlabel: countLabel(strings.memberscount, memberids.length),
         sesskey: strings.sesskey || '',
         renameurl: strings.renameurl || '',
         renameaction: 'renamegroup',

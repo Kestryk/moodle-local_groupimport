@@ -23,14 +23,14 @@ const membersImport = "import {snapshotMemberPairs} from './member_selection';";
 // SM-RENDU (on-demand rendering) dependencies.
 const logImport = "import Log from 'core/log';";
 const smStoreImport = "import {createStore, fetchState, fetchDetails} from './local/sm/store';";
-const smIndexImport = "import {filterParticipantIds} from './local/sm/index';";
+const smIndexImport = /import \{([^}]*)\} from '\.\/local\/sm\/index';/;
 // Multi-line import: matched whatever the checkout line endings are.
 const smParticipantsImport = /import \{([^}]*)\} from '\.\/local\/sm\/participants';/;
 const smGroupsImport = /import \{([^}]*)\} from '\.\/local\/sm\/groups';/;
 const notificationImport = "import Notification from 'core/notification';";
 if (!source.includes(motionImport) || !source.includes(guideImport) || !source.includes(choicesImport) ||
         !source.includes(membersImport) || !source.includes(logImport) || !source.includes(smStoreImport) ||
-        !source.includes(smIndexImport) || !smParticipantsImport.test(source) || !smGroupsImport.test(source) ||
+        !smIndexImport.test(source) || !smParticipantsImport.test(source) || !smGroupsImport.test(source) ||
         !source.includes(notificationImport) ||
         !source.includes('export const init =')) {
     throw new Error('The course manager AMD source does not contain its expected Motion import and init export.');
@@ -43,7 +43,7 @@ const namedSource = source
     .replace(membersImport, 'const {snapshotMemberPairs} = MemberSelection;')
     .replace(logImport, '')
     .replace(smStoreImport, 'const {createStore, fetchState, fetchDetails} = SmStore;')
-    .replace(smIndexImport, 'const {filterParticipantIds} = SmIndex;')
+    .replace(smIndexImport, (match, names) => `const {${names}} = SmIndex;`)
     .replace(smParticipantsImport, (match, names) => 'const {' + names.replace(/\s+/g, ' ').trim().replace(/,$/, '') +
         '} = SmParticipants;')
     .replace(smGroupsImport, (match, names) => 'const {' + names.replace(/\s+/g, ' ').trim().replace(/,$/, '') +
