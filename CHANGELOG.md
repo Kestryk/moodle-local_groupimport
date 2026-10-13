@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N2] T038: consume Kit 0.4.200 Guide navigation lanes. Keep stable slide IDs/order and the existing accessible guided-label data; render the guided-path state as a compact route pictogram instead of the visible text badge, retain approved numbered FR/EN short labels and one chapter label per consecutive group, and allow those labels to wrap rather than truncate. Foundation/Penpot, native rendering and human acceptance remain separate open gates.
+
 - 2026-10-13 [N2] T037: consume Kit 0.4.199's bounded Guide reading composition: 42rem direct explanatory copy, semantic heading ink, a quiet localized demonstration caption, Source/Destination scene labels, and container-query reading points for short card/action lessons only. Preserve the first six teaching specimens, ordered recap, scene width, controls, guide engine, paths and Motion. The read-only French native proof passes at 1600/1280/390; Foundation/Penpot and human acceptance remain separate open gates.
 
 - 2026-10-13 [N1] T053/T058: emit the existing SCSS through a conservative value-preserving delivery formatter and import Kit 0.4.198 neutral-text foregrounds; Student Management structural headings bind to the same `--easyedu-text-muted` token. Geometry, typography roles, Motion, templates and controllers are unchanged; native preview, Foundation paint and human acceptance remain separate gates.
