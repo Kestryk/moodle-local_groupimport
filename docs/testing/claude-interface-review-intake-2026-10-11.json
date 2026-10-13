@@ -779,10 +779,10 @@
     {
       "id": "T058",
       "receivedScope": "[P] [US6] **Passe d'accessibilité complète** : focus, Escape et retour du focus sur **toutes** les modales et panneaux (D1 laisse penser qu'il y a d'autres cas), contraste des éléments neutres d'US4, mouvement réduit, alternative clavier au glisser-déposer.",
-      "status": "delivered-audit-findings-and-coverage-gaps-open",
+      "status": "focus-correction-static-verified-native-pending; broader-audit-findings-and-coverage-gaps-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["tools/release/accessibility-inventory.cjs", "tools/release/ACCESSIBILITY-FINDINGS.md", "tools/playwright/roadmap-accessibility.spec.js", "RETOUR-CODEX2-T058-2026-10-13.md"],
+      "related": ["tools/release/accessibility-inventory.cjs", "tools/release/ACCESSIBILITY-FINDINGS.md", "tools/playwright/roadmap-accessibility.spec.js", "tools/playwright/t058-modal-focus-native.spec.js", "tools/release/test-modal-focus-scope.cjs", "tools/release/test-modal-focus-behaviour.cjs", "docs/t058-modal-focus-correction-2026-10-13.md", "RETOUR-CODEX2-T058-2026-10-13.md"],
       "decisionGate": "none"
     },
     {
