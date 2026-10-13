@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] R10 CSS candidate evidence: FR/EN three-width visible-count and arrow successor PASS; 22 isolated count/state/touch records PASS. Preserve failed predecessors, pre-existing 18px root surplus and explicit injection-only scope.
+
 - 2026-10-13 [N1] T059 on 49072e22: Move FR1024 contained in both modes; retain legacy Message opening timeout and reactive long-title stress overflow (84px). Remaining widths/dialogs stay open; preserve native captures and synthetic/native distinction.
 
 - 2026-10-13 [N1] T058 remaining on 49072e22: Message/Move/Guide pass normal and reduced motion in both modes; preserve Rollback Tab escape and missing return-focus failures with a native capture. No business mutation; incomplete contrast and panel checks remain open.
