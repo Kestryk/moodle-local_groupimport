@@ -1,5 +1,12 @@
 # Changelog
 
+- 2026-10-14 [N1] Record cumulative FR1280 native checks on c31dad3c for
+  A-TEXTES and Claude R10-23: seven path cards, localized checklist and actual
+  group/participant scrolling in both modes; no attempted course writes.
+  Correct the QA harness's example/slide/view/overlay assumptions, preserve
+  failed artifacts, and verify final Current mode. Human review and path 11
+  step 1's Claude prerequisite remain open.
+
 - 2026-10-13 [N1] A-TEXTES: align FR/EN scene examples, captions and native
   action names; move the creation note before its invitation, remove the
   unrelated Mass Import scene note, and normalize path cards. Checklist titles
