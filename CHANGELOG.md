@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] R10-09: share the existing Select all height with noninteractive result counts; centre the label and remove excess vertical padding. Native bilingual/count cases and canonical propagation remain open.
+
 - 2026-10-13 [N1] R10-18: native glyph/first-line diagnosis on 49072e22 does not reproduce the offset (0.953px in 12 states); remove ineffective CSS candidate and retain the exact reported case as open.
 
 - 2026-10-13 [N0] Claude CL-SPECIMEN: Guide specimen cards (local/sm/specimen.js) render the real participant and group card templates from example data, inert, with every behaviour attribute renamed data-specimen-*; card labels now reach the page in both rendering modes.
