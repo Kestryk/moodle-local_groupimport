@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] T058: confine keyboard lifecycle to the existing Group/Grouping, Move, confirmation, Clipboard and History dialogs: initial focus, visible-enabled Tab loop, nested-Escape yield and post-Motion opener restoration. No mutation, template, Sass or Moodle-5-only API; dedicated static/build checks pass and Perf N1 remains pending.
+
 - 2026-10-13 [N0/N1] T058: source overlay inventory and read-only Perf accessibility audits of dialogs, expanded filters, menus, history/rollback, administration and compact navigation. Record focus/Tab/Escape, contrast/labels and conditional gaps; no product corrections or full accessibility acceptance claimed.
 
 - 2026-10-13 [N0/N1] T053: measure CSS bytes/gzip, exact duplicate blocks, repeated declarations, long selector lists and unreferenced literal candidates; quantify a reduction plan without modifying Sass or product CSS. Retain incomplete browser coverage/readiness evidence.

@@ -76,10 +76,24 @@ const runSafely = callback => {
     }
 };
 
+// Focus-only state: owned modal listeners and native caller restoration.
+const modalKeyboardState = new WeakMap();
+const modalFocusVisible = node => !!node?.isConnected && !node.disabled && !node.matches(':disabled') &&
+    !node.closest('[hidden], [inert], [aria-hidden="true"]') && node.getClientRects().length > 0 &&
+    getComputedStyle(node).visibility === 'visible';
+const modalTabStops = modal => Array.from(modal.querySelectorAll(
+    'button, a[href], input, select, textarea, summary, [tabindex]'
+)).filter(node => node.tabIndex >= 0 && modalFocusVisible(node));
+
 const showEasyStudModal = modal => {
     if (!modal) {
         return;
     }
+    const state = modalKeyboardState.get(modal) || {};
+    if (!modal.contains(document.activeElement)) {
+        state.opener = document.activeElement;
+    }
+    modalKeyboardState.set(modal, state);
     const dialog = modal.querySelector('.local-groupimport-easystud-modal__dialog');
     if (dialog) {
         Motion.cancel(dialog);
@@ -106,6 +120,14 @@ const hideEasyStudModal = (modal, callback = null) => {
         if (callback) {
             callback();
         }
+        // Existing callbacks may deliberately focus a visible mobile proxy or
+        // another dialog. Keep that native destination, never restore early.
+        const state = modalKeyboardState.get(modal);
+        const active = document.activeElement;
+        if (modal.hidden && (!modalFocusVisible(active) || modal.contains(active) ||
+                active === document.body) && modalFocusVisible(state?.opener)) {
+            state.opener.focus({preventScroll: true});
+        }
         return true;
     });
 };
@@ -114,19 +136,47 @@ const hideEasyStudModal = (modal, callback = null) => {
 // A nested control gets first refusal on Escape; never invent a Save action.
 // Keep listeners on the owned dialog, so removed editors need no global cleanup.
 const bindCardModalKeyboard = (modal, closeModal) => {
-    modal.addEventListener('keydown', event => {
-        if (event.key !== 'Escape' || event.defaultPrevented || modal.hidden ||
-                modal.classList.contains('is-closing')) {
-            return;
-        }
-        event.preventDefault();
-        event.stopPropagation();
-        closeModal();
-    });
+    let state = modalKeyboardState.get(modal);
+    if (!state) {
+        state = {opener: document.activeElement};
+        modalKeyboardState.set(modal, state);
+    }
+    state.close = closeModal;
+    if (!state.bound) {
+        state.bound = true;
+        modal.addEventListener('keydown', event => {
+            if (event.defaultPrevented || modal.hidden) {
+                return;
+            }
+            if (event.key === 'Escape' && !modal.classList.contains('is-closing')) {
+                event.preventDefault();
+                event.stopPropagation();
+                state.close();
+            } else if (event.key === 'Tab') {
+                const stops = modalTabStops(modal);
+                const index = stops.indexOf(document.activeElement);
+                if (!stops.length || index < 0 || (!event.shiftKey && index === stops.length - 1) ||
+                        (event.shiftKey && index === 0)) {
+                    event.preventDefault();
+                    const target = event.shiftKey ? stops[stops.length - 1] : stops[0];
+                    if (target) {
+                        target.focus();
+                    } else {
+                        modal.setAttribute('tabindex', '-1');
+                        modal.focus();
+                    }
+                }
+            }
+        });
+    }
     return () => {
-        const close = modal.querySelector('[data-easystud-close-user-modal], [data-easystud-close-advanced-settings]');
-        if (close && !close.disabled) {
-            close.focus({preventScroll: true});
+        const stops = modalTabStops(modal);
+        const initial = stops.find(node => node.matches('.local-groupimport-easystud-modal__close')) || stops[0];
+        if (initial) {
+            initial.focus({preventScroll: true});
+        } else {
+            modal.setAttribute('tabindex', '-1');
+            modal.focus();
         }
     };
 };
@@ -5511,9 +5561,11 @@ const openConfirmModal = (root, message, onconfirm) => {
             confirmButton.onclick = null;
         });
     };
+    const focusModal = bindCardModalKeyboard(modal, closeModal);
 
     messageNode.textContent = message || '';
     showEasyStudModal(modal);
+    focusModal();
     confirmButton.onclick = () => {
         hideEasyStudModal(modal, () => {
             confirmButton.onclick = null;
@@ -7127,6 +7179,7 @@ const bindMoveModal = (root, courseId) => {
         });
     };
     root.easystudCloseMoveDialog = closeModal;
+    const focusMoveModal = bindCardModalKeyboard(modal, closeModal);
 
     const setMemberBusy = busy => {
         memberBusy = busy;
@@ -7237,6 +7290,7 @@ const bindMoveModal = (root, courseId) => {
                 (labels.nomovegroupingsavailable || '');
         }
         showEasyStudModal(modal);
+        focusMoveModal();
         if (type === 'participant' && selectedCount > 0 && hasDestination) {
             emitPracticeCompletion(root, 'open-move');
         }
@@ -7287,14 +7341,6 @@ const bindMoveModal = (root, courseId) => {
 
     modal.addEventListener('click', event => {
         if (event.target === modal) {
-            closeModal();
-        }
-    });
-
-    modal.addEventListener('keydown', event => {
-        if (event.key === 'Escape') {
-            event.preventDefault();
-            event.stopPropagation();
             closeModal();
         }
     });
@@ -10352,6 +10398,7 @@ const bindOptionalTools = root => {
             const trigger = panel && root.querySelector('[data-easyedu-navigation-open]');
             (trigger || lastClipboardOpener).focus();
         };
+        bindCardModalKeyboard(modal, () => hideEasyStudModal(modal, restoreClipboardFocus));
         openClipboardButtons.forEach(button => button.addEventListener('click', () => {
             lastClipboardOpener = button;
             showEasyStudModal(modal);
