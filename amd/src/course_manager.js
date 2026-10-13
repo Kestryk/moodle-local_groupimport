@@ -6770,7 +6770,7 @@ const bindTree = root => {
             const input = panel ? panel.querySelector('[data-easystud-container-group-search="ungrouped"]') : null;
             setInlinePanelOpen(panel, !expanded).then(completed => {
                 if (completed && !expanded && input) {
-                    input.focus();
+                    input.focus({preventScroll: true});
                 }
             });
             if (expanded && input) {
@@ -7292,7 +7292,7 @@ const bindGroupMemberActions = (root, courseId) => {
                 if (open && box) {
                     transition.then(completed => {
                         if (completed) {
-                            box.focus();
+                            box.focus({preventScroll: true});
                         }
                     });
                 }
@@ -7422,7 +7422,7 @@ const bindGroupingGroupActions = (root, courseId) => {
                 if (open && box) {
                     transition.then(completed => {
                         if (completed) {
-                            box.focus();
+                            box.focus({preventScroll: true});
                         }
                     });
                 }
@@ -8495,7 +8495,7 @@ const bindContextMenu = (root, courseId) => {
                 if (box) {
                     transition.then(completed => {
                         if (completed) {
-                            box.focus();
+                            box.focus({preventScroll: true});
                         }
                     });
                 }
@@ -8510,7 +8510,7 @@ const bindContextMenu = (root, courseId) => {
                     if (box) {
                         transition.then(completed => {
                             if (completed) {
-                                box.focus();
+                                box.focus({preventScroll: true});
                             }
                         });
                     }
@@ -8567,7 +8567,7 @@ const bindContextMenu = (root, courseId) => {
                 if (box) {
                     transition.then(completed => {
                         if (completed) {
-                            box.focus();
+                            box.focus({preventScroll: true});
                         }
                     });
                 }
@@ -8582,7 +8582,7 @@ const bindContextMenu = (root, courseId) => {
                     if (box) {
                         transition.then(completed => {
                             if (completed) {
-                                box.focus();
+                                box.focus({preventScroll: true});
                             }
                         });
                     }
@@ -8757,7 +8757,7 @@ const bindContainerGroupSearch = root => {
             if (input) {
                 transition.then(completed => {
                     if (completed) {
-                        input.focus();
+                        input.focus({preventScroll: true});
                     }
                 });
             }
@@ -8827,7 +8827,7 @@ const bindGroupMemberSearch = root => {
             if (input) {
                 transition.then(completed => {
                     if (completed) {
-                        input.focus();
+                        input.focus({preventScroll: true});
                     }
                 });
             }
