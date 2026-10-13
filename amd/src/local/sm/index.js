@@ -31,6 +31,27 @@
  * @param {*} value Value.
  * @returns {String}
  */
+/**
+ * Fill a count template: '__count__' (or '{$a}') stands for the count, and a template made by
+ * local_groupimport_count_template() carries its singular form first, before a '|'. The
+ * page language decides the form (CLDR rules: in French 0 and 1 are singular).
+ *
+ * @param {String} template Count template.
+ * @param {Number} count Count.
+ * @returns {String}
+ */
+export const countLabel = (template, count) => {
+    const forms = String(template || '').split('|');
+    let singular = count === 1;
+    try {
+        singular = new Intl.PluralRules(document.documentElement.lang || undefined).select(count) === 'one';
+    } catch (error) {
+        // Unknown language tag: keep the English rule.
+    }
+    const form = forms.length > 1 && singular ? forms[0] : forms[forms.length - 1];
+    return form.replace('__count__', String(count)).replace('{$a}', String(count));
+};
+
 export const normalise = value => (value || '').toString().toLowerCase();
 
 /**

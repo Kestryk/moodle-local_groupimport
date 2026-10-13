@@ -25,6 +25,7 @@
 define('AJAX_SCRIPT', true);
 
 require_once(__DIR__ . '/../../config.php');
+require_once(__DIR__ . '/lib.php');
 require_once($CFG->dirroot . '/group/lib.php');
 require_once($CFG->libdir . '/gdlib.php');
 
@@ -81,14 +82,14 @@ try {
                     'id' => $groupid,
                 ]))->out(false),
                 'membercount' => 0,
-                'membercountlabel' => get_string('memberscount', 'local_groupimport', 0),
+                'membercountlabel' => local_groupimport_count_string('memberscount', 0),
             ];
         }
 
         $response['success'] = true;
         $response['message'] = count($groups) === 1 ?
             get_string('groupcreated', 'local_groupimport') :
-            get_string('groupscreatedcount', 'local_groupimport', count($groups));
+            local_groupimport_count_string('groupscreatedcount', count($groups));
         $response['group'] = $groups[0];
         $response['groups'] = $groups;
     } else if ($action === 'creategrouping') {
@@ -120,14 +121,14 @@ try {
                     'id' => $groupingid,
                 ]))->out(false),
                 'groupcount' => 0,
-                'countlabel' => get_string('groupscount', 'local_groupimport', 0),
+                'countlabel' => local_groupimport_count_string('groupscount', 0),
             ];
         }
 
         $response['success'] = true;
         $response['message'] = count($groupings) === 1 ?
             get_string('groupingcreated', 'local_groupimport') :
-            get_string('groupingscreatedcount', 'local_groupimport', count($groupings));
+            local_groupimport_count_string('groupingscreatedcount', count($groupings));
         $response['grouping'] = $groupings[0];
         $response['groupings'] = $groupings;
     } else if ($action === 'renamegroup') {
@@ -390,7 +391,7 @@ try {
                 'id' => $newgroupid,
             ]))->out(false),
             'membercount' => count($members),
-            'membercountlabel' => get_string('memberscount', 'local_groupimport', count($members)),
+            'membercountlabel' => local_groupimport_count_string('memberscount', count($members)),
             'searchtext' => core_text::strtolower(trim(implode(' ', $searchparts))),
             'members' => array_map(static function($member) use ($newgroupid): array {
                 return [
@@ -439,7 +440,7 @@ try {
                 'id' => $newgroupingid,
             ]))->out(false),
             'groupcount' => count($groupids),
-            'countlabel' => get_string('groupscount', 'local_groupimport', count($groupids)),
+            'countlabel' => local_groupimport_count_string('groupscount', count($groupids)),
             'groupids' => $groupids,
             'searchtext' => core_text::strtolower(trim(implode(' ', $searchparts))),
         ];
@@ -654,7 +655,7 @@ try {
         }
 
         $response['success'] = true;
-        $response['message'] = get_string('membersremoved', 'local_groupimport', $removed);
+        $response['message'] = local_groupimport_count_string('membersremoved', (int)$removed);
     } else if ($action === 'deletegroups') {
         $groupids = required_param_array('groupids', PARAM_INT);
         $deleted = 0;
@@ -670,7 +671,7 @@ try {
         }
 
         $response['success'] = true;
-        $response['message'] = get_string('groupsdeleted', 'local_groupimport', $deleted);
+        $response['message'] = local_groupimport_count_string('groupsdeleted', (int)$deleted);
     } else if ($action === 'deletegroupings') {
         global $DB;
 
@@ -690,7 +691,7 @@ try {
         }
 
         $response['success'] = true;
-        $response['message'] = get_string('groupingsdeleted', 'local_groupimport', $deleted);
+        $response['message'] = local_groupimport_count_string('groupingsdeleted', (int)$deleted);
     }
 } catch (dml_exception $exception) {
     // Database errors may carry SQL in their debug details: log them, never return them.

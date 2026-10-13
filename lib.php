@@ -124,6 +124,55 @@ function local_groupimport_is_simplified_view_enabled(): bool {
 }
 
 /**
+ * Whether a count takes the singular form in the current language (CLDR plural rules: in
+ * French 0 and 1 are singular, in English only 1).
+ *
+ * @param int $count Count.
+ * @return bool
+ */
+function local_groupimport_is_singular_count(int $count): bool {
+    if (class_exists('\MessageFormatter')) {
+        $category = \MessageFormatter::formatMessage(current_language(), '{n, plural, one{one} other{other}}', ['n' => $count]);
+        if ($category !== false) {
+            return $category === 'one';
+        }
+    }
+    return $count === 1;
+}
+
+/**
+ * A plugin count string in the right form: the identifier with a '_one' suffix when the count
+ * is singular and that string exists, otherwise the identifier itself (plural form).
+ *
+ * @param string $identifier String identifier of the plural form.
+ * @param int $count Count.
+ * @param mixed $a String argument, the count by default.
+ * @return string
+ */
+function local_groupimport_count_string(string $identifier, int $count, $a = null): string {
+    if (local_groupimport_is_singular_count($count) &&
+            get_string_manager()->string_exists($identifier . '_one', 'local_groupimport')) {
+        $identifier .= '_one';
+    }
+    return get_string($identifier, 'local_groupimport', $a ?? $count);
+}
+
+/**
+ * A count template for the browser: '__count__' stands for the count, and the singular form,
+ * when the plugin has one, comes first, separated by '|' (read by the countLabel() helpers).
+ *
+ * @param string $identifier String identifier of the plural form.
+ * @return string
+ */
+function local_groupimport_count_template(string $identifier): string {
+    $other = get_string($identifier, 'local_groupimport', '__count__');
+    if (!get_string_manager()->string_exists($identifier . '_one', 'local_groupimport')) {
+        return $other;
+    }
+    return get_string($identifier . '_one', 'local_groupimport', '__count__') . '|' . $other;
+}
+
+/**
  * Whether Student Management renders participants on demand in the browser (SM-RENDU preview).
  *
  * @return bool

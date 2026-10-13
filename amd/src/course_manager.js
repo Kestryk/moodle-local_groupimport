@@ -27,7 +27,7 @@ import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './search
 import {snapshotMemberPairs} from './member_selection';
 import Log from 'core/log';
 import {createStore, fetchState, fetchDetails} from './local/sm/store';
-import {filterParticipantIds} from './local/sm/index';
+import {filterParticipantIds, countLabel} from './local/sm/index';
 import {
     createParticipantModel, refreshModel, getDetachedCard, applyParticipantFilters, sortParticipantIds, renderParticipantPage,
 } from './local/sm/participants';
@@ -196,8 +196,7 @@ const bindCardModalKeyboard = (modal, closeModal) => {
 const normalise = value => (value || '').toString().toLowerCase();
 
 const formatCountMessage = (template, count) => {
-    return (template || '')
-        .replace('__count__', count)
+    return countLabel(template, count)
         .replace('{}', count);
 };
 
@@ -703,6 +702,33 @@ const getGroupElementsById = (root, groupid) => Array.from(
     root.querySelectorAll('[data-easystud-group-id="' + groupid + '"]')
 );
 
+/**
+ * Whether a course group exists. On demand, a group is often not drawn (other page, closed
+ * section, hidden catalog): the state answers; the legacy page draws every group.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {String|Number} groupid Group id.
+ * @returns {Boolean}
+ */
+const groupExists = (root, groupid) => {
+    const model = getOnDemandModel(root);
+    if (model && model.groups) {
+        return model.groups.has(Number(groupid));
+    }
+    return getGroupElementsById(root, groupid).length > 0;
+};
+
+/**
+ * Whether the checklist of a guided path is open.
+ *
+ * @param {String} path Guided path id.
+ * @returns {Boolean}
+ */
+const isGuidePathOpen = path => {
+    const checklist = document.querySelector('[data-easyedu-guide-checklist][data-easyedu-guide-path="' + path + '"]');
+    return !!checklist && !checklist.hidden;
+};
+
 const getTreeGroupElementsById = (root, groupid) => {
     const tree = root.querySelector('[data-easystud-tree]');
     if (!tree) {
@@ -771,7 +797,7 @@ const renderGroupGroupingTags = (container, groupingnames) => {
     const overflowLabel = labels.groupingoverflowlabel || '';
     const shouldSummarise = groupingnames.length > 1 || (groupingnames[0] || '').length > 18;
     const summary = shouldSummarise ?
-        overflowLabel.replace('__count__', groupingnames.length).replace('{$a}', groupingnames.length) :
+        countLabel(overflowLabel, groupingnames.length) :
         groupingnames[0];
 
     const summaryNode = document.createElement(shouldSummarise ? 'button' : 'span');
@@ -3357,8 +3383,7 @@ const moveGroupElementToGrouping = (root, groupid, groupingid) => {
         const badge = section ? section.querySelector('.local-groupimport-easystud-tree__toggle .badge') : null;
         const groupcount = section ? section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length : 0;
         if (badge) {
-            const template = badge.getAttribute('data-count-template') || '__count__';
-            badge.textContent = template.replace('__count__', groupcount);
+            badge.textContent = countLabel(badge.getAttribute('data-count-template') || '__count__', groupcount);
         }
     });
     syncUngroupedState(root, getLabels(root));
@@ -3679,8 +3704,7 @@ const updateGroupingBadge = section => {
     const count = model && model.catalogs && groupingid && model.groupings.has(Number(groupingid)) ?
         getTreeSectionGroupIds(model, groupingid).length :
         section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
-    const template = badge.getAttribute('data-count-template') || '__count__';
-    badge.textContent = template.replace('__count__', count);
+    badge.textContent = countLabel(badge.getAttribute('data-count-template') || '__count__', count);
     section.setAttribute('data-easystud-advanced-count', badge.textContent);
     setCountBadgeState(badge, count, 'grouping');
 };
@@ -3712,8 +3736,7 @@ const syncGroupMembersState = (group, labels) => {
         list.appendChild(empty);
     }
 
-    const template = labels.memberscounttemplate || '';
-    badge.textContent = template.replace('__count__', members.length);
+    badge.textContent = countLabel(labels.memberscounttemplate, members.length);
     group.setAttribute('data-easystud-advanced-count', badge.textContent);
     setCountBadgeState(badge, members.length, 'members');
     syncGroupMembersCollapsible(group);
@@ -4370,7 +4393,7 @@ const getAdvancedCountLabel = (root, item, isgroup) => {
     if (template.indexOf('__count__') === -1) {
         return template;
     }
-    return template.replace('__count__', String(count));
+    return countLabel(template, count);
 };
 
 const renderAdvancedInput = (label, name, value, type = 'text', help = '') => {
@@ -5304,8 +5327,7 @@ const updatePaginationMetaControls = (root, list, pagination, total, position) =
     }
     if (count) {
         const labels = getLabels(root);
-        const template = labels.listeditemscounttemplate || '';
-        count.textContent = template.replace('__count__', String(total));
+        count.textContent = countLabel(labels.listeditemscounttemplate, total);
         count.hidden = !showCount;
         if (showCount) {
             window.requestAnimationFrame(() => {
@@ -6917,6 +6939,9 @@ const bindUserDragDrop = (root, courseId) => {
         event.dataTransfer.effectAllowed = 'copy';
         event.dataTransfer.setData('text/plain', draggedUsers.map(item => item.getAttribute('data-user-id')).join(','));
         dragPreview = setStackedDragImage(event, draggedUsers, 'participant');
+        // Guided path n°10 (Kevin's choice b, 13/10): starting the drag is enough to learn the
+        // gesture; nothing is written unless the card is dropped on a group.
+        emitTryActionsCompletion(root, 'try-drag', Guide.getPathContextToken(getActivityGuideRoot(root), 'try-actions'));
         const usersToHide = draggedUsers.slice();
         window.requestAnimationFrame(() => {
             if (draggedUsers.length) {
@@ -7609,8 +7634,11 @@ const bindMoveModal = (root, courseId) => {
                     .map(groupid => ({value: String(groupid), name: model.groups.get(groupid).name})) :
                 Array.from(root.querySelectorAll('[data-easystud-tree] [data-easystud-group-id]'))
                     .map(group => ({value: group.getAttribute('data-easystud-group-id') || '', name: getGroupName(group)}));
+            // Moving members into the only group they come from would change nothing.
+            const sources = type === 'member' ? new Set(memberSnapshot.map(pair => String(pair.groupid))) : new Set();
+            const sourceOnly = sources.size === 1 ? Array.from(sources)[0] : null;
             entries.forEach(({value, name}) => {
-                if (!value || seen.has(value)) {
+                if (!value || seen.has(value) || value === sourceOnly) {
                     return;
                 }
                 seen.add(value);
@@ -7638,7 +7666,7 @@ const bindMoveModal = (root, courseId) => {
             hasDestination = true;
         });
 
-        if (hasDestination) {
+        if (hasDestination && !isGuidePathOpen('prepare-activity-grouping')) {
             const ungrouped = root.querySelector('.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__toggle');
             const ungroupedOption = document.createElement('option');
             ungroupedOption.value = '0';
@@ -7709,6 +7737,7 @@ const bindMoveModal = (root, courseId) => {
             emitMemberPathCompletion(root, 'open-member-move');
         }
         if (hasDestination) {
+            emitDestinationSteps();
             chooser.trigger.focus();
         } else if (emptyState) {
             emptyState.focus();
@@ -7717,23 +7746,24 @@ const bindMoveModal = (root, courseId) => {
 
     openParticipants.forEach(button => button.addEventListener('click', () => openModal('participant')));
 
-    destination.addEventListener('change', () => {
+    // The destination steps of the guided paths: on change, and for the destination the dialog
+    // preselects (it counts as chosen when it is valid).
+    const emitDestinationSteps = () => {
         if (contextType === 'group' && /^[1-9]\d*$/.test(destination.value) &&
                 getSelectedItems(root, 'group').length &&
                 Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
                     .some(grouping => grouping.getAttribute('data-easystud-grouping-id') === destination.value)) {
             emitNativePathCompletion(root, 'prepare-activity-grouping', 'choose-grouping');
         }
-        if (contextType === 'participant' && destination.value &&
-                getGroupElementsById(root, destination.value).length) {
+        if (contextType === 'participant' && destination.value && groupExists(root, destination.value)) {
             emitPracticeCompletion(root, 'choose-destination');
         }
-        if (contextType === 'member' && destination.value &&
-                getGroupElementsById(root, destination.value).length &&
+        if (contextType === 'member' && destination.value && groupExists(root, destination.value) &&
                 memberSnapshot.some(pair => pair.groupid !== destination.value)) {
             emitMemberPathCompletion(root, 'choose-member-destination');
         }
-    });
+    };
+    destination.addEventListener('change', emitDestinationSteps);
 
     openGroups.forEach(button => button.addEventListener('click', () => openModal('group')));
 
@@ -7764,7 +7794,7 @@ const bindMoveModal = (root, courseId) => {
 
         // SM-11 member transfer begin. One immutable selection, one native transaction.
         if (contextType === 'member') {
-            if (memberBusy || !memberSnapshot.length || !getGroupElementsById(root, value).length) {
+            if (memberBusy || !memberSnapshot.length || !groupExists(root, value)) {
                 return;
             }
             const pairs = memberSnapshot;
@@ -7810,8 +7840,7 @@ const bindMoveModal = (root, courseId) => {
 
         if (contextType === 'participant') {
             const users = getSelectedItems(root, 'participant');
-            const group = root.querySelector('[data-easystud-user-drop="' + value + '"]');
-            if (!users.length || !group) {
+            if (!users.length || !groupExists(root, value)) {
                 return;
             }
 
@@ -9573,6 +9602,21 @@ const bindSharedGuideTargets = root => {
                 const grouping = context ? Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
                     .find(node => node.getAttribute('data-easystud-grouping-id') === context.destinationId) : null;
                 grouping?.setAttribute('data-easystud-guide-activity-destination', 'true');
+                if (grouping) {
+                    // Check the real state when the step starts: the destination may already be
+                    // open since an earlier step. A closed destination is opened, and bindTree
+                    // verifies it once its Motion settles.
+                    const toggle = grouping.querySelector(
+                        ':scope > .local-groupimport-easystud-grouping__header [data-easystud-collapse-toggle]'
+                    );
+                    if (toggle && toggle.getAttribute('aria-expanded') === 'false') {
+                        toggle.click();
+                    } else {
+                        ensureTreeSection(root, grouping);
+                        verifyActivityGrouping(root, grouping,
+                            Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping'));
+                    }
+                }
                 return grouping;
             }
             return root.querySelector(workspace === 'groups' ? '[data-easystud-structure-groups]' : '[data-easystud-tree]');
@@ -11452,6 +11496,10 @@ const scheduleOnDemandStateRefresh = root => {
                 const children = section.querySelector('.local-groupimport-easystud-tree__children');
                 if (children && children.easystudSmRenderedKey !== undefined && !children.hidden) {
                     ensureTreeSection(root, section);
+                    if (section.hasAttribute('data-easystud-guide-activity-destination')) {
+                        verifyActivityGrouping(root, section,
+                            Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping'));
+                    }
                 }
                 if (section.hasAttribute('data-easystud-grouping-id')) {
                     updateGroupingBadge(section);
