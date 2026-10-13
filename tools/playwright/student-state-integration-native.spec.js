@@ -329,6 +329,151 @@ async function sm3aNative(page,info,pinnedGroup=false){
 test('SM3a legacy member search and reactive Add Remove refresh the state',async({page},info)=>sm3aNative(page,info));
 test('SM3a pinned group search and reactive Add Remove refresh the state',async({page},info)=>sm3aNative(page,info,true));
 
+async function sm3bViews(page,info){
+    const errors=[],blocked=[];
+    page.on('pageerror',e=>errors.push(e.message));
+    page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+    await page.route('**/local/groupimport/**',route=>{
+        if(route.request().method()==='GET')return route.continue();
+        blocked.push({method:route.request().method(),path:new URL(route.request().url()).pathname});return route.abort();
+    });
+    await page.setViewportSize({width:1280,height:900});
+    await login(page,'/local/groupimport/manage.php?id=5');
+    const root=page.locator('#local-groupimport-easystud');
+    await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+    await expect(page.locator('html')).toHaveAttribute('lang','fr');
+    await page.evaluate(()=>document.fonts.ready);
+    const views={};
+    for(const view of ['participants','both','structure']){
+        const toggle=root.locator('[data-easystud-layout-mode="'+view+'"]');
+        await expect(toggle).toBeVisible();await toggle.click();await expect(toggle).toHaveAttribute('aria-pressed','true');
+        await root.evaluate(async n=>{
+            await Promise.all(n.getAnimations({subtree:true}).filter(a=>Number.isFinite(a.effect?.getComputedTiming().endTime))
+                .map(a=>a.finished.catch(()=>{})));
+            await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+        });
+        views[view]=await root.evaluate(n=>{
+            const active=node=>node.getClientRects().length&&node.getBoundingClientRect().width>10;
+            const geometry=[...n.querySelectorAll('.easyedu-workspace-panel,.local-groupimport-easystud-create-card')]
+                .filter(active).map(node=>{const r=node.getBoundingClientRect(),s=getComputedStyle(node);
+                    return {x:r.x,y:r.y,width:r.width,height:r.height,font:s.fontFamily,size:s.fontSize,color:s.color};});
+            const cards=selector=>[...n.querySelectorAll(selector+' > [data-easystud-group-id]')]
+                .filter(active).map(node=>{
+                    const r=node.getBoundingClientRect(),s=getComputedStyle(node);
+                    const title=node.querySelector('.local-groupimport-easystud-group__name'),t=getComputedStyle(title);
+                    return {id:node.dataset.easystudGroupId,text:node.innerText.replace(/\s+/g,' ').trim(),
+                        width:r.width,height:r.height,font:s.fontFamily,size:s.fontSize,color:s.color,
+                        background:s.backgroundColor,titleFont:t.fontFamily,titleSize:t.fontSize,titleColor:t.color};
+                });
+            return {text:n.innerText.replace(/\s+/g,' ').trim(),geometry,
+                participantCatalog:cards('.local-groupimport-easystud-participant-groups__list'),
+                structureCatalog:cards('.local-groupimport-easystud-structure-groups__list')};
+        });
+        views[view].textHash=crypto.createHash('sha256').update(views[view].text).digest('hex');delete views[view].text;
+        await page.screenshot({path:info.outputPath('sm3b-legacy-'+view+'-fr1280.png')});
+    }
+    const catalog=await root.locator('.local-groupimport-easystud-structure-groups__list').evaluate(list=>
+        [...list.querySelectorAll(':scope > [data-easystud-group-id]')].map(n=>({id:n.dataset.easystudGroupId,
+            search:n.dataset.searchText||'',ungrouped:n.dataset.hasNoGrouping==='1'})));
+    return {surface:'SM3b-legacy-three-views',niveau:1,viewport:1280,language:'fr',views,catalog,errors,blocked};
+}
+
+test('SM3b legacy three-view baseline before catalog integration',async({page},info)=>{
+    test.setTimeout(240000);
+    const report=await sm3bViews(page,info);
+    fs.writeFileSync(info.outputPath('sm3b-views.json'),JSON.stringify(report,null,2));
+    expect(report.errors).toEqual([]);expect(report.blocked).toEqual([]);expect(report.catalog).toHaveLength(54);
+    expect(report.views.participants.participantCatalog).toHaveLength(10);
+    expect(report.views.structure.structureCatalog).toHaveLength(10);
+});
+
+test('SM3b legacy views and on-demand Structure catalog preserve native behavior',async({page},info)=>{
+    test.setTimeout(420000);
+    if(!process.env.EASYEDU_SM_CATALOG_BASELINE)throw Error('Explicit pre3b legacy three-view baseline required');
+    const before=JSON.parse(fs.readFileSync(process.env.EASYEDU_SM_CATALOG_BASELINE,'utf8'));
+    const report={surface:'SM3b-native',niveau:1,controls:{},errors:[],blocked:[],restoredLegacy:false};
+    const mode=value=>{
+        const r=JSON.parse(execFileSync(process.env.EASYEDU_SM_PHP,
+            [process.env.EASYEDU_SM_MODE_HELPER,process.env.EASYEDU_SM_MOODLE_ROOT,value],{encoding:'utf8',timeout:60000}));
+        expect(r.mode).toBe(value);
+    };
+    const compareCards=(actual,prior)=>{
+        expect(actual.length).toBe(prior.length);
+        actual.forEach((row,i)=>{
+            for(const key of ['id','text','font','size','color','background','titleFont','titleSize','titleColor'])expect(row[key]).toBe(prior[i][key]);
+            for(const key of ['width','height'])expect(Math.abs(row[key]-prior[i][key])).toBeLessThanOrEqual(1);
+        });
+    };
+    try{
+        const actual=await sm3bViews(page,info);
+        fs.writeFileSync(info.outputPath('sm3b-views.json'),JSON.stringify(actual,null,2));
+        for(const view of ['participants','both','structure']){
+            const a=actual.views[view],b=before.views[view];
+            expect(a.textHash).toBe(b.textHash);expect(a.geometry.length).toBe(b.geometry.length);
+            a.geometry.forEach((row,i)=>{
+                for(const key of ['x','y','width','height'])expect(Math.abs(row[key]-b.geometry[i][key])).toBeLessThanOrEqual(1);
+                for(const key of ['font','size','color'])expect(row[key]).toBe(b.geometry[i][key]);
+            });
+            compareCards(a.participantCatalog,b.participantCatalog);compareCards(a.structureCatalog,b.structureCatalog);
+        }
+        expect(actual.errors).toEqual([]);expect(actual.blocked).toEqual([]);report.controls.legacyThreeViews=true;
+        mode('reactive');await login(page,'/local/groupimport/manage.php?id=5');
+        const root=page.locator('#local-groupimport-easystud');
+        await expect(root).toHaveAttribute('data-easystud-sm-ready','1',{timeout:60000});
+        await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
+        page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text());});
+        const structure=root.locator('[data-easystud-layout-mode="structure"]');await structure.click();
+        await expect(structure).toHaveAttribute('aria-pressed','true');
+        const list=root.locator('.local-groupimport-easystud-structure-groups__list');
+        const cards=()=>list.locator(':scope > [data-easystud-group-id]:visible');
+        const ids=()=>cards().evaluateAll(nodes=>nodes.map(n=>n.dataset.easystudGroupId));
+        const pager=list.locator(':scope > [data-easystud-pagination="top"]');
+        await expect(cards()).toHaveCount(10);
+        const first=before.views.structure.structureCatalog.map(c=>c.id);
+        await expect.poll(ids).toEqual(first);
+        await root.evaluate(n=>Promise.all(n.getAnimations({subtree:true})
+            .filter(a=>Number.isFinite(a.effect?.getComputedTiming().endTime)).map(a=>a.finished.catch(()=>{}))));
+        const painted=await cards().evaluateAll(nodes=>nodes.map(node=>{
+            const r=node.getBoundingClientRect(),s=getComputedStyle(node),title=node.querySelector('.local-groupimport-easystud-group__name'),t=getComputedStyle(title);
+            return {id:node.dataset.easystudGroupId,text:node.innerText.replace(/\s+/g,' ').trim(),width:r.width,height:r.height,
+                font:s.fontFamily,size:s.fontSize,color:s.color,background:s.backgroundColor,
+                titleFont:t.fontFamily,titleSize:t.fontSize,titleColor:t.color};
+        }));
+        fs.writeFileSync(info.outputPath('sm3b-page1-paint.json'),JSON.stringify({before:before.views.structure.structureCatalog,reactive:painted},null,2));
+        compareCards(painted,before.views.structure.structureCatalog);report.controls.reactivePage1=true;
+        await cards().first().scrollIntoViewIfNeeded();await page.screenshot({path:info.outputPath('sm3b-reactive-structure-fr1280.png')});
+        await pager.locator('[data-easystud-page-next]').click();await expect.poll(ids).not.toEqual(first);
+        await expect(cards()).toHaveCount(10);await pager.locator('[data-easystud-page-prev]').click();await expect.poll(ids).toEqual(first);
+        report.controls.pagination=true;
+        const search=root.locator('[data-easystud-structure-group-search]');
+        const expected=before.catalog.filter(c=>c.search.toLowerCase().includes('group 1')).map(c=>c.id).sort();
+        await search.fill('group 1');await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.catalogs.structure.filteredIds.map(String).sort())).toEqual(expected);
+        expect((await ids()).every(id=>expected.includes(id))).toBe(true);
+        await search.fill('sm3b-no-such-group');await expect(cards()).toHaveCount(0);
+        await search.fill('');await expect.poll(ids).toEqual(first);report.controls.searchAndEmpty=true;
+        await root.locator('[data-easystud-advanced-filters-toggle="structure-groups"]').click();
+        await expect(root.locator('[data-easystud-advanced-filters-toggle="structure-groups"]')).toHaveAttribute('aria-expanded','true');
+        const toggle=root.locator('[data-easystud-catalog-show-ungrouped="structure"]');await toggle.locator('..').click();await expect(toggle).toBeChecked();
+        const ungrouped=before.catalog.filter(c=>c.ungrouped).map(c=>c.id).sort();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.catalogs.structure.filteredIds.map(String).sort())).toEqual(ungrouped);
+        expect((await ids()).every(id=>ungrouped.includes(id))).toBe(true);report.controls.ungroupedFilter=true;
+        await pager.locator('[data-easystud-select-results]').click();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selectedGroups.size)).toBe(ungrouped.length);
+        await pager.locator('[data-easystud-select-results]').click();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selectedGroups.size)).toBe(0);
+        await toggle.locator('..').click();await expect(toggle).not.toBeChecked();await expect.poll(ids).toEqual(first);
+        await pager.locator('[data-easystud-select-results]').click();
+        await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selectedGroups.size)).toBe(before.catalog.length);
+        await pager.locator('[data-easystud-page-next]').click();await expect.poll(ids).not.toEqual(first);
+        await expect(cards().locator(':scope > label [data-easystud-selector-input]:checked')).toHaveCount(10);
+        await pager.locator('[data-easystud-select-results]').click();await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selectedGroups.size)).toBe(0);
+        report.controls.selectAllAndFilteredCrossPage=true;report.counts={total:before.catalog.length,ungrouped:ungrouped.length,search:expected.length};
+        report.blocked=actual.blocked;expect(report.blocked).toEqual([]);expect(report.errors).toEqual([]);
+    }finally{
+        mode('legacy');report.restoredLegacy=true;fs.writeFileSync(info.outputPath('sm3b-native.json'),JSON.stringify(report,null,2));
+    }
+});
+
 test('SM schema upgrade through the native Moodle admin page',async({page},info)=>{
     test.setTimeout(180000);
     await login(page,'/admin/index.php');
