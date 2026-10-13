@@ -12,9 +12,9 @@
     "productBase": "c9e1fed8",
     "scope": "tools/playwright renderer-independent specs and supervision",
     "staticContract": "188 routed specs; 17 lazy-tree specs; visible-page selection; PASS",
-    "browserStatus": "paired legacy/reactive matrix running on :8051; no complete parity claim",
-    "progress": "docs/sm-rendu-playwright-parity-progress-2026-10-13.md",
-    "rawExternal": "C:/dev/artifacts/es-parity-N2-20261013/after/matrix.json",
+    "browserStatus": "targeted comparison closed: 10 paired PASS, 14 identical failures, zero remaining discrepancies; 187 other modified specs not compared",
+    "progress": "docs/sm-rendu-parity-closure-2026-10-13.md",
+    "rawExternal": "C:/dev/artifacts/es-parity-close-20261013/after/matrix.json",
     "humanAccepted": false
   },
   "claudeReviewR320261012": {

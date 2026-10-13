@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] Close the targeted SM rendering parity rerun: themed Add passes in both modes; aggregate remains 10 paired passes and 14 identical failures, with no remaining mode discrepancy and no human acceptance implied.
+
 - 2026-10-13 [N2] Framed Add spec: await the native search disclosure completion, then Tab from its real input to Cancel; retain strict focus-visible/paint assertions and both original failed/PASS captures. This fixes a test focus race without retiming product Motion.
 
 - 2026-10-13 [N0] SM-RENDU review tooling: generate the bounded before/after return directly from measured mode records, retaining complete discrepancies and capture paths in the separate raw JSON; pending matrices remain explicitly pending.
