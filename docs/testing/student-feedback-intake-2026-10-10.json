@@ -1,4 +1,21 @@
 {
+  "executionSteering20261014": {
+    "source": "Kevin instruction 2026-10-14",
+    "penpotOperator": "Claude only",
+    "codexPenpotStopped": true,
+    "seriesBFirst": "T048: participant/group/grouping details redesign (K18), design by Claude before integration",
+    "k17AssignedTo": "R10-21: Participants title for the left column above the filters search",
+    "remainingSeriesA": ["A-ICONE", "A-CHECKLIST", "A-FLUIDITE", "R10-26", "A-ADMIN-CONTROLES", "A-PARCOURS-10"]
+  },
+  "k14K15Integration20261014": {
+    "claudeCommit": "c0e899fb",
+    "status": "source-integrated-pending-grouped-preview-native-human",
+    "scope": "Nine inline-panel focus calls use preventScroll; business commands and Motion retained",
+    "documentation": "docs/testing/k14-k15-integration-2026-10-14.md",
+    "r10Reused": "ddbac51f already integrated as 42d2fbe6 and served as 692dbcf9; do not cherry-pick twice",
+    "nativeVerified": false,
+    "humanAccepted": false
+  },
   "seriesATextes20261013": {
     "owner": "Codex1",
     "status": "source-built-served-native-fr-pass-partially-open-claude-human",
@@ -365,9 +382,11 @@
       "priority": "P2 après Guide",
       "related": "Nouveau / titre de colonne",
       "title": "Titre Participants & groups",
-      "request": "Le gros titre du bloc doit être Participants & groups, comme l'homologue Groups & groupings.",
-      "acceptance": "Clarifier le titre de bloc sans renommer sans raison toutes les destinations mobiles Participants; traductions, contenu réellement visible et cohérence source/Penpot.",
-      "status": "in-progress",
+      "request": "Le gros titre du bloc doit être Participants & groups, comme l'homologue Groups & groupings. K17 (14/10) : la colonne de gauche au-dessus du champ de recherche des filtres doit s'intituler Participants.",
+      "acceptance": "Distinguer le titre du bloc Participants & groupes et le titre Participants de la colonne gauche; préserver les destinations mobiles Participants; FR/EN, contenu réellement visible, deux modes et cohérence source/Penpot (opérateur Claude).",
+      "status": "in-progress-k17-pending",
+      "k17SourceChanged": false,
+      "k17NativeVerified": false,
       "sourceChanged": true,
       "designPublished": true,
       "designChangeRequired": true,
