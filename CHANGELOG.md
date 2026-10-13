@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] SM-RENDU-3d (Claude): in On demand mode manage.php loads only the lean data it still renders (course_state::page_data: enrolled users' role names, group names, grouping headers) and skips the participant copy/display enrichment; on-demand page HTML identical (courses 5 and 71). 800 fixture: page data 939 ms / 804 reads to 61 ms / 4 reads; whole page now as fast as a 24-user course.
+
 - 2026-10-13 [N1] SM-RENDU-3c (Claude): in On demand mode the groupings tree keeps its server-rendered headers but renders the group cards of a grouping, and of the "without grouping" section, from the state when the section opens (shared `sm/group_card`, tree variant; legacy tree identical); grouping search, occupancy, badges, Move destinations, paste group names and group grouping memberships read the state; advanced group settings load descriptions through local_groupimport_get_details. ajax.php: removing a group from its other groupings uses groups_unassign_grouping (event and group cache), also in Current mode. 800 fixture: HTML 17.1 to 1.15 MB, 10.5k elements, 320 member rows.
 
 - 2026-10-13 [N1] SM-RENDU-2b fix (Claude): in On demand mode the participant sheet loads the deferred details once through local_groupimport_get_details (city, country, language, description...), keeps them for later openings, ignores answers for a closed or re-targeted sheet and keeps the light details on error. Sheet HTML identical to the Current mode (Test15, course 5), reported by Codex 1.
