@@ -33,6 +33,7 @@ import {
 } from './local/sm/participants';
 import {
     attachGroupCatalogs, getDetachedGroupCard, filterGroupIds, sortGroupIds, renderGroupPage,
+    getTreeSectionGroupIds, renderTreeSection, groupingSearchText,
 } from './local/sm/groups';
 import Notification from 'core/notification';
 
@@ -536,10 +537,14 @@ const getKnownGroupIdentifiers = root => {
         known.set(key, display || value);
     };
 
-    Array.from(root.querySelectorAll('[data-easystud-group-id]')).forEach(group => {
-        const id = group.getAttribute('data-easystud-group-id') || '';
-        const nameNode = group.querySelector('.local-groupimport-easystud-group__name');
-        const name = nameNode ? nameNode.textContent.trim() : '';
+    const model = getOnDemandModel(root);
+    // On demand, every group comes from the state: the tree only renders opened sections.
+    const records = model && model.catalogs ? model.raw.groups.map(group => ({id: String(group.id), name: group.name.trim()})) :
+        Array.from(root.querySelectorAll('[data-easystud-group-id]')).map(group => {
+            const nameNode = group.querySelector('.local-groupimport-easystud-group__name');
+            return {id: group.getAttribute('data-easystud-group-id') || '', name: nameNode ? nameNode.textContent.trim() : ''};
+        });
+    records.forEach(({id, name}) => {
         addIdentifier(id, name || id, id);
         addIdentifier(name, name, id);
     });
@@ -637,6 +642,11 @@ const getTreeGroupElementsById = (root, groupid) => {
 };
 
 const getGroupingIdsForGroup = (root, groupid) => {
+    const model = getOnDemandModel(root);
+    if (model && model.catalogs) {
+        const group = model.groups.get(Number(groupid));
+        return group ? (group.groupingids || []).filter(id => model.groupings.has(id)).map(String) : [];
+    }
     const ids = [];
     root.querySelectorAll('[data-easystud-grouping-id]').forEach(grouping => {
         const groupingid = grouping.getAttribute('data-easystud-grouping-id');
@@ -1349,6 +1359,7 @@ const expandGroupingSection = grouping => {
     if (!grouping) {
         return;
     }
+    ensureTreeSection(grouping.closest('.local-groupimport-easystud'), grouping);
     const root = grouping.closest('.local-groupimport-easystud');
     const toggle = grouping.querySelector('[data-easystud-collapse-toggle]');
     const children = grouping.querySelector('.local-groupimport-easystud-tree__children');
@@ -1434,6 +1445,7 @@ const getGroupsInGrouping = grouping => {
     if (!grouping) {
         return [];
     }
+    ensureTreeSection(grouping.closest('.local-groupimport-easystud'), grouping);
     return Array.from(grouping.querySelectorAll(
         ':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]'
     ));
@@ -1633,8 +1645,16 @@ const applyStructureSearch = (root, options = {}) => {
     const occupancy = root.querySelector('[data-easystud-grouping-occupancy][aria-pressed="true"]');
     const occupancyValue = occupancy ? occupancy.getAttribute('data-easystud-grouping-occupancy') : 'all';
 
+    const model = getOnDemandModel(root);
     root.querySelectorAll('[data-easystud-tree] [data-easystud-grouping-id]').forEach(grouping => {
-        const hasGroups = getGroupsInGrouping(grouping).length > 0;
+        const state = model && model.catalogs ?
+            model.groupings.get(Number(grouping.getAttribute('data-easystud-grouping-id'))) : null;
+        if (state) {
+            // On demand, the section only knows its header: search text and occupancy come from the state.
+            grouping.setAttribute('data-search-text', groupingSearchText(model, state));
+        }
+        const hasGroups = state ? getTreeSectionGroupIds(model, String(state.id)).length > 0 :
+            getGroupsInGrouping(grouping).length > 0;
         const matchesOccupancy = occupancyValue === 'all' ||
             (occupancyValue === 'filled' && hasGroups) || (occupancyValue === 'empty' && !hasGroups);
         const filterhidden = !matchesSearchText(grouping, groupingQuery) || !matchesOccupancy;
@@ -1680,6 +1700,13 @@ const syncContainerGroupEmptyState = (root, list, query, visibleCount) => {
 };
 
 const applyContainerGroupSearch = (root, options = {}) => {
+    if (getOnDemandModel(root)) {
+        root.querySelectorAll('[data-easystud-container-group-search]').forEach(search => {
+            if (normalise(search.value)) {
+                ensureTreeSection(root, search.closest('.local-groupimport-easystud-tree__section'));
+            }
+        });
+    }
     root.querySelectorAll('[data-easystud-container-group-list]').forEach(list => {
         const key = list.getAttribute('data-easystud-container-group-list') || '';
         const section = list.closest('.local-groupimport-easystud-tree__section');
@@ -1772,7 +1799,7 @@ const normaliseCardMenuButton = (button, root) => {
     }
 };
 
-const ensureNestedGroupActionMenus = root => {
+const ensureNestedGroupActionMenus = (root, cards = null) => {
     const actionSelector = [
         ':scope > .local-groupimport-easystud-group__mail-button',
         ':scope > .local-groupimport-easystud-group__member-search-button',
@@ -1786,7 +1813,8 @@ const ensureNestedGroupActionMenus = root => {
         ':scope > .local-groupimport-easystud-rename > .local-groupimport-easystud-rename__toggle',
     ].join(', ');
 
-    root.querySelectorAll('[data-easystud-group-id], [data-easystud-grouping-id]').forEach(group => {
+    // Cards rendered on demand pass themselves: re-measuring the whole page would also re-measure opened sections.
+    (cards || root.querySelectorAll('[data-easystud-group-id], [data-easystud-grouping-id]')).forEach(group => {
         const header = group.querySelector(
             ':scope > .local-groupimport-easystud-group__header, :scope > .local-groupimport-easystud-grouping__header'
         );
@@ -3496,7 +3524,17 @@ const updateGroupingBadge = section => {
     if (!badge) {
         return;
     }
-    const count = section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
+    const root = section.closest('.local-groupimport-easystud');
+    const model = getOnDemandModel(root);
+    const groupingid = section.getAttribute('data-easystud-grouping-id');
+    if (!model && root && root.getAttribute('data-easystud-rendering-mode') === 'reactive') {
+        // On demand, keep the server count until the state has loaded: closed sections have no cards.
+        return;
+    }
+    // On demand, a closed section has no cards: count from the state.
+    const count = model && model.catalogs && groupingid && model.groupings.has(Number(groupingid)) ?
+        getTreeSectionGroupIds(model, groupingid).length :
+        section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
     const template = badge.getAttribute('data-count-template') || '__count__';
     badge.textContent = template.replace('__count__', count);
     section.setAttribute('data-easystud-advanced-count', badge.textContent);
@@ -4316,6 +4354,50 @@ const renderAdvancedListSection = (title, rows, columns, exportname, emptylabel,
 };
 
 const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
+    const model = getOnDemandModel(root);
+    if (!model || !model.catalogs || !item) {
+        openAdvancedSettingsModalNow(root, item, returnFocus);
+        return;
+    }
+    if (item.hasAttribute('data-easystud-grouping-id')) {
+        ensureTreeSection(root, item);
+        openAdvancedSettingsModalNow(root, item, returnFocus);
+        return;
+    }
+    const groupid = Number(item.getAttribute('data-easystud-group-id'));
+    model.groupDetails = model.groupDetails || new Map();
+    const apply = details => {
+        item.setAttribute('data-easystud-advanced-description', details.description || '');
+        item.setAttribute('data-easystud-advanced-raw-description', details.rawdescription || '');
+        item.setAttribute('data-easystud-advanced-idnumber', details.idnumber || '');
+        item.setAttribute('data-easystud-advanced-picture', details.pictureurl || '');
+        item.setAttribute('data-easystud-advanced-enrolment-key', details.enrolmentkey ? '1' : '0');
+        item.setAttribute('data-easystud-advanced-hide-picture', details.hidepicture ? '1' : '0');
+    };
+    if (!groupid || model.groupDetails.has(groupid)) {
+        if (groupid) {
+            apply(model.groupDetails.get(groupid));
+        }
+        openAdvancedSettingsModalNow(root, item, returnFocus);
+        return;
+    }
+    // On demand, cards do not carry the descriptions: load them once (local_groupimport_get_details).
+    item.setAttribute('aria-busy', 'true');
+    fetchDetails(onDemandParticipants.courseId, 'group', [groupid]).then(items => {
+        if (items[0]) {
+            model.groupDetails.set(groupid, items[0]);
+            apply(items[0]);
+        }
+        item.removeAttribute('aria-busy');
+        openAdvancedSettingsModalNow(root, item, returnFocus);
+        return items;
+    }).catch(error => {
+        item.removeAttribute('aria-busy');
+        Notification.exception(error);
+    });
+};
+
+const openAdvancedSettingsModalNow = (root, item, returnFocus = null) => {
     const labels = getLabels(root);
     const type = getAdvancedValue(item, 'type');
     const isgroup = type === 'group';
@@ -6402,6 +6484,9 @@ const bindTree = root => {
         section.classList.toggle('is-expanded', !expanded);
         const isUngrouped = section.classList.contains('local-groupimport-easystud-tree__section--ungrouped');
         const activityToken = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
+        if (!expanded) {
+            ensureTreeSection(root, section);
+        }
         animateTreeChildren(children, !expanded, isUngrouped ? {prepare: false, syncAfter: false} : {
             onComplete: () => {
                 if (!expanded) {
@@ -7330,15 +7415,24 @@ const bindMoveModal = (root, courseId) => {
 
         if (type === 'participant' || type === 'member') {
             const seen = new Set();
-            root.querySelectorAll('[data-easystud-tree] [data-easystud-group-id]').forEach(group => {
-                const value = group.getAttribute('data-easystud-group-id') || '';
+            const model = getOnDemandModel(root);
+            // On demand, list every group from the state in the order of the Structure catalog (which sits
+            // first in the tree and holds every group in the legacy page): only one page is rendered now.
+            const structureList = root.querySelector('.local-groupimport-easystud-structure-groups__list');
+            const entries = model && model.catalogs ?
+                sortGroupIds(model, model.raw.groups.map(group => group.id),
+                    (structureList && structureList.getAttribute('data-easystud-sort')) || 'alpha')
+                    .map(groupid => ({value: String(groupid), name: model.groups.get(groupid).name})) :
+                Array.from(root.querySelectorAll('[data-easystud-tree] [data-easystud-group-id]'))
+                    .map(group => ({value: group.getAttribute('data-easystud-group-id') || '', name: getGroupName(group)}));
+            entries.forEach(({value, name}) => {
                 if (!value || seen.has(value)) {
                     return;
                 }
                 seen.add(value);
                 const option = document.createElement('option');
                 option.value = value;
-                option.textContent = getGroupName(group);
+                option.textContent = name;
                 destination.appendChild(option);
                 hasDestination = true;
             });
@@ -10887,6 +10981,40 @@ const renderOnDemandCatalogPage = (root, list, config) => {
 };
 
 /**
+ * Render the group cards of a tree section (a grouping or the groups without grouping)
+ * from the state, when it opens. Unchanged sections are kept as they are.
+ *
+ * @param {HTMLElement|null} root EasyStud root.
+ * @param {HTMLElement|null} section Tree section.
+ */
+const ensureTreeSection = (root, section) => {
+    const model = getOnDemandModel(root);
+    if (!model || !model.catalogs || !section) {
+        return;
+    }
+    const container = section.querySelector('.local-groupimport-easystud-tree__children');
+    const key = section.classList.contains('local-groupimport-easystud-tree__section--ungrouped') ? 'ungrouped' :
+        (section.getAttribute('data-easystud-grouping-id') || '');
+    if (!container || !key || container.easystudSmRenderedKey === model.revision) {
+        return;
+    }
+    container.easystudSmRenderedKey = model.revision;
+    const cards = renderTreeSection(model, container, key);
+    decorateOnDemandGroupCards(root, cards);
+    const labels = getLabels(root);
+    if (key === 'ungrouped') {
+        syncUngroupedState(root, labels);
+    } else {
+        syncGroupingChildrenState(section, labels);
+        updateGroupingBadge(section);
+    }
+    const search = section.querySelector('[data-easystud-container-group-search]');
+    if (search && normalise(search.value)) {
+        applyContainerGroupSearch(root, {pagination: false});
+    }
+};
+
+/**
  * Give freshly rendered catalog cards what the legacy page adds at start-up.
  *
  * Heavy advanced-settings attributes are copied from the group tree, which still renders
@@ -10911,7 +11039,7 @@ const decorateOnDemandGroupCards = (root, cards) => {
     ensureAdvancedSettingsButtons(root);
     cards.forEach(card => card.querySelectorAll('.local-groupimport-easystud-group__groupings--inline')
         .forEach(container => normaliseGroupGroupingTags(root, container)));
-    ensureNestedGroupActionMenus(root);
+    ensureNestedGroupActionMenus(root, cards);
     cards.forEach(card => {
         applyGroupMemberSearchToGroup(root, card);
         setCountBadgeState(card.querySelector('.local-groupimport-easystud-group__header .badge'),
@@ -11005,6 +11133,15 @@ const scheduleOnDemandStateRefresh = root => {
             refreshModel(model);
             applyFilters(root);
             syncCatalogFilters(root);
+            root.querySelectorAll('[data-easystud-tree] .local-groupimport-easystud-tree__section').forEach(section => {
+                const children = section.querySelector('.local-groupimport-easystud-tree__children');
+                if (children && children.easystudSmRenderedKey !== undefined && !children.hidden) {
+                    ensureTreeSection(root, section);
+                }
+                if (section.hasAttribute('data-easystud-grouping-id')) {
+                    updateGroupingBadge(section);
+                }
+            });
             updateSelectionActions(root);
             root.setAttribute('data-easystud-sm-version', raw.meta.version);
             return raw;
@@ -11034,6 +11171,7 @@ const startOnDemandState = (root, courseId, strings, groupStrings) => {
             const renderStarted = window.performance.now();
             applyFilters(root);
             syncCatalogFilters(root);
+            root.querySelectorAll('[data-easystud-tree] [data-easystud-grouping-id]').forEach(updateGroupingBadge);
             updateSelectionActions(root);
             root.easystudSm = {
                 reactive,
