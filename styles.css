@@ -9506,6 +9506,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 .easyedu-ui .easyedu-information {background: var(--easyedu-information-surface);border: 0.0625rem solid var(--easyedu-semantic-border-primary);border-radius: 0.75rem;display: grid;gap: 0.5rem;padding: 0.875rem 1rem 1rem;margin-block-end: 1rem;min-inline-size: 0;
 }
 
+.easyedu-ui .easyedu-information.easyedu-information--deposit-aligned {background: var(--easyedu-surface);border-color: var(--easyedu-deposit-border);border-radius: 0.9rem;padding: 1rem;
+}
+.easyedu-ui .easyedu-information.easyedu-information--deposit-aligned .easyedu-information__header {gap: 0.75rem;
+}
+.easyedu-ui .easyedu-information.easyedu-information--deposit-aligned .easyedu-information__label,
+.easyedu-ui .easyedu-information.easyedu-information--deposit-aligned .easyedu-tag-list {margin-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
+}
+
 .easyedu-ui .easyedu-information__header {display: grid;gap: 0.375rem;grid-template-columns: 2.55rem minmax(0, 1fr);
 }
 
@@ -10732,12 +10740,25 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon [id^=filepicker-wrapper-] {padding-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
 }
 
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned {background: var(--easyedu-surface);
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned .easyedu-file-deposit__support {margin-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned [id^=filepicker-wrapper-] {padding-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned [id^=filepicker-wrapper-] > div:first-child {text-align: start;
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned .easyedu-file-deposit__requirements {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;background: transparent;border: 0;border-radius: 0;min-block-size: 0;padding: 0;margin-inline: calc(var(--easyedu-section-icon-size-small) + 0.75rem) 0;align-items: baseline;flex-direction: row;
+}
+.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned .easyedu-file-deposit__requirements strong {font-size: inherit;margin-inline-end: 0;
+}
+
 @media (max-width: 40rem) {
   .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon .easyedu-file-deposit__support,
-  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon .easyedu-file-deposit__support {margin-inline-start: 0;
+  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon:not(.easyedu-file-deposit--aligned) .easyedu-file-deposit__support {margin-inline-start: 0;
   }
   .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon [id^=filepicker-wrapper-],
-  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon [id^=filepicker-wrapper-] {padding-inline-start: 0;
+  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon:not(.easyedu-file-deposit--aligned) [id^=filepicker-wrapper-] {padding-inline-start: 0;
   }
   .easyedu-ui .easyedu-file-deposit--moodle .easyedu-file-deposit__support {margin-inline: 0;margin-block-start: 1rem;
   }

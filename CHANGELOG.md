@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N2] T024: align paired Mass Import subsections and replace the nested formats surface with a caption; preserve picker, POST/sesskey and vertical-density follow-up.
+
 - 2026-10-13 [N1] SM-RENDU suite (Claude): show an inline state-load failure,
   render only the first two members until a card needs its complete list, and
   batch card-header measurements in both modes. Rebuilt canonical AMD;
