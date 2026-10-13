@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] T059: add a read-only responsive audit for Student Management, Mass Import and administration at 1024, 768 and 390 px. Native FR evidence records no horizontal overflow, errors or requested business writes for the covered surfaces and Participant, Clipboard and History dialogs; unentered conditional dialogs and human visual acceptance remain open.
+
 - 2026-10-13 [N0/N1] T058: confine keyboard lifecycle to the existing Group/Grouping, Move, confirmation, Clipboard and History dialogs: initial focus, visible-enabled Tab loop, nested-Escape yield and post-Motion opener restoration. No mutation, template, Sass or Moodle-5-only API; static/build checks and read-only Perf proof pass in FR1280 and FR390. The wider accessibility audit and human checklist remain open.
 
 - 2026-10-13 [N0/N1] T058: source overlay inventory and read-only Perf accessibility audits of dialogs, expanded filters, menus, history/rollback, administration and compact navigation. Record focus/Tab/Escape, contrast/labels and conditional gaps; no product corrections or full accessibility acceptance claimed.

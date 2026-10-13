@@ -788,10 +788,13 @@
     {
       "id": "T059",
       "receivedScope": "[US6] **Passe tablette (768–1024) et mobile (390)** des trois surfaces et des modales, non couverte par la revue Claude.",
-      "status": "queued",
-      "nativeVerified": false,
+      "status": "responsive-audit-native-fr1024-fr768-fr390-delivered; conditional-dialog-and-human-visual-coverage-open",
+      "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
+      "related": [
+        "tools/playwright/t059-responsive-audit.spec.js",
+        "docs/t059-responsive-audit-2026-10-13.md"
+      ],
       "decisionGate": "none"
     },
     {
