@@ -15,11 +15,21 @@ if (output.startsWith(root + path.sep)) throw new Error('Raw reports stay outsid
 const after = JSON.parse(fs.readFileSync(args.after, 'utf8'));
 const before = args.before && fs.existsSync(args.before) ? JSON.parse(fs.readFileSync(args.before, 'utf8')) : null;
 const key = record => `${record.spec}\n${record.title}`;
+const errorDetails = record => {
+    if (!record?.runRoot) return {};
+    const log = path.join(record.runRoot, 'playwright.stdout.log');
+    if (!fs.existsSync(log)) return {};
+    const text = fs.readFileSync(log, 'utf8');
+    const field = name => new RegExp(`^\\s*${name}:\\s*(.+)$`, 'm').exec(text)?.[1]?.trim() || '';
+    const sourceFrame = /\bat\s+[^\r\n]*?([^\s()]+\.spec\.js):(\d+):(\d+)\)?/m.exec(text);
+    return {underlying: field('Error'), expected: field('Expected'), received: field('Received'),
+        specLine: sourceFrame ? sourceFrame[2] : record.line};
+};
 const index = matrix => {
     const entries = new Map();
     for (const record of matrix?.records || []) {
         if (!entries.has(key(record))) entries.set(key(record), {});
-        entries.get(key(record))[record.mode] = record;
+        entries.get(key(record))[record.mode] = {...record, errorDetails: errorDetails(record)};
     }
     return entries;
 };
@@ -29,7 +39,8 @@ const resultState = pair => {
     if (!pair?.legacy || !pair?.reactive) return 'pending';
     const {legacy, reactive} = pair;
     if (legacy.status === 'passed' && reactive.status === 'passed') return 'both-pass';
-    if (legacy.status !== reactive.status || legacy.firstError !== reactive.firstError || legacy.line !== reactive.line) {
+    if (legacy.status !== reactive.status || legacy.firstError !== reactive.firstError || legacy.line !== reactive.line ||
+            JSON.stringify(legacy.errorDetails) !== JSON.stringify(reactive.errorDetails)) {
         return 'different-outcome';
     }
     if (legacy.status === 'failed' && legacy.firstError) return 'same-failure';

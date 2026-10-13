@@ -77,10 +77,18 @@ covered by their existing workflows; this lot dynamically verifies only the
 focused matrix, while the shared read-list change has static coverage of all
 188 callers. `summarize-sm-rendu-spec-parity.cjs` reports remaining dynamic
 coverage explicitly and never treats an equal failure as a product PASS.
+It compares first error, source line and the actual expected/received values
+from the native log, so two different CSS/DOM failures cannot be called equal
+only because they share an assertion type.
 
 The supervised Playwright configuration captures only failed tests, so a code
 discrepancy can be returned with its real terminal screen. All such captures
 remain in the wrapper's external, manifested run directory.
+
+The saved-credential wrapper now also derives `EASYEDU_MASS_IMPORT_URL` from
+the explicit approved Moodle URL, preserving its host, port and course query.
+This bounds historical accessibility specs with a localhost fallback to the
+same dedicated copy, including the retained before-change specimens.
 
 These helpers/specs are local-supervised candidates: auth, an existing course
 and copy-only configuration preparation are required. CI promotion needs a

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0/N2] SM-RENDU harness: bind historical Mass Import URLs to the explicitly approved Moodle runtime (host/port/course preserved), clear that URL on runner cleanup, and compare actual expected/received failure values before claiming equal outcomes.
+
 - 2026-10-13 [N2] SM-RENDU test evidence: add a compact before/after mode-comparison report distinguishing equal failures from product PASS; capture failed-test screens in the existing external Playwright run directory. Full focused comparison remains running; shared guards retain static coverage of all 188 callers.
 
 - 2026-10-13 [N2] SM-RENDU Playwright: centralize the two read-only renderer AJAX methods across 188 routed specs; open lazy grouping children from count badges in 17 specs, scope selection to the visible page and displayed totals, and use native filter options for known group names. Add guarded Perf preparation and paired-mode supervision; static contract passes, full paired browser evidence remains in progress.

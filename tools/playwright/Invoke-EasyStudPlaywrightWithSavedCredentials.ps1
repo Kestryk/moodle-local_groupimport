@@ -331,6 +331,7 @@ $discoveryLog = Join-Path $runRoot 'discovery.log'
 
 $credentialEnvironmentNames = @(
     'EASYEDU_MOODLE_URL',
+    'EASYEDU_MASS_IMPORT_URL',
     'EASYEDU_MOODLE_USERNAME',
     'EASYEDU_MOODLE_PASSWORD',
     'EASYEDU_EASYSTUD_MANAGER_URL',
@@ -446,6 +447,12 @@ try {
         }
 
         [Environment]::SetEnvironmentVariable('EASYEDU_MOODLE_URL', $MoodleUrl, 'Process')
+        # Historical Mass Import specs have a localhost default. Derive this
+        # sibling surface from the explicitly approved runtime URL, including
+        # its port/course query, so a copy-only run never reaches the principal.
+        $massImportUrl = [UriBuilder]::new($MoodleUrl)
+        $massImportUrl.Path = '/local/groupimport/index.php'
+        [Environment]::SetEnvironmentVariable('EASYEDU_MASS_IMPORT_URL', $massImportUrl.Uri.AbsoluteUri, 'Process')
         [Environment]::SetEnvironmentVariable('EASYEDU_LOADING_DIAGNOSTIC_URL', $MoodleUrl, 'Process')
         [Environment]::SetEnvironmentVariable('PLAYWRIGHT_OUTPUT_DIR', $playwrightOutput, 'Process')
         [Environment]::SetEnvironmentVariable('PLAYWRIGHT_PROFILE_DIR', $profileRoot, 'Process')

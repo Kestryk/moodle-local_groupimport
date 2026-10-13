@@ -18,7 +18,8 @@ $state = is_file($statepath) ? json_decode(file_get_contents($statepath), true, 
 if ($action === 'prepare') {
     $username = getenv('EASYEDU_MOODLE_USERNAME');
     if (!$username) { throw new RuntimeException('QA username must be loaded in process environment.'); }
-    $user = $DB->get_record('user', ['username' => strtolower($username), 'deleted' => 0], 'id', MUST_EXIST);
+    $user = $DB->get_record('user', ['username' => strtolower($username), 'deleted' => 0], 'id');
+    if (!$user) { throw new RuntimeException('QA account was not found on the dedicated copy.'); }
     $generation = \local_groupimport\local\guide_welcome::generation();
     if (!$state) {
         $previous = $DB->get_record('user_preferences', ['userid' => $user->id, 'name' => $key]);
