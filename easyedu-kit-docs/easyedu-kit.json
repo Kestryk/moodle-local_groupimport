@@ -5,9 +5,9 @@
   "status": "stable",
   "consumerSync": {
     "guideNavigationT038_20261013": {
-      "kitCommit": "63abbfc75b4457ca848471b80634b4b4646c5013",
-      "kitVersion": "0.4.201",
-      "scope": "Route pictogram replaces visible guided-path text badge; short numbered chapter labels wrap without truncation; the direct chapter-icon selector excludes the compact route marker; state, paths, controls and Motion unchanged.",
+      "kitCommit": "facc8993407ec6778116abd23226f035706c10ee",
+      "kitVersion": "0.4.202",
+      "scope": "Route pictogram replaces visible guided-path text badge; short numbered chapter labels wrap without truncation; direct chapter-icon paint excludes the compact route marker, which stays inline against Moodle host icon utilities; state, paths, controls and Motion unchanged.",
       "sourceStaticScript": "tools/release/test-guide-t038-navigation.cjs",
       "sourceStaticPassed": true,
       "foundationPaintPending": true,

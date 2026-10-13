@@ -1,5 +1,9 @@
 # Changelog
 
+- 2026-10-13 [N0] T038 host compatibility: the compact route pictogram
+  explicitly retains inline-flex against Moodle's forced Font Awesome display.
+  Navigation labels, semantics, state, controls and Motion are unchanged.
+
 - 2026-10-13 [N0] T038 follow-up: preserve the compact inline route pictogram
   for guided paths by excluding it from the generic direct Guide topic-icon
   selector. Numbered navigation labels, state, paths, controls and Motion are

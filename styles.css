@@ -3747,7 +3747,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item.is-locked:focus-visible {border-color: #d7e0e9;box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path,
-.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path {align-items: center;background: var(--easyedu-accent-soft);border: 1px solid color-mix(in srgb, var(--easyedu-accent) 24%, var(--easyedu-surface) 76%);border-radius: 999px;color: var(--easyedu-accent);display: inline-flex;flex: 0 0 auto;font-size: 0.6875rem;height: 1.375rem;justify-content: center;line-height: 1;margin-inline-start: auto;width: 1.375rem;
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path {align-items: center;background: var(--easyedu-accent-soft);border: 1px solid color-mix(in srgb, var(--easyedu-accent) 24%, var(--easyedu-surface) 76%);border-radius: 999px;color: var(--easyedu-accent);display: inline-flex !important;flex: 0 0 auto;font-size: 0.6875rem;height: 1.375rem;justify-content: center;line-height: 1;margin-inline-start: auto;width: 1.375rem;
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav-copy,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav-copy {display: grid;gap: 0.05rem;min-width: 0;
