@@ -183,8 +183,14 @@ test('Framed Add preserves configured semantic tokens at three widths', async({p
                     }));
                     expect(Math.abs(heights.field - heights.cancel)).toBeLessThanOrEqual(1);
                     reports.push({width, kind: 'container-search', heights});
+                    // Disclosure completion focuses the real search field.
+                    // Wait for that native callback before exercising Tab;
+                    // otherwise it can steal focus back after Cancel.focus().
+                    await settle(search);
+                    const searchInput = searchField.locator('input');
+                    await searchInput.focus();
                     await page.keyboard.press('Tab');
-                    await searchCancel.focus();
+                    await expect(searchCancel).toBeFocused();
                     expect(await searchCancel.evaluate(n => n.matches(':focus-visible'))).toBe(true);
                     expect(await searchCancel.evaluate(n => getComputedStyle(n).boxShadow)).not.toBe('none');
                     await search.screenshot({path: testInfo.outputPath(`inline-search-${width}.png`)});

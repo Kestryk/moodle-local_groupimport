@@ -58,6 +58,14 @@ records the controller/readiness timeline, grouping counts and a capture after
 a bounded real-ready wait. Any persistent product discrepancy is returned to
 Claude with the exact spec, line, mode and capture.
 
+The themed Framed Add case passed reactive but failed legacy at the Cancel
+focus-visible assertion. Its retained legacy screen shows the search input
+focused: the native disclosure completion had returned focus there after the
+test's programmatic Cancel focus. The successor waits the finite native
+disclosure, focuses the actual input and Tabs to Cancel, retaining the same
+focus-visible and box-shadow checks. Only this changed case is queued for a
+paired rerun after the original matrices and their restoration have finished.
+
 ## Run and next gates
 
 ```powershell
