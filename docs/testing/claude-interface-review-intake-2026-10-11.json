@@ -302,7 +302,7 @@
     "A2": "Kevin approved actual available panel width on20261012; container-query ratios, existing stacking rules preserved.",
     "A3": "Kevin chose optionA: card titles600; update Foundations/Kit/consumers, not local overrides.",
     "GS10": "Kevin chose to retain the dedicated Show in interface cue row; do not merge it into the footer.",
-    "GS3": "Pending short translated tab labels proposal.",
+    "GS3": "Kevin approved short translated numbered tab labels on20261012: one chapter label per consecutive group; FR/EN wording recorded in DECISIONS-KEVIN D3.",
     "GuideHeaderTitle": "Pending non-redundant title proposal.",
     "FoundationTitlePaint": "Saved canonical main verified: #264861, Inter14/700; stale documentation corrected, approved600 adoption separate."
   },
@@ -338,7 +338,7 @@
     {
       "id": "T003",
       "receivedScope": "[P] Comparer les propositions aux compositions Penpot « Guide Easystud » (`b564c72c…`) et « EasyStud » (`220f6449…`), sur le canal MCP de l'intégrateur. Cette revue n'a pas pu le faire.",
-      "status": "queued",
+      "status": "in-progress: approved numbered short FR/EN labels and route pictogram implemented in Kit0.4.200/source; static contract PASS, Foundation/Penpot and native N2 pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],

@@ -1314,26 +1314,6 @@
         border-color: #c2dfcf;
         color: var(--easyedu-accent);
       }
-
-      &::after {
-        background: #e8f5ed;
-        border: 1px solid #c2dfcf;
-        border-radius: 999px;
-        color: var(--easyedu-accent);
-        content: attr(data-easyedu-guided-label);
-        flex: 0 0 auto;
-        font-size: 0.58rem;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        line-height: 1.1;
-        margin-left: auto;
-        max-width: 3.3rem;
-        padding: 0.12rem 0.34rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-transform: uppercase;
-        white-space: nowrap;
-      }
     }
 
     .easyedu-guide-nav-item__requirement {
@@ -1362,7 +1342,7 @@
         color: #7d90a3;
       }
 
-      &.has-guided-path::after {
+      .easyedu-guide-nav-item__path {
         display: none;
       }
 
@@ -1397,6 +1377,22 @@
         @include focus.ring($border-color: #d7e0e9);
       }
     }
+
+    .easyedu-guide-nav-item__path {
+      align-items: center;
+      background: var(--easyedu-accent-soft);
+      border: 1px solid color-mix(in srgb, var(--easyedu-accent) 24%, var(--easyedu-surface) 76%);
+      border-radius: 999px;
+      color: var(--easyedu-accent);
+      display: inline-flex;
+      flex: 0 0 auto;
+      font-size: 0.6875rem;
+      height: 1.375rem;
+      justify-content: center;
+      line-height: 1;
+      margin-inline-start: auto;
+      width: 1.375rem;
+    }
   }
 
   .easyedu-guide-nav-copy {
@@ -1414,9 +1410,9 @@
     }
 
     span {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      white-space: normal;
     }
   }
 }

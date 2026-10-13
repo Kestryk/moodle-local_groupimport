@@ -83,6 +83,7 @@
                                 {{/navcategorymanaged}}
                                 <span>{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
                             </span>
+                            {{#hasguidedpath}}<span class="easyedu-guide-nav-item__path fa fa-route" role="img" aria-label="{{guidebadgelabel}}"></span>{{/hasguidedpath}}
                             {{#requires}}
                                 <span class="easyedu-guide-nav-item__requirement" aria-hidden="true">{{#requiresbadge}}{{requiresbadge}}{{/requiresbadge}}{{^requiresbadge}}{{guiderequiresbadge}}{{/requiresbadge}}</span>
                             {{/requires}}
