@@ -45,6 +45,10 @@ test('Select results targets only the current filtered set after clearing a glob
         const users = root.locator('[data-easystud-participant-list] > [data-easystud-user]:visible');
         const pageTotal = await users.count();
         expect(pageTotal).toBeGreaterThan(1);
+        const resultCount = root.locator('[data-easystud-participant-list] ' +
+            '[data-easystud-pagination="top"] [data-easystud-list-count]').first();
+        const total = Number.parseInt(await resultCount.textContent(), 10);
+        expect(total).toBeGreaterThanOrEqual(pageTotal);
         const selectResults = root.locator(
             '[data-easystud-participant-list] [data-easystud-pagination="top"] ' +
             '[data-easystud-select-results]:visible'
@@ -77,12 +81,16 @@ test('Select results targets only the current filtered set after clearing a glob
         await choice.getByRole('button', {name: candidate.text, exact: true}).click();
         await choice.getByRole('searchbox').press('Escape');
         await expect(choice.locator('.easyedu-searchable-choice__trigger')).toHaveAttribute('aria-expanded', 'false');
+        await expect.poll(async() => Number.parseInt(await resultCount.textContent(), 10)).toBeLessThan(total);
+        const filteredTotal = Number.parseInt(await resultCount.textContent(), 10);
 
         const expectedIds = await users.evaluateAll(nodes => nodes
             .filter(node => !node.hasAttribute('data-easystud-filter-hidden'))
             .map(node => node.getAttribute('data-user-id')));
-        expect(expectedIds.length).toBe(candidate.count);
-        expect(expectedIds.length).toBeLessThan(pageTotal);
+        expect(expectedIds.length).toBeGreaterThan(0);
+        expect(expectedIds.length).toBeLessThanOrEqual(filteredTotal);
+        expect(await users.evaluateAll((nodes, groupId) => nodes.every(node =>
+            (node.getAttribute('data-group-ids') || '').split(',').includes(groupId)), candidate.value)).toBe(true);
         await expect(selectResults.locator('[data-easystud-select-results-label]')).toContainText(/result/i);
 
         // Deselect results after filtering must also clear the selected entities
@@ -116,7 +124,7 @@ test('Select results targets only the current filtered set after clearing a glob
             .map(node => node.getAttribute('data-user-id')));
         expect([...reselectedIds].sort()).toEqual([...expectedIds].sort());
 
-        records.push({width, pageTotal, filtered: expectedIds.length, selectedIds: reselectedIds});
+        records.push({width, total, pageTotal, filteredTotal, filtered: expectedIds.length, selectedIds: reselectedIds});
         save();
     }
 

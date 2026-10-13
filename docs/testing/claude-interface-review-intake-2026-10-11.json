@@ -6,6 +6,17 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "codex2SmRenduSpecParity20261013": {
+    "owner": "Codex2",
+    "branch": "work/port4719pg3/easystud-sm-rendu-specs-20261013",
+    "productBase": "c9e1fed8",
+    "scope": "tools/playwright renderer-independent specs and supervision",
+    "staticContract": "188 routed specs; 17 lazy-tree specs; visible-page selection; PASS",
+    "browserStatus": "paired legacy/reactive matrix running on :8051; no complete parity claim",
+    "progress": "docs/sm-rendu-playwright-parity-progress-2026-10-13.md",
+    "rawExternal": "C:/dev/artifacts/es-parity-N2-20261013/after/matrix.json",
+    "humanAccepted": false
+  },
   "claudeReviewR320261012": {
     "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
     "R3-1":{"scope":"No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states","level":1,"status":"Kit197-source59-PASS; native-publication-pending"},

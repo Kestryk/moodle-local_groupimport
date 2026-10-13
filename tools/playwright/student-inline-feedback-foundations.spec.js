@@ -23,7 +23,8 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
     const user = root.locator('[data-easystud-user][data-user-email]').first();
     const knownUser = await user.getAttribute('data-user-email');
     const knownName = (await user.locator('.local-groupimport-easystud-user__name').textContent()).trim();
-    const knownGroup = (await root.locator('.local-groupimport-easystud-group__name').first().textContent()).trim();
+    const knownGroup = (await root.locator('[data-easystud-group-filter] option:not([value=""])')
+        .first().textContent()).trim();
     expect(knownUser).toBeTruthy();
     expect(knownGroup).toBeTruthy();
     const reports = [];
@@ -47,7 +48,7 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
             for (const kind of ['group', 'grouping']) {
                 const responsive = width <= 1024;
                 if (responsive) await root.locator(`[data-easystud-mobile-view="${kind}s"]`).click();
-                if (kind === 'group') await openPopulatedGrouping(root);
+                if (!responsive && kind === 'group') await openPopulatedGrouping(root);
                 const card = root.locator(`[data-easystud-${kind}-id]:visible`).first();
                 await card.scrollIntoViewIfNeeded();
                 await settle(card);

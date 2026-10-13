@@ -10,9 +10,11 @@
  */
 async function openPopulatedGrouping(root) {
     const groupings = root.locator('[data-easystud-tree] [data-easystud-grouping-id]:visible');
+    await groupings.first().waitFor({state: 'visible', timeout: 15000});
     const index = await groupings.evaluateAll(nodes => nodes.findIndex(node => {
-        const badge = node.querySelector(':scope > .local-groupimport-easystud-grouping__header .badge');
-        const count = Number.parseInt((badge && badge.textContent) || '', 10);
+        const badge = node.querySelector('.local-groupimport-easystud-tree__toggle .badge');
+        const count = Number.parseInt(node.getAttribute('data-easystud-advanced-count') ||
+            (badge && badge.textContent) || '', 10);
         return Number.isFinite(count) && count > 0;
     }));
     if (index < 0) throw new Error('Existing populated grouping is required; no fixture is created.');

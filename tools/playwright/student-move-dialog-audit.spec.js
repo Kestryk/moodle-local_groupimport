@@ -5,7 +5,8 @@ const {openPopulatedGrouping} = require('./easystud-lazy-tree.cjs');
 // local-supervised: existing course data only; selection, open and cancel.
 // Never confirm a move, change memberships, manufacture empty data or submit.
 test('Student move dialogs preserve native participant and group branches', async ({page}, testInfo) => {
-    test.setTimeout(150000);
+    // Nine full native page navigations, with a fresh selection for each branch.
+    test.setTimeout(300000);
     const records = [], blockedWrites = [];
     const save = () => fs.writeFileSync(testInfo.outputPath('move-native.json'), JSON.stringify(records, null, 2));
     const root = page.locator('#local-groupimport-easystud');
@@ -46,17 +47,16 @@ test('Student move dialogs preserve native participant and group branches', asyn
             await page.setViewportSize({width, height: 1100});
             await ready(); // Each context starts with native selection cleared.
             if (kind === 'groups') {
-                const toggle = width <= 1024 ? '[data-easystud-mobile-view="groups"]:visible' :
+                const toggle = width <= 1024 ? '[data-easystud-mobile-view="' +
+                    (branch === 'groups-in-grouping' ? 'groupings' : 'groups') + '"]:visible' :
                     '[data-easystud-layout-mode="structure"]:visible';
                 await root.locator(toggle).first().click();
-                await openPopulatedGrouping(root);
+                if (branch === 'groups-in-grouping') await openPopulatedGrouping(root);
             }
-            const candidates = root.locator('[data-easystud-group-id]:visible');
-            const groupedIndex = branch === 'groups-in-grouping' ? await candidates.evaluateAll(nodes => nodes.findIndex(node => {
-                const id = node.getAttribute('data-easystud-group-id');
-                return [...document.querySelectorAll('[data-easystud-grouping-id]')].some(parent =>
-                    parent.querySelector(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id="' + id + '"]'));
-            })) : -1;
+            const candidates = root.locator(branch === 'groups-in-grouping' ?
+                '[data-easystud-tree] [data-easystud-grouping-id] > .local-groupimport-easystud-tree__children > [data-easystud-group-id]:visible' :
+                '[data-easystud-group-id]:visible');
+            const groupedIndex = branch === 'groups-in-grouping' && await candidates.count() ? 0 : -1;
             if (branch === 'groups-in-grouping') { expect(groupedIndex, 'Existing grouped course group is required; do not create fixtures').toBeGreaterThanOrEqual(0); }
             const item = kind === 'participants' ? root.locator('[data-easystud-user]:visible').first() :
                 candidates.nth(groupedIndex >= 0 ? groupedIndex : 0);

@@ -23,7 +23,8 @@ test('Framed Add uses active workspace and retains feedback at three widths', as
     const user = root.locator('[data-easystud-user][data-user-email]').first();
     const knownUser = await user.getAttribute('data-user-email');
     const knownName = (await user.locator('.local-groupimport-easystud-user__name').textContent()).trim();
-    const knownGroup = (await root.locator('.local-groupimport-easystud-group__name').first().textContent()).trim();
+    const knownGroup = (await root.locator('[data-easystud-group-filter] option:not([value=""])')
+        .first().textContent()).trim();
     expect(knownUser).toBeTruthy();
     expect(knownGroup).toBeTruthy();
     const reports = [], errors = [], blocked = [];
@@ -74,7 +75,7 @@ test('Framed Add uses active workspace and retains feedback at three widths', as
                     await root.locator('[data-easystud-layout-mode="structure"]:visible').click();
                     await settle(root);
                 }
-                if (kind === 'group') await openPopulatedGrouping(root);
+                if (!responsive && kind === 'group') await openPopulatedGrouping(root);
                 const card = root.locator(`[data-easystud-${kind}-id]:visible`).first();
                 await card.scrollIntoViewIfNeeded();
                 await settle(card);

@@ -60,7 +60,7 @@ test('Student context menus preserve responsive geometry and focus', async({page
                     await root.locator(`[data-easystud-mobile-view="${view}"]`).click();
                     await expect(root).toHaveAttribute('data-easystud-mobile-view-active', view);
                 }
-                if (view === 'groups') await openPopulatedGrouping(root);
+                if (!responsive && view === 'groups') await openPopulatedGrouping(root);
                 const card = root.locator(`${selector}:visible`).first();
                 await expect(card).toBeVisible();
                 await card.scrollIntoViewIfNeeded();
