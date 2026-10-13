@@ -16,6 +16,16 @@
     "nativeVerified": false,
     "humanAccepted": false
   },
+  "seriesAIcone20261014": {
+    "owner": "Codex1",
+    "status": "source-pending-grouped-preview-native-human",
+    "kitVersion": "0.4.208",
+    "kitCommit": "6abf7d4",
+    "documentation": "docs/testing/series-a-icone-2026-10-14.md",
+    "nativeSpec": "tools/playwright/k14-k15-a-icone-native.spec.js",
+    "nativeVerified": false,
+    "humanAccepted": false
+  },
   "seriesATextes20261013": {
     "owner": "Codex1",
     "status": "source-built-served-native-fr-pass-partially-open-claude-human",
@@ -391,9 +401,10 @@
       "designPublished": true,
       "designChangeRequired": true,
       "previewServed": true,
-      "nativeVerified": true,
+      "nativeVerified": false,
+      "historicalNativeVerified": true,
       "currentProof": "docs/testing/participant-panel-title-native-2026-10-11.json",
-      "proofScope": "Six EN/FR headings at three widths; four saved/painted titles; compact navigation unchanged.",
+      "proofScope": "Historical R10-21: six EN/FR headings at three widths; four saved/painted titles; compact navigation unchanged. K17 left-column title is not covered and remains pending.",
       "humanAccepted": false
     },
     {

@@ -1,4 +1,11 @@
 {
+  "steering20261014": {
+    "source": "Kevin instruction 2026-10-14",
+    "penpotOperator": "Claude only; Codex does no Penpot operation",
+    "seriesBFirst": "T048 (K18) participant/group/grouping details redesign; Claude design before integration",
+    "k17": "Added to R10-21: Participants heading for the left column above filters search",
+    "seriesAThenOwnedR10": true
+  },
   "program": "EED-UI-2026-0073",
   "directive": "Kevin20261012: compare entire backlog by urgency, impact and dependency; do every retained requirement, not newest first",
   "record": "docs/execution-priority-2026-10-12.md",

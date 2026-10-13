@@ -1,5 +1,13 @@
 # Changelog
 
+- 2026-10-14 [N0] Record Kevin's allocation: Claude operates Penpot alone,
+  K17 reopens R10-21's left-column title scope, and T048/K18 leads series B.
+
+- 2026-10-14 [N1] A-ICONE: align Guide grouping identities and add-groups
+  action with the existing layer-group glyph; the compact inspection menu
+  includes that action glyph. Preserve the Add submit plus, scene engines,
+  clocks, native commands and previously integrated T037/T038 markup.
+
 - 2026-10-14 [N1] Record cumulative FR1280 native checks on c31dad3c for
   A-TEXTES and Claude R10-23: seven path cards, localized checklist and actual
   group/participant scrolling in both modes; no attempted course writes.
