@@ -36,10 +36,28 @@ restent inchangés.
 - Les deux AMD sont reconstruits avec les toolchains Moodle disponibles ;
   `git diff --check` passe.
 
-La preuve navigateur N1 sur la copie Perf (:8051), en 1280 et 390, reste le
-jalon suivant. Elle doit confirmer les sélecteurs réels sans enregistrer,
-déplacer, supprimer ni modifier de données. L'audit d'accessibilité global et
-la checklist humaine restent ouverts.
+## Preuve navigateur N1
+
+La copie Perf (`http://localhost:8051`) a exécuté la même version servie en
+français, avec les routes métier bloquées avant chaque interaction.
+
+- À 1280 px : Participant, réglages Group et Grouping, déplacement de groupes,
+  membres et participants, confirmation de suppression, Clipboard et History
+  passent tous le focus initial, le bouclage Tab, Échap et le retour au
+  déclencheur attendu. Aucun message d'erreur de page ni écriture demandée.
+- À 390 px : Participant, Clipboard et History passent le même contrat. Pour
+  Clipboard et History ouverts depuis la navigation compacte, le retour prévu
+  est le bouton de navigation, car l'action intérieure redevient cachée.
+
+Les deux runners ont terminé avec `status: passed`, leurs identifiants et
+baux ont été nettoyés, et les artefacts externes sont conservés sous
+`C:\dev\artifacts\easystud-t058-focus-native-20261013\fr1280-evidence` et
+`C:\dev\artifacts\easystud-t058-focus-native-20261013\fr390-final`.
+
+Ce N1 ne ferme pas l'audit d'accessibilité global : Message, Guide, Rollback,
+les panneaux non modaux, mouvement réduit, contraste et l'alternative clavier
+au glisser-déposer restent explicitement dans les constats ouverts. La checklist
+humaine reste ouverte.
 
 ## Documentation transverse
 
