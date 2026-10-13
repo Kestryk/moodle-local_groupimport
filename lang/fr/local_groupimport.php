@@ -665,6 +665,7 @@ $string['tutorialgroupcardcontent'] = 'Un groupe réunit des participants déjà
 $string['tutorialgroupcardtitle'] = 'Lire une carte groupe';
 $string['tutorialgroupingcardcontent'] = 'Un groupement rassemble des groupes, pas directement des participants. Dépliez-le pour vérifier les groupes inclus.';
 $string['tutorialgroupingcardtitle'] = 'Lire une carte groupement';
+$string['guideeyebrow'] = 'Guide EasyStud';
 $string['tutorialintro'] = 'Un guide rapide de la vue de gestion simplifiée.';
 $string['tutoriallabel'] = 'Ouvrir le guide EasyStud';
 $string['tutorialhoverlabel'] = 'Ouvrir le guide';

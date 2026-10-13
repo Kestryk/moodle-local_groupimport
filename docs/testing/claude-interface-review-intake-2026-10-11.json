@@ -778,7 +778,7 @@
     {
       "id": "T049",
       "receivedScope": "[US5] Guide : en-tête avec l'eyebrow « GUIDE EASYSTUD », l'exception décidée par Kevin le 11/10 ; toutes les autres modales ont « EASYSTUD », et les autres plugins le nom de leur plugin. Sous-titre retiré de l'en-tête. Proposer en Penpot un titre qui ne répète pas l'eyebrow. Pied déjà conforme.",
-      "status": "queued",
+      "status": "source-kit-contract-implemented-static-verification-pending-native-preview-human-open",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [

@@ -1,5 +1,10 @@
 # Changelog
 
+- 2026-10-13 [N1] T049: use the shared optional Guide eyebrow/context-title
+  contract for “GUIDE EASYSTUD” and “Simplified student management”. The
+  complete localized Guide name remains the dialog label; the legacy visible
+  subtitle is removed without a local header or Close-button style.
+
 - 2026-10-13 [N0] T038 host compatibility: the compact route pictogram
   explicitly retains inline-flex against Moodle's forced Font Awesome display.
   Navigation labels, semantics, state, controls and Motion are unchanged.

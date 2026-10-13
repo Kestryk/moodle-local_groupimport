@@ -5,6 +5,7 @@
 // interface highlight and guided checklist without forcing global selectors.
 
 @use "focus";
+@use "typography";
 
 @mixin guide-launcher-button {
   align-items: center;
@@ -184,6 +185,19 @@
     gap: 0.85rem;
     min-width: 0;
 
+    > div {
+      display: grid;
+      gap: 0.125rem;
+      min-width: 0;
+    }
+
+    .easyedu-guide-modal__eyebrow {
+      @include typography.type-eyebrow;
+
+      color: var(--easyedu-primary);
+      margin: 0;
+    }
+
     p {
       color: var(--easyedu-text-muted);
       font-size: 0.88rem;
@@ -192,10 +206,8 @@
   }
 
   .easyedu-guide-modal__title-wrap h2 {
-    color: var(--easyedu-text);
-    font-size: 1.171875rem;
-    font-weight: 700;
-    line-height: 1.2;
+    @include typography.type-modal-title;
+
     margin: 0;
   }
 

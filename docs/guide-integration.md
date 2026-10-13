@@ -27,6 +27,16 @@ The product template may differ from the canonical template only where the
 launcher composition is explicitly EasyStud-owned. Shared dialog, landmark and
 live-region markup remains aligned.
 
+## Guide header identity
+
+The shared Guide header supports the optional guideeyebrow and
+guidemodaltitle values. EasyStud uses them as the visible hierarchy
+“GUIDE EASYSTUD” then “Simplified student management”, while the dialog keeps
+the complete localized Guide name as its accessible name. This removes the
+legacy header subtitle without creating a plugin-local typography, colour or
+Close-control variant. Consumers without the optional values retain the shared
+title/subtitle fallback.
+
 ## Synchronization
 
 Check without writing:

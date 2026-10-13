@@ -1484,6 +1484,8 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
         'guidehoverlabel' => get_string('tutorialhoverlabel', 'local_groupimport'),
         'guidecloselabel' => get_string('closebuttontitle', 'core'),
         'guidetitle' => $templatedata['tutorialtitle'],
+        'guideeyebrow' => get_string('guideeyebrow', 'local_groupimport'),
+        'guidemodaltitle' => get_string('easystudmanager', 'local_groupimport'),
         'guidesubtitle' => $templatedata['tutorialintro'],
         'guidepreviouslabel' => $templatedata['tutorialprevious'],
         'guidenextlabel' => $templatedata['tutorialnext'],
