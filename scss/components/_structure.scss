@@ -1451,6 +1451,48 @@
     [data-easystud-page-next],
     [data-easystud-page-last] {
       @include easyedu.pagination-arrow-button;
+
+      .local-groupimport-easystud &.btn {
+        background: transparent;
+        border-color: transparent;
+        border-radius: 50%;
+        height: 1.62rem;
+        inline-size: 1.62rem;
+        min-height: 1.62rem;
+        min-inline-size: 1.62rem;
+        min-width: 1.62rem;
+        width: 1.62rem;
+
+        &:not(:disabled):hover {
+          background: var(--easyedu-primary-soft);
+          border-color: var(--easyedu-control-border);
+        }
+
+        &:focus-visible {
+          @include easyedu.ring;
+        }
+
+        &:disabled {
+          background: transparent;
+          border-color: transparent;
+        }
+
+        @media (pointer: coarse) {
+          height: 2.75rem;
+          inline-size: 2.75rem;
+          min-height: 2.75rem;
+          min-inline-size: 2.75rem;
+          min-width: 2.75rem;
+          width: 2.75rem;
+        }
+
+        @media (forced-colors: active) {
+          &:focus-visible,
+          &:not(:disabled):hover {
+            border-color: ButtonText;
+          }
+        }
+      }
     }
 
     [data-easystud-page-label] {

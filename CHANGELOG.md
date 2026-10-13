@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] R10-22: compact pagination arrows to 1.62rem with transparent rest, hover circle and keyboard ring; retain arrow glyphs and 44px coarse-pointer targets. Canonical propagation remains pending.
+
 - 2026-10-13 [N1] R10-12: quiet the Clear selection button inside its existing capsule, with a transparent resting border, soft hover and retained keyboard ring; no Grouping sticky change.
 
 - 2026-10-13 [N1] R10-09: share the existing Select all height with noninteractive result counts; centre the label and remove excess vertical padding. Native bilingual/count cases and canonical propagation remain open.
