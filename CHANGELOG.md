@@ -17,6 +17,10 @@
 
 - 2026-10-13 [N1] Prepare grouped validated detail fix/AP-E7/fixtures/T053/T056/T057/T058 preview: retain prior3a/3b and D1 Add labels, pin exact producer bodies/assets/tooling, compare only approved T057 copy substitutions and record native FilePicker initialization separately; reuse scoped modal/catalogue surfaces, restore legacy/Complete settings, no business actions or large fixtures on principal.
 
+- 2026-10-13 [N0] SM-RENDU-3d (Claude): in On demand mode manage.php loads only the lean data it still renders (course_state::page_data: enrolled users' role names, group names, grouping headers) and skips the participant copy/display enrichment; on-demand page HTML identical (courses 5 and 71). 800 fixture: page data 939 ms / 804 reads to 61 ms / 4 reads; whole page now as fast as a 24-user course.
+
+- 2026-10-13 [N0] T058: confine keyboard lifecycle to the existing Group/Grouping, Move, confirmation, Clipboard and History dialogs: initial focus, visible-enabled Tab loop, nested-Escape yield and post-Motion opener restoration. No mutation, template, Sass or Moodle-5-only API; dedicated static/build checks pass and Perf N1 remains pending.
+
 - 2026-10-13 [N0/N1] T058: source overlay inventory and read-only Perf accessibility audits of dialogs, expanded filters, menus, history/rollback, administration and compact navigation. Record focus/Tab/Escape, contrast/labels and conditional gaps; no product corrections or full accessibility acceptance claimed.
 
 - 2026-10-13 [N1] SM-RENDU-3c (Claude): in On demand mode the groupings tree keeps its server-rendered headers but renders the group cards of a grouping, and of the "without grouping" section, from the state when the section opens (shared `sm/group_card`, tree variant; legacy tree identical); grouping search, occupancy, badges, Move destinations, paste group names and group grouping memberships read the state; advanced group settings load descriptions through local_groupimport_get_details. ajax.php: removing a group from its other groupings uses groups_unassign_grouping (event and group cache), also in Current mode. 800 fixture: HTML 17.1 to 1.15 MB, 10.5k elements, 320 member rows.
