@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] SM-RENDU-3d browser scale: on the isolated Perf copy, record paired Current/On-demand Chrome measurements at 800 and 3,000 participants, including readiness, HTML/DOM, long tasks, five interactions and exact fixture/setting cleanup. Current exceeds the observation deadline at 3,000; no product acceptance or T054 integration claim.
+
 - 2026-10-13 [N0] SM browser measurement: dedicated800/3000 fixture, paired legacy/reactive modes, native readiness, HTML/DOM/long tasks and synchronous/10-full-frame quiescent interactions; preserve deadline failures/late readiness and exact setting/fixture metadata cleanup. No renderer changes.
 
 - 2026-10-13 [N0] SM-RENDU-3d (Claude): in On demand mode manage.php loads only the lean data it still renders (course_state::page_data: enrolled users' role names, group names, grouping headers) and skips the participant copy/display enrichment; on-demand page HTML identical (courses 5 and 71). 800 fixture: page data 939 ms / 804 reads to 61 ms / 4 reads; whole page now as fast as a 24-user course.
