@@ -11,7 +11,8 @@
       "sourceStaticScript": "tools/release/test-guide-t037-reading-composition.cjs",
       "sourceStaticPassed": true,
       "foundationPaintPending": true,
-      "nativeVerified": false,
+      "nativeEvidence": "external easystud-authenticated-20261013T093322771Z-41268, FR 1600/1280/390",
+      "nativeVerified": true,
       "humanAccepted": false
     },
     "neutralTextContrastT058_20261013": {
