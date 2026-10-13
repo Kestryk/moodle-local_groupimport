@@ -249,6 +249,7 @@ $string['renderingmode'] = 'Affichage de la gestion des étudiants (aperçu)';
 $string['renderingmode_desc'] = 'Actuel : le serveur construit toutes les cartes. À la demande : les données du cours sont chargées une seule fois et seule la partie visible est construite dans le navigateur, ce qui garde les grands cours rapides. Le mode À la demande est un aperçu en cours de finalisation ; gardez Actuel en production.';
 $string['renderingmode_legacy'] = 'Actuel';
 $string['renderingmode_reactive'] = 'À la demande (aperçu)';
+$string['smstateloaderror'] = 'Impossible de charger les participants. Rechargez la page pour réessayer.';
 $string['allroles'] = 'Tous les rôles';
 $string['backtocourse'] = 'Retour au cours';
 $string['clipboardtools'] = 'Outils de presse-papiers';
