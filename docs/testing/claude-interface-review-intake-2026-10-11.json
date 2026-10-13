@@ -1,4 +1,34 @@
 {
+  "claudeFiveLoading20261013": {
+    "status": "five-commits-served-native-N1-pass-T061-part2-open",
+    "runtimeHead": "f89ee98cdc44ced2950acbd57e4627a7c241e260",
+    "claudeCommits": [
+      "a667f7df",
+      "9dd156b4",
+      "6ddcd146",
+      "49072e22",
+      "823e1426"
+    ],
+    "nativeCases": [
+      "fr/legacy",
+      "fr/reactive",
+      "en/legacy",
+      "en/reactive"
+    ],
+    "runId": "easystud-authenticated-20261013T205212967Z-42024",
+    "checks": [
+      "counts",
+      "Move keyboard lifecycle",
+      "reactive frame then cards",
+      "inert specimens",
+      "Mass Import native picker"
+    ],
+    "finalRenderingMode": "legacy",
+    "fixtureCleanup": true,
+    "humanAccepted": false,
+    "T061Part2": "later series B; Penpot first; Kit component skeleton recipes pending",
+    "documentation": "docs/testing/claude-five-loading-2026-10-13.md"
+  },
   "program": "EED-UI-2026-0073",
   "received": "2026-10-11",
   "externalHandoff": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROMPT-PASSATION-CODEX.md",

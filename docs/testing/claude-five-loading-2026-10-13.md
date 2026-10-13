@@ -30,3 +30,33 @@ The spec finally sets legacy; the wrapper removes its exact fixture and records
 credentials, child and lease cleanup. Native outcome is recorded in the handoff.
 T061 part 2 remains a later series B lot, with Penpot before canonical Kit recipes.
 Existing AGENTS and proof rules apply; no new AGENTS or visual component contract.
+
+## Served result
+
+One grouped publication with purge: 20261013T204435Z, HEAD f89ee98c.
+Served mappings: a667f7df -> f38a914a; 9dd156b4 -> cf82bbf1;
+6ddcd146 -> 2d5bbba3; 49072e22 -> b21f347b; 823e1426 -> 20614e73.
+
+Native PASS: easystud-authenticated-20261013T205212967Z-42024, four cases
+FR/legacy, FR/reactive, EN/legacy, EN/reactive, zero page errors.
+Real count badges, Move initial/Tab/Shift+Tab/Escape/return focus, ready frame
+and Mass Import including its native filepicker wrapper pass in every case.
+Both reactive samples have loading + busy + inert, one visible list skeleton
+for the one-person fixture, and zero participant cards before response release.
+After release the page is ready, interactive, with cards and no list skeletons.
+Three specimens per case pass their inert/detached/hook isolation checks.
+The FR/EN screenshots show the native frame; the list is below the captured
+viewport, so list-skeleton evidence is the native DOM geometry assertion.
+
+External manifest, claude-five.json and screenshots retained. Exact fixture
+course 73, groups and groupings removed; credentials, child and lease cleanup
+pass. A final explicit CLI restore under runtime lease and a fresh process
+read confirm legacy in configuration and database.
+
+Retain failed predecessors: 204510574Z-24144 stopped on a 5s Moodle picker
+wait; 204748616Z-51040 passed FR/legacy but sampled the held reactive state
+after the 8s fail-open deadline. Their fixture cleanup passes. The final
+successor waits up to 60s for the native picker and samples the transient
+frame after two animation frames, without waiting for all fonts/animations.
+All original loading/busy/inert/no-cards assertions remain strict.
+These harness corrections introduced no product change or second publication.

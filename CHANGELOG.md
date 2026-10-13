@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] Record the five-commit native PASS on f89ee98c: FR/EN both modes, loading-frame transition, inert specimens, counts, Move focus and native Mass Import picker; final Current mode and fixture cleanup verified. T061 part 2 remains open.
+
 - 2026-10-13 [N1] Group the five Claude integrations, rebuild course_manager/local-sm/searchable_choices/csv_import, and add a targeted FR/EN two-mode check for frame loading, inert specimens, counts and Move keyboard lifecycle; native result recorded in the handoff.
 
 - 2026-10-13 [N1] Claude integration verified on localhost: FR/EN in legacy/reactive pass count badges, Move keyboard lifecycle and real path 11 through step 5 without close/reopen; A-TEXTES corrected. Disposable course cleanup and rendering-mode restoration pass.
