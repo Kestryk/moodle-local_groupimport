@@ -672,10 +672,13 @@
     {
       "id": "T038",
       "receivedScope": "[US4] Guide GS3 et GS4 : onglets par chapitre et numérotés, libellés courts (chaînes FR/EN validées par Kevin), pictogramme de parcours au lieu du badge « GUIDE » (**coordination R10-32**).",
-      "status": "queued",
-      "nativeVerified": false,
+      "status": "native-FR-passed-foundation-penpot-and-human-open",
+      "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
+      "related": [
+        "docs/guide-t038-navigation-progress-2026-10-13.md",
+        "external easystud-authenticated-20261013T101715322Z-40432, FR 1600/1280/390"
+      ],
       "decisionGate": "Kevin"
     },
     {

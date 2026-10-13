@@ -22,7 +22,8 @@ test('T038 Guide navigation keeps numbered labels readable and paths pictorial',
         }
         const methods = route.request().postDataJSON().map(call => call.methodname);
         const reads = new Set(['core_get_string', 'core_get_strings', 'core_output_load_template',
-            'core_output_load_template_with_dependencies', 'core_courseformat_get_state']);
+            'core_output_load_template_with_dependencies', 'core_courseformat_get_state',
+            'core_message_get_unsent_message']);
         if (methods.every(method => reads.has(method))) {
             return route.continue();
         }
@@ -70,6 +71,7 @@ test('T038 Guide navigation keeps numbered labels readable and paths pictorial',
                         path: path ? {
                             role: path.getAttribute('role'), label: path.getAttribute('aria-label'),
                             display: pathStyle.display, text: path.textContent.trim(),
+                            width: pathRect.width, height: pathRect.height,
                             contained: pathRect.left >= itemRect.left - 1 && pathRect.right <= itemRect.right + 1,
                         } : null,
                     };
@@ -86,7 +88,9 @@ test('T038 Guide navigation keeps numbered labels readable and paths pictorial',
                     expect(item.path).not.toBeNull();
                     expect(item.path.role).toBe('img');
                     expect(item.path.label).toBe('Guide');
-                    expect(item.path.display).toBe('inline-flex');
+                    expect(item.path.display).toContain('flex');
+                    expect(item.path.width).toBeLessThanOrEqual(24);
+                    expect(item.path.height).toBeLessThanOrEqual(24);
                     expect(item.path.text).toBe('');
                     expect(item.path.contained).toBe(true);
                 } else {

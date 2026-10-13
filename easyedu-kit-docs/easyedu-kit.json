@@ -11,7 +11,8 @@
       "sourceStaticScript": "tools/release/test-guide-t038-navigation.cjs",
       "sourceStaticPassed": true,
       "foundationPaintPending": true,
-      "nativeVerified": false,
+      "nativeEvidence": "external easystud-authenticated-20261013T101715322Z-40432, FR 1600/1280/390, no errors or business writes",
+      "nativeVerified": true,
       "humanAccepted": false
     },
     "guideReadingCompositionT037_20261013": {
