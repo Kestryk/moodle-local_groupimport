@@ -214,6 +214,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
 }
 
 if ($hassiteconfig) {
+    require_once(__DIR__ . '/lib.php');
     global $ADMIN, $DB, $PAGE;
 
     // Moodle also loads this file while building navigation on other admin
@@ -229,7 +230,7 @@ if ($hassiteconfig) {
             'search' => get_string('searchfilteroptions', 'local_groupimport'),
             'empty' => get_string('nofilteroptions', 'local_groupimport'),
             'none' => get_string('none'),
-            'count' => get_string('filterselectioncount', 'local_groupimport', '__count__'),
+            'count' => local_groupimport_count_template('filterselectioncount'),
             'clear' => get_string('clearfilterselection', 'local_groupimport'),
         ], get_config('local_groupimport', 'enableanimations') !== '0']);
     }

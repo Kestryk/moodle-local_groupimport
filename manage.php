@@ -95,7 +95,7 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
         ],
         // Labels of the catalog group card rendered in the browser (templates/sm/group_card).
         'groupstrings' => [
-            'memberscount' => get_string('memberscount', 'local_groupimport', '__count__'),
+            'memberscount' => local_groupimport_count_template('memberscount'),
             'removeuserfromgroup' => get_string('removeuserfromgroup', 'local_groupimport', '__name__'),
             'nomemberslabel' => get_string('nogroupmembers', 'local_groupimport'),
             'removefromgroupinglabel' => get_string('removegroupfromgrouping', 'local_groupimport'),
@@ -131,7 +131,7 @@ if ($action && data_submitted()) {
         }
         if ($created) {
             $message = $created === 1 ? get_string('groupcreated', 'local_groupimport') :
-                get_string('groupscreatedcount', 'local_groupimport', $created);
+                local_groupimport_count_string('groupscreatedcount', (int)$created);
             redirect($url, $message, null, \core\output\notification::NOTIFY_SUCCESS);
         }
     } else if ($action === 'creategrouping') {
@@ -150,7 +150,7 @@ if ($action && data_submitted()) {
         }
         if ($created) {
             $message = $created === 1 ? get_string('groupingcreated', 'local_groupimport') :
-                get_string('groupingscreatedcount', 'local_groupimport', $created);
+                local_groupimport_count_string('groupingscreatedcount', (int)$created);
             redirect($url, $message, null, \core\output\notification::NOTIFY_SUCCESS);
         }
     } else if ($action === 'renamegroup') {
@@ -366,13 +366,13 @@ function local_groupimport_build_manage_template_data(
         'addgroups' => get_string('addgroups', 'local_groupimport'),
         'duplicate' => get_string('duplicate', 'local_groupimport'),
         'nogroupmembers' => get_string('nogroupmembers', 'local_groupimport'),
-        'memberscounttemplate' => get_string('memberscount', 'local_groupimport', '__count__'),
-        'groupscounttemplate' => get_string('groupscount', 'local_groupimport', '__count__'),
+        'memberscounttemplate' => local_groupimport_count_template('memberscount'),
+        'groupscounttemplate' => local_groupimport_count_template('groupscount'),
         'groupstructuresummarytemplate' => get_string('groupstructuresummary', 'local_groupimport', (object)[
             'groupings' => '__groupings__',
             'groups' => '__groups__',
         ]),
-        'removeuserscount' => get_string('membersremoved', 'local_groupimport', '__count__'),
+        'removeuserscount' => local_groupimport_count_template('membersremoved'),
         'groupsmovedcount' => get_string('groupsmovedcount', 'local_groupimport', '__count__'),
         'groupsremovedfromgroupingscount' => get_string('groupsremovedfromgroupingscount', 'local_groupimport', '__count__'),
         'groupsmovesummary' => get_string('groupsmovesummary', 'local_groupimport', (object)[
@@ -387,7 +387,7 @@ function local_groupimport_build_manage_template_data(
         'searchfilteroptions' => get_string('searchfilteroptions', 'local_groupimport'),
         'nofilteroptions' => get_string('nofilteroptions', 'local_groupimport'),
         'filterany' => get_string('filterany', 'local_groupimport'),
-        'filterselectioncount' => get_string('filterselectioncount', 'local_groupimport', '__count__'),
+        'filterselectioncount' => local_groupimport_count_template('filterselectioncount'),
         'clearfilterselection' => get_string('clearfilterselection', 'local_groupimport'),
         'searchgroupsplaceholder' => get_string('searchgroups', 'local_groupimport'),
         'searchparticipantslabel' => get_string('searchparticipantslabel', 'local_groupimport'),
@@ -415,14 +415,14 @@ function local_groupimport_build_manage_template_data(
         'selectresults' => get_string('selectresults', 'local_groupimport'),
         'deselectresults' => get_string('deselectresults', 'local_groupimport'),
         'selectioncounttemplate' => get_string('selectioncount', 'local_groupimport', '__count__'),
-        'listeditemscounttemplate' => get_string('listeditemscount', 'local_groupimport', '__count__'),
+        'listeditemscounttemplate' => local_groupimport_count_template('listeditemscount'),
         'sortitems' => get_string('sortitems', 'local_groupimport'),
         'sortalpha' => get_string('sortalpha', 'local_groupimport'),
         'sortfilledfirst' => get_string('sortfilledfirst', 'local_groupimport'),
         'sortemptyfirst' => get_string('sortemptyfirst', 'local_groupimport'),
         'sortparticipantswithgroups' => get_string('sortparticipantswithgroups', 'local_groupimport'),
         'sortparticipantswithoutgroups' => get_string('sortparticipantswithoutgroups', 'local_groupimport'),
-        'groupingoverflowlabel' => get_string('groupingoverflowlabel', 'local_groupimport', '__count__'),
+        'groupingoverflowlabel' => local_groupimport_count_template('groupingoverflowlabel'),
         'advancedsettings' => get_string('advancedsettings', 'local_groupimport'),
         'advancedsettingsintro' => get_string('advancedsettingsintro', 'local_groupimport'),
         'advancedsettingsnative' => get_string('advancedsettingsnative', 'local_groupimport'),
@@ -826,7 +826,7 @@ function local_groupimport_build_manage_template_data(
         ],
         'selectionmodelabel' => get_string('selectionmode', 'local_groupimport'),
         'participantstitle' => get_string('layoutmodeparticipants', 'local_groupimport'),
-        'participantscountlabel' => get_string('participantscount', 'local_groupimport', count($users)),
+        'participantscountlabel' => local_groupimport_count_string('participantscount', count($users)),
         'layoutmodetoggles' => $layoutmodetoggles,
         'participantactions' => [
             [
@@ -2286,8 +2286,8 @@ function local_groupimport_build_grouping_template_data(
             'courseid' => $courseid,
             'id' => $grouping['id'],
         ]))->out(false),
-        'countlabel' => get_string('groupscount', 'local_groupimport', $grouping['groupcount']),
-        'counttemplate' => get_string('groupscount', 'local_groupimport', '__count__'),
+        'countlabel' => local_groupimport_count_string('groupscount', (int)$grouping['groupcount']),
+        'counttemplate' => local_groupimport_count_template('groupscount'),
         'sesskey' => sesskey(),
         'renameurl' => (new moodle_url('/local/groupimport/manage.php', ['id' => $courseid]))->out(false),
         'renameaction' => 'renamegrouping',
@@ -2353,7 +2353,7 @@ function local_groupimport_build_group_template_data(
             'courseid' => $courseid,
             'id' => $group['id'],
         ]))->out(false),
-        'membercountlabel' => get_string('memberscount', 'local_groupimport', $group['membercount']),
+        'membercountlabel' => local_groupimport_count_string('memberscount', (int)$group['membercount']),
         'sesskey' => sesskey(),
         'renameurl' => (new moodle_url('/local/groupimport/manage.php', ['id' => $courseid]))->out(false),
         'renameaction' => 'renamegroup',
@@ -2655,9 +2655,9 @@ function local_groupimport_render_grouping(int $courseid, array $grouping, array
         html_writer::span('', 'fa fa-chevron-down', ['aria-hidden' => 'true']) .
             html_writer::span(s($grouping['name']), 'local-groupimport-easystud-grouping__name') .
             html_writer::span(
-                get_string('groupscount', 'local_groupimport', $grouping['groupcount']),
+                local_groupimport_count_string('groupscount', (int)$grouping['groupcount']),
                 'badge bg-secondary text-white',
-                ['data-count-template' => get_string('groupscount', 'local_groupimport', '__count__')]
+                ['data-count-template' => local_groupimport_count_template('groupscount')]
             ),
         [
             'type' => 'button',
@@ -2750,7 +2750,7 @@ function local_groupimport_render_group(int $courseid, array $group, array $user
         html_writer::span('', 'fa fa-users local-groupimport-easystud-drag-indicator', ['aria-hidden' => 'true']) .
             html_writer::span(s($group['name']), 'local-groupimport-easystud-group__name') .
             html_writer::span(
-                get_string('memberscount', 'local_groupimport', $group['membercount']),
+                local_groupimport_count_string('memberscount', (int)$group['membercount']),
                 'badge bg-light text-dark'
             ) .
             html_writer::tag('button',
