@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] T059 on 49072e22: Move FR1024 contained in both modes; retain legacy Message opening timeout and reactive long-title stress overflow (84px). Remaining widths/dialogs stay open; preserve native captures and synthetic/native distinction.
+
 - 2026-10-13 [N1] T058 remaining on 49072e22: Message/Move/Guide pass normal and reduced motion in both modes; preserve Rollback Tab escape and missing return-focus failures with a native capture. No business mutation; incomplete contrast and panel checks remain open.
 
 - 2026-10-13 [N1] T058 reconciled runtime 49072e22: deploy and purge dedicated Perf copy; targeted FR1280/390 successor passes in both rendering modes (24 modal cases), including History390. Broader accessibility and human acceptance remain open.
