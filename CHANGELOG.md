@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] R10-12: quiet the Clear selection button inside its existing capsule, with a transparent resting border, soft hover and retained keyboard ring; no Grouping sticky change.
+
 - 2026-10-13 [N1] R10-09: share the existing Select all height with noninteractive result counts; centre the label and remove excess vertical padding. Native bilingual/count cases and canonical propagation remain open.
 
 - 2026-10-13 [N1] R10-18: native glyph/first-line diagnosis on 49072e22 does not reproduce the offset (0.953px in 12 states); remove ineffective CSS candidate and retain the exact reported case as open.

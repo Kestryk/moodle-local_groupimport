@@ -832,6 +832,28 @@
 
   &__clear-selection {
     @include easyedu.sticky-selection-button;
+
+    // R10-12: only the recovery capsule owns a resting border.
+    &.btn {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+
+      &:not(:disabled):hover {
+        background: var(--easyedu-surface-soft);
+        border-color: transparent;
+      }
+
+      &:focus-visible {
+        @include easyedu.ring;
+      }
+
+      &:disabled {
+        background: transparent;
+        border-color: transparent;
+        opacity: 0.55;
+      }
+    }
   }
 
   &__clear-selection-count {
