@@ -101,10 +101,13 @@ const headerSnapshot = cards => cards.evaluateAll(nodes => nodes.map(card => {
 test('SM-RENDU grouped C9, lean members and card header parity', async ({page}, info) => {
     test.setTimeout(300000);
     const report = {surface: 'SM-RENDU-C9-suite', niveau: 1, language: 'fr', phase: 'initial',
-        modes: {}, headers: [], errors: [], businessWrites: [], restoredCurrent: false};
+        modes: {}, headers: [], errors: [], expectedFailureLogs: [], businessWrites: [], restoredCurrent: false};
     const save = () => fs.writeFileSync(info.outputPath('sm-rendu-c9-native.json'), JSON.stringify(report, null, 2));
+    let injectFailure = false;
     page.on('pageerror', error => report.errors.push(error.message));
-    page.on('console', message => {if (message.type() === 'error') report.errors.push(message.text());});
+    page.on('console', message => {
+        if (message.type() === 'error') (injectFailure ? report.expectedFailureLogs : report.errors).push(message.text());
+    });
     await page.route('**/local/groupimport/**', route => {
         const request = route.request();
         if (request.method() === 'GET') return route.continue();
@@ -125,7 +128,9 @@ test('SM-RENDU grouped C9, lean members and card header parity', async ({page}, 
             await expect(cards).toHaveCount(10);
             const usableIndex = await cards.evaluateAll(nodes => nodes.findIndex(card => {
                 const toggle = card.querySelector('[data-easystud-group-members-toggle]');
-                return toggle && !toggle.hidden && toggle.getClientRects().length > 0;
+                const count = Number(card.getAttribute('data-easystud-member-total')) ||
+                    card.querySelectorAll('[data-easystud-member-id]').length;
+                return count > 2 && toggle && !toggle.hidden && toggle.getClientRects().length > 0;
             }));
             expect(usableIndex, 'Course 5 must contain a genuinely unfoldable group; no fixture is created').toBeGreaterThanOrEqual(0);
             let card = cards.nth(usableIndex);
@@ -199,6 +204,35 @@ test('SM-RENDU grouped C9, lean members and card header parity', async ({page}, 
         }
         expect(report.errors).toEqual([]);
         expect(report.businessWrites).toEqual([]);
+        report.phase = 'injected-read-failure'; save();
+        // A read-only failure must explain recovery inline instead of opening
+        // Moodle's exception dialog. The successful reload is exercised too.
+        injectFailure = true;
+        const failState = async route => {
+            const calls = route.request().postDataJSON();
+            if (Array.isArray(calls) && calls.some(call => call.methodname === 'local_groupimport_get_state')) {
+                return route.fulfill({contentType: 'application/json', body: JSON.stringify([
+                    {error: true, exception: {errorcode: 'servicetestfailure', message: 'Supervised state-read failure'}},
+                ])});
+            }
+            return route.continue();
+        };
+        await page.route('**/lib/ajax/service.php*', failState);
+        await page.goto(new URL('/local/groupimport/manage.php?id=5&lang=fr', process.env.EASYEDU_MOODLE_URL).href,
+            {waitUntil: 'domcontentloaded'});
+        const failedRoot = page.locator('#local-groupimport-easystud');
+        await expect(failedRoot).toHaveAttribute('data-easystud-sm-ready', 'error', {timeout: 60000});
+        const warning = failedRoot.locator('[data-easystud-sm-error]');
+        await expect(warning).toBeVisible();
+        await expect(warning).toHaveAttribute('role', 'alert');
+        expect((await warning.locator('span').textContent()).trim().length).toBeGreaterThan(10);
+        await expect(page.locator('.moodle-dialogue:visible, .modal.show:visible')).toHaveCount(0);
+        await page.unroute('**/lib/ajax/service.php*', failState);
+        await warning.locator('button').click();
+        await expect(failedRoot).toHaveAttribute('data-easystud-sm-ready', '1', {timeout: 60000});
+        await expect(failedRoot.locator('[data-easystud-sm-error]')).toHaveCount(0);
+        report.inlineFailureAndReload = true;
+        injectFailure = false;
         report.phase = 'completed';
         report.passed = true;
     } finally {
