@@ -830,7 +830,7 @@
     {
       "id": "T058",
       "receivedScope": "[P] [US6] **Passe d'accessibilité complète** : focus, Escape et retour du focus sur **toutes** les modales et panneaux (D1 laisse penser qu'il y a d'autres cas), contraste des éléments neutres d'US4, mouvement réduit, alternative clavier au glisser-déposer.",
-      "status": "reconciled-a667f7df-9dd156b4-awaiting-Perf-publication; menu-History-successor-static-PASS-native-pending; remaining-audit-open",
+      "status": "49072e22-served-Perf; focus-successor-FR1280-FR390-both-modes-PASS-24-cases; remaining-audit-open",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": ["docs/t058-remaining-blocker-2026-10-13.md", "docs/t058-harness-successor-2026-10-13.md", "tools/playwright/t058-modal-focus-native-successor.spec.js", "tools/playwright/t058-remaining-audit.spec.js", "a667f7df", "9dd156b4", "332e47a5", "5e27b71b", "128416e8"],

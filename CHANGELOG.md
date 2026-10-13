@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] T058 reconciled runtime 49072e22: deploy and purge dedicated Perf copy; targeted FR1280/390 successor passes in both rendering modes (24 modal cases), including History390. Broader accessibility and human acceptance remain open.
+
 - 2026-10-13 [N0] T058 native successor: enter Group/Grouping settings through the native card menu when direct controls are hidden; await History binding, compact navigation closure and actual focus restoration. Static discovery passes; native stabilization awaits the reconciled runtime publication.
 
 - 2026-10-13 [N1] T058 remaining audit: Message keyboard lifecycle passes; stop on Move focus escape because the previously delivered focus correction is absent from the served parity base. Record two 4.17:1 contrast findings and preserve unexecuted coverage as open.
