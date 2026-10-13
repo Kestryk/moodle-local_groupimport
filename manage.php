@@ -76,9 +76,10 @@ $PAGE->requires->js_call_amd('local_groupimport/easyedu_guide', 'init', [
 $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
     'local-groupimport-easystud',
     $course->id,
-    local_groupimport_is_on_demand_rendering() ? [
-        'renderingmode' => 'reactive',
-        // Labels of the participant card rendered in the browser (templates/sm/participant_card).
+    [
+        'renderingmode' => local_groupimport_is_on_demand_rendering() ? 'reactive' : 'legacy',
+        // Labels of the cards rendered in the browser: the on-demand lists, and in both modes the
+        // Guide specimens (amd/src/local/sm/specimen.js). Participant card (templates/sm/participant_card).
         'cardstrings' => [
             'selectionmodelabel' => get_string('selectionmode', 'local_groupimport'),
             'viewdetailslabel' => get_string('viewparticipantdetails', 'local_groupimport'),
@@ -109,7 +110,7 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
             'renameurl' => (new moodle_url('/local/groupimport/manage.php', ['id' => $course->id]))->out(false),
             'groupnativeurl' => (new moodle_url('/group/group.php', ['courseid' => $course->id]))->out(false),
         ],
-    ] : ['renderingmode' => 'legacy'],
+    ],
 ]);
 $action = optional_param('action', '', PARAM_ALPHA);
 // Create/rename write course data: only accept them from the plugin's POST forms, and fail loudly on a bad session key.
