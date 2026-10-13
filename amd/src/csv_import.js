@@ -693,9 +693,31 @@ const initHistoryModal = root => {
             close();
         }
     });
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && !modal.hidden) {
+    // History owns its keys; nested widgets/dialogs get first refusal.
+    modal.addEventListener('keydown', event => {
+        if (modal.hidden || event.defaultPrevented) {
+            return;
+        }
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            event.stopPropagation();
             close();
+        } else if (event.key === 'Tab') {
+            const stops = Array.from(modal.querySelectorAll('button, a[href], input, select, textarea, [tabindex]'))
+                .filter(node => !node.disabled && !node.matches(':disabled') && node.tabIndex >= 0 && node.getClientRects().length &&
+                    !node.closest('[hidden], [inert], [aria-hidden="true"]') && getComputedStyle(node).visibility === 'visible');
+            const index = stops.indexOf(document.activeElement);
+            if (!stops.length || index < 0 || (!event.shiftKey && index === stops.length - 1) ||
+                    (event.shiftKey && index === 0)) {
+                event.preventDefault();
+                const target = event.shiftKey ? stops[stops.length - 1] : stops[0];
+                if (target) {
+                    target.focus();
+                } else {
+                    modal.setAttribute('tabindex', '-1');
+                    modal.focus();
+                }
+            }
         }
     });
 };
