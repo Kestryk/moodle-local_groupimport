@@ -11692,6 +11692,14 @@ export const init = (rootId, courseId, options = {}) => {
                 }
             });
         });
+        if (root.easystudSmStarting) {
+            // T061: the bindings are in place, the course state is still loading. Show the real
+            // frame and its per-component skeletons now; the page stays busy and non-interactive
+            // (loading bootstrap) until the lists are drawn.
+            window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+                root.setAttribute('data-easyedu-loading-frame', '1');
+            }));
+        }
         (root.easystudSmStarting || Promise.resolve()).then(markInitialised).catch(markInitialised);
     });
 };
