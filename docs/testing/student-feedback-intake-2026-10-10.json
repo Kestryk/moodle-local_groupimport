@@ -1,9 +1,12 @@
 {
   "seriesATextes20261013": {
     "owner": "Codex1",
-    "status": "source-built-pending-grouped-preview-native-human",
+    "status": "source-built-served-native-fr-pass-partially-open-claude-human",
     "kitVersion": "0.4.207",
     "kitCommit": "a48e4ba",
+    "sourceCommit": "9b2b7b4a",
+    "runtimeCommit": "c31dad3c",
+    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
     "documentation": "docs/testing/series-a-textes-2026-10-13.md",
     "nativeSpec": "tools/playwright/series-a-textes-r10-23-native.spec.js",
     "openPrerequisite": "Claude: recognize an existing destination at path 11 step 1 before the no-unfold instruction",
@@ -14,9 +17,17 @@
     "owner": "Codex1 integrates Claude",
     "isolatedChecks": 11,
     "ghostAndBusinessBodiesUnchanged": true,
-    "nativeVerified": false,
+    "nativeVerified": true,
+    "integrationCommit": "42d2fbe6",
+    "runtimeCommit": "692dbcf9",
+    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
+    "nativePassRows": [
+      "easystud-authenticated-20261013T220745603Z-20340:legacy-complete-row",
+      "easystud-authenticated-20261013T221056804Z-34796:reactive-complete-pass"
+    ],
+    "humanAccepted": false,
     "documentation": "docs/testing/r10-23-integration-2026-10-13.md",
-    "publication": "next grouped series A publication"
+    "publication": "served with A-TEXTES; one purge at 2026-10-13T21:58:41Z"
   },
   "programme": "EED-UI-2026-0073",
   "date": "2026-10-10",
@@ -387,11 +398,11 @@
       "title": "Auto-scroll déclenché plus tôt",
       "request": "La détection en haut/bas pendant un drag doit démarrer avant d'être trop proche des bords de la fenêtre/colonne.",
       "acceptance": "Mesurer zone d'activation, vitesse/direction et conteneur réel; garder ghost et souris synchronisés, aucun faux drop; desktop/native et illustrations Guide si elles réemploient la mécanique.",
-      "status": "source-integrated-built-isolated-pass-pending-grouped-preview-native-human",
+      "status": "source-integrated-built-served-isolated-native-fr-pass-pending-human",
       "sourceChanged": true,
       "designPublished": false,
-      "previewServed": false,
-      "nativeVerified": false,
+      "previewServed": true,
+      "nativeVerified": true,
       "humanAccepted": false
     },
     {

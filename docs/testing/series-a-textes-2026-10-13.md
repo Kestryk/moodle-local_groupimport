@@ -47,10 +47,43 @@ current Motion-dependent wrapper.
 
 Pure FR/EN production curriculum fixtures and PHP syntax are checked before
 publication. The native recipe is series-a-textes-r10-23-native.spec.js:
-FR 1280, Current and On demand, seven real invitation cards, inspection textarea,
+FR 1280, Current and On demand, seven real invitation cards, inspection example attribute,
 creation-note order, checklist title/progress, actual mouse drags for groups and
 participants, earlier scrolling, pointer-following ghost and stop after Escape.
 Course membership writes are blocked and must remain absent. Artifacts live
 outside Git. Native outcome and served hashes are recorded after publication.
 
 Penpot and human acceptance remain open. No Penpot file is changed by this lot.
+
+## Served evidence — 14 October, local time
+
+One publication/purge at 2026-10-13T21:58:41Z: Source 9b2b7b4a maps to
+runtime c31dad3c; Source R10-23 42d2fbe6 maps to runtime 692dbcf9. The prior
+five Claude integrations stay served. Committed AMD blobs match Source.
+
+The cumulative FR1280 matrix is complete on this same preview:
+- Current: complete row in easystud-authenticated-20261013T220745603Z-20340.
+  Its overall run failed later in the On demand row; it is not an overall PASS.
+- On demand: targeted PASS easystud-authenticated-20261013T221056804Z-34796,
+  using EASYEDU_SERIES_A_NATIVE_MODE=reactive after correcting the harness.
+
+Both complete rows pass seven accompanied invitations with trailing arrows,
+translated inspection example/caption, creation note before the invitation,
+no unrelated Mass Import note and localized completed-step checklist copy.
+No page error or attempted course mutation is recorded in either complete row.
+FR/EN pure production fixtures pass; EN browser and Moodle4.5 are not tested
+in this batch. Earlier five-commit FR/EN browser proof is retained separately.
+
+Preserved harness failures: 215941417Z-41152 expected an example field value
+before playback; 220146432Z-19540 used the generic visible-slide selector;
+220603534Z-37208 asked for the absent both view control; 220745603Z-20340
+restored its own active QA checklist over the reactive participant drag lane.
+The corrected recipe waits for the exact creation slide, uses participants,
+and destroys the QA Guide before drags, restoring the original configuration
+afterwards. No production change or relaxed scroll/ghost assertion was needed.
+
+Credentials, owned child and leases are cleared in both evidence runs. Current
+mode is explicitly restored under a runtime lease and checked by a fresh PHP
+process (configuration and DB both legacy). No new course fixture was created;
+the previous disposable course73 remains absent. External final-state record:
+series-a-current-final-20261014.json in the authenticated artifact root.

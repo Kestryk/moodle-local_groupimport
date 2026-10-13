@@ -41,7 +41,9 @@ test('Series A text cards and R10-23 actual drag scrolling FR both modes', async
             await page.locator('#loginbtn').click({noWaitAfter:true});
             await page.waitForURL(u=>!u.pathname.includes('/login/'),{waitUntil:'commit',timeout:60000});
         }
-        for (const mode of ['legacy','reactive']) {
+        const modes=process.env.EASYEDU_SERIES_A_NATIVE_MODE ? [process.env.EASYEDU_SERIES_A_NATIVE_MODE] : ['legacy','reactive'];
+        for (const mode of modes) {
+            if (!['legacy','reactive'].includes(mode)) throw Error('Exact rendering mode required');
             expect(setMode(mode)).toBe(mode);
             const row={mode,stage:'loading',drags:[]}; rows.push(row); save();
             await page.goto(url.href,{waitUntil:'domcontentloaded'});
@@ -50,6 +52,7 @@ test('Series A text cards and R10-23 actual drag scrolling FR both modes', async
             await settle(root);
             const config=await page.evaluate(async mode=>{
                 const root=document.querySelector('[data-easyedu-guide-root]'), config=root.easyeduGuideConfig;
+                window.seriesAQAOriginalGuideConfig=config;
                 const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
                 Guide.destroy(root);
                 Guide.init(root,{...config,firstVisit:false,welcomeOffer:false,storageKey:'series-a-native-qa-'+mode});
@@ -71,13 +74,19 @@ test('Series A text cards and R10-23 actual drag scrolling FR both modes', async
             for (const card of row.cards) { expect(card.arrow).toBe(true); expect(card.play).toBe(false); expect(card.label).toBe('Parcours accompagné'); }
             await guide.locator('[data-easyedu-guide-nav-item="'+config.slideIds.indexOf('read-grouping-card')+'"]').click();
             const inspection=guide.locator('[data-easyedu-guide-scene="inspection"]:visible');
-            await expect(inspection.locator('textarea')).toHaveValue(/entree-inconnue/);
+            // Inspection writes this example into the field only during playback.
+            await expect(inspection.locator('textarea')).toHaveAttribute('data-guide-example-value',/entree-inconnue/);
             await expect(inspection.locator('.easyedu-guide-scene__caption')).toContainText('Exemple pratique');
             await guide.locator('[data-easyedu-guide-nav-item="'+config.slideIds.indexOf('create-structure')+'"]').click();
-            row.noteBeforePath=await guide.locator('[data-easyedu-guide-slide]:visible').evaluate(slide=>{
-                const note=slide.querySelector('.easyedu-guide-scene__note'), path=slide.querySelector('.easyedu-guide-guided-card');
-                return !!note && !!path && !!(note.compareDocumentPosition(path)&Node.DOCUMENT_POSITION_FOLLOWING);
+            const creationSlide=guide.locator('[data-easyedu-guide-slide="'+config.slideIds.indexOf('create-structure')+'"]');
+            await expect(creationSlide).toBeVisible(); await settle(guide);
+            row.creation=await creationSlide.evaluate(slide=>{
+                const note=slide.querySelector('.easyedu-guide-scene__note');
+                const path=slide.querySelector('[data-easyedu-guide-start-path="practice-membership"]')?.closest('.easyedu-guide-guided-card');
+                return {index:slide.dataset.easyeduGuideSlide,note:note?.textContent,path:!!path,
+                    before:!!note&&!!path&&!!(note.compareDocumentPosition(path)&Node.DOCUMENT_POSITION_FOLLOWING)};
             });
+            row.noteBeforePath=row.creation.before; save();
             expect(row.noteBeforePath).toBe(true);
             await guide.locator('[data-easyedu-guide-nav-item="'+config.slideIds.indexOf('choose-right-action')+'"]').click();
             await expect(guide.locator('[data-easyedu-guide-slide]:visible')).not.toContainText('Mass Import possède son propre guide');
@@ -89,16 +98,18 @@ test('Series A text cards and R10-23 actual drag scrolling FR both modes', async
             await expect(panel.locator('[data-easyedu-guide-checklist-subtitle]')).toContainText('étapes faites');
             row.checklistCopy=true; save();
             await page.evaluate(async()=>{
-                const root=document.querySelector('[data-easyedu-guide-root]'), config=root.easyeduGuideConfig;
+                const root=document.querySelector('[data-easyedu-guide-root]');
                 const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
-                Guide.destroy(root); Guide.init(root,{...config,firstVisit:false,welcomeOffer:false});
+                // Keep the completed presentation probe from restoring its own active checklist over the drag lane.
+                Guide.destroy(root);
             });
+            await expect(panel).toBeHidden();
             await root.locator('[data-easystud-layout-mode="structure"]:visible').first().click();
             await settle(root);
             for (const [type,selector] of [['group','[data-easystud-structure-groups] [data-easystud-group-id]:visible'],
                 ['participant','[data-easystud-user]:visible']]) {
                 if (type==='participant') {
-                    await root.locator('[data-easystud-layout-mode="both"]:visible').first().click(); await settle(root);
+                    await root.locator('[data-easystud-layout-mode="participants"]:visible').first().click(); await settle(root);
                 }
                 const card=root.locator(selector).first();
                 await card.scrollIntoViewIfNeeded();
@@ -125,8 +136,14 @@ test('Series A text cards and R10-23 actual drag scrolling FR both modes', async
                 await page.mouse.move(x,y,{steps:5});
                 // A bounded observation window measures the actual drag, not application readiness.
                 await page.waitForTimeout(180);
-                const edge=await page.evaluate(()=>({scroll:window.seriesAQAScroller.scrollTop,
-                    ghost:[...document.querySelectorAll('.local-groupimport-easystud-drag-preview')].map(n=>({left:parseFloat(n.style.left),top:parseFloat(n.style.top)}))}));
+                const edge=await page.evaluate(({x,y})=>{
+                    const hit=document.elementFromPoint(x,y);
+                    return {scroll:window.seriesAQAScroller.scrollTop,target:hit?.className,
+                        inWorkspace:document.querySelector('#local-groupimport-easystud').contains(hit),
+                        ghost:[...document.querySelectorAll('.local-groupimport-easystud-drag-preview')].map(n=>({left:parseFloat(n.style.left),top:parseFloat(n.style.top)}))};
+                },{x,y});
+                row.currentDrag={type,...geometry,edge}; save();
+                expect(edge.inWorkspace).toBe(true);
                 expect(edge.scroll).toBeGreaterThan(geometry.before);
                 expect(edge.ghost.some(g=>Math.abs(g.left-(x-24))<=2&&Math.abs(g.top-(y-18))<=2)).toBe(true);
                 await page.screenshot({path:info.outputPath(mode+'-'+type+'-drag-edge.png')});
@@ -138,6 +155,11 @@ test('Series A text cards and R10-23 actual drag scrolling FR both modes', async
                 expect(await page.evaluate(()=>window.seriesAQAScroller.scrollTop)).toBe(stopped);
                 row.drags.push({type,...geometry,edge,stopped,ghostFollowsPointer:true}); save();
             }
+            await page.evaluate(async()=>{
+                const root=document.querySelector('[data-easyedu-guide-root]');
+                const Guide=await new Promise(resolve=>require(['local_groupimport/easyedu_guide'],resolve));
+                Guide.init(root,{...window.seriesAQAOriginalGuideConfig,firstVisit:false,welcomeOffer:false});
+            });
             row.stage='complete'; save();
         }
         expect(writes).toEqual([]); expect(errors).toEqual([]);
