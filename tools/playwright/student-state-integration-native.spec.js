@@ -53,6 +53,75 @@ async function pageProof(page,info){
     return report;
 }
 
+test('T053 T058 native CSS bundle and neutral text contract',async({page},info)=>{
+    test.setTimeout(240000);
+    const cssResponses=[],pending=[],samples=[];
+    page.on('response',response=>{
+        if(/text\/css/.test(response.headers()['content-type']||''))pending.push(response.body().then(body=>{
+            const text=body.toString('utf8');
+            cssResponses.push({path:new URL(response.url()).pathname,status:response.status(),bytes:body.length,
+                sha256:crypto.createHash('sha256').update(body).digest('hex'),
+                containsConsumer:text.includes('.local-groupimport-easystud-column-heading__title'),
+                embeddedBom:text.includes('\uFEFF'),contentEncoding:response.headers()['content-encoding']||null});
+        }));
+    });
+    const pageContract=await pageProof(page,info);
+    const root=page.locator('#local-groupimport-easystud');
+    const settle=async locator=>locator.evaluate(n=>Promise.all(n.getAnimations({subtree:true})
+        .filter(a=>Number.isFinite(a.effect?.getComputedTiming().endTime)).map(a=>a.finished.catch(()=>{}))));
+    const capture=async(scope,selector)=>{
+        const rows=await scope.locator(selector).evaluateAll(nodes=>nodes.filter(n=>n.getClientRects().length).map(n=>{
+            const s=getComputedStyle(n),r=n.getBoundingClientRect();
+            const rgb=v=>(v.match(/[\d.]+/g)||[]).map(Number);
+            let background=[255,255,255];
+            const ancestors=[];for(let p=n;p;p=p.parentElement)ancestors.unshift(p);
+            for(const p of ancestors){const c=rgb(getComputedStyle(p).backgroundColor),a=c.length===4?c[3]:1;
+                if(c.length>=3)background=background.map((v,i)=>c[i]*a+v*(1-a));}
+            const lum=c=>c.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4)
+                .reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+            const l=[lum(rgb(s.color).slice(0,3)),lum(background)].sort((a,b)=>b-a);
+            return {text:n.textContent.trim(),className:n.className,font:s.fontFamily,size:s.fontSize,weight:s.fontWeight,
+                color:s.color,background,contrast:(l[0]+.05)/(l[1]+.05),
+                rect:{x:r.x,y:r.y,width:r.width,height:r.height},transition:s.transition,animation:s.animation};
+        }));
+        samples.push({selector,rows});
+    };
+    await capture(root,'.local-groupimport-easystud-column-heading__title');
+    const eye=root.locator('[data-easystud-open-user]:visible').first();await eye.click();
+    const user=root.locator('[data-easystud-user-modal]');await expect(user).toBeVisible();await settle(user);
+    await capture(user,'.local-groupimport-easystud-detail__field-label,.local-groupimport-easystud-detail__field-value.is-empty');
+    await user.locator('[data-easystud-close-user-modal]').click();await expect(user).toBeHidden();
+    await root.locator('[data-easystud-layout-mode="structure"]:visible').first().click();await settle(root);
+    for(const kind of ['group','grouping']){
+        const area=kind==='group'?'[data-easystud-structure-groups]':'[data-easystud-tree]';
+        await root.locator(area+' [data-easystud-open-advanced-settings][data-easystud-advanced-target="'+kind+'"]:visible').first().click();
+        const modal=root.locator('[data-easystud-advanced-settings-modal]');await expect(modal).toBeVisible();await settle(modal);
+        await capture(modal,'.local-groupimport-easystud-settings-modal__field-label,.local-groupimport-easystud-settings-modal__field--readonly > span,.local-groupimport-easystud-settings-modal__list-empty');
+        await modal.locator('[data-easystud-close-advanced-settings]').click();await expect(modal).toBeHidden();
+    }
+    await Promise.all(pending);
+    const report={surface:'T053-T058-native',niveau:1,viewport:1280,lang:'fr',pageContract,samples,cssResponses,
+        writes:false,humanAccepted:false};
+    fs.writeFileSync(info.outputPath('css-neutral-contract.json'),JSON.stringify(report,null,2));
+    expect(cssResponses.some(row=>row.containsConsumer&&row.status===200&&!row.embeddedBom)).toBe(true);
+    expect(samples.flatMap(s=>s.rows).length).toBeGreaterThan(5);
+    if(process.env.EASYEDU_CSS_BASELINE){
+        const before=JSON.parse(fs.readFileSync(process.env.EASYEDU_CSS_BASELINE,'utf8'));
+        expect(pageContract.textHash).toBe(before.pageContract.textHash);
+        expect(pageContract.counts).toEqual(before.pageContract.counts);
+        expect(pageContract.geometry).toEqual(before.pageContract.geometry);
+        expect(samples.length).toBe(before.samples.length);
+        samples.forEach((sample,i)=>{
+            expect(sample.rows.length).toBe(before.samples[i].rows.length);
+            sample.rows.forEach((row,j)=>{
+                const old=before.samples[i].rows[j];
+                for(const key of ['text','className','font','size','weight','rect','transition','animation','background'])expect(row[key]).toEqual(old[key]);
+                expect(row.contrast).toBeGreaterThanOrEqual(4.5);
+            });
+        });
+    }
+});
+
 test('SM legacy page baseline before server integration',async({page},info)=>{
     test.setTimeout(180000);await pageProof(page,info);
 });
@@ -492,6 +561,16 @@ async function sm3bNative(page,info,t057Aware=false){
         await pager.locator('[data-easystud-select-results]').click();await expect.poll(()=>root.evaluate(n=>n.easystudSm.model.selectedGroups.size)).toBe(0);
         report.controls.selectAllAndFilteredCrossPage=true;report.counts={total:before.catalog.length,ungrouped:ungrouped.length,search:expected.length};
         report.blocked=actual.blocked;expect(report.blocked).toEqual([]);expect(report.errors).toEqual([]);
+        if(t057Aware){
+            mode('legacy');const index=await indexReference(page,true);
+            report.index={actual:index,prior:before.index,nativePickerReady:index.picker.coreInstances>0};
+            expect(index.text).toBe(before.index.text);expect(index.cards.length).toBe(before.index.cards.length);
+            index.cards.forEach((row,i)=>{
+                for(const key of ['width','height'])expect(Math.abs(row[key]-before.index.cards[i][key])).toBeLessThanOrEqual(1);
+                for(const key of ['font','size','color'])expect(row[key]).toBe(before.index.cards[i][key]);
+            });
+            report.controls.indexStaticRender=true;
+        }
     }finally{
         mode('legacy');report.restoredLegacy=true;fs.writeFileSync(info.outputPath('sm3b-native.json'),JSON.stringify(report,null,2));
     }

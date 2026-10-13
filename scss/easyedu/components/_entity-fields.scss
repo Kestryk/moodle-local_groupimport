@@ -9,7 +9,8 @@
   @include typography.type-caption;
 
   @if $inline { align-items: center; }
-  color: #62788e;
+  // Shared neutral ink keeps small, semibold labels readable on soft surfaces.
+  color: var(--easyedu-text-muted);
   @if $inline { display: inline-flex; }
   font-weight: var(--easyedu-font-weight-semibold);
   @if $inline { gap: 0.32rem; }
@@ -28,7 +29,7 @@
 
   @if $empty-state {
     &.is-empty {
-      color: #8a9bad;
+      color: var(--easyedu-text-muted);
       font-weight: var(--easyedu-font-weight-regular);
     }
   }
