@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] T024 verification: preserve the first transparent-colour serialization failure; alpha-based successor passes subsection geometry at 1600/1280/390 FR on c77456af.
+
 - 2026-10-13 [N2] T024: align paired Mass Import subsections and replace the nested formats surface with a caption; preserve picker, POST/sesskey and vertical-density follow-up.
 
 - 2026-10-13 [N1] SM-RENDU suite (Claude): show an inline state-load failure,

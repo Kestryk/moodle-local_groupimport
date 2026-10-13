@@ -548,8 +548,8 @@
     {
       "id": "T024",
       "receivedScope": "[US3] Deux bords gauches au plus dans la carte de dépôt ; même surface pour les deux sous-sections ; « Formats acceptés » en légende sans surface (M9, M10).",
-      "status": "implemented-static-verified-native-result-in-passation",
-      "nativeVerified": false,
+      "status": "native-geometry-verified-pending-penpot-human",
+      "nativeVerified": true,
       "humanAccepted": false,
       "related": ["Kit 0.4.206", "docs/testing/mass-subsections-t024-2026-10-13.md", "PASSATION-CODEX1.md: post-publication native result"],
       "decisionGate": "none"
