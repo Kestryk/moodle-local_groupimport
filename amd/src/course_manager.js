@@ -33,7 +33,7 @@ import {
 } from './local/sm/participants';
 import {
     attachGroupCatalogs, getDetachedGroupCard, filterGroupIds, sortGroupIds, renderGroupPage,
-    getTreeSectionGroupIds, renderTreeSection, groupingSearchText,
+    getTreeSectionGroupIds, renderTreeSection, groupingSearchText, renderMissingMemberRows,
 } from './local/sm/groups';
 import Notification from 'core/notification';
 
@@ -1173,6 +1173,44 @@ const syncUngroupedState = (root, labels) => {
     }
 };
 
+/**
+ * Members of a group card. On demand, a folded card renders only its first rows and notes
+ * the full count (lever 2); the legacy page renders every row.
+ *
+ * @param {HTMLElement} group Group card.
+ * @returns {Number}
+ */
+const getGroupMemberCount = group => (group.hasAttribute('data-easystud-member-total') ?
+    Number(group.getAttribute('data-easystud-member-total')) :
+    group.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]').length);
+
+/**
+ * SM-RENDU lever 2: give a lean group card all its member rows, before it unfolds, searches
+ * its members or opens its settings. Legacy cards and complete cards are left as they are.
+ *
+ * @param {HTMLElement|null} group Group card.
+ */
+const ensureFullGroupMembers = group => {
+    const model = getOnDemandModel();
+    if (!model || !group || !group.hasAttribute('data-easystud-sm-members-partial')) {
+        return;
+    }
+    const rows = renderMissingMemberRows(model, group);
+    if (!rows.length) {
+        return;
+    }
+    const root = onDemandParticipants.root;
+    rows.forEach(row => row.querySelectorAll('[data-easystud-hover-help][title]').forEach(node => {
+        node.setAttribute('data-easystud-native-title', node.getAttribute('title') || '');
+        node.removeAttribute('title');
+    }));
+    normaliseMemberRemoveLabels(root);
+    if (group.hasAttribute('data-easystud-sm-catalog')) {
+        syncGroupCardSelection(model, group);
+    }
+    updateSelectionAvailability(root);
+};
+
 const syncGroupMembersHeight = (list, members, visibleCount, cancollapse) => {
     if (!list) {
         return;
@@ -1259,9 +1297,12 @@ const syncGroupMembersCollapsible = group => {
         return;
     }
 
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    if (expanded) {
+        ensureFullGroupMembers(group);
+    }
     const allmembers = Array.from(list.querySelectorAll('[data-easystud-member-id]'));
     const members = allmembers.filter(member => !member.hidden);
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
     const visibleCount = 2;
     const cancollapse = members.length > 1;
 
@@ -1977,6 +2018,9 @@ const applyGroupMemberSearchToGroup = (root, group) => {
     const input = group.querySelector(':scope > [data-easystud-group-member-search-panel="' + groupid + '"] ' +
         '[data-easystud-group-member-search="' + groupid + '"]');
     const query = normalise(input ? input.value : '');
+    if (query) {
+        ensureFullGroupMembers(group);
+    }
     const members = Array.from(group.querySelectorAll(':scope > [data-easystud-group-members] [data-easystud-member-id]'));
     const model = getOnDemandModel(root);
     let visibleCount = 0;
@@ -3601,8 +3645,7 @@ const syncGroupMembersState = (group, labels) => {
 const syncAllCountBadges = root => {
     root.querySelectorAll('[data-easystud-group-id]').forEach(group => {
         const badge = group.querySelector('.local-groupimport-easystud-group__header .badge');
-        const count = group.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]').length;
-        setCountBadgeState(badge, count, 'members');
+        setCountBadgeState(badge, getGroupMemberCount(group), 'members');
     });
     root.querySelectorAll('[data-easystud-grouping-id]').forEach(updateGroupingBadge);
 };
@@ -4241,8 +4284,7 @@ const getAdvancedCountLabel = (root, item, isgroup) => {
         return raw;
     }
 
-    const count = isgroup ?
-        item.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]').length :
+    const count = isgroup ? getGroupMemberCount(item) :
         item.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
     const template = isgroup ?
         (labels.memberscounttemplate || '') :
@@ -4386,6 +4428,8 @@ const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
         openAdvancedSettingsModalNow(root, item, returnFocus);
         return;
     }
+    // The settings list every member of the group.
+    ensureFullGroupMembers(item);
     const groupid = Number(item.getAttribute('data-easystud-group-id'));
     model.groupDetails = model.groupDetails || new Map();
     const apply = details => {
@@ -5074,7 +5118,7 @@ const getSortableItemCount = item => {
         return (item.getAttribute('data-group-ids') || '').split(',').filter(Boolean).length;
     }
     if (type === 'group') {
-        return item.querySelectorAll(':scope [data-easystud-member-id]').length;
+        return getGroupMemberCount(item);
     }
     if (type === 'grouping') {
         return item.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
@@ -11211,7 +11255,7 @@ const decorateOnDemandGroupCards = (root, cards) => {
     cards.forEach(card => {
         applyGroupMemberSearchToGroup(root, card);
         setCountBadgeState(card.querySelector('.local-groupimport-easystud-group__header .badge'),
-            card.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]').length, 'members');
+            getGroupMemberCount(card), 'members');
         card.querySelectorAll('[data-easystud-hover-help][title]').forEach(node => {
             node.setAttribute('data-easystud-native-title', node.getAttribute('title') || '');
             node.removeAttribute('title');
