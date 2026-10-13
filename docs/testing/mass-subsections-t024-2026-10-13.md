@@ -16,3 +16,17 @@ build; targeted `mass-subsections-t024.spec.js` at 1600/1280/390 FR.
 Native result and publication hashes are recorded in the intake/passation.
 Penpot propagation is deferred to the visual milestone; human acceptance open.
 No AGENTS change: existing alignment, canonical Kit and native-proof rules apply.
+
+## Native geometry result
+
+Runtime c77456af / Source 680e12ff / Kit f3669f4 (0.4.206).
+Run easystud-authenticated-20261013T182312819Z-48092: PASS at 1600/1280/390 FR;
+no page errors; POST and sesskey present; no fixture/business writes.
+Credentials cleared, child stopped and lease released. External run manifest retained.
+The predecessor 20261013T182028474Z-47568 is retained: transparent white
+serialized as rgba(255,255,255,0), while its overly strict oracle expected
+transparent black. Successor checks alpha zero and border zero; product unchanged.
+1280 and 390 captures inspected: aligned copy, matching contours, unframed caption.
+The 1280 capture still shows Moodle picker loading: upload readiness/lifecycle
+is not certified by this presentation test. No claim about T025 density.
+Penpot and human gates remain open.
