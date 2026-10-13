@@ -3,15 +3,16 @@
 - 2026-10-13 [N1] SM-RENDU suite (Claude): show an inline state-load failure,
   render only the first two members until a card needs its complete list, and
   batch card-header measurements in both modes. Rebuilt canonical AMD;
-  grouped C9/menu verification uses temporary CLI settings with final restore.
+  grouped C9/menu verification passed in both modes at 1280/390 FR, including
+  inline failure/reload. Temporary CLI settings were restored to Current.
 
 - 2026-10-13 [N1] SM-RENDU C9 (Claude): in the On demand preview, defer the
   ready state until state lists are drawn; keep known pasted identifiers lazy
   across a state refresh; preserve selected group members and an open
   member-search field across catalogue pagination; and avoid drawing a hidden
   catalogue before its view is opened. Moodle's canonical AMD build completed
-  for `course_manager` and local `sm` modules. Localhost publication, two-mode
-  native verification and human acceptance remain open.
+  for `course_manager` and local `sm` modules. Localhost publication and
+  two-mode native verification passed; human acceptance remains open.
 
 - 2026-10-13 [N1] T023: consume Kit 0.4.205's 28px secondary icon tile for
   Automatic learner identification and the embedded Moodle file deposit. Main
