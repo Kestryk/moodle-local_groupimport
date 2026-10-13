@@ -19,7 +19,7 @@ const tabContract = async modal => modal.evaluate(node => {
     return {count: stops.length};
 });
 
-const assertTrapAndEscape = async(page, opener, modal, record) => {
+const assertTrapAndEscape = async(page, opener, modal, record, returnTarget = opener) => {
     await expect(modal).toBeVisible({timeout: 15000});
     await audit.settle(modal);
     record.initialFocusInside = await modal.evaluate(node => node.contains(document.activeElement));
@@ -37,11 +37,11 @@ const assertTrapAndEscape = async(page, opener, modal, record) => {
     await page.keyboard.press('Escape');
     record.escapeClosed = await modal.waitFor({state: 'hidden', timeout: 5000}).then(() => true).catch(() => false);
     await audit.settle(page.locator('body'));
-    record.returnedToOpener = await opener.evaluate(node => node === document.activeElement);
+    record.returnedToExpectedTrigger = await returnTarget.evaluate(node => node === document.activeElement);
     expect(record.initialFocusInside).toBe(true);
     expect(record.tabWrap).toBe(true);
     expect(record.escapeClosed).toBe(true);
-    expect(record.returnedToOpener).toBe(true);
+    expect(record.returnedToExpectedTrigger).toBe(true);
 };
 
 const selectFirst = async locator => {
@@ -60,11 +60,11 @@ const runDesktop = async(page, info) => {
     await audit.blockBusinessWrites(page, report.writesBlocked);
     const root = await audit.ready(page);
 
-    const open = async(name, opener, selector) => {
+    const open = async(name, opener, selector, returnTarget = opener) => {
         const record = {name}; report.cases.push(record); save();
         await expect(opener).toBeVisible(); await expect(opener).toBeEnabled();
         await opener.click();
-        await assertTrapAndEscape(page, opener, visibleModal(page, selector), record);
+        await assertTrapAndEscape(page, opener, visibleModal(page, selector), record, returnTarget);
         save();
     };
     await open('participant', root.locator('[data-easystud-open-user]:visible').first(), '[data-easystud-user-modal]');
@@ -88,9 +88,16 @@ const runDesktop = async(page, info) => {
         report.skippedDeleteConfirmation = 'The existing group is empty; no Delete trigger was opened.'; save();
     }
 
+    // EasyStud permits one selection type at a time. Clear the verified Group
+    // selection before selecting an existing member; this is presentation-only.
+    const clearSelection = root.locator('[data-easystud-clear-all-selection]:visible').first();
+    await expect(clearSelection).toBeEnabled();
+    await clearSelection.click();
+    await audit.settle(root);
     const memberSelection = root.locator('[data-easystud-member-id]:visible [data-easystud-selector-input]').first();
     if (await memberSelection.count()) {
         await selectFirst(memberSelection);
+        await audit.settle(root);
         await open('move-members', root.locator('[data-easystud-move-selected-members]:visible').first(), '[data-easystud-move-modal]');
     } else {
         report.skippedMoveMembers = 'No existing visible member row.'; save();
@@ -98,6 +105,11 @@ const runDesktop = async(page, info) => {
 
     const participants = root.locator('[data-easystud-layout-mode="participants"]:visible').first();
     await participants.click(); await audit.settle(root);
+    const clearMemberSelection = root.locator('[data-easystud-clear-all-selection]:visible').first();
+    if (await clearMemberSelection.count()) {
+        await clearMemberSelection.click();
+        await audit.settle(root);
+    }
     const participantSelection = root.locator('[data-easystud-user]:visible [data-easystud-selector-input]').first();
     await selectFirst(participantSelection);
     await open('move-participants', root.locator('[data-easystud-move-selected-participants]:visible').first(), '[data-easystud-move-modal]');
@@ -108,8 +120,18 @@ const runDesktop = async(page, info) => {
     await page.goto(massUrl.href, {waitUntil: 'domcontentloaded'});
     const importRoot = page.locator('#local-groupimport-import');
     await expect(importRoot).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
-    await open('history', page.locator('[data-easyedu-navigation-item-id="mass-import-history"] button:visible').first(),
-        '[data-local-groupimport-history-modal]');
+    const directHistory = page.locator('[data-local-groupimport-history-open]:visible, ' +
+        '[data-easyedu-navigation-action="mass-import-history"]:visible').first();
+    if (await directHistory.count()) {
+        await open('history', directHistory, '[data-local-groupimport-history-modal]');
+    } else {
+        const massNavigationOpen = page.locator('[data-easyedu-navigation-open]:visible').first();
+        await expect(massNavigationOpen).toBeVisible();
+        await massNavigationOpen.click();
+        await audit.settle(importRoot);
+        await open('history', page.locator('[data-easyedu-navigation-action="mass-import-history"]:visible').first(),
+            '[data-local-groupimport-history-modal]', massNavigationOpen);
+    }
     report.completed = true; save();
 };
 
@@ -123,20 +145,29 @@ const runMobile = async(page, info) => {
     await audit.login(page);
     await audit.blockBusinessWrites(page, report.writesBlocked);
     const root = await audit.ready(page);
-    const open = async(name, opener, selector) => {
+    const open = async(name, opener, selector, returnTarget = opener) => {
         const record = {name}; report.cases.push(record); save();
         await expect(opener).toBeVisible(); await opener.click();
-        await assertTrapAndEscape(page, opener, visibleModal(page, selector), record); save();
+        await assertTrapAndEscape(page, opener, visibleModal(page, selector), record, returnTarget); save();
     };
     await open('participant', root.locator('[data-easystud-open-user]:visible').first(), '[data-easystud-user-modal]');
+    const navigationOpen = root.locator('[data-easyedu-navigation-open]:visible').first();
+    await expect(navigationOpen).toBeVisible();
+    await navigationOpen.click();
+    await audit.settle(root);
     await open('clipboard', root.locator('[data-easystud-open-clipboard]:visible, [data-easyedu-navigation-action="open-clipboard"]:visible').first(),
-        '[data-easystud-clipboard-modal]');
+        '[data-easystud-clipboard-modal]', navigationOpen);
     const massUrl = audit.perfUrl(); massUrl.pathname = '/local/groupimport/index.php'; massUrl.searchParams.set('id', '5');
     await page.goto(massUrl.href, {waitUntil: 'domcontentloaded'});
     const importRoot = page.locator('#local-groupimport-import');
     await expect(importRoot).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
-    await open('history', page.locator('[data-easyedu-navigation-item-id="mass-import-history"] button:visible').first(),
-        '[data-local-groupimport-history-modal]');
+    const massNavigationOpen = page.locator('[data-easyedu-navigation-open]:visible').first();
+    await expect(massNavigationOpen).toBeVisible();
+    await massNavigationOpen.click();
+    await audit.settle(importRoot);
+    await open('history', page.locator('[data-local-groupimport-history-open]:visible, ' +
+        '[data-easyedu-navigation-action="mass-import-history"]:visible').first(),
+    '[data-local-groupimport-history-modal]', massNavigationOpen);
     report.completed = true; save();
 };
 
