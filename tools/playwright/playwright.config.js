@@ -7,4 +7,5 @@ module.exports = defineConfig({
     testDir: __dirname,
     testMatch: '**/*.spec.js',
     workers: 1,
+    use: {screenshot: 'only-on-failure'},
 });

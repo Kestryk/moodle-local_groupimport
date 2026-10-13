@@ -73,7 +73,14 @@ Run the same selected cases against the retained original `c9e1fed8` source
 snapshot with `-AllowedSpecRoot <snapshot>/tools/playwright -Stage before`.
 Compare status plus first error/source line, keeping historical assertion
 failures separate from mode differences. Additional routed specs remain to be
-executed in both modes after the focused matrix.
+covered by their existing workflows; this lot dynamically verifies only the
+focused matrix, while the shared read-list change has static coverage of all
+188 callers. `summarize-sm-rendu-spec-parity.cjs` reports remaining dynamic
+coverage explicitly and never treats an equal failure as a product PASS.
+
+The supervised Playwright configuration captures only failed tests, so a code
+discrepancy can be returned with its real terminal screen. All such captures
+remain in the wrapper's external, manifested run directory.
 
 These helpers/specs are local-supervised candidates: auth, an existing course
 and copy-only configuration preparation are required. CI promotion needs a

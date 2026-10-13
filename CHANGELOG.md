@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N2] SM-RENDU test evidence: add a compact before/after mode-comparison report distinguishing equal failures from product PASS; capture failed-test screens in the existing external Playwright run directory. Full focused comparison remains running; shared guards retain static coverage of all 188 callers.
+
 - 2026-10-13 [N2] SM-RENDU Playwright: centralize the two read-only renderer AJAX methods across 188 routed specs; open lazy grouping children from count badges in 17 specs, scope selection to the visible page and displayed totals, and use native filter options for known group names. Add guarded Perf preparation and paired-mode supervision; static contract passes, full paired browser evidence remains in progress.
 
 - 2026-10-13 [N0] SM-RENDU-3d (Claude): in On demand mode manage.php loads only the lean data it still renders (course_state::page_data: enrolled users' role names, group names, grouping headers) and skips the participant copy/display enrichment; on-demand page HTML identical (courses 5 and 71). 800 fixture: page data 939 ms / 804 reads to 61 ms / 4 reads; whole page now as fast as a 24-user course.
