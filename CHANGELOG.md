@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] Claude R10-23: dragging a participant or a group now scrolls the real scroller (#page in Moodle 5.1) from 96 px before its top or bottom edge, faster near the edge, and stops as soon as the pointer leaves the zone or the drag ends.
+
 - 2026-10-13 [N1] Claude T061 (part 1): on demand, the real frame and its per-component skeletons replace the page skeleton as soon as the manager's bindings are in place, while the page stays busy and non-interactive until the lists are drawn; "ready" keeps its meaning; Mass Import and the Current mode are unchanged.
 
 - 2026-10-13 [N0] Claude CL-SPECIMEN: Guide specimen cards (local/sm/specimen.js) render the real participant and group card templates from example data, inert, with every behaviour attribute renamed data-specimen-*; card labels now reach the page in both rendering modes.

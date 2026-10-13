@@ -354,6 +354,71 @@ const moveDragPreview = (preview, event) => {
     preview.style.top = Math.max(event.clientY - 18, 0) + 'px';
 };
 
+/**
+ * R10-23: scroll the real scroller (Moodle 5.1 scrolls #page, not the window) while a card is
+ * dragged near its top or bottom edge, earlier than the browser does (a few pixels only). The
+ * activation zone is 96 px (a quarter of a small scroller at most) and the speed grows towards
+ * the edge. The dragged ghost follows the pointer in fixed position, so it stays in step.
+ */
+const dragAutoScroll = (() => {
+    const zone = 96;
+    const maxStep = 18;
+    let pointer = null;
+    let frame = null;
+    const scrollerOf = node => {
+        for (let element = node instanceof Element ? node : null; element && element !== document.body;
+            element = element.parentElement) {
+            const overflow = window.getComputedStyle(element).overflowY;
+            if ((overflow === 'auto' || overflow === 'scroll') && element.scrollHeight > element.clientHeight + 1) {
+                return element;
+            }
+        }
+        return document.scrollingElement || document.documentElement;
+    };
+    const step = () => {
+        frame = null;
+        // Browsers repeat dragover about every 50 ms while dragging: a silent pointer is stale.
+        if (!pointer || window.performance.now() - pointer.time > 200) {
+            return;
+        }
+        const scroller = pointer.scroller;
+        const pageScroller = scroller === document.scrollingElement || scroller === document.documentElement;
+        const bounds = pageScroller ? {top: 0, bottom: window.innerHeight} : scroller.getBoundingClientRect();
+        const size = Math.min(zone, (bounds.bottom - bounds.top) / 4);
+        let delta = 0;
+        if (pointer.y < bounds.top + size) {
+            delta = -maxStep * Math.min(1, (bounds.top + size - pointer.y) / size);
+        } else if (pointer.y > bounds.bottom - size) {
+            delta = maxStep * Math.min(1, (pointer.y - (bounds.bottom - size)) / size);
+        }
+        const before = scroller.scrollTop;
+        if (delta) {
+            scroller.scrollTop = before + Math.round(delta);
+        }
+        if (delta && scroller.scrollTop !== before) {
+            frame = window.requestAnimationFrame(step);
+        }
+    };
+    const stop = () => {
+        pointer = null;
+        if (frame !== null) {
+            window.cancelAnimationFrame(frame);
+            frame = null;
+        }
+    };
+    // A dropped card may be redrawn (on demand) before its dragend reaches the page: stop on the document.
+    ['drop', 'dragend'].forEach(type => document.addEventListener(type, stop, true));
+    return {
+        update: event => {
+            pointer = {y: event.clientY, scroller: scrollerOf(event.target), time: window.performance.now()};
+            if (frame === null) {
+                frame = window.requestAnimationFrame(step);
+            }
+        },
+        stop,
+    };
+})();
+
 const isResponsiveDragSuppressed = () => {
     return window.matchMedia &&
         window.matchMedia('(hover: none), (pointer: coarse), (max-width: 1024px)').matches;
@@ -6815,6 +6880,7 @@ const bindGroupDragDrop = (root, courseId) => {
     });
 
     root.addEventListener('dragend', () => {
+        dragAutoScroll.stop();
         draggedGroups.forEach(item => item.classList.remove(draggingClass));
         draggedGroups = [];
         root.classList.remove('is-dragging-groups');
@@ -6825,6 +6891,9 @@ const bindGroupDragDrop = (root, courseId) => {
 
     root.addEventListener('dragover', event => {
         moveDragPreview(dragPreview, event);
+        if (draggedGroups.length) {
+            dragAutoScroll.update(event);
+        }
         const dropTarget = event.target.closest('[data-easystud-grouping-drop]');
         if (!draggedGroups.length || !dropTarget || !root.contains(dropTarget)) {
             return;
@@ -6951,6 +7020,7 @@ const bindUserDragDrop = (root, courseId) => {
     });
 
     root.addEventListener('dragend', () => {
+        dragAutoScroll.stop();
         draggedUsers.forEach(item => item.classList.remove(draggingClass));
         draggedUsers = [];
         root.classList.remove('is-dragging-participants');
@@ -6962,6 +7032,9 @@ const bindUserDragDrop = (root, courseId) => {
 
     root.addEventListener('dragover', event => {
         moveDragPreview(dragPreview, event);
+        if (draggedUsers.length) {
+            dragAutoScroll.update(event);
+        }
         const dropTarget = event.target.closest('[data-easystud-user-drop]');
         // Empty groupings cannot receive participants. Feedback mirrors the
         // existing eligibility rule; it never turns them into valid targets.
