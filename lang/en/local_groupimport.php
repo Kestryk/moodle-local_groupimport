@@ -11,7 +11,7 @@ $string['activity_path_desc3'] = 'The Guide opens the action for you: choose the
 $string['activity_path_step4'] = 'Check the options, then confirm';
 $string['activity_path_desc4'] = 'Check the destination and Remove from the original grouping. Unchecked preserves other memberships; checked removes them. Confirm only when ready. Requests are made per group: a failed batch does not roll back earlier successes.';
 $string['activity_path_step5'] = 'Open the destination and verify its groups';
-$string['activity_path_desc5'] = 'Open the same destination grouping with its chevron. If it is already open, close and reopen it. All confirmed groups must be present. Clear filters if needed. Then select this grouping separately in the Moodle activity settings.';
+$string['activity_path_desc5'] = 'Check the groups in the destination grouping. The Guide opens it if needed; if it is already open, verification is immediate. All confirmed groups must be present. Clear filters if needed. Then select this grouping separately in the Moodle activity settings.';
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -900,13 +900,13 @@ $string['tutorialguidedactionstitle'] = 'Guided path: try the actions';
 $string['tutorialguidedgroupingdesccreate'] = 'Open the Groupings view and its creation field.';
 $string['tutorialguidedgroupingdescadd'] = 'Open the Groupings view, then a grouping and its add-groups field.';
 $string['tutorialguidedgroupingdescverify'] = 'In the Groupings view, expand the grouping to check the groups that were added.';
-$string['tutorialguidedactionsdescdrag'] = 'Locate a card and a compatible destination to try direct movement.';
+$string['tutorialguidedactionsdescdrag'] = 'Start dragging a card to complete this step. Releasing it outside a group changes no data. Dropping the card onto a group applies the action.';
 $string['tutorialguidedactionsdescselection'] = 'Locate the action buttons used to move or remove several cards.';
 $string['tutorialguidedactionsdesccontext'] = 'Locate the list and open the context menu with right click or long press.';
 $string['tutorialguidedfeedbackgroupingcreate'] = 'The grouping creation field is ready.';
 $string['tutorialguidedfeedbackgroupingadd'] = 'The grouping is open: you can add the group to it.';
 $string['tutorialguidedfeedbackgroupingverify'] = 'The grouping is expanded so you can check its content.';
-$string['tutorialguidedfeedbackactionsdrag'] = 'The movement area is highlighted: drag a card to a compatible destination.';
+$string['tutorialguidedfeedbackactionsdrag'] = 'The movement area is highlighted: start dragging a card. Release it outside a group to try without changing any data.';
 $string['tutorialguidedfeedbackactionsselection'] = 'The action buttons are highlighted: select one or more cards before using them.';
 $string['tutorialguidedfeedbackactionscontext'] = 'The list is highlighted: right click or long press a card.';
 $string['tutorialvisualguidedtwo'] = 'Add participants to the right groups';

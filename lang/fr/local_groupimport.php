@@ -11,7 +11,7 @@ $string['activity_path_desc3'] = 'Le Guide ouvre l’action pour vous : choisiss
 $string['activity_path_step4'] = 'Vérifier les options, puis confirmer';
 $string['activity_path_desc4'] = 'Vérifiez la destination et Retirer du groupement d’origine. Décoché conserve les autres associations ; coché les retire. Confirmez uniquement lorsque vous êtes prêt. Chaque groupe fait l’objet d’une requête : un échec global n’annule pas les réussites précédentes.';
 $string['activity_path_step5'] = 'Ouvrir la destination et vérifier ses groupes';
-$string['activity_path_desc5'] = 'Ouvrez le même groupement de destination avec son chevron. S’il est déjà ouvert, refermez-le puis rouvrez-le. Tous les groupes confirmés doivent être présents. Effacez les filtres si nécessaire. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
+$string['activity_path_desc5'] = 'Vérifiez les groupes du groupement de destination. Le Guide l’ouvre si nécessaire ; s’il est déjà ouvert, la vérification est immédiate. Tous les groupes confirmés doivent être présents. Effacez les filtres si nécessaire. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -947,13 +947,13 @@ $string['tutorialguidedactionstitle'] = 'Parcours guidé : tester les actions';
 $string['tutorialguidedgroupingdesccreate'] = 'Ouvrir la vue Groupements et son champ de création.';
 $string['tutorialguidedgroupingdescadd'] = 'Ouvrir la vue Groupements, puis un groupement et son ajout de groupes.';
 $string['tutorialguidedgroupingdescverify'] = 'Dans la vue Groupements, déplier le groupement pour contrôler les groupes ajoutés.';
-$string['tutorialguidedactionsdescdrag'] = 'Repérer une carte et une destination compatible pour tester le déplacement direct.';
+$string['tutorialguidedactionsdescdrag'] = 'Commencez à glisser une carte pour valider cette étape. Relâcher hors d’un groupe ne modifie aucune donnée. Déposer la carte sur un groupe applique l’action.';
 $string['tutorialguidedactionsdescselection'] = 'Repérer les boutons d’action pour déplacer ou retirer plusieurs cartes.';
 $string['tutorialguidedactionsdesccontext'] = 'Repérer la liste et ouvrir le menu contextuel avec clic droit ou appui long.';
 $string['tutorialguidedfeedbackgroupingcreate'] = 'Le champ de création du groupement est prêt.';
 $string['tutorialguidedfeedbackgroupingadd'] = 'Le groupement est ouvert : vous pouvez ajouter le groupe dedans.';
 $string['tutorialguidedfeedbackgroupingverify'] = 'Le groupement est déplié pour vérifier son contenu.';
-$string['tutorialguidedfeedbackactionsdrag'] = 'La zone de déplacement est mise en avant : glissez une carte vers une destination compatible.';
+$string['tutorialguidedfeedbackactionsdrag'] = 'La zone de déplacement est mise en avant : commencez à glisser une carte. Relâchez hors d’un groupe pour essayer sans modifier les données.';
 $string['tutorialguidedfeedbackactionsselection'] = 'Les boutons d’action sont mis en avant : sélectionnez une ou plusieurs cartes avant de les utiliser.';
 $string['tutorialguidedfeedbackactionscontext'] = 'La liste est mise en avant : faites un clic droit ou un appui long sur une carte.';
 $string['tutorialvisualguidedtwo'] = 'Ajouter les participants aux bons groupes';
