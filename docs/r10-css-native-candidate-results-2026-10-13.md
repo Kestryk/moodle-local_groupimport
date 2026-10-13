@@ -2,7 +2,7 @@
 
 Source des candidats : branche `work/port4719pg3/easystud-r10-css-20261013`,
 worktree `C:/dev/worktrees/easystud-r10-css-20261013`. Changements produit
-limités à `_participants.scss`, `_structure.scss`, `_layout.scss`. Aucun
+limités à `_structure.scss`, `_layout.scss` après retrait du candidat R10-18. Aucun
 JS, Guide, administration, Kit ou fichier généré commité. Codex1 intègre,
 reconstruit, propage Kit/Foundations et publie ; ce n'est pas encore servi.
 
@@ -36,7 +36,13 @@ pas une preuve native tactile ni de navigation première/dernière page.
 - Isolé : `C:/dev/artifacts/es-r10-isolated.json`.
 - Prédécesseurs immuables : `es-r10-css-49072` (surplus root),
   `es-r10-css-v2-49072` (comparaison erronée du compteur caché).
-- R10-18 : mesure spécifique du glyphe/ligne de texte séparée, ne pas déduire
-  son acceptation de la position globale du bouton ou du PASS ci-dessus.
+- R10-18 : `r10-18-eye-candidate.spec.js` PASS diagnostic, 24 mesures FR
+  (servi/candidat, 390/768/1024, compact/sélectionné/déplié/nom long). Delta
+  identique +0,953125 px dans tous les cas : défaut non reproduit sur cette
+  carte, candidat sans effet retiré. Preuve `C:/dev/artifacts/es-r10-eye-49072`.
+  Autres badges/cartes et cas exact Kevin restent ouverts.
+- Compilation finale sans R10-18 : `es-r10-final.css` ; 22 contrôles isolés
+  repassent (`es-r10-final-isolated.json`). La preuve native groupée est celle
+  du candidat v2 ; le retrait de R10-18 est justifié par les mesures identiques.
 - Les intakes conservent `nativeVerified=false`, `previewServed=false`,
   `designPublished=false`, `humanAccepted=false` pour les lots complets.
