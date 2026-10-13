@@ -29,6 +29,8 @@ const DEFAULTS = {
     hint: 'Choose a step. The guide opens the right area and keeps this checklist visible.',
     complete: 'Everything is ready. Return to the guide when you want to review another topic.',
     guidedPath: 'Guided path',
+    guidedPathSeparator: ': ',
+    completedSteps: 'steps completed',
     visited: 'visited',
     stepCompleted: 'Completed',
     stepLocked: 'Locked',
@@ -2438,10 +2440,10 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   if (title) {
     title.textContent = complete ?
       (config.labels.complete || config.labels.guidedPath || 'Guided path') :
-      `${config.labels.guidedPath || 'Guided path'}: ${step.title || getPathLabel(pathName, config)}`;
+      `${config.labels.guidedPath || 'Guided path'}${config.labels.guidedPathSeparator || ': '}${step.title || getPathLabel(pathName, config)}`;
   }
   if (subtitle) {
-    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.visited || 'visited'}`;
+    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.completedSteps || 'steps completed'}`;
   }
 };
 

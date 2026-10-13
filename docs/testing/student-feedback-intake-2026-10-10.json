@@ -1,4 +1,14 @@
 {
+  "seriesATextes20261013": {
+    "owner": "Codex1",
+    "status": "source-built-pending-grouped-preview-native-human",
+    "kitVersion": "0.4.207",
+    "kitCommit": "a48e4ba",
+    "documentation": "docs/testing/series-a-textes-2026-10-13.md",
+    "nativeSpec": "tools/playwright/series-a-textes-r10-23-native.spec.js",
+    "openPrerequisite": "Claude: recognize an existing destination at path 11 step 1 before the no-unfold instruction",
+    "humanAccepted": false
+  },
   "r10AutoScrollIntegration20261013": {
     "sourceCommit": "ddbac51f",
     "owner": "Codex1 integrates Claude",

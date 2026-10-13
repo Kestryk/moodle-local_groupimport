@@ -88,6 +88,8 @@ const DEFAULTS = {
     hint: '',
     complete: '',
     guidedPath: '',
+    guidedPathSeparator: ': ',
+    completedSteps: '',
     visited: '',
     stepCompleted: 'Completed',
     stepLocked: 'Locked',
@@ -2497,10 +2499,10 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   if (title) {
     title.textContent = complete ?
       (config.labels.complete || config.labels.guidedPath || '') :
-      `${config.labels.guidedPath || ''}: ${step.title || getPathLabel(pathName, config)}`;
+      `${config.labels.guidedPath || ''}${config.labels.guidedPathSeparator || ': '}${step.title || getPathLabel(pathName, config)}`;
   }
   if (subtitle) {
-    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.visited || ''}`;
+    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.completedSteps || ''}`;
   }
 };
 

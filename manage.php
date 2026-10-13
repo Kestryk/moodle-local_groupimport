@@ -1742,6 +1742,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
             'hint' => get_string('tutorialguidedpanelhint', 'local_groupimport'),
             'complete' => get_string('tutorialguidedpanelcomplete', 'local_groupimport'),
             'guidedPath' => get_string('tutorialguidedpaneltitle', 'local_groupimport'),
+            'guidedPathSeparator' => get_string('tutorialguidedpanelseparator', 'local_groupimport'),
+            'completedSteps' => get_string('tutorialguidedpanelcompletedsteps', 'local_groupimport'),
             'visited' => get_string('visited', 'local_groupimport'),
             'stepCompleted' => get_string('completed'),
             'stepLocked' => get_string('locked', 'grades'),

@@ -555,6 +555,7 @@
                                 <p class="easyedu-guide-introduction__note">{{note}}</p>
                             </div>
                             {{/commonintroduction}}
+                            {{#discoveryscene}}{{#creation}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/creation}}{{/discoveryscene}}
                             {{#guidedpath}}
                                 <div class="easyedu-guide-guided-card">
                                     <span class="easyedu-guide-guided-card__icon fa fa-route" aria-hidden="true"></span>
@@ -569,9 +570,8 @@
                                         {{/guidedpathsteps}}
                                     </div>
                                     <button type="button" class="btn btn-primary easyedu-guide-slide__start" data-easyedu-guide-start-path="{{guidedpath}}">
-                                        {{^discoveryscene}}<span class="fa fa-play" aria-hidden="true"></span>{{/discoveryscene}}
                                         <span>{{guidestartpathlabel}}</span>
-                                        {{#discoveryscene}}<span class="fa fa-arrow-right" aria-hidden="true"></span>{{/discoveryscene}}
+                                        <span class="fa fa-arrow-right" aria-hidden="true"></span>
                                     </button>
                                     <div class="easyedu-guide-guided-card__progress" data-easyedu-guide-path-progress hidden>
                                         <small>{{guideresumetitle}}</small>
@@ -583,7 +583,7 @@
                             {{#discoveryscene}}{{#concepts}}
                             <aside class="easyedu-guide-guided-card easyedu-guide-scene__example"><span class="easyedu-guide-guided-card__icon fa fa-route" aria-hidden="true"></span><div class="easyedu-guide-guided-card__body"><strong>{{exampletitle}}</strong><span>{{examplebody}}</span></div></aside>
                             {{/concepts}}{{/discoveryscene}}
-                            {{#discoveryscene}}{{#concepts}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/concepts}}{{#creation}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/creation}}{{/discoveryscene}}
+                            {{#discoveryscene}}{{#concepts}}<p class="easyedu-guide-scene__note">{{note}}</p>{{/concepts}}{{/discoveryscene}}
                         </div>
                     </section>
                 {{/slides}}
