@@ -56,8 +56,13 @@ try {
             try{& $PhpPath (Join-Path $PSScriptRoot 'create-fixture.php') --moodle-root $MoodleRoot --manifest $fixture --purge}
             finally{Release-EasyEduResourceLease -Resource moodle51-perf-fixture-write -RunId $cleanupId}
         }
-        & $PhpPath (Join-Path $PSScriptRoot 'cleanup-sm-metadata.php') --moodle-root $MoodleRoot --manifest $fixture --output ($fixture+'.metadata-cleanup.json')
-        if($LASTEXITCODE -ne 0){$exitCode=1}
+        $metadataId=$id+'-metadata'
+        Wait-EasyEduResourceLease -Resource moodle51-perf-fixture-write -ProjectNamespace easystud -RunId $metadataId `
+            -Repository $source -Purpose 'Remove exact owned orphan state row' -LeaseSeconds 300 -OwnerPid $PID -MaxWaitSeconds 900 -PollSeconds 5 | Out-Null
+        try {
+            & $PhpPath (Join-Path $PSScriptRoot 'cleanup-sm-metadata.php') --moodle-root $MoodleRoot --manifest $fixture --output ($fixture+'.metadata-cleanup.json')
+            if($LASTEXITCODE -ne 0){$exitCode=1}
+        } finally {Release-EasyEduResourceLease -Resource moodle51-perf-fixture-write -RunId $metadataId}
     }
     foreach($resource in $leases){Release-EasyEduResourceLease -Resource $resource -RunId $id}
     foreach($n in $names){[Environment]::SetEnvironmentVariable($n,$previous[$n],'Process')}
