@@ -5,25 +5,34 @@
     "codexPenpotStopped": true,
     "seriesBFirst": "T048: participant/group/grouping details redesign (K18), design by Claude before integration",
     "k17AssignedTo": "R10-21: Participants title for the left column above the filters search",
-    "remainingSeriesA": ["A-ICONE", "A-CHECKLIST", "A-FLUIDITE", "R10-26", "A-ADMIN-CONTROLES", "A-PARCOURS-10"]
+    "remainingSeriesA": ["A-CHECKLIST", "A-FLUIDITE", "R10-26", "A-ADMIN-CONTROLES", "A-PARCOURS-10"]
   },
   "k14K15Integration20261014": {
     "claudeCommit": "c0e899fb",
-    "status": "source-integrated-pending-grouped-preview-native-human",
+    "integrationCommit": "adf8f8e6",
+    "runtimeCommit": "071cc1bc",
+    "status": "source-integrated-built-served-native-fr-pass-pending-human",
     "scope": "Nine inline-panel focus calls use preventScroll; business commands and Motion retained",
     "documentation": "docs/testing/k14-k15-integration-2026-10-14.md",
     "r10Reused": "ddbac51f already integrated as 42d2fbe6 and served as 692dbcf9; do not cherry-pick twice",
-    "nativeVerified": false,
+    "nativeVerified": true,
+    "nativeRun": "easystud-authenticated-20261013T223248851Z-47492",
+    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
+    "nativeScope": "Loupe and identifier panel, normal disclosure, final focus and no ancestor scroll during focus; all nine source calls retained",
     "humanAccepted": false
   },
   "seriesAIcone20261014": {
     "owner": "Codex1",
-    "status": "source-pending-grouped-preview-native-human",
+    "status": "source-served-native-fr-pass-pending-human",
+    "sourceCommit": "1cf71729",
+    "runtimeCommit": "5ec0a626",
     "kitVersion": "0.4.208",
     "kitCommit": "6abf7d4",
     "documentation": "docs/testing/series-a-icone-2026-10-14.md",
     "nativeSpec": "tools/playwright/k14-k15-a-icone-native.spec.js",
-    "nativeVerified": false,
+    "nativeVerified": true,
+    "nativeRun": "easystud-authenticated-20261013T223248851Z-47492",
+    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
     "humanAccepted": false
   },
   "seriesATextes20261013": {

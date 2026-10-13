@@ -26,3 +26,22 @@ Native verifies concept/inspection identities, action and compact-menu glyph
 markup and captures the grouping scene. Mobile paint, EN native, Moodle4.5
 native and human acceptance remain separate open gates. Served hashes and
 native artifact results are recorded after publication.
+
+## Served native result
+
+Source1cf71729 → runtime5ec0a626; Kit6abf7d4 (0.4.208). Shared K14/K15
+publication/purge2026-10-13T22:31:53Z. Relevant Source/runtime blobs match.
+One native PASS easystud-authenticated-20261013T223248851Z-47492 covers both
+FR1280 render modes: concept identity, inspection identity/action and compact
+menu glyph markup all use layer-group. The rendered reactive grouping-scene
+capture was inspected: the identity and action glyphs paint correctly.
+The activity diagram's unchanged grouping entries both use layer-group in
+the actual FR production fixture. FR/EN inspection context is checked.
+Mobile menu paint is not claimed by the hidden DOM markup check.
+
+No page errors or attempted course writes, final Current mode and runner
+cleanup PASS. Six native captures are pinned in the passed external manifest;
+retention dry-run deletes nothing. The K14/K15 record gives artifact/cleanup
+details. Native gates are complete for this N1 scope; human acceptance stays
+open. Next series A lot is A-CHECKLIST; T048/K18 leads series B under Claude's
+exclusive Penpot operation.

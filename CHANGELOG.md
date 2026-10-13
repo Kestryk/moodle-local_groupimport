@@ -1,5 +1,10 @@
 # Changelog
 
+- 2026-10-14 [N1] Record one FR1280 two-mode native PASS on 5ec0a626 for
+  K14/K15 and A-ICONE: normal inline disclosure, field focus without ancestor
+  scroll, consistent Guide grouping glyphs, no attempted course writes and
+  final Current mode. Human review and wider native scopes remain open.
+
 - 2026-10-14 [N0] Record Kevin's allocation: Claude operates Penpot alone,
   K17 reopens R10-21's left-column title scope, and T048/K18 leads series B.
 
