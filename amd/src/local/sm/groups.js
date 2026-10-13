@@ -72,6 +72,7 @@ export const refreshGroupIndex = model => {
         catalogGroupingNames.get(groupid).push(grouping.name);
     }));
     model.groupCatalogNames = catalogGroupingNames;
+    model.groupTreeSearch = new Map();
     model.groupSearch = new Map(raw.groups.map(group => {
         const parts = [group.name];
         (group.groupingids || []).forEach(groupingid => {
@@ -87,20 +88,39 @@ export const refreshGroupIndex = model => {
             }
         });
         const text = normalise(parts.join(' ').trim());
+        model.groupTreeSearch.set(group.id, text);
         return [group.id, normalise((text + ' ' + (catalogGroupingNames.get(group.id) || []).join(' ')).trim())];
     }));
     Object.values(model.catalogs).forEach(catalog => catalog.detached.clear());
 };
 
 /**
- * Template context of one catalog group card, as manage.php builds it.
+ * Search text of a grouping section, as manage.php builds it: its name and the tree search
+ * text of each of its groups.
+ *
+ * @param {Object} model Participant model.
+ * @param {Object} grouping State grouping.
+ * @returns {String}
+ */
+export const groupingSearchText = (model, grouping) => {
+    const parts = [grouping.name];
+    (grouping.groupids || []).forEach(groupid => {
+        if (model.groups.has(groupid)) {
+            parts.push(model.groupTreeSearch.get(groupid) || '');
+        }
+    });
+    return normalise(parts.join(' ').trim());
+};
+
+/**
+ * Template context of one group card, as manage.php builds it.
  *
  * @param {Object} model Participant model.
  * @param {Object} group State group.
- * @param {Boolean} structureemail Structure catalog e-mail panel variant.
+ * @param {Object} variant {structureemail, treecard, withingrouping}.
  * @returns {Object}
  */
-export const buildGroupCardContext = (model, group, structureemail) => {
+export const buildGroupCardContext = (model, group, variant) => {
     const strings = model.groupStrings;
     const memberids = group.memberids || [];
     const groupingids = group.groupingids || [];
@@ -138,17 +158,21 @@ export const buildGroupCardContext = (model, group, structureemail) => {
         addemailstolabel: strings.addemailstolabel || '',
         pasteemailsplaceholder: strings.pasteemailsplaceholder || '',
         addemailsbutton: strings.addemailsbutton || '',
-        withingrouping: false,
+        withingrouping: !!variant.withingrouping,
         groupingidscsv: groupingids.join(','),
         hasnogrouping: groupingids.length === 0,
-        groupingtags: (model.groupCatalogNames.get(group.id) || []).map(label => ({label})),
+        // Catalog cards list their groupings in grouping order, tree cards in group order.
+        groupingtags: (variant.treecard ? groupingids.filter(groupingid => model.groupings.has(groupingid))
+            .map(groupingid => model.groupings.get(groupingid).name) :
+            (model.groupCatalogNames.get(group.id) || [])).map(label => ({label})),
         removefromgroupinglabel: strings.removefromgroupinglabel || '',
         members,
         hasmembers: memberids.length > 0,
         nomemberslabel: strings.nomemberslabel || '',
-        searchtext: model.groupSearch.get(group.id) || '',
+        searchtext: (variant.treecard ? model.groupTreeSearch : model.groupSearch).get(group.id) || '',
         selectionmodelabel: (model.strings || {}).selectionmodelabel || '',
-        structureemail: !!structureemail,
+        structureemail: !!variant.structureemail,
+        treecard: !!variant.treecard,
     };
 };
 
@@ -162,7 +186,8 @@ export const buildGroupCardContext = (model, group, structureemail) => {
  */
 export const renderGroupCardHtml = (model, groupid, key) => {
     const group = model.groups.get(groupid);
-    return group ? Mustache.render(model.groupSource, buildGroupCardContext(model, group, key === 'structure')) : '';
+    return group ?
+        Mustache.render(model.groupSource, buildGroupCardContext(model, group, {structureemail: key === 'structure'})) : '';
 };
 
 /**
@@ -253,5 +278,43 @@ export const renderGroupPage = (model, list, key, pageIds) => {
     const fragment = document.createDocumentFragment();
     cards.forEach(card => fragment.appendChild(card));
     list.insertBefore(fragment, top ? top.nextSibling : list.firstChild);
+    return cards;
+};
+
+/**
+ * Group ids of a tree section, in the legacy order: the grouping's groups, or the groups
+ * without grouping.
+ *
+ * @param {Object} model Participant model.
+ * @param {String} key Grouping id, or 'ungrouped'.
+ * @returns {Number[]}
+ */
+export const getTreeSectionGroupIds = (model, key) => {
+    if (key === 'ungrouped') {
+        return model.raw.groups.filter(group => !(group.groupingids || []).length).map(group => group.id);
+    }
+    const grouping = model.groupings.get(Number(key));
+    return grouping ? (grouping.groupids || []).filter(groupid => model.groups.has(groupid)) : [];
+};
+
+/**
+ * Replace the group cards of a tree section container.
+ *
+ * @param {Object} model Participant model.
+ * @param {HTMLElement} container Section children container.
+ * @param {String} key Grouping id, or 'ungrouped'.
+ * @returns {HTMLElement[]} Rendered cards.
+ */
+export const renderTreeSection = (model, container, key) => {
+    container.querySelectorAll(':scope > [data-easystud-group-id], :scope > .local-groupimport-easystud-tree__empty' +
+        ':not([data-easystud-container-filter-empty])').forEach(node => node.remove());
+    const variant = {treecard: true, withingrouping: key !== 'ungrouped'};
+    const holder = document.createElement('div');
+    holder.innerHTML = getTreeSectionGroupIds(model, key).map(groupid =>
+        Mustache.render(model.groupSource, buildGroupCardContext(model, model.groups.get(groupid), variant))).join('');
+    const cards = Array.from(holder.children);
+    const fragment = document.createDocumentFragment();
+    cards.forEach(card => fragment.appendChild(card));
+    container.insertBefore(fragment, container.firstChild);
     return cards;
 };

@@ -722,7 +722,8 @@ function local_groupimport_remove_group_from_other_groupings(
         if ($keepgroupingid !== null && (int)$record->groupingid === $keepgroupingid) {
             continue;
         }
-        $DB->delete_records('groupings_groups', ['id' => $record->id]);
+        // Moodle API: also triggers grouping_group_unassigned and clears the course group cache.
+        groups_unassign_grouping((int)$record->groupingid, $groupid);
     }
 }
 
