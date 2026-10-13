@@ -949,13 +949,17 @@ const syncMaskedGroupingMenuTrigger = (group, masked) => {
 };
 
 const syncGroupGroupingOverflow = root => {
+    const responsive = isResponsiveWorkspace();
+    // Show every container first, then measure them all, then apply: one layout for all cards
+    // instead of one per card.
+    const entries = [];
     root.querySelectorAll('.local-groupimport-easystud-group__groupings--inline').forEach(container => {
         const group = container.closest('[data-easystud-group-id]');
         if (!group) {
             return;
         }
 
-        if (isResponsiveWorkspace()) {
+        if (responsive) {
             container.hidden = false;
             group.classList.remove('is-groupings-summary-hidden');
             syncMaskedGroupingMenuTrigger(group, false);
@@ -965,13 +969,19 @@ const syncGroupGroupingOverflow = root => {
 
         // Measure the complete pill before deciding whether it may remain in the header.
         container.hidden = false;
+        entries.push({group, container});
+    });
+    entries.forEach(entry => {
+        const {container} = entry;
         if (container.clientWidth < 1) {
             return;
         }
         const pills = Array.from(container.querySelectorAll('.local-groupimport-easystud-token--grouping'));
-        const masked = container.scrollWidth > container.clientWidth || pills.some(pill =>
+        entry.masked = container.scrollWidth > container.clientWidth || pills.some(pill =>
             pill.scrollWidth > pill.clientWidth
         );
+    });
+    entries.filter(entry => entry.masked !== undefined).forEach(({group, container, masked}) => {
         const toggle = container.querySelector('[data-easystud-grouping-summary-toggle]');
         const details = group.querySelector(':scope > [data-easystud-grouping-details]');
         const expanded = group.classList.contains('is-groupings-expanded');
@@ -1876,7 +1886,11 @@ const ensureNestedGroupActionMenus = (root, cards = null) => {
         ':scope > .local-groupimport-easystud-rename > .local-groupimport-easystud-rename__toggle',
     ].join(', ');
 
+    // Three phases, so the browser lays the page out once for all cards instead of once per
+    // card (seconds on a large course): reset every card, measure them all, then move the
+    // actions of the cards which do not fit (usually few) into their menu.
     // Cards rendered on demand pass themselves: re-measuring the whole page would also re-measure opened sections.
+    const entries = [];
     (cards || root.querySelectorAll('[data-easystud-group-id], [data-easystud-grouping-id]')).forEach(group => {
         const header = group.querySelector(
             ':scope > .local-groupimport-easystud-group__header, :scope > .local-groupimport-easystud-grouping__header'
@@ -1911,24 +1925,38 @@ const ensureNestedGroupActionMenus = (root, cards = null) => {
         toggle.hidden = true;
         menu.hidden = true;
         menu.innerHTML = '';
-        if (!header.offsetParent || !actions.length) {
+        entries.push({group, header, menu, toggle, actions});
+    });
+
+    const responsive = isResponsiveWorkspace();
+    const outsideCard = (cardBounds, button) => {
+        if (button.hidden || button.offsetParent === null) {
+            return false;
+        }
+        const bounds = button.getBoundingClientRect();
+        return bounds.left < cardBounds.left - 1 || bounds.right > cardBounds.right + 1;
+    };
+    // Reads only.
+    entries.forEach(entry => {
+        const {group, header, actions} = entry;
+        entry.visible = !!header.offsetParent && actions.length > 0;
+        if (!entry.visible) {
             return;
         }
+        entry.cardBounds = group.getBoundingClientRect();
+        entry.overflowed = responsive ? actions.filter(button => !button.hidden) :
+            actions.filter(button => outsideCard(entry.cardBounds, button));
+        entry.fits = !entry.overflowed.length && header.scrollWidth <= header.clientWidth + 1;
+    });
 
-        const cardBounds = group.getBoundingClientRect();
-        const isOutsideCard = button => {
-            if (button.hidden || button.offsetParent === null) {
-                return false;
-            }
-            const bounds = button.getBoundingClientRect();
-            return bounds.left < cardBounds.left - 1 || bounds.right > cardBounds.right + 1;
-        };
-        const responsive = isResponsiveWorkspace();
-        let overflowed = responsive ? actions.filter(button => !button.hidden) : actions.filter(isOutsideCard);
-        if (!overflowed.length && header.scrollWidth <= header.clientWidth + 1) {
+    entries.filter(entry => entry.visible).forEach(entry => {
+        const {header, menu, toggle, actions, cardBounds} = entry;
+        if (entry.fits) {
             toggle.setAttribute('aria-expanded', 'false');
             return;
         }
+        const isOutsideCard = button => outsideCard(cardBounds, button);
+        const overflowed = entry.overflowed;
 
         toggle.hidden = false;
         for (let index = actions.length - 1;
@@ -8759,40 +8787,58 @@ const bindNestedGroupActionMenus = root => {
 
     ensureNestedGroupActionMenus(root);
     let refreshFrame = null;
-    const refresh = () => {
+    // Cards whose header changed width; a window resize refreshes the whole page.
+    let refreshAll = false;
+    const refreshCards = new Set();
+    const refresh = cards => {
+        if (cards) {
+            cards.forEach(card => refreshCards.add(card));
+        } else {
+            refreshAll = true;
+        }
         if (refreshFrame !== null) {
             window.cancelAnimationFrame(refreshFrame);
         }
         refreshFrame = window.requestAnimationFrame(() => {
             refreshFrame = null;
-            ensureNestedGroupActionMenus(root);
+            const pending = refreshAll ? null : Array.from(refreshCards).filter(card => card.isConnected);
+            refreshAll = false;
+            refreshCards.clear();
+            ensureNestedGroupActionMenus(root, pending);
             // A nested-card action change also changes the room available to
             // the Grouping tag. Re-evaluate its all-or-recover decision in
             // the same frame so it never remains visually clipped.
             scheduleGroupGroupingOverflow(root);
         });
     };
-    window.addEventListener('resize', refresh);
+    window.addEventListener('resize', () => refresh());
     if (window.ResizeObserver) {
         const widths = new WeakMap();
         const observer = new window.ResizeObserver(entries => {
-            const changed = entries.some(entry => {
+            // Only the cards whose header width changed: measuring every card of a large
+            // course again took seconds while the page settled.
+            const changed = entries.filter(entry => {
                 const width = Math.round(entry.contentRect.width * 10) / 10;
                 const previous = widths.get(entry.target);
                 widths.set(entry.target, width);
                 return previous !== undefined && previous !== width;
-            });
-            if (changed) {
-                refresh();
+            }).map(entry => entry.target.parentElement).filter(Boolean);
+            if (changed.length) {
+                refresh(changed);
             }
         });
-        root.querySelectorAll(
-            '.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header'
-        ).forEach(header => {
+        const observeHeaders = headers => headers.forEach(header => {
             widths.set(header, Math.round(header.getBoundingClientRect().width * 10) / 10);
             observer.observe(header);
         });
+        observeHeaders(root.querySelectorAll(
+            '.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header'
+        ));
         root.easystudCardActionOverflowObserver = observer;
+        // Cards rendered later (on demand) are watched too, from their width when rendered.
+        root.easystudObserveCardHeaders = cards => observeHeaders(cards.map(card => card.querySelector(
+            ':scope > .local-groupimport-easystud-group__header, :scope > .local-groupimport-easystud-grouping__header'
+        )).filter(Boolean));
     }
 };
 
@@ -11252,6 +11298,9 @@ const decorateOnDemandGroupCards = (root, cards) => {
     cards.forEach(card => card.querySelectorAll('.local-groupimport-easystud-group__groupings--inline')
         .forEach(container => normaliseGroupGroupingTags(root, container)));
     ensureNestedGroupActionMenus(root, cards);
+    if (root.easystudObserveCardHeaders) {
+        root.easystudObserveCardHeaders(cards);
+    }
     cards.forEach(card => {
         applyGroupMemberSearchToGroup(root, card);
         setCountBadgeState(card.querySelector('.local-groupimport-easystud-group__header .badge'),
