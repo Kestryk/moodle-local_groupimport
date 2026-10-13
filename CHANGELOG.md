@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] SM browser measurement: dedicated800/3000 fixture, paired legacy/reactive modes, native readiness, HTML/DOM/long tasks and synchronous/10-full-frame quiescent interactions; preserve deadline failures/late readiness and exact setting/fixture metadata cleanup. No renderer changes.
+
 - 2026-10-13 [N0/N1] T058: source overlay inventory and read-only Perf accessibility audits of dialogs, expanded filters, menus, history/rollback, administration and compact navigation. Record focus/Tab/Escape, contrast/labels and conditional gaps; no product corrections or full accessibility acceptance claimed.
 - 2026-10-13 [N1] SM-RENDU-2b fix (Claude): in On demand mode the participant sheet loads the deferred details once through local_groupimport_get_details (city, country, language, description...), keeps them for later openings, ignores answers for a closed or re-targeted sheet and keeps the light details on error. Sheet HTML identical to the Current mode (Test15, course 5), reported by Codex 1.
 

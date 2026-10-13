@@ -56,6 +56,8 @@ try {
             try{& $PhpPath (Join-Path $PSScriptRoot 'create-fixture.php') --moodle-root $MoodleRoot --manifest $fixture --purge}
             finally{Release-EasyEduResourceLease -Resource moodle51-perf-fixture-write -RunId $cleanupId}
         }
+        & $PhpPath (Join-Path $PSScriptRoot 'cleanup-sm-metadata.php') --moodle-root $MoodleRoot --manifest $fixture --output ($fixture+'.metadata-cleanup.json')
+        if($LASTEXITCODE -ne 0){$exitCode=1}
     }
     foreach($resource in $leases){Release-EasyEduResourceLease -Resource $resource -RunId $id}
     foreach($n in $names){[Environment]::SetEnvironmentVariable($n,$previous[$n],'Process')}

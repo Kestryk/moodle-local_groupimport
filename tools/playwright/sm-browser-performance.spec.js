@@ -34,8 +34,9 @@ test('SM browser measures both modes and native list interactions', async({page}
     });
     page.on('pageerror',e=>{result.errors.push(e.message);save();});
     const calm = () => page.evaluate(()=>new Promise(resolve=>{
-        const start=performance.now();let previous=start,count=0,intervals=[];
-        const frame=now=>{const gap=now-previous;previous=now;intervals.push(gap);
+        const start=performance.now();let previous=null,count=0,intervals=[];
+        const frame=now=>{if(previous===null){previous=now;requestAnimationFrame(frame);return;}
+            const gap=now-previous;previous=now;intervals.push(gap);
             count=gap<60?count+1:0;if(count>=10)resolve({totalMs:now-start,frames:intervals.length,
                 maxIntervalMs:Math.max(...intervals),terminalIntervals:intervals.slice(-10)});else requestAnimationFrame(frame);};
         requestAnimationFrame(frame);
@@ -80,7 +81,16 @@ test('SM browser measures both modes and native list interactions', async({page}
                 const started=Date.now();
                 await page.goto(url,{waitUntil:'commit',timeout:120000});
                 const marker=mode==='reactive'?'data-easystud-sm-ready':'data-easystud-manager-initialised';
-                await page.waitForFunction(attr=>document.getElementById('local-groupimport-easystud')?.getAttribute(attr)==='1',marker,{timeout:240000});
+                try {
+                    await page.waitForFunction(attr=>document.getElementById('local-groupimport-easystud')?.getAttribute(attr)==='1',marker,{timeout:240000});
+                } catch(e) {
+                    record.readinessTimeout=e.message.split('\n')[0];record.exceededObservationDeadline=true;
+                    const late=await describe();record.lateSnapshot=late;save();
+                    // Preserve the failed240s observation. If the original page
+                    // became ready while the blocked thread returned, measure
+                    // its real late interaction cost; do not change product SLA.
+                    if(late.attributes?.[mode==='reactive'?'sm':'manager']!=='1')throw e;
+                }
                 record.waitWallMs=Date.now()-started;record.initial=await describe();
                 record.usableMs=record.initial.markers?.[mode==='reactive'?'sm':'manager'];
                 record.initialCalm=await calm();save();
@@ -126,7 +136,8 @@ test('SM browser measures both modes and native list interactions', async({page}
             }catch(e){record.failure=e.message.split('\n')[0];record.snapshot=await describe().catch(()=>null);}
             save();
         }
-        result.completed=true;result.passed=result.modes.every(m=>m.completed);save();
+        result.completed=true;result.passed=result.modes.every(m=>m.completed &&
+            !m.exceededObservationDeadline && m.usableMs<=(result.participants===800?3000:5000));save();
     }finally{result.settingRestore=config('restore');save();}
     expect(result.modes).toHaveLength(2);
 });
