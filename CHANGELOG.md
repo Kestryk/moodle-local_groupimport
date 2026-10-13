@@ -1,5 +1,13 @@
 # Changelog
 
+- 2026-10-13 [N1] SM-RENDU C9 (Claude): in the On demand preview, defer the
+  ready state until state lists are drawn; keep known pasted identifiers lazy
+  across a state refresh; preserve selected group members and an open
+  member-search field across catalogue pagination; and avoid drawing a hidden
+  catalogue before its view is opened. Moodle's canonical AMD build completed
+  for `course_manager` and local `sm` modules. Localhost publication, two-mode
+  native verification and human acceptance remain open.
+
 - 2026-10-13 [N1] T023: consume Kit 0.4.205's 28px secondary icon tile for
   Automatic learner identification and the embedded Moodle file deposit. Main
   import/result headings retain their compact tile; card titles use the
