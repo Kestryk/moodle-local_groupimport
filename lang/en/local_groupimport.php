@@ -225,6 +225,7 @@ $string['renderingmode'] = 'Student Management rendering (preview)';
 $string['renderingmode_desc'] = 'Current: the server renders every card. On demand: the course data is loaded once and only the visible part is built in the browser, which keeps large courses fast. On demand is a preview being finalised; keep Current in production.';
 $string['renderingmode_legacy'] = 'Current';
 $string['renderingmode_reactive'] = 'On demand (preview)';
+$string['smstateloaderror'] = 'The participants could not be loaded. Reload the page to try again.';
 $string['enablesimplifiedview'] = 'Enable simplified student management';
 $string['enablesimplifiedview_desc'] = 'Replace the default course participant entry point with the EasyStud management view. Disable this option to keep the historical mass-import-only experience and Moodle\'s native enrolled users page.';
 $string['showcompleteview'] = 'Show Complete view';

@@ -11325,6 +11325,34 @@ const scheduleOnDemandStateRefresh = root => {
 };
 
 /**
+ * SM-RENDU: say in the participant list that the course state could not be loaded, with a
+ * Reload button, instead of an empty exception dialog over the page.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Object} strings Participant card labels from manage.php (loaderror, reload).
+ */
+const showOnDemandLoadError = (root, strings) => {
+    const list = root.querySelector('[data-easystud-participant-list]');
+    if (!list || list.querySelector('[data-easystud-sm-error]')) {
+        return;
+    }
+    const message = document.createElement('div');
+    message.className = 'alert alert-warning d-flex align-items-center justify-content-between flex-wrap';
+    message.setAttribute('role', 'alert');
+    message.setAttribute('data-easystud-sm-error', '1');
+    const text = document.createElement('span');
+    text.textContent = strings.loaderror || '';
+    const reload = document.createElement('button');
+    reload.type = 'button';
+    reload.className = 'btn btn-sm btn-outline-secondary';
+    reload.textContent = strings.reload || '';
+    reload.addEventListener('click', () => window.location.reload());
+    message.append(text, reload);
+    const top = list.querySelector(':scope > [data-easystud-pagination="top"]');
+    list.insertBefore(message, top ? top.nextSibling : list.firstChild);
+};
+
+/**
  * SM-RENDU: load the compact course state and render the participant list from it.
  *
  * @param {HTMLElement} root EasyStud root.
@@ -11365,7 +11393,7 @@ const startOnDemandState = (root, courseId, strings, groupStrings) => {
         .catch(error => {
             root.setAttribute('data-easystud-sm-ready', 'error');
             root.querySelectorAll('[data-easystud-sm-loading]').forEach(node => node.remove());
-            Notification.exception(error);
+            showOnDemandLoadError(root, strings);
             Log.error(error);
         });
 };
