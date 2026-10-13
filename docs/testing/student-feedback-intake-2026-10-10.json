@@ -292,7 +292,7 @@
       "title": "Œil mobile sur la première ligne",
       "request": "L'icône de détails du participant est décalée vers le bas en responsive.",
       "acceptance": "Vérifier cibles et glyphes réels, noms/badges longs, carte compacte/dépliée/sélectionnée à toutes les tailles; corriger le composant partagé et toutes les planches sans altérer Motion.",
-      "status": "approved",
+      "status": "audited-not-reproduced-on-49072e22; exact-reported-case-open",
       "sourceChanged": false,
       "designPublished": false,
       "previewServed": false,
