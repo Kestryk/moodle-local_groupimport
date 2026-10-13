@@ -220,6 +220,78 @@ class course_state {
     }
 
     /**
+     * What manage.php still needs in on-demand mode, in the course_structure::get_state() shape.
+     *
+     * The browser renders every card from build(); the page itself only needs the role names
+     * of the enrolled users (role filter), the participant count, the group names (group
+     * filter) and the grouping headers. No picture, description or profile field is loaded,
+     * so the page cost no longer grows with the participants' data (10 000 users exhausted
+     * 512 MB in the legacy page).
+     *
+     * @param \stdClass $course Course record.
+     * @param \context_course $context Matching course context.
+     * @return array {users, groups, groupings, ungroupedgroupids}
+     */
+    public static function page_data(\stdClass $course, \context_course $context): array {
+        global $DB;
+
+        self::assert_context($course, $context);
+
+        [$enrolsql, $enrolparams] = get_enrolled_sql($context);
+        $userids = array_map('intval', $DB->get_fieldset_sql("SELECT je.id FROM ($enrolsql) je", $enrolparams));
+        [$roles, $userroles] = self::get_roles($context);
+        $rolenames = array_column($roles, 'name', 'id');
+        $users = [];
+        foreach ($userids as $userid) {
+            $users[$userid] = [
+                'id' => $userid,
+                'roles' => array_values(array_map(static function(int $roleid) use ($rolenames): string {
+                    return $rolenames[$roleid];
+                }, $userroles[$userid] ?? [])),
+            ];
+        }
+
+        $groupings = groups_get_all_groupings($course->id);
+        $groupingmemberships = self::get_grouping_memberships(array_map('intval', array_keys($groupings)));
+        $groups = [];
+        foreach (groups_get_all_groups($course->id, 0, 0, 'g.id, g.name, g.idnumber') as $group) {
+            $groups[(int)$group->id] = [
+                'id' => (int)$group->id,
+                'name' => format_string($group->name),
+                'rawname' => (string)$group->name,
+                'idnumber' => (string)($group->idnumber ?? ''),
+                'groupingids' => array_values($groupingmemberships['bygroup'][(int)$group->id] ?? []),
+            ];
+        }
+
+        // Same grouping data as course_structure::get_state(): it feeds the grouping headers.
+        $groupingitems = [];
+        foreach ($groupings as $grouping) {
+            $groupids = $groupingmemberships['bygrouping'][(int)$grouping->id] ?? [];
+            $groupingitems[(int)$grouping->id] = [
+                'id' => (int)$grouping->id,
+                'name' => format_string($grouping->name),
+                'rawname' => (string)$grouping->name,
+                'idnumber' => (string)($grouping->idnumber ?? ''),
+                'description' => format_text((string)($grouping->description ?? ''), $grouping->descriptionformat ?? FORMAT_HTML, [
+                    'context' => $context,
+                ]),
+                'rawdescription' => (string)($grouping->description ?? ''),
+                'configdata' => (string)($grouping->configdata ?? ''),
+                'groupids' => array_values(array_map('intval', $groupids)),
+                'groupcount' => count($groupids),
+            ];
+        }
+
+        return [
+            'users' => $users,
+            'groups' => $groups,
+            'groupings' => $groupingitems,
+            'ungroupedgroupids' => [],
+        ];
+    }
+
+    /**
      * Load the heavy fields of a few entities, for a modal or a detail panel.
      *
      * Ids outside the course (or users not enrolled in it) are refused as a whole,

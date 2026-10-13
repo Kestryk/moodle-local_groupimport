@@ -2,6 +2,8 @@
 
 - 2026-10-13 [N0] SM browser measurement: dedicated800/3000 fixture, paired legacy/reactive modes, native readiness, HTML/DOM/long tasks and synchronous/10-full-frame quiescent interactions; preserve deadline failures/late readiness and exact setting/fixture metadata cleanup. No renderer changes.
 
+- 2026-10-13 [N0] SM-RENDU-3d (Claude): in On demand mode manage.php loads only the lean data it still renders (course_state::page_data: enrolled users' role names, group names, grouping headers) and skips the participant copy/display enrichment; on-demand page HTML identical (courses 5 and 71). 800 fixture: page data 939 ms / 804 reads to 61 ms / 4 reads; whole page now as fast as a 24-user course.
+
 - 2026-10-13 [N0] T058: confine keyboard lifecycle to the existing Group/Grouping, Move, confirmation, Clipboard and History dialogs: initial focus, visible-enabled Tab loop, nested-Escape yield and post-Motion opener restoration. No mutation, template, Sass or Moodle-5-only API; dedicated static/build checks pass and Perf N1 remains pending.
 
 - 2026-10-13 [N0/N1] T058: source overlay inventory and read-only Perf accessibility audits of dialogs, expanded filters, menus, history/rollback, administration and compact navigation. Record focus/Tab/Escape, contrast/labels and conditional gaps; no product corrections or full accessibility acceptance claimed.
