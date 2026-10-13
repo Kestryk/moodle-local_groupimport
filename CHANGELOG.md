@@ -1,5 +1,11 @@
 # Changelog
 
+- 2026-10-13 [N1] A-TEXTES: align FR/EN scene examples, captions and native
+  action names; move the creation note before its invitation, remove the
+  unrelated Mass Import scene note, and normalize path cards. Checklist titles
+  use localized colon spacing and completed-step labels. Path 11 step 4 is
+  conditional; step 1 still awaits Claude's existing-group recognition.
+
 - 2026-10-13 [N0] Record the five-commit native PASS on f89ee98c: FR/EN both modes, loading-frame transition, inert specimens, counts, Move focus and native Mass Import picker; final Current mode and fixture cleanup verified. T061 part 2 remains open.
 
 - 2026-10-13 [N1] Group the five Claude integrations, rebuild course_manager/local-sm/searchable_choices/csv_import, and add a targeted FR/EN two-mode check for frame loading, inert specimens, counts and Move keyboard lifecycle; native result recorded in the handoff.

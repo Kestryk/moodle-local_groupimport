@@ -75,12 +75,12 @@ $wrappedBody = $wrappedBody.TrimEnd()
 
 # EasyStud supplies translated labels through its PHP configuration. Retain its
 # existing empty fallbacks rather than reintroducing English during each sync.
-$labelKeys = 'close|next|previous|start|hint|complete|guidedPath|visited|completeStepFirst'
+$labelKeys = 'close|next|previous|start|hint|complete|guidedPath|visited|completedSteps|completeStepFirst'
 $defaultsEnd = $wrappedBody.IndexOf('const SELECTORS =')
 if ($defaultsEnd -lt 0) { throw 'Guide defaults boundary missing.' }
 $defaults = $wrappedBody.Substring(0, $defaultsEnd)
 $labelPattern = "(?m)^(    (?:$labelKeys): )'[^\r\n]*'(,?)$"
-if ([regex]::Matches($defaults, $labelPattern).Count -ne 9) {
+if ([regex]::Matches($defaults, $labelPattern).Count -ne 10) {
     throw 'Review changed Guide default labels before localization adaptation.'
 }
 $defaults = [regex]::Replace($defaults, $labelPattern, { param($match)
@@ -99,6 +99,7 @@ if ($wrappedBody -match '(?m)^export ') {
 }
 $wrappedBody = $wrappedBody.Replace("config.labels.guidedPath || 'Guided path'", "config.labels.guidedPath || ''")
 $wrappedBody = $wrappedBody.Replace("config.labels.visited || 'visited'", "config.labels.visited || ''")
+$wrappedBody = $wrappedBody.Replace("config.labels.completedSteps || 'steps completed'", "config.labels.completedSteps || ''")
 
 $runtimeJavascript = @"
 // This file is generated from the embedded EasyEdu guide kit source and adapted to Moodle AMD.

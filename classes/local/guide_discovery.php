@@ -116,7 +116,7 @@ final class guide_discovery {
         foreach (['replay', 'reset'] as $key) {
             $scene[$key] = get_string('discovery_' . $key, 'local_groupimport');
         }
-        $scene['inputvalue'] = ($type === 'group' ? 'alex@example.test' : $scene['knownlabel']) . "\nunknown-entry";
+        $scene['inputvalue'] = ($type === 'group' ? 'alex@example.test' : $scene['knownlabel']) . "\n" . $scene['unknownlabel'];
         $scene['phases'] = [];
         foreach (['orient', 'open', 'enter', 'review', 'return'] as $phase) {
             $item = ['name' => $phase, 'label' => get_string($prefix . $phase, 'local_groupimport')];
@@ -241,6 +241,9 @@ final class guide_discovery {
             }
             $scene['selectioncaption'] = get_string('discovery_selection_' . ($kind === 'actions' ? 'many' : 'one'),
                 'local_groupimport');
+            if ($kind === 'actions') {
+                $scene['note'] = '';
+            }
             $scene['mobileaddsubmit'] = get_string('discovery_demo_add', 'local_groupimport');
             $scene['consequence'] = get_string('discovery_consequence', 'local_groupimport');
             $slides[] = [
@@ -411,6 +414,9 @@ final class guide_discovery {
                 $slide['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
                     return get_string('editor_path_step' . $step, 'local_groupimport');
                 }, [1, 2, 3, 4])];
+            }
+            if (!empty($slide['guidedpath'])) {
+                $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
             }
             $result[] = $slide;
         }
