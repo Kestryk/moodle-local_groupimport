@@ -57,13 +57,21 @@ test('T053 T058 native CSS bundle and neutral text contract',async({page},info)=
     test.setTimeout(240000);
     const cssResponses=[],pending=[],samples=[];
     page.on('response',response=>{
-        if(/text\/css/.test(response.headers()['content-type']||''))pending.push(response.body().then(body=>{
-            const text=body.toString('utf8');
-            cssResponses.push({path:new URL(response.url()).pathname,status:response.status(),bytes:body.length,
-                sha256:crypto.createHash('sha256').update(body).digest('hex'),
-                containsConsumer:text.includes('.local-groupimport-easystud-column-heading__title'),
-                embeddedBom:text.includes('\uFEFF'),contentEncoding:response.headers()['content-encoding']||null});
-        }));
+        if(/text\/css/.test(response.headers()['content-type']||''))pending.push((async()=>{
+            // Moodle can redirect while an earlier stylesheet response is still
+            // observable. Its body is then unavailable; retain that fact rather
+            // than failing the product contract on a tracing race.
+            try {
+                const body=await response.body(),text=body.toString('utf8');
+                cssResponses.push({path:new URL(response.url()).pathname,status:response.status(),bytes:body.length,
+                    sha256:crypto.createHash('sha256').update(body).digest('hex'),
+                    containsConsumer:text.includes('.local-groupimport-easystud-column-heading__title'),
+                    embeddedBom:text.includes('\uFEFF'),contentEncoding:response.headers()['content-encoding']||null});
+            } catch(error) {
+                cssResponses.push({path:new URL(response.url()).pathname,status:response.status(),
+                    bodyUnavailable:true,error:String(error.message||error)});
+            }
+        })());
     });
     const pageContract=await pageProof(page,info);
     const root=page.locator('#local-groupimport-easystud');
@@ -85,11 +93,12 @@ test('T053 T058 native CSS bundle and neutral text contract',async({page},info)=
                 rect:{x:r.x,y:r.y,width:r.width,height:r.height},transition:s.transition,animation:s.animation};
         }));
         samples.push({selector,rows});
+        expect(rows.length).toBeGreaterThan(0);
     };
     await capture(root,'.local-groupimport-easystud-column-heading__title');
     const eye=root.locator('[data-easystud-open-user]:visible').first();await eye.click();
     const user=root.locator('[data-easystud-user-modal]');await expect(user).toBeVisible();await settle(user);
-    await capture(user,'.local-groupimport-easystud-detail__field-label,.local-groupimport-easystud-detail__field-value.is-empty');
+    await capture(user,'.local-groupimport-easystud-detail__field > span,.local-groupimport-easystud-detail__field > strong.is-empty');
     await user.locator('[data-easystud-close-user-modal]').click();await expect(user).toBeHidden();
     await root.locator('[data-easystud-layout-mode="structure"]:visible').first().click();await settle(root);
     for(const kind of ['group','grouping']){
@@ -97,7 +106,7 @@ test('T053 T058 native CSS bundle and neutral text contract',async({page},info)=
         await root.locator(area+' [data-easystud-open-advanced-settings][data-easystud-advanced-target="'+kind+'"]:visible').first().click();
         const modal=root.locator('[data-easystud-advanced-settings-modal]');await expect(modal).toBeVisible();await settle(modal);
         await capture(modal,'.local-groupimport-easystud-settings-modal__field-label,.local-groupimport-easystud-settings-modal__field--readonly > span,.local-groupimport-easystud-settings-modal__list-empty');
-        await modal.locator('[data-easystud-close-advanced-settings]').click();await expect(modal).toBeHidden();
+        await modal.locator('[data-easystud-close-advanced-settings]').first().click();await expect(modal).toBeHidden();
     }
     await Promise.all(pending);
     const report={surface:'T053-T058-native',niveau:1,viewport:1280,lang:'fr',pageContract,samples,cssResponses,
