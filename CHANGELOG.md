@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] Claude integration verified on localhost: FR/EN in legacy/reactive pass count badges, Move keyboard lifecycle and real path 11 through step 5 without close/reopen; A-TEXTES corrected. Disposable course cleanup and rendering-mode restoration pass.
+
 - 2026-10-13 [N1] Integrate Claude T058 and plural/path fixes (a667f7df, 9dd156b4, 6ddcd146); rebuild four AMD families and align FR/EN path 10/11 instructions. Native verification pending.
 
 - 2026-10-13 [N1] Claude corrections: count labels take a singular form (CLDR rule of the language: 0 and 1 in French, 1 in English) on the server and in the browser, both modes; On demand, Add to group and Move members accept a destination group that is not drawn; guided paths: path 11 step 5 checks the real state when it starts (no more close-then-reopen), no "Groups without grouping" during that path, a valid preselected destination counts (paths 7 and 11), members' only source group is not offered; path 10 drag step completes when the drag starts (Kevin's option b).

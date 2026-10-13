@@ -54,7 +54,15 @@ function fixture_write_manifest(string $path, array $manifest): void {
 }
 
 function fixture_cleanup_course(int $courseid): array {
-    global $DB;
+    global $DB, $CFG;
+    // Only this disposable QA course: skip recycling its empty test shell.
+    // Process-local forced settings avoid changing the site's recycle policy.
+    $course = $DB->get_record('course', ['id' => $courseid], 'id,shortname');
+    if ($course && !str_starts_with($course->shortname, 'eed-claude-integration-')) {
+        fixture_fail('Refusing cleanup of a non-fixture course.');
+    }
+    $CFG->forced_plugin_settings['tool_recyclebin']['categorybinenable'] = 0;
+    $CFG->forced_plugin_settings['tool_recyclebin']['coursebinenable'] = 0;
     $cleanupError = null;
     if ($DB->record_exists('course', ['id' => $courseid])) {
         try {
