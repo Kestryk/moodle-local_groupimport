@@ -10,6 +10,10 @@
     var rootId = 'local-groupimport-easystud';
     var bootstrapAttribute = 'data-easyedu-loading-bootstrap';
     var loadingStateAttribute = 'data-easystud-loading-state';
+    // Optional earlier step, set by a manager whose data arrive after its bindings (Student
+    // Management on demand): reveal the real frame with its per-component skeletons while the
+    // state stays "loading", busy and non-interactive until the manager is ready.
+    var frameAttribute = 'data-easyedu-loading-frame';
     var diagnosticsQueryParameter = 'easystudloadingdiagnostics';
     var diagnosticsGlobalName = '__easyStudLoadingDiagnostics';
     var diagnosticsEventName = 'easyedu:loading-diagnostic';
@@ -121,6 +125,10 @@
         var visualStabilityTimer = null;
         var visualStabilityMaximumTimer = null;
         var transitionStarted = false;
+        var frameObserver = null;
+        var frameRevealed = false;
+        var frameShown = false;
+        var completeAfterFrame = null;
         var revealDuration = function() {
             var configuredDuration = Number.parseInt(root.getAttribute('data-easystud-loading-reveal-duration'), 10);
             if (root.classList.contains('is-easyedu-motion-off') ||
@@ -190,6 +198,10 @@
                 window.clearTimeout(timer);
                 timer = null;
             }
+            if (frameObserver) {
+                frameObserver.disconnect();
+                frameObserver = null;
+            }
             if (managerReadyObserver && !(state === 'degraded' && recoverLateReady)) {
                 managerReadyObserver.disconnect();
                 managerReadyObserver = null;
@@ -236,6 +248,16 @@
                     });
                 });
             };
+            if (frameRevealed) {
+                // The frame is already on screen: only end the busy, non-interactive state,
+                // once its own reveal has finished.
+                if (frameShown) {
+                    complete();
+                } else {
+                    completeAfterFrame = complete;
+                }
+                return true;
+            }
             if (skeleton && duration > 0) {
                 root.classList.add('is-easystud-loading-skeleton-exiting');
                 window.setTimeout(revealContent, duration);
@@ -243,6 +265,57 @@
                 revealContent();
             }
             return true;
+        };
+        var showFrame = function() {
+            if (frameRevealed || transitionStarted || root.getAttribute(frameAttribute) !== '1' ||
+                    root.getAttribute(loadingStateAttribute) !== 'loading') {
+                return;
+            }
+            frameRevealed = true;
+            // The fail-open deadline now counts from the visible frame.
+            if (timer !== null) {
+                window.clearTimeout(timer);
+                timer = window.setTimeout(function() {
+                    transition('degraded', 'amd-timeout');
+                }, failOpenDelay);
+            }
+            if (diagnostics) {
+                diagnostics.record('manager-frame', captureVisibility(root));
+            }
+            var content = root.querySelector('[data-easystud-real-content]');
+            var skeleton = root.querySelector('[data-easystud-loading-skeleton]');
+            var duration = revealDuration();
+            var shown = function() {
+                frameShown = true;
+                if (completeAfterFrame) {
+                    completeAfterFrame();
+                    completeAfterFrame = null;
+                }
+            };
+            var showContent = function() {
+                root.classList.remove('is-easystud-loading-skeleton-exiting');
+                if (skeleton) {
+                    skeleton.hidden = true;
+                }
+                if (!content) {
+                    shown();
+                    return;
+                }
+                root.classList.add('is-easystud-loading-content-entering');
+                content.hidden = false;
+                window.requestAnimationFrame(function() {
+                    window.requestAnimationFrame(function() {
+                        root.classList.add('is-easystud-loading-content-entered');
+                        window.setTimeout(shown, duration);
+                    });
+                });
+            };
+            if (skeleton && duration > 0) {
+                root.classList.add('is-easystud-loading-skeleton-exiting');
+                window.setTimeout(showContent, duration);
+            } else {
+                showContent();
+            }
         };
 
         root.easystudLoadingController = Object.freeze({
@@ -301,6 +374,9 @@
             managerReadyScheduled = true;
             waitForVisualStability();
         };
+        frameObserver = new MutationObserver(showFrame);
+        frameObserver.observe(root, {attributes: true, attributeFilter: [frameAttribute]});
+        showFrame();
         managerReadyObserver = new MutationObserver(scheduleManagerReady);
         managerReadyObserver.observe(root, {attributes: true, attributeFilter: [readyAttribute]});
         // AMD can finish between the initial root scan and observer setup. Read

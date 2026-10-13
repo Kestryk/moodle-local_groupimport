@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] Claude T061 (part 1): on demand, the real frame and its per-component skeletons replace the page skeleton as soon as the manager's bindings are in place, while the page stays busy and non-interactive until the lists are drawn; "ready" keeps its meaning; Mass Import and the Current mode are unchanged.
+
 - 2026-10-13 [N0] Claude CL-SPECIMEN: Guide specimen cards (local/sm/specimen.js) render the real participant and group card templates from example data, inert, with every behaviour attribute renamed data-specimen-*; card labels now reach the page in both rendering modes.
 
 - 2026-10-13 [N1] Claude corrections: count labels take a singular form (CLDR rule of the language: 0 and 1 in French, 1 in English) on the server and in the browser, both modes; On demand, Add to group and Move members accept a destination group that is not drawn; guided paths: path 11 step 5 checks the real state when it starts (no more close-then-reopen), no "Groups without grouping" during that path, a valid preselected destination counts (paths 7 and 11), members' only source group is not offered; path 10 drag step completes when the drag starts (Kevin's option b).
