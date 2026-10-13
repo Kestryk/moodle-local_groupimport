@@ -80,6 +80,10 @@
 
   @if $size == compact {
     $tile-size: var(--easyedu-section-icon-size-compact);
+  } @else if $size == small {
+    $tile-size: var(--easyedu-section-icon-size-small);
+  } @else if $size != regular {
+    @error "section-icon-tile supports regular, compact or small.";
   }
 
   align-items: center;

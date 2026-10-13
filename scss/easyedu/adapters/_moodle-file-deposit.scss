@@ -301,8 +301,31 @@
       padding-inline-start: calc(var(--easyedu-section-icon-size-compact) + 0.95rem);
     }
   }
+  // A deposit inside a larger card may be a secondary subsection. The small
+  // modifier owns its 28 px icon track and all related native-picker offsets.
+  .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon {
+    .easyedu-file-deposit__heading {
+      grid-template-columns: var(--easyedu-section-icon-size-small) minmax(0, 1fr);
+      gap: 0.75rem;
+    }
+    .easyedu-file-deposit__icon {
+      @include panels.section-icon-tile(
+        $surface: var(--easyedu-deposit-icon-surface),
+        $border: var(--easyedu-deposit-icon-border),
+        $size: small
+      );
+      font-size: 0.875rem;
+    }
+    .easyedu-file-deposit__support {
+      margin-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
+    }
+    [id^="filepicker-wrapper-"] {
+      padding-inline-start: calc(var(--easyedu-section-icon-size-small) + 0.75rem);
+    }
+  }
   @media (max-width: 40rem) {
-    .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon {
+    .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--compact-icon,
+    .easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon {
       .easyedu-file-deposit__support { margin-inline-start: 0; }
       [id^="filepicker-wrapper-"] { padding-inline-start: 0; }
     }

@@ -228,6 +228,10 @@
     @include panels.section-icon-tile($size: compact);
     font-size: 1.0625rem;
   }
+  .easyedu-ui .easyedu-icon-tile--small {
+    @include panels.section-icon-tile($size: small);
+    font-size: 0.875rem;
+  }
   .easyedu-ui .easyedu-icon-tile--success {
     background: var(--easyedu-accent-soft);
     border-color: var(--easyedu-semantic-border-success);
@@ -261,6 +265,9 @@
   }
   .easyedu-ui .easyedu-information__header--compact-icon {
     grid-template-columns: var(--easyedu-section-icon-size-compact) minmax(0, 1fr);
+  }
+  .easyedu-ui .easyedu-information__header--small-icon {
+    grid-template-columns: var(--easyedu-section-icon-size-small) minmax(0, 1fr);
   }
   .easyedu-ui .easyedu-information__title {
     @include type.type-card-title;

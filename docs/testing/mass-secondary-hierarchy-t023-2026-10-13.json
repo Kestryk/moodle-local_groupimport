@@ -1,0 +1,50 @@
+{
+  "surface": "T023-mass-secondary-hierarchy",
+  "level": "N1",
+  "date": "2026-10-13",
+  "scope": {
+    "decision": "card-title-600 plus a public 28px small icon tile",
+    "consumer": [
+      "Automatic learner identification",
+      "embedded Moodle file deposit"
+    ],
+    "preserved": [
+      "main import/result compact heading tiles",
+      "native Moodle file picker and maxfiles=1",
+      "CSV preview and import commands",
+      "Motion controller"
+    ]
+  },
+  "checks": [
+    {
+      "command": "node tools/release/test-mass-secondary-icons-source.js <Kit worktree>",
+      "passed": true
+    },
+    {
+      "command": "tools/release/test-phase0-mass-admin-contract.ps1",
+      "passed": true
+    },
+    {
+      "command": "tools/release/test-typography-contract.ps1",
+      "passed": true
+    },
+    {
+      "command": "php -l classes/form/import_form.php; php -l index.php",
+      "passed": true
+    },
+    {
+      "command": "node tools/release/build-styles.cjs <Sass> styles.css conservative",
+      "passed": true,
+      "compiler": "dart-sass 1.79.1"
+    }
+  ],
+  "nativeVerified": false,
+  "foundationsVerified": false,
+  "penpotVerified": false,
+  "humanAccepted": false,
+  "openGates": [
+    "Foundation source composition and linked Penpot example",
+    "native empty/preview history proof at 1600, 1280 and 390",
+    "human visual acceptance"
+  ]
+}

@@ -533,11 +533,15 @@
     {
       "id": "T023",
       "receivedScope": "[US3] Hiérarchie des sous-sections (M8) selon l'arbitrage A1 : `type-card-title` en 600 et glyphe sans tuile, ou tuile `small`.",
-      "status": "queued",
+      "status": "kit-static-verified-pending-foundations-consumer-native-human",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
-      "decisionGate": "Kevin"
+      "related": [
+        "Kevin A1: card title 600 and small 28px tile",
+        "Kit 0.4.205",
+        "docs/testing/mass-secondary-hierarchy-t023-2026-10-13.json"
+      ],
+      "decisionGate": "resolved"
     },
     {
       "id": "T024",

@@ -1,5 +1,12 @@
 # Changelog
 
+- 2026-10-13 [N1] T023: consume Kit 0.4.205's 28px secondary icon tile for
+  Automatic learner identification and the embedded Moodle file deposit. Main
+  import/result headings retain their compact tile; card titles use the
+  approved shared 600 weight. File handling, native picker, preview, commands
+  and Motion are unchanged. Foundation/Penpot, native rendering and human
+  acceptance remain open gates.
+
 - 2026-10-13 [N1] T049: use the shared optional Guide eyebrow/context-title
   contract for “GUIDE EASYSTUD” and “Simplified student management”. The
   complete localized Guide name remains the dialog label; the legacy visible
