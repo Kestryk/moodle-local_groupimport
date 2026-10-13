@@ -43,6 +43,8 @@ export const attachGroupCatalogs = (model, strings) => Loader.getTemplate(templa
     model.groupSource = source;
     model.groupStrings = strings || {};
     model.selectedGroups = new Map();
+    // Member rows selected in catalog cards: 'groupid:userid' => catalog key.
+    model.selectedMembers = new Map();
     model.catalogs = {
         participants: {filteredIds: [], pageCards: new Map(), detached: new Map()},
         structure: {filteredIds: [], pageCards: new Map(), detached: new Map()},
