@@ -663,7 +663,7 @@
     {
       "id": "T037",
       "receivedScope": "[P] [US4] Guide GS1, GS2, GS5, GS8 et GS9 : largeur de lecture 42rem, titre en encre (**coordination R10-31**), étiquette de démo, étiquettes de zone, points à retenir en 3 colonnes.",
-      "status": "in-progress: T037-A completion paint verified with60 native cases; GS1/GS2/GS5/GS8/GS9 pending",
+      "status": "in-progress: T037-A completion paint verified with60 native cases; GS1/GS2/GS5/GS8/GS9 implemented in Kit0.4.199/source with static contract PASS; Foundation/Penpot and native N2 pending",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": ["docs/guide-t037-reading-progress-2026-10-12.md", "docs/testing/guide-t037-finished-paint-2026-10-12.json", "docs/guide-t037-reading-layout-scope-2026-10-12.md"],

@@ -9,10 +9,10 @@ Six saved paired design rasters and16 isolated records are separate gates.
 Public SCSS-only archive contract passes at185. Human acceptance and the five
 T037 reading requests remain OPEN. Evidence: `testing/guide-t037-finished-paint-2026-10-12.json`.
 
-Programme `EED-UI-2026-0073`. T037 remains PARTIAL: GS1/GS2/GS5/GS8/GS9 reading
-changes are not implemented yet. Human checklist and original61 received scopes
-remain open. This first successor fixes the independently observed completion
-paint, not the complete slide layout.
+Programme `EED-UI-2026-0073`. T037 remains PARTIAL: the independently observed
+completion-paint successor is complete, and GS1/GS2/GS5/GS8/GS9 are now an
+implemented candidate in Kit 0.4.199 and EasyStud source. Foundation/Penpot
+composition, the native N2 rendering gate and human checklist remain open.
 
 ## T037-A: actual change and preservation
 
@@ -79,6 +79,29 @@ Destination scene labels; GS9 existing dl/dt/dd lesson reading points in3 deskto
 columns/1 phone, excluding six introduction specimens and T012 ol recap.
 Keep original clocks/cards and dedicated interface cue. GS3 short labels belong
 to separate T038 human decision. Approved Student corridors remain queued.
+
+## T037-B: bounded reading composition candidate
+
+Kit `eb67e11a5bfc16832b99226f873e555dcca77d23` / 0.4.199 provides the shared
+reading composition. EasyStud consumes the same Guide SCSS: direct explanatory
+paragraphs are capped at 42rem while scenes, illustrated cards, controls,
+topic `dl` and ordered recaps retain the full available lane. The already
+approved 16px/600 slide-heading role is retained and only its semantic ink is
+restored.
+
+Only short card/action lessons opt into the container-query reading-point
+layout: three columns when their actual lane reaches 42rem, one compact column
+otherwise. The first introduction's six teaching specimens and the T012
+ordered recap deliberately keep their established composition. Scene examples
+now carry a quiet localized demonstration caption and explicit localized
+Source/Destination labels; no guide engine, path, persistent state, Motion or
+business action changed.
+
+Source static contract `tools/release/test-guide-t037-reading-composition.cjs`
+passes 14 checks, including exact Kit/consumer SCSS parity. Native N2 proof is
+pending against the served localhost preview at 1600, 1280 and 390px in French.
+Foundation/Penpot are intentionally pending: the shared editor was unavailable,
+so no independent visual copy was created. Human acceptance remains open.
 
 ## Recovery and handoff
 

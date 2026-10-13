@@ -4,6 +4,16 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "guideReadingCompositionT037_20261013": {
+      "kitCommit": "eb67e11a5bfc16832b99226f873e555dcca77d23",
+      "kitVersion": "0.4.199",
+      "scope": "Bounded direct reading copy, semantic Guide heading ink, quiet safe-demo caption, localized scene lanes and container-query card/action lesson points; Guide engines, paths and Motion unchanged.",
+      "sourceStaticScript": "tools/release/test-guide-t037-reading-composition.cjs",
+      "sourceStaticPassed": true,
+      "foundationPaintPending": true,
+      "nativeVerified": false,
+      "humanAccepted": false
+    },
     "neutralTextContrastT058_20261013": {
       "kitCommit": "bc26c04d613fd878d4dcdba71f0874e1c811a91b",
       "kitVersion": "0.4.198",
