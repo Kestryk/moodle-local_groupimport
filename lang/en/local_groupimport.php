@@ -699,6 +699,7 @@ $string['tutorialgroupcardcontent'] = 'A group brings together participants alre
 $string['tutorialgroupcardtitle'] = 'Read a group card';
 $string['tutorialgroupingcardcontent'] = 'A grouping gathers groups, not participants directly. Expand it to check which groups are included.';
 $string['tutorialgroupingcardtitle'] = 'Read a grouping card';
+$string['guideeyebrow'] = 'Guide EasyStud';
 $string['tutorialintro'] = 'A quick guide to the simplified student management view.';
 $string['tutoriallabel'] = 'Open EasyStud guide';
 $string['tutorialhoverlabel'] = 'Open guide';

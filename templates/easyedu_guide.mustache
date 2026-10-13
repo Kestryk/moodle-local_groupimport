@@ -12,8 +12,10 @@
                 <div class="easyedu-guide-modal__title-wrap">
                     <span class="easyedu-guide-modal__hero-icon fa fa-compass" aria-hidden="true"></span>
                     <div>
-                        <h2>{{guidetitle}}</h2>
-                        <p>{{guidesubtitle}}</p>
+                        {{#guideeyebrow}}<p class="easyedu-guide-modal__eyebrow">{{guideeyebrow}}</p>{{/guideeyebrow}}
+                        {{#guidemodaltitle}}<h2>{{guidemodaltitle}}</h2>{{/guidemodaltitle}}
+                        {{^guidemodaltitle}}<h2>{{guidetitle}}</h2>{{/guidemodaltitle}}
+                        {{^guideeyebrow}}<p>{{guidesubtitle}}</p>{{/guideeyebrow}}
                     </div>
                 </div>
                 {{^discoverypresentation}}

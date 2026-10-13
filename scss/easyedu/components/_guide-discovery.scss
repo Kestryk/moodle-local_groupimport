@@ -171,7 +171,17 @@
     @include modals.dialog-heading;
     flex-direction: row;
     text-align: start;
-    > div { display: block; }
+    > div {
+      display: grid;
+      gap: 0.125rem;
+    }
+
+    .easyedu-guide-modal__eyebrow {
+      @include typography.type-eyebrow;
+
+      color: var(--easyedu-primary);
+      margin: 0;
+    }
 
     h2 {
       @include typography.type-modal-title;
@@ -1311,7 +1321,7 @@
   }
 
   @media (max-width: 40rem) {
-    .easyedu-guide-modal__title-wrap > div > p { display: none; }
+    .easyedu-guide-modal__title-wrap > div > p:not(.easyedu-guide-modal__eyebrow) { display: none; }
     .easyedu-guide-guided-card {
       grid-template-columns: minmax(0, 1fr);
       .easyedu-guide-guided-card__icon { justify-self: start; grid-row: 1; }
