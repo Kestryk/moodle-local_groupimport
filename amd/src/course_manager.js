@@ -26,7 +26,7 @@ import * as Guide from './easyedu_guide';
 import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './searchable_choices';
 import {snapshotMemberPairs} from './member_selection';
 import Log from 'core/log';
-import {createStore, fetchState} from './local/sm/store';
+import {createStore, fetchState, fetchDetails} from './local/sm/store';
 import {filterParticipantIds} from './local/sm/index';
 import {
     createParticipantModel, refreshModel, getDetachedCard, applyParticipantFilters, sortParticipantIds, renderParticipantPage,
@@ -9053,14 +9053,9 @@ const bindParticipantModal = root => {
         });
     };
 
-    const openForUser = (user, trigger) => {
-        rehydrateParticipantMembershipDetails(root);
-        const detail = user.getAttribute('data-user-detail');
-        if (!detail) {
-            return;
-        }
-        const data = JSON.parse(detail);
-        participantReturnFocus = trigger;
+    let detailRequest = 0;
+
+    const renderParticipantDetail = data => {
         body.innerHTML =
             '<div class="local-groupimport-easystud-detail">' +
                 '<div class="local-groupimport-easystud-detail__hero">' +
@@ -9099,8 +9094,69 @@ const bindParticipantModal = root => {
                 '</div>' : '') +
             '</div>';
         bindParticipantDetailLists(body);
+    };
+
+    /**
+     * SM-RENDU: the on-demand card only carries light details. Load the others once
+     * (local_groupimport_get_details) and update the open sheet; a closed or re-targeted
+     * sheet ignores the answer, and an error keeps the light details.
+     *
+     * @param {Object} data Light details from the card.
+     * @param {Number} request Request token of this opening.
+     */
+    const completeDeferredDetails = (data, request) => {
+        const model = getOnDemandModel(root);
+        if (!model || !data.detailsdeferred) {
+            return;
+        }
+        const merge = details => Object.assign({}, data, details, {
+            roles: data.roles,
+            groups: data.groups,
+            groupids: data.groupids,
+            groupings: data.groupings,
+            groupingids: data.groupingids,
+            detailsdeferred: false,
+        });
+        model.userDetails = model.userDetails || new Map();
+        if (model.userDetails.has(data.id)) {
+            renderParticipantDetail(merge(model.userDetails.get(data.id)));
+            return;
+        }
+        body.setAttribute('aria-busy', 'true');
+        const settle = () => {
+            if (request === detailRequest) {
+                body.removeAttribute('aria-busy');
+            }
+        };
+        fetchDetails(onDemandParticipants.courseId, 'user', [data.id]).then(items => {
+            const details = items[0];
+            if (details) {
+                model.userDetails.set(data.id, details);
+                if (request === detailRequest && !modal.hidden) {
+                    renderParticipantDetail(merge(details));
+                }
+            }
+            settle();
+            return details || null;
+        }).catch(error => {
+            Log.error(error);
+            settle();
+        });
+    };
+
+    const openForUser = (user, trigger) => {
+        rehydrateParticipantMembershipDetails(root);
+        const detail = user.getAttribute('data-user-detail');
+        if (!detail) {
+            return;
+        }
+        const data = JSON.parse(detail);
+        participantReturnFocus = trigger;
+        detailRequest++;
+        renderParticipantDetail(data);
         showEasyStudModal(modal);
         focusModal();
+        completeDeferredDetails(data, detailRequest);
     };
 
     root.addEventListener('click', event => {
@@ -9126,6 +9182,7 @@ const bindParticipantModal = root => {
     // Restore the actual native trigger after, not during, the existing exit.
     // A cancelled exit must not move focus behind a still-open dialog.
     const closeParticipantModal = () => hideEasyStudModal(modal, () => {
+        detailRequest++;
         if (participantReturnFocus && participantReturnFocus.isConnected) {
             participantReturnFocus.focus({preventScroll: true});
         }
