@@ -7,7 +7,8 @@ param(
     [Parameter(Mandatory=$true)][string]$PhpPath,
     [Parameter(Mandatory=$true)][string]$OutputRoot,
     [Parameter(Mandatory=$true)][string]$DeploymentManifestPath,
-    [ValidateSet(800,3000)][int]$Participants=800
+    [ValidateSet(800,3000)][int]$Participants=800,
+    [ValidateSet('all','reactive')][string]$ModeOnly='all'
 )
 $ErrorActionPreference='Stop'
 $source=(Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
@@ -21,14 +22,14 @@ $fixture=Join-Path $output ($id+'-fixture.json')
 $result=Join-Path $output ($id+'-browser.json')
 $setting=Join-Path $output ($id+'-setting.json')
 $names=@('PATH','EASYEDU_PERF_MANIFEST','EASYEDU_PERF_PARTICIPANTS','EASYEDU_SM_BROWSER_RESULT',
-    'EASYEDU_SM_MODE_STATE','EASYEDU_PERF_PHP','EASYEDU_PERF_MOODLE_ROOT','EASYEDU_PERF_DEPLOYMENT_MANIFEST')
+    'EASYEDU_SM_MODE_STATE','EASYEDU_PERF_PHP','EASYEDU_PERF_MOODLE_ROOT','EASYEDU_PERF_DEPLOYMENT_MANIFEST','EASYEDU_SM_ONLY_MODE')
 $previous=@{};foreach($n in $names){$previous[$n]=[Environment]::GetEnvironmentVariable($n,'Process')}
 $leases=@();$exitCode=1
 try {
     [Environment]::SetEnvironmentVariable('PATH',(Split-Path -Parent $PhpPath)+';'+$previous.PATH,'Process')
     $values=@{EASYEDU_PERF_MANIFEST=$fixture;EASYEDU_PERF_PARTICIPANTS=[string]$Participants;
         EASYEDU_SM_BROWSER_RESULT=$result;EASYEDU_SM_MODE_STATE=$setting;EASYEDU_PERF_PHP=$PhpPath;
-        EASYEDU_PERF_MOODLE_ROOT=$MoodleRoot;EASYEDU_PERF_DEPLOYMENT_MANIFEST=$DeploymentManifestPath}
+        EASYEDU_PERF_MOODLE_ROOT=$MoodleRoot;EASYEDU_PERF_DEPLOYMENT_MANIFEST=$DeploymentManifestPath;EASYEDU_SM_ONLY_MODE=$ModeOnly}
     foreach($n in $values.Keys){[Environment]::SetEnvironmentVariable($n,$values[$n],'Process')}
     $argsForRunner=@{CredentialLoaderPath=$CredentialLoaderPath;OrchestrationModulePath=$OrchestrationModulePath;
         Spec='sm-browser-performance.spec.js';Grep='SM browser measures both modes and native list interactions';

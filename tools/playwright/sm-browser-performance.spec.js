@@ -13,7 +13,7 @@ test('SM browser measures both modes and native list interactions', async({page}
     const source = path.resolve(__dirname,'../..');
     const result = {lot:'SM-RENDU-3b-browser', participants:fixture.userIds.length,groups:fixture.groupIds.length,
         groupings:fixture.groupingIds.length,courseId:fixture.courseId,viewport:1280,locale:'fr',
-        modeOrder:['legacy','reactive'],modes:[],errors:[],completed:false,
+        modeOrder:process.env.EASYEDU_SM_ONLY_MODE==='reactive'?['reactive']:['legacy','reactive'],modes:[],errors:[],completed:false,
         clockPolicy:'Native readiness timestamps plus10 consecutive rAF intervals <60ms; DOM dispatch synchronous cost reported separately.',
         deployment:JSON.parse(fs.readFileSync(process.env.EASYEDU_PERF_DEPLOYMENT_MANIFEST,'utf8')).sourceHead};
     const save = () => fs.writeFileSync(output,JSON.stringify(result,null,2));
@@ -139,5 +139,5 @@ test('SM browser measures both modes and native list interactions', async({page}
         result.completed=true;result.passed=result.modes.every(m=>m.completed &&
             !m.exceededObservationDeadline && m.usableMs<=(result.participants===800?3000:5000));save();
     }finally{result.settingRestore=config('restore');save();}
-    expect(result.modes).toHaveLength(2);
+    expect(result.modes).toHaveLength(result.modeOrder.length);
 });
