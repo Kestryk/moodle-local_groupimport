@@ -80,6 +80,8 @@ coverage explicitly and never treats an equal failure as a product PASS.
 It compares first error, source line and the actual expected/received values
 from the native log, so two different CSS/DOM failures cannot be called equal
 only because they share an assertion type.
+`create-sm-rendu-spec-parity-return.cjs` generates the review table directly
+from that report, under 150 lines, with complete details in the linked raw JSON.
 
 The supervised Playwright configuration captures only failed tests, so a code
 discrepancy can be returned with its real terminal screen. All such captures

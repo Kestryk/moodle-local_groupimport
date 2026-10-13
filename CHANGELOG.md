@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N0] SM-RENDU review tooling: generate the bounded before/after return directly from measured mode records, retaining complete discrepancies and capture paths in the separate raw JSON; pending matrices remain explicitly pending.
+
 - 2026-10-13 [N0/N2] SM-RENDU harness: bind historical Mass Import URLs to the explicitly approved Moodle runtime (host/port/course preserved), clear that URL on runner cleanup, and compare actual expected/received failure values before claiming equal outcomes.
 
 - 2026-10-13 [N2] SM-RENDU test evidence: add a compact before/after mode-comparison report distinguishing equal failures from product PASS; capture failed-test screens in the existing external Playwright run directory. Full focused comparison remains running; shared guards retain static coverage of all 188 callers.
