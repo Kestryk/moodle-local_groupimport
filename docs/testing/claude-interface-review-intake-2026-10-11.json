@@ -6,6 +6,16 @@
   "taskCount": 61,
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
+  "taskRegisterReconciliation20261013": {
+    "lot": "T031",
+    "owner": "Codex2",
+    "scope": "61 original task scopes, current recorded evidence and pending gates",
+    "audit": "tools/release/audit-task-register.cjs",
+    "projection": "docs/t031-task-register-reconciliation-2026-10-13.md",
+    "rawExternal": "C:/dev/artifacts/easystud-roadmap-codex2-20261013/t031-task-register.json",
+    "proofPolicy": "Recorded evidence is linked; queued tasks have pending proof. This reconciliation does not replay or expand any historical validation.",
+    "humanAccepted": false
+  },
   "codex2APE720261012": {"status":"isolated-parity-and-boundary-verified","functions":["local_groupimport_load_custom_user_field_values","local_groupimport_enrich_users_with_copy_fields"],"maxUserInValues":1000,"nativeSqlServerProof":false,"versionChanged":false},
   "codex2APE520261012": {
     "owner": "Codex2",
@@ -237,7 +247,7 @@
       "status": "sha-rechecked-T041-T004-T005-native-findings-revalidated",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/claude-interface-review-recheck-2026-10-11.md"],
       "decisionGate": "none"
     },
     {
@@ -246,7 +256,7 @@
       "status": "A1-and-A2-approved-source-publication-and-implementation-queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/claude-interface-review-recheck-2026-10-11.md", "docs/student-identity-corridors-plan-2026-10-12.md"],
       "decisionGate": "Kevin"
     },
     {
@@ -326,7 +336,7 @@
       "historicalNativeVerified": true,
       "proof": "docs/testing/guide-scene-header-2026-10-11.json",
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/testing/guide-review1-corrections-2026-10-12.json"],
       "decisionGate": "none"
     },
     {
@@ -337,7 +347,7 @@
       "historicalNativeVerified": true,
       "proof": "docs/testing/guide-scene-header-2026-10-11.json",
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/testing/guide-review1-corrections-2026-10-12.json"],
       "decisionGate": "none"
     },
     {
@@ -346,7 +356,7 @@
       "status": "canonical184-paired-saved-60-disclosure-12-continuous-12-keyboard-native-cases-passed-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/guide-t012-recap-disclosure-progress-2026-10-12.md", "docs/testing/guide-t012-recap-disclosure-2026-10-12.json"],
       "decisionGate": "none"
     },
     {
@@ -364,7 +374,7 @@
       "status": "canonical183-paired-saved-60-isolated-16-native-passed-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/guide-introduction-t014-progress-2026-10-12.md", "docs/testing/guide-introduction-t014-2026-10-12.json"],
       "decisionGate": "none"
     },
     {
@@ -373,7 +383,7 @@
       "status": "current60-scene-and12-keyboard-native-cases-passed-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/testing/guide-t015-scene-matrix-2026-10-12.json"],
       "decisionGate": "none"
     },
     {
@@ -518,10 +528,10 @@
     {
       "id": "T031",
       "receivedScope": "Mettre à jour les registres EasyStud (projection, intake) avec un lot et une preuve par tâche, sans fermer la checklist humaine.",
-      "status": "queued",
+        "status": "61-task-registers-reconciled-existing-evidence-linked-human-checklist-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/t031-task-register-reconciliation-2026-10-13.md", "tools/release/audit-task-register.cjs"],
       "decisionGate": "none"
     },
     {
@@ -530,7 +540,7 @@
       "status": "saved-main-paint-rechecked-documentation-corrected",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/card-title-600-publication-progress-2026-10-11.md", "docs/testing/card-title-weight-adoption-2026-10-11.json"],
       "decisionGate": "Kevin",
       "evidence": "claude-foundation-title-readback-20261011-a: Inter14/700 #264861"
     },
@@ -618,7 +628,7 @@
       "status": "native-proof-passed-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
+        "related": ["docs/card-modal-keyboard-correction-2026-10-11.md", "docs/testing/card-modal-keyboard-native-2026-10-11.json"],
       "decisionGate": "none",
       "proof": "docs/testing/card-modal-keyboard-native-2026-10-11.json"
     },

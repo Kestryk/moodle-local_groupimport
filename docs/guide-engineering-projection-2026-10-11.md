@@ -1,5 +1,13 @@
 # Guide engineering: current projection, not human acceptance
 
+T031 (13 October): the 61 original task scopes are cross-checked against the
+immutable received plan. Every task with recorded progress now links its
+existing evidence; queued tasks keep their pending proof and decision gates.
+The reconciliation/auditor is `t031-task-register-reconciliation-2026-10-13.md`.
+It records 26 tasks with progress and 35 queued, including partial/audit-only
+deliveries. Historical native flags are retained, not replayed or upgraded.
+All 61 human-acceptance flags remain false and the combined checklist is open.
+
 PG-S1 recovery: Kit186/27a5030 paired design and isolated gates pass. Source
 Guide sync/AMD/CSS build and complete unrelated-CSS/controller/type preservation
 pass. Native editor six-target candidate discovered once through the runtime
