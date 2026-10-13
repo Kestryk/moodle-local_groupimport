@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] SM-RENDU-2b fix (Claude): in On demand mode the participant sheet loads the deferred details once through local_groupimport_get_details (city, country, language, description...), keeps them for later openings, ignores answers for a closed or re-targeted sheet and keeps the light details on error. Sheet HTML identical to the Current mode (Test15, course 5), reported by Codex 1.
+
 - 2026-10-13 [N1] SM-RENDU-3b (Claude): in On demand mode both flat group catalogs (Participants and Structure views) render only their current page from the state (shared `sm/group_card` partial, also used by the legacy page with byte-identical HTML); grouping filter, ungrouped toggle, search, sort, pagination, empty state, Select all and cross-page group selection run on the state. 800 fixture: HTML 32.0 to 17.1 MB. Member selection inside catalog cards stays per page; the groupings tree is still legacy (step 3c).
 
 - 2026-10-13 [N1] SM-RENDU-3a (Claude): in On demand mode the course state is reloaded from the server after every successful action (one reload for a burst) and is the source of truth for memberships, instead of the rendered group tree; the 2b tree-to-state copy is removed. Group member search reads the participant text from the state index instead of building a detached card per member (2b regression).
