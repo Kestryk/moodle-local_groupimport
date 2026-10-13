@@ -724,19 +724,19 @@
     {
       "id": "T043",
       "receivedScope": "[US5] Kit : recette publique `dialog-header`, unifiant `entity-dialog__header`, `easyedu-dialog-header` et confirmation, avec eyebrow, titre, tuile et variantes `--danger` / `--success`. Une seule classe de fermeture : `easyedu-dialog-close`, 30px.",
-      "status": "queued",
+      "status": "kit-static-verified-pending-foundations-consumer-native-human",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["EasyEdu UI Kit 0.4.204 / d669627", "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"],
       "decisionGate": "none"
     },
     {
       "id": "T044",
       "receivedScope": "[US5] Kit : recette publique `dialog-footer`, extraite du pied du Guide.",
-      "status": "queued",
+      "status": "kit-static-verified-pending-foundations-consumer-native-human",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [],
+      "related": ["EasyEdu UI Kit 0.4.204 / d669627", "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"],
       "decisionGate": "none"
     },
     {
