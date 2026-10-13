@@ -1386,7 +1386,9 @@
       border: 1px solid color-mix(in srgb, var(--easyedu-accent) 24%, var(--easyedu-surface) 76%);
       border-radius: 999px;
       color: var(--easyedu-accent);
-      display: inline-flex;
+      // Moodle's host Font Awesome utility can force direct `.fa` elements to
+      // flex. This marker must remain inline so it never expands a nav topic.
+      display: inline-flex !important;
       flex: 0 0 auto;
       font-size: 0.6875rem;
       height: 1.375rem;
