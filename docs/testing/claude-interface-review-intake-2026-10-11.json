@@ -4,6 +4,7 @@
   "externalHandoff": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROMPT-PASSATION-CODEX.md",
   "immutablePlan": "docs/claude-interface-review-plan-2026-10-11.md",
   "taskCount": 61,
+  "smRenduSuite20261013":{"producers":["7cc2ad5","407405b","9811977"],"integrations":["e13ec760","67a3b1c9","e19f4d79"],"state":"source integrated, rebuilt; grouped localhost publication/native pending","level":1,"nativeSpec":"tools/playwright/student-sm-rendu-c9-native.spec.js","scope":"C9 clipboard/paging/selected third member/open search, lean-member expansion, two modes,1280/390FR Structure/Participants header actions and grouping masking","modeSwitch":"authorized CLI set_config; legacy restored in finally; no admin save or config cache purge","courseWritesForbidden":true,"static":"PHP3/named AMD2/spec syntax and canonical rebuild PASS","humanAccepted":false},
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
   "localhostCurrentPreviewRule20261012":{"requestedBy":"Kevin","rule":"Every Claude-validated lot from all three writers joins the next grouped localhost publication","singlePromotion":true,"notProduction":true},
