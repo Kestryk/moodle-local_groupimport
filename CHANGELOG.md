@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-13 [N1] Group the five Claude integrations, rebuild course_manager/local-sm/searchable_choices/csv_import, and add a targeted FR/EN two-mode check for frame loading, inert specimens, counts and Move keyboard lifecycle; native result recorded in the handoff.
+
 - 2026-10-13 [N1] Claude integration verified on localhost: FR/EN in legacy/reactive pass count badges, Move keyboard lifecycle and real path 11 through step 5 without close/reopen; A-TEXTES corrected. Disposable course cleanup and rendering-mode restoration pass.
 
 - 2026-10-13 [N1] Integrate Claude T058 and plural/path fixes (a667f7df, 9dd156b4, 6ddcd146); rebuild four AMD families and align FR/EN path 10/11 instructions. Native verification pending.
