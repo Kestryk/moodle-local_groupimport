@@ -99,8 +99,8 @@ final class guide_discovery {
             'kind' => 'inspection',
             'inspection' => true,
             'grouping' => $type === 'grouping',
-            'cardicon' => $type === 'group' ? 'fa-users' : 'fa-sitemap',
-            'actionicon' => $type === 'group' ? 'fa-at' : 'fa-plus',
+            'cardicon' => $type === 'group' ? 'fa-users' : 'fa-layer-group',
+            'actionicon' => $type === 'group' ? 'fa-at' : 'fa-layer-group',
         ];
         foreach (['cardtitle', 'cardmeta', 'actionlabel', 'inputlabel', 'knownlabel', 'note', 'resultlabel'] as $key) {
             $scene[$key] = get_string($prefix . $key, 'local_groupimport');

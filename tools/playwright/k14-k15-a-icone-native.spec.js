@@ -63,7 +63,8 @@ test('K14 K15 and A-ICONE FR1280 native inline focus both modes', async ({page},
             await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});await settle(root);
             await root.locator('[data-easystud-layout-mode="participants"]:visible').first().click();await settle(root);
             const cards=root.locator('[data-easystud-group-id]:visible').filter({has:page.locator('[data-easystud-group-member-search-toggle]')});
-            const card=cards.nth(Math.min(4,(await cards.count())-1));
+            const cardCount=await cards.count();expect(cardCount).toBeGreaterThan(0);
+            const card=cards.nth(Math.min(4,cardCount-1));
             for(const def of [
                 {name:'loupe',toggle:'[data-easystud-group-member-search-toggle]',panel:'[data-easystud-group-member-search-panel]',field:'[data-easystud-group-member-search]'},
                 {name:'identifiers',toggle:'[data-easystud-toggle-group-email]',panel:'[data-easystud-group-email-panel]',field:'[data-easystud-group-email-box]'}]){
@@ -71,13 +72,14 @@ test('K14 K15 and A-ICONE FR1280 native inline focus both modes', async ({page},
                 await toggle.scrollIntoViewIfNeeded();
                 if(await panel.isVisible()){await toggle.click();await expect(panel).toBeHidden();}
                 const before=await page.evaluate(()=>window.inlineFocusQA.length);
-                await panel.evaluate(n=>{
+                // Identifier panels are created by their first native click.
+                await card.evaluate((n,selector)=>{
                     window.panelDisclosureQA={entered:false};
                     window.panelDisclosureObserver=new MutationObserver(()=>{
-                        if(n.classList.contains('is-easyedu-disclosing')) window.panelDisclosureQA.entered=true;
+                        if(n.querySelector(selector)?.classList.contains('is-easyedu-disclosing')) window.panelDisclosureQA.entered=true;
                     });
-                    window.panelDisclosureObserver.observe(n,{attributes:true,attributeFilter:['class']});
-                });
+                    window.panelDisclosureObserver.observe(n,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+                },def.panel);
                 await toggle.click();await expect(panel).toBeVisible();
                 await expect(panel.locator(def.field)).toBeFocused({timeout:20000});await settle(panel);
                 const evidence=await page.evaluate(before=>{
@@ -111,8 +113,10 @@ test('K14 K15 and A-ICONE FR1280 native inline focus both modes', async ({page},
             const inspection=guide.locator('[data-easyedu-guide-slide="'+inspectionIndex+'"]');await expect(inspection).toBeVisible();await settle(guide);
             row.icons=await inspection.locator('[data-easyedu-guide-scene="inspection"]').evaluate(n=>({
                 identity:n.querySelector('[data-guide-inspection-card] .easyedu-guide-scene__identity')?.className,
-                action:n.querySelector('[data-guide-inspection-trigger] .fa')?.className}));save();
+                action:n.querySelector('[data-guide-inspection-trigger] .fa')?.className,
+                compactMenu:n.querySelector('[data-guide-inspection-menu] strong .fa')?.className}));save();
             expect(row.icons.identity).toContain('fa-layer-group');expect(row.icons.action).toContain('fa-layer-group');
+            expect(row.icons.compactMenu).toContain('fa-layer-group');
             await inspection.screenshot({path:info.outputPath(mode+'-grouping-guide.png')});
             await page.evaluate(async()=>{
                 const root=document.querySelector('[data-easyedu-guide-root]');
