@@ -1,5 +1,10 @@
 # Changelog
 
+- 2026-10-13 [N1] SM-RENDU suite (Claude): show an inline state-load failure,
+  render only the first two members until a card needs its complete list, and
+  batch card-header measurements in both modes. Rebuilt canonical AMD;
+  grouped C9/menu verification uses temporary CLI settings with final restore.
+
 - 2026-10-13 [N1] SM-RENDU C9 (Claude): in the On demand preview, defer the
   ready state until state lists are drawn; keep known pasted identifiers lazy
   across a state refresh; preserve selected group members and an open
