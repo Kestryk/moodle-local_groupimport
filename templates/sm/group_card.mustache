@@ -23,6 +23,7 @@
     (SM-RENDU). Both must produce the same markup.
 
     structureemail: the Structure catalog wraps the e-mail panel actions with a Cancel button.
+    treecard: card of the groupings tree (no catalog class); withingrouping adds the unlink button.
 
     Example context (json):
     {
@@ -39,7 +40,7 @@
     }
 }}
 <div
-    class="local-groupimport-easystud-group local-groupimport-easystud-group--catalog"
+    class="local-groupimport-easystud-group{{^treecard}} local-groupimport-easystud-group--catalog{{/treecard}}"
     data-easystud-group-id="{{id}}"
     data-easystud-user-drop="{{id}}"
     data-selectable-type="group"
@@ -107,6 +108,17 @@
                 <button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">{{cancellabel}}</button>
             </div>
         </form>
+        {{#withingrouping}}
+            <button
+                type="button"
+                class="btn btn-link p-0 local-groupimport-easystud-group__unlink-button"
+                data-easystud-remove-from-grouping="{{id}}"
+                aria-label="{{removefromgroupinglabel}}"
+                data-easystud-hover-help="{{removefromgroupinglabel}}"
+            >
+                <span class="fa fa-unlink" aria-hidden="true"></span>
+            </button>
+        {{/withingrouping}}
     </div>
     <ul class="local-groupimport-easystud-group__members" data-easystud-group-members="{{id}}">
         {{#members}}

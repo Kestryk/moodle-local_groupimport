@@ -1062,17 +1062,19 @@ function local_groupimport_build_manage_template_data(
         ];
     }
 
+    // SM-RENDU on-demand mode: grouping headers only; the browser renders the group cards of a
+    // section (and of the "without grouping" section) when it opens.
     foreach ($groupings as $grouping) {
         $templatedata['groupings'][] = local_groupimport_build_grouping_template_data(
             $course->id,
             $grouping,
-            $groups,
+            $templatedata['smondemand'] ? [] : $groups,
             $users,
             $groupings
         );
     }
 
-    foreach ($ungroupedgroupids as $groupid) {
+    foreach ($templatedata['smondemand'] ? [] : $ungroupedgroupids as $groupid) {
         if (isset($groups[$groupid])) {
             $templatedata['ungroupedgroups'][] = local_groupimport_build_group_template_data(
                 $course->id,
@@ -1092,8 +1094,10 @@ function local_groupimport_build_manage_template_data(
         $users
     );
     $templatedata['structurefocusgroups'] = $templatedata['participantfocusgroups'];
-    // The Structure catalog renders templates/sm/group_card with its e-mail panel variant.
+    // The Structure catalog renders templates/sm/group_card with its e-mail panel variant,
+    // the groupings tree with its tree variant.
     $templatedata['structurecatalog'] = ['structureemail' => true];
+    $templatedata['treegroupcard'] = ['treecard' => true];
 
     return $templatedata;
 }
