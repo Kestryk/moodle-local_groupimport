@@ -373,6 +373,34 @@
       width: 100%;
     }
 
+    // Sheet submenus expand inline under their trigger (accordion).
+    &-context-menu.is-mobile-sheet &-context-menu__submenu {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      max-height: none;
+      min-width: 0;
+      overflow: visible;
+      padding: 0;
+      padding-inline-start: 1.6rem;
+      position: static;
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__group.is-flattened &-context-menu__submenu {
+      padding-inline-start: 0;
+    }
+
+    &-context-menu.is-mobile-sheet &-context-menu__group > button,
+    &-context-menu.is-mobile-sheet &-context-menu__submenu > button {
+      min-height: var(--easyedu-touch-target-min);
+      width: 100%;
+    }
+
+    &-context-menu.is-mobile-sheet [data-easystud-context-submenu-toggle][aria-expanded="true"] &-context-menu__chevron {
+      transform: rotate(90deg);
+    }
+
     &--responsive-workspace &-user.is-selected {
       max-height: none;
     }

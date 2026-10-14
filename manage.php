@@ -2398,7 +2398,10 @@ function local_groupimport_build_group_template_data(
 }
 
 /**
- * Build context menu action data for Mustache.
+ * Build context menu entry data for Mustache.
+ *
+ * Entries are rendered top to bottom. Each entry is exactly one of an action
+ * item, a section separator or a submenu group holding its own action items.
  *
  * @param array $alloweduserfields Allowed configured fields.
  * @param bool $canmessageparticipants Whether current user can send bulk messages.
@@ -2436,14 +2439,12 @@ function local_groupimport_build_context_actions_template_data(
         'copy-participant-name' => [
             'contexts' => 'participant member',
             'icon' => 'fa-id-card',
-            'label' => get_string('contextcopyfullname', 'local_groupimport'),
-            'multilabel' => get_string('contextcopyselectedfullnames', 'local_groupimport'),
+            'label' => get_string('contextcopyshortfullname', 'local_groupimport'),
         ],
         'copy-participant-id' => [
             'contexts' => 'participant member',
             'icon' => 'fa-hashtag',
-            'label' => get_string('contextcopyuserid', 'local_groupimport'),
-            'multilabel' => get_string('contextcopyselecteduserids', 'local_groupimport'),
+            'label' => get_string('contextcopyshortuserid', 'local_groupimport'),
         ],
         'group-search-members' => [
             'contexts' => 'group',
@@ -2453,12 +2454,12 @@ function local_groupimport_build_context_actions_template_data(
         'group-paste-emails' => [
             'contexts' => 'group',
             'icon' => 'fa-envelope-open-text',
-            'label' => get_string('contextaddemails', 'local_groupimport'),
+            'label' => get_string('contextaddbyidentifiers', 'local_groupimport'),
         ],
         'group-add-copied-users' => [
             'contexts' => 'group',
             'icon' => 'fa-clipboard-check',
-            'label' => get_string('contextaddcopiedusers', 'local_groupimport'),
+            'label' => get_string('contextaddcopiedparticipants', 'local_groupimport'),
         ],
         'group-move-selected' => [
             'contexts' => 'group',
@@ -2491,18 +2492,24 @@ function local_groupimport_build_context_actions_template_data(
         'copy-group-name' => [
             'contexts' => 'group',
             'icon' => 'fa-copy',
-            'label' => get_string('contextcopygroupname', 'local_groupimport'),
-            'multilabel' => get_string('contextcopyselectedgroupnames', 'local_groupimport'),
+            'label' => get_string('contextcopyshortgroupname', 'local_groupimport'),
+            'multilabel' => get_string('contextcopyshortgroupnames', 'local_groupimport'),
+        ],
+        'copy-group-id' => [
+            'contexts' => 'group',
+            'icon' => 'fa-hashtag',
+            'label' => get_string('contextcopyshortgroupid', 'local_groupimport'),
+            'multilabel' => get_string('contextcopyshortgroupids', 'local_groupimport'),
         ],
         'grouping-paste-groups' => [
             'contexts' => 'grouping',
             'icon' => 'fa-layer-group',
-            'label' => get_string('contextaddgroups', 'local_groupimport'),
+            'label' => get_string('contextaddbygroupnames', 'local_groupimport'),
         ],
         'grouping-add-copied-groups' => [
             'contexts' => 'grouping',
             'icon' => 'fa-clipboard-check',
-            'label' => get_string('contextaddcopiedgroups', 'local_groupimport'),
+            'label' => get_string('contextaddcopiedgroupsshort', 'local_groupimport'),
         ],
         'grouping-search-groups' => [
             'contexts' => 'grouping',
@@ -2528,7 +2535,12 @@ function local_groupimport_build_context_actions_template_data(
         'copy-grouping-name' => [
             'contexts' => 'grouping',
             'icon' => 'fa-copy',
-            'label' => get_string('contextcopygroupingname', 'local_groupimport'),
+            'label' => get_string('contextcopyshortgroupingname', 'local_groupimport'),
+        ],
+        'copy-grouping-id' => [
+            'contexts' => 'grouping',
+            'icon' => 'fa-hashtag',
+            'label' => get_string('contextcopyshortgroupingid', 'local_groupimport'),
         ],
         'member-move-selected' => [
             'contexts' => 'member',
@@ -2549,32 +2561,116 @@ function local_groupimport_build_context_actions_template_data(
         ],
     ];
 
-    $result = [];
-    foreach ($alloweduserfields as $fieldkey => $fieldlabel) {
-        $result[] = [
-            'action' => 'copy-participant-field',
-            'contexts' => 'participant member',
-            'icon' => $fieldkey === 'email' ? 'fa-at' : 'fa-copy',
-            'label' => get_string('contextcopyfield', 'local_groupimport', $fieldlabel),
-            'multilabel' => $fieldkey === 'email'
-                ? get_string('contextcopyselectedemails', 'local_groupimport')
-                : get_string('contextcopyfieldselection', 'local_groupimport', $fieldlabel),
-            'fieldkey' => $fieldkey,
-        ];
-    }
-
-    foreach ($actions as $action => $definition) {
-        if (array_key_exists('enabled', $definition) && !$definition['enabled']) {
-            continue;
-        }
-        $result[] = [
+    // Every key is always present so Mustache never resolves one from a parent context.
+    $entry = static function(array $values = []): array {
+        return array_merge(['isitem' => false, 'isseparator' => false, 'isgroup' => false], $values);
+    };
+    $item = static function(string $action, array $definition, string $fieldkey = ''): array {
+        return [
             'action' => $action,
             'contexts' => $definition['contexts'],
             'icon' => $definition['icon'],
             'label' => $definition['label'],
             'multilabel' => $definition['multilabel'] ?? '',
-            'fieldkey' => '',
+            'fieldkey' => $fieldkey,
         ];
+    };
+    $items = static function(array $keys) use ($actions, $item): array {
+        $result = [];
+        foreach ($keys as $action) {
+            $definition = $actions[$action];
+            if (array_key_exists('enabled', $definition) && !$definition['enabled']) {
+                continue;
+            }
+            $result[] = $item($action, $definition);
+        }
+        return $result;
+    };
+    $group = static function(string $key, string $contexts, string $icon, string $label, string $multilabel,
+            array $children) use ($entry): array {
+        return $entry(['isgroup' => true, 'group' => [
+            'key' => $key,
+            'contexts' => $contexts,
+            'icon' => $icon,
+            'label' => $label,
+            'multilabel' => $multilabel,
+            'actions' => $children,
+        ]]);
+    };
+
+    $copychildren = $items(['copy-participant-name']);
+    foreach ($alloweduserfields as $fieldkey => $fieldlabel) {
+        $shortlabel = $fieldkey === 'email'
+            ? get_string('contextcopyshortemail', 'local_groupimport')
+            : (string)$fieldlabel;
+        $copychildren[] = $item('copy-participant-field', [
+            'contexts' => 'participant member',
+            'icon' => $fieldkey === 'email' ? 'fa-at' : 'fa-copy',
+            'label' => $shortlabel,
+            'multilabel' => $shortlabel,
+        ], (string)$fieldkey);
+    }
+    $copychildren = array_merge($copychildren, $items([
+        'copy-participant-id',
+        'copy-group-name',
+        'copy-group-id',
+        'copy-grouping-name',
+        'copy-grouping-id',
+    ]));
+
+    $sections = [
+        $items([
+            'participant-open-details',
+            'group-search-members',
+            'grouping-search-groups',
+            'grouping-select-groups',
+        ]),
+        $items([
+            'participant-move-selected',
+            'member-move-selected',
+            'group-move-selected',
+            'participant-message-selected',
+            'group-focus-rename',
+            'grouping-focus-rename',
+            'group-open-advanced-settings',
+            'grouping-open-advanced-settings',
+        ]),
+        [
+            $group('add-participants', 'group', 'fa-user-plus',
+                get_string('contextsubmenuaddparticipants', 'local_groupimport'), '',
+                $items(['group-paste-emails', 'group-add-copied-users'])),
+            $group('add-groups', 'grouping', 'fa-layer-group',
+                get_string('contextsubmenuaddgroups', 'local_groupimport'), '',
+                $items(['grouping-paste-groups', 'grouping-add-copied-groups'])),
+        ],
+        [
+            $group('copy', 'participant member group grouping', 'fa-copy',
+                get_string('contextsubmenucopy', 'local_groupimport'),
+                get_string('contextsubmenucopyselection', 'local_groupimport'),
+                $copychildren),
+            ...$items(['paste-field']),
+        ],
+        $items([
+            'group-remove-from-grouping',
+            'remove-member',
+            'group-delete-selected',
+        ]),
+        $items(['clear-selection']),
+    ];
+
+    $result = [];
+    foreach ($sections as $section) {
+        if (!$section) {
+            continue;
+        }
+        if ($result) {
+            $result[] = $entry(['isseparator' => true]);
+        }
+        foreach ($section as $sectionentry) {
+            $result[] = isset($sectionentry['action'])
+                ? $entry(['isitem' => true, 'item' => $sectionentry])
+                : $sectionentry;
+        }
     }
 
     return $result;
