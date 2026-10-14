@@ -1,0 +1,62 @@
+# Four Codex2 integrations — principal preview, 14 October
+
+Kevin authorizes one grouped publication of Rollback focus, K16 Reset sizing,
+T059 Message title wrapping and the R10-18 registry, followed by one native
+pass also completing the three open F7/R10 FR cells. Penpot remains Claude's.
+
+| Original | Source | Scope |
+| --- | --- | --- |
+| 80d2ea08 | 934cf886 | Rollback initial Cancel focus, Tab loop, scoped Escape and History opener restoration |
+| 64993872 | d76bbcb6 | Participant Reset uses effective regular secondary Cancel recipe and 38px field height |
+| 78263ef7 | 3c6c0bd6 | Native Message flex title can shrink/wrap while preserving dialog width |
+| 00957c2f | 2326167a | Retain R10-18 non-reproduction and exact-case human/device confirmation |
+
+Only CHANGELOG conflicts occurred for the first three; every entry is retained.
+R10-18 also conflicted in its absent diagnostic and existing Source intake.
+Work stopped, external candidates were prepared, and Kevin explicitly approved
+their resolution: restore the incoming diagnostic, retain all Source metadata,
+change only R10-18 status/confirmation, keep both CHANGELOG sides. No product
+correction or acceptance is claimed for R10-18. These four product/registry
+commits remain separate; the build/recipe record completes publication.
+
+Rebuild csv_import with the existing Moodle Babel/Terser toolchain and styles
+with Sass1.79.1. CSV generated code/map have no semantic diff from the imported
+commit; conservative styles add only the K16 adapter and T059 title wrapping.
+No Course Manager/local-sm, POST/sesskey, Guide, field or modal-family redesign.
+T043/T044/T046/T047/T048/T050 are separately authorized later after A, following
+the now validated T045 composition; they are not included here.
+
+One supervised recipe: tools/playwright/n2-four-f7-integration-native.spec.js.
+It preserves the three F7 cells (legacy390, reactive1280/390), normal Motion,
+views, mobile card sheets, pagination and actual selection proxies. In the
+same pass, K16/Message cover FR1600/1280/390 in both modes; desktop Reset/Cancel
+computed styles and keyboard Reset are compared, Message native and temporary
+long title are measured independently and restored before closure. Rollback
+uses existing History only, FR1280/390 both modes, Tab/ShiftTab, Escape, Cancel
+and backdrop with exact opener return. No new fixture/import/rollback/send.
+Build and syntax checks are static evidence; native results remain pending.
+
+K16 mobile access diagnosis: the missing command is internal Search groups on
+a Grouping, not the general participant search. Source has the direct search
+button/panel and native handler, but lacks its mobile contextactions entry and
+delegation in bindContextMenu. N2's two Perf failures agree. Native principal
+will record the missing entry and Reset metrics without forcing a hidden
+control or claiming mobile Reset/Cancel parity. Correction requires reserved
+course_manager.js; Claude handoff is external at
+%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated/k16-mobile-claude-handoff-20261014.md.
+
+Claude Penpot propagation list (source changes; acceptance remains separate):
+
+| Component / recipe | Screen | States | Widths |
+| --- | --- | --- | --- |
+| Participant Reset / regular secondary Cancel peer, 38px | Student Management participant search | Rest, focus, keyboard clear; mobile stack | 1600/1280/390, two modes |
+| Message title / existing message-dialog flex header | Student Management Message | Native label, temporary long label, closure | 1600/1280/390, two modes |
+| Rollback keyboard recipe / existing confirmation | Mass Import History | Initial Cancel, Tab boundaries, Escape/Cancel/backdrop, opener return | 1280/390, two modes |
+
+R10-18 is registry-only. No shared Penpot paint change is claimed for Rollback.
+Library/standards/compositions propagation, Kevin review, EN and Moodle4.5
+native remain separate from this principal FR pass. No F7 timing benchmark.
+
+Next after this small integration series: A3 V3 (T033/34/35), including the
+24×2px violet#72508C accent under Groups without grouping (T033), then the
+recorded series A. Latest dialog decisions and order are retained in handoff.
