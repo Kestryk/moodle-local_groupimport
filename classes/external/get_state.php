@@ -58,6 +58,10 @@ class get_state extends external_api {
         $course = get_course($courseid);
         $context = \context_course::instance($course->id);
         self::validate_context($context);
+        if ((int)$course->id === (int)SITEID) {
+            // The front page (SITEID) is not a course whose groups EasyStud manages.
+            throw new \moodle_exception('invalidcourseid', 'error');
+        }
         require_capability('moodle/course:managegroups', $context);
 
         $state = course_state::build($course, $context);

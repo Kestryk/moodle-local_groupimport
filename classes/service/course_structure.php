@@ -186,7 +186,7 @@ class course_structure {
                 'size' => 100,
                 'link' => false,
             ]),
-            'description' => format_text((string)$user->description, FORMAT_HTML, ['context' => $context]),
+            'description' => course_state::format_user_description($user, course_state::get_field_access($context)),
             'detailsdeferred' => false,
         ];
     }

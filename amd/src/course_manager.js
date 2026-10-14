@@ -122,14 +122,18 @@ const startOnDemandState = (root, courseId, strings, groupStrings) => {
             syncCatalogFilters(root);
             root.querySelectorAll('[data-easystud-tree] [data-easystud-grouping-id]').forEach(updateGroupingBadge);
             updateSelectionActions(root);
-            root.easystudSm = {
+            const timings = {
+                loadMs,
+                firstRenderMs: Math.round(window.performance.now() - renderStarted),
+            };
+            // The course state (names, e-mails, memberships) stays off the DOM node unless the
+            // site runs in developer debugging, where the Playwright integration specs read it.
+            root.easystudSm = window.M && M.cfg && M.cfg.developerdebug ? Object.assign({
                 reactive,
                 raw,
                 model,
-                loadMs,
-                firstRenderMs: Math.round(window.performance.now() - renderStarted),
                 filterParticipantIds: filters => filterParticipantIds(model.index, filters),
-            };
+            }, timings) : timings;
             root.setAttribute('data-easystud-sm-ready', '1');
             root.dispatchEvent(new CustomEvent('local_groupimport/sm:ready', {detail: {loadMs}}));
             return root.easystudSm;
