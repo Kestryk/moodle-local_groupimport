@@ -18,6 +18,9 @@
   the loading deadline by8s, capped at30s from startup or the visible frame;
   stalled AMD keeps amd-timeout at8s. Execute the real bootstrap under virtual
   resource/timer events; preserve late-ready recovery and reduced motion.
+- 2026-10-14 [N1] K16 includes visible grouping-search Cancel in the existing regular secondary38px Reset peer recipe. Requested FR/EN390 menu/filter/restore/focus and exact metrics PASS; global run remains FAILED on additional collapsed desktop reference recipe. Native copy served; main/Penpot/human pending.
+
+- 2026-10-14 [N0] Replace current parity invocation with one targeted on-demand pass and read-only upgraded-copy preflight; reject historical setters before credentials. Perf standard upgrade/purge confirms2026101400 and no retired configuration row; original matrices retained as history.
 
 - 2026-10-14 [N1] Record the four Claude commits served on f20b44a5 and the
   completed Moodle2026101400 upgrade with obsolete rendering config removed.
