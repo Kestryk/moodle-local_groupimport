@@ -1,54 +1,135 @@
 {
   "inlineMobileIntegration20261014": {
-    "originalCommits": ["02b33d15", "7f655884"],
-    "integrationCommits": ["5b00aa34", "ee17b0de"],
-    "status": "integrated-built-native-preview-pending",
+    "originalCommits": [
+      "02b33d15",
+      "7f655884"
+    ],
+    "integrationCommits": [
+      "5b00aa34",
+      "ee17b0de"
+    ],
+    "runtimeCommits": [
+      "7763bba6",
+      "481ba79f"
+    ],
+    "runtimeHead": "955aadbb",
+    "recipeCommit": "6faed3aa",
+    "previewPurgedAt": "2026-10-14T12:21:57.6071598Z",
+    "previewServed": true,
+    "status": "served-requested-fr-scope-pass-global-run-failed-rollback-harness",
     "documentation": "docs/testing/inline-mobile-integration-2026-10-14.md",
     "nativeSpec": "tools/playwright/inline-mobile-f7-principal-native.spec.js",
-    "nativeVerified": false,
+    "nativeVerified": true,
     "humanAccepted": false,
-    "resolution": "Kevin approved preserving Source intake proofs plus targeted T058/T059 incoming states, all CHANGELOG entries and rebuilding conflicting AMD from cleanly merged source"
+    "resolution": "Kevin approved preserving Source intake proofs plus targeted T058/T059 incoming states, all CHANGELOG entries and rebuilding conflicting AMD from cleanly merged source",
+    "nativeVerificationScope": "Three F7 remaining cells; T05848 closures and12 keyboard alternatives FR1280 normal/reduced both modes; T05916 surfaces768/390 both modes. Global review/human/EN/4.5 remain open.",
+    "nativeRun": "easystud-authenticated-20261014T122306886Z-39300",
+    "nativeRunnerExitCode": 1,
+    "overallRunStatus": "failed",
+    "failureScope": "Extra Rollback gate omitted course id and stayed on picker; no History modal or Rollback cycle reached; no product failure inferred",
+    "rollbackOnlySpec": "tools/playwright/rollback-principal-course-ready-native.spec.js",
+    "rollbackOnlySpecStatus": "prepared-syntax-checked-not-run",
+    "pageErrors": 0,
+    "businessWrites": 0,
+    "finalMode": "legacy",
+    "fixtureRequested": false
   },
   "n2FourIntegration20261014": {
-    "originalCommits": ["80d2ea08", "64993872", "78263ef7", "00957c2f"],
-    "integrationCommits": ["934cf886", "d76bbcb6", "3c6c0bd6", "2326167a"],
-    "runtimeCommits": ["9197daa4", "a724ff43", "fb97e947", "9198618d"],
+    "originalCommits": [
+      "80d2ea08",
+      "64993872",
+      "78263ef7",
+      "00957c2f"
+    ],
+    "integrationCommits": [
+      "934cf886",
+      "d76bbcb6",
+      "3c6c0bd6",
+      "2326167a"
+    ],
+    "runtimeCommits": [
+      "9197daa4",
+      "a724ff43",
+      "fb97e947",
+      "9198618d"
+    ],
     "runtimeHead": "3f22f1b0",
     "buildCommit": "70425b42",
     "previewPurgedAt": "2026-10-14T09:55:14.1643982Z",
     "previewServed": true,
-    "status": "served-native-harness-preselected-card-failure-remaining-checks-open",
+    "status": "served-principal-reset-message-fr-pass-rollback-k16-mobile-search-open",
     "documentation": "docs/testing/n2-four-integration-2026-10-14.md",
-    "nativeSpec": "tools/playwright/n2-four-selection-reset-native.spec.js",
+    "nativeSpec": "tools/playwright/rollback-principal-course-ready-native.spec.js",
     "nativeSpecStatus": "prepared-syntax-checked-not-run",
     "retainedFailedRecipe": "tools/playwright/n2-four-f7-integration-native.spec.js",
     "retainedRun": "easystud-authenticated-20261014T095601999Z-42312",
-    "nativeScope": "FR legacy390 three menus/pagination pass; checkbox test toggled off the card already selected by its menu. No further F7/Message/Reset/Rollback check reached; no product selection fix. Prior Perf proof retained separately.",
+    "nativeScope": "Six Reset/Message cases1600/1280/390 two modes PASS; desktop Reset/Cancel parity and mobile Reset38px. Missing Grouping mobile search confirmed both modes. Rollback not reached because course-id omitted; standalone successor prepared.",
     "nativeVerified": false,
     "humanAccepted": false,
     "r10DocumentResolution": "Kevin explicitly approved incoming diagnostic restoration and only R10-18 status/confirmation added to preserved Source intake",
-    "k16Mobile": "Internal Search groups in Grouping missing from mobile actions; participant general search present. Reserved Course Manager correction described for Claude; mobile parity open."
+    "k16Mobile": "Internal Search groups in Grouping missing from mobile actions; participant general search present. Reserved Course Manager correction described for Claude; mobile parity open.",
+    "principalRuntimeHead": "955aadbb",
+    "principalRun": "easystud-authenticated-20261014T122306886Z-39300",
+    "principalResetMessageVerified": true
   },
   "f7R10Integration20261014": {
-    "originalCommits": ["1777dddc", "744e0f07", "5ec681c3", "f347269e", "9b017481"],
-    "integrationCommits": ["0ff1e05c", "f2ea4776", "cbce74e9", "616a3c87", "d526ed7a"],
-    "runtimeCommits": ["684cd6de", "3401d915", "fb0363b1", "7fdc370d", "037faef9"],
+    "originalCommits": [
+      "1777dddc",
+      "744e0f07",
+      "5ec681c3",
+      "f347269e",
+      "9b017481"
+    ],
+    "integrationCommits": [
+      "0ff1e05c",
+      "f2ea4776",
+      "cbce74e9",
+      "616a3c87",
+      "d526ed7a"
+    ],
+    "runtimeCommits": [
+      "684cd6de",
+      "3401d915",
+      "fb0363b1",
+      "7fdc370d",
+      "037faef9"
+    ],
     "runtimeHead": "4a32ae5f",
     "buildCommit": "08cc14a1",
     "previewPurgedAt": "2026-10-14T07:40:28.210516Z",
     "previewServed": true,
-    "status": "served-native-fr-legacy-1280-pass-three-cells-pending-human",
+    "status": "served-requested-fr-functional-matrix-cumulative-pass-shared-human-open",
     "documentation": "docs/testing/f7-r10-integration-2026-10-14.md",
-    "nativeSpec": "tools/playwright/n2-four-selection-reset-native.spec.js",
-    "nativeSpecStatus": "prepared-syntax-checked-not-run",
-    "retainedFailedRecipes": ["tools/playwright/f7-r10-integration-native.spec.js", "tools/playwright/f7-r10-count-visibility-native.spec.js", "tools/playwright/n2-four-f7-integration-native.spec.js"],
-    "retainedRuns": ["easystud-authenticated-20261014T074113876Z-52072", "easystud-authenticated-20261014T074708525Z-45108", "easystud-authenticated-20261014T095601999Z-42312"],
-    "completedMatrix": ["fr/legacy/1280"],
-    "partialScope": "FR legacy 390: three card menus and next/previous pagination pass; mobile selection and both reactive cells unverified. Existing mobile count/desktop-Clear hiding invalidated harness assertions; no product fix.",
-    "requestedMatrix": ["fr/legacy/1280", "fr/legacy/390", "fr/reactive/1280", "fr/reactive/390"],
+    "nativeSpec": "tools/playwright/inline-mobile-f7-principal-native.spec.js",
+    "nativeSpecStatus": "executed-requested-cells-pass-overall-run-failed-unrelated-rollback",
+    "retainedFailedRecipes": [
+      "tools/playwright/f7-r10-integration-native.spec.js",
+      "tools/playwright/f7-r10-count-visibility-native.spec.js",
+      "tools/playwright/n2-four-f7-integration-native.spec.js"
+    ],
+    "retainedRuns": [
+      "easystud-authenticated-20261014T074113876Z-52072",
+      "easystud-authenticated-20261014T074708525Z-45108",
+      "easystud-authenticated-20261014T095601999Z-42312"
+    ],
+    "completedMatrix": [
+      "fr/legacy/1280",
+      "fr/legacy/390",
+      "fr/reactive/1280",
+      "fr/reactive/390"
+    ],
+    "partialScope": "No requested F7 cell left open. Legacy1280 from earlier4a32 proof, three remaining cells from955aadbb; broader canonical/shared/human/EN/4.5 still open. Overall combined run retained failed only at later Rollback recipe.",
+    "requestedMatrix": [
+      "fr/legacy/1280",
+      "fr/legacy/390",
+      "fr/reactive/1280",
+      "fr/reactive/390"
+    ],
     "conflicts": "CHANGELOG only; all entries retained",
-    "nativeVerified": false,
-    "humanAccepted": false
+    "nativeVerified": true,
+    "humanAccepted": false,
+    "nativeRuntimeHead": "955aadbb",
+    "nativeRun": "easystud-authenticated-20261014T122306886Z-39300"
   },
   "executionSteering20261014": {
     "source": "Kevin instruction 2026-10-14",
@@ -57,15 +138,60 @@
     "seriesBFirst": "T048: participant/group/grouping details redesign (K18), design by Claude before integration",
     "k17AssignedTo": "R10-21: Participants title for the left column above the filters search",
     "a3Chosen": "V3 accent underline24x2px, optionB; T033/34/35; Groups without grouping uses violet#72508C in T033; Foundations09.5 reference",
-    "priorityOrder": ["A-CHECKLIST", "A3 V3 T033/T034/T035", "T043", "T044", "T046", "T047", "T048 K18", "A-ADMIN-CONTROLES", "A-FLUIDITE", "R10-26", "A-PARCOURS-10", "R10-02", "R10-14", "R10-15", "R10-21+K17"],
-    "remainingSeriesA": ["A-CHECKLIST", "A3 V3 T033/T034/T035", "A-ADMIN-CONTROLES", "A-FLUIDITE", "R10-26", "A-PARCOURS-10"],
-    "transferredToCodex2": ["R10-06", "T025", "T026", "K22", "K21"],
+    "priorityOrder": [
+      "A-CHECKLIST",
+      "A3 V3 T033/T034/T035",
+      "T043",
+      "T044",
+      "T046",
+      "T047",
+      "T048 K18",
+      "A-ADMIN-CONTROLES",
+      "A-FLUIDITE",
+      "R10-26",
+      "A-PARCOURS-10",
+      "R10-02",
+      "R10-14",
+      "R10-15",
+      "R10-21+K17"
+    ],
+    "remainingSeriesA": [
+      "A-CHECKLIST",
+      "A3 V3 T033/T034/T035",
+      "A-ADMIN-CONTROLES",
+      "A-FLUIDITE",
+      "R10-26",
+      "A-PARCOURS-10"
+    ],
+    "transferredToCodex2": [
+      "R10-06",
+      "T025",
+      "T026",
+      "K22",
+      "K21"
+    ],
     "claudeOnDemandOnly": "Pending explicit commit hash; integrate on receipt, then adapt legacy recipes/final-mode restoration",
     "t045KevinValidated20261014": true,
-    "dialogsAfterSeriesA": ["T043", "T044", "T046", "T047", "T048 K18", "T050"],
+    "dialogsAfterSeriesA": [
+      "T043",
+      "T044",
+      "T046",
+      "T047",
+      "T048 K18",
+      "T050"
+    ],
     "dialogContract": "Foundations09.2 T045 family14-10: EASYSTUD/icon tile variant colour, tile radius8px, danger/success fills derived from Kit; Student Management controls38px; preserve T058 keyboard; FR/EN1280/390 both modes; shared partials without Moodle helpers and new variables through Claude",
-    "r10AfterSeriesAWithoutPenpot": ["R10-02", "R10-14", "R10-15", "R10-21+K17"],
-    "r10WaitingForClaudePenpot": ["R10-05", "R10-20", "R10-24"]
+    "r10AfterSeriesAWithoutPenpot": [
+      "R10-02",
+      "R10-14",
+      "R10-15",
+      "R10-21+K17"
+    ],
+    "r10WaitingForClaudePenpot": [
+      "R10-05",
+      "R10-20",
+      "R10-24"
+    ]
   },
   "k14K15Integration20261014": {
     "claudeCommit": "c0e899fb",
@@ -77,7 +203,10 @@
     "r10Reused": "ddbac51f already integrated as 42d2fbe6 and served as 692dbcf9; do not cherry-pick twice",
     "nativeVerified": true,
     "nativeRun": "easystud-authenticated-20261013T223248851Z-47492",
-    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
+    "nativeMatrix": [
+      "fr/legacy/1280",
+      "fr/reactive/1280"
+    ],
     "nativeScope": "Loupe and identifier panel, normal disclosure, final focus and no ancestor scroll during focus; all nine source calls retained",
     "humanAccepted": false
   },
@@ -92,7 +221,10 @@
     "nativeSpec": "tools/playwright/k14-k15-a-icone-native.spec.js",
     "nativeVerified": true,
     "nativeRun": "easystud-authenticated-20261013T223248851Z-47492",
-    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
+    "nativeMatrix": [
+      "fr/legacy/1280",
+      "fr/reactive/1280"
+    ],
     "humanAccepted": false
   },
   "seriesATextes20261013": {
@@ -102,7 +234,10 @@
     "kitCommit": "a48e4ba",
     "sourceCommit": "9b2b7b4a",
     "runtimeCommit": "c31dad3c",
-    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
+    "nativeMatrix": [
+      "fr/legacy/1280",
+      "fr/reactive/1280"
+    ],
     "documentation": "docs/testing/series-a-textes-2026-10-13.md",
     "nativeSpec": "tools/playwright/series-a-textes-r10-23-native.spec.js",
     "openPrerequisite": "Claude: recognize an existing destination at path 11 step 1 before the no-unfold instruction",
@@ -116,7 +251,10 @@
     "nativeVerified": true,
     "integrationCommit": "42d2fbe6",
     "runtimeCommit": "692dbcf9",
-    "nativeMatrix": ["fr/legacy/1280", "fr/reactive/1280"],
+    "nativeMatrix": [
+      "fr/legacy/1280",
+      "fr/reactive/1280"
+    ],
     "nativePassRows": [
       "easystud-authenticated-20261013T220745603Z-20340:legacy-complete-row",
       "easystud-authenticated-20261013T221056804Z-34796:reactive-complete-pass"

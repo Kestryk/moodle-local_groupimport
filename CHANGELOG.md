@@ -1,5 +1,12 @@
 # Changelog
 
+- 2026-10-14 [N1/N0] Record principal955aadbb requested-scope PASS: three FR
+  F7 cells,48 inline-panel closures/12 keyboard alternatives,16 mobile dialog
+  surfaces and6 Reset/Message cases. Retain overall FAILED run: final Rollback
+  recipe omitted course id and never reached History. Prepare Rollback-only
+  successor, confirm K16 mobile Search-groups access gap, restore Current;
+  global/human acceptance and shared propagation remain open.
+
 - 2026-10-14 [N1/N0] Integrate Codex2 T058 inline focus/keyboard and T059 mobile
   registry with Kevin's approved additive intake resolution and regenerated
   Course Manager AMD. Prepare one principal native pass with the remaining FR
