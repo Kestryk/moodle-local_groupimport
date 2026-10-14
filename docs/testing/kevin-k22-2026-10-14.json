@@ -1,0 +1,42 @@
+{
+  "id": "K22",
+  "receivedScope": "Mass Import titles centred vertically on their 28px icon tiles, including the first line of wrapped titles. Kevin-approved Claude reference PENPOT-S1-4-k22-mass-import-2026-10-14.png.",
+  "status": "source-native-targeted-pass",
+  "sourceChanged": true,
+  "nativeVerified": true,
+  "nativeScope": "FR1600/1280/390, original text and both wrapped390 titles; candidate CSS on :8051, typography and40px text rail retained.",
+  "humanAccepted": false,
+  "designPublished": false,
+  "previewServed": false,
+  "referenceApprovedByKevin": true,
+  "evidence": {
+    "runId": "easystud-authenticated-20261014T140503492Z-26216",
+    "artifactRoot": "C:/dev/artifacts/es-mi-k22",
+    "titleCentreMaxErrorPx": 0.013875,
+    "beforeDeltasPx": [
+      5.00175,
+      -2.592
+    ],
+    "afterMarginTopPx": 4.592
+  },
+  "penpot": {
+    "operator": "Claude",
+    "components": [
+      "Automatic user identification subsection title",
+      "Small icon Moodle deposit title"
+    ],
+    "recipe": "First line centre = 28px icon centre; margin from existing title font size/line-height tokens; align-items start and40px rail retained",
+    "screen": "Mass Import empty upload card",
+    "states": [
+      "normal",
+      "wrapped long labels"
+    ],
+    "widths": [
+      1600,
+      1280,
+      390
+    ],
+    "propagation": "Approved composition exists; Library/standards/all affected Foundations/EasyStud boards pending"
+  },
+  "seriesCandidate": "Native run also contains pending T025/T026/R10-06 candidate; K22 CSS affects only the two title margins and works with the prior direct heading or T025 copy wrapper."
+}
