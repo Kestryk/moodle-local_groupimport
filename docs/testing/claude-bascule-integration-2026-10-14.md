@@ -58,3 +58,49 @@ violet#72508C ungrouped section), T043/44/46/47/48, GUIDE-PILLS, first-visit
 audit tasks, then series A/R10 per FILES-CODEX-AVANT-RELEVE. Reserved Course
 Manager/local-sm/course_state/external changes remain Claude's. No Penpot
 connection by Codex. Current publication/proof and relay are recorded below.
+
+## Served publication and upgrade
+
+| Original | Integration | Served |
+| --- | --- | --- |
+| 1bf77389 | 73fa0128 | 5f8b1edd |
+| cf2be86b | 732b957f | c981934e |
+| 6a499c5f | dbf4886b | a978f930 |
+| 1a10749e | 483fa9fd | 0d4992c2 |
+
+Grouped build/record7df19c44 is served as f20b44a5; prerequisite proof0983e87e
+is served as7122f0ac. Preview branch is clean. Upgrade engine completed with
+version2026101400, config record absent, on-demand helper true, pending plugins
+empty. Upgrade also purged caches; it did not restore legacy. Kit6abf7d4b,
+version0.4.208 unchanged. Logs remain in the external authenticated artifact
+root: claude-bascule-preview-20261014.log,
+claude-bascule-moodle-upgrade-20261014.log and runtime-after JSON.
+
+## One native pass retained as FAILED
+
+Run easystud-authenticated-20261014T140634975Z-26864 selected exactly one test.
+The first FR1280 cell stopped before loading observation or K16: the default
+five-second expectation saw no data-easystud-rendering-mode attribute yet.
+This attribute is set by startOnDemandState, not the server template. No
+pageerror or blocked mutation was recorded. This does not prove later
+initialization succeeds and does not prove a product failure. All four K16
+cells and the browser Later adapter remain unverified; no native PASS claimed.
+
+Keep the original spec/run immutable. The separate
+claude-bascule-principal-ready-native.spec.js successor waits first for the
+actual state request under the existing60-second startup bound, then checks
+the rendering attribute. All locale, loading, keyboard, geometry, visible
+menu and mutation oracles remain. Successor prepared, NOT RUN; no second
+Playwright pass in this conversation. Codex2 can replay K16 on demand only.
+Server Later behavior passed in the isolated PHP contract, not a new native
+login/session or human first-visit proof. Shared Foundations remains Claude's.
+
+Cleanup: credentials cleared, owned child stopped, runtime lease released,
+no fixture requested, zero observed pageerrors/blocked writes. Failure logs,
+JSON and context remain external; no generated media was reached, so the
+media-only manifest has0files. Retention dry-run:0candidates/0deletions.
+All15 product/build blobs compared match7df19c44 and f20b44a5. The historical
+Source advanced independently to07104791; only our old untracked PHP test
+remains there. Preserve it and that checkout; continue from the isolated branch.
+Current proof commit is intentionally not served
+alone; include it with the next product publication. A-CHECKLIST is next.

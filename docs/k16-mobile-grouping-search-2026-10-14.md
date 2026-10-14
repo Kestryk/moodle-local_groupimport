@@ -1,5 +1,14 @@
 # K16 — recherche dans un groupement mobile, diagnostic Source pour Claude
 
+Actualisation14/10 après-midi : Claude1a10749e intégré483fa9fd, servi0d4992c2
+sur previewf20b44a5. L'action grouping-search-groups et sa délégation native
+sont intégrées ; le diagnostic historique ci-dessous est conservé. Le seul
+mode est désormais À la demande, upgrade2026101400 effectué ; ne plus rejouer
+ni restaurer Actuel. La passe N1 s'est arrêtée avant K16 sur l'attente initiale
+de5s de son attribut de rendu, donc validation native K16 encore ouverte.
+Rejeu N2 demandé via RETOUR-CODEX1-CODEX2-K16-BASCULE-2026-10-14.md ; successor
+tools/playwright/claude-bascule-principal-ready-native.spec.js préparé/nonrun.
+
 Statut : lecture statique du Source3c6c0bd6 pendant le cherry-pick00957c2f arrêté. Aucun correctif produit, aucune preuve native principale nouvelle. Le signalement Perf N2 est dans PASSATION-CODEX2.md et k16-reset-final-successor.spec.js:35.
 
 Le cas exact concerne « Rechercher des groupes » dans une carte groupement. Ce n'est pas la recherche générale des participants : la spec l'utilise avec succès avant le changement de vue.
