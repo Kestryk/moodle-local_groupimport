@@ -17,3 +17,7 @@ Release relay after publication: replay all7Guide paths1280/compact, security
 capability minimisation and identifier restoration, literal special labels,
 advanced CSV formula text, simultaneous list reveal, delayed icon font,
 Select all unfolds cards, mobile sheet/submenu Motion and reduced motion.
+
+Published Claude integrations runtime69f060f4, purgePASS; mapping and N2 replay
+request recorded in the durable relay. S3/S9/S7-M6 source scripts/lint pass;
+full capability-role/PHPUnit/native path acceptance remains N2's replay scope.
