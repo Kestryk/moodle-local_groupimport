@@ -26,8 +26,6 @@ require_once(__DIR__ . '/../../config.php');
 require_once(__DIR__ . '/lib.php');
 require_once($CFG->dirroot . '/group/lib.php');
 
-use local_groupimport\service\course_structure;
-
 $id = required_param('id', PARAM_INT);
 $course = get_course($id);
 require_login($course);
@@ -77,7 +75,7 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
     'local-groupimport-easystud',
     $course->id,
     [
-        'renderingmode' => local_groupimport_is_on_demand_rendering() ? 'reactive' : 'legacy',
+        'renderingmode' => 'reactive',
         // Labels of the cards rendered in the browser: the on-demand lists, and in both modes the
         // Guide specimens (amd/src/local/sm/specimen.js). Participant card (templates/sm/participant_card).
         'cardstrings' => [
@@ -186,9 +184,7 @@ if ($action && data_submitted()) {
 
 // SM-RENDU on-demand mode: the browser renders the cards from local_groupimport_get_state, so the
 // page only loads the lean data it still needs (filters, counts, grouping headers).
-$state = local_groupimport_is_on_demand_rendering() ?
-    \local_groupimport\service\course_state::page_data($course, $context) :
-    course_structure::get_state($course, $context);
+$state = \local_groupimport\service\course_state::page_data($course, $context);
 $users = $state['users'];
 $groups = $state['groups'];
 $groupings = $state['groupings'];
@@ -295,11 +291,6 @@ function local_groupimport_build_manage_template_data(
     $alloweduserfields = local_groupimport_get_allowed_user_field_definitions();
     $customuserfields = local_groupimport_get_custom_user_field_definitions();
     $participantdisplay = local_groupimport_get_participant_display_settings($customuserfields);
-    // On demand, these fields only matter for the cards, which the browser renders from the state.
-    if (!local_groupimport_is_on_demand_rendering()) {
-        $users = local_groupimport_enrich_users_with_copy_fields($users, $alloweduserfields);
-        $users = local_groupimport_enrich_users_with_participant_display_fields($users, $participantdisplay, $customuserfields);
-    }
     $compactparticipantsdefault = count($users) > 5;
     $layoutpreferences = local_groupimport_get_workspace_layout_preferences();
     $layoutmodedefinitions = [

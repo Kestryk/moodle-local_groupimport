@@ -22,6 +22,7 @@
 - 2026-10-14 [N1] T058: inline Search/Add/rename reuse native Cancel for Escape and restore focus after card normalization;48 closes and12 keyboard Space/Move/destination scenarios PASS in normal/reduced motion, both modes.
 
 - 2026-10-14 [N0] T059: reconcile16 existing PASS cases for Move/Confirmation and Group/Grouping settings at768/390 in both modes, including long-title bounds; no redundant native replay.
+- 2026-10-14 [N1] Claude SM-RENDU switch (Kevin validated parity on 14/10): On demand is the only Student Management rendering mode; the preview setting and its strings are removed (upgrade 2026101400 unsets it), manage.php always loads the lean page data. The remaining server-rendered branches are removed step by step (T055).
 
 - 2026-10-14 [N1/N2] Group four Codex2 integrations with the approved R10-18
   document conflict resolution, rebuild CSV Import/styles and prepare one
