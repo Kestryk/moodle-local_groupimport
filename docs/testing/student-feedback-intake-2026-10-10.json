@@ -1,4 +1,22 @@
 {
+  "codex2K21Markup20261014": {
+    "status": "markup-consumer-native-fr-en-1280-390-pass-awaiting-n1-integration",
+    "base": "3cbb03cf",
+    "documentation": "docs/testing/codex2-k21-markup-2026-10-14.md",
+    "attributes": ["data-easystud-structure-count", "data-count-template"],
+    "ssrContextValues": 4,
+    "reservedAmdModified": false,
+    "cssModified": false,
+    "nativeRun": "easystud-authenticated-20261014T210159178Z-41176",
+    "nativeSpec": "tools/playwright/k21-markup-mobile-successor.spec.js",
+    "nativeVerified": true,
+    "nativeScope": "two labels with complete count templates and zero label overflow on owned8051 seeded2groupings3groups; FR/EN1280/390",
+    "pageErrors": 0,
+    "blockedWrites": 0,
+    "penpotRelay": "Groups & groupings title/count badges, desktop inline and mobile stacked; FR/EN1280/390",
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "codex2K21T055Port20261014": {
     "status":  "module-port-static-focused-pass-awaiting-integration",
     "baseCommit":  "70db3f96",
