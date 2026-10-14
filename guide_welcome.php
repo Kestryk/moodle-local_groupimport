@@ -15,7 +15,10 @@ $course = get_course(required_param('courseid', PARAM_INT));
 require_login($course, false);
 require_capability('moodle/course:managegroups', context_course::instance($course->id));
 $generation = required_param('generation', PARAM_ALPHANUM);
-$acknowledged = \local_groupimport\local\guide_welcome::mark_opened($generation);
+// "later" postpones the invitation until the next login; otherwise the guide was actually opened.
+$acknowledged = optional_param('action', '', PARAM_ALPHA) === 'later' ?
+    \local_groupimport\local\guide_welcome::postpone($generation) :
+    \local_groupimport\local\guide_welcome::mark_opened($generation);
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 echo json_encode(['acknowledged' => $acknowledged], JSON_THROW_ON_ERROR);
