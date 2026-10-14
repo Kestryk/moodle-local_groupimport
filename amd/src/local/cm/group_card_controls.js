@@ -23,7 +23,7 @@
  */
 
 import * as Motion from '../../motion';
-import {hoverPopoverClass, isResponsiveWorkspace, requestGuideHighlightRefresh} from './shared';
+import {hoverPopoverClass, isResponsiveWorkspace, requestGuideHighlightRefresh, escapeHtml} from './shared';
 import {scheduleGroupGroupingOverflow, syncParticipantTagOverflow, setInlinePanelOpen} from './cards';
 import {getSelectedItems, setItemSelected} from './selection';
 import {emitGuidedCompletion} from './guide_hooks';
@@ -36,7 +36,6 @@ import {
     expandGroupingSection, applyContainerGroupSearch, applyGroupMemberSearch, scheduleResponsiveUiRefresh,
     updateSelectionActions,
 } from './workspace';
-import {escapeHtml} from './advanced_settings';
 
 let groupMemberMotionToken = 0;
 

@@ -24,7 +24,7 @@
 import * as Guide from '../../easyedu_guide';
 import {
     draggingClass, dropTargetClass, structureFocusClass, participantFocusClass, requestGuideHighlightRefresh,
-    formatCountMessage, formatMoveSummary, getLabels, showNotification,
+    formatCountMessage, formatMoveSummary, getLabels, showNotification, escapeHtml,
 } from './shared';
 import {hideEasyStudModal} from './modal';
 import {
@@ -77,19 +77,19 @@ const openGroupDropModeModal = (root, oncopy, onmove) => {
     modal.innerHTML =
         '<div class="local-groupimport-easystud-modal__dialog easyedu-confirmation-dialog">' +
             '<div class="local-groupimport-easystud-modal__header easyedu-confirmation-dialog__header">' +
-                '<h3 class="easyedu-modal-title">' + (labels.groupdropmode || '') + '</h3>' +
+                '<h3 class="easyedu-modal-title">' + escapeHtml(labels.groupdropmode || '') + '</h3>' +
                 '<button type="button" class="local-groupimport-easystud-modal__close" data-easystud-choice-close="1">' +
                     '<span aria-hidden="true">&times;</span>' +
                 '</button>' +
             '</div>' +
             '<div class="local-groupimport-easystud-modal__body easyedu-confirmation-dialog__body">' +
-                '<p class="easyedu-dialog-description">' + (labels.groupdropmodedesc || '') + '</p>' +
+                '<p class="easyedu-dialog-description">' + escapeHtml(labels.groupdropmodedesc || '') + '</p>' +
                 '<div class="local-groupimport-easystud-modal__footer easyedu-confirmation-dialog__actions">' +
                     '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-choice-copy="1">' +
-                        (labels.groupdropcopy || '') +
+                        escapeHtml(labels.groupdropcopy || '') +
                     '</button>' +
                     '<button type="button" class="easyedu-button" data-easystud-choice-move="1">' +
-                        (labels.groupdropmove || '') +
+                        escapeHtml(labels.groupdropmove || '') +
                     '</button>' +
                 '</div>' +
             '</div>' +
