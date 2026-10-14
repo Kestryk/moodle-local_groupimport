@@ -31,3 +31,15 @@ Proposed current-state entry for AI/memory/easystud/CURRENT_STATE.md:
 Proposed row for docs/development/playwright-scenario-registry.md:
 
 | local_groupimport | tools/playwright/claude-bascule-principal-ready-native.spec.js | local-supervised | EasyStud N1/N2 QA | Review, not CI | Authenticated course5/runtime lease; successor prepared, not run; failed predecessor preserved | Replay K16 FR/EN1280/390 on demand only, then extract a seeded fixture |
+
+## A-CHECKLIST scoped successor
+
+Proposed additional registry row, owned by the same planning owner:
+
+| local_groupimport | tools/playwright/a-checklist-active-native.spec.js | local-supervised | EasyStud N1 UI/QA | Review, not CI | Native FR1600/1280/390 presentation with owned QA event/storage; business-path replay separate | Preserve actual-target overlap, inner-list and reduced-instruction oracles; N2 replays business paths after publication |
+
+Proposed current-state note: Claude b5f44a7a servedc155904b with18virtual
+progress-deadline cases passing, purgePASS; A-CHECKLIST Kit0.4.209 adopts
+active inner-list tracking, reduced existing numbered instruction and compact
+overlap folding. Source/native/human status remains in the scoped
+docs/testing/a-checklist-2026-10-14.md record. No shared planning file edited.

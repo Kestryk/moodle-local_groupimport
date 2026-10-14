@@ -1282,10 +1282,22 @@
       }
       .easyedu-guided-panel__header-actions { grid-column: auto; grid-row: auto; }
       .easyedu-guided-panel__close { display: inline-flex; }
-      .easyedu-guided-panel__steps,
       .easyedu-guided-panel__message,
       .easyedu-guided-panel__footer { display: none; }
+      // Reuse the current step, its number and its complete instruction.
+      .easyedu-guided-panel__steps {
+        display: block;
+        margin: 0.5rem 0 0;
+        padding: 0;
+        max-height: none;
+        overflow: visible;
+      }
+      .easyedu-guided-panel__step {
+        display: none;
+        &.is-active { display: grid; }
+      }
       &.is-complete {
+        .easyedu-guided-panel__steps { display: none; }
         gap: 0.625rem;
         .easyedu-guided-panel__message.is-complete {
           display: flex;

@@ -122,3 +122,8 @@ reported upstream evidence, not a new principal-native PASS. The initial
 principal failure above remains intact. Publish this integration with prior
 proof194ea6dc, relay it to Codex2, then implement A-CHECKLIST. Penpot now
 handled by Kevin; no Codex Penpot access or new visual composition here.
+
+Publication completed: b5f44a7a→e552cb05→c155904b, prior proof194ea6dc→3d6653de,
+preview clean and purgePASS2026-10-14T15:13:17.2621831Z. The18virtual cases
+pass, including unchanged reveal timing after the logical deadline. N2 relay
+updated before starting A-CHECKLIST; no new standalone native pass for loading.
