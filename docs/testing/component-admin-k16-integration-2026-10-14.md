@@ -17,3 +17,19 @@ loading/ready1280/390; admin guide-reset dialog open/cancel/focus390; Grouping
 search Cancel / Regular secondary field peer38px, FR/EN390 upstream evidence.
 A-CHECKLIST presentation proof is complete separately; business replay/human
 acceptance and Moodle4.5 remain open. Next R10-26/K12, isolated welcome wrap, A3.
+
+## Served and verified
+
+Single publication, purge PASS: d117c41f ->784cb9fe;2185c3f9 ->21b96115;
+099cbde9 ->0b2d545a; documentation267b1d82 ->runtimeHEAD78a9ce34.
+Seven product blobs match Source/runtime. No pending cherry-pick or dirty runtime.
+Native run easystud-authenticated-20261014T181027354Z-10352 PASSED (one test).
+FR1280 and390: page skeleton count0, participant avatars8, both pending group
+lists3cards, loading then ready. Admin390: inline open stays on same URL,
+initial Cancel focus, Escape and Cancel close and restore opener focus.
+No reset submitted, no fixture, no page error or business write; credentials,
+child and runtime lease cleaned. Three PNGs pinned30days; retention dry-run
+only. Admin390 raster reviewed: dialog/content/buttons remain inside viewport.
+This does not certify reset submission or new principal K16 functional replay;
+N2's FR/EN390 evidence remains upstream-attributed. Human/Penpot/4.5 open.
+Next small series: R10-26/K12 canonical dropdown width, isolated welcome text wrap.

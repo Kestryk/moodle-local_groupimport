@@ -1,4 +1,19 @@
 {
+  "componentAdminK16Integration20261014": {
+    "originalCommits": ["0df9010c", "3854f5ec", "6a905703"],
+    "integrationCommits": ["d117c41f", "2185c3f9", "099cbde9"],
+    "runtimeCommits": ["784cb9fe", "21b96115", "0b2d545a"],
+    "runtimeHead": "78a9ce34",
+    "previewServed": true,
+    "nativeVerified": true,
+    "nativeVerificationScope": "FR1280/390 component-only loading then ready; admin390 inline Cancel/Escape/opener focus. No reset submission or principal K16 functional replay claimed.",
+    "nativeRun": "easystud-authenticated-20261014T181027354Z-10352",
+    "k16Css": "Upstream expanded CSS excluded; local conservative Sass build adds8 selector lines",
+    "documentation": "docs/testing/component-admin-k16-integration-2026-10-14.md",
+    "humanAccepted": false,
+    "designPublished": false,
+    "penpotOwner": "Claude"
+  },
   "aChecklist20261014": {
     "status": "served-native-presentation-verified-business-replay-separate",
     "kitVersion": "0.4.209",

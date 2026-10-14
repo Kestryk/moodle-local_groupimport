@@ -58,3 +58,10 @@ Preserve all predecessors. Register current-slide, remaining and mobile-overlap
 native specs as local-supervised Review candidates, not CI. N2 business replay
 can proceed; no business completion or human acceptance inferred. Claude owns
 all Penpot propagation. Next: Claude0df9010c/3854f5ec and partial N2 6a905703.
+
+Served three-lot integration runtime78a9ce34 (Claude0df9010c/3854f5ec,
+partial N2 6a905703; CSS8lines only), purge PASS. Native run181027354Z-10352
+PASS FR1280/390 loading/ready and admin390 Cancel/Escape/focus, no writes.
+Registry proposal: component-loading-admin-reset-native.spec.js local-supervised,
+Review/not CI, N1 principal course5 only. Next R10-26/K12, then isolated welcome
+wrap before A3. No shared Platform state modified; Penpot updates owned by Claude.
