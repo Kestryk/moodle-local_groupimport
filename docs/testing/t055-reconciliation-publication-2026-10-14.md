@@ -31,3 +31,18 @@ real PHP fixtures from C:/dev/artifacts, output external EasyEdu/temp/t055-k21-r
 Retain failed invocations (missing module, then missing explicit fixture/output
 arguments); corrected invocation uses process-local runtime NODE_PATH and both
 arguments, no product change. PHP manage lint and generated AMD syntax PASS.
+
+## Publication confirmed after interrupted response
+Runtime b0602918, purge PASS; Source f99589d0 pushed and clean.
+Original -> served:70db3f96 ->f8b3fd37;f04fd8a0 ->21914bd9;
+280eade2 ->f3a0704b;b6175377 ->8cfcd18b;6b932106 ->8f41498e.
+Pending proofc03839e3 served80991894. Nine product source/build/template/style
+blobs compared identical to Source. No new native proof claimed for this batch.
+
+K21 integration limitation discovered in readback: incoming group_cards summary
+looks for [data-easystud-structure-count], but no current templates or manage.php
+contain this attribute. The upstream port document assumes prior K21 markup.
+PASS30 exercises isolated markup fixtures, not this consumer prerequisite.
+N2/Claude relay requests the missing markup commit and native counter check;
+do not mark K21 functionally complete or silently change reserved group_cards.
+Request N2 replay Guide10 and six-panel T058 after adopting served code.
