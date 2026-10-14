@@ -287,7 +287,7 @@ function local_groupimport_build_manage_template_data(
     array $groupings,
     array $navigationdata
 ): array {
-    global $CFG;
+    global $CFG, $USER;
 
     $alloweduserfields = local_groupimport_get_allowed_user_field_definitions();
     $customuserfields = local_groupimport_get_custom_user_field_definitions();
@@ -467,6 +467,7 @@ function local_groupimport_build_manage_template_data(
         'detaillabelsjson' => json_encode($detaillabels),
         'navigation' => $navigationdata,
         'eyebrow' => get_string('easystudlabel', 'local_groupimport'),
+        'userkey' => (int)$USER->id,
         'description' => get_string('easystudmanager_desc', 'local_groupimport'),
         'loadingmanager' => get_string('loadingmanager', 'local_groupimport'),
         'managerready' => get_string('managerready', 'local_groupimport'),
@@ -1448,8 +1449,10 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
  * @return array
  */
 function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
+    global $USER;
+    // Guide progress belongs to the person, not the course: browsers can be shared.
     return \local_groupimport\local\guide_discovery::modern_reading_contract() + [
-        'storageKey' => 'local_groupimport.easyedu_guide.' . $courseid,
+        'storageKey' => 'local_groupimport.easyedu_guide.u' . (int)$USER->id . '.c' . $courseid,
         'firstVisit' => false,
         'fullscreen' => true,
         'welcomeOffer' => \local_groupimport\local\guide_welcome::should_offer(),
