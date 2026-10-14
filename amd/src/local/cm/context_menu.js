@@ -21,6 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import * as Motion from '../../motion';
 import {selectedClass, isResponsiveWorkspace, getLabels, showNotification, areSelectionTypesCompatible} from './shared';
 import {isResponsiveDragSuppressed} from './drag_support';
 import {
@@ -64,6 +65,22 @@ const getUserCopyFieldValue = (user, fieldkey) => {
     return match && match.value ? match.value : '';
 };
 
+// Menu motion (Penpot "Menu contextuel mobile — animation", 15/10/2026): the mobile sheet slides
+// up and fades in over its fading backdrop, its submenus unfold as an accordion; the desktop menu
+// and its flyouts only fade. Closing plays the reverse, a little faster.
+const menuMotion = {
+    sheetIn: 240,
+    sheetOut: 200,
+    backdropIn: 200,
+    backdropOut: 200,
+    accordionIn: 200,
+    accordionOut: 160,
+    fadeIn: Motion.timing.fast,
+    fadeOut: 80,
+    sheetEasing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+    sheetOutEasing: 'cubic-bezier(0.4, 0, 1, 1)',
+};
+
 // Bind right-click menus for fast local actions.
 export const bindContextMenu = (root, courseId) => {
     const menu = root.querySelector('[data-easystud-context-menu]');
@@ -81,6 +98,38 @@ export const bindContextMenu = (root, courseId) => {
     let hoverTimer = null;
 
     const isMenuRtl = () => window.getComputedStyle(menu).direction === 'rtl';
+
+    // Menu animations: none under reduced motion or with the plugin animations disabled.
+    const menuAnimations = new Map();
+    let menuClosing = false;
+    const canAnimate = element => !!element && typeof element.animate === 'function' &&
+        Motion.isEnabled(menu) && !root.classList.contains('is-easyedu-motion-off');
+    const stopAnimation = element => {
+        const animation = element ? menuAnimations.get(element) : null;
+        if (animation) {
+            menuAnimations.delete(element);
+            animation.cancel();
+        }
+    };
+    // The onDone callback runs once the animation has played to its end, never when it was replaced or stopped.
+    // With keep, the end state stays applied until stopAnimation (onDone hides the element first).
+    const runAnimation = (element, keyframes, {duration, easing = 'ease-out', keep = false, onDone = null}) => {
+        stopAnimation(element);
+        const animation = element.animate(keyframes, {duration, easing, fill: 'both'});
+        menuAnimations.set(element, animation);
+        animation.finished.then(() => {
+            if (menuAnimations.get(element) !== animation) {
+                return false;
+            }
+            if (!keep) {
+                stopAnimation(element);
+            }
+            if (onDone) {
+                onDone();
+            }
+            return true;
+        }).catch(() => false);
+    };
 
     const getGroupParts = group => ({
         toggle: group ? group.querySelector(':scope > [data-easystud-context-submenu-toggle]') : null,
@@ -127,7 +176,21 @@ export const bindContextMenu = (root, courseId) => {
         const {toggle, submenu} = getGroupParts(group);
         if (submenu) {
             const hadFocus = submenu.contains(document.activeElement);
-            submenu.hidden = true;
+            if (!submenu.hidden && !menu.hidden && !menuClosing && menu.classList.contains('is-mobile-sheet') &&
+                    canAnimate(submenu)) {
+                // The sheet accordion folds before hiding (a reopening cancels it).
+                const height = submenu.getBoundingClientRect().height;
+                runAnimation(submenu, [
+                    {height: height + 'px', opacity: 1, overflow: 'hidden'},
+                    {height: '0px', opacity: 0, overflow: 'hidden'},
+                ], {duration: menuMotion.accordionOut, easing: menuMotion.sheetOutEasing, keep: true, onDone: () => {
+                    submenu.hidden = true;
+                    stopAnimation(submenu);
+                }});
+            } else {
+                stopAnimation(submenu);
+                submenu.hidden = true;
+            }
             submenu.style.removeProperty('left');
             submenu.style.removeProperty('top');
             if (hadFocus && toggle && !toggle.hidden) {
@@ -186,12 +249,32 @@ export const bindContextMenu = (root, courseId) => {
         if (openGroup && openGroup !== group) {
             closeSubmenu(openGroup);
         }
+        // A fold still playing starts the unfold from its current height.
+        const folding = menuAnimations.has(submenu);
+        const fromHeight = folding && !submenu.hidden ? submenu.getBoundingClientRect().height : 0;
+        stopAnimation(submenu);
         submenu.hidden = false;
         toggle.setAttribute('aria-expanded', 'true');
         openGroup = group;
         positionSubmenu(toggle, submenu);
-        if (menu.classList.contains('is-mobile-sheet') && submenu.scrollIntoView) {
-            submenu.scrollIntoView({block: 'nearest'});
+        const sheet = menu.classList.contains('is-mobile-sheet');
+        const reveal = () => {
+            if (sheet && submenu.scrollIntoView && !submenu.hidden) {
+                submenu.scrollIntoView({block: 'nearest'});
+            }
+        };
+        if (canAnimate(submenu) && sheet) {
+            const height = submenu.getBoundingClientRect().height;
+            // The sheet list scrolls the unfolded actions into view once they have their height.
+            runAnimation(submenu, [
+                {height: fromHeight + 'px', opacity: folding ? 1 : 0, overflow: 'hidden'},
+                {height: height + 'px', opacity: 1, overflow: 'hidden'},
+            ], {duration: menuMotion.accordionIn, easing: menuMotion.sheetEasing, onDone: reveal});
+        } else {
+            if (canAnimate(submenu) && !folding) {
+                runAnimation(submenu, [{opacity: 0}, {opacity: 1}], {duration: menuMotion.fadeIn});
+            }
+            reveal();
         }
         if (focusFirst) {
             const first = getSubmenuItems(submenu)[0];
@@ -224,16 +307,51 @@ export const bindContextMenu = (root, courseId) => {
         });
     };
 
-    const hideMenu = () => {
-        closeSubmenus();
+    // Hide the menu, its backdrop and their animations now.
+    const finishHideMenu = () => {
+        menuClosing = false;
         menu.hidden = true;
+        menu.inert = false;
+        menu.removeAttribute('inert');
         menu.classList.remove('is-mobile-sheet');
+        stopAnimation(menu);
+        if (backdrop) {
+            backdrop.hidden = true;
+            stopAnimation(backdrop);
+        }
+    };
+
+    const hideMenu = () => {
+        if (menuClosing) {
+            return;
+        }
+        // The menu leaves with its animation, inert meanwhile; everything else closes at once.
+        const animate = !menu.hidden && canAnimate(menu);
+        menuClosing = animate;
+        closeSubmenus();
+        if (animate) {
+            const sheet = menu.classList.contains('is-mobile-sheet');
+            menu.setAttribute('inert', '');
+            menu.inert = true;
+            runAnimation(menu, sheet ? [
+                {transform: 'translateY(0)', opacity: 1},
+                {transform: 'translateY(100%)', opacity: 0},
+            ] : [{opacity: 1}, {opacity: 0}], {
+                duration: sheet ? menuMotion.sheetOut : menuMotion.fadeOut,
+                easing: sheet ? menuMotion.sheetOutEasing : 'ease-in',
+                keep: true,
+                onDone: finishHideMenu,
+            });
+            if (sheet && backdrop && !backdrop.hidden) {
+                runAnimation(backdrop, [{opacity: 1}, {opacity: 0}],
+                    {duration: menuMotion.backdropOut, easing: 'ease-in', keep: true});
+            }
+        } else {
+            finishHideMenu();
+        }
         root.querySelectorAll('[data-easystud-card-menu][aria-expanded="true"]').forEach(button => {
             button.setAttribute('aria-expanded', 'false');
         });
-        if (backdrop) {
-            backdrop.hidden = true;
-        }
         context = null;
         if (returnFocus && document.contains(returnFocus)) {
             returnFocus.focus({preventScroll: true});
@@ -448,6 +566,11 @@ export const bindContextMenu = (root, courseId) => {
 
     const showMenu = (event, type, target) => {
         event.preventDefault();
+        if (menuClosing) {
+            // Reopened while leaving: drop the closing animation and start from a closed menu.
+            finishHideMenu();
+        }
+        submenuGroups.forEach(group => stopAnimation(getGroupParts(group).submenu));
         context = {type, target};
         returnFocus = event.currentTarget && event.currentTarget.focus ? event.currentTarget : target;
         if (returnFocus && returnFocus.matches && returnFocus.matches('[data-easystud-card-menu]')) {
@@ -471,6 +594,17 @@ export const bindContextMenu = (root, courseId) => {
             const top = Math.min(event.clientY, window.innerHeight - rect.height - 8);
             menu.style.left = Math.max(8, left) + 'px';
             menu.style.top = Math.max(8, top) + 'px';
+        }
+        if (canAnimate(menu) && mobile) {
+            runAnimation(menu, [
+                {transform: 'translateY(100%)', opacity: 0},
+                {transform: 'translateY(0)', opacity: 1},
+            ], {duration: menuMotion.sheetIn, easing: menuMotion.sheetEasing});
+            if (backdrop) {
+                runAnimation(backdrop, [{opacity: 0}, {opacity: 1}], {duration: menuMotion.backdropIn});
+            }
+        } else if (canAnimate(menu)) {
+            runAnimation(menu, [{opacity: 0}, {opacity: 1}], {duration: menuMotion.fadeIn});
         }
         const first = getLevelItems(null)[0];
         if (first) {
