@@ -4,12 +4,12 @@ Kevin authorizes one grouped publication of Rollback focus, K16 Reset sizing,
 T059 Message title wrapping and the R10-18 registry, followed by one native
 pass also completing the three open F7/R10 FR cells. Penpot remains Claude's.
 
-| Original | Source | Scope |
-| --- | --- | --- |
-| 80d2ea08 | 934cf886 | Rollback initial Cancel focus, Tab loop, scoped Escape and History opener restoration |
-| 64993872 | d76bbcb6 | Participant Reset uses effective regular secondary Cancel recipe and 38px field height |
-| 78263ef7 | 3c6c0bd6 | Native Message flex title can shrink/wrap while preserving dialog width |
-| 00957c2f | 2326167a | Retain R10-18 non-reproduction and exact-case human/device confirmation |
+| Original | Source | Served runtime | Scope |
+| --- | --- | --- | --- |
+| 80d2ea08 | 934cf886 | 9197daa4 | Rollback initial Cancel focus, Tab loop, scoped Escape and History opener restoration |
+| 64993872 | d76bbcb6 | a724ff43 | Participant Reset uses effective regular secondary Cancel recipe and 38px field height |
+| 78263ef7 | 3c6c0bd6 | fb97e947 | Native Message flex title can shrink/wrap while preserving dialog width |
+| 00957c2f | 2326167a | 9198618d | Retain R10-18 non-reproduction and exact-case human/device confirmation |
 
 Only CHANGELOG conflicts occurred for the first three; every entry is retained.
 R10-18 also conflicted in its absent diagnostic and existing Source intake.
@@ -42,8 +42,8 @@ button/panel and native handler, but lacks its mobile contextactions entry and
 delegation in bindContextMenu. N2's two Perf failures agree. Native principal
 will record the missing entry and Reset metrics without forcing a hidden
 control or claiming mobile Reset/Cancel parity. Correction requires reserved
-course_manager.js; Claude handoff is external at
-%LOCALAPPDATA%/EasyEdu/artifacts/easystud/authenticated/k16-mobile-claude-handoff-20261014.md.
+course_manager.js; Claude handoff is preserved in
+docs/k16-mobile-grouping-search-2026-10-14.md.
 
 Claude Penpot propagation list (source changes; acceptance remains separate):
 
@@ -56,6 +56,41 @@ Claude Penpot propagation list (source changes; acceptance remains separate):
 R10-18 is registry-only. No shared Penpot paint change is claimed for Rollback.
 Library/standards/compositions propagation, Kevin review, EN and Moodle4.5
 native remain separate from this principal FR pass. No F7 timing benchmark.
+
+Grouped preview/purge PASS2026-10-14T09:55:14.1643982Z, runtime3f22f1b0
+(build/recipe70425b42→3f22f1b0; earlier proof7f0d8908→5e0d635c).
+Eight committed source/build/style blobs match Source and runtime; raw CRLF/LF
+differences are not semantic build changes. Source parsing in ES-module mode,
+AMD parsing, Sass compilation, JSON and diff checks pass. The first Node check
+incorrectly used CommonJS for ES-module source and was superseded by the
+correct module parser and Babel rebuild; no product syntax fault is claimed.
+
+ONE native run, retained FAILED:
+easystud-authenticated-20261014T095601999Z-42312. FR/legacy/390 three mobile
+menus and pagination/count hiding pass, then the checkbox expectation fails
+because the recipe toggles off the card already selected by opening its menu.
+Source bindContextMenu.prepareContextSelection calls setItemSelected(true);
+pagination retains selection. The recipe omitted clearing that actual state.
+No product selection correction is warranted by this failure. No page error
+or attempted business write; credentials, child and lease cleanup complete,
+no new fixture. The three F7 cells and this batch's new native checks remain
+open; prior Codex2 Perf evidence is retained and is not relabelled principal.
+
+Prepared/syntax-checked, NOT RUN: n2-four-selection-reset-native.spec.js,
+grep "N2 four selection reset and F7 remaining FR cells". It clears via the
+real Clear action before asserting the unchecked→checked transition and
+checks painted keyboard focus. Original recipe/run remain immutable. No
+second Playwright run in this conversation (brief quota). Finish the combined
+verification in a fresh conversation before A3. Final Current restoration and
+retention evidence are recorded alongside the run externally.
+
+Final owned-lease restore returned mode/databaseMode legacy; a fresh CLI
+confirmed legacy and course73/groups/groupings absent. Run credential/child/
+lease cleanup all true, no fixture requested. Manifest remains failed, JSON/
+logs/error context pinned30days; retention dry-run zero candidates/deletions/
+unmanaged files. No new native PNG exists because the failure preceded the
+selection capture. This record and successor are documentation/proof only,
+for the next grouped publication, not a second UI preview of this batch.
 
 Next after this small integration series: A3 V3 (T033/34/35), including the
 24×2px violet#72508C accent under Groups without grouping (T033), then the

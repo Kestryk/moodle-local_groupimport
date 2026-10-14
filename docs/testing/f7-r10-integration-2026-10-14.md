@@ -70,7 +70,17 @@ FR1280 selection PNG are pinned30days; retention dry-runs show zero candidates,
 deletions and unmanaged artifacts. The desktop PNG was inspected locally;
 this is agent inspection, not Kevin's visual acceptance.
 
-Then: A-CHECKLIST→A-FLUIDITE→R10-26→A-ADMIN-CONTROLES→A-PARCOURS-10;
+The later grouped preview3f22f1b0 retains these F7 changes and publishes four
+Codex2 lots. Its single native run20261014T095601999Z-42312 again passes the
+legacy390 menus/pagination, then toggles off the participant already selected
+by its menu. bindContextMenu.prepareContextSelection explicitly selects it;
+the recipe must clear that retained selection first. This is an established
+recipe-state error, not a product selection fix. Three unfinished cells remain
+open. Active prepared recipe is n2-four-selection-reset-native.spec.js (not
+run); details and served mapping in n2-four-integration-2026-10-14.md.
+
+Then: A3 V3 T033/T034/T035 (including violet ungrouped section underline),
+A-CHECKLIST→A-FLUIDITE→R10-26→A-ADMIN-CONTROLES→A-PARCOURS-10;
 then R10-02/06/14, R10-15, R10-21+K17. Option b for path10 is already coded;
 remaining work is presentation. Penpot-dependent lots wait for Claude,
 including R10-20/24; T048/K18 remains first in series B.
