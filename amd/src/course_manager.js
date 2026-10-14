@@ -514,18 +514,13 @@ const getKnownUserIdentifiers = root => {
     };
 
     const model = getOnDemandModel(root);
-    // On demand, read every participant from the state: only one page has cards.
+    // Read every participant from the state: only one page has cards. None is known while it loads.
     const records = model ? model.raw.users.map(user => ({
         name: user.fullname,
         userid: String(user.id),
         email: user.email,
         copyfields: Object.keys(user.identifiers || {}).map(key => ({key, value: user.identifiers[key]})),
-    })) : Array.from(root.querySelectorAll('[data-easystud-user]')).map(user => ({
-        name: (user.querySelector('.local-groupimport-easystud-user__name') || {}).textContent || '',
-        userid: user.getAttribute('data-user-id'),
-        email: user.getAttribute('data-user-email'),
-        copyfields: getUserCopyFields(user),
-    }));
+    })) : [];
     records.forEach(record => {
         const display = record.name.trim();
         const userid = record.userid || display;
@@ -675,7 +670,7 @@ const getKnownGroupIdentifiers = root => {
 
     const model = getOnDemandModel(root);
     // On demand, every group comes from the state: the tree only renders opened sections.
-    const records = model && model.catalogs ? model.raw.groups.map(group => ({id: String(group.id), name: group.name.trim()})) :
+    const records = model ? model.raw.groups.map(group => ({id: String(group.id), name: group.name.trim()})) :
         Array.from(root.querySelectorAll('[data-easystud-group-id]')).map(group => {
             const nameNode = group.querySelector('.local-groupimport-easystud-group__name');
             return {id: group.getAttribute('data-easystud-group-id') || '', name: nameNode ? nameNode.textContent.trim() : ''};
@@ -806,7 +801,7 @@ const getTreeGroupElementsById = (root, groupid) => {
 
 const getGroupingIdsForGroup = (root, groupid) => {
     const model = getOnDemandModel(root);
-    if (model && model.catalogs) {
+    if (model) {
         const group = model.groups.get(Number(groupid));
         return group ? (group.groupingids || []).filter(id => model.groupings.has(id)).map(String) : [];
     }
@@ -1395,7 +1390,7 @@ const isGroupFullySelected = group => {
     if (group.hasAttribute('data-easystud-sm-members-partial')) {
         const model = getOnDemandModel();
         const key = group.getAttribute('data-easystud-sm-catalog');
-        if (!model || !model.selectedMembers || !key) {
+        if (!model || !key) {
             return false;
         }
         const prefix = group.getAttribute('data-easystud-group-id') + ':';
@@ -1865,49 +1860,7 @@ const setRenameEditing = (form, editing) => {
 };
 
 const syncCatalogFilters = (root, options = {}) => {
-    const ondemandmodel = getOnDemandModel(root);
-    if (ondemandmodel && ondemandmodel.catalogs) {
-        // SM-RENDU: both catalogs filter the state in applyCatalogSearch.
-        applyCatalogSearch(root, options);
-        applyStructureSearch(root, options);
-        syncResponsiveResetButtons(root);
-        return;
-    }
-    const catalogs = [
-        {
-            key: 'participants',
-            filter: root.querySelector('[data-easystud-catalog-grouping-filter="participants"]'),
-            toggle: root.querySelector('[data-easystud-catalog-show-ungrouped="participants"]'),
-            list: root.querySelector('.local-groupimport-easystud-participant-groups__list'),
-        },
-        {
-            key: 'structure',
-            filter: root.querySelector('[data-easystud-catalog-grouping-filter="structure"]'),
-            toggle: root.querySelector('[data-easystud-catalog-show-ungrouped="structure"]'),
-            list: root.querySelector('.local-groupimport-easystud-structure-groups__list'),
-        },
-    ];
-
-    catalogs.forEach(catalog => {
-        if (!catalog.filter || !catalog.list) {
-            return;
-        }
-        const selected = Array.from(catalog.filter.selectedOptions).map(option => option.value).filter(Boolean);
-        const onlyungrouped = catalog.toggle ? catalog.toggle.checked : false;
-        catalog.list.querySelectorAll('[data-easystud-group-id]').forEach(group => {
-            const groupingids = (group.getAttribute('data-grouping-ids') || '').split(',').filter(Boolean);
-            const hasnogrouping = group.getAttribute('data-has-no-grouping') === '1';
-            const matchesgrouping = !selected.length || selected.some(value => {
-                if (value === '__none__') {
-                    return hasnogrouping;
-                }
-                return groupingids.indexOf(value) !== -1;
-            });
-            const matchesungrouped = !onlyungrouped || hasnogrouping;
-            const filterhidden = !(matchesgrouping && matchesungrouped);
-            group.setAttribute('data-easystud-catalog-filter-hidden', filterhidden ? '1' : '0');
-        });
-    });
+    // SM-RENDU: both catalogs filter the state in applyCatalogSearch.
     applyCatalogSearch(root, options);
     applyStructureSearch(root, options);
     syncResponsiveResetButtons(root);
@@ -1972,33 +1925,10 @@ const matchesSearchText = (element, query) => {
 };
 
 const applyCatalogSearch = (root, options = {}) => {
-    const ondemandmodel = getOnDemandModel(root);
-    if (ondemandmodel && ondemandmodel.catalogs) {
+    // Both catalogs filter the state; their lists hold no card until it has loaded.
+    if (getOnDemandModel(root)) {
         applyOnDemandCatalogFilters(root);
-        syncFilteredEmptyStates(root);
-        if (options.pagination !== false) {
-            syncPagination(root);
-        }
-        if (options.responsive !== false) {
-            scheduleResponsiveUiRefresh(root);
-        }
-        return;
     }
-    const structureGroupQuery = getStructureGroupSearchQuery(root);
-    const participantGroupQuery = root.classList.contains(participantFocusClass) ?
-        getInputQuery(root, '[data-easystud-catalog-search="participants"]') : '';
-
-    root.querySelectorAll('.local-groupimport-easystud-structure-groups__list > [data-easystud-group-id]').forEach(group => {
-        const searchhidden = !matchesSearchText(group, structureGroupQuery);
-        group.setAttribute('data-easystud-structure-search-hidden', searchhidden ? '1' : '0');
-        group.hidden = group.getAttribute('data-easystud-catalog-filter-hidden') === '1' || searchhidden;
-    });
-
-    root.querySelectorAll('.local-groupimport-easystud-participant-groups__list > [data-easystud-group-id]').forEach(group => {
-        const searchhidden = !matchesSearchText(group, participantGroupQuery);
-        group.setAttribute('data-easystud-catalog-search-hidden', searchhidden ? '1' : '0');
-        group.hidden = group.getAttribute('data-easystud-catalog-filter-hidden') === '1' || searchhidden;
-    });
     syncFilteredEmptyStates(root);
     if (options.pagination !== false) {
         syncPagination(root);
@@ -2015,7 +1945,7 @@ const applyStructureSearch = (root, options = {}) => {
 
     const model = getOnDemandModel(root);
     root.querySelectorAll('[data-easystud-tree] [data-easystud-grouping-id]').forEach(grouping => {
-        const state = model && model.catalogs ?
+        const state = model ?
             model.groupings.get(Number(grouping.getAttribute('data-easystud-grouping-id'))) : null;
         if (state) {
             // On demand, the section only knows its header: search text and occupancy come from the state.
@@ -2311,21 +2241,14 @@ const syncGroupMemberSearchEmptyState = (root, group, query, visibleCount) => {
 /**
  * Search text of a group member row: the row itself plus the participant's own search text.
  *
- * @param {HTMLElement} root EasyStud root.
- * @param {Object|null} model On-demand participant model, or null in legacy mode.
+ * @param {Object|null} model On-demand participant model, or null while the state loads.
  * @param {HTMLElement} member Member row.
  * @returns {String}
  */
-const memberSearchText = (root, model, member) => {
+const memberSearchText = (model, member) => {
     const userid = member.getAttribute('data-easystud-member-id') || '';
-    let usertext = '';
-    if (model) {
-        const entry = model.indexById.get(Number(userid));
-        usertext = entry ? entry.text : '';
-    } else {
-        const user = userid ? findParticipantCard(root, userid) : null;
-        usertext = user ? (user.getAttribute('data-search-text') || user.textContent || '') : '';
-    }
+    const entry = model ? model.indexById.get(Number(userid)) : null;
+    const usertext = entry ? entry.text : '';
     return normalise((member.getAttribute('data-search-text') || member.textContent || '') + ' ' + usertext);
 };
 
@@ -2351,7 +2274,7 @@ const applyGroupMemberSearchToGroup = (root, group) => {
     members.forEach(member => {
         // The participant search text is only needed while a query is typed. On demand it comes from the
         // state index: looking up participant cards would build a detached card for every member.
-        const hidden = !!query && memberSearchText(root, model, member).indexOf(query) === -1;
+        const hidden = !!query && memberSearchText(model, member).indexOf(query) === -1;
         member.hidden = hidden;
         member.setAttribute('data-easystud-member-search-hidden', hidden ? '1' : '0');
         if (!hidden) {
@@ -2785,22 +2708,19 @@ const emitFilterPathCompletion = (root, step) => {
         return;
     }
     const model = getOnDemandModel(root);
-    const items = model ? model.filteredIds : getSelectableResultItems(list, {selector: '[data-easystud-user]'});
+    // No result (and no selected participant) while the course state loads.
+    const items = model ? model.filteredIds : [];
     const filtered = hasActiveListFilters(root, list);
     const panel = root.querySelector('[data-easystud-advanced-filters="participants"]');
-    // On demand, compare id sets: building a card per result is far too slow on large courses.
-    const allResultsSelected = model ?
-        items.every(userid => model.selected.has(userid)) && model.selected.size === items.length :
-        items.every(item => item.classList.contains(selectedClass)) && (() => {
-            const selected = getSelectedItems(root, 'participant');
-            return selected.length === items.length && selected.every(item => items.includes(item));
-        })();
+    // Compare id sets: building a card per result is far too slow on large courses.
+    const allResultsSelected = !!model &&
+        items.every(userid => model.selected.has(userid)) && model.selected.size === items.length;
     const completed = {
         'open-filters': !!panel && !panel.hidden && panel.classList.contains('is-expanded') &&
             panel.getAttribute('aria-hidden') !== 'true' && !panel.inert,
         'apply-filter': filtered && items.length > 0,
         'select-results': filtered && items.length > 0 && allResultsSelected,
-        'clear-selection': model ? model.selected.size === 0 : getSelectedItems(root, 'participant').length === 0,
+        'clear-selection': !model || model.selected.size === 0,
     };
     if (completed[step]) {
         emitNativePathCompletion(root, 'verify-with-filters', step);
@@ -3940,12 +3860,13 @@ const updateGroupingBadge = section => {
     const root = section.closest('.local-groupimport-easystud');
     const model = getOnDemandModel(root);
     const groupingid = section.getAttribute('data-easystud-grouping-id');
-    if (!model && root && root.getAttribute('data-easystud-rendering-mode') === 'reactive') {
-        // On demand, keep the server count until the state has loaded: closed sections have no cards.
+    if (!model) {
+        // Keep the server count until the state has loaded: closed sections have no cards.
         return;
     }
-    // On demand, a closed section has no cards: count from the state.
-    const count = model && model.catalogs && groupingid && model.groupings.has(Number(groupingid)) ?
+    // A closed section has no cards: count from the state (a grouping created in the page
+    // since the last state reload counts its cards).
+    const count = groupingid && model.groupings.has(Number(groupingid)) ?
         getTreeSectionGroupIds(model, groupingid).length :
         section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
     badge.textContent = countLabel(badge.getAttribute('data-count-template') || '__count__', count);
@@ -4765,7 +4686,7 @@ const renderAdvancedListSection = (title, rows, columns, exportname, emptylabel,
 
 const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
     const model = getOnDemandModel(root);
-    if (!model || !model.catalogs || !item) {
+    if (!model || !item) {
         openAdvancedSettingsModalNow(root, item, returnFocus);
         return;
     }
@@ -5970,29 +5891,6 @@ const applyFilters = (root, options = {}) => {
             groupings: selectedgroupings,
         });
     }
-    (model ? [] : root.querySelectorAll('[data-easystud-user]')).forEach(user => {
-        const text = normalise(user.getAttribute('data-search-text'));
-        const roles = normalise(user.getAttribute('data-role-text')).split('|').filter(Boolean);
-        const groups = (user.getAttribute('data-group-ids') || '').split(',').filter(Boolean);
-        const groupings = (user.getAttribute('data-grouping-ids') || '').split(',').filter(Boolean);
-        const hasnogrouping = groupings.length === 0;
-        const matchesQuery = !query || text.indexOf(query) !== -1;
-        const matchesRole = !selectedroles.length || selectedroles.some(role => roles.indexOf(role) !== -1);
-        const matchesGroup = !selectedgroups.length || selectedgroups.some(groupid => groups.indexOf(groupid) !== -1);
-        const matchesGrouping = !selectedgroupings.length || selectedgroupings.some(groupingid => {
-            if (groupingid === '__none__') {
-                return hasnogrouping;
-            }
-            return groupings.indexOf(groupingid) !== -1;
-        });
-        const matches = matchesQuery && matchesRole && matchesGroup && matchesGrouping;
-        user.hidden = !matches;
-        if (matches) {
-            user.removeAttribute('data-easystud-filter-hidden');
-        } else {
-            user.setAttribute('data-easystud-filter-hidden', '1');
-        }
-    });
     if (options.pagination !== false) {
         syncPagination(root);
     }
@@ -6094,10 +5992,10 @@ const getSelectedItems = (root, type) => {
             model.raw.users.filter(user => model.selected.has(user.id))
                 .forEach(user => items.push(findParticipantCard(root, user.id)));
         }
-        if (model.selectedGroups && (!type || type === 'group')) {
+        if (!type || type === 'group') {
             model.selectedGroups.forEach((key, groupid) => items.push(findCatalogGroupCard(root, groupid, key)));
         }
-        if (model.selectedMembers && (!type || type === 'member')) {
+        if (!type || type === 'member') {
             model.selectedMembers.forEach((key, memberkey) => {
                 const [groupid, userid] = memberkey.split(':');
                 const rowselector = '[data-easystud-member-id="' + userid + '"]';
@@ -6245,7 +6143,7 @@ const setItemSelected = (item, selected) => {
     }
     const membercard = item.getAttribute('data-selectable-type') === 'member' ?
         item.closest('[data-easystud-sm-catalog]') : null;
-    if (model && model.selectedMembers && membercard) {
+    if (model && membercard) {
         const memberkey = item.getAttribute('data-selectable-id');
         const catalogkey = membercard.getAttribute('data-easystud-sm-catalog');
         if (selected) {
@@ -6260,7 +6158,7 @@ const setItemSelected = (item, selected) => {
         syncSelectionTwin(item, twin, selected);
     }
     const key = item.getAttribute('data-easystud-sm-catalog');
-    if (model && model.selectedGroups && key && item.getAttribute('data-selectable-type') === 'group') {
+    if (model && key && item.getAttribute('data-selectable-type') === 'group') {
         const groupid = Number(item.getAttribute('data-easystud-group-id'));
         if (selected) {
             model.selectedGroups.set(groupid, key);
@@ -6309,11 +6207,11 @@ const clearSelection = (root, type) => {
         model.selected.clear();
         model.detached.forEach(unselectDetached);
     }
-    if (model && model.selectedGroups && (!type || type === 'group')) {
+    if (model && (!type || type === 'group')) {
         model.selectedGroups.clear();
         Object.values(model.catalogs).forEach(catalog => catalog.detached.forEach(unselectDetached));
     }
-    if (model && model.selectedMembers && (!type || type === 'member')) {
+    if (model && (!type || type === 'member')) {
         model.selectedMembers.clear();
         Object.values(model.catalogs).forEach(catalog => catalog.detached.forEach(card =>
             card.querySelectorAll('[data-selectable-type="member"]').forEach(unselectDetached)));
@@ -6380,8 +6278,7 @@ const updateSelectionAvailability = root => {
  * @param {HTMLElement} root EasyStud root.
  * @returns {Boolean}
  */
-const isCourseStateLoading = root => root.getAttribute('data-easystud-rendering-mode') === 'reactive' &&
-    !getOnDemandModel(root);
+const isCourseStateLoading = root => !getOnDemandModel(root);
 
 const updateParticipantEmptyState = root => {
     const list = root.querySelector('[data-easystud-participant-list]');
@@ -6390,9 +6287,9 @@ const updateParticipantEmptyState = root => {
     }
 
     const model = getOnDemandModel(root);
-    // On demand, totals come from the state: only the current page has cards.
-    const users = model ? model.raw.users : Array.from(list.querySelectorAll('[data-easystud-user]'));
-    const visibleUsers = model ? model.filteredIds : users.filter(user => !user.hidden);
+    // Totals come from the state: only the current page has cards.
+    const users = model.raw.users;
+    const visibleUsers = model.filteredIds;
     let state = list.querySelector('[data-easystud-empty-state="participants"]');
 
     if (!state) {
@@ -7928,15 +7825,13 @@ const bindMoveModal = (root, courseId) => {
         if (type === 'participant' || type === 'member') {
             const seen = new Set();
             const model = getOnDemandModel(root);
-            // On demand, list every group from the state in the order of the Structure catalog (which sits
-            // first in the tree and holds every group in the legacy page): only one page is rendered now.
+            // List every group from the state in the order of the Structure catalog: only one page is
+            // rendered. No participant or member can be selected before the state has loaded.
             const structureList = root.querySelector('.local-groupimport-easystud-structure-groups__list');
-            const entries = model && model.catalogs ?
+            const entries = model ?
                 sortGroupIds(model, model.raw.groups.map(group => group.id),
                     (structureList && structureList.getAttribute('data-easystud-sort')) || 'alpha')
-                    .map(groupid => ({value: String(groupid), name: model.groups.get(groupid).name})) :
-                Array.from(root.querySelectorAll('[data-easystud-tree] [data-easystud-group-id]'))
-                    .map(group => ({value: group.getAttribute('data-easystud-group-id') || '', name: getGroupName(group)}));
+                    .map(groupid => ({value: String(groupid), name: model.groups.get(groupid).name})) : [];
             // Moving members into the only group they come from would change nothing.
             const sources = type === 'member' ? new Set(memberSnapshot.map(pair => String(pair.groupid))) : new Set();
             const sourceOnly = sources.size === 1 ? Array.from(sources)[0] : null;
@@ -11578,10 +11473,10 @@ const bindPastePreview = root => {
 };
 
 /**
- * SM-RENDU on-demand participant list, set once the state is loaded: {root, model}.
+ * SM-RENDU on-demand participant list, set once the state is loaded: {root, model, courseId}.
  *
- * While it is null (legacy mode, or state still loading) every helper below falls back
- * to the legacy DOM behaviour.
+ * It stays null while the state loads (or when it failed to load): the participant list and
+ * both group catalogs then hold no card.
  */
 let onDemandParticipants = null;
 
@@ -11618,7 +11513,8 @@ const findParticipantCard = (root, userid) => {
     }
     const model = getOnDemandModel(root);
     if (!model) {
-        return root.querySelector('[data-easystud-user][data-user-id="' + userid + '"]');
+        // No participant card exists until the course state has loaded.
+        return null;
     }
     // Page cards are indexed at render time: a document-wide query per id is far too slow on large courses.
     const card = model.pageCards.get(Number(userid));
@@ -11753,7 +11649,8 @@ const setOnDemandGroupsSelected = (root, key, ids, selected) => {
 };
 
 /**
- * Describe an on-demand list (participants or a group catalog), or null for a legacy list.
+ * Describe an on-demand list (participants or a group catalog), or null for a list paginated in
+ * the DOM (the groupings tree) or while the state loads.
  *
  * @param {HTMLElement|null} root EasyStud root.
  * @param {HTMLElement|null} list List element.
@@ -11774,7 +11671,7 @@ const getOnDemandList = (root, list) => {
         };
     }
     const key = catalogKeyOf(list);
-    if (!key || !model.catalogs) {
+    if (!key) {
         return null;
     }
     return {
@@ -11787,7 +11684,7 @@ const getOnDemandList = (root, list) => {
 };
 
 /**
- * Filter both group catalogs from their controls (legacy syncCatalogFilters + applyCatalogSearch).
+ * Filter both group catalogs from their controls (grouping filter, "only ungrouped", search).
  *
  * @param {HTMLElement} root EasyStud root.
  */
@@ -11950,7 +11847,7 @@ const renderOnDemandCatalogPage = (root, list, config) => {
  */
 const ensureTreeSection = (root, section) => {
     const model = getOnDemandModel(root);
-    if (!model || !model.catalogs || !section) {
+    if (!model || !section) {
         return;
     }
     const container = section.querySelector('.local-groupimport-easystud-tree__children');
@@ -12088,13 +11985,13 @@ const scheduleOnDemandStateRefresh = root => {
             });
             const memberkeys = new Set(raw.groups.reduce((all, group) =>
                 all.concat((group.memberids || []).map(userid => group.id + ':' + userid)), []));
-            (model.selectedMembers || new Map()).forEach((key, memberkey) => {
+            model.selectedMembers.forEach((key, memberkey) => {
                 if (!memberkeys.has(memberkey)) {
                     model.selectedMembers.delete(memberkey);
                 }
             });
             const groupids = new Set(raw.groups.map(group => group.id));
-            (model.selectedGroups || new Map()).forEach((key, groupid) => {
+            model.selectedGroups.forEach((key, groupid) => {
                 if (!groupids.has(groupid)) {
                     model.selectedGroups.delete(groupid);
                 }
@@ -12222,13 +12119,11 @@ export const init = (rootId, courseId, options = {}) => {
         Motion.init(root);
         // Card labels, for the on-demand lists and the Guide specimens (local/sm/specimen).
         root.easystudCardStrings = {cards: options.cardstrings || {}, groups: options.groupstrings || {}};
-        if (options && options.renderingmode === 'reactive') {
-            // The page reports ready only once the state has drawn the lists, like the server render.
-            runSafely(() => {
-                root.easystudSmStarting = startOnDemandState(root, courseId, options.cardstrings || {},
-                    options.groupstrings || {});
-            });
-        }
+        // The page reports ready only once the state has drawn the lists.
+        runSafely(() => {
+            root.easystudSmStarting = startOnDemandState(root, courseId, options.cardstrings || {},
+                options.groupstrings || {});
+        });
 
         [
             () => bindFilters(root),
