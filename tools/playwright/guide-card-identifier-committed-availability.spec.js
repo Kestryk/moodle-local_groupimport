@@ -1,3 +1,4 @@
+const {openContextSubmenu}=require('./context-submenu-inventory-helper.cjs');
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 
@@ -71,6 +72,7 @@ test('Guide card identifier panel committed availability',async({page},info)=>{
             else {
                 route='card-menu';
                 await grouping.locator('[data-easystud-card-menu]:visible').first().click();
+                await openContextSubmenu(page,'grouping-paste-groups');
                 await page.locator('[data-easystud-context-action="grouping-paste-groups"]:visible').click();
             }
             const groupingField=grouping.locator('[data-easystud-grouping-groups-box]:visible');

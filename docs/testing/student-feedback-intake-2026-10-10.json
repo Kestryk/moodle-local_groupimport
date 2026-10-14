@@ -1,4 +1,24 @@
 {
+  "codex2ContextSubmenus20261014": {
+    "status": "twelve-callers-adapted-shared-native-routing-pass",
+    "documentation": "docs/testing/codex2-context-submenus-2026-10-14.md",
+    "sourceCommit": "31386438",
+    "publishedCommit": "bbb5fd59",
+    "copy": "http://localhost:8051",
+    "mode": "on-demand-only",
+    "adaptedSpecs": 12,
+    "helper": "tools/playwright/context-submenu-inventory-helper.cjs",
+    "nativeSpec": "tools/playwright/context-submenu-native-painted-successor.spec.js",
+    "nativeRun": "easystud-authenticated-20261014T185711367Z-48264",
+    "nativeScope": "Shared Copy/Add routes and panel open/cancel on participants/groups/groupings FR390/1280,6cells; full caller suites not rerun",
+    "nativeVerified": true,
+    "fullCallerSuitesVerified": false,
+    "pageErrors": 0,
+    "businessWrites": 0,
+    "cssConservativeDiff": {"added":35,"removed":2,"charset":false},
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "codex2GuidedWritingReplay20261014": {
     "status": "requested-paths3-7-11-native-pass-path10-next-highlight-product-failed",
     "documentation": "docs/testing/codex2-guide-writing-replay-2026-10-14.md",

@@ -1,3 +1,4 @@
+const {openContextSubmenu}=require('./context-submenu-inventory-helper.cjs');
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 
@@ -50,6 +51,7 @@ test('Manual card email identifier recognition preview',async({page},info)=>{
                 else {
                     route='card-menu';
                     await card.locator('[data-easystud-card-menu]:visible').first().click({timeout:8000});
+                    await openContextSubmenu(page,type==='group'?'group-paste-emails':'grouping-paste-groups');
                     const action=page.locator('[data-easystud-context-action="'+(type==='group'?'group-paste-emails':'grouping-paste-groups')+'"]:visible');
                     await expect(action).toBeVisible();
                     await action.click({timeout:8000});

@@ -1,3 +1,4 @@
+const {openContextSubmenu}=require('./context-submenu-inventory-helper.cjs');
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
@@ -59,6 +60,7 @@ test('Student inline lookup feedback and search Cancel use Foundation roles', as
                 if (responsive) {
                     await card.locator(`:scope > .local-groupimport-easystud-${kind}__header > [data-easystud-card-menu]`).click();
                     const action = kind === 'group' ? 'group-paste-emails' : 'grouping-paste-groups';
+                    await openContextSubmenu(root,action);
                     await root.locator(`[data-easystud-context-action="${action}"]:visible`).click();
                 } else {
                     const trigger = kind === 'group' ? 'toggle-group-email' : 'toggle-grouping-groups';

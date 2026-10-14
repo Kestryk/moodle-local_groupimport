@@ -1,4 +1,5 @@
 const {test,expect}=require('@playwright/test');
+const {inspectContextSubmenus}=require('./context-submenu-inventory-helper.cjs');
 const fs=require('node:fs');
 const {execFileSync}=require('node:child_process');
 const setMode=mode=>execFileSync(process.env.EASYEDU_PHP_EXECUTABLE,['-r',
@@ -57,6 +58,9 @@ test('N2 four integrations and F7 three remaining FR cells',async({page},info)=>
             await grouping.locator(':scope > [data-easystud-card-menu]:visible, :scope > .local-groupimport-easystud-grouping__header > [data-easystud-card-menu]:visible').first().click();
             const menu=root.locator('[data-easystud-context-menu].is-mobile-sheet');await expect(menu).toBeVisible();
             row.mobileGroupingMenu=await menu.locator('[data-easystud-context-action]:visible').evaluateAll(nodes=>nodes.map(n=>({action:n.dataset.easystudContextAction,text:n.textContent.trim()})));
+            // Closed submenu children are not top-level visible commands.
+            // Record them separately after a real native expansion.
+            row.mobileGroupingSubmenus=await inspectContextSubmenus(menu);
             row.groupingSearchActionMissing=!row.mobileGroupingMenu.some(a=>a.action==='grouping-search-groups');
             row.directSearchHidden=!(await grouping.locator(':scope > .local-groupimport-easystud-grouping__header > [data-easystud-container-search-toggle]').isVisible());
             if(row.groupingSearchActionMissing&&row.directSearchHidden)gaps.push({mode,width,task:'K16',scope:'Grouping internal search missing from mobile context menu; Course Manager fix belongs to Claude; mobile Reset/Cancel parity not proved.'});
