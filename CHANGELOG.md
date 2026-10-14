@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] Claude: the Guide welcome "Later" now hides the invitation until the next login (Kevin's decision): kept in the Moodle session only, the "seen" preference is untouched; the shared Guide is unchanged (the EasyStud adapter listens to the button).
+
 - 2026-10-14 [N1] Claude SM-RENDU switch (Kevin validated parity on 14/10): On demand is the only Student Management rendering mode; the preview setting and its strings are removed (upgrade 2026101400 unsets it), manage.php always loads the lean page data. The remaining server-rendered branches are removed step by step (T055).
 
 - 2026-10-14 [N1/N2] Group four Codex2 integrations with the approved R10-18
