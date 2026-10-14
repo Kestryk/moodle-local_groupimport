@@ -57,6 +57,7 @@ if (!$animationsenabled) {
     $PAGE->add_body_class('local-groupimport-motion-disabled');
     $PAGE->add_body_class('easyedu-motion-disabled');
 }
+$PAGE->requires->css('/local/groupimport/styles/student-management.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
 $PAGE->requires->js_call_amd('local_groupimport/guide_welcome', 'init', [
     '[data-easyedu-guide-root]', [

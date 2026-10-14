@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N2] V2 replaces global product CSS with explicit SM/Guide, Mass Import and administration page styles; preserve ordered declarations and standalone reset styling, convert font URL for static sheets.
+
 - 2026-10-14 [N1] R10-26/K12 adopts Kit0.4.210 setting width for admin choice wrappers and fields:12rem minimum,28rem maximum, full mobile width. Preserve selection, typography and Motion.
 
 - 2026-10-14 [N1] Integrate T055 modular Course Manager, skeleton v2, Guide10 highlight, identical T058 helper port and K21 model counters together; rebuild cm/sm AMD and conservative CSS before serving.

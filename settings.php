@@ -223,6 +223,7 @@ if ($hassiteconfig) {
     if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER &&
             $PAGE->url->compare(new moodle_url('/admin/settings.php'), URL_MATCH_BASE) &&
             $PAGE->url->get_param('section') === 'local_groupimport') {
+        $PAGE->requires->css('/local/groupimport/styles/administration.css');
         $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
         $PAGE->requires->js('/local/groupimport/js/easyedu_colour_picker.js', true);
         $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);

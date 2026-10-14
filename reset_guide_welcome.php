@@ -14,7 +14,7 @@ $PAGE->set_context($context);
 $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('guidewelcomereset', 'local_groupimport'));
 $PAGE->set_heading(get_string('guidewelcomereset', 'local_groupimport'));
-$PAGE->requires->css('/local/groupimport/styles.css');
+$PAGE->requires->css('/local/groupimport/styles/administration.css');
 $PAGE->requires->js_call_amd('local_groupimport/easyedu_confirmation', 'init', ['#easyedu-welcome-reset']);
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
