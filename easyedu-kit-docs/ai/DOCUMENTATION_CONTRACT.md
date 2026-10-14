@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Long native Message titles shrink beside Close and wrap without changing dialog
+width. Capture synthetic stress before restoring original text; distinguish shell
+containment while loading from settled body layout. Use the visible mobile Clear
+selection command before switching entity type; never submit destructive dialogs.
+
 K16 Reset parity follows the effective native Grouping-search Cancel cascade,
 not an earlier compact adapter overridden by public secondary classes. Preserve
 regular secondary padding/radius/type and the38px field-row height when mobile
