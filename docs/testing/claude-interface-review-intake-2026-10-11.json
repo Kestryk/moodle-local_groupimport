@@ -1307,11 +1307,13 @@
     {
       "id": "T026",
       "receivedScope": "[US3] État vide en `1.12fr / 0.88fr`, ratios de `has-preview` inchangés (M1). À faire après T023 à T025.",
-      "status": "queued",
-      "nativeVerified": false,
+      "status": "source-native-candidate-pass",
+      "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
-      "decisionGate": "none"
+      "related": ["docs/testing/t026-mass-import-2026-10-14.json"],
+      "decisionGate": "none",
+      "sourceChanged": true,
+      "nativeScope": "FR1600/1280/390 :8051 empty candidate1.12fr/.88fr; preview/skeleton rules unchanged"
     },
     {
       "id": "T027",

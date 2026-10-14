@@ -25,6 +25,8 @@
   Course Manager AMD. Prepare one principal native pass with the remaining FR
   cells first. Preserve A-CHECKLIST priority, N2 Mass Import allocation and the
   pending Claude on-demand-only integration; no new visual recipe in this lot.
+- 2026-10-14 [N2] T026 changes only the empty Mass Import base grid to1.12fr/.88fr, preserving preview/skeleton variants and the mobile stack. Native FR1600/1280/390 ratios/no-overflow PASS after T025; Penpot/main publication pending.
+
 - 2026-10-14 [N2] T025 keeps the native Moodle picker on its40px rail and reaches exact4/12/8px deposit gaps with a paired copy wrapper and scoped fitem spacing override. FR1600/1280/390 PASS, including final K22 candidate; no upload/import; Kit/Penpot propagation pending.
 
 - 2026-10-14 [N1] R10-06 applies custom Mass Import primary ink to the chooser/metadata and relays palette tokens to its native Moodle picker with exact close cleanup. FR1280 official/custom/restored and active/hover contrast>=6.02 PASS;372 isolated report assertions retained; persistence/full lifecycle and human gates stay open.
