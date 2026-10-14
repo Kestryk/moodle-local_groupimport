@@ -31,6 +31,7 @@ import {
     areSelectionTypesCompatible,
 } from './shared';
 import {getOnDemandModel} from './state';
+import {prepareInlinePanelFocus, restoreInlinePanelFocus} from './modal';
 import {scheduleCompleteListAlignment} from './layout';
 
 export const getGroupName = group => {
@@ -826,6 +827,9 @@ export const setRenameEditing = (form, editing) => {
     const edit = form.querySelector('.local-groupimport-easystud-rename__edit');
     const toggle = form.querySelector('[data-easystud-rename-toggle]');
     const header = form.closest('.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header');
+    if (edit && editing) {
+        prepareInlinePanelFocus(edit);
+    }
     if (edit) {
         edit.hidden = !editing;
     }
@@ -842,6 +846,9 @@ export const setRenameEditing = (form, editing) => {
         );
         root.classList.toggle('local-groupimport-easystud--inline-editing', hasOpenEditor);
     }
+    if (edit && !editing) {
+        restoreInlinePanelFocus(edit);
+    }
 };
 
 export const setInlinePanelOpen = (panel, open) => {
@@ -854,7 +861,15 @@ export const setInlinePanelOpen = (panel, open) => {
     // Canonical framed disclosure is opt-in: preserve accepted tree/card Motion.
     if (panel.matches('[data-easystud-group-member-search-panel], [data-easystud-container-search-panel], ' +
             '[data-easystud-group-email-panel], [data-easystud-grouping-groups-panel]')) {
-        return Motion.disclosePanel(panel, open, {onComplete: () => requestGuideHighlightRefresh(root)});
+        if (open) {
+            prepareInlinePanelFocus(panel);
+        }
+        return Motion.disclosePanel(panel, open, {onComplete: () => requestGuideHighlightRefresh(root)}).then(completed => {
+            if (completed && !open && panel.hidden) {
+                restoreInlinePanelFocus(panel);
+            }
+            return completed;
+        });
     }
     panel.classList.toggle('is-open', open);
     const complete = () => requestGuideHighlightRefresh(root);
