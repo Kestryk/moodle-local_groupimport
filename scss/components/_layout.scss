@@ -1423,3 +1423,9 @@
     linear-gradient(var(--local-groupimport-easystud-loading-surface-strong), var(--local-groupimport-easystud-loading-surface-strong)) right top / min(68%, 9rem) 0.56rem no-repeat,
     linear-gradient(var(--local-groupimport-easystud-loading-surface), var(--local-groupimport-easystud-loading-surface)) right bottom / min(88%, 13rem) 0.42rem no-repeat;
 }
+
+// Icons wait for their font (js/loading_state_bootstrap.js): no missing-glyph box, same size.
+.easyedu-icon-font-pending :is(.fa, .fas, .far, .fa-solid, .fa-regular)::before,
+.easyedu-icon-font-pending .dropdown-toggle::after {
+  visibility: hidden;
+}

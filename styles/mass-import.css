@@ -400,6 +400,10 @@
 .local-groupimport-easystud__navigation[dir=rtl] .easyedu-navigation__item:hover {transform: translateX(-0.08rem);
 }
 
+.easyedu-icon-font-pending :is(.fa, .fas, .far, .fa-solid, .fa-regular)::before,
+.easyedu-icon-font-pending .dropdown-toggle::after {visibility: hidden;
+}
+
 @media (max-width: 40rem) {
   .local-groupimport-import-navigation .easyedu-navigation__trigger {inset-block-start: clamp(var(--easyedu-navigation-trigger-safe-edge), 50dvh, 100dvh - var(--easyedu-navigation-trigger-safe-edge));
   }

@@ -1,3 +1,7 @@
+.easyedu-icon-font-pending :is(.fa, .fas, .far, .fa-solid, .fa-regular)::before,
+.easyedu-icon-font-pending .dropdown-toggle::after {visibility: hidden;
+}
+
 body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton] {display: grid !important;
 }
 body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton] {transition: opacity 180ms var(--easyedu-motion-ease, ease);
