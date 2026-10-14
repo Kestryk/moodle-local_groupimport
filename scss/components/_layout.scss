@@ -1114,9 +1114,11 @@
   }
 
   &__panel {
-    // Shared workspace classes own paint, radius and padding. This adapter
-    // retains only the existing scroll/height and product-state behaviour.
-    height: clamp(42rem, 72vh, 64rem);
+    // Page CSS follows the theme, unlike Moodle's aggregated plugin CSS.
+    // Keep the historical computed auto height explicitly: a viewport height
+    // constrains both nested lists and compresses their flex card children.
+    // Pagination limits the rendered inventory; the document owns scrolling.
+    height: auto;
     overflow: visible;
     position: relative;
     transition:
