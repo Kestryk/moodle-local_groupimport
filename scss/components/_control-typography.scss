@@ -42,6 +42,7 @@
   [data-easystud-panel-actions-toggle],
   [data-easystud-panel-actions-menu] .btn,
   [data-easystud-context-action],
+  [data-easystud-context-submenu-toggle],
   &-group__actions-toggle,
   &-group__actions-menu .btn {
     @include easyedu.action-text-treatment($legacy-priority: true);
