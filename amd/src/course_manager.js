@@ -96,6 +96,61 @@ const modalTabStops = modal => Array.from(modal.querySelectorAll(
     'button, a[href], input, select, textarea, summary, [tabindex]'
 )).filter(node => node.tabIndex >= 0 && modalFocusVisible(node));
 
+// Inline disclosures stay in document Tab order. Escape reuses native Cancel;
+// only the panel-owned focus is returned after the existing close animation.
+const inlineKeyboardState = new WeakMap();
+const prepareInlinePanelFocus = panel => {
+    let state = inlineKeyboardState.get(panel);
+    if (!state) {
+        state = {};
+        inlineKeyboardState.set(panel, state);
+        panel.addEventListener('keydown', event => {
+            if (event.key !== 'Escape' || event.defaultPrevented || panel.hidden) {
+                return;
+            }
+            const cancel = panel.querySelector('[data-easystud-group-member-search-cancel], ' +
+                '[data-easystud-container-search-cancel], [data-easystud-cancel-group-email], ' +
+                '[data-easystud-cancel-grouping-groups], [data-easystud-rename-cancel]');
+            if (modalFocusVisible(cancel)) {
+                event.preventDefault();
+                event.stopPropagation();
+                cancel.click();
+            }
+        });
+    }
+    if (!panel.contains(document.activeElement)) {
+        let opener = document.activeElement;
+        // Reduced disclosure preparation can synchronously reinsert the owning
+        // card and drop focus before this hook. Recover its actual visible action.
+        if (opener === document.body || !modalFocusVisible(opener)) {
+            const owner = panel.closest('[data-easystud-group-id], [data-easystud-grouping-id]');
+            const actions = [
+                ['[data-easystud-group-member-search-panel]', '[data-easystud-group-member-search-toggle]'],
+                ['[data-easystud-container-search-panel]', '[data-easystud-container-search-toggle]'],
+                ['[data-easystud-group-email-panel]', '[data-easystud-toggle-group-email]'],
+                ['[data-easystud-grouping-groups-panel]', '[data-easystud-toggle-grouping-groups]'],
+            ];
+            const action = actions.find(([selector]) => panel.matches(selector));
+            const selector = action ? action[1] : '[data-easystud-rename-toggle]';
+            opener = owner && (Array.from(owner.querySelectorAll(selector)).find(modalFocusVisible) ||
+                Array.from(owner.querySelectorAll('[data-easystud-card-menu]')).find(modalFocusVisible));
+        }
+        state.opener = opener;
+    }
+};
+const restoreInlinePanelFocus = panel => {
+    const opener = inlineKeyboardState.get(panel)?.opener;
+    // Let queued card normalization finish before returning focus, including
+    // reduced Motion's synchronous close. A reopened panel owns its new focus.
+    window.requestAnimationFrame(() => {
+        const active = document.activeElement;
+        if (panel.hidden && modalFocusVisible(opener) && (panel.contains(active) ||
+                active === document.body || !modalFocusVisible(active))) {
+            opener.focus({preventScroll: true});
+        }
+    });
+};
+
 const showEasyStudModal = modal => {
     if (!modal) {
         return;
@@ -1741,6 +1796,9 @@ const setRenameEditing = (form, editing) => {
     const edit = form.querySelector('.local-groupimport-easystud-rename__edit');
     const toggle = form.querySelector('[data-easystud-rename-toggle]');
     const header = form.closest('.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header');
+    if (edit && editing) {
+        prepareInlinePanelFocus(edit);
+    }
     if (edit) {
         edit.hidden = !editing;
     }
@@ -1756,6 +1814,9 @@ const setRenameEditing = (form, editing) => {
             '.local-groupimport-easystud-rename__edit:not([hidden])'
         );
         root.classList.toggle('local-groupimport-easystud--inline-editing', hasOpenEditor);
+    }
+    if (edit && !editing) {
+        restoreInlinePanelFocus(edit);
     }
 };
 
@@ -6801,7 +6862,15 @@ const setInlinePanelOpen = (panel, open) => {
     // Canonical framed disclosure is opt-in: preserve accepted tree/card Motion.
     if (panel.matches('[data-easystud-group-member-search-panel], [data-easystud-container-search-panel], ' +
             '[data-easystud-group-email-panel], [data-easystud-grouping-groups-panel]')) {
-        return Motion.disclosePanel(panel, open, {onComplete: () => requestGuideHighlightRefresh(root)});
+        if (open) {
+            prepareInlinePanelFocus(panel);
+        }
+        return Motion.disclosePanel(panel, open, {onComplete: () => requestGuideHighlightRefresh(root)}).then(completed => {
+            if (completed && !open && panel.hidden) {
+                restoreInlinePanelFocus(panel);
+            }
+            return completed;
+        });
     }
     panel.classList.toggle('is-open', open);
     const complete = () => requestGuideHighlightRefresh(root);

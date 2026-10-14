@@ -34,104 +34,596 @@
   "externalHandoff": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/PROMPT-PASSATION-CODEX.md",
   "immutablePlan": "docs/claude-interface-review-plan-2026-10-11.md",
   "taskCount": 61,
-  "smRenduSuite20261013":{"producers":["7cc2ad5","407405b","9811977"],"integrations":["e13ec760","67a3b1c9","e19f4d79"],"state":"served on localhost; grouped native PASS; human acceptance open","level":1,"nativeSpec":"tools/playwright/student-sm-rendu-c9-native.spec.js","scope":"C9 clipboard/paging/selected third member/open search, lean-member expansion, two modes,1280/390FR Structure/Participants header actions and grouping masking","modeSwitch":"authorized CLI set_config; legacy restored in finally; no admin save or config cache purge","courseWritesForbidden":true,"static":"PHP3/named AMD2/spec syntax and canonical rebuild PASS","humanAccepted":false,"runtime":"2a4a6cf22a098aa12444a5a3d9ce9f59d15109a0","nativeRun":"easystud-authenticated-20261013T175644266Z-39652","rawJson":"C:/Users/kj220291/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json","native":{"passed":true,"modeCount":2,"widths":[1280,390],"language":"fr","headerRecords":8,"cardRecords":80,"menuSearchCancel":8,"groupingMaskAndActionParity":true,"thirdMemberAcrossPaging":true,"leanInitialRows":2,"completeMembersAfterUnfold":4,"inlineFailureAndReload":true,"unexpectedErrors":0,"businessWrites":0,"restoredCurrent":true},"nativeScopeNote":"Mobile Participants has no group catalogue; its Groups tab is the corresponding header sample.","stateParity":"PASS:24 users,54 groups,14 groupings,59 memberships; version2","predecessors":"Admin-save timeout and clipped/unavailable native selectors retained in external failed runs; final CLI/group-with3+ members successor passed.","publication":"20261013T175206Z, one grouped application/cache purge"},
+  "smRenduSuite20261013": {
+    "producers": [
+      "7cc2ad5",
+      "407405b",
+      "9811977"
+    ],
+    "integrations": [
+      "e13ec760",
+      "67a3b1c9",
+      "e19f4d79"
+    ],
+    "state": "served on localhost; grouped native PASS; human acceptance open",
+    "level": 1,
+    "nativeSpec": "tools/playwright/student-sm-rendu-c9-native.spec.js",
+    "scope": "C9 clipboard/paging/selected third member/open search, lean-member expansion, two modes,1280/390FR Structure/Participants header actions and grouping masking",
+    "modeSwitch": "authorized CLI set_config; legacy restored in finally; no admin save or config cache purge",
+    "courseWritesForbidden": true,
+    "static": "PHP3/named AMD2/spec syntax and canonical rebuild PASS",
+    "humanAccepted": false,
+    "runtime": "2a4a6cf22a098aa12444a5a3d9ce9f59d15109a0",
+    "nativeRun": "easystud-authenticated-20261013T175644266Z-39652",
+    "rawJson": "C:/Users/kj220291/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json",
+    "native": {
+      "passed": true,
+      "modeCount": 2,
+      "widths": [
+        1280,
+        390
+      ],
+      "language": "fr",
+      "headerRecords": 8,
+      "cardRecords": 80,
+      "menuSearchCancel": 8,
+      "groupingMaskAndActionParity": true,
+      "thirdMemberAcrossPaging": true,
+      "leanInitialRows": 2,
+      "completeMembersAfterUnfold": 4,
+      "inlineFailureAndReload": true,
+      "unexpectedErrors": 0,
+      "businessWrites": 0,
+      "restoredCurrent": true
+    },
+    "nativeScopeNote": "Mobile Participants has no group catalogue; its Groups tab is the corresponding header sample.",
+    "stateParity": "PASS:24 users,54 groups,14 groupings,59 memberships; version2",
+    "predecessors": "Admin-save timeout and clipped/unavailable native selectors retained in external failed runs; final CLI/group-with3+ members successor passed.",
+    "publication": "20261013T175206Z, one grouped application/cache purge"
+  },
   "replacesOlderLots": false,
   "humanChecklistDeferred": true,
-  "localhostCurrentPreviewRule20261012":{"requestedBy":"Kevin","rule":"Every Claude-validated lot from all three writers joins the next grouped localhost publication","singlePromotion":true,"notProduction":true},
-  "smRendu3c3dNative20261013":{"state":"served on localhost; N1 native controls pass with fresh same-course baselines","integrations":{"3c":"1bb043f","3d":"fd20c8d"},"promotion":{"runtime":"ccd3ef1b853cfd50ea12310b096af6b336da3d48","request":"20261013T103530Z-3608b1f71c","cachePurge":true},"static":{"phpLint":["classes/service/course_state.php","manage.php"],"amdBuild":"course_manager and local/sm pass; sourcemap-only CRLF output discarded","checkState":"PASS"},"details":{"run":"easystud-authenticated-20261013T104818239Z-40720","fields":"Current and On demand match for Test15 username/city/country/language","deferredRequestCount":1,"cachedReopen":true},"catalogues":{"baselineRun":"easystud-authenticated-20261013T111817928Z-31488","nativeRun":"easystud-authenticated-20261013T112006229Z-4172","legacyThreeViews":true,"reactivePage1":true,"pagination":true,"searchAndEmpty":true,"ungroupedFilter":true,"selectAllAndFilteredCrossPage":true,"counts":"24 users; 54 groups; 14 groupings; 59 memberships"},"restoration":"renderingmode legacy and showcompleteview 0 restored; all leases released; course state parity PASS; no business commands","retainedDiagnostics":["old SM2b text hash baseline predates retained QA roles and is not a product failure","immediate details test reads before deferred response by design; the deferred/cache oracle passes"],"humanAccepted":false},
-  "smRenduC9Integration20261013":{"state":"served on localhost; grouped native PASS; human acceptance open","upstream":"c9e1fed","integration":"ca5e8c21","scope":["ready state after list draw","lazy identifier refresh","member selection retained across catalogue paging","card-local member search retained","hidden catalogue deferred"],"static":{"canonicalAmdBuild":"PASS: course_manager and local/sm modules built with Moodle 5.1 toolchain","namedAmdModules":true,"historicalProducerVerifiers":"not applicable: they intentionally assert pre-C9 producer contents","olderKitPinContract":"not applicable: it intentionally pins an older dialog recipe"},"native":{"currentMode":true,"onDemandMode":true,"clipboardGreenToken":true,"memberSelectionAcrossPaging":true,"memberSearchAcrossPaging":true,"noMoodleError":true},"humanAccepted":false,"runtime":"2a4a6cf22a098aa12444a5a3d9ce9f59d15109a0","nativeRun":"easystud-authenticated-20261013T175644266Z-39652","rawJson":"C:/Users/kj220291/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json","restoredCurrent":true,"courseWrites":0},
-  "groupedValidated20261013":{"state":"source integrated; product/tooling44, AP-E7isolated21, API138 and T057strict989keys PASS; publication/native pending","integrations":{"31e30d1":"ec3d261","1ecebab":"5dcd4e1","590eb78":"22e15f8","3ba8f6c":"541b07a","7a49a0d":"113ab5c","3579e0f":"0af183a","cbccc7e":"2fea691"},"alreadyServed":["fe28c6b via43fdf3d","09793fe via1062968"],"languages":"T057 plurals adopted except three FR/EN D1 Add-to-group keys retained; no duplicate/unpaired/encoding language errors","build":"approved committed AMD reused","nativeBaseline":"062111947Z-53636; three legacy views with retained text, Mass Import diagnostic snapshot; settings restored; parity PASS","retainedFailure":"060717185Z-45164: native picker choose remains hidden/loading before publication; no business writes; keep separate from code parity","modePolicy":"temporary reactive and Complete availability, both restored under existing supervisors","runtimeFixtures":"none; 3000/10000 tooling accepted but never executed on principal","followingPhase":"after grouped publication, check owned Penpot; if unavailable T053 safe compression/equivalence then T058 SCSS/template corrections excluding manage/sm and other reserved code; return exact reserved target list","humanAccepted":false},
-  "smRendu3bNative20261013":{"state":"served; requested N1 controls PASS; no business commands","runtime":"35fb709979b5fcc8f343d2b15c3956b36ebdcda9","promotion":"20261013T051520Z one grouped application/cache purge; unserved3a QAbc8790f included,2b/3a product already served","baselineRun":"easystud-authenticated-20261013T051210736Z-18548","nativeRun":"easystud-authenticated-20261013T051640682Z-33136","controlsPassed":["legacy Participants/Complete/Structure textHash/geometry/type/color and catalogue card paint match pre3b1280FR","reactive Structure page1 same10 IDs/text/type/color/size","group pagination","search2 results and empty state","ungrouped38","Select all54 and filtered38, off-page checkbox selection and deselection"],"errors":0,"businessRequests":0,"counts":"24 users54 groups14 groupings59 memberships; state parity PASS without write-test","restoration":"renderingmodelegacy; showcompleteview0 restored after temporary1 for requested Complete proof; all leases released; no fixtures","producerCheck":17,"apiGuards":138,"generatedAssets":"approved committed AMD reused; no regeneration","I1I13After":{"I1":"unchanged selectors; shared partial producer identity and native legacy three-view proof PASS","I2":"ready1 awaited; full Guide target replay not re-certified","I3":"no course commands; prior3a native server-version proof retained, not repeated","I4":"group Select all/results/off-page checkbox state PASS; member selection per-page limit remains; full Ctrl/Shift outside N1","I5":"model54/38/2 and rendered page10 agree","I6":"DnD unchanged, not exercised","I7":"three legacy views, reactive pagination/search/empty/ungrouped PASS","I8":"Kit/CSS/Motion unchanged; real finite animations settled","I9":"broader keyboard outside N1; prior modal-focus proof retained","I10":"no modal changes; known2b deferred-field defect remains open","I11":"committed named AMD syntax/producer equality and native ready1 PASS","I12":"legacy default restored, Complete initial0 restored; reactive tested temporarily","I13":"highlight/layer unchanged; existingPG-S1 proof retained"},"QAStatus":"final source status/changelog successor joins next grouped publication after review","remainingReserves":["SM2b detail fields City/Country/Language require Claude correction","member selection inside catalogue card is per-page per producer; not silently treated as full parity"],"humanAccepted":false},
-  "smRendu3b20261013":{"producer":"09793fee55c979f3365c29e349556bb853aec0a2","integration":"10629689d6c949592c430a20912b49654115fa43","state":"source integrated; native pre3b three-view baseline PASS; grouped publication/post3b controls pending","baselineRun":"easystud-authenticated-20261013T051210736Z-18548","baselineRuntime":"9a51aa3bd65a9f4bfa98e5deec671fc1e5182294","temporarySettings":"showcompleteview0 temporarily1 for requested three-view proof, then0 restored; renderingmodelegacy restored; parity PASS","publicationIncludes":"unserved3a QAbc8790f plus3b and QA preparation; product2b/3a already served, no duplicate cherry-picks","build":"committed producer AMD reused, includes participants source/build change and new groups module","knownReserves":["SM2b heavy participant details missing; reserved Claude successor","catalog member selection per-page only per producer; group Select all is separate"],"I1I13Before":{"I1":"shared group partial/public selectors retained; producer/native identity checks planned","I2":"ready marker awaited, full Guide target replay outside N1","I3":"no business commands permitted, prior3a server-version proof retained","I4":"group model selection across pages planned; per-page member-selection limit recorded","I5":"baseline54 groups; result/model/visible counts planned","I6":"DnD retained, not exercised by readonly catalogue test","I7":"legacy three-view baseline captured, post3b pagination/search/ungrouped planned","I8":"Kit/CSS/Motion unchanged; native finite transitions awaited","I9":"full keyboard outside N1; prior modal focus proof retained","I10":"no modal paint changes; SM2b full-detail defect retained","I11":"producer builds and native readiness required","I12":"legacy kept default; reactive and Complete setting always restored","I13":"layer/highlight unchanged; PG-S1 proof retained"},"humanAccepted":false},
-  "smRendu3aNative20261013":{"state":"served; requested native N1 controls PASS; separate SM2b detail reserve remains open","runtime":"9a51aa3bd65a9f4bfa98e5deec671fc1e5182294","promotion":"20261012T231332Z one grouped publication/cache purge including2b QA231f504","nativeRun":"easystud-authenticated-20261012T231623811Z-10528","controlsPassed":["legacy1280FR unchanged","legacy group-member search match/empty/clear","reactive Add model/card","reactive Remove model/card","server state version0/1/2"],"stateLoads":3,"authorizedActions":["addusers userid29 group342","removeuser userid29 group342"],"consoleErrors":0,"blockedRequests":0,"restored":"renderingmode legacy; exact relationship hashes restored; retained QA roles/users unchanged; Group342 timemodified, audit events and course state version intentionally preserved","counts":"24 users54 groups14 groupings59 memberships; check-state parity PASS without write-test","failedPredecessor":"231351970Z-8844: test locator switched groups after hiding members; no Add/Remove sent; kept immutable; explicit group-ID successor PASS without product changes","I1I13After":{"I1":"templates/data* unchanged, producer identity PASS","I2":"ready1 asserted; full Guide highlight replay outside this N1","I3":"successful Add/Remove followed by server versions1/2 and matching model/card; no fabricated completion","I4":"2b cross-page/filtered-selection proof retained; full selection matrix not rerun","I5":"server/model/card memberships agree; final native DB counts/hash PASS","I6":"no DnD changes; not re-certified by Add/Remove","I7":"legacy match/empty/clear search and initial1280FR PASS","I8":"Kit/CSS/Motion unchanged; true search disclosure/navigation retained","I9":"2b modal-focus proof retained; full keyboard outside N1","I10":"Add destination modal search/selection/confirm used natively; separate details parity FAIL remains open","I11":"committed named AMD syntax/producer identity and three native state loads PASS; burst/race cases not re-certified","I12":"both modes tested; legacy restored in test and supervisor","I13":"highlight/layer unchanged; existingPG-S1 proof retained"},"QAStatus":"pinned-group successor/status commit to join next grouped publication after review","humanAccepted":false},
-  "smRendu3a20261013":{"producer":"fe28c6b523c5adcd10662605f70cde90ed9ee825","integration":"43fdf3d1a475b350a4ae498068956e9e0b8e0612","state":"source integrated; producer13/API138 PASS; native legacy/member search and reactive Add/Remove pending","publicationIncludes":"unserved2b QA231f504 plus3a and its QA prerequisite; product2b already served, no duplicate cherry-pick","build":"committed producer AMD reused","versionPhpAndPHPUnchanged":true,"nativeScope":"principal course5 explicit user authorization; synthetic retained nologin29, existing initially empty Group342 only","pairBaseline":"external sm3a-membership-native-baseline-20261013.json; exact definitions/memberships/roles/enrolments/groupings, excluding only Group342 native timemodified and preserving events/state version","cleanup":"native only owned pair if still present, verify hashes, retain roles/users, restore legacy in test and supervisors","SM2bDetailParity":"known missing City/Country/Language not addressed by3a; remains reserved Claude successor","I1I13Before":{"I1":"templates/PHP/data* unchanged","I2":"no Guide target changes; ready marker awaited","I3":"new state reload after successful response only; native version/card check pending","I4":"producer retains selected IDs; existing2b selection proof retained, not full re-certification","I5":"state/DB/card membership pending","I6":"DnD untouched, native Add/Remove only","I7":"legacy search and initial geometry pending","I8":"Kit/CSS/Motion untouched","I9":"full keyboard outside N1; prior modal-focus proof retained","I10":"Add destination native modal tested; full-details defect retained","I11":"named committed AMD syntax PASS; refresh response native pending","I12":"legacy default and restoration required","I13":"modal highlight unchanged; priorPG-S1 retained"},"humanAccepted":false},
-  "smRendu2bNative20261013":{"state":"served on localhost; verified with reserves, not full reactive parity","runtime":"82657d1ab1b67e377b150f030113ba8340a03f0c","promotion":"20261012T225030Z one grouped application/cache purge","nativeRun":"easystud-authenticated-20261012T225912295Z-33144","nativePassed":["legacy1280FR unchanged against prior baseline","reactive page1 same20 IDs/text/type/colors/size","pagination20/4/20","Select all24 across pages and deselect","search/empty/filter-result selection","participant modal open/Close/return focus"],"errors":0,"principalStateParity":"PASS24 users54 groups14 groupings59 memberships","renderingmode":"legacy verified after every completed run and interrupted-run recovery","detailParity":{"status":"FAIL; requires Claude product successor","run":"easystud-authenticated-20261012T230211752Z-22604","testUser":"Test15 Etudiant","legacyFields":4,"reactiveFields":1,"missing":["Ville","Pays","Langue"],"detailsRequests":0,"consoleErrors":0,"test":"SM2b participant detail fields match the current mode","diagnosis":"Light data-user-detail has detailsdeferred; bindParticipantModal renders directly without fetchDetails/get_details"},"retainedPredecessors":{"immediatePageRead":"225105591Z-1724 failed before native Motion replacement; strict settled successor passes, no product change","interrupted":"225446388Z-42496 cancelled; owner/children stopped, own leases released, legacy confirmed; no native completion claimed"},"I1I13After":{"I1":"producer content identity and native legacy baseline PASS; existing selectors retained","I2":"ready1 asserted; Guide highlight replay not re-certified by this N1","I3":"no course writes; producer completion signals retained, not exercised","I4":"total/filtered/cross-page selection PASS; Ctrl/Shift/sticky full matrix outside N1","I5":"state counts and select scope PASS; screenshot retained","I6":"no drag changes; cross-page DnD outside N1","I7":"page1/pagination/search/empty state PASS","I8":"Kit/CSS/Motion unchanged; await actual native page replacement","I9":"participant modal return focus PASS; broader keyboard outside N1","I10":"participant open/Close PASS but full detail fields FAIL; other modals not re-certified","I11":"producer builds/syntax match and native ready1 PASS","I12":"legacy restored and off by default; reactive opt-in retains documented detail defect","I13":"layer/highlight unchanged; existing PG-S1 proof retained, not replayed"},"QAStatus":"settled and detail-parity tests committed in source successor; join next grouped publication after review","humanAccepted":false},
-  "smRendu2b20261013":{"producer":"90ea17b2b70f9c27235472f47f33a9266b7ef40d","integration":"af7e533","state":"integrated; source13 and API138 PASS; grouped publication and native N1 pending","build":"producer assets reused; no regeneration","versionUnchanged":true,"nativeSurface":"tools/playwright/student-state-integration-native.spec.js: SM2b current and on-demand participants preserve native behavior","modeTest":"temporary reactive, legacy restored in test finally and outer supervisor finally","principalCourseWritesForbidden":true,"D8":"not included while Foundations editor blank; no blind SCSS","I1I13":{"I1":"shared partial/data attributes producer identity; native page pending","I2":"Guide targets retained; highlight replay outside this scoped N1","I3":"no course commands in native test; producer signals retained","I4":"native total/filtered/cross-page selection pending; Ctrl/Shift not re-certified","I5":"native result/selection counters pending","I6":"drag implementation retained from producer; cross-page drag not re-certified","I7":"native page1/pagination/search/empty state pending","I8":"Kit/CSS/Motion assets unchanged; normal finite animations retained","I9":"native details Close/focus check planned; full keyboard matrix outside N1","I10":"native participant details open/Close planned; other modals outside lot","I11":"committed named AMD syntax PASS; native reactive readiness pending","I12":"legacy default retained; both modes and restored setting pending","I13":"no modal highlight/layer changes; existing PG-S1 proof retained"},"humanAccepted":false},
-  "groupedServer20261012":{"AP-E6":"531af8d from8bfb1a4 default-off","AP-E5":"c93969e fromcd98329","SM2a":"2dd4494 fromad62069; committed AMD reused","QA":"9be89ac included","runtime":"a9f3ef1f78a51bc30a7eaf5cda23b59f573b0706","state":"served one promotion/cache purge; API138 and source61 PASS; course5 parity PASS; native required checks PASS with retained UI-cleanup harness failure","nativeRun":"easystud-authenticated-20261012T220419293Z-4524","nativeScope":"legacy geometry/text/counters unchanged1280FR; settings FR/EN legacy; CSV preview yes; console errors0; import not confirmed","cleanup":"native scenario failed only on nonexistent selected-file remove after preview creates fresh picker; exact draft10059 verified and deleted under runtime/fixture leases; remaining0; failed run immutable","renderingmode":"legacy; no activation","D8":"editor blank9227; excluded, no blind SCSS","guards":"POST/sesskey, generic errors and AP-A5 preserved; AJAX138 PASS","toolsPerf":"complete producer tools byte-identical after prerequisite recovery; no Perf execution","step1AlreadyServed":true,"humanAccepted":false},
-  "smRenduStep120261012":{"producer":"282f1bc8dc9b0295df680370faae6add4b5bebc2","integration":"c307d9e0e22ba751e4ec322406b5a14e949ca22f","runtime":"3cec1d0937192cb7727e95dbf681596802d46b94","status":"served; native-web-upgrade-PASS; course5-parity-PASS; native1280FR unchanged-PASS; lint9-regressions59-PASS","baselineRun":"easystud-authenticated-20261012T212558803Z-19348","upgradeRun":"easystud-authenticated-20261012T213219349Z-25288","legacyViewRun":"easystud-authenticated-20261012T213519705Z-3272","failedUpgradePredecessor":"easystud-authenticated-20261012T212927721Z-11804; ambiguous update-search selector; no DB writes; preserved","level":0,"nativeLevel":1,"version":2026101200,"requiresUnchanged":2025100600,"noAmdBuild":true,"writeTestForbiddenOnPrincipal":true,"producerReservedFilesPreserved":true,"D8":"Penpot9227 still blank; no styles applied blind","groupedPreviewIncludes":"06f0abc +c307d9e; one promotion/cache purge; D8 excluded as explicitly instructed while blank","schema":"DB version2026101200; statever exists;2 functions registered; no remaining upgrade","frontendConversion":"not activated; future Claude commits","humanAccepted":false},
-  "claudeReviewR320261012": {
-    "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
-    "R3-1":{"scope":"No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states","level":1,"status":"served37ac57f; source59 and native-FR1280-390-PASS"},
-    "R3-2":{"scope":"Separate dots, fixed0.25rem columns/0.1875rem gap, constant copy-to-dots gap; four short/long/multiline EN/FR cases, static reduced motion","level":1,"status":"served37ac57f;16 native samples4px-3px-10.390625px-PASS; reduced CSS static"},
-    "nativeRun":"easystud-authenticated-20261012T210609958Z-34376",
-    "failedPredecessors":["easystud-authenticated-20261012T205646787Z-2524","easystud-authenticated-20261012T210008058Z-8292","easystud-authenticated-20261012T210235423Z-34132"],
-    "proofCorrections":"No product change: zero CSS serialization; live media change is not engine reinit; mobile idle narration intentionally hidden, so dots measured paused",
-    "humanAccepted":true,
-    "acceptedBy":"Kevin user message2026-10-12: R3 and Platform validated; combined checklist remains open"
+  "localhostCurrentPreviewRule20261012": {
+    "requestedBy": "Kevin",
+    "rule": "Every Claude-validated lot from all three writers joins the next grouped localhost publication",
+    "singlePromotion": true,
+    "notProduction": true
   },
-  "compatibilityRule20261012":{"targetNow":"Moodle5.1","futurePass":"Moodle4.5 after final5.1","effective":"Next lot D1–D4","PHP":"8.1","noNewBS5OnlyDependencies":true,"versionPhpUnchanged":false,"versionChangeException":"Kevin explicitly authorized2026101200 for SM-RENDU-1 schema/services; requires remains2025100600","otherMoodle45RuntimeUntouched":true},
+  "smRendu3c3dNative20261013": {
+    "state": "served on localhost; N1 native controls pass with fresh same-course baselines",
+    "integrations": {
+      "3c": "1bb043f",
+      "3d": "fd20c8d"
+    },
+    "promotion": {
+      "runtime": "ccd3ef1b853cfd50ea12310b096af6b336da3d48",
+      "request": "20261013T103530Z-3608b1f71c",
+      "cachePurge": true
+    },
+    "static": {
+      "phpLint": [
+        "classes/service/course_state.php",
+        "manage.php"
+      ],
+      "amdBuild": "course_manager and local/sm pass; sourcemap-only CRLF output discarded",
+      "checkState": "PASS"
+    },
+    "details": {
+      "run": "easystud-authenticated-20261013T104818239Z-40720",
+      "fields": "Current and On demand match for Test15 username/city/country/language",
+      "deferredRequestCount": 1,
+      "cachedReopen": true
+    },
+    "catalogues": {
+      "baselineRun": "easystud-authenticated-20261013T111817928Z-31488",
+      "nativeRun": "easystud-authenticated-20261013T112006229Z-4172",
+      "legacyThreeViews": true,
+      "reactivePage1": true,
+      "pagination": true,
+      "searchAndEmpty": true,
+      "ungroupedFilter": true,
+      "selectAllAndFilteredCrossPage": true,
+      "counts": "24 users; 54 groups; 14 groupings; 59 memberships"
+    },
+    "restoration": "renderingmode legacy and showcompleteview 0 restored; all leases released; course state parity PASS; no business commands",
+    "retainedDiagnostics": [
+      "old SM2b text hash baseline predates retained QA roles and is not a product failure",
+      "immediate details test reads before deferred response by design; the deferred/cache oracle passes"
+    ],
+    "humanAccepted": false
+  },
+  "smRenduC9Integration20261013": {
+    "state": "served on localhost; grouped native PASS; human acceptance open",
+    "upstream": "c9e1fed",
+    "integration": "ca5e8c21",
+    "scope": [
+      "ready state after list draw",
+      "lazy identifier refresh",
+      "member selection retained across catalogue paging",
+      "card-local member search retained",
+      "hidden catalogue deferred"
+    ],
+    "static": {
+      "canonicalAmdBuild": "PASS: course_manager and local/sm modules built with Moodle 5.1 toolchain",
+      "namedAmdModules": true,
+      "historicalProducerVerifiers": "not applicable: they intentionally assert pre-C9 producer contents",
+      "olderKitPinContract": "not applicable: it intentionally pins an older dialog recipe"
+    },
+    "native": {
+      "currentMode": true,
+      "onDemandMode": true,
+      "clipboardGreenToken": true,
+      "memberSelectionAcrossPaging": true,
+      "memberSearchAcrossPaging": true,
+      "noMoodleError": true
+    },
+    "humanAccepted": false,
+    "runtime": "2a4a6cf22a098aa12444a5a3d9ce9f59d15109a0",
+    "nativeRun": "easystud-authenticated-20261013T175644266Z-39652",
+    "rawJson": "C:/Users/kj220291/AppData/Local/EasyEdu/artifacts/easystud/authenticated/easystud-authenticated-20261013T175644266Z-39652/playwright-output/student-sm-rendu-c9-native-e751a-bers-and-card-header-parity/sm-rendu-c9-native.json",
+    "restoredCurrent": true,
+    "courseWrites": 0
+  },
+  "groupedValidated20261013": {
+    "state": "source integrated; product/tooling44, AP-E7isolated21, API138 and T057strict989keys PASS; publication/native pending",
+    "integrations": {
+      "31e30d1": "ec3d261",
+      "1ecebab": "5dcd4e1",
+      "590eb78": "22e15f8",
+      "3ba8f6c": "541b07a",
+      "7a49a0d": "113ab5c",
+      "3579e0f": "0af183a",
+      "cbccc7e": "2fea691"
+    },
+    "alreadyServed": [
+      "fe28c6b via43fdf3d",
+      "09793fe via1062968"
+    ],
+    "languages": "T057 plurals adopted except three FR/EN D1 Add-to-group keys retained; no duplicate/unpaired/encoding language errors",
+    "build": "approved committed AMD reused",
+    "nativeBaseline": "062111947Z-53636; three legacy views with retained text, Mass Import diagnostic snapshot; settings restored; parity PASS",
+    "retainedFailure": "060717185Z-45164: native picker choose remains hidden/loading before publication; no business writes; keep separate from code parity",
+    "modePolicy": "temporary reactive and Complete availability, both restored under existing supervisors",
+    "runtimeFixtures": "none; 3000/10000 tooling accepted but never executed on principal",
+    "followingPhase": "after grouped publication, check owned Penpot; if unavailable T053 safe compression/equivalence then T058 SCSS/template corrections excluding manage/sm and other reserved code; return exact reserved target list",
+    "humanAccepted": false
+  },
+  "smRendu3bNative20261013": {
+    "state": "served; requested N1 controls PASS; no business commands",
+    "runtime": "35fb709979b5fcc8f343d2b15c3956b36ebdcda9",
+    "promotion": "20261013T051520Z one grouped application/cache purge; unserved3a QAbc8790f included,2b/3a product already served",
+    "baselineRun": "easystud-authenticated-20261013T051210736Z-18548",
+    "nativeRun": "easystud-authenticated-20261013T051640682Z-33136",
+    "controlsPassed": [
+      "legacy Participants/Complete/Structure textHash/geometry/type/color and catalogue card paint match pre3b1280FR",
+      "reactive Structure page1 same10 IDs/text/type/color/size",
+      "group pagination",
+      "search2 results and empty state",
+      "ungrouped38",
+      "Select all54 and filtered38, off-page checkbox selection and deselection"
+    ],
+    "errors": 0,
+    "businessRequests": 0,
+    "counts": "24 users54 groups14 groupings59 memberships; state parity PASS without write-test",
+    "restoration": "renderingmodelegacy; showcompleteview0 restored after temporary1 for requested Complete proof; all leases released; no fixtures",
+    "producerCheck": 17,
+    "apiGuards": 138,
+    "generatedAssets": "approved committed AMD reused; no regeneration",
+    "I1I13After": {
+      "I1": "unchanged selectors; shared partial producer identity and native legacy three-view proof PASS",
+      "I2": "ready1 awaited; full Guide target replay not re-certified",
+      "I3": "no course commands; prior3a native server-version proof retained, not repeated",
+      "I4": "group Select all/results/off-page checkbox state PASS; member selection per-page limit remains; full Ctrl/Shift outside N1",
+      "I5": "model54/38/2 and rendered page10 agree",
+      "I6": "DnD unchanged, not exercised",
+      "I7": "three legacy views, reactive pagination/search/empty/ungrouped PASS",
+      "I8": "Kit/CSS/Motion unchanged; real finite animations settled",
+      "I9": "broader keyboard outside N1; prior modal-focus proof retained",
+      "I10": "no modal changes; known2b deferred-field defect remains open",
+      "I11": "committed named AMD syntax/producer equality and native ready1 PASS",
+      "I12": "legacy default restored, Complete initial0 restored; reactive tested temporarily",
+      "I13": "highlight/layer unchanged; existingPG-S1 proof retained"
+    },
+    "QAStatus": "final source status/changelog successor joins next grouped publication after review",
+    "remainingReserves": [
+      "SM2b detail fields City/Country/Language require Claude correction",
+      "member selection inside catalogue card is per-page per producer; not silently treated as full parity"
+    ],
+    "humanAccepted": false
+  },
+  "smRendu3b20261013": {
+    "producer": "09793fee55c979f3365c29e349556bb853aec0a2",
+    "integration": "10629689d6c949592c430a20912b49654115fa43",
+    "state": "source integrated; native pre3b three-view baseline PASS; grouped publication/post3b controls pending",
+    "baselineRun": "easystud-authenticated-20261013T051210736Z-18548",
+    "baselineRuntime": "9a51aa3bd65a9f4bfa98e5deec671fc1e5182294",
+    "temporarySettings": "showcompleteview0 temporarily1 for requested three-view proof, then0 restored; renderingmodelegacy restored; parity PASS",
+    "publicationIncludes": "unserved3a QAbc8790f plus3b and QA preparation; product2b/3a already served, no duplicate cherry-picks",
+    "build": "committed producer AMD reused, includes participants source/build change and new groups module",
+    "knownReserves": [
+      "SM2b heavy participant details missing; reserved Claude successor",
+      "catalog member selection per-page only per producer; group Select all is separate"
+    ],
+    "I1I13Before": {
+      "I1": "shared group partial/public selectors retained; producer/native identity checks planned",
+      "I2": "ready marker awaited, full Guide target replay outside N1",
+      "I3": "no business commands permitted, prior3a server-version proof retained",
+      "I4": "group model selection across pages planned; per-page member-selection limit recorded",
+      "I5": "baseline54 groups; result/model/visible counts planned",
+      "I6": "DnD retained, not exercised by readonly catalogue test",
+      "I7": "legacy three-view baseline captured, post3b pagination/search/ungrouped planned",
+      "I8": "Kit/CSS/Motion unchanged; native finite transitions awaited",
+      "I9": "full keyboard outside N1; prior modal focus proof retained",
+      "I10": "no modal paint changes; SM2b full-detail defect retained",
+      "I11": "producer builds and native readiness required",
+      "I12": "legacy kept default; reactive and Complete setting always restored",
+      "I13": "layer/highlight unchanged; PG-S1 proof retained"
+    },
+    "humanAccepted": false
+  },
+  "smRendu3aNative20261013": {
+    "state": "served; requested native N1 controls PASS; separate SM2b detail reserve remains open",
+    "runtime": "9a51aa3bd65a9f4bfa98e5deec671fc1e5182294",
+    "promotion": "20261012T231332Z one grouped publication/cache purge including2b QA231f504",
+    "nativeRun": "easystud-authenticated-20261012T231623811Z-10528",
+    "controlsPassed": [
+      "legacy1280FR unchanged",
+      "legacy group-member search match/empty/clear",
+      "reactive Add model/card",
+      "reactive Remove model/card",
+      "server state version0/1/2"
+    ],
+    "stateLoads": 3,
+    "authorizedActions": [
+      "addusers userid29 group342",
+      "removeuser userid29 group342"
+    ],
+    "consoleErrors": 0,
+    "blockedRequests": 0,
+    "restored": "renderingmode legacy; exact relationship hashes restored; retained QA roles/users unchanged; Group342 timemodified, audit events and course state version intentionally preserved",
+    "counts": "24 users54 groups14 groupings59 memberships; check-state parity PASS without write-test",
+    "failedPredecessor": "231351970Z-8844: test locator switched groups after hiding members; no Add/Remove sent; kept immutable; explicit group-ID successor PASS without product changes",
+    "I1I13After": {
+      "I1": "templates/data* unchanged, producer identity PASS",
+      "I2": "ready1 asserted; full Guide highlight replay outside this N1",
+      "I3": "successful Add/Remove followed by server versions1/2 and matching model/card; no fabricated completion",
+      "I4": "2b cross-page/filtered-selection proof retained; full selection matrix not rerun",
+      "I5": "server/model/card memberships agree; final native DB counts/hash PASS",
+      "I6": "no DnD changes; not re-certified by Add/Remove",
+      "I7": "legacy match/empty/clear search and initial1280FR PASS",
+      "I8": "Kit/CSS/Motion unchanged; true search disclosure/navigation retained",
+      "I9": "2b modal-focus proof retained; full keyboard outside N1",
+      "I10": "Add destination modal search/selection/confirm used natively; separate details parity FAIL remains open",
+      "I11": "committed named AMD syntax/producer identity and three native state loads PASS; burst/race cases not re-certified",
+      "I12": "both modes tested; legacy restored in test and supervisor",
+      "I13": "highlight/layer unchanged; existingPG-S1 proof retained"
+    },
+    "QAStatus": "pinned-group successor/status commit to join next grouped publication after review",
+    "humanAccepted": false
+  },
+  "smRendu3a20261013": {
+    "producer": "fe28c6b523c5adcd10662605f70cde90ed9ee825",
+    "integration": "43fdf3d1a475b350a4ae498068956e9e0b8e0612",
+    "state": "source integrated; producer13/API138 PASS; native legacy/member search and reactive Add/Remove pending",
+    "publicationIncludes": "unserved2b QA231f504 plus3a and its QA prerequisite; product2b already served, no duplicate cherry-pick",
+    "build": "committed producer AMD reused",
+    "versionPhpAndPHPUnchanged": true,
+    "nativeScope": "principal course5 explicit user authorization; synthetic retained nologin29, existing initially empty Group342 only",
+    "pairBaseline": "external sm3a-membership-native-baseline-20261013.json; exact definitions/memberships/roles/enrolments/groupings, excluding only Group342 native timemodified and preserving events/state version",
+    "cleanup": "native only owned pair if still present, verify hashes, retain roles/users, restore legacy in test and supervisors",
+    "SM2bDetailParity": "known missing City/Country/Language not addressed by3a; remains reserved Claude successor",
+    "I1I13Before": {
+      "I1": "templates/PHP/data* unchanged",
+      "I2": "no Guide target changes; ready marker awaited",
+      "I3": "new state reload after successful response only; native version/card check pending",
+      "I4": "producer retains selected IDs; existing2b selection proof retained, not full re-certification",
+      "I5": "state/DB/card membership pending",
+      "I6": "DnD untouched, native Add/Remove only",
+      "I7": "legacy search and initial geometry pending",
+      "I8": "Kit/CSS/Motion untouched",
+      "I9": "full keyboard outside N1; prior modal-focus proof retained",
+      "I10": "Add destination native modal tested; full-details defect retained",
+      "I11": "named committed AMD syntax PASS; refresh response native pending",
+      "I12": "legacy default and restoration required",
+      "I13": "modal highlight unchanged; priorPG-S1 retained"
+    },
+    "humanAccepted": false
+  },
+  "smRendu2bNative20261013": {
+    "state": "served on localhost; verified with reserves, not full reactive parity",
+    "runtime": "82657d1ab1b67e377b150f030113ba8340a03f0c",
+    "promotion": "20261012T225030Z one grouped application/cache purge",
+    "nativeRun": "easystud-authenticated-20261012T225912295Z-33144",
+    "nativePassed": [
+      "legacy1280FR unchanged against prior baseline",
+      "reactive page1 same20 IDs/text/type/colors/size",
+      "pagination20/4/20",
+      "Select all24 across pages and deselect",
+      "search/empty/filter-result selection",
+      "participant modal open/Close/return focus"
+    ],
+    "errors": 0,
+    "principalStateParity": "PASS24 users54 groups14 groupings59 memberships",
+    "renderingmode": "legacy verified after every completed run and interrupted-run recovery",
+    "detailParity": {
+      "status": "FAIL; requires Claude product successor",
+      "run": "easystud-authenticated-20261012T230211752Z-22604",
+      "testUser": "Test15 Etudiant",
+      "legacyFields": 4,
+      "reactiveFields": 1,
+      "missing": [
+        "Ville",
+        "Pays",
+        "Langue"
+      ],
+      "detailsRequests": 0,
+      "consoleErrors": 0,
+      "test": "SM2b participant detail fields match the current mode",
+      "diagnosis": "Light data-user-detail has detailsdeferred; bindParticipantModal renders directly without fetchDetails/get_details"
+    },
+    "retainedPredecessors": {
+      "immediatePageRead": "225105591Z-1724 failed before native Motion replacement; strict settled successor passes, no product change",
+      "interrupted": "225446388Z-42496 cancelled; owner/children stopped, own leases released, legacy confirmed; no native completion claimed"
+    },
+    "I1I13After": {
+      "I1": "producer content identity and native legacy baseline PASS; existing selectors retained",
+      "I2": "ready1 asserted; Guide highlight replay not re-certified by this N1",
+      "I3": "no course writes; producer completion signals retained, not exercised",
+      "I4": "total/filtered/cross-page selection PASS; Ctrl/Shift/sticky full matrix outside N1",
+      "I5": "state counts and select scope PASS; screenshot retained",
+      "I6": "no drag changes; cross-page DnD outside N1",
+      "I7": "page1/pagination/search/empty state PASS",
+      "I8": "Kit/CSS/Motion unchanged; await actual native page replacement",
+      "I9": "participant modal return focus PASS; broader keyboard outside N1",
+      "I10": "participant open/Close PASS but full detail fields FAIL; other modals not re-certified",
+      "I11": "producer builds/syntax match and native ready1 PASS",
+      "I12": "legacy restored and off by default; reactive opt-in retains documented detail defect",
+      "I13": "layer/highlight unchanged; existing PG-S1 proof retained, not replayed"
+    },
+    "QAStatus": "settled and detail-parity tests committed in source successor; join next grouped publication after review",
+    "humanAccepted": false
+  },
+  "smRendu2b20261013": {
+    "producer": "90ea17b2b70f9c27235472f47f33a9266b7ef40d",
+    "integration": "af7e533",
+    "state": "integrated; source13 and API138 PASS; grouped publication and native N1 pending",
+    "build": "producer assets reused; no regeneration",
+    "versionUnchanged": true,
+    "nativeSurface": "tools/playwright/student-state-integration-native.spec.js: SM2b current and on-demand participants preserve native behavior",
+    "modeTest": "temporary reactive, legacy restored in test finally and outer supervisor finally",
+    "principalCourseWritesForbidden": true,
+    "D8": "not included while Foundations editor blank; no blind SCSS",
+    "I1I13": {
+      "I1": "shared partial/data attributes producer identity; native page pending",
+      "I2": "Guide targets retained; highlight replay outside this scoped N1",
+      "I3": "no course commands in native test; producer signals retained",
+      "I4": "native total/filtered/cross-page selection pending; Ctrl/Shift not re-certified",
+      "I5": "native result/selection counters pending",
+      "I6": "drag implementation retained from producer; cross-page drag not re-certified",
+      "I7": "native page1/pagination/search/empty state pending",
+      "I8": "Kit/CSS/Motion assets unchanged; normal finite animations retained",
+      "I9": "native details Close/focus check planned; full keyboard matrix outside N1",
+      "I10": "native participant details open/Close planned; other modals outside lot",
+      "I11": "committed named AMD syntax PASS; native reactive readiness pending",
+      "I12": "legacy default retained; both modes and restored setting pending",
+      "I13": "no modal highlight/layer changes; existing PG-S1 proof retained"
+    },
+    "humanAccepted": false
+  },
+  "groupedServer20261012": {
+    "AP-E6": "531af8d from8bfb1a4 default-off",
+    "AP-E5": "c93969e fromcd98329",
+    "SM2a": "2dd4494 fromad62069; committed AMD reused",
+    "QA": "9be89ac included",
+    "runtime": "a9f3ef1f78a51bc30a7eaf5cda23b59f573b0706",
+    "state": "served one promotion/cache purge; API138 and source61 PASS; course5 parity PASS; native required checks PASS with retained UI-cleanup harness failure",
+    "nativeRun": "easystud-authenticated-20261012T220419293Z-4524",
+    "nativeScope": "legacy geometry/text/counters unchanged1280FR; settings FR/EN legacy; CSV preview yes; console errors0; import not confirmed",
+    "cleanup": "native scenario failed only on nonexistent selected-file remove after preview creates fresh picker; exact draft10059 verified and deleted under runtime/fixture leases; remaining0; failed run immutable",
+    "renderingmode": "legacy; no activation",
+    "D8": "editor blank9227; excluded, no blind SCSS",
+    "guards": "POST/sesskey, generic errors and AP-A5 preserved; AJAX138 PASS",
+    "toolsPerf": "complete producer tools byte-identical after prerequisite recovery; no Perf execution",
+    "step1AlreadyServed": true,
+    "humanAccepted": false
+  },
+  "smRenduStep120261012": {
+    "producer": "282f1bc8dc9b0295df680370faae6add4b5bebc2",
+    "integration": "c307d9e0e22ba751e4ec322406b5a14e949ca22f",
+    "runtime": "3cec1d0937192cb7727e95dbf681596802d46b94",
+    "status": "served; native-web-upgrade-PASS; course5-parity-PASS; native1280FR unchanged-PASS; lint9-regressions59-PASS",
+    "baselineRun": "easystud-authenticated-20261012T212558803Z-19348",
+    "upgradeRun": "easystud-authenticated-20261012T213219349Z-25288",
+    "legacyViewRun": "easystud-authenticated-20261012T213519705Z-3272",
+    "failedUpgradePredecessor": "easystud-authenticated-20261012T212927721Z-11804; ambiguous update-search selector; no DB writes; preserved",
+    "level": 0,
+    "nativeLevel": 1,
+    "version": 2026101200,
+    "requiresUnchanged": 2025100600,
+    "noAmdBuild": true,
+    "writeTestForbiddenOnPrincipal": true,
+    "producerReservedFilesPreserved": true,
+    "D8": "Penpot9227 still blank; no styles applied blind",
+    "groupedPreviewIncludes": "06f0abc +c307d9e; one promotion/cache purge; D8 excluded as explicitly instructed while blank",
+    "schema": "DB version2026101200; statever exists;2 functions registered; no remaining upgrade",
+    "frontendConversion": "not activated; future Claude commits",
+    "humanAccepted": false
+  },
+  "claudeReviewR320261012": {
+    "source": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-R3-2026-10-12.md",
+    "R3-1": {
+      "scope": "No-mode scenes: desktop one row, narration left/Start right; mobile stacked; mode-selector scenes untouched; all playback states",
+      "level": 1,
+      "status": "served37ac57f; source59 and native-FR1280-390-PASS"
+    },
+    "R3-2": {
+      "scope": "Separate dots, fixed0.25rem columns/0.1875rem gap, constant copy-to-dots gap; four short/long/multiline EN/FR cases, static reduced motion",
+      "level": 1,
+      "status": "served37ac57f;16 native samples4px-3px-10.390625px-PASS; reduced CSS static"
+    },
+    "nativeRun": "easystud-authenticated-20261012T210609958Z-34376",
+    "failedPredecessors": [
+      "easystud-authenticated-20261012T205646787Z-2524",
+      "easystud-authenticated-20261012T210008058Z-8292",
+      "easystud-authenticated-20261012T210235423Z-34132"
+    ],
+    "proofCorrections": "No product change: zero CSS serialization; live media change is not engine reinit; mobile idle narration intentionally hidden, so dots measured paused",
+    "humanAccepted": true,
+    "acceptedBy": "Kevin user message2026-10-12: R3 and Platform validated; combined checklist remains open"
+  },
+  "compatibilityRule20261012": {
+    "targetNow": "Moodle5.1",
+    "futurePass": "Moodle4.5 after final5.1",
+    "effective": "Next lot D1–D4",
+    "PHP": "8.1",
+    "noNewBS5OnlyDependencies": true,
+    "versionPhpUnchanged": false,
+    "versionChangeException": "Kevin explicitly authorized2026101200 for SM-RENDU-1 schema/services; requires remains2025100600",
+    "otherMoodle45RuntimeUntouched": true
+  },
   "kevinDecisions20261012": {
-    "source":"C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/DECISIONS-KEVIN-2026-10-12.md",
-    "D7":{"status":"served-and-native10-plus-contract16-PASS","nativeRun":"easystud-authenticated-20261012T194847620Z-27072","countdownsMs":[45000,30000],"pause":"remaining time retained during hover/focus","level":0},
-    "D5D6":{"status":"served7d47118; source50-contract8-bilingual-current7paths-PASS","remainingPathCount":7,"retired":["first-structure","create-grouping"],"sharedCreationOpenersRetained":true,"orphanStrings":"No orphan removal: same labels remain referenced by legacy template; do not delete live fallback","editorCloseSignal":"Existing stable cancel-editor ID now accepts completed Cancel/Escape/Save; review opt-out unchanged","level":0},
-    "nextLots":["D8-Penpot-then-code-when-editor-ready","SM-RENDU-next-Claude-commits","AP-A6-after-server-measurements"],
-    "D1D4":{"status":"served7d47118; source58-api138-PASS; native-desktop-PASS-mobile-reserve","nativeRun":"easystud-authenticated-20261012T204015059Z-16536","reserve":"390px group inspection open narration has4 lines in253px; unchanged approved compact copy, no font shrink or hidden overflow claimed as PASS","level":1,"Kit":"0.4.196","phaseIdsAndCourseCommandsUnchanged":true},
-    "D9":{"status":"already-served; reuse R2-5 accepted proof, no reimplementation","nativeRun":"easystud-authenticated-20261012T074626324Z-27696","header390px":187.703125,"limitPx":200},
-    "claudeEvidenceReview":{"AP-B7B8D7":"accepted-on-proof","D5D6":"accepted-on-proof; served7d47118","humanChecklistStillOpen":true},
-    "D10":"no-action; awaiting decision",
-    "olderBacklogPreserved":true,
-    "humanAccepted":false
+    "source": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/DECISIONS-KEVIN-2026-10-12.md",
+    "D7": {
+      "status": "served-and-native10-plus-contract16-PASS",
+      "nativeRun": "easystud-authenticated-20261012T194847620Z-27072",
+      "countdownsMs": [
+        45000,
+        30000
+      ],
+      "pause": "remaining time retained during hover/focus",
+      "level": 0
+    },
+    "D5D6": {
+      "status": "served7d47118; source50-contract8-bilingual-current7paths-PASS",
+      "remainingPathCount": 7,
+      "retired": [
+        "first-structure",
+        "create-grouping"
+      ],
+      "sharedCreationOpenersRetained": true,
+      "orphanStrings": "No orphan removal: same labels remain referenced by legacy template; do not delete live fallback",
+      "editorCloseSignal": "Existing stable cancel-editor ID now accepts completed Cancel/Escape/Save; review opt-out unchanged",
+      "level": 0
+    },
+    "nextLots": [
+      "D8-Penpot-then-code-when-editor-ready",
+      "SM-RENDU-next-Claude-commits",
+      "AP-A6-after-server-measurements"
+    ],
+    "D1D4": {
+      "status": "served7d47118; source58-api138-PASS; native-desktop-PASS-mobile-reserve",
+      "nativeRun": "easystud-authenticated-20261012T204015059Z-16536",
+      "reserve": "390px group inspection open narration has4 lines in253px; unchanged approved compact copy, no font shrink or hidden overflow claimed as PASS",
+      "level": 1,
+      "Kit": "0.4.196",
+      "phaseIdsAndCourseCommandsUnchanged": true
+    },
+    "D9": {
+      "status": "already-served; reuse R2-5 accepted proof, no reimplementation",
+      "nativeRun": "easystud-authenticated-20261012T074626324Z-27696",
+      "header390px": 187.703125,
+      "limitPx": 200
+    },
+    "claudeEvidenceReview": {
+      "AP-B7B8D7": "accepted-on-proof",
+      "D5D6": "accepted-on-proof; served7d47118",
+      "humanChecklistStillOpen": true
+    },
+    "D10": "no-action; awaiting decision",
+    "olderBacklogPreserved": true,
+    "humanAccepted": false
   },
   "apGuideAccessibility20261012": {
-    "ids":["AP-B7","AP-B8"],
-    "level":1,
-    "kitVersion":"0.4.193",
-    "status":"14-contracts36-regressions-and9-native-FR1280-checks-pass",
-    "nativeRun":"easystud-authenticated-20261012T194207463Z-11068",
-    "unitScript":"scripts/test-guide-keyboard.cjs --contracts (Kit)",
-    "nativeSurface":"tools/playwright/guide-filter-verification-native.spec.js",
-    "noticeDeadlinesUnchanged":[20000,12000],
-    "B8DecisionScope":"Preserve accepted automatic expiry; only suspend while hover/focus retains controls",
-    "guardsRead":"COORDINATION-LOTS.md §5 ter",
-    "humanAccepted":false
+    "ids": [
+      "AP-B7",
+      "AP-B8"
+    ],
+    "level": 1,
+    "kitVersion": "0.4.193",
+    "status": "14-contracts36-regressions-and9-native-FR1280-checks-pass",
+    "nativeRun": "easystud-authenticated-20261012T194207463Z-11068",
+    "unitScript": "scripts/test-guide-keyboard.cjs --contracts (Kit)",
+    "nativeSurface": "tools/playwright/guide-filter-verification-native.spec.js",
+    "noticeDeadlinesUnchanged": [
+      20000,
+      12000
+    ],
+    "B8DecisionScope": "Preserve accepted automatic expiry; only suspend while hover/focus retains controls",
+    "guardsRead": "COORDINATION-LOTS.md §5 ter",
+    "humanAccepted": false
   },
   "apMotionScope20261012": {
-    "ids":["AP-A10","AP-B6"],
-    "level":1,
-    "kitVersion":"0.4.191",
-    "status":"source36-contract15-and-native-enabled-disabled-restored-verified",
-    "nativeRun":"easystud-authenticated-20261012T191902831Z-45480",
-    "guardsRead":"COORDINATION-LOTS.md §5 ter",
-    "serverAndIdentifierContractsUnchanged":true,
-    "humanAccepted":false
+    "ids": [
+      "AP-A10",
+      "AP-B6"
+    ],
+    "level": 1,
+    "kitVersion": "0.4.191",
+    "status": "source36-contract15-and-native-enabled-disabled-restored-verified",
+    "nativeRun": "easystud-authenticated-20261012T191902831Z-45480",
+    "guardsRead": "COORDINATION-LOTS.md §5 ter",
+    "serverAndIdentifierContractsUnchanged": true,
+    "humanAccepted": false
   },
   "pgS1Destinations20261012": {
-    "level":1,
-    "kitVersion":"0.4.192",
-    "status":"native6-cases-verified; all12-dialog-targets-covered-with-prior-editor-proof",
-    "nativeRun":"easystud-authenticated-20261012T191624845Z-42700",
-    "nativeBusinessConfirmations":"not-executed; dedicated course still required",
-    "cause":"Full-width destination right edge occluded by desktop checklist; vertical docking was mobile-only",
-    "failedRun":"easystud-authenticated-20261012T185503788Z-17320",
-    "closeOverlapRun":"easystud-authenticated-20261012T190521431Z-40168",
-    "surfaceScript":"tools/playwright/guide-modal-layer-s1-editors-diagnostic-native.spec.js",
-    "businessPrerequisites":"QA history only; no creation or assignment confirmed",
-    "humanAccepted":false
+    "level": 1,
+    "kitVersion": "0.4.192",
+    "status": "native6-cases-verified; all12-dialog-targets-covered-with-prior-editor-proof",
+    "nativeRun": "easystud-authenticated-20261012T191624845Z-42700",
+    "nativeBusinessConfirmations": "not-executed; dedicated course still required",
+    "cause": "Full-width destination right edge occluded by desktop checklist; vertical docking was mobile-only",
+    "failedRun": "easystud-authenticated-20261012T185503788Z-17320",
+    "closeOverlapRun": "easystud-authenticated-20261012T190521431Z-40168",
+    "surfaceScript": "tools/playwright/guide-modal-layer-s1-editors-diagnostic-native.spec.js",
+    "businessPrerequisites": "QA history only; no creation or assignment confirmed",
+    "humanAccepted": false
   },
   "apBPlayback20261012": {
-    "ids":["AP-B1","AP-B2","AP-B3","AP-B4"],
-    "level":2,
-    "kitVersion":"0.4.189",
-    "status":"native6-cases-and-contract11-verified",
-    "nativeRun":"easystud-authenticated-20261012T184946025Z-43340",
-    "surfaceScript":"tools/playwright/guide-g10-playback.spec.js",
-    "unitScript":"scripts/test-guide-playback.cjs --contracts (Kit)",
-    "baselineFailedRun":"easystud-authenticated-20261012T183753855Z-2452",
-    "baselineCause":"Reduced-motion narration completed before300ms",
-    "normalReadingFormulaAndMotionDurationsUnchanged":true,
-    "humanAccepted":false
+    "ids": [
+      "AP-B1",
+      "AP-B2",
+      "AP-B3",
+      "AP-B4"
+    ],
+    "level": 2,
+    "kitVersion": "0.4.189",
+    "status": "native6-cases-and-contract11-verified",
+    "nativeRun": "easystud-authenticated-20261012T184946025Z-43340",
+    "surfaceScript": "tools/playwright/guide-g10-playback.spec.js",
+    "unitScript": "scripts/test-guide-playback.cjs --contracts (Kit)",
+    "baselineFailedRun": "easystud-authenticated-20261012T183753855Z-2452",
+    "baselineCause": "Reduced-motion narration completed before300ms",
+    "normalReadingFormulaAndMotionDurationsUnchanged": true,
+    "humanAccepted": false
   },
-  "codex2APE720261012": {"status":"isolated-parity-and-boundary-verified","functions":["local_groupimport_load_custom_user_field_values","local_groupimport_enrich_users_with_copy_fields"],"maxUserInValues":1000,"nativeSqlServerProof":false,"versionChanged":false},
+  "codex2APE720261012": {
+    "status": "isolated-parity-and-boundary-verified",
+    "functions": [
+      "local_groupimport_load_custom_user_field_values",
+      "local_groupimport_enrich_users_with_copy_fields"
+    ],
+    "maxUserInValues": 1000,
+    "nativeSqlServerProof": false,
+    "versionChanged": false
+  },
   "codex2APE520261012": {
     "owner": "Codex2",
     "branch": "work/port4719pg3/easystud-perf-server-20261012",
     "runtime": "http://localhost:8051",
     "status": "six-native-comparisons-exact-141-edge-checks-pass-cleanup-complete",
-    "preserves": ["AP-A3", "AP-A4", "AP-A5", "native mutation APIs and transactions"],
+    "preserves": [
+      "AP-A3",
+      "AP-A4",
+      "AP-A5",
+      "native mutation APIs and transactions"
+    ],
     "measurement": "tools/perf/Invoke-Baseline.ps1 -Mode sql",
     "rawExternal": "C:/dev/artifacts/easystud-perf-server-20261012/ap-e5/candidate-final/",
     "nativeEvidence": "Server/actual-source candidate, not browser acceptance",
-    "preview2000SqlReads": {"before": 14124, "after": 114},
+    "preview2000SqlReads": {
+      "before": 14124,
+      "after": 114
+    },
     "nativeMutationsRemain": true,
     "humanAccepted": false
   },
@@ -153,12 +645,49 @@
     "next": "AP-E5 on dedicated copy; retain Moodle4.5 APIs and PHP8.1 syntax; version.php unchanged"
   },
   "claudeA4A5Coordination20261012": {
-    "AP-A4": {"upstream":"73085bfd900c32102a81df23023e8a73dcfcca3e","level":0,"status":"served-native-GET-and-invalid-POST8-verified","nativeFormsOnDedicatedCourse":"accepted writes pending"},
-    "AP-A5": {"upstream":"2726f02179102be329a8fe9e5ae703e42daec5e1","owner":"Claude","status":"integrated-source-resolver-checks","kevinDecision":"Moodle ID retained; bare first/last name removed","nativeKnownIdentifierWrites":"Dedicated course pending"},
-    "codex2": {"branch":"work/port4719pg3/easystud-perf-server-20261012","owns":["T052","AP-E5","AP-E6-server","AP-E7","AP-E8"],"manageServerReservations":"COORDINATION-LOTS.md; do not edit reserved data functions","integrationOwner":"Codex1","AP-E6-server":{"status":"source-native-api-verified-default-off","pageByteGain":276800,"defaultPayloadMatchesServed":true,"JSConsumer":"pending-Codex1","browserActivated":false,"humanAccepted":false}},
-    "codex1Retained":["AP-E1","AP-E2","AP-E3","AP-E4","AP-A6","T054"],
-    "returnContract":"Under150 lines, condensed JSON; raw JSON in referenced external file",
-    "humanAccepted":false
+    "AP-A4": {
+      "upstream": "73085bfd900c32102a81df23023e8a73dcfcca3e",
+      "level": 0,
+      "status": "served-native-GET-and-invalid-POST8-verified",
+      "nativeFormsOnDedicatedCourse": "accepted writes pending"
+    },
+    "AP-A5": {
+      "upstream": "2726f02179102be329a8fe9e5ae703e42daec5e1",
+      "owner": "Claude",
+      "status": "integrated-source-resolver-checks",
+      "kevinDecision": "Moodle ID retained; bare first/last name removed",
+      "nativeKnownIdentifierWrites": "Dedicated course pending"
+    },
+    "codex2": {
+      "branch": "work/port4719pg3/easystud-perf-server-20261012",
+      "owns": [
+        "T052",
+        "AP-E5",
+        "AP-E6-server",
+        "AP-E7",
+        "AP-E8"
+      ],
+      "manageServerReservations": "COORDINATION-LOTS.md; do not edit reserved data functions",
+      "integrationOwner": "Codex1",
+      "AP-E6-server": {
+        "status": "source-native-api-verified-default-off",
+        "pageByteGain": 276800,
+        "defaultPayloadMatchesServed": true,
+        "JSConsumer": "pending-Codex1",
+        "browserActivated": false,
+        "humanAccepted": false
+      }
+    },
+    "codex1Retained": [
+      "AP-E1",
+      "AP-E2",
+      "AP-E3",
+      "AP-E4",
+      "AP-A6",
+      "T054"
+    ],
+    "returnContract": "Under150 lines, condensed JSON; raw JSON in referenced external file",
+    "humanAccepted": false
   },
   "mobileLongPressCompatibility20261012": {
     "level": 0,
@@ -177,13 +706,20 @@
     "status": "native1280-390-and-combined-actions-verified",
     "cause": "Resume rendered the checklist without calling the current step opener/highlight",
     "nativeScript": "tools/playwright/guide-filter-verification-native.spec.js",
-    "failedRunsPreserved": ["easystud-authenticated-20261012T181058531Z-53464", "easystud-authenticated-20261012T181326929Z-19404"],
+    "failedRunsPreserved": [
+      "easystud-authenticated-20261012T181058531Z-53464",
+      "easystud-authenticated-20261012T181326929Z-19404"
+    ],
     "progressIdsUnchanged": true,
     "humanAccepted": false
   },
   "pgActionsSignals20261012": {
     "level": 0,
-    "ids": ["PG-A2", "PG-A1", "PG-A3"],
+    "ids": [
+      "PG-A2",
+      "PG-A1",
+      "PG-A3"
+    ],
     "status": "native-selection-and3-menu-entry-methods-verified; business-drag-proof-open",
     "surfaceScript": "tools/release/verify-student-management.cjs",
     "businessDragNativeProof": "Dedicated fixture still required; no real course write",
@@ -217,8 +753,17 @@
   "acceleration20261012": {
     "rules": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/ACCELERATION-CODEX-2026-10-12.md",
     "coordination": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/COORDINATION-LOTS.md",
-    "readyQueue": ["publish-D5D6-with-D1D4", "D1+D2+D3+D4", "D9", "R3-1+R3-2", "D8-Penpot-then-code"],
-    "condensedReturns": ["C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-A4-A5-PLAYBACK-2026-10-12.md", "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-S1-MOTION-2026-10-12.md"],
+    "readyQueue": [
+      "publish-D5D6-with-D1D4",
+      "D1+D2+D3+D4",
+      "D9",
+      "R3-1+R3-2",
+      "D8-Penpot-then-code"
+    ],
+    "condensedReturns": [
+      "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-A4-A5-PLAYBACK-2026-10-12.md",
+      "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/RETOUR-CODEX-S1-MOTION-2026-10-12.md"
+    ],
     "perBatchDocumentation": "One changelog line and intake status; JSON in the external review return",
     "penpot": "Significant compositions first; bug/accessibility/text/layer updates grouped at milestones",
     "surfaceScriptsOnly": true,
@@ -226,16 +771,66 @@
   },
   "claudeDeepAudit20261012": {
     "source": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/AUDIT-APPROFONDI-2026-10-12.md",
-    "codexOwned": ["AP-A1", "AP-A6", "AP-A10", "AP-B1", "AP-B2", "AP-B3", "AP-B4", "AP-B5", "AP-B6", "AP-B7", "AP-B8", "AP-B9", "AP-B10", "AP-B11", "AP-C1", "AP-C2", "AP-C3", "AP-C4", "AP-C5", "AP-D1", "AP-D2", "AP-D3", "AP-D4", "AP-D5", "AP-D6", "AP-D7", "AP-E1", "AP-E2", "AP-E3", "AP-E4", "AP-E5", "AP-E6", "AP-E7", "AP-E8", "AP-E9"],
-    "claudeReserved": ["AP-A4", "AP-A5"],
-    "decisionGates": ["AP-C1", "AP-C3", "AP-E9", "AP-B8-auto-dismiss"],
+    "codexOwned": [
+      "AP-A1",
+      "AP-A6",
+      "AP-A10",
+      "AP-B1",
+      "AP-B2",
+      "AP-B3",
+      "AP-B4",
+      "AP-B5",
+      "AP-B6",
+      "AP-B7",
+      "AP-B8",
+      "AP-B9",
+      "AP-B10",
+      "AP-B11",
+      "AP-C1",
+      "AP-C2",
+      "AP-C3",
+      "AP-C4",
+      "AP-C5",
+      "AP-D1",
+      "AP-D2",
+      "AP-D3",
+      "AP-D4",
+      "AP-D5",
+      "AP-D6",
+      "AP-D7",
+      "AP-E1",
+      "AP-E2",
+      "AP-E3",
+      "AP-E4",
+      "AP-E5",
+      "AP-E6",
+      "AP-E7",
+      "AP-E8",
+      "AP-E9"
+    ],
+    "claudeReserved": [
+      "AP-A4",
+      "AP-A5"
+    ],
+    "decisionGates": [
+      "AP-C1",
+      "AP-C3",
+      "AP-E9",
+      "AP-B8-auto-dismiss"
+    ],
     "performanceRequiresT052": true,
     "T054LastDefaultOff": true,
     "humanAccepted": false
   },
   "claudePilotAP20261012": {
     "upstreamCommit": "db2c429abd4a82da483c915fef94d35bb7550743",
-    "ids": ["AP-A2", "AP-A3", "AP-A7", "AP-A8", "AP-A9"],
+    "ids": [
+      "AP-A2",
+      "AP-A3",
+      "AP-A7",
+      "AP-A8",
+      "AP-A9"
+    ],
     "level": 0,
     "status": "integrated-and-served; isolated25-and-native-expired-session-verified",
     "nativeDuplication": "Dedicated-course test remains pending; no course5 writes",
@@ -248,11 +843,52 @@
     "record": "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",
     "pathsAuditSha256": "3e5ed7a9bdd03098d794abde76b018aa51555501d7efe54d5f6f29a793d48212",
     "skeletonPreventionSha256": "dfb7b3ef4080f7ea6c3c9ad0f7b7d239e450f64ae4300af65abe22a81eb7710c",
-    "priority": ["PG-S1", "PG-A2", "PG-A1", "PG-A3", "PG-A6-browser-diagnosis", "PG-A8"],
-    "humanDecisionsPending": ["PG-A4", "PG-A5", "PG-A7"],
-    "guidanceFor": ["R10-16", "R10-17", "T052", "T055", "T054", "T061"],
-    "loadingOrder": ["T052", "Kit-Foundations-recipes", "R10-16-AJAX", "R10-16-modals", "R10-16-import", "R10-16-initial-regions", "T055", "T054-last-default-off"],
-    "requiredBeforeAfter": ["I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "I10", "I11", "I12", "I13"],
+    "priority": [
+      "PG-S1",
+      "PG-A2",
+      "PG-A1",
+      "PG-A3",
+      "PG-A6-browser-diagnosis",
+      "PG-A8"
+    ],
+    "humanDecisionsPending": [
+      "PG-A4",
+      "PG-A5",
+      "PG-A7"
+    ],
+    "guidanceFor": [
+      "R10-16",
+      "R10-17",
+      "T052",
+      "T055",
+      "T054",
+      "T061"
+    ],
+    "loadingOrder": [
+      "T052",
+      "Kit-Foundations-recipes",
+      "R10-16-AJAX",
+      "R10-16-modals",
+      "R10-16-import",
+      "R10-16-initial-regions",
+      "T055",
+      "T054-last-default-off"
+    ],
+    "requiredBeforeAfter": [
+      "I1",
+      "I2",
+      "I3",
+      "I4",
+      "I5",
+      "I6",
+      "I7",
+      "I8",
+      "I9",
+      "I10",
+      "I11",
+      "I12",
+      "I13"
+    ],
     "noPerClickNetwork": true,
     "noRealDataBusinessTests": true,
     "original61ScopesUnchanged": true,
@@ -262,10 +898,19 @@
   "claudeReview1": {
     "received": "2026-10-11",
     "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-11.md",
-    "order": ["C6+C3+C4+C2", "C1", "C5-measurement", "T008"],
+    "order": [
+      "C6+C3+C4+C2",
+      "C1",
+      "C5-measurement",
+      "T008"
+    ],
     "C3SegmentedMode": "Kevin-approved",
     "C4CompactOrganization": "Kevin-approved-C6-supersedes-height",
-    "reviewedTasks": ["T009", "T010", "T011"],
+    "reviewedTasks": [
+      "T009",
+      "T010",
+      "T011"
+    ],
     "preserveHistoricalProof": true,
     "humanAccepted": false
   },
@@ -273,11 +918,35 @@
     "received": "2026-10-12",
     "externalRecord": "C:/dev/artifacts/easystud-claude-interface-review-20261011/revue-2026-10-11/CORRECTIONS-CODEX-2026-10-12.md",
     "record": "docs/claude-review2-guide-corrections-2026-10-12.md",
-    "order": ["R2-1", "R2-3", "R2-2", "R2-4"],
-    "claudeVerified": ["C1", "C2-paused", "C3", "C4", "C5", "C6", "T008-Organiser-only", "V2-cold-load"],
-    "reviewedPins": {"source": "bb8f4f2", "kit": "51b4711", "runtime": "4492a10"},
+    "order": [
+      "R2-1",
+      "R2-3",
+      "R2-2",
+      "R2-4"
+    ],
+    "claudeVerified": [
+      "C1",
+      "C2-paused",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "T008-Organiser-only",
+      "V2-cold-load"
+    ],
+    "reviewedPins": {
+      "source": "bb8f4f2",
+      "kit": "51b4711",
+      "runtime": "4492a10"
+    },
     "openReservations": [],
-    "verifiedCorrections": ["R2-1", "R2-3", "R2-2", "R2-4", "R2-5"],
+    "verifiedCorrections": [
+      "R2-1",
+      "R2-3",
+      "R2-2",
+      "R2-4",
+      "R2-5"
+    ],
     "latestCombinedProof": "docs/testing/guide-review2-mobile-2026-10-12.json",
     "nativeProof": "docs/testing/guide-review2-corrections-2026-10-12.json",
     "R2-5": "Kevin-approved-compact-mobile; source-design-saved-and18-native-records-verified; human-open",
@@ -290,13 +959,30 @@
     "externalSha256": "8012fc8516ca2771f374fdd6f8d76f1b2a41ad116aeed6b22691f14c1c2df2ec",
     "record": "docs/student-identity-corridors-plan-2026-10-12.md",
     "status": "Kevin-approved-planned-not-implemented",
-    "tasks": ["T017", "T018", "T019", "T021", "T036"],
-    "priorityAfter": ["R2-1", "R2-3"],
+    "tasks": [
+      "T017",
+      "T018",
+      "T019",
+      "T021",
+      "T036"
+    ],
+    "priorityAfter": [
+      "R2-1",
+      "R2-3"
+    ],
     "prerequisitesNativeVerified": true,
     "prerequisiteProof": "docs/testing/guide-review2-mobile-2026-10-12.json",
     "preserveGuidePriorityAndOlderLots": true,
     "implementationBoundary": "SCSS-CSS-only-no-template-markup-class-data-attribute-PHP-JS-AMD-or-Motion-change",
-    "lineage": ["Kit", "Foundations-Library-and-Standards", "EasyStud-three-linked-views", "consumer-SCSS-includes", "compiled-CSS", "managed-preview", "native-section4-tests"],
+    "lineage": [
+      "Kit",
+      "Foundations-Library-and-Standards",
+      "EasyStud-three-linked-views",
+      "consumer-SCSS-includes",
+      "compiled-CSS",
+      "managed-preview",
+      "native-section4-tests"
+    ],
     "sourceImplemented": false,
     "designPublished": false,
     "previewServed": false,
@@ -346,8 +1032,14 @@
       "record": "docs/card-title-600-publication-progress-2026-10-11.md",
       "humanAccepted": false
     },
-    "A1SubsectionTile28": {"status": "approved-publication-queued", "humanAccepted": false},
-    "GS10DedicatedCue": {"status": "retained-no-footer-merge", "humanAccepted": false}
+    "A1SubsectionTile28": {
+      "status": "approved-publication-queued",
+      "humanAccepted": false
+    },
+    "GS10DedicatedCue": {
+      "status": "retained-no-footer-merge",
+      "humanAccepted": false
+    }
   },
   "tasks": [
     {
@@ -405,7 +1097,9 @@
       "status": "canonical172-served-exact24px-18-native-locale-media-width-records-passed-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": ["docs/testing/guide-introduction-clearance-correction-2026-10-11.json"],
+      "related": [
+        "docs/testing/guide-introduction-clearance-correction-2026-10-11.json"
+      ],
       "decisionGate": "none"
     },
     {
@@ -414,7 +1108,10 @@
       "status": "Penpot-proposal-saved-continuation-authorized-integration-human-checklist-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["docs/guide-scene-recomposition-preflight-2026-10-11.md", "docs/guide-scene-header-proposal-2026-10-11.md"],
+      "related": [
+        "docs/guide-scene-recomposition-preflight-2026-10-11.md",
+        "docs/guide-scene-header-proposal-2026-10-11.md"
+      ],
       "decisionGate": "none"
     },
     {
@@ -423,7 +1120,10 @@
       "status": "source24-payload-native72-order-and-saved-paired-product-reference-verified-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": ["docs/guide-slide-reading-order-2026-10-11.md", "docs/testing/guide-review1-corrections-2026-10-12.json"],
+      "related": [
+        "docs/guide-slide-reading-order-2026-10-11.md",
+        "docs/testing/guide-review1-corrections-2026-10-12.json"
+      ],
       "decisionGate": "none"
     },
     {
@@ -434,7 +1134,9 @@
       "historicalNativeVerified": true,
       "proof": "docs/testing/guide-scene-header-2026-10-11.json",
       "humanAccepted": false,
-      "related": ["docs/testing/guide-review1-corrections-2026-10-12.json"],
+      "related": [
+        "docs/testing/guide-review1-corrections-2026-10-12.json"
+      ],
       "decisionGate": "none"
     },
     {
@@ -474,7 +1176,10 @@
       "status": "canonical177-paired-source-product-saved-and-eight-native-locale-width-cases-verified-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": ["docs/guide-chrome-density-preflight-2026-10-12.md", "docs/testing/guide-chrome-density-2026-10-12.json"],
+      "related": [
+        "docs/guide-chrome-density-preflight-2026-10-12.md",
+        "docs/testing/guide-chrome-density-2026-10-12.json"
+      ],
       "decisionGate": "none"
     },
     {
@@ -581,7 +1286,11 @@
       "status": "native-geometry-verified-pending-penpot-human",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": ["Kit 0.4.206", "docs/testing/mass-subsections-t024-2026-10-13.md", "PASSATION-CODEX1.md: post-publication native result"],
+      "related": [
+        "Kit 0.4.206",
+        "docs/testing/mass-subsections-t024-2026-10-13.md",
+        "PASSATION-CODEX1.md: post-publication native result"
+      ],
       "decisionGate": "none"
     },
     {
@@ -703,7 +1412,11 @@
       "status": "in-progress: T037-A completion paint verified with60 native cases; GS1/GS2/GS5/GS8/GS9 implemented in Kit0.4.199/source, static contract PASS and French native N2 PASS at1600/1280/390; Foundation/Penpot and human acceptance pending",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": ["docs/guide-t037-reading-progress-2026-10-12.md", "docs/testing/guide-t037-finished-paint-2026-10-12.json", "docs/guide-t037-reading-layout-scope-2026-10-12.md"],
+      "related": [
+        "docs/guide-t037-reading-progress-2026-10-12.md",
+        "docs/testing/guide-t037-finished-paint-2026-10-12.json",
+        "docs/guide-t037-reading-layout-scope-2026-10-12.md"
+      ],
       "decisionGate": "none"
     },
     {
@@ -754,7 +1467,9 @@
       "status": "five-locale-keys-static-PHP-native-passed-human-open",
       "nativeVerified": true,
       "humanAccepted": false,
-      "related": ["docs/french-editor-accents-2026-10-11.md"],
+      "related": [
+        "docs/french-editor-accents-2026-10-11.md"
+      ],
       "decisionGate": "none"
     },
     {
@@ -763,7 +1478,10 @@
       "status": "kit-static-verified-pending-foundations-consumer-native-human",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["EasyEdu UI Kit 0.4.204 / d669627", "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"],
+      "related": [
+        "EasyEdu UI Kit 0.4.204 / d669627",
+        "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"
+      ],
       "decisionGate": "none"
     },
     {
@@ -772,7 +1490,10 @@
       "status": "kit-static-verified-pending-foundations-consumer-native-human",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["EasyEdu UI Kit 0.4.204 / d669627", "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"],
+      "related": [
+        "EasyEdu UI Kit 0.4.204 / d669627",
+        "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"
+      ],
       "decisionGate": "none"
     },
     {
@@ -853,7 +1574,9 @@
       "runtimeHeadMeasured": "750353b9d30252f3e9f9bcffe977952c78587211",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["docs/claude-guide-paths-skeleton-intake-2026-10-12.md"],
+      "related": [
+        "docs/claude-guide-paths-skeleton-intake-2026-10-12.md"
+      ],
       "decisionGate": "none"
     },
     {
@@ -862,7 +1585,13 @@
       "status": "conservative-css-delivered-static-and-native-N1-pass-broader-coverage-incomplete",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["tools/release/audit-css.cjs", "tools/release/build-styles.cjs", "tools/release/verify-css-equivalence.cjs", "tools/release/CSS-REDUCTION-PLAN.md", "RETOUR-CODEX2-T053-2026-10-13.md"],
+      "related": [
+        "tools/release/audit-css.cjs",
+        "tools/release/build-styles.cjs",
+        "tools/release/verify-css-equivalence.cjs",
+        "tools/release/CSS-REDUCTION-PLAN.md",
+        "RETOUR-CODEX2-T053-2026-10-13.md"
+      ],
       "decisionGate": "none"
     },
     {
@@ -871,7 +1600,11 @@
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["docs/claude-guide-paths-skeleton-intake-2026-10-12.md", "I1-I13-before-after", "T054-last-default-off"],
+      "related": [
+        "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",
+        "I1-I13-before-after",
+        "T054-last-default-off"
+      ],
       "decisionGate": "none"
     },
     {
@@ -880,7 +1613,10 @@
       "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["docs/claude-guide-paths-skeleton-intake-2026-10-12.md", "I1-I13-before-after"],
+      "related": [
+        "docs/claude-guide-paths-skeleton-intake-2026-10-12.md",
+        "I1-I13-before-after"
+      ],
       "decisionGate": "none"
     },
     {
@@ -889,7 +1625,11 @@
       "status": "delivered-tooling-native-findings-review-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["tools/release/visual-contracts.cjs", "tools/playwright/roadmap-visual-contracts-current.spec.js", "RETOUR-CODEX2-T056-2026-10-13.md"],
+      "related": [
+        "tools/release/visual-contracts.cjs",
+        "tools/playwright/roadmap-visual-contracts-current.spec.js",
+        "RETOUR-CODEX2-T056-2026-10-13.md"
+      ],
       "decisionGate": "none"
     },
     {
@@ -898,17 +1638,33 @@
       "status": "delivered-source-audit-native-review-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["tools/release/audit-texts.cjs", "tools/release/ROADMAP-AUDITS.md", "RETOUR-CODEX2-T057-2026-10-13.md"],
+      "related": [
+        "tools/release/audit-texts.cjs",
+        "tools/release/ROADMAP-AUDITS.md",
+        "RETOUR-CODEX2-T057-2026-10-13.md"
+      ],
       "decisionGate": "none"
     },
     {
       "id": "T058",
       "receivedScope": "[P] [US6] **Passe d'accessibilité complète** : focus, Escape et retour du focus sur **toutes** les modales et panneaux (D1 laisse penser qu'il y a d'autres cas), contraste des éléments neutres d'US4, mouvement réduit, alternative clavier au glisser-déposer.",
-      "status": "neutral-text-contrast-kit-source-and-native-N1-pass-broader-accessibility-gaps-open; modal-focus-reconciled-Move-FR-EN-both-modes-native-pass-other-modals-pending",
+      "status": "neutral-text-contrast-kit-source-and-native-N1-pass-broader-accessibility-gaps-open; modal-focus-reconciled-Move-FR-EN-both-modes-native-pass-other-modals-pending; requested-inline-panel-and-keyboard-transfer-proof-delivered; global-contrast-mobile-and-human-audit-open",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["tools/release/accessibility-inventory.cjs", "tools/release/ACCESSIBILITY-FINDINGS.md", "tools/release/verify-css-equivalence.cjs", "tools/playwright/student-state-integration-native.spec.js", "RETOUR-CODEX2-T058-2026-10-13.md", "tools/playwright/t058-modal-focus-native.spec.js", "tools/release/test-modal-focus-scope.cjs", "tools/release/test-modal-focus-behaviour.cjs", "docs/t058-modal-focus-correction-2026-10-13.md", "docs/testing/claude-integration-2026-10-13.md"],
-      "decisionGate": "none"
+      "related": [
+        "tools/release/accessibility-inventory.cjs",
+        "tools/release/ACCESSIBILITY-FINDINGS.md",
+        "tools/release/verify-css-equivalence.cjs",
+        "tools/playwright/student-state-integration-native.spec.js",
+        "RETOUR-CODEX2-T058-2026-10-13.md",
+        "tools/playwright/t058-modal-focus-native.spec.js",
+        "tools/release/test-modal-focus-scope.cjs",
+        "tools/release/test-modal-focus-behaviour.cjs",
+        "docs/t058-modal-focus-correction-2026-10-13.md",
+        "docs/testing/claude-integration-2026-10-13.md"
+      ],
+      "decisionGate": "none",
+      "inlineKeyboard20261014": "Group/Grouping Search/Add/rename:48 Escape/Cancel close cycles; Participant/Group/Member Space selection, native Move, keyboard destination and confirmation access:12 cases. FR1280 normal/reduced, legacy/reactive PASS. docs/testing/t058-inline-keyboard-2026-10-14.json. No business submission; guided writes await A-CHECKLIST/CL-PARCOURS publication on a dedicated Perf course."
     },
     {
       "id": "T059",
@@ -925,7 +1681,9 @@
       "status": "ten-declaration-role-inventory-prepared-canonical-correction-and-native-gates-pending",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": ["docs/guide-typography-token-inventory-2026-10-11.md"],
+      "related": [
+        "docs/guide-typography-token-inventory-2026-10-11.md"
+      ],
       "decisionGate": "none"
     },
     {

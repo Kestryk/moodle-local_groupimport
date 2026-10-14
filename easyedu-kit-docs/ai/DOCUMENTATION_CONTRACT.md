@@ -1,5 +1,11 @@
 # EasyEdu documentation contract
 
+Integrated panels own Escape through native Cancel and restore the visible opener
+after their existing Motion closure. Keep ordinary Tab order and nested-key priority;
+never trap inline search/add/rename as a modal. Space selection plus native Move
+access is the keyboard drag alternative; opening/cancelling does not prove a real
+transfer. Preserve business handlers and tutorial code under the focus-only exception.
+
 Long native Message titles shrink beside Close and wrap without changing dialog
 width. Capture synthetic stress before restoring original text; distinguish shell
 containment while loading from settled body layout. Use the visible mobile Clear
