@@ -8118,8 +8118,158 @@ const bindContextMenu = (root, courseId) => {
 
     let context = null;
     let returnFocus = null;
+    const menuList = menu.querySelector('.local-groupimport-easystud-context-menu__list');
+    const submenuGroups = Array.from(menu.querySelectorAll('[data-easystud-context-group]'));
+    let openGroup = null;
+    let openedByHover = false;
+    let hoverTimer = null;
+
+    const isMenuRtl = () => window.getComputedStyle(menu).direction === 'rtl';
+
+    const getGroupParts = group => ({
+        toggle: group ? group.querySelector(':scope > [data-easystud-context-submenu-toggle]') : null,
+        submenu: group ? group.querySelector(':scope > [data-easystud-context-submenu]') : null,
+    });
+
+    const getSubmenuItems = submenu => submenu ? Array.from(
+        submenu.querySelectorAll(':scope > [data-easystud-context-action]')).filter(item => !item.hidden) : [];
+
+    // Focusable items of one level: the top level (a flattened group lends its
+    // single child, a closed submenu never does) or one open submenu.
+    const getLevelItems = submenu => {
+        if (submenu) {
+            return getSubmenuItems(submenu);
+        }
+        const items = [];
+        Array.from(menuList ? menuList.children : []).forEach(entry => {
+            if (entry.hidden || entry.hasAttribute('data-easystud-context-separator')) {
+                return;
+            }
+            if (entry.hasAttribute('data-easystud-context-group')) {
+                const parts = getGroupParts(entry);
+                if (entry.classList.contains('is-flattened')) {
+                    items.push(...getSubmenuItems(parts.submenu));
+                } else if (parts.toggle && !parts.toggle.hidden) {
+                    items.push(parts.toggle);
+                }
+            } else if (entry.matches('button')) {
+                items.push(entry);
+            }
+        });
+        return items;
+    };
+
+    const clearHoverTimer = () => {
+        window.clearTimeout(hoverTimer);
+        hoverTimer = null;
+    };
+
+    const closeSubmenu = group => {
+        if (!group || group.classList.contains('is-flattened')) {
+            return;
+        }
+        const {toggle, submenu} = getGroupParts(group);
+        if (submenu) {
+            const hadFocus = submenu.contains(document.activeElement);
+            submenu.hidden = true;
+            submenu.style.removeProperty('left');
+            submenu.style.removeProperty('top');
+            if (hadFocus && toggle && !toggle.hidden) {
+                toggle.focus({preventScroll: true});
+            }
+        }
+        if (toggle) {
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+        if (openGroup === group) {
+            openGroup = null;
+            openedByHover = false;
+        }
+    };
+
+    const closeSubmenus = () => {
+        clearHoverTimer();
+        submenuGroups.forEach(closeSubmenu);
+        openGroup = null;
+        openedByHover = false;
+    };
+
+    // Desktop flyout beside its trigger: flipped when it would overflow, then
+    // clamped to the viewport. The mobile sheet keeps it inline (accordion).
+    const positionSubmenu = (toggle, submenu) => {
+        submenu.style.removeProperty('left');
+        submenu.style.removeProperty('top');
+        if (menu.classList.contains('is-mobile-sheet')) {
+            return;
+        }
+        const anchor = toggle.getBoundingClientRect();
+        const rect = submenu.getBoundingClientRect();
+        const offset = parseFloat(window.getComputedStyle(submenu).paddingTop) || 0;
+        const rtl = isMenuRtl();
+        let left = rtl ? anchor.left - 4 - rect.width : anchor.right + 4;
+        if (!rtl && left + rect.width > window.innerWidth - 8) {
+            left = anchor.left - 4 - rect.width;
+        } else if (rtl && left < 8) {
+            left = anchor.right + 4;
+        }
+        left = Math.max(8, Math.min(left, window.innerWidth - rect.width - 8));
+        const top = Math.max(8, Math.min(anchor.top - offset, window.innerHeight - rect.height - 8));
+        submenu.style.left = left + 'px';
+        submenu.style.top = top + 'px';
+    };
+
+    const openSubmenu = (group, focusFirst) => {
+        if (!group || group.hidden || group.classList.contains('is-flattened')) {
+            return;
+        }
+        const {toggle, submenu} = getGroupParts(group);
+        if (!toggle || !submenu) {
+            return;
+        }
+        clearHoverTimer();
+        if (openGroup && openGroup !== group) {
+            closeSubmenu(openGroup);
+        }
+        submenu.hidden = false;
+        toggle.setAttribute('aria-expanded', 'true');
+        openGroup = group;
+        positionSubmenu(toggle, submenu);
+        if (menu.classList.contains('is-mobile-sheet') && submenu.scrollIntoView) {
+            submenu.scrollIntoView({block: 'nearest'});
+        }
+        if (focusFirst) {
+            const first = getSubmenuItems(submenu)[0];
+            if (first) {
+                first.focus({preventScroll: true});
+            }
+        }
+    };
+
+    // One separator between two non-empty sections, never at an edge or doubled.
+    const syncSeparators = () => {
+        let seenVisible = false;
+        let pending = null;
+        Array.from(menuList ? menuList.children : []).forEach(entry => {
+            if (entry.hasAttribute('data-easystud-context-separator')) {
+                entry.hidden = true;
+                if (seenVisible) {
+                    pending = entry;
+                }
+                return;
+            }
+            if (entry.hidden) {
+                return;
+            }
+            if (pending) {
+                pending.hidden = false;
+                pending = null;
+            }
+            seenVisible = true;
+        });
+    };
 
     const hideMenu = () => {
+        closeSubmenus();
         menu.hidden = true;
         menu.classList.remove('is-mobile-sheet');
         root.querySelectorAll('[data-easystud-card-menu][aria-expanded="true"]').forEach(button => {
@@ -8244,6 +8394,7 @@ const bindContextMenu = (root, courseId) => {
                     'grouping-search-groups',
                     'grouping-focus-rename',
                     'copy-grouping-name',
+                    'copy-grouping-id',
                     'paste-field',
                 ].indexOf(action) !== -1) {
                     hidden = true;
@@ -8276,6 +8427,34 @@ const bindContextMenu = (root, courseId) => {
                 text.textContent = label;
             }
         });
+
+        // A submenu holds at least two visible actions; a single one is shown
+        // inline as a plain item and an empty one disappears.
+        submenuGroups.forEach(group => {
+            const {toggle, submenu} = getGroupParts(group);
+            const contexts = (group.getAttribute('data-easystud-contexts') || '').split(' ');
+            const count = contexts.indexOf(type) === -1 ? 0 : getSubmenuItems(submenu).length;
+            const flattened = count === 1;
+            group.hidden = count === 0;
+            group.classList.toggle('is-flattened', flattened);
+            if (submenu) {
+                submenu.hidden = !flattened;
+                submenu.setAttribute('role', flattened ? 'group' : 'menu');
+                submenu.style.removeProperty('left');
+                submenu.style.removeProperty('top');
+            }
+            if (toggle) {
+                toggle.hidden = flattened;
+                toggle.setAttribute('aria-expanded', 'false');
+                const text = toggle.querySelector('[data-easystud-context-text]');
+                if (text) {
+                    text.textContent = toggle.getAttribute(items.length > 1 ? 'data-easystud-context-multi-label' :
+                        'data-easystud-context-label') || toggle.getAttribute('data-easystud-context-label') || '';
+                }
+            }
+        });
+        openGroup = null;
+        openedByHover = false;
     };
 
     const syncMaskedGroupingMenuAction = (type, target) => {
@@ -8320,6 +8499,7 @@ const bindContextMenu = (root, courseId) => {
         }
         setVisibleActions(type, target);
         syncMaskedGroupingMenuAction(type, target);
+        syncSeparators();
         menu.hidden = false;
         const mobile = isResponsiveWorkspace();
         menu.classList.toggle('is-mobile-sheet', mobile);
@@ -8336,10 +8516,7 @@ const bindContextMenu = (root, courseId) => {
             menu.style.left = Math.max(8, left) + 'px';
             menu.style.top = Math.max(8, top) + 'px';
         }
-        const first = menu.querySelector(
-            '[data-easystud-masked-pill-action]:not([hidden]), ' +
-            '[data-easystud-context-action]:not([hidden])'
-        );
+        const first = getLevelItems(null)[0];
         if (first) {
             first.focus({preventScroll: true});
         }
@@ -8525,6 +8702,20 @@ const bindContextMenu = (root, courseId) => {
             return;
         }
 
+        const submenuToggle = event.target.closest('[data-easystud-context-submenu-toggle]');
+        if (submenuToggle && menu.contains(submenuToggle)) {
+            const group = submenuToggle.closest('[data-easystud-context-group]');
+            // A keyboard activation (Enter/Space) always opens and enters the submenu.
+            const keyboard = event.detail === 0;
+            if (!keyboard && group === openGroup && !openedByHover) {
+                closeSubmenu(group);
+            } else {
+                openSubmenu(group, keyboard);
+            }
+            openedByHover = false;
+            return;
+        }
+
         const button = event.target.closest('[data-easystud-context-action]');
         if (!button || !context) {
             return;
@@ -8618,6 +8809,9 @@ const bindContextMenu = (root, courseId) => {
             openAdvancedSettingsModal(root, target, opener);
         } else if (action === 'copy-group-name') {
             copyText(getContextItems('group', target).map(group => getGroupName(group)).filter(Boolean).join('\n'));
+        } else if (action === 'copy-group-id') {
+            copyText(getContextItems('group', target).map(group => group.getAttribute('data-easystud-group-id'))
+                .filter(Boolean).join('\n'));
         } else if (action === 'group-move-selected') {
             const button = root.querySelector('[data-easystud-move-selected-groups]');
             if (button) {
@@ -8688,6 +8882,8 @@ const bindContextMenu = (root, courseId) => {
         } else if (action === 'copy-grouping-name') {
             const name = target.querySelector('.local-groupimport-easystud-grouping__name');
             copyText(name ? name.textContent : '');
+        } else if (action === 'copy-grouping-id') {
+            copyText(target.getAttribute('data-easystud-grouping-id') || '');
         } else if (action === 'member-move-selected') {
             root.dispatchEvent(new CustomEvent('easystud:move-members', {detail: {
                 members: getContextItems('member', target),
@@ -8724,6 +8920,100 @@ const bindContextMenu = (root, courseId) => {
             hideMenu();
         }
     });
+
+    // Desktop flyouts open on hover after a short intent delay and stay open
+    // while the pointer travels to (or rests in) their own submenu.
+    const isHoverMenu = () => !menu.hidden && !menu.classList.contains('is-mobile-sheet');
+    submenuGroups.forEach(group => {
+        group.addEventListener('mouseenter', () => {
+            if (!isHoverMenu() || group.classList.contains('is-flattened')) {
+                return;
+            }
+            clearHoverTimer();
+            if (openGroup === group) {
+                return;
+            }
+            hoverTimer = window.setTimeout(() => {
+                hoverTimer = null;
+                openSubmenu(group, false);
+                openedByHover = true;
+            }, 120);
+        });
+        group.addEventListener('mouseleave', () => {
+            if (openGroup !== group) {
+                clearHoverTimer();
+            }
+        });
+    });
+    menu.addEventListener('mouseover', event => {
+        if (!openGroup || !isHoverMenu() || !menuList || hoverTimer !== null) {
+            return;
+        }
+        const entry = Array.from(menuList.children).find(child => child.contains(event.target));
+        if (!entry || entry === openGroup || entry.hasAttribute('data-easystud-context-separator')) {
+            return;
+        }
+        hoverTimer = window.setTimeout(() => {
+            hoverTimer = null;
+            closeSubmenu(openGroup);
+        }, 120);
+    });
+
+    // Menu keyboard: arrows/Home/End move within the current level, the
+    // forward arrow enters a submenu, back arrow or Escape leaves it.
+    const levelMoves = {
+        ArrowDown: (items, index) => items[(index + 1) % items.length],
+        ArrowUp: (items, index) => items[index <= 0 ? items.length - 1 : index - 1],
+        Home: items => items[0],
+        End: items => items[items.length - 1],
+    };
+    const leaveSubmenu = () => {
+        const toggle = getGroupParts(openGroup).toggle;
+        closeSubmenu(openGroup);
+        if (toggle) {
+            toggle.focus({preventScroll: true});
+        }
+    };
+    // Back arrow or Escape leaves the open submenu; the forward arrow enters one.
+    const handleSubmenuKey = (event, active, inSubmenu) => {
+        const rtl = isMenuRtl();
+        if (inSubmenu && (event.key === (rtl ? 'ArrowRight' : 'ArrowLeft') || event.key === 'Escape')) {
+            // Keep the document-level Escape from closing the whole menu.
+            event.stopPropagation();
+            leaveSubmenu();
+            return true;
+        }
+        if (event.key === (rtl ? 'ArrowLeft' : 'ArrowRight') && active && menu.contains(active) &&
+                active.matches('[data-easystud-context-submenu-toggle]')) {
+            openSubmenu(active.closest('[data-easystud-context-group]'), true);
+            return true;
+        }
+        return false;
+    };
+    menu.addEventListener('keydown', event => {
+        if (menu.hidden) {
+            return;
+        }
+        const active = document.activeElement;
+        const openSubmenuElement = getGroupParts(openGroup).submenu;
+        const inSubmenu = !!(openSubmenuElement && active && openSubmenuElement.contains(active));
+        if (handleSubmenuKey(event, active, inSubmenu)) {
+            event.preventDefault();
+            return;
+        }
+        const move = Object.prototype.hasOwnProperty.call(levelMoves, event.key) ? levelMoves[event.key] : null;
+        const items = move ? getLevelItems(inSubmenu ? openSubmenuElement : null) : [];
+        const next = items.length ? move(items, items.indexOf(active)) : null;
+        if (!next) {
+            return;
+        }
+        event.preventDefault();
+        if (!inSubmenu && openGroup && !openGroup.contains(next)) {
+            closeSubmenu(openGroup);
+        }
+        next.focus({preventScroll: true});
+    });
+
     if (backdrop) {
         backdrop.addEventListener('click', hideMenu);
     }
@@ -8732,8 +9022,8 @@ const bindContextMenu = (root, courseId) => {
             hideMenu();
         }
     });
-    window.addEventListener('scroll', () => {
-        if (!isResponsiveWorkspace()) {
+    window.addEventListener('scroll', event => {
+        if (!isResponsiveWorkspace() && !(event.target instanceof Node && menu.contains(event.target))) {
             hideMenu();
         }
     }, true);

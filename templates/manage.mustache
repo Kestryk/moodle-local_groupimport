@@ -1686,18 +1686,34 @@
         </div>
         <div class="local-groupimport-easystud-context-menu__list">
             {{#contextactions}}
-                <button
-                    type="button"
-                    data-easystud-context-action="{{action}}"
-                    data-easystud-contexts="{{contexts}}"
-                    data-easystud-context-label="{{label}}"
-                    {{#multilabel}}data-easystud-context-multi-label="{{multilabel}}"{{/multilabel}}
-                    {{#fieldkey}}data-easystud-context-field="{{fieldkey}}"{{/fieldkey}}
-                    role="menuitem"
-                >
-                    <span class="fa {{icon}}" aria-hidden="true"></span>
-                    <span data-easystud-context-text="1">{{label}}</span>
-                </button>
+                {{#isitem}}{{#item}}
+                {{> local_groupimport/sm/context_action }}
+                {{/item}}{{/isitem}}
+                {{#isseparator}}
+                <div class="local-groupimport-easystud-context-menu__separator" role="separator" data-easystud-context-separator="1"></div>
+                {{/isseparator}}
+                {{#isgroup}}{{#group}}
+                <div class="local-groupimport-easystud-context-menu__group" role="none" data-easystud-context-group="{{key}}" data-easystud-contexts="{{contexts}}">
+                    <button
+                        type="button"
+                        role="menuitem"
+                        aria-haspopup="menu"
+                        aria-expanded="false"
+                        data-easystud-context-submenu-toggle="{{key}}"
+                        data-easystud-context-label="{{label}}"
+                        {{#multilabel}}data-easystud-context-multi-label="{{multilabel}}"{{/multilabel}}
+                    >
+                        <span class="fa {{icon}}" aria-hidden="true"></span>
+                        <span data-easystud-context-text="1">{{label}}</span>
+                        <span class="fa fa-chevron-right local-groupimport-easystud-context-menu__chevron" aria-hidden="true"></span>
+                    </button>
+                    <div class="local-groupimport-easystud-context-menu__submenu" role="menu" hidden data-easystud-context-submenu="{{key}}" aria-label="{{label}}">
+                        {{#actions}}
+                        {{> local_groupimport/sm/context_action }}
+                        {{/actions}}
+                    </div>
+                </div>
+                {{/group}}{{/isgroup}}
             {{/contextactions}}
         </div>
     </div>

@@ -22,6 +22,67 @@
         @include easyedu.ring;
       }
     }
+
+    // An open submenu keeps its trigger in the hover state.
+    [data-easystud-context-submenu-toggle][aria-expanded="true"] {
+      background: var(--easyedu-primary-soft);
+      color: var(--easyedu-primary-strong);
+
+      .fa {
+        color: var(--easyedu-primary);
+      }
+    }
+
+    .local-groupimport-easystud-context-menu__chevron.fa {
+      color: var(--easyedu-text-muted);
+      font-size: 0.72rem;
+      margin-inline-start: auto;
+    }
+  }
+
+  &-context-menu__separator {
+    border-top: 1px solid var(--easyedu-dropdown-border);
+    margin: 0.2rem 0.35rem;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &-context-menu__group {
+    display: grid;
+    gap: 0.18rem;
+    min-width: 0;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  // Desktop flyout, positioned beside its trigger by the menu controller.
+  &-context-menu__submenu {
+    @include easyedu.menu-surface;
+
+    max-height: calc(100vh - 16px);
+    overflow-y: auto;
+    position: fixed;
+    z-index: 1061;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  // A lone action is shown inline, as a plain top-level item.
+  &-context-menu__group.is-flattened &-context-menu__submenu {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    max-height: none;
+    min-width: 0;
+    overflow: visible;
+    padding: 0;
+    position: static;
   }
 
   [data-selectable-type].is-selected {
