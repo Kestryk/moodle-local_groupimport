@@ -1,0 +1,167 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * EasyStud course manager: dialog helpers (show/hide, keyboard containment, confirmation).
+ *
+ * @module     local_groupimport/local/cm/modal
+ * @copyright  2026 Kevin Jarniac
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+import * as Motion from '../../motion';
+
+// Focus-only state: owned modal listeners and native caller restoration.
+const modalKeyboardState = new WeakMap();
+const modalFocusVisible = node => !!node?.isConnected && !node.disabled && !node.matches(':disabled') &&
+    !node.closest('[hidden], [inert], [aria-hidden="true"]') && node.getClientRects().length > 0 &&
+    getComputedStyle(node).visibility === 'visible';
+const modalTabStops = modal => Array.from(modal.querySelectorAll(
+    'button, a[href], input, select, textarea, summary, [tabindex]'
+)).filter(node => node.tabIndex >= 0 && modalFocusVisible(node));
+
+export const showEasyStudModal = modal => {
+    if (!modal) {
+        return;
+    }
+    const state = modalKeyboardState.get(modal) || {};
+    if (!modal.contains(document.activeElement)) {
+        state.opener = document.activeElement;
+    }
+    modalKeyboardState.set(modal, state);
+    const dialog = modal.querySelector('.local-groupimport-easystud-modal__dialog');
+    if (dialog) {
+        Motion.cancel(dialog);
+    }
+    modal.classList.remove('is-closing');
+    modal.hidden = false;
+};
+
+export const hideEasyStudModal = (modal, callback = null) => {
+    if (!modal || modal.hidden) {
+        if (callback) {
+            callback();
+        }
+        return Promise.resolve(true);
+    }
+    const dialog = modal.querySelector('.local-groupimport-easystud-modal__dialog') || modal;
+    modal.classList.add('is-closing');
+    return Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.28rem'}).then(completed => {
+        if (!completed) {
+            return false;
+        }
+        modal.hidden = true;
+        modal.classList.remove('is-closing');
+        if (callback) {
+            callback();
+        }
+        // Existing callbacks may deliberately focus a visible mobile proxy or
+        // another dialog. Keep that native destination, never restore early.
+        const state = modalKeyboardState.get(modal);
+        const active = document.activeElement;
+        if (modal.hidden && (!modalFocusVisible(active) || modal.contains(active) ||
+                active === document.body) && modalFocusVisible(state?.opener)) {
+            state.opener.focus({preventScroll: true});
+        }
+        return true;
+    });
+};
+
+// Card dialogs reuse their native Close/Cancel and existing exit Motion.
+// A nested control gets first refusal on Escape; never invent a Save action.
+// Keep listeners on the owned dialog, so removed editors need no global cleanup.
+export const bindCardModalKeyboard = (modal, closeModal) => {
+    let state = modalKeyboardState.get(modal);
+    if (!state) {
+        state = {opener: document.activeElement};
+        modalKeyboardState.set(modal, state);
+    }
+    state.close = closeModal;
+    if (!state.bound) {
+        state.bound = true;
+        modal.addEventListener('keydown', event => {
+            if (event.defaultPrevented || modal.hidden) {
+                return;
+            }
+            if (event.key === 'Escape' && !modal.classList.contains('is-closing')) {
+                event.preventDefault();
+                event.stopPropagation();
+                state.close();
+            } else if (event.key === 'Tab') {
+                const stops = modalTabStops(modal);
+                const index = stops.indexOf(document.activeElement);
+                if (!stops.length || index < 0 || (!event.shiftKey && index === stops.length - 1) ||
+                        (event.shiftKey && index === 0)) {
+                    event.preventDefault();
+                    const target = event.shiftKey ? stops[stops.length - 1] : stops[0];
+                    if (target) {
+                        target.focus();
+                    } else {
+                        modal.setAttribute('tabindex', '-1');
+                        modal.focus();
+                    }
+                }
+            }
+        });
+    }
+    return () => {
+        const stops = modalTabStops(modal);
+        const initial = stops.find(node => node.matches('.local-groupimport-easystud-modal__close')) || stops[0];
+        if (initial) {
+            initial.focus({preventScroll: true});
+        } else {
+            modal.setAttribute('tabindex', '-1');
+            modal.focus();
+        }
+    };
+};
+
+export const openConfirmModal = (root, message, onconfirm) => {
+    const modal = root.querySelector('[data-easystud-confirm-modal]');
+    const messageNode = root.querySelector('[data-easystud-confirm-modal-message]');
+    const confirmButton = root.querySelector('[data-easystud-confirm-modal-submit]');
+    const closeButtons = root.querySelectorAll('[data-easystud-close-confirm-modal]');
+    if (!modal || !messageNode || !confirmButton) {
+        onconfirm();
+        return;
+    }
+
+    const closeModal = () => {
+        hideEasyStudModal(modal, () => {
+            confirmButton.onclick = null;
+        });
+    };
+    const focusModal = bindCardModalKeyboard(modal, closeModal);
+
+    messageNode.textContent = message || '';
+    showEasyStudModal(modal);
+    focusModal();
+    confirmButton.onclick = () => {
+        hideEasyStudModal(modal, () => {
+            confirmButton.onclick = null;
+            onconfirm();
+        });
+    };
+
+    closeButtons.forEach(button => {
+        button.onclick = closeModal;
+    });
+
+    modal.onclick = event => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    };
+};

@@ -1,0 +1,173 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * EasyStud course manager: Guide path completion hooks.
+ *
+ * @module     local_groupimport/local/cm/guide_hooks
+ * @copyright  2026 Kevin Jarniac
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+import * as Guide from '../../easyedu_guide';
+import {getSelectedItems} from './selection';
+
+export const emitGuidedCompletion = (root, step, path = 'main') => {
+    root.dispatchEvent(new CustomEvent('easystud:guided-complete', {
+        bubbles: true,
+        detail: {path, step},
+    }));
+
+    // Historical tutorial notifications remain; retired Kit paths no longer
+    // receive broad numeric completions from these unrelated actions.
+};
+
+// Emit only the next unfinished milestone in the distinct Practice path.
+// Presentation/highlights never call business commands or reuse broad legacy
+// completion events (copy/drag/create grouping must not complete this exercise).
+export const emitNativePathCompletion = (root, path, step) => {
+    const checklist = document.querySelector(
+        '[data-easyedu-guide-checklist][data-easyedu-guide-path="' + path + '"]'
+    );
+    if (!checklist || checklist.hidden || !root.isConnected) {
+        return;
+    }
+    const next = checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)');
+    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== step) {
+        return;
+    }
+    root.dispatchEvent(new CustomEvent('easyedu:guide-step-complete', {
+        bubbles: true,
+        detail: {path, step},
+    }));
+};
+
+export const emitPracticeCompletion = (root, step) => emitNativePathCompletion(root, 'practice-membership', step);
+export const emitMemberPathCompletion = (root, step) => emitNativePathCompletion(root, 'reorganise-source-members', step);
+
+// Navigation can portal this exact node outside the workspace on compact screens.
+export const getActivityGuideRoot = root => root.easystudGuideOwner || root.querySelector('[data-easyedu-guide-root]');
+
+// The retained Actions path shares the modern ordered milestone authority.
+// A completed drag must also belong to the session that submitted the action.
+export const emitTryActionsCompletion = (root, step, token = null) => {
+    if (step === 'try-drag') {
+        const current = Guide.getPathContextToken(getActivityGuideRoot(root), 'try-actions');
+        if (!token || !current || token.root !== current.root || token.config !== current.config ||
+                token.epoch !== current.epoch) {
+            return;
+        }
+    }
+    emitNativePathCompletion(root, 'try-actions', step);
+};
+
+export const emitTryActionsSelection = root => {
+    if (getSelectedItems(root, 'participant').length) {
+        emitTryActionsCompletion(root, 'try-selection');
+    }
+};
+
+const activityGroupingSessionIsCurrent = (root, token) => {
+    const current = Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping');
+    return !!token && !!current && token.root === current.root && token.config === current.config &&
+        token.epoch === current.epoch;
+};
+
+export const emitActivityGroupingEntry = (root, id, token) => {
+    if (activityGroupingSessionIsCurrent(root, token) && typeof id === 'string' && /^[1-9]\d*$/.test(id) &&
+            Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
+                .some(grouping => grouping.getAttribute('data-easystud-grouping-id') === id)) {
+        emitNativePathCompletion(root, 'prepare-activity-grouping', 'open-grouping');
+    }
+};
+
+export const emitActivityGroupSelection = root => {
+    const selected = getSelectedItems(root, 'group');
+    if (selected.length && selected.every(group => /^[1-9]\d*$/.test(
+        group.getAttribute('data-easystud-group-id') || ''
+    ))) {
+        emitNativePathCompletion(root, 'prepare-activity-grouping', 'select-groups');
+    }
+};
+
+// Only an explicit native disclosure, after Motion settles, can certify this step.
+export const verifyActivityGrouping = (root, grouping, token) => {
+    const context = Guide.getPathContext(getActivityGuideRoot(root), 'prepare-activity-grouping');
+    if (!activityGroupingSessionIsCurrent(root, token) || !context ||
+            grouping.getAttribute('data-easystud-grouping-id') !== context.destinationId) {
+        return;
+    }
+    const toggle = grouping.querySelector('[data-easystud-collapse-toggle]');
+    const children = grouping.querySelector('.local-groupimport-easystud-tree__children');
+    if (!toggle || toggle.getAttribute('aria-expanded') !== 'true' || !children || children.hidden) {
+        return;
+    }
+    const present = Array.from(children.querySelectorAll('[data-easystud-group-id]'))
+        .filter(group => group.closest('[data-easystud-grouping-id]') === grouping && !group.hidden)
+        .map(group => group.getAttribute('data-easystud-group-id'));
+    if (context.groupIds.length && context.groupIds.every(id => present.includes(id))) {
+        emitNativePathCompletion(root, 'prepare-activity-grouping', 'verify-grouping');
+    }
+};
+
+// Capture before the native asynchronous Group batch, never from its late callback.
+// This bridge stays inert until the additive activity path and schema are installed.
+export const captureActivityGroupingConfirmation = (root, destinationId, groups) => {
+    const path = 'prepare-activity-grouping';
+    const checklist = document.querySelector(
+        '[data-easyedu-guide-checklist][data-easyedu-guide-path="' + path + '"]'
+    );
+    const next = checklist && !checklist.hidden && root.isConnected ?
+        checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)') : null;
+    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== 'confirm-groups' ||
+            !/^[1-9]\d*$/.test(destinationId) || !groups.length) {
+        return null;
+    }
+    const token = Guide.getPathContextToken(getActivityGuideRoot(root), path);
+    const groupIds = groups.map(group => group.getAttribute('data-easystud-group-id'));
+    const knownDestination = Array.from(root.querySelectorAll('[data-easystud-grouping-id]'))
+        .some(grouping => grouping.getAttribute('data-easystud-grouping-id') === destinationId);
+    if (!token || !knownDestination || groupIds.some(id => typeof id !== 'string' || !/^[1-9]\d*$/.test(id))) {
+        return null;
+    }
+    return Object.freeze({
+        token,
+        requestCount: groups.length,
+        context: Object.freeze({destinationId, groupIds: Object.freeze([...new Set(groupIds)])}),
+    });
+};
+
+export const commitActivityGroupingConfirmation = (root, evidence, responses) => {
+    if (!evidence || responses.length !== evidence.requestCount ||
+            responses.some(response => !response || typeof response !== 'object' || response.success === false)) {
+        return false;
+    }
+    const checklist = document.querySelector(
+        '[data-easyedu-guide-checklist][data-easyedu-guide-path="prepare-activity-grouping"]'
+    );
+    const next = checklist && !checklist.hidden && root.isConnected ?
+        checklist.querySelector('[data-easyedu-guide-step-id]:not(.is-complete)') : null;
+    if (!next || next.disabled || next.getAttribute('data-easyedu-guide-step-id') !== 'confirm-groups' ||
+            !Guide.setPathContext(getActivityGuideRoot(root), 'prepare-activity-grouping', evidence.context, evidence.token)) {
+        return false;
+    }
+    emitNativePathCompletion(root, 'prepare-activity-grouping', 'confirm-groups');
+    return true;
+};
+export const emitEditorInspectionCompletion = (root, type, step) => {
+    if (type === 'group' || type === 'grouping') {
+        emitNativePathCompletion(root, 'inspect-' + type + '-settings', step);
+    }
+};

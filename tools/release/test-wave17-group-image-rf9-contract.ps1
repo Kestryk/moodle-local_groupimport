@@ -27,6 +27,9 @@ function Assert-Absent([string]$label, [string]$content, [string]$fragment) {
 
 $manager = Read-RequiredFile 'amd\src\course_manager.js'
 $managerBuild = Read-RequiredFile 'amd\build\course_manager.min.js'
+# T055: the course manager code lives in amd/src/local/cm (and amd/build/local/cm); read it with course_manager.js.
+$manager = $manager + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/src/local/cm') -Filter '*.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
+$managerBuild = $managerBuild + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/build/local/cm') -Filter '*.min.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
 $modal = Read-RequiredFile 'scss\components\_settings-modal.scss'
 $styles = Read-RequiredFile 'styles.css'
 $ajax = Read-RequiredFile 'ajax.php'
