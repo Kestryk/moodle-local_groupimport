@@ -215,7 +215,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
 
 if ($hassiteconfig) {
     require_once(__DIR__ . '/lib.php');
-    global $ADMIN, $DB, $PAGE;
+    global $ADMIN, $DB, $OUTPUT, $PAGE;
 
     // Moodle also loads this file while building navigation on other admin
     // pages, sometimes during header rendering. Register the settings tree
@@ -226,6 +226,7 @@ if ($hassiteconfig) {
         $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
         $PAGE->requires->js('/local/groupimport/js/easyedu_colour_picker.js', true);
         $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);
+        $PAGE->requires->js('/local/groupimport/js/admin_guide_reset.js');
         $PAGE->requires->js_call_amd('local_groupimport/admin_choices', 'init', [[
             'search' => get_string('searchfilteroptions', 'local_groupimport'),
             'empty' => get_string('nofilteroptions', 'local_groupimport'),
@@ -329,9 +330,28 @@ if ($hassiteconfig) {
         'local-groupimport-admin-settings local-groupimport-admin-settings--features',
         ['data-local-groupimport-admin-features' => '1']
     );
+    // The confirmation opens in place (js/admin_guide_reset.js); the link stays the
+    // no-JavaScript fallback to the standalone confirmation page.
+    $resetdialog = '';
+    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER &&
+            $PAGE->url->compare(new moodle_url('/admin/settings.php'), URL_MATCH_BASE) &&
+            $PAGE->url->get_param('section') === 'local_groupimport') {
+        $reseturl = new moodle_url('/local/groupimport/reset_guide_welcome.php');
+        $resetdialog = $OUTPUT->render_from_template('local_groupimport/guide_welcome_reset', [
+            'inline' => true,
+            'title' => get_string('guidewelcomereset', 'local_groupimport'),
+            'description' => get_string('guidewelcomeresetconfirm', 'local_groupimport'),
+            'confirm' => get_string('guidewelcomereset', 'local_groupimport'),
+            'cancel' => get_string('cancel'),
+            'action' => $reseturl->out(false),
+            'sesskey' => sesskey(),
+        ]);
+    }
     $featureshtml .= html_writer::div(
         html_writer::link(new moodle_url('/local/groupimport/reset_guide_welcome.php'),
-            get_string('guidewelcomereset', 'local_groupimport'), ['class' => 'easyedu-button--secondary']) .
+            get_string('guidewelcomereset', 'local_groupimport'),
+            ['class' => 'easyedu-button--secondary', 'data-local-groupimport-welcome-reset-open' => '1']) .
+        $resetdialog .
         html_writer::tag('p', get_string('guidewelcomeresethelp', 'local_groupimport'),
             ['class' => 'easyedu-caption easyedu-form-note']),
         'easyedu-ui'
