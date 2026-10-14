@@ -43,3 +43,11 @@ progress-deadline cases passing, purgePASS; A-CHECKLIST Kit0.4.209 adopts
 active inner-list tracking, reduced existing numbered instruction and compact
 overlap folding. Source/native/human status remains in the scoped
 docs/testing/a-checklist-2026-10-14.md record. No shared planning file edited.
+
+Evidence update for the planning owner: A-CHECKLIST served63d77549 with
+Kit9425ee1/0.4.209. Run20261014T153602743Z-26884 FAILED during its initial
+target preparation; no checklist native state reached. Cold page ready21.8s
+without degraded passes that loading slice only. Next successor
+tools/playwright/a-checklist-active-ready-native.spec.js is prepared/nonrun;
+keep predecessor and human/business acceptance open. Registry row above should
+point to the successor and classify both as Review, not CI.

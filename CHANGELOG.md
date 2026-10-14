@@ -1,5 +1,11 @@
 # Changelog
 
+- 2026-10-14 [N0] Record A-CHECKLIST Source1fb3206a/Kit9425ee1 served63d77549.
+  Principal cold page reaches ready21.8s without degraded, validating that
+  loading slice only. Preserve FAILED native recipe: missing target in its
+  initial FR1600 preparation, no checklist state reached. Prepare a separate
+  visible-heading successor, not run; checklist/human acceptance stays open.
+
 - 2026-10-14 [N2] A-CHECKLIST adopts Kit0.4.209: scroll the active step inside
   the checklist list, retain its numbered instruction in reduced Discovery,
   fold the compact panel when its target overlaps and recover hidden focus.
