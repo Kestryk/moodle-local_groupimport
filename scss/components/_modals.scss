@@ -138,6 +138,13 @@
   // existing consumer Motion state/selector is retained here.
   @include messages.moodle-message-dialog;
 
+  // Let the native flex title shrink beside Close and wrap without widening the dialog.
+  .modal-header .modal-title {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   &.is-closing .local-groupimport-easystud-message-modal__dialog {
     animation: easyedu-modal-out var(--easyedu-motion-fast) ease both;
   }

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N2] T059: wrap long native Message titles inside the existing dialog width; preserve Close and add remaining-surface native successors with mobile selection cleanup.
+
 - 2026-10-14 [N1] K16: participant Reset consumes effective secondary Cancel recipe and 38px field height; exact desktop parity, mobile Reset38px, mobile Cancel comparison blocked by missing compact Search groups command.
 
 - 2026-10-14 [N1] T058 Rollback: safe initial Cancel focus, modal Tab loop, scoped Escape and return to History opener; 24 native cycles PASS on Perf in both modes.
