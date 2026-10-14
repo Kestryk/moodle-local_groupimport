@@ -41,6 +41,13 @@ if (require.main === module) {
         const [sassModule, output, style = 'conservative'] = process.argv.slice(2);
         if (!sassModule || !output) throw Error('Usage: build-styles.cjs <Sass module> <output CSS> [expanded|conservative]');
         assert(['expanded', 'conservative'].includes(style));
+        // Once page CSS is adopted, never accidentally restore the global bundle.
+        if (path.resolve(output) === path.resolve(__dirname, '../../styles.css')) {
+            const postcssModule = process.argv[5] || require.resolve('postcss');
+            module.exports = {compactDeclarations};
+            console.log(JSON.stringify(require('./build-page-styles.cjs').build(sassModule, postcssModule)));
+            return;
+        }
         const sass = require(path.resolve(sassModule));
         assert(sass.info.includes('1.79.1'), 'Preserve established consumer Sass 1.79.1');
         const expanded = sass.compile(path.resolve(__dirname, '../../scss/easystud.scss'), {
