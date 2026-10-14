@@ -1891,7 +1891,9 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 }
 .local-groupimport-easystud-group__select-all-row:not([hidden]) {display: flex;justify-content: flex-end;margin-top: 0.35rem;
 }
-.local-groupimport-easystud-group__select-all-row:not([hidden]) + .local-groupimport-easystud-group__members {margin-top: 0.2rem;
+.local-groupimport-easystud-group__members-toggle:not([hidden]) + .local-groupimport-easystud-group__select-all-row:not([hidden]) {align-items: center;block-size: 1.55rem;margin-top: -1.55rem;pointer-events: none;position: relative;
+}
+.local-groupimport-easystud-group__members-toggle:not([hidden]) + .local-groupimport-easystud-group__select-all-row:not([hidden]) > * {pointer-events: auto;
 }
 .local-groupimport-easystud-group__select-all.btn {color: var(--easyedu-primary);font-size: var(--easyedu-font-size-caption);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.4;text-decoration: none;
 }

@@ -121,19 +121,6 @@
             </button>
         {{/withingrouping}}
     </div>
-    {{! R10-05: shown from three members; the button keeps both labels and aria templates for its toggle. }}
-    <div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="{{id}}"{{^canselectallmembers}} hidden{{/canselectallmembers}}>
-        <button
-            type="button"
-            class="btn btn-link p-0 local-groupimport-easystud-group__select-all"
-            data-easystud-group-select-all="{{id}}"
-            data-easystud-select-label="{{selectallmemberslabel}}"
-            data-easystud-deselect-label="{{deselectallmemberslabel}}"
-            data-easystud-select-aria="{{selectallmembersoftemplate}}"
-            data-easystud-deselect-aria="{{deselectallmembersoftemplate}}"
-            aria-label="{{selectallmembersoflabel}}"
-        >{{selectallmemberslabel}}</button>
-    </div>
     <ul class="local-groupimport-easystud-group__members" data-easystud-group-members="{{id}}">
         {{#members}}
             <li
@@ -179,6 +166,20 @@
     >
         <span class="fa fa-chevron-down" aria-hidden="true"></span>
     </button>
+    {{! R10-05: shown from three members, laid over the right of the members toggle row (no extra height);
+        the button keeps both labels and aria templates for its toggle. }}
+    <div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="{{id}}"{{^canselectallmembers}} hidden{{/canselectallmembers}}>
+        <button
+            type="button"
+            class="btn btn-link p-0 local-groupimport-easystud-group__select-all"
+            data-easystud-group-select-all="{{id}}"
+            data-easystud-select-label="{{selectallmemberslabel}}"
+            data-easystud-deselect-label="{{deselectallmemberslabel}}"
+            data-easystud-select-aria="{{selectallmembersoftemplate}}"
+            data-easystud-deselect-aria="{{deselectallmembersoftemplate}}"
+            aria-label="{{selectallmembersoflabel}}"
+        >{{selectallmemberslabel}}</button>
+    </div>
     <div class="local-groupimport-easystud-group-email" data-easystud-group-email-panel="{{id}}" hidden>
         <textarea
             class="form-control form-control-sm"
