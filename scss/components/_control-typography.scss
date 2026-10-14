@@ -17,12 +17,13 @@
     @include foundations.foundation-button($secondary: true, $density: compact);
   }
 
-  // K16: Cancel's later public class resolves to the regular secondary recipe.
+  // K16: both peers use the same regular secondary recipe and explicit height.
+  [data-easystud-container-search-cancel],
   .easyedu-filter-reset.easyedu-filter-reset--field-peer[data-easystud-reset-filters] {
     @include foundations.foundation-button($secondary: true);
     & {
       align-self: stretch;
-      // Match the regular search field's 38px row even when mobile stacks Reset below it.
+      // Keep38px when a mobile search field makes its flex row taller.
       block-size: 2.375rem;
     }
   }
