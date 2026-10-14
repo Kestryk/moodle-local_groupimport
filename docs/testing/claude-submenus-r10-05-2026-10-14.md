@@ -27,3 +27,20 @@ Preserve predecessor unchanged. claude-submenus-trigger-native.spec.js is a
 prepared NOT RUN successor using desktop headline right-click and mobile button,
 with the same keyboard oracles. No product source altered to fix the harness.
 N2 durable relay updated after publication; no acknowledgement claimed.
+
+## Guide n10 publication and trigger successor
+Claude8229f81c ->Source6bff40b4 ->runtime41515be6, purgePASS. Only generated
+AMD conflicts, rebuilt from cleanly merged source; syntaxPASS. N2 relay requests
+business-path10 replay separately. Previous proof75db111b served7d0c3295.
+Run184708770Z-39300 FAILED before submenu: desktop right-click followed by
+hidden menu. No pageerrors; cleanupPASS. Existing foundations recipe explicitly
+preselects and settles the card to avoid intentional close-on-scroll. Preserve
+this predecessor; settled successor reuses that preparation and same keyboard
+oracles. No product Motion or reserved source changed.
+
+Final run easystud-authenticated-20261014T184835406Z-20960 PASSED FR1280/390:
+copy submenu Right opens and focuses first action; Left returns to toggle;
+click reopens, Escape closes submenu then entire menu. Zero page errors,
+owned child/credentials/lease cleaned, no fixture. Two screenshots pinned30days.
+Presentation/keyboard proof only: no clipboard/paste/business operation executed,
+R10-05 search/pagination scope and Guide10 business replay remain separate.

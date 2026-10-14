@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N0] Record Claude8229f81c served41515be6 and passing settled submenu keyboard recipe FR1280/390; preserve failed trigger predecessors. Guide10 business replay requested from N2.
+
 - 2026-10-14 [N1] Integrate Claude context submenus/keyboard and R10-05 group Select all on the members-arrow row; regenerate AMD and conservative CSS. N2 recipes must open the parent submenu before paste/copy actions.
 
 - 2026-10-14 [N0] Record grouped runtime78a9ce34 and purge PASS: FR1280/390 component loading/ready plus admin390 Cancel/Escape/opener focus PASS, zero business writes. K16 upstream evidence remains separately attributed.
