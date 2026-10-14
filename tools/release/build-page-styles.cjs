@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 // Compile once, then retain ordered rule subsequences for each accessible page.
 // Never regroup declarations or move rules across media/supports boundaries.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
@@ -7,7 +7,7 @@ const root=path.resolve(__dirname,'../..');
 function targets(selector){
  const sm=/local-groupimport-easystud(?!-admin)|easyedu-guide|local-groupimport-tutorial/.test(selector);
  const admin=/local-groupimport-admin|page-admin-setting-local_groupimport|easyedu-welcome-reset/.test(selector);
- const mass=/local-groupimport-import|path-local-groupimport-index/.test(selector);
+ const mass=/local-groupimport-import|path-local-groupimport-index|local-groupimport-easystud__navigation/.test(selector);
  // Mixed consumer selectors retain their shared declarations on every named consumer.
  return sm||admin||mass?{sm,admin,mass}:{sm:true,admin:true,mass:true};
 }
