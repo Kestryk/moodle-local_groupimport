@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N0] Close A-CHECKLIST native presentation evidence: FR1600/1280 scoped checks and FR390 overlap/focus/completion PASS; retain failed harness predecessors. Business replay and human acceptance remain separate; Penpot belongs to Claude.
+
 - 2026-10-14 [N0] Record A-CHECKLIST Source1fb3206a/Kit9425ee1 served63d77549.
   Principal cold page reaches ready21.8s without degraded, validating that
   loading slice only. Preserve FAILED native recipe: missing target in its
