@@ -1,5 +1,11 @@
 # Changelog
 
+- 2026-10-14 [N1] Record the four Claude commits served on f20b44a5 and the
+  completed Moodle2026101400 upgrade with obsolete rendering config removed.
+  Retain the single native run FAILED at its early five-second startup gate,
+  before K16; preserve its recipe and prepare a request-ready successor for
+  Codex2 without rerunning. Static/session contracts pass; native/human open.
+
 - 2026-10-14 [N1] Group Claude's on-demand-only/version2026101400, no loading
   empty state, session-only Later and mobile Grouping Search integrations;
   rebuild merged Course Manager preserving T058. Isolate publication from
