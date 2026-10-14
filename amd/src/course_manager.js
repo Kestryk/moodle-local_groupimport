@@ -904,8 +904,7 @@ const renderGroupGroupingTags = (container, groupingnames) => {
     summaryNode.appendChild(icon);
 
     details.appendChild(list);
-    group.insertBefore(details, group.querySelector(':scope > [data-easystud-group-select-all-row], ' +
-        ':scope > .local-groupimport-easystud-group__members') || null);
+    group.insertBefore(details, group.querySelector(':scope > .local-groupimport-easystud-group__members') || null);
     group.classList.toggle('is-groupings-expanded', wasExpanded);
     details.hidden = !wasExpanded;
 };
@@ -2144,7 +2143,7 @@ const ensureGroupMemberSearchControls = (root, group) => {
             '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-group-member-search-cancel="' +
                 groupid + '">' + (labels.cancel || '') + '</button>' +
         '</div>';
-    group.insertBefore(panel, group.querySelector(':scope > [data-easystud-group-select-all-row]') || members);
+    group.insertBefore(panel, members);
 };
 
 const normaliseCardMenuButton = (button, root) => {
@@ -4103,12 +4102,12 @@ const createGroupElement = (root, groupdata) => {
                 '</div>' +
             '</form>' +
         '</div>' +
-        groupSelectAllRowHtml(groupdata.id, labels) +
         '<ul class="local-groupimport-easystud-group__members" data-easystud-group-members="' + groupdata.id + '"></ul>' +
         '<span class="local-groupimport-easystud-group__members-more" data-easystud-group-members-more="1" hidden>...</span>' +
         '<button type="button" class="local-groupimport-easystud-group__members-toggle" data-easystud-group-members-toggle="1" hidden>' +
             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
         '</button>' +
+        groupSelectAllRowHtml(groupdata.id, labels) +
         '<div class="local-groupimport-easystud-group-email" data-easystud-group-email-panel="' + groupdata.id + '" hidden>' +
             '<textarea class="form-control form-control-sm" rows="3" placeholder="' + (labels.pasteemailsplaceholder || '') + '" data-easystud-group-email-box="' + groupdata.id + '"></textarea>' +
             '<div class="local-groupimport-easystud-inline-actions">' +
