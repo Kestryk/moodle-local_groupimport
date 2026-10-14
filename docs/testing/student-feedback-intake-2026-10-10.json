@@ -1,4 +1,19 @@
 {
+  "codex2LoadingStallReplay20261014": {
+    "status": "dedicated-copy-native-stall-and-recovery-pass",
+    "documentation": "docs/testing/codex2-loading-stall-2026-10-14.md",
+    "originalCommit": "b5f44a7a",
+    "integrationCommit": "e552cb05",
+    "servedCommit": "c155904b",
+    "copy": "http://localhost:8051",
+    "mode": "on-demand-only",
+    "owned": {"run": "easystud-authenticated-20261014T154535295Z-46208", "timeoutMs": 8710, "records": 84, "result": "PASS"},
+    "late": {"run": "easystud-authenticated-20261014T154800676Z-40264", "timeoutMs": 8724, "records": 84, "result": "PASS"},
+    "nativeVerificationScope": "Real blocked AMD, native amd-timeout, ready recovery, checkbox Tab/Space at390/768/320; no principal stall or business writes",
+    "nativeVerified": true,
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "codex2PrincipalK16Replay20261014": {
     "status": "principal-fr1280-pass-mobile-fr-en-size-failed-existing-fix-awaiting-publication",
     "documentation": "docs/testing/codex2-principal-k16-2026-10-14.md",

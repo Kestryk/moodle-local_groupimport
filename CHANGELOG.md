@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] Single-mode late/owned loading successors on8051 preserve blocked-AMD timeout at8724/8710ms after Claude's progress watchdog, native ready recovery and checkbox Tab/Space at390/768/320. One failed login-bound predecessor retained; published bootstrap alone synced/purged, no product source change.
+
 - 2026-10-14 [N1] Replay Codex1's exact on-demand principal K16 successor: FR1280 passes, FR390 fails Cancel42.390625/Reset38 at line73. Separate immutable evidence successors confirm EN390 too; existing6a905703 awaits principal integration. No product change or global acceptance.
 
 - 2026-10-14 [N1] K16 includes visible grouping-search Cancel in the existing regular secondary38px Reset peer recipe. Requested FR/EN390 menu/filter/restore/focus and exact metrics PASS; global run remains FAILED on additional collapsed desktop reference recipe. Native copy served; main/Penpot/human pending.
