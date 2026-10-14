@@ -27,3 +27,9 @@ Raster mobile group review identifies extra legacy create-card inline padding
 inside the already padded lane; remove it generically while desktop segmented
 lanes retain16px. Edge successor measures actual field/card boundaries and
 captures the panel contents, rather than only the top navigation viewport.
+
+Edge run235351112Z-55364: desktop1600/1280 PASS leading/trailing delta0 for
+participants/groups/groupings; mobile participants fails2.875px leading offset
+from legacy responsive list padding0.18rem. Preserve run/spec. Reset lane-list
+inline padding at the adapter; desktop segmented-lane16px wins by specificity.
+Final successor retains exact1px criterion and only reruns the three mobile views.

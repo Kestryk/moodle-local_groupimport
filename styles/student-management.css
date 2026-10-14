@@ -11293,7 +11293,10 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 #local-groupimport-easystud .local-groupimport-easystud-create-card,
 #local-groupimport-easystud .local-groupimport-easystud-create-row {padding-inline: 0;
 }
-#local-groupimport-easystud .local-groupimport-easystud-structure-groups__list {padding-inline: 0;
+#local-groupimport-easystud .local-groupimport-easystud__participant-list,
+#local-groupimport-easystud .local-groupimport-easystud-participant-groups__list,
+#local-groupimport-easystud .local-groupimport-easystud-structure-groups__list,
+#local-groupimport-easystud .local-groupimport-easystud-tree__groupings {padding-inline: 0;
 }
 #local-groupimport-easystud .local-groupimport-easystud-tree {padding-inline-end: 0;
 }
