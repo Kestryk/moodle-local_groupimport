@@ -70,3 +70,24 @@ child stopped, lease released, no fixture requested or course mutation. External
 logs/JSON/context retained; no capture reached, media manifest0files; dry-run
 retention0candidates/0deletions. Source proof stays unserved until the next
 product publication. Next native task is the A-CHECKLIST successor, then A3V3.
+
+## Native presentation closure, 14 October (supersedes open status above)
+
+Retain all failed predecessors unchanged. Run suffixes under the authenticated
+artifact root: 161238975Z-46084 failed harness navigation/storage comparison;
+162104713Z-3296 passed FR1600 internal scroll (757px), full reduced numbered
+instruction and completion message, then failed an incorrect visible Return
+oracle (the existing Discovery footer stays hidden). 162550951Z-37852 passed
+FR1280 including completion and FR390 reduced instruction, then lacked a
+visible participant-card overlap candidate. These are not globally passing runs.
+Final easystud-authenticated-20261014T163233936Z-44272 PASSED FR390 with an
+actual visible native search/reset target: auto-fold, Restore focus, full
+numbered instruction and completion. Reduced panel359px, overflow0, one row.
+Zero page errors/course writes, original Guide config/storage restored;
+credentials cleared, child stopped, runtime lease released, no fixture.
+The three versioned successors preserve predecessor evidence and distinguish
+native presentation/public QA events from N2 business-path replay. The latter,
+human acceptance and Moodle4.5 remain open. No further product change needed.
+Penpot is exclusively Claude's responsibility (correcting earlier Kevin attribution):
+Guide checklist/active row/Restore; expanded, reduced, target overlap, focus,
+completion; Student Management FR1600/1280/390; Kit0.4.209.

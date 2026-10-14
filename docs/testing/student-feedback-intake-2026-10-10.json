@@ -1,21 +1,21 @@
 {
   "aChecklist20261014": {
-    "status": "served-checklist-native-open-recipe-target-preparation-failed",
+    "status": "served-native-presentation-verified-business-replay-separate",
     "kitVersion": "0.4.209",
     "kitCommit": "9425ee1",
     "documentation": "docs/testing/a-checklist-2026-10-14.md",
     "nativeSpec": "tools/playwright/a-checklist-active-native.spec.js",
-    "nativeVerified": false,
+    "nativeVerified": true,
     "humanAccepted": false,
     "integrationCommit": "1fb3206a",
     "runtimeCommit": "63d77549",
     "previewServed": true,
     "nativeRun": "easystud-authenticated-20261014T153602743Z-26884",
-    "nativeVerificationScope": "Page ready21803ms without degraded; checklist recipe stopped during initial FR1600 target preparation, before opening/advancing any checklist. No checklist native PASS.",
-    "nativeSuccessorSpec": "tools/playwright/a-checklist-active-ready-native.spec.js",
-    "nativeSuccessorRun": false,
+    "nativeVerificationScope": "Composite scoped proof: FR1600/1280 inner scrolling and reduced full instruction; FR1280 completion; final FR390 PASS real target overlap, Restore focus and completion. Historical failed runs retained; presentation/API only, no business-path certification.",
+    "nativeSuccessorSpec": "tools/playwright/a-checklist-mobile-overlap-native.spec.js",
+    "nativeSuccessorRun": "easystud-authenticated-20261014T163233936Z-44272",
     "scope": "Internal list scroll; reduced numbered active instruction; compact auto-fold on target overlap. No completion, storage, template or reserved Claude source changes.",
-    "visualPropagation": "Guide checklist/active-row/reduced/Restore; Student Management; expanded, reduced, auto-fold, focus, completed; FR1600/1280/390. Penpot managed by Kevin."
+    "visualPropagation": "Guide checklist/active-row/reduced/Restore; Student Management; expanded, reduced, auto-fold, focus, completed; FR1600/1280/390. Penpot managed exclusively by Claude."
   },
   "loadingProgressIntegration20261014": {
     "originalCommit": "b5f44a7a",

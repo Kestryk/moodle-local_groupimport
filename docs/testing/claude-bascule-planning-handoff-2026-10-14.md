@@ -51,3 +51,10 @@ without degraded passes that loading slice only. Next successor
 tools/playwright/a-checklist-active-ready-native.spec.js is prepared/nonrun;
 keep predecessor and human/business acceptance open. Registry row above should
 point to the successor and classify both as Review, not CI.
+
+Latest owner handoff: A-CHECKLIST native presentation now verified by scoped
+FR1600/1280 results and final FR390 run20261014T163233936Z-44272 PASS.
+Preserve all predecessors. Register current-slide, remaining and mobile-overlap
+native specs as local-supervised Review candidates, not CI. N2 business replay
+can proceed; no business completion or human acceptance inferred. Claude owns
+all Penpot propagation. Next: Claude0df9010c/3854f5ec and partial N2 6a905703.
