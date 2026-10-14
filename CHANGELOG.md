@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N0] T059: reconcile16 existing PASS cases for Move/Confirmation and Group/Grouping settings at768/390 in both modes, including long-title bounds; no redundant native replay.
+
 - 2026-10-14 [N2] T059: wrap long native Message titles inside the existing dialog width; preserve Close and add remaining-surface native successors with mobile selection cleanup.
 
 - 2026-10-14 [N1] K16: participant Reset consumes effective secondary Cancel recipe and 38px field height; exact desktop parity, mobile Reset38px, mobile Cancel comparison blocked by missing compact Search groups command.

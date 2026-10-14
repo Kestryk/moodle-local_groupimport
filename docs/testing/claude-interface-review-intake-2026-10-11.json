@@ -880,7 +880,8 @@
     {
       "id": "T059",
       "receivedScope": "[US6] **Passe tablette (768–1024) et mobile (390)** des trois surfaces et des modales, non couverte par la revue Claude.",
-      "status": "queued",
+      "status": "requested-remaining-dialog-cases-verified; broader-US6-responsive-acceptance-open",
+      "remainingDialogs20261014": "16 existing native PASS cases: Move/Confirmation and Group/Grouping settings at768/390, legacy/reactive, native and synthetic long-title bounds; docs/testing/t059-remaining-closure-2026-10-14.json. Candidate CSS evidence on Perf, integrated-publication smoke and human acceptance remain separate.",
       "nativeVerified": false,
       "humanAccepted": false,
       "related": [],
