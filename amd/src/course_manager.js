@@ -959,7 +959,8 @@ const renderGroupGroupingTags = (container, groupingnames) => {
     summaryNode.appendChild(icon);
 
     details.appendChild(list);
-    group.insertBefore(details, group.querySelector(':scope > .local-groupimport-easystud-group__members') || null);
+    group.insertBefore(details, group.querySelector(':scope > [data-easystud-group-select-all-row], ' +
+        ':scope > .local-groupimport-easystud-group__members') || null);
     group.classList.toggle('is-groupings-expanded', wasExpanded);
     details.hidden = !wasExpanded;
 };
@@ -1417,6 +1418,110 @@ const ensureFullGroupMembers = group => {
     updateSelectionAvailability(root);
 };
 
+/**
+ * R10-05: member rows rendered in a group card.
+ *
+ * @param {HTMLElement} group Group card.
+ * @returns {HTMLElement[]}
+ */
+const getGroupMemberRows = group =>
+    Array.from(group.querySelectorAll(':scope > [data-easystud-group-members] > [data-selectable-type="member"]'));
+
+/**
+ * R10-05: the member search typed in a group card, normalised as applyGroupMemberSearchToGroup reads it.
+ *
+ * @param {HTMLElement} group Group card.
+ * @returns {String} Empty when the card is not searched.
+ */
+const getGroupMemberSearchQuery = group => {
+    const groupid = group.getAttribute('data-easystud-group-id') || '';
+    const input = group.querySelector(':scope > [data-easystud-group-member-search-panel="' + groupid + '"] ' +
+        '[data-easystud-group-member-search="' + groupid + '"]');
+    return normalise(input ? input.value : '');
+};
+
+/**
+ * R10-05: whether every member of a group card is selected. A lean catalog card counts its
+ * members in the on-demand selection, since its other rows are not rendered.
+ *
+ * @param {HTMLElement} group Group card.
+ * @returns {Boolean}
+ */
+const isGroupFullySelected = group => {
+    if (group.hasAttribute('data-easystud-sm-members-partial')) {
+        const model = getOnDemandModel();
+        const key = group.getAttribute('data-easystud-sm-catalog');
+        if (!model || !model.selectedMembers || !key) {
+            return false;
+        }
+        const prefix = group.getAttribute('data-easystud-group-id') + ':';
+        let selected = 0;
+        model.selectedMembers.forEach((catalogkey, memberkey) => {
+            if (catalogkey === key && memberkey.startsWith(prefix)) {
+                selected++;
+            }
+        });
+        return selected >= getGroupMemberCount(group);
+    }
+    const rows = getGroupMemberRows(group);
+    return rows.length > 0 && rows.every(row => row.classList.contains(selectedClass));
+};
+
+/**
+ * R10-05: show the member "Select all" of a card from three members (its total, not its
+ * rendered rows) and give it its label. Under a member search it only adds the matching
+ * members, so it stays "Select all".
+ *
+ * @param {HTMLElement} group Group card.
+ * @param {String|null} activetype Active selection type, or null to read it from the root.
+ */
+const syncGroupSelectAll = (group, activetype = null) => {
+    const button = group.querySelector(':scope > [data-easystud-group-select-all-row] > [data-easystud-group-select-all]');
+    if (!button) {
+        return;
+    }
+    const visible = getGroupMemberCount(group) > 2;
+    button.parentElement.hidden = !visible;
+    if (!visible) {
+        return;
+    }
+    const searching = getGroupMemberSearchQuery(group) !== '';
+    const state = !searching && isGroupFullySelected(group) ? 'deselect' : 'select';
+    const label = button.getAttribute('data-easystud-' + state + '-label') || '';
+    if (button.textContent !== label) {
+        button.textContent = label;
+    }
+    const name = group.querySelector(':scope > .local-groupimport-easystud-group__header .local-groupimport-easystud-group__name');
+    button.setAttribute('aria-label', (button.getAttribute('data-easystud-' + state + '-aria') || '')
+        .replace('__name__', name ? name.textContent.trim() : ''));
+    const root = group.closest('[data-easystud-selection-type]');
+    const type = activetype === null && root ? root.getAttribute('data-easystud-selection-type') : activetype;
+    // Same rule as the member checkboxes: members are only selected when no other type is.
+    button.disabled = !areSelectionTypesCompatible(type, 'member') ||
+        (searching && !getGroupMemberRows(group).some(row => !row.hidden));
+};
+
+/**
+ * R10-05: member "Select all" row of a group card built in the browser (createGroupElement).
+ *
+ * @param {Number|String} groupid Group id.
+ * @param {Object} labels EasyStud labels.
+ * @returns {String}
+ */
+const groupSelectAllRowHtml = (groupid, labels) => {
+    const texts = {
+        'select-label': labels.selectall,
+        'deselect-label': labels.deselectall,
+        'select-aria': labels.selectallmembersof,
+        'deselect-aria': labels.deselectallmembersof,
+    };
+    return '<div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="' + groupid +
+        '" hidden><button type="button" class="btn btn-link p-0 local-groupimport-easystud-group__select-all" ' +
+        'data-easystud-group-select-all="' + groupid + '"' +
+        Object.keys(texts).map(key => ' data-easystud-' + key + '="' + (texts[key] || '') + '"').join('') +
+        '></button></div>';
+};
+
 // Member lists waiting for their heights while a batch of cards is synchronised (see withBatchedMemberHeights).
 let membersHeightBatch = null;
 
@@ -1591,6 +1696,7 @@ const syncGroupMembersCollapsible = group => {
     if (more) {
         more.hidden = !cancollapse || expanded;
     }
+    syncGroupSelectAll(group);
 };
 
 const syncAllGroupMembersCollapsible = root => {
@@ -2099,7 +2205,7 @@ const ensureGroupMemberSearchControls = (root, group) => {
             '<button type="button" class="easyedu-button easyedu-button--secondary" data-easystud-group-member-search-cancel="' +
                 groupid + '">' + (labels.cancel || '') + '</button>' +
         '</div>';
-    group.insertBefore(panel, members);
+    group.insertBefore(panel, group.querySelector(':scope > [data-easystud-group-select-all-row]') || members);
 };
 
 const normaliseCardMenuButton = (button, root) => {
@@ -4058,6 +4164,7 @@ const createGroupElement = (root, groupdata) => {
                 '</div>' +
             '</form>' +
         '</div>' +
+        groupSelectAllRowHtml(groupdata.id, labels) +
         '<ul class="local-groupimport-easystud-group__members" data-easystud-group-members="' + groupdata.id + '"></ul>' +
         '<span class="local-groupimport-easystud-group__members-more" data-easystud-group-members-more="1" hidden>...</span>' +
         '<button type="button" class="local-groupimport-easystud-group__members-toggle" data-easystud-group-members-toggle="1" hidden>' +
@@ -6055,8 +6162,13 @@ const getSelectedItems = (root, type) => {
         if (model.selectedMembers && (!type || type === 'member')) {
             model.selectedMembers.forEach((key, memberkey) => {
                 const [groupid, userid] = memberkey.split(':');
+                const rowselector = '[data-easystud-member-id="' + userid + '"]';
                 const card = findCatalogGroupCard(root, Number(groupid), key);
-                items.push(card ? card.querySelector('[data-easystud-member-id="' + userid + '"]') : null);
+                const row = card ? card.querySelector(rowselector) : null;
+                // A lean page card (re-rendered after a page change) lacks the rows past the first two:
+                // the detached copy renders them all (R10-05 selects every member of a card).
+                const detached = row || !card ? null : getDetachedGroupCard(model, Number(groupid), key);
+                items.push(row || (detached ? syncGroupCardSelection(model, detached).querySelector(rowselector) : null));
             });
         }
         root.querySelectorAll((type ? '[data-selectable-type="' + type + '"]' : '[data-selectable-type]') + '.' + selectedClass +
@@ -6313,6 +6425,12 @@ const updateSelectionAvailability = root => {
         const input = getSelectionInput(item);
         if (input) {
             input.disabled = disabled;
+        }
+    });
+    root.querySelectorAll('[data-easystud-group-select-all]').forEach(button => {
+        const group = button.closest('[data-easystud-group-id]');
+        if (group) {
+            syncGroupSelectAll(group, activetype);
         }
     });
 };
@@ -6686,6 +6804,35 @@ const updateSelectionActions = root => {
     if (selectedMembers.length) {
         emitMemberPathCompletion(root, 'select-source-member');
     }
+};
+
+/**
+ * R10-05: member "Select all" of a group card. It adds the card's members to the member
+ * selection as their checkboxes would (members selected in other groups stay selected), or
+ * removes them when they are all selected. A lean card first renders its other rows; under a
+ * member search only the matching rows are added.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ */
+const bindGroupSelectAll = root => {
+    root.addEventListener('click', event => {
+        const button = event.target.closest('[data-easystud-group-select-all]');
+        const group = button && root.contains(button) ? button.closest('[data-easystud-group-id]') : null;
+        if (!group || button.disabled || !areSelectionTypesCompatible(getActiveSelectionType(root), 'member')) {
+            return;
+        }
+        const searching = getGroupMemberSearchQuery(group) !== '';
+        const deselect = !searching && isGroupFullySelected(group);
+        ensureFullGroupMembers(group);
+        syncGroupMembersCollapsible(group);
+        getGroupMemberRows(group).filter(row => !searching || !row.hidden)
+            .forEach(row => setItemSelected(row, !deselect));
+        updateSelectionActions(root);
+        requestGuideHighlightRefresh(root);
+        if (document.activeElement !== button) {
+            button.focus({preventScroll: true});
+        }
+    });
 };
 
 // Bind multi-selection across participant, group, grouping and member items.
@@ -12156,6 +12303,7 @@ export const init = (rootId, courseId, options = {}) => {
         [
             () => bindFilters(root),
             () => bindSelection(root),
+            () => bindGroupSelectAll(root),
             () => bindGuideBottomObstruction(root),
             () => bindPanelActionOverflow(root),
             () => bindTree(root),

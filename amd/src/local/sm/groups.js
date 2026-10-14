@@ -177,6 +177,13 @@ export const buildGroupCardContext = (model, group, variant) => {
         members: variant.memberlimit ? members.slice(0, variant.memberlimit) : members,
         hasmembers: memberids.length > 0,
         nomemberslabel: strings.nomemberslabel || '',
+        // R10-05: member "Select all" from three members (the total, not the rendered rows).
+        canselectallmembers: members.length > 2,
+        selectallmemberslabel: strings.selectallmembers || '',
+        deselectallmemberslabel: strings.deselectallmembers || '',
+        selectallmembersoflabel: (strings.selectallmembersof || '').replace('__name__', group.name),
+        selectallmembersoftemplate: strings.selectallmembersof || '',
+        deselectallmembersoftemplate: strings.deselectallmembersof || '',
         searchtext: (variant.treecard ? model.groupTreeSearch : model.groupSearch).get(group.id) || '',
         selectionmodelabel: (model.strings || {}).selectionmodelabel || '',
         structureemail: !!variant.structureemail,

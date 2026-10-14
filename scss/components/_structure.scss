@@ -1012,6 +1012,34 @@
     padding: 0;
   }
 
+  // R10-05: discreet member "Select all", right-aligned just above the member list.
+  &-group__select-all-row:not([hidden]) {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.35rem;
+  }
+
+  &-group__select-all-row:not([hidden]) + &-group__members {
+    margin-top: 0.2rem;
+  }
+
+  &-group__select-all.btn {
+    color: var(--easyedu-primary);
+    font-size: var(--easyedu-font-size-caption);
+    font-weight: var(--easyedu-font-weight-semibold);
+    line-height: 1.4;
+    text-decoration: none;
+
+    &:not(:disabled):hover {
+      color: var(--easyedu-primary-strong);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      @include easyedu.ring;
+    }
+  }
+
   &-grouping__groups {
     --local-groupimport-grouping-groups-collapsed-height: 16rem;
     --local-groupimport-grouping-groups-expanded-height: 48rem;
