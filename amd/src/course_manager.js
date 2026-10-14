@@ -1362,8 +1362,70 @@ const ensureFullGroupMembers = group => {
     updateSelectionAvailability(root);
 };
 
+// Member lists waiting for their heights while a batch of cards is synchronised (see withBatchedMemberHeights).
+let membersHeightBatch = null;
+
+/**
+ * Collapsed and expanded heights of a member list, from its first two visible rows.
+ *
+ * @param {HTMLElement} list Member list.
+ * @param {HTMLElement[]} members Visible member rows.
+ * @returns {{collapsed: Number, expanded: Number}|null} Null when the first row has no height.
+ */
+const measureGroupMembers = (list, members) => {
+    const firstmember = members[0];
+    const secondmember = members[1];
+    const firstheight = firstmember ? firstmember.offsetTop + firstmember.offsetHeight : 0;
+    if (!firstheight) {
+        return null;
+    }
+    const partialheight = secondmember && secondmember.offsetHeight ?
+        secondmember.offsetTop + (secondmember.offsetHeight * 0.58) : 0;
+    const collapsed = Math.ceil(Math.max(partialheight, firstheight + 8));
+    return {collapsed, expanded: Math.ceil(list.scrollHeight + 2)};
+};
+
+const applyGroupMembersHeight = (list, heights) => {
+    if (!heights) {
+        list.style.removeProperty('--local-groupimport-members-collapsed-height');
+        list.style.removeProperty('--local-groupimport-members-expanded-height');
+        return;
+    }
+    list.style.setProperty('--local-groupimport-members-collapsed-height', Math.max(heights.collapsed, 0) + 'px');
+    list.style.setProperty('--local-groupimport-members-expanded-height',
+        Math.max(heights.expanded, heights.collapsed) + 'px');
+};
+
+/**
+ * Synchronise many group cards with one layout: the member heights are measured once all
+ * the cards are written, instead of once per card (seconds when a catalog or a section opens
+ * on a large page). The values are the same, since nothing written after the measurement in
+ * syncGroupMembersCollapsible moves the member rows.
+ *
+ * @param {Function} callback Synchronises the cards.
+ */
+const withBatchedMemberHeights = callback => {
+    if (membersHeightBatch) {
+        callback();
+        return;
+    }
+    membersHeightBatch = [];
+    try {
+        callback();
+    } finally {
+        const batch = membersHeightBatch;
+        membersHeightBatch = null;
+        const measured = batch.map(([list, members]) => [list, measureGroupMembers(list, members)]);
+        measured.forEach(([list, heights]) => applyGroupMembersHeight(list, heights));
+    }
+};
+
 const syncGroupMembersHeight = (list, members, visibleCount, cancollapse) => {
     if (!list) {
+        return;
+    }
+    if (cancollapse && membersHeightBatch) {
+        membersHeightBatch.push([list, members]);
         return;
     }
     if (!cancollapse) {
@@ -1372,20 +1434,7 @@ const syncGroupMembersHeight = (list, members, visibleCount, cancollapse) => {
         return;
     }
 
-    const firstmember = members[0];
-    const secondmember = members[1];
-    const firstheight = firstmember ? firstmember.offsetTop + firstmember.offsetHeight : 0;
-    if (!firstheight) {
-        list.style.removeProperty('--local-groupimport-members-collapsed-height');
-        list.style.removeProperty('--local-groupimport-members-expanded-height');
-        return;
-    }
-    const partialheight = secondmember && secondmember.offsetHeight ?
-        secondmember.offsetTop + (secondmember.offsetHeight * 0.58) : 0;
-    const collapsedheight = Math.ceil(Math.max(partialheight, firstheight + 8));
-    const expandedheight = Math.ceil(list.scrollHeight + 2);
-    list.style.setProperty('--local-groupimport-members-collapsed-height', Math.max(collapsedheight, 0) + 'px');
-    list.style.setProperty('--local-groupimport-members-expanded-height', Math.max(expandedheight, collapsedheight) + 'px');
+    applyGroupMembersHeight(list, measureGroupMembers(list, members));
 };
 
 const memberFocusableSelector = [
@@ -1490,14 +1539,14 @@ const syncGroupMembersCollapsible = group => {
 };
 
 const syncAllGroupMembersCollapsible = root => {
-    root.querySelectorAll('[data-easystud-group-id]').forEach(syncGroupMembersCollapsible);
+    withBatchedMemberHeights(() => root.querySelectorAll('[data-easystud-group-id]').forEach(syncGroupMembersCollapsible));
 };
 
 const syncGroupMembersInContainer = container => {
     if (!container) {
         return;
     }
-    container.querySelectorAll('[data-easystud-group-id]').forEach(syncGroupMembersCollapsible);
+    withBatchedMemberHeights(() => container.querySelectorAll('[data-easystud-group-id]').forEach(syncGroupMembersCollapsible));
 };
 
 const getContainerGroups = list => {
@@ -2919,6 +2968,31 @@ const bindBackToTop = root => {
     sync();
 };
 
+/**
+ * Mark the root while a view swap animates: the card headers then change width on every frame,
+ * and the card action menus are measured once the swap has ended (bindNestedGroupActionMenus).
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Promise} swap Motion.swap promise.
+ * @returns {Promise}
+ */
+const trackLayoutSwap = (root, swap) => {
+    root.easystudLayoutSwapping = (root.easystudLayoutSwapping || 0) + 1;
+    const release = () => {
+        root.easystudLayoutSwapping -= 1;
+        if (!root.easystudLayoutSwapping && root.easystudAfterLayoutSwap) {
+            root.easystudAfterLayoutSwap();
+        }
+    };
+    return Promise.resolve(swap).then(value => {
+        release();
+        return value;
+    }, error => {
+        release();
+        throw error;
+    });
+};
+
 const bindLayoutModeToggle = root => {
     const buttons = Array.from(root.querySelectorAll('[data-easystud-layout-mode]'));
     const participantGroupsPanel = root.querySelector('[data-easystud-participant-groups-panel]');
@@ -2984,12 +3058,12 @@ const bindLayoutModeToggle = root => {
 
     const applyMode = (mode, animate = true) => {
         if (animate && layout) {
-            Motion.swap(layout, () => applyModeState(mode), {
+            trackLayoutSwap(root, Motion.swap(layout, () => applyModeState(mode), {
                 exit: false,
                 enterDuration: Motion.timing.normal,
                 resize: false,
                 swapOpacity: 0.62,
-            }).then(() => requestGuideHighlightRefresh(root));
+            })).then(() => requestGuideHighlightRefresh(root));
             return;
         }
         applyModeState(mode);
@@ -3159,12 +3233,12 @@ const bindMobileEntityViews = root => {
             return;
         }
         if (animate && layout) {
-            Motion.swap(layout, () => applyMobileState(view), {
+            trackLayoutSwap(root, Motion.swap(layout, () => applyMobileState(view), {
                 exit: false,
                 enterDuration: Motion.timing.normal,
                 resize: false,
                 swapOpacity: 0.72,
-            });
+            }));
             return;
         }
         applyMobileState(view);
@@ -8962,6 +9036,14 @@ const bindNestedGroupActionMenus = root => {
     window.addEventListener('resize', () => refresh());
     if (window.ResizeObserver) {
         const widths = new WeakMap();
+        // Cards whose header changed during a view swap: measured once, when the swap ends.
+        const swapCards = new Set();
+        root.easystudAfterLayoutSwap = () => {
+            if (swapCards.size) {
+                refresh(Array.from(swapCards));
+                swapCards.clear();
+            }
+        };
         const observer = new window.ResizeObserver(entries => {
             // Only the cards whose header width changed: measuring every card of a large
             // course again took seconds while the page settled.
@@ -8971,7 +9053,9 @@ const bindNestedGroupActionMenus = root => {
                 widths.set(entry.target, width);
                 return previous !== undefined && previous !== width;
             }).map(entry => entry.target.parentElement).filter(Boolean);
-            if (changed.length) {
+            if (changed.length && root.easystudLayoutSwapping) {
+                changed.forEach(card => swapCards.add(card));
+            } else if (changed.length) {
                 refresh(changed);
             }
         });
@@ -11307,7 +11391,7 @@ const rememberGroupCardStates = container => {
  * @param {HTMLElement[]} cards New group cards.
  * @param {Object} memory From rememberGroupCardStates.
  */
-const restoreGroupCardStates = (root, cards, memory) => {
+const restoreGroupCardStates = (root, cards, memory) => withBatchedMemberHeights(() => {
     cards.forEach(card => {
         const groupid = card.getAttribute('data-easystud-group-id');
         const unfolded = memory.unfolded.has(groupid);
@@ -11334,7 +11418,7 @@ const restoreGroupCardStates = (root, cards, memory) => {
         }
         applyGroupMemberSearchToGroup(root, card);
     });
-};
+});
 
 /**
  * Whether a group catalog is on screen, mirroring the stylesheet: the participants catalog
@@ -11465,7 +11549,7 @@ const decorateOnDemandGroupCards = (root, cards) => {
     if (root.easystudObserveCardHeaders) {
         root.easystudObserveCardHeaders(cards);
     }
-    cards.forEach(card => {
+    withBatchedMemberHeights(() => cards.forEach(card => {
         applyGroupMemberSearchToGroup(root, card);
         setCountBadgeState(card.querySelector('.local-groupimport-easystud-group__header .badge'),
             getGroupMemberCount(card), 'members');
@@ -11473,7 +11557,7 @@ const decorateOnDemandGroupCards = (root, cards) => {
             node.setAttribute('data-easystud-native-title', node.getAttribute('title') || '');
             node.removeAttribute('title');
         });
-    });
+    }));
     normaliseMemberRemoveLabels(root);
     syncResponsiveDragAvailability(root);
     updateSelectionAvailability(root);
