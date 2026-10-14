@@ -6317,9 +6317,19 @@ const updateSelectionAvailability = root => {
     });
 };
 
+/**
+ * Whether the course state is still loading: the lists then only hold their skeletons and
+ * must not say that there is nothing (the empty states would show next to the skeletons).
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @returns {Boolean}
+ */
+const isCourseStateLoading = root => root.getAttribute('data-easystud-rendering-mode') === 'reactive' &&
+    !getOnDemandModel(root);
+
 const updateParticipantEmptyState = root => {
     const list = root.querySelector('[data-easystud-participant-list]');
-    if (!list) {
+    if (!list || isCourseStateLoading(root)) {
         return;
     }
 
@@ -6351,7 +6361,7 @@ const updateParticipantEmptyState = root => {
 };
 
 const syncManagedEmptyState = (root, list, selector, key) => {
-    if (!list) {
+    if (!list || isCourseStateLoading(root)) {
         return;
     }
     const labels = getLabels(root);
