@@ -383,8 +383,29 @@
         // that manager will choose for this viewport, or it jumps when it starts.
         var responsiveQuery = root.getAttribute('data-easyedu-loading-responsive-query');
         var responsiveClass = root.getAttribute('data-easyedu-loading-responsive-class');
+        var responsiveMatches = !!(responsiveQuery && window.matchMedia && window.matchMedia(responsiveQuery).matches);
         if (responsiveQuery && responsiveClass && window.matchMedia) {
-            root.classList.toggle(responsiveClass, window.matchMedia(responsiveQuery).matches);
+            root.classList.toggle(responsiveClass, responsiveMatches);
+        }
+        // Regions the manager shows for the default desktop mode (the group column of the
+        // Participants focus): reveal them with the frame, so both columns appear together.
+        var desktopRegions = responsiveMatches ? [] :
+            Array.prototype.slice.call(root.querySelectorAll('[data-easyedu-loading-desktop-reveal="1"]'));
+        desktopRegions.forEach(function(node) {
+            node.hidden = false;
+        });
+        // The skeletons already parsed started their appearance while the frame was hidden, the
+        // revealed column's would only start once painted: give them all the same start time, so
+        // both columns fade in together.
+        if (desktopRegions.length && document.timeline) {
+            var startTime = document.timeline.currentTime;
+            root.querySelectorAll('[data-easystud-sm-loading]').forEach(function(node) {
+                if (typeof node.getAnimations === 'function') {
+                    node.getAnimations().forEach(function(animation) {
+                        animation.startTime = startTime;
+                    });
+                }
+            });
         }
         frameObserver = new MutationObserver(showFrame);
         frameObserver.observe(root, {attributes: true, attributeFilter: [frameAttribute]});
