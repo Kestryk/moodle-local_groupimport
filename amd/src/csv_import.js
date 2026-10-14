@@ -736,6 +736,7 @@ const initRollbackModal = root => {
 
     const historyModal = root.querySelector('[data-local-groupimport-history-modal]');
     const closeButtons = Array.from(modal.querySelectorAll('[data-local-groupimport-rollback-close]'));
+    let opener = null;
 
     const close = () => {
         const dialog = modal.querySelector('.local-groupimport-import-modal__dialog') || modal;
@@ -749,10 +750,14 @@ const initRollbackModal = root => {
                 const historyDialog = historyModal.querySelector('.local-groupimport-import-modal__dialog') || historyModal;
                 Motion.enter(historyDialog, {duration: Motion.timing.normal, distance: '0.3rem'});
             }
+            if (opener && opener.isConnected && opener.getClientRects().length > 0) {
+                opener.focus();
+            }
         });
     };
 
     openButtons.forEach(button => button.addEventListener('click', () => {
+        opener = button;
         idInput.value = button.dataset.localGroupimportRollbackOpen || '';
         if (filename) {
             filename.textContent = button.dataset.localGroupimportRollbackFilename || '';
@@ -763,9 +768,9 @@ const initRollbackModal = root => {
         modal.hidden = false;
         const dialog = modal.querySelector('.local-groupimport-import-modal__dialog') || modal;
         Motion.enter(dialog, {duration: Motion.timing.slow, distance: '0.45rem'});
-        const primaryAction = form.querySelector('button[type="submit"]');
-        if (primaryAction) {
-            primaryAction.focus();
+        const cancelAction = form.querySelector('[data-local-groupimport-rollback-close]') || closeButtons[0];
+        if (cancelAction) {
+            cancelAction.focus();
         }
     }));
 
@@ -775,9 +780,31 @@ const initRollbackModal = root => {
             close();
         }
     });
-    document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && !modal.hidden) {
+    modal.addEventListener('keydown', event => {
+        if (modal.hidden || event.defaultPrevented) {
+            return;
+        }
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            event.stopPropagation();
             close();
+        } else if (event.key === 'Tab') {
+            const stops = Array.from(modal.querySelectorAll('button, a[href], input, select, textarea, [tabindex]'))
+                .filter(node => !node.disabled && !node.matches(':disabled') && node.tabIndex >= 0 &&
+                    node.getClientRects().length &&
+                    !node.closest('[hidden], [inert], [aria-hidden="true"]') && getComputedStyle(node).visibility === 'visible');
+            const index = stops.indexOf(document.activeElement);
+            if (!stops.length || index < 0 || (!event.shiftKey && index === stops.length - 1) ||
+                    (event.shiftKey && index === 0)) {
+                event.preventDefault();
+                const target = event.shiftKey ? stops[stops.length - 1] : stops[0];
+                if (target) {
+                    target.focus();
+                } else {
+                    modal.setAttribute('tabindex', '-1');
+                    modal.focus();
+                }
+            }
         }
     });
 };

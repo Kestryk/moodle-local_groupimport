@@ -5,6 +5,9 @@
   Retain both failed responsive harness runs, prepare the correct mobile
   selection recipe without another run, and keep three cells/native acceptance
   open. No product correction or Penpot operation; final Current mode.
+- 2026-10-14 [N1] T058 Rollback: safe initial Cancel focus, modal Tab loop, scoped Escape and return to History opener; 24 native cycles PASS on Perf in both modes.
+
+- 2026-10-14 [N0] R10-18: retain not-reproduced status and specify Kevin real-device confirmation at 390 CSS px Safari; no product change.
 
 - 2026-10-14 [N1] Group Claude F7 and Codex2 R10-09/R10-12/R10-22/T058
   contrast integrations, rebuild Course Manager and Sass1.79.1 styles, and
