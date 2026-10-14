@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {selectedClass, requestGuideHighlightRefresh, areSelectionTypesCompatible} from './shared';
+import {selectedClass, requestGuideHighlightRefresh, areSelectionTypesCompatible, getSelectionInput} from './shared';
 import {getGroupMemberRows, getGroupMemberSearchQuery, isGroupFullySelected, collapseAllGroupings} from './cards';
 import {
     getSelectedItems, setItemSelected, clearSelectionForType, clearSelectionState, getActiveSelectionType,
@@ -67,57 +67,178 @@ export const bindGroupSelectAll = root => {
     });
 };
 
+/**
+ * Modifier that selects a range from the anchor (Shift + click, Shift + Space). Shift is the
+ * platform convention; set it to 'altKey' to use Alt instead (Alt is often taken by the system).
+ */
+const RANGE_SELECTION_MODIFIER = 'shiftKey';
+
+// Card parts that keep their own click behaviour (the checkbox is handled apart).
+const ownClickSelector = 'button, a, input, textarea, select, form, summary, [contenteditable="true"], ' +
+    '[role="menu"], [role="menuitem"]';
+const selectorSelector = '.local-groupimport-easystud-selector';
+
+const isRangeEvent = event => !!event[RANGE_SELECTION_MODIFIER];
+const isToggleEvent = event => !!(event.ctrlKey || event.metaKey);
+
+/**
+ * Items of the clicked item's list, in their visible order: same type, same parent list (current
+ * page, filters and sort applied), without the hidden, filtered out or folded away entries.
+ *
+ * @param {HTMLElement} item Selectable item.
+ * @returns {HTMLElement[]} Items of its list.
+ */
+const getVisibleSelectionList = item => {
+    const list = item.parentElement;
+    if (!list) {
+        return [];
+    }
+    const type = item.getAttribute('data-selectable-type');
+    return Array.from(list.querySelectorAll(':scope > [data-selectable-type="' + type + '"]'))
+        .filter(entry => entry === item || (!entry.hidden && !entry.inert && !entry.classList.contains('is-collapsed') &&
+            !entry.closest('[hidden]') && entry.getClientRects().length > 0));
+};
+
+/**
+ * Selects every item between the anchor and the item, both included, in its visible list. Without
+ * an anchor in that list (other page, other card, other grouping), only the item is added.
+ *
+ * @param {HTMLElement} item Item clicked last.
+ * @param {String|undefined} anchorid Selectable id of the anchor.
+ */
+const selectRange = (item, anchorid) => {
+    const items = getVisibleSelectionList(item);
+    const start = anchorid ? items.findIndex(entry => entry.getAttribute('data-selectable-id') === anchorid) : -1;
+    const end = items.indexOf(item);
+    if (start === -1 || end === -1) {
+        setItemSelected(item, true);
+        return;
+    }
+    items.slice(Math.min(start, end), Math.max(start, end) + 1).forEach(entry => setItemSelected(entry, true));
+};
+
+/**
+ * Refresh path shared by every selection gesture.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {String} type Selection type that changed.
+ * @param {Boolean} refreshGuide Also re-measure the Guide highlight.
+ */
+const afterSelectionChange = (root, type, refreshGuide) => {
+    if (type === 'grouping' && getSelectedItems(root, 'grouping').length === 0) {
+        collapseAllGroupings(root);
+    }
+    if (type === 'grouping') {
+        emitGuidedCompletion(root, 2, 'grouping');
+    }
+    updateSelectionActions(root);
+    if (refreshGuide) {
+        requestGuideHighlightRefresh(root);
+    }
+    if (type === 'participant') {
+        emitTryActionsSelection(root);
+    }
+    if (type === 'group') {
+        emitActivityGroupSelection(root);
+    }
+};
+
 // Bind multi-selection across participant, group, grouping and member items.
 export const bindSelection = root => {
-    const lastSelectedByType = new Map();
+    // Anchor of the range selection, per type: selectable id of the item clicked last. An id, not
+    // a node, so that it survives the on-demand re-rendering of a page or a card.
+    const anchors = new Map();
+
+    const getSelectableItem = target => {
+        const item = target && target.closest ? target.closest('[data-selectable-type]') : null;
+        return item && root.contains(item) ? item : null;
+    };
+
+    // Ctrl/Cmd and range presses on a card never start a drag nor a text selection.
+    root.addEventListener('mousedown', event => {
+        if (event.button !== 0 || !(isRangeEvent(event) || isToggleEvent(event)) ||
+                event.target.closest(ownClickSelector) || !getSelectableItem(event.target)) {
+            return;
+        }
+        event.preventDefault();
+    });
+    root.addEventListener('dragstart', event => {
+        if ((isRangeEvent(event) || isToggleEvent(event)) && getSelectableItem(event.target)) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    }, true);
 
     root.addEventListener('click', event => {
-        if (event.target.closest('button, a, input, textarea, select, form, .local-groupimport-easystud-selector')) {
+        const inSelector = !!event.target.closest(selectorSelector);
+        // The checkbox keeps its own toggle; only a range click on it is handled here.
+        if ((inSelector && !isRangeEvent(event)) || (!inSelector && event.target.closest(ownClickSelector))) {
             return;
         }
 
-        const item = event.target.closest('[data-selectable-type]');
-        if (!item || !root.contains(item)) {
+        const item = getSelectableItem(event.target);
+        if (!item) {
             return;
         }
 
         const type = item.getAttribute('data-selectable-type');
         const activetype = getActiveSelectionType(root);
         if (!areSelectionTypesCompatible(activetype, type)) {
+            if (inSelector && !event.target.matches('input')) {
+                event.preventDefault();
+            }
             return;
         }
-        const items = Array.from(root.querySelectorAll('[data-selectable-type="' + type + '"]:not([hidden])'));
-        const lastSelected = lastSelectedByType.get(type);
 
-        if (event.shiftKey && lastSelected) {
-            const start = items.indexOf(lastSelected);
-            const end = items.indexOf(item);
-            if (start !== -1 && end !== -1) {
-                const [from, to] = start < end ? [start, end] : [end, start];
-                items.slice(from, to + 1).forEach(entry => setItemSelected(entry, true));
+        if (isRangeEvent(event)) {
+            if (inSelector && !event.target.matches('input')) {
+                // A label click would toggle the checkbox back after the range.
+                event.preventDefault();
             }
-        } else if (event.ctrlKey || event.metaKey) {
+            selectRange(item, anchors.get(type));
+            const textSelection = window.getSelection ? window.getSelection() : null;
+            if (textSelection && !textSelection.isCollapsed && root.contains(textSelection.anchorNode)) {
+                textSelection.removeAllRanges();
+            }
+        } else if (isToggleEvent(event)) {
             setItemSelected(item, !item.classList.contains(selectedClass));
         } else {
             clearSelectionForType(root, type, item);
             setItemSelected(item, true);
         }
 
-        lastSelectedByType.set(type, item);
-        if (type === 'grouping' && getSelectedItems(root, 'grouping').length === 0) {
-            collapseAllGroupings(root);
+        anchors.set(type, item.getAttribute('data-selectable-id'));
+        afterSelectionChange(root, type, true);
+    });
+
+    // Keyboard: Space toggles the focused card, the range modifier + Space extends from the anchor
+    // (also from the card's checkbox, whose plain Space stays native).
+    root.addEventListener('keydown', event => {
+        if (event.key !== ' ' || isToggleEvent(event) || (event.altKey && RANGE_SELECTION_MODIFIER !== 'altKey')) {
+            return;
         }
-        if (type === 'grouping') {
-            emitGuidedCompletion(root, 2, 'grouping');
+        const item = getSelectableItem(event.target);
+        if (!item) {
+            return;
         }
-        updateSelectionActions(root);
-        requestGuideHighlightRefresh(root);
-        if (type === 'participant') {
-            emitTryActionsSelection(root);
+        const range = isRangeEvent(event);
+        const onCard = event.target === item;
+        const onCheckbox = event.target === getSelectionInput(item);
+        if (!onCard && !(onCheckbox && range)) {
+            return;
         }
-        if (type === 'group') {
-            emitActivityGroupSelection(root);
+        event.preventDefault();
+        const type = item.getAttribute('data-selectable-type');
+        if (!areSelectionTypesCompatible(getActiveSelectionType(root), type)) {
+            return;
         }
+        if (range) {
+            selectRange(item, anchors.get(type));
+        } else {
+            setItemSelected(item, !item.classList.contains(selectedClass));
+        }
+        anchors.set(type, item.getAttribute('data-selectable-id'));
+        afterSelectionChange(root, type, true);
     });
 
     root.addEventListener('change', event => {
@@ -138,20 +259,8 @@ export const bindSelection = root => {
             return;
         }
         setItemSelected(item, input.checked);
-        lastSelectedByType.set(type, item);
-        if (type === 'grouping' && getSelectedItems(root, 'grouping').length === 0) {
-            collapseAllGroupings(root);
-        }
-        if (type === 'grouping') {
-            emitGuidedCompletion(root, 2, 'grouping');
-        }
-        updateSelectionActions(root);
-        if (type === 'participant') {
-            emitTryActionsSelection(root);
-        }
-        if (type === 'group') {
-            emitActivityGroupSelection(root);
-        }
+        anchors.set(type, item.getAttribute('data-selectable-id'));
+        afterSelectionChange(root, type, false);
     });
 
     root.addEventListener('click', event => {
