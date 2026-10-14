@@ -1,4 +1,16 @@
 {
+  "claudeBascule20261014": {
+    "originalCommits": ["1bf77389", "cf2be86b", "6a499c5f", "1a10749e"],
+    "integrationCommits": ["73fa0128", "732b957f", "dbf4886b", "483fa9fd"],
+    "status": "integrated-built-preview-upgrade-native-pending",
+    "documentation": "docs/testing/claude-bascule-integration-2026-10-14.md",
+    "nativeSpec": "tools/playwright/claude-bascule-principal-native.spec.js",
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "renderingContract": "reactive only; obsolete renderingmode config removed by2026101400 upgrade; do not restore legacy",
+    "publicationWorktree": "C:/dev/worktrees/easystud-codex1-bascule-publication-20261014",
+    "originalSourcePreserved": "Foreign uncommitted K21 changes appeared during rebuild; no reset/stash/commit or branch switch"
+  },
   "inlineMobileIntegration20261014": {
     "originalCommits": [
       "02b33d15",

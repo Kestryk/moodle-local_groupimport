@@ -1,5 +1,11 @@
 # Changelog
 
+- 2026-10-14 [N1] Group Claude's on-demand-only/version2026101400, no loading
+  empty state, session-only Later and mobile Grouping Search integrations;
+  rebuild merged Course Manager preserving T058. Isolate publication from
+  another window's in-progress K21 Source edits, prepare Moodle upgrade and
+  one FR/EN1280/390 native check; prior mode-switch recipes are superseded.
+
 - 2026-10-14 [N1/N0] Record principal955aadbb requested-scope PASS: three FR
   F7 cells,48 inline-panel closures/12 keyboard alternatives,16 mobile dialog
   surfaces and6 Reset/Message cases. Retain overall FAILED run: final Rollback
