@@ -1,5 +1,68 @@
 {
-  "codex2K21T055Port20261014": {
+"cssPageRegressions20261015": {
+    "sourceCommit": "a211780d",
+    "runtimeCommit": "bf594489",
+    "feedbackIds": [
+      "K15-03",
+      "K15-04",
+      "K15-09",
+      "K15-15",
+      "SM390"
+    ],
+    "nativeRuns": [
+      "234156525Z-54264",
+      "234523350Z-37308"
+    ],
+    "scope": "FR1600/1280/390 intrinsic cards/columns; MI warning16px and original colour; admin/outside page CSS delivery",
+    "humanAccepted": false
+  },
+  "claudeThroughC84Integration20261015": {
+    "runtimeCommit": "69f060f4",
+    "sourceBuildCommit": "806b6f60",
+    "incoming": [
+      "7048e58d",
+      "95d35741",
+      "493a86a2",
+      "4d0bf8c3",
+      "39f5fc4b",
+      "81b98d90",
+      "9792e569",
+      "c84c1a36"
+    ],
+    "buildAndStaticVerified": true,
+    "nativeBusinessReplayRequested": true,
+    "humanAccepted": false
+  },
+  "liftSmLanes20261015": {
+    "sourceCommits": [
+      "03f58a00",
+      "2a1b8b1d",
+      "c019f997"
+    ],
+    "runtimeCommit": "98dbcd99",
+    "kitCommit": "49ef47e",
+    "kitVersion": "0.4.211",
+    "taskIds": [
+      "D8",
+      "T036",
+      "T016 partial",
+      "T017",
+      "T018",
+      "T019",
+      "T021"
+    ],
+    "nativeRuns": [
+      "234938193Z-27992",
+      "235351112Z-55364 desktop edges only",
+      "235655488Z-15472 mobile edges"
+    ],
+    "scope": "Available views FR1600/1280/390, gap24/radius12.8/container ratios/intrinsic flow; field-card delta0",
+    "completeViewTested": false,
+    "controllerAlignmentT020Excluded": true,
+    "penpotUpdated": false,
+    "humanAccepted": false
+  },
+"codex2K21T055Port20261014": {
     "status":  "module-port-static-focused-pass-awaiting-integration",
     "baseCommit":  "70db3f96",
     "documentation":  "docs/testing/codex2-k21-t055-port-2026-10-14.md",
