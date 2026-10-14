@@ -405,6 +405,9 @@
   }
 }
 
+.local-groupimport-import [data-local-groupimport-file-required] {margin-block-end: 1rem;
+}
+
 .local-groupimport-import {--easyedu-empty-border: #cdddea;--easyedu-file-deposit-drag-over-surface: #edf6fc;--easyedu-file-deposit-danger-surface: #fff4f2;--easyedu-file-deposit-danger-border: #d96b63;--easyedu-file-deposit-danger-title: #9b2c24;--easyedu-page-header-gap: 1.125rem;--easyedu-gap: 1rem;--easyedu-navigation-following-gap: 2.5rem;--easyedu-navigation-panel-width: 88vw;--easyedu-navigation-panel-max-width: 22rem;--easyedu-navigation-item-indent: 0.8rem;--easyedu-navigation-trigger-inline-start: 0.75rem;--easyedu-navigation-trigger-gap: 0.5rem;--easyedu-navigation-trigger-fallback-top: 0.75rem;--easyedu-navigation-trigger-safe-edge: 0.75rem;--easyedu-navigation-layer-trigger: 1064;--easyedu-navigation-layer-backdrop: 1065;--easyedu-navigation-layer-panel: 1066;--easyedu-modal-layer: calc(var(--easyedu-navigation-layer-panel) + 4);--easyedu-navigation-drawer-surface: var(--easyedu-surface);--easyedu-navigation-drawer-border: var(--easyedu-border);--easyedu-navigation-drawer-shadow: 0.8rem 0 2rem rgba(31, 42, 55, 0.16);--easyedu-navigation-guide-surface: linear-gradient(
     135deg,
     color-mix(in srgb, var(--easyedu-primary) 10%, var(--easyedu-surface) 90%) 0%,

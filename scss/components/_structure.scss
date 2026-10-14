@@ -688,6 +688,12 @@
     align-items: stretch;
     display: flex;
     flex-direction: column;
+
+    > * {
+      // A card/pagination keeps its intrinsic size, including while a
+      // participant expands. Never shrink a card to fit a panel viewport.
+      flex-shrink: 0;
+    }
   }
 
   &__participant-list.is-easystud-paginated > &-pagination--bottom,
@@ -1326,6 +1332,13 @@
     }
 
     @include easyedu.entity-card-overflow-feedback;
+  }
+
+  // Moodle's p-0 utility followed plugin CSS in the aggregated stylesheet.
+  // Preserve that contract when this sheet is requested after the theme:
+  // overflow measurements must see the same intrinsic disclosure width.
+  &-tags-toggle.p-0 {
+    padding: 0 !important;
   }
 
   &-tags-toggle:not(.local-groupimport-easystud-token) {

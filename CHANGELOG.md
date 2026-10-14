@@ -5904,3 +5904,4 @@ Maintenance convention:
 
 - Fixed CodeChecker issues.
 - Initial commit of the historical Group Import CSV plugin.
+- 2026-10-15 [N2] Repair page-CSS cascade regressions: intrinsic SM panels and cards, original overflow-button footprint, mobile detail alignment and Mass Import warning spacing.

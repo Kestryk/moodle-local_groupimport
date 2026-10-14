@@ -1,5 +1,9 @@
 @use "../easyedu" as easyedu;
 
+.local-groupimport-import [data-local-groupimport-file-required] {
+  margin-block-end: 1rem;
+}
+
 .local-groupimport-import {
   @include easyedu.token-defaults;
   @include easyedu.groupimport-compat-tokens;
