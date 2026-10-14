@@ -32,7 +32,9 @@ import {
     isDragInteractiveTarget, syncResponsiveDragAvailability, getGroupingDropIdForGroup,
 } from './drag_support';
 import {getSelectedItems, clearSelectionState} from './selection';
-import {emitGuidedCompletion, getActivityGuideRoot, emitTryActionsCompletion} from './guide_hooks';
+import {
+    emitGuidedCompletion, getActivityGuideRoot, emitTryActionsCompletion, highlightActiveTryActionsStep,
+} from './guide_hooks';
 import {applyFilters, updateSelectionActions} from './workspace';
 import {
     handleActionError, postAction, moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
@@ -353,9 +355,9 @@ export const bindUserDragDrop = (root, courseId) => {
         dragPreview = null;
         root.querySelectorAll('.' + dropTargetClass).forEach(target => target.classList.remove(dropTargetClass));
         if (wasDragging) {
-            // N°10: the drag start completes the step while the dragged cards are masked; the next
-            // step's highlight was measured then and must be refreshed once they are visible again.
-            requestGuideHighlightRefresh(root);
+            // N°10: the drag start completed "try-drag" while the dragged cards were masked, which
+            // cleared the Guide highlight. Target the active step now that they are visible again.
+            highlightActiveTryActionsStep(root);
         }
     });
 
@@ -414,6 +416,7 @@ export const bindUserDragDrop = (root, courseId) => {
             showNotification(root, response.message || '', 'success');
             emitGuidedCompletion(root, 1);
             emitTryActionsCompletion(root, 'try-drag', tryActionsToken);
+            highlightActiveTryActionsStep(root);
         }).catch(() => {
             showNotification(root, labels.ajaxerror || '', 'error');
         });
