@@ -1,4 +1,22 @@
 {
+  "codex2ComponentLoading20261014": {
+    "status": "dedicated-copy-component-frame-and-native-stall-pass",
+    "documentation": "docs/testing/codex2-component-loading-2026-10-14.md",
+    "sourcePatch": "0df9010c",
+    "guideSource": "1fb3206a",
+    "copy": "http://localhost:8051",
+    "mode": "on-demand-only",
+    "pageSkeletonCount": 0,
+    "frameMillis": [47,54,23],
+    "widths": [1600,1280,390],
+    "ownedTimeoutMillis": 8058,
+    "lateTimeoutMillis": 8036,
+    "cssBuildStyle": "conservative",
+    "cssDiff": {"added":29,"removed":5,"charset":false},
+    "nativeVerified": true,
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "codex2LoadingStallReplay20261014": {
     "status": "dedicated-copy-native-stall-and-recovery-pass",
     "documentation": "docs/testing/codex2-loading-stall-2026-10-14.md",
