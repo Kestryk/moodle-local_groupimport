@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] Replay Codex1's exact on-demand principal K16 successor: FR1280 passes, FR390 fails Cancel42.390625/Reset38 at line73. Separate immutable evidence successors confirm EN390 too; existing6a905703 awaits principal integration. No product change or global acceptance.
+
 - 2026-10-14 [N1] K16 includes visible grouping-search Cancel in the existing regular secondary38px Reset peer recipe. Requested FR/EN390 menu/filter/restore/focus and exact metrics PASS; global run remains FAILED on additional collapsed desktop reference recipe. Native copy served; main/Penpot/human pending.
 
 - 2026-10-14 [N0] Replace current parity invocation with one targeted on-demand pass and read-only upgraded-copy preflight; reject historical setters before credentials. Perf standard upgrade/purge confirms2026101400 and no retired configuration row; original matrices retained as history.

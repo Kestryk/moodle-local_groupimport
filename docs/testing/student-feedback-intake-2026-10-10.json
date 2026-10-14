@@ -1,4 +1,23 @@
 {
+  "codex2PrincipalK16Replay20261014": {
+    "status": "principal-fr1280-pass-mobile-fr-en-size-failed-existing-fix-awaiting-publication",
+    "documentation": "docs/testing/codex2-principal-k16-2026-10-14.md",
+    "exactRequestedSpec": "tools/playwright/claude-bascule-principal-ready-native.spec.js",
+    "exactRequestedRun": "easystud-authenticated-20261014T153847170Z-46164",
+    "failureLine": 73,
+    "evidenceSpec": "tools/playwright/k16-principal-mobile-painted-successor.spec.js",
+    "evidenceRun": "easystud-authenticated-20261014T155104204Z-47756",
+    "evidenceArtifacts": "C:/dev/artifacts/es-principal-k16-mobile-painted",
+    "evidenceScope": "FR and EN390 painted visible Cancel; strict size fails in both; no product injection or business writes",
+    "mode": "on-demand-only",
+    "principalHead": "63d77549",
+    "resetHeight": 38,
+    "mobileCancelHeight": 42.390625,
+    "fixToPublish": "6a905703",
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "claudeBascule20261014": {
     "originalCommits": ["1bf77389", "cf2be86b", "6a499c5f", "1a10749e"],
     "integrationCommits": ["73fa0128", "732b957f", "dbf4886b", "483fa9fd"],
