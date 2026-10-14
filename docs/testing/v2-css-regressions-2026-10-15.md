@@ -19,3 +19,15 @@ Native result pending; previous V2 parity claims are superseded by this gate.
 Claude Penpot relay: SM panel/list intrinsic flow, participant compact/expanded
 cards, disclosure footprint, mobile detail eye; MI empty-file warning spacing,
 1600/1280/390 SM and1280/390 MI. Palette colour must be measured, not guessed.
+
+Native234156525Z-54264 PASS: FR1600/1280/390 compact and selected cards,
+no painted-column internal scroller, no compressed card/horizontal overflow,
+mobile eye aligned to identity row and p-0 footprint retained. MI warning gap
+16px at1280/390. Preview colour rgb(130,117,7), white text, exactly matches
+3cbb03cf before the theme in both widths; it is not caused by the split.
+Review of mobile collapsed/expanded and desktop expanded PNGs completed.
+No pageerrors/business writes; credentials/child/lease cleanup passed.
+Rendered cards remain bounded by pagination inventory, not a panel viewport.
+Earlier233956457Z-33020 failure counted an inactive opacity0 panel and is kept.
+Admin/global CSS did not change in a211780d, prior native admin/outside gates
+remain scoped evidence. Structure-view specific successor pending separately.
