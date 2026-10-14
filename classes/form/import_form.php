@@ -56,12 +56,15 @@ class import_form extends \moodleform {
             \html_writer::span(
                 \html_writer::span('', 'fa fa-cloud-upload', ['aria-hidden' => 'true']),
                 'easyedu-file-deposit__icon easyedu-icon-tile', ['aria-hidden' => 'true']
-            ) . \html_writer::tag('h3', get_string('filedeposittitle', 'local_groupimport'),
-                ['class' => 'easyedu-file-deposit__title']),
+            ) . \html_writer::div(
+                \html_writer::tag('h3', get_string('filedeposittitle', 'local_groupimport'),
+                    ['class' => 'easyedu-file-deposit__title']) .
+                \html_writer::tag('p', get_string('filedepositsupport', 'local_groupimport'),
+                    ['class' => 'easyedu-file-deposit__support']),
+                'easyedu-file-deposit__copy'
+            ),
             'easyedu-file-deposit__heading'
         ));
-        $mform->addElement('html', \html_writer::tag('p', get_string('filedepositsupport', 'local_groupimport'),
-            ['class' => 'easyedu-file-deposit__support']));
         $mform->addElement('html', \html_writer::start_div('easyedu-file-deposit__control'));
 
         // Import file.

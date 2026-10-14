@@ -51,6 +51,25 @@
   }
 
 
+  // T025: scoped deposit rhythm; the native picker keeps its 12px status/action gap.
+  &.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--aligned {
+    .easyedu-file-deposit__copy {
+      min-width: 0;
+    }
+    .easyedu-file-deposit__support {
+      margin-inline-start: 0;
+      margin-block-start: 0.25rem;
+      margin-block-end: 0;
+    }
+    .easyedu-file-deposit__requirements {
+      margin-block-start: 0.5rem;
+    }
+    .easyedu-file-deposit__control .fitem {
+      // Moodle's spacing utility is important; keep only this picker row marginless.
+      margin-block-end: 0 !important;
+    }
+  }
+
   &[data-easystud-loading-state="loading"] {
     overflow: hidden;
 
