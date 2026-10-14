@@ -5906,3 +5906,4 @@ Maintenance convention:
 - Initial commit of the historical Group Import CSV plugin.
 - 2026-10-15 [N2] Repair page-CSS cascade regressions: intrinsic SM panels and cards, original overflow-button footprint, mobile detail alignment and Mass Import warning spacing.
 - 2026-10-15 [N1] Integrate Claude S3/S9/S7-M6 and four polish commits through c84c1a36; retain K21 and per-page CSS, regenerate both AMD builds and conservative CSS.
+- 2026-10-15 [N2] Lift SM adopts Kit0.4.211 continuous lanes, entity rails, shared 24px gutter, container proportions and lighter resting cards; preserve controllers and T020 alignment.
