@@ -1,5 +1,10 @@
 # Changelog
 
+- 2026-10-14 [N1] Group Claude F7 and Codex2 R10-09/R10-12/R10-22/T058
+  contrast integrations, rebuild Course Manager and Sass1.79.1 styles, and
+  prepare the requested FR1280/390 two-mode views/menu/pagination/selection
+  recipe. Only CHANGELOG conflicts were resolved, preserving all entries.
+
 - 2026-10-14 [N1] Record one FR1280 two-mode native PASS on 5ec0a626 for
   K14/K15 and A-ICONE: normal inline disclosure, field focus without ancestor
   scroll, consistent Guide grouping glyphs, no attempted course writes and

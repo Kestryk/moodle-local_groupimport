@@ -1,4 +1,15 @@
 {
+  "f7R10Integration20261014": {
+    "originalCommits": ["1777dddc", "744e0f07", "5ec681c3", "f347269e", "9b017481"],
+    "integrationCommits": ["0ff1e05c", "f2ea4776", "cbce74e9", "616a3c87", "d526ed7a"],
+    "status": "integrated-built-pending-grouped-preview-native-human",
+    "documentation": "docs/testing/f7-r10-integration-2026-10-14.md",
+    "nativeSpec": "tools/playwright/f7-r10-integration-native.spec.js",
+    "requestedMatrix": ["fr/legacy/1280", "fr/legacy/390", "fr/reactive/1280", "fr/reactive/390"],
+    "conflicts": "CHANGELOG only; all entries retained",
+    "nativeVerified": false,
+    "humanAccepted": false
+  },
   "executionSteering20261014": {
     "source": "Kevin instruction 2026-10-14",
     "penpotOperator": "Claude only",
