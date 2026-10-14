@@ -482,6 +482,9 @@ function local_groupimport_build_manage_template_data(
             'participants' => 'local-groupimport-easystud--participant-focus',
             'structure' => 'local-groupimport-easystud--structure-focus',
         ][$layoutpreferences['defaultlayoutmode']] ?? '',
+        // The column of that focus is revealed with the frame on desktop (loading bootstrap).
+        'participantfocusdefault' => $layoutpreferences['defaultlayoutmode'] === 'participants',
+        'structurefocusdefault' => $layoutpreferences['defaultlayoutmode'] === 'structure',
         'clipboardlabel' => get_string('clipboardtools', 'local_groupimport'),
         'tutoriallabel' => get_string('tutoriallabel', 'local_groupimport'),
         'tutorialtitle' => get_string('tutorialtitle', 'local_groupimport'),
