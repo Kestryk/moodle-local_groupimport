@@ -33,3 +33,12 @@ participants/groups/groupings; mobile participants fails2.875px leading offset
 from legacy responsive list padding0.18rem. Preserve run/spec. Reset lane-list
 inline padding at the adapter; desktop segmented-lane16px wins by specificity.
 Final successor retains exact1px criterion and only reruns the three mobile views.
+
+Final mobile edge run235655488Z-15472 PASS: Participants/Groups/Groupings
+left24/right341px for fields and first cards, delta0 at390. Desktop1600/1280
+edge delta0 retained from235351112Z-55364. Runtime98dbcd99 serves03f58a00,
+2a1b8b1d,c019f997 after V2bf594489 and Claude69f060f4, purges passed.
+Global/admin/import CSS unchanged by lift. Kit recipe equals49ef47e exactly.
+No reserved source/controller/template edits. No errors; cleanup passed.
+Complete view, business drag/drop and human acceptance remain open; complete
+control is disabled by current settings. Penpot update requested from Claude.
