@@ -379,6 +379,13 @@
             managerReadyScheduled = true;
             waitForVisualStability();
         };
+        // A frame painted before its AMD manager starts must already use the layout
+        // that manager will choose for this viewport, or it jumps when it starts.
+        var responsiveQuery = root.getAttribute('data-easyedu-loading-responsive-query');
+        var responsiveClass = root.getAttribute('data-easyedu-loading-responsive-class');
+        if (responsiveQuery && responsiveClass && window.matchMedia) {
+            root.classList.toggle(responsiveClass, window.matchMedia(responsiveQuery).matches);
+        }
         frameObserver = new MutationObserver(showFrame);
         frameObserver.observe(root, {attributes: true, attributeFilter: [frameAttribute]});
         showFrame();
