@@ -1,10 +1,10 @@
 {
   "id": "K21",
-  "receivedScope": "Deux ?tiquettes s?par?es groupements/groupes avec les helpers count_string/count_template, FR/EN1280/390. Fonction updateStructureSummary autoris?e par Kevin/Claude le14 octobre apr?s-midi, mod?le ? la demande seul, null conserve le serveur et aucun repli DOM.",
+  "receivedScope": "Two separate Groupings/Groups badges, count_string/count_template helpers, FR/EN1280/390. Kevin explicitly authorized updateStructureSummary on14 October afternoon: on-demand model only, null preserves server values, no DOM fallback.",
   "status": "source-native-targeted-pass",
   "sourceChanged": true,
   "nativeVerified": true,
-  "nativeScope": "Deux compteurs, ?tat charg? ? la demande, FR/EN1280/390 sur :8051 avec CSS candidat; chargement/singuliers couverts isol?ment par PHP r?el et Intl r?el.",
+  "nativeScope": "Two loaded on-demand counts FR/EN1280/390 on :8051 with candidate CSS. Loading and singular/plural forms use actual PHP and actual Intl isolated cases.",
   "humanAccepted": false,
   "designPublished": false,
   "previewServed": false,
