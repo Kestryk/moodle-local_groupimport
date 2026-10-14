@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] Claude F7: switching views no longer lays the page out once per group card: member list heights are measured once for all the cards a catalog or section draws, and card action menus are measured once when the view swap animation ends instead of on every frame of it. Same heights, menus and masked tags as before.
+
 - 2026-10-13 [N1] Claude K14/K15: inline panels (member search loupe, add by identifiers, container and email searches) focus their field without scrolling once opened; the page no longer relayouts and scrolls at the end of the disclosure (worst frame 217-267 ms -> 17 ms; loupe first frame ~45 ms).
 
 - 2026-10-13 [N1] Claude R10-23: dragging a participant or a group now scrolls the real scroller (#page in Moodle 5.1) from 96 px before its top or bottom edge, faster near the edge, and stops as soon as the pointer leaves the zone or the drag ends.
