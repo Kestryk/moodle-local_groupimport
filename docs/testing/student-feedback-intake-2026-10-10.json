@@ -1,4 +1,48 @@
 {
+  "codex2GuideUserKeys20261014": {
+    "status": "seventeen-callers-adapted-native-key-k21-t058-pass-guide10-postselection-cue-fail",
+    "documentation": "docs/testing/codex2-guide-user-keys-2026-10-14.md",
+    "sourceCommit": "124696c7",
+    "served": "3cbb03cf",
+    "ownedMarkupCommit": "ebd286d5",
+    "helper": "tools/playwright/guide-storage-helper.cjs",
+    "adaptedSpecs": 17,
+    "legacyCourseOnlyConstructorsRemaining": 0,
+    "hardcodedGuestDiscoveryCallers": 0,
+    "callerOraclesUnchanged": true,
+    "syntaxPass": true,
+    "mode": "on-demand-only",
+    "nativeKeys": {"course":96,"user":2,"progress":"local_groupimport.easyedu_guide.u2.c96","discovery":"local_groupimport_easystud_guide_seen_96_2"},
+    "k21": {"result":"PASS4","spec":"tools/playwright/k21-markup-mobile-successor.spec.js","run":"easystud-authenticated-20261014T210159178Z-41176","scope":"FR/EN1280/390 two labels, complete count templates and zero label overflow"},
+    "guide10": {
+      "result": "FAIL",
+      "spec": "tools/playwright/guide-user-key-drag-native-successor.spec.js",
+      "line": 177,
+      "run": "easystud-authenticated-20261014T210311407Z-45492",
+      "language": "fr",
+      "width": 1280,
+      "progressKey": "local_groupimport.easyedu_guide.u2.c97",
+      "nativeTrustedDragHeldMs": 862.80,
+      "dragendSamples": [
+        {"elapsedMs":1005.80,"hidden":false,"painted":true,"display":"block","selectorDelta":0,"neighborDelta":175.80,"activeStep":"try-selection","dragging":false},
+        {"elapsedMs":5015.20,"hidden":false,"painted":true,"display":"block","selectorDelta":0,"neighborDelta":175.80,"activeStep":"try-selection","dragging":false}
+      ],
+      "afterSelection": {"elapsedMs":611.40,"hidden":true,"display":"none","painted":false,"currentTarget":null,"activeStep":"try-context","completedTicksVisible":2},
+      "contextMenuAndFinalReached": false,
+      "pageErrors": 0,
+      "blockedWrites": 0,
+      "nextOwner": "Claude"
+    },
+    "t058": {"result":"PASS3/3","run":"easystud-authenticated-20261014T210405089Z-45492","spec":"tools/playwright/t058-group-search-focus-ready-successor.spec.js","language":"fr","width":1280,"originalOpenerAt500Ms":3,"baselineBeforeT055":"3/3","intermittenceReproduced":false,"pageErrors":0,"blockedWrites":0},
+    "diagnostic": "C:/dev/artifacts/es-guide-user-key-native-diagnostic.json",
+    "fixtureCleanup": {"coursesRemoved":5,"syntheticUsersDeleted":10,"verifiedReadOnly":true,"oneInterruptedWrapperRecoveredExplicitly":true},
+    "scenarioClass": "local-supervised",
+    "ciReadiness": "candidate-requires-authentication-seeded-backend-and-guide-cue-fix",
+    "twoUserIsolationVerified": false,
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "codex2T055Guide10FocusParity20261014": {
     "status": "t058-focus-scoped-parity-pass-guide10-postselection-highlight-failed",
     "documentation": "docs/testing/codex2-t055-guide10-focus-parity-2026-10-14.md",

@@ -1,3 +1,4 @@
+const {guideStorageKey}=require('./guide-storage-helper.cjs');
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
@@ -34,7 +35,7 @@ test('Guide card lessons preserve native targets and responsive typography', asy
         await expect(page.locator('#local-groupimport-easystud')).toHaveAttribute('data-easystud-loading-state', 'ready', {timeout: 60000});
         const root = page.locator('.easyedu-guide--discovery');
         await expect(root.locator('[data-easyedu-guide-slide]')).toHaveCount(24);
-        const key = 'local_groupimport.easyedu_guide.' + new URL(process.env.EASYEDU_MOODLE_URL).searchParams.get('id') + '.checklist';
+        const key = await guideStorageKey(page, '.checklist');
         const completion = await page.evaluate(key => JSON.parse(localStorage.getItem(key) || '{}').completed || {}, key);
         for (const index of [8,9,10]) for (const [width, motion] of [[1280, 'no-preference'], [768, 'reduce'], [390, 'no-preference']]) {
             await page.setViewportSize({width, height: 1000});

@@ -1,3 +1,4 @@
+const {guideStorageKey}=require('./guide-storage-helper.cjs');
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 
@@ -57,7 +58,7 @@ test('Guide regular fullscreen glyph preserves native lifecycle',async({page},in
             result.glyphPaint ||= [];result.glyphPaint.push({active,...paint});
         };
         const course=new URL(process.env.EASYEDU_MOODLE_URL).searchParams.get('id');
-        const storageKey='local_groupimport.easyedu_guide.'+course+'.checklist';
+        const storageKey = await guideStorageKey(page, '.checklist');
         const completed=await page.evaluate(key=>JSON.parse(localStorage.getItem(key)||'{}').completed||{},storageKey);
         for(const reducedMotion of ['no-preference','reduce']){
             await page.emulateMedia({reducedMotion});

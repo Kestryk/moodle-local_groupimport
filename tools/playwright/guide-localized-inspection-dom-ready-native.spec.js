@@ -1,3 +1,4 @@
+const {guideStorageKey}=require('./guide-storage-helper.cjs');
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
@@ -44,8 +45,7 @@ test('Guide localized inspection DOM-ready verifies French paint and lifecycle',
         await expect(root.locator('.easyedu-guide-visual--card-detail')).toHaveCount(1);
         const indices = await scenes.evaluateAll(nodes => nodes.map(node =>
             node.closest('[data-easyedu-guide-slide]').getAttribute('data-easyedu-guide-slide')));
-        const key = 'local_groupimport.easyedu_guide.' +
-            new URL(process.env.EASYEDU_MOODLE_URL).searchParams.get('id') + '.checklist';
+        const key = await guideStorageKey(page, '.checklist');
         const completion = await page.evaluate(key =>
             JSON.parse(localStorage.getItem(key) || '{}').completed || {}, key);
         for (const motion of ['no-preference', 'reduce']) for (const width of [1280, 768, 390]) for (const index of indices) {

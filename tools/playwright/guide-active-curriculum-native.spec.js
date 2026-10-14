@@ -1,3 +1,4 @@
+const {guideStorageKey}=require('./guide-storage-helper.cjs');
 const {test, expect} = require('@playwright/test');
 const fs = require('node:fs');
 
@@ -35,7 +36,7 @@ test('Guide modern twelve-slide curriculum preserves native entries and reading'
             'data-easystud-loading-state', 'ready', {timeout:60000});
         const root = page.locator('[data-easyedu-guide-root]');
         const course = new URL(process.env.EASYEDU_MOODLE_URL).searchParams.get('id');
-        const key = 'local_groupimport.easyedu_guide.' + course + '.checklist';
+        const key = await guideStorageKey(page, '.checklist');
         const completed = await page.evaluate(key =>
             JSON.parse(localStorage.getItem(key) || '{}').completed || {}, key);
         const ids = ['use-this-guide','understand-workspace','create-structure',
