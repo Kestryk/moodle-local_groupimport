@@ -471,6 +471,12 @@ function local_groupimport_build_manage_template_data(
         'showcompleteview' => $layoutpreferences['showcompleteview'],
         'defaultlayoutmode' => $layoutpreferences['defaultlayoutmode'],
         'defaultmobileview' => $layoutpreferences['defaultmobileview'],
+        // The real frame is painted before the course manager starts: apply the default
+        // desktop focus now so the layout does not jump when it does.
+        'defaultfocusclass' => [
+            'participants' => 'local-groupimport-easystud--participant-focus',
+            'structure' => 'local-groupimport-easystud--structure-focus',
+        ][$layoutpreferences['defaultlayoutmode']] ?? '',
         'clipboardlabel' => get_string('clipboardtools', 'local_groupimport'),
         'tutoriallabel' => get_string('tutoriallabel', 'local_groupimport'),
         'tutorialtitle' => get_string('tutorialtitle', 'local_groupimport'),

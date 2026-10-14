@@ -461,6 +461,27 @@
     width: min(100%, 16rem);
   }
 
+  // Component skeletons (T061): the lists that wait for the course state use the
+  // page skeleton's Kit aliases, shimmer and appearance; there is no page skeleton.
+  [data-easystud-sm-loading] {
+    --local-groupimport-easystud-loading-surface: var(--easyedu-loading-surface);
+    --local-groupimport-easystud-loading-surface-soft: var(--easyedu-loading-surface-soft);
+    --local-groupimport-easystud-loading-surface-strong: var(--easyedu-loading-surface-strong);
+    --local-groupimport-easystud-loading-border: var(--easyedu-loading-border);
+    --local-groupimport-easystud-loading-radius: var(--easyedu-loading-radius);
+    --local-groupimport-easystud-loading-gap: var(--easyedu-loading-stack-gap);
+    --local-groupimport-easystud-loading-shimmer-duration: var(--easyedu-loading-shimmer-duration);
+    --local-groupimport-easystud-loading-shimmer-highlight: var(--easyedu-loading-shimmer-highlight);
+
+    @include easyedu.loading-appearance;
+  }
+
+  &__loading-card-avatar {
+    block-size: 2rem;
+    border-radius: 50%;
+    inline-size: 2rem;
+  }
+
   @media (max-width: 1200px) {
     &__loading-layout {
       grid-template-columns: minmax(0, 1fr);
