@@ -7,6 +7,8 @@ $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $reference = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'fixtures\ccb-slideshow-controls-201edaf.json') -Raw |
     ConvertFrom-Json
 $manager = Get-Content -LiteralPath (Join-Path $root 'amd\src\course_manager.js') -Raw
+# T055: the course manager code lives in amd/src/local/cm (and amd/build/local/cm); read it with course_manager.js.
+$manager = $manager + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/src/local/cm') -Filter '*.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
 $modal = Get-Content -LiteralPath (Join-Path $root 'scss\components\_settings-modal.scss') -Raw
 $tooltips = Get-Content -LiteralPath (Join-Path $root 'scss\easyedu\components\_tooltips.scss') -Raw
 $settings = Get-Content -LiteralPath (Join-Path $root 'settings.php') -Raw

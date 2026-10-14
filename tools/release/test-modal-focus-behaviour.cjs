@@ -1,7 +1,8 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-const source=fs.readFileSync(path.resolve(__dirname,'../../amd/src/course_manager.js'),'utf8');
-const helpers=source.slice(source.indexOf('const modalKeyboardState'),source.indexOf('// Normalise text for filtering.'));
+// T055: the modal helpers moved to amd/src/local/cm/modal.js (ES module): evaluate its declarations.
+const source=fs.readFileSync(path.resolve(__dirname,'../../amd/src/local/cm/modal.js'),'utf8').replace(/^export /gm,'');
+const helpers=source.slice(source.indexOf('const modalKeyboardState'),source.indexOf('const openConfirmModal'));
 const document={activeElement:null,body:null};let finish;
 const element=(name,parent=null)=>({name,parent,isConnected:true,disabled:false,tabIndex:0,hidden:false,style:{visibility:'visible'},
     focus(){document.activeElement=this;},closest(){return this.hidden||this.parent?.hidden?{}:null;},

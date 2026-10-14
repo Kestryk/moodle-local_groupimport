@@ -173,17 +173,6 @@ function local_groupimport_count_template(string $identifier): string {
 }
 
 /**
- * Whether Student Management renders participants on demand in the browser (SM-RENDU preview).
- *
- * @return bool
- */
-function local_groupimport_is_on_demand_rendering(): bool {
-    // Kevin validated the parity on 14/10/2026: On demand is the only mode. The server-rendered
-    // (legacy) branches that still test this function are removed step by step (T055).
-    return true;
-}
-
-/**
  * Return the normalized Student Management workspace preferences.
  *
  * Missing values preserve the historical three-view experience for existing

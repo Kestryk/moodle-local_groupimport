@@ -75,9 +75,8 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
     'local-groupimport-easystud',
     $course->id,
     [
-        'renderingmode' => 'reactive',
-        // Labels of the cards rendered in the browser: the on-demand lists, and in both modes the
-        // Guide specimens (amd/src/local/sm/specimen.js). Participant card (templates/sm/participant_card).
+        // Labels of the cards rendered in the browser: the on-demand lists and the Guide specimens
+        // (amd/src/local/sm/specimen.js). Participant card (templates/sm/participant_card).
         'cardstrings' => [
             'selectionmodelabel' => get_string('selectionmode', 'local_groupimport'),
             'viewdetailslabel' => get_string('viewparticipantdetails', 'local_groupimport'),
@@ -206,7 +205,6 @@ $templatedata = local_groupimport_build_manage_template_data(
     $users,
     $groups,
     $groupings,
-    $state['ungroupedgroupids'],
     $navigationdata
 );
 $templatedata['animationsenabled'] = $animationsenabled;
@@ -279,7 +277,6 @@ function local_groupimport_grouping_filter_options(array $groupings): array {
  * @param array $users User records.
  * @param array $groups Group records.
  * @param array $groupings Grouping records.
- * @param array $ungroupedgroupids Group ids without grouping.
  * @param array $navigationdata Normalized navigation context.
  * @return array
  */
@@ -288,7 +285,6 @@ function local_groupimport_build_manage_template_data(
     array $users,
     array $groups,
     array $groupings,
-    array $ungroupedgroupids,
     array $navigationdata
 ): array {
     global $CFG;
@@ -914,7 +910,6 @@ function local_groupimport_build_manage_template_data(
         'showungroupedlabel' => get_string('showungroupedgroups', 'local_groupimport'),
         'onlyshowungroupedlabel' => get_string('onlyshowungroupedgroups', 'local_groupimport'),
         'noparticipantsstate' => get_string('noparticipantsstate', 'local_groupimport'),
-        'participants' => [],
         'groupstructuretitle' => get_string('groupsandgroupings', 'local_groupimport'),
         'groupstructuresummarylabel' => get_string('groupstructuresummary', 'local_groupimport', (object)[
             'groupings' => count($groupings),
@@ -994,9 +989,6 @@ function local_groupimport_build_manage_template_data(
         'creategroupinglabel' => get_string('creategrouping', 'local_groupimport'),
         'nogroupingsavailable' => get_string('nogroupingsavailable', 'local_groupimport'),
         'groupings' => [],
-        'ungroupedgroups' => [],
-        'participantfocusgroups' => [],
-        'structurefocusgroups' => [],
         'groupswithoutgrouping' => get_string('groupswithoutgrouping', 'local_groupimport'),
         'clipboarddesc' => get_string('clipboardtools_desc', 'local_groupimport'),
         'pasteemailsplaceholder' => get_string('pasteemailsplaceholder', 'local_groupimport'),
@@ -1027,94 +1019,12 @@ function local_groupimport_build_manage_template_data(
     $templatedata['useeasyeduguide'] = true;
     $templatedata['easyeduguide'] = local_groupimport_build_easyedu_guide_template_data($templatedata);
 
-    // SM-RENDU on-demand mode: the browser renders the current page of participant cards
-    // from the compact state (local_groupimport_get_state); none is rendered here.
-    $templatedata['smondemand'] = local_groupimport_is_on_demand_rendering();
-    foreach ($templatedata['smondemand'] ? [] : $users as $user) {
-        $customsearchvalues = [];
-        foreach ($user['participantdisplayfields'] ?? [] as $field) {
-            $customsearchvalues[] = $field['label'];
-            $customsearchvalues[] = $field['value'];
-        }
-        if (!empty($user['primarybadge']['value'])) {
-            $customsearchvalues[] = $user['primarybadge']['label'];
-            $customsearchvalues[] = $user['primarybadge']['value'];
-        }
-        $searchtext = core_text::strtolower($user['fullname'] . ' ' . $user['email'] . ' ' .
-            implode(' ', $user['roles']) . ' ' . implode(' ', $user['groups']) . ' ' .
-            implode(' ', $user['groupings'] ?? []) . ' ' . implode(' ', $customsearchvalues));
-        $templatedata['participants'][] = [
-            'id' => $user['id'],
-            'fullname' => $user['fullname'],
-            'email' => $user['email'],
-            'profileimage' => $user['profileimage'],
-            'primarybadge' => $user['primarybadge'] ?? null,
-            'userdetailjson' => json_encode($user),
-            'usercopyfieldsjson' => json_encode($user['copyfields'] ?? []),
-            'searchtext' => $searchtext,
-            'roletext' => core_text::strtolower(implode('|', $user['roles'])),
-            'groupidscsv' => implode(',', $user['groupids']),
-            'groupingidscsv' => implode(',', $user['groupingids'] ?? []),
-            'rolesmeta' => local_groupimport_build_meta_tags_template_data(
-                get_string('roleslabel', 'local_groupimport'),
-                $user['roles'],
-                'local-groupimport-easystud-token local-groupimport-easystud-token--role',
-                get_string('norole', 'local_groupimport')
-            ),
-            'groupsmeta' => local_groupimport_build_meta_tags_template_data(
-                get_string('groupslabel', 'local_groupimport'),
-                $user['groups'],
-                'local-groupimport-easystud-token local-groupimport-easystud-token--group',
-                get_string('nogroup', 'local_groupimport')
-            ),
-            'groupingsmeta' => local_groupimport_build_meta_tags_template_data(
-                get_string('groupingslabel', 'local_groupimport'),
-                $user['groupings'] ?? [],
-                'local-groupimport-easystud-token local-groupimport-easystud-token--grouping',
-                get_string('nogrouping', 'local_groupimport')
-            ),
-            'customfieldsmeta' => $user['customfieldsmeta'] ?? [],
-            'viewdetailslabel' => get_string('viewparticipantdetails', 'local_groupimport'),
-            'draghint' => get_string('draghintparticipant', 'local_groupimport'),
-        ];
-    }
-
-    // SM-RENDU on-demand mode: grouping headers only; the browser renders the group cards of a
-    // section (and of the "without grouping" section) when it opens.
+    // SM-RENDU: the browser renders every card from the compact state (local_groupimport_get_state):
+    // the current page of the participant list and of both group catalogs, and the group cards of
+    // a groupings tree section when it opens. The page only carries the grouping headers.
     foreach ($groupings as $grouping) {
-        $templatedata['groupings'][] = local_groupimport_build_grouping_template_data(
-            $course->id,
-            $grouping,
-            $templatedata['smondemand'] ? [] : $groups,
-            $users,
-            $groupings
-        );
+        $templatedata['groupings'][] = local_groupimport_build_grouping_template_data($course->id, $grouping);
     }
-
-    foreach ($templatedata['smondemand'] ? [] : $ungroupedgroupids as $groupid) {
-        if (isset($groups[$groupid])) {
-            $templatedata['ungroupedgroups'][] = local_groupimport_build_group_template_data(
-                $course->id,
-                $groups[$groupid],
-                $users,
-                false,
-                $groupings
-            );
-        }
-    }
-
-    // SM-RENDU on-demand mode: the browser renders the current page of both group catalogs.
-    $templatedata['participantfocusgroups'] = $templatedata['smondemand'] ? [] : local_groupimport_build_group_catalog_template_data(
-        $course->id,
-        $groups,
-        $groupings,
-        $users
-    );
-    $templatedata['structurefocusgroups'] = $templatedata['participantfocusgroups'];
-    // The Structure catalog renders templates/sm/group_card with its e-mail panel variant,
-    // the groupings tree with its tree variant.
-    $templatedata['structurecatalog'] = ['structureemail' => true];
-    $templatedata['treegroupcard'] = ['treecard' => true];
 
     return $templatedata;
 }
@@ -1758,42 +1668,6 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
     ];
 }
 
-/**
- * Build a flat group catalog for the participant focus layout.
- *
- * @param int $courseid Course id.
- * @param array $groups Groups keyed by id.
- * @param array $groupings Groupings keyed by id.
- * @param array $users Users keyed by id.
- * @return array
- */
-function local_groupimport_build_group_catalog_template_data(int $courseid, array $groups, array $groupings, array $users): array {
-    $groupingtitles = [];
-    foreach ($groupings as $grouping) {
-        foreach ($grouping['groupids'] as $groupid) {
-            $groupingtitles[(int)$groupid][] = $grouping['name'];
-        }
-    }
-
-    $result = [];
-    foreach ($groups as $group) {
-        $item = local_groupimport_build_group_template_data($courseid, $group, $users, false, $groupings);
-        $groupingnames = $groupingtitles[(int)$group['id']] ?? [];
-        $item['groupingidscsv'] = implode(',', $group['groupingids'] ?? []);
-        $item['hasnogrouping'] = empty($group['groupingids']);
-        $item['groupingtags'] = array_map(static function(string $name): array {
-            return ['label' => $name];
-        }, $groupingnames);
-        $item['searchtext'] = core_text::strtolower(trim($item['searchtext'] . ' ' . implode(' ', $groupingnames)));
-        $result[] = $item;
-    }
-
-    usort($result, static function(array $left, array $right): int {
-        return strnatcasecmp($left['name'], $right['name']);
-    });
-
-    return $result;
-}
 
 /**
  * Convert a translated navigation label or URL into a stable item key.
@@ -2265,23 +2139,13 @@ function local_groupimport_build_meta_tags_template_data(string $label, array $i
 }
 
 /**
- * Build grouping template data.
+ * Build the template data of a grouping header (its group cards are rendered in the browser).
  *
  * @param int $courseid Course id.
  * @param array $grouping Grouping data.
- * @param array $groups Group data.
- * @param array $users User data.
- * @param array $allgroupings All grouping data.
  * @return array
  */
-function local_groupimport_build_grouping_template_data(
-    int $courseid,
-    array $grouping,
-    array $groups,
-    array $users,
-    array $allgroupings = []
-): array {
-    $searchparts = [$grouping['name']];
+function local_groupimport_build_grouping_template_data(int $courseid, array $grouping): array {
     $result = [
         'id' => $grouping['id'],
         'name' => $grouping['name'],
@@ -2306,107 +2170,9 @@ function local_groupimport_build_grouping_template_data(
         'addgroupslabel' => get_string('addgroupstogrouping', 'local_groupimport'),
         'pastegroupsplaceholder' => get_string('pastegroupsplaceholder', 'local_groupimport'),
         'addgroupsbutton' => get_string('addgroups', 'local_groupimport'),
-        'groups' => [],
     ];
 
-    foreach ($grouping['groupids'] as $groupid) {
-        if (isset($groups[$groupid])) {
-            $groupdata = local_groupimport_build_group_template_data($courseid, $groups[$groupid], $users, true, $allgroupings);
-            $result['groups'][] = $groupdata;
-            $searchparts[] = $groupdata['searchtext'];
-        }
-    }
-
-    $result['searchtext'] = core_text::strtolower(trim(implode(' ', $searchparts)));
-
-    return $result;
-}
-
-/**
- * Build group template data.
- *
- * @param int $courseid Course id.
- * @param array $group Group data.
- * @param array $users User data.
- * @param bool $withingrouping True when the group is rendered inside a grouping.
- * @param array $groupings Grouping data.
- * @return array
- */
-function local_groupimport_build_group_template_data(
-    int $courseid,
-    array $group,
-    array $users,
-    bool $withingrouping = false,
-    array $groupings = []
-): array {
-    $searchparts = [$group['name']];
-    $groupingnames = [];
-    foreach ($group['groupingids'] ?? [] as $groupingid) {
-        if (isset($groupings[$groupingid])) {
-            $groupingnames[] = $groupings[$groupingid]['name'];
-            $searchparts[] = $groupings[$groupingid]['name'];
-        }
-    }
-    $result = [
-        'id' => $group['id'],
-        'name' => $group['name'],
-        'description' => $group['description'] ?? '',
-        'rawdescription' => $group['rawdescription'] ?? '',
-        'idnumber' => $group['idnumber'] ?? '',
-        'enrolmentkey' => !empty($group['enrolmentkey']) ? '1' : '0',
-        'picture' => $group['picture'] ?? '',
-        'hidepicture' => !empty($group['hidepicture']) ? '1' : '0',
-        'nativeurl' => (new moodle_url('/group/group.php', [
-            'courseid' => $courseid,
-            'id' => $group['id'],
-        ]))->out(false),
-        'membercountlabel' => local_groupimport_count_string('memberscount', (int)$group['membercount']),
-        'sesskey' => sesskey(),
-        'renameurl' => (new moodle_url('/local/groupimport/manage.php', ['id' => $courseid]))->out(false),
-        'renameaction' => 'renamegroup',
-        'renameidname' => 'groupid',
-        'rawname' => $group['rawname'],
-        'renamelabel' => get_string('rename', 'local_groupimport'),
-        'savelabel' => get_string('save'),
-        'cancellabel' => get_string('cancel'),
-        'addemailstolabel' => get_string('addemailstogroup', 'local_groupimport'),
-        'pasteemailsplaceholder' => get_string('pasteemailsplaceholder', 'local_groupimport'),
-        'addemailsbutton' => get_string('addemails', 'local_groupimport'),
-        'withingrouping' => $withingrouping,
-        'groupingidscsv' => implode(',', $group['groupingids'] ?? []),
-        'hasnogrouping' => empty($group['groupingids']),
-        'groupingtags' => array_map(static function(string $name): array {
-            return ['label' => $name];
-        }, $groupingnames),
-        'removefromgroupinglabel' => get_string('removegroupfromgrouping', 'local_groupimport'),
-        'members' => [],
-        'hasmembers' => !empty($group['memberids']),
-        'nomemberslabel' => get_string('nogroupmembers', 'local_groupimport'),
-        // R10-05: member "Select all"; the browser swaps the labels and fills __name__.
-        'selectallmemberslabel' => get_string('selectall', 'local_groupimport'),
-        'deselectallmemberslabel' => get_string('deselectall', 'local_groupimport'),
-        'selectallmembersoflabel' => get_string('selectallmembersof', 'local_groupimport', $group['name']),
-        'selectallmembersoftemplate' => get_string('selectallmembersof', 'local_groupimport', '__name__'),
-        'deselectallmembersoftemplate' => get_string('deselectallmembersof', 'local_groupimport', '__name__'),
-    ];
-
-    foreach ($group['memberids'] as $userid) {
-        if (isset($users[$userid])) {
-            $searchparts[] = $users[$userid]['fullname'];
-            $searchparts[] = $users[$userid]['email'] ?? '';
-            $result['members'][] = [
-                'groupid' => $group['id'],
-                'userid' => $users[$userid]['id'],
-                'fullname' => $users[$userid]['fullname'],
-                'email' => $users[$userid]['email'] ?? '',
-                'removeuserlabel' => get_string('removeuserfromgroup', 'local_groupimport', $users[$userid]['fullname']),
-                'selectableid' => $group['id'] . ':' . $users[$userid]['id'],
-            ];
-        }
-    }
-
-    $result['searchtext'] = core_text::strtolower(trim(implode(' ', $searchparts)));
-    $result['canselectallmembers'] = count($result['members']) > 2;
+    $result['searchtext'] = core_text::strtolower(trim($grouping['name']));
 
     return $result;
 }

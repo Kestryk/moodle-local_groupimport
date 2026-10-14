@@ -16,45 +16,96 @@ const moduleName = 'local_groupimport/course_manager';
 const terser = require(path.join(path.resolve(terserPackageRoot), 'terser'));
 
 const source = fs.readFileSync(sourcePath, 'utf8');
-const motionImport = "import * as Motion from './motion';";
-const guideImport = "import * as Guide from './easyedu_guide';";
-const choicesImport = "import {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} from './searchable_choices';";
-const membersImport = "import {snapshotMemberPairs} from './member_selection';";
-// SM-RENDU (on-demand rendering) dependencies.
-const logImport = "import Log from 'core/log';";
-const smStoreImport = "import {createStore, fetchState, fetchDetails} from './local/sm/store';";
-const smIndexImport = /import \{([^}]*)\} from '\.\/local\/sm\/index';/;
-// Multi-line import: matched whatever the checkout line endings are.
-const smParticipantsImport = /import \{([^}]*)\} from '\.\/local\/sm\/participants';/;
-const smGroupsImport = /import \{([^}]*)\} from '\.\/local\/sm\/groups';/;
-const notificationImport = "import Notification from 'core/notification';";
-if (!source.includes(motionImport) || !source.includes(guideImport) || !source.includes(choicesImport) ||
-        !source.includes(membersImport) || !source.includes(logImport) || !source.includes(smStoreImport) ||
-        !smIndexImport.test(source) || !smParticipantsImport.test(source) || !smGroupsImport.test(source) ||
-        !source.includes(notificationImport) ||
-        !source.includes('export const init =')) {
-    throw new Error('The course manager AMD source does not contain its expected Motion import and init export.');
+const lf = source.replace(/\r\n/g, '\n');
+
+// T055: course_manager.js is the orchestrator; its code lives in amd/src/local/cm (built by
+// build-sm-amd.js). Every import statement must be one of these exact forms, each turned into an
+// AMD dependency of the wrapper; any other import fails the build.
+const fixedImports = [
+    {text: "import * as Motion from './motion';", dependency: 'local_groupimport/motion', param: 'Motion', required: true},
+    {text: "import * as Guide from './easyedu_guide';", dependency: 'local_groupimport/easyedu_guide', param: 'Guide'},
+    {text: "import Log from 'core/log';", dependency: 'core/log', param: 'Log'},
+    {text: "import Notification from 'core/notification';", dependency: 'core/notification', param: 'Notification'},
+];
+const namedSources = [
+    {pattern: /^\.\/(searchable_choices|member_selection)$/, dependency: name => `local_groupimport/${name}`,
+        exists: () => true},
+    {pattern: /^\.\/local\/sm\/([a-z_]+)$/, dependency: name => `local_groupimport/local/sm/${name}`,
+        exists: name => fs.existsSync(path.join(pluginRoot, 'amd', 'src', 'local', 'sm', `${name}.js`))},
+    {pattern: /^\.\/local\/cm\/([a-z_]+)$/, dependency: name => `local_groupimport/local/cm/${name}`,
+        exists: name => fs.existsSync(path.join(pluginRoot, 'amd', 'src', 'local', 'cm', `${name}.js`))},
+];
+const paramFor = dependency => dependency.replace(/^local_groupimport\//, '').split(/[/_]/)
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
+
+const statements = lf.match(/^import\b/gm) || [];
+const dependencies = [];
+let namedSource = lf;
+let handled = 0;
+fixedImports.forEach(entry => {
+    const count = lf.split(entry.text).length - 1;
+    if (count > 1 || (entry.required && count !== 1)) {
+        throw new Error(`The course manager AMD source must contain exactly once: ${entry.text}`);
+    }
+    if (count === 1) {
+        namedSource = namedSource.replace(entry.text, '');
+        dependencies.push({dependency: entry.dependency, param: entry.param});
+        handled++;
+    }
+});
+const cmImported = [];
+namedSource = namedSource.replace(/^import \{([^}]*)\} from '([^']+)';$/gm, (match, names, from) => {
+    const sourceEntry = namedSources.find(entry => entry.pattern.test(from));
+    if (!sourceEntry) {
+        throw new Error(`The course manager AMD source imports from an unexpected module: ${from}`);
+    }
+    const name = from.match(sourceEntry.pattern)[1];
+    if (!sourceEntry.exists(name)) {
+        throw new Error(`The course manager AMD source imports a missing module: ${from}`);
+    }
+    const dependency = sourceEntry.dependency(name);
+    if (dependencies.some(entry => entry.dependency === dependency)) {
+        throw new Error(`The course manager AMD source imports ${from} twice.`);
+    }
+    if (from.startsWith('./local/cm/')) {
+        cmImported.push(name);
+    }
+    const param = paramFor(dependency);
+    dependencies.push({dependency, param});
+    handled++;
+    return 'const {' + names.replace(/\s+/g, ' ').trim().replace(/,$/, '') + '} = ' + param + ';';
+});
+if (handled !== statements.length || /^import\b/m.test(namedSource)) {
+    throw new Error('The course manager AMD source contains an import statement this build does not know.');
+}
+if (namedSource.split('export const init =').length !== 2 || /^export\b(?! const init =)/m.test(namedSource)) {
+    throw new Error('The course manager AMD source must export init only.');
+}
+if (!cmImported.length) {
+    throw new Error('The course manager AMD source does not import its local/cm modules.');
 }
 
-const namedSource = source
-    .replace(motionImport, '')
-    .replace(guideImport, '')
-    .replace(choicesImport, 'const {enhanceSelect, enhanceMultipleSelect, closeChoicesWithin} = Choices;')
-    .replace(membersImport, 'const {snapshotMemberPairs} = MemberSelection;')
-    .replace(logImport, '')
-    .replace(smStoreImport, 'const {createStore, fetchState, fetchDetails} = SmStore;')
-    .replace(smIndexImport, (match, names) => `const {${names}} = SmIndex;`)
-    .replace(smParticipantsImport, (match, names) => 'const {' + names.replace(/\s+/g, ' ').trim().replace(/,$/, '') +
-        '} = SmParticipants;')
-    .replace(smGroupsImport, (match, names) => 'const {' + names.replace(/\s+/g, ' ').trim().replace(/,$/, '') +
-        '} = SmGroups;')
-    .replace(notificationImport, '')
-    .replace('export const init =', 'const init =');
-const wrappedSource = `define("${moduleName}", ["local_groupimport/motion", "local_groupimport/searchable_choices", ` +
-    `"local_groupimport/member_selection", "local_groupimport/easyedu_guide", "core/log", ` +
-    `"local_groupimport/local/sm/store", "local_groupimport/local/sm/index", "local_groupimport/local/sm/participants", ` +
-    `"local_groupimport/local/sm/groups", "core/notification"], ` +
-    `function(Motion, Choices, MemberSelection, Guide, Log, SmStore, SmIndex, SmParticipants, SmGroups, Notification) {\n` +
+// Every local/cm module must be loaded, directly or through another local/cm module.
+const cmDir = path.join(pluginRoot, 'amd', 'src', 'local', 'cm');
+const cmModules = fs.readdirSync(cmDir).filter(name => name.endsWith('.js')).map(name => name.replace(/\.js$/, ''));
+const reached = new Set();
+const reach = name => {
+    if (reached.has(name)) {
+        return;
+    }
+    reached.add(name);
+    const text = fs.readFileSync(path.join(cmDir, `${name}.js`), 'utf8');
+    [...text.matchAll(/from '\.\/([a-z_]+)';/g)].forEach(match => reach(match[1]));
+};
+cmImported.forEach(reach);
+const orphans = cmModules.filter(name => !reached.has(name));
+if (orphans.length) {
+    throw new Error(`Course manager modules never loaded: ${orphans.join(', ')}`);
+}
+
+namedSource = namedSource.replace('export const init =', 'const init =');
+const wrappedSource = `define("${moduleName}", [${dependencies.map(entry => JSON.stringify(entry.dependency)).join(', ')}], ` +
+    `function(${dependencies.map(entry => entry.param).join(', ')}) {\n` +
     `${namedSource}\nreturn {init: init};\n});`;
 
 terser.minify(
@@ -73,7 +124,7 @@ terser.minify(
     }
     fs.writeFileSync(buildPath, `${result.code}\n`, 'utf8');
     fs.writeFileSync(mapPath, `${result.map}\n`, 'utf8');
-    process.stdout.write('EasyStud course manager AMD build completed.\n');
+    process.stdout.write(`EasyStud course manager AMD build completed (${dependencies.length} dependencies).\n`);
 }).catch(error => {
     process.stderr.write(`${error.stack || error.message}\n`);
     process.exitCode = 1;
