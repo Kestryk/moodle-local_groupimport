@@ -28,6 +28,7 @@ import {
 } from './selection';
 import {emitGuidedCompletion, emitTryActionsSelection, emitActivityGroupSelection} from './guide_hooks';
 import {ensureFullGroupMembers, syncGroupMembersCollapsible} from './group_cards';
+import {setGroupMembersExpanded} from './group_card_controls';
 import {emitFilterPathCompletion} from './filters';
 import {getMobileActionButton, updateSelectionActions} from './workspace';
 
@@ -35,7 +36,8 @@ import {getMobileActionButton, updateSelectionActions} from './workspace';
  * R10-05: member "Select all" of a group card. It adds the card's members to the member
  * selection as their checkboxes would (members selected in other groups stay selected), or
  * removes them when they are all selected. A lean card first renders its other rows; under a
- * member search only the matching rows are added.
+ * member search only the matching rows are added. Selecting unfolds a folded card; deselecting
+ * leaves it as it is.
  *
  * @param {HTMLElement} root EasyStud root.
  */
@@ -52,6 +54,11 @@ export const bindGroupSelectAll = root => {
         syncGroupMembersCollapsible(group);
         getGroupMemberRows(group).filter(row => !searching || !row.hidden)
             .forEach(row => setItemSelected(row, !deselect));
+        // A folded card unfolds, as with its members toggle, to show what was selected.
+        const membersToggle = group.querySelector('[data-easystud-group-members-toggle]');
+        if (!deselect && membersToggle && !membersToggle.hidden) {
+            setGroupMembersExpanded(root, group, true);
+        }
         updateSelectionActions(root);
         requestGuideHighlightRefresh(root);
         if (document.activeElement !== button) {
