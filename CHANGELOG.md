@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] R10-26/K12 adopts Kit0.4.210 setting width for admin choice wrappers and fields:12rem minimum,28rem maximum, full mobile width. Preserve selection, typography and Motion.
+
 - 2026-10-14 [N1] Integrate T055 modular Course Manager, skeleton v2, Guide10 highlight, identical T058 helper port and K21 model counters together; rebuild cm/sm AMD and conservative CSS before serving.
 
 - 2026-10-14 [N0] Record Claude8229f81c served41515be6 and passing settled submenu keyboard recipe FR1280/390; preserve failed trigger predecessors. Guide10 business replay requested from N2.
