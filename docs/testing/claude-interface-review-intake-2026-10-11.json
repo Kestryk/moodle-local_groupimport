@@ -1296,11 +1296,13 @@
     {
       "id": "T025",
       "receivedScope": "[US3] Densité du dépôt : 4 px / 12 px / 8 px (M11).",
-      "status": "queued",
-      "nativeVerified": false,
+      "status": "source-native-candidate-pass",
+      "nativeVerified": true,
       "humanAccepted": false,
-      "related": [],
-      "decisionGate": "none"
+      "related": ["docs/testing/t025-mass-import-2026-10-14.json"],
+      "decisionGate": "none",
+      "sourceChanged": true,
+      "nativeScope": "FR1600/1280/390 :8051 candidate exact4/12/8px; main/Kit/Penpot pending"
     },
     {
       "id": "T026",

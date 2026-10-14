@@ -1,0 +1,11 @@
+# T025 — densité du dépôt natif
+
+La recette M11 impose trois distances physiques : titre → aide4px ; aide → bouton natif12px ; bouton → formats8px. Le conteneur de texte du heading regroupe le titre et l'aide, à côté de la tuile Small ; il conserve leur rail de40px et permet au titre de se replier sans laisser la hauteur de la tuile gonfler le premier intervalle. Moodle garde son vrai picker, son draft ID, sa validation et ses commandes.
+
+Les règles privées Mass Import annulent la marge latérale de l'aide devenue interne au heading, imposent ses4px/0px de marge verticale, placent les formats à8px et annulent uniquement le margin-bottom du fitem natif. Ce dernier doit être important parce que la classe d'espacement Moodle l'est déjà. Le gap statut/action12px vient de la recette du picker existante.
+
+La première mesure du bouton trouvé par classe touchait un prototype caché : elle ne prouve pas sa géométrie. `mass-import-visible-picker-successor` mesure le vrai bouton visible après sa disponibilité native : écarts13,1875/32/16px au bureau,23,1875/32/16px à390. Le premier successeur de densité attendait seulement le plugin, pas le picker ; l'échec de timing est conservé. Le deuxième révélait le margin-bottom Moodle important : formats16px au lieu de8px. La règle ciblée corrige ce défaut ; aucun rejeu inchangé.
+
+Preuve T025/T026 `easystud-authenticated-20261014T124359857Z-8072` : FR1600/1280/390,4/12/8px exactement, aucun débordement. Le successeur K22 final `easystud-authenticated-20261014T140503492Z-26216` conserve ces assertions sur le candidat complet : dépôt145,375px au bureau et184,969px à390. Le plafond indicatif170px concerne le bureau ; sur mobile l'aide et les formats se replient, sans réduire le texte. Tous les prédécesseurs et leurs critères restent versionnés. Aucun fichier choisi ni import soumis.
+
+Pour Claude/Penpot : dépôt Moodle Small avec son titre, aide, picker et formats ; recette4/12/8px et rail40px ; carte d'upload vide Mass Import, FR1600/1280/390. Library, standards et toutes les planches Foundations/EasyStud à propager. Codex1 intègre puis porte l'adaptation au Kit canonique ; aucun worktree Kit ni autre consommateur n'est modifié ici. Le formulaire PHP passe le lint, les sources Sass compilent ; Moodle4.5 reste à vérifier nativement.
