@@ -293,6 +293,7 @@
       "request": "L'icône de détails du participant est décalée vers le bas en responsive.",
       "acceptance": "Vérifier cibles et glyphes réels, noms/badges longs, carte compacte/dépliée/sélectionnée à toutes les tailles; corriger le composant partagé et toutes les planches sans altérer Motion.",
       "status": "audited-not-reproduced-on-49072e22; exact-reported-case-open",
+      "kevinConfirmation20261014": "Reproduce at 390 CSS px portrait on a real iPhone 12/13/14 with Safari (or the originally affected phone/browser). Also compare desktop Chromium responsive 390x844 at 100% zoom. Inspect the same participant with long name/badges in compact, selected and expanded states; provide model/browser, viewport CSS width and affected card. Existing Chromium 390/768/1024 diagnostics showed +0.953px glyph/first-line offset and no effective candidate change; real-device case remains unverified.",
       "sourceChanged": false,
       "designPublished": false,
       "previewServed": false,
