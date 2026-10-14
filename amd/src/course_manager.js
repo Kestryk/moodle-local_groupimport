@@ -115,6 +115,9 @@ const startOnDemandState = (root, courseId, strings, groupStrings) => {
             const {reactive, raw, loadMs} = store;
             setOnDemandParticipants({root, model, courseId});
             const renderStarted = window.performance.now();
+            // The first cards replace the list skeletons with a short fade (CSS), once.
+            root.classList.add('is-easystud-sm-entering');
+            window.setTimeout(() => root.classList.remove('is-easystud-sm-entering'), 700);
             applyFilters(root);
             syncCatalogFilters(root);
             root.querySelectorAll('[data-easystud-tree] [data-easystud-grouping-id]').forEach(updateGroupingBadge);
