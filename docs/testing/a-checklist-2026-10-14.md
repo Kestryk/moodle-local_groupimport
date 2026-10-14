@@ -38,3 +38,35 @@ Penpot list for Kevin: Guide checklist/active row/Restore, recipe expanded-list
 tracking and reduced active instruction, Student Management, expanded/reduced/
 auto-fold/focus/completed states, FR1600/1280/390. Canonical component lineage is
 Kit0.4.209. Human/Penpot/Moodle4.5 acceptance remains open.
+
+## Publication and one retained native pass
+
+Source1fb3206a, Kit9425ee1/version0.4.209 are pushed; Source served63d77549,
+purgePASS2026-10-14T15:35:40.4852358Z. Source/Kit scrolling helper and
+Discovery SCSS match; six served blobs (Guide src/AMD/map, SCSS, CSS and
+loading bootstrap) match Source. No reserved-source delta after e552cb05.
+
+Run easystud-authenticated-20261014T153602743Z-26884 selected exactly one test.
+Global status FAILED. Principal cold startup passed its narrower gate: root
+loading at6684.5ms then ready at21803ms, on-demand attribute/FR language pass,
+no degraded transition, no pageerror or blocked mutation. This supports the
+fifth Claude loading commit on principal; it does not prove native stalls or
+any A-CHECKLIST state. The first FR1600 cell stopped before opening a checklist:
+its candidate selector only considered h1/h2/search in the upper viewport,
+while native participant headings are h3/column-title spans and the search can
+be outside that artificial bound. No product failure inferred from this recipe.
+
+Failed spec/run remain immutable. Separate
+tools/playwright/a-checklist-active-ready-native.spec.js successor prepares
+the actual visible SM h3/column-title/search through a bounded locator and
+scrolls that interface target into view before attaching its owned marker.
+No hidden-control forcing, synthetic target or checklist locator auto-scroll;
+all inner-list, instruction, overlap, focus and completion oracles preserved.
+Prepared, NOT RUN; no second native pass in this conversation. Checklist native,
+business-path replay, human/Penpot and Moodle4.5 gates remain open.
+
+Cleanup PASS: original Guide config/storage restored, credentials cleared,
+child stopped, lease released, no fixture requested or course mutation. External
+logs/JSON/context retained; no capture reached, media manifest0files; dry-run
+retention0candidates/0deletions. Source proof stays unserved until the next
+product publication. Next native task is the A-CHECKLIST successor, then A3V3.

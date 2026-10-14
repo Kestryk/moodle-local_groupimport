@@ -127,3 +127,9 @@ Publication completed: b5f44a7a→e552cb05→c155904b, prior proof194ea6dc→3d6
 preview clean and purgePASS2026-10-14T15:13:17.2621831Z. The18virtual cases
 pass, including unchanged reveal timing after the logical deadline. N2 relay
 updated before starting A-CHECKLIST; no new standalone native pass for loading.
+
+In A-CHECKLIST's single failed recipe run20261014T153602743Z-26884, principal
+cold startup reaches ready21803ms, with loading then ready and no degraded,
+pageerror or mutation. On-demand/FR attribute gates pass. This validates only
+the cold-start loading slice of b5f44a7a; stalled principal module and K16 remain
+open. A-CHECKLIST stopped later at native-target preparation before any checklist.
