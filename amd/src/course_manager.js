@@ -7179,6 +7179,7 @@ const bindGroupDragDrop = (root, courseId) => {
     });
 
     root.addEventListener('dragend', () => {
+        const wasDragging = draggedGroups.length > 0;
         dragAutoScroll.stop();
         draggedGroups.forEach(item => item.classList.remove(draggingClass));
         draggedGroups = [];
@@ -7186,6 +7187,10 @@ const bindGroupDragDrop = (root, courseId) => {
         removeDragPreview(dragPreview);
         dragPreview = null;
         root.querySelectorAll('.' + dropTargetClass).forEach(target => target.classList.remove(dropTargetClass));
+        if (wasDragging) {
+            // The Guide may have measured its next target while the dragged cards were masked.
+            requestGuideHighlightRefresh(root);
+        }
     });
 
     root.addEventListener('dragover', event => {
@@ -7319,6 +7324,7 @@ const bindUserDragDrop = (root, courseId) => {
     });
 
     root.addEventListener('dragend', () => {
+        const wasDragging = draggedUsers.length > 0;
         dragAutoScroll.stop();
         draggedUsers.forEach(item => item.classList.remove(draggingClass));
         draggedUsers = [];
@@ -7327,6 +7333,11 @@ const bindUserDragDrop = (root, courseId) => {
         removeDragPreview(dragPreview);
         dragPreview = null;
         root.querySelectorAll('.' + dropTargetClass).forEach(target => target.classList.remove(dropTargetClass));
+        if (wasDragging) {
+            // N°10: the drag start completes the step while the dragged cards are masked; the next
+            // step's highlight was measured then and must be refreshed once they are visible again.
+            requestGuideHighlightRefresh(root);
+        }
     });
 
     root.addEventListener('dragover', event => {
