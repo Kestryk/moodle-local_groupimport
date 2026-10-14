@@ -75,12 +75,17 @@ Codex2 lots. Its single native run20261014T095601999Z-42312 again passes the
 legacy390 menus/pagination, then toggles off the participant already selected
 by its menu. bindContextMenu.prepareContextSelection explicitly selects it;
 the recipe must clear that retained selection first. This is an established
-recipe-state error, not a product selection fix. Three unfinished cells remain
-open. Active prepared recipe is n2-four-selection-reset-native.spec.js (not
-run); details and served mapping in n2-four-integration-2026-10-14.md.
+recipe-state error, not a product selection fix. Three unfinished cells remained
+open then. The later principal run on955aadbb,
+easystud-authenticated-20261014T122306886Z-39300, completes ALL THREE after
+native Clear resets selection: FRlegacy390, reactive1280/390. Requested
+functional matrix is cumulatively PASS with earlier legacy1280 proof. Its
+scope and unrelated final Rollback recipe failure are documented separately
+in inline-mobile-integration-2026-10-14.md; do not relabel that whole run PASS
+or replay these completed cells. Shared/human/EN/4.5 gates stay open.
 
-Then: A3 V3 T033/T034/T035 (including violet ungrouped section underline),
-A-CHECKLIST→A-FLUIDITE→R10-26→A-ADMIN-CONTROLES→A-PARCOURS-10;
-then R10-02/06/14, R10-15, R10-21+K17. Option b for path10 is already coded;
-remaining work is presentation. Penpot-dependent lots wait for Claude,
-including R10-20/24; T048/K18 remains first in series B.
+Latest Kevin order: A-CHECKLIST, A3V3 (including violet ungrouped section),
+validated T043/44/46/47/48, A-ADMIN-CONTROLES, A-FLUIDITE, R10-26,
+A-PARCOURS-10, R10-02/14/15/21+K17. R10-06/T025/T026/K22 and K21 transfer
+to Codex2. Path10 option b is already coded; presentation remains. Other
+Penpot-dependent lots, including R10-20/24, retain their Claude design gate.

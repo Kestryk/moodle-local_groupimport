@@ -1664,7 +1664,15 @@
         "docs/testing/claude-integration-2026-10-13.md"
       ],
       "decisionGate": "none",
-      "inlineKeyboard20261014": "Group/Grouping Search/Add/rename:48 Escape/Cancel close cycles; Participant/Group/Member Space selection, native Move, keyboard destination and confirmation access:12 cases. FR1280 normal/reduced, legacy/reactive PASS. docs/testing/t058-inline-keyboard-2026-10-14.json. No business submission; guided writes await A-CHECKLIST/CL-PARCOURS publication on a dedicated Perf course."
+      "inlineKeyboard20261014": "Group/Grouping Search/Add/rename:48 Escape/Cancel close cycles; Participant/Group/Member Space selection, native Move, keyboard destination and confirmation access:12 cases. FR1280 normal/reduced, legacy/reactive PASS. docs/testing/t058-inline-keyboard-2026-10-14.json. No business submission; guided writes await A-CHECKLIST/CL-PARCOURS publication on a dedicated Perf course.",
+      "principalNative20261014": {
+        "runtimeHead": "955aadbb",
+        "nativeRun": "easystud-authenticated-20261014T122306886Z-39300",
+        "requestedScopeVerified": true,
+        "overallRunStatus": "failed-extra-rollback-recipe",
+        "humanAccepted": false,
+        "scope": "48 Escape/Cancel cycles and12 Space/Move alternatives, FR1280 normal/reduced both modes"
+      }
     },
     {
       "id": "T059",
@@ -1674,7 +1682,15 @@
       "humanAccepted": false,
       "related": [],
       "decisionGate": "none",
-      "remainingDialogs20261014": "16 existing native PASS cases: Move/Confirmation and Group/Grouping settings at768/390, legacy/reactive, native and synthetic long-title bounds; docs/testing/t059-remaining-closure-2026-10-14.json. Candidate CSS evidence on Perf, integrated-publication smoke and human acceptance remain separate."
+      "remainingDialogs20261014": "16 existing native PASS cases: Move/Confirmation and Group/Grouping settings at768/390, legacy/reactive, native and synthetic long-title bounds; docs/testing/t059-remaining-closure-2026-10-14.json. Candidate CSS evidence on Perf, integrated-publication smoke and human acceptance remain separate.",
+      "principalNative20261014": {
+        "runtimeHead": "955aadbb",
+        "nativeRun": "easystud-authenticated-20261014T122306886Z-39300",
+        "requestedScopeVerified": true,
+        "overallRunStatus": "failed-extra-rollback-recipe",
+        "humanAccepted": false,
+        "scope": "16 Move/Confirmation/Group-Grouping settings surfaces at768/390, native and synthetic title bounds, both modes"
+      }
     },
     {
       "id": "T060",

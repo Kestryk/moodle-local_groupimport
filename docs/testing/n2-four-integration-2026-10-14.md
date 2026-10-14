@@ -95,3 +95,13 @@ for the next grouped publication, not a second UI preview of this batch.
 Next after this small integration series: A3 V3 (T033/34/35), including the
 24×2px violet#72508C accent under Groups without grouping (T033), then the
 recorded series A. Latest dialog decisions and order are retained in handoff.
+
+Later principal955aadbb run20261014T122306886Z-39300 completes the three F7
+cells and all six Reset/Message cases, FR1600/1280/390 in both modes. Desktop
+Reset/Cancel metrics match and mobile Reset is38px; missing internal Grouping
+search is confirmed natively, so mobile Cancel parity remains open for Claude.
+The extra Rollback gate never reaches History because the recipe omits id=5;
+prepare Rollback-only course-ready successor and preserve the failed overall
+run. No product selection or Rollback failure is inferred. Do not replay
+completed cells. Latest order now starts A-CHECKLIST before A3, with Mass Import
+R10-06/T025/T026/K22 and K21 transferred to Codex2 (see inline-mobile record).
