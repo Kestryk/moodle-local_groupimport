@@ -1,5 +1,11 @@
 # Changelog
 
+- 2026-10-14 [N1/N0] Integrate Codex2 T058 inline focus/keyboard and T059 mobile
+  registry with Kevin's approved additive intake resolution and regenerated
+  Course Manager AMD. Prepare one principal native pass with the remaining FR
+  cells first. Preserve A-CHECKLIST priority, N2 Mass Import allocation and the
+  pending Claude on-demand-only integration; no new visual recipe in this lot.
+
 - 2026-10-14 [N1/N2] Record four Codex2 lots served on3f22f1b0, with Kevin's
   approved R10-18 document resolution. The single native pass retains a recipe
   failure after mobile menus/pagination: opening a card menu selects it, so the
