@@ -1,4 +1,26 @@
 {
+  "codex2GuidedWritingReplay20261014": {
+    "status": "requested-paths3-7-11-native-pass-path10-next-highlight-product-failed",
+    "documentation": "docs/testing/codex2-guide-writing-replay-2026-10-14.md",
+    "copy": "http://localhost:8051",
+    "guideSource": "1fb3206a",
+    "loadingSource": "0df9010c",
+    "mode": "on-demand-only",
+    "language": "fr",
+    "width": 1280,
+    "paths": {
+      "3": {"result":"PASS","allSteps":6,"writes":["creategroup","addusers"],"run":"easystud-authenticated-20261014T181600828Z-19180"},
+      "7": {"result":"PASS","allSteps":4,"writes":["movemembers"],"run":"easystud-authenticated-20261014T181600828Z-19180"},
+      "11": {"result":"PASS","allSteps":5,"writes":["movegroup"],"run":"easystud-authenticated-20261014T181928560Z-33752"},
+      "10": {"result":"FAIL","completedSteps":1,"writes":[],"run":"easystud-authenticated-20261014T182553205Z-37564","spec":"tools/playwright/guide-native-drag-cue-successor.spec.js","line":53,"callerLine":116,"failure":"Native next-step highlight remains hidden after genuine avatar dragstart/dragend; no extra view toggle"}
+    },
+    "globalRunsPassed": false,
+    "nativeVerified": false,
+    "scopedNativeVerified": [3,7,11],
+    "fixtureCleanup": {"coursesRemoved":6,"syntheticUsersDeleted":12,"verifiedReadOnly":true},
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "codex2ComponentLoading20261014": {
     "status": "dedicated-copy-component-frame-and-native-stall-pass",
     "documentation": "docs/testing/codex2-component-loading-2026-10-14.md",

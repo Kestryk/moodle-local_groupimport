@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] Replay actual guided writes on disposable8051 courses with A-CHECKLIST: paths3/7/11 complete with ticks/highlights/final panels and DB receipts. Retain global failed runs and path10 native next-cue failure after drag; six courses/12 synthetic users cleaned, no product source edit.
+
 - 2026-10-14 [N1] Adapt active SM loading successors to Claude0df9010c: no page skeleton, immediate native frame22..54ms, painted list skeletons FR1600/1280/390 and actual AMD stalls at8.036/8.058s recover with unchanged checkbox keyboard checks. Conservative CSS stage diff29/5, no CSS product commit.
 
 - 2026-10-14 [N1] Single-mode late/owned loading successors on8051 preserve blocked-AMD timeout at8724/8710ms after Claude's progress watchdog, native ready recovery and checkbox Tab/Space at390/768/320. One failed login-bound predecessor retained; published bootstrap alone synced/purged, no product source change.
