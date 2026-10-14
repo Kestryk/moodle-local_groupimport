@@ -1,0 +1,11 @@
+# Single-mode native runner
+
+Codex1 published Claude1bf77389/cf2be86b/6a499c5f/1a10749e on main previewf20b44a5. The isolated Codex2 tree starts at Source194ea6dc and applies owned K21/Mass Import lots. It does not modify Codex1's active tree or historical Source07104791.
+
+`Invoke-EasyStudOnDemandSpec.ps1` runs one explicitly selected spec/title through the existing credential/lease/watchdog/manifest wrapper. Its read-only PHP preflight checks the copy identity, upgraded plugin, sole rendering helper and absence of the retired configuration row. It never sets or restores rendering mode or Guide preferences. `Invoke-SmRenduSpecParity.ps1` is a compatibility entry point forwarding one targeted spec to this single pass; broad default discovery and legacy/reactive matrices are removed.
+
+Historical mode-changing scenarios are rejected before PHP or credentials are opened. Two actual old scenarios, C9 and n2-four-selection-reset, were rejected with deliberately nonexistent loader/PHP paths. Retained historical specs and their original evidence remain immutable; they must not be invoked as current mode-switching recipes. Focus/window specs without inline configuration changes can use the new entry point. The active K16 successors contain one on-demand pass per requested locale/width and no configuration mutation.
+
+Copy deployment records27 product files and SHA256 backups in `C:/dev/artifacts/es-ondemand-deploy/manifest.json`; docs/tools/dependencies are excluded. The first upgrade preflight revealed stale plugin-manager metadata: disk file2026101400 but manager/DB2026101200. A full purge refreshed the manager, the installed upgrade_noncore(true) engine ran after checking that ONLY local_groupimport was pending, then a fresh CLI confirmed2026101400, on-demand true and no retired row. No core version, unrelated plugin, course or enrolment was changed. Logs remain external. No legacy restoration follows this publication.
+
+The only new Course Manager source change in the assembled tree remains K21 updateStructureSummary; other changes come from the four published Claude commits and previously published T058. No new local/sm/service/external edit was made by Codex2. Guided write replays still require A-CHECKLIST publication and a dedicated test course.

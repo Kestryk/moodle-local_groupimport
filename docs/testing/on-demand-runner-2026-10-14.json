@@ -1,0 +1,13 @@
+{
+  "id": "MODE-ONLY-N2",
+  "status": "source-runtime-targeted",
+  "sourceChanged": true,
+  "nativeVerified": true,
+  "humanAccepted": false,
+  "scope": "Single targeted runner and compatibility parity entry point; no rendering setting or Guide-preference mutation. Two real historical setters rejected before PHP/credentials. Fresh CLI after standard upgrade confirms2026101400/onDemand true/retired row absent.",
+  "base": "194ea6dc",
+  "copyDeployment": "C:/dev/artifacts/es-ondemand-deploy/manifest.json",
+  "upgradeRecovery": "C:/dev/artifacts/es-ondemand-recover.log",
+  "currentNativeSpec": "k16-restored-groups-successor.spec.js",
+  "guidedWrites": "pending A-CHECKLIST publication; no dedicated course created"
+}

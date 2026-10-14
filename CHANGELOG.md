@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N0] Replace current parity invocation with one targeted on-demand pass and read-only upgraded-copy preflight; reject historical setters before credentials. Perf standard upgrade/purge confirms2026101400 and no retired configuration row; original matrices retained as history.
+
 - 2026-10-14 [N1] Record the four Claude commits served on f20b44a5 and the
   completed Moodle2026101400 upgrade with obsolete rendering config removed.
   Retain the single native run FAILED at its early five-second startup gate,
