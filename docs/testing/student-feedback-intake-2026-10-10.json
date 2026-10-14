@@ -775,7 +775,7 @@
       "request": "Le champ fermé et sa liste ne doivent pas être tassés par une valeur sélectionnée courte.",
       "acceptance": "Largeur minimale commune dans le Kit, avec largeur max et reflow mobile; option courte/longue, contenu complet, recherche, ouverture/fermeture/voisins et touches; pas de largeur spéciale par setting.",
       "status": "approved",
-      "sourceChanged": false,
+      "sourceChanged": true,
       "designPublished": false,
       "previewServed": false,
       "nativeVerified": false,

@@ -193,3 +193,16 @@
     }
   }
 }
+
+// R10-26: opt-in readable setting width, independent of the selected label.
+@mixin setting-choice-width {
+  box-sizing: border-box;
+  min-inline-size: min(100%, 12rem);
+  inline-size: min(100%, 28rem);
+  max-inline-size: min(100%, 28rem);
+
+  @media (max-width: 48rem) {
+    inline-size: 100%;
+    max-inline-size: 100%;
+  }
+}

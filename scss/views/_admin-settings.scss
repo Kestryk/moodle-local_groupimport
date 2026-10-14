@@ -591,6 +591,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     }
   }
 
+  // Size the native inline wrapper too: its short default must not constrain
+  // the enhanced field. Shared opt-in, no per-setting width exceptions.
+  .form-setting > .easyedu-ui,
+  .form-setting .easyedu-searchable-choice {
+    @include easyedu.setting-choice-width;
+  }
   // The native fallback covers every plugin setting, including future fields.
   // Enhanced controls use public Kit markup/classes instead of private paint.
   select[name^="s_local_groupimport_"][multiple] {
@@ -602,7 +608,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   select[name^="s_local_groupimport_"]:not([multiple]) {
     @include easyedu.native-select-control;
 
-    width: min(100%, 22rem) !important;
+    @include easyedu.setting-choice-width;
+    width: min(100%, 28rem) !important;
   }
 
   @media (max-width: 48rem) {

@@ -7785,6 +7785,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 #page-admin-setting-local_groupimport #id_s_local_groupimport_showcompleteview:focus:not(:focus-visible),
 #page-admin-setting-local_groupimport #id_s_local_groupimport_enableanimations:focus:not(:focus-visible) {outline: 0;
 }
+#page-admin-setting-local_groupimport .form-setting > .easyedu-ui,
+#page-admin-setting-local_groupimport .form-setting .easyedu-searchable-choice {box-sizing: border-box;min-inline-size: min(100%, 12rem);inline-size: min(100%, 28rem);max-inline-size: min(100%, 28rem);
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport .form-setting > .easyedu-ui,
+  #page-admin-setting-local_groupimport .form-setting .easyedu-searchable-choice {inline-size: 100%;max-inline-size: 100%;
+  }
+}
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text);max-width: 100%;transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;font-size: 0.9rem;min-height: var(--easyedu-control-height);padding: 0.45rem 0.65rem;display: block;overflow: auto;min-height: 10.5rem;padding: 0.35rem;width: min(100%, 34rem) !important;
 }
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple]:focus, #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple]:focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
@@ -7795,11 +7803,15 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
 }
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_][multiple] option:checked {background: linear-gradient(180deg, var(--easyedu-primary-soft), var(--easyedu-primary-soft));color: var(--easyedu-primary-strong);font-weight: 700;
 }
-#page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]) {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text);max-width: 100%;transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;font-size: 0.9rem;min-height: var(--easyedu-control-height);padding: 0.45rem 0.65rem;width: min(100%, 22rem) !important;
+#page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]) {background: var(--easyedu-surface);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);box-shadow: none;color: var(--easyedu-text);max-width: 100%;transition: border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;font-size: 0.9rem;min-height: var(--easyedu-control-height);padding: 0.45rem 0.65rem;box-sizing: border-box;min-inline-size: min(100%, 12rem);inline-size: min(100%, 28rem);max-inline-size: min(100%, 28rem);width: min(100%, 28rem) !important;
 }
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):focus, #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):focus-visible {border-color: var(--easyedu-control-focus-border);box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
 }
 #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]):disabled, #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple])[aria-disabled=true] {background: var(--easyedu-surface-soft);color: var(--easyedu-text-muted);cursor: not-allowed;opacity: 0.72;
+}
+@media (max-width: 48rem) {
+  #page-admin-setting-local_groupimport select[name^=s_local_groupimport_]:not([multiple]) {inline-size: 100%;max-inline-size: 100%;
+  }
 }
 @media (max-width: 48rem) {
   #page-admin-setting-local_groupimport .local-groupimport-admin-settings {padding: 0.85rem;
