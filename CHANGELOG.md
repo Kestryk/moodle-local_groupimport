@@ -1,5 +1,12 @@
 # Changelog
 
+- 2026-10-14 [N1/N2] Record four Codex2 lots served on3f22f1b0, with Kevin's
+  approved R10-18 document resolution. The single native pass retains a recipe
+  failure after mobile menus/pagination: opening a card menu selects it, so the
+  next checkbox click deselects it. Prepare real-selection cleanup without a
+  second run; remaining principal checks stay open. Preserve Claude's K16
+  mobile-search follow-up, chosen A3/V3 and newly validated T045 order.
+
 - 2026-10-14 [N1/N2] Group four Codex2 integrations with the approved R10-18
   document conflict resolution, rebuild CSV Import/styles and prepare one
   principal FR pass with the three remaining F7 cells. K16 mobile internal
