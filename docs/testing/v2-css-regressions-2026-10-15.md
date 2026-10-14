@@ -31,3 +31,10 @@ Rendered cards remain bounded by pagination inventory, not a panel viewport.
 Earlier233956457Z-33020 failure counted an inactive opacity0 panel and is kept.
 Admin/global CSS did not change in a211780d, prior native admin/outside gates
 remain scoped evidence. Structure-view specific successor pending separately.
+
+Structure successor234523350Z-37308 PASS1600/1280/390, no painted-column
+internal scroller or horizontal overflow. Admin1280/390 five choices/page CSS
+PASS; outside /my no EasyStud selector, no page bundle, global0rules PASS.
+Claude69f060f4 is included in this final served-state check. Original sampled
+states and failed diagnostics are retained separately. V2 gate closed for these
+scoped regressions, Kevin's visual acceptance remains separate.
