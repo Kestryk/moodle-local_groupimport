@@ -61,10 +61,35 @@
 
   @include easyedu.action-busy-indicator-bottom-end("data-easystud-action-busy-label");
 
+  // The panel actions bind with the course manager: until then they keep their exact
+  // footprint as skeleton capsules, then fade to their real look.
+  &__panel-actions > * {
+    transition:
+      background-color var(--easyedu-loading-reveal-duration, 320ms) ease,
+      border-color var(--easyedu-loading-reveal-duration, 320ms) ease,
+      color var(--easyedu-loading-reveal-duration, 320ms) ease;
+  }
+
   &--booting &__panel-actions {
-    opacity: 0;
     pointer-events: none;
-    visibility: hidden;
+
+    // Temporary loading state: it must win over every button recipe.
+    > * {
+      background: var(--easyedu-loading-surface) !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      color: transparent !important;
+      overflow: hidden;
+      position: relative;
+
+      @include easyedu.skeleton-shimmer-overlay;
+
+      .fa,
+      img,
+      svg {
+        visibility: hidden;
+      }
+    }
   }
 
   &[data-easystud-loading-state="loading"] {
@@ -480,6 +505,51 @@
     block-size: 2rem;
     border-radius: 50%;
     inline-size: 2rem;
+  }
+
+  // Each line is a real surface so the Kit shimmer sweeps a visible grey bar.
+  &__loading-card-lines {
+    display: grid;
+    gap: 0.42rem;
+    inline-size: 100%;
+    justify-self: stretch;
+    min-width: 0;
+  }
+
+  &__loading-card-line {
+    background: var(--local-groupimport-easystud-loading-surface-strong);
+    block-size: 0.6rem;
+    border-radius: 999px;
+    inline-size: min(62%, 9rem);
+  }
+
+  &__loading-card-line--secondary {
+    background: var(--local-groupimport-easystud-loading-surface);
+    block-size: 0.45rem;
+    inline-size: min(88%, 13rem);
+  }
+
+  &__loading-structure-card &__loading-card-line {
+    inline-size: min(55%, 11rem);
+  }
+
+  &__loading-structure-card &__loading-card-line--secondary {
+    inline-size: min(80%, 16rem);
+  }
+
+  // Cards replacing the skeletons fade in once, on the first render of the course state.
+  &.is-easystud-sm-entering :is([data-easystud-user], [data-easystud-group-id]) {
+    animation: easyedu-skeleton-appear var(--easyedu-loading-reveal-duration, 320ms) var(--easyedu-motion-ease, ease) both;
+  }
+
+  &.is-easyedu-motion-off.is-easystud-sm-entering :is([data-easystud-user], [data-easystud-group-id]) {
+    animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &.is-easystud-sm-entering :is([data-easystud-user], [data-easystud-group-id]) {
+      animation: none;
+    }
   }
 
   @media (max-width: 1200px) {
