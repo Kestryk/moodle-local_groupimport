@@ -777,8 +777,8 @@
       "status": "approved",
       "sourceChanged": true,
       "designPublished": false,
-      "previewServed": false,
-      "nativeVerified": false,
+      "previewServed": true,
+      "nativeVerified": true,
       "humanAccepted": false
     },
     {
