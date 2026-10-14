@@ -58,6 +58,8 @@
 - 2026-10-13 [N1] Claude R10-23: dragging a participant or a group now scrolls the real scroller (#page in Moodle 5.1) from 96 px before its top or bottom edge, faster near the edge, and stops as soon as the pointer leaves the zone or the drag ends.
 
 - 2026-10-13 [N1] Claude T061 (part 1): on demand, the real frame and its per-component skeletons replace the page skeleton as soon as the manager's bindings are in place, while the page stays busy and non-interactive until the lists are drawn; "ready" keeps its meaning; Mass Import and the Current mode are unchanged.
+- 2026-10-14 [N0] R10-18: retain not-reproduced status and specify Kevin real-device confirmation at 390 CSS px Safari; no product change.
+
 - 2026-10-13 [N0] T058 contrast: remove obsolete #6a7a8a heading declaration and use existing --easyedu-text-muted, already applied by late typography on 49072e22. No new palette introduced.
 
 - 2026-10-13 [N1] R10-22: compact pagination arrows to 1.62rem with transparent rest, hover circle and keyboard ring; retain arrow glyphs and 44px coarse-pointer targets. Canonical propagation remains pending.
