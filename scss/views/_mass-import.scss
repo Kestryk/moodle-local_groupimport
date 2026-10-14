@@ -19,6 +19,15 @@
 
   @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
 
+  // K22: centre the first title line on its 28px tile, including wrapped headings.
+  &.easyedu-ui .easyedu-information--deposit-aligned .easyedu-information__title,
+  &.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon.easyedu-file-deposit--aligned
+    .easyedu-file-deposit__title {
+    margin-block-start: calc((var(--easyedu-section-icon-size-small) -
+      var(--easyedu-font-size-card-title) * var(--easyedu-line-height-title)) / 2);
+  }
+
+
   &[data-easystud-loading-state="loading"] {
     overflow: hidden;
 
