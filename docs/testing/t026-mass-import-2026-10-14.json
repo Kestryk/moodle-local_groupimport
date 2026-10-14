@@ -1,0 +1,80 @@
+{
+  "id": "T026",
+  "receivedScope": "Mass Import empty grid1.12fr/.88fr; has-preview ratios unchanged.",
+  "status": "source-native-candidate-pass",
+  "sourceChanged": true,
+  "nativeVerified": true,
+  "nativeScope": "Actual empty Moodle picker FR1600/1280/390 on :8051, final series candidate CSS after K22; no upload/import.",
+  "humanAccepted": false,
+  "designPublished": false,
+  "previewServed": false,
+  "kitPropagationPending": true,
+  "evidence": {
+    "runId": "easystud-authenticated-20261014T140503492Z-26216",
+    "root": "C:/dev/artifacts/es-mi-k22",
+    "originalDensityRun": "easystud-authenticated-20261014T124359857Z-8072",
+    "measurements": [
+      {
+        "width": 1600,
+        "gaps": [
+          4,
+          12,
+          8
+        ],
+        "depositHeight": 145.375,
+        "columns": [
+          775.594,
+          609.406
+        ],
+        "ratio": 1.2727048962432272,
+        "overflow": 0
+      },
+      {
+        "width": 1280,
+        "gaps": [
+          4,
+          12,
+          8
+        ],
+        "depositHeight": 145.375,
+        "columns": [
+          598.375,
+          470.156
+        ],
+        "ratio": 1.272715864521563,
+        "overflow": 0
+      },
+      {
+        "width": 390,
+        "gaps": [
+          4,
+          12,
+          8
+        ],
+        "depositHeight": 184.96875,
+        "columns": [
+          342.781
+        ],
+        "ratio": null,
+        "overflow": 0
+      }
+    ]
+  },
+  "penpot": {
+    "operator": "Claude",
+    "components": [
+      "Mass Import empty upload/result grid"
+    ],
+    "recipe": "Empty grid1.12fr/.88fr; mobile stack; preview and skeleton ratios unchanged",
+    "screen": "Mass Import empty",
+    "states": [
+      "ready empty"
+    ],
+    "widths": [
+      1600,
+      1280,
+      390
+    ],
+    "propagation": "Library, standards and all affected Foundations/EasyStud boards pending"
+  }
+}
