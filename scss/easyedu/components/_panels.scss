@@ -10,6 +10,37 @@
 
 @use "typography";
 
+// Opt-in continuous workspace lane. Split headers/lists may use start/end
+// without clipping descendants, keyboard focus, menus or active drop targets.
+@mixin workspace-lane-tokens {
+  --easyedu-lane-radius: 0.75rem;
+  --easyedu-lane-inset: 1rem;
+  --easyedu-lane-gap: 1.5rem;
+  --easyedu-lane-stack-gap: 1rem;
+  --easyedu-lane-rail-width: 3px;
+  --easyedu-card-radius-rest: 0.8rem;
+  --easyedu-card-shadow-rest: 0 1px 2px rgba(31, 42, 55, 0.05);
+}
+
+@mixin workspace-lane($rail, $segment: whole) {
+  background: var(--easyedu-surface-soft);
+  border: 0;
+  box-shadow: none;
+  min-inline-size: 0;
+  padding-inline: var(--easyedu-lane-inset);
+  @if $segment == whole {
+    border-radius: var(--easyedu-lane-radius);
+    border-top: var(--easyedu-lane-rail-width) solid $rail;
+  } @else if $segment == start {
+    border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;
+    border-top: var(--easyedu-lane-rail-width) solid $rail;
+  } @else if $segment == end {
+    border-radius: 0 0 var(--easyedu-lane-radius) var(--easyedu-lane-radius);
+  } @else {
+    @error "workspace-lane supports whole, start or end";
+  }
+}
+
 // Opt in per semantic role at the theme root. Defaults deliberately retain
 // their published endpoints; decorative rails use the chosen (not the
 // contrast-adjusted foreground) colour. Geometry and text paint are unchanged.

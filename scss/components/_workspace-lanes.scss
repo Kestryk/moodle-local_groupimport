@@ -1,0 +1,133 @@
+// Approved lift SM (14 October), CSS only. List alignment remains controller-owned.
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  @include easyedu.workspace-lane-tokens;
+  container: easystud-workspace / inline-size;
+
+  .local-groupimport-easystud__layout {
+    gap: var(--easyedu-lane-gap);
+  }
+  .local-groupimport-easystud__panel {
+    @include easyedu.workspace-lane(var(--easyedu-participant-rail));
+    padding-inline: 0;
+    > .card-body { padding-inline: var(--easyedu-lane-inset); }
+  }
+  .local-groupimport-easystud__panel--structure {
+    border-top-color: var(--easyedu-group-rail);
+  }
+  .local-groupimport-easystud__filters,
+  .local-groupimport-easystud-create-card,
+  .local-groupimport-easystud-create-row {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+  .local-groupimport-easystud__filters,
+  .local-groupimport-easystud-create-row { padding-inline: 0; }
+
+  .local-groupimport-easystud-structure-groups__list {
+    padding-inline: 0;
+  }
+  .local-groupimport-easystud-tree {
+    padding-inline-end: 0;
+  }
+  .local-groupimport-easystud-user,
+  .local-groupimport-easystud-group,
+  .local-groupimport-easystud-tree__section {
+    border-radius: var(--easyedu-card-radius-rest);
+    &:not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target) {
+      box-shadow: var(--easyedu-card-shadow-rest);
+    }
+  }
+  .local-groupimport-easystud-member {
+    border: 0;
+    background: var(--easyedu-surface-soft);
+  }
+
+  // Focus views contain two lanes in a single existing panel. Keep the
+  // original wrappers, scrollers and pagination; paint adjoining segments.
+  &.local-groupimport-easystud--participant-focus,
+  &.local-groupimport-easystud--structure-focus {
+    .local-groupimport-easystud__layout { gap: 0; }
+    .local-groupimport-easystud__panel {
+      background: transparent;
+      border: 0;
+    }
+  }
+  &.local-groupimport-easystud--participant-focus {
+    .local-groupimport-easystud__participant-content {
+      column-gap: var(--easyedu-lane-gap);
+      row-gap: 0;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    .local-groupimport-easystud__filters {
+      @include easyedu.workspace-lane(var(--easyedu-participant-rail), start);
+      align-self: stretch;
+    }
+    .local-groupimport-easystud-participant-groups__create {
+      @include easyedu.workspace-lane(var(--easyedu-group-rail), start);
+      align-self: stretch;
+    }
+    .local-groupimport-easystud__participant-list,
+    .local-groupimport-easystud-participant-groups__list {
+      @include easyedu.workspace-lane(var(--easyedu-participant-rail), end);
+      padding-bottom: var(--easyedu-lane-inset);
+    }
+  }
+  &.local-groupimport-easystud--structure-focus {
+    .local-groupimport-easystud-create-row,
+    .local-groupimport-easystud-tree {
+      column-gap: var(--easyedu-lane-gap);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      padding: 0;
+    }
+    .local-groupimport-easystud-create-row { margin-bottom: 0; }
+    .local-groupimport-easystud-create-card--group {
+      @include easyedu.workspace-lane(var(--easyedu-group-rail), start);
+    }
+    .local-groupimport-easystud-create-card--grouping {
+      @include easyedu.workspace-lane(var(--easyedu-grouping-rail), start);
+    }
+    .local-groupimport-easystud-structure-groups,
+    .local-groupimport-easystud-tree__groupings {
+      @include easyedu.workspace-lane(var(--easyedu-group-rail), end);
+      padding-bottom: var(--easyedu-lane-inset);
+    }
+  }
+}
+
+// Query the actual workspace width, not the window width. The focused view
+// grids inherit the same ratio in their creation row and list row.
+@container easystud-workspace (min-width: 1400px) {
+  #local-groupimport-easystud {
+    &:not(.local-groupimport-easystud--participant-focus):not(.local-groupimport-easystud--structure-focus)
+      .local-groupimport-easystud__layout {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    }
+    &.local-groupimport-easystud--participant-focus .local-groupimport-easystud__participant-content {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    }
+    &.local-groupimport-easystud--structure-focus {
+      .local-groupimport-easystud-create-row,
+      .local-groupimport-easystud-tree {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      }
+    }
+  }
+}
+@media (max-width: 1200px) {
+  #local-groupimport-easystud .local-groupimport-easystud__layout {
+    row-gap: var(--easyedu-lane-stack-gap);
+  }
+}
+@media (max-width: 1024px) {
+  #local-groupimport-easystud {
+    &.local-groupimport-easystud--participant-focus .local-groupimport-easystud__participant-content,
+    &.local-groupimport-easystud--structure-focus .local-groupimport-easystud-create-row,
+    &.local-groupimport-easystud--structure-focus .local-groupimport-easystud-tree {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .local-groupimport-easystud-participant-groups__create { margin-top: var(--easyedu-lane-stack-gap); }
+  }
+}

@@ -5914,3 +5914,4 @@ Maintenance convention:
 
 - Fixed CodeChecker issues.
 - Initial commit of the historical Group Import CSV plugin.
+- 2026-10-15 [N2] Lift SM adopts Kit0.4.211 continuous lanes, entity rails, shared 24px gutter, container proportions and lighter resting cards; preserve controllers and T020 alignment.
