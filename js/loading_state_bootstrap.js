@@ -18,6 +18,8 @@
     var diagnosticsGlobalName = '__easyStudLoadingDiagnostics';
     var diagnosticsEventName = 'easyedu:loading-diagnostic';
     var failOpenDelay = 8000;
+    // Hard ceiling while scripts keep arriving (cold Moodle JS cache).
+    var failOpenCeiling = 30000;
 
     var diagnosticsEnabled = function() {
         try {
@@ -119,6 +121,9 @@
         // marker after the real manager and the existing stability gate finish.
         var recoverLateReady = root.getAttribute('data-easyedu-loading-recover-late-ready') === '1';
         var timer = null;
+        var lastProgressAt = Date.now();
+        var ceilingAt = lastProgressAt + failOpenCeiling;
+        var progressObserver = null;
         var managerReadyObserver = null;
         var managerReadyScheduled = false;
         var visualStabilityObserver = null;
@@ -198,6 +203,10 @@
                 window.clearTimeout(timer);
                 timer = null;
             }
+            if (progressObserver) {
+                progressObserver.disconnect();
+                progressObserver = null;
+            }
             if (frameObserver) {
                 frameObserver.disconnect();
                 frameObserver = null;
@@ -272,13 +281,9 @@
                 return;
             }
             frameRevealed = true;
-            // The fail-open deadline now counts from the visible frame.
-            if (timer !== null) {
-                window.clearTimeout(timer);
-                timer = window.setTimeout(function() {
-                    transition('degraded', 'amd-timeout');
-                }, failOpenDelay);
-            }
+            // The fail-open deadline and its ceiling now count from the visible frame.
+            lastProgressAt = Date.now();
+            ceilingAt = lastProgressAt + failOpenCeiling;
             if (diagnostics) {
                 diagnostics.record('manager-frame', captureVisibility(root));
             }
@@ -383,9 +388,35 @@
         // the current value once so readiness is not lost when no later
         // attribute mutation occurs.
         scheduleManagerReady();
-        timer = window.setTimeout(function() {
+        // Fail open when loading stalls, not when it is merely slow: a cold
+        // Moodle JS cache rebuilds core modules one by one for well over the
+        // delay. Every finished script or request pushes the deadline back,
+        // under a hard ceiling.
+        if (window.PerformanceObserver) {
+            try {
+                progressObserver = new PerformanceObserver(function(list) {
+                    if (list.getEntries().some(function(entry) {
+                        return ['script', 'xmlhttprequest', 'fetch'].indexOf(entry.initiatorType) !== -1;
+                    })) {
+                        lastProgressAt = Date.now();
+                    }
+                });
+                progressObserver.observe({type: 'resource'});
+            } catch (error) {
+                progressObserver = null;
+            }
+        }
+        var checkFailOpen = function() {
+            timer = null;
+            var now = Date.now();
+            var deadline = Math.min(lastProgressAt + failOpenDelay, ceilingAt);
+            if (now < deadline) {
+                timer = window.setTimeout(checkFailOpen, deadline - now);
+                return;
+            }
             transition('degraded', 'amd-timeout');
-        }, failOpenDelay);
+        };
+        timer = window.setTimeout(checkFailOpen, failOpenDelay);
         return root.easystudLoadingController;
     };
 

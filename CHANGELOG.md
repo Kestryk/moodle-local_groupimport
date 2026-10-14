@@ -1,5 +1,10 @@
 # Changelog
 
+- 2026-10-14 [N1] Integrate Claude b5f44a7a: completed scripts/requests extend
+  the loading deadline by8s, capped at30s from startup or the visible frame;
+  stalled AMD keeps amd-timeout at8s. Execute the real bootstrap under virtual
+  resource/timer events; preserve late-ready recovery and reduced motion.
+
 - 2026-10-14 [N1] Record the four Claude commits served on f20b44a5 and the
   completed Moodle2026101400 upgrade with obsolete rendering config removed.
   Retain the single native run FAILED at its early five-second startup gate,

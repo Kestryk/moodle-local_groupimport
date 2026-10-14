@@ -1,4 +1,14 @@
 {
+  "loadingProgressIntegration20261014": {
+    "originalCommit": "b5f44a7a",
+    "status": "integrated-static-ready-for-preview",
+    "documentation": "docs/testing/claude-bascule-integration-2026-10-14.md",
+    "test": "tools/release/test-loading-progress-deadline.cjs",
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "claudeNativeEvidence": "Reported8052 course71 cold frame11.4s ready20.3s no degraded; blocked requirejs degraded8.8s. Separate from principal verification.",
+    "scope": "js/loading_state_bootstrap.js only product change; no AMD rebuild or rendering-setting restoration"
+  },
   "claudeBascule20261014": {
     "originalCommits": ["1bf77389", "cf2be86b", "6a499c5f", "1a10749e"],
     "integrationCommits": ["73fa0128", "732b957f", "dbf4886b", "483fa9fd"],

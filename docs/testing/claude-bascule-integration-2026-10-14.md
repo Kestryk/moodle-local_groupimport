@@ -104,3 +104,21 @@ Source advanced independently to07104791; only our old untracked PHP test
 remains there. Preserve it and that checkout; continue from the isolated branch.
 Current proof commit is intentionally not served
 alone; include it with the next product publication. A-CHECKLIST is next.
+
+## Fifth Claude commit — progress-aware loading deadline
+
+Kevin requested b5f44a7a before A-CHECKLIST. Only product change is
+js/loading_state_bootstrap.js, imported with provenance; no source conflict.
+Finished script/xhr/fetch extends the8s inactivity deadline, under a30s ceiling
+reset when the visible frame appears. Stalled AMD still emits amd-timeout;
+ready disconnects the resource observer and preserves late-ready recovery.
+The actual bootstrap executes in test-loading-progress-deadline.cjs with
+virtual timers/resource completions, covering stall/progress/irrelevant
+resources/ceiling/frame/reduced motion/late ready. No real-runtime writes.
+
+Claude's reported8052 course71 native measurements: frame11.4s, ready20.3s,
+no degraded after purge; blocked requirejs gives degraded8.8s. These are
+reported upstream evidence, not a new principal-native PASS. The initial
+principal failure above remains intact. Publish this integration with prior
+proof194ea6dc, relay it to Codex2, then implement A-CHECKLIST. Penpot now
+handled by Kevin; no Codex Penpot access or new visual composition here.
