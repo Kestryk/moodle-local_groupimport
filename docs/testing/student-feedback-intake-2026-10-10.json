@@ -1,4 +1,14 @@
 {
+  "inlineMobileIntegration20261014": {
+    "originalCommits": ["02b33d15", "7f655884"],
+    "integrationCommits": ["5b00aa34", "ee17b0de"],
+    "status": "integrated-built-native-preview-pending",
+    "documentation": "docs/testing/inline-mobile-integration-2026-10-14.md",
+    "nativeSpec": "tools/playwright/inline-mobile-f7-principal-native.spec.js",
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "resolution": "Kevin approved preserving Source intake proofs plus targeted T058/T059 incoming states, all CHANGELOG entries and rebuilding conflicting AMD from cleanly merged source"
+  },
   "n2FourIntegration20261014": {
     "originalCommits": ["80d2ea08", "64993872", "78263ef7", "00957c2f"],
     "integrationCommits": ["934cf886", "d76bbcb6", "3c6c0bd6", "2326167a"],
@@ -47,11 +57,14 @@
     "seriesBFirst": "T048: participant/group/grouping details redesign (K18), design by Claude before integration",
     "k17AssignedTo": "R10-21: Participants title for the left column above the filters search",
     "a3Chosen": "V3 accent underline24x2px, optionB; T033/34/35; Groups without grouping uses violet#72508C in T033; Foundations09.5 reference",
-    "remainingSeriesA": ["A3 V3 T033/T034/T035", "A-CHECKLIST", "A-FLUIDITE", "R10-26", "A-ADMIN-CONTROLES", "A-PARCOURS-10"],
+    "priorityOrder": ["A-CHECKLIST", "A3 V3 T033/T034/T035", "T043", "T044", "T046", "T047", "T048 K18", "A-ADMIN-CONTROLES", "A-FLUIDITE", "R10-26", "A-PARCOURS-10", "R10-02", "R10-14", "R10-15", "R10-21+K17"],
+    "remainingSeriesA": ["A-CHECKLIST", "A3 V3 T033/T034/T035", "A-ADMIN-CONTROLES", "A-FLUIDITE", "R10-26", "A-PARCOURS-10"],
+    "transferredToCodex2": ["R10-06", "T025", "T026", "K22", "K21"],
+    "claudeOnDemandOnly": "Pending explicit commit hash; integrate on receipt, then adapt legacy recipes/final-mode restoration",
     "t045KevinValidated20261014": true,
     "dialogsAfterSeriesA": ["T043", "T044", "T046", "T047", "T048 K18", "T050"],
     "dialogContract": "Foundations09.2 T045 family14-10: EASYSTUD/icon tile variant colour, tile radius8px, danger/success fills derived from Kit; Student Management controls38px; preserve T058 keyboard; FR/EN1280/390 both modes; shared partials without Moodle helpers and new variables through Claude",
-    "r10AfterSeriesAWithoutPenpot": ["R10-02", "R10-06", "R10-14", "R10-15", "R10-21+K17"],
+    "r10AfterSeriesAWithoutPenpot": ["R10-02", "R10-14", "R10-15", "R10-21+K17"],
     "r10WaitingForClaudePenpot": ["R10-05", "R10-20", "R10-24"]
   },
   "k14K15Integration20261014": {
