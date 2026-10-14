@@ -6,6 +6,9 @@ Set-StrictMode -Version Latest
 $root = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $manager = Get-Content -LiteralPath (Join-Path $root 'amd\src\course_manager.js') -Raw
 $managerBuild = Get-Content -LiteralPath (Join-Path $root 'amd\build\course_manager.min.js') -Raw
+# T055: the course manager code lives in amd/src/local/cm (and amd/build/local/cm); read it with course_manager.js.
+$manager = $manager + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/src/local/cm') -Filter '*.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
+$managerBuild = $managerBuild + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/build/local/cm') -Filter '*.min.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
 $modal = Get-Content -LiteralPath (Join-Path $root 'scss\components\_settings-modal.scss') -Raw
 $forms = Get-Content -LiteralPath (Join-Path $root 'scss\components\_forms.scss') -Raw
 $tooltips = Get-Content -LiteralPath (Join-Path $root 'scss\easyedu\components\_tooltips.scss') -Raw

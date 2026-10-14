@@ -1,6 +1,10 @@
 // Exercise the actual owned handler slice, including outside-root releases.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
-const source=fs.readFileSync(path.resolve(__dirname,'../../amd/src/course_manager.js'),'utf8');
+// T055: the course manager code lives in amd/src/local/cm; read it with course_manager.js.
+const source = [path.resolve(__dirname, '../../amd/src/course_manager.js')].concat(
+    fs.readdirSync(path.resolve(__dirname, '../../amd/src/local/cm')).filter(file => file.endsWith('.js')).sort()
+        .map(file => path.resolve(__dirname, '../../amd/src/local/cm', file)))
+    .map(file => fs.readFileSync(file, 'utf8')).join('\n');
 const start=source.indexOf('    const pointerHandledControls = new WeakSet();'),
     end=source.indexOf("    root.querySelectorAll('[data-easystud-advanced-filters]')",start);
 assert.ok(start>0&&end>start);

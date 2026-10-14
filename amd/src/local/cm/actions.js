@@ -1,0 +1,491 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * EasyStud course manager: server actions and the matching page updates.
+ *
+ * @module     local_groupimport/local/cm/actions
+ * @copyright  2026 Kevin Jarniac
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+import {countLabel} from '../sm/index';
+import {
+    selectedClass, disabledSelectionClass, draggingClass, dropTargetClass, requestGuideHighlightRefresh,
+    formatCountMessage, getLabels, showNotification,
+} from './shared';
+import {
+    insertGroupElementSorted, insertGroupingElementSorted, animateElementCreated, animateElementRemoval,
+    getGroupElementsById, getTreeGroupElementsById, getGroupsWithGroupingMembership,
+    rehydrateParticipantMembershipDetails, updateCatalogGroupingTags, syncGroupingChildrenState, syncUngroupedState,
+    collapseGroupingSection, findParticipantCard,
+} from './cards';
+import {clearSelectionState} from './selection';
+import {
+    syncGroupingGroupsCollapsible, ensureNestedGroupActionMenus, createMemberItem, updateGroupingBadge,
+    syncGroupMembersState, updateStructureSummary, updateStructureEmptyState, createGroupElement,
+    createParticipantCatalogGroupElement, createGroupingElement, createIconActionButton, ensureDuplicateButtons,
+    ensureAdvancedSettingsButtons,
+} from './group_cards';
+import {
+    expandGroupingSection, syncCatalogFilters, applyContainerGroupSearch, applyGroupMemberSearch,
+    syncStructurePlaceholders, syncPagination, applyFilters, updateSelectionActions, scheduleOnDemandStateRefresh,
+} from './workspace';
+
+let pendingActionCount = 0;
+
+const setActionBusyState = busy => {
+    document.querySelectorAll('.local-groupimport-easystud').forEach(container => {
+        const labels = JSON.parse(container.getAttribute('data-easystud-detail-labels') || '{}');
+        const label = labels.actioninprogress || '';
+        const status = container.querySelector('[data-easystud-action-busy-status]');
+        container.setAttribute('data-easystud-action-busy-label', label);
+        container.classList.toggle('is-action-busy', busy);
+        container.setAttribute('aria-busy', busy ? 'true' : 'false');
+        if (status) {
+            const text = status.querySelector('[data-easystud-action-busy-text]');
+            if (text) {
+                text.textContent = label;
+            }
+            status.hidden = !busy;
+        }
+    });
+};
+
+const trackActionRequest = promise => {
+    pendingActionCount += 1;
+    setActionBusyState(true);
+    return promise.finally(() => {
+        pendingActionCount = Math.max(0, pendingActionCount - 1);
+        setActionBusyState(pendingActionCount > 0);
+    });
+};
+
+// Request failures must preserve drafts, selection and the currently open UI.
+// The request tracker already restores busy controls in finally.
+export const handleActionError = (root, error) => {
+    const labels = getLabels(root);
+    showNotification(root, error && error.message ? error.message : labels.ajaxerror || '', 'error');
+};
+
+// Post an EasyStud action.
+export const postAction = data => {
+    const root = document.getElementById('local-groupimport-easystud');
+    const labels = root ? JSON.parse(root.getAttribute('data-easystud-detail-labels') || '{}') : {};
+    const body = new URLSearchParams();
+    Object.keys(data).forEach(key => {
+        const value = data[key];
+        if (Array.isArray(value)) {
+            value.forEach(item => body.append(key + '[]', item));
+            return;
+        }
+        body.set(key, value);
+    });
+    body.set('sesskey', M.cfg.sesskey);
+
+    return trackActionRequest(fetch(M.cfg.wwwroot + '/local/groupimport/ajax.php', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: body.toString(),
+    }).then(response => response.json()).then(result => {
+        if (!result.success) {
+            throw new Error(result.error || labels.ajaxerror || '');
+        }
+        scheduleOnDemandStateRefresh(root);
+        return result;
+    }));
+};
+
+// Move an existing group element into a grouping section.
+export const moveGroupElementToGrouping = (root, groupid, groupingid) => {
+    const groups = getTreeGroupElementsById(root, groupid);
+    const group = groups[0] || null;
+    const target = root.querySelector('[data-easystud-grouping-drop="' + groupingid + '"]');
+    const children = target ? target.querySelector('.local-groupimport-easystud-tree__children') : null;
+    if (!group || !children) {
+        return;
+    }
+    const sourceSections = groups.map(entry => entry.closest('[data-easystud-grouping-drop]')).filter(Boolean);
+    children.hidden = false;
+    groups.slice(1).forEach(entry => entry.remove());
+    if (group.parentElement !== children) {
+        group.remove();
+        insertGroupElementSorted(children, group);
+    }
+    ensureGroupUnlinkButton(root, group, groupingid);
+    if (groupingid !== '0') {
+        expandGroupingSection(target);
+    }
+    sourceSections.concat([target]).forEach(section => {
+        const badge = section ? section.querySelector('.local-groupimport-easystud-tree__toggle .badge') : null;
+        const groupcount = section ? section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length : 0;
+        if (badge) {
+            badge.textContent = countLabel(badge.getAttribute('data-count-template') || '__count__', groupcount);
+        }
+    });
+    syncUngroupedState(root, getLabels(root));
+    root.querySelectorAll('[data-easystud-grouping-id]').forEach(section => syncGroupingChildrenState(section, getLabels(root)));
+    applyContainerGroupSearch(root);
+    updateCatalogGroupingTags(root, groupid);
+    syncCatalogFilters(root);
+    updateStructureSummary(root);
+    updateStructureEmptyState(root);
+    requestGuideHighlightRefresh(root);
+};
+
+export const copyGroupElementToGrouping = (root, sourceGroup, groupingid) => {
+    const groupid = sourceGroup ? sourceGroup.getAttribute('data-easystud-group-id') : '';
+    const target = root.querySelector('[data-easystud-grouping-drop="' + groupingid + '"]');
+    const children = target ? target.querySelector('.local-groupimport-easystud-tree__children') : null;
+    if (!groupid || !sourceGroup || !children) {
+        return;
+    }
+    if (children.querySelector(':scope > [data-easystud-group-id="' + groupid + '"]')) {
+        return;
+    }
+
+    const copy = sourceGroup.cloneNode(true);
+    copy.classList.remove(selectedClass, draggingClass, dropTargetClass, 'local-groupimport-easystud-group--catalog');
+    copy.querySelectorAll('.' + selectedClass).forEach(item => item.classList.remove(selectedClass));
+    copy.querySelectorAll('[data-easystud-selector-input]').forEach(input => {
+        input.checked = false;
+        input.disabled = false;
+    });
+    children.hidden = false;
+    insertGroupElementSorted(children, copy);
+    ensureGroupUnlinkButton(root, copy, groupingid);
+    ensureNestedGroupActionMenus(root);
+    expandGroupingSection(target);
+    updateGroupingBadge(target);
+    syncGroupingChildrenState(target, getLabels(root));
+    applyContainerGroupSearch(root);
+    updateCatalogGroupingTags(root, groupid);
+    syncCatalogFilters(root);
+    updateStructureSummary(root);
+    updateStructureEmptyState(root);
+    requestGuideHighlightRefresh(root);
+};
+
+export const removeGroupsFromGroupings = (root, courseId, groups) => {
+    const labels = getLabels(root);
+    const groupsToRemove = getGroupsWithGroupingMembership(root, groups);
+    if (!groupsToRemove.length) {
+        return Promise.resolve(null);
+    }
+
+    return Promise.all(groupsToRemove.map(group => {
+        const groupid = group.getAttribute('data-easystud-group-id');
+        return postAction({
+            courseid: courseId,
+            action: 'movegroup',
+            groupid,
+            groupingid: 0,
+        }).then(response => {
+            moveGroupElementToGrouping(root, groupid, 0);
+            return response;
+        });
+    })).then(() => {
+        clearSelectionState(root);
+        updateSelectionActions(root);
+        requestGuideHighlightRefresh(root);
+        showNotification(root, formatCountMessage(labels.groupsremovedfromgroupingscount, groupsToRemove.length), 'success');
+        return groupsToRemove;
+    });
+};
+
+export const postFormAction = formData => {
+    const root = document.getElementById('local-groupimport-easystud');
+    const labels = root ? JSON.parse(root.getAttribute('data-easystud-detail-labels') || '{}') : {};
+    formData.set('sesskey', M.cfg.sesskey);
+
+    return trackActionRequest(fetch(M.cfg.wwwroot + '/local/groupimport/ajax.php', {
+        method: 'POST',
+        credentials: 'same-origin',
+        body: formData,
+    }).then(response => response.json()).then(result => {
+        if (!result.success) {
+            throw new Error(result.error || labels.ajaxerror || '');
+        }
+        scheduleOnDemandStateRefresh(root);
+        return result;
+    }));
+};
+
+const ensureGroupUnlinkButton = (root, group, groupingid) => {
+    if (!group || !groupingid || groupingid === '0') {
+        return;
+    }
+    const header = group.querySelector(':scope > .local-groupimport-easystud-group__header');
+    const rename = header ? header.querySelector(':scope > .local-groupimport-easystud-rename') : null;
+    if (!header || !rename || header.querySelector('[data-easystud-remove-from-grouping]')) {
+        return;
+    }
+    const labels = getLabels(root);
+    const label = labels.removefromgroupinglabel || labels.removegroupfromgrouping || '';
+    const button = createIconActionButton(
+        'local-groupimport-easystud-group__unlink-button',
+        'data-easystud-remove-from-grouping',
+        group.getAttribute('data-easystud-group-id') || '',
+        label,
+        'fa-unlink'
+    );
+    header.insertBefore(button, rename.nextSibling);
+};
+
+export const deleteGroupElement = (root, groupid) => {
+    const groups = getGroupElementsById(root, groupid);
+    const sections = new Set(groups.map(group => group.closest('[data-easystud-grouping-drop]')).filter(Boolean));
+
+    const syncAfterRemoval = () => {
+        sections.forEach(section => {
+            updateGroupingBadge(section);
+            syncGroupingChildrenState(section, getLabels(root));
+            syncGroupingGroupsCollapsible(section);
+        });
+
+        syncStructurePlaceholders(root);
+        applyContainerGroupSearch(root);
+        updateCatalogGroupingTags(root, groupid);
+        syncCatalogFilters(root);
+        updateStructureSummary(root);
+        updateStructureEmptyState(root);
+        syncPagination(root);
+        updateSelectionActions(root);
+        requestGuideHighlightRefresh(root);
+    };
+
+    if (!groups.length) {
+        syncAfterRemoval();
+        return;
+    }
+
+    let pending = groups.length;
+    groups.forEach(group => {
+        animateElementRemoval(group, () => {
+            group.remove();
+            pending--;
+            if (pending === 0) {
+                syncAfterRemoval();
+            }
+        });
+    });
+};
+
+export const deleteGroupingElement = (root, groupingid) => {
+    const grouping = root.querySelector('[data-easystud-grouping-id="' + groupingid + '"]');
+    const removeGrouping = () => {
+        const ungroupedchildren = root.querySelector('.local-groupimport-easystud-tree__section--ungrouped .local-groupimport-easystud-tree__children');
+        if (ungroupedchildren) {
+            grouping.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').forEach(group => {
+                ungroupedchildren.appendChild(group);
+                updateCatalogGroupingTags(root, group.getAttribute('data-easystud-group-id'));
+            });
+        }
+        grouping.remove();
+        syncStructurePlaceholders(root);
+        applyContainerGroupSearch(root);
+        updateSelectionActions(root);
+        rehydrateParticipantMembershipDetails(root);
+        requestGuideHighlightRefresh(root);
+    };
+    if (grouping) {
+        animateElementRemoval(grouping, removeGrouping);
+        return;
+    }
+    syncStructurePlaceholders(root);
+    applyContainerGroupSearch(root);
+    updateSelectionActions(root);
+    rehydrateParticipantMembershipDetails(root);
+};
+
+export const removeMembers = (root, courseId, members) => {
+    const validmembers = (members || []).filter(Boolean);
+    if (!validmembers.length) {
+        return Promise.resolve(null);
+    }
+
+    const groupids = [];
+    const userids = [];
+    validmembers.forEach(member => {
+        const group = member.closest('[data-easystud-group-id]');
+        const groupid = group ? group.getAttribute('data-easystud-group-id') : '';
+        const userid = member.getAttribute('data-easystud-member-id');
+        if (groupid && userid) {
+            groupids.push(groupid);
+            userids.push(userid);
+        }
+    });
+
+    const payload = {
+        courseid: courseId,
+        action: validmembers.length > 1 ? 'removemembers' : 'removeuser',
+    };
+
+    if (validmembers.length > 1) {
+        payload.groupids = groupids;
+        payload.userids = userids;
+    } else {
+        payload.groupid = groupids[0];
+        payload.userid = userids[0];
+    }
+
+    return postAction(payload).then(response => {
+        validmembers.forEach(member => {
+            const group = member.closest('[data-easystud-group-id]');
+            const groupid = group ? group.getAttribute('data-easystud-group-id') : '';
+            const userid = member.getAttribute('data-easystud-member-id');
+            const user = findParticipantCard(root, userid);
+            if (user) {
+                const current = (user.getAttribute('data-group-ids') || '').split(',').filter(Boolean);
+                user.setAttribute('data-group-ids', current.filter(id => id !== groupid).join(','));
+            }
+            getGroupElementsById(root, groupid).forEach(groupcopy => {
+                const copyMember = groupcopy.querySelector('[data-member-key="' + groupid + '-' + userid + '"], [data-member-key="' + groupid + ':' + userid + '"]');
+                if (copyMember) {
+                    copyMember.remove();
+                }
+                syncGroupMembersState(groupcopy, getLabels(root));
+            });
+        });
+        rehydrateParticipantMembershipDetails(root);
+        applyFilters(root);
+        updateSelectionActions(root);
+        return response;
+    });
+};
+
+export const appendUsersToGroupCopies = (root, groupid, users, labels) => {
+    getGroupElementsById(root, groupid).forEach(group => {
+        const list = group.querySelector('[data-easystud-group-members]');
+        if (!list) {
+            return;
+        }
+        list.querySelectorAll('.text-muted, .local-groupimport-easystud-tree__empty').forEach(empty => empty.remove());
+        users.forEach(user => {
+            const userid = user.getAttribute ? user.getAttribute('data-user-id') : String(user.id);
+            const fullname = user.querySelector ? (
+                user.querySelector('strong') ? user.querySelector('strong').textContent : ''
+            ) : user.fullname;
+            if (!userid || list.querySelector('[data-easystud-member-id="' + userid + '"]')) {
+                return;
+            }
+            const removelabel = (labels.removeuser || '').replace('{name}', fullname);
+            list.appendChild(createMemberItem(groupid, userid, fullname, removelabel, labels.selectionmode || ''));
+        });
+        syncGroupMembersState(group, labels);
+    });
+    rehydrateParticipantMembershipDetails(root);
+    applyGroupMemberSearch(root);
+};
+
+export const insertGroupData = (root, groupdata) => {
+    const tree = root.querySelector('[data-easystud-tree]');
+    const participantgrouplist = root.querySelector('.local-groupimport-easystud-participant-groups__list');
+    const structuregrouplist = root.querySelector('.local-groupimport-easystud-structure-groups__list');
+    const groupingids = Array.isArray(groupdata.groupingids) ?
+        groupdata.groupingids.map(id => String(id)) :
+        (groupdata.groupingidscsv || '').split(',').filter(Boolean);
+
+    if (tree) {
+        if (groupingids.length) {
+            groupingids.forEach(groupingid => {
+                const target = tree.querySelector('[data-easystud-grouping-drop="' + groupingid + '"]');
+                const children = target ? target.querySelector('.local-groupimport-easystud-tree__children') : null;
+                if (!children) {
+                    return;
+                }
+                children.hidden = false;
+                const group = createGroupElement(root, groupdata);
+                insertGroupElementSorted(children, group);
+                animateElementCreated(group);
+                syncGroupingChildrenState(target, getLabels(root));
+                updateGroupingBadge(target);
+            });
+        } else {
+            const ungroupedsection = tree.querySelector('.local-groupimport-easystud-tree__section--ungrouped');
+            const children = ungroupedsection ? ungroupedsection.querySelector('.local-groupimport-easystud-tree__children') : null;
+            if (children) {
+                children.hidden = false;
+                const group = createGroupElement(root, groupdata);
+                insertGroupElementSorted(children, group);
+                animateElementCreated(group);
+                syncUngroupedState(root, getLabels(root));
+            }
+        }
+    }
+
+    if (participantgrouplist) {
+        const group = createParticipantCatalogGroupElement(root, groupdata);
+        insertGroupElementSorted(participantgrouplist, group);
+        animateElementCreated(group);
+    }
+    if (structuregrouplist) {
+        const group = createParticipantCatalogGroupElement(root, groupdata);
+        insertGroupElementSorted(structuregrouplist, group);
+        animateElementCreated(group);
+    }
+    ensureDuplicateButtons(root);
+    ensureAdvancedSettingsButtons(root);
+    updateCatalogGroupingTags(root, groupdata.id);
+    syncCatalogFilters(root);
+    applyContainerGroupSearch(root);
+    updateStructureSummary(root);
+    updateStructureEmptyState(root);
+    requestGuideHighlightRefresh(root);
+};
+
+export const insertGroupingData = (root, groupingdata) => {
+    const tree = root.querySelector('[data-easystud-tree]');
+    const groupingswrap = tree ? tree.querySelector('.local-groupimport-easystud-tree__groupings') : null;
+    if (!groupingswrap) {
+        return null;
+    }
+    const grouping = createGroupingElement(root, groupingdata);
+    grouping.classList.remove(selectedClass, disabledSelectionClass, draggingClass, dropTargetClass, 'is-expanded');
+    insertGroupingElementSorted(groupingswrap, grouping);
+    animateElementCreated(grouping);
+    (groupingdata.groupids || []).forEach(groupid => {
+        const source = getTreeGroupElementsById(root, String(groupid))[0] ||
+            root.querySelector('.local-groupimport-easystud-structure-groups__list [data-easystud-group-id="' + groupid + '"]');
+        if (source) {
+            copyGroupElementToGrouping(root, source, groupingdata.id);
+        }
+    });
+    const children = grouping.querySelector(':scope > .local-groupimport-easystud-tree__children');
+    if (children) {
+        children.hidden = true;
+    }
+    const toggle = grouping.querySelector('[data-easystud-collapse-toggle]');
+    if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        const icon = toggle.querySelector('.fa');
+        if (icon) {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-right');
+        }
+    }
+    collapseGroupingSection(grouping);
+    ensureDuplicateButtons(root);
+    ensureAdvancedSettingsButtons(root);
+    syncCatalogFilters(root);
+    applyContainerGroupSearch(root);
+    updateStructureSummary(root);
+    updateStructureEmptyState(root);
+    requestGuideHighlightRefresh(root);
+    return grouping;
+};

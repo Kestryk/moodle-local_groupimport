@@ -3,7 +3,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const source = fs.readFileSync(path.join(__dirname, '../../amd/src/course_manager.js'), 'utf8');
+// T055: the course manager code lives in amd/src/local/cm; read it with course_manager.js.
+const source = [path.resolve(__dirname, '../../amd/src/course_manager.js')].concat(
+    fs.readdirSync(path.resolve(__dirname, '../../amd/src/local/cm')).filter(file => file.endsWith('.js')).sort()
+        .map(file => path.resolve(__dirname, '../../amd/src/local/cm', file)))
+    .map(file => fs.readFileSync(file, 'utf8')).join('\n');
 const begin = source.indexOf('const updateRoleFilterMode = root => {');
 const end = source.indexOf('// Product hooks/values remain native;', begin);
 assert(begin >= 0 && end > begin);

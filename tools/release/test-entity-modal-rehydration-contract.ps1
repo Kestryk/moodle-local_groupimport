@@ -16,6 +16,9 @@ function Assert-Contains([string]$label, [string]$text, [string]$needle) {
 
 $source = Read-RequiredFile 'amd/src/course_manager.js'
 $build = Read-RequiredFile 'amd/build/course_manager.min.js'
+# T055: the course manager code lives in amd/src/local/cm (and amd/build/local/cm); read it with course_manager.js.
+$source = $source + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/src/local/cm') -Filter '*.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
+$build = $build + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/build/local/cm') -Filter '*.min.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
 
 foreach ($needle in @(
     'const rehydrateParticipantMembershipDetails = root => {',
