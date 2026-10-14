@@ -1,4 +1,21 @@
 {
+  "codex2K21T055Port20261014": {
+    "status": "module-port-static-focused-pass-awaiting-integration",
+    "baseCommit": "70db3f96",
+    "documentation": "docs/testing/codex2-k21-t055-port-2026-10-14.md",
+    "source": "amd/src/local/cm/group_cards.js",
+    "function": "updateStructureSummary",
+    "test": "tools/release/test-k21-summary-t055.cjs",
+    "focusedCases": 30,
+    "languages": ["fr", "en"],
+    "modelStates": ["ready", "null", "missing-raw"],
+    "nullModelPreservesSSR": true,
+    "domFallback": false,
+    "newVisualComposition": false,
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "n2FourIntegration20261014": {
     "originalCommits": ["80d2ea08", "64993872", "78263ef7", "00957c2f"],
     "integrationCommits": ["934cf886", "d76bbcb6", "3c6c0bd6", "2326167a"],
