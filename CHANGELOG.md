@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] T058 Rollback: safe initial Cancel focus, modal Tab loop, scoped Escape and return to History opener; 24 native cycles PASS on Perf in both modes.
+
 - 2026-10-14 [N0] R10-18: retain not-reproduced status and specify Kevin real-device confirmation at 390 CSS px Safari; no product change.
 
 - 2026-10-13 [N0] T058 contrast: remove obsolete #6a7a8a heading declaration and use existing --easyedu-text-muted, already applied by late typography on 49072e22. No new palette introduced.

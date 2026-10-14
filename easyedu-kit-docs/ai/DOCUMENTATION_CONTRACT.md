@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Rollback owns modal-local keyboard handling, safe initial Cancel focus and return
+to its surviving History trigger after native Motion. Keep import/restore commands
+untouched. Native readiness must precede choosing desktop or compact History access;
+source/build/paired browser proof and human acceptance remain separate.
+
 S1 external-dialog cues consume Kit186's public layering role; page cues remain
 1020 and pointer-events:none. The body portal relays only --easyedu-modal-layer.
 Check actual inert frame paint through a restored test-only edge probe, never
