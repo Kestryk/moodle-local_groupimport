@@ -6,6 +6,9 @@
   next checkbox click deselects it. Prepare real-selection cleanup without a
   second run; remaining principal checks stay open. Preserve Claude's K16
   mobile-search follow-up, chosen A3/V3 and newly validated T045 order.
+- 2026-10-14 [N1] T058: inline Search/Add/rename reuse native Cancel for Escape and restore focus after card normalization;48 closes and12 keyboard Space/Move/destination scenarios PASS in normal/reduced motion, both modes.
+
+- 2026-10-14 [N0] T059: reconcile16 existing PASS cases for Move/Confirmation and Group/Grouping settings at768/390 in both modes, including long-title bounds; no redundant native replay.
 
 - 2026-10-14 [N1/N2] Group four Codex2 integrations with the approved R10-18
   document conflict resolution, rebuild CSV Import/styles and prepare one

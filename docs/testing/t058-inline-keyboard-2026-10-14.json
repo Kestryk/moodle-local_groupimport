@@ -1,0 +1,86 @@
+{
+  "task": "T058",
+  "date": "2026-10-14",
+  "authorization": "Kevin focus/windows exception; no tutorial or local/sm edits",
+  "sourceChanged": true,
+  "nativeVerified": true,
+  "humanAccepted": false,
+  "width": 1280,
+  "locale": "fr",
+  "modes": [
+    "legacy",
+    "reactive"
+  ],
+  "motions": [
+    "no-preference",
+    "reduce"
+  ],
+  "panels": [
+    "Group search",
+    "Group identifiers",
+    "Group rename",
+    "Grouping search",
+    "Grouping identifiers",
+    "Grouping rename"
+  ],
+  "keyboardAlternative": [
+    "Participant Space and native Add/Move",
+    "Group Space and native Move",
+    "Member Space and native Move"
+  ],
+  "keyboardExtent": "choose destination with Tab/Space, reach confirmation, Escape; no submit",
+  "nativeFinal": "C:/dev/artifacts/es-panels-after-v3/after/matrix.json",
+  "record": "docs/t058-inline-keyboard-2026-10-14.md",
+  "guidedReplay": "pending A-CHECKLIST and CL-PARCOURS publication; dedicated Perf course only",
+  "designChangeRequired": false,
+  "compatibility45": "runtime not run; existing DOM and Motion dependencies only",
+  "panelCases": 24,
+  "closeCycles": 48,
+  "keyboardTransfers": 12,
+  "pageErrors": 0,
+  "businessWrites": 0,
+  "normalDurationsMs": [
+    329,
+    347
+  ],
+  "reducedCssMaxMs": 0.001,
+  "reducedWaapiAnimations": 0,
+  "scenarioClassification": "native Perf candidate, existing course5, credential wrapper required, no business writes; final successor reusable for CI with equivalent fixtures",
+  "preservedRuns": [
+    {
+      "spec": "t058-inline-keyboard-baseline.spec.js",
+      "root": "C:/dev/artifacts/es-inline14-before",
+      "status": "failed-auth-timeout-before-product"
+    },
+    {
+      "spec": "t058-inline-keyboard-ready.spec.js",
+      "root": "C:/dev/artifacts/es-inline14-ready",
+      "status": "failed-menu-only-route-before-measurement"
+    },
+    {
+      "spec": "t058-inline-native-successor.spec.js",
+      "root": "C:/dev/artifacts/es-panels-before",
+      "status": "product-Search-return-fails; hidden-rename-opener-probe-stops"
+    },
+    {
+      "spec": "t058-inline-final.spec.js",
+      "root": "C:/dev/artifacts/es-panels-after",
+      "status": "failed-reduced-Search-return"
+    },
+    {
+      "spec": "t058-inline-reduced-successor.spec.js",
+      "root": "C:/dev/artifacts/es-panels-after-v2",
+      "status": "failed-reduced-Search-return; keyboard-destination-access-passes"
+    },
+    {
+      "spec": "t058-reduced-focus-diagnostic.spec.js",
+      "root": "C:/dev/artifacts/es-panels-focus-diagnostic",
+      "status": "focus-call-to-correct-opener-then-body"
+    },
+    {
+      "spec": "t058-inline-settled-successor.spec.js",
+      "root": "C:/dev/artifacts/es-panels-after-v3",
+      "status": "passed-both-modes"
+    }
+  ]
+}
