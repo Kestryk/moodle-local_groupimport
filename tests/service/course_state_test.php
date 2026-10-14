@@ -41,6 +41,7 @@ final class course_state_test extends \advanced_testcase {
         $course = $generator->create_course();
         $context = \context_course::instance($course->id);
         $student = $generator->create_user([
+            'username' => 'student.private',
             'email' => 'student.private@example.com',
             'idnumber' => 'STU-001',
             'city' => 'Paris',
@@ -107,11 +108,13 @@ final class course_state_test extends \advanced_testcase {
     }
 
     /**
-     * With moodle/site:viewuseridentity, only the fields listed in showuseridentity come back.
+     * With moodle/site:viewuseridentity, the plugin identification fields chosen by the site
+     * administrator come back (username included), while the participant sheet keeps Moodle's
+     * showuseridentity rule.
      *
      * @return void
      */
-    public function test_group_manager_with_viewuseridentity_receives_showuseridentity_fields(): void {
+    public function test_group_manager_with_viewuseridentity_receives_plugin_identifier_fields(): void {
         [$course, $context, $student, $viewer, $roleid] = $this->create_course_with_group_manager();
         assign_capability('moodle/site:viewuseridentity', CAP_ALLOW, $roleid, \context_system::instance()->id, true);
         accesslib_clear_all_caches_for_unit_testing();
@@ -120,9 +123,10 @@ final class course_state_test extends \advanced_testcase {
         $state = course_state::build($course, $context);
         $item = $this->find_user($state, (int)$student->id);
         $this->assertSame('student.private@example.com', $item['email']);
-        $this->assertSame(['email' => 'student.private@example.com', 'idnumber' => 'STU-001'], $item['identifiers']);
-        // Username is a plugin identification field, but not in showuseridentity.
-        $this->assertSame(['email', 'idnumber'], array_column($state['meta']['identifierfields'], 'key'));
+        $this->assertSame(['username' => 'student.private', 'email' => 'student.private@example.com',
+            'idnumber' => 'STU-001'], $item['identifiers']);
+        // Username is a plugin identification field chosen by the administrator: allowed with viewuseridentity.
+        $this->assertSame(['username', 'email', 'idnumber'], array_column($state['meta']['identifierfields'], 'key'));
 
         [$details] = course_state::get_details($course, $context, 'user', [(int)$student->id]);
         $this->assertSame('student.private@example.com', $details['email']);

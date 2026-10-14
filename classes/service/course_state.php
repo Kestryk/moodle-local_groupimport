@@ -533,6 +533,7 @@ class course_state {
             'identity' => array_flip(\core_user\fields::get_identity_fields($context, true)),
             'hidden' => array_flip($hidden),
             'viewalldetails' => has_capability('moodle/user:viewalldetails', $context),
+            'viewidentity' => has_capability('moodle/site:viewuseridentity', $context),
         ];
     }
 
@@ -543,8 +544,16 @@ class course_state {
      * @return array Field key => label, in settings order.
      */
     public static function get_visible_identifier_fields(array $access): array {
+        // The site administrator explicitly chose these identification fields in the plugin
+        // settings, so a standard field is available to anyone allowed to see user identity
+        // (moodle/site:viewuseridentity), even when showuseridentity does not list it.
+        // Custom profile fields keep Moodle's identity listing, which applies their own visibility.
         return array_filter(self::get_identifier_field_definitions(), static function(string $fieldkey) use ($access): bool {
-            return isset($access['identity'][\core_text::strtolower($fieldkey)]);
+            $key = \core_text::strtolower($fieldkey);
+            if (isset($access['identity'][$key])) {
+                return true;
+            }
+            return !empty($access['viewidentity']) && strpos($key, 'profile_field_') !== 0;
         }, ARRAY_FILTER_USE_KEY);
     }
 
