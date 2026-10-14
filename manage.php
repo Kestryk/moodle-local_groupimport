@@ -1636,6 +1636,8 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                     'openDelay' => 320,
                     'feedback' => get_string('tutorialguidedfeedbackactionsselection', 'local_groupimport'),
                     'completionMode' => 'event',
+                    // Selecting masks nothing: the Guide can target "try-context" by itself.
+                    'autoHighlightNext' => true,
                 ],
                 [
                     'id' => 'try-context',

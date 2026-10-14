@@ -23,6 +23,7 @@
 
 import * as Guide from '../../easyedu_guide';
 import {getSelectedItems} from './selection';
+import {requestGuideHighlightRefresh} from './shared';
 
 export const emitGuidedCompletion = (root, step, path = 'main') => {
     root.dispatchEvent(new CustomEvent('easystud:guided-complete', {
@@ -71,6 +72,32 @@ export const emitTryActionsCompletion = (root, step, token = null) => {
         }
     }
     emitNativePathCompletion(root, 'try-actions', step);
+};
+
+// Guided path n°10: the drag start completes "try-drag" while the dragged card is masked
+// (visibility: hidden), so the Guide drops its highlight and, without autoHighlightNext,
+// never targets the next step. Once the cards are visible again, target the active
+// step explicitly. The refresh must name the Guide root itself: the Guide ignores
+// refresh requests addressed to any other root, including the EasyStud workspace.
+export const highlightActiveTryActionsStep = root => {
+    const guideRoot = getActivityGuideRoot(root);
+    const config = guideRoot && guideRoot.easyeduGuideConfig;
+    const checklist = document.querySelector('[data-easyedu-guide-checklist][data-easyedu-guide-path="try-actions"]');
+    if (!config || !config.paths || !checklist || checklist.hidden || !root.isConnected) {
+        return;
+    }
+    const active = checklist.querySelector('[data-easyedu-guide-step-id].is-active:not(.is-complete)');
+    const stepId = active ? active.getAttribute('data-easyedu-guide-step-id') : '';
+    const step = (config.paths['try-actions'] || []).find(item => item.id === stepId);
+    if (!step) {
+        return;
+    }
+    const compact = !!(window.matchMedia && window.matchMedia('(max-width: 64rem)').matches);
+    const target = (compact ? step.highlightTargetCompact : step.highlightTargetDesktop) ||
+        step.highlightTarget || step.target;
+    if (target) {
+        requestGuideHighlightRefresh(root, {root: guideRoot, target});
+    }
 };
 
 export const emitTryActionsSelection = root => {
