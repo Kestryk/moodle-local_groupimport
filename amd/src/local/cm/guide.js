@@ -422,9 +422,10 @@ export const bindTutorialModal = root => {
     const guidedDefaultTitle = guidedTitle ? guidedTitle.textContent : '';
     const guidedStartButtons = modal ?
         Array.from(modal.querySelectorAll('.local-groupimport-easystud-tutorial__start-guided')) : [];
+    // Per person: M.cfg has no user id, so the server provides it on the root.
     const discoveryKey = 'local_groupimport_easystud_guide_seen_' +
         (root.getAttribute('data-easystud-course-id') || 'course') + '_' +
-        ((window.M && window.M.cfg && window.M.cfg.userid) ? window.M.cfg.userid : 'guest');
+        (root.getAttribute('data-easystud-user-key') || 'guest');
     const guidedSlideIndex = steps.findIndex(step => step.querySelector('[data-easystud-guided-action]'));
     let index = 0;
     let highlightTimer = null;
