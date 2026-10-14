@@ -8310,6 +8310,7 @@ const bindContextMenu = (root, courseId) => {
                     'group-focus-rename',
                     'grouping-paste-groups',
                     'grouping-add-copied-groups',
+                    'grouping-search-groups',
                     'grouping-focus-rename',
                     'copy-grouping-name',
                     'paste-field',
@@ -8741,6 +8742,16 @@ const bindContextMenu = (root, courseId) => {
                     }
                 }
             });
+        } else if (action === 'grouping-search-groups') {
+            // The header's direct toggle is hidden on narrow screens; delegate to
+            // this grouping's own toggle so bindContainerGroupSearch keeps the
+            // expand, Motion panel, focus and Cancel behaviour.
+            const groupingid = target.getAttribute('data-easystud-grouping-id') || '';
+            const searchToggle = groupingid ? target.querySelector(
+                '[data-easystud-container-search-toggle="' + groupingid + '"]') : null;
+            if (searchToggle) {
+                searchToggle.click();
+            }
         } else if (action === 'grouping-select-groups') {
             selectGroupingGroups(root, getContextItems('grouping', target));
         } else if (action === 'copy-grouping-name') {

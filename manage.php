@@ -2498,6 +2498,11 @@ function local_groupimport_build_context_actions_template_data(
             'icon' => 'fa-clipboard-check',
             'label' => get_string('contextaddcopiedgroups', 'local_groupimport'),
         ],
+        'grouping-search-groups' => [
+            'contexts' => 'grouping',
+            'icon' => 'fa-search',
+            'label' => get_string('searchgroupslabel', 'local_groupimport'),
+        ],
         'grouping-select-groups' => [
             'contexts' => 'grouping',
             'icon' => 'fa-check-square',
