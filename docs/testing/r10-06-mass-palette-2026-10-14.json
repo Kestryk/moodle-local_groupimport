@@ -1,0 +1,79 @@
+{
+  "id": "R10-06",
+  "status": "source-native-targeted-pass-global-open",
+  "sourceChanged": true,
+  "nativeVerified": false,
+  "nativeTargetedPass": true,
+  "nativeScope": "FR1280 actual chooser/Moodle picker official/custom/restored, active/hover links min6.017:1; existing History eight Export links, primary header and Rollback Cancel official/custom/restored with exact geometry/default restoration. No business submission.",
+  "persistenceVerified": false,
+  "humanAccepted": false,
+  "designPublished": false,
+  "previewServed": false,
+  "isolatedAssertions": 372,
+  "isolatedScope": "Actual lib.php palette mapping, default restoration, independent Primary/Accent, representative result summary/list/title and current-result Export paint at1600/768/390. Not native preview/history lifecycle proof.",
+  "evidence": {
+    "pickerRun": "easystud-authenticated-20261014T141128207Z-19736",
+    "pickerRoot": "C:/dev/artifacts/es-mi-readable",
+    "reportsLog": "C:/dev/artifacts/es-mi-report-palette-isolated.log",
+    "deploy": "C:/dev/artifacts/es-mi-deploy/manifest.json",
+    "css": "C:/dev/artifacts/es-mi-history-fixed.css",
+    "historyRun": "easystud-authenticated-20261014T143041018Z-23304",
+    "historyRoot": "C:/dev/artifacts/es-mi-history-framed"
+  },
+  "remaining": [
+    "native preview and populated current-result lifecycle",
+    "palette persistence after settings Save",
+    "main preview publication",
+    "Penpot propagation",
+    "human acceptance",
+    "native Moodle4.5"
+  ],
+  "penpot": {
+    "operator": "Claude",
+    "components": [
+      "Mass Import native chooser secondary ink",
+      "Identification metadata label paint",
+      "Moodle picker header",
+      "Repository links active/hover/focus-within",
+      "Picker primary/secondary buttons",
+      "History primary header/title",
+      "History Export links",
+      "Rollback Cancel neutral button"
+    ],
+    "recipe": "Primary custom role aliases and paint-only portal token relay; native geometry retained; official defaults untouched",
+    "screen": "Mass Import empty upload and native picker; existing History and Rollback",
+    "states": [
+      "official",
+      "custom Primary/Accent",
+      "restored",
+      "active repository",
+      "hovered repository"
+    ],
+    "widths": [
+      1280
+    ],
+    "isolatedWidths": [
+      1600,
+      768,
+      390
+    ],
+    "propagation": "Library, standards and all affected Foundations/EasyStud boards pending"
+  },
+  "productFailures": [
+    {
+      "spec": "r10-06-mass-palette-successor.spec.js",
+      "line": 43,
+      "state": "custom FR1280",
+      "capture": "C:/dev/artifacts/es-mi-palette-after/**/picker-custom.png",
+      "fixed": true
+    },
+    {
+      "spec": "r10-06-history-kit-header-successor.spec.js",
+      "line": 24,
+      "state": "custom FR1280",
+      "failureRun": "easystud-authenticated-20261014T142134482Z-1828",
+      "reproductionCapture": "C:/dev/artifacts/es-mi-history-framed/**/history-custom-before-fix.png",
+      "fixed": true
+    }
+  ]
+}

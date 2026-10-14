@@ -25,6 +25,8 @@
   Course Manager AMD. Prepare one principal native pass with the remaining FR
   cells first. Preserve A-CHECKLIST priority, N2 Mass Import allocation and the
   pending Claude on-demand-only integration; no new visual recipe in this lot.
+- 2026-10-14 [N1] R10-06 applies custom Mass Import primary ink to the chooser/metadata and relays palette tokens to its native Moodle picker with exact close cleanup. FR1280 official/custom/restored and active/hover contrast>=6.02 PASS;372 isolated report assertions retained; persistence/full lifecycle and human gates stay open.
+
 - 2026-10-14 [N2] K22 centres both Mass Import title first lines on28px icon tiles using existing type tokens, including wrapped390px labels. FR1600/1280/390 PASS against Kevin-approved Claude composition; typography,40px text rail and native picker unchanged.
 
 - 2026-10-14 [N1/N2] Record four Codex2 lots served on3f22f1b0, with Kevin's
