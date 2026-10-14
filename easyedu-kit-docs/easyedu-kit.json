@@ -4,6 +4,11 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "workspaceLanes20261015": {
+      "kitVersion": "0.4.211",
+      "kitCommit": "49ef47e",
+      "scope": "Opt-in continuous lanes; no controller or default panel changes"
+    },
     "adminChoiceWidthR1026_20261014": {
       "kitCommit": "e5d8ebf",
       "kitVersion": "0.4.210",
