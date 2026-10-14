@@ -27,7 +27,8 @@ import {getOnDemandModel, getOnDemandParticipants} from './state';
 import {showEasyStudModal, hideEasyStudModal, bindCardModalKeyboard} from './modal';
 import {rehydrateParticipantMembershipDetails, findParticipantCard} from './cards';
 import {getSelectedItems} from './selection';
-import {escapeHtml, bindAnimatedDetails} from './advanced_settings';
+import {bindAnimatedDetails} from './advanced_settings';
+import {escapeHtml} from './shared';
 
 export const bindParticipantModal = root => {
     const modal = root.querySelector('[data-easystud-user-modal]');

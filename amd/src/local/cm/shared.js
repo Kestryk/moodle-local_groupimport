@@ -22,6 +22,7 @@
  */
 
 import * as Motion from '../../motion';
+import Log from 'core/log';
 import {countLabel} from '../sm/index';
 
 export const selectedClass = 'is-selected';
@@ -81,11 +82,23 @@ export const runSafely = callback => {
     try {
         callback();
     } catch (error) {
-        if (window.console && window.console.error) {
-            window.console.error('EasyStud initialisation step failed.', error);
-        }
+        Log.error('EasyStud initialisation step failed.');
+        Log.error(error);
     }
 };
+
+/**
+ * Escape a value for HTML text and for a double- or single-quoted attribute value.
+ *
+ * The one escaping helper of the course manager and the SM-RENDU renderers: every label,
+ * name, e-mail or id concatenated into an HTML string goes through it.
+ *
+ * @param {*} value Value; null and undefined become an empty string.
+ * @returns {String}
+ */
+export const escapeHtml = value => String(value === undefined || value === null ? '' : value)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 
 // Normalise text for filtering.
 export const normalise = value => (value || '').toString().toLowerCase();

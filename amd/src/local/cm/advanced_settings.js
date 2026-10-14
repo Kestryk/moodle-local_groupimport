@@ -25,7 +25,7 @@ import * as Motion from '../../motion';
 import {fetchDetails} from '../sm/store';
 import {countLabel} from '../sm/index';
 import Notification from 'core/notification';
-import {requestGuideHighlightRefresh, normalise, getLabels, showNotification} from './shared';
+import {requestGuideHighlightRefresh, normalise, getLabels, showNotification, escapeHtml} from './shared';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
 import {hideEasyStudModal, bindCardModalKeyboard} from './modal';
 import {
@@ -237,12 +237,6 @@ const exportAdvancedListSection = section => {
     });
     const csv = '\ufeff' + [headers].concat(rows).map(row => row.map(getCsvValue).join(';')).join('\r\n');
     downloadTextFile(filename, csv);
-};
-
-export const escapeHtml = value => {
-    const element = document.createElement('span');
-    element.textContent = value || '';
-    return element.innerHTML;
 };
 
 const getAdvancedValue = (item, key) => item ? (item.getAttribute('data-easystud-advanced-' + key) || '') : '';

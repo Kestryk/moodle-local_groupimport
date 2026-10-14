@@ -28,7 +28,7 @@ import {getDetachedCard} from '../sm/participants';
 import {getDetachedGroupCard} from '../sm/groups';
 import {
     selectedClass, isResponsiveWorkspace, requestGuideHighlightRefresh, normalise, getLabels, getSelectionInput,
-    areSelectionTypesCompatible,
+    areSelectionTypesCompatible, escapeHtml,
 } from './shared';
 import {getOnDemandModel} from './state';
 import {prepareInlinePanelFocus, restoreInlinePanelFocus} from './modal';
@@ -779,10 +779,11 @@ export const groupSelectAllRowHtml = (groupid, labels) => {
         'select-aria': labels.selectallmembersof,
         'deselect-aria': labels.deselectallmembersof,
     };
-    return '<div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="' + groupid +
+    return '<div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="' +
+        escapeHtml(groupid) +
         '" hidden><button type="button" class="btn btn-link p-0 local-groupimport-easystud-group__select-all" ' +
-        'data-easystud-group-select-all="' + groupid + '"' +
-        Object.keys(texts).map(key => ' data-easystud-' + key + '="' + (texts[key] || '') + '"').join('') +
+        'data-easystud-group-select-all="' + escapeHtml(groupid) + '"' +
+        Object.keys(texts).map(key => ' data-easystud-' + key + '="' + escapeHtml(texts[key] || '') + '"').join('') +
         '></button></div>';
 };
 

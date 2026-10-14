@@ -22,7 +22,9 @@
  */
 
 import {countLabel} from '../sm/index';
-import {selectedClass, compactClass, structureFocusClass, participantFocusClass, normalise, getLabels} from './shared';
+import {
+    selectedClass, compactClass, structureFocusClass, participantFocusClass, normalise, getLabels, escapeHtml,
+} from './shared';
 import {getGroupMemberCount, getOnDemandList} from './cards';
 import {hasActiveListFilters} from './filters';
 
@@ -74,7 +76,7 @@ export const getPagination = (list, inside, position) => {
             '<span class="local-groupimport-easystud-pagination__selection">' +
                 '<button type="button" class="btn btn-sm btn-outline-secondary local-groupimport-easystud-pagination__select" data-easystud-select-results="1">' +
                     '<span data-easystud-select-results-label>' +
-                        (labels.selectresults || '') +
+                        escapeHtml(labels.selectresults || '') +
                     '</span>' +
                 '</button>' +
                 '<span class="local-groupimport-easystud-pagination__count" data-easystud-list-count></span>' +
@@ -88,16 +90,16 @@ export const getPagination = (list, inside, position) => {
             '</span>' +
             '<span class="local-groupimport-easystud-pagination__tools">' +
                 '<label class="local-groupimport-easystud-pagination__sort">' +
-                    '<span>' + (labels.sortitems || '') + '</span>' +
+                    '<span>' + escapeHtml(labels.sortitems || '') + '</span>' +
                     '<span class="local-groupimport-easystud-dropdown" data-easystud-list-sort-dropdown>' +
                         '<button type="button" class="local-groupimport-easystud-dropdown__button" data-easystud-list-sort-toggle aria-expanded="false">' +
-                            '<span data-easystud-list-sort-label>' + (labels.sortalpha || '') + '</span>' +
+                            '<span data-easystud-list-sort-label>' + escapeHtml(labels.sortalpha || '') + '</span>' +
                             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
                         '</button>' +
                         '<span class="local-groupimport-easystud-dropdown__menu" data-easystud-list-sort-menu hidden>' +
-                            '<button type="button" data-easystud-list-sort-option="alpha">' + (labels.sortalpha || '') + '</button>' +
-                            '<button type="button" data-easystud-list-sort-option="filled">' + (labels.sortfilledfirst || '') + '</button>' +
-                            '<button type="button" data-easystud-list-sort-option="empty">' + (labels.sortemptyfirst || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="alpha">' + escapeHtml(labels.sortalpha || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="filled">' + escapeHtml(labels.sortfilledfirst || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="empty">' + escapeHtml(labels.sortemptyfirst || '') + '</button>' +
                         '</span>' +
                     '</span>' +
                 '</label>' +

@@ -34,19 +34,10 @@ import Mustache from 'core/mustache';
 import Loader from 'core/local/templates/loader';
 import {buildParticipantIndex, filterParticipantIds, normalise} from './index';
 import {refreshGroupIndex} from './groups';
+import {escapeHtml} from '../cm/shared';
 
 const templateName = 'local_groupimport/sm/participant_card';
 const tokenClass = 'local-groupimport-easystud-token';
-
-/**
- * Escape text for an HTML attribute or text node.
- *
- * @param {String} value Value.
- * @returns {String}
- */
-const escapeHtml = value => String(value === undefined || value === null ? '' : value)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 
 /**
  * Same structure as local_groupimport_build_meta_tags_template_data() in manage.php.
