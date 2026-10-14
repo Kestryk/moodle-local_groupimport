@@ -1,4 +1,36 @@
 {
+  "codex2Guide10DragendRefresh20261014": {
+    "status": "native-step2-highlight-still-hidden-after-published-dragend-refresh",
+    "documentation": "docs/testing/codex2-guide10-dragend-refresh-2026-10-14.md",
+    "copy": "http://localhost:8051",
+    "sourceCommit": "8229f81c",
+    "integrationCommit": "6bff40b4",
+    "publishedCommit": "41515be6",
+    "mode": "on-demand-only",
+    "language": "fr",
+    "width": 1280,
+    "path": 10,
+    "completedSteps": ["try-drag"],
+    "activeStep": "try-selection",
+    "spec": "tools/playwright/guide-native-dragend-refresh-successor.spec.js",
+    "line": 53,
+    "callerLine": 138,
+    "run": "easystud-authenticated-20261014T190808602Z-42040",
+    "diagnostic": "C:/dev/artifacts/es-guide10-dragend-refresh-diagnostic.json",
+    "samples": [
+      {"elapsedMs":1009.10,"hidden":true,"display":"none","painted":false,"currentTarget":null},
+      {"elapsedMs":5006.30,"hidden":true,"display":"none","painted":false,"currentTarget":null}
+    ],
+    "pageErrors": 0,
+    "businessWriteCommandsExercised": 0,
+    "fixtureCleanup": {"courseRemoved":88,"syntheticUsersDeleted":2,"verifiedReadOnly":true},
+    "scenarioClass": "local-supervised",
+    "ciReadiness": "candidate-requires-product-fix-authenticated-disposable-fixture",
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "penpotValidated": false,
+    "nextOwner": "Claude"
+  },
   "codex2ContextSubmenus20261014": {
     "status": "twelve-callers-adapted-shared-native-routing-pass",
     "documentation": "docs/testing/codex2-context-submenus-2026-10-14.md",
