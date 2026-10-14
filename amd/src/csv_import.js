@@ -809,6 +809,79 @@ const initRollbackModal = root => {
     });
 };
 
+// The Moodle picker is portalled outside the import root. Relay only paint
+// tokens for the picker opened here, and restore them when it closes.
+const initPickerPalette = root => {
+    if (root.dataset.localGroupimportPickerPaletteBound === '1') {
+        return;
+    }
+    root.dataset.localGroupimportPickerPaletteBound = '1';
+    let observer = null;
+    let dialog = null;
+    let originalFlag = null;
+    let originalClass = false;
+    let originalTokens = [];
+    const stop = () => {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+        if (dialog) {
+            originalTokens.forEach(({name, value, priority}) => {
+                if (value) {
+                    dialog.style.setProperty(name, value, priority);
+                } else {
+                    dialog.style.removeProperty(name);
+                }
+            });
+            if (originalFlag === null) {
+                dialog.removeAttribute('data-easyedu-dialog-palette');
+            } else {
+                dialog.setAttribute('data-easyedu-dialog-palette', originalFlag);
+            }
+            if (!originalClass) {
+                dialog.classList.remove('local-groupimport-import-picker');
+            }
+            dialog = null;
+        }
+    };
+    const sync = () => {
+        if (dialog) {
+            if (!dialog.isConnected || !dialog.getClientRects().length || getComputedStyle(dialog).visibility === 'hidden') {
+                stop();
+            }
+            return;
+        }
+        const picker = Array.from(document.querySelectorAll('.moodle-dialogue .file-picker'))
+            .find(node => node.getClientRects().length && getComputedStyle(node).visibility !== 'hidden');
+        if (!picker) {
+            return;
+        }
+        dialog = picker.closest('.moodle-dialogue');
+        originalFlag = dialog.getAttribute('data-easyedu-dialog-palette');
+        originalClass = dialog.classList.contains('local-groupimport-import-picker');
+        const tokens = getComputedStyle(root);
+        originalTokens = ['--easyedu-primary', '--easyedu-primary-strong', '--easyedu-primary-soft',
+            '--easyedu-accent', '--easyedu-accent-soft', '--easyedu-secondary-text'].map(name => ({
+            name, value: dialog.style.getPropertyValue(name), priority: dialog.style.getPropertyPriority(name),
+        }));
+        originalTokens.forEach(({name}) => dialog.style.setProperty(name, tokens.getPropertyValue(name)));
+        dialog.setAttribute('data-easyedu-dialog-palette', root.getAttribute('data-easyedu-dialog-palette') || '');
+        dialog.classList.add('local-groupimport-import-picker');
+    };
+    root.addEventListener('click', event => {
+        if (!event.target.closest('.fp-btn-choose')) {
+            return;
+        }
+        stop();
+        observer = new MutationObserver(sync);
+        observer.observe(document.body, {subtree: true, childList: true, attributes: true,
+            attributeFilter: ['style', 'class', 'hidden', 'aria-hidden']});
+        sync();
+    }, true);
+    window.addEventListener('pagehide', stop);
+};
+
 export const init = (rootId) => {
     const root = document.getElementById(rootId);
     if (!root) {
@@ -816,6 +889,7 @@ export const init = (rootId) => {
     }
 
     Motion.init(root);
+    initPickerPalette(root);
 
     initSelectedFileState(root);
     initImportFileRequirement(root);

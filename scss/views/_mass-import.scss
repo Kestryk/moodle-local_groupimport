@@ -19,6 +19,29 @@
 
   @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
 
+  &[data-easyedu-custom-rails~="primary"] {
+    --easyedu-secondary-text: var(--easyedu-primary);
+    --easyedu-metadata-text: var(--easyedu-primary);
+    --easyedu-metadata-border: color-mix(in srgb, var(--easyedu-primary-chosen) 24%, #fff 76%);
+
+    .easyedu-dialog-header-palette--primary {
+      background-color: var(--easyedu-primary-soft);
+      border-color: var(--easyedu-metadata-border);
+      color: var(--easyedu-primary);
+      .easyedu-modal-title { color: inherit; }
+    }
+    .local-groupimport-import-history__export,
+    [data-local-groupimport-rollback-close].btn {
+      border-color: var(--easyedu-metadata-border);
+      color: var(--easyedu-primary);
+      &:hover, &:focus {
+        background-color: var(--easyedu-primary-soft);
+        border-color: var(--easyedu-primary);
+        color: var(--easyedu-primary);
+      }
+    }
+  }
+
   // K22: centre the first title line on its 28px tile, including wrapped headings.
   &.easyedu-ui .easyedu-information--deposit-aligned .easyedu-information__title,
   &.easyedu-ui .easyedu-file-deposit--moodle.easyedu-file-deposit--small-icon.easyedu-file-deposit--aligned
@@ -905,6 +928,30 @@
       @include easyedu.type-caption;
 
       color: var(--local-groupimport-easystud-text-muted);
+    }
+  }
+}
+// Paint-only bridge for the Moodle picker opened from Mass Import.
+.local-groupimport-import-picker[data-easyedu-dialog-palette~="primary"] {
+  .moodle-dialogue-wrap > .moodle-dialogue-hd.yui3-widget-hd {
+    background: var(--easyedu-primary-soft);
+    color: var(--easyedu-primary);
+  }
+  .btn-primary {
+    background-color: var(--easyedu-primary);
+    border-color: var(--easyedu-primary);
+    color: #fff;
+    &:hover, &:focus { background-color: var(--easyedu-primary-strong); border-color: var(--easyedu-primary-strong); }
+  }
+  .btn-secondary {
+    color: var(--easyedu-primary);
+    &:hover, &:focus { background-color: var(--easyedu-primary-soft); }
+  }
+  .fp-repo-area a, .fp-repo-area .fp-repo-name { color: var(--easyedu-primary); }
+  .fp-repo-area .fp-repo {
+    &.active, &:hover, &:focus-within {
+      background-color: var(--easyedu-primary-soft);
+      a, .fp-repo-name { background-color: transparent; color: var(--easyedu-primary); }
     }
   }
 }

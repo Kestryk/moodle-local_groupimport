@@ -222,12 +222,15 @@
       "title": "Palette de Mass Import",
       "request": "Les boutons et composants de Mass Import doivent utiliser les couleurs personnalisées; l'administration peut garder les couleurs officielles.",
       "acceptance": "Vérifier dépôt/preview/résultats/history/modales, tokens/cascade/portails et défauts; distinguer peinture et persistance après sauvegarde.",
-      "status": "approved",
-      "sourceChanged": false,
+      "status": "source-native-targeted-pass-global-open",
+      "sourceChanged": true,
       "designPublished": false,
       "previewServed": false,
       "nativeVerified": false,
-      "humanAccepted": false
+      "humanAccepted": false,
+      "audit20261014": "docs/testing/r10-06-mass-palette-2026-10-14.json",
+      "nativeTargetedPass": true,
+      "remainingNative": "preview/results lifecycle and saved settings persistence; paint evidence is separate"
     },
     {
       "id": "R10-07",
