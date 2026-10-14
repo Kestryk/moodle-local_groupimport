@@ -907,6 +907,10 @@ function local_groupimport_build_manage_template_data(
             'groupings' => count($groupings),
             'groups' => count($groups),
         ]),
+        'structuregroupingscountlabel' => local_groupimport_count_string('groupingscount', count($groupings)),
+        'structuregroupscountlabel' => local_groupimport_count_string('groupscount', count($groups)),
+        'structuregroupingscounttemplate' => local_groupimport_count_template('groupingscount'),
+        'structuregroupscounttemplate' => local_groupimport_count_template('groupscount'),
         'groupactions' => [
             [
                 'icon' => 'fa-trash',

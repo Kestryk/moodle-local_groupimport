@@ -11,6 +11,7 @@
   rebuild merged Course Manager preserving T058. Isolate publication from
   another window's in-progress K21 Source edits, prepare Moodle upgrade and
   one FR/EN1280/390 native check; prior mode-switch recipes are superseded.
+- 2026-10-14 [N1] K21 separates grouping/group count badges with real FR/EN count forms; on-demand model only, loading preserves server counters.30 isolated and4 native1280/390 cases PASS; Penpot/human/main publication pending.
 
 - 2026-10-14 [N1/N0] Record principal955aadbb requested-scope PASS: three FR
   F7 cells,48 inline-panel closures/12 keyboard alternatives,16 mobile dialog

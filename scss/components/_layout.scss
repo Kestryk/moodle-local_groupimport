@@ -1073,6 +1073,13 @@
     padding: 0.2rem 0.55rem;
   }
 
+  &__panel-counts {
+    align-items: center;
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
   &__panel-badge--accent {
     background: #edf7f1;
     border-color: #cee2d6;

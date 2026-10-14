@@ -473,7 +473,12 @@
                 <div class="local-groupimport-easystud__panel-heading">
                     <div class="local-groupimport-easystud__panel-title-wrap">
                         <h3 class="easyedu-workspace-panel-title local-groupimport-easystud__panel-title">{{groupstructuretitle}}</h3>
-                        <span class="local-groupimport-easystud__panel-badge local-groupimport-easystud__panel-badge--accent">{{groupstructuresummarylabel}}</span>
+                        <span class="local-groupimport-easystud__panel-counts">
+                            <span class="local-groupimport-easystud__panel-badge local-groupimport-easystud__panel-badge--accent"
+                                data-easystud-structure-count="groupings" data-count-template="{{structuregroupingscounttemplate}}">{{structuregroupingscountlabel}}</span>
+                            <span class="local-groupimport-easystud__panel-badge local-groupimport-easystud__panel-badge--accent"
+                                data-easystud-structure-count="groups" data-count-template="{{structuregroupscounttemplate}}">{{structuregroupscountlabel}}</span>
+                        </span>
                     </div>
                     <div class="local-groupimport-easystud__panel-actions">
                         {{#groupactions}}

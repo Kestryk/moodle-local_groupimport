@@ -3976,18 +3976,18 @@ const appendUsersToGroupCopies = (root, groupid, users, labels) => {
 };
 
 const updateStructureSummary = root => {
-    const labels = getLabels(root);
-    const badge = root.querySelector('.local-groupimport-easystud__panel--structure .local-groupimport-easystud__panel-badge--accent');
-    if (!badge) {
+    const model = getOnDemandModel(root);
+    if (!model || !model.raw) {
         return;
     }
-
-    const groupings = root.querySelectorAll('[data-easystud-grouping-id]').length;
-    const groups = root.querySelectorAll('[data-easystud-group-id]').length;
-    const template = labels.groupstructuresummarytemplate || '';
-    badge.textContent = template
-        .replace('__groupings__', groupings)
-        .replace('__groups__', groups);
+    const counts = {
+        groupings: model.raw.groupings.length,
+        groups: model.raw.groups.length,
+    };
+    root.querySelectorAll('[data-easystud-structure-count]').forEach(counter => {
+        const kind = counter.getAttribute('data-easystud-structure-count');
+        counter.textContent = countLabel(counter.getAttribute('data-count-template'), counts[kind]);
+    });
 };
 
 const updateStructureEmptyState = root => {
