@@ -346,6 +346,53 @@ const clearFoldedGroupMemberSelection = (root, group) => {
     }
 };
 
+/**
+ * Fold or unfold the members of a group card, as its members toggle does (with its motion).
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {HTMLElement} group Group card.
+ * @param {Boolean} expand True to unfold, false to fold.
+ * @returns {Boolean} Whether the card changed.
+ */
+export const setGroupMembersExpanded = (root, group, expand) => {
+    const toggle = group ? group.querySelector('[data-easystud-group-members-toggle]') : null;
+    const list = group ? group.querySelector('[data-easystud-group-members]') : null;
+    if (!toggle || !list || (toggle.getAttribute('aria-expanded') === 'true') === expand) {
+        return false;
+    }
+    const grouping = group.closest('[data-easystud-grouping-id]');
+    if (grouping) {
+        expandGroupingSection(grouping);
+        const groupingGroupsToggle = grouping.querySelector('[data-easystud-grouping-groups-toggle]');
+        if (groupingGroupsToggle) {
+            groupingGroupsToggle.setAttribute('aria-expanded', 'true');
+            syncGroupingGroupsCollapsible(grouping);
+        }
+    }
+    const motionToken = String(++groupMemberMotionToken);
+    list.setAttribute('data-easystud-members-motion-token', motionToken);
+    list.classList.add('is-easyedu-disclosing');
+    void Motion.resize(list, () => {
+        toggle.setAttribute('aria-expanded', expand ? 'true' : 'false');
+        if (!expand) {
+            clearFoldedGroupMemberSelection(root, group);
+        }
+        syncGroupMembersCollapsible(group);
+    }, {
+        duration: Motion.timing.normal,
+        onComplete: () => {
+            scheduleGroupingResizeForGroup(group);
+            requestGuideHighlightRefresh(root);
+        },
+    }).then(() => {
+        if (list.getAttribute('data-easystud-members-motion-token') === motionToken) {
+            list.classList.remove('is-easyedu-disclosing');
+            list.removeAttribute('data-easystud-members-motion-token');
+        }
+    });
+    return true;
+};
+
 export const bindGroupMemberToggles = root => {
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-group-members-toggle]');
@@ -356,38 +403,7 @@ export const bindGroupMemberToggles = root => {
         if (!group) {
             return;
         }
-        const grouping = group.closest('[data-easystud-grouping-id]');
-        if (grouping) {
-            expandGroupingSection(grouping);
-            const groupingGroupsToggle = grouping.querySelector('[data-easystud-grouping-groups-toggle]');
-            if (groupingGroupsToggle) {
-                groupingGroupsToggle.setAttribute('aria-expanded', 'true');
-                syncGroupingGroupsCollapsible(grouping);
-            }
-        }
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        const list = group.querySelector('[data-easystud-group-members]');
-        const motionToken = String(++groupMemberMotionToken);
-        list.setAttribute('data-easystud-members-motion-token', motionToken);
-        list.classList.add('is-easyedu-disclosing');
-        void Motion.resize(list, () => {
-            toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-            if (expanded) {
-                clearFoldedGroupMemberSelection(root, group);
-            }
-            syncGroupMembersCollapsible(group);
-        }, {
-            duration: Motion.timing.normal,
-            onComplete: () => {
-                scheduleGroupingResizeForGroup(group);
-                requestGuideHighlightRefresh(root);
-            },
-        }).then(() => {
-            if (list.getAttribute('data-easystud-members-motion-token') === motionToken) {
-                list.classList.remove('is-easyedu-disclosing');
-                list.removeAttribute('data-easystud-members-motion-token');
-            }
-        });
+        setGroupMembersExpanded(root, group, toggle.getAttribute('aria-expanded') !== 'true');
     });
     root.addEventListener('click', event => {
         const groupingHeader = event.target.closest('.local-groupimport-easystud-grouping__header');
