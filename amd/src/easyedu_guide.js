@@ -895,13 +895,26 @@ const dockChecklistAwayFromTarget = (root, target) => {
 
   const rect = target.getBoundingClientRect();
   const viewportMiddle = window.innerWidth / 2;
+  const panel = checklist.getBoundingClientRect();
+  const overlaps = rect.left < panel.right && rect.right > panel.left &&
+    rect.top < panel.bottom && rect.bottom > panel.top;
+  if (window.matchMedia && window.matchMedia('(max-width: 40rem)').matches &&
+      overlaps && !checklist.classList.contains('is-minimized')) {
+    const focused = document.activeElement;
+    checklist.classList.add('is-minimized');
+    checklist.removeAttribute('data-easyedu-guide-checklist-expanded');
+    syncChecklistMinimizeControl(root);
+    if (focused && checklist.contains(focused) && !isVisibleElement(focused)) {
+      const restore = checklist.querySelector('[data-easyedu-guide-checklist-restore]') ||
+        checklist.querySelector(SELECTORS.checklistMinimize);
+      if (isVisibleElement(restore)) { restore.focus({preventScroll: true}); }
+    }
+    return;
+  }
   // A progress re-render must not reset docking. Move only when the settled
   // target actually overlaps the panel and another horizontal lane can fit.
   const hasDock = checklist.classList.contains('is-docked-right') || checklist.classList.contains('is-docked-left');
   if (hasDock) {
-    const panel = checklist.getBoundingClientRect();
-    const overlaps = rect.left < panel.right && rect.right > panel.left &&
-      rect.top < panel.bottom && rect.bottom > panel.top;
     if (!overlaps || rect.width + panel.width + 32 > window.innerWidth) { return; }
   }
   const dockRight = rect.left < viewportMiddle;
@@ -2479,6 +2492,26 @@ const getPathLabel = (pathName, config) => {
     .join(' ');
 };
 
+// Scroll only this list; the interface target keeps its independent position.
+const scrollActiveChecklistItemIntoView = root => {
+  const checklist = root.querySelector(SELECTORS.checklist);
+  const list = root.querySelector(SELECTORS.checklistItems);
+  const active = list && list.querySelector('[data-easyedu-guide-step-index].is-active');
+  if (!checklist || checklist.hidden || !active || checklist.classList.contains('is-minimized')) { return; }
+  window.requestAnimationFrame(() => {
+    if (checklist.hidden || checklist.classList.contains('is-minimized') ||
+        !list.contains(active) || !active.classList.contains('is-active') || !list.clientHeight) { return; }
+    const bounds = list.getBoundingClientRect();
+    const item = active.getBoundingClientRect();
+    const top = bounds.top + list.clientTop;
+    const bottom = top + list.clientHeight;
+    const delta = item.top < top ? item.top - top : item.bottom > bottom ? item.bottom - bottom : 0;
+    if (delta) {
+      list.scrollTo({top: Math.max(0, list.scrollTop + delta), behavior: getScrollBehavior(root)});
+    }
+  });
+};
+
 const updateChecklistHeader = (root, config, activeStep = null) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   if (!checklist) {
@@ -2490,7 +2523,7 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   const items = Array.from(checklist.querySelectorAll('[data-easyedu-guide-step-id]'));
   const activeItem = checklist.querySelector('[data-easyedu-guide-step-index].is-active');
   const activeIndex = activeItem ? Number(activeItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0;
-  const step = activeStep || steps[activeIndex] || steps[0] || {};
+  const step = steps[activeIndex] || activeStep || steps[0] || {};
   const completeCount = items.filter(item => item.classList.contains('is-complete')).length;
   const complete = items.length > 0 && completeCount === items.length;
   const title = root.querySelector(SELECTORS.checklistTitle);
@@ -2504,6 +2537,7 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   if (subtitle) {
     subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.completedSteps || ''}`;
   }
+  scrollActiveChecklistItemIntoView(root);
 };
 
 const isCompactChecklistViewport = () => window.matchMedia &&
@@ -2523,6 +2557,7 @@ const syncChecklistMinimizeControl = root => {
     restore.setAttribute('aria-expanded', minimized ? 'false' : 'true');
   }
   minimize.setAttribute('aria-expanded', minimized ? 'false' : 'true');
+  scrollActiveChecklistItemIntoView(root);
   const icon = minimize.querySelector('.fa');
   if (icon) {
     icon.classList.toggle('fa-minus', !minimized);

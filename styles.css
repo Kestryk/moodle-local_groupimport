@@ -6706,21 +6706,33 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__close,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__close {display: inline-flex;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__steps,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__message,
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__footer, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__steps,
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__message,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__footer, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__message,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__footer,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__steps,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__message,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__footer,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__steps,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__message,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__footer {display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__steps, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__steps,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__steps,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__steps {display: block;margin: 0.5rem 0 0;padding: 0;max-height: none;overflow: visible;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__step, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__step,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__step,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__step {display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__step.is-active, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__step.is-active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized .easyedu-guided-panel__step.is-active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__step.is-active {display: grid;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete.is-complete,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete.is-complete {gap: 0.625rem;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__steps, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete.is-complete .easyedu-guided-panel__steps,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__steps,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete.is-complete .easyedu-guided-panel__steps {display: none;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__message.is-complete, .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete.is-complete .easyedu-guided-panel__message.is-complete,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guided-panel.is-minimized.is-complete .easyedu-guided-panel__message.is-complete,

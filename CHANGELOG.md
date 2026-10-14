@@ -1,5 +1,11 @@
 # Changelog
 
+- 2026-10-14 [N2] A-CHECKLIST adopts Kit0.4.209: scroll the active step inside
+  the checklist list, retain its numbered instruction in reduced Discovery,
+  fold the compact panel when its target overlaps and recover hidden focus.
+  Reuse the existing row and controls; no completion predicate, storage,
+  Course Manager/local-sm, template or scene Motion change.
+
 - 2026-10-14 [N1] Integrate Claude b5f44a7a: completed scripts/requests extend
   the loading deadline by8s, capped at30s from startup or the visible frame;
   stalled AMD keeps amd-timeout at8s. Execute the real bootstrap under virtual
