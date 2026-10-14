@@ -178,7 +178,9 @@ function local_groupimport_count_template(string $identifier): string {
  * @return bool
  */
 function local_groupimport_is_on_demand_rendering(): bool {
-    return get_config('local_groupimport', 'renderingmode') === 'reactive';
+    // Kevin validated the parity on 14/10/2026: On demand is the only mode. The server-rendered
+    // (legacy) branches that still test this function are removed step by step (T055).
+    return true;
 }
 
 /**
