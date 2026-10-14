@@ -29,7 +29,7 @@ test('Lift SM lanes FR three views and widths',async({page},info)=>{
  for(const width of [1600,1280,390]){
   await page.setViewportSize({width,height:1000});await page.goto(url.href,{waitUntil:'domcontentloaded'});
   await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});await settle();
-  for(const view of width===390?['participants','groups','groupings']:['participants','structure','complete']){
+  for(const view of width===390?['participants','groups','groupings']:['participants','structure','both']){
    const key=width===390?'mobile-view':'layout-mode';
    const control=root.locator('[data-easystud-'+key+'="'+view+'"]:visible').first();
    await control.click();await expect(control).toHaveAttribute('aria-pressed','true');await settle();
