@@ -876,7 +876,7 @@ export const scheduleOnDemandStateRefresh = root => {
                 }
             });
             model.raw = raw;
-            if (root.easystudSm) {
+            if (root.easystudSm && root.easystudSm.raw) {
                 root.easystudSm.raw = raw;
             }
             refreshModel(model);

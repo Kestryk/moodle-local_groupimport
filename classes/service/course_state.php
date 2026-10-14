@@ -20,6 +20,8 @@ defined('MOODLE_INTERNAL') || die();
 
 global $CFG;
 require_once($CFG->dirroot . '/group/lib.php');
+require_once($CFG->libdir . '/filelib.php');
+require_once($CFG->dirroot . '/user/profile/lib.php');
 require_once($CFG->dirroot . '/local/groupimport/lib.php');
 
 use local_groupimport\local\state_version;
@@ -86,8 +88,9 @@ class course_state {
         $groupingmemberships = self::get_grouping_memberships(array_map('intval', array_keys($groupings)));
         [$roles, $userroles] = self::get_roles($context);
 
-        $identifierfields = self::get_identifier_field_definitions();
-        $display = self::get_display_settings();
+        $access = self::get_field_access($context);
+        $identifierfields = self::get_visible_identifier_fields($access);
+        $display = self::get_display_settings($context);
         $customkeys = array_values(array_unique(array_filter(array_merge(
             array_keys($identifierfields),
             [$display['primary']['key'] ?? ''],
@@ -115,7 +118,8 @@ class course_state {
             $item = [
                 'id' => $userid,
                 'fullname' => fullname($user),
-                'email' => (string)$user->email,
+                // Empty unless Moodle lets this viewer see e-mails (showuseridentity + viewuseridentity).
+                'email' => isset($access['identity']['email']) ? (string)$user->email : '',
                 'roleids' => array_values($userroles[$userid] ?? []),
                 'groupids' => array_values($memberships['byuser'][$userid] ?? []),
             ];
@@ -273,9 +277,7 @@ class course_state {
                 'name' => format_string($grouping->name),
                 'rawname' => (string)$grouping->name,
                 'idnumber' => (string)($grouping->idnumber ?? ''),
-                'description' => format_text((string)($grouping->description ?? ''), $grouping->descriptionformat ?? FORMAT_HTML, [
-                    'context' => $context,
-                ]),
+                'description' => self::format_description($grouping, $context, 'grouping', 'description'),
                 'rawdescription' => (string)($grouping->description ?? ''),
                 'configdata' => (string)($grouping->configdata ?? ''),
                 'groupids' => array_values(array_map('intval', $groupids)),
@@ -352,7 +354,8 @@ class course_state {
         }
 
         self::preload_user_contexts($ids);
-        $identifierfields = self::get_identifier_field_definitions();
+        $access = self::get_field_access($context);
+        $identifierfields = self::get_visible_identifier_fields($access);
         $customvalues = self::get_custom_field_values($ids, array_values(array_filter(
             array_keys($identifierfields),
             static function(string $key): bool {
@@ -373,26 +376,27 @@ class course_state {
                         : (string)($user->{$fieldkey} ?? ''),
                 ];
             }
+            // Same rules as user_get_user_details(): identity fields per showuseridentity and
+            // viewuseridentity (or viewalldetails), profile fields per hiddenuserfields unless the
+            // viewer has course:viewhiddenuserfields. A field the viewer may not see is sent empty.
             $items[] = [
                 'id' => (int)$userid,
                 'fullname' => fullname($user),
-                'email' => (string)$user->email,
+                'email' => isset($access['identity']['email']) ? (string)$user->email : '',
                 'profileimage' => $OUTPUT->user_picture($user, [
                     'courseid' => $course->id,
                     'size' => self::PICTURE_SIZE,
                     'link' => false,
                 ]),
                 'profileurl' => (new \moodle_url('/user/profile.php', ['id' => $userid, 'course' => $course->id]))->out(false),
-                'username' => (string)$user->username,
-                'idnumber' => (string)$user->idnumber,
-                'institution' => (string)$user->institution,
-                'department' => (string)$user->department,
-                'city' => (string)$user->city,
-                'country' => (string)$user->country,
-                'lang' => (string)$user->lang,
-                'description' => format_text((string)$user->description, FORMAT_HTML, [
-                    'context' => $context,
-                ]),
+                'username' => self::identity_value($access, 'username', $user),
+                'idnumber' => self::identity_value($access, 'idnumber', $user),
+                'institution' => self::identity_value($access, 'institution', $user),
+                'department' => self::identity_value($access, 'department', $user),
+                'city' => isset($access['hidden']['city']) ? '' : (string)$user->city,
+                'country' => isset($access['hidden']['country']) ? '' : (string)$user->country,
+                'lang' => $access['viewalldetails'] ? clean_param((string)$user->lang, PARAM_LANG) : '',
+                'description' => self::format_user_description($user, $access),
                 'copyfields' => $copyfields,
             ];
         }
@@ -424,9 +428,7 @@ class course_state {
             $pictureurl = get_group_picture_url($group, $course->id, true);
             $items[] = [
                 'id' => (int)$groupid,
-                'description' => format_text((string)($group->description ?? ''), $group->descriptionformat ?? FORMAT_HTML, [
-                    'context' => $context,
-                ]),
+                'description' => self::format_description($group, $context, 'group', 'description'),
                 'rawdescription' => (string)($group->description ?? ''),
                 'idnumber' => (string)($group->idnumber ?? ''),
                 'enrolmentkey' => !empty($group->enrolmentkey),
@@ -461,9 +463,7 @@ class course_state {
             $grouping = $groupings[$groupingid];
             $items[] = [
                 'id' => (int)$groupingid,
-                'description' => format_text((string)($grouping->description ?? ''), $grouping->descriptionformat ?? FORMAT_HTML, [
-                    'context' => $context,
-                ]),
+                'description' => self::format_description($grouping, $context, 'grouping', 'description'),
                 'rawdescription' => (string)($grouping->description ?? ''),
                 'idnumber' => (string)($grouping->idnumber ?? ''),
                 'configdata' => (string)($grouping->configdata ?? ''),
@@ -509,18 +509,121 @@ class course_state {
     }
 
     /**
+     * What the current user may see of other participants in this course, under Moodle's rules.
+     *
+     * - identity: the fields of \core_user\fields::get_identity_fields() (showuseridentity, with
+     *   moodle/site:viewuseridentity, hiddenuserfields and the custom profile field visibility),
+     *   lowercased as Moodle returns them;
+     * - hidden: $CFG->hiddenuserfields, empty when the user has moodle/course:viewhiddenuserfields;
+     * - viewalldetails: moodle/user:viewalldetails, which core also requires for the username,
+     *   the language and the identity fields outside showuseridentity.
+     *
+     * @param \context_course $context Course context.
+     * @return array {identity: array, hidden: array, viewalldetails: bool}
+     */
+    public static function get_field_access(\context_course $context): array {
+        global $CFG;
+
+        $hidden = [];
+        if (!has_capability('moodle/course:viewhiddenuserfields', $context)) {
+            $hidden = array_filter(array_map('trim', explode(',', (string)($CFG->hiddenuserfields ?? ''))));
+        }
+
+        return [
+            'identity' => array_flip(\core_user\fields::get_identity_fields($context, true)),
+            'hidden' => array_flip($hidden),
+            'viewalldetails' => has_capability('moodle/user:viewalldetails', $context),
+        ];
+    }
+
+    /**
+     * The plugin identification fields that Moodle also lets the current user see.
+     *
+     * @param array $access Result of {@see self::get_field_access()}.
+     * @return array Field key => label, in settings order.
+     */
+    public static function get_visible_identifier_fields(array $access): array {
+        return array_filter(self::get_identifier_field_definitions(), static function(string $fieldkey) use ($access): bool {
+            return isset($access['identity'][\core_text::strtolower($fieldkey)]);
+        }, ARRAY_FILTER_USE_KEY);
+    }
+
+    /**
+     * A standard identity field, as user_get_user_details() returns it.
+     *
+     * @param array $access Result of {@see self::get_field_access()}.
+     * @param string $field username, idnumber, institution or department.
+     * @param \stdClass $user User record.
+     * @return string The value, or '' when the current user may not see it.
+     */
+    protected static function identity_value(array $access, string $field, \stdClass $user): string {
+        if (!isset($access['identity'][$field]) && !$access['viewalldetails']) {
+            return '';
+        }
+        return (string)($user->{$field} ?? '');
+    }
+
+    /**
+     * Participant description in its own format, with its files served from the user context.
+     *
+     * @param \stdClass $user User record with description and descriptionformat.
+     * @param array $access Result of {@see self::get_field_access()}.
+     * @return string Formatted HTML, or '' when hiddenuserfields hides it from the current user.
+     */
+    public static function format_user_description(\stdClass $user, array $access): string {
+        $description = (string)($user->description ?? '');
+        if ($description === '' || isset($access['hidden']['description'])) {
+            return '';
+        }
+        $usercontext = \context_user::instance((int)$user->id, IGNORE_MISSING);
+        if (!$usercontext) {
+            return '';
+        }
+        $description = file_rewrite_pluginfile_urls($description, 'pluginfile.php', $usercontext->id, 'user', 'profile', null);
+        return format_text($description, $user->descriptionformat ?? FORMAT_HTML, ['context' => $usercontext]);
+    }
+
+    /**
+     * Group or grouping description in its own format, with its files served from the course context.
+     *
+     * @param \stdClass $record Group or grouping record.
+     * @param \context_course $context Course context.
+     * @param string $component group or grouping.
+     * @param string $filearea File area.
+     * @return string Formatted HTML.
+     */
+    protected static function format_description(\stdClass $record, \context_course $context, string $component,
+            string $filearea): string {
+        $description = (string)($record->description ?? '');
+        if ($description === '') {
+            return '';
+        }
+        $description = file_rewrite_pluginfile_urls($description, 'pluginfile.php', $context->id, $component, $filearea,
+            (int)$record->id);
+        return format_text($description, $record->descriptionformat ?? FORMAT_HTML, ['context' => $context]);
+    }
+
+    /**
      * Participant card badge and detail fields configured in the plugin settings.
      *
-     * Mirrors local_groupimport_get_participant_display_settings() in manage.php.
+     * Mirrors local_groupimport_get_participant_display_settings() in manage.php, minus the
+     * profile fields whose visibility setting hides them from the current user in this course.
      *
+     * @param \context_course $context Course context.
      * @return array {primary: ?array, details: array}
      */
-    protected static function get_display_settings(): array {
+    protected static function get_display_settings(\context_course $context): array {
         global $DB;
 
         $customfields = [];
-        foreach ($DB->get_records('user_info_field', null, 'name ASC', 'id, shortname, name') as $field) {
-            $customfields['profile_field_' . $field->shortname] = format_string($field->name);
+        foreach ($DB->get_records('user_info_field', null, 'name ASC') as $field) {
+            // Field-level check, as core_userields::get_identity_fields() does. The signup flag is
+            // cleared: with no user id, is_visible() would otherwise treat it as a signup form.
+            $fielddata = clone $field;
+            $fielddata->signup = 0;
+            if (profile_get_user_field($field->datatype, (int)$field->id, 0, $fielddata)->is_visible($context)) {
+                $customfields['profile_field_' . $field->shortname] = format_string($field->name);
+            }
         }
 
         $config = get_config('local_groupimport');
