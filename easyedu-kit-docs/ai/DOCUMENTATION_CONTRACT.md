@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+K16 Reset parity follows the effective native Grouping-search Cancel cascade,
+not an earlier compact adapter overridden by public secondary classes. Preserve
+regular secondary padding/radius/type and the38px field-row height when mobile
+stacks Reset. Confirm real menu access and exact native geometry in both modes.
+
 Rollback owns modal-local keyboard handling, safe initial Cancel focus and return
 to its surviving History trigger after native Motion. Keep import/restore commands
 untouched. Native readiness must precede choosing desktop or compact History access;
