@@ -227,7 +227,21 @@ const downloadTextFile = (filename, content, mimetype = 'text/csv;charset=utf-8'
     window.setTimeout(() => URL.revokeObjectURL(url), 250);
 };
 
-const getCsvValue = value => '"' + (value || '').toString().replace(/"/g, '""') + '"';
+/**
+ * One CSV cell: RFC 4180 quoting, neutralised against spreadsheet formula injection.
+ *
+ * Member and group names are user input. A cell starting with = + - @, a tab or a carriage
+ * return (or the full-width = + - @) would run as a formula in a spreadsheet: a leading
+ * single quote keeps it as text (OWASP CSV injection).
+ *
+ * @param {*} value Cell value.
+ * @returns {String}
+ */
+const getCsvValue = value => {
+    const text = (value === undefined || value === null ? '' : value).toString();
+    const safe = /^[=+\-@\t\r\uff1d\uff0b\uff0d\uff20]/.test(text) ? "'" + text : text;
+    return '"' + safe.replace(/"/g, '""') + '"';
+};
 
 const exportAdvancedListSection = section => {
     const filename = section.getAttribute('data-easystud-settings-export-name') || 'easystud-export.csv';
