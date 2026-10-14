@@ -36,6 +36,7 @@
         "searchtext": "group a",
         "members": [{"groupid": 7, "userid": 3, "fullname": "Ada Lovelace", "selectableid": "7:3", "removeuserlabel": "Remove"}],
         "hasmembers": true,
+        "canselectallmembers": false,
         "structureemail": false
     }
 }}
@@ -119,6 +120,19 @@
                 <span class="fa fa-unlink" aria-hidden="true"></span>
             </button>
         {{/withingrouping}}
+    </div>
+    {{! R10-05: shown from three members; the button keeps both labels and aria templates for its toggle. }}
+    <div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="{{id}}"{{^canselectallmembers}} hidden{{/canselectallmembers}}>
+        <button
+            type="button"
+            class="btn btn-link p-0 local-groupimport-easystud-group__select-all"
+            data-easystud-group-select-all="{{id}}"
+            data-easystud-select-label="{{selectallmemberslabel}}"
+            data-easystud-deselect-label="{{deselectallmemberslabel}}"
+            data-easystud-select-aria="{{selectallmembersoftemplate}}"
+            data-easystud-deselect-aria="{{deselectallmembersoftemplate}}"
+            aria-label="{{selectallmembersoflabel}}"
+        >{{selectallmemberslabel}}</button>
     </div>
     <ul class="local-groupimport-easystud-group__members" data-easystud-group-members="{{id}}">
         {{#members}}

@@ -101,6 +101,11 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
             'addemailstolabel' => get_string('addemailstogroup', 'local_groupimport'),
             'pasteemailsplaceholder' => get_string('pasteemailsplaceholder', 'local_groupimport'),
             'addemailsbutton' => get_string('addemails', 'local_groupimport'),
+            // R10-05: member "Select all" of a card; __name__ is the group name.
+            'selectallmembers' => get_string('selectall', 'local_groupimport'),
+            'deselectallmembers' => get_string('deselectall', 'local_groupimport'),
+            'selectallmembersof' => get_string('selectallmembersof', 'local_groupimport', '__name__'),
+            'deselectallmembersof' => get_string('deselectallmembersof', 'local_groupimport', '__name__'),
             'renamelabel' => get_string('rename', 'local_groupimport'),
             'savelabel' => get_string('save'),
             'cancellabel' => get_string('cancel'),
@@ -404,6 +409,8 @@ function local_groupimport_build_manage_template_data(
         'confirmdeletegroupings' => get_string('confirmdeletegroupings', 'local_groupimport'),
         'selectall' => get_string('selectall', 'local_groupimport'),
         'deselectall' => get_string('deselectall', 'local_groupimport'),
+        'selectallmembersof' => get_string('selectallmembersof', 'local_groupimport', '__name__'),
+        'deselectallmembersof' => get_string('deselectallmembersof', 'local_groupimport', '__name__'),
         'selectresults' => get_string('selectresults', 'local_groupimport'),
         'deselectresults' => get_string('deselectresults', 'local_groupimport'),
         'selectioncounttemplate' => get_string('selectioncount', 'local_groupimport', '__count__'),
@@ -2375,6 +2382,12 @@ function local_groupimport_build_group_template_data(
         'members' => [],
         'hasmembers' => !empty($group['memberids']),
         'nomemberslabel' => get_string('nogroupmembers', 'local_groupimport'),
+        // R10-05: member "Select all"; the browser swaps the labels and fills __name__.
+        'selectallmemberslabel' => get_string('selectall', 'local_groupimport'),
+        'deselectallmemberslabel' => get_string('deselectall', 'local_groupimport'),
+        'selectallmembersoflabel' => get_string('selectallmembersof', 'local_groupimport', $group['name']),
+        'selectallmembersoftemplate' => get_string('selectallmembersof', 'local_groupimport', '__name__'),
+        'deselectallmembersoftemplate' => get_string('deselectallmembersof', 'local_groupimport', '__name__'),
     ];
 
     foreach ($group['memberids'] as $userid) {
@@ -2393,6 +2406,7 @@ function local_groupimport_build_group_template_data(
     }
 
     $result['searchtext'] = core_text::strtolower(trim(implode(' ', $searchparts)));
+    $result['canselectallmembers'] = count($result['members']) > 2;
 
     return $result;
 }
