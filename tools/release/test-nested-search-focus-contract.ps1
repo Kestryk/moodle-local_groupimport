@@ -14,6 +14,9 @@ foreach ($path in @($sourcePath, $buildPath)) {
 
 $source = Get-Content -Raw -LiteralPath $sourcePath
 $build = Get-Content -Raw -LiteralPath $buildPath
+# T055: the course manager code lives in amd/src/local/cm (and amd/build/local/cm); read it with course_manager.js.
+$source = $source + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $pluginRoot 'amd/src/local/cm') -Filter '*.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
+$build = $build + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $pluginRoot 'amd/build/local/cm') -Filter '*.min.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
 
 $requiredSource = @(
     'const applyContainerGroupSearch = (root, options = {}) => {',
