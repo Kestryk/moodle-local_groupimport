@@ -1,4 +1,15 @@
 {
+  "n2FourIntegration20261014": {
+    "originalCommits": ["80d2ea08", "64993872", "78263ef7", "00957c2f"],
+    "integrationCommits": ["934cf886", "d76bbcb6", "3c6c0bd6", "2326167a"],
+    "status": "integrated-built-native-preview-pending",
+    "documentation": "docs/testing/n2-four-integration-2026-10-14.md",
+    "nativeSpec": "tools/playwright/n2-four-f7-integration-native.spec.js",
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "r10DocumentResolution": "Kevin explicitly approved incoming diagnostic restoration and only R10-18 status/confirmation added to preserved Source intake",
+    "k16Mobile": "Internal Search groups in Grouping missing from mobile actions; participant general search present. Reserved Course Manager correction described for Claude; mobile parity open."
+  },
   "f7R10Integration20261014": {
     "originalCommits": ["1777dddc", "744e0f07", "5ec681c3", "f347269e", "9b017481"],
     "integrationCommits": ["0ff1e05c", "f2ea4776", "cbce74e9", "616a3c87", "d526ed7a"],

@@ -1,5 +1,11 @@
 # Changelog
 
+- 2026-10-14 [N1/N2] Group four Codex2 integrations with the approved R10-18
+  document conflict resolution, rebuild CSV Import/styles and prepare one
+  principal FR pass with the three remaining F7 cells. K16 mobile internal
+  Grouping search is a reserved Course Manager follow-up for Claude; no forced
+  hidden-control proof or dialog-family redesign is included.
+
 - 2026-10-14 [N1] Record F7/R10 grouped preview4a32ae5f and partial native
   evidence: FR1280 Current complete, FR390 Current menus/pagination pass.
   Retain both failed responsive harness runs, prepare the correct mobile
