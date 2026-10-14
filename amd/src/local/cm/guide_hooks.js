@@ -77,8 +77,7 @@ export const emitTryActionsCompletion = (root, step, token = null) => {
 // Guided path n°10: the drag start completes "try-drag" while the dragged card is masked
 // (visibility: hidden), so the Guide drops its highlight and, without autoHighlightNext,
 // never targets the next step. Once the cards are visible again, target the active
-// step explicitly. The refresh must name the Guide root itself: the Guide ignores
-// refresh requests addressed to any other root, including the EasyStud workspace.
+// step explicitly.
 export const highlightActiveTryActionsStep = root => {
     const guideRoot = getActivityGuideRoot(root);
     const config = guideRoot && guideRoot.easyeduGuideConfig;

@@ -41,6 +41,8 @@ export const isResponsiveWorkspace = () => {
     return !!(window.matchMedia && window.matchMedia(responsiveWorkspaceQuery).matches);
 };
 
+// The Guide only accepts a refresh addressed to its own root, never to the EasyStud
+// workspace that contains it (or that it was portalled out of on compact screens).
 export const requestGuideHighlightRefresh = (root, options = {}) => {
     if (!root) {
         return;
@@ -50,8 +52,19 @@ export const requestGuideHighlightRefresh = (root, options = {}) => {
         root.easystudGuideRefreshTimers.forEach(timer => window.clearTimeout(timer));
     }
 
-    const detail = Object.assign({root, dock: true}, options);
+    const guideRoot = options.root || root.easystudGuideOwner || root.querySelector('[data-easyedu-guide-root]');
+    if (!guideRoot) {
+        root.easystudGuideRefreshTimers = [];
+        return;
+    }
+    const detail = Object.assign({dock: true}, options, {root: guideRoot});
     root.easystudGuideRefreshTimers = [0, Motion.timing.slow + 20].map(delay => window.setTimeout(() => {
+        // Without a target, a refresh only repositions the cue already painted. With no
+        // current target the Guide could only clear, which would also cancel a step
+        // highlight it has just queued.
+        if (!detail.target && !guideRoot.easyeduGuideCurrentTarget) {
+            return;
+        }
         document.dispatchEvent(new CustomEvent(guideRefreshEvent, {detail}));
     }, delay));
 };
