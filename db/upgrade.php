@@ -191,5 +191,11 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026101200, 'local', 'groupimport');
     }
 
+    if ($oldversion < 2026101400) {
+        // SM-RENDU: On demand rendering is the only Student Management mode; its preview setting goes.
+        unset_config('renderingmode', 'local_groupimport');
+        upgrade_plugin_savepoint(true, 2026101400, 'local', 'groupimport');
+    }
+
     return true;
 }
