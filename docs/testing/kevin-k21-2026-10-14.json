@@ -1,0 +1,39 @@
+{
+  "id": "K21",
+  "receivedScope": "Deux ?tiquettes s?par?es groupements/groupes avec les helpers count_string/count_template, FR/EN1280/390. Fonction updateStructureSummary autoris?e par Kevin/Claude le14 octobre apr?s-midi, mod?le ? la demande seul, null conserve le serveur et aucun repli DOM.",
+  "status": "source-native-targeted-pass",
+  "sourceChanged": true,
+  "nativeVerified": true,
+  "nativeScope": "Deux compteurs, ?tat charg? ? la demande, FR/EN1280/390 sur :8051 avec CSS candidat; chargement/singuliers couverts isol?ment par PHP r?el et Intl r?el.",
+  "humanAccepted": false,
+  "designPublished": false,
+  "previewServed": false,
+  "evidence": {
+    "nativeRun": "C:\\dev\\artifacts\\es-k21-native\\easystud\\authenticated\\easystud-authenticated-20261014T135812080Z-40736",
+    "isolated": "C:/dev/artifacts/es-k21-ondemand-isolated.json",
+    "nativeCases": 4,
+    "isolatedCases": 30,
+    "copyDeployment": "C:/dev/artifacts/es-k21-deploy/manifest.json"
+  },
+  "penpot": {
+    "operator": "Claude",
+    "components": [
+      "Structure header count badge pair"
+    ],
+    "recipe": "Existing accent badge paint and density; inline-flex wrap with0.5rem gap",
+    "screen": "Groups & groupings",
+    "states": [
+      "loaded",
+      "server values during loading"
+    ],
+    "widths": [
+      1280,
+      390
+    ],
+    "locales": [
+      "fr",
+      "en"
+    ],
+    "propagation": "Library, standards and all affected EasyEdu Foundations/EasyStud boards pending"
+  }
+}
