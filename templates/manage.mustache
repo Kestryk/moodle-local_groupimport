@@ -1,10 +1,14 @@
 <div
-    class="easyedu-ui local-groupimport-easystud local-groupimport-easystud--booting{{#compactparticipantsdefault}} local-groupimport-easystud--compact-users{{/compactparticipantsdefault}}{{^animationsenabled}} is-easyedu-motion-off{{/animationsenabled}}"
+    class="easyedu-ui local-groupimport-easystud local-groupimport-easystud--booting{{#defaultfocusclass}} {{defaultfocusclass}}{{/defaultfocusclass}}{{#compactparticipantsdefault}} local-groupimport-easystud--compact-users{{/compactparticipantsdefault}}{{^animationsenabled}} is-easyedu-motion-off{{/animationsenabled}}"
     id="local-groupimport-easystud"
     style="{{themestyle}}"
     data-easyedu-custom-rails="{{themerailroles}}"
     data-easyedu-dialog-palette="{{themerailroles}}"
     data-easystud-loading-state="loading"
+    data-easyedu-loading-frame="1"
+    data-easyedu-loading-responsive-query="(max-width: 1024px)"
+    data-easyedu-loading-responsive-class="local-groupimport-easystud--responsive-workspace"
+    data-easystud-mobile-view-active="{{defaultmobileview}}"
     data-easyedu-loading-recover-late-ready="1"
     data-easystud-course-id="{{courseid}}"
     data-easystud-action-busy-label="{{actioninprogress}}"
@@ -16,99 +20,9 @@
     data-easyedu-motion-policy="{{motionpolicy}}"
     data-easystud-loading-reveal-duration="320"
 >
-    <div class="local-groupimport-easystud__loading-skeleton" data-easystud-loading-skeleton="1" data-easyedu-navigation-skeleton="1" aria-hidden="true">
-        <div class="local-groupimport-easystud__loading-header">
-            <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-header-eyebrow"></span>
-            <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-header-title"></span>
-            <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-header-intro"></span>
-        </div>
-
-        <div class="local-groupimport-easystud__loading-navigation" aria-hidden="true">
-            <div class="local-groupimport-easystud__loading-navigation-frame">
-                <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-navigation-guide"></span>
-                <div class="local-groupimport-easystud__loading-navigation-cues">
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-navigation-cue"></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="local-groupimport-easystud__loading-view-toggle{{^showcompleteview}} local-groupimport-easystud__loading-view-toggle--two{{/showcompleteview}}">
-            <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-view-toggle-item"></span>
-            {{#showcompleteview}}
-            <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-view-toggle-item"></span>
-            {{/showcompleteview}}
-            <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-view-toggle-item"></span>
-        </div>
-
-        <div class="local-groupimport-easystud__loading-layout">
-            <div class="local-groupimport-easystud__loading-panel local-groupimport-easystud__loading-panel--participants">
-                <div class="local-groupimport-easystud__loading-panel-header">
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-panel-title"></span>
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-panel-secondary"></span>
-                </div>
-
-                <div class="local-groupimport-easystud__loading-search-filter-region">
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-search"></span>
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-filter-cluster"></span>
-                </div>
-
-                <div class="local-groupimport-easystud__loading-pagination">
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-pagination-summary"></span>
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-pagination-rail"></span>
-                </div>
-
-                <div class="local-groupimport-easystud__loading-participant-list">
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                </div>
-            </div>
-
-            <div class="local-groupimport-easystud__loading-panel local-groupimport-easystud__loading-panel--structure">
-                <div class="local-groupimport-easystud__loading-panel-header">
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-panel-title"></span>
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-panel-secondary"></span>
-                </div>
-                <div class="local-groupimport-easystud__loading-search-filter-region">
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-search"></span>
-                    <span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-filter-cluster"></span>
-                </div>
-                <div class="local-groupimport-easystud__loading-structure-list">
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                    <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <noscript>
         <style>
-            #local-groupimport-easystud [data-easystud-loading-skeleton] { display: none !important; }
-            #local-groupimport-easystud [data-easystud-real-content] { display: block !important; }
+            #local-groupimport-easystud [data-easystud-real-content] { position: relative !important; visibility: visible !important; }
         </style>
     </noscript>
     <div class="local-groupimport-easystud__content" data-easystud-real-content="1">
@@ -359,9 +273,14 @@
                             {{/participants}}
                             {{#smondemand}}
                                 <div class="local-groupimport-easystud__loading-participant-list" data-easystud-sm-loading="participants" aria-hidden="true">
-                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                    <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-avatar"></span><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
                                 </div>
                             {{/smondemand}}
                             {{^participants}}
@@ -454,9 +373,10 @@
                         </div>
                         <div class="local-groupimport-easystud-participant-groups__list">
                             {{#smondemand}}
-                            <div class="local-groupimport-easystud__loading-participant-list" data-easystud-sm-loading="groups" aria-hidden="true">
-                                <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                                <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                            <div class="local-groupimport-easystud__loading-structure-list" data-easystud-sm-loading="groups" aria-hidden="true">
+                                <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
                             </div>
                             {{/smondemand}}
                             {{#participantfocusgroups}}
@@ -632,9 +552,10 @@
                     <div class="local-groupimport-easystud-structure-groups" data-easystud-structure-groups="1" data-easystud-mobile-entity-region="groups" hidden>
                         <div class="local-groupimport-easystud-structure-groups__list">
                             {{#smondemand}}
-                            <div class="local-groupimport-easystud__loading-participant-list" data-easystud-sm-loading="groups" aria-hidden="true">
-                                <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
-                                <div class="local-groupimport-easystud__loading-participant-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                            <div class="local-groupimport-easystud__loading-structure-list" data-easystud-sm-loading="groups" aria-hidden="true">
+                                <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
+                                <div class="local-groupimport-easystud__loading-structure-card"><span class="local-groupimport-easystud__loading-surface local-groupimport-easystud__loading-card-copy"></span></div>
                             </div>
                             {{/smondemand}}
                             {{#structurefocusgroups}}
