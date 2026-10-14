@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-14 [N1] Compare T058 magnifier Enter/Escape before41515be6/afterT055 b0602918: focus returns3/3 at500ms in both. Guide10 native872ms drag passes1s/5s exact-selector cues, but cue hides606.6ms after selection; preserve failed successors/timed evidence, adapt removed-helper preflight and clean five disposable courses.
+
 - 2026-10-14 [N1] Replay only Guide path10 on8051 after Claude8229f81c dragend refresh (6bff40b4/41515be6): native first tick passes but next cue still hidden at1.009s/5.006s. Preserve timed states/PNGs, strict immutable successor and cleaned disposable course; no product edit or retry.
 
 - 2026-10-14 [N1] Route the twelve named context-menu specs through Claude31386438 native Copy/Add submenus, preserving top-level Advanced settings and original oracles. F7 records closed top-level commands separately from revealed children; single-mode targeted menu proof and immutable failed recipe predecessors retained.

@@ -1,4 +1,49 @@
 {
+  "codex2T055Guide10FocusParity20261014": {
+    "status": "t058-focus-scoped-parity-pass-guide10-postselection-highlight-failed",
+    "documentation": "docs/testing/codex2-t055-guide10-focus-parity-2026-10-14.md",
+    "copy": "http://localhost:8051",
+    "baseline": "41515be6",
+    "served": "b0602918",
+    "sourceCommits": ["70db3f96", "f04fd8a0", "280eade2", "b6175377", "6b932106"],
+    "mode": "on-demand-only",
+    "language": "fr",
+    "width": 1280,
+    "t058": {
+      "spec": "tools/playwright/t058-group-search-focus-ready-successor.spec.js",
+      "baselineRun": "easystud-authenticated-20261014T202911435Z-48304",
+      "postRun": "easystud-authenticated-20261014T203509932Z-48156",
+      "baselineReturnedAt500Ms": 3,
+      "postReturnedAt500Ms": 3,
+      "cyclesPerVersion": 3,
+      "earlyFocusBothVersions": "input during closing transition",
+      "intermittenceReproduced": false,
+      "scope": "group magnifier Enter, field initial focus, Escape, original opener identity at100/500ms"
+    },
+    "guide10": {
+      "result": "FAIL",
+      "spec": "tools/playwright/guide-native-held-drag-travel-successor.spec.js",
+      "line": 175,
+      "run": "easystud-authenticated-20261014T203710868Z-43044",
+      "nativeTrustedDragHeldMs": 872,
+      "dragendSamples": [
+        {"elapsedMs":1004.30,"hidden":false,"display":"block","painted":true,"selectorDelta":0,"neighborDelta":175.80,"activeStep":"try-selection","dragging":false},
+        {"elapsedMs":5003.00,"hidden":false,"display":"block","painted":true,"selectorDelta":0,"neighborDelta":175.80,"activeStep":"try-selection","dragging":false}
+      ],
+      "afterSelection": {"elapsedMs":606.60,"hidden":true,"display":"none","painted":false,"currentTarget":null,"activeStep":"try-context","completedTicksVisible":2},
+      "contextMenuAndFinalReached": false,
+      "blockedWrites": 0,
+      "pageErrors": 0,
+      "nextOwner": "Claude"
+    },
+    "diagnostic": "C:/dev/artifacts/es-t055-native-diagnostic.json",
+    "fixtureCleanup": {"coursesRemoved":5,"syntheticUsersDeleted":10,"verifiedReadOnly":true},
+    "scenarioClass": "local-supervised",
+    "ciReadiness": "candidate-requires-authenticated-seeded-backend-and-guide-fix",
+    "nativeVerified": false,
+    "humanAccepted": false,
+    "penpotValidated": false
+  },
   "codex2Guide10DragendRefresh20261014": {
     "status": "native-step2-highlight-still-hidden-after-published-dragend-refresh",
     "documentation": "docs/testing/codex2-guide10-dragend-refresh-2026-10-14.md",

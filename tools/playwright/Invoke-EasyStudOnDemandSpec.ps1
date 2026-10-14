@@ -24,7 +24,7 @@ if ($text -match 'for\s*\([^\r\n]*\[''"\s]*legacy[''"\s]*,[''"\s]*reactive') {
     throw 'Historical double-mode loop: select its single-mode successor.'
 }
 $runtime = Join-Path $MoodleRoot 'local/groupimport'
-& $PhpPath (Join-Path $PSScriptRoot '../perf/inspect-on-demand.php') "--moodle-root=$MoodleRoot" `
+& $PhpPath (Join-Path $PSScriptRoot '../perf/inspect-t055-on-demand.php') "--moodle-root=$MoodleRoot" `
     --expected-url=http://localhost:8051 --expected-db=moodle51perf
 if ($LASTEXITCODE -ne 0) { throw 'Read-only single-mode preflight failed.' }
 $previousRuntime = $env:EASYEDU_AUDIT_RUNTIME_ROOT
