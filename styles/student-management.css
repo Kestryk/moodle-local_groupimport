@@ -1383,6 +1383,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 [dir=rtl] .local-groupimport-easystud__loading-card-copy {background: linear-gradient(var(--local-groupimport-easystud-loading-surface-strong), var(--local-groupimport-easystud-loading-surface-strong)) right top/min(68%, 9rem) 0.56rem no-repeat, linear-gradient(var(--local-groupimport-easystud-loading-surface), var(--local-groupimport-easystud-loading-surface)) right bottom/min(88%, 13rem) 0.42rem no-repeat;
 }
 
+.easyedu-icon-font-pending :is(.fa, .fas, .far, .fa-solid, .fa-regular)::before,
+.easyedu-icon-font-pending .dropdown-toggle::after {visibility: hidden;
+}
+
 .local-groupimport-easystud-user {background: var(--easyedu-surface);border: 1px solid var(--easyedu-card-border);border-left: var(--easyedu-identity-border-width) solid var(--local-groupimport-easystud-participant-rail);border-radius: var(--easyedu-card-radius);box-shadow: var(--easyedu-card-shadow);transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.22s ease, transform 0.22s ease;align-items: start;border-top-color: #d6e5f2;border-right-color: #d6e5f2;border-bottom-color: #d6e5f2;cursor: grab;display: grid;gap: 0.85rem;grid-template-columns: 6.35rem minmax(0, 1fr);padding: 0.45rem 0.9rem 0.85rem;position: relative;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-normal) ease, transform var(--easyedu-motion-normal) ease;
 }
 .local-groupimport-easystud-user:hover {border-color: color-mix(in srgb, var(--local-groupimport-easystud-participant-rail) 32%, var(--easyedu-card-border) 68%);box-shadow: var(--easyedu-shadow-soft);

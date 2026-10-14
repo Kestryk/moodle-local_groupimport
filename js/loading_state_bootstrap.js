@@ -463,6 +463,46 @@
         roots.forEach(installController);
     };
 
+    // Font Awesome draws its icons with a font: until it has loaded, the browser shows nothing
+    // and then, after its short block period, a missing-glyph box in each icon. Keep the glyphs
+    // hidden (their box keeps its size) until the icon font has loaded or failed.
+    var hideIconsUntilFontLoaded = function() {
+        var fonts = document.fonts;
+        var html = document.documentElement;
+        var pendingClass = 'easyedu-icon-font-pending';
+        var faces = ['900 1em "Font Awesome 6 Free"', '400 1em "Font Awesome 6 Free"'];
+        if (!fonts || typeof fonts.load !== 'function' || !html) {
+            return;
+        }
+        var loaded = faces.every(function(face) {
+            try {
+                return fonts.check(face);
+            } catch (error) {
+                return true;
+            }
+        });
+        if (loaded) {
+            return;
+        }
+        var reveal = function() {
+            html.classList.remove(pendingClass);
+        };
+        var waiting = faces.length;
+        var settle = function() {
+            waiting -= 1;
+            if (waiting <= 0) {
+                reveal();
+            }
+        };
+        html.classList.add(pendingClass);
+        faces.forEach(function(face) {
+            fonts.load(face).then(settle).catch(settle);
+        });
+        // A request that never settles must not hide the icons for good.
+        window.setTimeout(reveal, 10000);
+    };
+
+    hideIconsUntilFontLoaded();
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initialise, {once: true});
     } else {
