@@ -29,10 +29,32 @@ final class guide_welcome {
         return (string)(get_config('local_groupimport', self::SETTING) ?: 'initial');
     }
 
-    /** @return bool Whether the authenticated nonguest user has not opened this generation. */
+    /** Session marker of "Later": the invitation stays hidden until the next login (Kevin, 14/10/2026). */
+    public const SESSION_LATER = 'local_groupimport_guide_welcome_later';
+
+    /** @return bool Whether the authenticated nonguest user has not opened this generation nor postponed it in this session. */
     public static function should_offer(): bool {
+        global $SESSION;
         return isloggedin() && !isguestuser() &&
-            (string)get_user_preferences(self::PREFERENCE, '') !== self::generation();
+            (string)get_user_preferences(self::PREFERENCE, '') !== self::generation() &&
+            (string)($SESSION->{self::SESSION_LATER} ?? '') !== self::generation();
+    }
+
+    /**
+     * Postpone the invitation until the next login: kept in the Moodle session only, so a new
+     * login offers it again; the "seen" preference is untouched.
+     *
+     * @param string $generation Generation from the rendered page.
+     * @return bool Whether the postponement belongs to the current generation.
+     */
+    public static function postpone(string $generation): bool {
+        global $SESSION;
+        require_login(null, false);
+        if (isguestuser() || $generation !== self::generation()) {
+            return false;
+        }
+        $SESSION->{self::SESSION_LATER} = $generation;
+        return true;
     }
 
     /**

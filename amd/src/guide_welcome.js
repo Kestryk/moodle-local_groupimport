@@ -33,6 +33,18 @@ define([], function() {
                 // Do not log request/configuration data; a later opening retries.
             } finally { pending = false; }
         }, {signal: lifecycle.signal});
+        // "Later" hides the invitation until the next login (session only, the guide stays unseen).
+        // The shared Guide owns the button; the adapter only listens to its click.
+        root.addEventListener('click', event => {
+            if (!event.target.closest?.('[data-easyedu-guide-welcome-dismiss]') || acknowledged) return;
+            fetch(config.endpoint, {
+                method: 'POST', credentials: 'same-origin', signal: lifecycle.signal,
+                body: new URLSearchParams({courseid: config.courseid, generation: config.generation, sesskey: config.sesskey,
+                    action: 'later'})
+            }).catch(() => {
+                // A failed postponement only means the invitation comes back on the next page.
+            });
+        }, {signal: lifecycle.signal});
         window.addEventListener('pagehide', () => destroy(root), {once: true, signal: lifecycle.signal});
     };
     return {destroy: destroy, init: init};
