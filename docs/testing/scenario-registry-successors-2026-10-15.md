@@ -1,5 +1,9 @@
 # Preserved native successors, 15 October
 
+entity-dialog-ready-native.spec.js: local-supervised successor retains the entity
+keyboard/geometry matrix and also waits actual deferred data, no retry, enabled
+awaited footer actions.151913743Z-16956 PASS; previous loading capture preserved.
+
 entity-dialog-served-native.spec.js: local-supervised successor for T048/T050,
 FR1600/1280/390 nine card cells plus history1280,151508393Z-54116 PASS. Native
 Close/Tab/Escape/return and22px relation counts; actual SM read APIs permitted,
