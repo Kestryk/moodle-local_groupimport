@@ -582,7 +582,7 @@ function local_groupimport_record_import_history(
         'successcount' => $successcount,
         'errorcount' => $errorcount,
         'replacepolicy' => clean_param($replacepolicy, PARAM_ALPHA),
-        'changesjson' => json_encode($changes, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES),
+        'changesjson' => json_encode($changes, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR),
         'timecreated' => time(),
     ];
     return (int)$DB->insert_record('local_groupimport_history', $record);
@@ -1083,26 +1083,37 @@ if ($confirmimport && data_submitted()) {
     if (empty($confirmedrows) && empty($errors)) {
         $errors[] = get_string('importnorowsselected', 'local_groupimport');
     } else if (!empty($confirmedrows) && empty($errors)) {
-        $changes = local_groupimport_process_import_rows(
-            $confirmedrows,
-            $course,
-            $context,
-            $success,
-            $errors,
-            $replacepolicy
-        );
-        $currenthistoryid = local_groupimport_record_import_history(
-            (int)$course->id,
-            (int)$USER->id,
-            $importfilename !== '' ? $importfilename : get_string('unknownfile', 'local_groupimport'),
-            $importhash,
-            count($confirmedrows),
-            count($success),
-            count($errors),
-            $replacepolicy,
-            $changes
-        );
-        \local_groupimport\local\import_preview::consume($previewtoken);
+        try {
+            $currenthistoryid = \local_groupimport\local\import_execution::run($confirmedrows,
+                static function() use ($confirmedrows, $course, $context, &$success, &$errors,
+                        $replacepolicy, $USER, $importfilename, $importhash): int {
+                    $changes = local_groupimport_process_import_rows(
+                        $confirmedrows,
+                        $course,
+                        $context,
+                        $success,
+                        $errors,
+                        $replacepolicy
+                    );
+                    return local_groupimport_record_import_history(
+                        (int)$course->id,
+                        (int)$USER->id,
+                        $importfilename !== '' ? $importfilename : get_string('unknownfile', 'local_groupimport'),
+                        $importhash,
+                        count($confirmedrows),
+                        count($success),
+                        count($errors),
+                        $replacepolicy,
+                        $changes
+                    );
+                });
+            \local_groupimport\local\import_preview::consume($previewtoken);
+        } catch (Throwable $exception) {
+            $success = [];
+            $currenthistoryid = 0;
+            $errors = [$exception instanceof moodle_exception && $exception->errorcode === 'importrowlimit'
+                ? $exception->getMessage() : get_string('importatomicfailed', 'local_groupimport')];
+        }
     }
 } else if ($mform->is_cancelled()) {
     redirect(course_get_url($course));
@@ -1129,9 +1140,9 @@ if ($confirmimport && data_submitted()) {
         $parsed = local_groupimport_parse_import_content($content, $filename, $errors);
         $previewrows = local_groupimport_build_preview_rows($parsed, $errors);
 
-        if (count($previewrows) > \local_groupimport\local\import_preview::MAX_ROWS) {
+        if (count($previewrows) > \local_groupimport\local\import_execution::MAX_ROWS) {
             $errors[] = get_string('importrowlimit', 'local_groupimport',
-                \local_groupimport\local\import_preview::MAX_ROWS);
+                \local_groupimport\local\import_execution::MAX_ROWS);
         } else if (!empty($previewrows)) {
             $preview = [
                 'filename' => $filename,

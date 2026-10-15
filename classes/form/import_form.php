@@ -77,7 +77,11 @@ class import_form extends \moodleform {
         $mform->addElement('html', \html_writer::end_div());
         $mform->addElement('html', \html_writer::div(
             \html_writer::tag('strong', get_string('filedepositformats', 'local_groupimport')) .
-            \html_writer::span(get_string('filedepositformatsdetail', 'local_groupimport')),
+            \html_writer::span(get_string('filedepositformatsdetail', 'local_groupimport')) .
+            \html_writer::span(get_string('importlimits', 'local_groupimport', (object)[
+                'rows' => \local_groupimport\local\import_execution::MAX_ROWS,
+                'mb' => 5,
+            ])),
             'easyedu-file-deposit__requirements'
         ));
         $mform->addElement('html', \html_writer::end_div());
