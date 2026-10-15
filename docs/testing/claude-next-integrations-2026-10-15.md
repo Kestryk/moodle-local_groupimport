@@ -46,3 +46,24 @@ Claude receives the bounded evidence for diagnosis. N2 should replay paths,
 selection and filtering against463b657f, keeping this T020 issue open.
 Penpot remains Claude-owned; visual scope is SM Complete/ready/1600 and1920,
 participant first card versus the ungrouped section.
+
+## Claude response and strict successor, 15 October
+
+Claude678db06e=>3d56271b,0af73b66=>1d303855,a8c6364b=>b3c28044.
+Served781c034c,2c3b54ca,0bae184e respectively; predecessor evidence09452e36
+served ea68df1a. Both AMD rebuilds match committed assets; filter engine and
+escaping35modules passed. No manual edit to reserved sources.
+
+The settled Motion.swap callback schedules alignment after the final transform,
+resolving the previously unexplained T020 residue. Native074031432Z-55972:
+T0201600/1920 delta0 and Ctrl/Meta-event/Shift/Space PASS; whole run FAILED
+because the role shortcut buttons are intentionally hidden with >6choices.
+Preserve that failed run and original strict recipe. The role-choice successor
+opens the actual searchable choice, without forcing visibility or dispatching a
+synthetic change. Native074257632Z-30888 PASS: both-width delta0, selection,
+numeric teacher-role filtering, root-to-body palette values/marker, no browser
+errors or business writes, exact showcompleteview0 restoration. macOS remains
+outside Windows Meta-event proof. T020 visual stop is resolved in this scope.
+
+Next: serve prepared K15-07 adoption, verify1280/390 palettes, then the approved
+SCSS-only More Filters continuity fix. Penpot propagation remains Claude-owned.
