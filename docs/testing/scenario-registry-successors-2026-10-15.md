@@ -88,3 +88,5 @@ admin-e5-served-native.spec.js: principal-localhost bilingual read-only successo
 E5 principal native183745701Z-26880 PASS eight admin cells/keyboard; admin-e5-mass-titles-served-native.spec.js183913329Z-41176 PASS eight Mass Import title cells. No settings or import POST. Principal save persistence and full Mass Import behavior are separate gates; screenshot FR/EN390 admin pinned30days.
 
 k16-pills-baseline-native.spec.js records predecessor geometry; k16-pills-served-native.spec.js is local-supervised principal course5 FR/EN4widths, real density/tag disclosure commands, count and text bounds. Needs saved authentication/lease; no injected product CSS. Native pending.
+
+K16 pill successors preserve190423335Z-56544 ordinary-role clipping at390,190659461Z-36348 fractional DOMRect arithmetic failure and190818641Z-36652 real legacy-count glyph offset. k16-pills-geometry-served-native.spec.js combines bilingual counts/clipping with exact CSS/layout22 and Range?.5, preserving raw rectangles. Source-only/inert isolated/native/human remain separate.
