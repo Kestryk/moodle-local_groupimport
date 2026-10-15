@@ -84,6 +84,40 @@
     min-inline-size: var(--easyedu-related-person-remove-size);
   }
 
-  // K16-31/K16-32 (Kevin, 15/10 evening): the list toolbar keeps the Kit sizes of each control
-  // (Select all, result count, sort, page arrows); the forced 32 px height and 32 px circles are gone.
+  // List toolbar: Select all, result count, sort and page controls share one height.
+  .local-groupimport-easystud-pagination {
+    --local-groupimport-result-height: var(--easyedu-toolbar-control-height);
+
+    .local-groupimport-easystud-pagination__select,
+    .local-groupimport-easystud-pagination__count {
+      block-size: var(--easyedu-toolbar-control-height);
+      box-sizing: border-box;
+      min-block-size: var(--easyedu-toolbar-control-height);
+    }
+
+    [data-easystud-list-sort-toggle] {
+      block-size: var(--easyedu-toolbar-control-height);
+      box-sizing: border-box;
+      min-block-size: var(--easyedu-toolbar-control-height);
+    }
+
+    [data-easystud-page-label] {
+      align-items: center;
+      block-size: var(--easyedu-toolbar-control-height);
+      display: inline-flex;
+    }
+  }
+
+  .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__controls .btn {
+    @media (pointer: fine), (hover: hover) {
+      block-size: var(--easyedu-toolbar-control-height);
+      height: var(--easyedu-toolbar-control-height);
+      inline-size: var(--easyedu-toolbar-control-height);
+      min-block-size: var(--easyedu-toolbar-control-height);
+      min-height: var(--easyedu-toolbar-control-height);
+      min-inline-size: var(--easyedu-toolbar-control-height);
+      min-width: var(--easyedu-toolbar-control-height);
+      width: var(--easyedu-toolbar-control-height);
+    }
+  }
 }
