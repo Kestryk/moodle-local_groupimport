@@ -1,4 +1,14 @@
 {
+"massImportRoot16_20261015": {
+  "source": "Complement3 C2-15-04, reiterated Complement4-8",
+  "rootFontSize": "1rem",
+  "explicitControlRolesPreserved": true,
+  "conservativeBuildVerified": true,
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+
 "s9ServerNameRendererVerified20261015": {
   "sourceConsumer": "320d05fa",
   "runtimeConsumer": "14b895d0",

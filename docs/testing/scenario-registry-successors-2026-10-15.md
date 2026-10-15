@@ -24,3 +24,5 @@ more-filters-lane-continuity-native.spec.js: local-supervised, paired desktop la
 more-filters-visible-defaults-native.spec.js: local-supervised visible capture target plus full default palette projection (palette-native-full-defaults.php).080000696Z-9016PASS32desktop+6compact cases. Preserve075720747Z-10112 failed predecessor. Guide path/business/human/Penpot checks remain separate.
 
 S9 server renderer: s9-server-renderer-native.spec.js is local-supervised (managed lease, Moodle course5 context); native082404228Z-49956PASS. tools/release/test-server-name-escaping.php preserves the failed source/runtime duplicate-lib harness; -served.php renders real templates without records/config writes. No browser/CSV certification. CI needs an isolated Moodle context.
+
+mass-import-root-16-native.spec.js: local-supervised, FR1280/390 read-only root16px/ready/page-sheet/overflow recipe; requires course5 and managed runtime authentication, native pending.
