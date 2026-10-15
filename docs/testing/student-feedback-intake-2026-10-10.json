@@ -1,4 +1,18 @@
 {
+  "codex2Complement3Readiness20261015": {
+    "status": "prepared-native-pending-S9-publication",
+    "documentation": "docs/testing/codex2-complement3-readiness-2026-10-15.md",
+    "spec": "tools/playwright/complement3-served-recipes-native.spec.js",
+    "fixture": "tools/playwright/complement3-course-fixture.php",
+    "recipes": ["S9", "T020 1600/1920", "Mass root16px", "eye390/768", "responsive animations normal/reduced"],
+    "harmonyMaxAdjacentHeightDeltaPx": 1,
+    "syntaxLintDiscoveryPass": true,
+    "nativeVerified": false,
+    "principalChecked": "dcfd6061",
+    "missingPublication": "d8594b8e",
+    "guideCompact10": "Kevin arbitration pending",
+    "scenarioClass": "local-supervised"
+  },
   "codex2LoadingAdmin20261015": {
     "status": "targeted-native-pass",
     "documentation": "docs/testing/codex2-served-polish-2026-10-15.md",
