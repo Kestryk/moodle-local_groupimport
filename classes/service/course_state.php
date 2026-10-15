@@ -177,7 +177,8 @@ class course_state {
             $pictureurl = get_group_picture_url($group, $course->id, true);
             $groupitems[] = [
                 'id' => $groupid,
-                'name' => format_string($group->name, true, ['context' => $context]),
+                // Plain text: the browser escapes at render time (S9); an escaped name would show '&amp;'.
+                'name' => format_string($group->name, true, ['context' => $context, 'escape' => false]),
                 'rawname' => (string)$group->name,
                 'idnumber' => (string)($group->idnumber ?? ''),
                 'memberids' => array_values($memberships['bygroup'][$groupid] ?? []),
@@ -194,7 +195,7 @@ class course_state {
             $groupingid = (int)$grouping->id;
             $groupingitems[] = [
                 'id' => $groupingid,
-                'name' => format_string($grouping->name, true, ['context' => $context]),
+                'name' => format_string($grouping->name, true, ['context' => $context, 'escape' => false]),
                 'rawname' => (string)$grouping->name,
                 'idnumber' => (string)($grouping->idnumber ?? ''),
                 'groupids' => array_values($groupingmemberships['bygrouping'][$groupingid] ?? []),

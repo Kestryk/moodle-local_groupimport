@@ -153,4 +153,24 @@ final class course_state_test extends \advanced_testcase {
         $this->assertStringContainsString('Private biography', $details['description']);
         $this->assertSame('', $details['email']);
     }
+
+    /**
+     * Group and grouping names reach the browser as plain text: it escapes them once when it renders.
+     *
+     * @return void
+     */
+    public function test_state_names_are_plain_text(): void {
+        $this->resetAfterTest();
+        $this->setAdminUser();
+        $generator = $this->getDataGenerator();
+        $course = $generator->create_course();
+        $context = \context_course::instance($course->id);
+        $name = 'QA & < > " ' . "'";
+        $group = $generator->create_group(['courseid' => $course->id, 'name' => $name]);
+        $grouping = $generator->create_grouping(['courseid' => $course->id, 'name' => $name]);
+
+        $state = course_state::build($course, $context);
+        $this->assertSame($name, array_column($state['groups'], 'name', 'id')[(int)$group->id]);
+        $this->assertSame($name, array_column($state['groupings'], 'name', 'id')[(int)$grouping->id]);
+    }
 }
