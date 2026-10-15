@@ -41,7 +41,7 @@
     }
 }}
 <div
-    class="easyedu-entity-card-grid local-groupimport-easystud-group{{^treecard}} local-groupimport-easystud-group--catalog{{/treecard}}"
+    class="local-groupimport-easystud-group{{^treecard}} local-groupimport-easystud-group--catalog{{/treecard}}"
     data-easystud-group-id="{{id}}"
     data-easystud-user-drop="{{id}}"
     data-selectable-type="group"
@@ -61,12 +61,12 @@
     data-easystud-advanced-count="{{membercountlabel}}"
     draggable="true"
 >
-    <label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--group easyedu-entity-card-grid__selector" aria-label="{{selectionmodelabel}}">
+    <label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--group" aria-label="{{selectionmodelabel}}">
         <input type="checkbox" data-easystud-selector-input="1">
         <span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>
     </label>
-    <div class="local-groupimport-easystud-group__header easyedu-entity-card-grid__header">
-        <span class="local-groupimport-easystud-group__name easyedu-entity-card-grid__title">{{name}}</span>
+    <div class="local-groupimport-easystud-group__header">
+        <span class="local-groupimport-easystud-group__name">{{name}}</span>
         {{#groupingtags.0}}
             <span class="local-groupimport-easystud-group__groupings local-groupimport-easystud-group__groupings--inline">
                 {{#groupingtags}}
@@ -74,7 +74,7 @@
                 {{/groupingtags}}
             </span>
         {{/groupingtags.0}}
-        <span class="badge bg-light text-dark easyedu-entity-card-grid__count">{{membercountlabel}}</span>
+        <span class="badge bg-light text-dark">{{membercountlabel}}</span>
         <button
             type="button"
             class="btn btn-link p-0 local-groupimport-easystud-group__mail-button"
@@ -121,7 +121,7 @@
             </button>
         {{/withingrouping}}
     </div>
-    <ul class="local-groupimport-easystud-group__members easyedu-entity-card-grid__members" data-easystud-group-members="{{id}}">
+    <ul class="local-groupimport-easystud-group__members" data-easystud-group-members="{{id}}">
         {{#members}}
             <li
                 class="local-groupimport-easystud-member easyedu-related-person-row"
@@ -163,7 +163,7 @@
     >...</span>
     <button
         type="button"
-        class="local-groupimport-easystud-group__members-toggle easyedu-entity-card-grid__reveal"
+        class="local-groupimport-easystud-group__members-toggle"
         data-easystud-group-members-toggle="1"
         hidden
     >
@@ -171,7 +171,7 @@
     </button>
     {{! R10-05: shown from three members, laid over the right of the members toggle row (no extra height);
         the button keeps both labels and aria templates for its toggle. }}
-    <div class="local-groupimport-easystud-group__select-all-row easyedu-entity-card-grid__selection" data-easystud-group-select-all-row="{{id}}"{{^canselectallmembers}} hidden{{/canselectallmembers}}>
+    <div class="local-groupimport-easystud-group__select-all-row" data-easystud-group-select-all-row="{{id}}"{{^canselectallmembers}} hidden{{/canselectallmembers}}>
         <button
             type="button"
             class="btn btn-link p-0 local-groupimport-easystud-group__select-all"

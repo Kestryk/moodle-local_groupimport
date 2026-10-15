@@ -3041,15 +3041,6 @@
 - Preserve every native aria label, close route, focus restoration and modal
   Motion; this change owns paint and geometry only.
 
-## 2026-10-03 - Group image proof and linked preview family
-
-- Pass the non-submitting image picker/drop/toggle audit at 1600/768/390 and
-  pin three inspected captures with complete cleanup.
-- Add only the missing Empty/Present Tall/Compact image-preview family; reuse
-  the existing Settings picker, modal drop and toggle components.
-- Replace the product-local placeholder with a linked preview and publish the
-  complete page-04 composition. Human validation remains open.
-
 ## 2026-10-03 - Group image native audit candidate
 
 - Add a non-submitting 1600/768/390 audit for image selection, drag/drop,
@@ -3058,7 +3049,6 @@
   toggle recipes; do not create another filepicker family.
 - Block plugin business POST and keep persisted image/file-area proof and human
   validation as separate gates.
-
 ## 2026-10-03 - Entity metadata native proof and paired catalogue
 
 - Pass nine native Participant/Group/Grouping list, count, chip and empty-state
@@ -6015,18 +6005,3 @@ Maintenance convention:
 - Rebuilt SM/CM and conservative CSS. Dense/ordinary native fixture and acceptance audit remain in progress; no native acceptance claimed.
 
 - K16-01/K16-22 native parity certified: 32 states, 1042 pills at 22px, centre delta 0px, 76 exact counters, eight group and two participant real deferred opens. Kevin audit: zero non-group failures; 18 group failures deferred to the next lot. Fixtures restored.
-
-### K16 Group cards - canonical layout candidate
-
-- Consume Kit299854a / 0.4.219 shared checkbox, text and action tracks in Group cards, including nested cards, with a disjoint reveal/selection footer. No controller or keyboard change.
-- Baseline fixture measured FR/EN1600/1280/768/390, empty/full; exact-owner cleanup PASS. Candidate native geometry and zero-FAIL Kevin audit pending.
-
-- Reprise autoris?e de la grille Groupe apr?s repli : candidat produit inchang?, successeur de recette capture le panneau r?ellement visible ; certification conditionn?e aux colonnes/contenus ?0.5px, footer32px, FR/EN quatre largeurs et audit Kevin0FAIL. Aucun autre correctif A-J.
-
-- Kit738a97cc /0.4.220 removes the legacy removal-glyph offset at its single canonical source. Group column geometry and all strict half-pixel/content/32px footer oracles remain unchanged; final native certification pending.
-
-- Entity-card footer now consumes canonical natural font metrics, measured0px at1600/390 with existing32px control; no toolbar/reset style changes. Final strict matrix and Kevin audit still required.
-
-- Group responsive layout composes the same Kit columns before the touch adapter, overriding legacy wrapped-header and border-removal rules through normal specificity. Shared title slot and padding variables; no local positional values or new important declarations.
-
-- 2026-10-15 [N1] Consume Kit0.4.223 shared entity phone slots: keep the action trigger in its terminal column, hide the optional phone count consistently, bound footer labels to the separate selection track. Preserve strict failed native proofs and all component paints.

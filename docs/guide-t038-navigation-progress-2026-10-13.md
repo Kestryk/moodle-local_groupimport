@@ -7,7 +7,7 @@ label per consecutive group. Full slide headings remain unchanged.
 
 ## Implemented candidate
 
-Kit `facc899` / 0.4.202 defines an explicit
+Kit `c771328` / 0.4.200 defines an explicit
 `.easyedu-guide-nav-item__path` route glyph for a guided path. EasyStud renders
 that glyph inside the existing navigation button while retaining the existing
 `has-guided-path` class and `data-easyedu-guided-label` accessibility contract.
@@ -22,18 +22,8 @@ behaviour changed.
 
 ## Evidence and remaining gates
 
-`tools/release/test-guide-t038-navigation.cjs` passes 36 source/Kit/lang
-contract checks. The compact route glyph is expressly excluded from the generic
-direct Font Awesome chapter-icon selector, and its own host-safe inline rule is
-retained when Moodle theme utilities force a flex display.
-
-After controlled localhost publication and cache purge, the read-only French
-native N2 proof passes at 1600, 1280 and 390: all twelve short labels have no
-overflow or ellipsis, each guided path emits the named route pictogram, and
-each route pictogram remains contained in a 22px compact box. The run has no
-console errors, no blocked requests and no business writes:
-`C:\Users\kj220291\AppData\Local\EasyEdu\artifacts\easystud\authenticated\easystud-authenticated-20261013T101715322Z-40432`.
-
-This is not a human visual acceptance claim. Foundation and product Penpot
-composition remain pending; the separate T040 FR/EN capture requirement and
-human acceptance remain open.
+`tools/release/test-guide-t038-navigation.cjs` passes 35 source/Kit/lang
+contract checks. This is not a browser or visual acceptance claim. Foundation
+and product Penpot composition remain pending because the shared editor is not
+available; the native N2 proof must cover French 1600/1280/390 after the
+controlled localhost publication. Human acceptance remains open.

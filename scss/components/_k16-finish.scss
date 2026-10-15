@@ -50,27 +50,3 @@
     }
   }
 }
-
-// K16 group composition: one canonical grid, including nested Group cards.
-#local-groupimport-easystud {
-  .easyedu-entity-card-grid {
-    @include easyedu.entity-card-columns;
-    @include easyedu.entity-card-footer;
-  }
-  &.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {
-    @include easyedu.entity-card-columns;
-    @include easyedu.entity-card-columns-touch;
-    > .local-groupimport-easystud-card-menu {
-      @include easyedu.entity-card-menu-slot;
-    }
-    > .easyedu-entity-card-grid__header > .local-groupimport-easystud-card-menu {
-      @include easyedu.entity-card-menu-slot(true);
-    }
-  }
-}
-
-@media (max-width: 25rem) {
-  #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {
-    @include easyedu.entity-card-columns-phone;
-  }
-}

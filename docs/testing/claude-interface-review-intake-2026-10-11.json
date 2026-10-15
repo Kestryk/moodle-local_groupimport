@@ -1422,13 +1422,10 @@
     {
       "id": "T038",
       "receivedScope": "[US4] Guide GS3 et GS4 : onglets par chapitre et numérotés, libellés courts (chaînes FR/EN validées par Kevin), pictogramme de parcours au lieu du badge « GUIDE » (**coordination R10-32**).",
-      "status": "native-FR-passed-foundation-penpot-and-human-open",
-      "nativeVerified": true,
+      "status": "queued",
+      "nativeVerified": false,
       "humanAccepted": false,
-      "related": [
-        "docs/guide-t038-navigation-progress-2026-10-13.md",
-        "external easystud-authenticated-20261013T101715322Z-40432, FR 1600/1280/390"
-      ],
+      "related": [],
       "decisionGate": "Kevin"
     },
     {
@@ -1475,25 +1472,19 @@
     {
       "id": "T043",
       "receivedScope": "[US5] Kit : recette publique `dialog-header`, unifiant `entity-dialog__header`, `easyedu-dialog-header` et confirmation, avec eyebrow, titre, tuile et variantes `--danger` / `--success`. Une seule classe de fermeture : `easyedu-dialog-close`, 30px.",
-      "status": "kit-static-verified-pending-foundations-consumer-native-human",
+      "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [
-        "EasyEdu UI Kit 0.4.204 / d669627",
-        "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"
-      ],
+      "related": [],
       "decisionGate": "none"
     },
     {
       "id": "T044",
       "receivedScope": "[US5] Kit : recette publique `dialog-footer`, extraite du pied du Guide.",
-      "status": "kit-static-verified-pending-foundations-consumer-native-human",
+      "status": "queued",
       "nativeVerified": false,
       "humanAccepted": false,
-      "related": [
-        "EasyEdu UI Kit 0.4.204 / d669627",
-        "Kit docs/testing/dialog-recipes-t043-t044-2026-10-13.json"
-      ],
+      "related": [],
       "decisionGate": "none"
     },
     {
