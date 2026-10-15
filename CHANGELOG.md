@@ -6012,3 +6012,5 @@ Maintenance convention:
 - Baseline fixture measured FR/EN1600/1280/768/390, empty/full; exact-owner cleanup PASS. Candidate native geometry and zero-FAIL Kevin audit pending.
 
 - Reprise autoris?e de la grille Groupe apr?s repli : candidat produit inchang?, successeur de recette capture le panneau r?ellement visible ; certification conditionn?e aux colonnes/contenus ?0.5px, footer32px, FR/EN quatre largeurs et audit Kevin0FAIL. Aucun autre correctif A-J.
+
+- Kit738a97cc /0.4.220 removes the legacy removal-glyph offset at its single canonical source. Group column geometry and all strict half-pixel/content/32px footer oracles remain unchanged; final native certification pending.
