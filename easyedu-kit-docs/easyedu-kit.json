@@ -116,9 +116,15 @@
       "kitVersion": "0.4.182",
       "fitSuccessor": "181 shares the available scene gutter;180/51692 failed212.72px; preserved",
       "previousCandidate": "c532f85/0.4.179; native29736 failed255px; preserved",
-      "modules": ["guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
+      "modules": [
+        "guide/templates/easyedu_guide.mustache",
+        "scss/easyedu/components/_guide-discovery.scss"
+      ],
       "scope": "Kevin-approved R2-5: actual caption role, short expected heading and no duplicated idle sentence; mobile preview only, desktop/playing/final tokens and complete178 engine retained.",
-      "foundationProviders": ["c8f59096-02cd-803e-8008-c6fcdffa5e3e", "c8f59096-02cd-803e-8008-c6fce026897f"],
+      "foundationProviders": [
+        "c8f59096-02cd-803e-8008-c6fcdffa5e3e",
+        "c8f59096-02cd-803e-8008-c6fce026897f"
+      ],
       "productReference": "eca88a24-093d-80d0-8008-c700c8829146",
       "pairedSavedPaintVerified": true,
       "nativePreviewVerified": true,
@@ -130,7 +136,11 @@
     "guideReview220261012": {
       "kitCommit": "9407d02f8802bbc2bbb0b01c3b3815f58a0f7d00",
       "kitVersion": "0.4.178",
-      "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
+      "modules": [
+        "guide/amd/src/easyedu_guide.js",
+        "guide/templates/easyedu_guide.mustache",
+        "scss/easyedu/components/_guide-discovery.scss"
+      ],
       "scope": "R2-1/R2-3/R2-2/R2-4: wrap confirmation copy, scroll-before-reveal, complete accessible narration and resize/rotation active-tab containment.",
       "sourceRecipePreserved": "Existing card/control/type/palette recipes; no new Foundation family or density.",
       "nativePreviewVerified": true,
@@ -143,7 +153,9 @@
     "guideReadingChrome20261012": {
       "kitCommit": "fead185b170ca233d3370fcf8a619d8d66d69586",
       "kitVersion": "0.4.177",
-      "modules": ["scss/easyedu/components/_guide-discovery.scss"],
+      "modules": [
+        "scss/easyedu/components/_guide-discovery.scss"
+      ],
       "scope": "Discovery footer reading count and compact subtitle; existing4px accent track, Small actions, templates/controllers/curriculum/Motion preserved.",
       "foundationSavedCompositions": 4,
       "productSavedCompositions": 2,
@@ -159,7 +171,9 @@
     "guideIntroductionClearance20261011": {
       "kitCommit": "2437268a24fc6596af527680d4642d5bdc02e11b",
       "kitVersion": "0.4.172",
-      "modules": ["scss/easyedu/components/_guide-discovery.scss"],
+      "modules": [
+        "scss/easyedu/components/_guide-discovery.scss"
+      ],
       "publicToken": "--easyedu-guide-introduction-trailing-clearance",
       "scope": "Existing24px paired Introduction safety-note trailing space; all other CSS, commands, type and Motion retained.",
       "savedSourceStandardRecords": 8,
@@ -174,7 +188,9 @@
     "cardIdentityWeight20261011": {
       "kitCommit": "d40fe4281eaffb90010cb4973aeaf818259ebf22",
       "kitVersion": "0.4.171",
-      "modules": ["scss/easyedu/components/_cards.scss"],
+      "modules": [
+        "scss/easyedu/components/_cards.scss"
+      ],
       "scope": "Approved optionA: identity titles600 only;14px/#264861, all other CSS, templates, controllers and Motion retained.",
       "foundationSavedTitles": 30,
       "pairedRasterInspected": true,
@@ -189,7 +205,11 @@
     "nativeHostLayout20261011": {
       "kitCommit": "8886e23324eb59b826b91eb960b8abdc31701401",
       "kitVersion": "0.4.170",
-      "modules": ["scss/easyedu/components/_modals.scss", "scss/easyedu/_dialog-classes.scss", "scss/easyedu/adapters/_moodle-file-deposit.scss"],
+      "modules": [
+        "scss/easyedu/components/_modals.scss",
+        "scss/easyedu/_dialog-classes.scss",
+        "scss/easyedu/adapters/_moodle-file-deposit.scss"
+      ],
       "scope": "Guide drawer lifetime and outer deposit action centering, including actual empty-row host utilities; bounded shared CSS only.",
       "nativePreviewVerified": true,
       "humanVisualValidated": false,
@@ -199,7 +219,10 @@
     "filterResetFieldPeer20261011": {
       "kitCommit": "ad07f9c373e57bcf8b447cd4f96377af59167973",
       "kitVersion": "0.4.168",
-      "modules": ["scss/easyedu/components/_buttons.scss", "scss/easyedu/_foundation-classes.scss"],
+      "modules": [
+        "scss/easyedu/components/_buttons.scss",
+        "scss/easyedu/_foundation-classes.scss"
+      ],
       "publicClass": "easyedu-filter-reset--field-peer",
       "scope": "Four existing Reset controls;38px Regular /44px touch; legacy type, paint, width and Motion preserved.",
       "isolatedRecords": 48,
@@ -211,7 +234,10 @@
     "filterTrackFocus20261011": {
       "kitCommit": "730b0dd50ffdb1f14578d55ad109670e2fedac69",
       "kitVersion": "0.4.167",
-      "modules": ["scss/easyedu/components/_forms.scss", "scss/easyedu/_foundation-classes.scss"],
+      "modules": [
+        "scss/easyedu/components/_forms.scss",
+        "scss/easyedu/_foundation-classes.scss"
+      ],
       "publicClass": "easyedu-filter-toggle--track-focus",
       "scope": "Two trailing catalogue labels;44px hit target, original Motion and legacy switches preserved.",
       "isolatedRecords": 48,
@@ -226,7 +252,9 @@
     "viewIconTransition20261011": {
       "kitCommit": "604a9d79ddfbf92644ed7a90e7ab6409b37737a3",
       "kitVersion": "0.4.167",
-      "modules": ["scss/easyedu/_workspace-control-classes.scss"],
+      "modules": [
+        "scss/easyedu/_workspace-control-classes.scss"
+      ],
       "publicClass": "easyedu-workspace-view-switcher--stable-icon",
       "scope": "Atomic tiled icon/tile paint; plain tabs, layout and existing view/card Motion unchanged.",
       "isolatedPalettes": 3,
@@ -243,7 +271,11 @@
       "kitCommit": "4fed6cec08a835e12d7e6cde56e7814254f1cf95",
       "sourceCommit": "939f2436ff585264c6f18271b3faf485d8572565",
       "nativePreviewVerified": true,
-      "nativeWidths": [1280, 768, 390],
+      "nativeWidths": [
+        1280,
+        768,
+        390
+      ],
       "nativeProof": "docs/testing/guide-path-context-native-2026-10-11.json",
       "scope": "Opt-in ID-only context APIs, QA schema/key, reinitialization and native Resume/Reset; no existing product path opted in.",
       "actualPageReloadTested": false,
@@ -256,7 +288,11 @@
       "kitCommit": "e46f5d96ca1df68a547cdea524e8861558d7c57a",
       "sourceCommit": "fb3416f0e4a64067942974369ed4920518f663db",
       "nativePreviewVerified": true,
-      "nativeWidths": [1280, 768, 390],
+      "nativeWidths": [
+        1280,
+        768,
+        390
+      ],
       "nativeProof": "docs/testing/guide-header-palette-native-2026-10-10.json",
       "scope": "Discovery primary header paint only; configured native palette and 24 isolated custom/restored portal cases are separate.",
       "customPalettePersistence": false,
@@ -272,7 +308,11 @@
       "kitCommit": "f8215a9fb4c54e8b087b6b0f0eebe2e4bb5f2b38",
       "sourceCommit": "d7a25f6e6391783c5bd04a2c7e6e1afd84e7ea76",
       "nativePreviewVerified": true,
-      "nativeWidths": [1280, 768, 390],
+      "nativeWidths": [
+        1280,
+        768,
+        390
+      ],
       "nativeProof": "docs/testing/guide-demonstration-entry-native-2026-10-10.json",
       "scope": "Four timed scenes: idle, explicit Start, running, pause, phase advance, finish, replay, reset; creation and paths unchanged.",
       "humanVisualValidated": false,
@@ -281,7 +321,11 @@
     "guideActivityDots20261010": {
       "sourceCommit": "38c1e3eacbdcb4c7557cf7307dc5116c7b6c7234",
       "nativePreviewVerified": true,
-      "nativeWidths": [1280, 768, 390],
+      "nativeWidths": [
+        1280,
+        768,
+        390
+      ],
       "nativeProof": "docs/testing/guide-activity-dots-native-2026-10-10.json",
       "scope": "Equal 4px circles/3px gaps in actual playback, pause and departure; timing unchanged.",
       "humanVisualValidated": false,
@@ -301,7 +345,11 @@
       "kitCommit": "241e5d25d64dfb9d9a9e46acee8af5a97e2a7803",
       "sourceCommit": "060b533c69fd7a5cb4802b9831767a7c5eb88c42",
       "nativePreviewVerified": true,
-      "nativeWidths": [1280, 768, 390],
+      "nativeWidths": [
+        1280,
+        768,
+        390
+      ],
       "nativeProof": "docs/testing/guide-light-tooltips-native-2026-10-10.json",
       "scope": "Truncated Discovery labels, Light Short native paint/keyboard/portal; Long/fullscreen isolated only.",
       "allPluginTooltipsCertified": false,
@@ -563,10 +611,18 @@
       "nativeMotionRunId": "easystud-authenticated-20261008T073001900Z-27760",
       "nativeActionsCopyRunId": "easystud-authenticated-20261008T073730294Z-50592",
       "foundationPublicationHandoff": "docs/guide-foundations-publication-g9.md",
-      "pairedGuideBoardIds": ["4ee6f77a-1dfb-809b-8008-c1dd939450a8", "4ee6f77a-1dfb-809b-8008-c1ddedeb1f05", "4ee6f77a-1dfb-809b-8008-c1df323f791a", "4ee6f77a-1dfb-809b-8008-c1df8e06fe99"],
+      "pairedGuideBoardIds": [
+        "4ee6f77a-1dfb-809b-8008-c1dd939450a8",
+        "4ee6f77a-1dfb-809b-8008-c1ddedeb1f05",
+        "4ee6f77a-1dfb-809b-8008-c1df323f791a",
+        "4ee6f77a-1dfb-809b-8008-c1df8e06fe99"
+      ],
       "nativePreviewVerified": true,
       "nativeVerificationScope": "Lifecycle/reset/reload and invitation geometry at 1280/768/390; not the full Guide curriculum.",
-      "nativeRunIds": ["easystud-authenticated-20261008T065409477Z-24220", "easystud-authenticated-20261008T070020274Z-42196"],
+      "nativeRunIds": [
+        "easystud-authenticated-20261008T065409477Z-24220",
+        "easystud-authenticated-20261008T070020274Z-42196"
+      ],
       "humanVisualValidated": false
     },
     "guideLatestMilestone20261007": {
@@ -625,7 +681,11 @@
       "kitVersion": "0.4.139",
       "kitCommit": "461d26812488179a1c79a560889a246c5a1d461e",
       "predecessorKitCommit": "544bf1fe19c1788d2170b64f98d78c4250857b81",
-      "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss"],
+      "modules": [
+        "guide/amd/src/easyedu_guide.js",
+        "guide/templates/easyedu_guide.mustache",
+        "scss/easyedu/components/_guide-discovery.scss"
+      ],
       "documentation": "docs/guide-follow-up-2026-10-07.md",
       "scope": "G7 persistent step frame, synchronized drag/return/drop, selected comparisons/checkboxes, scoped reveal scroll, context/recap and Discovery checklist Restore/long-list scroll.",
       "status": "Native49844 passes three-width presentation on Source3c45d43/Kit0.4.138; native51960 passes readable checklist rows/scroll/Restore on Sourcef8d7dc2/Kit0.4.139. Real business/Foundation/human gates remain separate.",
@@ -645,7 +705,13 @@
       "kitVersion": "0.4.134",
       "kitCommit": "925020dbf788ee882b0c8bcd34d6856b2ec313b7",
       "predecessorKitCommit": "8da2b85d4238e6b71b1873325c558df067834521",
-      "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide-discovery.scss", "scss/easyedu/components/_buttons.scss", "scss/easyedu/_data-classes.scss"],
+      "modules": [
+        "guide/amd/src/easyedu_guide.js",
+        "guide/templates/easyedu_guide.mustache",
+        "scss/easyedu/components/_guide-discovery.scss",
+        "scss/easyedu/components/_buttons.scss",
+        "scss/easyedu/_data-classes.scss"
+      ],
       "documentation": "docs/guide-review-components-2026-10-07.md",
       "scope": "G6 quiet Show/Return, practice syntax/Warning, instruction/menu/cursor/neutral completion, checklist control roles only. Overview/cards/business Motion retained.",
       "status": "Current twelve native scene/width routes PASS, including canonical Warning alignment/spacing; Guide specimen readback and broader Foundation/human gates remain separate.",
@@ -660,7 +726,12 @@
       "kitVersion": "0.4.131",
       "kitCommit": "8da2b85d4238e6b71b1873325c558df067834521",
       "predecessorKitCommit": "17634cca08e2f99ff9d05b535d6208918d705c23",
-      "modules": ["guide/amd/src/easyedu_guide.js", "guide/templates/easyedu_guide.mustache", "scss/easyedu/components/_guide.scss", "scss/easyedu/components/_guide-discovery.scss"],
+      "modules": [
+        "guide/amd/src/easyedu_guide.js",
+        "guide/templates/easyedu_guide.mustache",
+        "scss/easyedu/components/_guide.scss",
+        "scss/easyedu/components/_guide-discovery.scss"
+      ],
       "documentation": "docs/guide-style-successor-2026-10-07.md",
       "scope": "Four complete teaching scenes, discovery shell/cue/invitation and cancellable presentation. Localized runtime defaults retained; no business or card-Motion change.",
       "status": "Four-scene native12-route geometry/progress/settled-result successor PASS; supplementary lifecycle, Foundation catalogue publication and human acceptance tracked separately.",
@@ -675,7 +746,11 @@
       "kitVersion": "0.4.123",
       "kitCommit": "22a9380f70d0465537c95fa1573919cb9e51f967",
       "predecessorKitCommit": "49218ece4d0eec710c34afcad635a7c941c523a4",
-      "modules": ["scss/easyedu/_report-palette-classes.scss", "scss/easyedu/components/_reports.scss", "scss/easyedu/_data-classes.scss"],
+      "modules": [
+        "scss/easyedu/_report-palette-classes.scss",
+        "scss/easyedu/components/_reports.scss",
+        "scss/easyedu/_data-classes.scss"
+      ],
       "documentation": "docs/mass-report-palette-successor-2026-10-06.md",
       "scope": "Seven additive paint blocks and canonical default report delegates; validated independent roles and class-only PHP adapters. No commands, geometry, Motion or whole-tree sync.",
       "status": "372 isolated and complete default recipes/unrelated CSS/command/Motion identity PASS. Native15 palette/width cases PASS after retained paint/protocol failures. Revised metrics saved on18 Library/Standard/Product roots; Product validate[] and comparison export inspected. Actual lifecycle, persistence and human OPEN.",
@@ -686,7 +761,10 @@
     "dialogSemanticPalette20261006": {
       "kitVersion": "0.4.121",
       "kitCommit": "5891d8cde05eab1ebf34d89807d81db5a0e8ab49",
-      "modules": ["scss/easyedu/_dialog-classes.scss", "scss/easyedu/_dialog-palette-classes.scss"],
+      "modules": [
+        "scss/easyedu/_dialog-classes.scss",
+        "scss/easyedu/_dialog-palette-classes.scss"
+      ],
       "documentation": "docs/dialog-semantic-palette-2026-10-06.md",
       "scope": "Five optional paint blocks, role flags, six header class consumers, existing relay clears only two optional tint tokens; geometry/commands/Motion preserved",
       "status": "96 isolated/old shared chrome/public SCSS package and complete unrelated source/CSS identity PASS. Four paired Foundations providers and four linked Product custom comparisons saved. Native60 scoped paint/geometry/portal/default-restore PASS; full lifecycle/persistence/human OPEN.",
@@ -767,7 +845,10 @@
     "modalYieldControl20261005": {
       "kitVersion": "0.4.117",
       "kitCommit": "ea831179469d4042003f0939e28075f6be480045",
-      "modules": ["scss/easyedu/components/_modals.scss", "scss/easyedu/_dialog-classes.scss"],
+      "modules": [
+        "scss/easyedu/components/_modals.scss",
+        "scss/easyedu/_dialog-classes.scss"
+      ],
       "templateChange": "One public trigger class only; do not overwrite divergent embedded Navigation module",
       "documentation": "docs/mobile-navigation-dialog-yield-2026-10-05.md",
       "status": "One shared CSS visibility rule; paired behavior protocol retained. Six actual responsive Participant cases normal/reduced native PASS. Other-dialog, size-parity and human OPEN.",
@@ -789,7 +870,10 @@
     "quietSelectionRecovery20261005": {
       "kitVersion": "0.4.115",
       "kitCommit": "43fcf726898364a33fad49eeb69fea0a0cc7c3d4",
-      "modules": ["scss/easyedu/components/_buttons.scss", "scss/easyedu/_foundation-classes.scss"],
+      "modules": [
+        "scss/easyedu/components/_buttons.scss",
+        "scss/easyedu/_foundation-classes.scss"
+      ],
       "documentation": "docs/quiet-selection-recovery-2026-10-05.md",
       "penpotReadback": "docs/testing/quiet-selection-recovery-penpot-2026-10-05.json",
       "status": "SM52 shared paired states/capsule/Product linked; six desktop rest/hover/focus records and unchanged phone proxy native PASS. Human/clean export OPEN.",
@@ -867,7 +951,10 @@
     "customSemanticRails20261005": {
       "kitVersion": "0.4.111",
       "kitCommit": "3a97490d2a577ccf56fdf17b1bbac594ab8db48f",
-      "modules": ["scss/easyedu/_foundation-classes.scss", "scss/easyedu/components/_panels.scss"],
+      "modules": [
+        "scss/easyedu/_foundation-classes.scss",
+        "scss/easyedu/components/_panels.scss"
+      ],
       "documentation": "docs/workspace-accent-palette-audit-2026-10-05.md",
       "status": "SM-57 paired Foundation examples and served two-route 144-record native rail/geometry gate PASS. Persistence and human checklist OPEN.",
       "pairedPenpotPublished": true,
@@ -1546,7 +1633,9 @@
       "generatedCssBlob": "c7b7945a536938555cbc77a917d3eb8df69be7e4",
       "emittedPropertySequencesCompared": 12973,
       "compiledCssUnchanged": true,
-      "browserCandidates": {"entity": "09b2eea5b96f49fc470e4005968a575f3d58ba9f"},
+      "browserCandidates": {
+        "entity": "09b2eea5b96f49fc470e4005968a575f3d58ba9f"
+      },
       "documentation": "docs/student-entity-field-extraction-2026-10-03.md",
       "status": "Canonical Kit/consumer pushed and served at managed Moodle 5.1 b3d3a41 with unchanged CSS/AMD. Nine native/resized modal field cases pass at 1600/768/390; final captures inspected. Full-body class adoption, Penpot palette/density, foreign overlay and human checklist remain open.",
       "currentPreviewProof": "docs/testing/student-completion-preview-2026-10-03.json",
@@ -1783,7 +1872,10 @@
     },
     "remainingDirectActions": {
       "recipe": "card-direct-action",
-      "families": ["rename__toggle", "group__unlink-button"],
+      "families": [
+        "rename__toggle",
+        "group__unlink-button"
+      ],
       "status": "canonical reuse, bounded CSS and managed responsive checks passed; product Rename/Unlink composition propagation pending",
       "proofRun": "easystud-authenticated-20261001T193408313Z-42096"
     },
@@ -1859,7 +1951,12 @@
         "tools/playwright/student-searchable-filter-clear-preview.spec.js": "8757c1df14e0ea105c14ede3269b124fcc5f27d1"
       }
     },
-    "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md"
+    "deferredDriftLedger": "easyedu-ui-kit/docs/audits/easystud-phase0-drift-ledger-2026-09-27.md",
+    "guide4_20261015": {
+      "kitVersion": "0.4.216",
+      "kitCommit": "2cdee923909a716fbe1cf35037f4ac449915bc21",
+      "scope": "GUIDE-PILLS and GS10; preserved M3, compact checklist and complete runtime template; unrelated modal primitives excluded"
+    }
   },
   "packages": {
     "ai": {
