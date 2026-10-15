@@ -1,4 +1,13 @@
 {
+"claudeEntityDialogsIntegration20261015": {
+  "incoming": ["7793bbb0", "518347ea", "f340090b", "47097787"],
+  "source": ["10d3b336", "ede48a77", "89622dea", "0962f2b8"],
+  "authorizedResolution": "remove only obsolete settings layout block; retain Kit image/deposit/toggle hooks and global M1/M2 policy",
+  "scope": "T048/K18 cards; T050/T051 import history/restore; 22px relation counters",
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "m1m2NativeRootsProof20261015": {
   "runtime": "a01262e3",
   "nativeRun": "easystud-authenticated-20261015T143927804Z-19656",
