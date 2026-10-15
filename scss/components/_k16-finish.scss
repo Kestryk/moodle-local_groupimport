@@ -3,10 +3,7 @@
 
 #local-groupimport-easystud {
   @include easyedu.card-title-accent-overlay;
-  // K16-37: the dense aligned recipe belongs to compact and responsive cards only;
-  // desktop full-information cards keep their row titles and spacing.
-  &.local-groupimport-easystud--compact-users .local-groupimport-easystud-user,
-  &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
+  .local-groupimport-easystud-user {
     @include easyedu.person-card-aligned-content;
     > .local-groupimport-easystud-selector {
       @include easyedu.person-card-aligned-selector(8px, 32px);
@@ -14,7 +11,7 @@
   }
   .local-groupimport-easystud-pagination__select {
     @include easyedu.pagination-select-button;
-    white-space: nowrap;
+    block-size: var(--easyedu-toolbar-control-height);
   }
   .easyedu-filter-actions {
     @include easyedu.filter-actions-stacked;

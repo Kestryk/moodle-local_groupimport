@@ -193,20 +193,15 @@ export const syncGroupMembersCollapsible = group => {
     if (!group) {
         return;
     }
-    const windowed = syncMemberWindow(group);
-    if (windowed) {
+    if (syncMemberWindow(group)) {
         syncGroupSelectAll(group);
         if (group.querySelector('[data-easystud-group-members]').hidden) {
             const select = group.querySelector('[data-easystud-group-select-all-row]');
             if (select) {
                 select.hidden = true;
             }
-            return;
         }
-        if (group.classList.contains('local-groupimport-easystud-long-list__foldable')) {
-            return;
-        }
-        // Long lists only bound how many rows exist: the card keeps its fold-down behaviour (K16-29).
+        return;
     }
     const list = group.querySelector('[data-easystud-group-members]');
     const toggle = group.querySelector('[data-easystud-group-members-toggle]');
@@ -253,10 +248,6 @@ export const syncGroupMembersCollapsible = group => {
     toggle.classList.toggle('is-expanded', expanded);
     if (more) {
         more.hidden = !cancollapse || expanded;
-    }
-    const footer = windowed ? group.querySelector(':scope > [data-easystud-long-list-footer]') : null;
-    if (footer && cancollapse && !expanded) {
-        footer.hidden = true;
     }
     syncGroupSelectAll(group);
 };
@@ -582,9 +573,6 @@ export const applyGroupMemberSearchToGroup = (root, group) => {
         const query = normalise(input ? input.value : '');
         const count = group.querySelectorAll('[data-easystud-member-id]').length;
         syncGroupMemberSearchEmptyState(root, group, query, count);
-        if (!query) {
-            syncGroupMembersCollapsible(group);
-        }
         syncGroupSelectAll(group);
         scheduleGroupingResizeForGroup(group);
         return;

@@ -130,9 +130,7 @@ export const syncAdvancedFilterToggle = (root, toggle) => {
             label.textContent = text;
         }
     }
-    // K16-30: the count matters most when the panel is folded (hidden active filters).
-    const panel = root.querySelector('[data-easystud-advanced-filters="' + key + '"]');
-    const count = panel ? countActiveAdvancedFilters(panel) : 0;
+    const count = expanded ? countActiveAdvancedFilters(root.querySelector('[data-easystud-advanced-filters="' + key + '"]')) : 0;
     const pill = toggle.querySelector('[data-easystud-advanced-filters-count]');
     if (pill) {
         pill.textContent = count ? String(count) : '';
