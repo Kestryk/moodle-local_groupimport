@@ -1,4 +1,18 @@
 {
+  "codex2SevenGuides20261015": {
+    "status": "desktop-seven-pass-compact-four-pass-two-overlay-blocks-one-drag-unproved",
+    "documentation": "docs/testing/codex2-seven-guides-2026-10-15.md",
+    "pin": "98dbcd99",
+    "desktopPassed": 7,
+    "compactPassed": 4,
+    "pageErrors": 0,
+    "compactProductObstacles": ["inspect-group-settings checklist intercepts action", "inspect-grouping-settings checklist intercepts action"],
+    "compactDrag": "draggable false; completion not certified",
+    "checklistSideChanges": ["activity select-groups left to right", "grouping editor right to left", "filters left to right"],
+    "scenarioClass": "local-supervised",
+    "paginationAndAdditionalGroupDragCertified": false,
+    "humanAccepted": false
+  },
   "codex2Guide10FirstPaint20261014": {
     "status": "full-native-path-pass-fixed-time-verdict-superseded",
     "documentation": "docs/testing/codex2-guide10-first-paint-2026-10-14.md",

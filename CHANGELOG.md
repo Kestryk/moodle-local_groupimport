@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Replay seven Guide paths on served64a9af53: desktop7/7 PASS; compact4/7 PASS, two checklist/menu overlays and compact native drag unproved; preserve mobile-command harness successor and checklist-side evidence.
+
 - 2026-10-14 [N1] Correct Guide10 timing diagnosis: bounded native first-paint wait<=1500ms replaces fixed611ms sample, preserving dragend1s/5s identity checks. Full3-step FR1280 path PASS, first correct card cue689.6ms, real context menu/final panel; earlier transition observations retained, no product fix.
 
 - 2026-10-14 [N1] Adapt17 Guide specs to served user/course storage keys through validated config/root identity after124696c7; native K21 four-cell key proof and T0583/3PASS. Held Guide10 cues pass1s/5s, post-selection cue still hidden611.4ms; retain interrupted/mobile-recipe predecessors and cleaned fixtures, no product edit.
