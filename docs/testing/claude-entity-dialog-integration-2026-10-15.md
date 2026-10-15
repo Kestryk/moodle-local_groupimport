@@ -19,3 +19,13 @@ that historical layout is intentionally superseded, unrelated assertions preserv
 Visual relay: participant/group/grouping details, loading/ready/edit, sticky footer
 and relation counters; history list/restore confirmation; FR/EN1600/1280/768/390.
 Native and Penpot/human acceptance must be recorded separately after serving.
+
+Served Source10d3b336/ede48a77/89622dea/0962f2b8/0734cabb through runtimeea86b53a,
+purge PASS. SM/CM/CSV and conservative page CSS builds, PHP lint, updated card/history
+contracts,36-module escaping and filter-engine checks all PASS.
+Native easystud-authenticated-20261015T151508393Z-54116 PASS FR1600/1280/390:
+nine card-dialog cells, initial header Close focus, Tab inside, Escape and exact
+native opener focus return, frame/footer containment, every measured relation
+counter exactly22px. History opens/closes at1280. Zero page errors/business writes.
+Three captures external; mobile participant capture inspected. No Save, restore,
+CSV, EN/768 or Guide-inspection path completion claimed by this bounded recipe.
