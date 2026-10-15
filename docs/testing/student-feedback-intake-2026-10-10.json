@@ -1,4 +1,13 @@
 {
+"drawerV1NativeProof20261015": {
+  "runtime": "4a5939f1",
+  "nativeRun": "easystud-authenticated-20261015T160136613Z-15572",
+  "scope": "FR390/768 compact SM+MI open/Tab/Escape/Close/focus/inert/scroll lock;1280 desktop",
+  "pageErrors": 0,
+  "businessWrites": 0,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "claudeDrawerV1Integration20261015": {
   "incoming": ["790372af", "9abf07c0"],
   "source": ["cf0b2dfe", "9380e4ac"],
