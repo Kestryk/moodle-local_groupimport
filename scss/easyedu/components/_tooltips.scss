@@ -254,3 +254,25 @@
 @mixin help-icon {
   @include contextual-help-control;
 }
+
+// The host supplies readable semantic roles (not raw chosen colours). A
+// transparent glow keeps white body copy at their AA contrast; the far end
+// and arrow only darken the supplied role. Geometry and interaction are owned
+// by popover-surface and the host's portal bridge.
+@mixin _popover-palette($role) {
+  --easyedu-tooltip-bg: linear-gradient(135deg, #{$role} 0%, color-mix(in srgb, #{$role} 82%, #000 18%) 100%);
+  --easyedu-tooltip-glow: transparent;
+  --easyedu-tooltip-text: #fff;
+  --easyedu-tooltip-arrow-bg: color-mix(in srgb, #{$role} 90%, #000 10%);
+}
+
+// Opt in after popover-surface. No marker retains the classic green recipe.
+// Informational primary takes precedence when both roles are customised.
+@mixin palette-aware-popover {
+  &[data-easyedu-custom-palette~="success"]:not([data-easyedu-custom-palette~="primary"]) {
+    @include _popover-palette(var(--easyedu-accent));
+  }
+  &[data-easyedu-custom-palette~="primary"] {
+    @include _popover-palette(var(--easyedu-primary-strong));
+  }
+}

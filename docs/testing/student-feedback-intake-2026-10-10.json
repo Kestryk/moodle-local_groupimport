@@ -1,4 +1,16 @@
 {
+"palettePopoverK1507Prepared20261015": {
+  "kitCommit": "30c7989",
+  "kitVersion": "0.4.212",
+  "classicCssByteParity": true,
+  "conservativeBuildVerified": true,
+  "nativeVerified": false,
+  "published": false,
+  "status": "source prepared; held by preceding unexplained T020 difference",
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+
 "claudeSelectionAlignmentFilters20261015": {
   "incoming": ["7759a02b", "adc90797", "100a3894", "bc5ffdff", "a2202a7b"],
   "sourceBuildCommit": "1bee85ec",

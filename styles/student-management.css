@@ -8133,6 +8133,10 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 .local-groupimport-easystud-hover-popover.popover .popover-body p:last-child,
 .local-groupimport-easystud-hover-popover .popover-body p:last-child {margin-bottom: 0;
 }
+.local-groupimport-easystud-hover-popover[data-easyedu-custom-palette~=success]:not([data-easyedu-custom-palette~=primary]) {--easyedu-tooltip-bg: linear-gradient(135deg, var(--easyedu-accent) 0%, color-mix(in srgb, var(--easyedu-accent) 82%, #000 18%) 100%);--easyedu-tooltip-glow: transparent;--easyedu-tooltip-text: #fff;--easyedu-tooltip-arrow-bg: color-mix(in srgb, var(--easyedu-accent) 90%, #000 10%);
+}
+.local-groupimport-easystud-hover-popover[data-easyedu-custom-palette~=primary] {--easyedu-tooltip-bg: linear-gradient(135deg, var(--easyedu-primary-strong) 0%, color-mix(in srgb, var(--easyedu-primary-strong) 82%, #000 18%) 100%);--easyedu-tooltip-glow: transparent;--easyedu-tooltip-text: #fff;--easyedu-tooltip-arrow-bg: color-mix(in srgb, var(--easyedu-primary-strong) 90%, #000 10%);
+}
 
 .local-groupimport-easystud-hover-popover--top .popover-arrow,
 .local-groupimport-easystud-hover-popover--bottom .popover-arrow {left: calc(50% - 0.36rem);
