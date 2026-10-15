@@ -18,10 +18,12 @@ namespace local_groupimport\privacy;
 
 use context;
 use context_course;
+use context_user;
 use core_privacy\local\metadata\collection;
 use core_privacy\local\request\approved_contextlist;
 use core_privacy\local\request\contextlist;
 use core_privacy\local\request\writer;
+use local_groupimport\local\motion;
 
 /**
  * Privacy provider for Local Group Import.
@@ -43,6 +45,7 @@ class provider implements
     public static function get_metadata(collection $collection): collection {
         $collection->add_user_preference(\local_groupimport\local\guide_welcome::PREFERENCE,
             'privacy:metadata:guidewelcomeseen');
+        $collection->add_user_preference(motion::PREFERENCE, 'privacy:metadata:motionlevel');
         $collection->add_database_table('local_groupimport_history', [
             'courseid' => 'privacy:metadata:history:courseid',
             'userid' => 'privacy:metadata:history:userid',
@@ -61,7 +64,12 @@ class provider implements
         return $collection;
     }
 
-    /** Export the global welcome preference; core owns preference deletion. */
+    /**
+     * Export the global welcome preference and the chosen animation level.
+     *
+     * @param int $userid User id.
+     * @return void
+     */
     public static function export_user_preferences(int $userid) {
         $value = get_user_preferences(\local_groupimport\local\guide_welcome::PREFERENCE, null, $userid);
         if ($value !== null) {
@@ -69,6 +77,21 @@ class provider implements
                 \local_groupimport\local\guide_welcome::PREFERENCE, (string)$value,
                 get_string('privacy:metadata:guidewelcomeseen', 'local_groupimport'));
         }
+        $level = get_user_preferences(motion::PREFERENCE, null, $userid);
+        if ($level !== null) {
+            writer::with_context(\context_system::instance())->export_user_preference('local_groupimport',
+                motion::PREFERENCE, (string)$level, get_string('privacy:metadata:motionlevel', 'local_groupimport'));
+        }
+    }
+
+    /**
+     * Delete the animation level chosen by a user (user context deletion).
+     *
+     * @param int $userid User id.
+     * @return void
+     */
+    protected static function delete_user_motion_preference(int $userid): void {
+        unset_user_preference(motion::PREFERENCE, $userid);
     }
 
     /**
@@ -85,11 +108,16 @@ class provider implements
                  WHERE ctx.contextlevel = :contextlevel
                    AND (h.userid = :importuserid OR h.rollbackuserid = :rollbackuserid)";
 
-        return (new contextlist())->add_from_sql($sql, [
+        $contextlist = (new contextlist())->add_from_sql($sql, [
             'contextlevel' => CONTEXT_COURSE,
             'importuserid' => $userid,
             'rollbackuserid' => $userid,
         ]);
+        // The chosen animation level belongs to the user context, so it can be deleted on request.
+        if (get_user_preferences(motion::PREFERENCE, null, $userid) !== null) {
+            $contextlist->add_user_context($userid);
+        }
+        return $contextlist;
     }
 
     /**
@@ -132,6 +160,8 @@ class provider implements
 
         if ($context instanceof context_course) {
             $DB->delete_records('local_groupimport_history', ['courseid' => $context->instanceid]);
+        } else if ($context instanceof context_user) {
+            self::delete_user_motion_preference((int)$context->instanceid);
         }
     }
 
@@ -145,6 +175,10 @@ class provider implements
         global $DB;
 
         foreach ($contextlist->get_contexts() as $context) {
+            if ($context instanceof context_user && (int)$context->instanceid === (int)$contextlist->get_user()->id) {
+                self::delete_user_motion_preference((int)$context->instanceid);
+                continue;
+            }
             if (!$context instanceof context_course) {
                 continue;
             }

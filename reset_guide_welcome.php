@@ -15,6 +15,8 @@ $PAGE->set_pagelayout('admin');
 $PAGE->set_title(get_string('guidewelcomereset', 'local_groupimport'));
 $PAGE->set_heading(get_string('guidewelcomereset', 'local_groupimport'));
 $PAGE->requires->css('/local/groupimport/styles/administration.css');
+// Animation level (user choice, else administrator default) for the Kit CSS and Motion.
+$motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
 $PAGE->requires->js_call_amd('local_groupimport/easyedu_confirmation', 'init', ['#easyedu-welcome-reset']);
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
@@ -36,5 +38,6 @@ echo $OUTPUT->render_from_template('local_groupimport/guide_welcome_reset', [
     'action' => $url->out(false),
     'cancelurl' => $returnurl->out(false),
     'sesskey' => sesskey(),
+    'motionlevel' => $motionlevel,
 ]);
 echo $OUTPUT->footer();

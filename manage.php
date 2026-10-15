@@ -51,12 +51,9 @@ $PAGE->set_pagetype('course-view-participants');
 $PAGE->set_secondary_active_tab('participants');
 $PAGE->set_title(get_string('easystudmanager', 'local_groupimport'));
 $PAGE->set_heading(format_string($course->fullname));
-$animationconfig = get_config('local_groupimport', 'enableanimations');
-$animationsenabled = $animationconfig === false ? true : (bool)$animationconfig;
-if (!$animationsenabled) {
-    $PAGE->add_body_class('local-groupimport-motion-disabled');
-    $PAGE->add_body_class('easyedu-motion-disabled');
-}
+// Animation level (user choice, else administrator default): root attributes and body classes.
+$motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
+$animationsenabled = $motionlevel !== 'minimal';
 $PAGE->requires->css('/local/groupimport/styles/student-management.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
 $PAGE->requires->js_call_amd('local_groupimport/guide_welcome', 'init', [
@@ -210,7 +207,11 @@ $templatedata = local_groupimport_build_manage_template_data(
     $navigationdata
 );
 $templatedata['animationsenabled'] = $animationsenabled;
+$templatedata['motionlevel'] = $motionlevel;
 $templatedata['motionpolicy'] = $animationsenabled ? 'enabled' : 'disabled';
+// The Guide is portalled out of the root on compact layouts: it carries the level itself.
+$templatedata['easyeduguide']['motionlevel'] = $motionlevel;
+$templatedata['easyeduguide']['motionpolicy'] = $templatedata['motionpolicy'];
 $templatedata['themestyle'] = local_groupimport_get_theme_style();
 $templatedata['themerailroles'] = local_groupimport_get_theme_rail_roles();
 $templatedata['navigation']['hasguide'] = true;

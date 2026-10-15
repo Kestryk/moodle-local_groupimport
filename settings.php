@@ -142,11 +142,13 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
                 'aria-label' => get_string('colourpickerhexlabel', 'local_groupimport'),
                 'aria-invalid' => $isvalid ? 'false' : 'true',
             ];
+            $motionlevel = \local_groupimport\local\motion::level();
+            $motionattributes = \local_groupimport\local\motion::root_attributes($motionlevel);
             $controlattributes = [
                 'data-easyedu-color-picker' => '1',
                 'data-easyedu-color-default' => strtoupper((string)$default),
-                'data-easyedu-motion-policy' => get_config('local_groupimport', 'enableanimations') === '0'
-                    ? 'disabled' : 'enabled',
+                'data-easyedu-motion-level' => $motionattributes['data-easyedu-motion-level'],
+                'data-easyedu-motion-policy' => $motionattributes['data-easyedu-motion-policy'],
                 'data-easyedu-color-panel-labels' => json_encode([
                     'title' => get_string('colourpickerswatchlabel', 'local_groupimport'),
                     'hue' => get_string('colourpickerhue', 'local_groupimport'),
@@ -206,7 +208,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
             // Native Moodle admin rows are outside the workspace's Kit root.
             // Keep the public component scoped even without JavaScript; do not
             // copy its paint rules into the native administration adapter.
-            $element = html_writer::div($element, 'easyedu-ui');
+            $element = html_writer::div($element, 'easyedu-ui', ['data-easyedu-motion-level' => $motionlevel]);
 
             return format_admin_setting($this, $this->visiblename, $element, $this->description, true, '', $default, $query);
         }
@@ -225,6 +227,8 @@ if ($hassiteconfig) {
             $PAGE->url->get_param('section') === 'local_groupimport') {
         $PAGE->requires->css('/local/groupimport/styles/administration.css');
         $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
+        // Animation level (user choice, else administrator default) for the Kit CSS and Motion.
+        $motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
         $PAGE->requires->js('/local/groupimport/js/easyedu_colour_picker.js', true);
         $PAGE->requires->js('/local/groupimport/js/admin_settings_loading.js', true);
         $PAGE->requires->js('/local/groupimport/js/admin_guide_reset.js');
@@ -234,7 +238,7 @@ if ($hassiteconfig) {
             'none' => get_string('none'),
             'count' => local_groupimport_count_template('filterselectioncount'),
             'clear' => get_string('clearfilterselection', 'local_groupimport'),
-        ], get_config('local_groupimport', 'enableanimations') !== '0']);
+        ], $motionlevel !== 'minimal']);
     }
 
     $settings = new admin_settingpage(
@@ -346,6 +350,7 @@ if ($hassiteconfig) {
             'cancel' => get_string('cancel'),
             'action' => $reseturl->out(false),
             'sesskey' => sesskey(),
+            'motionlevel' => \local_groupimport\local\motion::level(),
         ]);
     }
     $featureshtml .= html_writer::div(
@@ -563,11 +568,17 @@ if ($hassiteconfig) {
         get_string('interfaceaccessibility_desc', 'local_groupimport')
     ));
 
-    $settings->add(new admin_setting_configcheckbox(
-        'local_groupimport/enableanimations',
-        get_string('enableanimations', 'local_groupimport'),
-        get_string('enableanimations_desc', 'local_groupimport'),
-        1
+    // Default animation level; each user may choose their own (preference easyedu_motion_level).
+    $settings->add(new admin_setting_configselect(
+        'local_groupimport/motionlevel',
+        get_string('motionlevel', 'local_groupimport'),
+        get_string('motionlevel_desc', 'local_groupimport'),
+        'full',
+        [
+            'full' => get_string('motionlevelfull', 'local_groupimport'),
+            'reduced' => get_string('motionlevelreduced', 'local_groupimport'),
+            'minimal' => get_string('motionlevelminimal', 'local_groupimport'),
+        ]
     ));
 
     $settings->add(new admin_setting_heading(
