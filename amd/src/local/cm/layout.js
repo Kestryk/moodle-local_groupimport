@@ -21,6 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import * as Motion from '../../motion';
 import {
     structureFocusClass, participantFocusClass, panelActionOverflowClass, isResponsiveWorkspace, getLabels,
 } from './shared';
@@ -257,7 +258,38 @@ const cloneOverflowAction = (source, menu, toggle) => {
     menu.appendChild(clone);
 };
 
-const syncPanelActionOverflow = root => {
+/**
+ * Visible content of every panel action bar (visible buttons plus the overflow toggle).
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @returns {Map<HTMLElement, String>}
+ */
+export const snapshotPanelActions = root => {
+    const snapshot = new Map();
+    root.querySelectorAll('.local-groupimport-easystud__panel-actions').forEach(actions => {
+        const visible = Array.from(actions.children).filter(child => child.offsetParent !== null);
+        snapshot.set(actions, visible.map(child => child.textContent.trim()).join('|'));
+    });
+    return snapshot;
+};
+
+/**
+ * Fade in the action bars whose content changed since the snapshot (one soft arrival together
+ * with the layout swap; bars that did not change stay still).
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Map<HTMLElement, String>} before Snapshot taken before the mutation.
+ */
+export const revealChangedPanelActions = (root, before) => {
+    const after = snapshotPanelActions(root);
+    after.forEach((signature, actions) => {
+        if (signature && signature !== before.get(actions)) {
+            Motion.reveal(actions);
+        }
+    });
+};
+
+export const syncPanelActionOverflow = root => {
     root.querySelectorAll('.local-groupimport-easystud__panel-actions').forEach(actions => {
         const {toggle, menu} = ensurePanelActionOverflowControls(root, actions);
         const buttons = getPanelActionButtons(actions);
