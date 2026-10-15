@@ -1,4 +1,15 @@
 {
+  "codex2ServedSecurity20261015": {
+    "status": "S3-SITEID-integration-pass-S9-native-fail",
+    "documentation": "docs/testing/codex2-served-security-2026-10-15.md",
+    "pin": "98dbcd99",
+    "integrationAssertionsPassed": 11,
+    "csvIsolatedCasesPassed": 14,
+    "phpunitExecuted": false,
+    "nativeS9": "literal group name renders amp/lt/gt entities",
+    "nativeExportCertified": false,
+    "scenarioClass": "local-supervised"
+  },
   "codex2SevenGuides20261015": {
     "status": "desktop-seven-pass-compact-four-pass-two-overlay-blocks-one-drag-unproved",
     "documentation": "docs/testing/codex2-seven-guides-2026-10-15.md",

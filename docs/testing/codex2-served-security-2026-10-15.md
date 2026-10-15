@@ -1,0 +1,11 @@
+# Served security verification on8051
+
+Source pin98dbcd99 contains69f060f4. `tools/perf/verify-served-security.php` executes the actual served course_state services with two manifested synthetic users and a disposable course-context role. Eleven assertions PASS: managegroups without identity rights yields no e-mail/identifiers in compact state or details; granting viewuseridentity restores the configured username/email/idnumber fields; get_state and get_details reject SITEID even as admin. The role was deleted in finally, course102 and both users cleaned. Evidence C:/dev/artifacts/es-security-integration-20261015/security.json and cleanup.json. Config overrides are process-local; no real enrolment changed.
+
+These are integration checks, NOT PHPUnit results. Perf has no vendor/bin/phpunit. The separate CCB PHPUnit installation was inspected only for availability and was not altered or reused. tests/service/course_state_test.php and tests/external/siteid_refusal_test.php remain unexecuted as PHPUnit. The legacy student-state-integration-native.spec.js was not run: it requires developer debug and still contains legacy rendering-mode scenarios; do not enable debug silently or claim its coverage.
+
+`check-served-csv-neutralisation.cjs` runs the exact served pure CSV formatter:14 cases PASS, including =1+1 → quoted cell containing '=1+1, and literal punctuation. This is not native download proof. Native export is in the subsequent visual recipe.
+
+S9 native failure, FR1280/on-demand, course105/run easystud-authenticated-20261015T065220235Z-33216, spec served-polish-security-native.spec.js:28. Stored group name is `QA & < > " '` but the accessibility snapshot exposes `QA &amp; &lt; &gt; " '`. Thus double escaping remains visible. Report/error-context under C:/dev/artifacts/es-served-polish-security-ready-native. No product edit/retry to conceal it. The same run confirms Select all expands the folded four-member card; subsequent native export/mobile/pages were not reached.
+
+Earlier fixture setup run064927023Z-2256 failed because groups_update_group was missing courseid. No browser ran. Fixture helper corrected; exact manifested course104/four users explicitly cleaned under own lease (es-served-polish-fixture-recovery.json). Subsequent course105 wrapper cleanup PASS. All original outcomes retained.
