@@ -36,6 +36,7 @@ import {getSelectedItems, clearSelectionState} from './selection';
 import {
     emitGuidedCompletion, emitNativePathCompletion, emitPracticeCompletion, emitMemberPathCompletion,
     captureActivityGroupingConfirmation, commitActivityGroupingConfirmation,
+    captureTryActionsMoveToken, emitTryActionsMoveCompletion,
 } from './guide_hooks';
 import {syncGroupMembersState} from './group_cards';
 import {applyFilters, updateSelectionActions} from './workspace';
@@ -67,6 +68,8 @@ export const bindMoveModal = (root, courseId) => {
     let memberSnapshot = [];
     let memberBusy = false;
     let returnFocus = null;
+    // Guided path n°10, compact variant (C2-15-02): the Guide session in which this dialog opened.
+    let tryActionsToken = null;
     const chooserLabels = () => ({
         label: label.textContent,
         search: labels.searchdestination || labels.searchgroupslabel || '',
@@ -179,6 +182,7 @@ export const bindMoveModal = (root, courseId) => {
             }
         }
         returnFocus = opener;
+        tryActionsToken = type === 'participant' ? captureTryActionsMoveToken(root) : null;
         contextType = type;
         // One dialog serves three different native commands. Guide targets
         // must identify the opened context, not infer it from shared geometry.
@@ -329,6 +333,7 @@ export const bindMoveModal = (root, courseId) => {
             if (!users.length || !groupExists(root, value)) {
                 return;
             }
+            const moveToken = tryActionsToken;
 
             postAction({
                 courseid: courseId,
@@ -351,6 +356,7 @@ export const bindMoveModal = (root, courseId) => {
                 showNotification(root, response.message || '', 'success');
                 emitGuidedCompletion(root, 1);
                 emitPracticeCompletion(root, 'confirm-move');
+                emitTryActionsMoveCompletion(root, moveToken);
             }).catch(error => handleActionError(root, error));
             return;
         }

@@ -26,7 +26,9 @@ import * as Guide from '../../easyedu_guide';
 import {compactClass, isResponsiveWorkspace, getLabels, showNotification} from './shared';
 import {schedulePanelActionOverflow} from './layout';
 import {getGroupElementsById, scheduleParticipantTagOverflow, setInlinePanelOpen} from './cards';
-import {getActivityGuideRoot, verifyActivityGrouping} from './guide_hooks';
+import {
+    getActivityGuideRoot, verifyActivityGrouping, installTryActionsCompactMove, syncTryActionsMoveCue,
+} from './guide_hooks';
 import {
     syncGroupMembersCollapsible, syncGroupingGroupsCollapsible, scheduleGroupingResizeForGroup,
     normaliseCardMenuButton, ensureGroupEmailPanel,
@@ -51,6 +53,38 @@ const getFixedHeaderOffset = () => {
     }, 0);
 };
 
+// Guided path n°10 in the compact workspace (C2-15-02): install the ⋮ menu variant of its first
+// step and let its cue follow the action sheet and the move dialog as they open and close.
+const bindTryActionsCompactMove = (root, guideRoot) => {
+    if (!installTryActionsCompactMove(root, guideRoot)) {
+        // The Guide normally initialises first; otherwise install on its first step request.
+        const retry = () => {
+            if (installTryActionsCompactMove(root, guideRoot)) {
+                document.removeEventListener('easyedu:guide-open-target', retry);
+            }
+        };
+        document.addEventListener('easyedu:guide-open-target', retry);
+    }
+    if (!window.MutationObserver) {
+        return;
+    }
+    let frame = null;
+    const observer = new MutationObserver(() => {
+        if (frame === null) {
+            frame = window.requestAnimationFrame(() => {
+                frame = null;
+                syncTryActionsMoveCue(root);
+            });
+        }
+    });
+    ['[data-easystud-context-menu]', '[data-easystud-move-modal]'].forEach(selector => {
+        const node = root.querySelector(selector);
+        if (node) {
+            observer.observe(node, {attributes: true, attributeFilter: ['hidden']});
+        }
+    });
+};
+
 // The shared Guide owns its modal and checklist UI. EasyStud still owns the
 // product-specific controls that a slide can reveal (for example an inline
 // email field or a grouping's add-groups field). Keep that adapter active
@@ -64,6 +98,7 @@ export const bindSharedGuideTargets = root => {
         return;
     }
     root.dataset.easystudGuideTargetsBound = '1';
+    bindTryActionsCompactMove(root, guideRoot);
 
     const ensureWorkspace = workspace => {
         if (isResponsiveWorkspace()) {
