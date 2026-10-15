@@ -1,4 +1,4 @@
-﻿# Arrêt Kevin — candidat groupe non publié
+# Arrêt Kevin — candidat groupe non publié
 
 Reprise : Source2b95f515, runtimece778875, Kit423f691, aucun cherry-pick. Deux fichiers de test non commités (group-grid-centres-native.spec.js et summarize-group-grid.cjs), aucun fichier produit non commité. Dernière fixture201539797 complètement restaurée ; relations préexistantes inchangées. Aucun processus interrompu n'a été relancé sans nouveau lease.
 
@@ -23,3 +23,10 @@ Les hashes ci-dessous introduisent les règles identifiées ; ils ne constituent
 | J | Recette ovale Kit action-menu-trigger :34448eb2, scss/easyedu/components/_buttons.scss (radius999px, min-width2.08rem/min-height1.64rem) ; consommation bandeau _layout.scss par46b6e74c. Jaune : rôle primary-soft configurable, origine Git de la valeur active inconnue. |
 
 Preuves : git log -S et diffs ciblés, aucune correction de ces points. I n'a pas été demandé. Référence de la recette listes longues : docs/testing/long-lists-k16-22-parity-2026-10-15.md (32états,1042pastilles22px,centrage0,10fiches différées,fixtures restaurées).
+
+## Retour effectu?
+
+- Branche candidate conserv?e : work/codex1/easystud-k16-pills-20261015 ; produit2b95f515, sauvegarde977d0b57 puis pr?sent rapport. Kit423f691 conserv? sur sa branche, non consomm? par le runtime r?tabli.
+- Branche de repli isol?e : work/codex1/easystud-validated-localhost-20261015, commitdf94819a. Revert propre des seuls trois commits de candidat groupe, sans conflit source ; arbre Git exactement identique ? Source43cb82da.
+- Runtime final57f92492 : diff int?gral contre runtime valid?c61d6e12 vide, caches purg?s. Les18?checs groupe historiques de la r?f?rence ne sont pas une nouvelle certification0FAIL ; le0FAIL du soir concerne uniquement le candidat retir?ce778875.
+- Aucun3ac0523e, b6fdedb3, Z-A/K16-14 ou R6/R8/R9 commenc?. Arr?t ? la consigne Kevin ; aucune recette lourde suppl?mentaire ni correction A?J.
