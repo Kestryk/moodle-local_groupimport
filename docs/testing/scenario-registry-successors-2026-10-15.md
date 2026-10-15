@@ -123,3 +123,5 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 - Certified run204751094: FR1600 empty/full columns0px and header.5px, then real removal glyph -0.796875px FAILED strict content oracle. Fixture restored. group-grid-glyph-native.spec.js retains identical strict criteria and visible-section capture; canonical Kit738a97cc removes its legacy negative margin/line-height compensation.
 
 - Glyph run205028037: removal glyph nowpasses; full-card footer label-0.984375px FAILED unchanged oracle. Fixture restored. Native font probe205333416 PASS at1600/390: original1.2=-0.984375px, normal=0px, one=-.75px. Temporary styles restored. Footertext successor preserves all strict assertions and actual display capture; Kit footer uses natural line metrics only.
+
+- Footertext run205541050: FR1600/1280 empty/full/footer and real selection passed. First FR768 empty case/icon .8125px and header27.5px FAILED. Responsive read-only probe205900422: legacy wrapped header and member border-inline0 override the base column composition. Responsive successor reuses canonical columns inside responsive scope, preserves all strict oracles; fixtures restored.
