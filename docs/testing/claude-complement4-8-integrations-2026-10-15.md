@@ -12,7 +12,11 @@ whole-monolithic-Course-Manager identity assertion against19ea9f8e, predating
 T055 and these explicitly authorized Motion changes. Preserve it unchanged;
 it is not evidence of current dropdown correctness. Targeted native1280 recipe
 checks the actual new Motion exports, Alt add/remove and visible dropdown open/close.
-Native and service results pending. K21ebd286d5 follows this Claude publication.
+Served through43f5e405, followed by K21a3071593. Native run
+easystud-authenticated-20261015T090956236Z-36984 passed FR1280:
+actual Motion getLevel/reveal/showMenu/hideMenu exports, Alt add/remove of one
+participant and the visible Kit dropdown open/close. Zero page errors or business
+writes. This is a targeted native proof, not all selection entities or Mac input.
 
 readonlysession is read from db/services.php by Moodle's external API; no database
 metadata upgrade is required. The optimization still needs site configuration

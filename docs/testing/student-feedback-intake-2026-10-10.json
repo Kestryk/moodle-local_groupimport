@@ -1,4 +1,20 @@
 {
+"k21LocalhostProof20261015": {
+  "source": "ffc67c1d",
+  "runtime": "a3071593",
+  "nativeRun": "easystud-authenticated-20261015T094704959Z-40228",
+  "matrix": "FR/EN 1280/390, SSR and live counts",
+  "result": "PASS: 14 groupings, 55 groups, equal badges, no overflow/errors/business writes",
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+"claudeComplement4to8Native20261015": {
+  "runtime": "43f5e405",
+  "nativeRun": "easystud-authenticated-20261015T090956236Z-36984",
+  "result": "PASS FR1280 actual Motion exports, participant Alt toggle and Kit dropdown open/close",
+  "macCertified": false,
+  "humanAccepted": false
+},
 "participantColumnK1525_20261015": {
   "scope": "existing participantstitle only; workspace selector unchanged",
   "guideChecklistColumnCopyAudit": "combined names refer to views, no stale column reference found",
