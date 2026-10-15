@@ -4145,6 +4145,17 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-modal__step-count,
 .path-local-groupimport .easyedu-guide .easyedu-guide-modal__step-count {color: var(--easyedu-text-muted);font-size: 0.82rem;font-weight: 650;line-height: 1.2;
 }
+.local-groupimport-easystud-easyedu-guide .easyedu-guide-modal__step-count-compact,
+.path-local-groupimport .easyedu-guide .easyedu-guide-modal__step-count-compact {display: none;
+}
+@media (max-width: 30rem) {
+  .local-groupimport-easystud-easyedu-guide .easyedu-guide-modal__step-count-long,
+.path-local-groupimport .easyedu-guide .easyedu-guide-modal__step-count-long {display: none;
+  }
+  .local-groupimport-easystud-easyedu-guide .easyedu-guide-modal__step-count-compact,
+.path-local-groupimport .easyedu-guide .easyedu-guide-modal__step-count-compact {display: inline;
+  }
+}
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-modal__footer-actions,
 .path-local-groupimport .easyedu-guide .easyedu-guide-modal__footer-actions {align-items: center;display: flex;flex-wrap: wrap;gap: 0.55rem;justify-content: flex-end;min-width: 0;
 }

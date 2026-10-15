@@ -642,6 +642,19 @@
     line-height: 1.2;
   }
 
+  .easyedu-guide-modal__step-count-compact {
+    display: none;
+  }
+
+  @media (max-width: 30rem) {
+    .easyedu-guide-modal__step-count-long {
+      display: none;
+    }
+    .easyedu-guide-modal__step-count-compact {
+      display: inline;
+    }
+  }
+
   .easyedu-guide-modal__footer-actions {
     align-items: center;
     display: flex;
