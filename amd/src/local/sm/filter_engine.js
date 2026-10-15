@@ -40,15 +40,14 @@
 export const NO_GROUPING = '__none__';
 
 /**
- * Search text normalisation, the same for the texts and the queries: lowercase.
- *
- * Accents and spaces are kept as typed, so "etudiant" does not find "Étudiant" (unchanged
- * behaviour; folding them would be a product decision taken here, for every search at once).
+ * Search text normalisation, the same for the texts and the queries: lowercase, accents folded
+ * (Kevin, 15/10/2026: "etudiant" finds "Étudiant", "helene" finds "Hélène"). Spaces are kept.
  *
  * @param {*} value Value.
  * @returns {String}
  */
-export const normalise = value => (value || '').toString().toLowerCase();
+export const normalise = value => (value || '').toString().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').toLowerCase();
 
 /**
  * Whether a normalised text contains a normalised query; an empty query matches everything.

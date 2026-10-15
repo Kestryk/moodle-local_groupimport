@@ -40,10 +40,10 @@ assert.deepEqual(ids({roles: ['5']}), [22, 23]);
 assert.deepEqual(ids({roles: ['3', '5']}), [1, 22, 23], 'OR within the role filter');
 assert.deepEqual(ids({roles: ['enseignant']}), [], 'a role name is not a role filter value');
 
-// Text: lowercase only, accents and spaces kept as typed (unchanged behaviour).
+// Text: lowercase with accents folded (Kevin, 15/10/2026); spaces kept as typed.
 assert.deepEqual(ids({query: 'ZOÉ'}), [23]);
-assert.deepEqual(ids({query: 'zoe'}), [23], 'zoe@example.com');
-assert.deepEqual(ids({query: 'etudiant'}), [22], 'the name, not the role "Étudiant"');
+assert.deepEqual(ids({query: 'zoe'}), [23], 'zoe@example.com and Zoé');
+assert.deepEqual(ids({query: 'etudiant'}), [22, 23], 'accents folded: finds the role "Étudiant" too');
 assert.deepEqual(ids({query: 'étudiant'}), [22, 23], 'role names stay in the search text');
 assert.deepEqual(ids({query: 'groupement 1'}), [1]);
 assert.deepEqual(ids({query: 'ada  lovelace'}), [], 'spaces are not collapsed');
