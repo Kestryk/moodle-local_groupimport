@@ -11950,3 +11950,44 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   #local-groupimport-easystud .local-groupimport-easystud__panel {margin-inline-start: max(0px, var(--easyedu-touch-target-min) + 4px - 24px);
   }
 }
+
+#local-groupimport-easystud .easyedu-entity-card-grid {--easyedu-entity-selection-column: var(--easyedu-card-action-target);--easyedu-entity-action-column: var(--easyedu-card-action-target);--easyedu-entity-column-gap: 0.5rem;--easyedu-entity-row-border: 1px;--easyedu-entity-card-padding-inline: 0.7rem;--easyedu-entity-card-padding-block: 0.6rem;padding-inline: var(--easyedu-entity-card-padding-inline);display: grid;grid-template-columns: minmax(0, 1fr) var(--easyedu-card-action-target) minmax(0, 1fr);
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selector {block-size: var(--easyedu-entity-selection-column);inline-size: var(--easyedu-entity-selection-column);inset-inline-start: calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border));min-block-size: var(--easyedu-entity-selection-column);min-inline-size: var(--easyedu-entity-selection-column);top: calc(var(--easyedu-entity-card-padding-block) + var(--easyedu-entity-row-border));transform: none;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__header {border: var(--easyedu-entity-row-border) solid transparent;box-sizing: border-box;min-block-size: calc(var(--easyedu-entity-action-column) + 2 * var(--easyedu-entity-row-border));padding-inline-start: calc(var(--easyedu-entity-selection-column) + var(--easyedu-entity-column-gap));
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members {margin-inline: 0;padding-inline: 0;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-related-person-row {column-gap: var(--easyedu-entity-column-gap);display: grid;grid-template-columns: var(--easyedu-entity-selection-column) minmax(0, 1fr) var(--easyedu-entity-action-column);min-block-size: max(var(--easyedu-related-person-line), var(--easyedu-entity-selection-column) + 2 * var(--easyedu-entity-row-border));padding-inline: 0;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-related-person-row > .easyedu-related-person-row__selector {block-size: var(--easyedu-entity-selection-column);grid-area: auto;grid-column: 1;grid-row: 1;inline-size: var(--easyedu-entity-selection-column);margin: 0;min-block-size: var(--easyedu-entity-selection-column);min-inline-size: var(--easyedu-entity-selection-column);
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-related-person-row > .easyedu-related-person-row__name {grid-column: 2;grid-row: 1;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-related-person-row > .easyedu-related-person-row__remove {grid-column: 3;grid-row: 1;justify-self: center;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-entity-card-empty {column-gap: var(--easyedu-entity-column-gap);grid-template-columns: var(--easyedu-entity-selection-column) minmax(0, 1fr) var(--easyedu-entity-action-column);
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-entity-card-empty .easyedu-entity-card-empty__icon {grid-column: 1;grid-row: 1;justify-self: center;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-entity-card-empty .easyedu-entity-card-empty__copy {grid-column: 2/-1;grid-row: 1;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > * {grid-column: 1/-1;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__reveal:not([hidden]) {block-size: var(--easyedu-card-action-target);grid-column: 2;inline-size: var(--easyedu-card-action-target);margin: 0;padding: 0;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) {align-items: center;block-size: var(--easyedu-card-action-target);grid-column: 3;justify-self: end;margin: 0;pointer-events: auto;position: static;
+}
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {--easyedu-entity-selection-column: var(--easyedu-touch-target-min);--easyedu-entity-action-column: var(--easyedu-touch-target-min);
+}
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__header {padding-inline-end: calc(var(--easyedu-entity-action-column) + var(--easyedu-entity-column-gap));
+}
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__menu {inset-inline-end: calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border));top: calc(var(--easyedu-entity-card-padding-block) + var(--easyedu-entity-row-border));transform: none;
+}
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__header > .easyedu-entity-card-grid__menu {inset-inline-end: 0;top: 50%;transform: translateY(-50%);
+}
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .local-groupimport-easystud-card-menu {inset-inline-end: calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border));top: calc(var(--easyedu-entity-card-padding-block) + var(--easyedu-entity-row-border));transform: none;
+}
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__header > .local-groupimport-easystud-card-menu {inset-inline-end: 0;top: 50%;transform: translateY(-50%);
+}

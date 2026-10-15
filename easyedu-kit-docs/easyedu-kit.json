@@ -4,6 +4,7 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "entityCardColumns20261015":{"kitCommit":"299854a","kitVersion":"0.4.219","scope":"Shared checkbox/text/action tracks for Group headers, members and empty states; disjoint native footer cells; existing runtime pins retained"},
     "k16MetadataActionGutter20261015":{"kitCommit":"8a7b88c","scope":"Metadata below responsive actions reuses only the existing right gutter; header and selector geometry unchanged"},
     "k16PillWrappingGeometry20261015":{"kitCommit":"9e3f517","predecessor":"acf77ff","scope":"Nonshrinking peer lanes and canonical22px overflow glyph geometry; previous pins unchanged"},
     "k16ParticipantPills20261015":{"kitCommit":"30e9282","scope":"Intrinsic wrapping metadata values and peer categories; earlier pins unchanged"},
