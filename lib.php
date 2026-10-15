@@ -124,6 +124,37 @@ function local_groupimport_is_simplified_view_enabled(): bool {
 }
 
 /**
+ * Effective animation level of the current user: their own choice, else the administrator default.
+ *
+ * The system "reduce motion" media is not followed by default (EasyEdu rule, 15/10/2026).
+ *
+ * @return string full | reduced | minimal
+ */
+function local_groupimport_get_motion_level(): string {
+    return \local_groupimport\local\motion::level();
+}
+
+/**
+ * User preferences the browser may save through core_user_set_user_preferences.
+ *
+ * easyedu_motion_level is shared by the EasyEdu family: every plugin declaring it must keep this
+ * exact definition (Moodle keeps the first definition it meets).
+ *
+ * @return array
+ */
+function local_groupimport_user_preferences(): array {
+    return [
+        \local_groupimport\local\motion::PREFERENCE => [
+            'type' => PARAM_ALPHA,
+            'null' => NULL_NOT_ALLOWED,
+            'default' => \local_groupimport\local\motion::DEFAULT,
+            'choices' => array_merge([\local_groupimport\local\motion::DEFAULT], \local_groupimport\local\motion::LEVELS),
+            'permissioncallback' => [core_user::class, 'is_current_user'],
+        ],
+    ];
+}
+
+/**
  * Whether a count takes the singular form in the current language (CLDR plural rules: in
  * French 0 and 1 are singular, in English only 1).
  *

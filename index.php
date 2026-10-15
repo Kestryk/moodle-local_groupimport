@@ -1007,12 +1007,8 @@ $PAGE->set_course($course);
 $PAGE->set_pagelayout('incourse');
 $PAGE->set_title(get_string('groupimport', 'local_groupimport'));
 $PAGE->set_heading(format_string($course->fullname));
-$animationconfig = get_config('local_groupimport', 'enableanimations');
-$animationsenabled = $animationconfig === false ? true : (bool)$animationconfig;
-if (!$animationsenabled) {
-    $PAGE->add_body_class('local-groupimport-motion-disabled');
-    $PAGE->add_body_class('easyedu-motion-disabled');
-}
+// Animation level (user choice, else administrator default): root attributes and body classes.
+$motionlevel = \local_groupimport\local\motion::apply_to_page($PAGE);
 $PAGE->requires->css('/local/groupimport/styles/mass-import.css');
 $PAGE->requires->js('/local/groupimport/js/loading_state_bootstrap.js', true);
 $PAGE->requires->js_call_amd('local_groupimport/easyedu_navigation', 'init', [
@@ -1172,10 +1168,12 @@ $navigationmarkup = html_writer::tag('div',
 );
 
 // Main container.
-echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !== null ? ' has-preview is-upload-collapsed' : ''), [
+echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !== null ? ' has-preview is-upload-collapsed' : '') .
+        ($motionlevel === 'minimal' ? ' is-easyedu-motion-off' : ''), [
     'id' => 'local-groupimport-import',
     'data-region' => 'local-groupimport-import',
-    'data-easyedu-motion-policy' => $animationsenabled ? 'enabled' : 'disabled',
+    'data-easyedu-motion-level' => $motionlevel,
+    'data-easyedu-motion-policy' => $motionlevel === 'minimal' ? 'disabled' : 'enabled',
     'data-easystud-loading-state' => 'loading',
     'data-easyedu-loading-bootstrap' => '1',
     'data-easyedu-loading-ready-attribute' => 'data-easyedu-loading-ready',

@@ -1,7 +1,7 @@
 {{! Server confirmation: shared Kit classes only; no inline style or business script.
     inline: rendered closed on the admin settings page and opened there by js/admin_guide_reset.js;
     otherwise the standalone page renders it open. }}
-<div class="easyedu-ui{{^inline}} easyedu-ui--standalone{{/inline}}">
+<div class="easyedu-ui{{^inline}} easyedu-ui--standalone{{/inline}}"{{#motionlevel}} data-easyedu-motion-level="{{motionlevel}}"{{/motionlevel}}>
     <dialog id="easyedu-welcome-reset" class="easyedu-confirmation-dialog easyedu-confirmation-dialog--modal"{{^inline}} open{{/inline}} aria-labelledby="easyedu-welcome-reset-title" aria-describedby="easyedu-welcome-reset-description">
         <header class="easyedu-dialog-header">
             <h2 id="easyedu-welcome-reset-title" class="easyedu-modal-title">{{title}}</h2>

@@ -215,5 +215,17 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026101500, 'local', 'groupimport');
     }
 
+    if ($oldversion < 2026101501) {
+        // EasyEdu animation levels: the on/off enableanimations checkbox becomes the default
+        // level (unticked = minimal, otherwise full). Users may then choose their own level.
+        $level = get_config('local_groupimport', 'motionlevel');
+        if (!in_array($level, ['full', 'reduced', 'minimal'], true)) {
+            $legacy = get_config('local_groupimport', 'enableanimations');
+            set_config('motionlevel', $legacy !== false && !(bool)$legacy ? 'minimal' : 'full', 'local_groupimport');
+        }
+        unset_config('enableanimations', 'local_groupimport');
+        upgrade_plugin_savepoint(true, 2026101501, 'local', 'groupimport');
+    }
+
     return true;
 }
