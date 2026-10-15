@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Prove served Ctrl/Shift selection across participants/groups/members, mixed-type refusal, exact search/role filter and native drag; default tooltip screenshot verified, disposable palette restoration corrected and DB-verified.
+
 - 2026-10-15 [N1] Preserve native card expansion/export/mobile-menu evidence and S9 encoded-label/Mass Import14.08px failures; independent admin/outside recipe avoids retrying failed product assertions.
 
 - 2026-10-15 [N1] Verify served S3 identity minimisation/restoration and SITEID refusal on disposable8051;11 integration assertions and14 isolated CSV cases PASS. Preserve native S9 double-escaping failure; PHPUnit not installed in Perf.

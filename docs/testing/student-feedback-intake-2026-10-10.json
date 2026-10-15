@@ -1,4 +1,19 @@
 {
+  "codex2SelectionFilter20261015": {
+    "status": "targeted-native-pass",
+    "documentation": "docs/testing/codex2-selection-filter-2026-10-15.md",
+    "pin": "463b657f",
+    "run": "easystud-authenticated-20261015T071257962Z-57104",
+    "types": ["participants", "groups", "members"],
+    "modifiers": ["Control", "Shift"],
+    "mixedParticipantGroupRefused": true,
+    "exactQueryAndTeacherRolePass": true,
+    "trustedDragIntact": true,
+    "defaultTooltipScreenshotReviewed": true,
+    "pageErrors": 0,
+    "paletteExactRestorationDbVerified": true,
+    "scenarioClass": "local-supervised"
+  },
   "codex2ServedPolish20261015": {
     "status": "partial-native-pass-S9-and-Mass-root-font-fail",
     "documentation": "docs/testing/codex2-served-polish-2026-10-15.md",
