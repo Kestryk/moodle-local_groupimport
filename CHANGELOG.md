@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N0] Record native localhost K21 counts FR/EN1280/390 and Claude Motion/Alt/dropdown1280 proofs; preserve earlier intake and :8051 evidence.
+
 - 2026-10-15 [N1] K15-25/K17 names the participant column Participants via the existing Moodle string; keep the workspace selector Participants & groups and its correct Guide/checklist view references.
 
 - 2026-10-14 [N1] Complete K21 markup consumer for modular group_cards: two structure count badges with count templates, four SSR context values and missing FR/EN Groupings count forms. Reuse existing badge/wrap styles; no AMD/CSS change.
