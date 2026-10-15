@@ -4,6 +4,11 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "drawerV1_20261015": {
+      "kitVersion": "0.4.215",
+      "kitCommit": "e099212",
+      "scope": "Drawer scrolling panel, keyboard closure, Motion RTL; canonical context and M2 retained"
+    },
     "cardsLabelsA3_20261015": {
       "kitVersion": "0.4.214",
       "kitCommit": "2b8b510",
