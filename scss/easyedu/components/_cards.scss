@@ -360,6 +360,8 @@
 
   > .easyedu-entity-card-grid__selector {
     block-size: var(--easyedu-entity-selection-column);
+    grid-column: auto;
+    grid-row: auto;
     inline-size: var(--easyedu-entity-selection-column);
     inset-inline-start: calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border));
     min-block-size: var(--easyedu-entity-selection-column);
@@ -429,6 +431,8 @@
 }
 
 @mixin entity-card-menu-slot($nested: false) {
+  grid-column: auto;
+  grid-row: auto;
   inset-inline-end: if($nested, 0, calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border)));
   top: if($nested, 50%, calc(var(--easyedu-entity-card-padding-block) + var(--easyedu-entity-row-border)));
   transform: if($nested, translateY(-50%), none);
