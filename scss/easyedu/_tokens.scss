@@ -157,6 +157,8 @@
   --easyedu-card-hairline: #e6edf4;
   --easyedu-card-action-target: 2rem;
   --easyedu-card-action-icon-size: 0.875rem;
+  // A3 (12-14/10/2026): card actions are neutral at rest, primary on an active card.
+  --easyedu-card-action-neutral: #66788b;
   --easyedu-related-person-line: 2.5rem;
   --easyedu-related-person-remove-size: 1.75rem;
   // One height for the controls of a list toolbar (Select all, count, sort, pages).

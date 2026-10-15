@@ -205,7 +205,7 @@
   @include typography.type-card-title;
 
   color: $color;
-  letter-spacing: -0.005em;
+  letter-spacing: 0;
   // Keep descenders visible in every participant, group, grouping and
   // ungrouped card title, including titles rendered later in a list.
   line-height: 1.35;
@@ -218,6 +218,21 @@
   // mains share 14px/600; retain coloured rails/badges instead of title hues.
   font-size: var(--easyedu-card-identity-title-size);
   font-weight: var(--easyedu-font-weight-semibold);
+}
+
+// A3 V3 accent underline (Kevin, 14/10/2026): a decorative 24 x 2 px bar in
+// the entity colour at 50 %, aligned with the title's start edge, 2 px under
+// the title line box (3 px under the descenders, option B). The reserved
+// padding is returned by a negative margin, so the header keeps its height
+// and the title keeps its centre line.
+@mixin card-title-accent($color) {
+  $accent: color-mix(in srgb, #{$color} 50%, transparent);
+  background-image: linear-gradient(#{$accent}, #{$accent});
+  background-position: left 0 bottom 0;
+  background-repeat: no-repeat;
+  background-size: 1.5rem 0.125rem;
+  margin-block-end: -0.25rem;
+  padding-block-end: 0.25rem;
 }
 
 // A related participant inside a Group is subordinate to the card identity,

@@ -1,0 +1,55 @@
+// A3 card titles (Kevin, 12/10 and 14/10/2026; PENPOT Foundations 09.5, board
+// "A3 — Variantes du titre de carte", row V3): identity ink and letter-spacing 0
+// (Kit card-title), a V3 accent underline in the entity colour, and card
+// actions neutral at rest, primary on a hovered, focused or selected card.
+// Counters stay 22 px pills (16/10, choice 4A).
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  .local-groupimport-easystud-user__name,
+  .local-groupimport-easystud-group__name,
+  .local-groupimport-easystud-grouping__name {
+    color: var(--easyedu-card-identity-title-color);
+    letter-spacing: 0;
+  }
+
+  .local-groupimport-easystud-user__name {
+    @include easyedu.card-title-accent(var(--easyedu-participant));
+  }
+
+  .local-groupimport-easystud-group__name {
+    @include easyedu.card-title-accent(var(--easyedu-group));
+  }
+
+  .local-groupimport-easystud-grouping__name {
+    @include easyedu.card-title-accent(var(--easyedu-grouping));
+  }
+
+  // "Groups without grouping" section: violet accent (14/10 complement).
+  .local-groupimport-easystud-tree__section--ungrouped > .local-groupimport-easystud-tree__toggle > span:last-child {
+    @include easyedu.card-title-accent(#72508c);
+  }
+
+  // Card actions: neutral at rest, primary on an active card.
+  $actions: ".local-groupimport-easystud-user__detail-button, " +
+    ".local-groupimport-easystud-group__header > .btn-link, " +
+    ".local-groupimport-easystud-grouping__header > .btn-link, " +
+    ".local-groupimport-easystud-rename__toggle, " +
+    ".local-groupimport-easystud-card-menu";
+
+  .local-groupimport-easystud-user,
+  .local-groupimport-easystud-group,
+  .local-groupimport-easystud-tree__section {
+    #{$actions} {
+      color: var(--easyedu-card-action-neutral);
+    }
+
+    &:hover,
+    &:focus-within,
+    &.is-selected {
+      #{$actions} {
+        color: var(--easyedu-primary);
+      }
+    }
+  }
+}
