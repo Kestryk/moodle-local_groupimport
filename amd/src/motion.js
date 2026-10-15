@@ -648,6 +648,57 @@ export const hideMenu = (menu, options = {}) => {
     }, level);
 };
 
+const drawerOpenDuration = 240;
+const drawerCloseDuration = 180;
+const drawerScrimDuration = 200;
+const drawerOpenEasing = 'cubic-bezier(0, 0, 0.2, 1)';
+const drawerCloseEasing = 'cubic-bezier(0.4, 0, 1, 1)';
+
+/**
+ * Slide a side drawer and its scrim. Full: the drawer slides from its edge in 240 ms ease-out and the
+ * scrim fades in 200 ms; closing takes 180 ms. Reduced: 120 ms fades only, no slide. Minimal: no
+ * animation. The caller owns the final state; the promise resolves once the transition is over.
+ *
+ * @param {HTMLElement} drawer Drawer element (already visible).
+ * @param {HTMLElement} scrim Scrim element (already visible) or null.
+ * @param {Boolean} open True to open, false to close.
+ * @param {Object} options edge ('start' or 'end', default 'start').
+ * @returns {Promise<boolean>} False when superseded by another transition.
+ */
+export const slideDrawer = (drawer, scrim, open, options = {}) => {
+    if (!drawer) {
+        return Promise.resolve(false);
+    }
+    const level = getLevel(drawer);
+    const sign = options.edge === 'end' ? 1 : -1;
+    const rtl = document.documentElement.dir === 'rtl';
+    const hidden = 'translateX(' + (sign * (rtl ? -1 : 1) * 100) + '%)';
+    const fade = level === 'reduced';
+    const easingName = open ? drawerOpenEasing : drawerCloseEasing;
+    if (scrim) {
+        cancel(scrim);
+        play(scrim, open ? [{opacity: 0}, {opacity: 1}] : [{opacity: 1}, {opacity: 0}], {
+            duration: fade ? reducedFadeDuration : drawerScrimDuration,
+            easing: easingName,
+        }, () => undefined, level);
+    }
+    let keyframes = [{transform: hidden}, {transform: 'none'}];
+    if (fade) {
+        keyframes = [{opacity: 0}, {opacity: 1}];
+    }
+    if (!open) {
+        keyframes = keyframes.slice().reverse();
+    }
+    let duration = open ? drawerOpenDuration : drawerCloseDuration;
+    if (fade) {
+        duration = reducedFadeDuration;
+    }
+    return play(drawer, keyframes, {
+        duration,
+        easing: easingName,
+    }, () => undefined, level);
+};
+
 /**
  * Soft arrival of controls that appear together (for example the panel action buttons after a
  * layout swap): one fade plus a 4 px rise, 160 ms. Reduced motion: 120 ms fade; disabled: nothing.

@@ -173,9 +173,15 @@ in a narrow viewport.
 The breakpoint passed to `navigation-component()` is authoritative. JavaScript
 does not duplicate it in data or a media query.
 
-The panel uses logical inline borders and a mirrored RTL transform. Safe-area
-padding, bounded width, independent scrolling and sticky close controls preserve
-narrow-height access.
+The panel is the V1 "Kit drawer" (decision of 16/10/2026): 21 rem bounded by
+88 vw, radius 20 on the open edge, header tile + title/subtitle + 40 px round
+close, spaces as 48 px / radius 12 items sharing one width and 16 px inset, the
+Guide launcher, then a tinted participant lane with chevron links. It slides
+through `slideDrawer()` in `motion.js` (240 ms ease-out, scrim 200 ms, close
+180 ms; reduced = 120 ms fades only; minimal = none), never CSS transitions, and
+stays painted during the leave through `.is-closing`. Document scroll is locked
+by `html.easyedu-navigation-open`. Safe-area padding, bounded width and
+independent scrolling preserve narrow-height access.
 
 Consumers with another fixed banner or toolbar must either anchor to the
 highest relevant control or override the public clearance tokens. They must not

@@ -540,6 +540,9 @@ function local_groupimport_build_mass_import_navigation_context(stdClass $course
         'triggericon' => 'fa fa-bars',
         'closeicon' => 'fa fa-times',
         'emptylabel' => get_string('navigationempty', 'local_groupimport'),
+        'drawertitle' => get_string('easystudlabel', 'local_groupimport'),
+        'drawersubtitle' => get_string('easystudmanager', 'local_groupimport'),
+        'spaceslabel' => get_string('mobilenavigationspaces', 'local_groupimport'),
         'hasitems' => true,
         'hasparticipantdropdown' => false,
         'sections' => [[

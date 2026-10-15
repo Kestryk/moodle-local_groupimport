@@ -1,3 +1,7 @@
+html.easyedu-navigation-open,
+html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
+}
+
 .easyedu-icon-font-pending :is(.fa, .fas, .far, .fa-solid, .fa-regular)::before,
 .easyedu-icon-font-pending .dropdown-toggle::after {visibility: hidden;
 }

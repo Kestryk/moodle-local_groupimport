@@ -16,6 +16,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import {slideDrawer} from './motion';
+
 const roots = new WeakMap();
 const focusableSelector = [
     'a[href]:not([aria-disabled="true"])',
@@ -210,16 +212,40 @@ const bindRoot = root => {
         }
     };
 
-    const setOpen = (open, restoreFocus = true, force = false) => {
+    const finishClose = completed => {
+        if (completed === false) {
+            return;
+        }
+        panel.classList.remove('is-closing');
+        if (!panel.classList.contains('is-open')) {
+            backdrop.hidden = true;
+        }
+    };
+
+    const setOpen = (open, restoreFocus = true, force = false, animate = true) => {
         if (open && !force && !isCompactAvailable()) {
             return;
         }
+        const wasOpen = panel.classList.contains('is-open');
         panel.classList.toggle('is-open', open);
         panel.setAttribute('aria-hidden', open ? 'false' : 'true');
         trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        backdrop.hidden = !open;
         setInert(panel, !open);
         document.documentElement.classList.toggle('easyedu-navigation-open', open);
+        if (open) {
+            panel.classList.remove('is-closing');
+            backdrop.hidden = false;
+        } else if (wasOpen && animate) {
+            // Keep the drawer and its scrim painted while they leave.
+            panel.classList.add('is-closing');
+        } else {
+            panel.classList.remove('is-closing');
+            backdrop.hidden = true;
+        }
+        if (open || (wasOpen && animate)) {
+            slideDrawer(panel, backdrop, open).then(completed => (open ? completed : finishClose(completed)))
+                .catch(() => finishClose(true));
+        }
 
         if (open) {
             const focusable = getFocusable(panel);
@@ -281,6 +307,12 @@ const bindRoot = root => {
             first.focus();
         }
     });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && panel.classList.contains('is-open') && !panel.contains(event.target)) {
+            event.preventDefault();
+            setOpen(false);
+        }
+    });
     document.addEventListener('easyedu:guide-interface-transition', () => {
         // Guide interactions leave the compact navigation context. Keep the
         // normal trigger usable for a later return to the navigation panel.
@@ -289,7 +321,7 @@ const bindRoot = root => {
 
     const onViewportChange = () => {
         if (!isCompactAvailable()) {
-            setOpen(false, false);
+            setOpen(false, false, false, false);
         }
         scheduleTriggerPosition();
     };
@@ -299,7 +331,7 @@ const bindRoot = root => {
     bindDisclosure(root);
     bindLabelReveal(root);
     syncTriggerPosition();
-    setOpen(false, false);
+    setOpen(false, false, false, false);
 
     const controller = {
         close: restoreFocus => setOpen(false, restoreFocus !== false),
