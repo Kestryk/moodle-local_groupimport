@@ -3,7 +3,10 @@
 
 #local-groupimport-easystud {
   @include easyedu.card-title-accent-overlay;
-  .local-groupimport-easystud-user {
+  // K16-37: the dense aligned recipe belongs to the light responsive cards only; desktop
+  // compact (one line) and full-information cards keep their own layouts.
+  // :where() keeps the original specificity, so later responsive refinements still win.
+  &:where(.local-groupimport-easystud--responsive-workspace) .local-groupimport-easystud-user {
     @include easyedu.person-card-aligned-content;
     > .local-groupimport-easystud-selector {
       @include easyedu.person-card-aligned-selector(8px, 32px);
@@ -11,7 +14,7 @@
   }
   .local-groupimport-easystud-pagination__select {
     @include easyedu.pagination-select-button;
-    block-size: var(--easyedu-toolbar-control-height);
+    white-space: nowrap;
   }
   .easyedu-filter-actions {
     @include easyedu.filter-actions-stacked;

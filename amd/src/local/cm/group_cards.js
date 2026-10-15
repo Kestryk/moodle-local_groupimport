@@ -193,15 +193,20 @@ export const syncGroupMembersCollapsible = group => {
     if (!group) {
         return;
     }
-    if (syncMemberWindow(group)) {
+    const windowed = syncMemberWindow(group);
+    if (windowed) {
         syncGroupSelectAll(group);
         if (group.querySelector('[data-easystud-group-members]').hidden) {
             const select = group.querySelector('[data-easystud-group-select-all-row]');
             if (select) {
                 select.hidden = true;
             }
+            return;
         }
-        return;
+        if (group.classList.contains('local-groupimport-easystud-long-list__foldable')) {
+            return;
+        }
+        // Long lists only bound how many rows exist: the card keeps its fold-down behaviour (K16-29).
     }
     const list = group.querySelector('[data-easystud-group-members]');
     const toggle = group.querySelector('[data-easystud-group-members-toggle]');
@@ -248,6 +253,14 @@ export const syncGroupMembersCollapsible = group => {
     toggle.classList.toggle('is-expanded', expanded);
     if (more) {
         more.hidden = !cancollapse || expanded;
+    }
+    const footer = windowed ? group.querySelector(':scope > [data-easystud-long-list-footer]') : null;
+    if (footer && cancollapse && !expanded) {
+        footer.hidden = true;
+    }
+    if (windowed) {
+        // The long-list list style lifts the height limit; only keep it once the card is unfolded.
+        list.classList.toggle('local-groupimport-easystud-long-list__members', expanded || !cancollapse);
     }
     syncGroupSelectAll(group);
 };
@@ -573,6 +586,9 @@ export const applyGroupMemberSearchToGroup = (root, group) => {
         const query = normalise(input ? input.value : '');
         const count = group.querySelectorAll('[data-easystud-member-id]').length;
         syncGroupMemberSearchEmptyState(root, group, query, count);
+        if (!query) {
+            syncGroupMembersCollapsible(group);
+        }
         syncGroupSelectAll(group);
         scheduleGroupingResizeForGroup(group);
         return;
