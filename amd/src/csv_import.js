@@ -575,6 +575,38 @@ const updateToggleButton = (button, rows, animate = false) => {
 const initPreviewTools = root => {
     const search = root.querySelector('[data-local-groupimport-preview-search]');
     const rows = Array.from(root.querySelectorAll('[data-local-groupimport-preview-row]'));
+    const previewForm = rows[0] ? rows[0].closest('form') : null;
+    if (previewForm) {
+        previewForm.addEventListener('submit', event => {
+            if (event.defaultPrevented) {
+                return;
+            }
+            const edits = [];
+            const excluded = [];
+            const controls = [];
+            rows.forEach((row, index) => {
+                const edit = {index};
+                let changed = false;
+                ['identifier', 'groupname', 'groupingname'].forEach(field => {
+                    const input = row.querySelector('input[name^="' + field + '["]');
+                    edit[field] = input.value;
+                    changed = changed || input.value !== input.defaultValue;
+                    controls.push(input);
+                });
+                if (changed) {
+                    edits.push(edit);
+                }
+                const checkbox = row.querySelector('input[name^="rowenabled["]');
+                if (!checkbox.checked) {
+                    excluded.push(index);
+                }
+                controls.push(checkbox);
+            });
+            previewForm.querySelector('[name="previewpayload"]').value = JSON.stringify({count: rows.length, edits, excluded});
+            // One structured field stays independent of max_input_vars, including edited cells.
+            controls.forEach(input => { input.disabled = true; });
+        });
+    }
     if (!search || rows.length === 0) {
         return;
     }

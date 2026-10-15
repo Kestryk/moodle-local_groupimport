@@ -1094,3 +1094,8 @@ $string['guide_nav_12'] = 'Prêt';
 $string['guide_category_recap'] = 'Bilan';
 $string['guide_nav_tooltip'] = '{$a->category} — {$a->number} · {$a->title}';
 $string['guide_nav_tooltip_guided'] = '{$a->category} — {$a->number} · {$a->title} (parcours guidé disponible)';
+
+$string['importpreviewexpired'] = 'Cet aperçu a expiré ou appartient à une autre session. Prévisualisez à nouveau le fichier ; aucune donnée n’a été importée.';
+$string['importpreviewincomplete'] = 'L’envoi de l’aperçu est incomplet ou invalide. Prévisualisez à nouveau le fichier ; aucune donnée n’a été importée.';
+$string['importrowlimit'] = 'Cet import dépasse la limite de {$a} lignes. Divisez le fichier avant de continuer ; aucune donnée n’a été importée.';
+$string['importfilelimit'] = 'Le fichier dépasse la limite de {$a} Mo. Réduisez sa taille avant de continuer.';

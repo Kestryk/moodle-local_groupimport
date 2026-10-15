@@ -1094,3 +1094,8 @@ $string['guide_nav_12'] = 'Ready';
 $string['guide_category_recap'] = 'Recap';
 $string['guide_nav_tooltip'] = '{$a->category} — {$a->number} · {$a->title}';
 $string['guide_nav_tooltip_guided'] = '{$a->category} — {$a->number} · {$a->title} (guided path available)';
+
+$string['importpreviewexpired'] = 'This preview has expired or belongs to another session. Preview the file again; nothing was imported.';
+$string['importpreviewincomplete'] = 'The preview submission is incomplete or invalid. Preview the file again; nothing was imported.';
+$string['importrowlimit'] = 'This import exceeds the limit of {$a} rows. Split the file before continuing; nothing was imported.';
+$string['importfilelimit'] = 'The file exceeds the limit of {$a} MB. Reduce its size before continuing.';

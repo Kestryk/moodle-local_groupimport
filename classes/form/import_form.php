@@ -70,7 +70,8 @@ class import_form extends \moodleform {
             'importfile',
             get_string('importfile', 'local_groupimport'),
             null,
-            ['accepted_types' => ['.csv', '.xls', '.xlsx'], 'maxfiles' => 1]
+            ['accepted_types' => ['.csv', '.xls', '.xlsx'], 'maxfiles' => 1,
+                'maxbytes' => \local_groupimport\local\import_preview::MAX_BYTES]
         );
         $mform->addRule('importfile', null, 'required', null, 'client');
         $mform->addElement('html', \html_writer::end_div());
