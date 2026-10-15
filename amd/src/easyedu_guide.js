@@ -779,6 +779,7 @@ const clearHighlight = root => {
   root.removeAttribute('data-easyedu-guide-target-in-dialog');
   root.removeAttribute('data-easyedu-guide-dialog-dock');
   clearHighlightedTarget(root);
+  releaseChecklistTopDock(root);
 };
 
 const getExternalTargetDialog = (root, target) => {
@@ -900,6 +901,72 @@ const scheduleHighlightRefreshBurst = (root, target, shouldDock = true) => {
   root.easyeduGuideRefreshBurstFrame = window.requestAnimationFrame(refresh);
 };
 
+const CHECKLIST_TOP_DOCK_CLASS = 'is-docked-top';
+
+const rectsOverlap = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+
+// Bottom edge of the host's fixed top bar (Moodle navbar): a raised checklist starts below it.
+const getFixedTopClearance = () => {
+  const bottom = Array.from(document.querySelectorAll('.fixed-top, .sticky-top, nav.navbar')).reduce((value, element) => {
+    if (!isVisibleElement(element)) {
+      return value;
+    }
+    const style = window.getComputedStyle(element);
+    if (style.position !== 'fixed' && style.position !== 'sticky') {
+      return value;
+    }
+    const rect = element.getBoundingClientRect();
+    return rect.top <= 8 ? Math.max(value, rect.bottom) : value;
+  }, 0);
+  return Math.ceil(bottom) + 8;
+};
+
+const releaseChecklistTopDock = root => {
+  root.easyeduGuideTopDockTarget = null;
+  const checklist = root.querySelector(SELECTORS.checklist);
+  if (!checklist || !checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS)) {
+    return;
+  }
+  checklist.classList.remove(CHECKLIST_TOP_DOCK_CLASS);
+  checklist.style.removeProperty('top');
+  checklist.style.removeProperty('bottom');
+};
+
+// C2-15-01: a full-width target (a compact action sheet item, a wide control)
+// leaves no side lane, so the bottom checklist could cover the very control the
+// step asks for and intercept its click. Raise it above that target while it is
+// current: keep it raised for the same target (no flicker while the target
+// moves) and restore the canonical placement with the next target or cue clear.
+// A target inside a native dialog keeps the dialog dock instead.
+const dockChecklistAboveTarget = (root, checklist, target, inDialog) => {
+  if (inDialog || (checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS) &&
+      root.easyeduGuideTopDockTarget !== target)) {
+    releaseChecklistTopDock(root);
+    if (inDialog) {
+      return;
+    }
+  }
+  const rect = target.getBoundingClientRect();
+  const panel = checklist.getBoundingClientRect();
+  if (!rectsOverlap(rect, panel)) {
+    return;
+  }
+  if (checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS)) {
+    // The target moved up into the raised panel: the space above is too short,
+    // so return to the canonical placement (it cannot be raised again below).
+    releaseChecklistTopDock(root);
+    return;
+  }
+  const top = getFixedTopClearance();
+  if (top + panel.height + 8 > rect.top) {
+    return;
+  }
+  checklist.classList.add(CHECKLIST_TOP_DOCK_CLASS);
+  checklist.style.top = `${top}px`;
+  checklist.style.bottom = 'auto';
+  root.easyeduGuideTopDockTarget = target;
+};
+
 const dockChecklistAwayFromTarget = (root, target) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const externalDialog = getExternalTargetDialog(root, target);
@@ -936,13 +1003,14 @@ const dockChecklistAwayFromTarget = (root, target) => {
   // A progress re-render must not reset docking. Move only when the settled
   // target actually overlaps the panel and another horizontal lane can fit.
   const hasDock = checklist.classList.contains('is-docked-right') || checklist.classList.contains('is-docked-left');
-  if (hasDock) {
-    if (!overlaps || rect.width + panel.width + 32 > window.innerWidth) { return; }
+  const sideLaneFits = !hasDock || (rectsOverlap(rect, checklist.getBoundingClientRect()) &&
+    rect.width + checklist.getBoundingClientRect().width + 32 <= window.innerWidth);
+  if (sideLaneFits) {
+    const dockRight = rect.left < viewportMiddle;
+    checklist.classList.toggle('is-docked-right', dockRight);
+    checklist.classList.toggle('is-docked-left', !dockRight);
   }
-  const dockRight = rect.left < viewportMiddle;
-
-  checklist.classList.toggle('is-docked-right', dockRight);
-  checklist.classList.toggle('is-docked-left', !dockRight);
+  dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
 };
 
 const showInterfaceReturn = root => {
@@ -1072,7 +1140,8 @@ const getScrollTopOffset = () => {
 const getCompactChecklistBottomClearance = root => {
   const checklist = root.querySelector(SELECTORS.checklist);
   if (!checklist || checklist.hidden || !window.matchMedia ||
-    !window.matchMedia('(max-width: 40rem), (max-height: 32rem)').matches) {
+    !window.matchMedia('(max-width: 40rem), (max-height: 32rem)').matches ||
+    checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS)) {
     return 0;
   }
 
@@ -3279,6 +3348,11 @@ const bindGuide = (root, config) => {
           checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
         }
         syncChecklistMinimizeControl(root);
+        // C2-15-01: the new size may now cover the current step's control.
+        if (isVisibleElement(root.easyeduGuideCurrentTarget)) {
+          releaseChecklistTopDock(root);
+          dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget);
+        }
         const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :
           '[data-easyedu-guide-checklist-minimize]');
         if (isVisibleElement(nextControl)) { nextControl.focus({preventScroll: true}); }
@@ -3592,6 +3666,7 @@ const destroy = rootOrSelector => {
   clearHighlightAutoHideTimer(root);
   hideInterfaceReturn(root, false);
   clearHighlightedTarget(root);
+  releaseChecklistTopDock(root);
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
     checklist.hidden = true;
