@@ -5996,3 +5996,5 @@ Maintenance convention:
 - 2026-10-15 [N0] Verify E5/ISO on principal localhost in FR/EN at1600/1280/768/390: five native admin sections,20px titles,38/44px controls and keyboard; Mass Import peer titles match, zero page errors/settings writes. Human acceptance remains open.
 
 - 2026-10-15 [N1] Repair K16 participant pills: category values share wrapping22px rows, omit empty placeholders, exclude disclosure buttons from measured data tokens, retain a first real token before+N and show localized Show less when expanded. Preserve selector clearance and Motion.
+
+- 2026-10-15 [N0] Verify final participant pill repair in32FR/EN states at1600/1280/768/390:128card samples,1574painted pills exactly22px, glyph centres0/0,104correct hidden counts, no clipped/empty/minus pills or metadata overflow; actual-card captures inspected. Human/Penpot validation remains open.

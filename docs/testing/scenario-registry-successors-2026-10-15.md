@@ -90,3 +90,5 @@ E5 principal native183745701Z-26880 PASS eight admin cells/keyboard; admin-e5-ma
 k16-pills-baseline-native.spec.js records predecessor geometry; k16-pills-served-native.spec.js is local-supervised principal course5 FR/EN4widths, real density/tag disclosure commands, count and text bounds. Needs saved authentication/lease; no injected product CSS. Native pending.
 
 K16 pill successors preserve190423335Z-56544 ordinary-role clipping at390,190659461Z-36348 fractional DOMRect arithmetic failure and190818641Z-36652 real legacy-count glyph offset. k16-pills-geometry-served-native.spec.js combines bilingual counts/clipping with exact CSS/layout22 and Range?.5, preserving raw rectangles. Source-only/inert isolated/native/human remain separate.
+
+Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104exact counter checks,22px+Range0/0,no clipped/empty/minus. k16-pills-final-served-native.spec.js adds card containment; summarize-k16-pill-measures.cjs validates the full captured matrix and count arithmetic. Local-supervised course5/authentication/lease; screenshots external pinned30days. Earlier failed native specs retained.
