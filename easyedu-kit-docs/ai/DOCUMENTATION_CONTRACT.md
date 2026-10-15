@@ -1,13 +1,5 @@
 # EasyEdu documentation contract
 
-E5 admin sections progressively move Moodle's original named fields and help;
-never clone controls or replace native validation, dependencies or saves. Use
-SM's measured title/control/caption roles, one frame and separate setting rows.
-Compact disclosures retain native buttons and Motion levels, reveal invalid
-fields, and move focus before hiding a region. Per-colour Restore updates only
-the original Hex/swatch draft and dispatches existing validation events. Exact
-settings restoration must include keys originally absent from the database.
-
 Student Management panel opacity/transform during view swaps belongs to Motion;
 the container keeps only its CSS shadow transition. Focus-state transforms must
 not add another interpolation during the return. This is separate from shared

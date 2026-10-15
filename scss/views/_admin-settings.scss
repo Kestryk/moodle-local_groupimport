@@ -96,12 +96,8 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__loading-section {
-    @include easyedu.skeleton-section-frame($radius: 0.84rem);
-    & {
-      display: grid;
-      gap: 0.75rem;
-      padding: 1rem;
-    }
+    display: grid;
+    gap: 0.75rem;
   }
 
   .local-groupimport-admin-settings__loading-section-title {
@@ -118,9 +114,11 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     align-items: center;
     display: grid;
     gap: 0.8rem;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    min-height: 4.75rem;
-    padding: 0.75rem 0;
+    grid-template-columns: minmax(8rem, 0.36fr) minmax(0, 1fr);
+    min-height: 5.4rem;
+    padding: 0.9rem;
+
+    @include easyedu.skeleton-section-frame;
 
     & {
       display: grid;
@@ -133,7 +131,7 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   }
 
   .local-groupimport-admin-settings__loading-form-control {
-    height: 2.375rem;
+    height: 2.7rem;
     width: min(100%, 34rem);
   }
 
@@ -146,8 +144,10 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     display: grid;
     gap: 0.8rem;
     grid-template-columns: 2.55rem minmax(0, 1fr);
-    min-height: 3rem;
-    padding: 0;
+    min-height: 6.5rem;
+    padding: 1rem;
+
+    @include easyedu.skeleton-section-frame;
 
     & {
       display: grid;
@@ -651,226 +651,6 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   @include easyedu.motion-restricted {
     .local-groupimport-admin-settings__loading-surface {
       animation: none;
-    }
-  }
-
-  // E5: one section frame, with the same title/control/caption scale as SM.
-  #adminsettings {
-    max-width: 73.75rem;
-
-    .settingsform { max-width: 100%; }
-
-    .local-groupimport-admin-settings__page-title {
-      color: var(--easyedu-workspace-panel-title-color);
-    }
-
-    .local-groupimport-admin-settings__page-eyebrow {
-      @include easyedu.type-eyebrow;
-      color: var(--easyedu-primary);
-    }
-
-    .local-groupimport-admin-section {
-      @include easyedu.panel-shell;
-      background: var(--easyedu-surface);
-      border-color: #e4eaf1;
-      border-radius: 0.84rem;
-      box-shadow: none;
-      margin-block: 1rem;
-      padding: 1rem;
-
-      > h3.main {
-        margin: 0;
-        padding: 0;
-      }
-
-      .formsettingheading {
-        margin: 0;
-        padding: 0;
-      }
-
-      .local-groupimport-admin-settings {
-        background: transparent;
-        border: 0;
-        border-radius: 0;
-        box-shadow: none;
-        gap: 0.75rem;
-        margin: 0;
-        padding: 0;
-      }
-
-      .local-groupimport-admin-settings__hero {
-        display: block;
-
-        > .fa,
-        h3 { display: none; }
-
-        p {
-          color: var(--easyedu-workspace-description-color);
-          margin-block: 0.5rem 0.75rem;
-        }
-      }
-
-      // The field inventory remains in the native fallback; the named field
-      // selector and its help supply this information in the enhanced form.
-      .local-groupimport-admin-settings__field-grid,
-      .local-groupimport-admin-settings:not(.local-groupimport-admin-settings--features)
-        > .local-groupimport-admin-settings__hint { display: none; }
-
-      .form-item {
-        align-items: start;
-        background: transparent;
-        border: 0;
-        border-block-start: 1px solid #e4eaf1;
-        border-radius: 0;
-        box-shadow: none;
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        margin: 0;
-        padding: 1rem 0;
-        width: 100%;
-
-        > .form-label,
-        > .form-setting {
-          display: block;
-          flex: none;
-          margin: 0;
-          max-width: 100%;
-          min-width: 0;
-          padding: 0;
-          text-align: start;
-          width: 100%;
-        }
-
-        .form-label label { margin: 0; }
-
-        .form-label .form-text,
-        .form-label .form-description {
-          @include easyedu.type-caption;
-          margin-block: 0.25rem 0;
-        }
-
-        // Moodle marks this technical legend d-block !important.
-        .form-shortname { display: none !important; }
-
-        .form-defaultinfo {
-          @include easyedu.type-caption;
-          margin-block: 0.25rem 0;
-        }
-
-        .form-setting > div:first-child { max-width: 100%; }
-      }
-
-      .form-setting > .easyedu-ui { display: block; }
-
-      .easyedu-color-picker {
-        --easyedu-color-picker-swatch-width: 2.375rem;
-        --easyedu-color-picker-swatch-height: 2.375rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        max-width: 100%;
-
-        &__swatch,
-        &__hex,
-        button {
-          border-radius: var(--easyedu-control-radius);
-          box-sizing: border-box;
-          height: 2.375rem;
-          min-height: 2.375rem;
-        }
-
-        &__swatch,
-        &__trigger {
-          min-width: 2.375rem;
-          width: 2.375rem;
-        }
-        &__hex { width: 6.5rem; }
-      }
-
-      .local-groupimport-admin-settings__switch {
-        @include easyedu.filter-toggle;
-      }
-
-      .local-groupimport-admin-settings__reset-row {
-        border-block-start: 1px solid #e4eaf1;
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        padding-block: 1rem 0;
-
-        strong { @include easyedu.type-control-label; }
-
-        > a {
-          @include foundations.foundation-button(true);
-          align-self: start;
-          min-height: 2.375rem;
-        }
-
-        [role="dialog"] { grid-column: 1 / -1; }
-      }
-    }
-
-    .local-groupimport-admin-section__toggle {
-      align-items: center;
-      background: transparent;
-      border: 0;
-      border-radius: var(--easyedu-control-radius);
-      color: var(--easyedu-workspace-panel-title-color);
-      display: flex;
-      font: 700 1.25rem/1.2 var(--easyedu-font-family-ui);
-      gap: 0.75rem;
-      padding: 0;
-      text-align: start;
-      width: 100%;
-
-      > .fa { @include easyedu.section-icon-tile; }
-      &:focus-visible { @include easyedu.ring; }
-    }
-
-    .local-groupimport-admin-section__body[hidden] { display: none; }
-
-    .settingsform .local-groupimport-admin-settings__actions.row {
-      @include easyedu.admin-form-actions(flex-end);
-      margin-inline: 0;
-
-      > div {
-        flex: 0 1 auto;
-        margin: 0;
-        max-width: 100%;
-        padding: 0;
-        width: auto;
-      }
-    }
-
-    @media (max-width: 48rem) {
-      .local-groupimport-admin-settings__loading-section:nth-child(n + 3)
-        .local-groupimport-admin-settings__loading-form-rows { display: none; }
-
-      .local-groupimport-admin-section {
-        padding: 1rem;
-
-        .form-item,
-        .local-groupimport-admin-settings__reset-row {
-          gap: 0.5rem;
-          grid-template-columns: minmax(0, 1fr);
-        }
-
-        .easyedu-searchable-choice,
-        .easyedu-searchable-choice__trigger { width: 100%; }
-      }
-
-      .local-groupimport-admin-section__toggle {
-        font-size: 1.25rem;
-        min-height: 2.75rem;
-
-        &::after {
-          content: "+";
-          margin-inline-start: auto;
-        }
-
-        &[aria-expanded="true"]::after { content: "−"; }
-      }
     }
   }
 }
