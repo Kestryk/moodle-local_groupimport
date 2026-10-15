@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Integrate Claude delivery6:22px labels and D3 harmony, groups-before-groupings counts, light responsive cards, text More filters with count, A3 identity titles/underline and quiet actions; retain grouping title through overflow actions. Kit0.4.214/2b8b510 synchronized.
+
 - 2026-10-15 [N0] Confirm deferred entity details reach ready before measurement; retain the previous loading/keyboard proof and all strict containment/counter assertions.
 
 - 2026-10-15 [N0] Verify served entity dialogs in FR1600/1280/390: focus/Tab/Escape/opener return, footer containment and22px relation counters; history open/close1280, zero page errors or business writes.

@@ -4,6 +4,11 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "cardsLabelsA3_20261015": {
+      "kitVersion": "0.4.214",
+      "kitCommit": "2b8b510",
+      "scope": "22px labels, D3 roles, text filter count, identity card accent titles; M2 retained"
+    },
     "motionLevelsM1M2_20261015": {
       "kitVersion": "0.4.213",
       "kitCommit": "c4fe248",
