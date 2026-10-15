@@ -1,4 +1,20 @@
 {
+"claudeSelectionAlignmentFilters20261015": {
+  "incoming": ["7759a02b", "adc90797", "100a3894", "bc5ffdff", "a2202a7b"],
+  "sourceBuildCommit": "1bee85ec",
+  "runtimeCommit": "463b657f",
+  "buildAndStaticVerified": true,
+  "completeViewWidths": [1600, 1920],
+  "firstEntryDeltaPx": [9.75, 9.75],
+  "nativeAlignmentPassed": false,
+  "diagnosticRun": "070755707Z-41232",
+  "strictFailedRun": "065142297Z-13520",
+  "configRestored": true,
+  "nativeSelectionRolePaletteVerified": false,
+  "status": "served; stopped on unexplained T020 visual difference",
+  "humanAccepted": false
+},
+
 "cssPageRegressions20261015": {
     "sourceCommit": "a211780d",
     "runtimeCommit": "bf594489",

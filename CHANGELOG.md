@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N0] Record Claude selection/filter/palette commits served463b657f; preserve strict T020 failure and both-width diagnostic (9.75px), exact admin-config restoration and unverified native cases. Stop on unexplained visual difference.
+
 - 2026-10-14 [N2] V2 replaces global product CSS with explicit SM/Guide, Mass Import and administration page styles; preserve ordered declarations and standalone reset styling, convert font URL for static sheets.
 
 - 2026-10-14 [N1] R10-26/K12 adopts Kit0.4.210 setting width for admin choice wrappers and fields:12rem minimum,28rem maximum, full mobile width. Preserve selection, typography and Motion.
