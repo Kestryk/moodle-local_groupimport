@@ -16,3 +16,5 @@ Owner: EasyStud N1 / QA. Keep raw media outside Git, including all failed runs.
 No actual macOS Meta interaction is certified by Windows event simulation.
 
 15/10 successor claude-selection-t020-filters-role-native.spec.js: local-supervised, actual visible role choice fallback, same strict2px oracle; native074257632Z-30888PASS. Original074031432Z-55972 failed whole run retained despite passing T020/selection stages.
+
+K15-07 additions (local-supervised): k1507-palette-popover-settled-native.spec.js, -scroll-native.spec.js preserve failed boundary oracles; -ancestors-native.spec.js waits actual scroll parents, native075225174Z-41788PASS16cases. k1507-other-pages-native.spec.js covers native keyboard focus and MI/admin page delivery; live authentication is the CI blocker. palette-native-default-roles.php is read-only.

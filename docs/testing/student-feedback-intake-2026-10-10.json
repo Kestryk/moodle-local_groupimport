@@ -1,4 +1,36 @@
 {
+"claudeSettledAlignmentVerified20261015": {
+  "incoming": ["678db06e", "0af73b66", "a8c6364b"],
+  "runtimeCommit": "0bae184e",
+  "nativeRun": "074257632Z-30888",
+  "widths": [1600, 1920],
+  "firstEntryDeltaPx": [0, 0],
+  "selectionAndNumericRoleFilterVerified": true,
+  "paletteRelayVerified": true,
+  "configurationRestored": true,
+  "browserErrors": 0,
+  "businessWrites": 0,
+  "humanAccepted": false
+},
+"palettePopoverK1507HoverVerified20261015": {
+  "kitCommit": "30c7989",
+  "kitVersion": "0.4.212",
+  "sourceAdoptionCommit": "5ac22a37",
+  "runtimeAdoptionCommit": "8bf44269",
+  "nativeRun": "075225174Z-41788",
+  "widths": [1280, 390],
+  "hoverCases": 16,
+  "defaultAndConfiguredTestPalette": true,
+  "minimumCustomSurfaceWhiteContrast": 4.7453,
+  "minimumCustomArrowWhiteContrast": 5.6144,
+  "geometryPreserved": true,
+  "classicCssByteParity": true,
+  "keyboardAndOtherPageProofPending": false,
+  "keyboardAndOtherPageRun": "075415483Z-47324",
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+
 "palettePopoverK1507Prepared20261015": {
   "kitCommit": "30c7989",
   "kitVersion": "0.4.212",
