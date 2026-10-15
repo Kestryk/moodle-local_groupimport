@@ -68,3 +68,5 @@ mass-import-root-16-native.spec.js: local-supervised, FR1280/390 read-only root1
 claude-complement4-8-native.spec.js: local-supervised, FR1280 real Motion public exports, Alt add/remove and visible searchable dropdown open/close; course5/authentication are CI blockers. Native pending.
 
 Guide4: guide4-served-native.spec.js retains closed-drawer harness failure; guide4-drawer-served-native.spec.js successor PASS FR/EN1280/768/390. delegated-smallfixes-served-native.spec.js retains these oracles and adds JSON bootstrap initialization and phone3 /12. Local-supervised course5 authentication/lease required; no business writes.
+
+Delegated native164125798Z-19676 PASS, served4974df3a: FR/EN1280/768/390 JSON config/Guide containment/mobile count, zero errors/writes. Account-interrupted162351455Z-24848 retains no verdict.
