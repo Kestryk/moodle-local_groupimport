@@ -30,3 +30,20 @@ strict T0201600/1920, MI root16px, eye390/768 and responsive animations with red
 motion fades. Neighbouring badge heights on all three cards are measured within1px
 as requested; do not silently restyle cards awaiting Kevin's Penpot choice.
 This PHP recipe does not certify the browser/CSV business fixture.
+
+## Served verification
+
+Consumer320d05fa served14b895d0, purgePASS. Native082404228Z-49956 PASS:
+three cases through actual Moodle manage/group-card templates, plain context,
+DOM group/grouping names and all relevant options match; literal entity text
+is preserved, actual bold markup stripped, no injected element. No business
+record or configuration was written. This is server renderer proof under the
+managed principal-runtime lease, not a browser fixture/tooltip/CSV proof.
+Source-path preflight failure is retained in test-server-name-escaping.php and
+external temp/s9-server-renderer-source-20261015.log. The successor uses the
+served lib only. PHP lint passes; PHPUnit remains not run for the stated reason.
+
+All Complement3 items and the limited N2 replay list are in
+codex1-before-v2-complement3-2026-10-15.md and the durable corpus relay. No N2
+acknowledgement or run result is asserted. K15-16/17/20/21/24 remain blocked on
+Kevin's Penpot choice, irrespective of the earlier approved layout-only fixes.
