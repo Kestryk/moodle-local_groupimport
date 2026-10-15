@@ -11784,6 +11784,10 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .easyedu-filter-actions > button {align-self: end;margin: 0;
 }
+#local-groupimport-easystud [data-easystud-advanced-filters] > div {display: grid;row-gap: 12px;
+}
+#local-groupimport-easystud [data-easystud-advanced-filters] > div > .easyedu-filter-actions {margin-block-start: 0;
+}
 #local-groupimport-easystud .local-groupimport-easystud__filters-reset {align-items: center;column-gap: 0.35rem;display: inline-flex;justify-content: center;line-height: 1.2;row-gap: 0.35rem;font-size: 0.78rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0.22rem 0.5rem;transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 #local-groupimport-easystud .local-groupimport-easystud__filters-reset .fa,

@@ -5,6 +5,7 @@ export const init = (root, bindings) => {
         return;
     }
     const bars = new Map();
+    const observed = new WeakSet();
     let frame = null;
     let destroyed = false;
     const paint = () => {
@@ -18,6 +19,10 @@ export const init = (root, bindings) => {
         const targets = bindings.flatMap(binding => Array.from(root.querySelectorAll(binding.title), title =>
             ({title, host: title.closest(binding.host)}))).filter(target => target.host);
         targets.forEach(({host}) => {
+            if (!observed.has(host)) {
+                resize.observe(host);
+                observed.add(host);
+            }
             if (!host.classList.contains('easyedu-card-accent-host')) {
                 host.classList.add('easyedu-card-accent-host');
             }
@@ -68,6 +73,8 @@ export const init = (root, bindings) => {
     observer.observe(root, {subtree: true, childList: true, characterData: true,
         attributes: true, attributeFilter: ['class', 'hidden', 'style']});
     window.addEventListener('resize', schedule);
+    window.addEventListener('scroll', schedule, {passive: true});
+    root.addEventListener('scroll', schedule, true);
     root.addEventListener('transitionend', schedule, true);
     root.addEventListener('animationend', schedule, true);
     const resize = new ResizeObserver(schedule);
@@ -79,6 +86,8 @@ export const init = (root, bindings) => {
         observer.disconnect();
         resize.disconnect();
         window.removeEventListener('resize', schedule);
+        window.removeEventListener('scroll', schedule);
+        root.removeEventListener('scroll', schedule, true);
         root.removeEventListener('transitionend', schedule, true);
         root.removeEventListener('animationend', schedule, true);
         if (frame !== null) {

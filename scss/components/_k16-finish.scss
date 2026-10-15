@@ -16,6 +16,9 @@
   .easyedu-filter-actions {
     @include easyedu.filter-actions-stacked;
   }
+  [data-easystud-advanced-filters] > div {
+    @include easyedu.filter-panel-trailing-actions;
+  }
   .local-groupimport-easystud__filters-reset {
     @include easyedu.selection-recovery-action;
   }
