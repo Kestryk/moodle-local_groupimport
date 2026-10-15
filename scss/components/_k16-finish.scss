@@ -36,6 +36,7 @@
   }
   &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
     @include easyedu.person-card-selection-column;
+    @include easyedu.person-card-metadata-below-actions;
     > .local-groupimport-easystud-selector {
       @include easyedu.person-card-aligned-selector(10px, 44px);
     }
