@@ -22,6 +22,15 @@
   .local-groupimport-easystud-user__meta .badge {
     @include easyedu.card-label;
   }
+  .easyedu-entity-card-empty--group {
+    @include easyedu.entity-card-empty-line(var(--easyedu-group));
+  }
+  .easyedu-entity-card-empty--grouping {
+    @include easyedu.entity-card-empty-line(var(--easyedu-grouping));
+  }
+  .is-drop-target .easyedu-entity-card-empty {
+    @include easyedu.entity-card-empty-drop-target;
+  }
   &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
     > .local-groupimport-easystud-selector {
       @include easyedu.person-card-aligned-selector(10px, 44px);
