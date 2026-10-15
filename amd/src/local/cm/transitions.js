@@ -18,13 +18,15 @@
  * (view switch, list arrival, sticky selection bar).
  *
  * No animation ever delays state, focus or keyboard behaviour: the DOM is updated first and the
- * motion is purely visual (no inline style is left behind). Under reduced motion only a 120 ms
- * fade runs; with the plugin animations disabled nothing runs.
+ * motion is purely visual (no inline style is left behind). At the reduced level only a 120 ms
+ * fade runs; at the minimal level nothing runs.
  *
  * @module     local_groupimport/local/cm/transitions
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+import * as Motion from '../../motion';
 
 const easeOut = 'cubic-bezier(0.22, 1, 0.36, 1)';
 const reducedDuration = 120;
@@ -32,24 +34,13 @@ const running = new WeakMap();
 let arrivalSuppressed = 0;
 
 /**
- * Motion level for an element: 'full', 'reduced' (fades only) or 'none'.
+ * Motion level for an element: 'full', 'reduced' (fades only) or 'minimal'. One source of truth,
+ * Motion.getLevel (root attribute, then body classes; the system preference is ignored by default).
  *
  * @param {HTMLElement} element Element to animate.
  * @returns {String}
  */
-const motionLevel = element => {
-    if (!element || typeof element.animate !== 'function') {
-        return 'none';
-    }
-    const policyRoot = element.closest ? element.closest('[data-easyedu-motion-policy]') : null;
-    if ((policyRoot && policyRoot.getAttribute('data-easyedu-motion-policy') === 'disabled') ||
-            (document.body && document.body.classList.contains('easyedu-motion-disabled'))) {
-        return 'none';
-    }
-    const reduced = (document.body && document.body.classList.contains('easyedu-prefers-reduced-motion')) ||
-        !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    return reduced ? 'reduced' : 'full';
-};
+const motionLevel = element => element ? Motion.getLevel(element) : 'minimal';
 
 /**
  * Cancel the transition running on an element, if any.
@@ -75,8 +66,8 @@ const cancelRunning = element => {
 const run = (element, from, options = {}) => {
     cancelRunning(element);
     const level = motionLevel(element);
-    if (level === 'none') {
-        return Promise.resolve('none');
+    if (level === 'minimal') {
+        return Promise.resolve('minimal');
     }
     const start = Object.assign({}, from);
     const end = Object.assign({opacity: 1, transform: 'none'}, options.to || {});
@@ -204,7 +195,7 @@ export const setSelectionBar = (bar, visible) => {
         }
         return;
     }
-    if (!bar.getClientRects().length || motionLevel(bar) === 'none') {
+    if (!bar.getClientRects().length || motionLevel(bar) === 'minimal') {
         finishHide();
         return;
     }

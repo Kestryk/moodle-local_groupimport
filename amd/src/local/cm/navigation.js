@@ -245,8 +245,7 @@ export const bindBackToTop = root => {
         });
     };
     button.addEventListener('click', () => {
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        window.scrollTo({top: 0, behavior: reduced ? 'auto' : 'smooth'});
+        window.scrollTo({top: 0, behavior: Motion.scrollBehavior(button)});
     });
     window.addEventListener('scroll', scheduleSync, {passive: true});
     window.addEventListener('resize', scheduleSync);

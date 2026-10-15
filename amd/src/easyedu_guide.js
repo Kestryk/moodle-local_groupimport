@@ -197,15 +197,21 @@ const setStepOpenTimeout = (root, callback, delay) => {
   return timer;
 };
 
-const isMotionEnabled = root => {
-  const policyRoot = root && root.closest ? root.closest('[data-easyedu-motion-policy]') : null;
-  const disabledByAdmin = (policyRoot && policyRoot.getAttribute('data-easyedu-motion-policy') === 'disabled') ||
-    (document.body && document.body.classList.contains('easyedu-motion-disabled'));
-  const reducedByVisitor = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  return !disabledByAdmin && !reducedByVisitor;
-};
+// One animation level for the whole Guide: Motion.getLevel ('full' | 'reduced' | 'minimal'). The
+// system "reduce motion" preference is ignored by default (Motion owns that decision).
+const getMotionLevel = root => Motion.getLevel(root);
+const isMotionEnabled = root => getMotionLevel(root) !== 'minimal';
+const getScrollBehavior = root => Motion.scrollBehavior(root);
+const REDUCED_FADE_MS = 120;
 
-const getScrollBehavior = root => isMotionEnabled(root) ? 'smooth' : 'auto';
+// Opacity-only copy of keyframes, or null when there is nothing to fade (reduced level).
+const toFadeFrames = frames => {
+  if (frames.length < 2 || frames.some(frame => frame.opacity === undefined) ||
+      Number(frames[0].opacity) === Number(frames[frames.length - 1].opacity)) {
+    return null;
+  }
+  return frames.map(frame => ({opacity: frame.opacity}));
+};
 
 const scrollAnimationTokens = new WeakMap();
 let windowScrollAnimationToken = null;
@@ -560,9 +566,14 @@ const dismissResume = (root, animate = false) => {
   root.easyeduGuideResumeAnimation?.cancel();
   const notice = root.querySelector('[data-easyedu-guide-resume]');
   if (!notice || notice.hidden) { return; }
-  if (!animate || getScrollBehavior(root) === 'auto') { notice.hidden = true; return; }
-  const motion = notice.animate([{opacity: 1, transform: 'translateY(0)'},
-    {opacity: 0, transform: 'translateY(.35rem)'}], {duration: 280, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+  const level = getMotionLevel(root);
+  if (!animate || level === 'minimal') {
+    notice.hidden = true;
+    return;
+  }
+  const motion = notice.animate(level === 'reduced' ? [{opacity: 1}, {opacity: 0}] :
+    [{opacity: 1, transform: 'translateY(0)'}, {opacity: 0, transform: 'translateY(.35rem)'}],
+  {duration: level === 'reduced' ? REDUCED_FADE_MS : 280, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
   root.easyeduGuideResumeAnimation = motion;
   motion.finished.then(() => { notice.hidden = true; motion.cancel(); }).catch(() => {});
 };
@@ -774,6 +785,7 @@ const clearHighlight = root => {
   const highlight = createHighlight(root);
   highlight.hidden = true;
   highlight.removeAttribute('data-easyedu-motion-policy');
+  highlight.removeAttribute('data-easyedu-motion-level');
   highlight.classList.remove(HIGHLIGHT_DIALOG_CLASS);
   highlight.style.removeProperty('--easyedu-modal-layer');
   root.removeAttribute('data-easyedu-guide-target-in-dialog');
@@ -839,6 +851,7 @@ const updateHighlight = (root, target) => {
   // A body portal cannot inherit the root's policy. Relay this instance's
   // resolved policy, never a global body mutation affecting another Guide.
   highlight.setAttribute('data-easyedu-motion-policy', isMotionEnabled(root) ? 'enabled' : 'disabled');
+  highlight.setAttribute('data-easyedu-motion-level', getMotionLevel(root));
   highlight.hidden = false;
   highlight.style.height = `${Math.max(rect.height, 1)}px`;
   highlight.style.left = `${rect.left}px`;
@@ -1546,13 +1559,20 @@ const renderDiscoveryNames = (root, scene, command) => {
   const template = scene.querySelector('[data-guide-name-card]');
   const warning = scene.querySelector('[data-guide-warning-host]');
   const warningText = scene.querySelector('[data-guide-warning-text]');
-  const reduced = getScrollBehavior(root) === 'auto';
+  const level = getMotionLevel(root);
   const animations = new Set();
   let stopped = false;
   output.setAttribute('aria-busy', 'true');
   const animate = async(element, frames, duration, delay = 0) => {
-    if (stopped || reduced) { return; }
-    const animation = element.animate(frames, {duration, delay, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+    if (stopped || level === 'minimal') { return; }
+    // Reduced level: opacity fades of 120 ms at most, no height, no translate, no stagger.
+    const shown = level === 'reduced' ? toFadeFrames(frames) : frames;
+    if (!shown) {
+      return;
+    }
+    const animation = element.animate(shown, {
+      duration: level === 'reduced' ? Math.min(REDUCED_FADE_MS, duration) : duration,
+      delay: level === 'reduced' ? 0 : delay, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
     animations.add(animation);
     try { await animation.finished; } catch (error) { /* Departure/replay cancels the presentation only. */ }
     animation.cancel();
@@ -1797,7 +1817,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   let finished = false;
   const gates = new Set();
   let dropFrame = null;
-  const reduced = getScrollBehavior(root) === 'auto';
+  // 'minimal': phases switch instantly and the pointer is placed without travel. 'reduced': opacity fades
+  // of 120 ms at most, the pointer appears at its destination. Reading durations never change.
+  const level = getMotionLevel(root);
+  const reduced = level === 'minimal';
+  const fadeLevel = level === 'reduced';
+  const still = level !== 'full';
   // Reading, illustration and scroll share one lifecycle. Pause retains the
   // unread duration; phase advance drains just this phase's presentation work.
   const assertActive = () => {
@@ -1877,12 +1902,28 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await gate();
     assertActive();
     if (reduced) { return; }
-    const animation = element.animate(frames, {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
+    const shown = fadeLevel ? toFadeFrames(frames) : frames;
+    if (!shown) {
+      return;
+    }
+    const animation = element.animate(shown, {duration: fadeLevel ? Math.min(REDUCED_FADE_MS, duration) : duration,
+      easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
     animations.add(animation);
     if (skipping) { animation.finish(); }
     try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
     if (!retain) { animation.cancel(); animations.delete(animation); }
     assertActive();
+  };
+  // Illustrated pointer placed at its destination without travel ('minimal'), or faded in there ('reduced').
+  const placeCursor = async(cursorEl, transform) => {
+    await gate();
+    assertActive();
+    const wasHidden = cursorEl.hidden;
+    cursorEl.style.transform = transform;
+    cursorEl.hidden = false;
+    if (fadeLevel && wasHidden) {
+      await animate(cursorEl, [{opacity: 0}, {opacity: 1}], REDUCED_FADE_MS, false);
+    }
   };
   // Fade the instruction copy, not the entire teaching scene. Its reading pause
   // starts only after the new sentence is visible; no business state is changed.
@@ -1923,7 +1964,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       item.top - readingTop : item.bottom - readingBottom;
     const from = body.scrollTop;
     const to = Math.max(0, Math.min(from + offset, body.scrollHeight - body.clientHeight));
-    if (reduced || skipping || !body.animate) { body.scrollTop = to; return; }
+    if (still || skipping || !body.animate) { body.scrollTop = to; return; }
     // A clock animation supplies a cancellable, eased progress value;
     // scrolling stays a DOM property rather than an independent smooth-scroll.
     const clock = body.animate([{opacity: 1}, {opacity: 1}],
@@ -2024,17 +2065,26 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       // Reuse the shared pointer paint and playback clock, not a mobile mouse.
       const pointAt = async(element) => {
         assertActive();
-        if (!cursor || compact || reduced) { return; }
+        if (!cursor || compact) { return; }
         await gate();
         assertActive();
         const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
+        const destination = `translate(${target.left - frame.left + target.width / 2}px, ` +
+          `${target.top - frame.top + target.height / 2}px)`;
+        if (still) {
+          await placeCursor(cursor, destination);
+          return;
+        }
         const from = getComputedStyle(cursor).transform;
         cursor.hidden = false;
-        await animate(cursor, [{transform: from}, {transform:
-          `translate(${target.left - frame.left + target.width / 2}px, ${target.top - frame.top + target.height / 2}px)`}], 650);
+        await animate(cursor, [{transform: from}, {transform: destination}], 650);
       };
       const hidePointer = async() => {
         assertActive();
+        if (still && cursor) {
+          cursor.hidden = true;
+          return;
+        }
         if (!cursor || cursor.hidden) { return; }
         await animate(cursor, [{opacity: 1}, {opacity: 0}], 180);
         cursor.hidden = true;
@@ -2148,11 +2198,17 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       const point = cursor.getBoundingClientRect();
       const top = body && header && header.top <= body.top + 2 ? header.bottom : body?.top;
       cursor.style.visibility = body && (point.top < top || point.bottom > body.bottom) ? 'hidden' : cursorVisibility;
-      cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility);
+      // Only a gliding pointer or scroll needs a per-frame check; below the 'full' level it is
+      // evaluated when the pointer is placed and when the reading surface scrolls.
+      if (!still) { cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility); }
     };
     updateCursorVisibility();
+    if (still) {
+      readingBody?.addEventListener('scroll', updateCursorVisibility, {passive: true});
+    }
     controller.signal.addEventListener('abort', () => {
       cancelAnimationFrame(cursorVisibilityFrame);
+      readingBody?.removeEventListener('scroll', updateCursorVisibility);
       cursor.style.visibility = cursorVisibility;
     }, {once: true});
     if (compact && mode === 'add') {
@@ -2170,6 +2226,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const travelPoint = async(point, duration) => {
       assertActive();
       cursorPoint = point;
+      if (still) {
+        await placeCursor(cursor, `translate(${point.x}px, ${point.y}px)`);
+        updateCursorVisibility();
+        return;
+      }
       const from = getComputedStyle(cursor).transform;
       cursor.hidden = false;
       await animate(cursor, [{transform: from},
@@ -2177,7 +2238,6 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     };
     const travel = async(element, duration = 750, cardAnchor = false) => {
       assertActive();
-      if (reduced) { return; }
       const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
       const point = {
         x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
@@ -2206,7 +2266,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       }));
       if (controller.signal.aborted) { return; }
       await travel(menu.querySelector('strong'));
-      if (!compact) {
+      if (!compact && !still) {
         await animate(cursor, [{opacity: 1}, {opacity: 0.45}, {opacity: 1}], 180);
       }
       await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
@@ -2231,7 +2291,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       // cancellable scene clock rather than scrolling the Moodle page behind it.
       await reveal(stage);
       if (controller.signal.aborted) { return; }
-      if (!compact && !reduced) {
+      if (!compact && !still) {
         const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
         const selected = [...stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person')];
         await Promise.all(selected.map((node, index) => {
@@ -2242,7 +2302,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         }));
         if (controller.signal.aborted) { return; }
       }
-    } else if (!compact && !reduced) {
+    } else if (!compact && !still) {
       await phase('menu');
       if (controller.signal.aborted) { return; }
       const ghost = person.cloneNode(true);
@@ -2350,7 +2410,7 @@ const setActiveSlide = (root, index, config, options = {}) => {
   const modal = root.querySelector(SELECTORS.modal);
   const outgoing = root.querySelector(SELECTORS.slide + '.is-active');
   if (options.immediate || !root.classList.contains('easyedu-guide--discovery') ||
-      !modal || modal.hidden || !outgoing || index === getActiveSlideIndex(root) || getScrollBehavior(root) === 'auto') {
+      !modal || modal.hidden || !outgoing || index === getActiveSlideIndex(root) || getMotionLevel(root) === 'minimal') {
     applyActiveSlide(root, index, config, options);
     return;
   }
@@ -2362,9 +2422,10 @@ const setActiveSlide = (root, index, config, options = {}) => {
     animations.forEach(animation => animation.cancel());
     root.removeAttribute('data-easyedu-guide-slide-transition');
   };
+  const fadeCap = getMotionLevel(root) === 'reduced' ? REDUCED_FADE_MS : Infinity;
   const fade = async(element, from, to, duration) => {
     const animation = element.animate([{opacity: from}, {opacity: to}],
-      {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+      {duration: Math.min(duration, fadeCap), easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
     animations.add(animation);
     try { await animation.finished; } catch (error) { /* A newer navigation request wins. */ }
     return animation;
@@ -2567,12 +2628,13 @@ const closeModal = (root, preserveHighlight = false, restoreFocus = true, option
     }
   };
   if (options.immediate || modal.hidden || !root.classList.contains('easyedu-guide--discovery') ||
-      getScrollBehavior(root) === 'auto') {
+      getMotionLevel(root) === 'minimal') {
     finish();
     return Promise.resolve();
   }
   if (root.easyeduGuideExitPromise) { return root.easyeduGuideExitPromise; }
-  const animation = modal.animate([{opacity: 1}, {opacity: 0}], {duration: 200, easing: 'ease', fill: 'both'});
+  const animation = modal.animate([{opacity: 1}, {opacity: 0}], {
+    duration: getMotionLevel(root) === 'reduced' ? REDUCED_FADE_MS : 200, easing: 'ease', fill: 'both'});
   let stopped = false;
   const stopExit = () => { stopped = true; animation.cancel(); };
   root.easyeduGuideExitStop = stopExit;

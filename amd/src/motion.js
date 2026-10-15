@@ -30,42 +30,141 @@ const getDisclosureDuration = (startHeight, endHeight, baseDuration) => {
     return Math.round(Math.min(baseDuration + extraDuration, distanceDuration));
 };
 
-const getRoot = element => {
-    if (!element) {
-        return null;
-    }
-    if (element.matches && element.matches('[data-easyedu-motion-policy]')) {
-        return element;
-    }
-    return element.closest ? element.closest('[data-easyedu-motion-policy]') : null;
-};
+const levels = ['full', 'reduced', 'minimal'];
+const levelSelector = '[data-easyedu-motion-level]';
+const policySelector = '[data-easyedu-motion-policy]';
+const reducedFadeDuration = 120;
 
-export const isEnabled = element => {
-    const root = getRoot(element);
-    const allowedByAdmin = !root || root.getAttribute('data-easyedu-motion-policy') !== 'disabled';
-    const bodyDisabled = !!(document.body && document.body.classList.contains('easyedu-motion-disabled'));
-    return allowedByAdmin && !bodyDisabled && !(reducedMotionQuery && reducedMotionQuery.matches);
+const closestRoot = (element, selector) => {
+    if (element && element.closest) {
+        const found = element.closest(selector);
+        if (found) {
+            return found;
+        }
+    }
+    return document.querySelector(selector);
 };
 
 /**
- * Motion level of an element: 'full', 'reduced' (fades only) or 'none' (plugin animations disabled
- * by policy or by the body class, or no Web Animations support).
+ * Whether the visitor's system "reduce motion" preference is honoured. It is NOT by default (product
+ * decision: only the level chosen in EasyStud counts); a root may opt in with
+ * data-easyedu-respect-system-motion="1" (future admin option). When honoured, the system preference
+ * caps the level at 'reduced'.
  *
- * @param {HTMLElement} element Element to animate.
- * @returns {String}
+ * @param {HTMLElement} element Element, or nothing for the page.
+ * @returns {Boolean}
+ */
+export const respectsSystemMotion = element => {
+    const root = closestRoot(element, '[data-easyedu-respect-system-motion]');
+    return !!root && root.getAttribute('data-easyedu-respect-system-motion') === '1';
+};
+
+const readLevel = element => {
+    const levelRoot = closestRoot(element, levelSelector);
+    const attribute = levelRoot ? levelRoot.getAttribute('data-easyedu-motion-level') : null;
+    if (levels.includes(attribute)) {
+        return attribute;
+    }
+    const policyRoot = element && element.closest ? element.closest(policySelector) : null;
+    const body = document.body;
+    if ((policyRoot && policyRoot.getAttribute('data-easyedu-motion-policy') === 'disabled') ||
+            (body && body.classList.contains('easyedu-motion-disabled'))) {
+        return 'minimal';
+    }
+    return body && body.classList.contains('easyedu-motion-reduced') ? 'reduced' : 'full';
+};
+
+/**
+ * Animation level of an element: 'full', 'reduced' (opacity fades of 120 ms at most, no translate, no
+ * scale, no stagger) or 'minimal' (no animation at all, also without Web Animations support).
+ * Read from data-easyedu-motion-level on the closest root, else data-easyedu-motion-policy="disabled"
+ * (minimal), else the body classes easyedu-motion-disabled (minimal) / easyedu-motion-reduced.
+ *
+ * @param {HTMLElement} element Element to animate (optional).
+ * @returns {String} 'full' | 'reduced' | 'minimal'
  */
 export const getLevel = element => {
-    if (!element || typeof element.animate !== 'function') {
-        return 'none';
+    if (element && typeof element.animate !== 'function') {
+        return 'minimal';
     }
-    const root = getRoot(element);
-    if ((root && root.getAttribute('data-easyedu-motion-policy') === 'disabled') ||
-            (document.body && document.body.classList.contains('easyedu-motion-disabled'))) {
-        return 'none';
+    const level = readLevel(element);
+    if (level === 'full' && respectsSystemMotion(element) && reducedMotionQuery && reducedMotionQuery.matches) {
+        return 'reduced';
     }
-    const reduced = !!(reducedMotionQuery && reducedMotionQuery.matches) ||
-        !!(document.body && document.body.classList.contains('easyedu-prefers-reduced-motion'));
-    return reduced ? 'reduced' : 'full';
+    return level;
+};
+
+export const isEnabled = element => getLevel(element) !== 'minimal';
+
+/**
+ * Value for scrollIntoView / scrollTo / scrollBy: 'smooth' only at the 'full' level.
+ *
+ * @param {HTMLElement} element Element, or nothing for the page.
+ * @returns {String} 'smooth' | 'auto'
+ */
+export const scrollBehavior = element => getLevel(element) === 'full' ? 'smooth' : 'auto';
+
+/**
+ * Change the animation level at once, without reload: root attribute, compatibility policy attribute and
+ * body classes. Does not store any preference. Other level/policy roots of the page follow.
+ *
+ * @param {HTMLElement} root Root (.easyedu-ui) to update.
+ * @param {String} level 'full' | 'reduced' | 'minimal'
+ * @returns {String|null} The applied level, null when invalid.
+ */
+export const setLevel = (root, level) => {
+    if (!root || !levels.includes(level)) {
+        return null;
+    }
+    const targets = new Set([root]);
+    document.querySelectorAll(levelSelector + ', ' + policySelector).forEach(node => targets.add(node));
+    targets.forEach(node => {
+        node.setAttribute('data-easyedu-motion-level', level);
+        node.setAttribute('data-easyedu-motion-policy', level === 'minimal' ? 'disabled' : 'enabled');
+        node.classList.toggle('is-easyedu-motion-off', level === 'minimal');
+    });
+    if (document.body) {
+        document.body.classList.toggle('easyedu-motion-reduced', level === 'reduced');
+        document.body.classList.toggle('easyedu-motion-disabled', level === 'minimal');
+        document.body.classList.toggle('local-groupimport-motion-disabled', level === 'minimal');
+    }
+    if (level === 'minimal' && typeof root.getAnimations === 'function') {
+        root.getAnimations({subtree: true}).forEach(animation => {
+            try {
+                animation.cancel();
+            } catch (error) {
+                // Already finished.
+            }
+        });
+    }
+    root.dispatchEvent(new CustomEvent('easyedu:motionlevelchange', {bubbles: true, detail: {level}}));
+    return level;
+};
+
+/**
+ * Opacity-only version of keyframes (every frame must carry a different opacity), or null when there is
+ * nothing to fade.
+ *
+ * @param {Array} keyframes Keyframes.
+ * @returns {Array|null}
+ */
+const fadeOnly = keyframes => {
+    const frames = keyframes.map(frame => frame.opacity === undefined ? null : {opacity: frame.opacity});
+    if (frames.length < 2 || frames.includes(null) ||
+            Number(frames[0].opacity) === Number(frames[frames.length - 1].opacity)) {
+        return null;
+    }
+    return frames;
+};
+
+const expandFromOpacity = options => options.fromOpacity === undefined ? 0.35 : options.fromOpacity;
+
+const setWillChange = (element, level, value) => {
+    if (level === 'full') {
+        element.style.willChange = value;
+    } else if (level === 'reduced') {
+        element.style.willChange = 'opacity';
+    }
 };
 
 export const cancel = element => {
@@ -80,19 +179,32 @@ export const cancel = element => {
     }
 };
 
-const play = (element, keyframes, options, cleanup, level) => {
+const play = (element, keyframes, options, cleanup, level, reducedFrames) => {
     cancel(element);
-    const allowed = level ? level !== 'none' : isEnabled(element);
-    if (!allowed || typeof element.animate !== 'function') {
+    const effective = level || getLevel(element);
+    if (effective === 'minimal' || typeof element.animate !== 'function') {
         cleanup(true);
         return Promise.resolve(true);
     }
+    let frames = keyframes;
+    let timing = options;
+    if (effective === 'reduced') {
+        frames = reducedFrames || fadeOnly(keyframes);
+        if (!frames) {
+            cleanup(true);
+            return Promise.resolve(true);
+        }
+        timing = Object.assign({}, options, {
+            duration: Math.min(reducedFadeDuration, options.duration || durations.normal),
+            delay: 0,
+        });
+    }
 
-    const animation = element.animate(keyframes, Object.assign({
+    const animation = element.animate(frames, Object.assign({
         duration: durations.normal,
         easing,
         fill: 'both',
-    }, options));
+    }, timing));
     const record = {animation, cleanup};
     activeAnimations.set(element, record);
 
@@ -153,6 +265,7 @@ export const disclosePanel = (element, open, options = {}) => {
         start.height = Math.max(0, rect.height - insets) + 'px';
     }
     cancel(element);
+    const level = getLevel(element);
     const originalStyles = properties.map(property => ({
         property, value: element.style.getPropertyValue(property),
         priority: element.style.getPropertyPriority(property),
@@ -178,10 +291,12 @@ export const disclosePanel = (element, open, options = {}) => {
         });
     }
     element.classList.add('is-easyedu-disclosing');
-    element.style.minHeight = '0';
-    element.style.overflow = 'hidden';
+    if (level === 'full') {
+        element.style.minHeight = '0';
+        element.style.overflow = 'hidden';
+    }
     element.style.transform = 'none';
-    element.style.willChange = 'height, opacity';
+    setWillChange(element, level, 'height, opacity');
     const distance = Math.abs((wasHidden ? 0 : rect.height) - (open ? endHeight : 0));
     const openDuration = options.duration || Math.round(320 + Math.min(100, distance * 0.15));
     // Closing a dropdown-like panel is faster than opening it (optional closeDuration).
@@ -204,7 +319,7 @@ export const disclosePanel = (element, open, options = {}) => {
         if (completed && options.onComplete) {
             options.onComplete();
         }
-    });
+    }, level, [{opacity: start.opacity}, {opacity: end.opacity}]);
 };
 
 export const expand = (element, options = {}) => {
@@ -220,12 +335,15 @@ export const expand = (element, options = {}) => {
     }
     const startHeight = currentHeight;
     const endHeight = Math.max(element.scrollHeight, element.getBoundingClientRect().height);
-    element.style.overflow = 'hidden';
-    element.style.willChange = 'height, opacity';
+    const level = getLevel(element);
+    if (level === 'full') {
+        element.style.overflow = 'hidden';
+    }
+    setWillChange(element, level, 'height, opacity');
 
     return play(element, [
         {height: startHeight + 'px',
-            opacity: options.fade === false ? 1 : (options.fromOpacity === undefined ? 0.35 : options.fromOpacity)},
+            opacity: options.fade === false ? 1 : expandFromOpacity(options)},
         {height: endHeight + 'px', opacity: 1},
     ], {
         duration: getDisclosureDuration(startHeight, endHeight, options.duration || durations.slow),
@@ -239,7 +357,7 @@ export const expand = (element, options = {}) => {
         if (completed && options.onComplete) {
             options.onComplete();
         }
-    });
+    }, level, [{opacity: options.fade === false ? 0 : expandFromOpacity(options)}, {opacity: 1}]);
 };
 
 export const collapse = (element, options = {}) => {
@@ -249,10 +367,13 @@ export const collapse = (element, options = {}) => {
     const currentHeight = element.getBoundingClientRect().height;
     cancel(element);
     const startHeight = currentHeight || element.scrollHeight;
+    const level = getLevel(element);
     element.hidden = false;
     element.classList.add('is-easyedu-disclosing');
-    element.style.overflow = 'hidden';
-    element.style.willChange = 'height, opacity';
+    if (level === 'full') {
+        element.style.overflow = 'hidden';
+    }
+    setWillChange(element, level, 'height, opacity');
 
     return play(element, [
         {height: startHeight + 'px', opacity: 1},
@@ -269,7 +390,7 @@ export const collapse = (element, options = {}) => {
         if (completed && options.onComplete) {
             options.onComplete();
         }
-    });
+    }, level, [{opacity: 1}, {opacity: 0}]);
 };
 
 export const resize = (element, mutate, options = {}) => {
@@ -282,7 +403,8 @@ export const resize = (element, mutate, options = {}) => {
     const lastHeight = element.getBoundingClientRect().height;
     const targetMaxHeight = element.style.maxHeight;
     const targetMinHeight = element.style.minHeight;
-    if (!isEnabled(element) || Math.abs(firstHeight - lastHeight) < 1) {
+    // Height-only change: no fade to offer, so it is instant below the 'full' level.
+    if (getLevel(element) !== 'full' || Math.abs(firstHeight - lastHeight) < 1) {
         if (options.onComplete) {
             options.onComplete();
         }
@@ -321,7 +443,7 @@ export const enter = (element, options = {}) => {
         return Promise.resolve();
     }
     element.hidden = false;
-    element.style.willChange = 'opacity, transform';
+    setWillChange(element, getLevel(element), 'opacity, transform');
     return play(element, [
         {opacity: options.fromOpacity === undefined ? 0 : options.fromOpacity,
             transform: 'translateY(' + (options.distance || '0.22rem') + ')'},
@@ -336,7 +458,7 @@ export const exit = (element, options = {}) => {
     if (!element) {
         return Promise.resolve();
     }
-    element.style.willChange = 'opacity, transform';
+    setWillChange(element, getLevel(element), 'opacity, transform');
     return play(element, [
         {opacity: 1, transform: 'translateY(0)'},
         {opacity: options.toOpacity === undefined ? 0 : options.toOpacity,
@@ -391,8 +513,11 @@ export const swap = (element, mutate, options = {}) => {
         }
         const lastHeight = element.getBoundingClientRect().height;
         const distance = options.distance === undefined ? '0.16rem' : options.distance;
-        element.style.overflow = 'clip';
-        element.style.willChange = 'height, opacity, transform';
+        const level = getLevel(element);
+        if (level === 'full') {
+            element.style.overflow = 'clip';
+        }
+        setWillChange(element, level, 'height, opacity, transform');
         return play(element, [
             {height: firstHeight + 'px',
                 opacity: options.swapOpacity === undefined ? 0.35 : options.swapOpacity,
@@ -407,7 +532,6 @@ export const swap = (element, mutate, options = {}) => {
 
 const closingMenus = new WeakSet();
 const menuCloseEasing = 'cubic-bezier(0.4, 0, 1, 1)';
-const reducedFadeDuration = 120;
 const menuOpenDuration = durations.normal;
 const menuCloseDuration = 130;
 
@@ -440,7 +564,7 @@ export const isMenuClosing = menu => !!menu && closingMenus.has(menu);
 /**
  * Open a floating menu (dropdown, overflow or context menu) as one piece: container and items share
  * a single 160 ms animation, a fade plus a 5 px offset and a 0.98 to 1 scale from the anchor side.
- * Reduced motion: 120 ms fade only. Disabled: no animation. Re-opening a menu that is closing
+ * Reduced level: 120 ms fade only. Minimal level: no animation. Re-opening a menu that is closing
  * resumes from its current opacity. No inline style remains afterwards.
  *
  * @param {HTMLElement} menu Menu element.
@@ -457,7 +581,7 @@ export const showMenu = (menu, options = {}) => {
     cancel(menu);
     menu.hidden = false;
     const level = getLevel(menu);
-    if (level === 'none') {
+    if (level === 'minimal') {
         return Promise.resolve(true);
     }
     const origin = options.origin || getMenuOrigin(menu, options.anchor);
@@ -492,7 +616,7 @@ export const hideMenu = (menu, options = {}) => {
     const level = getLevel(menu);
     const startOpacity = Math.min(1, parseFloat(getComputedStyle(menu).opacity) || 1);
     cancel(menu);
-    if (level === 'none' || !menu.getClientRects().length) {
+    if (level === 'minimal' || !menu.getClientRects().length) {
         menu.hidden = true;
         if (options.onDone) {
             options.onDone(true);
@@ -537,7 +661,7 @@ export const reveal = (element, options = {}) => {
         return Promise.resolve(false);
     }
     const level = getLevel(element);
-    if (level === 'none') {
+    if (level === 'minimal') {
         return Promise.resolve(true);
     }
     const from = {opacity: 0};
@@ -548,7 +672,7 @@ export const reveal = (element, options = {}) => {
     }
     return play(element, [from, to], {
         duration: level === 'reduced' ? reducedFadeDuration : (options.duration || durations.normal),
-        delay: options.delay || 0,
+        delay: level === 'reduced' ? 0 : (options.delay || 0),
         easing,
     }, () => undefined, level);
 };
@@ -558,7 +682,7 @@ export const scroll = (element, options = {}) => {
         return;
     }
     element.scrollIntoView({
-        behavior: isEnabled(element) ? 'smooth' : 'auto',
+        behavior: scrollBehavior(element),
         block: options.block || 'start',
         inline: options.inline || 'nearest',
     });
@@ -568,18 +692,19 @@ export const init = root => {
     if (!root) {
         return;
     }
+    // The system "reduce motion" preference is ignored unless the root opts in
+    // (data-easyedu-respect-system-motion="1"); the legacy body classes follow that opt-in only.
     const sync = () => {
-        const off = !isEnabled(root);
-        root.classList.toggle('is-easyedu-motion-off', off);
-        document.body.classList.toggle('local-groupimport-prefers-reduced-motion',
-            !!(reducedMotionQuery && reducedMotionQuery.matches));
-        document.body.classList.toggle('easyedu-prefers-reduced-motion',
-            !!(reducedMotionQuery && reducedMotionQuery.matches));
+        root.classList.toggle('is-easyedu-motion-off', !isEnabled(root));
+        const system = respectsSystemMotion(root) && !!(reducedMotionQuery && reducedMotionQuery.matches);
+        document.body.classList.toggle('local-groupimport-prefers-reduced-motion', system);
+        document.body.classList.toggle('easyedu-prefers-reduced-motion', system);
     };
     sync();
     if (reducedMotionQuery && reducedMotionQuery.addEventListener) {
         reducedMotionQuery.addEventListener('change', sync);
     }
+    root.addEventListener('easyedu:motionlevelchange', sync);
 };
 
 export const timing = durations;

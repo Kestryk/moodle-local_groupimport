@@ -531,7 +531,7 @@ export const bindTutorialModal = root => {
         if (progressBar) {
             progressBar.style.width = (((index + 1) / steps.length) * 100) + '%';
         }
-        const scrollBehavior = Motion.isEnabled(root) ? 'smooth' : 'auto';
+        const scrollBehavior = Motion.scrollBehavior(root);
         if (scrollToStep && stepsContainer) {
             stepsContainer.scrollTo({top: 0, behavior: scrollBehavior});
         } else if (scrollToStep && body) {
@@ -559,8 +559,8 @@ export const bindTutorialModal = root => {
             return;
         }
         const amount = Math.max(180, Math.round(nav.clientWidth * 0.72));
-        nav.scrollBy({left: amount * direction, behavior: Motion.isEnabled(root) ? 'smooth' : 'auto'});
-        window.setTimeout(updateNavScrollButtons, Motion.isEnabled(root) ? 260 : 0);
+        nav.scrollBy({left: amount * direction, behavior: Motion.scrollBehavior(root)});
+        window.setTimeout(updateNavScrollButtons, Motion.scrollBehavior(root) === 'smooth' ? 260 : 0);
     };
 
     const hideTutorialModal = (afterClose = null) => {
@@ -945,11 +945,11 @@ export const bindTutorialModal = root => {
         }
 
         if (delta !== 0) {
-            window.scrollBy({top: delta, behavior: 'smooth'});
+            window.scrollBy({top: delta, behavior: Motion.scrollBehavior(root)});
             window.setTimeout(() => {
                 const updated = target.getBoundingClientRect();
                 if (updated.top < headerOffset) {
-                    window.scrollBy({top: updated.top - headerOffset, behavior: 'smooth'});
+                    window.scrollBy({top: updated.top - headerOffset, behavior: Motion.scrollBehavior(root)});
                 }
                 scheduleTutorialHighlightOverlay();
             }, 260);
@@ -1178,7 +1178,7 @@ export const bindTutorialModal = root => {
                 targetRect.height > usableHeight
             ) {
                 window.scrollTo({
-                    behavior: 'smooth',
+                    behavior: Motion.scrollBehavior(root),
                     top: Math.max(0, window.scrollY + targetRect.top - headerOffset),
                 });
             }
@@ -1190,7 +1190,11 @@ export const bindTutorialModal = root => {
             });
             positionTutorialHighlightOverlay();
             window.clearInterval(highlightFollowTimer);
-            highlightFollowTimer = window.setInterval(scheduleTutorialHighlightOverlay, 140);
+            // The 140 ms follow loop only serves smooth scrolls and panel animations ('full' level);
+            // the fixed re-positioning timeouts above are enough once nothing glides.
+            if (Motion.getLevel(root) === 'full') {
+                highlightFollowTimer = window.setInterval(scheduleTutorialHighlightOverlay, 140);
+            }
             highlightTimer = window.setTimeout(() => {
                 clearTutorialHighlight();
             }, 5200);

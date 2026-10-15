@@ -178,8 +178,24 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
         document.addEventListener('pointercancel', onOutsidePointerEnd, true);
     };
 
-    const reducedMotion = () => document.defaultView && document.defaultView.matchMedia &&
-        document.defaultView.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // Same rules as Motion.getLevel (this Kit module has no dependency of its own): root attribute,
+    // then policy, then body classes. The system "reduce motion" preference is ignored by default.
+    const motionLevel = () => {
+        if (motion && typeof motion.getLevel === 'function') {
+            return motion.getLevel(panel);
+        }
+        const scope = panel.closest('[data-easyedu-motion-level]') || document.querySelector('[data-easyedu-motion-level]');
+        const level = scope ? scope.getAttribute('data-easyedu-motion-level') : '';
+        if (level === 'full' || level === 'reduced' || level === 'minimal') {
+            return level;
+        }
+        const policy = panel.closest('[data-easyedu-motion-policy]');
+        if ((policy && policy.getAttribute('data-easyedu-motion-policy') === 'disabled') ||
+                document.body.classList.contains('easyedu-motion-disabled')) {
+            return 'minimal';
+        }
+        return document.body.classList.contains('easyedu-motion-reduced') ? 'reduced' : 'full';
+    };
     const panelDuration = () => {
         const value = document.defaultView.getComputedStyle(panel)
             .getPropertyValue('--easyedu-choice-disclosure-duration').trim();
@@ -209,20 +225,25 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
             panelAnimation.cancel();
             panelAnimation = null;
         }
-        if (reducedMotion() || typeof panel.animate !== 'function') {
+        const level = motionLevel();
+        if (level === 'minimal' || typeof panel.animate !== 'function') {
             complete();
             return;
         }
         const startHeight = panel.getBoundingClientRect().height;
         const endHeight = expanded ? panel.scrollHeight : 0;
         const startOpacity = Number.parseFloat(document.defaultView.getComputedStyle(panel).opacity) || 0;
-        panelAnimation = panel.animate([
+        // Reduced level: opacity fade of 120 ms at most, no height, no translate.
+        panelAnimation = panel.animate(level === 'reduced' ? [
+            {opacity: startOpacity},
+            {opacity: expanded ? 1 : 0},
+        ] : [
             {height: `${startHeight}px`, opacity: startOpacity,
                 transform: expanded ? 'translateY(-0.25rem)' : 'translateY(0)'},
             {height: `${endHeight}px`, opacity: expanded ? 1 : 0,
                 transform: expanded ? 'translateY(0)' : 'translateY(-0.25rem)'},
         ], {
-            duration: panelDuration(),
+            duration: level === 'reduced' ? Math.min(120, panelDuration()) : panelDuration(),
             easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
         });
         panelAnimation.addEventListener('finish', () => {
