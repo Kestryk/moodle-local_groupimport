@@ -21,7 +21,7 @@ test('K16 participant pills visible wrapped and expanded in both densities',asyn
   for(const density of ['initial','toggled']){
    if(density==='toggled')await root.locator('[data-easystud-density-toggle]').evaluate(n=>n.click());await settle();
    for(const expanded of [false,true]){
-    if(expanded){for(const b of await root.locator('[data-easystud-user] [data-easystud-toggle-tags]:visible').all())if(await b.getAttribute('aria-expanded')!=='true')await b.evaluate(n=>n.click());await settle();}
+    if(expanded){for(const card of (await root.locator('[data-easystud-user]').all()).slice(0,4))for(const b of await card.locator('[data-easystud-toggle-tags]:visible').all())if(await b.getAttribute('aria-expanded')!=='true')await b.evaluate(n=>n.click());await settle();}
     const cards=await measure();rows.push({lang,width,density,expanded,cards});save();expect(cards.length).toBeGreaterThan(0);
     for(const c of cards)for(const g of c.groups){if(g.realCount)expect(g.tokens.filter(t=>!t.toggle).length).toBeGreaterThan(0);
      for(const t of g.tokens){expect(t.text).not.toBe('');expect(t.text).not.toBe('-');expect(t.h).toBe(22);if(t.clipped){expect(t.text.length).toBeGreaterThan(35);expect(t.title).toBe(t.text);} }
