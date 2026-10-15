@@ -25,3 +25,33 @@ proofs; PHPUnit tests are present, executable availability must be checked.
 The two loading-delay OS reads remain outside this delivery, assigned to Claude.
 Visual relay: shared motion policy, SM/Mass Import/admin ready/loading; all three
 levels,1280/390. User choice dialog and Penpot/human acceptance remain separate.
+
+## Served migration and rehearsal
+
+Source89dd8bef/4b944790/266188d8/7ab04470 published as
+8de8ad85/6c9ed126/68d90fdf/a01262e3, purge PASS. SM/CM/Guide/Motion/choices AMD
+and conservative page CSS builds PASS, changed PHP lint PASS, generated Motion
+three-level execution PASS. The runtime manifest preserves every previous entry.
+
+Principal Moodle upgrade1500=>1501 via core upgrade_noncore, under dedicated
+runtime/cache leases: original enableanimations1/no motionlevel, seed0, observed
+minimal with old key absent, restore original effective full (old key stays absent).
+Only local_groupimport was pending; no real-user preference changed. External
+temp/m1m2-upgrade-proof.json and core-upgrade log retain the result.
+
+Disposable test-legacy-upgrade.ps1 PASS from2026010503 to2026101501 with disabled
+animations seeded: minimal/old key absent, legacy import-only mode retained,
+default user field retained, history schema complete, obsolete tour targets removed.
+Owned clone moodle_easystud_upgrade_20261015163828_8913 removed by guarded cleanup;
+external temp/m1m2-legacy-rehearsal.log retained. Main database was only read for
+that clone. PHPUnit executables absent in principal and build checkouts: supplied
+motion/privacy PHPUnit tests were linted, not executed.
+
+Native easystud-authenticated-20261015T143927804Z-19656 PASS FR1280 across SM,
+Mass Import and administration: server-rendered full level and correct page sheet,
+OS-reduced emulated but JS level remains full, actual served Motion switches all
+three levels and body classes/scroll behavior, then restores full without storing
+a preference. Zero page errors/business writes. SM/MI roots also expose enabled
+compatibility policy; the sampled admin field wrapper has only the level.
+Three PNGs pinned30days; SM capture inspected. This bounded smoke test does not
+replace N2's M1 section7 all-width/animation-geometry recipe or human acceptance.

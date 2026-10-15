@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N0] Verify M1 migration on localhost and disposable legacy upgrade, restore the initial effective full default, and smoke-test served SM/Mass Import/admin roots with all three live JS levels; keep full native geometry/human acceptance separate.
+
 - 2026-10-15 [N1] Integrate Claude M1/M2 animation levels: administrator default, shared user preference and privacy handling, server root/body markers, one SCSS policy and reduced effects; synchronize Kit0.4.213/c4fe248, preserving canonical compact navigation. Upgrade2026101501 replaces enableanimations.
 
 - 2026-10-15 [N1] Integrate Claude compact Guide10 card-menu Add to group flow, target-aware checklist docking and shared full/reduced/minimal JavaScript Motion; preserve compact minimization and localize the three compact instructions in FR/EN.
