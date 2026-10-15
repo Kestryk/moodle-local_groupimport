@@ -1,5 +1,11 @@
 # Preserved native successors, 15 October
 
+entity-dialog-served-native.spec.js: local-supervised successor for T048/T050,
+FR1600/1280/390 nine card cells plus history1280,151508393Z-54116 PASS. Native
+Close/Tab/Escape/return and22px relation counts; actual SM read APIs permitted,
+business writes blocked. No Save/restore or complete Guide-path proof. CI needs
+isolated course data and Moodle authentication; preserve historical modal recipes.
+
 m1m2-served-roots-native.spec.js: local-supervised, principal course5/admin
 authentication; three page roots and actual JS levels under emulated OS reduction,
 143927804Z-19656 PASS FR1280. Nonpersistent DOM level changes restore full. CI
