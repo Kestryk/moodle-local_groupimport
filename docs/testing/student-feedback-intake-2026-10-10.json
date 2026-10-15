@@ -1,4 +1,13 @@
 {
+"claudeCardsLabelsIntegration20261015": {
+  "incoming": ["8a764c0a", "8df47e32", "b0b561c4", "cd84e465", "e24a37fa", "afd50802"],
+  "source": ["cfe7ac6a", "aa389812", "6b180517", "ee938afc", "e550c508", "44e6a3c7"],
+  "kit": "0.4.214 / 2b8b510",
+  "sourceConflicts": 0,
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "entityDialogsReadyProof20261015": {
   "runtime": "ea86b53a",
   "nativeRun": "easystud-authenticated-20261015T151913743Z-16956",
