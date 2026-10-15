@@ -45,7 +45,8 @@ const root = path.resolve(__dirname, '../..');
         assert.equal(await page.locator('#required').isVisible(), true, 'Required native fallback');
         const hosts = page.locator('.easyedu-searchable-choice');
         await hosts.nth(0).locator('button').first().click();
-        if (motion === 'disabled' || motion === 'reduce') {
+        // M3 deliberately ignores the OS preference; only the explicit off policy is static.
+        if (motion === 'disabled') {
             assert.equal(await hosts.nth(0).locator('.easyedu-searchable-choice__panel')
                 .evaluate(panel => panel.getAnimations().length), 0, 'Static policy keeps framed controls static');
         }

@@ -97,10 +97,14 @@ for export and deletion of this data.
 
 - Moodle requirement: 5.1 or later on this refactor branch.
 - SCSS entry point: `scss/easystud.scss`.
-- Compile styles with `sass scss/easystud.scss styles.css --no-source-map`.
+- Compile with `node tools/release/build-styles.cjs <Sass-1.79.1-module> styles.css conservative <PostCSS-module>`.
+  This generates the ordered per-page bundles in `styles/`; `styles.css` stays
+  a comment so Moodle pages outside EasyStud receive no global presentation rules.
 - Playwright documentation: `tools/playwright/README.md`.
 - Mass Import loading contract: `docs/testing/mass-import-loading-state.md`.
 - Administration settings loading contract: `docs/testing/admin-settings-loading-state.md`.
+- E5 administration composition and measured SM/Mass Import proportions:
+  `docs/testing/admin-e5-iso-2026-10-16.md`.
 - Authenticated Playwright checks use the DPAPI-backed
   `tools/playwright/Invoke-EasyStudPlaywrightWithSavedCredentials.ps1` runner
   with configurable local loader and orchestration paths.
