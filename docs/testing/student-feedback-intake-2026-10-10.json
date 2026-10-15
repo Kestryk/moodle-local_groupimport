@@ -1,4 +1,5 @@
 {
+"guide4Integration20261015": {"source":"3850f072", "kit":"2cdee923909a716fbe1cf35037f4ac449915bc21", "static":"T038 44 checks; scoped parity; named AMD build PASS", "native":"pending served recipe", "humanAccepted":false},
 "drawerV1NativeProof20261015": {
   "runtime": "4a5939f1",
   "nativeRun": "easystud-authenticated-20261015T160136613Z-15572",

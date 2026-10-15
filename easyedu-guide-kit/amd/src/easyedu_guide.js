@@ -1,5 +1,6 @@
 // Generic EasyEdu guide foundation for Moodle plugins.
 import {createFullscreenController} from './easyedu_guide_fullscreen';
+import * as Motion from '../../../motion/amd/src/easyedu_motion';
 import {disclosePanel, cancel as cancelRecapPanel} from '../../../motion/amd/src/easyedu_motion';
 //
 // Plugins should copy this module into their AMD source folder and configure
@@ -138,15 +139,21 @@ const setStepOpenTimeout = (root, callback, delay) => {
   return timer;
 };
 
-const isMotionEnabled = root => {
-  const policyRoot = root && root.closest ? root.closest('[data-easyedu-motion-policy]') : null;
-  const disabledByAdmin = (policyRoot && policyRoot.getAttribute('data-easyedu-motion-policy') === 'disabled') ||
-    (document.body && document.body.classList.contains('easyedu-motion-disabled'));
-  const reducedByVisitor = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  return !disabledByAdmin && !reducedByVisitor;
-};
+// One animation level for the whole Guide: Motion.getLevel ('full' | 'reduced' | 'minimal'). The
+// system "reduce motion" preference is ignored by default (Motion owns that decision).
+const getMotionLevel = root => Motion.getLevel(root);
+const isMotionEnabled = root => getMotionLevel(root) !== 'minimal';
+const getScrollBehavior = root => Motion.scrollBehavior(root);
+const REDUCED_FADE_MS = 120;
 
-const getScrollBehavior = root => isMotionEnabled(root) ? 'smooth' : 'auto';
+// Opacity-only copy of keyframes, or null when there is nothing to fade (reduced level).
+const toFadeFrames = frames => {
+  if (frames.length < 2 || frames.some(frame => frame.opacity === undefined) ||
+      Number(frames[0].opacity) === Number(frames[frames.length - 1].opacity)) {
+    return null;
+  }
+  return frames.map(frame => ({opacity: frame.opacity}));
+};
 
 const scrollAnimationTokens = new WeakMap();
 let windowScrollAnimationToken = null;
@@ -501,9 +508,14 @@ const dismissResume = (root, animate = false) => {
   root.easyeduGuideResumeAnimation?.cancel();
   const notice = root.querySelector('[data-easyedu-guide-resume]');
   if (!notice || notice.hidden) { return; }
-  if (!animate || getScrollBehavior(root) === 'auto') { notice.hidden = true; return; }
-  const motion = notice.animate([{opacity: 1, transform: 'translateY(0)'},
-    {opacity: 0, transform: 'translateY(.35rem)'}], {duration: 280, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+  const level = getMotionLevel(root);
+  if (!animate || level === 'minimal') {
+    notice.hidden = true;
+    return;
+  }
+  const motion = notice.animate(level === 'reduced' ? [{opacity: 1}, {opacity: 0}] :
+    [{opacity: 1, transform: 'translateY(0)'}, {opacity: 0, transform: 'translateY(.35rem)'}],
+  {duration: level === 'reduced' ? REDUCED_FADE_MS : 280, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
   root.easyeduGuideResumeAnimation = motion;
   motion.finished.then(() => { notice.hidden = true; motion.cancel(); }).catch(() => {});
 };
@@ -715,16 +727,34 @@ const clearHighlight = root => {
   const highlight = createHighlight(root);
   highlight.hidden = true;
   highlight.removeAttribute('data-easyedu-motion-policy');
+  highlight.removeAttribute('data-easyedu-motion-level');
   highlight.classList.remove(HIGHLIGHT_DIALOG_CLASS);
   highlight.style.removeProperty('--easyedu-modal-layer');
   root.removeAttribute('data-easyedu-guide-target-in-dialog');
   root.removeAttribute('data-easyedu-guide-dialog-dock');
   clearHighlightedTarget(root);
+  releaseChecklistTopDock(root);
 };
 
 const getExternalTargetDialog = (root, target) => {
   const dialog = isVisibleElement(target) ? target.closest('[role="dialog"][aria-modal="true"]') : null;
   return dialog && dialog !== root.querySelector(SELECTORS.modal) ? dialog : null;
+};
+
+// A target inside a fixed layer that is not a native dialog (a compact action
+// sheet, for example) would paint above the page-level cue and hide it. Lift the
+// cue just above the highest fixed ancestor layer; ordinary page targets keep
+// the canonical low layer.
+const getTargetLayerIndex = target => {
+  let layer = 0;
+  for (let node = target.parentElement; node && node !== document.body; node = node.parentElement) {
+    const style = window.getComputedStyle(node);
+    const index = Number.parseInt(style.zIndex, 10);
+    if (style.position === 'fixed' && Number.isFinite(index)) {
+      layer = Math.max(layer, index);
+    }
+  }
+  return layer;
 };
 
 const updateHighlight = (root, target) => {
@@ -750,6 +780,12 @@ const updateHighlight = (root, target) => {
   const modalLayer = inDialog ? window.getComputedStyle(root).getPropertyValue('--easyedu-modal-layer').trim() : '';
   if (modalLayer) { highlight.style.setProperty('--easyedu-modal-layer', modalLayer); }
   else { highlight.style.removeProperty('--easyedu-modal-layer'); }
+  const targetLayer = inDialog ? 0 : getTargetLayerIndex(target);
+  if (targetLayer) {
+    highlight.style.zIndex = String(targetLayer + 1);
+  } else {
+    highlight.style.removeProperty('z-index');
+  }
   highlight.classList.toggle(
     'easyedu-guide-highlight--pulse-blue',
     root.dataset.easyeduGuideHighlightStyle === 'pulse-blue'
@@ -757,6 +793,7 @@ const updateHighlight = (root, target) => {
   // A body portal cannot inherit the root's policy. Relay this instance's
   // resolved policy, never a global body mutation affecting another Guide.
   highlight.setAttribute('data-easyedu-motion-policy', isMotionEnabled(root) ? 'enabled' : 'disabled');
+  highlight.setAttribute('data-easyedu-motion-level', getMotionLevel(root));
   highlight.hidden = false;
   highlight.style.height = `${Math.max(rect.height, 1)}px`;
   highlight.style.left = `${rect.left}px`;
@@ -819,6 +856,72 @@ const scheduleHighlightRefreshBurst = (root, target, shouldDock = true) => {
   root.easyeduGuideRefreshBurstFrame = window.requestAnimationFrame(refresh);
 };
 
+const CHECKLIST_TOP_DOCK_CLASS = 'is-docked-top';
+
+const rectsOverlap = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+
+// Bottom edge of the host's fixed top bar (Moodle navbar): a raised checklist starts below it.
+const getFixedTopClearance = () => {
+  const bottom = Array.from(document.querySelectorAll('.fixed-top, .sticky-top, nav.navbar')).reduce((value, element) => {
+    if (!isVisibleElement(element)) {
+      return value;
+    }
+    const style = window.getComputedStyle(element);
+    if (style.position !== 'fixed' && style.position !== 'sticky') {
+      return value;
+    }
+    const rect = element.getBoundingClientRect();
+    return rect.top <= 8 ? Math.max(value, rect.bottom) : value;
+  }, 0);
+  return Math.ceil(bottom) + 8;
+};
+
+const releaseChecklistTopDock = root => {
+  root.easyeduGuideTopDockTarget = null;
+  const checklist = root.querySelector(SELECTORS.checklist);
+  if (!checklist || !checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS)) {
+    return;
+  }
+  checklist.classList.remove(CHECKLIST_TOP_DOCK_CLASS);
+  checklist.style.removeProperty('top');
+  checklist.style.removeProperty('bottom');
+};
+
+// C2-15-01: a full-width target (a compact action sheet item, a wide control)
+// leaves no side lane, so the bottom checklist could cover the very control the
+// step asks for and intercept its click. Raise it above that target while it is
+// current: keep it raised for the same target (no flicker while the target
+// moves) and restore the canonical placement with the next target or cue clear.
+// A target inside a native dialog keeps the dialog dock instead.
+const dockChecklistAboveTarget = (root, checklist, target, inDialog) => {
+  if (inDialog || (checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS) &&
+      root.easyeduGuideTopDockTarget !== target)) {
+    releaseChecklistTopDock(root);
+    if (inDialog) {
+      return;
+    }
+  }
+  const rect = target.getBoundingClientRect();
+  const panel = checklist.getBoundingClientRect();
+  if (!rectsOverlap(rect, panel)) {
+    return;
+  }
+  if (checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS)) {
+    // The target moved up into the raised panel: the space above is too short,
+    // so return to the canonical placement (it cannot be raised again below).
+    releaseChecklistTopDock(root);
+    return;
+  }
+  const top = getFixedTopClearance();
+  if (top + panel.height + 8 > rect.top) {
+    return;
+  }
+  checklist.classList.add(CHECKLIST_TOP_DOCK_CLASS);
+  checklist.style.top = `${top}px`;
+  checklist.style.bottom = 'auto';
+  root.easyeduGuideTopDockTarget = target;
+};
+
 const dockChecklistAwayFromTarget = (root, target) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const externalDialog = getExternalTargetDialog(root, target);
@@ -836,19 +939,33 @@ const dockChecklistAwayFromTarget = (root, target) => {
 
   const rect = target.getBoundingClientRect();
   const viewportMiddle = window.innerWidth / 2;
+  const panel = checklist.getBoundingClientRect();
+  const overlaps = rect.left < panel.right && rect.right > panel.left &&
+    rect.top < panel.bottom && rect.bottom > panel.top;
+  if (window.matchMedia && window.matchMedia('(max-width: 40rem)').matches &&
+      overlaps && !checklist.classList.contains('is-minimized')) {
+    const focused = document.activeElement;
+    checklist.classList.add('is-minimized');
+    checklist.removeAttribute('data-easyedu-guide-checklist-expanded');
+    syncChecklistMinimizeControl(root);
+    if (focused && checklist.contains(focused) && !isVisibleElement(focused)) {
+      const restore = checklist.querySelector('[data-easyedu-guide-checklist-restore]') ||
+        checklist.querySelector(SELECTORS.checklistMinimize);
+      if (isVisibleElement(restore)) { restore.focus({preventScroll: true}); }
+    }
+    return;
+  }
   // A progress re-render must not reset docking. Move only when the settled
   // target actually overlaps the panel and another horizontal lane can fit.
   const hasDock = checklist.classList.contains('is-docked-right') || checklist.classList.contains('is-docked-left');
-  if (hasDock) {
-    const panel = checklist.getBoundingClientRect();
-    const overlaps = rect.left < panel.right && rect.right > panel.left &&
-      rect.top < panel.bottom && rect.bottom > panel.top;
-    if (!overlaps || rect.width + panel.width + 32 > window.innerWidth) { return; }
+  const sideLaneFits = !hasDock || (rectsOverlap(rect, checklist.getBoundingClientRect()) &&
+    rect.width + checklist.getBoundingClientRect().width + 32 <= window.innerWidth);
+  if (sideLaneFits) {
+    const dockRight = rect.left < viewportMiddle;
+    checklist.classList.toggle('is-docked-right', dockRight);
+    checklist.classList.toggle('is-docked-left', !dockRight);
   }
-  const dockRight = rect.left < viewportMiddle;
-
-  checklist.classList.toggle('is-docked-right', dockRight);
-  checklist.classList.toggle('is-docked-left', !dockRight);
+  dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
 };
 
 const showInterfaceReturn = root => {
@@ -978,7 +1095,8 @@ const getScrollTopOffset = () => {
 const getCompactChecklistBottomClearance = root => {
   const checklist = root.querySelector(SELECTORS.checklist);
   if (!checklist || checklist.hidden || !window.matchMedia ||
-    !window.matchMedia('(max-width: 40rem), (max-height: 32rem)').matches) {
+    !window.matchMedia('(max-width: 40rem), (max-height: 32rem)').matches ||
+    checklist.classList.contains(CHECKLIST_TOP_DOCK_CLASS)) {
     return 0;
   }
 
@@ -1086,12 +1204,28 @@ const scrollToTarget = (root, target, options = {}) => {
   }
 };
 
+// The compact workspace (no drag and drop, card menus instead of right click)
+// starts at the same width as the product's responsive workspace.
+const RESPONSIVE_STEP_QUERY = '(max-width: 64rem)';
+const isResponsiveStepViewport = () => !!(window.matchMedia && window.matchMedia(RESPONSIVE_STEP_QUERY).matches);
+
+// A step may teach a different gesture in the compact workspace. Its optional
+// titleCompact/descriptionCompact/feedbackCompact replace the ordinary copy
+// there, exactly like highlightTargetCompact replaces the highlighted control.
+const getStepText = (step, field) => {
+  if (!step) {
+    return '';
+  }
+  const compact = step[`${field}Compact`];
+  return (isResponsiveStepViewport() && compact) || step[field] || '';
+};
+
 const resolveStepHighlightTarget = (config, step) => {
   if (!step) {
     return null;
   }
 
-  const responsiveTarget = window.matchMedia && window.matchMedia('(max-width: 64rem)').matches ?
+  const responsiveTarget = isResponsiveStepViewport() ?
     step.highlightTargetCompact : step.highlightTargetDesktop;
   return resolveTarget(config, responsiveTarget || step.highlightTarget || step.showTarget || step.target);
 };
@@ -1165,7 +1299,7 @@ const getRequiredStep = (steps, requiredStepId) => steps.find((step, index) => g
 const getLockedStepRequirement = (config, steps, step) => {
   if (step.requiresStep) {
     const requiredStep = getRequiredStep(steps, step.requiresStep);
-    return formatLabel(config.labels.completeStepFirst, (requiredStep && requiredStep.title) || step.requiresStep);
+    return formatLabel(config.labels.completeStepFirst, getStepText(requiredStep, 'title') || step.requiresStep);
   }
 
   return step.requiresLabel || '';
@@ -1280,8 +1414,9 @@ const formatProgressLabel = (template, current, total) => {
     .replace('__total__', String(total));
 };
 
-// The discovery presentation docks the original command, preserving every
-// responsive target/open attribute and the existing delegated click handler.
+// The discovery presentation docks the original command in the common footer
+// (GS10), preserving every responsive target/open attribute and the existing
+// delegated click handler.
 const restoreInterfaceCue = root => {
   const docked = root.easyeduGuideDockedCommand;
   if (docked) {
@@ -1294,8 +1429,8 @@ const syncInterfaceCue = (root, slide) => {
   restoreInterfaceCue(root);
   const slot = root.querySelector('[data-easyedu-guide-interface-cue-action]');
   const cue = slot && slot.closest('.easyedu-guide-interface-cue');
-  // A caption without a command is not an interface destination. Hide the
-  // complete optional row, allowing the reading body to reclaim its track.
+  // A slide without a command has no interface destination: the footer slot
+  // stays hidden and Previous/Next keep the footer alone.
   if (cue) {
     cue.hidden = true;
   }
@@ -1367,13 +1502,20 @@ const renderDiscoveryNames = (root, scene, command) => {
   const template = scene.querySelector('[data-guide-name-card]');
   const warning = scene.querySelector('[data-guide-warning-host]');
   const warningText = scene.querySelector('[data-guide-warning-text]');
-  const reduced = getScrollBehavior(root) === 'auto';
+  const level = getMotionLevel(root);
   const animations = new Set();
   let stopped = false;
   output.setAttribute('aria-busy', 'true');
   const animate = async(element, frames, duration, delay = 0) => {
-    if (stopped || reduced) { return; }
-    const animation = element.animate(frames, {duration, delay, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+    if (stopped || level === 'minimal') { return; }
+    // Reduced level: opacity fades of 120 ms at most, no height, no translate, no stagger.
+    const shown = level === 'reduced' ? toFadeFrames(frames) : frames;
+    if (!shown) {
+      return;
+    }
+    const animation = element.animate(shown, {
+      duration: level === 'reduced' ? Math.min(REDUCED_FADE_MS, duration) : duration,
+      delay: level === 'reduced' ? 0 : delay, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
     animations.add(animation);
     try { await animation.finished; } catch (error) { /* Departure/replay cancels the presentation only. */ }
     animation.cancel();
@@ -1618,7 +1760,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   let finished = false;
   const gates = new Set();
   let dropFrame = null;
-  const reduced = getScrollBehavior(root) === 'auto';
+  // 'minimal': phases switch instantly and the pointer is placed without travel. 'reduced': opacity fades
+  // of 120 ms at most, the pointer appears at its destination. Reading durations never change.
+  const level = getMotionLevel(root);
+  const reduced = level === 'minimal';
+  const fadeLevel = level === 'reduced';
+  const still = level !== 'full';
   // Reading, illustration and scroll share one lifecycle. Pause retains the
   // unread duration; phase advance drains just this phase's presentation work.
   const assertActive = () => {
@@ -1698,12 +1845,28 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await gate();
     assertActive();
     if (reduced) { return; }
-    const animation = element.animate(frames, {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
+    const shown = fadeLevel ? toFadeFrames(frames) : frames;
+    if (!shown) {
+      return;
+    }
+    const animation = element.animate(shown, {duration: fadeLevel ? Math.min(REDUCED_FADE_MS, duration) : duration,
+      easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards'});
     animations.add(animation);
     if (skipping) { animation.finish(); }
     try { await animation.finished; } catch (error) { /* Cancelled by departure. */ }
     if (!retain) { animation.cancel(); animations.delete(animation); }
     assertActive();
+  };
+  // Illustrated pointer placed at its destination without travel ('minimal'), or faded in there ('reduced').
+  const placeCursor = async(cursorEl, transform) => {
+    await gate();
+    assertActive();
+    const wasHidden = cursorEl.hidden;
+    cursorEl.style.transform = transform;
+    cursorEl.hidden = false;
+    if (fadeLevel && wasHidden) {
+      await animate(cursorEl, [{opacity: 0}, {opacity: 1}], REDUCED_FADE_MS, false);
+    }
   };
   // Fade the instruction copy, not the entire teaching scene. Its reading pause
   // starts only after the new sentence is visible; no business state is changed.
@@ -1744,7 +1907,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       item.top - readingTop : item.bottom - readingBottom;
     const from = body.scrollTop;
     const to = Math.max(0, Math.min(from + offset, body.scrollHeight - body.clientHeight));
-    if (reduced || skipping || !body.animate) { body.scrollTop = to; return; }
+    if (still || skipping || !body.animate) { body.scrollTop = to; return; }
     // A clock animation supplies a cancellable, eased progress value;
     // scrolling stays a DOM property rather than an independent smooth-scroll.
     const clock = body.animate([{opacity: 1}, {opacity: 1}],
@@ -1845,17 +2008,26 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       // Reuse the shared pointer paint and playback clock, not a mobile mouse.
       const pointAt = async(element) => {
         assertActive();
-        if (!cursor || compact || reduced) { return; }
+        if (!cursor || compact) { return; }
         await gate();
         assertActive();
         const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
+        const destination = `translate(${target.left - frame.left + target.width / 2}px, ` +
+          `${target.top - frame.top + target.height / 2}px)`;
+        if (still) {
+          await placeCursor(cursor, destination);
+          return;
+        }
         const from = getComputedStyle(cursor).transform;
         cursor.hidden = false;
-        await animate(cursor, [{transform: from}, {transform:
-          `translate(${target.left - frame.left + target.width / 2}px, ${target.top - frame.top + target.height / 2}px)`}], 650);
+        await animate(cursor, [{transform: from}, {transform: destination}], 650);
       };
       const hidePointer = async() => {
         assertActive();
+        if (still && cursor) {
+          cursor.hidden = true;
+          return;
+        }
         if (!cursor || cursor.hidden) { return; }
         await animate(cursor, [{opacity: 1}, {opacity: 0}], 180);
         cursor.hidden = true;
@@ -1969,11 +2141,17 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       const point = cursor.getBoundingClientRect();
       const top = body && header && header.top <= body.top + 2 ? header.bottom : body?.top;
       cursor.style.visibility = body && (point.top < top || point.bottom > body.bottom) ? 'hidden' : cursorVisibility;
-      cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility);
+      // Only a gliding pointer or scroll needs a per-frame check; below the 'full' level it is
+      // evaluated when the pointer is placed and when the reading surface scrolls.
+      if (!still) { cursorVisibilityFrame = requestAnimationFrame(updateCursorVisibility); }
     };
     updateCursorVisibility();
+    if (still) {
+      readingBody?.addEventListener('scroll', updateCursorVisibility, {passive: true});
+    }
     controller.signal.addEventListener('abort', () => {
       cancelAnimationFrame(cursorVisibilityFrame);
+      readingBody?.removeEventListener('scroll', updateCursorVisibility);
       cursor.style.visibility = cursorVisibility;
     }, {once: true});
     if (compact && mode === 'add') {
@@ -1991,6 +2169,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const travelPoint = async(point, duration) => {
       assertActive();
       cursorPoint = point;
+      if (still) {
+        await placeCursor(cursor, `translate(${point.x}px, ${point.y}px)`);
+        updateCursorVisibility();
+        return;
+      }
       const from = getComputedStyle(cursor).transform;
       cursor.hidden = false;
       await animate(cursor, [{transform: from},
@@ -1998,7 +2181,6 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     };
     const travel = async(element, duration = 750, cardAnchor = false) => {
       assertActive();
-      if (reduced) { return; }
       const a = element.getBoundingClientRect(), b = stage.getBoundingClientRect();
       const point = {
         x: a.left - b.left + (cardAnchor ? Math.min(48, a.width / 2) : a.width / 2),
@@ -2027,7 +2209,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       }));
       if (controller.signal.aborted) { return; }
       await travel(menu.querySelector('strong'));
-      if (!compact) {
+      if (!compact && !still) {
         await animate(cursor, [{opacity: 1}, {opacity: 0.45}, {opacity: 1}], 180);
       }
       await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
@@ -2052,7 +2234,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       // cancellable scene clock rather than scrolling the Moodle page behind it.
       await reveal(stage);
       if (controller.signal.aborted) { return; }
-      if (!compact && !reduced) {
+      if (!compact && !still) {
         const destination = stage.querySelector('[data-guide-destination]').getBoundingClientRect();
         const selected = [...stage.querySelectorAll('[data-guide-source] .easyedu-guide-scene__person')];
         await Promise.all(selected.map((node, index) => {
@@ -2063,7 +2245,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         }));
         if (controller.signal.aborted) { return; }
       }
-    } else if (!compact && !reduced) {
+    } else if (!compact && !still) {
       await phase('menu');
       if (controller.signal.aborted) { return; }
       const ghost = person.cloneNode(true);
@@ -2171,7 +2353,7 @@ const setActiveSlide = (root, index, config, options = {}) => {
   const modal = root.querySelector(SELECTORS.modal);
   const outgoing = root.querySelector(SELECTORS.slide + '.is-active');
   if (options.immediate || !root.classList.contains('easyedu-guide--discovery') ||
-      !modal || modal.hidden || !outgoing || index === getActiveSlideIndex(root) || getScrollBehavior(root) === 'auto') {
+      !modal || modal.hidden || !outgoing || index === getActiveSlideIndex(root) || getMotionLevel(root) === 'minimal') {
     applyActiveSlide(root, index, config, options);
     return;
   }
@@ -2183,9 +2365,10 @@ const setActiveSlide = (root, index, config, options = {}) => {
     animations.forEach(animation => animation.cancel());
     root.removeAttribute('data-easyedu-guide-slide-transition');
   };
+  const fadeCap = getMotionLevel(root) === 'reduced' ? REDUCED_FADE_MS : Infinity;
   const fade = async(element, from, to, duration) => {
     const animation = element.animate([{opacity: from}, {opacity: to}],
-      {duration, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
+      {duration: Math.min(duration, fadeCap), easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both'});
     animations.add(animation);
     try { await animation.finished; } catch (error) { /* A newer navigation request wins. */ }
     return animation;
@@ -2388,12 +2571,13 @@ const closeModal = (root, preserveHighlight = false, restoreFocus = true, option
     }
   };
   if (options.immediate || modal.hidden || !root.classList.contains('easyedu-guide--discovery') ||
-      getScrollBehavior(root) === 'auto') {
+      getMotionLevel(root) === 'minimal') {
     finish();
     return Promise.resolve();
   }
   if (root.easyeduGuideExitPromise) { return root.easyeduGuideExitPromise; }
-  const animation = modal.animate([{opacity: 1}, {opacity: 0}], {duration: 200, easing: 'ease', fill: 'both'});
+  const animation = modal.animate([{opacity: 1}, {opacity: 0}], {
+    duration: getMotionLevel(root) === 'reduced' ? REDUCED_FADE_MS : 200, easing: 'ease', fill: 'both'});
   let stopped = false;
   const stopExit = () => { stopped = true; animation.cancel(); };
   root.easyeduGuideExitStop = stopExit;
@@ -2420,6 +2604,26 @@ const getPathLabel = (pathName, config) => {
     .join(' ');
 };
 
+// Scroll only this list; the interface target keeps its independent position.
+const scrollActiveChecklistItemIntoView = root => {
+  const checklist = root.querySelector(SELECTORS.checklist);
+  const list = root.querySelector(SELECTORS.checklistItems);
+  const active = list && list.querySelector('[data-easyedu-guide-step-index].is-active');
+  if (!checklist || checklist.hidden || !active || checklist.classList.contains('is-minimized')) { return; }
+  window.requestAnimationFrame(() => {
+    if (checklist.hidden || checklist.classList.contains('is-minimized') ||
+        !list.contains(active) || !active.classList.contains('is-active') || !list.clientHeight) { return; }
+    const bounds = list.getBoundingClientRect();
+    const item = active.getBoundingClientRect();
+    const top = bounds.top + list.clientTop;
+    const bottom = top + list.clientHeight;
+    const delta = item.top < top ? item.top - top : item.bottom > bottom ? item.bottom - bottom : 0;
+    if (delta) {
+      list.scrollTo({top: Math.max(0, list.scrollTop + delta), behavior: getScrollBehavior(root)});
+    }
+  });
+};
+
 const updateChecklistHeader = (root, config, activeStep = null) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   if (!checklist) {
@@ -2431,7 +2635,7 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   const items = Array.from(checklist.querySelectorAll('[data-easyedu-guide-step-id]'));
   const activeItem = checklist.querySelector('[data-easyedu-guide-step-index].is-active');
   const activeIndex = activeItem ? Number(activeItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0;
-  const step = activeStep || steps[activeIndex] || steps[0] || {};
+  const step = steps[activeIndex] || activeStep || steps[0] || {};
   const completeCount = items.filter(item => item.classList.contains('is-complete')).length;
   const complete = items.length > 0 && completeCount === items.length;
   const title = root.querySelector(SELECTORS.checklistTitle);
@@ -2440,11 +2644,12 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   if (title) {
     title.textContent = complete ?
       (config.labels.complete || config.labels.guidedPath || 'Guided path') :
-      `${config.labels.guidedPath || 'Guided path'}${config.labels.guidedPathSeparator || ': '}${step.title || getPathLabel(pathName, config)}`;
+      `${config.labels.guidedPath || 'Guided path'}${config.labels.guidedPathSeparator || ': '}${getStepText(step, 'title') || getPathLabel(pathName, config)}`;
   }
   if (subtitle) {
     subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.completedSteps || 'steps completed'}`;
   }
+  scrollActiveChecklistItemIntoView(root);
 };
 
 const isCompactChecklistViewport = () => window.matchMedia &&
@@ -2464,6 +2669,7 @@ const syncChecklistMinimizeControl = root => {
     restore.setAttribute('aria-expanded', minimized ? 'false' : 'true');
   }
   minimize.setAttribute('aria-expanded', minimized ? 'false' : 'true');
+  scrollActiveChecklistItemIntoView(root);
   const icon = minimize.querySelector('.fa');
   if (icon) {
     icon.classList.toggle('fa-minus', !minimized);
@@ -2492,7 +2698,7 @@ const renderChecklist = (root, config, pathName) => {
   checklist.classList.remove('is-complete');
   checklist.classList.toggle('is-minimized', isCompactChecklistViewport() ? compactDefault : wasMinimized);
   checklist.classList.toggle('is-unlock-path', config.unlockPaths.includes(pathName));
-  checklist.classList.toggle('has-guided-feedback', steps.some(step => !!step.feedback));
+  checklist.classList.toggle('has-guided-feedback', steps.some(step => !!getStepText(step, 'feedback')));
   checklist.setAttribute('data-easyedu-guide-path', pathName);
   checklist.toggleAttribute('data-easyedu-guide-checklist-scroll', steps.length > 3);
   const retained = new Set();
@@ -2516,19 +2722,21 @@ const renderChecklist = (root, config, pathName) => {
     if (locked) {
       item.setAttribute('data-easyedu-guide-lock-message', getLockedStepRequirement(config, steps, step));
     } else { item.removeAttribute('data-easyedu-guide-lock-message'); }
-    if (step.feedback) {
-      item.setAttribute('data-easyedu-guide-feedback', step.feedback);
+    const feedback = getStepText(step, 'feedback');
+    if (feedback) {
+      item.setAttribute('data-easyedu-guide-feedback', feedback);
     } else { item.removeAttribute('data-easyedu-guide-feedback'); }
     const marker = document.createElement('span');
     marker.className = 'easyedu-guide-checklist__marker easyedu-guided-panel__index';
     marker.textContent = String(index + 1);
     const label = document.createElement('span');
     const title = document.createElement('strong');
-    title.textContent = step.title || '';
+    title.textContent = getStepText(step, 'title');
     label.appendChild(title);
-    if (step.description) {
+    const descriptionText = getStepText(step, 'description');
+    if (descriptionText) {
       const description = document.createElement('small');
-      description.textContent = step.description;
+      description.textContent = descriptionText;
       label.appendChild(description);
     }
     if (locked && (step.requiresLabel || step.requiresStepLabel || step.requiresStep)) {
@@ -2565,7 +2773,8 @@ const renderChecklist = (root, config, pathName) => {
     const activeStepIndex = firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0;
     const activeStep = steps[activeStepIndex] || steps[0] || {};
     const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
-    const initialText = allComplete ? completeMessage : (activeStep.feedback || config.labels.hint || config.labels.complete);
+    const initialText = allComplete ? completeMessage :
+      (getStepText(activeStep, 'feedback') || config.labels.hint || config.labels.complete);
     const icon = message.querySelector('.fa');
     const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
     checklist.classList.toggle('is-complete', allComplete);
@@ -2596,7 +2805,7 @@ const updateChecklistMessage = (root, config, activeStep) => {
   const icon = message.querySelector('.fa');
   const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
   const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
-  const activeMessage = activeStep && activeStep.feedback ? activeStep.feedback : (config.labels.hint || '');
+  const activeMessage = getStepText(activeStep, 'feedback') || config.labels.hint || '';
 
   checklist.classList.toggle('is-complete', complete);
   message.classList.toggle('is-complete', complete);
@@ -2782,6 +2991,28 @@ const refreshActiveHighlight = (root, shouldDock = false) => {
   updateHighlight(root, root.easyeduGuideCurrentTarget);
 };
 
+// Crossing the compact breakpoint can swap a step's gesture (titleCompact,
+// highlightTargetCompact, ...). Re-render the open checklist in place and move
+// a painted cue to the equivalent control of the new workspace.
+const refreshResponsiveChecklist = root => {
+  const config = root.easyeduGuideConfig;
+  const checklist = root.querySelector(SELECTORS.checklist);
+  const pathName = checklist && !checklist.hidden ? checklist.getAttribute('data-easyedu-guide-path') : '';
+  if (!config || !pathName || !config.paths[pathName]) {
+    return;
+  }
+  renderChecklist(root, config, pathName);
+  const active = checklist.querySelector('[data-easyedu-guide-step-index].is-active');
+  const step = active ? config.paths[pathName][Number(active.getAttribute('data-easyedu-guide-step-index') || 0)] : null;
+  updateChecklistMessage(root, config, step || null);
+  if (step && root.easyeduGuideCurrentTarget && !isPathComplete(config, pathName)) {
+    const target = resolveStepHighlightTarget(config, step);
+    if (target) {
+      scheduleHighlightRefresh(root, target, true);
+    }
+  }
+};
+
 const isModalOpen = root => {
   const modal = root.querySelector(SELECTORS.modal);
   return !!modal && !modal.hidden && modal.classList.contains('is-open');
@@ -2881,11 +3112,16 @@ const bindNavigationTooltips = root => {
     refreshFrame = null;
     tooltip?.remove();
     tooltip = null;
+    // Restore the native pill title (K1) once the full-label tooltip is gone.
+    if (target && target.dataset.easyeduGuideTitle !== undefined) {
+      target.setAttribute('title', target.dataset.easyeduGuideTitle);
+      delete target.dataset.easyeduGuideTitle;
+    }
     target = null;
   };
   root.easyeduGuideTooltipHide = hide;
   const show = button => {
-    const label = button?.querySelector('.easyedu-guide-nav-copy > span');
+    const label = button?.querySelector('.easyedu-guide-nav-item__label');
     if (!label || modal.hidden || label.scrollWidth <= label.clientWidth + 1) {
       hide();
       return;
@@ -2893,6 +3129,11 @@ const bindNavigationTooltips = root => {
     if (target === button) return;
     hide();
     target = button;
+    // One tooltip at a time: park the native title while this one is shown.
+    if (button.hasAttribute('title')) {
+      button.dataset.easyeduGuideTitle = button.getAttribute('title');
+      button.removeAttribute('title');
+    }
     tooltip = modal.ownerDocument.createElement('div');
     tooltip.className = 'easyedu-guide-label-tooltip';
     tooltip.setAttribute('aria-hidden', 'true');
@@ -2963,6 +3204,10 @@ const bindGuide = (root, config) => {
   }
   root.dataset.easyeduGuideBound = '1';
   bindNavigationTooltips(root);
+  const responsiveSteps = window.matchMedia ? window.matchMedia(RESPONSIVE_STEP_QUERY) : null;
+  if (responsiveSteps && responsiveSteps.addEventListener) {
+    addTrackedListener(root, responsiveSteps, 'change', () => refreshResponsiveChecklist(root));
+  }
 
   const fullscreenButton = root.querySelector('[data-easyedu-guide-fullscreen]');
   const fullscreenModal = root.querySelector(SELECTORS.modal);
@@ -3118,6 +3363,11 @@ const bindGuide = (root, config) => {
           checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
         }
         syncChecklistMinimizeControl(root);
+        // C2-15-01: the new size may now cover the current step's control.
+        if (isVisibleElement(root.easyeduGuideCurrentTarget)) {
+          releaseChecklistTopDock(root);
+          dockChecklistAwayFromTarget(root, root.easyeduGuideCurrentTarget);
+        }
         const nextControl = root.querySelector(minimized ? '[data-easyedu-guide-checklist-restore]' :
           '[data-easyedu-guide-checklist-minimize]');
         if (isVisibleElement(nextControl)) { nextControl.focus({preventScroll: true}); }
@@ -3431,6 +3681,7 @@ export const destroy = rootOrSelector => {
   clearHighlightAutoHideTimer(root);
   hideInterfaceReturn(root, false);
   clearHighlightedTarget(root);
+  releaseChecklistTopDock(root);
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
     checklist.hidden = true;

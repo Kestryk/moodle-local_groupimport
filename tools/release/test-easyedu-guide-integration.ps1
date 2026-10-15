@@ -2,14 +2,15 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$CanonicalKitRoot,
 
-    [string]$PluginRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
+    [string]$PluginRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path,
+    [switch]$GuideOnly
 )
 
 $ErrorActionPreference = "Stop"
 
 & (Join-Path $PSScriptRoot "sync-easyedu-guide.ps1") `
     -CanonicalKitRoot $CanonicalKitRoot `
-    -PluginRoot $PluginRoot
+    -PluginRoot $PluginRoot -GuideOnly:$GuideOnly
 
 $runtimeJavascriptPath = Join-Path $PluginRoot "amd\src\easyedu_guide.js"
 $runtimeTemplatePath = Join-Path $PluginRoot "templates\easyedu_guide.mustache"
@@ -36,7 +37,7 @@ function Assert-Contains {
     }
 }
 
-Assert-Contains $javascript 'define\(\[\], function\(\)' "The direct AMD wrapper is missing."
+Assert-Contains $javascript "define\(\['local_groupimport/motion'\], function\(Motion\)" "The current Motion-dependent AMD wrapper is missing."
 Assert-Contains $javascript 'const destroy =' "The runtime source does not include teardown."
 Assert-Contains $javascript 'destroy: destroy' "The AMD wrapper does not export destroy."
 Assert-Contains $javascript 'init: init' "The AMD wrapper does not export init."

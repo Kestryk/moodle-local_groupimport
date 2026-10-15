@@ -5974,3 +5974,5 @@ Maintenance convention:
 - 2026-10-15 [N1] Integrate Claude S3/S9/S7-M6 and four polish commits through c84c1a36; retain K21 and per-page CSS, regenerate both AMD builds and conservative CSS.
 - 2026-10-15 [N2] Lift SM adopts Kit0.4.211 continuous lanes, entity rails, shared 24px gutter, container proportions and lighter resting cards; preserve controllers and T020 alignment.
 - 2026-10-15 [N1] Integrate Claude selection modifiers, T020 measured complete alignment, unified filter engine/course-role IDs and hover palette relay; rebuild AMD and conservative page CSS.
+
+- 2026-10-15 [N1] Integrate Guide4 GUIDE-PILLS/GS10 with canonical Kit0.4.216; preserve M3, responsive checklist and runtime narration; rebuild Guide AMD/CSS and verify T038/parity. Native served recipe pending.

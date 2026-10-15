@@ -4,7 +4,8 @@ param(
 
     [string]$PluginRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path,
 
-    [switch]$Apply
+    [switch]$Apply,
+    [switch]$GuideOnly
 )
 
 $ErrorActionPreference = "Stop"
@@ -67,6 +68,7 @@ if (-not $canonicalJavascript.Contains($recapMotionImport)) {
     throw 'Review changed canonical recap Motion boundary before synchronization.'
 }
 $wrappedBody = $wrappedBody.Replace($recapMotionImport, '')
+$wrappedBody = $wrappedBody.Replace("import * as Motion from '../../../motion/amd/src/easyedu_motion';", '')
 $wrappedBody = "const disclosePanel = Motion.disclosePanel;`nconst cancelRecapPanel = Motion.cancel;`n" + $wrappedBody
 $wrappedBody = $fullscreenSource.Replace('export const createFullscreenController =', 'const createFullscreenController =') + "`n" + $wrappedBody
 $wrappedBody = $wrappedBody.Replace("export const init =", "const init =")
@@ -130,6 +132,8 @@ $runtimeTemplate = $runtimeTemplate.Replace(
 $runtimeTemplate = $runtimeTemplate.Replace(
     '<span class="easyedu-guided-panel__message-compact" aria-hidden="true">Everything is set</span>',
     '<span class="easyedu-guided-panel__message-compact" aria-hidden="true">{{guidechecklistdonelabel}}</span>')
+$runtimeTemplate = $runtimeTemplate.Replace('data-complete-message="Everything is set"', 'data-complete-message="{{guidechecklistdonelabel}}"')
+$runtimeTemplate = $runtimeTemplate.Replace('<span data-easyedu-guide-checklist-message-text>Everything is set</span>', '<span data-easyedu-guide-checklist-message-text>{{guidechecklistdonelabel}}</span>')
 if (-not $runtimeTemplate.Contains('{{guidehoverlabel}}') -or
     -not $runtimeTemplate.Contains('aria-hidden="true">{{guidechecklistdonelabel}}</span>')) {
     throw 'Canonical template changed: review the EasyStud localization adaptations.'
@@ -223,6 +227,10 @@ $items = @(
 )
 
 $drift = New-Object System.Collections.Generic.List[object]
+if ($GuideOnly) {
+    # A Guide delivery must not adopt unrelated dialog changes from the Kit.
+    $items = @($items | Where-Object { $_.Name -notin @('canonical dialog primitives SCSS', 'canonical dialog classes SCSS') })
+}
 foreach ($item in $items) {
     if (-not (Test-Path -LiteralPath $item.Target)) {
         throw "Required EasyStud target is missing: $($item.Target)"

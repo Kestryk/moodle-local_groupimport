@@ -60,6 +60,7 @@ const cancelRecapPanel = Motion.cancel;
 // Generic EasyEdu guide foundation for Moodle plugins.
 
 
+
 //
 // Plugins should copy this module into their AMD source folder and configure
 // selectors, paths and labels from plugin-specific PHP/Mustache data.

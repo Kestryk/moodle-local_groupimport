@@ -73,18 +73,23 @@
                             {{#hasguidedpath}}data-easyedu-guided-label="{{guidebadgelabel}}"{{/hasguidedpath}}
                             {{#requires}}data-easyedu-guide-requires="{{requires}}"{{/requires}}
                             {{#requireslabel}}data-easyedu-guide-requires-label="{{requireslabel}}"{{/requireslabel}}
+                            {{#navtooltip}}title="{{navtooltip}}"{{/navtooltip}}
                         >
                             <span class="easyedu-guide-nav-item__icon" aria-hidden="true">
                                 <span class="fa {{navicon}}" aria-hidden="true"></span>
                             </span>
                             <span class="easyedu-guide-nav-copy">
-                                {{#navcategorymanaged}}{{#navcategorylabel}}<small>{{navcategorylabel}}</small>{{/navcategorylabel}}{{/navcategorymanaged}}
-                                {{^navcategorymanaged}}
-                                    {{#category}}<small>{{category}}</small>{{/category}}
-                                    {{^category}}{{#hasguidedpath}}<small>{{guideguidedpathlabel}}</small>{{/hasguidedpath}}{{/category}}
-                                {{/navcategorymanaged}}
-                                <span>{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
+                                <span class="easyedu-guide-nav-item__meta">
+                                    {{#navcategorymanaged}}{{#navcategorylabel}}<small>{{navcategorylabel}}</small>{{/navcategorylabel}}{{/navcategorymanaged}}
+                                    {{^navcategorymanaged}}
+                                        {{#category}}<small>{{category}}</small>{{/category}}
+                                        {{^category}}{{#hasguidedpath}}<small>{{guideguidedpathlabel}}</small>{{/hasguidedpath}}{{/category}}
+                                    {{/navcategorymanaged}}
+                                    {{#hasguidedpath}}<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>{{/hasguidedpath}}
+                                </span>
+                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
                             </span>
+                            {{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                             {{#requires}}
                                 <span class="easyedu-guide-nav-item__requirement" aria-hidden="true">{{#requiresbadge}}{{requiresbadge}}{{/requiresbadge}}{{^requiresbadge}}{{guiderequiresbadge}}{{/requiresbadge}}</span>
                             {{/requires}}
@@ -137,9 +142,10 @@
                                         {{#showopendelay}}data-easyedu-guide-show-open-delay="{{showopendelay}}"{{/showopendelay}}
                                         {{#showafteropen}}data-easyedu-guide-show-after-open="{{showafteropen}}"{{/showafteropen}}
                                         {{#showafteropendelay}}data-easyedu-guide-show-after-open-delay="{{showafteropendelay}}"{{/showafteropendelay}}
+                                        {{#discoverypresentation}}title="{{guideinterfacecuelabel}}"{{/discoverypresentation}}
                                     >
                                         <span class="fa {{#discoverypresentation}}fa-eye{{/discoverypresentation}}{{^discoverypresentation}}fa-location-arrow{{/discoverypresentation}}" aria-hidden="true"></span>
-                                        <span>{{guideshowinterfacelabel}}</span>
+                                        <span class="easyedu-guide-slide__show-label">{{guideshowinterfacelabel}}</span>
                                     </button>
                                 {{/target}}
                             </div>
@@ -163,7 +169,7 @@
                             {{/requires}}
                             {{#discoveryscene}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-submit="{{mobileaddsubmit}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
-                                <p class="easyedu-guide-scene__caption">{{caption}}</p>
+                                <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example">{{caption}}</p>
                             {{^concepts}}{{^creation}}
                             <header class="easyedu-guide-scene__header{{^membership}} easyedu-guide-scene__header--single{{/membership}}" data-guide-scene-header data-step-label="{{steplabel}}" data-ready-label="{{readylabel}}" data-paused-label="{{pausedlabel}}" data-add-label="{{addmodelabel}}" data-move-label="{{movemodelabel}}">
                                 <div class="easyedu-guide-scene__header-controls">
@@ -255,6 +261,7 @@
                                 {{#membership}}{{^introalreadyexplained}}<p class="easyedu-guide-scene__intro">{{note}}</p>{{/introalreadyexplained}}{{/membership}}
                                 <div class="easyedu-guide-scene__stage" data-guide-stage>
                                     <div class="easyedu-guide-scene__source" data-guide-source>
+                                        <span class="easyedu-guide-scene__lane-label">{{sourcecaption}}</span>
                                         <strong class="easyedu-guide-scene__source-title" data-guide-source-title>Projet Orion</strong>
                                         <div class="easyedu-guide-scene__person" data-guide-person>
                                             <span class="easyedu-guide-scene__identity fa fa-user" aria-hidden="true"></span>
@@ -266,8 +273,8 @@
                                     </div>
                                     <div class="easyedu-guide-scene__card" data-guide-destination>
                                         <span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span>
-                                        <span class="easyedu-guide-scene__card-copy"><strong>{{destinationname}}</strong>
-                                            <small>{{destinationcaption}}</small><span class="easyedu-guide-scene__member" data-guide-member hidden>Alex Dupont{{#actions}} · Léa Martin{{/actions}}</span>
+                                        <span class="easyedu-guide-scene__card-copy"><span class="easyedu-guide-scene__lane-label">{{destinationcaption}}</span><strong>{{destinationname}}</strong>
+                                            <span class="easyedu-guide-scene__member" data-guide-member hidden>Alex Dupont{{#actions}} · Léa Martin{{/actions}}</span>
                                         </span>
                                     </div>
                                     <div class="easyedu-guide-scene__menu" data-guide-menu hidden aria-hidden="true">
@@ -504,7 +511,7 @@
                                 </div>
                             {{/visualkeys}}
                             {{#commonintroduction}}
-                            <div class="easyedu-guide-introduction" data-easyedu-guide-introduction>
+                            <div class="easyedu-guide-introduction{{#lessonreading}} easyedu-guide-introduction--lesson-reading{{/lessonreading}}" data-easyedu-guide-introduction>
                                 <dl class="easyedu-guide-introduction__topics">
                                     {{#topics}}
                                     <div class="easyedu-guide-introduction__topic"{{#desktopfullscreen}} data-easyedu-guide-fullscreen-help hidden{{/desktopfullscreen}}>
@@ -587,14 +594,12 @@
                 {{/slides}}
             </div>
 
-            {{#discoverypresentation}}
-            <div class="easyedu-guide-interface-cue" hidden>
-                <span class="easyedu-guide-interface-cue__caption">{{guideinterfacecuelabel}}</span>
-                <div data-easyedu-guide-interface-cue-action></div>
-            </div>
-            {{/discoverypresentation}}
             <footer class="easyedu-guide-modal__footer">
                 <span class="easyedu-guide-modal__step-count" data-easyedu-guide-progress-label data-progress-label="{{guidesteplabel}}">1/{{slidecount}}</span>
+                {{#discoverypresentation}}
+                {{! GS10: the slide's Show command docks here, left of Previous/Next. }}
+                <div class="easyedu-guide-interface-cue" data-easyedu-guide-interface-cue-action hidden></div>
+                {{/discoverypresentation}}
                 <div class="easyedu-guide-modal__footer-actions">
                     <button type="button" class="btn btn-outline-secondary" data-easyedu-guide-previous="1">{{guidepreviouslabel}}</button>
                     <button type="button" class="btn btn-primary" data-easyedu-guide-next="1">{{guidenextlabel}}</button>
@@ -659,13 +664,13 @@
         <div
             class="easyedu-guide-checklist__complete easyedu-guided-panel__message"
             data-easyedu-guide-checklist-message
-            data-complete-message="{{guidechecklistdonelabel}}"
+            data-complete-message="Everything is set"
             role="status"
             aria-live="polite"
             aria-atomic="true"
         >
             <span class="fa fa-location-arrow" aria-hidden="true"></span>
-            <span data-easyedu-guide-checklist-message-text>{{guidechecklistdonelabel}}</span>
+            <span data-easyedu-guide-checklist-message-text>Everything is set</span>
             <span class="easyedu-guided-panel__message-compact" aria-hidden="true">Everything is set</span>
         </div>
         <div class="easyedu-guided-panel__footer">
