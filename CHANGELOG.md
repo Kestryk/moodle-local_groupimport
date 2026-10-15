@@ -6008,3 +6008,8 @@ Maintenance convention:
 - 2026-10-15 [N1] Repair K16 participant pills: category values share wrapping22px rows, omit empty placeholders, exclude disclosure buttons from measured data tokens, retain a first real token before+N and show localized Show less when expanded. Preserve selector clearance and Motion.
 
 - 2026-10-15 [N0] Verify final participant pill repair in32FR/EN states at1600/1280/768/390:128card samples,1574painted pills exactly22px, glyph centres0/0,104correct hidden counts, no clipped/empty/minus pills or metadata overflow; actual-card captures inspected. Human/Penpot validation remains open.
+
+### K16-01 / K16-22 - shared pill integration
+
+- Applied the two authorised SHA-256 candidates, then routed legacy and payload-backed rows through the same K16-22 renderer (titles, real values, first token and exact counters).
+- Rebuilt SM/CM and conservative CSS. Dense/ordinary native fixture and acceptance audit remain in progress; no native acceptance claimed.
