@@ -23,6 +23,7 @@
  */
 
 import * as Motion from '../../motion';
+import {animateViewIn, withoutListArrival} from './transitions';
 import {
     structureFocusClass, participantFocusClass, responsiveWorkspaceQuery, isResponsiveWorkspace,
     requestGuideHighlightRefresh,
@@ -461,17 +462,17 @@ export const bindMobileEntityViews = root => {
         }
     };
 
+    const mobileViewOrder = ['participants', 'groups', 'groupings'];
     const applyMobileView = (view, animate = true) => {
         if (!media.matches) {
             return;
         }
-        if (animate && layout) {
-            trackLayoutSwap(root, Motion.swap(layout, () => applyMobileState(view), {
-                exit: false,
-                enterDuration: Motion.timing.normal,
-                resize: false,
-                swapOpacity: 0.72,
-            }));
+        if (animate && layout && view !== mobileView) {
+            // The state changes at once; only the incoming panel moves (fade + 8 px slide towards the tab).
+            const direction = mobileViewOrder.indexOf(view) >= mobileViewOrder.indexOf(mobileView) ? 1 : -1;
+            withoutListArrival(() => applyMobileState(view));
+            const incoming = mobileView === 'participants' ? participantPanel : structurePanel;
+            trackLayoutSwap(root, animateViewIn(incoming, direction));
             return;
         }
         applyMobileState(view);

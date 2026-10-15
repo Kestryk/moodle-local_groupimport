@@ -36,6 +36,7 @@ import {
     ensureInlinePanelCancelButtons,
 } from './group_cards';
 import {getInputQuery, getStructureGroupSearchQuery} from './filters';
+import {animateListArrival, listPageChanged, resetListPage} from './transitions';
 
 /**
  * Filter both group catalogs from their controls (grouping filter, "only ungrouped", search).
@@ -175,6 +176,7 @@ export const renderOnDemandCatalogPage = (root, list, config) => {
             renderGroupPage(model, list, key, []);
             catalog.pageCards = new Map();
             list.easystudSmRenderedKey = null;
+            resetListPage(list);
         }
         return {total: ordered.length, pages, page};
     }
@@ -182,12 +184,16 @@ export const renderOnDemandCatalogPage = (root, list, config) => {
     const renderkey = model.revision + '|' + pageIds.join(',');
     if (list.easystudSmRenderedKey !== renderkey) {
         const memory = rememberGroupCardStates(list);
+        const arrived = listPageChanged(list, pageIds);
         const cards = renderGroupPage(model, list, key, pageIds);
         catalog.pageCards = new Map(cards.map(card =>
             [Number(card.getAttribute('data-easystud-group-id')), syncGroupCardSelection(model, card)]));
         list.easystudSmRenderedKey = renderkey;
         decorateOnDemandGroupCards(root, cards);
         restoreGroupCardStates(root, cards, memory);
+        if (arrived) {
+            animateListArrival(cards);
+        }
     }
     return {total: ordered.length, pages, page};
 };
