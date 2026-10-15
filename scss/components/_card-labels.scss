@@ -1,0 +1,123 @@
+// Card label harmony (Kevin, 16/10/2026, D3 variant A, PENPOT-S6-D3).
+// One 22 px label height for every label, pill and counter of the participant,
+// group and grouping card headers, centred on the title line; the K21 header
+// counters share the same height (D4). Paint stays with each semantic recipe.
+// The D3 table also aligns the list toolbar (32 px), member rows (40 px line,
+// 28 px remove button) and header action targets (32 px).
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  .local-groupimport-easystud-user__primary-badge,
+  .local-groupimport-easystud-user__meta .local-groupimport-easystud-token,
+  .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle,
+  .local-groupimport-easystud-group__header > .badge,
+  .local-groupimport-easystud-group__header .local-groupimport-easystud-token,
+  .local-groupimport-easystud-group__groupings-details .local-groupimport-easystud-token,
+  .local-groupimport-easystud-grouping__header .badge,
+  .local-groupimport-easystud__panel-badge {
+    @include easyedu.card-label;
+  }
+
+  // Bootstrap's p-0 utility is !important on the overflow toggles.
+  .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle.p-0 {
+    padding-inline: var(--easyedu-card-label-padding-inline) !important;
+  }
+
+  .local-groupimport-easystud-group__groupings--inline,
+  .local-groupimport-easystud-group__groupings-details-list,
+  .local-groupimport-easystud-user__meta-tags {
+    gap: var(--easyedu-card-label-gap);
+  }
+
+  .local-groupimport-easystud-group__header,
+  .local-groupimport-easystud-grouping__header,
+  .local-groupimport-easystud-tree__toggle,
+  .local-groupimport-easystud-user__headline-main {
+    align-items: center;
+  }
+
+  // Header action targets: one 32 px target on every card.
+  .local-groupimport-easystud-user__detail-button,
+  .local-groupimport-easystud-group__header > .btn-link:not(.local-groupimport-easystud-card-menu),
+  .local-groupimport-easystud-grouping__header > .btn-link:not(.local-groupimport-easystud-card-menu),
+  .local-groupimport-easystud-group__header .local-groupimport-easystud-rename__toggle,
+  .local-groupimport-easystud-grouping__header .local-groupimport-easystud-rename__toggle {
+    align-items: center;
+    block-size: var(--easyedu-card-action-target);
+    display: inline-flex;
+    inline-size: var(--easyedu-card-action-target);
+    justify-content: center;
+    // The larger target overflows the previous 29.6 px action row evenly, so
+    // card headers keep their height.
+    margin-block: calc((1.85rem - var(--easyedu-card-action-target)) / 2);
+    min-block-size: var(--easyedu-card-action-target);
+    min-inline-size: var(--easyedu-card-action-target);
+  }
+
+  &:not(.local-groupimport-easystud--responsive-workspace) .local-groupimport-easystud-card-menu {
+    block-size: var(--easyedu-card-action-target);
+    inline-size: var(--easyedu-card-action-target);
+    margin-block: calc((1.85rem - var(--easyedu-card-action-target)) / 2);
+    min-block-size: var(--easyedu-card-action-target);
+    min-inline-size: var(--easyedu-card-action-target);
+  }
+
+  // The compact card menu keeps its 44 px touch target; its visible surface
+  // joins the 32 px family.
+  &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-card-menu > :first-child {
+    block-size: var(--easyedu-card-action-target);
+    inline-size: var(--easyedu-card-action-target);
+  }
+
+  // Member rows: checkbox, name and remove button centred on one 40 px line.
+  .local-groupimport-easystud-member {
+    align-items: center;
+    box-sizing: border-box;
+    min-block-size: var(--easyedu-related-person-line);
+    padding-block: 0;
+  }
+
+  .local-groupimport-easystud-member__remove.easyedu-related-person-row__remove {
+    block-size: var(--easyedu-related-person-remove-size);
+    inline-size: var(--easyedu-related-person-remove-size);
+    min-block-size: var(--easyedu-related-person-remove-size);
+    min-inline-size: var(--easyedu-related-person-remove-size);
+  }
+
+  // List toolbar: Select all, result count, sort and page controls share one height.
+  .local-groupimport-easystud-pagination {
+    --local-groupimport-result-height: var(--easyedu-toolbar-control-height);
+
+    .local-groupimport-easystud-pagination__select,
+    .local-groupimport-easystud-pagination__count {
+      block-size: var(--easyedu-toolbar-control-height);
+      box-sizing: border-box;
+      min-block-size: var(--easyedu-toolbar-control-height);
+    }
+
+    [data-easystud-list-sort-toggle] {
+      block-size: var(--easyedu-toolbar-control-height);
+      box-sizing: border-box;
+      min-block-size: var(--easyedu-toolbar-control-height);
+    }
+
+    [data-easystud-page-label] {
+      align-items: center;
+      block-size: var(--easyedu-toolbar-control-height);
+      display: inline-flex;
+    }
+  }
+
+  .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__controls .btn {
+    @media (pointer: fine), (hover: hover) {
+      block-size: var(--easyedu-toolbar-control-height);
+      height: var(--easyedu-toolbar-control-height);
+      inline-size: var(--easyedu-toolbar-control-height);
+      min-block-size: var(--easyedu-toolbar-control-height);
+      min-height: var(--easyedu-toolbar-control-height);
+      min-inline-size: var(--easyedu-toolbar-control-height);
+      min-width: var(--easyedu-toolbar-control-height);
+      width: var(--easyedu-toolbar-control-height);
+    }
+  }
+}

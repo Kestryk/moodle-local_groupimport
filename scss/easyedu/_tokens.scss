@@ -145,6 +145,20 @@
   --easyedu-count-bg: #f6f8fa;
   --easyedu-count-border: #d8e0e8;
   --easyedu-count-text: #6d7f91;
+  // Card label family (D3, 16/10/2026): every label, pill and counter of a
+  // card header shares one height, centred on the title line.
+  --easyedu-card-label-height: 1.375rem;
+  --easyedu-card-label-radius: 0.6875rem;
+  --easyedu-card-label-font-size: 0.6875rem;
+  --easyedu-card-label-padding-inline: 0.5rem;
+  --easyedu-card-label-gap: 0.5rem;
+  --easyedu-card-label-icon-size: 0.625rem;
+  // Card rhythm.
+  --easyedu-card-action-target: 2rem;
+  --easyedu-related-person-line: 2.5rem;
+  --easyedu-related-person-remove-size: 1.75rem;
+  // One height for the controls of a list toolbar (Select all, count, sort, pages).
+  --easyedu-toolbar-control-height: 2rem;
   --easyedu-control-height: 2.35rem;
   --easyedu-touch-target-min: 2.75rem;
   --easyedu-control-radius: 0.72rem;
