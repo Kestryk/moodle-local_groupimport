@@ -33,7 +33,7 @@ import {updateSelectionAvailability} from './selection';
 import {
     withBatchedMemberHeights, ensureNestedGroupActionMenus, applyGroupMemberSearchToGroup,
     normaliseMemberRemoveLabels, setCountBadgeState, ensureDuplicateButtons, ensureAdvancedSettingsButtons,
-    ensureInlinePanelCancelButtons,
+    ensureInlinePanelCancelButtons, syncGroupMembersCollapsible,
 } from './group_cards';
 import {getInputQuery, getStructureGroupSearchQuery} from './filters';
 import {animateListArrival, listPageChanged, resetListPage} from './transitions';
@@ -72,9 +72,10 @@ export const applyOnDemandCatalogFilters = root => {
  * @returns {Object} {unfolded: Set, searches: Map}, keyed by group id (string).
  */
 export const rememberGroupCardStates = container => {
-    const memory = container.easystudSmCardStates || {unfolded: new Set(), searches: new Map()};
+    const memory = container.easystudSmCardStates || {unfolded: new Set(), searches: new Map(), limits: new Map()};
     container.querySelectorAll(':scope > [data-easystud-group-id], :scope > * > [data-easystud-group-id]').forEach(card => {
         const groupid = card.getAttribute('data-easystud-group-id');
+        memory.limits.set(groupid, card.easystudMemberLimit || 8);
         const toggle = card.querySelector('[data-easystud-group-members-toggle]');
         if (toggle && toggle.getAttribute('aria-expanded') === 'true') {
             memory.unfolded.add(groupid);
@@ -103,9 +104,12 @@ export const rememberGroupCardStates = container => {
 export const restoreGroupCardStates = (root, cards, memory) => withBatchedMemberHeights(() => {
     cards.forEach(card => {
         const groupid = card.getAttribute('data-easystud-group-id');
+        card.easystudMemberLimit = memory.limits.get(groupid) || 8;
+        card.easystudMemberQuery = memory.searches.get(groupid) || '';
         const unfolded = memory.unfolded.has(groupid);
         const searching = memory.searches.has(groupid);
         if (!unfolded && !searching) {
+            syncGroupMembersCollapsible(card);
             return;
         }
         const toggle = card.querySelector('[data-easystud-group-members-toggle]');

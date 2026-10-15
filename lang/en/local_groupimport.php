@@ -1109,3 +1109,13 @@ $string['adminsettingenabled'] = 'Enabled';
 $string['adminsettingdisabled'] = 'Disabled';
 $string['adminguidewelcome'] = 'Guide welcome';
 $string['adminrestorecolour'] = 'Restore';
+
+// K16-01: bounded card lists; tokens are replaced with state counts in the browser.
+$string['longlistshown'] = '__shown__ of __total__ shown';
+$string['longlistmore'] = 'Show __step__ more · __remaining__ remaining';
+$string['longlistall'] = 'View all (__total__)';
+$string['longlistpage'] = '__start__–__end__ of __total__ groups · __page__ / __pages__';
+$string['longlistaddedmembers'] = '{$a} more members displayed';
+$string['longlistaddedmembers_one'] = '{$a} more member displayed';
+$string['longlistaddedgroups'] = '{$a} more groups displayed';
+$string['longlistaddedgroups_one'] = '{$a} more group displayed';

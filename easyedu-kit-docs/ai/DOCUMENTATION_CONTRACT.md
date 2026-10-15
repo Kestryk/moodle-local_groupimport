@@ -1105,3 +1105,15 @@ not a style proof. Completion check must disappear on reset. Linked icon root
 resizing does not necessarily scale glyph descendants: inspect containment and
 raster before propagating a provider update. G10-B source/isolated proof is
 not native preview, finished Penpot propagation or human validation.
+
+K16-01 card windows render only requested rows from the full state. Total badges,
+search and Select all must never derive their scope from the partial DOM. Retain
+stable disclosure controls, first-added focus and a polite live announcement;
+use Motion.resize without a consumer motion policy. Over-ceiling View all reuses
+native details and its actual opener. Ungrouped section pages contain folded
+cards only (10 desktop,6 at390); participant pills render6 desktop nodes or one
+compact line before +N. View all appears only at the50/12shown ceiling and opens
+the relevant relation section. Added rows fade through Motion.enter (0px travel),
+including reduced mode; minimal stays immediate. Announce the added row count.
+Record isolated three-level Motion compatibility separately from published M1
+server/CSS proof. See docs/testing/long-lists-k16-01-2026-10-16.md.

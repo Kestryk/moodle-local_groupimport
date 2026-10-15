@@ -1109,3 +1109,13 @@ $string['adminsettingenabled'] = 'Activé';
 $string['adminsettingdisabled'] = 'Désactivé';
 $string['adminguidewelcome'] = 'Accueil du Guide';
 $string['adminrestorecolour'] = 'Rétablir';
+
+// K16-01 : listes progressives ; les jetons sont remplacés par les totaux du modèle.
+$string['longlistshown'] = '__shown__ sur __total__ affichés';
+$string['longlistmore'] = 'Afficher __step__ de plus · __remaining__ restants';
+$string['longlistall'] = 'Voir tout (__total__)';
+$string['longlistpage'] = '__start__–__end__ sur __total__ groupes · __page__ / __pages__';
+$string['longlistaddedmembers'] = '{$a} membres supplémentaires affichés';
+$string['longlistaddedmembers_one'] = '{$a} membre supplémentaire affiché';
+$string['longlistaddedgroups'] = '{$a} groupes supplémentaires affichés';
+$string['longlistaddedgroups_one'] = '{$a} groupe supplémentaire affiché';
