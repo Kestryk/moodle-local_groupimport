@@ -258,6 +258,10 @@ export const syncGroupMembersCollapsible = group => {
     if (footer && cancollapse && !expanded) {
         footer.hidden = true;
     }
+    if (windowed) {
+        // The long-list list style lifts the height limit; only keep it once the card is unfolded.
+        list.classList.toggle('local-groupimport-easystud-long-list__members', expanded || !cancollapse);
+    }
     syncGroupSelectAll(group);
 };
 
