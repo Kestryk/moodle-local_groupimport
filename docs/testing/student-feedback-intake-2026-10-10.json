@@ -1,4 +1,12 @@
 {
+"participantColumnK1525_20261015": {
+  "scope": "existing participantstitle only; workspace selector unchanged",
+  "guideChecklistColumnCopyAudit": "combined names refer to views, no stale column reference found",
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+
 "codex2K21Markup20261014": {
   "status": "markup-consumer-native-fr-en-1280-390-pass-awaiting-n1-integration",
   "base": "3cbb03cf",
