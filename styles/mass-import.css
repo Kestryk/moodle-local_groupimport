@@ -1910,7 +1910,7 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {transit
 
 .easyedu-ui .easyedu-related-person-row__remove {align-items: center;background: #f8fbfe;border-color: #cfdce8;border-radius: 0.5rem;border-style: solid;border-width: 1px;box-shadow: 0 0.1rem 0.3rem rgba(64, 92, 116, 0.08);box-sizing: border-box;color: #486985;display: inline-grid;flex: 0 0 auto;font-size: 1rem;font-weight: 700;height: 1.45rem;line-height: 1;place-items: center;padding: 0 !important;text-decoration: none !important;width: 1.45rem;
 }
-.easyedu-ui .easyedu-related-person-row__remove span {display: block;line-height: 0.8;margin-top: -0.05rem;
+.easyedu-ui .easyedu-related-person-row__remove span {display: block;line-height: 1;margin: 0;
 }
 .easyedu-ui .easyedu-related-person-row__remove:hover,
 .easyedu-ui .easyedu-related-person-row__remove:focus {background: #eef5fb;border-color: #adc4d8;box-shadow: 0 0.2rem 0.45rem rgba(64, 92, 116, 0.12);color: #294b68;text-decoration: none !important;
