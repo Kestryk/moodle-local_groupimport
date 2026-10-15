@@ -103,7 +103,7 @@ export const bindParticipantModal = root => {
                 entityReadonlyField(labels.country || '', data.country) +
                 entityReadonlyField(labels.language || '', data.lang));
         // Description is HTML formatted by Moodle (format_text) on the server.
-        const description = loading ? entitySkeletonField('area', true) : (data.description ?
+        const description = loading ? entitySkeletonField('value', true) : (data.description ?
             '<div class="local-groupimport-easystud-entity__field local-groupimport-easystud-entity__field--wide">' +
                 '<dt>' + escapeHtml(labels.advancedsettingsdescription || '') + '</dt>' +
                 '<dd class="local-groupimport-easystud-entity__description">' + data.description + '</dd>' +

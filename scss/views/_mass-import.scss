@@ -688,15 +688,15 @@
     flex: 0 0 auto;
   }
 
-  &-modal__tile.easyedu-entity-dialog__icon {
+  &-modal__header &-modal__tile.easyedu-entity-dialog__icon {
     @include recipes.dialog-tile(var(--easyedu-primary), var(--easyedu-primary-soft));
   }
 
-  &-modal__tile--danger.easyedu-entity-dialog__icon {
+  &-modal__header &-modal__tile--danger.easyedu-entity-dialog__icon {
     @include recipes.dialog-tile(var(--easyedu-danger), var(--easyedu-danger-soft));
   }
 
-  &-modal__dialog--confirm .easyedu-entity-dialog__eyebrow {
+  &-modal__dialog--confirm &-modal__header .easyedu-entity-dialog__eyebrow {
     color: var(--easyedu-danger);
   }
 
@@ -809,13 +809,14 @@
     @include easyedu.entity-card-token-semantic(valid);
   }
 
+  // One shared action column: state pills stay aligned whatever the label length.
   &-history__actions {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem 0.75rem;
     justify-content: flex-end;
-    min-inline-size: 0;
+    min-inline-size: 16rem;
   }
 
   &-history__action {
@@ -901,6 +902,7 @@
 
     &-history__actions {
       grid-column: 1 / -1;
+      min-inline-size: 0;
     }
   }
 

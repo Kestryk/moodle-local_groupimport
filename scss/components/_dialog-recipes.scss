@@ -34,16 +34,15 @@ $dialog-divider: color-mix(in srgb, var(--easyedu-card-border) 58%, #fff 42%);
   box-sizing: border-box;
   display: flex;
   flex: 0 0 auto;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 0.625rem;
   justify-content: flex-end;
   margin: 0;
   min-inline-size: 0;
   padding: 0.75rem 1.25rem;
 
-  > .easyedu-button,
-  > .easyedu-button--secondary,
-  > .easyedu-button--danger {
+  // Doubled class: beat the Kit button defaults (white-space: normal) emitted later.
+  > .btn.btn {
     min-inline-size: 6rem;
     white-space: nowrap;
   }

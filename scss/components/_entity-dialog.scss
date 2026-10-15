@@ -10,6 +10,9 @@
   // Window M (720px); header and footer stay put, only the body scrolls.
   &-modal__dialog.local-groupimport-easystud-entity {
     @include recipes.dialog-shell(45rem);
+
+    // Penpot window M keeps one height while details load (no header jump).
+    min-block-size: min(45rem, calc(100dvh - 2rem));
   }
 
   &-entity__tile.easyedu-entity-dialog__icon {
@@ -218,13 +221,13 @@
     grid-column: 1 / -1;
   }
 
-  &-entity__input {
+  &-entity &-entity__input.form-control {
     @include easyedu.foundation-text-field;
 
     inline-size: 100%;
   }
 
-  &-entity__textarea {
+  &-entity &-entity__textarea.form-control {
     @include easyedu.foundation-textarea;
 
     inline-size: 100%;
@@ -311,6 +314,7 @@
   &-entity__relation-body {
     display: grid;
     gap: 0.5rem;
+    grid-template-columns: minmax(0, 1fr);
     min-inline-size: 0;
     padding-block-start: 0.5rem;
     padding-inline-start: 1.75rem;
@@ -368,9 +372,10 @@
   &-entity__members {
     display: grid;
     gap: 0.5rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  &-entity__member.easyedu-related-person-row {
+  &-entity &-entity__member.easyedu-related-person-row {
     background: var(--easyedu-surface-soft);
     min-block-size: 2.5rem;
     padding-inline: 0.75rem;

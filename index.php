@@ -1781,7 +1781,7 @@ echo html_writer::tag('div',
                 'class' => 'btn easyedu-button',
                 'data-local-groupimport-history-dismiss' => '1',
             ]),
-            ['class' => 'local-groupimport-import-modal__footer local-groupimport-import-modal__footer--summary']
+            ['class' => 'local-groupimport-import-modal__footer local-groupimport-import-modal__footer--summary easyedu-dialog-actions']
         ),
         [
             'class' => 'local-groupimport-import-modal__dialog local-groupimport-import-modal__dialog--history ' .
@@ -1838,7 +1838,7 @@ $rollbackform .= html_writer::tag('div',
             html_writer::span(get_string('importrollbackconfirmbutton', 'local_groupimport')),
         ['type' => 'submit', 'class' => 'btn easyedu-button--danger easyedu-action-with-icon']
     ),
-    ['class' => 'local-groupimport-import-modal__footer']
+    ['class' => 'local-groupimport-import-modal__footer easyedu-dialog-actions']
 );
 $rollbackform .= html_writer::end_tag('form');
 
