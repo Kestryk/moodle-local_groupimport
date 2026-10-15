@@ -82,3 +82,5 @@ K16 served strict successors: k16-finish-painted/label/workspaces-served-native 
 k16-overlap-served-native.spec.js: local-supervised actual mainlocalhost/course5/authentication/lease. Strict horizontal non-overlap and right-footer-edge successor; original K16 native results retain their narrower vertical/text-alignment scope. No source CSS injection.
 
 K16 regression native183318258Z-752 PASS FR/EN1600/768/390, initial+detailed density, target/name separation and painted footer edge. k16-overlap-painted-served-native.spec.js preserves strict oracles and failed predecessors; native auth/course fixture is the CI boundary.
+
+admin-e5-served-native.spec.js: principal-localhost bilingual read-only successor of N2 settled8051 recipe. Five sections, typography/frame/control metrics at four widths, keyboard disclosure and reversible DOM checkbox toggle; all settings POST blocked, no native save or persistence claim. Local-supervised authentication/lease required.
