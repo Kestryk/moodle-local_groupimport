@@ -69,7 +69,7 @@ export const bindGroupSelectAll = root => {
 
 /**
  * Modifier that selects a range from the anchor (Shift + click, Shift + Space). Shift is the
- * platform convention; set it to 'altKey' to use Alt instead (Alt is often taken by the system).
+ * platform convention. Alt is already the toggle modifier (see isToggleEvent).
  */
 const RANGE_SELECTION_MODIFIER = 'shiftKey';
 
@@ -79,7 +79,8 @@ const ownClickSelector = 'button, a, input, textarea, select, form, summary, [co
 const selectorSelector = '.local-groupimport-easystud-selector';
 
 const isRangeEvent = event => !!event[RANGE_SELECTION_MODIFIER];
-const isToggleEvent = event => !!(event.ctrlKey || event.metaKey);
+// Ctrl/Cmd + click, and Alt + click (Kevin, 15/10), add or remove one item.
+const isToggleEvent = event => !!(event.ctrlKey || event.metaKey || event.altKey);
 
 /**
  * Items of the clicked item's list, in their visible order: same type, same parent list (current
@@ -154,7 +155,7 @@ export const bindSelection = root => {
         return item && root.contains(item) ? item : null;
     };
 
-    // Ctrl/Cmd and range presses on a card never start a drag nor a text selection.
+    // Toggle (Ctrl/Cmd/Alt) and range presses on a card never start a drag nor a text selection.
     root.addEventListener('mousedown', event => {
         if (event.button !== 0 || !(isRangeEvent(event) || isToggleEvent(event)) ||
                 event.target.closest(ownClickSelector) || !getSelectableItem(event.target)) {
