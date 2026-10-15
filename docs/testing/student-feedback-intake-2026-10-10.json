@@ -1,4 +1,24 @@
 {
+"m1m2NativeRootsProof20261015": {
+  "runtime": "a01262e3",
+  "nativeRun": "easystud-authenticated-20261015T143927804Z-19656",
+  "scope": "FR1280 SM, Mass Import, admin; server full and page sheet; actual JS full/reduced/minimal under emulated OS reduction",
+  "preferencePersisted": false,
+  "pageErrors": 0,
+  "businessWrites": 0,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+"m1m2MigrationServed20261015": {
+  "runtime": "a01262e3",
+  "version": 2026101501,
+  "principalUpgrade": "PASS legacy0 to minimal, old key absent, original effective full restored",
+  "legacyRehearsal": "PASS 2026010503 to 2026101501; isolated clone removed",
+  "builds": "SM/CM/Guide/Motion/choices and conservative page CSS PASS",
+  "phpunit": "not executed: binary absent",
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "claudeM1M2Integration20261015": {
   "incoming": ["1aaad8c4", "270c2ca7", "d8e39162"],
   "source": ["89dd8bef", "4b944790", "266188d8"],
