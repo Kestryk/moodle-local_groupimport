@@ -4,6 +4,7 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "k16ParticipantPills20261015":{"kitCommit":"30e9282","scope":"Intrinsic wrapping metadata values and peer categories; earlier pins unchanged"},
     "k16AvatarGridClearance20261015":{"kitCommit":"ccd6007","scope":"Preserve existing avatar columns while reserving complete selector target; earlier pins unchanged"},
     "k16TargetClearance20261015": {"kitCommit":"3f288bb","scope":"Desktop full-target clearance supplement to653adbe; existing pins preserved"},
     "k16OverlapRegression20261015": {"kitCommit":"653adbe","scope":"Full selector target plus text/accent clearance; intrinsic recovery footer button aligned right; previous pins and proofs preserved"},

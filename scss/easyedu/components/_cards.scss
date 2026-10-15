@@ -280,9 +280,27 @@
     gap: 6px;
   }
   .easyedu-person-card__meta-group {
-    flex-basis: 100%;
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
     gap: 0;
     max-inline-size: 100%;
+    min-inline-size: 0;
+  }
+  .easyedu-person-card__meta-values {
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    gap: 6px;
+    inline-size: max-content;
+    max-inline-size: 100%;
+    min-inline-size: 0;
+    > [hidden] { display: none !important; }
+    > :not([hidden]) {
+      flex: 0 0 auto;
+      max-inline-size: 100%;
+    }
   }
   .easyedu-person-card__meta-label {
     block-size: 1px;

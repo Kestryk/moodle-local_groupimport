@@ -11756,7 +11756,13 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta {align-items: center;display: flex;flex-wrap: wrap;gap: 6px;
 }
-#local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta-group {flex-basis: 100%;gap: 0;max-inline-size: 100%;
+#local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta-group {align-items: center;display: flex;flex: 0 1 auto;gap: 0;max-inline-size: 100%;min-inline-size: 0;
+}
+#local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta-values {align-items: center;display: flex;flex: 0 1 auto;flex-wrap: wrap;gap: 6px;inline-size: max-content;max-inline-size: 100%;min-inline-size: 0;
+}
+#local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta-values > [hidden] {display: none !important;
+}
+#local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta-values > :not([hidden]) {flex: 0 0 auto;max-inline-size: 100%;
 }
 #local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta-label {block-size: 1px;clip: rect(0, 0, 0, 0);inline-size: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;white-space: nowrap;
 }

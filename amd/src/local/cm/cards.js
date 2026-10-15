@@ -559,11 +559,19 @@ export const syncParticipantTagOverflow = scope => {
     }
     const pendingMeasurements = [];
     const rows = Array.from(scope.querySelectorAll('.local-groupimport-easystud-user__meta-tags')).map(container => {
-        const tokens = Array.from(container.querySelectorAll('.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty)'));
-        tokens.forEach(token => {
-            token.hidden = false;
+        const tokens = Array.from(container.querySelectorAll('.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty):not([data-easystud-toggle-tags])'));
+        container.querySelectorAll('.local-groupimport-easystud-token--empty').forEach(token => {
+            token.hidden = true;
         });
-        return {container, tokens};
+        const values = tokens.filter(token => {
+            const text = token.textContent.trim();
+            token.hidden = !text || text === '-';
+            if (!token.hidden) {
+                token.title = text;
+            }
+            return !token.hidden;
+        });
+        return {container, tokens: values};
     });
     // Read every row width after all the writes above: one layout pass instead of one per row,
     // which costs seconds on large pages.
@@ -585,7 +593,8 @@ export const syncParticipantTagOverflow = scope => {
         toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 
         if (expanded) {
-            toggle.textContent = '-';
+            toggle.textContent = toggle.getAttribute('data-less-label') || getLabels(root).showless || '';
+            toggle.title = toggle.textContent;
             return;
         }
 
@@ -610,7 +619,7 @@ export const syncParticipantTagOverflow = scope => {
 
         const visibility = tokenwidths.map(tokenwidth => {
             const width = tokenwidth + (visible > 0 ? gap : 0);
-            if (used + width + togglewidth > available) {
+            if (visible > 0 && used + width + togglewidth > available) {
                 hidden++;
                 return false;
             }
@@ -627,6 +636,7 @@ export const syncParticipantTagOverflow = scope => {
         if (hidden) {
             toggle.textContent = '+' + hidden;
             toggle.setAttribute('data-more-label', '+' + hidden);
+            toggle.title = '+' + hidden;
         } else {
             toggle.hidden = true;
             toggle.setAttribute('aria-expanded', 'false');
