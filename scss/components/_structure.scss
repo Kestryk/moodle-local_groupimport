@@ -1039,20 +1039,7 @@
   }
 
   &-group__select-all.btn {
-    color: var(--easyedu-primary);
-    font-size: var(--easyedu-font-size-caption);
-    font-weight: var(--easyedu-font-weight-semibold);
-    line-height: 1.4;
-    text-decoration: none;
-
-    &:not(:disabled):hover {
-      color: var(--easyedu-primary-strong);
-      text-decoration: underline;
-    }
-
-    &:focus-visible {
-      @include easyedu.ring;
-    }
+    @include easyedu.selection-recovery-action;
   }
 
   &-grouping__groups {

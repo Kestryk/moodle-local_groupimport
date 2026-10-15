@@ -8,6 +8,11 @@
 // Consumers render desktop and compact wrappers from one prepared context.
 // Existing button/responsive mixins remain the visual authorities so adopting
 // this component does not fork the established EasyStud/CCB contracts.
+// Consumer supplies the measured resting content edge. Preserve access to edge controls.
+@mixin navigation-content-clearance($content-edge) {
+  margin-inline-start: max(0px, calc(var(--easyedu-touch-target-min) + 4px - #{$content-edge}));
+}
+
 @mixin navigation-component($compact-breakpoint: 64rem, $phone-trigger-clearance: false) {
   position: relative;
 

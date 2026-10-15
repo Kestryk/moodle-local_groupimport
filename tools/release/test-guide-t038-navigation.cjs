@@ -40,7 +40,8 @@ assert(discoveryScss.includes('text-overflow: clip;') && discoveryScss.includes(
 assert(template.includes('data-easyedu-guided-label="{{guidebadgelabel}}"'), 'legacy accessible path label contract is retained');
 assert(template.includes('<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>')
     && !template.includes('nav-item__path fa'), 'guided navigation renders the Guide text badge, not a second pictogram');
-assert(template.includes('{{#navtooltip}}title="{{navtooltip}}"{{/navtooltip}}'), 'every pill carries a title attribute');
+assert(template.includes('title="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}"'), 'navigation pills always carry a localized title, including tooltip fallback');
+assert(template.includes('class="easyedu-guide-nav-item is-active" title="{{label}}"'), 'introduction specimen pill carries its localized title');
 assert(template.includes('{{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}'),
     'the accessible pill name keeps the Guide marker');
 assert(discovery.includes("$slide['navtitle'] = get_string('guide_nav_' . ($index + 1), 'local_groupimport');"),

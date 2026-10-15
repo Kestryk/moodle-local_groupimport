@@ -5980,3 +5980,5 @@ Maintenance convention:
 - 2026-10-15 [N0] B2 interim: cap synchronous Mass Import at1000rows/5MB, raise time allowance and commit course mutations with import history atomically; roll back fatal/history failures without reporting success. Larger files must be split.
 
 - 2026-10-15 [N0] Certify served B1/B2 editable preview JSON and incomplete-confirmation refusal; real DB injected failure rolls back group/history with zero persistent fixtures. Successful business import/restore remains outside this bounded recipe.
+
+- 2026-10-15 [WIP/N1] Prepare K16 finishing candidate: Kit measured count/title accents, participant alignment, recovery controls and filter footer. Not served: reserved K16-10/11 raccord pending; candidate FR/isolated Kit measurements are distinct from final served FR/EN acceptance.
