@@ -6005,3 +6005,5 @@ Maintenance convention:
 - Rebuilt SM/CM and conservative CSS. Dense/ordinary native fixture and acceptance audit remain in progress; no native acceptance claimed.
 
 - K16-01/K16-22 native parity certified: 32 states, 1042 pills at 22px, centre delta 0px, 76 exact counters, eight group and two participant real deferred opens. Kevin audit: zero non-group failures; 18 group failures deferred to the next lot. Fixtures restored.
+
+- 2026-10-15 [N1] At Kevin stop, remove the unpublished Group grid candidate from localhost and restore exact57f92492 before integrating only Claude K16-29/37/30/31/32; preserve all candidate branches, build SM/CM and conservative CSS, and gate publication on the unchanged audit with only known Group-grid failures allowed.
