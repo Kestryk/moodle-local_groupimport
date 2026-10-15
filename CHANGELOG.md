@@ -6015,3 +6015,8 @@ Maintenance convention:
 - Rebuilt SM/CM and conservative CSS. Dense/ordinary native fixture and acceptance audit remain in progress; no native acceptance claimed.
 
 - K16-01/K16-22 native parity certified: 32 states, 1042 pills at 22px, centre delta 0px, 76 exact counters, eight group and two participant real deferred opens. Kevin audit: zero non-group failures; 18 group failures deferred to the next lot. Fixtures restored.
+
+### K16 Group cards - canonical layout candidate
+
+- Consume Kit299854a / 0.4.219 shared checkbox, text and action tracks in Group cards, including nested cards, with a disjoint reveal/selection footer. No controller or keyboard change.
+- Baseline fixture measured FR/EN1600/1280/768/390, empty/full; exact-owner cleanup PASS. Candidate native geometry and zero-FAIL Kevin audit pending.
