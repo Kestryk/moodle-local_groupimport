@@ -1,5 +1,9 @@
 # Preserved native successors, 15 October
 
+drawer-v1-served-native.spec.js: local-supervised FR390/768/1280 SM+MI keyboard/
+inert/scroll lock and desktop check160136613Z-15572 PASS. Compact JSON width is
+panel336px (viewport fixed by test loop/screenshots); no preference/business writes.
+
 cards-labels-served-native.spec.js: local-supervised delivery6 smoke FR1600/1280/
 768/390,154345912Z-3976 PASS sampled labels within1px, title spacing/counter order,
 grouping title visibility and filters open/close. Course5/authentication required;
