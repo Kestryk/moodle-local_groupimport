@@ -15,3 +15,11 @@ card composition: preserve historical evidence and report changed contracts clea
 Visual relay: participant/group/grouping cards, labels/counters/title/overflow,
 compact/full and selected states1600/1280/768/390; filter closed/open/count states.
 Native proof and Penpot/human validation remain separate until recorded.
+
+Source49bcf561 served as63da5d12, purge PASS; native
+easystud-authenticated-20261015T154345912Z-3976 PASS FR1600/1280/768/390.
+Visible sampled labels are22px (desktop role glyph frame21.56px, within1px oracle),
+both filter toggle states work, no horizontal overflow, title letter spacing0,
+groups-before-groupings order and visible grouping title at1600/1280. Zero page
+errors/business writes. Two screenshots external. This bounded check does not
+certify all long title data, underline painted placement or every selected state.

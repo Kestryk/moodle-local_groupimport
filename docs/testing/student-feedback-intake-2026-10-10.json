@@ -1,4 +1,13 @@
 {
+"cardsLabelsNativeServed20261015": {
+  "runtime": "63da5d12",
+  "nativeRun": "easystud-authenticated-20261015T154345912Z-3976",
+  "scope": "FR1600/1280/768/390 sampled22px labels within1px, filters open/close, no overflow, title spacing0, ordered counters and visible grouping title",
+  "pageErrors": 0,
+  "businessWrites": 0,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "claudeCardsLabelsIntegration20261015": {
   "incoming": ["8a764c0a", "8df47e32", "b0b561c4", "cd84e465", "e24a37fa", "afd50802"],
   "source": ["cfe7ac6a", "aa389812", "6b180517", "ee938afc", "e550c508", "44e6a3c7"],
