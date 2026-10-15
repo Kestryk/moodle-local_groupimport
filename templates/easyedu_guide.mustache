@@ -142,9 +142,10 @@
                                         {{#showopendelay}}data-easyedu-guide-show-open-delay="{{showopendelay}}"{{/showopendelay}}
                                         {{#showafteropen}}data-easyedu-guide-show-after-open="{{showafteropen}}"{{/showafteropen}}
                                         {{#showafteropendelay}}data-easyedu-guide-show-after-open-delay="{{showafteropendelay}}"{{/showafteropendelay}}
+                                        {{#discoverypresentation}}title="{{guideinterfacecuelabel}}"{{/discoverypresentation}}
                                     >
                                         <span class="fa {{#discoverypresentation}}fa-eye{{/discoverypresentation}}{{^discoverypresentation}}fa-location-arrow{{/discoverypresentation}}" aria-hidden="true"></span>
-                                        <span>{{guideshowinterfacelabel}}</span>
+                                        <span class="easyedu-guide-slide__show-label">{{guideshowinterfacelabel}}</span>
                                     </button>
                                 {{/target}}
                             </div>
@@ -593,14 +594,12 @@
                 {{/slides}}
             </div>
 
-            {{#discoverypresentation}}
-            <div class="easyedu-guide-interface-cue" hidden>
-                <span class="easyedu-guide-interface-cue__caption">{{guideinterfacecuelabel}}</span>
-                <div data-easyedu-guide-interface-cue-action></div>
-            </div>
-            {{/discoverypresentation}}
             <footer class="easyedu-guide-modal__footer">
                 <span class="easyedu-guide-modal__step-count" data-easyedu-guide-progress-label data-progress-label="{{guidesteplabel}}">1/{{slidecount}}</span>
+                {{#discoverypresentation}}
+                {{! GS10: the slide's Show command docks here, left of Previous/Next. }}
+                <div class="easyedu-guide-interface-cue" data-easyedu-guide-interface-cue-action hidden></div>
+                {{/discoverypresentation}}
                 <div class="easyedu-guide-modal__footer-actions">
                     <button type="button" class="btn btn-outline-secondary" data-easyedu-guide-previous="1">{{guidepreviouslabel}}</button>
                     <button type="button" class="btn btn-primary" data-easyedu-guide-next="1">{{guidenextlabel}}</button>

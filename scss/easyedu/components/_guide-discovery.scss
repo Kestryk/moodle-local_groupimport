@@ -110,37 +110,37 @@
     max-height: var(--easyedu-guide-modal-max-height);
     max-width: var(--easyedu-guide-modal-width);
     border-radius: 1rem;
-    &:has(> .easyedu-guide-interface-cue:not([hidden])) {
-      grid-template-rows: auto auto auto minmax(0, 1fr) auto auto;
-    }
   }
 
-  .easyedu-guide-modal__header,
-  .easyedu-guide-modal__footer {
+  .easyedu-guide-modal__header {
     padding: 0.625rem 1.125rem;
     gap: 0.625rem;
+  }
+
+  // GS10 / T039 (accorded 13/10): one sticky common footer. The slide's
+  // "Show in interface" command docks on its left as the tertiary action,
+  // then Previous / Next on the right (reading and Tab order = visual order).
+  // Rhythm 12/24 and 38px Kit controls (AUDIT-GUIDE-RYTHME-2026-10-15).
+  .easyedu-guide-modal__footer {
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
   }
 
   .easyedu-guide-interface-cue {
     &[hidden] { display: none; }
     align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.625rem 1.125rem;
-    border-top: 1px solid var(--easyedu-border);
-    min-height: 3rem;
+    flex: 0 1 auto;
+    min-width: 0;
 
-    &__caption { @include typography.type-caption; }
-    [data-easyedu-guide-interface-cue-action] {
-      margin-inline-start: auto;
-      .easyedu-guide-slide__show {
-        @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
-        @include buttons.button-size(small);
-        gap: var(--easyedu-action-icon-gap);
-        .fa { color: var(--easyedu-accent); }
-      }
+    .easyedu-guide-slide__show {
+      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+      @include buttons.button-size(small);
+      gap: var(--easyedu-action-icon-gap);
+      min-height: 2.375rem;
+      max-width: 100%;
+      padding-inline: 0.75rem;
+      .fa { color: var(--easyedu-accent); }
     }
   }
 
@@ -575,7 +575,7 @@
   .easyedu-guide-modal__step-count {
     @include typography.type-caption;
     display: block;
-    margin-inline-end: auto;
+    flex: 0 0 auto;
     min-width: 0;
     order: 0;
     text-align: start;
@@ -1164,6 +1164,7 @@
     &__drag-badge { @include overlays.drag-preview-moving-badge; }
   }
 
+  // Intrinsic, equal-width Kit actions at every width; never stretched (768).
   .easyedu-guide-modal__footer-actions {
     display: grid;
     grid-auto-flow: column;
@@ -1171,17 +1172,24 @@
     max-width: 100%;
     gap: 0.5rem;
     align-items: stretch;
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+    order: 0;
+    width: auto;
 
     .btn {
       @include buttons.selection-action;
       @include buttons.button-size(small);
       @include typography.type-control-label;
+      flex: 0 0 auto;
       font-size: var(--easyedu-guide-font-size-control);
-      min-width: 5.75rem;
-      min-height: 1.9rem;
+      min-width: 6rem;
+      min-height: 2.375rem;
       height: auto;
+      padding-inline: 0.875rem;
+      width: auto;
     }
-    .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
+    .btn-primary { @include buttons.selection-action($solid: true); @include buttons.button-size(small); min-height: 2.375rem; }
   }
 
   // Discovery opts into a restrained checklist. Legacy Guide consumers retain
@@ -1373,15 +1381,28 @@
     }
 
     .easyedu-guide-nav .easyedu-guide-nav-item { flex-basis: 11.375rem; }
-    .easyedu-guide-modal__footer { flex-wrap: wrap; }
+    .easyedu-guide-modal__footer { flex-wrap: wrap; padding: 0.75rem 1rem; }
+    // GS10 phone: the docked command keeps its accessible name but paints
+    // only its eye, a 38px square just left of Previous.
+    .easyedu-guide-interface-cue .easyedu-guide-slide__show {
+      min-width: 2.375rem;
+      padding-inline: 0;
+      .easyedu-guide-slide__show-label {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+    }
     .easyedu-guide-scene { padding: 1rem; }
     .easyedu-guide-scene__concepts { gap: 1rem; padding: 0; }
     .easyedu-guide-scene__concept-arrow { display: none; }
     .easyedu-guide-modal__body { --easyedu-guide-reading-inset: 1rem; }
-    // Intrinsic Small actions leave room for the caption at390px. At narrower
-    // widths the existing footer wrap remains available, without clipping copy.
-    .easyedu-guide-modal__footer-actions { width: auto; flex: 0 0 auto; align-items: stretch; }
-    .easyedu-guide-modal__footer-actions .btn { width: auto; min-width: 5.75rem; }
     .easyedu-guide-interface-return { inset-inline: 1rem; width: auto; }
   }
   @include animations.motion-restricted($self: true) {

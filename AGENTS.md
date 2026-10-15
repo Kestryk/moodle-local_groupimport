@@ -12,7 +12,8 @@ presentation probe must not be relabelled as an Escape/focus regression. Keep
 full accessible narration when removing duplicate visible phase numbering.
 
 Discovery reading count reuses the existing footer slot; preserve the top4px
-accent track and dedicated interface cue. Legacy compact footer column/240px
+accent track. GS10 (Kevin 13/10) merged the interface cue into that footer:
+count, docked Show command, then Previous/Next. Legacy compact footer column/240px
 basis cannot be inherited beside a caption: use the canonical Small intrinsic
 actions and existing wrap, never smaller translated type. Source design masters
 already matching the contract stay unchanged; catalogue compositions carry the
@@ -229,8 +230,8 @@ Add/Move, distinguish source members from global Participants, and teach mobile
 card actions rather than desktop gestures. Copy-only modernisation preserves
 accepted Overview/cards/Motion and stable path IDs; it is not curriculum dedup.
 
-Targetless Discovery cue is optional chrome: hide the entire row and reclaim
-its grid track without inventing a target. Preserve original command identity,
+Targetless Discovery cue is optional chrome: hide its footer slot (GS10) without
+inventing a target. Preserve original command identity,
 attributes, locks and restoration. This is not a new Penpot family. Isolated
 geometry and synchronized builds are distinct from served-native proof.
 
@@ -366,7 +367,7 @@ test must count all actual title/description/note nodes; outer frame plus note
 alone is narrower evidence. Preserve that preliminary run and create a strict
 successor without changing product assets or weakening painted-text bounds.
 
-Discovery Show commands are relocated into the common cue row. Native tests
+Discovery Show commands are relocated into the common footer cue slot (GS10). Native tests
 wait the committed current slide, assert its exact visible command/opener and
 await the interface Return after the view/open callback; modal hidden alone
 is not readiness. Preserve failed harness specs and accepted product Motion.
