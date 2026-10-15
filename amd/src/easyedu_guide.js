@@ -786,6 +786,22 @@ const getExternalTargetDialog = (root, target) => {
   return dialog && dialog !== root.querySelector(SELECTORS.modal) ? dialog : null;
 };
 
+// A target inside a fixed layer that is not a native dialog (a compact action
+// sheet, for example) would paint above the page-level cue and hide it. Lift the
+// cue just above the highest fixed ancestor layer; ordinary page targets keep
+// the canonical low layer.
+const getTargetLayerIndex = target => {
+  let layer = 0;
+  for (let node = target.parentElement; node && node !== document.body; node = node.parentElement) {
+    const style = window.getComputedStyle(node);
+    const index = Number.parseInt(style.zIndex, 10);
+    if (style.position === 'fixed' && Number.isFinite(index)) {
+      layer = Math.max(layer, index);
+    }
+  }
+  return layer;
+};
+
 const updateHighlight = (root, target) => {
   const highlight = createHighlight(root);
   if (!isVisibleElement(target)) {
@@ -809,6 +825,12 @@ const updateHighlight = (root, target) => {
   const modalLayer = inDialog ? window.getComputedStyle(root).getPropertyValue('--easyedu-modal-layer').trim() : '';
   if (modalLayer) { highlight.style.setProperty('--easyedu-modal-layer', modalLayer); }
   else { highlight.style.removeProperty('--easyedu-modal-layer'); }
+  const targetLayer = inDialog ? 0 : getTargetLayerIndex(target);
+  if (targetLayer) {
+    highlight.style.zIndex = String(targetLayer + 1);
+  } else {
+    highlight.style.removeProperty('z-index');
+  }
   highlight.classList.toggle(
     'easyedu-guide-highlight--pulse-blue',
     root.dataset.easyeduGuideHighlightStyle === 'pulse-blue'
@@ -1158,12 +1180,28 @@ const scrollToTarget = (root, target, options = {}) => {
   }
 };
 
+// The compact workspace (no drag and drop, card menus instead of right click)
+// starts at the same width as the product's responsive workspace.
+const RESPONSIVE_STEP_QUERY = '(max-width: 64rem)';
+const isResponsiveStepViewport = () => !!(window.matchMedia && window.matchMedia(RESPONSIVE_STEP_QUERY).matches);
+
+// A step may teach a different gesture in the compact workspace. Its optional
+// titleCompact/descriptionCompact/feedbackCompact replace the ordinary copy
+// there, exactly like highlightTargetCompact replaces the highlighted control.
+const getStepText = (step, field) => {
+  if (!step) {
+    return '';
+  }
+  const compact = step[`${field}Compact`];
+  return (isResponsiveStepViewport() && compact) || step[field] || '';
+};
+
 const resolveStepHighlightTarget = (config, step) => {
   if (!step) {
     return null;
   }
 
-  const responsiveTarget = window.matchMedia && window.matchMedia('(max-width: 64rem)').matches ?
+  const responsiveTarget = isResponsiveStepViewport() ?
     step.highlightTargetCompact : step.highlightTargetDesktop;
   return resolveTarget(config, responsiveTarget || step.highlightTarget || step.showTarget || step.target);
 };
@@ -1237,7 +1275,7 @@ const getRequiredStep = (steps, requiredStepId) => steps.find((step, index) => g
 const getLockedStepRequirement = (config, steps, step) => {
   if (step.requiresStep) {
     const requiredStep = getRequiredStep(steps, step.requiresStep);
-    return formatLabel(config.labels.completeStepFirst, (requiredStep && requiredStep.title) || step.requiresStep);
+    return formatLabel(config.labels.completeStepFirst, getStepText(requiredStep, 'title') || step.requiresStep);
   }
 
   return step.requiresLabel || '';
@@ -2532,7 +2570,7 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
   if (title) {
     title.textContent = complete ?
       (config.labels.complete || config.labels.guidedPath || '') :
-      `${config.labels.guidedPath || ''}${config.labels.guidedPathSeparator || ': '}${step.title || getPathLabel(pathName, config)}`;
+      `${config.labels.guidedPath || ''}${config.labels.guidedPathSeparator || ': '}${getStepText(step, 'title') || getPathLabel(pathName, config)}`;
   }
   if (subtitle) {
     subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.completedSteps || ''}`;
@@ -2586,7 +2624,7 @@ const renderChecklist = (root, config, pathName) => {
   checklist.classList.remove('is-complete');
   checklist.classList.toggle('is-minimized', isCompactChecklistViewport() ? compactDefault : wasMinimized);
   checklist.classList.toggle('is-unlock-path', config.unlockPaths.includes(pathName));
-  checklist.classList.toggle('has-guided-feedback', steps.some(step => !!step.feedback));
+  checklist.classList.toggle('has-guided-feedback', steps.some(step => !!getStepText(step, 'feedback')));
   checklist.setAttribute('data-easyedu-guide-path', pathName);
   checklist.toggleAttribute('data-easyedu-guide-checklist-scroll', steps.length > 3);
   const retained = new Set();
@@ -2610,19 +2648,21 @@ const renderChecklist = (root, config, pathName) => {
     if (locked) {
       item.setAttribute('data-easyedu-guide-lock-message', getLockedStepRequirement(config, steps, step));
     } else { item.removeAttribute('data-easyedu-guide-lock-message'); }
-    if (step.feedback) {
-      item.setAttribute('data-easyedu-guide-feedback', step.feedback);
+    const feedback = getStepText(step, 'feedback');
+    if (feedback) {
+      item.setAttribute('data-easyedu-guide-feedback', feedback);
     } else { item.removeAttribute('data-easyedu-guide-feedback'); }
     const marker = document.createElement('span');
     marker.className = 'easyedu-guide-checklist__marker easyedu-guided-panel__index';
     marker.textContent = String(index + 1);
     const label = document.createElement('span');
     const title = document.createElement('strong');
-    title.textContent = step.title || '';
+    title.textContent = getStepText(step, 'title');
     label.appendChild(title);
-    if (step.description) {
+    const descriptionText = getStepText(step, 'description');
+    if (descriptionText) {
       const description = document.createElement('small');
-      description.textContent = step.description;
+      description.textContent = descriptionText;
       label.appendChild(description);
     }
     if (locked && (step.requiresLabel || step.requiresStepLabel || step.requiresStep)) {
@@ -2659,7 +2699,8 @@ const renderChecklist = (root, config, pathName) => {
     const activeStepIndex = firstItem ? Number(firstItem.getAttribute('data-easyedu-guide-step-index') || 0) : 0;
     const activeStep = steps[activeStepIndex] || steps[0] || {};
     const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
-    const initialText = allComplete ? completeMessage : (activeStep.feedback || config.labels.hint || config.labels.complete);
+    const initialText = allComplete ? completeMessage :
+      (getStepText(activeStep, 'feedback') || config.labels.hint || config.labels.complete);
     const icon = message.querySelector('.fa');
     const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
     checklist.classList.toggle('is-complete', allComplete);
@@ -2690,7 +2731,7 @@ const updateChecklistMessage = (root, config, activeStep) => {
   const icon = message.querySelector('.fa');
   const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
   const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
-  const activeMessage = activeStep && activeStep.feedback ? activeStep.feedback : (config.labels.hint || '');
+  const activeMessage = getStepText(activeStep, 'feedback') || config.labels.hint || '';
 
   checklist.classList.toggle('is-complete', complete);
   message.classList.toggle('is-complete', complete);
@@ -2876,6 +2917,28 @@ const refreshActiveHighlight = (root, shouldDock = false) => {
   updateHighlight(root, root.easyeduGuideCurrentTarget);
 };
 
+// Crossing the compact breakpoint can swap a step's gesture (titleCompact,
+// highlightTargetCompact, ...). Re-render the open checklist in place and move
+// a painted cue to the equivalent control of the new workspace.
+const refreshResponsiveChecklist = root => {
+  const config = root.easyeduGuideConfig;
+  const checklist = root.querySelector(SELECTORS.checklist);
+  const pathName = checklist && !checklist.hidden ? checklist.getAttribute('data-easyedu-guide-path') : '';
+  if (!config || !pathName || !config.paths[pathName]) {
+    return;
+  }
+  renderChecklist(root, config, pathName);
+  const active = checklist.querySelector('[data-easyedu-guide-step-index].is-active');
+  const step = active ? config.paths[pathName][Number(active.getAttribute('data-easyedu-guide-step-index') || 0)] : null;
+  updateChecklistMessage(root, config, step || null);
+  if (step && root.easyeduGuideCurrentTarget && !isPathComplete(config, pathName)) {
+    const target = resolveStepHighlightTarget(config, step);
+    if (target) {
+      scheduleHighlightRefresh(root, target, true);
+    }
+  }
+};
+
 const isModalOpen = root => {
   const modal = root.querySelector(SELECTORS.modal);
   return !!modal && !modal.hidden && modal.classList.contains('is-open');
@@ -3057,6 +3120,10 @@ const bindGuide = (root, config) => {
   }
   root.dataset.easyeduGuideBound = '1';
   bindNavigationTooltips(root);
+  const responsiveSteps = window.matchMedia ? window.matchMedia(RESPONSIVE_STEP_QUERY) : null;
+  if (responsiveSteps && responsiveSteps.addEventListener) {
+    addTrackedListener(root, responsiveSteps, 'change', () => refreshResponsiveChecklist(root));
+  }
 
   const fullscreenButton = root.querySelector('[data-easyedu-guide-fullscreen]');
   const fullscreenModal = root.querySelector(SELECTORS.modal);

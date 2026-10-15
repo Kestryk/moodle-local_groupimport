@@ -21,9 +21,10 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import * as Motion from '../../motion';
 import * as Guide from '../../easyedu_guide';
 import {getSelectedItems} from './selection';
-import {requestGuideHighlightRefresh} from './shared';
+import {isResponsiveWorkspace, requestGuideHighlightRefresh} from './shared';
 
 export const emitGuidedCompletion = (root, step, path = 'main') => {
     root.dispatchEvent(new CustomEvent('easystud:guided-complete', {
@@ -97,6 +98,96 @@ export const highlightActiveTryActionsStep = root => {
     if (target) {
         requestGuideHighlightRefresh(root, {root: guideRoot, target});
     }
+};
+
+// C2-15-02 (Kevin, 15/10): drag and drop is disabled in the compact workspace (<= 1024 px), so
+// guided path n°10 ("try-actions") teaches its first step with the card ⋮ menu there: open the
+// menu, choose "Add to group", confirm the destination. The step keeps its id ("try-drag"), so
+// saved progress and the requirements of the next steps are unchanged; desktop keeps the drag.
+const COMPACT_MOVE_ITEM = '[data-easystud-context-action="participant-move-selected"]:not([hidden])';
+
+const isCompactMoveStepActive = root => {
+    const checklist = document.querySelector('[data-easyedu-guide-checklist][data-easyedu-guide-path="try-actions"]');
+    if (!isResponsiveWorkspace() || !checklist || checklist.hidden || !root.isConnected) {
+        return false;
+    }
+    const active = checklist.querySelector('[data-easyedu-guide-step-id].is-active:not(.is-complete)');
+    return !!active && active.getAttribute('data-easyedu-guide-step-id') === 'try-drag';
+};
+
+// The compact copy and cue of the step. The dedicated strings do not exist yet (they belong to
+// Codex n°1's lang files): until manage.php passes titleCompact/descriptionCompact/feedbackCompact,
+// FALLBACK to existing strings with the same meaning: the menu item label, then the "Add to group"
+// steps of the Practice path. Returns false while the Guide has no configuration yet.
+export const installTryActionsCompactMove = (root, guideRoot) => {
+    const config = guideRoot && guideRoot.easyeduGuideConfig;
+    const steps = config && config.paths ? config.paths['try-actions'] : null;
+    const step = steps ? steps.find(item => item.id === 'try-drag') : null;
+    if (!step) {
+        return false;
+    }
+    if (step.easystudCompactMove) {
+        return true;
+    }
+    const practice = config.paths['practice-membership'] || [];
+    const practiceText = (id, field) => (practice.find(item => item.id === id) || {})[field] || '';
+    const menuItem = root.querySelector('[data-easystud-context-action="participant-move-selected"]');
+    step.easystudCompactMove = true;
+    step.highlightTargetCompact = step.highlightTargetCompact || 'participantCardActions';
+    step.titleCompact = step.titleCompact || (menuItem && menuItem.getAttribute('data-easystud-context-label')) ||
+        practiceText('open-move', 'title');
+    step.descriptionCompact = step.descriptionCompact || practiceText('confirm-move', 'description');
+    step.feedbackCompact = step.feedbackCompact || practiceText('open-move', 'description');
+    return true;
+};
+
+// The cue follows the real sequence: card ⋮ menu, then "Add to group" in the action sheet, then
+// Confirm in the move dialog; closing the sheet or the dialog brings it back to the ⋮ menu.
+export const syncTryActionsMoveCue = root => {
+    if (!isCompactMoveStepActive(root)) {
+        return;
+    }
+    const modal = root.querySelector('[data-easystud-move-modal]');
+    const menu = root.querySelector('[data-easystud-context-menu]');
+    let target = 'participantCardActions';
+    if (modal && !modal.hidden && modal.getAttribute('data-easystud-move-context') === 'participant') {
+        target = 'participantMoveConfirm';
+    } else if (menu && !menu.hidden && menu.querySelector(COMPACT_MOVE_ITEM)) {
+        target = COMPACT_MOVE_ITEM;
+    }
+    // Not through requestGuideHighlightRefresh: opening the sheet selects the card, and the
+    // targetless layout refresh that follows would cancel this target in that shared slot.
+    const detail = {root: getActivityGuideRoot(root), target, dock: true};
+    const epoch = (root.easystudMoveCueEpoch || 0) + 1;
+    root.easystudMoveCueEpoch = epoch;
+    const dispatch = () => {
+        if (root.easystudMoveCueEpoch === epoch && isCompactMoveStepActive(root)) {
+            document.dispatchEvent(new CustomEvent('easyedu:guide-refresh-highlight', {detail}));
+        }
+    };
+    (root.easystudMoveCueTimers || []).forEach(timer => window.clearTimeout(timer));
+    root.easystudMoveCueTimers = [0, Motion.timing.slow + 20].map(delay => window.setTimeout(dispatch, delay));
+    // The action sheet and the dialog slide in with Web Animations, which no mutation reports:
+    // paint the cue again on the settled control once their motion has finished.
+    const layers = {[COMPACT_MOVE_ITEM]: menu, participantMoveConfirm: modal};
+    const layer = layers[target] || null;
+    if (layer && layer.getAnimations) {
+        Promise.all(layer.getAnimations({subtree: true}).map(animation => animation.finished))
+            .then(dispatch).catch(() => dispatch());
+    }
+};
+
+// The session of the dialog is captured when it opens, like the desktop drag captures it on drop.
+export const captureTryActionsMoveToken = root => isResponsiveWorkspace() ?
+    Guide.getPathContextToken(getActivityGuideRoot(root), 'try-actions') : null;
+
+// Only a participant addition confirmed by Moodle completes the compact step.
+export const emitTryActionsMoveCompletion = (root, token) => {
+    if (!token) {
+        return;
+    }
+    emitTryActionsCompletion(root, 'try-drag', token);
+    highlightActiveTryActionsStep(root);
 };
 
 export const emitTryActionsSelection = root => {
