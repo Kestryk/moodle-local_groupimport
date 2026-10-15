@@ -11518,6 +11518,8 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user__headline {row-gap: 0.25rem;
 }
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user > .local-groupimport-easystud-card-menu {top: calc(0.625rem + 1.35 * var(--easyedu-card-identity-title-size) / 2 - var(--easyedu-touch-target-min) / 2);
+}
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user__detail-button {margin-block: calc((1.35 * var(--easyedu-card-identity-title-size) - var(--easyedu-card-action-target)) / 2);
 }
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user__meta-label {block-size: 1px;clip: rect(0, 0, 0, 0);inline-size: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;white-space: nowrap;
