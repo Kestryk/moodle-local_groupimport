@@ -47,6 +47,27 @@ export const isEnabled = element => {
     return allowedByAdmin && !bodyDisabled && !(reducedMotionQuery && reducedMotionQuery.matches);
 };
 
+/**
+ * Motion level of an element: 'full', 'reduced' (fades only) or 'none' (plugin animations disabled
+ * by policy or by the body class, or no Web Animations support).
+ *
+ * @param {HTMLElement} element Element to animate.
+ * @returns {String}
+ */
+export const getLevel = element => {
+    if (!element || typeof element.animate !== 'function') {
+        return 'none';
+    }
+    const root = getRoot(element);
+    if ((root && root.getAttribute('data-easyedu-motion-policy') === 'disabled') ||
+            (document.body && document.body.classList.contains('easyedu-motion-disabled'))) {
+        return 'none';
+    }
+    const reduced = !!(reducedMotionQuery && reducedMotionQuery.matches) ||
+        !!(document.body && document.body.classList.contains('easyedu-prefers-reduced-motion'));
+    return reduced ? 'reduced' : 'full';
+};
+
 export const cancel = element => {
     const current = element ? activeAnimations.get(element) : null;
     if (!current) {
@@ -59,9 +80,10 @@ export const cancel = element => {
     }
 };
 
-const play = (element, keyframes, options, cleanup) => {
+const play = (element, keyframes, options, cleanup, level) => {
     cancel(element);
-    if (!isEnabled(element) || typeof element.animate !== 'function') {
+    const allowed = level ? level !== 'none' : isEnabled(element);
+    if (!allowed || typeof element.animate !== 'function') {
         cleanup(true);
         return Promise.resolve(true);
     }
@@ -378,6 +400,37 @@ export const swap = (element, mutate, options = {}) => {
             easing: disclosureEasing,
         }, () => clearDisclosureStyles(element));
     });
+};
+
+const reducedFadeDuration = 120;
+
+/**
+ * Soft arrival of controls that appear together (for example the panel action buttons after a
+ * layout swap): one fade plus a 4 px rise, 160 ms. Reduced motion: 120 ms fade; disabled: nothing.
+ *
+ * @param {HTMLElement} element Element to reveal (already visible).
+ * @param {Object} options duration, distance (px), delay.
+ * @returns {Promise<boolean>}
+ */
+export const reveal = (element, options = {}) => {
+    if (!element) {
+        return Promise.resolve(false);
+    }
+    const level = getLevel(element);
+    if (level === 'none') {
+        return Promise.resolve(true);
+    }
+    const from = {opacity: 0};
+    const to = {opacity: 1};
+    if (level === 'full') {
+        from.transform = 'translateY(' + (options.distance === undefined ? 4 : options.distance) + 'px)';
+        to.transform = 'none';
+    }
+    return play(element, [from, to], {
+        duration: level === 'reduced' ? reducedFadeDuration : (options.duration || durations.normal),
+        delay: options.delay || 0,
+        easing,
+    }, () => undefined, level);
 };
 
 export const scroll = (element, options = {}) => {

@@ -28,7 +28,10 @@ import {
     structureFocusClass, participantFocusClass, responsiveWorkspaceQuery, isResponsiveWorkspace,
     requestGuideHighlightRefresh,
 } from './shared';
-import {scheduleCompleteListAlignment, schedulePanelActionOverflow} from './layout';
+import {
+    scheduleCompleteListAlignment, schedulePanelActionOverflow, syncPanelActionOverflow,
+    snapshotPanelActions, revealChangedPanelActions,
+} from './layout';
 import {clearSelectionState} from './selection';
 import {emitPracticeCompletion} from './guide_hooks';
 import {getSelectedFilterValues, updateRoleFilterMode} from './filters';
@@ -370,7 +373,15 @@ export const bindLayoutModeToggle = root => {
 
     const applyMode = (mode, animate = true) => {
         if (animate && layout) {
-            trackLayoutSwap(root, Motion.swap(layout, () => applyModeState(mode), {
+            const actionsBefore = snapshotPanelActions(root);
+            trackLayoutSwap(root, Motion.swap(layout, () => {
+                applyModeState(mode);
+                // The panel action bars are measured now, in the same frame as the mode change.
+                // Left to the next animation frame, the buttons first showed in full and then
+                // dropped into the overflow menu a frame later (the second, abrupt step).
+                syncPanelActionOverflow(root);
+                revealChangedPanelActions(root, actionsBefore);
+            }, {
                 exit: false,
                 enterDuration: Motion.timing.normal,
                 resize: false,
