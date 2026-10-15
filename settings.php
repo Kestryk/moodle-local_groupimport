@@ -238,6 +238,10 @@ if ($hassiteconfig) {
             'none' => get_string('none'),
             'count' => local_groupimport_count_template('filterselectioncount'),
             'clear' => get_string('clearfilterselection', 'local_groupimport'),
+            'enabled' => get_string('adminsettingenabled', 'local_groupimport'),
+            'disabled' => get_string('adminsettingdisabled', 'local_groupimport'),
+            'guideWelcome' => get_string('adminguidewelcome', 'local_groupimport'),
+            'restoreColour' => get_string('adminrestorecolour', 'local_groupimport'),
         ], $motionlevel !== 'minimal']);
     }
 
@@ -402,10 +406,10 @@ if ($hassiteconfig) {
     // dashboard. Each item represents one real overview panel or native
     // setting row in the same five-section order used below.
     $adminloadingskeletonspec = [
+        ['overview', 'control', 'control', 'control', 'control'],
         ['overview', 'control'],
         ['overview', 'control', 'control', 'control', 'control', 'control'],
-        ['control'],
-        ['overview-wide', 'control-tall'],
+        ['overview', 'control-tall'],
         ['overview', 'control', 'control', 'control', 'control', 'control'],
     ];
     $adminloadingskeletonsections = [];
