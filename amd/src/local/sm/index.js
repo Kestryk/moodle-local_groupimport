@@ -16,21 +16,16 @@
 /**
  * Participant search index built from the compact state (SM-RENDU).
  *
- * Reproduces exactly the legacy participant filter (course_manager applyFilters with the
- * data-search-text, data-role-text, data-group-ids and data-grouping-ids attributes built
- * in manage.php), so both renderers return the same participants for the same filters.
+ * One entry per participant: the search text manage.php used to build, and the role, group
+ * and grouping ids the filters match. Matching itself lives in local/sm/filter_engine.
  *
  * @module     local_groupimport/local/sm/index
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-/**
- * Same normalisation as course_manager.js.
- *
- * @param {*} value Value.
- * @returns {String}
- */
+import {normalise, filterEntryIds} from './filter_engine';
+
 /**
  * Fill a count template: '__count__' (or '{$a}') stands for the count, and a template made by
  * local_groupimport_count_template() carries its singular form first, before a '|'. The
@@ -52,13 +47,11 @@ export const countLabel = (template, count) => {
     return form.replace('__count__', String(count)).replace('{$a}', String(count));
 };
 
-export const normalise = value => (value || '').toString().toLowerCase();
-
 /**
  * Build one index entry per participant, in state order.
  *
  * @param {Object} state Raw compact state.
- * @returns {Object[]} Entries {id, text, roles, groupids, groupingids}.
+ * @returns {Object[]} Entries {id, text, roleids, groupids, groupingids}; ids are strings.
  */
 export const buildParticipantIndex = state => {
     const roleNames = new Map(state.roles.map(role => [role.id, role.name]));
@@ -98,7 +91,8 @@ export const buildParticipantIndex = state => {
             id: user.id,
             text: normalise(user.fullname + ' ' + user.email + ' ' + roles.join(' ') + ' ' + groupNames.join(' ') + ' ' +
                 groupingIds.map(groupingid => groupingNames.get(groupingid)).join(' ') + ' ' + custom.join(' ')),
-            roles: roles.map(normalise),
+            // Role filter values (lowercased role names until V2 n°6).
+            roleids: roles.map(normalise),
             groupids: (user.groupids || []).map(String),
             groupingids: groupingIds.map(String),
         };
@@ -109,29 +103,8 @@ export const buildParticipantIndex = state => {
  * Participant ids matching the filters, in state order.
  *
  * @param {Object[]} index Entries from buildParticipantIndex().
- * @param {Object} filters {query, roles, groups, groupings}; groupings may contain '__none__'.
+ * @param {Object} filters {query, roles, groups, groupings}: role names, group and grouping ids;
+ *     groupings may contain '__none__' (filter_engine NO_GROUPING).
  * @returns {Number[]}
  */
-export const filterParticipantIds = (index, filters) => {
-    const query = normalise(filters.query);
-    const roles = (filters.roles || []).map(normalise);
-    const groups = (filters.groups || []).map(String);
-    const groupings = (filters.groupings || []).map(String);
-
-    return index.filter(entry => {
-        if (query && entry.text.indexOf(query) === -1) {
-            return false;
-        }
-        if (roles.length && !roles.some(role => entry.roles.indexOf(role) !== -1)) {
-            return false;
-        }
-        if (groups.length && !groups.some(groupid => entry.groupids.indexOf(groupid) !== -1)) {
-            return false;
-        }
-        if (groupings.length && !groupings.some(groupingid => groupingid === '__none__' ?
-                entry.groupingids.length === 0 : entry.groupingids.indexOf(groupingid) !== -1)) {
-            return false;
-        }
-        return true;
-    }).map(entry => entry.id);
-};
+export const filterParticipantIds = (index, filters) => filterEntryIds(index, filters);

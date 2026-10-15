@@ -23,6 +23,7 @@
 
 import * as Motion from '../../motion';
 import {enhanceMultipleSelect} from '../../searchable_choices';
+import {matchesText, elementSearchText} from '../sm/filter_engine';
 import {structureFocusClass, filterChoiceControllers, normalise, getLabels} from './shared';
 import {getOnDemandModel} from './state';
 import {getOnDemandList} from './cards';
@@ -80,12 +81,14 @@ export const syncResponsiveResetButtons = root => {
     });
 };
 
-export const matchesSearchText = (element, query) => {
-    if (!query) {
-        return true;
-    }
-    return normalise(element.getAttribute('data-search-text') || element.textContent).indexOf(query) !== -1;
-};
+/**
+ * Whether a card the state does not describe matches a normalised query (filter engine).
+ *
+ * @param {HTMLElement} element Card.
+ * @param {String} query Normalised query.
+ * @returns {Boolean}
+ */
+export const matchesSearchText = (element, query) => !query || matchesText(elementSearchText(element), query);
 
 const placeManagedStateBeforeBottomPagination = (list, state) => {
     const bottomPagination = list.querySelector(':scope > [data-easystud-pagination="bottom"]');

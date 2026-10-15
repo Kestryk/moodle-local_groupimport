@@ -21,27 +21,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {normalise} from './shared';
+import {splitTokens, createIdentifierIndex, matchIdentifierPhrases} from '../sm/filter_engine';
 import {getOnDemandModel} from './state';
 
 const getKnownUserIdentifiers = root => {
-    const known = new Map();
-    const pending = new Map();
-    const conflicts = new Set();
-    const addIdentifier = (value, display, userid) => {
-        const key = normalise(value);
-        if (!key || conflicts.has(key)) {
-            return;
-        }
-        if (pending.has(key) && pending.get(key) !== userid) {
-            pending.delete(key);
-            known.delete(key);
-            conflicts.add(key);
-            return;
-        }
-        pending.set(key, userid);
-        known.set(key, display || value);
-    };
+    const {known, add: addIdentifier} = createIdentifierIndex();
 
     const model = getOnDemandModel(root);
     // Read every participant from the state: only one page has cards. None is known while it loads.
@@ -93,7 +77,7 @@ export const renderIdentifierPreview = (box, results, knownIdentifiers, separato
     if (!box || !results) {
         return;
     }
-    const tokens = (box.value.split(separator) || []).map(normalise).filter(Boolean);
+    const tokens = splitTokens(box.value, separator);
     results.innerHTML = '';
     tokens.forEach(identifier => {
         const badge = document.createElement('span');
@@ -104,66 +88,11 @@ export const renderIdentifierPreview = (box, results, knownIdentifiers, separato
     });
 };
 
-const getRecognisedIdentifiers = (text, knownIdentifiers, separator = /[\r\n,;|]+/u) => {
-    const recognised = [];
-    const unresolved = [];
-    const seen = new Set();
-    const phrases = (text || '').split(separator).map(part => part.trim()).filter(Boolean);
-    const knownKeys = Array.from(knownIdentifiers.keys()).sort((left, right) => {
-        const leftWords = left.split(/\s+/u).length;
-        const rightWords = right.split(/\s+/u).length;
-        if (leftWords !== rightWords) {
-            return rightWords - leftWords;
-        }
-        return right.length - left.length;
-    });
-
-    const addRecognised = key => {
-        if (!seen.has(key)) {
-            recognised.push({key: key, label: knownIdentifiers.get(key)});
-            seen.add(key);
-        }
-    };
-
-    phrases.forEach(phrase => {
-        const exact = normalise(phrase);
-        if (knownIdentifiers.has(exact)) {
-            addRecognised(exact);
-            return;
-        }
-
-        const words = phrase.split(/\s+/u).map(normalise).filter(Boolean);
-        for (let index = 0; index < words.length;) {
-            let matched = '';
-            for (const key of knownKeys) {
-                const keyWords = key.split(/\s+/u);
-                if (keyWords.length > words.length - index) {
-                    continue;
-                }
-                const candidate = words.slice(index, index + keyWords.length).join(' ');
-                if (candidate === key) {
-                    matched = key;
-                    break;
-                }
-            }
-            if (matched) {
-                addRecognised(matched);
-                index += matched.split(/\s+/u).length;
-            } else {
-                unresolved.push(words[index]);
-                index++;
-            }
-        }
-    });
-
-    return {recognised, unresolved};
-};
-
 export const renderSmartIdentifierPreview = (box, results, knownIdentifiers, separator = /[\r\n,;|]+/u) => {
     if (!box || !results) {
         return;
     }
-    const parsed = getRecognisedIdentifiers(box.value, knownIdentifiers, separator);
+    const parsed = matchIdentifierPhrases(box.value, knownIdentifiers, separator);
     results.innerHTML = '';
     parsed.recognised.forEach(match => {
         const badge = document.createElement('span');
@@ -180,23 +109,7 @@ export const renderSmartIdentifierPreview = (box, results, knownIdentifiers, sep
 };
 
 export const getKnownGroupIdentifiers = root => {
-    const known = new Map();
-    const pending = new Map();
-    const conflicts = new Set();
-    const addIdentifier = (value, display, groupid) => {
-        const key = normalise(value);
-        if (!key || conflicts.has(key)) {
-            return;
-        }
-        if (pending.has(key) && pending.get(key) !== groupid) {
-            pending.delete(key);
-            known.delete(key);
-            conflicts.add(key);
-            return;
-        }
-        pending.set(key, groupid);
-        known.set(key, display || value);
-    };
+    const {known, add: addIdentifier} = createIdentifierIndex();
 
     const model = getOnDemandModel(root);
     // On demand, every group comes from the state: the tree only renders opened sections.

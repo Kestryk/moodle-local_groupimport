@@ -25,6 +25,7 @@
 import * as Motion from '../../motion';
 import {countLabel} from '../sm/index';
 import {getTreeSectionGroupIds, renderMissingMemberRows} from '../sm/groups';
+import {matchesText, elementSearchText} from '../sm/filter_engine';
 import {isResponsiveWorkspace, requestGuideHighlightRefresh, normalise, getLabels, escapeHtml} from './shared';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
 import {isResponsiveDragSuppressed} from './drag_support';
@@ -523,7 +524,8 @@ const syncGroupMemberSearchEmptyState = (root, group, query, visibleCount) => {
 };
 
 /**
- * Search text of a group member row: the row itself plus the participant's own search text.
+ * Search text of a group member row: the row itself plus the participant's search text from the
+ * state index (the row is rendered: its own text stays the DOM's).
  *
  * @param {Object|null} model On-demand participant model, or null while the state loads.
  * @param {HTMLElement} member Member row.
@@ -532,8 +534,7 @@ const syncGroupMemberSearchEmptyState = (root, group, query, visibleCount) => {
 const memberSearchText = (model, member) => {
     const userid = member.getAttribute('data-easystud-member-id') || '';
     const entry = model ? model.indexById.get(Number(userid)) : null;
-    const usertext = entry ? entry.text : '';
-    return normalise((member.getAttribute('data-search-text') || member.textContent || '') + ' ' + usertext);
+    return elementSearchText(member) + ' ' + (entry ? entry.text : '');
 };
 
 /**
@@ -558,7 +559,7 @@ export const applyGroupMemberSearchToGroup = (root, group) => {
     members.forEach(member => {
         // The participant search text is only needed while a query is typed. On demand it comes from the
         // state index: looking up participant cards would build a detached card for every member.
-        const hidden = !!query && memberSearchText(model, member).indexOf(query) === -1;
+        const hidden = !!query && !matchesText(memberSearchText(model, member), query);
         member.hidden = hidden;
         member.setAttribute('data-easystud-member-search-hidden', hidden ? '1' : '0');
         if (!hidden) {

@@ -24,6 +24,7 @@
 import * as Motion from '../../motion';
 import Log from 'core/log';
 import {countLabel} from '../sm/index';
+import {normalise} from '../sm/filter_engine';
 
 export const selectedClass = 'is-selected';
 export const disabledSelectionClass = 'is-selection-disabled';
@@ -100,8 +101,8 @@ export const escapeHtml = value => String(value === undefined || value === null 
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 
-// Normalise text for filtering.
-export const normalise = value => (value || '').toString().toLowerCase();
+// Normalise text for filtering: the filter engine's normalisation (V2 n°10).
+export {normalise};
 
 export const formatCountMessage = (template, count) => {
     return countLabel(template, count)
