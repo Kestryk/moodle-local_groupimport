@@ -1472,8 +1472,9 @@ const formatProgressLabel = (template, current, total) => {
     .replace('__total__', String(total));
 };
 
-// The discovery presentation docks the original command, preserving every
-// responsive target/open attribute and the existing delegated click handler.
+// The discovery presentation docks the original command in the common footer
+// (GS10), preserving every responsive target/open attribute and the existing
+// delegated click handler.
 const restoreInterfaceCue = root => {
   const docked = root.easyeduGuideDockedCommand;
   if (docked) {
@@ -1486,8 +1487,8 @@ const syncInterfaceCue = (root, slide) => {
   restoreInterfaceCue(root);
   const slot = root.querySelector('[data-easyedu-guide-interface-cue-action]');
   const cue = slot && slot.closest('.easyedu-guide-interface-cue');
-  // A caption without a command is not an interface destination. Hide the
-  // complete optional row, allowing the reading body to reclaim its track.
+  // A slide without a command has no interface destination: the footer slot
+  // stays hidden and Previous/Next keep the footer alone.
   if (cue) {
     cue.hidden = true;
   }
