@@ -26,3 +26,5 @@ more-filters-visible-defaults-native.spec.js: local-supervised visible capture t
 S9 server renderer: s9-server-renderer-native.spec.js is local-supervised (managed lease, Moodle course5 context); native082404228Z-49956PASS. tools/release/test-server-name-escaping.php preserves the failed source/runtime duplicate-lib harness; -served.php renders real templates without records/config writes. No browser/CSV certification. CI needs an isolated Moodle context.
 
 mass-import-root-16-native.spec.js: local-supervised, FR1280/390 read-only root16px/ready/page-sheet/overflow recipe; requires course5 and managed runtime authentication, native pending.
+
+claude-complement4-8-native.spec.js: local-supervised, FR1280 real Motion public exports, Alt add/remove and visible searchable dropdown open/close; course5/authentication are CI blockers. Native pending.

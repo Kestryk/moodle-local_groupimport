@@ -1,4 +1,25 @@
 {
+"massImportRoot16Verified20261015": {
+  "sourceCommit": "f58c4b2b",
+  "runtimeCommit": "ded5a8ae",
+  "nativeRun": "090408772Z-23360",
+  "widths": [1280, 390],
+  "rootFontPx": 16,
+  "overflowPx": 0,
+  "browserErrors": 0,
+  "businessWrites": 0,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+"claudeComplement4to8Integration20261015": {
+  "incoming": ["6a215d54", "77bffb8e", "646c8828", "7c19571a"],
+  "affectedAmdBuildsVerified": true,
+  "filterAndEscapingVerified": true,
+  "nativeVerified": false,
+  "k21MarkupPending": true,
+  "documentation": "docs/testing/claude-complement4-8-integrations-2026-10-15.md"
+},
+
 "massImportRoot16_20261015": {
   "source": "Complement3 C2-15-04, reiterated Complement4-8",
   "rootFontSize": "1rem",
