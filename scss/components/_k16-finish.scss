@@ -58,6 +58,7 @@
     @include easyedu.entity-card-footer;
   }
   &.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {
+    @include easyedu.entity-card-columns;
     @include easyedu.entity-card-columns-touch;
     > .local-groupimport-easystud-card-menu {
       @include easyedu.entity-card-menu-slot;

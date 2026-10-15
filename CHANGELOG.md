@@ -6016,3 +6016,5 @@ Maintenance convention:
 - Kit738a97cc /0.4.220 removes the legacy removal-glyph offset at its single canonical source. Group column geometry and all strict half-pixel/content/32px footer oracles remain unchanged; final native certification pending.
 
 - Entity-card footer now consumes canonical natural font metrics, measured0px at1600/390 with existing32px control; no toolbar/reset style changes. Final strict matrix and Kevin audit still required.
+
+- Group responsive layout composes the same Kit columns before the touch adapter, overriding legacy wrapped-header and border-removal rules through normal specificity. Shared title slot and padding variables; no local positional values or new important declarations.

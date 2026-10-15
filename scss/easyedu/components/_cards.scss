@@ -356,6 +356,7 @@
   --easyedu-entity-row-border: 1px;
   --easyedu-entity-card-padding-inline: 0.7rem;
   --easyedu-entity-card-padding-block: 0.6rem;
+  padding-block-start: var(--easyedu-entity-card-padding-block);
   padding-inline: var(--easyedu-entity-card-padding-inline);
 
   > .easyedu-entity-card-grid__selector {
@@ -371,10 +372,20 @@
   }
 
   > .easyedu-entity-card-grid__header {
+    align-items: center;
     border: var(--easyedu-entity-row-border) solid transparent;
     box-sizing: border-box;
+    column-gap: var(--easyedu-entity-column-gap);
+    display: flex;
+    flex-wrap: nowrap;
     min-block-size: calc(var(--easyedu-entity-action-column) + 2 * var(--easyedu-entity-row-border));
     padding-inline-start: calc(var(--easyedu-entity-selection-column) + var(--easyedu-entity-column-gap));
+
+    > .easyedu-entity-card-grid__title {
+      flex: 1 1 auto;
+      inline-size: auto;
+      min-inline-size: 0;
+    }
   }
 
   > .easyedu-entity-card-grid__members {
