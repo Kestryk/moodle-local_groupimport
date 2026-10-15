@@ -5984,3 +5984,5 @@ Maintenance convention:
 - 2026-10-15 [WIP/N1] Prepare K16 finishing candidate: Kit measured count/title accents, participant alignment, recovery controls and filter footer. Not served: reserved K16-10/11 raccord pending; candidate FR/isolated Kit measurements are distinct from final served FR/EN acceptance.
 
 - 2026-10-15 [N1] Adopt K16 finishing Kit0.4.218 with authorized group/participant card and filter raccords; localized empty-state helpers, disabled inactive Reset, exact title accents and corrected Guide specimen title. Final served bilingual measure recipe follows publication.
+
+- 2026-10-15 [N0] Certify served K16 FR/EN1600/1280/768/390 plus complete workspace: strict geometry, localized empty recipes/drop paint, real density/reset states and13 Guide titles; max selector error0.0078125px, eye/menu/count/empty-icon0px. Keep human/Penpot acceptance separate.
