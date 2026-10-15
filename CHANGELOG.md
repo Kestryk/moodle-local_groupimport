@@ -5974,3 +5974,5 @@ Maintenance convention:
 - 2026-10-15 [N0] Transport Student Management and Guide configuration in a hex-escaped JSON element; AMD receives only its element ID, preserving initializer arguments/order and avoiding Moodle oversized-call warnings. Named AMD integrity/invalid-payload/idempotency checks and PHP lint PASS.
 
 - 2026-10-15 [N1] Guide phone footer displays 3 / 12 instead of the long step label; canonical Kit0.4.217/c33f61f, same progress data and desktop copy, responsive CSS only.
+
+- 2026-10-15 [N0] B1: session-owned editable Mass Import previews; post only changed rows/exclusions in one JSON field, reject incomplete/no-JS submissions, expire/consume preview tokens and cap files at5MB/previews5000rows. Transport tests preserve edits in1500rows and prove hidden filtered rows are retained.

@@ -1057,33 +1057,32 @@ if ($confirmimport && data_submitted()) {
 
     require_sesskey();
 
-    $enabledrows = optional_param_array('rowenabled', [], PARAM_INT);
-    $identifiers = optional_param_array('identifier', [], PARAM_RAW_TRIMMED);
-    $groupnames = optional_param_array('groupname', [], PARAM_RAW_TRIMMED);
-    $groupingnames = optional_param_array('groupingname', [], PARAM_RAW_TRIMMED);
-    $importfilename = optional_param('importfilename', '', PARAM_TEXT);
-    $importhash = optional_param('importhash', '', PARAM_ALPHANUM);
+    $previewtoken = optional_param('previewtoken', '', PARAM_ALPHANUM);
     $replacepolicy = optional_param('replacepolicy', 'keep', PARAM_ALPHA);
     if (!in_array($replacepolicy, ['keep', 'replace'], true)) {
         $replacepolicy = 'keep';
     }
 
     $confirmedrows = [];
-    foreach ($enabledrows as $index => $enabled) {
-        if (!$enabled) {
-            continue;
-        }
-
-        $confirmedrows[] = [
-            'identifier' => $identifiers[$index] ?? '',
-            'groupname' => $groupnames[$index] ?? '',
-            'groupingname' => $groupingnames[$index] ?? '',
-        ];
+    try {
+        $savedpreview = \local_groupimport\local\import_preview::load((int)$course->id, $previewtoken);
+        $confirmedrows = \local_groupimport\local\import_preview::confirm($savedpreview,
+            optional_param('previewpayload', '', PARAM_RAW), [
+                'complete' => optional_param('previewcomplete', 0, PARAM_INT),
+                'enabled' => optional_param_array('rowenabled', [], PARAM_INT),
+                'identifier' => optional_param_array('identifier', [], PARAM_RAW_TRIMMED),
+                'groupname' => optional_param_array('groupname', [], PARAM_RAW_TRIMMED),
+                'groupingname' => optional_param_array('groupingname', [], PARAM_RAW_TRIMMED),
+            ]);
+        $importfilename = $savedpreview['filename'];
+        $importhash = $savedpreview['filehash'];
+    } catch (moodle_exception $exception) {
+        $errors[] = $exception->getMessage();
     }
 
-    if (empty($confirmedrows)) {
+    if (empty($confirmedrows) && empty($errors)) {
         $errors[] = get_string('importnorowsselected', 'local_groupimport');
-    } else {
+    } else if (!empty($confirmedrows) && empty($errors)) {
         $changes = local_groupimport_process_import_rows(
             $confirmedrows,
             $course,
@@ -1103,6 +1102,7 @@ if ($confirmimport && data_submitted()) {
             $replacepolicy,
             $changes
         );
+        \local_groupimport\local\import_preview::consume($previewtoken);
     }
 } else if ($mform->is_cancelled()) {
     redirect(course_get_url($course));
@@ -1122,12 +1122,17 @@ if ($confirmimport && data_submitted()) {
 
     if ($content === false || $content === null || $content === '') {
         $errors[] = get_string('csvloaderror', 'local_groupimport', get_string('csvemptyfiledetail', 'local_groupimport'));
+    } else if (strlen($content) > \local_groupimport\local\import_preview::MAX_BYTES) {
+        $errors[] = get_string('importfilelimit', 'local_groupimport', 5);
     } else {
         $filehash = hash('sha256', $content);
         $parsed = local_groupimport_parse_import_content($content, $filename, $errors);
         $previewrows = local_groupimport_build_preview_rows($parsed, $errors);
 
-        if (!empty($previewrows)) {
+        if (count($previewrows) > \local_groupimport\local\import_preview::MAX_ROWS) {
+            $errors[] = get_string('importrowlimit', 'local_groupimport',
+                \local_groupimport\local\import_preview::MAX_ROWS);
+        } else if (!empty($previewrows)) {
             $preview = [
                 'filename' => $filename,
                 'filehash' => $filehash,
@@ -1135,6 +1140,7 @@ if ($confirmimport && data_submitted()) {
                 'rows' => $previewrows,
                 'messages' => local_groupimport_validate_preview_rows($previewrows, $context),
             ];
+            $preview['token'] = \local_groupimport\local\import_preview::store((int)$course->id, $preview);
         } else if (empty($errors)) {
             $errors[] = get_string('importnorowsdetected', 'local_groupimport');
         }
@@ -1379,6 +1385,8 @@ if ($preview !== null) {
     echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'id', 'value' => $course->id]);
     echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'sesskey', 'value' => sesskey()]);
     echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'confirmimport', 'value' => 1]);
+    echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'previewtoken', 'value' => $preview['token']]);
+    echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'previewpayload', 'value' => '']);
     echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'importfilename', 'value' => $preview['filename']]);
     echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'importhash', 'value' => $preview['filehash']]);
 
@@ -1554,6 +1562,10 @@ if ($preview !== null) {
 
     echo html_writer::end_tag('tbody');
     echo html_writer::end_tag('table');
+    // Last after all row controls: PHP input truncation cannot silently authorize a partial import.
+    echo html_writer::empty_tag('input', [
+        'type' => 'hidden', 'name' => 'previewcomplete', 'value' => count($preview['rows']),
+    ]);
     echo html_writer::end_tag('div');
     echo html_writer::tag('div',
         html_writer::tag('span', '', ['class' => 'fa fa-search', 'aria-hidden' => 'true']) .
