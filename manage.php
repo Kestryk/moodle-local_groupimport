@@ -1634,11 +1634,14 @@ function local_groupimport_build_easyedu_guide_js_config(int $courseid): array {
                 [
                     'id' => 'try-drag',
                     'title' => get_string('tutorialguidedtrydrag', 'local_groupimport'),
+                    'titleCompact' => get_string('tutorialguidedtrymove', 'local_groupimport'),
                     'description' => get_string('tutorialguidedactionsdescdrag', 'local_groupimport'),
+                    'descriptionCompact' => get_string('tutorialguidedactionsdescmove', 'local_groupimport'),
                     'target' => 'participantFirstCard',
                     'open' => 'viewParticipants',
                     'openDelay' => 320,
                     'feedback' => get_string('tutorialguidedfeedbackactionsdrag', 'local_groupimport'),
+                    'feedbackCompact' => get_string('tutorialguidedfeedbackactionsmove', 'local_groupimport'),
                     'completionMode' => 'event',
                 ],
                 [

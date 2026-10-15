@@ -1,4 +1,13 @@
 {
+"claudeGuideM3Integration20261015": {
+  "incoming": ["aeb5b232", "9ff5aa83", "221e7027"],
+  "source": ["67c134c2", "c615fead", "6e9f0bc5"],
+  "authorizedResolution": "single sideLaneFits conflict in Guide; rest of merge and compact minimization retained",
+  "compactCopy": "FR/EN titleCompact, descriptionCompact, feedbackCompact on existing try-drag",
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "studentNativeServedProof20261015": {
   "source": "9de886e1",
   "runtime": "6ef853ed",

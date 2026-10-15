@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Integrate Claude compact Guide10 card-menu Add to group flow, target-aware checklist docking and shared full/reduced/minimal JavaScript Motion; preserve compact minimization and localize the three compact instructions in FR/EN.
+
 - 2026-10-15 [N0] Certify quick fixes on localhost: participant title FR/EN1280/390, responsive eye390/768 and panel Motion ownership; migrate and verify the staff-only course-home tour with an existing synthetic student in native Moodle1280/390.
 
 - 2026-10-15 [N1] K15-28/R7 restricts the native course-home invitation to teaching/admin roles on fresh and existing installations; preserve tour steps and all unrelated configuration. Version2026101500.
