@@ -375,7 +375,12 @@ export const bindLayoutModeToggle = root => {
                 enterDuration: Motion.timing.normal,
                 resize: false,
                 swapOpacity: 0.62,
-            })).then(() => requestGuideHighlightRefresh(root));
+            })).then(() => {
+                // The alignment pass queued by applyModeState measured the columns mid-animation;
+                // measure again once they have settled (T020: 9.75 px residue at 1600/1920).
+                scheduleCompleteListAlignment(root);
+                requestGuideHighlightRefresh(root);
+            });
             return;
         }
         applyModeState(mode);
