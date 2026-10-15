@@ -14,3 +14,5 @@ was modified for this handoff.
 
 Owner: EasyStud N1 / QA. Keep raw media outside Git, including all failed runs.
 No actual macOS Meta interaction is certified by Windows event simulation.
+
+15/10 successor claude-selection-t020-filters-role-native.spec.js: local-supervised, actual visible role choice fallback, same strict2px oracle; native074257632Z-30888PASS. Original074031432Z-55972 failed whole run retained despite passing T020/selection stages.
