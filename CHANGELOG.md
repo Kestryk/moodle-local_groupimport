@@ -6018,3 +6018,5 @@ Maintenance convention:
 - Entity-card footer now consumes canonical natural font metrics, measured0px at1600/390 with existing32px control; no toolbar/reset style changes. Final strict matrix and Kevin audit still required.
 
 - Group responsive layout composes the same Kit columns before the touch adapter, overriding legacy wrapped-header and border-removal rules through normal specificity. Shared title slot and padding variables; no local positional values or new important declarations.
+
+- 2026-10-15 [N1] Consume Kit0.4.223 shared entity phone slots: keep the action trigger in its terminal column, hide the optional phone count consistently, bound footer labels to the separate selection track. Preserve strict failed native proofs and all component paints.

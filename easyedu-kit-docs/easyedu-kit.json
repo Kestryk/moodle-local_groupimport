@@ -4,6 +4,7 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "entityPhoneColumns20261015": {"kitCommit": "044b6ae4", "kitVersion": "0.4.223", "scope": "Canonical absolute menu and phone count slot; bounded wrapping footer text, same shared columns and32px controls"},
     "entityResponsiveColumns20261015":{"kitCommit":"f72ff869","kitVersion":"0.4.222","scope":"Same canonical column recipe in responsive context; shared nowrap title slot, row borders and padding variables"},
     "entityFooterNaturalText20261015":{"kitCommit":"6f5426fd","kitVersion":"0.4.221","scope":"Natural line metrics inside existing32px footer recovery target; toolbar/reset recipes unchanged"},
     "relatedPersonGlyphCentre20261015":{"kitCommit":"738a97cc","kitVersion":"0.4.220","scope":"Remove legacy negative glyph margin; keep canonical related-person-remove grid centring and appearance"},

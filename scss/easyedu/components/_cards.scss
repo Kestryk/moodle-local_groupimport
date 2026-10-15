@@ -443,7 +443,12 @@
   }
 }
 
+@mixin entity-card-columns-phone {
+  > .easyedu-entity-card-grid__header > .easyedu-entity-card-grid__count { display: none; }
+}
+
 @mixin entity-card-menu-slot($nested: false) {
+  position: absolute;
   grid-column: auto;
   grid-row: auto;
   inset-inline-end: if($nested, 0, calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border)));
@@ -468,6 +473,8 @@
     block-size: var(--easyedu-card-action-target);
     grid-column: 3;
     justify-self: end;
+    max-inline-size: 100%;
+    min-inline-size: 0;
     margin: 0;
     pointer-events: auto;
     position: static;
@@ -475,6 +482,9 @@
       block-size: var(--easyedu-card-action-target);
       box-sizing: border-box;
       line-height: normal;
+      max-inline-size: 100%;
+      min-inline-size: 0;
+      white-space: normal;
       min-block-size: var(--easyedu-card-action-target);
     }
   }

@@ -68,3 +68,9 @@
     }
   }
 }
+
+@media (max-width: 25rem) {
+  #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {
+    @include easyedu.entity-card-columns-phone;
+  }
+}

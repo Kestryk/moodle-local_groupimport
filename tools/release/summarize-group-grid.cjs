@@ -13,6 +13,8 @@ for (const lang of ['fr','en']) for (const width of [1600,1280,768,390]) {
     cells.forEach(c => {
         assert(c.checkSpread <= .5 && c.textSpread <= .5 && c.rightSpread <= .5 && c.headerDy <= .5);
         assert.equal(c.stacked, false);
+        assert(c.contents.length > 0);
+        c.contents.forEach(t => {assert(Math.abs(t.dx) <= .5); assert(Math.abs(t.dy) <= .5);});
     });
     const footer = cells.find(c => c.panel === 'ungrouped-footer');
     assert(footer.reveal.hit && footer.select.hit);
@@ -21,5 +23,8 @@ for (const lang of ['fr','en']) for (const width of [1600,1280,768,390]) {
 }
 const maxima = report => Object.fromEntries(['checkSpread','textSpread','rightSpread','headerDy'].map(k => [k, Math.max(...report.rows.map(r => r[k]))]));
 const out = {passed:true, before:maxima(before), after:maxima(after), samples:24, cells:8,
+    contentTargets:after.rows.reduce((n,r) => n+r.contents.length,0),
+    contentDx:Math.max(...after.rows.flatMap(r => r.contents.map(t => Math.abs(t.dx)))),
+    contentDy:Math.max(...after.rows.flatMap(r => r.contents.map(t => Math.abs(t.dy)))),
     emptyAndFull:true, footerHitPairs:8, footerControlHeights:[32], footerOverlaps:0, auditFailures:0, humanAccepted:false};
 fs.writeFileSync(process.argv[5], JSON.stringify(out,null,2)); console.log(JSON.stringify(out));

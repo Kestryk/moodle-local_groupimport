@@ -11975,9 +11975,9 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__reveal:not([hidden]) {block-size: var(--easyedu-card-action-target);grid-column: 2;inline-size: var(--easyedu-card-action-target);margin: 0;padding: 0;
 }
-#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) {align-items: center;block-size: var(--easyedu-card-action-target);grid-column: 3;justify-self: end;margin: 0;pointer-events: auto;position: static;
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) {align-items: center;block-size: var(--easyedu-card-action-target);grid-column: 3;justify-self: end;max-inline-size: 100%;min-inline-size: 0;margin: 0;pointer-events: auto;position: static;
 }
-#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) > button {block-size: var(--easyedu-card-action-target);box-sizing: border-box;line-height: normal;min-block-size: var(--easyedu-card-action-target);
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) > button {block-size: var(--easyedu-card-action-target);box-sizing: border-box;line-height: normal;max-inline-size: 100%;min-inline-size: 0;white-space: normal;min-block-size: var(--easyedu-card-action-target);
 }
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {--easyedu-entity-selection-column: var(--easyedu-card-action-target);--easyedu-entity-action-column: var(--easyedu-card-action-target);--easyedu-entity-column-gap: 0.5rem;--easyedu-entity-row-border: 1px;--easyedu-entity-card-padding-inline: 0.7rem;--easyedu-entity-card-padding-block: 0.6rem;padding-block-start: var(--easyedu-entity-card-padding-block);padding-inline: var(--easyedu-entity-card-padding-inline);--easyedu-entity-selection-column: var(--easyedu-touch-target-min);--easyedu-entity-action-column: var(--easyedu-touch-target-min);
 }
@@ -12009,7 +12009,12 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__header > .easyedu-entity-card-grid__menu {inset-inline-end: 0;top: 50%;transform: translateY(-50%);
 }
-#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .local-groupimport-easystud-card-menu {grid-column: auto;grid-row: auto;inset-inline-end: calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border));top: calc(var(--easyedu-entity-card-padding-block) + var(--easyedu-entity-row-border));transform: none;
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .local-groupimport-easystud-card-menu {position: absolute;grid-column: auto;grid-row: auto;inset-inline-end: calc(var(--easyedu-entity-card-padding-inline) + var(--easyedu-entity-row-border));top: calc(var(--easyedu-entity-card-padding-block) + var(--easyedu-entity-row-border));transform: none;
 }
-#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__header > .local-groupimport-easystud-card-menu {grid-column: auto;grid-row: auto;inset-inline-end: 0;top: 50%;transform: translateY(-50%);
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__header > .local-groupimport-easystud-card-menu {position: absolute;grid-column: auto;grid-row: auto;inset-inline-end: 0;top: 50%;transform: translateY(-50%);
+}
+
+@media (max-width: 25rem) {
+  #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid > .easyedu-entity-card-grid__header > .easyedu-entity-card-grid__count {display: none;
+  }
 }
