@@ -6020,3 +6020,5 @@ Maintenance convention:
 
 - Consume Kit299854a / 0.4.219 shared checkbox, text and action tracks in Group cards, including nested cards, with a disjoint reveal/selection footer. No controller or keyboard change.
 - Baseline fixture measured FR/EN1600/1280/768/390, empty/full; exact-owner cleanup PASS. Candidate native geometry and zero-FAIL Kevin audit pending.
+
+- Reprise autoris?e de la grille Groupe apr?s repli : candidat produit inchang?, successeur de recette capture le panneau r?ellement visible ; certification conditionn?e aux colonnes/contenus ?0.5px, footer32px, FR/EN quatre largeurs et audit Kevin0FAIL. Aucun autre correctif A-J.
