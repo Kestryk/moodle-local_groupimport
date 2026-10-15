@@ -65,11 +65,11 @@ $PAGE->requires->js_call_amd('local_groupimport/guide_welcome', 'init', [
         'sesskey' => sesskey(),
     ],
 ]);
-$PAGE->requires->js_call_amd('local_groupimport/easyedu_guide', 'init', [
+$guideinitargs = [
     '[data-easyedu-guide-root]',
     local_groupimport_build_easyedu_guide_js_config($course->id),
-]);
-$PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
+];
+$managerinitargs = [
     'local-groupimport-easystud',
     $course->id,
     [
@@ -111,7 +111,8 @@ $PAGE->requires->js_call_amd('local_groupimport/course_manager', 'init', [
             'groupnativeurl' => (new moodle_url('/group/group.php', ['courseid' => $course->id]))->out(false),
         ],
     ],
-]);
+];
+$PAGE->requires->js_call_amd('local_groupimport/page_bootstrap', 'init', ['easystud-page-config']);
 $action = optional_param('action', '', PARAM_ALPHA);
 // Create/rename write course data: only accept them from the plugin's POST forms, and fail loudly on a bad session key.
 if ($action && data_submitted()) {
@@ -196,6 +197,15 @@ $groupings = $state['groupings'];
 // The participants action bar reads that server-side tree for its capability
 // filtered select menu.
 echo $OUTPUT->header();
+// Keep large translated configurations out of Moodle's inline AMD call arguments.
+// Hex escaping prevents course text or translations from terminating this JSON element.
+echo html_writer::tag('script', json_encode([
+    'guide' => $guideinitargs,
+    'manager' => $managerinitargs,
+], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_THROW_ON_ERROR), [
+    'type' => 'application/json',
+    'id' => 'easystud-page-config',
+]);
 
 $navigationdata = local_groupimport_build_navigation_context($course, $PAGE, $OUTPUT);
 
