@@ -153,8 +153,10 @@
   --easyedu-card-label-padding-inline: 0.5rem;
   --easyedu-card-label-gap: 0.5rem;
   --easyedu-card-label-icon-size: 0.625rem;
-  // Card rhythm.
+  // Light responsive card (variant A, 16/10/2026) and related card rhythm.
+  --easyedu-card-hairline: #e6edf4;
   --easyedu-card-action-target: 2rem;
+  --easyedu-card-action-icon-size: 0.875rem;
   --easyedu-related-person-line: 2.5rem;
   --easyedu-related-person-remove-size: 1.75rem;
   // One height for the controls of a list toolbar (Select all, count, sort, pages).
