@@ -102,3 +102,10 @@ k16-pills-baseline-native.spec.js records predecessor geometry; k16-pills-served
 K16 pill successors preserve190423335Z-56544 ordinary-role clipping at390,190659461Z-36348 fractional DOMRect arithmetic failure and190818641Z-36652 real legacy-count glyph offset. k16-pills-geometry-served-native.spec.js combines bilingual counts/clipping with exact CSS/layout22 and Range?.5, preserving raw rectangles. Source-only/inert isolated/native/human remain separate.
 
 Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104exact counter checks,22px+Range0/0,no clipped/empty/minus. k16-pills-final-served-native.spec.js adds card containment; summarize-k16-pill-measures.cjs validates the full captured matrix and count arithmetic. Local-supervised course5/authentication/lease; screenshots external pinned30days. Earlier failed native specs retained.
+
+## K16-01 / K16-22 shared-renderer successor
+
+- `test-shared-pill-renderer.cjs`: historical harness missing consumer scope; not a runtime regression proof.
+- `test-shared-pill-renderer-framed.cjs`: actual consumer scope, strict legacy/payload equivalence, 20 cases PASS (22px, sentinels, first real pill, title, exact +N). Initial missing-scope failure retained externally.
+- `long-lists-k16-22-native.spec.js`: preserved first native run; four FR1600 states passed, then harness attempted a lazy group before opening its parent. Fixture cleanup verified complete.
+- `long-lists-k16-22-routed-native.spec.js`: successor opens the parent through the UI, retains every strict oracle and delayed real-details check; native acceptance pending.

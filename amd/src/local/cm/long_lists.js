@@ -174,13 +174,17 @@ export const syncMemberWindow = group => {
  * @param {HTMLElement} container Metadata row.
  * @returns {Object|null} Normalised payload and bounded materialisation policy.
  */
+export const normaliseTagValue = value => {
+    const text = String(value ?? '').trim();
+    return text && !['-', '\u2212', '\u2014'].includes(text) ? text : '';
+};
+
 export const syncTagWindow = container => {
     const serialized = container.getAttribute('data-easystud-long-tags');
     if (!serialized) {
         return null;
     }
-    const items = JSON.parse(serialized).map(value => String(value).trim())
-        .filter(value => value && !['-', '\u2212', '\u2014'].includes(value));
+    const items = JSON.parse(serialized).map(normaliseTagValue).filter(Boolean);
     const toggle = container.querySelector('[data-easystud-toggle-tags]');
     const expanded = toggle && toggle.getAttribute('data-expanded') === '1';
     const viewAll = items.length > listPolicy.tags.ceiling;
