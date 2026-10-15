@@ -4,6 +4,7 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "entityCardRowEdges20261015":{"kitCommit":"423f691","scope":"Shared transparent row border geometry and equal footer action height; prior pins retained"},
     "entityCardAbsoluteOrigin20261015":{"kitCommit":"fb73245","scope":"Absolute selection/menu targets retain automatic grid placement and the card padding-box origin"},
     "entityCardColumns20261015":{"kitCommit":"299854a","kitVersion":"0.4.219","scope":"Shared checkbox/text/action tracks for Group headers, members and empty states; disjoint native footer cells; existing runtime pins retained"},
     "k16MetadataActionGutter20261015":{"kitCommit":"8a7b88c","scope":"Metadata below responsive actions reuses only the existing right gutter; header and selector geometry unchanged"},
