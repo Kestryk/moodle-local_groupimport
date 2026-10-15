@@ -222,7 +222,7 @@ if ($hassiteconfig) {
     // Moodle also loads this file while building navigation on other admin
     // pages, sometimes during header rendering. Register the settings tree
     // everywhere, but initialize its presentation only on its own early page.
-    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER &&
+    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER && $PAGE->has_set_url() &&
             $PAGE->url->compare(new moodle_url('/admin/settings.php'), URL_MATCH_BASE) &&
             $PAGE->url->get_param('section') === 'local_groupimport') {
         $PAGE->requires->css('/local/groupimport/styles/administration.css');
@@ -338,7 +338,7 @@ if ($hassiteconfig) {
     // The confirmation opens in place (js/admin_guide_reset.js); the link stays the
     // no-JavaScript fallback to the standalone confirmation page.
     $resetdialog = '';
-    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER &&
+    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER && $PAGE->has_set_url() &&
             $PAGE->url->compare(new moodle_url('/admin/settings.php'), URL_MATCH_BASE) &&
             $PAGE->url->get_param('section') === 'local_groupimport') {
         $reseturl = new moodle_url('/local/groupimport/reset_guide_welcome.php');
