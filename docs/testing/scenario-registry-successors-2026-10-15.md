@@ -1,5 +1,10 @@
 # Preserved native successors, 15 October
 
+cards-labels-served-native.spec.js: local-supervised delivery6 smoke FR1600/1280/
+768/390,154345912Z-3976 PASS sampled labels within1px, title spacing/counter order,
+grouping title visibility and filters open/close. Course5/authentication required;
+full content/paint/selected-state acceptance separate. Existing baseline preserved.
+
 entity-dialog-ready-native.spec.js: local-supervised successor retains the entity
 keyboard/geometry matrix and also waits actual deferred data, no retry, enabled
 awaited footer actions.151913743Z-16956 PASS; previous loading capture preserved.
