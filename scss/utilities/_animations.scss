@@ -436,9 +436,12 @@
 // followed. Functional state changes remain immediate and visible. Plugin roots
 // and containers portalled to <body> that carry no Kit class are added here;
 // .settingsform is the native administration form of the plugin settings page.
+// Naming a root of each page (EasyStud, Mass Import, administration) also keeps
+// the policy in each per-page stylesheet (tools/release/build-page-styles.cjs).
 @include easyedu.motion-level-policy((
   ".local-groupimport-easystud",
   ".local-groupimport-import",
+  ".local-groupimport-admin-settings",
   ".local-groupimport-easystud-message-modal",
   ".local-groupimport-easystud-hover-popover",
   ".local-groupimport-easystud-tutorial-highlight-overlay",
