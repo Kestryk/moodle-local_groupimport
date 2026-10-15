@@ -1,4 +1,21 @@
 {
+"moreFiltersLaneContinuityVerified20261015": {
+  "sourceCommit": "13477769",
+  "runtimeCommit": "31e3a10b",
+  "nativeRun": "080000696Z-9016",
+  "desktopStates": 32,
+  "desktopWidths": [1600, 1280],
+  "defaultAndConfiguredTestPalette": true,
+  "compactCssParityCases": 6,
+  "compactWidths": [768, 390],
+  "nativeVerified": true,
+  "guideBusinessReplayPending": true,
+  "browserErrors": 0,
+  "businessWrites": 0,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+
 "moreFiltersLaneContinuity20261015": {
   "source": "CORRECTIF-PLUS-DE-FILTRES-2026-10-15.md",
   "scope": "SCSS desktop mixed disclosure headers and control margins only",

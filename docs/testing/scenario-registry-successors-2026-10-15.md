@@ -20,3 +20,5 @@ No actual macOS Meta interaction is certified by Windows event simulation.
 K15-07 additions (local-supervised): k1507-palette-popover-settled-native.spec.js, -scroll-native.spec.js preserve failed boundary oracles; -ancestors-native.spec.js waits actual scroll parents, native075225174Z-41788PASS16cases. k1507-other-pages-native.spec.js covers native keyboard focus and MI/admin page delivery; live authentication is the CI blocker. palette-native-default-roles.php is read-only.
 
 more-filters-lane-continuity-native.spec.js: local-supervised, paired desktop lane boundaries and closed-neighbour controls at1600/1280; exact compact computed-paint parity at768/390 against532cb0bb. Source baseline and live course5/authentication are CI blockers; native pending.
+
+more-filters-visible-defaults-native.spec.js: local-supervised visible capture target plus full default palette projection (palette-native-full-defaults.php).080000696Z-9016PASS32desktop+6compact cases. Preserve075720747Z-10112 failed predecessor. Guide path/business/human/Penpot checks remain separate.

@@ -20,3 +20,20 @@ Native result and publication pending. Visual relay to Claude: workspace-lane
 start/end, More Filters control, SM Participants/Structure, mixed and equal
 disclosure states, FR1600/1280; responsive parity at768/390. Human acceptance
 and Penpot propagation remain open.
+
+## Served and native result
+
+Source13477769 served31e3a10b, purgePASS.075720747Z-10112 is retained FAILED:
+seven geometry states passed before its screenshot helper selected a hidden
+form input. The visible-fields successor changes only that capture target and
+projects all default palette roles using the same PHP contrast helper. Neither
+settings nor business data changes; existing failed spec remains immutable.
+
+Native080000696Z-9016 PASS:32desktop states at1600/1280 across complete default
+and configured test palette, all paired list starts and header/list boundaries
+within2px, mixed margins0 and the closed neighbour never moves down with its
+partner. Equal collapsed controls remain aligned. Six compact cases at768/390
+(Participants/Groups/Groupings) have identical computed paint to532cb0bb, inserted
+at the existing stylesheet's cascade position.0browser errors/0business writes.
+Guide path highlight replay remains N2-owned; no broader Motion/business/human
+acceptance is inferred. Penpot update is Claude's responsibility.
