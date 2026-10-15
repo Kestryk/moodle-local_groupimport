@@ -36,7 +36,7 @@ const templateName = 'local_groupimport/sm/group_card';
  * Member rows a page or tree card renders at first: the folded card shows two rows, the
  * others are added when the card unfolds (lever 2).
  */
-export const LEAN_MEMBER_ROWS = 2;
+export const LEAN_MEMBER_ROWS = 8;
 
 /**
  * Load the group card template once and attach it to the participant model.
@@ -139,7 +139,8 @@ export const buildGroupCardContext = (model, group, variant) => {
     const strings = model.groupStrings;
     const memberids = group.memberids || [];
     const groupingids = group.groupingids || [];
-    const members = memberids.filter(userid => model.byId.has(userid)).map(userid => {
+    const visibleids = variant.memberids || memberids.slice(0, variant.memberlimit || LEAN_MEMBER_ROWS);
+    const members = visibleids.filter(userid => model.byId.has(userid)).map(userid => {
         const user = model.byId.get(userid);
         return {
             groupid: group.id,
@@ -186,7 +187,7 @@ export const buildGroupCardContext = (model, group, variant) => {
         nomemberslabel: strings.nomemberslabel || '',
         nomembershelplabel: strings.nomembershelplabel || '',
         // R10-05: member "Select all" from three members (the total, not the rendered rows).
-        canselectallmembers: members.length > 2,
+        canselectallmembers: memberids.length > 2,
         selectallmemberslabel: strings.selectallmembers || '',
         deselectallmemberslabel: strings.deselectallmembers || '',
         selectallmembersoflabel: (strings.selectallmembersof || '').replace('__name__', group.name),
@@ -221,32 +222,80 @@ const markMemberRows = (model, card, memberlimit) => {
  *
  * @param {Object} model Participant model.
  * @param {HTMLElement} card Group card rendered with LEAN_MEMBER_ROWS rows.
+ * @param {Number[]|null} ids Exact bounded row ids, or the initial window.
  * @returns {HTMLElement[]} New member rows.
  */
-export const renderMissingMemberRows = (model, card) => {
-    card.removeAttribute('data-easystud-sm-members-partial');
-    card.removeAttribute('data-easystud-member-total');
+export const renderMissingMemberRows = (model, card, ids = null) => {
     const group = model.groups.get(Number(card.getAttribute('data-easystud-group-id')));
     const list = card.querySelector('[data-easystud-group-members]');
     if (!group || !list) {
         return [];
     }
+    const wanted = ids || (group.memberids || []).slice(0, LEAN_MEMBER_ROWS);
+    const known = new Map(Array.from(list.querySelectorAll('[data-easystud-member-id]'))
+        .map(row => [Number(row.getAttribute('data-easystud-member-id')), row]));
+    if (JSON.stringify(Array.from(known.keys())) === JSON.stringify(wanted)) {
+        return [];
+    }
+    known.forEach((row, id) => {
+        if (!wanted.includes(id)) {
+            row.remove();
+        }
+    });
     const variant = {
+        memberids: wanted.filter(id => !known.has(id)),
         structureemail: card.getAttribute('data-easystud-sm-catalog') === 'structure',
         treecard: !card.hasAttribute('data-easystud-sm-catalog'),
         withingrouping: !!card.querySelector('[data-easystud-remove-from-grouping]'),
     };
     const holder = document.createElement('div');
     holder.innerHTML = Mustache.render(model.groupSource, buildGroupCardContext(model, group, variant));
-    const known = new Set(Array.from(list.querySelectorAll('[data-easystud-member-id]'))
-        .map(row => row.getAttribute('data-easystud-member-id')));
-    const rows = Array.from(holder.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]'))
-        .filter(row => !known.has(row.getAttribute('data-easystud-member-id')));
+    const rows = Array.from(holder.querySelectorAll('[data-easystud-group-members] [data-easystud-member-id]'));
     const fragment = document.createDocumentFragment();
     rows.forEach(row => fragment.appendChild(row));
     const empty = list.querySelector(':scope > .local-groupimport-easystud-tree__empty');
     list.insertBefore(fragment, empty);
+    const ordered = new Map(Array.from(list.querySelectorAll('[data-easystud-member-id]'))
+        .map(row => [Number(row.getAttribute('data-easystud-member-id')), row]));
+    wanted.forEach(id => {
+        if (ordered.has(id)) {
+            list.insertBefore(ordered.get(id), empty);
+        }
+    });
     return rows;
+};
+
+/**
+ * Represent a selected off-window row only when an action needs its native item.
+ * @param {Object} model Course model.
+ * @param {Number|String} groupid Group id.
+ * @param {Number|String} userid Member id.
+ * @param {String} key Selection catalog.
+ * @returns {HTMLElement|null} Detached action item.
+ */
+export const getSelectedMemberRow = (model, groupid, userid, key) => {
+    const group = model.groups.get(Number(groupid));
+    if (!group || !model.byId.has(Number(userid))) {
+        return null;
+    }
+    if (model.memberSelectionRevision !== model.revision) {
+        model.memberSelectionRevision = model.revision;
+        model.memberSelectionItems = new Map();
+    }
+    model.memberSelectionItems = model.memberSelectionItems || new Map();
+    const identity = key + ':' + groupid + ':' + userid;
+    if (model.memberSelectionItems.has(identity)) {
+        return model.memberSelectionItems.get(identity);
+    }
+    const holder = document.createElement('div');
+    holder.innerHTML = Mustache.render(model.groupSource, buildGroupCardContext(model, group,
+        {memberids: [Number(userid)]}));
+    const card = holder.firstElementChild;
+    card.setAttribute('data-easystud-sm-catalog', key);
+    markMemberRows(model, card, 1);
+    const row = card.querySelector('[data-easystud-member-id]');
+    model.memberSelectionItems.set(identity, row);
+    return row;
 };
 
 /**
@@ -280,6 +329,7 @@ export const getDetachedGroupCard = (model, groupid, key) => {
         const card = holder.firstElementChild;
         if (card) {
             card.setAttribute('data-easystud-sm-catalog', key);
+            markMemberRows(model, card, LEAN_MEMBER_ROWS);
         }
         detached.set(groupid, card);
     }
@@ -382,14 +432,16 @@ export const getTreeSectionGroupIds = (model, key) => {
  * @param {Object} model Participant model.
  * @param {HTMLElement} container Section children container.
  * @param {String} key Grouping id, or 'ungrouped'.
+ * @param {Number[]|null} ids Exact bounded group ids, or the initial window.
  * @returns {HTMLElement[]} Rendered cards.
  */
-export const renderTreeSection = (model, container, key) => {
+export const renderTreeSection = (model, container, key, ids = null) => {
     container.querySelectorAll(':scope > [data-easystud-group-id], :scope > .local-groupimport-easystud-tree__empty' +
         ':not([data-easystud-container-filter-empty])').forEach(node => node.remove());
-    const variant = {treecard: true, withingrouping: key !== 'ungrouped', memberlimit: LEAN_MEMBER_ROWS};
+    const variant = {treecard: true, withingrouping: key !== 'ungrouped', memberlimit: LEAN_MEMBER_ROWS,
+        memberids: key === 'ungrouped' ? [] : null};
     const holder = document.createElement('div');
-    holder.innerHTML = getTreeSectionGroupIds(model, key).map(groupid =>
+    holder.innerHTML = (ids || getTreeSectionGroupIds(model, key).slice(0, key === 'ungrouped' ? 10 : 3)).map(groupid =>
         Mustache.render(model.groupSource, buildGroupCardContext(model, model.groups.get(groupid), variant))).join('');
     const cards = Array.from(holder.children);
     cards.forEach(card => markMemberRows(model, card, LEAN_MEMBER_ROWS));

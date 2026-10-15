@@ -1,0 +1,91 @@
+// K16-01: bounded card content, using the existing Kit controls and caption roles.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-long-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-start: 0.75rem;
+
+    [data-easystud-long-list-count] {
+      margin-inline-end: auto;
+      color: var(--easyedu-text-muted);
+      font-size: var(--easyedu-font-size-caption);
+    }
+
+    .easyedu-button {
+      min-width: 0;
+      white-space: normal;
+      text-align: center;
+    }
+
+    &__quiet,
+    [data-easystud-long-list-action="select"] {
+      @include easyedu.selection-recovery-action;
+    }
+
+    [data-easystud-long-list-action="select"] {
+      margin-inline-start: auto;
+    }
+
+    [data-easystud-long-list-action="previous"],
+    [data-easystud-long-list-action="next"] {
+      @include easyedu.pagination-arrow-button;
+    }
+  }
+
+  &-group__members.local-groupimport-easystud-long-list__members {
+    max-height: none;
+    overflow: visible;
+    mask-image: none;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &-tree__children[hidden] ~ &-long-list {
+    display: none;
+  }
+
+  &-long-list__foldable &-group__header &-group__members-toggle {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-long-list__foldable &-group__header &-group__members-toggle[aria-expanded="false"] .fa {
+    transform: rotate(-90deg);
+  }
+}
+
+// Compact navigation has no Complete tab. Its existing Ungrouped filter is the
+// entry to the same bounded section, retaining the normal Groups workspace.
+@media (max-width: 1024px) {
+  .local-groupimport-easystud-user__meta-tags[data-easystud-tags-window="collapsed"] {
+    flex-wrap: nowrap;
+
+    > span.local-groupimport-easystud-token {
+      max-inline-size: calc(100% - var(--local-groupimport-long-tag-tail, 0px));
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  #local-groupimport-easystud[data-easystud-mobile-view-active="groups"]:has(
+    [data-easystud-catalog-show-ungrouped="structure"]:checked
+  ) {
+    .local-groupimport-easystud-structure-groups {
+      display: none;
+    }
+
+    .local-groupimport-easystud-tree__section--ungrouped {
+      display: block !important;
+    }
+  }
+}

@@ -25,7 +25,11 @@
 import * as Motion from '../../motion';
 import {hoverPopoverClass, isResponsiveWorkspace, requestGuideHighlightRefresh, escapeHtml} from './shared';
 import {scheduleGroupGroupingOverflow, syncParticipantTagOverflow, setInlinePanelOpen} from './cards';
-import {getSelectedItems, setItemSelected} from './selection';
+import {getSelectedItems, setItemSelected, getActiveSelectionType} from './selection';
+import {getOnDemandModel} from './state';
+import {bindLongLists, announceLongList} from './long_lists';
+import {getTreeSectionGroupIds} from '../sm/groups';
+import {areSelectionTypesCompatible, getLabels} from './shared';
 import {emitGuidedCompletion} from './guide_hooks';
 import {
     syncGroupMembersCollapsible, syncAllGroupMembersCollapsible, syncGroupingGroupsCollapsible,
@@ -34,7 +38,7 @@ import {
 } from './group_cards';
 import {
     expandGroupingSection, applyContainerGroupSearch, applyGroupMemberSearch, scheduleResponsiveUiRefresh,
-    updateSelectionActions,
+    updateSelectionActions, ensureTreeSection,
 } from './workspace';
 
 let groupMemberMotionToken = 0;
@@ -404,6 +408,22 @@ export const setGroupMembersExpanded = (root, group, expand) => {
 };
 
 export const bindGroupMemberToggles = root => {
+    bindLongLists(root, {
+        members: owner => syncGroupMembersCollapsible(owner),
+        groups: owner => ensureTreeSection(root, owner),
+        // The same real button carries the existing card-details hook and return focus.
+        all: () => true,
+        select: owner => {
+            const model = getOnDemandModel(root);
+            if (!model || !areSelectionTypesCompatible(getActiveSelectionType(root), 'group')) {
+                return;
+            }
+            const key = owner.getAttribute('data-easystud-grouping-id') || 'ungrouped';
+            getTreeSectionGroupIds(model, key).forEach(id => model.selectedGroups.set(id, 'structure'));
+            owner.querySelectorAll('[data-easystud-group-id]').forEach(card => setItemSelected(card, true));
+            updateSelectionActions(root);
+        },
+    });
     root.addEventListener('click', event => {
         const toggle = event.target.closest('[data-easystud-group-members-toggle]');
         if (!toggle || !root.contains(toggle)) {
@@ -493,14 +513,34 @@ export const bindTagToggles = root => {
 
         const expanded = toggle.getAttribute('data-expanded') === '1';
         const card = container.closest('[data-easystud-user]');
+        const all = container.getAttribute('data-easystud-long-tags');
+        if (!expanded && all && JSON.parse(all).length > 30) {
+            return;
+        }
+        const previousCount = container.querySelectorAll('span.local-groupimport-easystud-token').length;
         Motion.resize(card, () => {
             toggle.setAttribute('data-expanded', expanded ? '0' : '1');
             syncParticipantTagOverflow(card);
+            if (!expanded) {
+                Array.from(container.querySelectorAll('span.local-groupimport-easystud-token')).slice(previousCount)
+                    .forEach(token => void Motion.enter(token, {distance: '0px', duration: Motion.timing.fast}));
+            }
         }, {
             duration: Motion.timing.normal,
             // A local disclosure changes no result order or page. Reinserting
             // sorted cards here destroys the native drawer's scroll anchor.
-            onComplete: () => scheduleResponsiveUiRefresh(root, {pagination: false}),
+            onComplete: () => {
+                const tokens = container.querySelectorAll('span.local-groupimport-easystud-token');
+                const first = tokens[expanded ? 0 : previousCount];
+                if (first) {
+                    first.tabIndex = -1;
+                    first.focus({preventScroll: true});
+                }
+                const total = all ? JSON.parse(all).length : tokens.length;
+                announceLongList(root, (getLabels(root).longlistshown || '')
+                    .replace('__shown__', tokens.length).replace('__total__', total));
+                scheduleResponsiveUiRefresh(root, {pagination: false});
+            },
         });
     });
 };

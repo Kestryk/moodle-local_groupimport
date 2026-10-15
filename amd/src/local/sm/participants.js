@@ -51,14 +51,15 @@ const tokenClass = 'local-groupimport-easystud-token';
  * @returns {Object}
  */
 const buildMetaTags = (label, items, cls, empty, showless) => {
-    const visiblemax = 3;
-    const tokens = items.length ? items.map((item, index) => ({
+    const visiblemax = 6;
+    const tokens = items.length ? items.slice(0, visiblemax).map(item => ({
         label: item,
         'class': cls,
-        hidden: index >= visiblemax,
-        extra: index >= visiblemax,
+        hidden: false,
+        extra: false,
     })) : [{label: empty, 'class': cls + ' ' + tokenClass + '--empty', hidden: false}];
-    return {label, tokens, hasmore: items.length > visiblemax, showless};
+    return {label, tokens, hasmore: items.length > visiblemax, showless,
+        allitemsjson: JSON.stringify(items), tokenclass: cls};
 };
 
 /**

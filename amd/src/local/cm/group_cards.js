@@ -34,6 +34,7 @@ import {
     syncGroupCardSelection,
 } from './cards';
 import {updateSelectionAvailability} from './selection';
+import {syncMemberWindow} from './long_lists';
 
 /**
  * SM-RENDU lever 2: give a lean group card all its member rows, before it unfolds, searches
@@ -42,6 +43,9 @@ import {updateSelectionAvailability} from './selection';
  * @param {HTMLElement|null} group Group card.
  */
 export const ensureFullGroupMembers = group => {
+    if (group && syncMemberWindow(group)) {
+        return;
+    }
     const model = getOnDemandModel();
     if (!model || !group || !group.hasAttribute('data-easystud-sm-members-partial')) {
         return;
@@ -187,6 +191,16 @@ const syncCollapsedMemberFocus = (member, collapsed) => {
 
 export const syncGroupMembersCollapsible = group => {
     if (!group) {
+        return;
+    }
+    if (syncMemberWindow(group)) {
+        syncGroupSelectAll(group);
+        if (group.querySelector('[data-easystud-group-members]').hidden) {
+            const select = group.querySelector('[data-easystud-group-select-all-row]');
+            if (select) {
+                select.hidden = true;
+            }
+        }
         return;
     }
     const list = group.querySelector('[data-easystud-group-members]');
@@ -554,6 +568,15 @@ const memberSearchText = (model, member) => {
  */
 export const applyGroupMemberSearchToGroup = (root, group) => {
     ensureGroupMemberSearchControls(root, group);
+    if (syncMemberWindow(group)) {
+        const input = group.querySelector('[data-easystud-group-member-search]');
+        const query = normalise(input ? input.value : '');
+        const count = group.querySelectorAll('[data-easystud-member-id]').length;
+        syncGroupMemberSearchEmptyState(root, group, query, count);
+        syncGroupSelectAll(group);
+        scheduleGroupingResizeForGroup(group);
+        return;
+    }
     const groupid = group.getAttribute('data-easystud-group-id') || '';
     const input = group.querySelector(':scope > [data-easystud-group-member-search-panel="' + groupid + '"] ' +
         '[data-easystud-group-member-search="' + groupid + '"]');
@@ -707,9 +730,10 @@ export const syncGroupMembersState = (group, labels) => {
         list.appendChild(empty);
     }
 
-    badge.textContent = countLabel(labels.memberscounttemplate, members.length);
+    const total = getGroupMemberCount(group);
+    badge.textContent = countLabel(labels.memberscounttemplate, total);
     group.setAttribute('data-easystud-advanced-count', badge.textContent);
-    setCountBadgeState(badge, members.length, 'members');
+    setCountBadgeState(badge, total, 'members');
     syncGroupMembersCollapsible(group);
     scheduleGroupingResizeForGroup(group);
 };

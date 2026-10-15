@@ -21,19 +21,22 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import {getDetachedGroupCard} from '../sm/groups';
 import {
     selectedClass, disabledSelectionClass, draggingClass, dropTargetClass, getSelectionInput,
     areSelectionTypesCompatible,
 } from './shared';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
+import {getSelectedMemberRow} from '../sm/groups';
 import {
-    syncGroupSelectAll, collapseGroupingSection, collapseAllGroupings, findParticipantCard, syncGroupCardSelection,
+    syncGroupSelectAll, collapseGroupingSection, collapseAllGroupings, findParticipantCard,
     findCatalogGroupCard,
 } from './cards';
 
 export const getSelectedItemsForContext = (root, selector, target) => {
-    const selected = Array.from(root.querySelectorAll(selector + '.' + selectedClass));
+    const type = {'[data-easystud-user]': 'participant', '[data-easystud-group-id]': 'group',
+        '[data-easystud-member-id]': 'member'}[selector];
+    const selected = type && getOnDemandModel(root) ? getSelectedItems(root, type) :
+        Array.from(root.querySelectorAll(selector + '.' + selectedClass));
     if (!selected.length) {
         return target ? [target] : [];
     }
@@ -91,13 +94,17 @@ export const getSelectedItems = (root, type) => {
                 const row = card ? card.querySelector(rowselector) : null;
                 // A lean page card (re-rendered after a page change) lacks the rows past the first two:
                 // the detached copy renders them all (R10-05 selects every member of a card).
-                const detached = row || !card ? null : getDetachedGroupCard(model, Number(groupid), key);
-                items.push(row || (detached ? syncGroupCardSelection(model, detached).querySelector(rowselector) : null));
+                const proxy = row ? null : getSelectedMemberRow(model, groupid, userid, key);
+                if (proxy) {
+                    proxy.classList.add(selectedClass);
+                    proxy.querySelector('input[type="checkbox"]').checked = true;
+                }
+                items.push(row || proxy);
             });
         }
         root.querySelectorAll((type ? '[data-selectable-type="' + type + '"]' : '[data-selectable-type]') + '.' + selectedClass +
             ':not([data-selectable-type="participant"]):not([data-easystud-sm-catalog])').forEach(item => {
-            if (!item.closest('[data-easystud-sm-catalog]')) {
+            if (item.getAttribute('data-selectable-type') === 'grouping') {
                 items.push(item);
             }
         });
@@ -144,10 +151,10 @@ export const setItemSelected = (item, selected) => {
         syncSelectionTwin(item, twin, selected);
     }
     const membercard = item.getAttribute('data-selectable-type') === 'member' ?
-        item.closest('[data-easystud-sm-catalog]') : null;
+        item.closest('[data-easystud-group-id]') : null;
     if (model && membercard) {
         const memberkey = item.getAttribute('data-selectable-id');
-        const catalogkey = membercard.getAttribute('data-easystud-sm-catalog');
+        const catalogkey = membercard.getAttribute('data-easystud-sm-catalog') || 'structure';
         if (selected) {
             model.selectedMembers.set(memberkey, catalogkey);
         } else {
@@ -159,7 +166,8 @@ export const setItemSelected = (item, selected) => {
         const twin = twincard ? twincard.querySelector('[data-selectable-id="' + memberkey + '"]') : null;
         syncSelectionTwin(item, twin, selected);
     }
-    const key = item.getAttribute('data-easystud-sm-catalog');
+    const key = item.getAttribute('data-easystud-sm-catalog') ||
+        (item.getAttribute('data-selectable-type') === 'group' ? 'structure' : null);
     if (model && key && item.getAttribute('data-selectable-type') === 'group') {
         const groupid = Number(item.getAttribute('data-easystud-group-id'));
         if (selected) {
@@ -215,6 +223,7 @@ export const clearSelection = (root, type) => {
     }
     if (model && (!type || type === 'member')) {
         model.selectedMembers.clear();
+        model.memberSelectionItems?.clear();
         Object.values(model.catalogs).forEach(catalog => catalog.detached.forEach(card =>
             card.querySelectorAll('[data-selectable-type="member"]').forEach(unselectDetached)));
     }

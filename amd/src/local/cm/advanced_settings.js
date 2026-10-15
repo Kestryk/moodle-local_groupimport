@@ -265,6 +265,14 @@ const getUserById = (root, userid) => {
 };
 
 const getAdvancedGroupMemberRows = (root, item) => {
+    const model = getOnDemandModel(root);
+    const group = model ? model.groups.get(Number(item.getAttribute('data-easystud-group-id'))) : null;
+    if (group) {
+        return (group.memberids || []).filter(id => model.byId.has(id)).map(id => {
+            const user = model.byId.get(id);
+            return {id, name: user.fullname, email: user.email || ''};
+        });
+    }
     const seen = new Set();
     return Array.from(item.querySelectorAll(':scope > [data-easystud-group-members] [data-easystud-member-id]')).map(member => {
         const userid = member.getAttribute('data-easystud-member-id') || '';
@@ -293,6 +301,14 @@ const getAdvancedGroupGroupingRows = (root, item) => {
 };
 
 const getAdvancedGroupingGroupRows = (item) => {
+    const model = getOnDemandModel();
+    const grouping = model ? model.groupings.get(Number(item.getAttribute('data-easystud-grouping-id'))) : null;
+    if (grouping) {
+        return (grouping.groupids || []).filter(id => model.groups.has(id)).map(id => {
+            const group = model.groups.get(id);
+            return {id, name: group.name, members: countLabel(model.groupStrings.memberscount, group.memberids.length)};
+        });
+    }
     return Array.from(item.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]')).map(group => {
         return {
             name: getAdvancedValue(group, 'name') || getGroupName(group),
@@ -763,8 +779,18 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialSta
             return;
         }
         modal.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
+            const requested = state === 'ready' && !opened &&
+                returnFocus?.getAttribute('data-easystud-long-list-action') === 'all' &&
+                details.classList.contains('local-groupimport-easystud-entity__relation--' +
+                    (isgroup ? 'members' : 'groups'));
+            if (requested) {
+                details.open = true;
+            }
             bindAnimatedDetails(details, details.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
                 'data-easystud-settings-list-state');
+            if (requested) {
+                details.scrollIntoView({block: 'nearest', behavior: 'auto'});
+            }
         });
         if (state === 'ready' && !opened) {
             // Guide inspection starts once the real fields exist (never on a skeleton).

@@ -33,6 +33,7 @@ import {
 import {getOnDemandModel} from './state';
 import {prepareInlinePanelFocus, restoreInlinePanelFocus} from './modal';
 import {scheduleCompleteListAlignment} from './layout';
+import {syncTagWindow} from './long_lists';
 
 export const getGroupName = group => {
     const node = group ? group.querySelector('.local-groupimport-easystud-group__name') : null;
@@ -288,6 +289,11 @@ export const setAdvancedAttributes = (element, data, type) => {
  */
 export const rehydrateParticipantMembershipDetails = root => {
     if (!root) {
+        return;
+    }
+    // A bounded card is never evidence of the full membership graph. RefreshModel
+    // and the participant renderer already own the complete model-backed payload.
+    if (getOnDemandModel(root)) {
         return;
     }
 
@@ -558,7 +564,8 @@ export const syncParticipantTagOverflow = scope => {
         return;
     }
     const pendingMeasurements = [];
-    const rows = Array.from(scope.querySelectorAll('.local-groupimport-easystud-user__meta-tags')).map(container => {
+    const rows = Array.from(scope.querySelectorAll('.local-groupimport-easystud-user__meta-tags'))
+        .filter(container => !syncTagWindow(container)).map(container => {
         const tokens = Array.from(container.querySelectorAll('.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty)'));
         tokens.forEach(token => {
             token.hidden = false;
@@ -729,13 +736,13 @@ export const isGroupFullySelected = group => {
     if (group.hasAttribute('data-easystud-sm-members-partial')) {
         const model = getOnDemandModel();
         const key = group.getAttribute('data-easystud-sm-catalog');
-        if (!model || !key) {
+        if (!model) {
             return false;
         }
         const prefix = group.getAttribute('data-easystud-group-id') + ':';
         let selected = 0;
         model.selectedMembers.forEach((catalogkey, memberkey) => {
-            if (catalogkey === key && memberkey.startsWith(prefix)) {
+            if ((!key || catalogkey === key) && memberkey.startsWith(prefix)) {
                 selected++;
             }
         });
@@ -1029,6 +1036,12 @@ export const syncGroupCardSelection = (model, card) => {
  */
 export const findCatalogGroupCard = (root, groupid, key) => {
     const model = getOnDemandModel(root);
+    if (key === 'structure') {
+        const tree = root.querySelector('[data-easystud-tree] [data-easystud-group-id="' + Number(groupid) + '"]');
+        if (tree) {
+            return tree;
+        }
+    }
     const card = model.catalogs[key].pageCards.get(Number(groupid));
     if (card && card.isConnected) {
         return card;

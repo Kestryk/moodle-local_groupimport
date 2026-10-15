@@ -23,6 +23,16 @@ m1m2-served-roots-native.spec.js: local-supervised, principal course5/admin
 authentication; three page roots and actual JS levels under emulated OS reduction,
 143927804Z-19656 PASS FR1280. Nonpersistent DOM level changes restore full. CI
 needs an isolated upgraded Moodle instance; this is not N2 section7 geometry proof.
+Temporary Codex2 K16-01 development: `long-lists-native`, `-prepared`,
+`-settled`, `-overflow`, `-responsive`, `-compact`, `-current`, `-keyboard`,
+`-recommendation`, `-final` specs are local-supervised
+predecessors/successors in the dedicated long-lists branch. The manifest-owned
+`long-lists-fixture.php` creates synthetic own8051 data and restores Complete
+view exactly. No business write is allowed from the browser. Candidate CI
+requires isolated Moodle data and authentication; media stay external. See
+`long-lists-k16-01-2026-10-16.md` for thresholds, current acceptance and failures.
+The pure policy and isolated Motion compatibility checks need no Moodle data.
+Shared Platform registration is proposed to its owner, not written here.
 
 Student boundary is local-supervised: student-native-boundary.spec.js, -ready,
 -controls preserve failed login-readiness/Continue/pagetype harnesses; -pagetype
