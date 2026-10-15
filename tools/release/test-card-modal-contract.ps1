@@ -42,7 +42,7 @@ foreach ($needle in @(
         throw "Missing entity dialog SCSS contract: $needle"
     }
 }
-foreach ($needle in @('block-size: 1.375rem;', 'background: var(--easyedu-modal-footer-bg);', 'overflow: auto;')) {
+foreach ($needle in @('block-size: 1.375rem;', 'border-radius: 0.6875rem;', 'font-size: 0.6875rem;', 'padding-inline: 0.5rem;', 'background: var(--easyedu-modal-footer-bg);', 'overflow: auto;')) {
     if (-not $recipes.Contains($needle)) {
         throw "Missing dialog family recipe: $needle"
     }
@@ -60,6 +60,7 @@ foreach ($needle in @(
     'data-easystud-settings-list-section="1"',
     'data-easystud-settings-export="1"',
     'data-easystud-entity-more="1"',
+    "'__relation-count ' + prefix + '__pill ' + prefix + '__pill--'",
     'easyedu-related-person-row'
 )) {
     if (-not $entity.Contains($needle)) {

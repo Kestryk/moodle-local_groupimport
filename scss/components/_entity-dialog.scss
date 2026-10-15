@@ -294,11 +294,10 @@
     overflow-wrap: anywhere;
   }
 
-  &-entity__relation-count {
-    @include easyedu.type-caption;
-
-    flex: 0 1 auto;
-    min-inline-size: 0;
+  // Counter pill centred on the section title line (16/10 no. 15); tone from the pill classes.
+  &-entity__relation-count.local-groupimport-easystud-entity__pill {
+    align-self: center;
+    flex: 0 0 auto;
     white-space: nowrap;
   }
 
