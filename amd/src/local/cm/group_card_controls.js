@@ -195,15 +195,17 @@ export const bindNestedGroupActionMenus = root => {
             if (menu === except) {
                 return;
             }
-            menu.hidden = true;
             const group = menu.closest('[data-easystud-group-id], [data-easystud-grouping-id]');
-            if (group) {
-                group.classList.remove('is-actions-menu-open');
-            }
             const header = menu.closest(
                 '.local-groupimport-easystud-group__header, .local-groupimport-easystud-grouping__header'
             );
             const toggle = header ? header.querySelector('[data-easystud-group-actions-toggle]') : null;
+            // The card keeps its raised stacking until the menu has left, so the fade is never clipped.
+            Motion.hideMenu(menu, {anchor: toggle, onDone: completed => {
+                if (completed && group && menu.hidden) {
+                    group.classList.remove('is-actions-menu-open');
+                }
+            }});
             if (toggle) {
                 toggle.setAttribute('aria-expanded', 'false');
             }
@@ -233,12 +235,20 @@ export const bindNestedGroupActionMenus = root => {
             if (!menu) {
                 return;
             }
-            const open = menu.hidden;
+            const open = menu.hidden || Motion.isMenuClosing(menu);
             closeMenus(menu);
-            menu.hidden = !open;
             const group = toggle.closest('[data-easystud-group-id], [data-easystud-grouping-id]');
-            if (group) {
-                group.classList.toggle('is-actions-menu-open', open);
+            if (group && open) {
+                group.classList.add('is-actions-menu-open');
+            }
+            if (open) {
+                Motion.showMenu(menu, {anchor: toggle});
+            } else {
+                Motion.hideMenu(menu, {anchor: toggle, onDone: completed => {
+                    if (completed && group && menu.hidden) {
+                        group.classList.remove('is-actions-menu-open');
+                    }
+                }});
             }
             toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
             return;
@@ -451,13 +461,17 @@ export const bindTagToggles = root => {
             }
             if (expanded) {
                 group.classList.add('is-groupings-expanded');
+                // Dropdown-like list: height and opacity rise together from nothing (the tokens are
+                // children of the container, so container and items arrive as one).
                 Motion.expand(details, {
                     duration: Motion.timing.normal,
+                    fromOpacity: 0,
                     onComplete: () => scheduleResponsiveUiRefresh(root),
                 });
             } else {
+                // Closing is faster than opening.
                 Motion.collapse(details, {
-                    duration: Motion.timing.normal,
+                    duration: 130,
                     onComplete: () => {
                         group.classList.remove('is-groupings-expanded');
                         scheduleResponsiveUiRefresh(root);

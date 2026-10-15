@@ -496,7 +496,7 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
             }
             clone.addEventListener('click', event => {
                 event.preventDefault();
-                menu.hidden = true;
+                Motion.hideMenu(menu, {anchor: toggle});
                 toggle.setAttribute('aria-expanded', 'false');
                 source.click();
             });

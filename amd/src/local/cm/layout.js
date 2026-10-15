@@ -251,7 +251,7 @@ const cloneOverflowAction = (source, menu, toggle) => {
     clone.removeAttribute('id');
     clone.addEventListener('click', event => {
         event.preventDefault();
-        menu.hidden = true;
+        Motion.hideMenu(menu, {anchor: toggle});
         toggle.setAttribute('aria-expanded', 'false');
         source.click();
     });
