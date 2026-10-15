@@ -29,3 +29,10 @@ native opener focus return, frame/footer containment, every measured relation
 counter exactly22px. History opens/closes at1280. Zero page errors/business writes.
 Three captures external; mobile participant capture inspected. No Save, restore,
 CSV, EN/768 or Guide-inspection path completion claimed by this bounded recipe.
+
+Ready-state successor151913743Z-16956 PASS on the same served runtime: all nine
+card cells wait for deferred field/relation skeletons to disappear and awaited
+footer actions to enable, with no retry notice. All original keyboard/geometry
+and22px counter assertions retained; zero page errors/business writes. Mobile
+participant ready capture inspected. The preceding run remains valid loading/
+keyboard geometry evidence; its screenshot did not prove completed field loading.

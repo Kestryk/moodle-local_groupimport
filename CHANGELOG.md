@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N0] Confirm deferred entity details reach ready before measurement; retain the previous loading/keyboard proof and all strict containment/counter assertions.
+
 - 2026-10-15 [N0] Verify served entity dialogs in FR1600/1280/390: focus/Tab/Escape/opener return, footer containment and22px relation counters; history open/close1280, zero page errors or business writes.
 
 - 2026-10-15 [N1] Card detail dialogs (participant, group, grouping) and Mass Import history/restore adopt the T045 entity dialog family: sticky footer, 22px labels and relation counters, field skeletons, 390 sheet. Preserve global M1/M2 policy while removing the obsolete settings layout.
