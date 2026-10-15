@@ -104,7 +104,10 @@ try {
         -WindowStyle Hidden -RedirectStandardInput $dumpPath -RedirectStandardOutput $importOutputPath `
         -RedirectStandardError $importErrorPath
     if ($importProcess.ExitCode -ne 0) {
-        $importError = Test-Path $importErrorPath ? (Get-Content $importErrorPath -Raw) : ''
+        $importError = ''
+        if (Test-Path -LiteralPath $importErrorPath) {
+            $importError = Get-Content -LiteralPath $importErrorPath -Raw
+        }
         throw "Unable to import the disposable database. $importError"
     }
 
@@ -118,6 +121,9 @@ ON DUPLICATE KEY UPDATE value = '2026010503';
 INSERT INTO ${TablePrefix}config_plugins (plugin, name, value)
 VALUES ('local_groupimport', 'defaultuserfield', 'email')
 ON DUPLICATE KEY UPDATE value = 'email';
+INSERT INTO ${TablePrefix}config_plugins (plugin, name, value)
+VALUES ('local_groupimport', 'enableanimations', '0')
+ON DUPLICATE KEY UPDATE value = '0';
 DROP TABLE IF EXISTS ${TablePrefix}local_groupimport_history;
 SET @easystudtourid = (
     SELECT id
@@ -212,6 +218,8 @@ sort(`$columns);
     'version' => (int)get_config('local_groupimport', 'version'),
     'simplifiedview' => get_config('local_groupimport', 'enablesimplifiedview'),
     'defaultuserfield' => get_config('local_groupimport', 'defaultuserfield'),
+    'motionlevel' => get_config('local_groupimport', 'motionlevel'),
+    'legacyanimations' => get_config('local_groupimport', 'enableanimations'),
     'historytable' => `$dbman->table_exists(`$historytable),
     'historycolumns' => `$columns,
     'tourtargets' => `$targets,
@@ -253,7 +261,7 @@ echo 'EASYSTUD_UPGRADE_RESULT:' . json_encode(`$result, JSON_UNESCAPED_SLASHES) 
     $missingColumns = @($expectedColumns | Where-Object { $_ -notin $result.historycolumns })
     $remainingLegacyTargets = @($legacyTargets | Where-Object { $_ -in $result.tourtargets })
 
-    if ($result.version -ne 2026071300) {
+    if ($result.version -ne 2026101501) {
         throw "Unexpected upgraded version: $($result.version)"
     }
     if ($result.simplifiedview -ne '0') {
@@ -269,7 +277,12 @@ echo 'EASYSTUD_UPGRADE_RESULT:' . json_encode(`$result, JSON_UNESCAPED_SLASHES) 
         throw "Legacy tour targets remain: $($remainingLegacyTargets -join ', ')"
     }
 
-    Write-Host '[OK] Upgrade reached version 2026071300.' -ForegroundColor Green
+    if ($result.motionlevel -ne 'minimal' -or $result.legacyanimations -ne $false) {
+        throw 'Legacy disabled animations did not migrate to minimal with the old key removed.'
+    }
+
+    Write-Host '[OK] Upgrade reached version 2026101501.' -ForegroundColor Green
+    Write-Host '[OK] Disabled legacy animations migrated to minimal; old key removed.' -ForegroundColor Green
     Write-Host '[OK] Legacy Mass Import-only mode was preserved.' -ForegroundColor Green
     Write-Host '[OK] Existing default user-field configuration was preserved.' -ForegroundColor Green
     Write-Host '[OK] Complete import-history schema was created.' -ForegroundColor Green
