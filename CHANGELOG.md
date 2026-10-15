@@ -5992,3 +5992,5 @@ Maintenance convention:
 - 2026-10-15 [N0] Certify served B1/B2 editable preview JSON and incomplete-confirmation refusal; real DB injected failure rolls back group/history with zero persistent fixtures. Successful business import/restore remains outside this bounded recipe.
 
 - 2026-10-15 [WIP/N1] Prepare K16 finishing candidate: Kit measured count/title accents, participant alignment, recovery controls and filter footer. Not served: reserved K16-10/11 raccord pending; candidate FR/isolated Kit measurements are distinct from final served FR/EN acceptance.
+
+- 2026-10-15 [N1] Adopt K16 finishing Kit0.4.218 with authorized group/participant card and filter raccords; localized empty-state helpers, disabled inactive Reset, exact title accents and corrected Guide specimen title. Final served bilingual measure recipe follows publication.

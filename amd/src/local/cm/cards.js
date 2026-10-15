@@ -650,8 +650,22 @@ export const syncGroupingChildrenState = (section, labels) => {
     const hasgroups = children.querySelectorAll(':scope > [data-easystud-group-id]').length > 0;
     if (!hasgroups) {
         const empty = document.createElement('div');
-        empty.className = 'local-groupimport-easystud-tree__empty';
-        empty.textContent = labels.nogroupsingrouping || '';
+        empty.className = 'local-groupimport-easystud-tree__empty easyedu-entity-card-empty easyedu-entity-card-empty--grouping';
+        const icon = document.createElement('span');
+        icon.className = 'easyedu-entity-card-empty__icon';
+        icon.setAttribute('aria-hidden', 'true');
+        const glyph = document.createElement('span');
+        glyph.className = 'fa fa-layer-group';
+        icon.appendChild(glyph);
+        const copy = document.createElement('span');
+        copy.className = 'easyedu-entity-card-empty__copy';
+        const message = document.createElement('span');
+        message.textContent = labels.nogroupsingrouping || '';
+        const help = document.createElement('small');
+        help.className = 'easyedu-entity-card-empty__help';
+        help.textContent = labels.nogroupsingroupinghelp || '';
+        copy.append(message, help);
+        empty.append(icon, copy);
         children.appendChild(empty);
     }
 };

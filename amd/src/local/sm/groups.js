@@ -184,6 +184,7 @@ export const buildGroupCardContext = (model, group, variant) => {
         members: variant.memberlimit ? members.slice(0, variant.memberlimit) : members,
         hasmembers: memberids.length > 0,
         nomemberslabel: strings.nomemberslabel || '',
+        nomembershelplabel: strings.nomembershelplabel || '',
         // R10-05: member "Select all" from three members (the total, not the rendered rows).
         canselectallmembers: members.length > 2,
         selectallmemberslabel: strings.selectallmembers || '',

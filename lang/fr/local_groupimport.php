@@ -1102,3 +1102,6 @@ $string['importfilelimit'] = 'Le fichier dépasse la limite de {$a} Mo. Réduise
 
 $string['importatomicfailed'] = 'L’import n’a pas pu aboutir. Tous ses changements ont été annulés ; aucun import n’a été appliqué. Prévisualisez à nouveau le fichier avant de réessayer.';
 $string['importlimits'] = 'Limites : {$a->rows} lignes par import, {$a->mb} Mo par fichier. Divisez les fichiers plus volumineux.';
+
+$string['emptygrouphelp'] = 'Glissez des participants ici ou utilisez @';
+$string['emptygroupinghelp'] = 'Glissez des groupes ici';

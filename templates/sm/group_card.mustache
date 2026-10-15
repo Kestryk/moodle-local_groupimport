@@ -150,7 +150,10 @@
             </li>
         {{/members}}
         {{^hasmembers}}
-            <li class="local-groupimport-easystud-tree__empty">{{nomemberslabel}}</li>
+            <li class="local-groupimport-easystud-tree__empty easyedu-entity-card-empty easyedu-entity-card-empty--group">
+                <span class="easyedu-entity-card-empty__icon" aria-hidden="true"><span class="fa fa-user-plus"></span></span>
+                <span class="easyedu-entity-card-empty__copy"><span>{{nomemberslabel}}</span><small class="easyedu-entity-card-empty__help">{{nomembershelplabel}}</small></span>
+            </li>
         {{/hasmembers}}
     </ul>
     <span

@@ -114,3 +114,5 @@ production packages through `.gitattributes` where appropriate.
 ## License
 
 GNU General Public License v3 or later.
+
+K16 title decoration AMD: rebuild with node tools/release/build-card-title-accent-amd.cjs C:/dev/moodle51-build-501/node_modules, then build-page-bootstrap-amd.cjs with the same toolchain. Runtime source is copied from canonical Kit cards/amd/src/easyedu_card_title_accent.js; preserve exact source parity.

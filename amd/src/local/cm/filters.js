@@ -57,6 +57,7 @@ export const syncResponsiveResetButtons = root => {
     );
     root.querySelectorAll('[data-easystud-reset-filters]').forEach(button => {
         button.classList.toggle('is-active', participantActive);
+        button.disabled = !participantActive;
     });
 
     ['participants', 'structure'].forEach(key => {
@@ -70,6 +71,7 @@ export const syncResponsiveResetButtons = root => {
         );
         root.querySelectorAll('[data-easystud-reset-catalog-filters="' + key + '"]').forEach(button => {
             button.classList.toggle('is-active', active);
+            button.disabled = !active;
         });
     });
     const groupingOccupancy = root.querySelector('[data-easystud-grouping-occupancy][aria-pressed="true"]');
@@ -79,6 +81,7 @@ export const syncResponsiveResetButtons = root => {
     );
     root.querySelectorAll('[data-easystud-reset-grouping-filters]').forEach(button => {
         button.classList.toggle('is-active', groupingFiltersActive);
+        button.disabled = !groupingFiltersActive;
     });
     syncAdvancedFilterToggles(root);
 };
