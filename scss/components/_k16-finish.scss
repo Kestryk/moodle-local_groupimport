@@ -35,6 +35,7 @@
     @include easyedu.entity-card-empty-drop-target;
   }
   &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
+    @include easyedu.person-card-selection-column;
     > .local-groupimport-easystud-selector {
       @include easyedu.person-card-aligned-selector(10px, 44px);
     }
