@@ -14,7 +14,7 @@
   }
   .local-groupimport-easystud-pagination__select {
     @include easyedu.pagination-select-button;
-    block-size: var(--easyedu-toolbar-control-height);
+    white-space: nowrap;
   }
   .easyedu-filter-actions {
     @include easyedu.filter-actions-stacked;
