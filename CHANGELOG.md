@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Preserve native card expansion/export/mobile-menu evidence and S9 encoded-label/Mass Import14.08px failures; independent admin/outside recipe avoids retrying failed product assertions.
+
 - 2026-10-15 [N1] Verify served S3 identity minimisation/restoration and SITEID refusal on disposable8051;11 integration assertions and14 isolated CSV cases PASS. Preserve native S9 double-escaping failure; PHPUnit not installed in Perf.
 
 - 2026-10-15 [N1] Replay seven Guide paths on served64a9af53: desktop7/7 PASS; compact4/7 PASS, two checklist/menu overlays and compact native drag unproved; preserve mobile-command harness successor and checklist-side evidence.

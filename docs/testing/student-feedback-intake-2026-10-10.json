@@ -1,4 +1,17 @@
 {
+  "codex2ServedPolish20261015": {
+    "status": "partial-native-pass-S9-and-Mass-root-font-fail",
+    "documentation": "docs/testing/codex2-served-polish-2026-10-15.md",
+    "pin": "463b657f",
+    "selectAllExpands": true,
+    "nativeCsvFormulaNeutralised": true,
+    "literalLabelsAndCsv": "FAIL encoded amp/lt/gt",
+    "massRootFont1280": "14.08px",
+    "expectedMassRootFont": "16px",
+    "columnSkeletonSimultaneityCertified": false,
+    "coldFontMissingGlyphCertified": false,
+    "scenarioClass": "local-supervised"
+  },
   "codex2ServedSecurity20261015": {
     "status": "S3-SITEID-integration-pass-S9-native-fail",
     "documentation": "docs/testing/codex2-served-security-2026-10-15.md",
