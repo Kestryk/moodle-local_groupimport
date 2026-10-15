@@ -31,6 +31,9 @@ $functions = [
         'type' => 'read',
         'ajax' => true,
         'loginrequired' => true,
+        // Reads only: no session lock, so parallel calls of one teacher do not queue (needs
+        // $CFG->enable_read_only_sessions on the site, otherwise Moodle keeps the usual lock).
+        'readonlysession' => true,
         'capabilities' => 'moodle/course:managegroups',
     ],
     'local_groupimport_get_details' => [
@@ -39,6 +42,9 @@ $functions = [
         'type' => 'read',
         'ajax' => true,
         'loginrequired' => true,
+        // Reads only: no session lock, so parallel calls of one teacher do not queue (needs
+        // $CFG->enable_read_only_sessions on the site, otherwise Moodle keeps the usual lock).
+        'readonlysession' => true,
         'capabilities' => 'moodle/course:managegroups',
     ],
 ];
