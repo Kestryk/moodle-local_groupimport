@@ -11469,6 +11469,38 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   #local-groupimport-easystud .local-groupimport-easystud__panel-title-wrap > .local-groupimport-easystud__panel-title {flex: 1 0 100%;
   }
 }
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule {background: transparent;border-color: transparent;box-shadow: none;outline: 0;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule > .easyedu-filter-disclosure__content {background: transparent;border: 0;border-radius: 0.5rem;color: var(--easyedu-primary);font-size: 0.75rem;font-weight: var(--easyedu-font-weight-semibold);gap: 0.375rem;line-height: 1.125rem;min-block-size: 0;padding: 0.125rem 0.5rem;text-decoration: none;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule > .easyedu-filter-disclosure__content > span,
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule > .easyedu-filter-disclosure__content > span:not([aria-hidden=true]) {text-decoration: none;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule > .easyedu-filter-disclosure__content > .fa {font-size: 0.75rem;line-height: 1;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule:hover:not(:disabled):not([aria-disabled=true]),
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule[aria-expanded=true]:not(:disabled):not([aria-disabled=true]) {background: transparent;border-color: transparent;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule:hover:not(:disabled):not([aria-disabled=true]) > .easyedu-filter-disclosure__content,
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule[aria-expanded=true]:not(:disabled):not([aria-disabled=true]) > .easyedu-filter-disclosure__content {background: var(--easyedu-primary-soft);border-color: transparent;color: var(--easyedu-primary-strong);
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule:hover:not(:disabled):not([aria-disabled=true]) > .easyedu-filter-disclosure__content > span,
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule[aria-expanded=true]:not(:disabled):not([aria-disabled=true]) > .easyedu-filter-disclosure__content > span {text-decoration: none;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule:focus,
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule:focus-visible {box-shadow: none;outline: 0;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule:focus-visible > .easyedu-filter-disclosure__content {outline: 1.5px solid color-mix(in srgb, var(--easyedu-primary) 35%, transparent);outline-offset: 1px;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule .local-groupimport-easystud-advanced-filters__more {font: inherit;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule[aria-expanded=true] .fa {transform: rotate(180deg);
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__count {align-items: center;background: var(--easyedu-primary);block-size: 1.125rem;border-radius: 999px;box-sizing: border-box;color: #fff;display: inline-flex;font-size: 0.6875rem;font-weight: var(--easyedu-font-weight-strong);justify-content: center;line-height: 1;min-inline-size: 1.125rem;padding-inline: 0.3125rem;
+}
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__count[hidden] {display: none;
+}
+
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user:not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target),
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-group:not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target),
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-tree__section:not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target) {border-block-color: var(--easyedu-card-hairline);border-inline-end-color: var(--easyedu-card-hairline);box-shadow: none;

@@ -34,7 +34,7 @@ import {
 } from './guide_hooks';
 import {syncGroupingGroupsCollapsible, animateTreeChildren} from './group_cards';
 import {
-    syncResponsiveResetButtons, emitFilterPathCompletion, syncRoleFilterState, updateRoleFilterMode,
+    syncResponsiveResetButtons, syncAdvancedFilterToggle, emitFilterPathCompletion, syncRoleFilterState, updateRoleFilterMode,
     bindSearchableFilters, refreshFilterChoice, resetFilters, hasActiveListFilters,
 } from './filters';
 import {getPaginationConfigs, getSelectableResultItems} from './pagination';
@@ -509,6 +509,7 @@ export const bindAdvancedFilters = root => {
         const nextexpanded = !expanded;
         toggle.setAttribute('aria-expanded', nextexpanded ? 'true' : 'false');
         toggle.classList.toggle('is-expanded', nextexpanded);
+        syncAdvancedFilterToggle(root, toggle);
         if (more) {
             more.classList.toggle('is-expanded', nextexpanded);
         }

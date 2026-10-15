@@ -24,6 +24,7 @@
 import * as Motion from '../../motion';
 import {enhanceMultipleSelect} from '../../searchable_choices';
 import {matchesText, elementSearchText} from '../sm/filter_engine';
+import {countLabel} from '../sm/index';
 import {structureFocusClass, filterChoiceControllers, normalise, getLabels} from './shared';
 import {getOnDemandModel} from './state';
 import {getOnDemandList} from './cards';
@@ -79,6 +80,67 @@ export const syncResponsiveResetButtons = root => {
     root.querySelectorAll('[data-easystud-reset-grouping-filters]').forEach(button => {
         button.classList.toggle('is-active', groupingFiltersActive);
     });
+    syncAdvancedFilterToggles(root);
+};
+
+const advancedFilterSelects = '[data-easystud-role-filter], [data-easystud-group-filter], ' +
+    '[data-easystud-grouping-filter], [data-easystud-catalog-grouping-filter]';
+
+/**
+ * Number of active advanced filters inside one "More filters" panel.
+ *
+ * @param {HTMLElement} panel Advanced filters panel.
+ * @returns {Number}
+ */
+export const countActiveAdvancedFilters = panel => {
+    if (!panel) {
+        return 0;
+    }
+    let count = Array.from(panel.querySelectorAll(advancedFilterSelects))
+        .filter(select => getSelectedFilterValues(select).length > 0).length;
+    count += Array.from(panel.querySelectorAll('[data-easystud-catalog-show-ungrouped]'))
+        .filter(input => input.checked).length;
+    const occupancy = panel.querySelector('[data-easystud-grouping-occupancy][aria-pressed="true"]');
+    if (occupancy && occupancy.getAttribute('data-easystud-grouping-occupancy') !== 'all') {
+        count++;
+    }
+    return count;
+};
+
+/**
+ * D2 (16/10/2026): the "More filters" text button reads "Fewer filters" when its
+ * panel is open, and then carries the number of active advanced filters in its capsule.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {HTMLElement} toggle Advanced filters toggle.
+ */
+export const syncAdvancedFilterToggle = (root, toggle) => {
+    if (!toggle) {
+        return;
+    }
+    const key = toggle.getAttribute('data-easystud-advanced-filters-toggle') || '';
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    const label = toggle.querySelector('[data-easystud-more-label]');
+    if (label) {
+        const text = label.getAttribute(expanded ? 'data-easystud-less-label' : 'data-easystud-more-label') || '';
+        if (text && label.textContent !== text) {
+            label.textContent = text;
+        }
+    }
+    const count = expanded ? countActiveAdvancedFilters(root.querySelector('[data-easystud-advanced-filters="' + key + '"]')) : 0;
+    const pill = toggle.querySelector('[data-easystud-advanced-filters-count]');
+    if (pill) {
+        pill.textContent = count ? String(count) : '';
+        pill.hidden = !count;
+    }
+    const description = toggle.querySelector('[data-easystud-advanced-filters-count-text]');
+    if (description) {
+        description.textContent = count ? countLabel(getLabels(root).activefilterscount || '', count) : '';
+    }
+};
+
+export const syncAdvancedFilterToggles = root => {
+    root.querySelectorAll('[data-easystud-advanced-filters-toggle]').forEach(toggle => syncAdvancedFilterToggle(root, toggle));
 };
 
 /**
