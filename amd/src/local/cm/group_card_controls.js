@@ -491,6 +491,31 @@ export const bindTagToggles = root => {
     });
 };
 
+/**
+ * K15-07: hover bubbles are mounted on document.body, outside the EasyStud root, so they do not
+ * inherit the admin palette. Copy the palette roles from the root and flag the customised ones
+ * (same signal as data-easyedu-custom-rails); the Kit keeps the classic green when nothing is flagged.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {HTMLElement} tip Bubble element.
+ */
+const relayTipPalette = (root, tip) => {
+    if (!root || !tip) {
+        return;
+    }
+    const style = root.style;
+    for (let index = 0; index < style.length; index++) {
+        const name = style[index];
+        if (/^--easyedu-(primary|accent|success|info)(-|$)/.test(name)) {
+            tip.style.setProperty(name, style.getPropertyValue(name));
+        }
+    }
+    const custom = (root.getAttribute('data-easyedu-custom-rails') || '').trim();
+    if (custom) {
+        tip.setAttribute('data-easyedu-custom-palette', custom);
+    }
+};
+
 export const bindHoverPopovers = root => {
     let activeTip = null;
     let activeNode = null;
@@ -524,6 +549,7 @@ export const bindHoverPopovers = root => {
         activeTip.classList.toggle(hoverPopoverClass + '--long', content.length > 110);
         activeTip.setAttribute('role', 'tooltip');
         activeTip.innerHTML = '<div class="popover-arrow"></div><div class="popover-body">' + escapeHtml(content) + '</div>';
+        relayTipPalette(root, activeTip);
         document.body.appendChild(activeTip);
 
         const rect = node.getBoundingClientRect();
