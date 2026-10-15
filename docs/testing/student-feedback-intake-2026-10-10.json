@@ -1,4 +1,20 @@
 {
+  "codex2LoadingAdmin20261015": {
+    "status": "targeted-native-pass",
+    "documentation": "docs/testing/codex2-served-polish-2026-10-15.md",
+    "pin": "463b657f",
+    "synchronisedFiles": 257,
+    "loadingRun": "easystud-authenticated-20261015T072403631Z-54184",
+    "firstBothColumnsMs": 588.2,
+    "framesWithoutOneSidedColumn": 33,
+    "pendingFontGlyphsHidden": 20,
+    "readyRecovery": true,
+    "adminOutsideWidths": [1280,390],
+    "outsideEasyStudRules": 0,
+    "pageErrors": 0,
+    "cleanedCourses": 13,
+    "scenarioClass": "local-supervised"
+  },
   "codex2SelectionFilter20261015": {
     "status": "targeted-native-pass",
     "documentation": "docs/testing/codex2-selection-filter-2026-10-15.md",

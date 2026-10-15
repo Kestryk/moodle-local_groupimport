@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Close served loading/admin QA: simultaneous skeleton columns and hidden pending-font glyphs recover normally; admin/outside1280/390 PASS after complete js sync;13disposable courses and exact palette restoration DB-verified.
+
 - 2026-10-15 [N1] Prove served Ctrl/Shift selection across participants/groups/members, mixed-type refusal, exact search/role filter and native drag; default tooltip screenshot verified, disposable palette restoration corrected and DB-verified.
 
 - 2026-10-15 [N1] Preserve native card expansion/export/mobile-menu evidence and S9 encoded-label/Mass Import14.08px failures; independent admin/outside recipe avoids retrying failed product assertions.

@@ -1,4 +1,4 @@
-﻿const {test,expect}=require('@playwright/test'),fs=require('node:fs');
+const {test,expect}=require('@playwright/test'),fs=require('node:fs');
 test('Served admin outside CSS remaining native8051',async({page},info)=>{
  test.setTimeout(480000);page.setDefaultTimeout(15000);page.setDefaultNavigationTimeout(60000);
  const base=new URL(process.env.EASYEDU_EASYSTUD_MANAGER_URL||'');const course=Number(base.searchParams.get('id'));
@@ -24,6 +24,3 @@ test('Served admin outside CSS remaining native8051',async({page},info)=>{
  expect(report.errors).toEqual([]);expect(report.blocked).toEqual([]);
  }finally{await page.screenshot({path:info.outputPath('last-state.png')}).catch(()=>{});save();}
 });
-
-
-

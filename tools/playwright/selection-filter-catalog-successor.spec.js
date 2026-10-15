@@ -1,4 +1,4 @@
-﻿const {test,expect}=require('@playwright/test'),fs=require('node:fs');
+const {test,expect}=require('@playwright/test'),fs=require('node:fs');
 test('Served settled catalog selection role filtering default tooltip native8051',async({page},info)=>{
  test.setTimeout(360000);page.setDefaultTimeout(15000);page.setDefaultNavigationTimeout(60000);
  const base=new URL(process.env.EASYEDU_EASYSTUD_MANAGER_URL||'');if(base.origin!=='http://localhost:8051'||Number(base.searchParams.get('id'))<=5)throw Error('Disposable8051 required');
@@ -44,4 +44,3 @@ test('Served settled catalog selection role filtering default tooltip native8051
   expect(report.errors).toEqual([]);expect(report.blocked).toEqual([]);
  }finally{await page.screenshot({path:info.outputPath('last-state.png')}).catch(()=>{});save();}
 });
-
