@@ -183,7 +183,9 @@ export const disclosePanel = (element, open, options = {}) => {
     element.style.transform = 'none';
     element.style.willChange = 'height, opacity';
     const distance = Math.abs((wasHidden ? 0 : rect.height) - (open ? endHeight : 0));
-    const duration = options.duration || Math.round(320 + Math.min(100, distance * 0.15));
+    const openDuration = options.duration || Math.round(320 + Math.min(100, distance * 0.15));
+    // Closing a dropdown-like panel is faster than opening it (optional closeDuration).
+    const duration = !open && options.closeDuration ? options.closeDuration : openDuration;
     return play(element, [start, end], {
         duration,
         easing: options.easing || easing,
@@ -222,7 +224,8 @@ export const expand = (element, options = {}) => {
     element.style.willChange = 'height, opacity';
 
     return play(element, [
-        {height: startHeight + 'px', opacity: options.fade === false ? 1 : 0.35},
+        {height: startHeight + 'px',
+            opacity: options.fade === false ? 1 : (options.fromOpacity === undefined ? 0.35 : options.fromOpacity)},
         {height: endHeight + 'px', opacity: 1},
     ], {
         duration: getDisclosureDuration(startHeight, endHeight, options.duration || durations.slow),
@@ -402,7 +405,124 @@ export const swap = (element, mutate, options = {}) => {
     });
 };
 
+const closingMenus = new WeakSet();
+const menuCloseEasing = 'cubic-bezier(0.4, 0, 1, 1)';
 const reducedFadeDuration = 120;
+const menuOpenDuration = durations.normal;
+const menuCloseDuration = 130;
+
+/**
+ * Transform origin of a floating menu: the side that faces its anchor.
+ *
+ * @param {HTMLElement} menu Menu (visible).
+ * @param {HTMLElement|null} anchor Trigger the menu hangs from.
+ * @returns {{x: String, y: String}}
+ */
+const getMenuOrigin = (menu, anchor) => {
+    if (!anchor || !anchor.getBoundingClientRect) {
+        return {x: 'left', y: 'top'};
+    }
+    const menuRect = menu.getBoundingClientRect();
+    const anchorRect = anchor.getBoundingClientRect();
+    const y = menuRect.bottom <= anchorRect.top + 2 ? 'bottom' : 'top';
+    const x = Math.abs(menuRect.right - anchorRect.right) < Math.abs(menuRect.left - anchorRect.left) ? 'right' : 'left';
+    return {x, y};
+};
+
+/**
+ * Whether a floating menu is currently playing its closing animation (it is then still not hidden).
+ *
+ * @param {HTMLElement} menu Menu.
+ * @returns {Boolean}
+ */
+export const isMenuClosing = menu => !!menu && closingMenus.has(menu);
+
+/**
+ * Open a floating menu (dropdown, overflow or context menu) as one piece: container and items share
+ * a single 160 ms animation, a fade plus a 5 px offset and a 0.98 to 1 scale from the anchor side.
+ * Reduced motion: 120 ms fade only. Disabled: no animation. Re-opening a menu that is closing
+ * resumes from its current opacity. No inline style remains afterwards.
+ *
+ * @param {HTMLElement} menu Menu element.
+ * @param {Object} options anchor (trigger), origin ({x, y}).
+ * @returns {Promise<boolean>} False when superseded.
+ */
+export const showMenu = (menu, options = {}) => {
+    if (!menu) {
+        return Promise.resolve(false);
+    }
+    const resumed = closingMenus.has(menu) && !menu.hidden;
+    const startOpacity = resumed ? Math.min(0.9, parseFloat(getComputedStyle(menu).opacity) || 0) : 0;
+    closingMenus.delete(menu);
+    cancel(menu);
+    menu.hidden = false;
+    const level = getLevel(menu);
+    if (level === 'none') {
+        return Promise.resolve(true);
+    }
+    const origin = options.origin || getMenuOrigin(menu, options.anchor);
+    const from = {opacity: startOpacity};
+    const to = {opacity: 1};
+    if (level === 'full') {
+        from.transform = 'translateY(' + (origin.y === 'bottom' ? 5 : -5) + 'px) scale(0.98)';
+        to.transform = 'none';
+        from.transformOrigin = to.transformOrigin = origin.y + ' ' + origin.x;
+    }
+    return play(menu, [from, to], {
+        duration: level === 'reduced' ? reducedFadeDuration : menuOpenDuration,
+        easing,
+    }, () => undefined, level);
+};
+
+/**
+ * Close a floating menu: one faster animation (130 ms, 120 ms fade under reduced motion), then the
+ * hidden attribute. The menu is inert while it leaves. Without animation it is hidden at once.
+ *
+ * @param {HTMLElement} menu Menu element.
+ * @param {Object} options anchor (trigger), origin ({x, y}), onDone(completed).
+ * @returns {Promise<boolean>} True when the menu is hidden, false when superseded.
+ */
+export const hideMenu = (menu, options = {}) => {
+    if (!menu || menu.hidden) {
+        return Promise.resolve(true);
+    }
+    if (closingMenus.has(menu)) {
+        return Promise.resolve(false);
+    }
+    const level = getLevel(menu);
+    const startOpacity = Math.min(1, parseFloat(getComputedStyle(menu).opacity) || 1);
+    cancel(menu);
+    if (level === 'none' || !menu.getClientRects().length) {
+        menu.hidden = true;
+        if (options.onDone) {
+            options.onDone(true);
+        }
+        return Promise.resolve(true);
+    }
+    const origin = options.origin || getMenuOrigin(menu, options.anchor);
+    const from = {opacity: startOpacity};
+    const to = {opacity: 0};
+    if (level === 'full') {
+        from.transform = 'none';
+        to.transform = 'translateY(' + (origin.y === 'bottom' ? 3 : -3) + 'px) scale(0.99)';
+        from.transformOrigin = to.transformOrigin = origin.y + ' ' + origin.x;
+    }
+    closingMenus.add(menu);
+    menu.inert = true;
+    return play(menu, [from, to], {
+        duration: level === 'reduced' ? reducedFadeDuration : menuCloseDuration,
+        easing: menuCloseEasing,
+    }, completed => {
+        closingMenus.delete(menu);
+        menu.inert = false;
+        if (completed) {
+            menu.hidden = true;
+        }
+        if (options.onDone) {
+            options.onDone(completed);
+        }
+    }, level);
+};
 
 /**
  * Soft arrival of controls that appear together (for example the panel action buttons after a

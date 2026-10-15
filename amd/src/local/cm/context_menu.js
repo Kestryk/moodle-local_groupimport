@@ -77,6 +77,10 @@ const menuMotion = {
     accordionOut: 160,
     fadeIn: Motion.timing.fast,
     fadeOut: 80,
+    popIn: Motion.timing.normal,
+    popOut: 130,
+    reducedFade: 120,
+    popEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
     sheetEasing: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
     sheetOutEasing: 'cubic-bezier(0.4, 0, 1, 1)',
 };
@@ -129,6 +133,21 @@ export const bindContextMenu = (root, courseId) => {
             }
             return true;
         }).catch(() => false);
+    };
+
+    // Desktop menu keyframes: container and items move as one piece, a fade plus a small offset and
+    // scale from the pointer (closing: faster and shorter). Reduced motion: 120 ms fade only.
+    const getDesktopKeyframes = opening => {
+        const level = Motion.getLevel(menu);
+        if (level === 'reduced') {
+            return {keyframes: opening ? [{opacity: 0}, {opacity: 1}] : [{opacity: 1}, {opacity: 0}],
+                duration: menuMotion.reducedFade};
+        }
+        const origin = menu.easystudMenuOrigin || '0px 0px';
+        const rest = {opacity: 1, transform: 'none', transformOrigin: origin};
+        const away = {opacity: 0, transform: 'translateY(' + (opening ? -5 : -3) + 'px) scale(' + (opening ? 0.98 : 0.99) + ')',
+            transformOrigin: origin};
+        return {keyframes: opening ? [away, rest] : [rest, away], duration: opening ? menuMotion.popIn : menuMotion.popOut};
     };
 
     const getGroupParts = group => ({
@@ -326,19 +345,20 @@ export const bindContextMenu = (root, courseId) => {
             return;
         }
         // The menu leaves with its animation, inert meanwhile; everything else closes at once.
-        const animate = !menu.hidden && canAnimate(menu);
+        const sheet = menu.classList.contains('is-mobile-sheet');
+        const animate = !menu.hidden && (sheet ? canAnimate(menu) : Motion.getLevel(menu) !== 'none');
         menuClosing = animate;
         closeSubmenus();
         if (animate) {
-            const sheet = menu.classList.contains('is-mobile-sheet');
+            const desktop = sheet ? null : getDesktopKeyframes(false);
             menu.setAttribute('inert', '');
             menu.inert = true;
             runAnimation(menu, sheet ? [
                 {transform: 'translateY(0)', opacity: 1},
                 {transform: 'translateY(100%)', opacity: 0},
-            ] : [{opacity: 1}, {opacity: 0}], {
-                duration: sheet ? menuMotion.sheetOut : menuMotion.fadeOut,
-                easing: sheet ? menuMotion.sheetOutEasing : 'ease-in',
+            ] : desktop.keyframes, {
+                duration: sheet ? menuMotion.sheetOut : desktop.duration,
+                easing: sheet ? menuMotion.sheetOutEasing : 'cubic-bezier(0.4, 0, 1, 1)',
                 keep: true,
                 onDone: finishHideMenu,
             });
@@ -594,6 +614,10 @@ export const bindContextMenu = (root, courseId) => {
             const top = Math.min(event.clientY, window.innerHeight - rect.height - 8);
             menu.style.left = Math.max(8, left) + 'px';
             menu.style.top = Math.max(8, top) + 'px';
+            // Grow from the point that was clicked (clamped to the menu), not from a fixed corner.
+            const placed = menu.getBoundingClientRect();
+            menu.easystudMenuOrigin = Math.max(0, Math.min(placed.width, event.clientX - placed.left)) + 'px ' +
+                Math.max(0, Math.min(placed.height, event.clientY - placed.top)) + 'px';
         }
         if (canAnimate(menu) && mobile) {
             runAnimation(menu, [
@@ -603,8 +627,9 @@ export const bindContextMenu = (root, courseId) => {
             if (backdrop) {
                 runAnimation(backdrop, [{opacity: 0}, {opacity: 1}], {duration: menuMotion.backdropIn});
             }
-        } else if (canAnimate(menu)) {
-            runAnimation(menu, [{opacity: 0}, {opacity: 1}], {duration: menuMotion.fadeIn});
+        } else if (!mobile && Motion.getLevel(menu) !== 'none') {
+            const desktop = getDesktopKeyframes(true);
+            runAnimation(menu, desktop.keyframes, {duration: desktop.duration, easing: menuMotion.popEasing});
         }
         const first = getLevelItems(null)[0];
         if (first) {

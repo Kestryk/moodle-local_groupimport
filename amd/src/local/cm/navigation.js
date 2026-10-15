@@ -534,18 +534,22 @@ export const bindPanelActionOverflow = root => {
         if (!menu) {
             return;
         }
-        const open = menu.hidden;
+        const open = menu.hidden || Motion.isMenuClosing(menu);
         root.querySelectorAll('[data-easystud-panel-actions-menu]').forEach(otherMenu => {
             if (otherMenu !== menu) {
-                otherMenu.hidden = true;
                 const otherToggle = otherMenu.parentElement ?
                     otherMenu.parentElement.querySelector('[data-easystud-panel-actions-toggle]') : null;
+                Motion.hideMenu(otherMenu, {anchor: otherToggle});
                 if (otherToggle) {
                     otherToggle.setAttribute('aria-expanded', 'false');
                 }
             }
         });
-        menu.hidden = !open;
+        if (open) {
+            Motion.showMenu(menu, {anchor: toggle});
+        } else {
+            Motion.hideMenu(menu, {anchor: toggle});
+        }
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
@@ -554,7 +558,9 @@ export const bindPanelActionOverflow = root => {
             return;
         }
         root.querySelectorAll('[data-easystud-panel-actions-menu]').forEach(menu => {
-            menu.hidden = true;
+            const menuToggle = menu.parentElement ?
+                menu.parentElement.querySelector('[data-easystud-panel-actions-toggle]') : null;
+            Motion.hideMenu(menu, {anchor: menuToggle});
         });
         root.querySelectorAll('[data-easystud-panel-actions-toggle]').forEach(toggle => {
             toggle.setAttribute('aria-expanded', 'false');

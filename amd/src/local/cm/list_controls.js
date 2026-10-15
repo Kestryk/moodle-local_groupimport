@@ -95,11 +95,17 @@ export const bindPagination = root => {
             }
             const toggle = dropdown.querySelector('[data-easystud-list-sort-toggle]');
             const menu = dropdown.querySelector('[data-easystud-list-sort-menu]');
-            if (menu) {
-                menu.hidden = true;
-            }
             if (toggle) {
                 toggle.setAttribute('aria-expanded', 'false');
+            }
+            if (menu && !menu.hidden) {
+                // The raised stacking stays until the menu has left, so the fade is never clipped.
+                Motion.hideMenu(menu, {anchor: toggle, onDone: completed => {
+                    if (completed && menu.hidden) {
+                        setSortDropdownStackOpen(dropdown, false);
+                    }
+                }});
+                return;
             }
             setSortDropdownStackOpen(dropdown, false);
         });
@@ -116,11 +122,19 @@ export const bindPagination = root => {
         if (!menu) {
             return;
         }
-        const open = menu.hidden;
+        const open = menu.hidden || Motion.isMenuClosing(menu);
         closeSortDropdowns(dropdown);
-        menu.hidden = !open;
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        setSortDropdownStackOpen(dropdown, open);
+        if (open) {
+            setSortDropdownStackOpen(dropdown, true);
+            Motion.showMenu(menu, {anchor: toggle});
+        } else {
+            Motion.hideMenu(menu, {anchor: toggle, onDone: completed => {
+                if (completed && menu.hidden) {
+                    setSortDropdownStackOpen(dropdown, false);
+                }
+            }});
+        }
     });
 
     root.addEventListener('click', event => {

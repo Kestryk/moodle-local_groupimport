@@ -193,7 +193,8 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
     };
     const animatePanel = (expanded, complete) => {
         if (motion) {
-            motion.disclosePanel(panel, expanded, {duration: Math.max(320, panelDuration()), collapseMargins: true,
+            motion.disclosePanel(panel, expanded, {duration: Math.max(320, panelDuration()), closeDuration: 180,
+                collapseMargins: true,
                 onComplete: () => {
                 panelAnimation = null;
                 complete();
