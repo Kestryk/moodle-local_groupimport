@@ -23,6 +23,7 @@
  */
 
 import * as Motion from '../../motion';
+import {setSelectionBar, animateListArrival, listPageChanged} from './transitions';
 import * as Guide from '../../easyedu_guide';
 import Log from 'core/log';
 import {fetchState} from '../sm/store';
@@ -499,7 +500,7 @@ const renderMobileActionBar = (root, counts, activetype) => {
 
     if (!buttons || !summary || !total) {
         bar.removeAttribute('data-easystud-mobile-actions-type');
-        bar.hidden = true;
+        setSelectionBar(bar, false);
         return;
     }
 
@@ -534,7 +535,7 @@ const renderMobileActionBar = (root, counts, activetype) => {
 
     if (!actions.length) {
         bar.removeAttribute('data-easystud-mobile-actions-type');
-        bar.hidden = true;
+        setSelectionBar(bar, false);
         return;
     }
 
@@ -576,7 +577,7 @@ const renderMobileActionBar = (root, counts, activetype) => {
             button.remove();
         }
     });
-    bar.hidden = false;
+    setSelectionBar(bar, true);
 };
 
 export const updateSelectionActions = root => {
@@ -826,9 +827,14 @@ const renderOnDemandParticipantPage = (root, list, config) => {
     const pageIds = ordered.slice(page * config.limit, (page + 1) * config.limit);
     const key = model.revision + '|' + pageIds.join(',');
     if (list.easystudSmRenderedKey !== key) {
-        model.pageCards = new Map(renderParticipantPage(model, list, pageIds).map(card =>
+        const arrived = listPageChanged(list, pageIds);
+        const rendered = renderParticipantPage(model, list, pageIds);
+        model.pageCards = new Map(rendered.map(card =>
             [Number(card.getAttribute('data-user-id')), syncCardSelection(model, card)]));
         list.easystudSmRenderedKey = key;
+        if (arrived) {
+            animateListArrival(rendered);
+        }
         updateSelectionAvailability(root);
         syncResponsiveDragAvailability(root);
         scheduleParticipantTagOverflow(root);
