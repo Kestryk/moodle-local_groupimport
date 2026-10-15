@@ -166,7 +166,13 @@ export const bindResponsiveParticipantNavigation = root => {
             link.className = 'easyedu-navigation__item easyedu-navigation__participant-link';
             link.setAttribute('data-easyedu-navigation-participant-item', '1');
             link.href = url;
-            link.textContent = item.textContent.trim();
+            const linkLabel = document.createElement('span');
+            linkLabel.className = 'easyedu-navigation__item-label';
+            linkLabel.textContent = item.textContent.trim();
+            const chevron = document.createElement('span');
+            chevron.className = 'easyedu-navigation__item-chevron fa fa-chevron-right';
+            chevron.setAttribute('aria-hidden', 'true');
+            link.append(linkLabel, chevron);
             // The current EasyStud destination is already exposed by the tools
             // category; avoid exposing a second current-page marker here.
             if (!panel.querySelector('[aria-current="page"]') &&
