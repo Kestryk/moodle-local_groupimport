@@ -1,4 +1,24 @@
 {
+  "codex2Complement5Readiness20261015": {
+    "status": "seven-recipes-prepared-native-pending-full-publication",
+    "documentation": "docs/testing/codex2-complement5-readiness-2026-10-15.md",
+    "teacherSpec": "tools/playwright/complement5-served-recipes-native.spec.js",
+    "studentSpec": "tools/playwright/complement5-student-native.spec.js",
+    "studentLauncher": "tools/playwright/Invoke-EasyStudStudentRecipe.ps1",
+    "principalChecked": "8c6caa37",
+    "S9Served": "f45e2885 plus 14b895d0",
+    "pendingBundle": ["77bffb8e", "646c8828", "7c19571a", "K15-28"],
+    "guideCompact10": "non-certified-in-development-Move-through-overflow-menu-approved",
+    "harmonyMaxAdjacentHeightDeltaPx": 1,
+    "studentHarmony": "not applicable; EasyStud cards must be absent",
+    "motionPersonalPreferencePolicy": "M1 contract pending; OS probe not future-policy certification",
+    "syntaxLintDiscoveryPass": true,
+    "testsDiscovered": 7,
+    "nativeVerified": false,
+    "studentAccountCreated": false,
+    "productEdited": false,
+    "scenarioClass": "local-supervised"
+  },
   "codex2Complement3Readiness20261015": {
     "status": "prepared-native-pending-S9-publication",
     "documentation": "docs/testing/codex2-complement3-readiness-2026-10-15.md",

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N0] Prepare Complement5 targeted S9/T020/Mass/eye/action-menu motion/Alt recipes and actual-student K15-28 isolation, with teacher-card harmony; compact Guide10 marked in development. Syntax/lint/discovery only, no product/runtime edit.
+
 - 2026-10-15 [N0] Prepare five Complement3 native recipes with adjacent-pill height evidence; preserve publication gate for S9 and leave compact Guide10 awaiting Kevin. Syntax/lint/discovery only, no runtime replay.
 
 - 2026-10-15 [N1] Close served loading/admin QA: simultaneous skeleton columns and hidden pending-font glyphs recover normally; admin/outside1280/390 PASS after complete js sync;13disposable courses and exact palette restoration DB-verified.
