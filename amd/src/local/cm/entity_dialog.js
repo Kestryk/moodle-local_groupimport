@@ -215,7 +215,7 @@ const exportTable = (rows, columns) =>
     '</table>';
 
 /**
- * One relation disclosure section: chevron, title, counter, CSV text action.
+ * One relation disclosure section: chevron, title, counter pill, CSV text action.
  *
  * The native details element keeps the existing disclosure Motion (bindAnimatedDetails)
  * and the data-easystud-settings-list-section hooks of the CSV export.
@@ -223,6 +223,9 @@ const exportTable = (rows, columns) =>
  * @param {Object} section {title, countText, content, rows, columns, exportName, exportLabel, type}.
  * @returns {String}
  */
+// Kevin 16/10 no. 15: the section counters are 22px pills in the tone of their relation.
+const countTones = {role: 'role', group: 'group', groups: 'group', members: 'group', grouping: 'grouping', groupings: 'grouping'};
+
 export const entityRelationSection = section => {
     const rows = section.rows || [];
     const csv = !!section.columns;
@@ -233,7 +236,8 @@ export const entityRelationSection = section => {
         '<summary class="' + prefix + '__relation-summary">' +
             '<span class="' + prefix + '__relation-chevron fa fa-chevron-up" aria-hidden="true"></span>' +
             '<span class="' + prefix + '__relation-title">' + escapeHtml(section.title) + '</span>' +
-            '<span class="' + prefix + '__relation-count">' + escapeHtml(section.countText) + '</span>' +
+            '<span class="' + prefix + '__relation-count ' + prefix + '__pill ' + prefix + '__pill--' +
+                escapeHtml(countTones[section.type] || 'empty') + '">' + escapeHtml(section.countText) + '</span>' +
             (csv ? '<button type="button" class="' + prefix + '__text-action ' + prefix + '__csv" ' +
                 'data-easystud-settings-export="1" aria-label="' + escapeHtml(section.exportLabel || 'CSV') + '"' +
                 (rows.length ? '' : ' disabled') + '>CSV</button>' : '') +
