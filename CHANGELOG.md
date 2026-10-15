@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N0] Document Ctrl/Cmd, Alt and Shift click in the existing FR/EN Guide keyboard help after Claude Alt selection integration; preserve checkbox keyboard instructions.
+
 - 2026-10-15 [N0] Record native localhost K21 counts FR/EN1280/390 and Claude Motion/Alt/dropdown1280 proofs; preserve earlier intake and :8051 evidence.
 
 - 2026-10-15 [N1] K15-25/K17 names the participant column Participants via the existing Moodle string; keep the workspace selector Participants & groups and its correct Guide/checklist view references.
