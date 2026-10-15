@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Integrate Claude Drawer V1: compact scrolling navigation, dedicated space labels, Guide focus and Moodle opener suppression; synchronize canonical Kit0.4.215/e099212 with authorized RTL/JS/template resolutions, preserving M2 and desktop context.
+
 - 2026-10-15 [N0] Verify delivery6 across FR1600/1280/768/390: sampled label harmony, filters, title spacing/counter order and responsive containment; preserve full visual/human acceptance separately.
 
 - 2026-10-15 [N1] Integrate Claude delivery6:22px labels and D3 harmony, groups-before-groupings counts, light responsive cards, text More filters with count, A3 identity titles/underline and quiet actions; retain grouping title through overflow actions. Kit0.4.214/2b8b510 synchronized.
