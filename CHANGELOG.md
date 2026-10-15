@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Integrate Claude M1/M2 animation levels: administrator default, shared user preference and privacy handling, server root/body markers, one SCSS policy and reduced effects; synchronize Kit0.4.213/c4fe248, preserving canonical compact navigation. Upgrade2026101501 replaces enableanimations.
+
 - 2026-10-15 [N1] Integrate Claude compact Guide10 card-menu Add to group flow, target-aware checklist docking and shared full/reduced/minimal JavaScript Motion; preserve compact minimization and localize the three compact instructions in FR/EN.
 
 - 2026-10-15 [N0] Certify quick fixes on localhost: participant title FR/EN1280/390, responsive eye390/768 and panel Motion ownership; migrate and verify the staff-only course-home tour with an existing synthetic student in native Moodle1280/390.

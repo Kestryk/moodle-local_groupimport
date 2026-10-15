@@ -1,4 +1,14 @@
 {
+"claudeM1M2Integration20261015": {
+  "incoming": ["1aaad8c4", "270c2ca7", "d8e39162"],
+  "source": ["89dd8bef", "4b944790", "266188d8"],
+  "kit": "0.4.213 / c4fe248",
+  "authorizedResolution": "canonical navigation retained; animations import and true OS motion media converted only",
+  "version": 2026101501,
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "claudeGuideM3Integration20261015": {
   "incoming": ["aeb5b232", "9ff5aa83", "221e7027"],
   "source": ["67c134c2", "c615fead", "6e9f0bc5"],

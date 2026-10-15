@@ -4,6 +4,11 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "motionLevelsM1M2_20261015": {
+      "kitVersion": "0.4.213",
+      "kitCommit": "c4fe248",
+      "scope": "Shared motion levels; preserve canonical navigation compact/coarse media"
+    },
     "palettePopoverK1507_20261015": {
       "kitVersion": "0.4.212",
       "kitCommit": "30c7989",
