@@ -1,0 +1,141 @@
+// Light responsive cards (Kevin, 16/10/2026, D1 variant A, PENPOT-S6-B).
+// Same identity as the current cards (20 px rail and icon, checkbox, title,
+// eye, menu, member rows), only lightened in the responsive workspace: no
+// shadow at rest, a hairline instead of the card border, 10 / 12 px paddings,
+// participant metadata on one line of pills, member rows separated by a
+// hairline and 14 px action icons. Desktop cards are unchanged.
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace {
+  $rest: ":not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target)";
+
+  .local-groupimport-easystud-user,
+  .local-groupimport-easystud-group,
+  .local-groupimport-easystud-tree__section {
+    &#{$rest} {
+      border-block-color: var(--easyedu-card-hairline);
+      border-inline-end-color: var(--easyedu-card-hairline);
+      box-shadow: none;
+    }
+  }
+
+  .local-groupimport-easystud-user {
+    padding-block: 0.625rem;
+  }
+
+  .local-groupimport-easystud-group,
+  .local-groupimport-easystud-tree__section {
+    padding-block: 0.625rem;
+    padding-inline-start: 0.75rem;
+  }
+
+  // Participant: email under the name, then one line of pills
+  // (role, groups, groupings). The row captions stay for assistive technology.
+  // Rows share one line when their pills fit and wrap otherwise. A row is
+  // never wider than the card, so the existing "+N" overflow measure still
+  // applies; the 1 px end padding absorbs the rounding of clientWidth.
+  .local-groupimport-easystud-user__meta {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.375rem;
+  }
+
+  .local-groupimport-easystud-user__meta-group {
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    gap: 0;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .local-groupimport-easystud-user__meta-tags {
+    min-width: 0;
+    padding-inline-end: 1px;
+  }
+
+  .local-groupimport-easystud-user__headline {
+    row-gap: 0.25rem;
+  }
+
+  // The eye keeps its 32 px target without growing the name line.
+  .local-groupimport-easystud-user__detail-button {
+    margin-block: calc((1.35 * var(--easyedu-card-identity-title-size) - var(--easyedu-card-action-target)) / 2);
+  }
+
+  .local-groupimport-easystud-user__meta-label {
+    block-size: 1px;
+    clip: rect(0, 0, 0, 0);
+    inline-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+  }
+
+  .local-groupimport-easystud-user__meta-tags {
+    gap: 0.375rem;
+  }
+
+  // Group and grouping headers: the title owns the first line; the labels
+  // (groupings, member or group counter) share the line below it.
+  .local-groupimport-easystud-group__header {
+    flex-wrap: wrap;
+    row-gap: 0.375rem;
+
+    > .local-groupimport-easystud-group__name {
+      flex: 1 0 100%;
+    }
+
+    > .local-groupimport-easystud-group__groupings--inline {
+      flex: 0 1 auto;
+      order: 8;
+    }
+
+    > .badge {
+      margin-inline-start: 0;
+      order: 9;
+    }
+
+    // The menu stays anchored on the title line, not on the two-line header.
+    > .local-groupimport-easystud-card-menu {
+      top: calc(1.25 * var(--easyedu-card-identity-title-size) / 2);
+    }
+  }
+
+  .local-groupimport-easystud-grouping__header > .local-groupimport-easystud-tree__toggle {
+    flex-wrap: wrap;
+    row-gap: 0.375rem;
+
+    > .local-groupimport-easystud-grouping__name {
+      flex: 1 1 calc(100% - 2rem);
+    }
+
+    > .badge {
+      margin-inline-start: 1.75rem;
+    }
+  }
+
+  // Member rows without their own surface, separated by the hairline.
+  .local-groupimport-easystud-member:not(.is-selected):not(.is-drop-target) {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--easyedu-card-hairline);
+    border-radius: 0;
+  }
+
+  .local-groupimport-easystud-group__members > .local-groupimport-easystud-member:last-child {
+    border-bottom-color: transparent;
+  }
+
+  // Action icons at 14 px.
+  .local-groupimport-easystud-user__detail-button .fa,
+  .local-groupimport-easystud-card-menu__icon.fa,
+  .local-groupimport-easystud-group__header > .btn-link .fa,
+  .local-groupimport-easystud-grouping__header > .btn-link .fa {
+    font-size: var(--easyedu-card-action-icon-size);
+  }
+}
