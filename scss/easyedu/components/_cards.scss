@@ -382,6 +382,8 @@
     padding-inline: 0;
 
     > .easyedu-related-person-row {
+      border: var(--easyedu-entity-row-border) solid transparent;
+      box-sizing: border-box;
       column-gap: var(--easyedu-entity-column-gap);
       display: grid;
       grid-template-columns: var(--easyedu-entity-selection-column) minmax(0, 1fr) var(--easyedu-entity-action-column);
@@ -458,6 +460,11 @@
     margin: 0;
     pointer-events: auto;
     position: static;
+    > button {
+      block-size: var(--easyedu-card-action-target);
+      box-sizing: border-box;
+      min-block-size: var(--easyedu-card-action-target);
+    }
   }
 }
 

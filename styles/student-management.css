@@ -11815,10 +11815,6 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 .local-groupimport-easystud-tree__children[hidden] ~ .local-groupimport-easystud-long-list {display: none;
 }
-.local-groupimport-easystud-long-list__foldable .local-groupimport-easystud-group__header .local-groupimport-easystud-group__members-toggle {flex: 0 0 auto;width: 2rem;height: 2rem;margin: 0;padding: 0;
-}
-.local-groupimport-easystud-long-list__foldable .local-groupimport-easystud-group__header .local-groupimport-easystud-group__members-toggle[aria-expanded=false] .fa {transform: rotate(-90deg);
-}
 
 @media (max-width: 1024px) {
   #local-groupimport-easystud[data-easystud-mobile-view-active=groups]:has([data-easystud-catalog-show-ungrouped=structure]:checked) .local-groupimport-easystud-structure-groups {display: none;
@@ -11959,7 +11955,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members {margin-inline: 0;padding-inline: 0;
 }
-#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-related-person-row {column-gap: var(--easyedu-entity-column-gap);display: grid;grid-template-columns: var(--easyedu-entity-selection-column) minmax(0, 1fr) var(--easyedu-entity-action-column);min-block-size: max(var(--easyedu-related-person-line), var(--easyedu-entity-selection-column) + 2 * var(--easyedu-entity-row-border));padding-inline: 0;
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-related-person-row {border: var(--easyedu-entity-row-border) solid transparent;box-sizing: border-box;column-gap: var(--easyedu-entity-column-gap);display: grid;grid-template-columns: var(--easyedu-entity-selection-column) minmax(0, 1fr) var(--easyedu-entity-action-column);min-block-size: max(var(--easyedu-related-person-line), var(--easyedu-entity-selection-column) + 2 * var(--easyedu-entity-row-border));padding-inline: 0;
 }
 #local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__members > .easyedu-related-person-row > .easyedu-related-person-row__selector {block-size: var(--easyedu-entity-selection-column);grid-area: auto;grid-column: 1;grid-row: 1;inline-size: var(--easyedu-entity-selection-column);margin: 0;min-block-size: var(--easyedu-entity-selection-column);min-inline-size: var(--easyedu-entity-selection-column);
 }
@@ -11978,6 +11974,8 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 #local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__reveal:not([hidden]) {block-size: var(--easyedu-card-action-target);grid-column: 2;inline-size: var(--easyedu-card-action-target);margin: 0;padding: 0;
 }
 #local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) {align-items: center;block-size: var(--easyedu-card-action-target);grid-column: 3;justify-self: end;margin: 0;pointer-events: auto;position: static;
+}
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) > button {block-size: var(--easyedu-card-action-target);box-sizing: border-box;min-block-size: var(--easyedu-card-action-target);
 }
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {--easyedu-entity-selection-column: var(--easyedu-touch-target-min);--easyedu-entity-action-column: var(--easyedu-touch-target-min);
 }
