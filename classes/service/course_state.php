@@ -226,8 +226,8 @@ class course_state {
     /**
      * What manage.php still needs in on-demand mode, in the course_structure::get_state() shape.
      *
-     * The browser renders every card from build(); the page itself only needs the role names
-     * of the enrolled users (role filter), the participant count, the group names (group
+     * The browser renders every card from build(); the page itself only needs the course roles
+     * of the enrolled users (role filter: role id => name), the participant count, the group names (group
      * filter) and the grouping headers. No picture, description or profile field is loaded,
      * so the page cost no longer grows with the participants' data (10 000 users exhausted
      * 512 MB in the legacy page).
@@ -249,9 +249,10 @@ class course_state {
         foreach ($userids as $userid) {
             $users[$userid] = [
                 'id' => $userid,
-                'roles' => array_values(array_map(static function(int $roleid) use ($rolenames): string {
+                // Role id => name: the role filter matches role ids, two roles can share a name.
+                'roles' => array_map(static function(int $roleid) use ($rolenames): string {
                     return $rolenames[$roleid];
-                }, $userroles[$userid] ?? [])),
+                }, $userroles[$userid] ?? []),
             ];
         }
 

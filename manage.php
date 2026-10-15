@@ -223,16 +223,19 @@ echo $OUTPUT->render_from_template('local_groupimport/manage', $templatedata);
 echo $OUTPUT->footer();
 
 /**
- * Build role filter options from users.
+ * Build role filter options from users: one option per course role, valued by its role id.
  *
- * @param array $users User records.
- * @return array
+ * The browser matches these ids against the course role ids of the state (V2 n°6), never
+ * role names: two roles can share a name (custom role, course role renaming).
+ *
+ * @param array $users User records, 'roles' being role id => name.
+ * @return array Role id => name, sorted by name.
  */
 function local_groupimport_role_filter_options(array $users): array {
     $roles = [];
     foreach ($users as $user) {
-        foreach ($user['roles'] as $role) {
-            $roles[core_text::strtolower($role)] = $role;
+        foreach ($user['roles'] as $roleid => $role) {
+            $roles[(int)$roleid] = $role;
         }
     }
     natcasesort($roles);

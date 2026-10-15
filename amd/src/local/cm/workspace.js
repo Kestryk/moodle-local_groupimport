@@ -398,7 +398,8 @@ export const applyFilters = (root, options = {}) => {
     const groupControl = root.querySelector('[data-easystud-group-filter]');
     const groupingControl = root.querySelector('[data-easystud-grouping-filter]');
     const query = normalise(searchControl ? searchControl.value : '');
-    const selectedroles = getSelectedFilterValues(roleControl).map(normalise);
+    // V2 n°6: role ids (option values), matched against the course role ids of the state.
+    const selectedroles = getSelectedFilterValues(roleControl);
     const selectedgroups = getSelectedFilterValues(groupControl);
     const selectedgroupings = (root.classList.contains(participantFocusClass) ||
         root.getAttribute('data-easystud-mobile-view-active') === 'participants') ?

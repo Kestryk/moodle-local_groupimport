@@ -31,11 +31,12 @@ test('Teacher role filter hides the Student-only canonical participant card', as
     await openManagementPage(page);
 
     const roleSelect = page.locator('[data-easystud-role-filter="1"]');
-    const teacherOption = roleSelect.locator('option[value="teacher"]');
+    // V2 n°6: options are valued by role id; find the Teacher role by its label.
+    const teacherOption = roleSelect.locator('option', {hasText: /^Teacher$/});
     const advancedFiltersToggle = page.locator(
         '[data-easystud-advanced-filters-toggle="participants"]'
     );
-    const teacherChoice = page.loc('[data-easystud-role-choice="teacher"]');
+    const teacherChoice = page.locator('[data-easystud-role-choice]', {hasText: /^Teacher$/});
     const canonicalCard = page.locator('[data-easystud-user="1"][data-user-id="22"]');
     await expect(roleSelect).toHaveCount(1);
     await expect(teacherOption).toHaveCount(1);
@@ -73,7 +74,8 @@ test('Teacher role filter hides the Student-only canonical participant card', as
             roleControls: {
                 selectDisplay: getComputedStyle(select).display,
                 teacherButtonDisplay: getComputedStyle(
-                    document.querySelector('[data-easystud-role-choice="teacher"]')
+                    Array.from(document.querySelectorAll('[data-easystud-role-choice]'))
+                        .find(button => button.textContent.trim() === 'Teacher')
                 ).display,
             },
             canonical: describe(card),
@@ -91,7 +93,7 @@ test('Teacher role filter hides the Student-only canonical participant card', as
         fullPage: false,
     });
 
-    expect(diagnostics.selectedRoles).toEqual(['teacher']);
+    expect(diagnostics.selectedRoles).toEqual([await teacherOption.getAttribute('value')]);
     expect(diagnostics.canonical.hidden).toBe(true);
     expect(diagnostics.canonical.filterHidden).toBe('1');
     expect(diagnostics.canonical.computedDisplay).toBe('none');
