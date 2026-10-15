@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N0] Certify quick fixes on localhost: participant title FR/EN1280/390, responsive eye390/768 and panel Motion ownership; migrate and verify the staff-only course-home tour with an existing synthetic student in native Moodle1280/390.
+
 - 2026-10-15 [N1] K15-28/R7 restricts the native course-home invitation to teaching/admin roles on fresh and existing installations; preserve tour steps and all unrelated configuration. Version2026101500.
 
 - 2026-10-15 [N1] K15-23 lets Motion own panel opacity/transform during view changes; retain only the panel shadow transition and all floating-menu Motion.

@@ -1,5 +1,19 @@
 # Preserved native successors, 15 October
 
+Student boundary is local-supervised: student-native-boundary.spec.js, -ready,
+-controls preserve failed login-readiness/Continue/pagetype harnesses; -pagetype
+is the source-derived final successor,103503008Z-19532 PASS FR1280/390 course/native
+Participants. student-native-context.php is read-only. Requires existing synthetic
+student, admin Login as and installed migration; no accounts/enrolments created.
+CI requires an isolated Moodle fixture and browser auth. Human review remains open.
+
+K21 k21-served-counts-native.spec.js + read-only k21-course-counts.php are
+local-supervised: SSR/live labels against native course5 counts, FR/EN1280/390;
+094704959Z-40228 PASS. Live Moodle authentication/course data block deterministic CI.
+quickfix-title-eye-native.spec.js is local-supervised: title FR/EN1280/390,
+responsive first-line eye centres390/768, actual panel return/transition ownership;
+100223443Z-17800 PASS. Keep media outside Git; card acceptance remains human.
+
 These are local-supervised or exploratory recipes, not deterministic CI gates.
 Shared Platform registry propagation remains with its owner; no foreign worktree
 was modified for this handoff.
