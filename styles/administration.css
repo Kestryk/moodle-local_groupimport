@@ -1,3 +1,5 @@
+html.easyedu-navigation-open .drawer-toggles {visibility: hidden;
+}
 html.easyedu-navigation-open,
 html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }

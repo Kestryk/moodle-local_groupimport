@@ -606,6 +606,11 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 }
 .local-groupimport-easystud__navigation .easyedu-navigation__panel .easyedu-navigation__section--participants .easyedu-navigation__item-chevron {color: var(--easyedu-primary);flex: 0 0 auto;font-size: 0.75rem;
 }
+html.easyedu-navigation-open .drawer-toggles {visibility: hidden;
+}
+
+.local-groupimport-easystud__navigation .easyedu-navigation__panel .easyedu-navigation__guide-slot .easyedu-guide__launcher:focus-visible {box-shadow: 0 0 0 0.09375rem color-mix(in srgb, var(--easyedu-primary) 35%, transparent);
+}
 html.easyedu-navigation-open,
 html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }

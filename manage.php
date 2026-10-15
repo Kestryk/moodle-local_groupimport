@@ -1842,6 +1842,7 @@ function local_groupimport_build_navigation_context(
         'participantnavigationlabel' => get_string('mobilenavigationmoodle', 'local_groupimport'),
         'participantdropdown' => $native,
         'sections' => $sections,
+        'drawersections' => local_groupimport_build_drawer_sections($sections),
     ];
 }
 

@@ -448,6 +448,34 @@ function local_groupimport_prepare_manage_names(array $state, context_course $co
 }
 
 /**
+ * Build the compact drawer sections from the shared navigation sections.
+ *
+ * Only the drawer wording differs from the desktop rail; ids, URLs, actions and
+ * capability-filtered membership of the items are copied unchanged.
+ *
+ * @param array $sections Shared navigation sections.
+ * @return array
+ */
+function local_groupimport_build_drawer_sections(array $sections): array {
+    $labels = [
+        'easystud-manager' => get_string('drawermanager', 'local_groupimport'),
+        'easystud-import' => get_string('drawerimport', 'local_groupimport'),
+        'easystud-clipboard' => get_string('drawerclipboard', 'local_groupimport'),
+    ];
+    foreach ($sections as &$section) {
+        foreach ($section['items'] as &$item) {
+            if (isset($labels[$item['id']])) {
+                $item['label'] = $labels[$item['id']];
+                $item['accessiblelabel'] = $labels[$item['id']];
+            }
+        }
+        unset($item);
+    }
+    unset($section);
+    return $sections;
+}
+
+/**
  * Build the shared-navigation context for the Mass Import workspace.
  *
  * The participant selector and Guide remain Simplified Student Management
@@ -530,6 +558,12 @@ function local_groupimport_build_mass_import_navigation_context(stdClass $course
         'haschildren' => false,
     ];
 
+    $sections = [[
+        'id' => 'easystud-tools',
+        'label' => get_string('easystudlabel', 'local_groupimport'),
+        'items' => $items,
+    ]];
+
     return [
         'rootid' => 'local-groupimport-import-navigation',
         'panelid' => 'local-groupimport-import-navigation-panel',
@@ -545,11 +579,8 @@ function local_groupimport_build_mass_import_navigation_context(stdClass $course
         'spaceslabel' => get_string('mobilenavigationspaces', 'local_groupimport'),
         'hasitems' => true,
         'hasparticipantdropdown' => false,
-        'sections' => [[
-            'id' => 'easystud-tools',
-            'label' => get_string('easystudlabel', 'local_groupimport'),
-            'items' => $items,
-        ]],
+        'sections' => $sections,
+        'drawersections' => local_groupimport_build_drawer_sections($sections),
     ];
 }
 

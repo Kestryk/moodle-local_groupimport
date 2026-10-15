@@ -796,6 +796,15 @@
     }
   }
 
+  // Moodle's own drawer opener (z-index 1200) must not paint over the drawer.
+  @at-root html.easyedu-navigation-open .drawer-toggles {
+    visibility: hidden;
+  }
+
+  .easyedu-navigation__panel .easyedu-navigation__guide-slot .easyedu-guide__launcher:focus-visible {
+    box-shadow: 0 0 0 0.09375rem color-mix(in srgb, var(--easyedu-primary) 35%, transparent);
+  }
+
   @at-root html.easyedu-navigation-open,
   html.easyedu-navigation-open body {
     @include navigation-document-open-state;
