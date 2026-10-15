@@ -873,6 +873,20 @@
   inline-size: 16px;
   min-inline-size: 16px;
   padding: 0;
+  // Own pixel-snapped layer: the digit keeps the same place in the disc whatever the
+  // fractional position of the capsule (Moins/Plus de filtres differed by half a pixel).
+  will-change: transform;
+
+  // K16-04/K16-47: centre the digit's ink, not its font box. The line box is trimmed to the
+  // cap height, then placed in the middle of the 16 px disc (text-box needs a block container).
+  @supports (text-box: trim-both cap alphabetic) and (padding-top: 1cap) {
+    display: inline-block;
+    // The font draws its digits ~0.6 px below its cap box (measured at 100 % and 200 %).
+    padding-block-start: calc((16px - 1cap) / 2 - 0.6px);
+    text-align: center;
+    text-box: trim-both cap alphabetic;
+    vertical-align: middle;
+  }
 
   &[hidden] {
     display: none;
