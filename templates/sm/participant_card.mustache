@@ -61,9 +61,9 @@
     <div class="local-groupimport-easystud-user__rail">
         <div class="local-groupimport-easystud-user__avatar">{{{profileimage}}}</div>
     </div>
-    <div class="local-groupimport-easystud-user__main">
-        <div class="local-groupimport-easystud-user__headline">
-            <div class="local-groupimport-easystud-user__headline-main">
+    <div class="local-groupimport-easystud-user__main easyedu-person-card__main">
+        <div class="local-groupimport-easystud-user__headline easyedu-person-card__headline">
+            <div class="local-groupimport-easystud-user__headline-main easyedu-person-card__headline-main">
                 <strong class="local-groupimport-easystud-user__name">{{fullname}}</strong>
                 {{#primarybadge}}
                     <span
@@ -74,10 +74,10 @@
                     >{{value}}</span>
                 {{/primarybadge}}
             </div>
-            <span class="local-groupimport-easystud-user__email">{{email}}</span>
+            <span class="local-groupimport-easystud-user__email easyedu-person-card__email">{{email}}</span>
             <button
                 type="button"
-                class="btn btn-link p-0 local-groupimport-easystud-user__detail-button"
+                class="btn btn-link p-0 local-groupimport-easystud-user__detail-button easyedu-person-card__detail-button"
                 data-easystud-open-user="{{id}}"
                 aria-label="{{viewdetailslabel}}"
                 data-easystud-hover-help="{{viewdetailslabel}}"
@@ -85,10 +85,10 @@
                 <span class="fa fa-eye" aria-hidden="true"></span>
             </button>
         </div>
-        <div class="local-groupimport-easystud-user__meta">
+        <div class="local-groupimport-easystud-user__meta easyedu-person-card__meta">
             {{#rolesmeta}}
-                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline">
-                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                <div class="local-groupimport-easystud-user__meta-group easyedu-person-card__meta-group local-groupimport-easystud-user__meta-group--inline">
+                    <span class="local-groupimport-easystud-user__meta-label easyedu-person-card__meta-label">{{label}}</span>
                     <div class="local-groupimport-easystud-user__meta-tags">
                         {{#tokens}}
                             <span
@@ -110,8 +110,8 @@
                 </div>
             {{/rolesmeta}}
             {{#groupsmeta}}
-                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groups">
-                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                <div class="local-groupimport-easystud-user__meta-group easyedu-person-card__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groups">
+                    <span class="local-groupimport-easystud-user__meta-label easyedu-person-card__meta-label">{{label}}</span>
                     <div class="local-groupimport-easystud-user__meta-tags">
                         {{#tokens}}
                             <span
@@ -133,8 +133,8 @@
                 </div>
             {{/groupsmeta}}
             {{#groupingsmeta}}
-                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groupings">
-                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                <div class="local-groupimport-easystud-user__meta-group easyedu-person-card__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-memberships="groupings">
+                    <span class="local-groupimport-easystud-user__meta-label easyedu-person-card__meta-label">{{label}}</span>
                     <div class="local-groupimport-easystud-user__meta-tags">
                         {{#tokens}}
                             <span
@@ -156,8 +156,8 @@
                 </div>
             {{/groupingsmeta}}
             {{#customfieldsmeta}}
-                <div class="local-groupimport-easystud-user__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-profile="field">
-                    <span class="local-groupimport-easystud-user__meta-label">{{label}}</span>
+                <div class="local-groupimport-easystud-user__meta-group easyedu-person-card__meta-group local-groupimport-easystud-user__meta-group--inline" data-easystud-participant-profile="field">
+                    <span class="local-groupimport-easystud-user__meta-label easyedu-person-card__meta-label">{{label}}</span>
                     <div class="local-groupimport-easystud-user__meta-tags">
                         {{#tokens}}
                             <span

@@ -220,19 +220,94 @@
   font-weight: var(--easyedu-font-weight-semibold);
 }
 
-// A3 V3 accent underline (Kevin, 14/10/2026): a decorative 24 x 2 px bar in
-// the entity colour at 50 %, aligned with the title's start edge, 2 px under
-// the title line box (3 px under the descenders, option B). The reserved
-// padding is returned by a negative margin, so the header keeps its height
-// and the title keeps its centre line.
+// A3 K16-05: the shared controller places a 32x2px, 35% accent at the actual
+// text edge minus4px, on whole CSS pixels. Text layout owns no decorative width.
 @mixin card-title-accent($color) {
-  $accent: color-mix(in srgb, #{$color} 50%, transparent);
-  background-image: linear-gradient(#{$accent}, #{$accent});
-  background-position: left 0 bottom 0;
-  background-repeat: no-repeat;
-  background-size: 1.5rem 0.125rem;
-  margin-block-end: -0.25rem;
-  padding-block-end: 0.25rem;
+  --easyedu-card-title-accent-color: #{$color};
+  background-image: none;
+  line-height: 20px;
+  // Measured text metrics: keep the Range and box centres within half a pixel.
+  margin-block: -2px 0;
+  padding-block: 2px 0;
+}
+
+@mixin card-title-accent-overlay {
+  .easyedu-card-accent-host { position: relative; }
+  .easyedu-card-title-accent {
+    background: var(--easyedu-card-title-accent-color);
+    block-size: 2px;
+    display: block;
+    inline-size: 32px;
+    opacity: 0.35;
+    pointer-events: none;
+    position: absolute;
+    &[hidden] { display: none; }
+  }
+}
+
+// A single text column and one measured first line, independent of metadata rows.
+@mixin person-card-aligned-content {
+  align-items: start;
+  max-block-size: none;
+  padding-block: 8px;
+  --easyedu-person-first-line: 22px;
+  --easyedu-person-line-centre-adjust: -1px;
+
+  .easyedu-person-card__headline {
+    align-items: center;
+    display: grid;
+    gap: 4px 8px;
+    grid-template-areas: "identity action" "email .";
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: var(--easyedu-person-first-line) auto;
+    margin-bottom: 0;
+  }
+  .easyedu-person-card__headline-main {
+    block-size: var(--easyedu-person-first-line);
+    min-block-size: 0;
+    padding-inline-start: 0;
+  }
+  .easyedu-person-card__main,
+  .easyedu-person-card__meta {
+    margin-inline-start: 0;
+    padding-inline-start: 0;
+  }
+  .easyedu-person-card__meta {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .easyedu-person-card__meta-group {
+    gap: 0;
+    max-inline-size: 100%;
+  }
+  .easyedu-person-card__meta-label {
+    block-size: 1px;
+    clip: rect(0, 0, 0, 0);
+    inline-size: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+  }
+  .easyedu-person-card__email {
+    grid-area: email;
+    min-inline-size: 0;
+  }
+  .easyedu-person-card__detail-button {
+    align-self: center;
+    margin-block: -5px;
+    position: relative;
+    top: var(--easyedu-person-line-centre-adjust);
+  }
+}
+
+@mixin person-card-aligned-selector($padding, $target) {
+  position: absolute;
+  top: calc(#{$padding} + (var(--easyedu-person-first-line) - #{$target}) / 2 + var(--easyedu-person-line-centre-adjust));
+  transform: none;
 }
 
 // A related participant inside a Group is subordinate to the card identity,

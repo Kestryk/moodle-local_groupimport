@@ -1,0 +1,38 @@
+// Kevin K16-04..11: compositions consume canonical Kit recipes after responsive rules.
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  @include easyedu.card-title-accent-overlay;
+  .local-groupimport-easystud-user {
+    @include easyedu.person-card-aligned-content;
+    > .local-groupimport-easystud-selector {
+      @include easyedu.person-card-aligned-selector(8px, 32px);
+    }
+  }
+  .local-groupimport-easystud-pagination__select {
+    @include easyedu.pagination-select-button;
+    block-size: var(--easyedu-toolbar-control-height);
+  }
+  .easyedu-filter-actions {
+    @include easyedu.filter-actions-stacked;
+  }
+  .local-groupimport-easystud__filters-reset {
+    @include easyedu.selection-recovery-action;
+  }
+  .local-groupimport-easystud-user__meta .badge {
+    @include easyedu.card-label;
+  }
+  &.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {
+    > .local-groupimport-easystud-selector {
+      @include easyedu.person-card-aligned-selector(10px, 44px);
+    }
+    > .local-groupimport-easystud-card-menu {
+      top: calc(10px + (var(--easyedu-person-first-line) - 44px) / 2 + var(--easyedu-person-line-centre-adjust));
+    }
+  }
+  @media (max-width: 30rem) {
+    .local-groupimport-easystud__panel {
+      @include easyedu.navigation-content-clearance(24px);
+    }
+  }
+}

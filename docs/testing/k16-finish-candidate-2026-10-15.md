@@ -1,0 +1,13 @@
+# K16 finish candidate — NOT served
+
+Base Source cb164136, localhost a619e9e0. Dedicated branch work/codex1/easystud-k16-finish-20261015. Kevin requested direct preview; publication is pending the reserved-source raccord, not human design approval.
+
+Implemented candidate: Kit filter count16x16,10px/700/tabular; card title32x2 accent35%, integer placement by shared Kit decoration controller; one participant text column and measured selector/eye/menu alignment; Kit recovery action reuse; toolbar original0.65rem radius/32px; stacked filter footer; Guide title fallback including introduction specimen (the13th pill);24px phone content clearance for native Moodle/Kit edge controls. Root-level accent controller has teardown, batched geometry reads, detached-node cleanup and no business writes.
+
+Candidate evidence (injected source CSS and semantic aliases, NOT served assets): native174455302Z-16968 FR1600/1280/768/390, four cards per width, max checkbox centre delta0.0078125px desktop/0px compact, max eye0px, max compact menu0px; name/email/meta lefts equal. Decorative text centre differs0.5px from box. Accent32x2 on integer x/y after finite transitions settle. Initial native baseline171631570Z-5256 recorded original defects. Candidate172525673Z-57288 failed relative CSS path; successor172840099Z-50964 retained the preliminary unaligned desktop case/390text offset. Overlay173710166Z-42648 sampled a moving ancestor before settlement; successor waits existing finite transitions.
+
+Isolated actual Chrome Kit proof:1600/390 count16x16,Range glyph dx0/dy-0.5px; three entity accent bars32x2/opacity.35,integer x/y. T03845checks, scoped Guide parity and namedAMD/bootstrap integrity PASS. No served FR/EN final matrix or human acceptance claim. No reserved source changed.
+
+BLOCKING ownership: K16-10 group-card helper copy needs local/sm/groups.js context, grouping DOM empty creation in local/cm/cards.js. K16-11 disabled Reset uses three existing active-state loops in local/cm/filters.js. Candidates and exact scope in external authenticated/k16-finish-20261015/RESERVED-DEPENDENCIES.md. Exception requested; pending. Kit inline-empty recipe prepared but not adopted, to avoid a partial state without localized help. No new Moodle helper inserted in browser-rendered card partials.
+
+Next: obtain limited raccord authorization or Claude commit; finish K16-10/11, full served FR/EN1600/1280/768/390 and strict all-entity/modes measurements, then publish. Queue after finish:792a3524 admin ISO, ONLY56ba011f long lists; both rebuild and same locale/width recipe. B1/B2 already served before this later request, retain history. Then R6/R8/R9.

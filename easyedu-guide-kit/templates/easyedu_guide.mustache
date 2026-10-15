@@ -73,7 +73,7 @@
                             {{#hasguidedpath}}data-easyedu-guided-label="{{guidebadgelabel}}"{{/hasguidedpath}}
                             {{#requires}}data-easyedu-guide-requires="{{requires}}"{{/requires}}
                             {{#requireslabel}}data-easyedu-guide-requires-label="{{requireslabel}}"{{/requireslabel}}
-                            {{#navtooltip}}title="{{navtooltip}}"{{/navtooltip}}
+                            title="{{#navtooltip}}{{navtooltip}}{{/navtooltip}}{{^navtooltip}}{{title}}{{/navtooltip}}"
                         >
                             <span class="easyedu-guide-nav-item__icon" aria-hidden="true">
                                 <span class="fa {{navicon}}" aria-hidden="true"></span>
@@ -522,7 +522,7 @@
                                             {{#previewlabel}}<small class="easyedu-guide-introduction__specimen-caption">{{previewlabel}}</small>{{/previewlabel}}
                                             {{#navigation}}
                                             <div class="easyedu-guide-nav easyedu-guide-introduction__navigation">
-                                                <span class="easyedu-guide-nav-item is-active">
+                                                <span class="easyedu-guide-nav-item is-active" title="{{label}}">
                                                     <span class="easyedu-guide-nav-item__icon"><span class="fa fa-compass" aria-hidden="true"></span></span>
                                                     <span class="easyedu-guide-nav-copy"><span>{{label}}</span></span>
                                                 </span>

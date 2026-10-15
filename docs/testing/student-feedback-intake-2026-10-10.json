@@ -1,4 +1,5 @@
 {
+"k16FinishCandidate20261015": {"status":"WIP not served; reserved-source raccord pending","candidateRun":"easystud-authenticated-20261015T174455302Z-16968","proofScope":"injected source CSS/aliases FR4widths4cards, isolated Kit measure; no final native FR/EN","humanAccepted":false},
 "massImportB1B2Native20261015": {"runtime":"72225abc","run":"easystud-authenticated-20261015T165404469Z-50652","scope":"real drop upload/edit/exclude/intercepted JSON; malformed count refused; real DB group/history fatal rollback, zero persistent fixture rows","pageErrors":0,"businessImportApplied":false,"humanAccepted":false},
 "massImportB2_20261015": {"static":"1000row cap before writes,120s allowance, history/memberships transaction, missing-history/fatal rollback isolated PASS","native":"pending served fixture","humanAccepted":false},
 "massImportB1_20261015": {"static":"17 PHP checks + built AMD isolated Chrome1500rows/3fields PASS; edits and exclusions retained under filtering; no-JS truncation refused","native":"pending publication","humanAccepted":false},
