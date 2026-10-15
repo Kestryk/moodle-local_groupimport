@@ -4422,14 +4422,14 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item {align-items: center;appearance: none;background: #fff;border: 1px solid #d8e4ef;border-radius: 0.82rem;color: #4b6075;cursor: pointer;display: inline-flex;flex: 0 0 12.25rem;font-size: 0.78rem;font-weight: 650;gap: 0.5rem;justify-content: flex-start;min-height: 3rem;padding: 0.45rem 0.65rem;scroll-snap-align: center;text-align: left;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, transform var(--easyedu-motion-fast) ease;
 }
-.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path),
+.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa,
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon,
-.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path),
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon {align-items: center;background: color-mix(in srgb, var(--easyedu-primary) 8%, #fff 92%);border: 1px solid color-mix(in srgb, var(--easyedu-primary) 16%, #fff 84%);border-radius: 0.62rem;color: var(--easyedu-primary);flex: 0 0 auto;display: inline-flex;height: 1.7rem;justify-content: center;width: 1.7rem;
 }
-.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path) .fa,
+.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa .fa,
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon .fa,
-.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa:not(.easyedu-guide-nav-item__path) .fa,
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item > .fa .fa,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__icon .fa {font-size: 0.78rem;line-height: 1;
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item:hover,
@@ -4473,10 +4473,16 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item.is-locked:focus-visible {border-color: #d7e0e9;box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path,
-.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path {align-items: center;background: var(--easyedu-accent-soft);border: 1px solid color-mix(in srgb, var(--easyedu-accent) 24%, var(--easyedu-surface) 76%);border-radius: 999px;color: var(--easyedu-accent);display: inline-flex !important;flex: 0 0 auto;font-size: 0.6875rem;height: 1.375rem;justify-content: center;line-height: 1;margin-inline-start: auto;width: 1.375rem;
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path {align-items: center;background: var(--easyedu-accent-soft);border: 1px solid color-mix(in srgb, var(--easyedu-accent) 24%, var(--easyedu-surface) 76%);border-radius: 999px;color: var(--easyedu-accent);display: inline-flex;flex: 0 0 auto;font-size: 0.625rem;font-weight: 800;letter-spacing: 0.04em;line-height: 1.1;margin-inline-start: auto;padding: 0.0625rem 0.375rem;text-transform: uppercase;white-space: nowrap;
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav-copy,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav-copy {display: grid;gap: 0.05rem;min-width: 0;
+}
+.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav-copy .easyedu-guide-nav-item__meta,
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav-copy .easyedu-guide-nav-item__meta {align-items: center;display: flex;gap: 0.375rem;min-height: 0.9375rem;min-width: 0;
+}
+.local-groupimport-easystud-easyedu-guide .easyedu-guide-nav-copy .easyedu-guide-nav-item__meta small,
+.path-local-groupimport .easyedu-guide .easyedu-guide-nav-copy .easyedu-guide-nav-item__meta small {min-width: 0;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
 }
 .local-groupimport-easystud-easyedu-guide .easyedu-guide-nav-copy small,
 .path-local-groupimport .easyedu-guide .easyedu-guide-nav-copy small {color: #70869c;font-size: 0.64rem;font-weight: 780;letter-spacing: 0.035em;line-height: 1.1;text-transform: uppercase;
@@ -5998,9 +6004,6 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-control);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.35;flex: 0 0 11.875rem;min-width: 0;min-height: 3rem;gap: 0.5rem;padding: 0.375rem 0.625rem;border-radius: 0.75rem;font-size: var(--easyedu-guide-font-size-control);
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item .easyedu-guide-nav-item__path {align-self: center;margin-inline-start: auto;
-}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active {background: var(--easyedu-accent-soft);border-color: var(--easyedu-accent);color: var(--easyedu-accent);transform: none;
 }
@@ -6075,7 +6078,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__kicker,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-introduction]) .easyedu-guide-slide__kicker,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__kicker,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-introduction]) .easyedu-guide-slide__kicker {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-eyebrow);font-weight: var(--easyedu-font-weight-strong);line-height: 1.3;text-transform: uppercase;color: var(--easyedu-accent);font-size: 0.68rem;margin-block: 0.5rem;
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-introduction]) .easyedu-guide-slide__kicker {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-eyebrow);font-weight: var(--easyedu-font-weight-strong);line-height: 1.3;text-transform: uppercase;color: var(--easyedu-accent);font-size: 0.68rem;margin-block: 0 0.25rem;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__content,
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-slide:has([data-easyedu-guide-scene]) .easyedu-guide-slide__content p,

@@ -1091,3 +1091,6 @@ $string['guide_nav_9'] = 'Identifiers';
 $string['guide_nav_10'] = 'Actions';
 $string['guide_nav_11'] = 'Group assignment';
 $string['guide_nav_12'] = 'Ready';
+$string['guide_category_recap'] = 'Recap';
+$string['guide_nav_tooltip'] = '{$a->category} — {$a->number} · {$a->title}';
+$string['guide_nav_tooltip_guided'] = '{$a->category} — {$a->number} · {$a->title} (guided path available)';

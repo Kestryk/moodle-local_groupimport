@@ -532,13 +532,6 @@
     padding: 0.375rem 0.625rem;
     border-radius: 0.75rem;
     font-size: var(--easyedu-guide-font-size-control);
-    // The shared Guide path marker is an explicit route glyph. Keep it in
-    // normal flex flow so category/title wrapping never overlaps a legacy
-    // absolute "GUIDE" badge.
-    .easyedu-guide-nav-item__path {
-      align-self: center;
-      margin-inline-start: auto;
-    }
 
     &.is-active {
       background: var(--easyedu-accent-soft);
@@ -634,7 +627,9 @@
       @include typography.type-eyebrow;
       color: var(--easyedu-accent);
       font-size: 0.68rem;
-      margin-block: 0.5rem;
+      // K1: every slide now opens on its pill chapter. Start the reading lane
+      // at the same top on all slides, 4px above the title (Guide rhythm).
+      margin-block: 0 0.25rem;
     }
     .easyedu-guide-slide__content,
     .easyedu-guide-slide__content p {

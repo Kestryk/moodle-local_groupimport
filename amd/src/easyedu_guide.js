@@ -3169,11 +3169,16 @@ const bindNavigationTooltips = root => {
     refreshFrame = null;
     tooltip?.remove();
     tooltip = null;
+    // Restore the native pill title (K1) once the full-label tooltip is gone.
+    if (target && target.dataset.easyeduGuideTitle !== undefined) {
+      target.setAttribute('title', target.dataset.easyeduGuideTitle);
+      delete target.dataset.easyeduGuideTitle;
+    }
     target = null;
   };
   root.easyeduGuideTooltipHide = hide;
   const show = button => {
-    const label = button?.querySelector('.easyedu-guide-nav-copy > span');
+    const label = button?.querySelector('.easyedu-guide-nav-item__label');
     if (!label || modal.hidden || label.scrollWidth <= label.clientWidth + 1) {
       hide();
       return;
@@ -3181,6 +3186,11 @@ const bindNavigationTooltips = root => {
     if (target === button) return;
     hide();
     target = button;
+    // One tooltip at a time: park the native title while this one is shown.
+    if (button.hasAttribute('title')) {
+      button.dataset.easyeduGuideTitle = button.getAttribute('title');
+      button.removeAttribute('title');
+    }
     tooltip = modal.ownerDocument.createElement('div');
     tooltip.className = 'easyedu-guide-label-tooltip';
     tooltip.setAttribute('aria-hidden', 'true');
