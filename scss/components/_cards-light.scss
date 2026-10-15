@@ -60,6 +60,12 @@
     row-gap: 0.25rem;
   }
 
+  // The card menu (44 px touch target, positioned on the card) is centred on
+  // the name line: top padding + half the title line - half the target.
+  .local-groupimport-easystud-user > .local-groupimport-easystud-card-menu {
+    top: calc(0.625rem + 1.35 * var(--easyedu-card-identity-title-size) / 2 - var(--easyedu-touch-target-min) / 2);
+  }
+
   // The eye keeps its 32 px target without growing the name line.
   .local-groupimport-easystud-user__detail-button {
     margin-block: calc((1.35 * var(--easyedu-card-identity-title-size) - var(--easyedu-card-action-target)) / 2);

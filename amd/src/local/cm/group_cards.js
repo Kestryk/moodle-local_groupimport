@@ -439,6 +439,11 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
     });
 
     const responsive = isResponsiveWorkspace();
+    // A card title never shrinks below a readable width (the 7.5rem minimum of
+    // group titles): below it, trailing actions move into the card menu.
+    const minTitleWidth = 7.5 * (parseFloat(window.getComputedStyle(document.documentElement).fontSize) || 16);
+    const titleTooNarrow = title => !!title && title.scrollWidth > title.clientWidth + 1 &&
+        title.clientWidth < minTitleWidth - 1;
     const outsideCard = (cardBounds, button) => {
         if (button.hidden || button.offsetParent === null) {
             return false;
@@ -454,13 +459,16 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
             return;
         }
         entry.cardBounds = group.getBoundingClientRect();
+        entry.title = header.querySelector('.local-groupimport-easystud-grouping__name, ' +
+            ':scope > .local-groupimport-easystud-group__name');
         entry.overflowed = responsive ? actions.filter(button => !button.hidden) :
             actions.filter(button => outsideCard(entry.cardBounds, button));
-        entry.fits = !entry.overflowed.length && header.scrollWidth <= header.clientWidth + 1;
+        entry.fits = !entry.overflowed.length && header.scrollWidth <= header.clientWidth + 1 &&
+            !titleTooNarrow(entry.title);
     });
 
     entries.filter(entry => entry.visible).forEach(entry => {
-        const {header, menu, toggle, actions, cardBounds} = entry;
+        const {header, menu, toggle, actions, cardBounds, title} = entry;
         if (entry.fits) {
             toggle.setAttribute('aria-expanded', 'false');
             return;
@@ -470,7 +478,8 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
 
         toggle.hidden = false;
         for (let index = actions.length - 1;
-            index >= 0 && (header.scrollWidth > header.clientWidth + 1 || actions.some(isOutsideCard));
+            index >= 0 && (header.scrollWidth > header.clientWidth + 1 || actions.some(isOutsideCard) ||
+                titleTooNarrow(title));
             index--) {
             const button = actions[index];
             if (!button.hidden && !overflowed.includes(button)) {
