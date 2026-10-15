@@ -117,9 +117,29 @@ export const bindContextMenu = (root, courseId) => {
     };
     // The onDone callback runs once the animation has played to its end, never when it was replaced or stopped.
     // With keep, the end state stays applied until stopAnimation (onDone hides the element first).
+    // Reduced level: every animation of the menu (desktop, mobile sheet, backdrop, accordion) is an opacity
+    // fade of 120 ms at most; a motion with nothing to fade (height, offset only) completes at once.
+    const toFade = frames => {
+        const faded = frames.map(frame => frame.opacity === undefined ? null : {opacity: frame.opacity});
+        const same = faded.length < 2 || faded.includes(null) ||
+            Number(faded[0].opacity) === Number(faded[faded.length - 1].opacity);
+        return same ? null : faded;
+    };
     const runAnimation = (element, keyframes, {duration, easing = 'ease-out', keep = false, onDone = null}) => {
         stopAnimation(element);
-        const animation = element.animate(keyframes, {duration, easing, fill: 'both'});
+        let frames = keyframes;
+        let length = duration;
+        if (Motion.getLevel(menu) === 'reduced') {
+            frames = toFade(keyframes);
+            length = Math.min(menuMotion.reducedFade, duration);
+            if (!frames) {
+                if (onDone) {
+                    window.setTimeout(onDone, 0);
+                }
+                return;
+            }
+        }
+        const animation = element.animate(frames, {duration: length, easing, fill: 'both'});
         menuAnimations.set(element, animation);
         animation.finished.then(() => {
             if (menuAnimations.get(element) !== animation) {
@@ -346,7 +366,7 @@ export const bindContextMenu = (root, courseId) => {
         }
         // The menu leaves with its animation, inert meanwhile; everything else closes at once.
         const sheet = menu.classList.contains('is-mobile-sheet');
-        const animate = !menu.hidden && (sheet ? canAnimate(menu) : Motion.getLevel(menu) !== 'none');
+        const animate = !menu.hidden && (sheet ? canAnimate(menu) : Motion.getLevel(menu) !== 'minimal');
         menuClosing = animate;
         closeSubmenus();
         if (animate) {
@@ -627,7 +647,7 @@ export const bindContextMenu = (root, courseId) => {
             if (backdrop) {
                 runAnimation(backdrop, [{opacity: 0}, {opacity: 1}], {duration: menuMotion.backdropIn});
             }
-        } else if (!mobile && Motion.getLevel(menu) !== 'none') {
+        } else if (!mobile && Motion.getLevel(menu) !== 'minimal') {
             const desktop = getDesktopKeyframes(true);
             runAnimation(menu, desktop.keyframes, {duration: desktop.duration, easing: menuMotion.popEasing});
         }
