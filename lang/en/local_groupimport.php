@@ -1099,3 +1099,6 @@ $string['importpreviewexpired'] = 'This preview has expired or belongs to anothe
 $string['importpreviewincomplete'] = 'The preview submission is incomplete or invalid. Preview the file again; nothing was imported.';
 $string['importrowlimit'] = 'This import exceeds the limit of {$a} rows. Split the file before continuing; nothing was imported.';
 $string['importfilelimit'] = 'The file exceeds the limit of {$a} MB. Reduce its size before continuing.';
+
+$string['importatomicfailed'] = 'The import could not be completed. All its changes were rolled back; no import was applied. Preview the file again before retrying.';
+$string['importlimits'] = 'Limits: {$a->rows} rows per import, {$a->mb} MB per file. Split larger files.';

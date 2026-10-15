@@ -1099,3 +1099,6 @@ $string['importpreviewexpired'] = 'Cet aperçu a expiré ou appartient à une au
 $string['importpreviewincomplete'] = 'L’envoi de l’aperçu est incomplet ou invalide. Prévisualisez à nouveau le fichier ; aucune donnée n’a été importée.';
 $string['importrowlimit'] = 'Cet import dépasse la limite de {$a} lignes. Divisez le fichier avant de continuer ; aucune donnée n’a été importée.';
 $string['importfilelimit'] = 'Le fichier dépasse la limite de {$a} Mo. Réduisez sa taille avant de continuer.';
+
+$string['importatomicfailed'] = 'L’import n’a pas pu aboutir. Tous ses changements ont été annulés ; aucun import n’a été appliqué. Prévisualisez à nouveau le fichier avant de réessayer.';
+$string['importlimits'] = 'Limites : {$a->rows} lignes par import, {$a->mb} Mo par fichier. Divisez les fichiers plus volumineux.';
