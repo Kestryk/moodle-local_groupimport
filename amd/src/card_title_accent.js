@@ -6,10 +6,20 @@ export const init = (root, bindings) => {
     }
     const bars = new Map();
     const observed = new WeakSet();
+    const trackedAnimations = new WeakSet();
     let frame = null;
     let destroyed = false;
     const paint = () => {
         frame = null;
+        // WAAPI list-arrival transforms do not dispatch CSS transitionend.
+        // Re-snap once their existing animation settles; never change Motion itself.
+        root.getAnimations({subtree: true}).forEach(animation => {
+            if (!trackedAnimations.has(animation) &&
+                    Number.isFinite(animation.effect.getComputedTiming().iterations)) {
+                trackedAnimations.add(animation);
+                animation.finished.then(schedule, schedule);
+            }
+        });
         bars.forEach((bar, title) => {
             if (!root.contains(title) || !bar.isConnected) {
                 bar.remove();
