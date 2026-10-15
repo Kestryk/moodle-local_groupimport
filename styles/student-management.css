@@ -11462,3 +11462,10 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
   #local-groupimport-easystud .local-groupimport-easystud-pagination .local-groupimport-easystud-pagination__controls .btn {block-size: var(--easyedu-toolbar-control-height);height: var(--easyedu-toolbar-control-height);inline-size: var(--easyedu-toolbar-control-height);min-block-size: var(--easyedu-toolbar-control-height);min-height: var(--easyedu-toolbar-control-height);min-inline-size: var(--easyedu-toolbar-control-height);min-width: var(--easyedu-toolbar-control-height);width: var(--easyedu-toolbar-control-height);
   }
 }
+
+@media (max-width: 768px) {
+  #local-groupimport-easystud .local-groupimport-easystud__panel-title-wrap {align-items: center;flex-direction: row;flex-wrap: wrap;gap: 0.5rem;
+  }
+  #local-groupimport-easystud .local-groupimport-easystud__panel-title-wrap > .local-groupimport-easystud__panel-title {flex: 1 0 100%;
+  }
+}
