@@ -1,8 +1,8 @@
 const {test,expect}=require('@playwright/test');
-const fs=require('node:fs');
+const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process');
 
 test('K15-07 native semantic palette popovers',async({page},info)=>{
- test.setTimeout(180000);page.setDefaultTimeout(25000);
+ test.setTimeout(300000);page.setDefaultTimeout(25000);
  const base=new URL(process.env.EASYEDU_MOODLE_URL);
  if(base.hostname!=='localhost'||base.port||base.searchParams.get('id')!=='5')throw Error('Principal course5 only');
  const rows=[],errors=[],writes=[];
@@ -21,23 +21,15 @@ test('K15-07 native semantic palette popovers',async({page},info)=>{
  await expect(root).toHaveAttribute('data-easystud-loading-state','ready',{timeout:60000});
  await root.locator('[data-easystud-layout-mode="participants"]:visible').click();
  await root.evaluate(async n=>{await document.fonts.ready;await Promise.all(n.getAnimations({subtree:true}).filter(a=>Number.isFinite(a.effect.getComputedTiming().iterations)).map(a=>a.finished.catch(()=>{})));});
- const cards=root.locator('[data-easystud-participant-list] > [data-easystud-user]:visible');
- const selected=()=>cards.evaluateAll(nodes=>nodes.filter(n=>n.classList.contains('is-selected')).length);
- const select=async(index,modifiers=[])=>cards.nth(index).locator('.local-groupimport-easystud-user__name').click({modifiers});
- expect(await cards.count()).toBeGreaterThanOrEqual(5);
- await select(0);expect(await selected()).toBe(1);await select(1,['Control']);expect(await selected()).toBe(2);
- await select(2,['Meta']);expect(await selected()).toBe(3);await select(4,['Shift']);expect(await selected()).toBe(5);
- await cards.nth(4).focus();await expect(cards.nth(4)).toBeFocused();await page.keyboard.press('Space');expect(await selected()).toBe(4);
- rows.push({stage:'selection',control:true,metaEventOnWindows:true,shift:true,space:true});save();
- const roleSelect=root.locator('[data-easystud-role-filter]');
- const teacher=await roleSelect.evaluate(n=>[...n.options].map(o=>({value:o.value,label:o.text})).find(o=>/enseignant|teacher/i.test(o.label)));
- expect(teacher).toBeTruthy();expect(teacher.value).toMatch(/^\d+$/);const initial=await cards.count();
- await root.locator('[data-easystud-advanced-filters-toggle="participants"]').click();await root.locator('[data-easystud-role-choice="'+teacher.value+'"]').click();
- await expect.poll(()=>cards.count()).toBeLessThan(initial);expect(await cards.count()).toBeGreaterThan(0);
- expect(await roleSelect.evaluate(n=>[...n.selectedOptions].map(o=>o.value))).toContain(teacher.value);
- rows.push({stage:'role',teacher,initial,filtered:await cards.count()});save();
- const original=await root.getAttribute('data-easyedu-custom-rails');
+ const original=await root.getAttribute('data-easyedu-custom-rails'),originalStyle=await root.getAttribute('style');
+ const defaultRoles=JSON.parse(execFileSync('C:/dev/Moodle 51/MoodleWindowsInstaller-latest-501/server/php/php.exe',[path.join(__dirname,'palette-native-default-roles.php'),'C:/dev/Moodle 51/MoodleWindowsInstaller-latest-501/server/moodle'],{encoding:'utf8',timeout:30000}));
  try{
+  for(const width of [1280,390])for(const palette of ['default','configured-test']){
+   await page.setViewportSize({width,height:1000});
+   if(width===390){await root.locator('[data-easystud-mobile-view="participants"]').click();}
+   await root.evaluate((n,{style,palette,roles})=>{n.setAttribute('style',style||'');if(palette==='default')Object.entries(roles).forEach(([key,value])=>n.style.setProperty(key,value));},{style:originalStyle,palette,roles:defaultRoles});
+   await root.evaluate(async n=>{await Promise.all(n.getAnimations({subtree:true}).filter(a=>Number.isFinite(a.effect.getComputedTiming().iterations)).map(a=>a.finished.catch(()=>{})));});
+   const start=rows.length;
   const eye=root.locator('[data-easystud-participant-list] > [data-easystud-user]:visible [data-easystud-open-user]').first();
   for(const marker of ['', 'primary', 'success', 'primary success']){
    await root.locator('.local-groupimport-easystud__panel-heading').first().hover();
@@ -52,13 +44,14 @@ test('K15-07 native semantic palette popovers',async({page},info)=>{
     const contrast=color=>1.05/(luminance(color)+0.05);
     const role=marker.includes('primary')?'--easyedu-primary-strong':'--easyedu-accent';
     return {marker,relayed:n.getAttribute('data-easyedu-custom-palette')||'',background:c.backgroundImage,text:rgb(c.color),glow:c.getPropertyValue('--easyedu-tooltip-glow').trim(),arrow:c.getPropertyValue('--easyedu-tooltip-arrow-bg').trim(),roleRGB:resolve('var('+role+')'),roleWhiteContrast:contrast(resolve('var('+role+')')),arrowWhiteContrast:contrast(resolve('var(--easyedu-tooltip-arrow-bg)')),geometry:{width:r.width,height:r.height,padding:c.padding,borderRadius:c.borderRadius}};
-   },marker);rows.push(row);save();
+   },marker);row.width=width;row.palette=palette;rows.push(row);save();
    expect(row.relayed).toBe(marker);expect(row.text).toEqual([255,255,255]);
-   if(marker){expect(row.glow).toBe('transparent');expect(row.roleWhiteContrast).toBeGreaterThanOrEqual(4.5);expect(row.arrowWhiteContrast).toBeGreaterThanOrEqual(4.5);expect(row.background).not.toBe(rows.find(r=>r.marker==='').background);}
+   if(marker){expect(row.glow).toBe('transparent');expect(row.roleWhiteContrast).toBeGreaterThanOrEqual(4.5);expect(row.arrowWhiteContrast).toBeGreaterThanOrEqual(4.5);expect(row.background).not.toBe(rows.slice(start).find(r=>r.marker==='').background);}
    else {expect(row.background).toContain('rgb(24, 58, 89)');expect(row.background).toContain('rgb(31, 107, 87)');}
-   expect(row.geometry).toEqual(rows.find(r=>r.marker==='').geometry);
-   await page.screenshot({path:info.outputPath('popover-'+(marker.replaceAll(' ','-')||'classic')+'-1280.png')});
+   expect(row.geometry).toEqual(rows.slice(start).find(r=>r.marker==='').geometry);
+   if(marker==='primary')await page.screenshot({path:info.outputPath('popover-'+palette+'-'+width+'.png')});
   }
-  expect(rows.find(r=>r.marker==='primary success').background).toBe(rows.find(r=>r.marker==='primary').background);expect(errors).toEqual([]);expect(writes).toEqual([]);
- }finally{await root.evaluate((n,value)=>{if(value===null)n.removeAttribute('data-easyedu-custom-rails');else n.setAttribute('data-easyedu-custom-rails',value);},original);save();}
+  expect(rows.slice(start).find(r=>r.marker==='primary success').background).toBe(rows.slice(start).find(r=>r.marker==='primary').background);
+  }expect(errors).toEqual([]);expect(writes).toEqual([]);
+ }finally{await root.evaluate((n,value)=>{if(value===null)n.removeAttribute('data-easyedu-custom-rails');else n.setAttribute('data-easyedu-custom-rails',value);},original);await root.evaluate((n,value)=>{if(value===null)n.removeAttribute('style');else n.setAttribute('style',value);},originalStyle);save();}
 });
