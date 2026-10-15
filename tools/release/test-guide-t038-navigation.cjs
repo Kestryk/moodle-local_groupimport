@@ -28,22 +28,36 @@ const discovery = read(path.join(root, 'classes', 'local', 'guide_discovery.php'
 
 assert(normalize(guideScss) === normalize(read(kitGuide)), 'shared Guide SCSS is identical in Kit and consumer');
 assert(normalize(discoveryScss) === normalize(read(kitDiscovery)), 'shared Discovery SCSS is identical in Kit and consumer');
-assert(guideScss.includes('.easyedu-guide-nav-item__path'), 'Guide supplies an explicit path glyph role');
-assert(guideScss.includes('> .fa:not(.easyedu-guide-nav-item__path),'),
-    'generic chapter-icon paint does not override the compact route pictogram');
+// K1 (Kevin, 14/10/2026) replaces the T038 fa-route pictogram with the "Guide" text badge.
+assert(guideScss.includes('.easyedu-guide-nav-item__path'), 'Guide supplies an explicit path badge role');
+assert(guideScss.includes('.easyedu-guide-nav-item__meta') && /\.easyedu-guide-nav-item__path \{[^}]*text-transform: uppercase;[^}]*\}/.test(guideScss),
+    'the path badge is an uppercase text badge on the chapter line');
 assert(!guideScss.includes('content: attr(data-easyedu-guided-label)'), 'Guide no longer paints a text path badge');
 assert(guideScss.includes('overflow-wrap: anywhere;') && guideScss.includes('white-space: normal;'),
     'Guide navigation labels may wrap instead of truncating');
 assert(discoveryScss.includes('text-overflow: clip;') && discoveryScss.includes('white-space: normal;'),
     'Discovery navigation does not restore ellipsis truncation');
 assert(template.includes('data-easyedu-guided-label="{{guidebadgelabel}}"'), 'legacy accessible path label contract is retained');
-assert(template.includes('easyedu-guide-nav-item__path fa fa-route'), 'guided navigation renders the route pictogram');
+assert(template.includes('<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>')
+    && !template.includes('nav-item__path fa'), 'guided navigation renders the Guide text badge, not a second pictogram');
+assert(template.includes('{{#navtooltip}}title="{{navtooltip}}"{{/navtooltip}}'), 'every pill carries a title attribute');
+assert(template.includes('{{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}'),
+    'the accessible pill name keeps the Guide marker');
 assert(discovery.includes("$slide['navtitle'] = get_string('guide_nav_' . ($index + 1), 'local_groupimport');"),
     'modern curriculum consumes separate short labels');
 assert(discovery.includes("$slide['navnumber'] = $index + 1;") && discovery.includes("$slide['navcategorymanaged'] = true;"),
     'modern curriculum preserves numbering and managed chapters');
-assert(discovery.includes("$slide['navcategorylabel'] = $category !== $previouscategory ? $category : '';"),
-    'chapter label is emitted once per consecutive group');
+assert(discovery.includes("$slide['navcategorylabel'] = $category;") && discovery.includes("$slide['kicker'] = $category;"),
+    'every pill names its chapter and its slide repeats it as overline (K1)');
+assert(discovery.includes("'discovery-creation' => 'fa-plus', 'discovery-membership' => 'fa-right-left'"),
+    'pills 3 and 7 no longer duplicate another subject glyph (K1)');
+assert(discovery.includes("get_string('guide_category_recap', 'local_groupimport')"), 'pill 12 has the Recap chapter (K1)');
+
+for (const [language, recap] of Object.entries({en: 'Recap', fr: 'Bilan'})) {
+    const languageFile = read(path.join(root, 'lang', language, 'local_groupimport.php'));
+    assert(languageFile.includes(`$string['guide_category_recap'] = '${recap}';`), `${language} Recap chapter label`);
+    assert(languageFile.includes("$string['guide_nav_tooltip_guided'] = "), `${language} guided pill title`);
+}
 
 const expected = {
     en: ['The guide', 'Landmarks', 'Structure', 'Participant', 'Group', 'Grouping', 'Organise', 'Filter', 'Identifiers', 'Actions', 'Group assignment', 'Ready'],

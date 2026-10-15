@@ -332,7 +332,8 @@ final class guide_discovery {
         $byid = array_column($slides, null, 'id');
         $ids = self::modern_reading_contract()['slideIds'];
         $result = [];
-        $previouscategory = null;
+        // K1 (14/10): two distinct subject glyphs where the Guide repeated one.
+        $navicons = ['discovery-creation' => 'fa-plus', 'discovery-membership' => 'fa-right-left'];
         foreach ($sources as $index => $source) {
             $slide = $byid[$source];
             // Merge the unique teaching points, not merely the reading positions.
@@ -373,9 +374,16 @@ final class guide_discovery {
             $slide['navtitle'] = get_string('guide_nav_' . ($index + 1), 'local_groupimport');
             $slide['navnumber'] = $index + 1;
             $slide['navcategorymanaged'] = true;
+            if ($source === 'reference-19') {
+                $slide['category'] = get_string('guide_category_recap', 'local_groupimport');
+            }
+            if (isset($navicons[$source])) {
+                $slide['navicon'] = $navicons[$source];
+            }
+            // K1: every pill names its chapter, and its slide repeats it as overline.
             $category = $slide['category'] ?? '';
-            $slide['navcategorylabel'] = $category !== $previouscategory ? $category : '';
-            $previouscategory = $category;
+            $slide['navcategorylabel'] = $category;
+            $slide['kicker'] = $category;
             if ($source === 'reference-7') {
                 $slide['hasguidedpath'] = true;
                 $slide['guidedpath'] = 'prepare-activity-grouping';
@@ -418,6 +426,9 @@ final class guide_discovery {
             if (!empty($slide['guidedpath'])) {
                 $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
             }
+            $slide['navtooltip'] = get_string(empty($slide['hasguidedpath']) ? 'guide_nav_tooltip' : 'guide_nav_tooltip_guided',
+                'local_groupimport', (object) ['category' => $category, 'number' => $index + 1,
+                    'title' => $slide['navtitle']]);
             $result[] = $slide;
         }
         return $result;

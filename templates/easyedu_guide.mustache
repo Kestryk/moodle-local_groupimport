@@ -73,19 +73,23 @@
                             {{#hasguidedpath}}data-easyedu-guided-label="{{guidebadgelabel}}"{{/hasguidedpath}}
                             {{#requires}}data-easyedu-guide-requires="{{requires}}"{{/requires}}
                             {{#requireslabel}}data-easyedu-guide-requires-label="{{requireslabel}}"{{/requireslabel}}
+                            {{#navtooltip}}title="{{navtooltip}}"{{/navtooltip}}
                         >
                             <span class="easyedu-guide-nav-item__icon" aria-hidden="true">
                                 <span class="fa {{navicon}}" aria-hidden="true"></span>
                             </span>
                             <span class="easyedu-guide-nav-copy">
-                                {{#navcategorymanaged}}{{#navcategorylabel}}<small>{{navcategorylabel}}</small>{{/navcategorylabel}}{{/navcategorymanaged}}
-                                {{^navcategorymanaged}}
-                                    {{#category}}<small>{{category}}</small>{{/category}}
-                                    {{^category}}{{#hasguidedpath}}<small>{{guideguidedpathlabel}}</small>{{/hasguidedpath}}{{/category}}
-                                {{/navcategorymanaged}}
-                                <span>{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
+                                <span class="easyedu-guide-nav-item__meta">
+                                    {{#navcategorymanaged}}{{#navcategorylabel}}<small>{{navcategorylabel}}</small>{{/navcategorylabel}}{{/navcategorymanaged}}
+                                    {{^navcategorymanaged}}
+                                        {{#category}}<small>{{category}}</small>{{/category}}
+                                        {{^category}}{{#hasguidedpath}}<small>{{guideguidedpathlabel}}</small>{{/hasguidedpath}}{{/category}}
+                                    {{/navcategorymanaged}}
+                                    {{#hasguidedpath}}<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>{{/hasguidedpath}}
+                                </span>
+                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
                             </span>
-                            {{#hasguidedpath}}<span class="easyedu-guide-nav-item__path fa fa-route" role="img" aria-label="{{guidebadgelabel}}"></span>{{/hasguidedpath}}
+                            {{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                             {{#requires}}
                                 <span class="easyedu-guide-nav-item__requirement" aria-hidden="true">{{#requiresbadge}}{{requiresbadge}}{{/requiresbadge}}{{^requiresbadge}}{{guiderequiresbadge}}{{/requiresbadge}}</span>
                             {{/requires}}
