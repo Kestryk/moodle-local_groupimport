@@ -1694,7 +1694,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include easyedu.motion-restricted {
   .local-groupimport-easystud-tree__section[data-easystud-grouping-id]:hover {
     transform: none;
   }

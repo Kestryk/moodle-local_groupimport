@@ -25,9 +25,17 @@ Reusable motion helpers:
   @include easyedu.paginated-list-motion;
 }
 
+// Once per plugin stylesheet, at the top level: the page-wide level policy.
+@include easyedu.motion-level-policy((".my-plugin-root", ".my-plugin-portal"));
+
 .my-plugin-root {
-  @include easyedu.motion-policy;
   @include easyedu.action-busy-indicator("data-my-plugin-busy-label");
+}
+
+// Component rules per animation level (never @media (prefers-reduced-motion)).
+.my-card {
+  @include easyedu.motion-restricted { transition: none; }  // reduced and minimal
+  @include easyedu.motion-minimal { filter: none; }         // minimal only
 }
 
 // Persistent workspace actions keep the established bottom-end feedback.
@@ -52,16 +60,44 @@ layout-changing motion and exposes:
 - `scroll(element)` and `cancel(element)`;
 - the shared `timing.fast`, `timing.normal` and `timing.slow` values.
 
-The plugin root must expose the server policy before first paint:
+## Animation levels (EasyEdu rule, 16/10/2026)
+
+Three levels: `full`, `reduced` and `minimal`. The user's own choice (shared user
+preference `easyedu_motion_level`: `default` | `full` | `reduced` | `minimal`)
+wins; the administrator only sets the default. The system
+`prefers-reduced-motion` media is **not** followed by default: only the level
+chosen in EasyEdu counts.
+
+| | `full` | `reduced` | `minimal` |
+| --- | --- | --- | --- |
+| CSS transitions | all | opacity only, 120 ms at most | none |
+| CSS keyframe animations, loops, shimmer | all | none (end state) | none (end state) |
+| Blur, animated shadows, `will-change` | yes | removed | removed |
+| `drop-shadow` filters | yes | yes | replaced by one fixed shadow |
+
+The server computes the effective level before first paint and renders:
 
 ```html
-<div class="my-plugin" data-easyedu-motion-policy="enabled"></div>
+<body class="... easyedu-motion-reduced">   <!-- or easyedu-motion-disabled for minimal -->
+<div class="easyedu-ui my-plugin" data-easyedu-motion-level="reduced"
+     data-easyedu-motion-policy="enabled"></div>   <!-- policy: disabled for minimal -->
 ```
 
-Use `disabled` when the Moodle administrator disables optional motion. Also add
-`easyedu-motion-disabled` to the page body so Moodle-native modals appended
-outside the plugin root follow the same policy. `prefers-reduced-motion: reduce`
-always wins over the administrator setting.
+`Motion.setLevel(root, level)` switches the root attributes and body classes
+live. SCSS mixins:
+
+- `motion-reduced { ... }`: `:is(.easyedu-ui[data-easyedu-motion-level="reduced"], body.easyedu-motion-reduced) &`;
+- `motion-minimal { ... }`: `:is([data-easyedu-motion-level="minimal"], body.easyedu-motion-disabled) &`;
+- `motion-restricted { ... }`: both (whatever must not move, loop or shimmer);
+- `$self: true` also matches the element carrying the level itself;
+- a rule starting on the page body (`body`, `#page-...`, `.path-...`) receives
+  the body classes on that first compound instead of an ancestor context;
+- inside the content, use `&` once at its start (no `&-a &-b` compounds).
+
+`motion-level-policy($extra-roots)` is the single page-wide policy (include it
+once, at the top level). `motion-policy` remains for plugins that have not
+adopted the levels yet; it reads the level on the root and no longer follows
+the system media.
 
 `expand`, `collapse`, `resize` and `swap` are cancellable. Starting a new motion
 on the same element cancels the previous animation and prevents stale completion
@@ -122,7 +158,7 @@ a second CSS animation.
   measured height changes that must remain smooth in both directions.
 
 Themes may override the duration tokens, but must not reactivate motion
-when the server policy or operating-system preference disables it.
+when the animation level is `reduced` or `minimal`.
 
 Use `layout-disclosure-transition(...)` for in-place grid/flex track changes.
 It deliberately lasts longer than an ordinary control state so the user can
@@ -242,8 +278,8 @@ Rules for new guide motion:
 - Keep scene containers dimensionally stable to prevent guide modal jumps.
 - Do not stack several transform animations on the same element unless the
   result is explicitly tested.
-- Include a useful static state for reduced-motion users.
+- Include a useful static state for the `reduced` and `minimal` levels.
 - Keep highlight realignment in one bounded requestAnimationFrame refresh
   cycle; do not layer competing timeout bursts over scroll animation.
-- Reduced motion applies to the complete guide shell, slide, checklist and
-  highlight lifecycle, not only the decorative learning scene.
+- The `reduced` and `minimal` levels apply to the complete guide shell, slide,
+  checklist and highlight lifecycle, not only the decorative learning scene.

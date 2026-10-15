@@ -641,7 +641,14 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
     }
   }
 
-  @media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  @media (forced-colors: active) {
+    .local-groupimport-admin-settings__loading-surface {
+      animation: none;
+    }
+  }
+
+  // This rule starts on the page body: the Kit mixin reads the level classes on it.
+  @include easyedu.motion-restricted {
     .local-groupimport-admin-settings__loading-surface {
       animation: none;
     }

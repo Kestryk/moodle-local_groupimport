@@ -511,11 +511,10 @@
 
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include easyedu.motion-restricted {
     &-detail__list-chevron,
     &-settings-modal__disclosure-chevron {
       transition: none;
     }
-
   }
 }

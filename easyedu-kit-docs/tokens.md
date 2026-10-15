@@ -61,8 +61,8 @@ a semantic role exists.
   changes and pagination swaps.
 
 Themes may tune these variables on a plugin root. They must not override the
-server `data-easyedu-motion-policy="disabled"` state or the visitor's
-`prefers-reduced-motion` preference.
+`reduced` or `minimal` animation level (`data-easyedu-motion-level` and the body
+classes `easyedu-motion-reduced` / `easyedu-motion-disabled`).
 
 ## Theme override example
 

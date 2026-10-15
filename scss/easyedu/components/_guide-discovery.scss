@@ -12,6 +12,7 @@
 @use "menus";
 @use "feedback";
 @use "forms";
+@use "animations";
 @use "focus";
 @use "tooltips";
 @use "../dialog-palette-classes" as palette;
@@ -1043,6 +1044,11 @@
       // White halo retains a dark silhouette over blue action surfaces.
       filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white)
         drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white);
+      // Minimal: no filter layer; the glyph keeps the same halo as a text shadow.
+      @include animations.motion-minimal {
+        filter: none;
+        text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
+      }
     }
     &__steps { padding-inline-start: 1.25rem; }
     &__steps [aria-current] { color: var(--easyedu-accent); font-weight: 600; }
@@ -1383,7 +1389,7 @@
     .easyedu-guide-modal__footer-actions .btn { width: auto; min-width: 5.75rem; }
     .easyedu-guide-interface-return { inset-inline: 1rem; width: auto; }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted($self: true) {
     .easyedu-guide-welcome { animation: none; }
     .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
     .easyedu-guide-scene__activity > span { animation: none; }

@@ -1,6 +1,7 @@
 // Generic editable tables and review controls from Foundations, not source
 // hierarchy tables. Business validation and row selection remain consumer-owned.
 @use "components/focus";
+@use "components/animations";
 @use "components/forms";
 @use "components/tables";
 @use "components/typography" as type;
@@ -166,7 +167,7 @@
       &:focus-visible { @include focus.ring; }
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     .easyedu-ui .easyedu-data-table input[type="checkbox"] { transition: none; }
   }
   .easyedu-ui .easyedu-data-table tr.is-warning td { background: var(--easyedu-warning-soft); }

@@ -395,92 +395,64 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .local-groupimport-easystud {
-    &-tutorial__step.is-active {
-      animation: none;
-    }
+// Legacy tutorial loops and the busy indicator stay still as soon as the
+// animation level is not full (former prefers-reduced-motion block).
+@include easyedu.motion-restricted {
+  .local-groupimport-easystud-tutorial__step.is-active {
+    animation: none;
+  }
 
-    &-tutorial__step.is-active > .local-groupimport-easystud-tutorial__step-icon,
-    &-tutorial__step.is-active > div:last-child,
-    &-tutorial__visual--cards &-tutorial__sample-card,
-    &-tutorial__visual--card-detail &-tutorial__sample-card,
-    &-tutorial__visual--card-detail &-tutorial__badge-row,
-    &-tutorial__visual--card-detail &-tutorial__mini-list,
-    &-tutorial__visual--filters > *,
-    &-tutorial__visual--text-add &-tutorial__chip-row span,
-    &-tutorial__visual--workflow > span,
-    &-tutorial__demo-selection > span:nth-child(2) {
-      animation: none;
-    }
+  .local-groupimport-easystud-tutorial__step.is-active > .local-groupimport-easystud-tutorial__step-icon,
+  .local-groupimport-easystud-tutorial__step.is-active > div:last-child,
+  .local-groupimport-easystud-tutorial__visual--cards .local-groupimport-easystud-tutorial__sample-card,
+  .local-groupimport-easystud-tutorial__visual--card-detail .local-groupimport-easystud-tutorial__sample-card,
+  .local-groupimport-easystud-tutorial__visual--card-detail .local-groupimport-easystud-tutorial__badge-row,
+  .local-groupimport-easystud-tutorial__visual--card-detail .local-groupimport-easystud-tutorial__mini-list,
+  .local-groupimport-easystud-tutorial__visual--filters > *,
+  .local-groupimport-easystud-tutorial__visual--text-add .local-groupimport-easystud-tutorial__chip-row span,
+  .local-groupimport-easystud-tutorial__visual--workflow > span,
+  .local-groupimport-easystud-tutorial__demo-selection > span:nth-child(2) {
+    animation: none;
+  }
 
-    &-tutorial__start-guided.is-visible {
-      animation: none;
-    }
+  .local-groupimport-easystud-tutorial__start-guided.is-visible {
+    animation: none;
+  }
 
-    &-tutorial__nav-item {
-      transition: none;
-    }
+  .local-groupimport-easystud-tutorial__nav-item {
+    transition: none;
+  }
 
-    &.is-action-busy::after,
-    &.is-action-busy::before,
-    &-guided-panel__message.is-complete {
-      animation: none;
-    }
+  .local-groupimport-easystud.is-action-busy::after,
+  .local-groupimport-easystud.is-action-busy::before,
+  .local-groupimport-easystud-guided-panel__message.is-complete {
+    animation: none;
   }
 }
 
-// The admin policy and the visitor's operating-system preference both disable
-// optional motion. Functional state changes remain immediate and visible.
-.local-groupimport-easystud.is-easyedu-motion-off,
-.local-groupimport-motion-disabled .local-groupimport-easystud,
-.local-groupimport-prefers-reduced-motion .local-groupimport-easystud,
-:is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy="disabled"],
-#page-admin-setting-local_groupimport [data-easyedu-motion-policy="disabled"],
-.easyedu-motion-disabled :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy] {
-  scroll-behavior: auto !important;
+// The single animation level policy of EasyStud (Kit motion-level-policy): the
+// level chosen by the user, else the administrator default, rendered by the
+// server as body classes. The system prefers-reduced-motion media is not
+// followed. Functional state changes remain immediate and visible. Plugin roots
+// and containers portalled to <body> that carry no Kit class are added here;
+// .settingsform is the native administration form of the plugin settings page.
+@include easyedu.motion-level-policy((
+  ".local-groupimport-easystud",
+  ".local-groupimport-import",
+  ".local-groupimport-easystud-message-modal",
+  ".local-groupimport-easystud-hover-popover",
+  ".local-groupimport-easystud-tutorial-highlight-overlay",
+  ".settingsform"
+));
 
-  *,
-  *::before,
-  *::after {
-    animation-delay: 0s !important;
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-delay: 0s !important;
-    transition-duration: 0.001ms !important;
-  }
-}
-
-.local-groupimport-motion-disabled .local-groupimport-easystud-message-modal,
-.local-groupimport-prefers-reduced-motion .local-groupimport-easystud-message-modal,
-.easyedu-motion-disabled .local-groupimport-easystud-message-modal,
-.easyedu-prefers-reduced-motion .local-groupimport-easystud-message-modal {
+// Moodle's message modal keeps no entrance motion at all in minimal; reduced
+// keeps only the policy's opacity fade.
+body.easyedu-motion-disabled .local-groupimport-easystud-message-modal {
   .modal-dialog,
   .modal-content,
   &::before,
   &::after {
     animation: none !important;
     transition: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .local-groupimport-easystud,
-  .local-groupimport-easystud-message-modal,
-  :is(.local-groupimport-easystud, .local-groupimport-import, .local-groupimport-easystud-easyedu-guide)[data-easyedu-motion-policy],
-  #page-admin-setting-local_groupimport [data-easyedu-motion-policy] {
-    scroll-behavior: auto !important;
-
-    *,
-    *::before,
-    *::after {
-      animation-delay: 0s !important;
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-      transition-delay: 0s !important;
-      transition-duration: 0.001ms !important;
-    }
   }
 }

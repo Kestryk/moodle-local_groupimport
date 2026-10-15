@@ -7,6 +7,8 @@
 // --easyedu-accent, --easyedu-overlay-bg, --easyedu-overlay-plus-bg,
 // --easyedu-overlay-plus-color.
 
+@use "animations";
+
 @mixin drop-target-overlay($color: var(--easyedu-accent)) {
   border-color: $color;
   box-shadow: 0 0 0 0.22rem color-mix(in srgb, #{$color} 18%, transparent);
@@ -219,6 +221,11 @@ $_drop-affordance-danger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.or
   top: 0;
   transform: rotate($rotation);
   z-index: 9999;
+
+  // Minimal: no filter layer under the pointer; the card keeps its fixed shadow.
+  @include animations.motion-minimal {
+    filter: none;
+  }
 }
 
 // Apply to the card cloned inside the fixed preview. It removes interactive

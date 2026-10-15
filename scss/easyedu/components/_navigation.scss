@@ -1,6 +1,7 @@
 @use "buttons";
 @use "responsive";
 @use "typography";
+@use "animations";
 
 // Canonical navigation composition for EasyEdu plugin surfaces.
 //
@@ -614,7 +615,7 @@
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     .easyedu-guide__launcher-label {
       transition-duration: 0.01ms;
       transition-delay: 0s;
@@ -627,7 +628,7 @@
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     .easyedu-navigation__panel,
     .easyedu-navigation__item,
     .easyedu-navigation__disclosure-icon {

@@ -7,5 +7,5 @@
 
   @include easyedu.token-defaults;
   @include easyedu.groupimport-compat-tokens;
-  @include easyedukit.motion-policy;
+  // The animation level policy is page-wide: utilities/_animations.scss.
 }

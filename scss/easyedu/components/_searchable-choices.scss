@@ -2,6 +2,7 @@
 @use "text-fields";
 @use "forms";
 @use "focus";
+@use "animations";
 
 @mixin searchable-choice-classes {
   .easyedu-ui .easyedu-searchable-choice {
@@ -187,7 +188,7 @@
       .easyedu-searchable-choice__clear { inset-block-start: 0.25rem; }
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     .easyedu-ui .easyedu-searchable-choice {
       --easyedu-choice-disclosure-duration: 0.01ms;
     }

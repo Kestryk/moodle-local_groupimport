@@ -2,6 +2,7 @@
 // Native commands, filtering, labels and disclosure Motion remain consumer-owned.
 @use "foundation-classes" as foundations;
 @use "components/focus";
+@use "components/animations";
 
 @mixin workspace-control-classes {
   .easyedu-ui .easyedu-workspace-view-switcher > button {
@@ -152,7 +153,7 @@
       min-block-size: 2.65rem;
     }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     .easyedu-ui .easyedu-search-field { transition: none; }
   }
 }

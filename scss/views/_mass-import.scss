@@ -313,6 +313,11 @@
     grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
     @include easyedu.layout-disclosure-transition(grid-template-columns);
     will-change: grid-template-columns;
+
+    // No permanent compositor hint once grid tracks no longer animate.
+    @include easyedu.motion-restricted {
+      will-change: auto;
+    }
   }
 
   &-card--results {
@@ -475,11 +480,11 @@
     inset-inline-end: 1.425rem;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    &.has-preview &__grid,
-    &.has-preview &-card--upload &-card__header > .easyedu-icon-tile,
-    &.has-preview &-card__toggle,
-    &.has-preview &-card__toggle .fa {
+  @include easyedu.motion-restricted {
+    &.has-preview .local-groupimport-import__grid,
+    &.has-preview .local-groupimport-import-card--upload .local-groupimport-import-card__header > .easyedu-icon-tile,
+    &.has-preview .local-groupimport-import-card__toggle,
+    &.has-preview .local-groupimport-import-card__toggle .fa {
       transition: none;
     }
   }
@@ -632,6 +637,11 @@
     align-items: center;
     background: rgba(12, 33, 54, 0.42);
     backdrop-filter: blur(4px);
+
+    // Full-screen blur is the costliest paint of the plugin: full level only.
+    @include easyedu.motion-restricted {
+      backdrop-filter: none;
+    }
     display: flex;
     inset: 0;
     justify-content: center;

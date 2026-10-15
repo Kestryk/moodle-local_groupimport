@@ -5,6 +5,7 @@
 // opacity handoff used by proven EasyEdu loading states.
 
 @use "typography";
+@use "animations";
 
 @mixin skeleton-surface(
   $surface: var(--easyedu-loading-surface),
@@ -240,7 +241,12 @@
     animation: none;
   }
 
-  @media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  // Static skeleton as soon as the animation level is not full.
+  @include animations.motion-restricted {
+    animation: none;
+  }
+
+  @media (forced-colors: active) {
     animation: none;
   }
 }
@@ -277,7 +283,14 @@
     animation: none;
   }
 
-  @media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  // Static skeleton as soon as the animation level is not full.
+  @include animations.motion-restricted {
+    &::after {
+      animation: none;
+    }
+  }
+
+  @media (forced-colors: active) {
     &::after {
       animation: none;
     }
@@ -307,7 +320,11 @@
     animation: none;
   }
 
-  @media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  @include animations.motion-restricted {
+    animation: none;
+  }
+
+  @media (forced-colors: active) {
     & { animation: none; }
   }
 }
@@ -317,7 +334,7 @@
     transition: opacity $duration var(--easyedu-motion-ease, ease);
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     transition-duration: 0.001ms;
   }
 }
