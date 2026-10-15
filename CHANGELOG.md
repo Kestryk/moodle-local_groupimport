@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Integrate Claude read-only service flags, coordinated panel/dropdown Motion and Alt selection; rebuild all affected AMD. Mass Import16px native1280/390 PASS onded5a8ae.
+
 - 2026-10-15 [N1] Restore Mass Import workspace root to1rem/16px; retain explicit compact typography roles and isolated page CSS.
 
 - 2026-10-15 [N0] Verify three S9 cases in the real served Moodle templates without business writes; preserve literal entities and the failed duplicate-lib preflight, with browser/tooltip/CSV replay and PHPUnit explicitly separate.
