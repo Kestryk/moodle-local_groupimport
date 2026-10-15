@@ -1105,3 +1105,7 @@ $string['importlimits'] = 'Limites : {$a->rows} lignes par import, {$a->mb} Mo p
 
 $string['emptygrouphelp'] = 'Glissez des participants ici ou utilisez @';
 $string['emptygroupinghelp'] = 'Glissez des groupes ici';
+$string['adminsettingenabled'] = 'Activé';
+$string['adminsettingdisabled'] = 'Désactivé';
+$string['adminguidewelcome'] = 'Accueil du Guide';
+$string['adminrestorecolour'] = 'Rétablir';

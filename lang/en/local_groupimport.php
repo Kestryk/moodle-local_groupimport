@@ -1105,3 +1105,7 @@ $string['importlimits'] = 'Limits: {$a->rows} rows per import, {$a->mb} MB per f
 
 $string['emptygrouphelp'] = 'Drag participants here or use @';
 $string['emptygroupinghelp'] = 'Drag groups here';
+$string['adminsettingenabled'] = 'Enabled';
+$string['adminsettingdisabled'] = 'Disabled';
+$string['adminguidewelcome'] = 'Guide welcome';
+$string['adminrestorecolour'] = 'Restore';

@@ -22,6 +22,14 @@
   font-size: 1rem;
   line-height: var(--easyedu-line-height-body);
 
+  // Kevin's iso rule: peer section titles use SM's panel title role.
+  .local-groupimport-import-card__title.easyedu-panel__title {
+    color: var(--easyedu-workspace-panel-title-color);
+    font-size: var(--easyedu-workspace-panel-title-size);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
   @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
 
   &[data-easystud-loading-state="loading"] {
