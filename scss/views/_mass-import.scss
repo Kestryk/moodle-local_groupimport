@@ -16,9 +16,9 @@
   padding-inline: clamp(0.1rem, 0.8vw, 0.75rem);
   width: 100%;
 
-  // Operational chrome uses one compact baseline. Semantic headings and help
-  // text below opt into their named Kit roles.
-  font-size: var(--easyedu-font-size-control);
+  // Keep the workspace root on Moodle's 16px baseline. Compact controls,
+  // headings and help opt into their explicit Kit typography roles below.
+  font-size: 1rem;
   line-height: var(--easyedu-line-height-body);
 
   @include easyedu.action-busy-indicator-bottom-end("data-easyedu-action-busy-label");
