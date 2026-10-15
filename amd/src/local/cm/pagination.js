@@ -27,6 +27,23 @@ import {
 } from './shared';
 import {getGroupMemberCount, getOnDemandList} from './cards';
 import {hasActiveListFilters} from './filters';
+import {getOnDemandModel} from './state';
+
+// K16-48: one kind of selection at a time. While participants, groups, groupings or members are
+// selected, the "Select all" of the other lists is disabled.
+const selectionKinds = {'[data-easystud-user]': 'participant', '[data-easystud-group-id]': 'group',
+    '[data-easystud-grouping-id]': 'grouping'};
+const hasOtherSelection = (root, kind) => {
+    const model = getOnDemandModel(root);
+    const marked = selector => root.querySelectorAll(selector + '.' + selectedClass).length;
+    const counts = {
+        participant: Math.max(model ? model.selected.size : 0, marked('[data-easystud-user]')),
+        group: Math.max(model ? model.selectedGroups.size : 0, marked('[data-easystud-group-id]')),
+        member: Math.max(model ? model.selectedMembers.size : 0, marked('[data-easystud-member-id]')),
+        grouping: marked('[data-easystud-grouping-id]'),
+    };
+    return Object.keys(counts).some(other => other !== kind && counts[other] > 0);
+};
 
 export const getPaginationConfigs = root => {
     const participantLimit = root.classList.contains(compactClass) ? 20 : 15;
@@ -225,6 +242,10 @@ export const updateResultSelectionControl = (root, list, config, select) => {
     const show = items.length > 0;
     const label = select.querySelector('[data-easystud-select-results-label]') || select;
     select.hidden = !show;
+    const kind = selectionKinds[config.selector];
+    const blocked = !!kind && hasOtherSelection(root, kind);
+    select.disabled = blocked;
+    select.setAttribute('aria-disabled', blocked ? 'true' : 'false');
     if (!show) {
         select.removeAttribute('data-easystud-deselect-results');
         label.textContent = filtered ?
