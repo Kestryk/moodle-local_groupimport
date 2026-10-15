@@ -190,6 +190,7 @@ if ($action && data_submitted()) {
 // SM-RENDU on-demand mode: the browser renders the cards from local_groupimport_get_state, so the
 // page only loads the lean data it still needs (filters, counts, grouping headers).
 $state = \local_groupimport\service\course_state::page_data($course, $context);
+$state = local_groupimport_prepare_manage_names($state, $context);
 $users = $state['users'];
 $groups = $state['groups'];
 $groupings = $state['groupings'];

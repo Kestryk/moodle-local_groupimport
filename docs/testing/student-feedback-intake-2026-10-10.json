@@ -1,4 +1,24 @@
 {
+"s9ServerNameFollowup20261015": {
+  "incoming": "d8594b8e",
+  "sourceIntegration": "5678fd58",
+  "runtimeIntegration": "f45e2885",
+  "pageDataAudit": "escaped names pass to escaped Mustache headers/options",
+  "consumerFix": "prepare existing rawname as plain formatted text in manage.php/lib.php",
+  "phpLintAndModuleEscapingVerified": true,
+  "phpunitRun": false,
+  "phpunitBlocker": "executable and configuration absent",
+  "nativeRendererPending": true,
+  "nativeBrowserCsvReplayPending": true,
+  "humanAccepted": false
+},
+"complement3BeforeV2_20261015": {
+  "documentation": "docs/testing/codex1-before-v2-complement3-2026-10-15.md",
+  "beforeV2": ["K15-25", "K15-27", "K15-18", "K15-22", "Mass Import root16", "L8 userinitials"],
+  "awaitKevinPenpotChoice": ["K15-16", "K15-17", "K15-20", "K15-21", "K15-24"],
+  "guidePillsAdvancedInQueue": true
+},
+
 "moreFiltersLaneContinuityVerified20261015": {
   "sourceCommit": "13477769",
   "runtimeCommit": "31e3a10b",
