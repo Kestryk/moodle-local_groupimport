@@ -463,6 +463,7 @@
     > button {
       block-size: var(--easyedu-card-action-target);
       box-sizing: border-box;
+      line-height: normal;
       min-block-size: var(--easyedu-card-action-target);
     }
   }

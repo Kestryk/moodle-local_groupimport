@@ -6014,3 +6014,5 @@ Maintenance convention:
 - Reprise autoris?e de la grille Groupe apr?s repli : candidat produit inchang?, successeur de recette capture le panneau r?ellement visible ; certification conditionn?e aux colonnes/contenus ?0.5px, footer32px, FR/EN quatre largeurs et audit Kevin0FAIL. Aucun autre correctif A-J.
 
 - Kit738a97cc /0.4.220 removes the legacy removal-glyph offset at its single canonical source. Group column geometry and all strict half-pixel/content/32px footer oracles remain unchanged; final native certification pending.
+
+- Entity-card footer now consumes canonical natural font metrics, measured0px at1600/390 with existing32px control; no toolbar/reset style changes. Final strict matrix and Kevin audit still required.

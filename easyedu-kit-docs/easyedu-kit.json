@@ -4,6 +4,7 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "entityFooterNaturalText20261015":{"kitCommit":"6f5426fd","kitVersion":"0.4.221","scope":"Natural line metrics inside existing32px footer recovery target; toolbar/reset recipes unchanged"},
     "relatedPersonGlyphCentre20261015":{"kitCommit":"738a97cc","kitVersion":"0.4.220","scope":"Remove legacy negative glyph margin; keep canonical related-person-remove grid centring and appearance"},
     "entityCardRowEdges20261015":{"kitCommit":"423f691","scope":"Shared transparent row border geometry and equal footer action height; prior pins retained"},
     "entityCardAbsoluteOrigin20261015":{"kitCommit":"fb73245","scope":"Absolute selection/menu targets retain automatic grid placement and the card padding-box origin"},
