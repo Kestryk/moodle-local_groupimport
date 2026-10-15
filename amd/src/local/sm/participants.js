@@ -32,7 +32,8 @@
 
 import Mustache from 'core/mustache';
 import Loader from 'core/local/templates/loader';
-import {buildParticipantIndex, filterParticipantIds, normalise} from './index';
+import {buildParticipantIndex, filterParticipantIds} from './index';
+import {normalise} from './filter_engine';
 import {refreshGroupIndex} from './groups';
 import {escapeHtml} from '../cm/shared';
 

@@ -73,6 +73,49 @@ const checkCmModules = () => {
 };
 checkCmModules();
 
+// SM-RENDU modules import Moodle core modules, each other and the shared course manager helpers
+// only. V2 n°10: every search and filter matches through local/sm/filter_engine, a pure module
+// (no import, no DOM): the filtering modules must import it, and none may re-implement it.
+const smExternal = ['core/mustache', 'core/local/templates/loader', 'core/ajax', 'core/reactive', '../cm/shared'];
+const engineUsers = {sm: ['index', 'groups'], cm: ['filters', 'workspace', 'group_cards', 'identifiers', 'shared']};
+const checkSmModules = () => {
+    const smNames = jsNames('sm').map(name => name.replace(/\.js$/, ''));
+    if (!smNames.includes('filter_engine')) {
+        throw new Error('Missing the filter engine: amd/src/local/sm/filter_engine.js.');
+    }
+    const read = (dir, base) => fs.readFileSync(path.join(srcRoot, 'local', dir, base + '.js'), 'utf8').replace(/\r\n/g, '\n');
+    smNames.forEach(base => {
+        const source = read('sm', base);
+        const statements = source.match(/^import\b/gm) || [];
+        const imports = [...source.matchAll(/^import (?:\* as \w+|\w+|\{[^}]*\}) from '([^']+)';$/gm)].map(match => match[1]);
+        if (imports.length !== statements.length) {
+            throw new Error(`local/sm/${base}.js: unexpected import statement form.`);
+        }
+        if (base === 'filter_engine' && (imports.length || /\bdocument\b|\bwindow\b/.test(source))) {
+            throw new Error('local/sm/filter_engine.js must stay pure: no import, no document or window.');
+        }
+        imports.forEach(from => {
+            if (from.startsWith('./') ? !smNames.includes(from.slice(2)) : !smExternal.includes(from)) {
+                throw new Error(`local/sm/${base}.js imports a module outside its allowed set: ${from}`);
+            }
+        });
+        if (/^export (let|var|default)\b/m.test(source)) {
+            throw new Error(`local/sm/${base}.js must only export named constants.`);
+        }
+    });
+    Object.entries(engineUsers).forEach(([dir, bases]) => bases.forEach(base => {
+        const source = read(dir, base);
+        const from = dir === 'sm' ? './filter_engine' : '../sm/filter_engine';
+        if (source.indexOf(`} from '${from}';`) === -1) {
+            throw new Error(`local/${dir}/${base}.js must match through the filter engine (${from}).`);
+        }
+        if (/\.toLowerCase\(\)/.test(source) || /\.indexOf\(query\)/.test(source)) {
+            throw new Error(`local/${dir}/${base}.js re-implements the filter engine (lowercasing or query matching).`);
+        }
+    }));
+};
+checkSmModules();
+
 const buildModule = (dir, name) => {
     const sourceDir = path.join(srcRoot, 'local', dir);
     const buildDir = path.join(pluginRoot, 'amd/build/local', dir);

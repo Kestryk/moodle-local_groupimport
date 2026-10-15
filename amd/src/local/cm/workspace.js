@@ -27,7 +27,8 @@ import * as Guide from '../../easyedu_guide';
 import Log from 'core/log';
 import {fetchState} from '../sm/store';
 import {refreshModel, applyParticipantFilters, sortParticipantIds, renderParticipantPage} from '../sm/participants';
-import {getTreeSectionGroupIds, renderTreeSection, groupingSearchText} from '../sm/groups';
+import {getTreeSectionGroupIds, renderTreeSection, groupingSearchText, treeGroupSearchText} from '../sm/groups';
+import {matchesText, matchesOccupancy} from '../sm/filter_engine';
 import {
     compactClass, structureFocusClass, participantFocusClass, isResponsiveWorkspace, requestGuideHighlightRefresh,
     normalise, getLabels,
@@ -177,15 +178,15 @@ export const applyStructureSearch = (root, options = {}) => {
     root.querySelectorAll('[data-easystud-tree] [data-easystud-grouping-id]').forEach(grouping => {
         const state = model ?
             model.groupings.get(Number(grouping.getAttribute('data-easystud-grouping-id'))) : null;
+        // On demand, the section only knows its header: search text and occupancy come from the state.
+        const text = state ? groupingSearchText(model, state) : null;
         if (state) {
-            // On demand, the section only knows its header: search text and occupancy come from the state.
-            grouping.setAttribute('data-search-text', groupingSearchText(model, state));
+            grouping.setAttribute('data-search-text', text);
         }
         const hasGroups = state ? getTreeSectionGroupIds(model, String(state.id)).length > 0 :
             getGroupsInGrouping(grouping).length > 0;
-        const matchesOccupancy = occupancyValue === 'all' ||
-            (occupancyValue === 'filled' && hasGroups) || (occupancyValue === 'empty' && !hasGroups);
-        const filterhidden = !matchesSearchText(grouping, groupingQuery) || !matchesOccupancy;
+        const matchesQuery = state ? matchesText(text, groupingQuery) : matchesSearchText(grouping, groupingQuery);
+        const filterhidden = !matchesQuery || !matchesOccupancy(occupancyValue, hasGroups);
         grouping.setAttribute('data-easystud-grouping-filter-hidden', filterhidden ? '1' : '0');
         grouping.hidden = filterhidden;
     });
@@ -213,8 +214,10 @@ export const applyContainerGroupSearch = (root, options = {}) => {
         const query = normalise(search ? search.value : '');
         let visibleCount = 0;
 
+        const model = getOnDemandModel(root);
         getContainerGroups(list).forEach(group => {
-            const hidden = !matchesSearchText(group, query);
+            // The state's tree search text; a card the state does not know yet keeps its own.
+            const hidden = !!query && !matchesText(treeGroupSearchText(model, group), query);
             group.hidden = hidden;
             group.setAttribute('data-easystud-container-search-hidden', hidden ? '1' : '0');
             if (!hidden) {

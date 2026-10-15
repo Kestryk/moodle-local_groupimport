@@ -27,7 +27,8 @@
 
 import Mustache from 'core/mustache';
 import Loader from 'core/local/templates/loader';
-import {normalise, countLabel} from './index';
+import {countLabel} from './index';
+import {normalise, filterEntryIds, elementSearchText} from './filter_engine';
 
 const templateName = 'local_groupimport/sm/group_card';
 
@@ -98,6 +99,12 @@ export const refreshGroupIndex = model => {
         const text = normalise(parts.join(' ').trim());
         model.groupTreeSearch.set(group.id, text);
         return [group.id, normalise((text + ' ' + (catalogGroupingNames.get(group.id) || []).join(' ')).trim())];
+    }));
+    // Catalog filter entries (filter_engine): catalog search text and grouping ids, in state order.
+    model.groupEntries = raw.groups.map(group => ({
+        id: group.id,
+        text: model.groupSearch.get(group.id),
+        groupingids: (group.groupingids || []).map(String),
     }));
     Object.values(model.catalogs).forEach(catalog => catalog.detached.clear());
 };
@@ -285,18 +292,20 @@ export const getDetachedGroupCard = (model, groupid, key) => {
  * @param {Object} filters {groupings: String[] (ids or __none__), onlyungrouped: Boolean, query: String}
  * @returns {Number[]} Ids in state order.
  */
-export const filterGroupIds = (model, filters) => {
-    const selected = filters.groupings || [];
-    return model.raw.groups.filter(group => {
-        const groupingids = (group.groupingids || []).map(String);
-        const hasnogrouping = groupingids.length === 0;
-        const matchesgrouping = !selected.length || selected.some(value => value === '__none__' ?
-            hasnogrouping : groupingids.indexOf(value) !== -1);
-        if (!matchesgrouping || (filters.onlyungrouped && !hasnogrouping)) {
-            return false;
-        }
-        return !filters.query || (model.groupSearch.get(group.id) || '').indexOf(filters.query) !== -1;
-    }).map(group => group.id);
+export const filterGroupIds = (model, filters) => filterEntryIds(model.groupEntries, filters);
+
+/**
+ * Search text of a tree group card: from the state, or from the card while the state does not
+ * know the group yet (a card created before the state refresh).
+ *
+ * @param {Object|null} model Participant model, null while the state loads.
+ * @param {HTMLElement} card Group card.
+ * @returns {String}
+ */
+export const treeGroupSearchText = (model, card) => {
+    const text = model && model.groupTreeSearch ?
+        model.groupTreeSearch.get(Number(card.getAttribute('data-easystud-group-id'))) : undefined;
+    return text === undefined ? elementSearchText(card) : text;
 };
 
 /**
