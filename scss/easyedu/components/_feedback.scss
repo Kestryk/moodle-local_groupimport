@@ -67,6 +67,16 @@
   }
 }
 
+// Bridge legacy Bootstrap/overflow !important utilities to the same card-label geometry.
+@mixin card-label-overflow {
+  @include card-label;
+  font-size: var(--easyedu-card-label-font-size) !important;
+  font-weight: var(--easyedu-font-weight-semibold) !important;
+  line-height: calc(var(--easyedu-card-label-height) - 2px) !important;
+  padding-block: 0 !important;
+  padding-inline: var(--easyedu-card-label-padding-inline) !important;
+}
+
 @mixin count-badge-filled($color: var(--easyedu-primary)) {
   @include count-badge(
     color-mix(in srgb, #{$color} 12%, #fff 88%),
