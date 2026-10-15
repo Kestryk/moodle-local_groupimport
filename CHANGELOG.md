@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Integrate Claude accent-insensitive filtering678db06e, responsive transitions0af73b66 and settled T020 alignmenta8c6364b; rebuild both AMD sets and retain strict first-entry native oracle.
+
 - 2026-10-15 [N1] Prepare K15-07 Kit0.4.212/30c7989 opt-in semantic popover palette, preserving classic CSS and existing help recipes; native/publication held by preceding T020 visual stop.
 
 - 2026-10-15 [N0] Record Claude selection/filter/palette commits served463b657f; preserve strict T020 failure and both-width diagnostic (9.75px), exact admin-config restoration and unverified native cases. Stop on unexplained visual difference.
