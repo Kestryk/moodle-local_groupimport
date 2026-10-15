@@ -1,4 +1,11 @@
 {
+"altSelectionHelp20261015": {
+  "scope": "existing tutorialkeyboardcontent shared by Guide/help, FR/EN",
+  "sourceIntegration": "7c19571a / 28876374",
+  "nativeAltParticipantProof": "easystud-authenticated-20261015T090956236Z-36984",
+  "macCertified": false,
+  "humanAccepted": false
+},
 "k21LocalhostProof20261015": {
   "source": "ffc67c1d",
   "runtime": "a3071593",
