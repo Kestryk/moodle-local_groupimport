@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] K15-28/R7 restricts the native course-home invitation to teaching/admin roles on fresh and existing installations; preserve tour steps and all unrelated configuration. Version2026101500.
+
 - 2026-10-15 [N1] K15-23 lets Motion own panel opacity/transform during view changes; retain only the panel shadow transition and all floating-menu Motion.
 
 - 2026-10-15 [N0] Document Ctrl/Cmd, Alt and Shift click in the existing FR/EN Guide keyboard help after Claude Alt selection integration; preserve checkbox keyboard instructions.

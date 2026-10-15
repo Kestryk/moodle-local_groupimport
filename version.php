@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_groupimport';
-$plugin->version = 2026101400;   // YYYYMMDDXX. SM-RENDU: On demand rendering becomes the only mode.
+$plugin->version = 2026101500;   // YYYYMMDDXX. Restrict the course-home tour to staff.
 $plugin->requires = 2025100600;  // Moodle 5.1 minimum.
 $plugin->maturity = MATURITY_BETA;
 $plugin->release = '0.4.2-beta';

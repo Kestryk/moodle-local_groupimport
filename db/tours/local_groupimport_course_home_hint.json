@@ -4,7 +4,7 @@
   "pathmatch": "/course/view.php%",
   "enabled": 1,
   "sortorder": 10,
-  "configdata": "{\"placement\":\"bottom\",\"orphan\":\"0\"}",
+  "configdata": "{\"placement\":\"bottom\",\"orphan\":\"0\",\"filtervalues\":{\"role\":[\"editingteacher\",\"teacher\",\"manager\",\"-1\"]}}",
   "steps": [
     {
       "title": "tour_groupimport_coursehome_step1_title,local_groupimport",
