@@ -6003,3 +6003,5 @@ Maintenance convention:
 
 - Applied the two authorised SHA-256 candidates, then routed legacy and payload-backed rows through the same K16-22 renderer (titles, real values, first token and exact counters).
 - Rebuilt SM/CM and conservative CSS. Dense/ordinary native fixture and acceptance audit remain in progress; no native acceptance claimed.
+
+- K16-01/K16-22 native parity certified: 32 states, 1042 pills at 22px, centre delta 0px, 76 exact counters, eight group and two participant real deferred opens. Kevin audit: zero non-group failures; 18 group failures deferred to the next lot. Fixtures restored.
