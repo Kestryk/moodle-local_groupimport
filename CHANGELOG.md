@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Integrate Claude S9 plain state names and adapt lean PHP names from existing rawname before escaped Mustache rendering; preserve literal entities and add a read-only real-template renderer check.
+
 - 2026-10-15 [N0] Verify More Filters continuous lanes in32desktop default/test-palette states and6compact CSS parity cases; preserve failed hidden-input capture predecessor and separate Guide business replay.
 
 - 2026-10-15 [N2] Keep desktop More Filters lane headers stretched in mixed disclosure states; pin each control beneath its own filters while preserving shared list rows, equal-state alignment and responsive rules.

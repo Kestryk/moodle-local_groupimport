@@ -394,6 +394,29 @@ function local_groupimport_get_manager_url(int $courseid): moodle_url {
 }
 
 /**
+ * Prepare plain names for the page's escaped Mustache fields and filter options.
+ *
+ * The lean page state still contains formatted HTML names. Use its existing raw
+ * value so literal entities are not decoded and each renderer escapes only once.
+ *
+ * @param array $state Lean page state; all other fields remain unchanged.
+ * @param context_course $context Course formatting context.
+ * @return array State with plain group and grouping names.
+ */
+function local_groupimport_prepare_manage_names(array $state, context_course $context): array {
+    foreach (['groups', 'groupings'] as $type) {
+        foreach ($state[$type] ?? [] as $id => $entity) {
+            if (!array_key_exists('rawname', $entity)) {
+                continue;
+            }
+            $state[$type][$id]['name'] = format_string((string)$entity['rawname'], true,
+                ['context' => $context, 'escape' => false]);
+        }
+    }
+    return $state;
+}
+
+/**
  * Build the shared-navigation context for the Mass Import workspace.
  *
  * The participant selector and Guide remain Simplified Student Management
