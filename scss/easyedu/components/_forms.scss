@@ -892,6 +892,12 @@
   > button { align-self: end; margin: 0; }
 }
 
+@mixin filter-panel-trailing-actions {
+  display: grid;
+  row-gap: 12px;
+  > .easyedu-filter-actions { margin-block-start: 0; }
+}
+
 // Backward-compatible name retained for existing consumers.
 @mixin more-filters-toggle {
   @include filter-disclosure-trigger(compact);
