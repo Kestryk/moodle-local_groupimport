@@ -1,4 +1,26 @@
 {
+"studentNativeServedProof20261015": {
+  "source": "9de886e1",
+  "runtime": "6ef853ed",
+  "version": 2026101500,
+  "upgrade": "PASS only local_groupimport pending; tour steps and other configuration unchanged",
+  "roleFilter": "student false, admin true",
+  "nativeRun": "easystud-authenticated-20261015T103503008Z-19532",
+  "matrix": "FR1280/390 course home and native Participants; existing synthetic student via Moodle Login as",
+  "result": "PASS zero EasyStud links, page sheets, CSSOM rules, Guide/workspace roots, tour init or plugin requests; no overflow or page errors",
+  "humanAccepted": false
+},
+"quickFixTitleEyePanelNative20261015": {
+  "runtime": "6ef853ed",
+  "nativeRun": "easystud-authenticated-20261015T100223443Z-17800",
+  "title": "PASS FR/EN1280/390 column Participants, unchanged combined view selector",
+  "eye": "PASS FR390/768 compact and selected-expanded, 8 samples delta0.953125px, no additional product edit",
+  "panel": "PASS native view return and computed shadow-only CSS transition; JS Motion unchanged",
+  "pageErrors": 0,
+  "businessWrites": 0,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "studentNativeK1528R7_20261015": {
   "scope": "course-home tour staff role filter, install JSON and upgrade 2026101500",
   "navigation": "existing managegroups capability gate retained",

@@ -11,3 +11,8 @@ No column-specific combined wording needs replacing. The11October document is
 historical proof of the superseded R10-21 choice and is retained unchanged.
 Native heading/selector verification is pending the quick-fix publication.
 Visual relay: SM participant panel h3/compact column heading, ready, FR/EN1280/390.
+
+Published as c1f0cf02, followed by the quick-fix series through6ef853ed.
+Native easystud-authenticated-20261015T100223443Z-17800 PASS: both heading slots
+read Participants in FR/EN1280/390, while the selector retains Participants &
+groupes / Participants & groups. No page errors, business writes or overflow.

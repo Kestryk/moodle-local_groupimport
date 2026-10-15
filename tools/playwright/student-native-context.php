@@ -24,6 +24,7 @@ $tours = $DB->get_records('tool_usertours_tours', [
 ]);
 $matches = [];
 if ($student) {
+    $student['fullname'] = fullname($DB->get_record('user', ['id' => $student['id']], '*', MUST_EXIST));
     $previoususer = $USER;
     foreach (['student' => $student['id'], 'admin' => get_admin()->id] as $kind => $userid) {
         $USER = $DB->get_record('user', ['id' => $userid], '*', MUST_EXIST);
@@ -34,9 +35,19 @@ if ($student) {
     }
     $USER = $previoususer;
 }
+$pending = [];
+foreach (core_plugin_manager::instance()->get_plugins() as $plugins) {
+    foreach ($plugins as $plugin) {
+        if ($plugin->versiondisk !== null && $plugin->versiondb !== null &&
+                (float)$plugin->versiondisk > (float)$plugin->versiondb) {
+            $pending[] = $plugin->component;
+        }
+    }
+}
 echo json_encode([
     'student' => $student,
     'version' => get_config('local_groupimport', 'version'),
     'tours' => array_values($tours),
     'roleMatches' => $matches,
+    'pendingUpgrades' => $pending,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
