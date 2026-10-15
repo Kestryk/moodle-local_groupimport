@@ -5992,3 +5992,5 @@ Maintenance convention:
 - 2026-10-15 [N0] Certify K16 horizontal regression correction in FR/EN1600/768/390, both card densities: full selector target/name gap>=8px, preserved vertical centres and painted filter footer right edges. Preserve earlier failed geometry runs and narrower proof scope.
 
 - 2026-10-15 [N1] Integrate reviewed E5/ISO792a3524: five native-control admin sections, keyboard/Motion disclosures and SM typography roles, Mass Import title parity; preserve K16 regression fixes and all existing FR/EN strings with only the four authorized E5 additions. Rebuild admin AMD and conservative page CSS.
+
+- 2026-10-15 [N0] Verify E5/ISO on principal localhost in FR/EN at1600/1280/768/390: five native admin sections,20px titles,38/44px controls and keyboard; Mass Import peer titles match, zero page errors/settings writes. Human acceptance remains open.
