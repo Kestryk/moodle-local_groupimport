@@ -91,8 +91,9 @@ export const buildParticipantIndex = state => {
             id: user.id,
             text: normalise(user.fullname + ' ' + user.email + ' ' + roles.join(' ') + ' ' + groupNames.join(' ') + ' ' +
                 groupingIds.map(groupingid => groupingNames.get(groupingid)).join(' ') + ' ' + custom.join(' ')),
-            // Role filter values (lowercased role names until V2 n°6).
-            roleids: roles.map(normalise),
+            // V2 n°6: the role filter matches the course role ids of the state, never role names
+            // (two roles can share a name, and names are translated).
+            roleids: (user.roleids || []).map(String),
             groupids: (user.groupids || []).map(String),
             groupingids: groupingIds.map(String),
         };
@@ -103,7 +104,7 @@ export const buildParticipantIndex = state => {
  * Participant ids matching the filters, in state order.
  *
  * @param {Object[]} index Entries from buildParticipantIndex().
- * @param {Object} filters {query, roles, groups, groupings}: role names, group and grouping ids;
+ * @param {Object} filters {query, roles, groups, groupings}: role, group and grouping ids;
  *     groupings may contain '__none__' (filter_engine NO_GROUPING).
  * @returns {Number[]}
  */
