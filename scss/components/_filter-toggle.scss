@@ -1,0 +1,22 @@
+// "More filters" text button (Kevin, 16/10/2026, D2 variant A, PENPOT-S6-D2).
+// Same family as the discreet "Select all": label, chevron and active-filter
+// count share one capsule; the paired-lane layout (13477769) is unchanged.
+@use "../easyedu" as easyedu;
+
+#local-groupimport-easystud {
+  .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule {
+    @include easyedu.filter-disclosure-text-capsule;
+
+    .local-groupimport-easystud-advanced-filters__more {
+      font: inherit;
+    }
+
+    &[aria-expanded="true"] .fa {
+      transform: rotate(180deg);
+    }
+  }
+
+  .local-groupimport-easystud-advanced-filters__count {
+    @include easyedu.filter-disclosure-count;
+  }
+}

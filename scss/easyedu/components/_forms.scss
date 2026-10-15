@@ -792,6 +792,91 @@
   }
 }
 
+// Discreet text variant of the capsule (D2 A, 16/10/2026), in the family of
+// the discreet "Select all" text button: 12 px semibold primary label, 12 px
+// chevron, 2 x 8 px padding, radius 8, never underlined. Hover and the open
+// state paint the capsule with the primary soft surface (#eaf3fb, ~8 %); an active-filter
+// count pill sits inside the capsule on the label baseline. The thin focus
+// ring is keyboard-only (:focus-visible) and painted on the capsule.
+@mixin filter-disclosure-text-capsule {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  outline: 0;
+
+  > .easyedu-filter-disclosure__content {
+    background: transparent;
+    border: 0;
+    border-radius: 0.5rem;
+    color: var(--easyedu-primary);
+    font-size: 0.75rem;
+    font-weight: var(--easyedu-font-weight-semibold);
+    gap: 0.375rem;
+    line-height: 1.125rem;
+    min-block-size: 0;
+    padding: 0.125rem 0.5rem;
+    text-decoration: none;
+
+    > span,
+    > span:not([aria-hidden="true"]) {
+      text-decoration: none;
+    }
+
+    > .fa {
+      font-size: 0.75rem;
+      line-height: 1;
+    }
+  }
+
+  &:hover:not(:disabled):not([aria-disabled="true"]),
+  &[aria-expanded="true"]:not(:disabled):not([aria-disabled="true"]) {
+    background: transparent;
+    border-color: transparent;
+
+    > .easyedu-filter-disclosure__content {
+      background: var(--easyedu-primary-soft);
+      border-color: transparent;
+      color: var(--easyedu-primary-strong);
+    }
+
+    > .easyedu-filter-disclosure__content > span {
+      text-decoration: none;
+    }
+  }
+
+  &:focus,
+  &:focus-visible {
+    box-shadow: none;
+    outline: 0;
+  }
+
+  &:focus-visible > .easyedu-filter-disclosure__content {
+    outline: 1.5px solid color-mix(in srgb, var(--easyedu-primary) 35%, transparent);
+    outline-offset: 1px;
+  }
+}
+
+// Active-filter count inside the text capsule: an 18 px primary pill.
+@mixin filter-disclosure-count {
+  align-items: center;
+  background: var(--easyedu-primary);
+  block-size: 1.125rem;
+  border-radius: 999px;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.6875rem;
+  font-weight: var(--easyedu-font-weight-strong);
+  justify-content: center;
+  line-height: 1;
+  min-inline-size: 1.125rem;
+  padding-inline: 0.3125rem;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
 // Backward-compatible name retained for existing consumers.
 @mixin more-filters-toggle {
   @include filter-disclosure-trigger(compact);
