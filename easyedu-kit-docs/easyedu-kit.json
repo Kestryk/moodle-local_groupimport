@@ -4,6 +4,11 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "palettePopoverK1507_20261015": {
+      "kitVersion": "0.4.212",
+      "kitCommit": "30c7989",
+      "scope": "Opt-in body popover palette; preserve classic default paint and geometry"
+    },
     "workspaceLanes20261015": {
       "kitVersion": "0.4.211",
       "kitCommit": "49ef47e",
