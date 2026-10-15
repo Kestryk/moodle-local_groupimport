@@ -109,3 +109,7 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 - `test-shared-pill-renderer-framed.cjs`: actual consumer scope, strict legacy/payload equivalence, 20 cases PASS (22px, sentinels, first real pill, title, exact +N). Initial missing-scope failure retained externally.
 - `long-lists-k16-22-native.spec.js`: preserved first native run; four FR1600 states passed, then harness attempted a lazy group before opening its parent. Fixture cleanup verified complete.
 - `long-lists-k16-22-routed-native.spec.js`: successor opens the parent through the UI, retains every strict oracle and delayed real-details check; native acceptance pending.
+
+- Routed native run 194502370: 16 FR pill states and three real deferred-sheet cells passed; FR390 real response exceeded the harness default 5s readiness assertion. Fixture cleanup complete. Strict settled successor waits the same ready predicate up to 90s, without changing product Motion or acceptance tolerances.
+
+- Settled matrix 195132397 PASS: 32 states, eight real deferred sheets, 18 pre-existing group-only audit failures and no other failures. Participant deferred successor 195622852 PASS FR1600/EN390 (37 visible real group pills and return focus). See long-lists-k16-22-parity-2026-10-15.md.
