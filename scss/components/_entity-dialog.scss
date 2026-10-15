@@ -1,0 +1,571 @@
+// Card detail dialogs, "entity dialog" (T048 / K18, Kevin 16/10/2026 decision 6).
+// Penpot: EasyStud Product views 04a, captures S6-D5a/b/c. Structure contract:
+// PROPOSITION-MODALES sections 2 and 3. Header keeps the accepted T045 recipe;
+// identity, information, relations, image and the sticky footer are composed
+// from Kit tokens and mixins only.
+@use "../easyedu" as easyedu;
+@use "dialog-recipes" as recipes;
+
+.local-groupimport-easystud {
+  // Window M (720px); header and footer stay put, only the body scrolls.
+  &-modal__dialog.local-groupimport-easystud-entity {
+    @include recipes.dialog-shell(45rem);
+  }
+
+  &-entity__tile.easyedu-entity-dialog__icon {
+    @include recipes.dialog-tile(var(--easyedu-primary), var(--easyedu-primary-soft));
+  }
+
+  &-entity--participant &-entity__tile.easyedu-entity-dialog__icon {
+    @include recipes.dialog-tile(var(--easyedu-participant), var(--easyedu-participant-soft));
+  }
+
+  &-entity--group &-entity__tile.easyedu-entity-dialog__icon {
+    @include recipes.dialog-tile(var(--easyedu-group), var(--easyedu-group-soft));
+  }
+
+  &-entity--grouping &-entity__tile.easyedu-entity-dialog__icon {
+    @include recipes.dialog-tile(var(--easyedu-grouping), var(--easyedu-grouping-soft));
+  }
+
+  &-entity > .local-groupimport-easystud-modal__header {
+    flex: 0 0 auto;
+  }
+
+  &-entity__form {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin: 0;
+    min-block-size: 0;
+  }
+
+  &-entity &-modal__body.local-groupimport-easystud-entity__body {
+    @include recipes.dialog-scroll-body;
+
+    background: var(--easyedu-surface);
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    max-block-size: none;
+    padding: 1.5rem 1.25rem;
+  }
+
+  &-entity__content {
+    display: grid;
+    gap: 1.5rem;
+    min-inline-size: 0;
+  }
+
+  &-entity &-modal__footer.local-groupimport-easystud-entity__footer {
+    @include recipes.dialog-footer;
+  }
+
+  &-entity__native {
+    @include recipes.dialog-footer-link;
+  }
+
+  &-entity__native-short {
+    display: none;
+  }
+
+  // 1. Identity: entity rail, 56px visual, name and context line.
+  &-entity__identity {
+    --local-groupimport-easystud-entity-color: var(--easyedu-participant);
+    --local-groupimport-easystud-entity-soft: var(--easyedu-participant-soft);
+
+    align-items: center;
+    border-inline-start: 0.25rem solid var(--local-groupimport-easystud-entity-color);
+    border-radius: 0.125rem;
+    display: grid;
+    gap: 0.875rem;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    min-inline-size: 0;
+    padding-inline-start: 0.625rem;
+  }
+
+  &-entity__identity--group {
+    --local-groupimport-easystud-entity-color: var(--easyedu-group);
+    --local-groupimport-easystud-entity-soft: var(--easyedu-group-soft);
+  }
+
+  &-entity__identity--grouping {
+    --local-groupimport-easystud-entity-color: var(--easyedu-grouping);
+    --local-groupimport-easystud-entity-soft: var(--easyedu-grouping-soft);
+  }
+
+  &-entity__visual {
+    align-items: center;
+    background: var(--local-groupimport-easystud-entity-soft);
+    block-size: 3.5rem;
+    border-radius: 0.75rem;
+    color: var(--local-groupimport-easystud-entity-color);
+    display: inline-flex;
+    font-size: 1.25rem;
+    inline-size: 3.5rem;
+    justify-content: center;
+    overflow: hidden;
+
+    > .fa {
+      line-height: 1;
+      margin: 0;
+    }
+  }
+
+  &-entity__identity--participant &-entity__visual {
+    border-radius: 50%;
+
+    img,
+    .userinitials {
+      block-size: 100% !important;
+      border: 0;
+      border-radius: inherit;
+      box-shadow: none;
+      display: block;
+      inline-size: 100% !important;
+      margin: 0 !important;
+      max-inline-size: none;
+      object-fit: cover;
+      padding: 0;
+    }
+
+    .userinitials {
+      align-items: center;
+      background: var(--easyedu-participant-soft);
+      color: color-mix(in srgb, var(--easyedu-participant) 82%, #000 18%);
+      display: inline-flex;
+      font-size: 1.125rem;
+      font-weight: var(--easyedu-font-weight-strong);
+      justify-content: center;
+      line-height: 1;
+    }
+  }
+
+  &-entity__identity-text {
+    display: grid;
+    gap: 0.2rem;
+    min-inline-size: 0;
+  }
+
+  &-entity__name {
+    @include easyedu.type-modal-title;
+
+    color: var(--easyedu-card-identity-title-color);
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &-entity__context {
+    @include easyedu.type-caption;
+
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  // 2-4. Sections: quiet caption, divider between sections.
+  &-entity__section {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    min-inline-size: 0;
+  }
+
+  &-entity__section + &-entity__section {
+    border-block-start: 0.0625rem solid recipes.$dialog-divider;
+    padding-block-start: 1rem;
+  }
+
+  &-entity__caption {
+    @include easyedu.type-eyebrow;
+
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+
+  // 2. Information: two columns of Kit fields, label above, no card around.
+  &-entity__fields {
+    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    min-inline-size: 0;
+    row-gap: 0.875rem;
+  }
+
+  &-entity__field {
+    display: grid;
+    gap: 0.375rem;
+    align-content: start;
+    margin: 0;
+    min-inline-size: 0;
+
+    > dt,
+    > .local-groupimport-easystud-entity__label {
+      @include easyedu.entity-field-caption($inline: true);
+
+      margin: 0;
+    }
+
+    > dd,
+    > .local-groupimport-easystud-entity__value {
+      @include easyedu.entity-field-value;
+
+      margin: 0;
+    }
+  }
+
+  &-entity__field--wide {
+    grid-column: 1 / -1;
+  }
+
+  &-entity__input {
+    @include easyedu.foundation-text-field;
+
+    inline-size: 100%;
+  }
+
+  &-entity__textarea {
+    @include easyedu.foundation-textarea;
+
+    inline-size: 100%;
+  }
+
+  &-entity__description {
+    > :last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  // 3. Relations: identical disclosure sections, counter and CSV text action.
+  &-entity__relation {
+    display: grid;
+    margin: 0;
+    min-inline-size: 0;
+
+    & + & {
+      margin-block-start: 0.875rem;
+    }
+  }
+
+  &-entity__relation-summary {
+    align-items: center;
+    border-radius: var(--easyedu-control-radius);
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    min-block-size: 1.75rem;
+    min-inline-size: 0;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:focus-visible {
+      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: 0;
+    }
+  }
+
+  &-entity__relation-chevron {
+    @include easyedu.card-disclosure-icon(var(--easyedu-card-identity-title-color));
+
+    font-size: 0.625rem;
+    transform: rotate(180deg);
+  }
+
+  &-entity__relation[data-easystud-settings-list-state="open"] &-entity__relation-chevron,
+  &-entity__relation:not([data-easystud-settings-list-state])[open] &-entity__relation-chevron {
+    transform: none;
+  }
+
+  &-entity__relation-title {
+    @include easyedu.type-control-label;
+
+    color: var(--easyedu-card-identity-title-color);
+    flex: 0 1 auto;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &-entity__relation-count {
+    @include easyedu.type-caption;
+
+    flex: 0 1 auto;
+    min-inline-size: 0;
+    white-space: nowrap;
+  }
+
+  &-entity__text-action {
+    @include recipes.dialog-text-action;
+  }
+
+  &-entity__csv {
+    flex: 0 0 auto;
+    margin-inline-start: auto;
+  }
+
+  &-entity__relation-body {
+    display: grid;
+    gap: 0.5rem;
+    min-inline-size: 0;
+    padding-block-start: 0.5rem;
+    padding-inline-start: 1.75rem;
+  }
+
+  &-entity__pills,
+  &-entity__members {
+    list-style: none;
+    margin: 0;
+    min-inline-size: 0;
+    padding: 0;
+  }
+
+  &-entity__pills {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  &-entity__pill {
+    @include recipes.dialog-pill;
+  }
+
+  &-entity__pill--role {
+    @include easyedu.entity-card-token-semantic(role);
+  }
+
+  &-entity__pill--group {
+    @include easyedu.entity-card-token-semantic(group);
+  }
+
+  &-entity__pill--grouping {
+    @include easyedu.entity-card-token-semantic(grouping);
+  }
+
+  &-entity__pill-more {
+    display: inline-flex;
+  }
+
+  button#{&}-entity__pill--more {
+    cursor: pointer;
+    font-family: inherit;
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--easyedu-primary) 35%, #fff 65%);
+      color: var(--easyedu-primary);
+    }
+
+    &:focus-visible {
+      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
+    }
+  }
+
+  &-entity__members {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  &-entity__member.easyedu-related-person-row {
+    background: var(--easyedu-surface-soft);
+    min-block-size: 2.5rem;
+    padding-inline: 0.75rem;
+  }
+
+  &-entity__member-meta {
+    @include easyedu.type-caption;
+
+    flex: 0 1 auto;
+    min-inline-size: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &-entity__more {
+    justify-self: start;
+  }
+
+  &-entity__empty {
+    @include easyedu.type-caption;
+
+    margin: 0;
+  }
+
+  // 4. Image (groups): current image, compact deposit, Kit switch.
+  &-entity__image-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    min-inline-size: 0;
+  }
+
+  &-entity__image-preview.local-groupimport-easystud-settings-modal__image {
+    justify-self: stretch;
+    min-block-size: 7rem;
+    inline-size: auto;
+
+    img {
+      max-block-size: 7rem;
+    }
+  }
+
+  &-entity__deposit.local-groupimport-easystud-settings-modal__filepicker {
+    align-content: center;
+    gap: 0.35rem;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    margin: 0;
+    min-block-size: 7rem;
+    padding: 0.875rem 1rem;
+    text-align: center;
+  }
+
+  &-entity__deposit-icon {
+    color: var(--easyedu-primary);
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  &-entity__deposit-trigger {
+    @include recipes.dialog-text-action;
+
+    font-size: 0.875rem;
+    font-weight: var(--easyedu-font-weight-semibold);
+  }
+
+  &-entity__deposit-support {
+    @include easyedu.type-caption;
+
+    align-items: center;
+    display: inline-flex;
+    gap: 0.35rem;
+  }
+
+  &-entity__switch.local-groupimport-easystud-settings-modal__image-toggle {
+    justify-self: start;
+    width: auto;
+  }
+
+  // Loading: header filled, field skeletons, footer action waiting (no flash under 150ms).
+  &-entity__skeleton {
+    @include easyedu.skeleton-surface;
+    @include easyedu.skeleton-shimmer-direct;
+
+    block-size: 1.25rem;
+    inline-size: 100%;
+    visibility: hidden;
+  }
+
+  &-entity__body.is-entity-skeleton-visible &-entity__skeleton {
+    visibility: visible;
+  }
+
+  &-entity__skeleton--label {
+    block-size: 0.75rem;
+    inline-size: min(8rem, 60%);
+  }
+
+  &-entity__skeleton--value {
+    inline-size: 70%;
+  }
+
+  &-entity__skeleton--control {
+    block-size: 2.375rem;
+  }
+
+  &-entity__skeleton--area {
+    block-size: 7rem;
+  }
+
+  &-entity__skeleton--title {
+    inline-size: min(10rem, 50%);
+  }
+
+  &-entity__skeleton--row {
+    block-size: 2.5rem;
+  }
+
+  &-entity__skeleton--pills {
+    block-size: 1.375rem;
+    inline-size: min(14rem, 70%);
+  }
+
+  &-entity__skeleton--image,
+  &-entity__skeleton--deposit {
+    block-size: 7rem;
+  }
+
+  &-entity__relation--skeleton {
+    gap: 0.5rem;
+  }
+
+  &-entity__field--skeleton {
+    gap: 0.5rem;
+  }
+
+  &-entity__error {
+    margin: 0;
+  }
+
+  &-entity__error-copy {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 0.875rem;
+    justify-content: space-between;
+    min-inline-size: 0;
+
+    > p {
+      margin: 0;
+    }
+  }
+
+  // Responsive 390 (S6-D5c): full-height sheet, one column, sticky footer on one row.
+  @media (max-width: 36rem) {
+    &-modal:has(> .local-groupimport-easystud-entity) {
+      padding: 0;
+    }
+
+    &-modal__dialog.local-groupimport-easystud-entity {
+      @include recipes.dialog-sheet;
+    }
+
+    &-entity &-modal__body.local-groupimport-easystud-entity__body {
+      padding: 1.25rem 1rem;
+    }
+
+    &-entity__fields,
+    &-entity__image-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &-entity__image-preview.local-groupimport-easystud-settings-modal__image {
+      justify-self: start;
+      inline-size: 10.5rem;
+    }
+
+    &-entity &-modal__footer.local-groupimport-easystud-entity__footer {
+      display: flex;
+      padding: 0.75rem 1rem;
+
+      .btn {
+        inline-size: auto;
+      }
+    }
+
+    &-entity--group &-entity__native-long,
+    &-entity--grouping &-entity__native-long {
+      display: none;
+    }
+
+    &-entity--group &-entity__native-short,
+    &-entity--grouping &-entity__native-short {
+      display: inline;
+    }
+  }
+}

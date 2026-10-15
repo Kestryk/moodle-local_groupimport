@@ -14,7 +14,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * EasyStud course manager: group and grouping advanced settings dialog.
+ * EasyStud course manager: group and grouping details dialog (entity dialog, T048).
  *
  * @module     local_groupimport/local/cm/advanced_settings
  * @copyright  2026 Kevin Jarniac
@@ -22,12 +22,17 @@
  */
 
 import * as Motion from '../../motion';
+import Log from 'core/log';
 import {fetchDetails} from '../sm/store';
 import {countLabel} from '../sm/index';
-import Notification from 'core/notification';
 import {requestGuideHighlightRefresh, normalise, getLabels, showNotification, escapeHtml} from './shared';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
 import {hideEasyStudModal, bindCardModalKeyboard} from './modal';
+import {
+    entitySection, entityIdentity, entityIcon, entitySkeletonField, entitySkeletonRelation, entityPills,
+    entityMemberRows, entityRelationSection, entityErrorNotice, entityCount, startEntityLoading,
+    setEntityFooterBusy, bindEntityReveal,
+} from './entity_dialog';
 import {
     getGroupName, getGroupElementsById, rehydrateParticipantMembershipDetails, updateCatalogGroupingTags,
     scheduleGroupGroupingOverflow, getGroupMemberCount, findParticipantCard,
@@ -361,21 +366,34 @@ const getAdvancedCountLabel = (root, item, isgroup) => {
     return countLabel(template, count);
 };
 
+// Entity dialog fields (T048): label above a Kit text field M, no card around the field.
 const renderAdvancedInput = (label, name, value, type = 'text', help = '') => {
-    return '<label class="local-groupimport-easystud-settings-modal__field">' +
-        '<span>' + escapeHtml(label) + renderFieldHelp(help) + '</span>' +
-        '<input type="' + type + '" class="form-control form-control-sm" name="' + escapeHtml(name) + '" value="' +
-            escapeHtml(value || '') + '">' +
+    return '<label class="local-groupimport-easystud-settings-modal__field local-groupimport-easystud-entity__field">' +
+        '<span class="local-groupimport-easystud-entity__label">' + escapeHtml(label) + renderFieldHelp(help) + '</span>' +
+        '<input type="' + type + '" class="form-control local-groupimport-easystud-entity__input" name="' +
+            escapeHtml(name) + '" value="' + escapeHtml(value || '') + '"' +
+            (type === 'password' ? ' autocomplete="new-password"' : '') + '>' +
     '</label>';
 };
 
 const renderAdvancedTextarea = (label, name, value, help = '') => {
-    return '<label class="local-groupimport-easystud-settings-modal__field local-groupimport-easystud-settings-modal__field--wide">' +
-        '<span>' + escapeHtml(label) + renderFieldHelp(help) + '</span>' +
-        '<textarea class="form-control form-control-sm" name="' + escapeHtml(name) + '" rows="2">' +
+    return '<label class="local-groupimport-easystud-settings-modal__field ' +
+            'local-groupimport-easystud-settings-modal__field--wide ' +
+            'local-groupimport-easystud-entity__field local-groupimport-easystud-entity__field--wide">' +
+        '<span class="local-groupimport-easystud-entity__label">' + escapeHtml(label) + renderFieldHelp(help) + '</span>' +
+        '<textarea class="form-control local-groupimport-easystud-entity__textarea" name="' + escapeHtml(name) + '" rows="3">' +
             escapeHtml(value || '') +
         '</textarea>' +
     '</label>';
+};
+
+const renderAdvancedReadonly = (label, value) => {
+    return '<div class="local-groupimport-easystud-settings-modal__field ' +
+            'local-groupimport-easystud-settings-modal__field--readonly ' +
+            'local-groupimport-easystud-entity__field local-groupimport-easystud-entity__field--wide">' +
+        '<span class="local-groupimport-easystud-entity__label">' + escapeHtml(label) + '</span>' +
+        '<span class="local-groupimport-easystud-entity__value">' + escapeHtml(value) + '</span>' +
+    '</div>';
 };
 
 /**
@@ -428,59 +446,169 @@ export const bindAnimatedDetails = (details, content, stateAttribute) => {
     });
 };
 
-const renderAdvancedListSection = (title, rows, columns, exportname, emptylabel, type) => {
-    const count = rows.length;
-    const open = count <= 6 ? ' open' : '';
-    const sectiontype = type ? ' local-groupimport-easystud-settings-modal__list-section--' + type : '';
-    const visiblelist = rows.map(row => {
-        const primary = row[columns[0].key] || '';
-        const meta = columns.slice(1).map(column => {
-            const value = row[column.key] || '';
-            if (!value) {
-                return '';
-            }
-            return '<span class="local-groupimport-easystud-settings-modal__list-item-chip">' +
-                    '<span>' + escapeHtml(column.label) + '</span>' +
-                    '<span>' + escapeHtml(value) + '</span>' +
-                '</span>';
-        }).filter(Boolean).join('');
-        return '<li>' +
-                '<span class="local-groupimport-easystud-settings-modal__list-item-primary">' +
-                    escapeHtml(primary) +
+/**
+ * Group image section: current image, compact deposit (same family as Mass Import) and
+ * the Kit switch that deletes the image on save. The native file input, its trigger and
+ * the drag-and-drop hooks are unchanged.
+ *
+ * @param {Object} labels Labels.
+ * @param {String} picture Current picture URL.
+ * @param {String} inputId File input id.
+ * @returns {String}
+ */
+const renderAdvancedImageSection = (labels, picture, inputId) => {
+    const preview = picture ?
+        '<img src="' + escapeHtml(picture) + '" alt="">' :
+        '<div class="local-groupimport-easystud-settings-modal__image-placeholder">' +
+            '<span class="fa fa-image" aria-hidden="true"></span>' +
+            '<span>' + escapeHtml(labels.advancedsettingsnoimage || '') + '</span>' +
+        '</div>';
+    return entitySection(labels.entityimage || '',
+        '<div class="local-groupimport-easystud-entity__image-grid">' +
+            '<div class="local-groupimport-easystud-settings-modal__image local-groupimport-easystud-entity__image-preview">' +
+                preview +
+            '</div>' +
+            '<div class="local-groupimport-easystud-settings-modal__filepicker local-groupimport-easystud-entity__deposit">' +
+                '<input type="file" id="' + inputId + '" name="imagefile" accept="image/*" ' +
+                    'data-easystud-advanced-file-input="1">' +
+                '<span class="local-groupimport-easystud-entity__deposit-icon fa fa-file-import" aria-hidden="true"></span>' +
+                '<button type="button" class="local-groupimport-easystud-entity__deposit-trigger" ' +
+                    'data-easystud-advanced-file-trigger="1" aria-controls="' + inputId + '">' +
+                    escapeHtml(labels.entityimagedeposit || '') +
+                '</button>' +
+                '<span class="local-groupimport-easystud-entity__deposit-support">' +
+                    escapeHtml(labels.entityimagesupport || '') + renderFieldHelp(labels.advancedsettingsimagehelp || '') +
                 '</span>' +
-                (meta ? '<span class="local-groupimport-easystud-settings-modal__list-item-meta">' + meta + '</span>' : '') +
-            '</li>';
-    }).join('');
-    const exporttable =
-        '<table hidden>' +
-            '<thead><tr>' + columns.map(column => '<th>' + escapeHtml(column.label) + '</th>').join('') + '</tr></thead>' +
-            '<tbody>' + rows.map(row => '<tr>' + columns.map(column => {
-                return '<td>' + escapeHtml(row[column.key] || '') + '</td>';
-            }).join('') + '</tr>').join('') + '</tbody>' +
-        '</table>';
+                '<span class="local-groupimport-easystud-settings-modal__filename" data-easystud-advanced-file-name>' +
+                    escapeHtml(labels.advancedsettingsnofile || '') +
+                '</span>' +
+            '</div>' +
+        '</div>' +
+        '<label class="local-groupimport-easystud-settings-modal__image-toggle local-groupimport-easystud-entity__switch">' +
+            '<input type="checkbox" name="deletepicture" value="1" data-easystud-delete-picture-input="1" ' +
+                'id="local-groupimport-easystud-deletepicture-toggle" ' +
+                'data-label-on="' + escapeHtml(labels.enabled || '') + '" ' +
+                'data-label-off="' + escapeHtml(labels.disabled || '') + '">' +
+            '<span>' +
+                '<strong class="local-groupimport-easystud-settings-modal__image-toggle-label">' +
+                    escapeHtml(labels.deletepictureonsave || labels.deletepicture || '') +
+                '</strong>' +
+                '<small data-easystud-settings-toggle-state="1">' + escapeHtml(labels.disabled || '') + '</small>' +
+            '</span>' +
+        '</label>', 'image');
+};
 
-    return '<details class="local-groupimport-easystud-settings-modal__list-section' + sectiontype + '" ' +
-            'data-easystud-settings-list-section="1"' +
-            ' data-easystud-settings-export-name="' + escapeHtml(exportname) + '"' + open + '>' +
-        '<summary>' +
-            '<span class="local-groupimport-easystud-settings-modal__disclosure-chevron fa fa-chevron-down" ' +
-                'aria-hidden="true"></span>' +
-            '<span class="local-groupimport-easystud-settings-modal__list-title">' + escapeHtml(title) + '</span>' +
-            '<strong><span>' + count + '</span><span class="local-groupimport-easystud-settings-modal__list-count-label">' +
-                escapeHtml(title) + '</span></strong>' +
-            '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-settings-export="1" ' +
-                (count ? '' : 'disabled') + '>' +
-                '<span class="fa fa-file-export me-1" aria-hidden="true"></span>' +
-                '<span>CSV</span>' +
-            '</button>' +
-        '</summary>' +
-        (count ?
-            '<div class="local-groupimport-easystud-settings-modal__list-scroll">' +
-                '<ul>' + visiblelist + '</ul>' +
-                exporttable +
-            '</div>' :
-            '<div class="local-groupimport-easystud-settings-modal__list-empty">' + escapeHtml(emptylabel || '') + '</div>') +
-    '</details>';
+/**
+ * Body of the group or grouping dialog (T048 entity dialog, Penpot S6-D5a/b).
+ *
+ * @param {HTMLElement} root Workspace root.
+ * @param {HTMLElement} item Group or grouping card.
+ * @param {String} state ready, loading or error.
+ * @returns {String}
+ */
+const renderAdvancedBody = (root, item, state) => {
+    const labels = getLabels(root);
+    const type = getAdvancedValue(item, 'type');
+    const isgroup = type === 'group';
+    const name = getAdvancedValue(item, 'name');
+    const safeTitle = name.toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '') || 'easystud';
+    const memberRows = isgroup ? getAdvancedGroupMemberRows(root, item) : [];
+    const groupGroupingRows = isgroup ? getAdvancedGroupGroupingRows(root, item) : [];
+    const groupingGroupRows = isgroup ? [] : getAdvancedGroupingGroupRows(item);
+    const context = isgroup ?
+        [getAdvancedCountLabel(root, item, true), entityCount(labels.groupingscounttemplate || '', groupGroupingRows.length)]
+            .filter(Boolean).join(' \u00b7 ') :
+        getAdvancedCountLabel(root, item, false);
+    const identity = entityIdentity(type, entityIcon(isgroup ? 'fa-users' : 'fa-sitemap'), name, context);
+
+    if (state === 'error') {
+        return identity + entityErrorNotice(labels.entityloaderror || '', labels.retry || '');
+    }
+    if (state === 'loading') {
+        // Header and identity are known from the card; every loaded field is a skeleton
+        // at the geometry of the final field.
+        return identity +
+            entitySection(labels.entityinformation || '',
+                '<div class="local-groupimport-easystud-entity__fields">' +
+                    entitySkeletonField('control') + entitySkeletonField('control') +
+                    entitySkeletonField('control') + entitySkeletonField('area', true) +
+                '</div>', 'information') +
+            entitySection(labels.entityrelations || '', entitySkeletonRelation('rows') + entitySkeletonRelation(), 'relations') +
+            entitySection(labels.entityimage || '',
+                '<div class="local-groupimport-easystud-entity__image-grid">' +
+                    '<span class="local-groupimport-easystud-entity__skeleton ' +
+                        'local-groupimport-easystud-entity__skeleton--image" aria-hidden="true"></span>' +
+                    '<span class="local-groupimport-easystud-entity__skeleton ' +
+                        'local-groupimport-easystud-entity__skeleton--deposit" aria-hidden="true"></span>' +
+                '</div>', 'image');
+    }
+
+    const config = isgroup ? '' : getAdvancedValue(item, 'config');
+    const fields = renderAdvancedInput(labels.advancedsettingsname || '', 'name', name) +
+        renderAdvancedInput(labels.advancedsettingsidnumber || '', 'idnumber', getAdvancedValue(item, 'idnumber')) +
+        (isgroup ? renderAdvancedInput(labels.advancedsettingsenrolmentkey || '', 'enrolmentkey', '', 'password',
+            labels.advancedsettingsenrolmentkeyhelp || '') : '') +
+        renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
+            getAdvancedValue(item, 'raw-description')) +
+        (config ? renderAdvancedReadonly(labels.advancedsettingsconfigdata || '', config) : '');
+    const memberSection = entityRelationSection({
+        title: labels.advancedsettingsmembers || '',
+        type: 'members',
+        countText: getAdvancedCountLabel(root, item, true),
+        content: entityMemberRows(memberRows, {
+            moreTemplate: labels.entityothermemberstemplate || '',
+            lessLabel: labels.showless || '',
+            emptyLabel: labels.advancedsettingsnomembers || '',
+        }),
+        rows: memberRows,
+        columns: [
+            {key: 'name', label: labels.advancedsettingsmembername || ''},
+            {key: 'email', label: labels.advancedsettingsmemberemail || ''},
+            {key: 'id', label: labels.advancedsettingsmemberid || ''},
+        ],
+        exportName: 'easystud-' + safeTitle + '-members.csv',
+        exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.advancedsettingsmembers || ''),
+    });
+    const groupingSection = entityRelationSection({
+        title: labels.groupings || '',
+        type: 'groupings',
+        countText: entityCount(labels.groupingscounttemplate || '', groupGroupingRows.length),
+        content: entityPills(groupGroupingRows.map(row => row.name), 'grouping', {
+            lessLabel: labels.showless || '',
+            emptyLabel: labels.advancedsettingsnogroupings || '',
+        }),
+        rows: groupGroupingRows,
+        columns: [
+            {key: 'name', label: labels.advancedsettingsgroupingname || ''},
+            {key: 'id', label: labels.advancedsettingsgroupingid || ''},
+        ],
+        exportName: 'easystud-' + safeTitle + '-groupings.csv',
+        exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.groupings || ''),
+    });
+    const groupSection = entityRelationSection({
+        title: labels.advancedsettingsgroups || '',
+        type: 'groups',
+        countText: entityCount(labels.groupscounttemplate || '', groupingGroupRows.length),
+        content: entityPills(groupingGroupRows.map(row => row.name), 'group', {
+            lessLabel: labels.showless || '',
+            emptyLabel: labels.advancedsettingsnogroups || '',
+        }),
+        rows: groupingGroupRows,
+        columns: [
+            {key: 'name', label: labels.advancedsettingsgroupname || ''},
+            {key: 'members', label: labels.advancedsettingsmembers || ''},
+            {key: 'id', label: labels.advancedsettingsgroupid || ''},
+        ],
+        exportName: 'easystud-' + safeTitle + '-groups.csv',
+        exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.advancedsettingsgroups || ''),
+    });
+    const imageInputId = 'local-groupimport-easystud-group-image-' + (item.getAttribute('data-easystud-group-id') || 'current');
+    return identity +
+        entitySection(labels.entityinformation || '',
+            '<div class="local-groupimport-easystud-settings-modal__grid local-groupimport-easystud-entity__fields">' +
+                fields + '</div>', 'information') +
+        entitySection(labels.entityrelations || '', isgroup ? memberSection + groupingSection : groupSection, 'relations') +
+        (isgroup ? renderAdvancedImageSection(labels, getAdvancedValue(item, 'picture'), escapeHtml(imageInputId)) : '');
 };
 
 export const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
@@ -514,42 +642,45 @@ export const openAdvancedSettingsModal = (root, item, returnFocus = null) => {
         return;
     }
     // On demand, cards do not carry the descriptions: load them once (local_groupimport_get_details).
-    item.setAttribute('aria-busy', 'true');
-    fetchDetails(getOnDemandParticipants().courseId, 'group', [groupid]).then(items => {
-        if (items[0]) {
-            model.groupDetails.set(groupid, items[0]);
-            apply(items[0]);
-        }
-        item.removeAttribute('aria-busy');
-        openAdvancedSettingsModalNow(root, item, returnFocus);
-        return items;
-    }).catch(error => {
-        item.removeAttribute('aria-busy');
-        Notification.exception(error);
-    });
+    // The dialog opens at once: header filled, field skeletons, footer visible but waiting.
+    const modal = openAdvancedSettingsModalNow(root, item, returnFocus, 'loading');
+    const load = () => {
+        item.setAttribute('aria-busy', 'true');
+        fetchDetails(getOnDemandParticipants().courseId, 'group', [groupid]).then(items => {
+            item.removeAttribute('aria-busy');
+            if (items[0]) {
+                model.groupDetails.set(groupid, items[0]);
+                apply(items[0]);
+            }
+            if (modal.isConnected && !modal.hidden) {
+                modal.easystudRenderEditor(items[0] ? 'ready' : 'error');
+            }
+            return items;
+        }).catch(error => {
+            item.removeAttribute('aria-busy');
+            Log.error(error);
+            if (modal.isConnected && !modal.hidden) {
+                modal.easystudRenderEditor('error');
+            }
+        });
+    };
+    modal.easystudRetryEditor = () => {
+        modal.easystudRenderEditor('loading');
+        load();
+    };
+    load();
 };
 
-const openAdvancedSettingsModalNow = (root, item, returnFocus = null) => {
+const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialState = 'ready') => {
     const labels = getLabels(root);
     const type = getAdvancedValue(item, 'type');
     const isgroup = type === 'group';
-    const title = getAdvancedValue(item, 'name') || (labels.advancedsettings || '');
-    const notset = labels.advancedsettingsnotset || '';
     const nativeurl = getAdvancedValue(item, 'native-url');
-    const picture = getAdvancedValue(item, 'picture');
-    const count = getAdvancedCountLabel(root, item, isgroup);
     const typeLabel = isgroup ? (labels.groupdetails || '') :
         (labels.groupingdetails || '');
     const pluginLabel = labels.pluginname || '';
-    const icon = isgroup ? 'fa-users' : 'fa-layer-group';
-    const memberRows = isgroup ? getAdvancedGroupMemberRows(root, item) : [];
-    const groupGroupingRows = isgroup ? getAdvancedGroupGroupingRows(root, item) : [];
-    const groupingGroupRows = isgroup ? [] : getAdvancedGroupingGroupRows(item);
-    const listTitle = isgroup ? (labels.advancedsettingsmembers || '') : (labels.advancedsettingsgroups || '');
-    const relatedTitle = labels.groupings || '';
-    const safeTitle = title.toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '') || 'easystud';
-    const imageInputId = 'local-groupimport-easystud-group-image-' +
-        escapeHtml(item.getAttribute('data-easystud-group-id') || 'current');
+    const icon = isgroup ? 'fa-users' : 'fa-sitemap';
+    const titleId = 'local-groupimport-easystud-editor-title-' + type;
 
     let modal = root.querySelector('[data-easystud-advanced-settings-modal]');
     if (modal) {
@@ -559,21 +690,23 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null) => {
     modal.className = 'local-groupimport-easystud-modal local-groupimport-easystud-settings-modal easyedu-modal-layer';
     modal.setAttribute('role', 'dialog');
     modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', titleId);
     modal.setAttribute('data-easystud-advanced-settings-modal', '1');
     modal.setAttribute('data-easystud-editor-context', type);
     modal.innerHTML =
         '<div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-settings-modal__dialog easyedu-entity-dialog ' +
+                'local-groupimport-easystud-entity local-groupimport-easystud-entity--' + type + ' ' +
                 (isgroup ? 'local-groupimport-easystud-settings-modal__dialog--group' :
                     'local-groupimport-easystud-settings-modal__dialog--grouping') + '">' +
             '<div class="local-groupimport-easystud-modal__header local-groupimport-easystud-settings-modal__header easyedu-entity-dialog__header easyedu-dialog-header-palette--success">' +
                 '<div class="local-groupimport-easystud-settings-modal__heading easyedu-entity-dialog__heading">' +
-                    '<span class="local-groupimport-easystud-settings-modal__icon easyedu-entity-dialog__icon fa ' +
-                        icon + '" aria-hidden="true"></span>' +
+                    '<span class="local-groupimport-easystud-settings-modal__icon easyedu-entity-dialog__icon ' +
+                        'local-groupimport-easystud-entity__tile fa ' + icon + '" aria-hidden="true"></span>' +
                     '<div>' +
                         '<span class="local-groupimport-easystud-settings-modal__eyebrow easyedu-entity-dialog__eyebrow">' +
                             escapeHtml(pluginLabel) +
                         '</span>' +
-                        '<h3 class="easyedu-modal-title">' + escapeHtml(typeLabel) + '</h3>' +
+                        '<h3 class="easyedu-modal-title" id="' + titleId + '">' + escapeHtml(typeLabel) + '</h3>' +
                     '</div>' +
                 '</div>' +
                 '<button type="button" class="local-groupimport-easystud-modal__close" ' +
@@ -582,124 +715,71 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null) => {
                     '<span aria-hidden="true">&times;</span>' +
                 '</button>' +
             '</div>' +
-            '<div class="local-groupimport-easystud-modal__body easyedu-entity-dialog__body">' +
-                '<form class="local-groupimport-easystud-settings-modal__form" data-easystud-advanced-settings-form="1">' +
-                    '<input type="hidden" name="courseid" value="' + escapeHtml(root.getAttribute('data-easystud-course-id') || '') + '">' +
-                    '<input type="hidden" name="action" value="' +
-                        (isgroup ? 'updategroupadvanced' : 'updategroupingadvanced') + '">' +
-                    '<input type="hidden" name="' + (isgroup ? 'groupid' : 'groupingid') + '" value="' +
-                        escapeHtml(isgroup ? (item.getAttribute('data-easystud-group-id') || '') :
-                            (item.getAttribute('data-easystud-grouping-id') || '')) + '">' +
-                    '<div class="local-groupimport-easystud-settings-modal__summary-grid ' +
-                            (isgroup ? 'local-groupimport-easystud-settings-modal__summary-grid--group' : '') + '">' +
-                        (isgroup ?
-                            '<div class="local-groupimport-easystud-settings-modal__image">' +
-                                (picture ?
-                                    '<img src="' + escapeHtml(picture) + '" alt="">' :
-                                    '<div class="local-groupimport-easystud-settings-modal__image-placeholder">' +
-                                        '<span class="fa fa-image" aria-hidden="true"></span>' +
-                                        '<span>' + escapeHtml(labels.advancedsettingsnoimage || '') + '</span>' +
-                                    '</div>') +
-                            '</div>' : '') +
-                        '<div class="local-groupimport-easystud-settings-modal__grid">' +
-                            renderAdvancedInput(labels.advancedsettingsname || '', 'name', getAdvancedValue(item, 'name')) +
-                            renderAdvancedInput(labels.advancedsettingsidnumber || '', 'idnumber',
-                                getAdvancedValue(item, 'idnumber')) +
-                            '<div class="local-groupimport-easystud-settings-modal__field ' +
-                                    'local-groupimport-easystud-settings-modal__field--readonly ' +
-                                    'local-groupimport-easystud-settings-modal__field--entity-count">' +
-                                '<span class="local-groupimport-easystud-settings-modal__field-label">' +
-                                escapeHtml(isgroup ? (labels.advancedsettingsmembers || '') :
-                                (labels.advancedsettingsgroups || '')) + '</span>' +
-                                '<strong>' + escapeHtml(count || notset) + '</strong>' +
-                            '</div>' +
-                            (isgroup ?
-                                renderAdvancedInput(labels.advancedsettingsenrolmentkey || '',
-                                    'enrolmentkey', '', 'password', labels.advancedsettingsenrolmentkeyhelp || '') :
-                                '<div class="local-groupimport-easystud-settings-modal__field local-groupimport-easystud-settings-modal__field--readonly">' +
-                                    '<span>' + escapeHtml(labels.advancedsettingsconfigdata || '') + '</span>' +
-                                    '<strong class="' + (!getAdvancedValue(item, 'config') ? 'is-empty' : '') + '">' +
-                                        escapeHtml(getAdvancedValue(item, 'config') || notset) +
-                                    '</strong>' +
-                                '</div>') +
-                        '</div>' +
-                    '</div>' +
-                    renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
-                        getAdvancedValue(item, 'raw-description')) +
-                    '<div class="local-groupimport-easystud-settings-modal__lists">' +
-                        (isgroup ?
-                            renderAdvancedListSection(listTitle, memberRows, [
-                                {key: 'name', label: labels.advancedsettingsmembername || ''},
-                                {key: 'email', label: labels.advancedsettingsmemberemail || ''},
-                                {key: 'id', label: labels.advancedsettingsmemberid || ''},
-                            ], 'easystud-' + safeTitle + '-members.csv', labels.advancedsettingsnomembers || '', 'members') +
-                            renderAdvancedListSection(relatedTitle, groupGroupingRows, [
-                                {key: 'name', label: labels.advancedsettingsgroupingname || ''},
-                                {key: 'id', label: labels.advancedsettingsgroupingid || ''},
-                            ], 'easystud-' + safeTitle + '-groupings.csv', labels.advancedsettingsnogroupings || '', 'groupings') :
-                            renderAdvancedListSection(listTitle, groupingGroupRows, [
-                                {key: 'name', label: labels.advancedsettingsgroupname || ''},
-                                {key: 'members', label: labels.advancedsettingsmembers || ''},
-                                {key: 'id', label: labels.advancedsettingsgroupid || ''},
-                            ], 'easystud-' + safeTitle + '-groups.csv', labels.advancedsettingsnogroups || '', 'groups')) +
-                    '</div>' +
-                    (isgroup ?
-                        '<div class="local-groupimport-easystud-settings-modal__file-row">' +
-                            '<div class="local-groupimport-easystud-settings-modal__filemanager">' +
-                                '<div class="local-groupimport-easystud-settings-modal__filemanager-title">' +
-                                    '<span class="fa fa-file-image" aria-hidden="true"></span>' +
-                                    '<span>' + escapeHtml(labels.advancedsettingsimage || '') +
-                                        renderFieldHelp(labels.advancedsettingsimagehelp || '') + '</span>' +
-                                '</div>' +
-                                '<div class="local-groupimport-easystud-settings-modal__filepicker">' +
-                                    '<input type="file" id="' + imageInputId + '" name="imagefile" accept="image/*" ' +
-                                        'data-easystud-advanced-file-input="1">' +
-                                    '<span class="local-groupimport-easystud-settings-modal__filepicker-icon fa fa-cloud-upload-alt" aria-hidden="true"></span>' +
-                                    '<button type="button" class="btn btn-secondary btn-sm" ' +
-                                        'data-easystud-advanced-file-trigger="1" aria-controls="' + imageInputId + '">' +
-                                        escapeHtml(labels.advancedsettingschoosefile || '') +
-                                    '</button>' +
-                                    '<span class="local-groupimport-easystud-settings-modal__filename" data-easystud-advanced-file-name>' +
-                                        escapeHtml(labels.advancedsettingsnofile || '') +
-                                    '</span>' +
-                                '</div>' +
-                            '</div>' +
-                            '<label class="local-groupimport-easystud-settings-modal__image-toggle">' +
-                                '<input type="checkbox" name="deletepicture" value="1" ' +
-                                    'data-easystud-delete-picture-input="1" ' +
-                                    'id="local-groupimport-easystud-deletepicture-toggle" ' +
-                                        'data-label-on="' + escapeHtml(labels.enabled || '') + '" ' +
-                                        'data-label-off="' + escapeHtml(labels.disabled || '') + '" ' +
-                                        'aria-label="' + escapeHtml(labels.deletepicture || '') + '">' +
-                                '<span>' +
-                                    '<strong class="local-groupimport-easystud-settings-modal__image-toggle-label">' +
-                                        escapeHtml(labels.deletepicture || '') +
-                                    '</strong>' +
-                                    '<small data-easystud-settings-toggle-state="1">' +
-                                        escapeHtml(labels.disabled || '') +
-                                    '</small>' +
-                                '</span>' +
-                            '</label>' +
-                        '</div>' : '') +
-                    '<div class="local-groupimport-easystud-modal__footer easyedu-entity-dialog__actions">' +
-                        '<button type="submit" class="btn easyedu-button easyedu-action-with-icon">' +
-                            '<span class="fa fa-save" aria-hidden="true"></span>' +
-                            '<span>' + escapeHtml(labels.save || '') + '</span>' +
-                        '</button>' +
-                        '<button type="button" class="btn easyedu-button--secondary" data-easystud-close-advanced-settings="1">' +
-                            escapeHtml(labels.cancel || '') +
-                        '</button>' +
-                        (nativeurl ?
-                            '<a class="btn easyedu-button--secondary easyedu-action-with-icon" href="' + escapeHtml(nativeurl) + '">' +
-                                '<span class="fa fa-external-link-alt" aria-hidden="true"></span>' +
-                                '<span>' + escapeHtml(labels.advancedsettingsnative || '') + '</span>' +
-                            '</a>' : '') +
-                    '</div>' +
-                '</form>' +
-            '</div>' +
+            '<form class="local-groupimport-easystud-settings-modal__form local-groupimport-easystud-entity__form" ' +
+                    'data-easystud-advanced-settings-form="1">' +
+                '<input type="hidden" name="courseid" value="' + escapeHtml(root.getAttribute('data-easystud-course-id') || '') + '">' +
+                '<input type="hidden" name="action" value="' +
+                    (isgroup ? 'updategroupadvanced' : 'updategroupingadvanced') + '">' +
+                '<input type="hidden" name="' + (isgroup ? 'groupid' : 'groupingid') + '" value="' +
+                    escapeHtml(isgroup ? (item.getAttribute('data-easystud-group-id') || '') :
+                        (item.getAttribute('data-easystud-grouping-id') || '')) + '">' +
+                '<div class="local-groupimport-easystud-modal__body easyedu-entity-dialog__body ' +
+                    'local-groupimport-easystud-entity__body" data-easystud-advanced-settings-body="1"></div>' +
+                // Guide-style sticky footer: external action on the left, Cancel then Save on the right.
+                '<div class="local-groupimport-easystud-modal__footer easyedu-entity-dialog__actions ' +
+                        'local-groupimport-easystud-entity__footer">' +
+                    (nativeurl ?
+                        '<a class="local-groupimport-easystud-entity__native" href="' + escapeHtml(nativeurl) + '" ' +
+                                'data-easystud-entity-await="1" aria-label="' + escapeHtml(labels.advancedsettingsnative || '') + '">' +
+                            '<span class="local-groupimport-easystud-entity__native-icon" aria-hidden="true">&#8599;</span>' +
+                            '<span class="local-groupimport-easystud-entity__native-long">' +
+                                escapeHtml(labels.advancedsettingsnative || '') + '</span>' +
+                            '<span class="local-groupimport-easystud-entity__native-short" aria-hidden="true">' +
+                                escapeHtml(labels.advancedsettingsnativeshort || '') + '</span>' +
+                        '</a>' : '') +
+                    '<button type="button" class="btn easyedu-button--secondary" data-easystud-close-advanced-settings="1">' +
+                        escapeHtml(labels.cancel || '') +
+                    '</button>' +
+                    '<button type="submit" class="btn easyedu-button" data-easystud-entity-await="1">' +
+                        escapeHtml(labels.save || '') +
+                    '</button>' +
+                '</div>' +
+            '</form>' +
         '</div>';
 
+    const dialog = modal.querySelector('.local-groupimport-easystud-modal__dialog');
+    const body = modal.querySelector('[data-easystud-advanced-settings-body]');
+    let stopLoading = null;
+    let opened = false;
+    const renderEditor = state => {
+        if (stopLoading) {
+            stopLoading();
+            stopLoading = null;
+        }
+        body.innerHTML = renderAdvancedBody(root, item, state);
+        setEntityFooterBusy(dialog, state !== 'ready');
+        if (state === 'loading') {
+            stopLoading = startEntityLoading(body);
+            return;
+        }
+        modal.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
+            bindAnimatedDetails(details, details.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
+                'data-easystud-settings-list-state');
+        });
+        if (state === 'ready' && !opened) {
+            // Guide inspection starts once the real fields exist (never on a skeleton).
+            opened = true;
+            emitEditorInspectionCompletion(root, type, 'open-editor');
+            requestGuideHighlightRefresh(root);
+        }
+    };
+    modal.easystudRenderEditor = renderEditor;
+
     const closeModal = (completeInspection = true) => hideEasyStudModal(modal, () => {
+        if (stopLoading) {
+            stopLoading();
+            stopLoading = null;
+        }
         modal.remove();
         if (returnFocus?.isConnected && returnFocus.getClientRects().length) {
             returnFocus.focus({preventScroll: true});
@@ -723,17 +803,23 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null) => {
     modal.addEventListener('click', event => {
         if (event.target === modal || event.target.closest('[data-easystud-close-advanced-settings]')) {
             closeModal();
+            return;
+        }
+        if (event.target.closest('[data-easystud-entity-retry]') && modal.easystudRetryEditor) {
+            modal.easystudRetryEditor();
+            return;
+        }
+        const waiting = event.target.closest('a[data-easystud-entity-await][aria-disabled="true"]');
+        if (waiting) {
+            event.preventDefault();
         }
     });
+    bindEntityReveal(dialog);
     root.appendChild(modal);
+    renderEditor(initialState);
     const focusModal = bindCardModalKeyboard(modal, closeModal);
     focusModal();
-    emitEditorInspectionCompletion(root, type, 'open-editor');
-    modal.querySelectorAll('[data-easystud-settings-list-section]').forEach(details => {
-        const content = details.querySelector(':scope > .local-groupimport-easystud-settings-modal__list-scroll, ' +
-            ':scope > .local-groupimport-easystud-settings-modal__list-empty');
-        bindAnimatedDetails(details, content, 'data-easystud-settings-list-state');
-    });
+    return modal;
 };
 
 const applyAdvancedGroupUpdate = (root, data) => {

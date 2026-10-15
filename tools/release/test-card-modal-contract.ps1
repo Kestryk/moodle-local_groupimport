@@ -1,5 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
+# T048 / K18 (Kevin 16/10/2026, decision 6, Penpot S6-D5a/b/c): the card detail dialogs share
+# the entity dialog structure (identity, information, relations, image) with a sticky footer.
+# This successor replaces the former 72rem/68rem card-modal contract (three-column participant
+# lists with inner scroll, footer inside the scrolling body).
+
 $pluginRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 
 function Read-RequiredFile {
@@ -12,83 +17,102 @@ function Read-RequiredFile {
     return Get-Content -Raw -LiteralPath $path
 }
 
+$entityScss = Read-RequiredFile 'scss/components/_entity-dialog.scss'
+$recipes = Read-RequiredFile 'scss/components/_dialog-recipes.scss'
 $settingsModal = Read-RequiredFile 'scss/components/_settings-modal.scss'
-$structure = Read-RequiredFile 'scss/components/_structure.scss'
-$manager = Read-RequiredFile 'amd/src/course_manager.js'
-$managerBuild = Read-RequiredFile 'amd/build/course_manager.min.js'
-$styles = Read-RequiredFile 'styles.css'
+$entity = Read-RequiredFile 'amd/src/local/cm/entity_dialog.js'
+$participant = Read-RequiredFile 'amd/src/local/cm/participant_modal.js'
+$advanced = Read-RequiredFile 'amd/src/local/cm/advanced_settings.js'
+$template = Read-RequiredFile 'templates/manage.mustache'
+$styles = Read-RequiredFile 'styles/student-management.css'
 
 foreach ($needle in @(
-    '@include easyedu.settings-modal-dialog;',
-    'display: flex;',
-    'flex-direction: column;',
-    'overflow: auto;',
-    'overscroll-behavior: contain;',
-    '@include easyedu.type-card-title;',
-    '@include easyedu.type-control-label;',
-    'border-radius: inherit;',
-    'max-inline-size: 100%;'
+    '@include recipes.dialog-shell(45rem);',
+    '@include recipes.dialog-scroll-body;',
+    '@include recipes.dialog-footer;',
+    '@include recipes.dialog-pill;',
+    'grid-template-columns: repeat(2, minmax(0, 1fr));',
+    'grid-template-columns: 3.5rem minmax(0, 1fr);',
+    '@include easyedu.foundation-text-field;',
+    '@include easyedu.foundation-textarea;',
+    '@include easyedu.skeleton-shimmer-direct;',
+    '@include recipes.dialog-sheet;'
 )) {
+    if (-not $entityScss.Contains($needle)) {
+        throw "Missing entity dialog SCSS contract: $needle"
+    }
+}
+foreach ($needle in @('block-size: 1.375rem;', 'background: var(--easyedu-modal-footer-bg);', 'overflow: auto;')) {
+    if (-not $recipes.Contains($needle)) {
+        throw "Missing dialog family recipe: $needle"
+    }
+}
+foreach ($needle in @('@include easyedu.settings-modal-filepicker;', '@include easyedu.toggle-check;',
+        '@include easyedu.modal-file-drop-state(')) {
     if (-not $settingsModal.Contains($needle)) {
-        throw "Missing card-modal SCSS contract: $needle"
+        throw "Missing preserved group image hook: $needle"
     }
 }
 
 foreach ($needle in @(
-    'data-easystud-detail-list="1"',
-    'Motion.isEnabled(details)',
-    'Motion.collapse(content',
-    'Motion.expand(content',
-    'details.open = false;',
-    'local-groupimport-easystud-modal__footer',
+    'export const visibleRelationLimit = 8;',
+    'const skeletonDelay = 150;',
+    'data-easystud-settings-list-section="1"',
+    'data-easystud-settings-export="1"',
+    'data-easystud-entity-more="1"',
+    'easyedu-related-person-row'
+)) {
+    if (-not $entity.Contains($needle)) {
+        throw "Missing entity dialog renderer contract: $needle"
+    }
+}
+
+foreach ($needle in @(
     'const openForUser = (user, trigger) =>',
     'participantReturnFocus = trigger;',
     'const closeParticipantModal = () => hideEasyStudModal(modal, () =>',
-    'participantReturnFocus.focus({preventScroll: true});'
+    'participantReturnFocus.focus({preventScroll: true});',
+    "renderParticipantDetail(data, 'loading');",
+    'startEntityLoading(body)',
+    'setEntityFooterBusy(dialog, loading);'
 )) {
-    if (-not $manager.Contains($needle)) {
-        throw "Missing participant/modal action contract: $needle"
+    if (-not $participant.Contains($needle)) {
+        throw "Missing participant dialog contract: $needle"
     }
 }
 
-if ($manager -notmatch '(?s)local-groupimport-easystud-modal__footer.*?data-easystud-close-advanced-settings.*?advancedsettingsnative.*?</form>') {
-    throw 'Group/Grouping native Moodle action is not kept with Save and Cancel in the shared footer.'
-}
-
-if ($manager -notmatch '(?s)name="imagefile" accept="image/\*".*?data-easystud-advanced-file-input="1"') {
-    throw 'The existing Group image Filepicker boundary is missing.'
-}
-
 foreach ($needle in @(
-    'local_groupimport/course_manager',
-    'data-easystud-detail-list',
-    'bindAnimatedDetails',
-    'data-easystud-detail-list-state',
-    'data-easystud-settings-list-state',
-    'Motion.collapse(content',
-    'Motion.expand(content'
+    "openAdvancedSettingsModalNow(root, item, returnFocus, 'loading')",
+    "emitEditorInspectionCompletion(root, type, 'open-editor');",
+    'name="imagefile" accept="image/*"',
+    'data-easystud-advanced-file-input="1"',
+    'data-easystud-delete-picture-input="1"',
+    "renderAdvancedInput(labels.advancedsettingsenrolmentkey || '',",
+    '.map(row => row.map(getCsvValue).join(',
+    'easystudCompleteEditorClose'
 )) {
-    if (-not $managerBuild.Contains($needle)) {
-        throw "Generated Course Manager AMD is missing card-modal contract: $needle"
+    if (-not $advanced.Contains($needle)) {
+        throw "Missing group/grouping dialog contract: $needle"
     }
 }
 
-if ($structure -notmatch '(?s)is-expanded:focus-within.*?card-focus-context') {
-    throw 'The existing open-card inner focus treatment must remain present.'
+# Sticky footer outside the scrolling body; Guide targets keep the footer class.
+if ($advanced -notmatch '(?s)data-easystud-advanced-settings-body="1"></div>.*?easyedu-entity-dialog__actions.*?advancedsettingsnative.*?data-easystud-close-advanced-settings.*?type="submit".*?</form>') {
+    throw 'Group/Grouping footer must follow the body: Edit in Moodle, Cancel, then Save.'
+}
+if ($template -notmatch '(?s)data-easystud-user-modal-body="1"></div>\s*<div class="local-groupimport-easystud-modal__footer easyedu-entity-dialog__actions local-groupimport-easystud-entity__footer">.*?data-easystud-user-profile-link.*?data-easystud-close-user-modal') {
+    throw 'Participant footer must follow the body: Moodle profile link, then Close.'
 }
 
 foreach ($needle in @(
-    '.local-groupimport-easystud-settings-modal__dialog {',
-    '.local-groupimport-easystud-settings-modal .local-groupimport-easystud-modal__body {',
-    '.local-groupimport-easystud-detail__avatar img,',
-    '.local-groupimport-easystud-detail__list-scroll {',
-    '.easyedu-ui .easyedu-entity-dialog__actions {',
-    '.easyedu-ui .easyedu-button {',
-    '.easyedu-ui .easyedu-button--secondary {'
+    '.local-groupimport-easystud-modal__dialog.local-groupimport-easystud-entity {',
+    '.local-groupimport-easystud-entity__pill {',
+    '.local-groupimport-easystud-entity__footer {',
+    '.easyedu-ui .easyedu-entity-dialog__actions {'
 )) {
     if (-not $styles.Contains($needle)) {
-        throw "Generated stylesheet is missing card-modal contract: $needle"
+        throw "Generated Student Management stylesheet is missing: $needle"
     }
 }
 
-Write-Output 'EasyStud card modal contract passed.'
+Write-Output 'EasyStud entity dialog (card modal) contract passed.'

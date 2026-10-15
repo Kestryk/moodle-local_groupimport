@@ -61,6 +61,7 @@
     animation: easyedu-modal-out var(--easyedu-motion-fast) ease both;
   }
 
+  // Participant details: entity dialog geometry lives in _entity-dialog.scss.
   &-modal__dialog--user {
     @include easyedu.context-modal-surface(
       ".local-groupimport-easystud-modal__header",
@@ -68,25 +69,6 @@
       ".local-groupimport-easystud-modal__footer"
     );
     @include easyedu.context-modal-variant(primary);
-
-    display: flex;
-    flex-direction: column;
-    max-height: calc(100vh - 1.5rem);
-    max-width: min(72rem, calc(100vw - 2rem));
-    overflow: hidden;
-    width: min(96vw, 72rem);
-  }
-
-  &-modal__dialog--user &-modal__header {
-    flex: 0 0 auto;
-    padding: 0.78rem 0.95rem;
-  }
-
-  &-modal__dialog--user &-modal__body {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow: auto;
-    padding: 0.72rem 0.85rem 0.82rem;
   }
 
   &-modal__dialog--tutorial {

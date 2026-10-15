@@ -1531,10 +1531,10 @@
         aria-modal="true"
         aria-labelledby="local-groupimport-easystud-user-title"
     >
-        <div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-modal__dialog--user easyedu-entity-dialog">
+        <div class="local-groupimport-easystud-modal__dialog local-groupimport-easystud-modal__dialog--user easyedu-entity-dialog local-groupimport-easystud-entity local-groupimport-easystud-entity--participant">
             <div class="local-groupimport-easystud-modal__header easyedu-entity-dialog__header easyedu-dialog-header-palette--primary">
                 <div class="local-groupimport-easystud-settings-modal__heading easyedu-entity-dialog__heading">
-                    <span class="local-groupimport-easystud-settings-modal__icon easyedu-entity-dialog__icon fa fa-user" aria-hidden="true"></span>
+                    <span class="local-groupimport-easystud-settings-modal__icon easyedu-entity-dialog__icon local-groupimport-easystud-entity__tile fa fa-user" aria-hidden="true"></span>
                     <div>
                         <span class="local-groupimport-easystud-settings-modal__eyebrow easyedu-entity-dialog__eyebrow">EasyStud</span>
                         <h3 id="local-groupimport-easystud-user-title" class="easyedu-modal-title">{{participantdetailstitle}}</h3>
@@ -1549,7 +1549,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="local-groupimport-easystud-modal__body easyedu-entity-dialog__body" data-easystud-user-modal-body="1"></div>
+            <div class="local-groupimport-easystud-modal__body easyedu-entity-dialog__body local-groupimport-easystud-entity__body" data-easystud-user-modal-body="1"></div>
+            <div class="local-groupimport-easystud-modal__footer easyedu-entity-dialog__actions local-groupimport-easystud-entity__footer">
+                <a
+                    class="local-groupimport-easystud-entity__native"
+                    href="#"
+                    data-easystud-user-profile-link="1"
+                    data-easystud-entity-await="1"
+                    hidden
+                ><span class="local-groupimport-easystud-entity__native-icon" aria-hidden="true">&#8599;</span><span>{{participantprofilelabel}}</span></a>
+                <button type="button" class="btn easyedu-button" data-easystud-close-user-modal="1">{{#str}} closebuttontitle, core {{/str}}</button>
+            </div>
         </div>
     </div>
 
