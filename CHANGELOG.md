@@ -5970,3 +5970,5 @@ Maintenance convention:
 - 2026-10-15 [N0] Delegated small fixes: guard unset Moodle page URLs in admin settings, normalize FR/EN ellipses to U+2026 and correct English action-in-progress copy. PHP lint passes; no settings values changed.
 
 - 2026-10-15 [N0] Certify served Guide4 FR/EN1280/768/390 badges, drawer opening and footer containment; zero JS errors/business writes.
+
+- 2026-10-15 [N0] Transport Student Management and Guide configuration in a hex-escaped JSON element; AMD receives only its element ID, preserving initializer arguments/order and avoiding Moodle oversized-call warnings. Named AMD integrity/invalid-payload/idempotency checks and PHP lint PASS.
