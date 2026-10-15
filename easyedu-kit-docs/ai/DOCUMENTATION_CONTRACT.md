@@ -1,5 +1,10 @@
 # EasyEdu documentation contract
 
+Student Management panel opacity/transform during view swaps belongs to Motion;
+the container keeps only its CSS shadow transition. Focus-state transforms must
+not add another interpolation during the return. This is separate from shared
+floating-menu Motion and does not authorize retiming either controller.
+
 Integrated panels own Escape through native Cancel and restore the visible opener
 after their existing Motion closure. Keep ordinary Tab order and nested-key priority;
 never trap inline search/add/rename as a modal. Space selection plus native Move

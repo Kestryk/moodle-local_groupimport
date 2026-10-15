@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] K15-23 lets Motion own panel opacity/transform during view changes; retain only the panel shadow transition and all floating-menu Motion.
+
 - 2026-10-15 [N0] Document Ctrl/Cmd, Alt and Shift click in the existing FR/EN Guide keyboard help after Claude Alt selection integration; preserve checkbox keyboard instructions.
 
 - 2026-10-15 [N0] Record native localhost K21 counts FR/EN1280/390 and Claude Motion/Alt/dropdown1280 proofs; preserve earlier intake and :8051 evidence.
