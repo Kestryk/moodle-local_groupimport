@@ -1,4 +1,14 @@
 {
+"moreFiltersLaneContinuity20261015": {
+  "source": "CORRECTIF-PLUS-DE-FILTRES-2026-10-15.md",
+  "scope": "SCSS desktop mixed disclosure headers and control margins only",
+  "conservativeBuildVerified": true,
+  "cardStylingAndMotionUnchanged": true,
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
+
 "claudeSettledAlignmentVerified20261015": {
   "incoming": ["678db06e", "0af73b66", "a8c6364b"],
   "runtimeCommit": "0bae184e",

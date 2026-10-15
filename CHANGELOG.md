@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N2] Keep desktop More Filters lane headers stretched in mixed disclosure states; pin each control beneath its own filters while preserving shared list rows, equal-state alignment and responsive rules.
+
 - 2026-10-15 [N0] Verify K15-07 semantic popovers in16hover cases plus keyboard focus at1280/390; AA white text, unchanged geometry/classic CSS, MI/admin isolation PASS. Preserve failed scroll-boundary predecessors.
 
 - 2026-10-15 [N0] Close scoped T020 stop: settled alignment is0px at1600/1920; actual role-choice successor also passes selection, role filtering and palette relay, with exact config restoration.
