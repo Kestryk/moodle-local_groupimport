@@ -113,3 +113,5 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 - Routed native run 194502370: 16 FR pill states and three real deferred-sheet cells passed; FR390 real response exceeded the harness default 5s readiness assertion. Fixture cleanup complete. Strict settled successor waits the same ready predicate up to 90s, without changing product Motion or acceptance tolerances.
 
 - Settled matrix 195132397 PASS: 32 states, eight real deferred sheets, 18 pre-existing group-only audit failures and no other failures. Participant deferred successor 195622852 PASS FR1600/EN390 (37 visible real group pills and return focus). See long-lists-k16-22-parity-2026-10-15.md.
+
+- Group grid baseline 200534214 PASS capture-only: 16 empty/full cards FR/EN four widths; exact-owner cleanup verified. Strict candidate 200804030 FAILED first empty-card checkbox column (11.18px), text aligned0px; cleanup complete. Origin successor preserves every strict oracle and fixes canonical absolute-grid containing-block placement; no acceptance claimed yet.
