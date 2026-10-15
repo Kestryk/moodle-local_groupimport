@@ -1267,7 +1267,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {scrollbar-g
 }
 .local-groupimport-easystud-tour-button:focus .local-groupimport-easystud-tour-button__icon {background: #fff;border-color: #b9d9ca;box-shadow: 0 0.34rem 0.82rem rgba(35, 93, 115, 0.2);color: #2f7f62;
 }
-.local-groupimport-easystud__panel {height: auto;overflow: visible;position: relative;transition: opacity var(--easyedu-motion-normal) ease, transform var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) ease;will-change: opacity, transform;
+.local-groupimport-easystud__panel {height: auto;overflow: visible;position: relative;transition: box-shadow var(--easyedu-motion-normal) ease;
 }
 .local-groupimport-easystud__panel > .card-body {display: flex;flex: 1 1 auto;flex-direction: column;height: 100%;
 }

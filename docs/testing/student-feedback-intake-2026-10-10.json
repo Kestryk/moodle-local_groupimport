@@ -1,4 +1,10 @@
 {
+"panelMotionK1523_20261015": {
+  "scope": "panel CSS opacity/transform transition removed; JS Motion unchanged",
+  "nativeVerified": false,
+  "humanAccepted": false,
+  "penpotUpdated": false
+},
 "altSelectionHelp20261015": {
   "scope": "existing tutorialkeyboardcontent shared by Guide/help, FR/EN",
   "sourceIntegration": "7c19571a / 28876374",

@@ -1121,11 +1121,9 @@
     height: auto;
     overflow: visible;
     position: relative;
-    transition:
-      opacity var(--easyedu-motion-normal) ease,
-      transform var(--easyedu-motion-normal) var(--easyedu-motion-ease),
-      box-shadow var(--easyedu-motion-normal) ease;
-    will-change: opacity, transform;
+    // View swaps own panel opacity/transform through Motion. A second CSS
+    // transition from the focus state also moved the returning panel.
+    transition: box-shadow var(--easyedu-motion-normal) ease;
 
     > .card-body {
       display: flex;
