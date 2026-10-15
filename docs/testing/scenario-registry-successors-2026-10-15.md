@@ -86,3 +86,5 @@ K16 regression native183318258Z-752 PASS FR/EN1600/768/390, initial+detailed den
 admin-e5-served-native.spec.js: principal-localhost bilingual read-only successor of N2 settled8051 recipe. Five sections, typography/frame/control metrics at four widths, keyboard disclosure and reversible DOM checkbox toggle; all settings POST blocked, no native save or persistence claim. Local-supervised authentication/lease required.
 
 E5 principal native183745701Z-26880 PASS eight admin cells/keyboard; admin-e5-mass-titles-served-native.spec.js183913329Z-41176 PASS eight Mass Import title cells. No settings or import POST. Principal save persistence and full Mass Import behavior are separate gates; screenshot FR/EN390 admin pinned30days.
+
+k16-pills-baseline-native.spec.js records predecessor geometry; k16-pills-served-native.spec.js is local-supervised principal course5 FR/EN4widths, real density/tag disclosure commands, count and text bounds. Needs saved authentication/lease; no injected product CSS. Native pending.
