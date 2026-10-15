@@ -33,7 +33,7 @@ import {
 import {getOnDemandModel} from './state';
 import {prepareInlinePanelFocus, restoreInlinePanelFocus} from './modal';
 import {scheduleCompleteListAlignment} from './layout';
-import {syncTagWindow} from './long_lists';
+import {syncTagWindow, normaliseTagValue} from './long_lists';
 
 export const getGroupName = group => {
     const node = group ? group.querySelector('.local-groupimport-easystud-group__name') : null;
@@ -581,16 +581,17 @@ export const syncParticipantTagOverflow = scope => {
                     container.insertBefore(token, toggle);
                 }
             });
-            known.slice(window.limit).forEach(token => token.remove());
+            known.slice(Math.min(window.limit, window.total)).forEach(token => token.remove());
         }
         const tokens = Array.from(container.querySelectorAll('.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty):not([data-easystud-toggle-tags])'));
         container.querySelectorAll('.local-groupimport-easystud-token--empty').forEach(token => {
             token.hidden = true;
         });
         const values = tokens.filter(token => {
-            const text = token.textContent.trim();
-            token.hidden = !text || ['-', '\u2212', '\u2014'].includes(text);
+            const text = normaliseTagValue(token.textContent);
+            token.hidden = !text;
             if (!token.hidden) {
+                token.textContent = text;
                 token.title = text;
             }
             return !token.hidden;
