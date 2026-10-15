@@ -70,3 +70,5 @@ claude-complement4-8-native.spec.js: local-supervised, FR1280 real Motion public
 Guide4: guide4-served-native.spec.js retains closed-drawer harness failure; guide4-drawer-served-native.spec.js successor PASS FR/EN1280/768/390. delegated-smallfixes-served-native.spec.js retains these oracles and adds JSON bootstrap initialization and phone3 /12. Local-supervised course5 authentication/lease required; no business writes.
 
 Delegated native164125798Z-19676 PASS, served4974df3a: FR/EN1280/768/390 JSON config/Guide containment/mobile count, zero errors/writes. Account-interrupted162351455Z-24848 retains no verdict.
+
+mass-import-b1b2-served-native.spec.js: local-supervised course5, temporary file draft/preview only, confirm intercepted then malformed request refused; no import applied. CLI native failure fixture inserts raw group/history only in rolled-back transaction and verifies baseline. Requires mainlocalhost saved authentication, managed lease, PHP/Moodle DB. Isolated PHP/Chrome transport tests do not replace native import behavior.
