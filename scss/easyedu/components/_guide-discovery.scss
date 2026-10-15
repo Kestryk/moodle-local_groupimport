@@ -137,9 +137,8 @@
       @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
       @include buttons.button-size(small);
       gap: var(--easyedu-action-icon-gap);
-      min-height: 2.375rem;
-      max-width: 100%;
-      padding-inline: 0.75rem;
+      // Emitted after the mixin's own blocks: 38px like Previous/Next.
+      & { max-width: 100%; min-height: 2.375rem; padding-block: 0; padding-inline: 0.75rem; }
       .fa { color: var(--easyedu-accent); }
     }
   }
@@ -542,6 +541,8 @@
   }
 
   .easyedu-guide-nav-copy {
+    // K1: fill the pill so the Guide badge sits on its right inner edge.
+    flex: 1 1 auto;
     min-width: 0;
 
     > span {
@@ -1382,6 +1383,9 @@
 
     .easyedu-guide-nav .easyedu-guide-nav-item { flex-basis: 11.375rem; }
     .easyedu-guide-modal__footer { flex-wrap: wrap; padding: 0.75rem 1rem; }
+    // GS10 phone: one footer row. The reading count yields its width and may
+    // break between "Step 3" and "of 12" inside the 38px row height.
+    .easyedu-guide-modal__step-count { flex: 1 1 0; min-width: 0; white-space: normal; }
     // GS10 phone: the docked command keeps its accessible name but paints
     // only its eye, a 38px square just left of Previous.
     .easyedu-guide-interface-cue .easyedu-guide-slide__show {
