@@ -66,3 +66,5 @@ S9 server renderer: s9-server-renderer-native.spec.js is local-supervised (manag
 mass-import-root-16-native.spec.js: local-supervised, FR1280/390 read-only root16px/ready/page-sheet/overflow recipe; requires course5 and managed runtime authentication, native pending.
 
 claude-complement4-8-native.spec.js: local-supervised, FR1280 real Motion public exports, Alt add/remove and visible searchable dropdown open/close; course5/authentication are CI blockers. Native pending.
+
+Guide4: guide4-served-native.spec.js retains closed-drawer harness failure; guide4-drawer-served-native.spec.js successor PASS FR/EN1280/768/390. delegated-smallfixes-served-native.spec.js retains these oracles and adds JSON bootstrap initialization and phone3 /12. Local-supervised course5 authentication/lease required; no business writes.

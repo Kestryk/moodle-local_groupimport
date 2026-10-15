@@ -595,7 +595,10 @@
             </div>
 
             <footer class="easyedu-guide-modal__footer">
-                <span class="easyedu-guide-modal__step-count" data-easyedu-guide-progress-label data-progress-label="{{guidesteplabel}}">1/{{slidecount}}</span>
+                <span class="easyedu-guide-modal__step-count">
+                    <span class="easyedu-guide-modal__step-count-long" data-easyedu-guide-progress-label data-progress-label="{{guidesteplabel}}">1/{{slidecount}}</span>
+                    <span class="easyedu-guide-modal__step-count-compact" data-easyedu-guide-progress-label data-progress-label="__current__ / __total__">1 / {{slidecount}}</span>
+                </span>
                 {{#discoverypresentation}}
                 {{! GS10: the slide's Show command docks here, left of Previous/Next. }}
                 <div class="easyedu-guide-interface-cue" data-easyedu-guide-interface-cue-action hidden></div>

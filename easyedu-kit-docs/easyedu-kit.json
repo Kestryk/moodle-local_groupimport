@@ -4,6 +4,7 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
+    "compactGuideFooter20261015": {"kitVersion":"0.4.217","kitCommit":"c33f61f","scope":"Phone footer current / total, CSS-only responsive presentation"},
     "drawerV1_20261015": {
       "kitVersion": "0.4.215",
       "kitCommit": "e099212",
