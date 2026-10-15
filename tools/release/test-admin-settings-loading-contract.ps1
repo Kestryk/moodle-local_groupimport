@@ -27,12 +27,12 @@ function Assert-Contains {
 $settings = Read-RequiredFile 'settings.php'
 $bootstrap = Read-RequiredFile 'js\admin_settings_loading.js'
 $styles = Read-RequiredFile 'scss\views\_admin-settings.scss'
-$generatedstyles = Read-RequiredFile 'styles/administration.css'
+$generatedstyles = Read-RequiredFile 'styles.css'
 $documentation = Read-RequiredFile 'docs\testing\admin-settings-loading-state.md'
 
 Assert-Contains 'Administration skeleton markup' $settings "'data-easystud-loading-skeleton' => '1'"
 Assert-Contains 'Administration skeleton live-section map' $settings '$adminloadingskeletonspec = ['
-Assert-Contains 'E5 skeleton identifier row shares the one-frame section' $settings "['overview', 'control-tall']"
+Assert-Contains 'Administration skeleton identifier overview' $settings "['overview-wide', 'control-tall']"
 Assert-Contains 'Administration skeleton participant-display rows' $settings "['overview', 'control', 'control', 'control', 'control', 'control']"
 Assert-Contains 'Administration no-script fallback' $settings 'html_writer::tag('
 Assert-Contains 'Administration no-script fallback' $settings "'noscript',"
