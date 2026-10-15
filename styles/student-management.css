@@ -11975,7 +11975,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) {align-items: center;block-size: var(--easyedu-card-action-target);grid-column: 3;justify-self: end;margin: 0;pointer-events: auto;position: static;
 }
-#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) > button {block-size: var(--easyedu-card-action-target);box-sizing: border-box;min-block-size: var(--easyedu-card-action-target);
+#local-groupimport-easystud .easyedu-entity-card-grid > .easyedu-entity-card-grid__selection:not([hidden]) > button {block-size: var(--easyedu-card-action-target);box-sizing: border-box;line-height: normal;min-block-size: var(--easyedu-card-action-target);
 }
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .easyedu-entity-card-grid {--easyedu-entity-selection-column: var(--easyedu-touch-target-min);--easyedu-entity-action-column: var(--easyedu-touch-target-min);
 }
