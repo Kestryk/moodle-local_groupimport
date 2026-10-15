@@ -1,4 +1,17 @@
 {
+"s9ServerNameRendererVerified20261015": {
+  "sourceConsumer": "320d05fa",
+  "runtimeConsumer": "14b895d0",
+  "nativeRun": "082404228Z-49956",
+  "nativeServerRendererVerified": true,
+  "cases": 3,
+  "literalEntitiesPreserved": true,
+  "businessWrites": 0,
+  "nativeBrowserTooltipCsvReplayPending": true,
+  "phpunitRun": false,
+  "humanAccepted": false
+},
+
 "s9ServerNameFollowup20261015": {
   "incoming": "d8594b8e",
   "sourceIntegration": "5678fd58",
