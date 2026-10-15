@@ -11843,9 +11843,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .is-drop-target .easyedu-entity-card-empty {background: color-mix(in srgb, var(--easyedu-primary) 6%, transparent);border: 1px dashed var(--easyedu-primary);
 }
-#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {grid-template-columns: minmax(0, 1fr);padding-inline-start: calc(0.9rem + 44px + 12px);
-}
-#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user .easyedu-person-card__main {grid-column: 1/-1;
+#local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user {padding-inline-start: calc(0.9rem + 44px + 12px);
 }
 #local-groupimport-easystud.local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-user > .local-groupimport-easystud-selector {inset-inline-start: 0.9rem;position: absolute;top: calc(10px + (var(--easyedu-person-first-line) - 44px) / 2 + var(--easyedu-person-line-centre-adjust));transform: none;
 }
