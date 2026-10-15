@@ -1607,9 +1607,9 @@
 
 @media (min-width: 1025px) {
   .local-groupimport-easystud {
-    // Keep paired desktop shells equal when their disclosures share a state.
-    // When only one side opens, both shells retain their natural height while
-    // the shared Grid row keeps the lists below them on one baseline.
+    // Stretch both header segments to keep the painted lanes continuous.
+    // In a mixed disclosure state the spare space belongs below each control,
+    // so the closed neighbour's control stays under its own filters.
     &--participant-focus &__participant-content {
       align-items: stretch;
     }
@@ -1662,7 +1662,19 @@
     &--participant-focus:not(.local-groupimport-easystud--participants-filters-expanded).local-groupimport-easystud--participant-groups-filters-expanded &-participant-groups__create,
     &--structure-focus.local-groupimport-easystud--structure-groups-filters-expanded:not(.local-groupimport-easystud--structure-groupings-filters-expanded) &-create-card,
     &--structure-focus:not(.local-groupimport-easystud--structure-groups-filters-expanded).local-groupimport-easystud--structure-groupings-filters-expanded &-create-card {
-      align-self: start;
+      align-self: stretch;
+    }
+
+    &--participant-focus.local-groupimport-easystud--participants-filters-expanded:not(.local-groupimport-easystud--participant-groups-filters-expanded),
+    &--participant-focus:not(.local-groupimport-easystud--participants-filters-expanded).local-groupimport-easystud--participant-groups-filters-expanded,
+    &--structure-focus.local-groupimport-easystud--structure-groups-filters-expanded:not(.local-groupimport-easystud--structure-groupings-filters-expanded),
+    &--structure-focus:not(.local-groupimport-easystud--structure-groups-filters-expanded).local-groupimport-easystud--structure-groupings-filters-expanded {
+      .local-groupimport-easystud__filters > .local-groupimport-easystud-advanced-filters__control,
+      .local-groupimport-easystud-participant-groups__create > .local-groupimport-easystud-advanced-filters__control,
+      .local-groupimport-easystud-create-card--group > .local-groupimport-easystud-advanced-filters__control,
+      .local-groupimport-easystud-advanced-filters__control--groupings-mobile {
+        margin-block-start: 0;
+      }
     }
   }
 }
