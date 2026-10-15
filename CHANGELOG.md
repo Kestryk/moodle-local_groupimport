@@ -5988,3 +5988,5 @@ Maintenance convention:
 - 2026-10-15 [N0] Certify served K16 FR/EN1600/1280/768/390 plus complete workspace: strict geometry, localized empty recipes/drop paint, real density/reset states and13 Guide titles; max selector error0.0078125px, eye/menu/count/empty-icon0px. Keep human/Penpot acceptance separate.
 
 - 2026-10-15 [N1] K16 regression: reserve the complete participant selector column before name/email/tokens and accent on compact widths; right-align recovery actions on stacked filter footers using canonical Kit653adbe. Add strict horizontal-gap and footer-edge native oracles; earlier vertical-only proof did not establish non-overlap.
+
+- 2026-10-15 [N0] Certify K16 horizontal regression correction in FR/EN1600/768/390, both card densities: full selector target/name gap>=8px, preserved vertical centres and painted filter footer right edges. Preserve earlier failed geometry runs and narrower proof scope.
