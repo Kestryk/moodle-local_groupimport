@@ -88,7 +88,7 @@
         <div class="easyedu-navigation__panel-scroll" data-easyedu-navigation-panel-scroll="1">
             {{#hasitems}}
             <nav class="easyedu-navigation__sections" aria-label="{{navigationlabel}}">
-                {{#sections}}
+                {{#drawersections}}
                 <section class="easyedu-navigation__section" data-easyedu-navigation-section="{{id}}">
                     <h3 class="easyedu-navigation__section-title">{{#spaceslabel}}{{spaceslabel}}{{/spaceslabel}}{{^spaceslabel}}{{label}}{{/spaceslabel}}</h3>
                     <ul class="easyedu-navigation__items">
@@ -97,7 +97,7 @@
                         {{/items}}
                     </ul>
                 </section>
-                {{/sections}}
+                {{/drawersections}}
             </nav>
             {{/hasitems}}
 
