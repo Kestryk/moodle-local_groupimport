@@ -1,4 +1,5 @@
 @use "../easyedu" as easyedu;
+@use "../components/dialog-recipes" as recipes;
 
 .local-groupimport-import [data-local-groupimport-file-required] {
   margin-block-end: 1rem;
@@ -670,171 +671,176 @@
     }
   }
 
+  // T050/T051: history and restore join the T045 dialog family (Penpot S6-D5b/c):
+  // tile + EASYSTUD eyebrow + title + Kit close, body scroll only, sticky footer.
   &-modal__dialog {
-    background: #fff;
-    border: 1px solid var(--local-groupimport-easystud-border);
-    border-radius: 1rem;
+    @include recipes.dialog-shell(48.75rem);
+
+    border-color: var(--local-groupimport-easystud-border);
     box-shadow: 0 1rem 3rem rgba(15, 23, 42, 0.24);
-    max-height: min(80vh, 42rem);
-    overflow: hidden;
-    width: min(100%, 46rem);
+  }
+
+  &-modal__dialog--confirm {
+    @include recipes.dialog-shell(34rem);
   }
 
   &-modal__header {
-    align-items: center;
-    border-bottom: 1px solid var(--local-groupimport-easystud-border);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+    flex: 0 0 auto;
+  }
 
-    h3 {
-      @include easyedu.type-modal-title;
-    }
+  &-modal__tile.easyedu-entity-dialog__icon {
+    @include recipes.dialog-tile(var(--easyedu-primary), var(--easyedu-primary-soft));
+  }
+
+  &-modal__tile--danger.easyedu-entity-dialog__icon {
+    @include recipes.dialog-tile(var(--easyedu-danger), var(--easyedu-danger-soft));
+  }
+
+  &-modal__dialog--confirm .easyedu-entity-dialog__eyebrow {
+    color: var(--easyedu-danger);
+  }
+
+  &-modal__form {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    margin: 0;
+    min-block-size: 0;
   }
 
   &-modal__body {
-    max-height: calc(min(80vh, 42rem) - 4.2rem);
-    overflow: auto;
-    padding: 1rem;
+    @include recipes.dialog-scroll-body;
+
+    background: var(--easyedu-surface);
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    padding: 1.5rem 1.25rem;
   }
 
-  &-modal__close {
+  &-modal__footer {
+    @include recipes.dialog-footer;
+  }
+
+  &-history__notice.easyedu-notice {
     align-items: center;
-    appearance: none;
-    background: #f7f9fc;
-    border: 1px solid #dce6ef;
-    border-radius: 0.62rem;
-    color: var(--local-groupimport-easystud-text);
-    cursor: pointer;
-    display: inline-flex;
-    font-size: 1.05rem;
-    height: 2rem;
-    justify-content: center;
-    min-width: 2rem;
-    padding: 0;
-    transition:
-      background-color var(--easyedu-motion-fast) ease,
-      border-color var(--easyedu-motion-fast) ease,
-      color var(--easyedu-motion-fast) ease;
-    width: 2rem;
+    gap: 0.625rem;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    margin: 0 0 0.5rem;
+    padding: 0.75rem 1rem;
 
-    &:hover {
-      background: #eef4fa;
-      border-color: #bfd0e2;
-      color: var(--local-groupimport-easystud-primary);
-      text-decoration: none;
-      transform: translateY(-1px);
+    > .fa {
+      border: 0;
+      font-size: 1rem;
+      height: 1rem;
+      width: 1rem;
     }
 
-    &:focus {
-      background: #eef4fa;
-      border-color: #bfd0e2;
-      color: var(--local-groupimport-easystud-primary);
-      text-decoration: none;
-    }
+    > p {
+      @include easyedu.type-caption;
 
-    &:focus-visible {
-      @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-      border-color: var(--easyedu-control-focus-border) !important;
-      box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
+      color: var(--easyedu-text);
+      line-height: 1.4;
+      margin: 0;
     }
+  }
+
+  &-history__caption {
+    @include easyedu.type-eyebrow;
+
+    letter-spacing: 0.02em;
+    margin: 0;
   }
 
   &-history {
-    @include easyedu.history-list;
+    display: grid;
+    gap: 0.625rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
-  &-history__desc {
-    @include easyedu.type-caption;
+  // One row: identity (file, date and counters), state pill, text actions.
+  &-history__item {
+    align-items: center;
+    background: var(--easyedu-surface);
+    border: 0.0625rem solid recipes.$dialog-divider;
+    border-inline-start: 0.25rem solid var(--easyedu-group-rail);
+    border-radius: 0.625rem;
+    column-gap: 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    min-inline-size: 0;
+    padding: 0.75rem 1rem;
+    row-gap: 0.5rem;
+  }
 
-    color: var(--local-groupimport-easystud-text-muted);
-    margin-bottom: 0.85rem;
+  &-history__item--restored,
+  &-history__item--legacy {
+    border-inline-start-color: var(--easyedu-card-border);
   }
 
   &-history__item-main {
-    @include easyedu.history-item-main;
+    display: grid;
+    gap: 0.25rem;
+    min-inline-size: 0;
   }
 
-  &-history__item-main span {
+  &-history__file {
+    @include easyedu.type-control-label;
+
+    color: var(--easyedu-card-identity-title-color);
+    overflow-wrap: anywhere;
+  }
+
+  &-history__meta {
     @include easyedu.type-caption;
 
-    color: var(--local-groupimport-easystud-text-muted);
+    overflow-wrap: anywhere;
   }
 
-  &-history__item-meta {
-    @include easyedu.history-meta;
+  &-history__state {
+    @include recipes.dialog-pill(empty);
 
-    margin-bottom: 0.68rem;
+    justify-self: end;
   }
 
-  &-history__rollback {
-    @include easyedu.history-action;
+  &-history__state--applied {
+    @include easyedu.entity-card-token-semantic(valid);
   }
 
   &-history__actions {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 0.08rem;
-
-    .btn,
-    .local-groupimport-import-history__state {
-      align-items: center;
-      box-sizing: border-box;
-      display: inline-flex;
-      gap: 0.45rem;
-      line-height: 1.2;
-      margin-top: 0;
-      min-height: 1.9rem;
-      padding-block: 0.22rem;
-      white-space: normal;
-    }
-
-    .btn {
-      @include easyedu.action-button(small);
-      flex: 0 1 auto;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .local-groupimport-import-history__state {
-      flex: 0 1 auto;
-      justify-content: center;
-    }
+    gap: 0.25rem 0.75rem;
+    justify-content: flex-end;
+    min-inline-size: 0;
   }
 
-  @media (max-width: 30rem) {
-    &-history__actions {
-      align-items: stretch;
+  &-history__action {
+    @include recipes.dialog-text-action;
 
-      .btn,
-      .local-groupimport-import-history__state {
-        flex-basis: 100%;
-        justify-content: flex-start;
-        text-align: start;
-      }
-    }
+    font-size: 0.875rem;
+    font-weight: var(--easyedu-font-weight-semibold);
   }
 
-  &-modal__footer .btn {
-    align-items: center;
-    display: inline-flex;
-    gap: var(--easyedu-action-icon-gap, 0.65rem);
+  &-history__state--legacy {
+    @include easyedu.type-caption;
+
+    text-align: end;
+  }
+
+  &-history__summary {
+    @include easyedu.type-caption;
+
+    margin-inline-end: auto;
   }
 
   &__export-results {
     @include easyedu.action-button;
 
     width: fit-content;
-  }
-
-  &-history__state--rolledback {
-    @include easyedu.history-state(success);
-  }
-
-  &-history__state--legacy {
-    @include easyedu.history-state;
   }
 
   &-history__empty {
@@ -846,25 +852,56 @@
     gap: 0.5rem;
   }
 
-  &-modal__dialog--confirm {
-    max-width: min(34rem, calc(100vw - 2rem));
-  }
-
   &-rollback__message {
-    background: color-mix(in srgb, var(--easyedu-danger-soft) 54%, #fff 46%);
-    border: 1px solid color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);
-    border-radius: var(--easyedu-control-radius);
-    color: var(--easyedu-text);
     display: grid;
-    gap: 0.35rem;
-    line-height: 1.48;
-    padding: 0.85rem;
+    gap: 0.75rem;
   }
 
-  &-modal__footer {
-    @include easyedu.action-row($gap: 0.65rem);
+  &-rollback__file {
+    @include easyedu.type-control-label;
 
-    padding-top: 0.9rem;
+    align-items: center;
+    background: var(--easyedu-surface-soft);
+    border: 0.0625rem solid recipes.$dialog-divider;
+    border-radius: 0.625rem;
+    color: var(--easyedu-card-identity-title-color);
+    display: flex;
+    gap: 0.5rem;
+    margin: 0;
+    overflow-wrap: anywhere;
+    padding: 0.625rem 0.75rem;
+
+    > .fa {
+      color: var(--easyedu-text-muted);
+    }
+  }
+
+  // Responsive 390 (S6-D5c): full-height sheet; pill beside the file, actions below.
+  @media (max-width: 36rem) {
+    &-modal:has(> .local-groupimport-import-modal__dialog--history) {
+      padding: 0;
+    }
+
+    &-modal__dialog--history {
+      @include recipes.dialog-sheet;
+    }
+
+    &-modal__body {
+      padding: 1.25rem 1rem;
+    }
+
+    &-modal__footer {
+      padding: 0.75rem 1rem;
+    }
+
+    &-history__item {
+      align-items: start;
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    &-history__actions {
+      grid-column: 1 / -1;
+    }
   }
 
   &-drop__panel {
