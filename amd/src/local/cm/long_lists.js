@@ -180,7 +180,7 @@ export const syncTagWindow = container => {
         return null;
     }
     const items = JSON.parse(serialized).map(value => String(value).trim())
-        .filter(value => value && !['-', '?', '?'].includes(value));
+        .filter(value => value && !['-', '\u2212', '\u2014'].includes(value));
     const toggle = container.querySelector('[data-easystud-toggle-tags]');
     const expanded = toggle && toggle.getAttribute('data-expanded') === '1';
     const viewAll = items.length > listPolicy.tags.ceiling;

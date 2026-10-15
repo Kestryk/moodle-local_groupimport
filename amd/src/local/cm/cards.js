@@ -589,7 +589,7 @@ export const syncParticipantTagOverflow = scope => {
         });
         const values = tokens.filter(token => {
             const text = token.textContent.trim();
-            token.hidden = !text || ['-', '?', '?'].includes(text);
+            token.hidden = !text || ['-', '\u2212', '\u2014'].includes(text);
             if (!token.hidden) {
                 token.title = text;
             }
