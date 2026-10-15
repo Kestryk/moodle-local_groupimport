@@ -72,3 +72,5 @@ Guide4: guide4-served-native.spec.js retains closed-drawer harness failure; guid
 Delegated native164125798Z-19676 PASS, served4974df3a: FR/EN1280/768/390 JSON config/Guide containment/mobile count, zero errors/writes. Account-interrupted162351455Z-24848 retains no verdict.
 
 mass-import-b1b2-served-native.spec.js: local-supervised course5, temporary file draft/preview only, confirm intercepted then malformed request refused; no import applied. CLI native failure fixture inserts raw group/history only in rolled-back transaction and verifies baseline. Requires mainlocalhost saved authentication, managed lease, PHP/Moodle DB. Isolated PHP/Chrome transport tests do not replace native import behavior.
+
+B1/B2 native165404469Z-50652 PASS via existing drop workflow; mass-import-b1b2-drop-served-native.spec.js preserves edit/exclude/refusal/DBrollback oracles. Earlier picker specs preserve unattached-input harness failures164934172Z-37008/165211252Z-23640, not reclassified as successful picker proof. Needs owned Moodle course5 lease and temporary draft; no business import applied.
