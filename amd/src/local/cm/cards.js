@@ -33,6 +33,7 @@ import {
 import {getOnDemandModel} from './state';
 import {prepareInlinePanelFocus, restoreInlinePanelFocus} from './modal';
 import {scheduleCompleteListAlignment} from './layout';
+import {syncTagWindow} from './long_lists';
 
 export const getGroupName = group => {
     const node = group ? group.querySelector('.local-groupimport-easystud-group__name') : null;
@@ -288,6 +289,11 @@ export const setAdvancedAttributes = (element, data, type) => {
  */
 export const rehydrateParticipantMembershipDetails = root => {
     if (!root) {
+        return;
+    }
+    // A bounded card is never evidence of the full membership graph. RefreshModel
+    // and the participant renderer already own the complete model-backed payload.
+    if (getOnDemandModel(root)) {
         return;
     }
 
@@ -558,25 +564,43 @@ export const syncParticipantTagOverflow = scope => {
         return;
     }
     const pendingMeasurements = [];
-    const rows = Array.from(scope.querySelectorAll('.local-groupimport-easystud-user__meta-tags')).map(container => {
+    const rows = Array.from(scope.querySelectorAll('.local-groupimport-easystud-user__meta-tags'))
+        .map(container => {
+        const window = syncTagWindow(container);
+        if (window) {
+            // Both payload-backed and legacy rows enter the same sanitiser, titles,
+            // disclosure styling and batched overflow measurement below.
+            const known = Array.from(container.querySelectorAll('span.local-groupimport-easystud-token'));
+            const toggle = container.querySelector('[data-easystud-toggle-tags]');
+            window.items.slice(0, window.limit).forEach((value, index) => {
+                const token = known[index] || document.createElement('span');
+                token.className = container.getAttribute('data-easystud-token-class') ||
+                    'local-groupimport-easystud-token';
+                token.textContent = value;
+                if (!token.parentElement) {
+                    container.insertBefore(token, toggle);
+                }
+            });
+            known.slice(window.limit).forEach(token => token.remove());
+        }
         const tokens = Array.from(container.querySelectorAll('.local-groupimport-easystud-token:not(.local-groupimport-easystud-token--empty):not([data-easystud-toggle-tags])'));
         container.querySelectorAll('.local-groupimport-easystud-token--empty').forEach(token => {
             token.hidden = true;
         });
         const values = tokens.filter(token => {
             const text = token.textContent.trim();
-            token.hidden = !text || text === '-';
+            token.hidden = !text || ['-', '?', '?'].includes(text);
             if (!token.hidden) {
                 token.title = text;
             }
             return !token.hidden;
         });
-        return {container, tokens: values};
+        return {container, tokens: values, window};
     });
     // Read every row width after all the writes above: one layout pass instead of one per row,
     // which costs seconds on large pages.
     const rowWidths = rows.map(({container}) => container.clientWidth);
-    rows.forEach(({container, tokens}, rowIndex) => {
+    rows.forEach(({container, tokens, window}, rowIndex) => {
         let toggle = container.querySelector('[data-easystud-toggle-tags]');
         const expanded = toggle && toggle.getAttribute('data-expanded') === '1';
 
@@ -591,6 +615,17 @@ export const syncParticipantTagOverflow = scope => {
         syncTagToggleStyle(toggle, tokens[0]);
         toggle.hidden = false;
         toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        if (window && window.viewAll) {
+            toggle.setAttribute('data-easystud-open-user', container.closest('[data-easystud-user]')
+                .getAttribute('data-user-id'));
+            toggle.setAttribute('data-easystud-long-list-action', 'all');
+            toggle.setAttribute('aria-label', (getLabels(root).longlistall || '')
+                .replace('__total__', window.total));
+        } else {
+            toggle.removeAttribute('data-easystud-open-user');
+            toggle.removeAttribute('data-easystud-long-list-action');
+            toggle.removeAttribute('aria-label');
+        }
 
         if (expanded) {
             toggle.textContent = toggle.getAttribute('data-less-label') || getLabels(root).showless || '';
@@ -598,23 +633,23 @@ export const syncParticipantTagOverflow = scope => {
             return;
         }
 
-        toggle.textContent = '+' + tokens.length;
-        pendingMeasurements.push({container, tokens, toggle});
+        toggle.textContent = '+' + (window ? window.total : tokens.length);
+        pendingMeasurements.push({container, tokens, toggle, total: window ? window.total : tokens.length});
     });
 
     // Read all rows together, then write all visibility states together. This avoids one style/layout pass per row.
-    const measurements = pendingMeasurements.map(({container, tokens, toggle}) => {
+    const measurements = pendingMeasurements.map(({container, tokens, toggle, total}) => {
         const styles = window.getComputedStyle(container);
         const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
         const available = container.clientWidth;
         const togglewidth = toggle.getBoundingClientRect().width + gap;
         const tokenwidths = tokens.map(token => token.getBoundingClientRect().width);
-        return {tokens, toggle, gap, available, togglewidth, tokenwidths};
+        return {tokens, toggle, gap, available, togglewidth, tokenwidths, total};
     });
 
-    measurements.forEach(({tokens, toggle, gap, available, togglewidth, tokenwidths}) => {
+    measurements.forEach(({tokens, toggle, gap, available, togglewidth, tokenwidths, total}) => {
         let used = 0;
-        let hidden = 0;
+        let hidden = total - tokens.length;
         let visible = 0;
 
         const visibility = tokenwidths.map(tokenwidth => {
@@ -739,13 +774,13 @@ export const isGroupFullySelected = group => {
     if (group.hasAttribute('data-easystud-sm-members-partial')) {
         const model = getOnDemandModel();
         const key = group.getAttribute('data-easystud-sm-catalog');
-        if (!model || !key) {
+        if (!model) {
             return false;
         }
         const prefix = group.getAttribute('data-easystud-group-id') + ':';
         let selected = 0;
         model.selectedMembers.forEach((catalogkey, memberkey) => {
-            if (catalogkey === key && memberkey.startsWith(prefix)) {
+            if ((!key || catalogkey === key) && memberkey.startsWith(prefix)) {
                 selected++;
             }
         });
@@ -1039,6 +1074,12 @@ export const syncGroupCardSelection = (model, card) => {
  */
 export const findCatalogGroupCard = (root, groupid, key) => {
     const model = getOnDemandModel(root);
+    if (key === 'structure') {
+        const tree = root.querySelector('[data-easystud-tree] [data-easystud-group-id="' + Number(groupid) + '"]');
+        if (tree) {
+            return tree;
+        }
+    }
     const card = model.catalogs[key].pageCards.get(Number(groupid));
     if (card && card.isConnected) {
         return card;

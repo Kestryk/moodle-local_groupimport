@@ -23,6 +23,8 @@
  */
 
 import * as Motion from '../../motion';
+import {listPolicy, listWindow} from '../sm/list_windows';
+import {syncLongListFooter} from './long_lists';
 import {setSelectionBar, animateListArrival, listPageChanged} from './transitions';
 import * as Guide from '../../easyedu_guide';
 import Log from 'core/log';
@@ -40,7 +42,7 @@ import {syncResponsiveDragAvailability} from './drag_support';
 import {
     getGroupsWithGroupingMembership, scheduleGroupGroupingOverflow, syncParticipantTagOverflow,
     scheduleParticipantTagOverflow, syncGroupingChildrenState, syncUngroupedState, collapseAllGroupings,
-    syncCardSelection, getOnDemandList,
+    syncCardSelection, getOnDemandList, findCatalogGroupCard,
 } from './cards';
 import {
     getSelectedItems, setItemSelected, clearSelectionState, getActiveSelectionType, updateSelectionAvailability,
@@ -123,7 +125,13 @@ export const getGroupsInGrouping = grouping => {
     if (!grouping) {
         return [];
     }
-    ensureTreeSection(grouping.closest('.local-groupimport-easystud'), grouping);
+    const root = grouping.closest('.local-groupimport-easystud');
+    const model = getOnDemandModel(root);
+    if (model) {
+        return getTreeSectionGroupIds(model, grouping.getAttribute('data-easystud-grouping-id'))
+            .map(id => findCatalogGroupCard(root, id, 'structure')).filter(Boolean);
+    }
+    ensureTreeSection(root, grouping);
     return Array.from(grouping.querySelectorAll(
         ':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]'
     ));
@@ -213,6 +221,15 @@ export const applyContainerGroupSearch = (root, options = {}) => {
         const section = list.closest('.local-groupimport-easystud-tree__section');
         const search = section ? section.querySelector('[data-easystud-container-group-search="' + key + '"]') : null;
         const query = normalise(search ? search.value : '');
+        if (getOnDemandModel(root)) {
+            const open = !list.hidden && (!section || !section.hidden);
+            if (open) {
+                ensureTreeSection(root, section);
+            }
+            const count = list.querySelectorAll(':scope > [data-easystud-group-id]').length;
+            syncContainerGroupEmptyState(root, list, query, count);
+            return;
+        }
         let visibleCount = 0;
 
         const model = getOnDemandModel(root);
@@ -254,6 +271,11 @@ export const scheduleResponsiveUiRefresh = (root, options = {}) => {
     const refresh = () => {
         syncParticipantDensity(root, {animate: false});
         syncResponsiveDragAvailability(root);
+        root.querySelectorAll('[data-easystud-container-group-list]').forEach(list => {
+            if (!list.hidden && list.getClientRects().length) {
+                ensureTreeSection(root, list.closest('.local-groupimport-easystud-tree__section'));
+            }
+        });
         if (options.pagination !== false) {
             syncPagination(root);
         }
@@ -773,6 +795,23 @@ export const syncParticipantDensity = (root, {animate = true} = {}) => {
  * @param {HTMLElement|null} root EasyStud root.
  * @param {HTMLElement|null} section Tree section.
  */
+/**
+ * Keep the compact Ungrouped section in the existing catalog filter scope.
+ * @param {HTMLElement} root Plugin root.
+ * @param {Object} model Course model.
+ * @param {String} key Grouping id or ungrouped.
+ * @returns {Number[]} Full matching group ids.
+ */
+const treeSectionIds = (root, model, key) => {
+    const ids = getTreeSectionGroupIds(model, key);
+    const toggle = root.querySelector('[data-easystud-catalog-show-ungrouped="structure"]');
+    if (key !== 'ungrouped' || !isResponsiveWorkspace() || !toggle?.checked) {
+        return ids;
+    }
+    const filtered = new Set(model.catalogs.structure.filteredIds);
+    return ids.filter(id => filtered.has(id));
+};
+
 export const ensureTreeSection = (root, section) => {
     const model = getOnDemandModel(root);
     if (!model || !section) {
@@ -781,14 +820,47 @@ export const ensureTreeSection = (root, section) => {
     const container = section.querySelector('.local-groupimport-easystud-tree__children');
     const key = section.classList.contains('local-groupimport-easystud-tree__section--ungrouped') ? 'ungrouped' :
         (section.getAttribute('data-easystud-grouping-id') || '');
-    if (!container || !key || container.easystudSmRenderedKey === model.revision) {
+    if (!container || !key) {
         return;
     }
-    container.easystudSmRenderedKey = model.revision;
+    const input = section.querySelector('[data-easystud-container-group-search]');
+    const query = normalise(input ? input.value : '');
+    if (section.easystudGroupQuery !== query) {
+        section.easystudGroupQuery = query;
+        section.easystudGroupLimit = listPolicy.groups.initial;
+        section.easystudGroupPage = 1;
+    }
+    const allids = treeSectionIds(root, model, key);
+    const ids = allids.filter(id => matchesText(model.groupTreeSearch.get(id) || '', query));
+    const paged = key === 'ungrouped';
+    const size = window.matchMedia('(max-width: 40rem)').matches ? 6 : 10;
+    const pages = Math.max(1, Math.ceil(ids.length / size));
+    const page = Math.max(1, Math.min(section.easystudGroupPage || 1, pages));
+    section.easystudGroupPage = page;
+    const state = paged ? {total: ids.length, shown: Math.min(size, ids.length), page, pages, size} :
+        listWindow('groups', ids.length, section.easystudGroupLimit);
+    const visible = paged ? ids.slice((page - 1) * size, page * size) : ids.slice(0, state.shown);
+    const signature = model.revision + ':' + visible.join(',');
+    syncLongListFooter(section, 'groups', state, paged);
+    const panel = input ? input.closest('[data-easystud-container-search-panel]') : null;
+    if (panel && allids.length >= listPolicy.groups.search && !section.easystudLongSearchReady) {
+        section.easystudLongSearchReady = true;
+        panel.hidden = false;
+        panel.classList.add('is-open');
+    }
+    if (container.easystudSmRenderedKey === signature) {
+        return;
+    }
+    container.easystudSmRenderedKey = signature;
     const memory = rememberGroupCardStates(container);
-    const cards = renderTreeSection(model, container, key);
+    const cards = renderTreeSection(model, container, key, visible);
     decorateOnDemandGroupCards(root, cards);
     restoreGroupCardStates(root, cards, memory);
+    cards.forEach(card => {
+        const selected = model.selectedGroups.get(Number(card.getAttribute('data-easystud-group-id'))) === 'structure';
+        card.classList.toggle('is-selected', selected);
+        card.querySelector(':scope > .local-groupimport-easystud-selector input').checked = selected;
+    });
     const labels = getLabels(root);
     if (key === 'ungrouped') {
         syncUngroupedState(root, labels);
@@ -796,10 +868,7 @@ export const ensureTreeSection = (root, section) => {
         syncGroupingChildrenState(section, labels);
         updateGroupingBadge(section);
     }
-    const search = section.querySelector('[data-easystud-container-group-search]');
-    if (search && normalise(search.value)) {
-        applyContainerGroupSearch(root, {pagination: false});
-    }
+    syncContainerGroupEmptyState(root, container, query, visible.length);
 };
 
 /**

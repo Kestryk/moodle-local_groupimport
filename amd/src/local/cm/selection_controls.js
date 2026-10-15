@@ -29,6 +29,8 @@ import {
 import {emitGuidedCompletion, emitTryActionsSelection, emitActivityGroupSelection} from './guide_hooks';
 import {ensureFullGroupMembers, syncGroupMembersCollapsible} from './group_cards';
 import {setGroupMembersExpanded} from './group_card_controls';
+import {getOnDemandModel} from './state';
+import {matchingMemberIds} from '../sm/list_windows';
 import {emitFilterPathCompletion} from './filters';
 import {getMobileActionButton, updateSelectionActions} from './workspace';
 
@@ -50,6 +52,24 @@ export const bindGroupSelectAll = root => {
         }
         const searching = getGroupMemberSearchQuery(group) !== '';
         const deselect = !searching && isGroupFullySelected(group);
+        const model = getOnDemandModel(root);
+        if (model) {
+            const id = group.getAttribute('data-easystud-group-id');
+            const key = group.getAttribute('data-easystud-sm-catalog') || 'structure';
+            matchingMemberIds(model, id, getGroupMemberSearchQuery(group)).forEach(userid => {
+                const memberkey = id + ':' + userid;
+                if (deselect) {
+                    model.selectedMembers.delete(memberkey);
+                } else {
+                    model.selectedMembers.set(memberkey, key);
+                }
+            });
+            syncGroupMembersCollapsible(group);
+            updateSelectionActions(root);
+            requestGuideHighlightRefresh(root);
+            button.focus({preventScroll: true});
+            return;
+        }
         ensureFullGroupMembers(group);
         syncGroupMembersCollapsible(group);
         getGroupMemberRows(group).filter(row => !searching || !row.hidden)
