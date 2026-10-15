@@ -80,3 +80,5 @@ K16 finish candidate: baseline171631570Z-5256; relative-path172525673Z-57288 fai
 K16 served strict successors: k16-finish-painted/label/workspaces-served-native preserve each predecessor and correct only painted-state/control targeting.181135524Z-20472 PASS FR/EN four widths on32f03b82;0errors/writes. k16-empty-full/context and k16-complete-served-native are local-supervised: inert served partial/helper specimens, real density command, reversible showcompleteview setting restored exactly. Authentication/mainlocalhost course5 and lease required; not yet CI-ready.
 
 k16-overlap-served-native.spec.js: local-supervised actual mainlocalhost/course5/authentication/lease. Strict horizontal non-overlap and right-footer-edge successor; original K16 native results retain their narrower vertical/text-alignment scope. No source CSS injection.
+
+K16 regression native183318258Z-752 PASS FR/EN1600/768/390, initial+detailed density, target/name separation and painted footer edge. k16-overlap-painted-served-native.spec.js preserves strict oracles and failed predecessors; native auth/course fixture is the CI boundary.
