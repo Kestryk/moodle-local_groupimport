@@ -5968,3 +5968,5 @@ Maintenance convention:
 - 2026-10-15 [N1] Integrate Guide4 GUIDE-PILLS/GS10 with canonical Kit0.4.216; preserve M3, responsive checklist and runtime narration; rebuild Guide AMD/CSS and verify T038/parity. Native served recipe pending.
 
 - 2026-10-15 [N0] Delegated small fixes: guard unset Moodle page URLs in admin settings, normalize FR/EN ellipses to U+2026 and correct English action-in-progress copy. PHP lint passes; no settings values changed.
+
+- 2026-10-15 [N0] Certify served Guide4 FR/EN1280/768/390 badges, drawer opening and footer containment; zero JS errors/business writes.
