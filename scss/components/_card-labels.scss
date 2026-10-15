@@ -20,7 +20,7 @@
 
   // Bootstrap's p-0 utility is !important on the overflow toggles.
   .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle.p-0 {
-    padding-inline: var(--easyedu-card-label-padding-inline) !important;
+    @include easyedu.card-label-overflow;
   }
 
   .local-groupimport-easystud-group__groupings--inline,

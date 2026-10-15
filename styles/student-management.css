@@ -11534,7 +11534,9 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 #local-groupimport-easystud .local-groupimport-easystud-grouping__header .badge .fa,
 #local-groupimport-easystud .local-groupimport-easystud__panel-badge .fa {font-size: var(--easyedu-card-label-icon-size);line-height: 1;
 }
-#local-groupimport-easystud .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle.p-0 {padding-inline: var(--easyedu-card-label-padding-inline) !important;
+#local-groupimport-easystud .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle.p-0 {align-items: center;block-size: var(--easyedu-card-label-height);border-radius: var(--easyedu-card-label-radius);border-style: solid;border-width: 1px;box-sizing: border-box;display: inline-flex;flex-shrink: 0;font-size: var(--easyedu-card-label-font-size);font-weight: var(--easyedu-font-weight-semibold);gap: 0.25rem;line-height: calc(var(--easyedu-card-label-height) - 2px);max-block-size: var(--easyedu-card-label-height);min-block-size: var(--easyedu-card-label-height);padding-block: 0;padding-inline: var(--easyedu-card-label-padding-inline);vertical-align: middle;white-space: nowrap;font-size: var(--easyedu-card-label-font-size) !important;font-weight: var(--easyedu-font-weight-semibold) !important;line-height: calc(var(--easyedu-card-label-height) - 2px) !important;padding-block: 0 !important;padding-inline: var(--easyedu-card-label-padding-inline) !important;
+}
+#local-groupimport-easystud .local-groupimport-easystud-user__meta .local-groupimport-easystud-tags-toggle.p-0 .fa {font-size: var(--easyedu-card-label-icon-size);line-height: 1;
 }
 #local-groupimport-easystud .local-groupimport-easystud-group__groupings--inline,
 #local-groupimport-easystud .local-groupimport-easystud-group__groupings-details-list,
