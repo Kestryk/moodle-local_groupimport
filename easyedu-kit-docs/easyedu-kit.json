@@ -4,13 +4,6 @@
   "source": "git@github.com:Kestryk/easyedu-ui-kit.git",
   "status": "stable",
   "consumerSync": {
-    "entityPhoneColumns20261015": {"kitCommit": "044b6ae4", "kitVersion": "0.4.223", "scope": "Canonical absolute menu and phone count slot; bounded wrapping footer text, same shared columns and32px controls"},
-    "entityResponsiveColumns20261015":{"kitCommit":"f72ff869","kitVersion":"0.4.222","scope":"Same canonical column recipe in responsive context; shared nowrap title slot, row borders and padding variables"},
-    "entityFooterNaturalText20261015":{"kitCommit":"6f5426fd","kitVersion":"0.4.221","scope":"Natural line metrics inside existing32px footer recovery target; toolbar/reset recipes unchanged"},
-    "relatedPersonGlyphCentre20261015":{"kitCommit":"738a97cc","kitVersion":"0.4.220","scope":"Remove legacy negative glyph margin; keep canonical related-person-remove grid centring and appearance"},
-    "entityCardRowEdges20261015":{"kitCommit":"423f691","scope":"Shared transparent row border geometry and equal footer action height; prior pins retained"},
-    "entityCardAbsoluteOrigin20261015":{"kitCommit":"fb73245","scope":"Absolute selection/menu targets retain automatic grid placement and the card padding-box origin"},
-    "entityCardColumns20261015":{"kitCommit":"299854a","kitVersion":"0.4.219","scope":"Shared checkbox/text/action tracks for Group headers, members and empty states; disjoint native footer cells; existing runtime pins retained"},
     "k16MetadataActionGutter20261015":{"kitCommit":"8a7b88c","scope":"Metadata below responsive actions reuses only the existing right gutter; header and selector geometry unchanged"},
     "k16PillWrappingGeometry20261015":{"kitCommit":"9e3f517","predecessor":"acf77ff","scope":"Nonshrinking peer lanes and canonical22px overflow glyph geometry; previous pins unchanged"},
     "k16ParticipantPills20261015":{"kitCommit":"30e9282","scope":"Intrinsic wrapping metadata values and peer categories; earlier pins unchanged"},

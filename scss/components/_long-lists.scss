@@ -51,7 +51,17 @@
     display: none;
   }
 
+  &-long-list__foldable &-group__header &-group__members-toggle {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    padding: 0;
+  }
 
+  &-long-list__foldable &-group__header &-group__members-toggle[aria-expanded="false"] .fa {
+    transform: rotate(-90deg);
+  }
 }
 
 // Compact navigation has no Complete tab. Its existing Ungrouped filter is the

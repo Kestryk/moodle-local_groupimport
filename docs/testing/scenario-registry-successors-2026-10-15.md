@@ -113,17 +113,3 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 - Routed native run 194502370: 16 FR pill states and three real deferred-sheet cells passed; FR390 real response exceeded the harness default 5s readiness assertion. Fixture cleanup complete. Strict settled successor waits the same ready predicate up to 90s, without changing product Motion or acceptance tolerances.
 
 - Settled matrix 195132397 PASS: 32 states, eight real deferred sheets, 18 pre-existing group-only audit failures and no other failures. Participant deferred successor 195622852 PASS FR1600/EN390 (37 visible real group pills and return focus). See long-lists-k16-22-parity-2026-10-15.md.
-
-- Group grid baseline 200534214 PASS capture-only: 16 empty/full cards FR/EN four widths; exact-owner cleanup verified. Strict candidate 200804030 FAILED first empty-card checkbox column (11.18px), text aligned0px; cleanup complete. Origin successor preserves every strict oracle and fixes canonical absolute-grid containing-block placement; no acceptance claimed yet.
-
-- Group origin run201023028: empty-card columns aligned within .008px, then full-card row edge differed1px; strict failure preserved, fixture cleanup complete. The next candidate gives header/member/empty the same transparent border geometry and restores the requested native footer. Footer successor adds real reveal/select/deselect actions and centre hit testing; no oracle relaxed.
-
-- Reprise explicitement autoris?e apr?s le repli57f92492 : group-grid-certified-native.spec.js conserve les mesures strictes de colonnes, contenus, hauteur, hit-test et s?lection r?elle ; capture la section effectivement visible apr?s changement de vue, sans modifier le produit. Matrice FR/EN quatre largeurs et audit Kevin0FAIL requis avant certification. Anciennes preuves/?checs conserv?s.
-
-- Certified run204751094: FR1600 empty/full columns0px and header.5px, then real removal glyph -0.796875px FAILED strict content oracle. Fixture restored. group-grid-glyph-native.spec.js retains identical strict criteria and visible-section capture; canonical Kit738a97cc removes its legacy negative margin/line-height compensation.
-
-- Glyph run205028037: removal glyph nowpasses; full-card footer label-0.984375px FAILED unchanged oracle. Fixture restored. Native font probe205333416 PASS at1600/390: original1.2=-0.984375px, normal=0px, one=-.75px. Temporary styles restored. Footertext successor preserves all strict assertions and actual display capture; Kit footer uses natural line metrics only.
-
-- Footertext run205541050: FR1600/1280 empty/full/footer and real selection passed. First FR768 empty case/icon .8125px and header27.5px FAILED. Responsive read-only probe205900422: legacy wrapped header and member border-inline0 override the base column composition. Responsive successor reuses canonical columns inside responsive scope, preserves all strict oracles; fixtures restored.
-
-- Label successor210646499: FR1600/1280/768 groups+footer passed and FR390 catalog cards passed; narrow ungrouped390 FAILED terminal column77.9375px/header22px and footer overlap. Native loose probe210919972 captures actual static menu inheriting transform and count overriding compact hiding; cleanup complete. Phone successor preserves all strict oracles, including native label click, content centring and audit.

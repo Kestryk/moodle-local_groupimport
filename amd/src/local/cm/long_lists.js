@@ -59,9 +59,8 @@ export const syncLongListFooter = (owner, kind, state, paged = false) => {
             button.setAttribute('data-easystud-long-list-action', action);
             footer.appendChild(button);
         });
-        const controls = owner.querySelector(':scope > [data-easystud-group-members-toggle], ' +
-            ':scope > [data-easystud-group-select-all-row]');
-        owner.insertBefore(footer, controls);
+        const selection = owner.querySelector(':scope > [data-easystud-group-select-all-row]');
+        owner.insertBefore(footer, selection);
     }
     footer.hidden = state.total <= listPolicy[kind].initial && !paged;
     footer.setAttribute('role', paged ? 'navigation' : 'group');
@@ -155,10 +154,9 @@ export const syncMemberWindow = group => {
     syncLongListFooter(group, 'members', state);
     if (ungrouped && toggle) {
         group.classList.add('local-groupimport-easystud-long-list__foldable');
-        // Preserve the shared card footer: reveal and selection use separate
-        // native grid cells, while all existing hooks and disclosure state stay intact.
-        if (toggle.parentElement !== group) {
-            group.insertBefore(toggle, group.querySelector(':scope > [data-easystud-group-select-all-row]'));
+        const header = group.querySelector('.local-groupimport-easystud-group__header');
+        if (header && toggle.parentElement !== header) {
+            header.prepend(toggle);
         }
         toggle.hidden = false;
         const footer = group.querySelector(':scope > [data-easystud-long-list-footer]');
