@@ -11595,7 +11595,11 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .local-groupimport-easystud-advanced-filters__toggle.easyedu-filter-disclosure--capsule[aria-expanded=true] .fa {transform: rotate(180deg);
 }
-#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__count {align-items: center;background: var(--easyedu-primary);block-size: 16px;border-radius: 999px;box-sizing: border-box;color: #fff;display: inline-flex;font-size: 10px;font-weight: 700;font-variant-numeric: tabular-nums;justify-content: center;line-height: 1;inline-size: 16px;min-inline-size: 16px;padding: 0;
+#local-groupimport-easystud .local-groupimport-easystud-advanced-filters__count {align-items: center;background: var(--easyedu-primary);block-size: 16px;border-radius: 999px;box-sizing: border-box;color: #fff;display: inline-flex;font-size: 10px;font-weight: 700;font-variant-numeric: tabular-nums;justify-content: center;line-height: 1;inline-size: 16px;min-inline-size: 16px;padding: 0;will-change: transform;
+}
+@supports (text-box: trim-both cap alphabetic) and (padding-top: 1cap) {
+  #local-groupimport-easystud .local-groupimport-easystud-advanced-filters__count {display: inline-block;padding-block-start: calc((16px - 1cap) / 2 - 0.6px);text-align: center;text-box: trim-both cap alphabetic;vertical-align: middle;
+  }
 }
 #local-groupimport-easystud .local-groupimport-easystud-advanced-filters__count[hidden] {display: none;
 }
