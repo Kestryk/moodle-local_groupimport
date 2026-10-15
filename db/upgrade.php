@@ -197,5 +197,23 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026101400, 'local', 'groupimport');
     }
 
+    if ($oldversion < 2026101500) {
+        // The course-home invitation belongs to staff, never to students.
+        // Update only its role filter: preserve targets, steps, other filters
+        // and any local tour text/configuration on existing installations.
+        if (class_exists('\\tool_usertours\\tour')) {
+            $tours = $DB->get_records('tool_usertours_tours', [
+                'name' => 'tour_groupimport_coursehome_name,local_groupimport',
+                'pathmatch' => '/course/view.php%',
+            ]);
+            foreach ($tours as $record) {
+                \tool_usertours\tour::instance($record->id)
+                    ->set_filter_values('role', ['editingteacher', 'teacher', 'manager', '-1'])
+                    ->persist();
+            }
+        }
+        upgrade_plugin_savepoint(true, 2026101500, 'local', 'groupimport');
+    }
+
     return true;
 }

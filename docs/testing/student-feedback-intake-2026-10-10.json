@@ -1,4 +1,10 @@
 {
+"studentNativeK1528R7_20261015": {
+  "scope": "course-home tour staff role filter, install JSON and upgrade 2026101500",
+  "navigation": "existing managegroups capability gate retained",
+  "nativeVerified": false,
+  "humanAccepted": false
+},
 "panelMotionK1523_20261015": {
   "scope": "panel CSS opacity/transform transition removed; JS Motion unchanged",
   "nativeVerified": false,
