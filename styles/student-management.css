@@ -11752,6 +11752,8 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 #local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__main,
 #local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta {margin-inline-start: 0;padding-inline-start: 0;
 }
+#local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__main {padding-inline-start: 8px;
+}
 #local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta {align-items: center;display: flex;flex-wrap: wrap;gap: 6px;
 }
 #local-groupimport-easystud .local-groupimport-easystud-user .easyedu-person-card__meta-group {flex-basis: 100%;gap: 0;max-inline-size: 100%;
