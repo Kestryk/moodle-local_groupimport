@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Card detail dialogs (participant, group, grouping) and Mass Import history/restore adopt the T045 entity dialog family: sticky footer, 22px labels and relation counters, field skeletons, 390 sheet. Preserve global M1/M2 policy while removing the obsolete settings layout.
+
 - 2026-10-15 [N0] Verify M1 migration on localhost and disposable legacy upgrade, restore the initial effective full default, and smoke-test served SM/Mass Import/admin roots with all three live JS levels; keep full native geometry/human acceptance separate.
 
 - 2026-10-15 [N1] Integrate Claude M1/M2 animation levels: administrator default, shared user preference and privacy handling, server root/body markers, one SCSS policy and reduced effects; synchronize Kit0.4.213/c4fe248, preserving canonical compact navigation. Upgrade2026101501 replaces enableanimations.
