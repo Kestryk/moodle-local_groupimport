@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-15 [N1] Replay pinned4d1032a0 on own8051: eight effective native recipes PASS, T0201600/1920 first-entry deltas0px, S9 literal/CSV, Mass16px, eye390/768, modifiers, normal JS motion, actual-student isolation, FR/EN counts/title/filters and16 equal-height pill comparisons. Preserve environment/access/oracle predecessors; readonly service metadata recognized, concurrency option disabled. QA only, M1 excluded.
+
 - 2026-10-15 [N0] Prepare M1 contract section7 as an eighth publication-gated recipe: three levels/default-user priority/system independence/hot switch/pages/Guide/CPU4; replace OS-only motion probe, add exact restoration and isolated migration harness. Static discovery only.
 
 - 2026-10-15 [N0] Prepare Complement5 targeted S9/T020/Mass/eye/action-menu motion/Alt recipes and actual-student K15-28 isolation, with teacher-card harmony; compact Guide10 marked in development. Syntax/lint/discovery only, no product/runtime edit.
