@@ -1655,25 +1655,65 @@ echo html_writer::end_div(); // Card.
 
 echo html_writer::end_div(); // Grid.
 
+// T050/T051 (Kevin 16/10/2026 decision 6, Penpot S6-D5b/c): history and restore dialogs
+// join the T045 dialog family (tile + EASYSTUD eyebrow + title + Kit close, sticky footer
+// with Kit buttons). Rows keep every action: restore (or restore again), annotated Excel
+// report, legacy notice and the last restoration date.
+$historytitle = static function(string $titleid, string $title, string $icon, string $closeattribute,
+        string $tilemodifier = ''): string {
+    return html_writer::tag('div',
+        html_writer::tag('div',
+            html_writer::span('', 'easyedu-entity-dialog__icon local-groupimport-import-modal__tile fa ' . $icon .
+                $tilemodifier, ['aria-hidden' => 'true']) .
+            html_writer::tag('div',
+                html_writer::span(get_string('pluginname', 'local_groupimport'), 'easyedu-entity-dialog__eyebrow') .
+                html_writer::tag('h3', $title, ['id' => $titleid, 'class' => 'easyedu-modal-title'])
+            ),
+            ['class' => 'easyedu-entity-dialog__heading']
+        ) .
+        html_writer::tag('button',
+            html_writer::tag('span', '', ['class' => 'fa fa-times', 'aria-hidden' => 'true']),
+            [
+                'type' => 'button',
+                'class' => 'easyedu-dialog-close',
+                $closeattribute => '1',
+                'aria-label' => get_string('closebuttontitle'),
+            ]
+        ),
+        ['class' => 'easyedu-dialog-header easyedu-entity-dialog__header local-groupimport-import-modal__header']
+    );
+};
+
 $historyitems = '';
+$historycount = 0;
 if (!empty($historyrecords)) {
     foreach ($historyrecords as $record) {
-        $historyactions = '';
-        if (!empty($record->timerolledback)) {
-            $historyactions .= html_writer::tag('span',
-                html_writer::span('', 'fa fa-undo-alt', ['aria-hidden' => 'true']) .
-                    get_string('importhistoryrolledback', 'local_groupimport', userdate((int)$record->timerolledback)),
-                ['class' => 'local-groupimport-import-history__state local-groupimport-import-history__state--rolledback']
+        $historycount++;
+        $restored = !empty($record->timerolledback);
+        $restorable = !empty($record->changesjson);
+        $meta = [
+            userdate((int)$record->timecreated, get_string('strftimedatetimeshort', 'langconfig')),
+            local_groupimport_count_string('importhistoryrowscount', (int)$record->rowcount),
+            local_groupimport_count_string('importhistorysuccesscount', (int)$record->successcount),
+            local_groupimport_count_string('importhistoryerrorscount', (int)$record->errorcount),
+        ];
+        $main = html_writer::tag('strong', s($record->filename), ['class' => 'local-groupimport-import-history__file']) .
+            html_writer::tag('span', implode(' &middot; ', array_map('s', $meta)),
+                ['class' => 'local-groupimport-import-history__meta']);
+        if ($restored) {
+            $main .= html_writer::tag('span',
+                s(get_string('importhistoryrolledback', 'local_groupimport', userdate((int)$record->timerolledback))),
+                ['class' => 'local-groupimport-import-history__meta local-groupimport-import-history__meta--restored']
             );
         }
-        if (!empty($record->changesjson)) {
+
+        $historyactions = '';
+        if ($restorable) {
             $historyactions .= html_writer::tag('button',
-                html_writer::span('', 'fa fa-undo-alt', ['aria-hidden' => 'true']) .
-                    html_writer::span(get_string(!empty($record->timerolledback)
-                        ? 'importhistoryrestoreagain' : 'importhistoryrollback', 'local_groupimport')),
+                s(get_string($restored ? 'importhistoryrestoreagain' : 'importhistoryrollback', 'local_groupimport')),
                 [
                     'type' => 'button',
-                    'class' => 'btn btn-outline-danger btn-sm local-groupimport-import-history__rollback',
+                    'class' => 'local-groupimport-import-history__action local-groupimport-import-history__rollback',
                     'data-local-groupimport-rollback-open' => (int)$record->id,
                     'data-local-groupimport-rollback-filename' => $record->filename,
                 ]
@@ -1684,28 +1724,28 @@ if (!empty($historyrecords)) {
                     'historyid' => (int)$record->id,
                 ]),
                 html_writer::span('', 'fa fa-file-excel', ['aria-hidden' => 'true']) .
-                    html_writer::span(get_string('importexportresults', 'local_groupimport')),
-                ['class' => 'btn btn-outline-secondary btn-sm easyedu-action-with-icon local-groupimport-import-history__export']
+                    html_writer::span(s(get_string('importhistoryexportshort', 'local_groupimport'))),
+                [
+                    'class' => 'local-groupimport-import-history__action local-groupimport-import-history__export',
+                    'title' => get_string('importexportresults', 'local_groupimport'),
+                    'aria-label' => get_string('importexportresults', 'local_groupimport') . ' (' . $record->filename . ')',
+                ]
             );
         } else {
-            $historyactions .= html_writer::tag('span', get_string('importhistorylegacy', 'local_groupimport'), [
-                'class' => 'local-groupimport-import-history__state local-groupimport-import-history__state--legacy',
+            $historyactions .= html_writer::tag('span', s(get_string('importhistorylegacy', 'local_groupimport')), [
+                'class' => 'local-groupimport-import-history__state--legacy',
             ]);
         }
-        $historyactions = html_writer::div($historyactions, 'local-groupimport-import-history__actions');
 
+        $statekey = $restored ? 'restored' : 'applied';
         $historyitems .= html_writer::tag('li',
-            html_writer::tag('div',
-                html_writer::tag('strong', s($record->filename)) .
-                html_writer::tag('span', userdate((int)$record->timecreated)),
-                ['class' => 'local-groupimport-import-history__item-main']
-            ) .
-            html_writer::tag('div',
-                html_writer::tag('span', get_string('importhistoryrows', 'local_groupimport', (int)$record->rowcount)) .
-                html_writer::tag('span', get_string('importhistorysuccess', 'local_groupimport', (int)$record->successcount)) .
-                html_writer::tag('span', get_string('importhistoryerrors', 'local_groupimport', (int)$record->errorcount)),
-                ['class' => 'local-groupimport-import-history__item-meta']
-            ) . $historyactions
+            html_writer::div($main, 'local-groupimport-import-history__item-main') .
+            html_writer::tag('span', s(get_string('importhistory' . $statekey, 'local_groupimport')), [
+                'class' => 'local-groupimport-import-history__state local-groupimport-import-history__state--' . $statekey,
+            ]) .
+            html_writer::div($historyactions, 'local-groupimport-import-history__actions'),
+            ['class' => 'local-groupimport-import-history__item local-groupimport-import-history__item--' . $statekey .
+                ($restorable ? '' : ' local-groupimport-import-history__item--legacy')]
         );
     }
 } else {
@@ -1718,31 +1758,34 @@ if (!empty($historyrecords)) {
 
 echo html_writer::tag('div',
     html_writer::tag('div',
+        $historytitle('local-groupimport-import-history-title', get_string('importhistory', 'local_groupimport'),
+            'fa-file-import', 'data-local-groupimport-history-close') .
         html_writer::tag('div',
-            html_writer::tag('h3', get_string('importhistory', 'local_groupimport'), [
-                'id' => 'local-groupimport-import-history-title',
-                'class' => 'easyedu-modal-title',
-            ]) .
-            html_writer::tag('button',
-                html_writer::tag('span', '', ['class' => 'fa fa-times', 'aria-hidden' => 'true']),
-                [
-                    'type' => 'button',
-                    'class' => 'easyedu-dialog-close',
-                    'data-local-groupimport-history-close' => '1',
-                    'aria-label' => get_string('closebuttontitle'),
-                ]
-            ),
-            ['class' => 'easyedu-dialog-header easyedu-dialog-header-palette--primary']
-        ) .
-        html_writer::tag('div',
-            html_writer::tag('p', get_string('importhistorydesc', 'local_groupimport'), [
-                'class' => 'local-groupimport-import-history__desc',
+            html_writer::tag('div',
+                html_writer::tag('span', '', ['class' => 'fa fa-info-circle', 'aria-hidden' => 'true']) .
+                html_writer::tag('p', s(get_string('importhistorynotice', 'local_groupimport'))),
+                ['class' => 'easyedu-notice local-groupimport-import-history__notice']
+            ) .
+            html_writer::tag('h4', get_string('importhistoryrecent', 'local_groupimport'), [
+                'class' => 'local-groupimport-import-history__caption',
             ]) .
             html_writer::tag('ul', $historyitems, ['class' => 'local-groupimport-import-history']),
             ['class' => 'local-groupimport-import-modal__body']
+        ) .
+        html_writer::tag('div',
+            html_writer::tag('span', local_groupimport_count_string('importhistorycount', $historycount), [
+                'class' => 'local-groupimport-import-history__summary',
+            ]) .
+            html_writer::tag('button', get_string('closebuttontitle'), [
+                'type' => 'button',
+                'class' => 'btn easyedu-button',
+                'data-local-groupimport-history-dismiss' => '1',
+            ]),
+            ['class' => 'local-groupimport-import-modal__footer local-groupimport-import-modal__footer--summary']
         ),
         [
-            'class' => 'local-groupimport-import-modal__dialog',
+            'class' => 'local-groupimport-import-modal__dialog local-groupimport-import-modal__dialog--history ' .
+                'easyedu-entity-dialog',
             'role' => 'dialog',
             'aria-modal' => 'true',
             'aria-labelledby' => 'local-groupimport-import-history-title',
@@ -1758,6 +1801,7 @@ echo html_writer::tag('div',
 $rollbackform = html_writer::start_tag('form', [
     'method' => 'post',
     'action' => (new moodle_url('/local/groupimport/index.php', ['id' => $course->id]))->out(false),
+    'class' => 'local-groupimport-import-modal__form',
     'data-local-groupimport-rollback-form' => '1',
 ]);
 $rollbackform .= html_writer::empty_tag('input', [
@@ -1772,20 +1816,27 @@ $rollbackform .= html_writer::empty_tag('input', [
     'data-local-groupimport-rollback-id' => '1',
 ]);
 $rollbackform .= html_writer::tag('div',
-    html_writer::tag('p', get_string('importrollbackconfirm', 'local_groupimport'), ['class' => 'mb-1']) .
-        html_writer::tag('strong', '', ['data-local-groupimport-rollback-name' => '1']),
-    ['class' => 'local-groupimport-import-rollback__message']
+    html_writer::tag('div',
+        html_writer::tag('p', get_string('importrollbackconfirm', 'local_groupimport'), ['class' => 'easyedu-dialog-description']) .
+            html_writer::tag('p',
+                html_writer::span('', 'fa fa-file-alt', ['aria-hidden' => 'true']) .
+                html_writer::tag('strong', '', ['data-local-groupimport-rollback-name' => '1']),
+                ['class' => 'local-groupimport-import-rollback__file']
+            ),
+        ['class' => 'local-groupimport-import-rollback__message']
+    ),
+    ['class' => 'local-groupimport-import-modal__body']
 );
 $rollbackform .= html_writer::tag('div',
     html_writer::tag('button', get_string('cancel', 'local_groupimport'), [
         'type' => 'button',
-        'class' => 'btn btn-outline-secondary',
+        'class' => 'btn easyedu-button--secondary',
         'data-local-groupimport-rollback-close' => '1',
     ]) .
     html_writer::tag('button',
         html_writer::span('', 'fa fa-undo-alt', ['aria-hidden' => 'true']) .
             html_writer::span(get_string('importrollbackconfirmbutton', 'local_groupimport')),
-        ['type' => 'submit', 'class' => 'btn btn-danger']
+        ['type' => 'submit', 'class' => 'btn easyedu-button--danger easyedu-action-with-icon']
     ),
     ['class' => 'local-groupimport-import-modal__footer']
 );
@@ -1793,25 +1844,12 @@ $rollbackform .= html_writer::end_tag('form');
 
 echo html_writer::tag('div',
     html_writer::tag('div',
-        html_writer::tag('div',
-            html_writer::tag('h3', get_string('importrollbacktitle', 'local_groupimport'), [
-                'id' => 'local-groupimport-import-rollback-title',
-                'class' => 'h5 mb-0',
-            ]) .
-            html_writer::tag('button',
-                html_writer::span('', 'fa fa-times', ['aria-hidden' => 'true']),
-                [
-                    'type' => 'button',
-                    'class' => 'local-groupimport-import-modal__close',
-                    'data-local-groupimport-rollback-close' => '1',
-                    'aria-label' => get_string('closebuttontitle'),
-                ]
-            ),
-            ['class' => 'local-groupimport-import-modal__header']
-        ) .
-        html_writer::tag('div', $rollbackform, ['class' => 'local-groupimport-import-modal__body']),
+        $historytitle('local-groupimport-import-rollback-title', get_string('importrollbacktitle', 'local_groupimport'),
+            'fa-undo-alt', 'data-local-groupimport-rollback-close', ' local-groupimport-import-modal__tile--danger') .
+        $rollbackform,
         [
-            'class' => 'local-groupimport-import-modal__dialog local-groupimport-import-modal__dialog--confirm',
+            'class' => 'local-groupimport-import-modal__dialog local-groupimport-import-modal__dialog--confirm ' .
+                'easyedu-entity-dialog',
             'role' => 'dialog',
             'aria-modal' => 'true',
             'aria-labelledby' => 'local-groupimport-import-rollback-title',

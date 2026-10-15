@@ -662,7 +662,10 @@ const initHistoryModal = root => {
         }
     };
 
-    const closeButtons = Array.from(modal.querySelectorAll('[data-local-groupimport-history-close]'));
+    // Header Close and the footer Close of the T045 family (one header hook kept for native specs).
+    const closeButtons = Array.from(modal.querySelectorAll(
+        '[data-local-groupimport-history-close], [data-local-groupimport-history-dismiss]'
+    ));
     const close = () => {
         const dialog = modal.querySelector('.local-groupimport-import-modal__dialog') || modal;
         Motion.exit(dialog, {duration: Motion.timing.fast, distance: '0.2rem'}).then(completed => {
