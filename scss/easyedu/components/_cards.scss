@@ -305,7 +305,15 @@
   }
 }
 
+// Reserve the whole touch target plus text/accent clearance, not only the painted square.
+@mixin person-card-selection-column($target: 44px, $inset: 0.9rem, $gap: 12px) {
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline-start: calc(#{$inset} + #{$target} + #{$gap});
+  .easyedu-person-card__main { grid-column: 1 / -1; }
+}
+
 @mixin person-card-aligned-selector($padding, $target) {
+  inset-inline-start: 0.9rem;
   position: absolute;
   top: calc(#{$padding} + (var(--easyedu-person-first-line) - #{$target}) / 2 + var(--easyedu-person-line-centre-adjust));
   transform: none;

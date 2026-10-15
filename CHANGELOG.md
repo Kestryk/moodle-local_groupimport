@@ -5986,3 +5986,5 @@ Maintenance convention:
 - 2026-10-15 [N1] Adopt K16 finishing Kit0.4.218 with authorized group/participant card and filter raccords; localized empty-state helpers, disabled inactive Reset, exact title accents and corrected Guide specimen title. Final served bilingual measure recipe follows publication.
 
 - 2026-10-15 [N0] Certify served K16 FR/EN1600/1280/768/390 plus complete workspace: strict geometry, localized empty recipes/drop paint, real density/reset states and13 Guide titles; max selector error0.0078125px, eye/menu/count/empty-icon0px. Keep human/Penpot acceptance separate.
+
+- 2026-10-15 [N1] K16 regression: reserve the complete participant selector column before name/email/tokens and accent on compact widths; right-align recovery actions on stacked filter footers using canonical Kit653adbe. Add strict horizontal-gap and footer-edge native oracles; earlier vertical-only proof did not establish non-overlap.
