@@ -2,12 +2,13 @@
 @use "focus";
 @use "text-fields";
 @use "buttons";
+@use "animations";
 
 // Use the standard state timing. Only paint transitions, never HSV geometry;
 // retain immediate pointer/keyboard feedback and all static Motion policies.
 @mixin color-panel-state-motion {
   @include buttons.control-state-transition(var(--easyedu-motion-fast));
-  @media (prefers-reduced-motion: reduce) { transition: none; }
+  @include animations.motion-restricted { transition: none; }
 }
 
 @mixin color-panel($size: regular) {
@@ -37,7 +38,7 @@
   padding: 1rem 1.5rem;
   &::backdrop { background: rgba(22, 45, 68, 0.22); }
   &[open] { animation: easyedu-color-panel-enter var(--easyedu-motion-normal, 240ms) var(--easyedu-motion-ease); }
-  @media (prefers-reduced-motion: reduce) { &[open] { animation: none; } }
+  @include animations.motion-restricted { &[open] { animation: none; } }
   @media (forced-colors: active) {
     border-color: CanvasText;
     &::backdrop { background: transparent; }

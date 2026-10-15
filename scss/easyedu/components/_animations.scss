@@ -4,6 +4,120 @@
 // developed in EasyStud: modal entrance, slide transitions, expand/collapse,
 // tutorial feedback, drag/drop pulses and success states.
 
+@use "sass:list";
+@use "sass:selector";
+@use "sass:string";
+
+// ---------------------------------------------------------------------------
+// Animation levels (EasyEdu rule, contract M1 of 16/10/2026): full | reduced | minimal.
+//
+// The server renders data-easyedu-motion-level on the .easyedu-ui root and the body
+// classes easyedu-motion-reduced / easyedu-motion-disabled; Motion.setLevel keeps both
+// in sync without reload. The system prefers-reduced-motion media is NOT followed by
+// default: only the level chosen in EasyEdu counts. Components therefore never write
+// @media (prefers-reduced-motion); they use the mixins below.
+// - full: the whole motion language.
+// - reduced: opacity fades of 120 ms at most; no slide, scale, stagger, blur, animated
+//   shadow or shimmer (static skeletons).
+// - minimal: no transition or animation at all and no costly effect (blur,
+//   drop-shadow, will-change); shadows fall back to one fixed shadow.
+// ---------------------------------------------------------------------------
+$motion-reduced-fade: 120ms;
+
+// Ancestor contexts of each level (contract M1 section 4).
+$motion-reduced-contexts: ('.easyedu-ui[data-easyedu-motion-level="reduced"]', "body.easyedu-motion-reduced");
+$motion-minimal-contexts: ('[data-easyedu-motion-level="minimal"]', "body.easyedu-motion-disabled");
+// Body classes of each level, for rules whose selector starts on the page body
+// itself (body, #page-..., .path-..., .pagelayout-...).
+$motion-reduced-body: (".easyedu-motion-reduced",);
+$motion-minimal-body: (".easyedu-motion-disabled",);
+// The level written on the element itself (a root carrying the attribute).
+$motion-reduced-self: ('[data-easyedu-motion-level="reduced"]', ".easyedu-motion-reduced");
+$motion-minimal-self: ('[data-easyedu-motion-level="minimal"]', ".easyedu-motion-disabled");
+$motion-body-prefixes: ("body", "#page-", ".path-", ".pagelayout-");
+$motion-document-prefixes: ("html", "[dir");
+
+@function -motion-starts-with($compound, $prefixes) {
+  @each $prefix in $prefixes {
+    @if string.index($compound, $prefix) == 1 {
+      @return true;
+    }
+  }
+  @return false;
+}
+
+// One complex selector per parent selector: `:is(<contexts>) &`, or the body
+// classes on the first compound when the selector already starts on the body,
+// or the contexts after an html/[dir] compound. With $self-suffixes, also
+// `&:is(<suffixes>)` for an element that carries the level itself.
+@function -motion-selector($parent, $contexts, $body-classes, $self-suffixes) {
+  $selectors: ();
+  @each $complex in $parent {
+    $first: "#{list.nth($complex, 1)}";
+    $rest: "";
+    // Sass counts down when the end is lower: guard single-compound selectors.
+    @if list.length($complex) > 1 {
+      @for $i from 2 through list.length($complex) {
+        $rest: "#{$rest} #{list.nth($complex, $i)}";
+      }
+    }
+    @if -motion-starts-with($first, $motion-body-prefixes) {
+      $selectors: list.append($selectors, "#{selector.append($first, ':is(#{$body-classes})')}#{$rest}", comma);
+    } @else if -motion-starts-with($first, $motion-document-prefixes) {
+      $selectors: list.append($selectors, "#{$first} :is(#{$contexts})#{$rest}", comma);
+    } @else {
+      $selectors: list.join($selectors, selector.nest(":is(#{$contexts})", $complex), comma);
+    }
+    @if list.length($self-suffixes) > 0 {
+      $selectors: list.join($selectors, selector.append($complex, ":is(#{$self-suffixes})"), comma);
+    }
+  }
+  @return $selectors;
+}
+
+// Nested in a rule: emits the level selector of `&` (see -motion-selector). At
+// the top level: prefixes the nested rules with `:is(<contexts>)`. In both
+// forms `&` stands for the whole level selector, so the content uses `&` once,
+// at its start; compound rules such as `&-a &-b` use explicit class names.
+@mixin motion-context($contexts, $body-classes, $self-suffixes: ()) {
+  @if & {
+    @at-root #{-motion-selector(&, $contexts, $body-classes, $self-suffixes)} {
+      @content;
+    }
+  } @else {
+    :is(#{$contexts}) {
+      @content;
+    }
+  }
+}
+
+// Rules of the reduced level only (opacity fades of 120 ms at most).
+// $self: true also matches when & itself carries the level attribute.
+@mixin motion-reduced($self: false) {
+  @include motion-context($motion-reduced-contexts, $motion-reduced-body, if($self, $motion-reduced-self, ())) {
+    @content;
+  }
+}
+
+// Rules of the minimal level only (no motion, no costly effect).
+@mixin motion-minimal($self: false) {
+  @include motion-context($motion-minimal-contexts, $motion-minimal-body, if($self, $motion-minimal-self, ())) {
+    @content;
+  }
+}
+
+// Rules shared by the reduced and minimal levels: whatever must not move, loop or
+// shimmer as soon as the level is not full (the former prefers-reduced-motion blocks).
+@mixin motion-restricted($self: false) {
+  @include motion-context(
+    list.join($motion-reduced-contexts, $motion-minimal-contexts, comma),
+    list.join($motion-reduced-body, $motion-minimal-body, comma),
+    if($self, list.join($motion-reduced-self, $motion-minimal-self, comma), ())
+  ) {
+    @content;
+  }
+}
+
 @mixin motion-keyframes {
   @at-root (without: rule) {
     @keyframes easyedu-modal-in {
@@ -196,11 +310,78 @@
     transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 
-// Apply on the plugin root. The server policy and the visitor's operating
-// system preference both take precedence over component-level transitions.
-// Native Moodle modals mounted outside the root should inherit the companion
-// `easyedu-motion-disabled` body class from the page controller.
+// Minimal level: no transition or animation. Durations collapse to 0.001ms rather
+// than `none` so `both`/`forwards` fills still land on their end state and
+// transitionend/animationend listeners still settle.
+@mixin motion-minimal-declarations {
+  animation-delay: 0s !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-delay: 0s !important;
+  transition-duration: 0.001ms !important;
+}
+
+// Reduced level: keyframe motion collapses to its end state like minimal, and the
+// only transition left is an opacity fade of 120 ms at most (no slide, scale,
+// height, grid-track, margin or shadow transition).
+@mixin motion-reduced-declarations {
+  animation-delay: 0s !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-delay: 0s !important;
+  transition-duration: $motion-reduced-fade !important;
+  transition-property: opacity !important;
+}
+
+// Kit regions a level governs, including what is portalled to <body> (Guide,
+// highlight, Kit modals, drag preview, Guide label tooltip).
+$motion-policy-roots: (
+  ".easyedu-ui",
+  ".easyedu-guide",
+  ".easyedu-guide-highlight",
+  ".easyedu-modal-layer",
+  ".easyedu-drag-preview",
+  ".easyedu-guide-label-tooltip"
+);
+
+// The single page-wide motion policy. Include it once per plugin stylesheet, at
+// the top level, with the plugin's own roots and portalled containers. It keys
+// on the body level classes, which the server renders on every plugin page and
+// Motion.setLevel switches live, so one cheap ancestor check covers the roots,
+// their descendants and the pseudo-elements. !important is required: the policy
+// must beat every component transition/animation shorthand, whatever its
+// specificity, exactly like the historical motion-policy did.
+@mixin motion-level-policy($extra-roots: ()) {
+  $root: ":is(#{list.join($motion-policy-roots, $extra-roots, comma)})";
+
+  @at-root {
+    body.easyedu-motion-reduced #{$root},
+    body.easyedu-motion-reduced #{$root}::before,
+    body.easyedu-motion-reduced #{$root}::after,
+    body.easyedu-motion-reduced #{$root} *,
+    body.easyedu-motion-reduced #{$root} *::before,
+    body.easyedu-motion-reduced #{$root} *::after {
+      @include motion-reduced-declarations;
+    }
+
+    body.easyedu-motion-disabled #{$root},
+    body.easyedu-motion-disabled #{$root}::before,
+    body.easyedu-motion-disabled #{$root}::after,
+    body.easyedu-motion-disabled #{$root} *,
+    body.easyedu-motion-disabled #{$root} *::before,
+    body.easyedu-motion-disabled #{$root} *::after {
+      @include motion-minimal-declarations;
+    }
+  }
+}
+
+// Historical root-level policy kept for EasyEdu plugins that have not adopted
+// motion-level-policy yet. It reads the level (and the legacy policy hooks) on
+// the root itself and no longer follows the system prefers-reduced-motion media.
 @mixin motion-policy {
+  &[data-easyedu-motion-level="minimal"],
   &[data-easyedu-motion-policy="disabled"],
   &.is-easyedu-motion-off {
     scroll-behavior: auto !important;
@@ -208,27 +389,17 @@
     *,
     *::before,
     *::after {
-      animation-delay: 0s !important;
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-      transition-delay: 0s !important;
-      transition-duration: 0.001ms !important;
+      @include motion-minimal-declarations;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  &[data-easyedu-motion-level="reduced"] {
     scroll-behavior: auto !important;
 
     *,
     *::before,
     *::after {
-      animation-delay: 0s !important;
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      scroll-behavior: auto !important;
-      transition-delay: 0s !important;
-      transition-duration: 0.001ms !important;
+      @include motion-reduced-declarations;
     }
   }
 }
@@ -292,6 +463,15 @@
     white-space: nowrap;
     z-index: 1069;
   }
+
+  // The pop animates box-shadow and transform (repaint on every frame): static
+  // indicator as soon as the level is not full.
+  @include motion-restricted($self: true) {
+    &.is-action-busy::after,
+    &.is-action-busy::before {
+      animation: none;
+    }
+  }
 }
 
 // Bottom-end variant for persistent workspace actions. It preserves the
@@ -333,5 +513,13 @@
     position: fixed;
     right: 1.45rem;
     z-index: 1047;
+  }
+
+  // Static spinner and label as soon as the level is not full.
+  @include motion-restricted($self: true) {
+    &.is-action-busy::after,
+    &.is-action-busy::before {
+      animation: none;
+    }
   }
 }

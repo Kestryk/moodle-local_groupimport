@@ -6,6 +6,7 @@
 
 @use "focus";
 @use "typography";
+@use "animations";
 
 @mixin guide-launcher-button {
   align-items: center;
@@ -1582,6 +1583,12 @@
     animation: easyedu-demo-cursor-click 3.2s ease-in-out infinite;
     color: var(--easyedu-primary);
     filter: drop-shadow(0 0.25rem 0.35rem rgba(31, 42, 55, 0.16));
+
+    // Minimal: one fixed text shadow instead of a filter layer.
+    @include animations.motion-minimal {
+      filter: none;
+      text-shadow: 0 0.125rem 0.25rem rgba(31, 42, 55, 0.16);
+    }
   }
 
   .easyedu-guide-demo-drop {
@@ -2352,7 +2359,7 @@
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted($self: true) {
     .easyedu-guide-visual *,
     .easyedu-guide-visual *::before,
     .easyedu-guide-visual *::after {
@@ -2688,6 +2695,11 @@
 
     &.is-complete .easyedu-guided-panel__message {
       animation: easyedu-success-pulse 1.12s var(--easyedu-motion-ease) both;
+
+      // The pulse animates box-shadow and scale: full level only.
+      @include animations.motion-restricted {
+        animation: none;
+      }
       background: linear-gradient(135deg, #29724d 0%, #2f8f62 100%);
       border-color: #29724d;
       box-shadow:
@@ -3248,7 +3260,7 @@ html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include animations.motion-restricted {
   .easyedu-guide-modal__dialog,
   .easyedu-guide-slide,
   .easyedu-guide-checklist__complete,

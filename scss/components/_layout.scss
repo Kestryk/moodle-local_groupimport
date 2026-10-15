@@ -546,7 +546,7 @@
     animation: none;
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include easyedu.motion-restricted {
     &.is-easystud-sm-entering :is([data-easystud-user], [data-easystud-group-id]) {
       animation: none;
     }
@@ -683,6 +683,14 @@
   &.is-easyedu-motion-off &__loading-surface::after {
     animation: none;
     display: none;
+  }
+
+  // Static skeletons as soon as the animation level is not full.
+  @include easyedu.motion-restricted {
+    .local-groupimport-easystud__loading-surface::after {
+      animation: none;
+      display: none;
+    }
   }
 
   &__loading-view-toggle.local-groupimport-easystud__loading-view-toggle--two {

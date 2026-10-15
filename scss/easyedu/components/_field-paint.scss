@@ -1,6 +1,7 @@
 // Internal field paint shared by distinct single-line and multiline recipes.
 // Geometry, font size, rows, labels and commands are not part of this helper.
 @use "focus";
+@use "animations";
 
 @mixin paint {
   background: var(--easyedu-surface);
@@ -51,7 +52,7 @@
     &::placeholder { color: var(--easyedu-field-disabled-text); }
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     transition: none;
   }
 }

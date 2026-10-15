@@ -686,8 +686,11 @@ Must:
 
 - vendor and namespace the canonical controller instead of creating a second
   plugin-specific motion engine;
-- expose `data-easyedu-motion-policy` in server-rendered markup;
-- let `prefers-reduced-motion` override the administrator policy;
+- expose `data-easyedu-motion-level` (and the compatibility
+  `data-easyedu-motion-policy`) plus the body level classes in server-rendered
+  markup: the user's `easyedu_motion_level` choice, else the administrator default;
+- never follow the system `prefers-reduced-motion` media by default; write level
+  rules with `motion-reduced`, `motion-minimal` or `motion-restricted`;
 - use distance-aware disclosures for short search and paste panels;
 - use one atomic `swap` for full-view changes;
 - use fade-only swaps with zero translation and no height interpolation for
@@ -1051,7 +1054,7 @@ Must:
 - retain the `--easyedu-action-icon-gap` token and stable `1em` icon slot;
 - use `layout-disclosure-transition` and `--easyedu-motion-layout` for a
   persistent column or region that changes track size in place;
-- preserve the shared motion-policy and `prefers-reduced-motion` path.
+- preserve the shared animation level policy (`motion-level-policy`).
 
 Must not:
 

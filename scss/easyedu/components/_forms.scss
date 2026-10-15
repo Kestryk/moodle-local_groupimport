@@ -12,6 +12,7 @@
 @use "panels";
 @use "typography";
 @use "control-treatment" as controls;
+@use "animations";
 
 // Solid large deposit surface from Foundations. The consumer keeps its native
 // upload control, validation and progress inside __control; no simulated input.
@@ -505,7 +506,7 @@
     opacity: 0.62;
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @include animations.motion-restricted {
     span::before,
     span::after { transition: none; }
   }
