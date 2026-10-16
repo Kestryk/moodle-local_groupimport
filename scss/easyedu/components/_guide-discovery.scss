@@ -193,6 +193,7 @@
     }
   }
 
+  .easyedu-guide-modal__title-short { display: none; }
   .easyedu-guide-modal__header {
     @include modals.dialog-header;
     &.easyedu-dialog-header-palette--primary { @include palette.primary-header-paint; }
@@ -675,6 +676,7 @@
     &__caption, small { @include typography.type-caption; }
     // A quiet, localized reminder that scenes are demonstrations. This remains
     // a caption role, not a warning or a second status component.
+    &__caption-short { display: none; }
     &__caption--safe-example {
       display: inline-flex;
       inline-size: fit-content;
@@ -884,9 +886,9 @@
       .btn[aria-pressed="true"] { background: var(--easyedu-surface); color: var(--easyedu-primary-strong); }
     }
     @media (max-width: 40rem) {
-      // Use the available scene gutter instead of a third nested text inset.
-      // Keep this width while playing so Start does not jump header edges.
-      &__header { padding-block: 0.375rem; margin-inline: -1rem; }
+      // C-G3: the scene is full width (no border, 12px inner padding), so the
+      // header sits on the same edge as the rest of the scene: no negative margin.
+      &__header { padding-block: 0.375rem; }
       &__header-controls-inner { flex-direction: column; align-items: stretch; }
       &__modes { display: flex; }
       &__modes .btn { flex: 1 1 0; min-width: 0; }
@@ -1362,19 +1364,18 @@
     .easyedu-guide-guided-card {
       grid-template-columns: minmax(0, 1fr);
       .easyedu-guide-guided-card__icon { justify-self: start; grid-row: 1; }
-      .easyedu-guide-guided-card__steps { justify-content: center; }
+      .easyedu-guide-guided-card__steps { justify-content: flex-start; }
       .easyedu-guide-guided-card__steps li {
-        // The counter owns its left track; the anonymous text grid item wraps
-        // and centres every line independently, including long destination copy.
+        // The counter owns its left track; the text wraps start-aligned (C-G3).
         display: grid;
         grid-template-columns: 0.9375rem minmax(0, 1fr);
         max-inline-size: 100%;
         min-inline-size: 0;
-        text-align: center;
+        text-align: start;
       }
     }
     .easyedu-guide-guided-card .easyedu-guide-slide__start { grid-column: 1 / -1; }
-    .easyedu-guide-guided-card .easyedu-guide-guided-card__body { text-align: center; align-items: center; }
+    .easyedu-guide-guided-card .easyedu-guide-guided-card__body { text-align: start; align-items: flex-start; }
     .easyedu-guide-guided-card .easyedu-guide-slide__start {
       grid-column: 1 / -1;
       justify-self: stretch;
@@ -1396,6 +1397,15 @@
         max(1.0625rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
     }
 
+    // C-G3 compact chrome: one-line title, 4px progress, pills below (P-G6).
+    .easyedu-guide-modal__header { min-height: 3.5rem; padding: 0.75rem 1rem; }
+    .easyedu-guide-modal__hero-icon, .easyedu-guide-modal__eyebrow { display: none; }
+    .easyedu-guide-modal__title-wrap h2 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .easyedu-guide-modal__title-full { display: none; }
+    .easyedu-guide-modal__title-short { display: inline; }
+    .easyedu-guide-modal__progress { padding: 0; gap: 0; border-block-start: 0; }
+    .easyedu-guide-nav-wrap { margin-block: 0.5rem; }
+    .easyedu-guide-nav { padding-block-end: 0; }
     .easyedu-guide-nav .easyedu-guide-nav-item { flex-basis: 11.375rem; }
     .easyedu-guide-modal__footer { flex-wrap: wrap; padding: 0.75rem 1rem; }
     // GS10 phone: one footer row. The reading count yields its width and may
@@ -1418,7 +1428,17 @@
         width: 1px;
       }
     }
-    .easyedu-guide-scene { padding: 1rem; margin-block: 1rem; }
+    // C-G3: full-width scene, no border or nesting (the soft background reaches the
+    // reading edges); 12px inner padding; short "Example" badge, never an oval.
+    .easyedu-guide-scene {
+      margin-block: 1rem;
+      margin-inline: calc(-1 * var(--easyedu-guide-reading-inset));
+      padding: 0.75rem;
+      border: 0;
+      border-radius: 0;
+    }
+    .easyedu-guide-scene__caption-full { display: none; }
+    .easyedu-guide-scene__caption-short { display: inline; }
     .easyedu-guide-scene__concepts { gap: 1rem; padding: 0; }
     .easyedu-guide-scene__concept-arrow { display: none; }
     .easyedu-guide-modal__body { --easyedu-guide-reading-inset: 1rem; }

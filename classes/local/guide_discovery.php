@@ -136,6 +136,7 @@ final class guide_discovery {
         foreach (['caption', 'menutitle', 'unknownlabel', 'recaptitle'] as $key) {
             $scene[$key] = get_string('guideinspection_' . $key, 'local_groupimport');
         }
+        $scene['captionshort'] = get_string('discovery_simulation_short', 'local_groupimport');
         foreach (['add', 'cancel', 'pause', 'resume', 'nextphase', 'finished'] as $key) {
             $scene[$key . 'label'] = get_string('discovery_' . $key, 'local_groupimport');
         }
@@ -250,6 +251,7 @@ final class guide_discovery {
                 $kind => true,
                 'kind' => $kind,
                 'caption' => get_string('discovery_simulation', 'local_groupimport'),
+                'captionshort' => get_string('discovery_simulation_short', 'local_groupimport'),
                 'note' => get_string($prefix . 'note', 'local_groupimport'),
                 'replay' => get_string('discovery_replay', 'local_groupimport'),
                 'reset' => get_string('discovery_reset', 'local_groupimport'),
