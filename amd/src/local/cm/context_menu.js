@@ -22,7 +22,10 @@
  */
 
 import * as Motion from '../../motion';
-import {selectedClass, isResponsiveWorkspace, getLabels, showNotification, areSelectionTypesCompatible} from './shared';
+import {
+    selectedClass, isResponsiveWorkspace, getLabels, showNotification, areSelectionTypesCompatible,
+    requestGuideHighlightRefresh,
+} from './shared';
 import {isResponsiveDragSuppressed} from './drag_support';
 import {
     getGroupName, getTreeGroupElementsById, getGroupsWithGroupingMembership, setRenameEditing, setInlinePanelOpen,
@@ -358,6 +361,8 @@ export const bindContextMenu = (root, courseId) => {
             backdrop.hidden = true;
             stopAnimation(backdrop);
         }
+        // J-G3 (P-G2): the Guide checklist re-docks once the sheet has gone.
+        requestGuideHighlightRefresh(root);
     };
 
     const hideMenu = () => {
@@ -655,6 +660,9 @@ export const bindContextMenu = (root, courseId) => {
         if (first) {
             first.focus({preventScroll: true});
         }
+        // J-G3 (P-G2): an opening sheet or menu can cover the step target or the checklist; let the
+        // Guide re-evaluate its docking (its refresh runs now and again after the slow motion).
+        requestGuideHighlightRefresh(root);
         if (type === 'participant' && target && target.isConnected && root.contains(target)) {
             emitTryActionsCompletion(root, 'try-context');
         }
