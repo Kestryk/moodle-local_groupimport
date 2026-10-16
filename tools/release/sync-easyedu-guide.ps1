@@ -126,6 +126,7 @@ $runtimeJavascript = ($runtimeJavascript -replace "`r`n", "`n").TrimEnd() + "`n"
 # translated hover/completion labels retained. Checking just the embedded
 # package cannot prove that Moodle's rendered template has been updated.
 $runtimeTemplate = Read-NormalizedText $canonicalTemplatePath
+$runtimeTemplate = $runtimeTemplate.Replace('{{> guide_simplecreate}}', '{{> local_groupimport/guide_simplecreate}}')
 $runtimeTemplate = $runtimeTemplate.Replace(
     '<span class="easyedu-guide__launcher-label">{{guideopenlabel}}</span>',
     '<span class="easyedu-guide__launcher-label" aria-hidden="true">{{guidehoverlabel}}</span>')
@@ -140,6 +141,24 @@ if (-not $runtimeTemplate.Contains('{{guidehoverlabel}}') -or
 }
 
 $items = @(
+    [pscustomobject]@{
+        Name = "embedded simple-create Mustache"
+        Source = Resolve-OwnedPath $kitRoot "guide\templates\guide_simplecreate.mustache"
+        Target = Resolve-OwnedPath $pluginRootPath "easyedu-guide-kit\templates\guide_simplecreate.mustache"
+        Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "guide\templates\guide_simplecreate.mustache")
+    },
+    [pscustomobject]@{
+        Name = "runtime simple-create Mustache"
+        Source = Resolve-OwnedPath $kitRoot "guide\templates\guide_simplecreate.mustache"
+        Target = Resolve-OwnedPath $pluginRootPath "templates\guide_simplecreate.mustache"
+        Expected = (Read-NormalizedText (Resolve-OwnedPath $kitRoot "guide\templates\guide_simplecreate.mustache")).Replace('@template guide_simplecreate', '@template local_groupimport/guide_simplecreate')
+    },
+    [pscustomobject]@{
+        Name = "canonical Guide animation SCSS"
+        Source = Resolve-OwnedPath $kitRoot "scss\easyedu\components\_animations.scss"
+        Target = Resolve-OwnedPath $pluginRootPath "scss\easyedu\components\_animations.scss"
+        Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot "scss\easyedu\components\_animations.scss")
+    },
     [pscustomobject]@{
         Name = "canonical native confirmation controller"
         Source = Resolve-OwnedPath $kitRoot "guide\amd\src\easyedu_confirmation.js"

@@ -16,7 +16,10 @@ const DEFAULTS = {
   highlightAutoHideDelay: 9000,
   highlightStyle: 'default',
   // Instruction pauses are minimums, not deadlines: allow reading longer copy.
-  narrationMinimumMs: 2400,
+  // J-G2 (AN-1, AN-9): every phase is readable (3 s at least) and a demo stays within 25 s (4 s at
+  // most per phase; Pause and "Next phase" remain available).
+  narrationMinimumMs: 3000,
+  narrationMaximumMs: 4000,
   narrationWordsPerMinute: 180,
   narrationLeadInMs: 900,
   targets: {},
@@ -922,6 +925,54 @@ const dockChecklistAboveTarget = (root, checklist, target, inDialog) => {
   root.easyeduGuideTopDockTarget = target;
 };
 
+// J-G3 (P-G2, validated by Kevin on 16/10/2026): the checklist never covers the step target.
+// Canonical side: right on desktop and tablet, bottom on compact viewports. Before each step the
+// panel is compared with the target plus a 16 px margin; on overlap it moves to the opposite side
+// (left, or top on compact viewports). When neither side fits (target under both lanes, or a
+// usable height under 600 px) it folds into the reduced checklist, marked is-avoiding, and unfolds
+// by itself once a later target leaves room. A checklist the user folded is never reopened.
+const CHECKLIST_AVOID_MARGIN = 16;
+const CHECKLIST_MIN_USABLE_HEIGHT = 600;
+const CHECKLIST_LANE_INSET = 20;
+const CHECKLIST_AVOIDING_CLASS = 'is-avoiding';
+
+const inflateRect = (rect, margin) => ({
+  left: rect.left - margin,
+  right: rect.right + margin,
+  top: rect.top - margin,
+  bottom: rect.bottom + margin,
+});
+
+const foldChecklistAwayFromTarget = (root, checklist, target) => {
+  root.easyeduGuideAvoidTarget = target;
+  if (checklist.classList.contains('is-minimized')) {
+    return;
+  }
+  const focused = document.activeElement;
+  checklist.classList.add('is-minimized', CHECKLIST_AVOIDING_CLASS);
+  checklist.removeAttribute('data-easyedu-guide-checklist-expanded');
+  syncChecklistMinimizeControl(root);
+  if (focused && checklist.contains(focused) && !isVisibleElement(focused)) {
+    const restore = checklist.querySelector('[data-easyedu-guide-checklist-restore]') ||
+      checklist.querySelector(SELECTORS.checklistMinimize);
+    if (isVisibleElement(restore)) {
+      restore.focus({preventScroll: true});
+    }
+  }
+};
+
+const unfoldAvoidingChecklist = (root, checklist) => {
+  root.easyeduGuideAvoidTarget = null;
+  if (!checklist.classList.contains(CHECKLIST_AVOIDING_CLASS)) {
+    return;
+  }
+  checklist.classList.remove(CHECKLIST_AVOIDING_CLASS, 'is-minimized');
+  if (isCompactChecklistViewport()) {
+    checklist.setAttribute('data-easyedu-guide-checklist-expanded', '');
+  }
+  syncChecklistMinimizeControl(root);
+};
+
 const dockChecklistAwayFromTarget = (root, target) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const externalDialog = getExternalTargetDialog(root, target);
@@ -936,36 +987,47 @@ const dockChecklistAwayFromTarget = (root, target) => {
   if (!checklist || checklist.hidden || !isVisibleElement(target)) {
     return;
   }
+  // A fold made for this same target stays (re-renders must not make it blink).
+  if (checklist.classList.contains(CHECKLIST_AVOIDING_CLASS) && root.easyeduGuideAvoidTarget === target) {
+    return;
+  }
+  unfoldAvoidingChecklist(root, checklist);
 
-  const rect = target.getBoundingClientRect();
-  const viewportMiddle = window.innerWidth / 2;
-  const panel = checklist.getBoundingClientRect();
-  const overlaps = rect.left < panel.right && rect.right > panel.left &&
-    rect.top < panel.bottom && rect.bottom > panel.top;
-  if (window.matchMedia && window.matchMedia('(max-width: 40rem)').matches &&
-      overlaps && !checklist.classList.contains('is-minimized')) {
-    const focused = document.activeElement;
-    checklist.classList.add('is-minimized');
-    checklist.removeAttribute('data-easyedu-guide-checklist-expanded');
-    syncChecklistMinimizeControl(root);
-    if (focused && checklist.contains(focused) && !isVisibleElement(focused)) {
-      const restore = checklist.querySelector('[data-easyedu-guide-checklist-restore]') ||
-        checklist.querySelector(SELECTORS.checklistMinimize);
-      if (isVisibleElement(restore)) { restore.focus({preventScroll: true}); }
+  const zone = inflateRect(target.getBoundingClientRect(), CHECKLIST_AVOID_MARGIN);
+  if (isCompactChecklistViewport()) {
+    if (!rectsOverlap(zone, checklist.getBoundingClientRect())) {
+      return;
+    }
+    dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+    if (rectsOverlap(zone, checklist.getBoundingClientRect())) {
+      foldChecklistAwayFromTarget(root, checklist, target);
     }
     return;
   }
-  // A progress re-render must not reset docking. Move only when the settled
-  // target actually overlaps the panel and another horizontal lane can fit.
-  const hasDock = checklist.classList.contains('is-docked-right') || checklist.classList.contains('is-docked-left');
-  const sideLaneFits = !hasDock || (rectsOverlap(rect, checklist.getBoundingClientRect()) &&
-    rect.width + checklist.getBoundingClientRect().width + 32 <= window.innerWidth);
-  if (sideLaneFits) {
-    const dockRight = rect.left < viewportMiddle;
-    checklist.classList.toggle('is-docked-right', dockRight);
-    checklist.classList.toggle('is-docked-left', !dockRight);
+
+  // Lanes are computed from the panel's declared width (min(26rem, 100vw - 2.5rem)), not from a
+  // rect that may still be mid-transition.
+  const panel = checklist.getBoundingClientRect();
+  const width = Math.min(26 * 16, window.innerWidth - 40);
+  const lane = left => ({left, right: left + width, top: panel.top, bottom: panel.bottom});
+  const rightLane = lane(window.innerWidth - CHECKLIST_LANE_INSET - width);
+  const leftLane = lane(CHECKLIST_LANE_INSET);
+  const usableHeight = window.innerHeight - getFixedTopClearance();
+  let dock = 'right';
+  if (rectsOverlap(zone, rightLane)) {
+    if (rectsOverlap(zone, leftLane) || usableHeight < CHECKLIST_MIN_USABLE_HEIGHT) {
+      foldChecklistAwayFromTarget(root, checklist, target);
+      checklist.classList.add('is-docked-right');
+      checklist.classList.remove('is-docked-left');
+      // The fold goes to the free corner: above the target when it sits low.
+      dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+      return;
+    } else {
+      dock = 'left';
+    }
   }
-  dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+  checklist.classList.toggle('is-docked-right', dock === 'right');
+  checklist.classList.toggle('is-docked-left', dock === 'left');
 };
 
 const showInterfaceReturn = root => {
@@ -1037,7 +1099,8 @@ const hideChecklist = (root, config, clearProgress = false, restoreFocus = false
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
     checklist.hidden = true;
-    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path');
+    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path',
+      'is-avoiding');
     checklist.removeAttribute('data-easyedu-guide-path');
     // A compact checklist is deliberately reopened in its space-saving state
     // for each guided-path entry.  Do not carry a prior manual expansion into
@@ -1582,21 +1645,22 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
-  if (!['membership', 'actions', 'inspection'].includes(kind)) { return; }
+  if (!['membership', 'actions', 'inspection', 'simplecreate'].includes(kind)) { return; }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
     scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
   const defaultMode = kind === 'actions' ? 'actions' : 'add';
   const mode = requestedMode === 'reset' ? defaultMode : requestedMode || scene.easyeduGuideSceneMode || defaultMode;
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
-  if (!stage || !result) { return; }
+  // J-G4: the simple-creation scene has no result line; every other kind needs one.
+  if (!stage || (!result && kind !== 'simplecreate')) { return; }
   if (!scene.easyeduGuideStageOriginal) {
     scene.easyeduGuideStageOriginal = stage.innerHTML;
-    scene.easyeduGuideResultOriginal = result.textContent;
+    scene.easyeduGuideResultOriginal = result ? result.textContent : '';
   }
   stage.innerHTML = scene.easyeduGuideStageOriginal;
   delete scene.dataset.guideSceneFinished;
-  result.textContent = scene.easyeduGuideResultOriginal;
+  if (result) { result.textContent = scene.easyeduGuideResultOriginal; }
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
   scene.dataset.guideMode = mode;
   scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
@@ -1609,7 +1673,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const phaseCaption = sceneHeader?.querySelector('[data-guide-phase-caption]');
   const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
   // Count the applicable explanation phases, not animation frames or timers.
-  const applicablePhases = [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
+  // J-G4: the simple-creation scene reads its four phases from its root's labels.
+  const applicablePhases = kind === 'simplecreate' ? [1, 2, 3, 4].map(n => ({dataset: {guidePhase: String(n)}})) :
+    [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
     !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
   const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
   const liveAnnouncement = live?.querySelector('[data-guide-live-announcement]');
@@ -1868,6 +1934,25 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await animate(cursorEl, [{opacity: 0}, {opacity: 1}], REDUCED_FADE_MS, false);
     }
   };
+  // J-G2 (AN-2): a pointer that is not shown yet appears near its target (160 ms fade, then a
+  // 24 px approach) instead of crossing the stage from its top-left corner; any travel keeps a
+  // readable speed (0.8 px/ms at most).
+  const POINTER_SPEED = 0.8;
+  const movePointer = async(cursorEl, x, y, duration) => {
+    const destination = `translate(${x}px, ${y}px)`;
+    if (cursorEl.hidden) {
+      const near = `translate(${x - 24}px, ${y + 12}px)`;
+      cursorEl.style.transform = near;
+      cursorEl.hidden = false;
+      await animate(cursorEl, [{transform: near, opacity: 0}, {transform: near, opacity: 1}], 160);
+      await animate(cursorEl, [{transform: near}, {transform: destination}], 220);
+      return;
+    }
+    const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
+    const distance = Math.hypot(x - from.m41, y - from.m42);
+    await animate(cursorEl, [{transform: from.toString()}, {transform: destination}],
+      Math.max(duration, Math.round(distance / POINTER_SPEED)));
+  };
   // Fade the instruction copy, not the entire teaching scene. Its reading pause
   // starts only after the new sentence is visible; no business state is changed.
   const writeLive = async(text, state = 'active', immediate = false) => {
@@ -1976,7 +2061,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
     const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
     const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
-    await wait(Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
+    const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+    await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
   };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
@@ -1991,6 +2077,112 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
+    if (kind === 'simplecreate') {
+      // J-G4 (P-G5, validated 16/10): create ONE group, then ONE grouping, then rename the group.
+      // Illustration only: readonly fields and disabled buttons, never a Moodle command.
+      const pick = selector => stage.querySelector(selector);
+      const cursor = pick('[data-guide-cursor]');
+      const field = role => pick(`[data-guide-simplecreate-input="${role}"]`);
+      const submit = role => pick(`[data-guide-simplecreate-submit="${role}"]`);
+      const created = role => pick(`[data-guide-simplecreate-result="${role}"]`);
+      const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
+      const cardName = pick('[data-guide-simplecreate-card-name]');
+      const edit = pick('[data-guide-simplecreate-edit]');
+      const rename = pick('[data-guide-simplecreate-rename]');
+      const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
+      const pointAt = async element => {
+        assertActive();
+        if (!cursor || !element || compact) { return; }
+        await gate();
+        const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
+        const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
+        if (still) {
+          await placeCursor(cursor, `translate(${x}px, ${y}px)`);
+          return;
+        }
+        await movePointer(cursor, x, y, 520);
+      };
+      const hidePointer = async() => {
+        if (!cursor || cursor.hidden) { return; }
+        if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
+        cursor.hidden = true;
+      };
+      const press = element => element ? animate(element, [{transform: 'scale(1)'}, {transform: 'scale(.94)'},
+        {transform: 'scale(1)'}], 220, false) : Promise.resolve();
+      const type = async(input, text) => {
+        if (!input) { return; }
+        input.value = '';
+        for (const character of text) {
+          assertActive();
+          input.value += character;
+          await wait(still ? 0 : 45);
+        }
+        input.value = text;
+      };
+      const show = async element => {
+        if (!element) { return; }
+        element.hidden = false;
+        await reveal(element);
+        await animate(element, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}],
+          160, false);
+      };
+      // Same narration and reading clock as phase(), with the copy carried by the root labels.
+      const say = async number => {
+        assertActive();
+        skipping = false;
+        const text = stage.getAttribute(`data-guide-phase-${number}-label`) || '';
+        await writeLive(text, 'active');
+        if (controller.signal.aborted) { return; }
+        scene.dataset.guidePhase = String(number);
+        advancing = false;
+        syncPlayback(paused ? 'paused' : 'playing');
+        await gate();
+        const words = text.trim().split(/\s+/).filter(Boolean).length;
+        const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
+        const maximum = Math.max(minimum,
+          Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+        const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+        const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+        await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
+      };
+      await reveal(stage);
+      await pointAt(field('group'));
+      await say(1);
+      await type(field('group'), sample('name'));
+      await pointAt(submit('group'));
+      await say(2);
+      await press(submit('group'));
+      if (field('group')) { field('group').value = ''; }
+      await show(created('group'));
+      await show(groupingStage);
+      await pointAt(field('grouping'));
+      await say(3);
+      await type(field('grouping'), sample('grouping'));
+      await press(submit('grouping'));
+      if (field('grouping')) { field('grouping').value = ''; }
+      await show(created('grouping'));
+      await pointAt(edit);
+      await say(4);
+      await press(edit);
+      if (cardName && rename) {
+        cardName.hidden = true;
+        rename.hidden = false;
+        await type(rename, sample('renamed'));
+        cardName.textContent = sample('renamed');
+        rename.hidden = true;
+        cardName.hidden = false;
+      }
+      await hidePointer();
+      if (controller.signal.aborted) { return; }
+      await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+      if (controller.signal.aborted) { return; }
+      finished = true;
+      advancing = false;
+      syncPlayback('finished');
+      await settleHeader();
+      if (!controller.signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
+      return;
+    }
     if (kind === 'inspection') {
       const card = stage.querySelector('[data-guide-inspection-card]');
       const trigger = stage.querySelector('[data-guide-inspection-trigger]');
@@ -2012,15 +2204,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         await gate();
         assertActive();
         const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
-        const destination = `translate(${target.left - frame.left + target.width / 2}px, ` +
-          `${target.top - frame.top + target.height / 2}px)`;
+        const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
         if (still) {
-          await placeCursor(cursor, destination);
+          await placeCursor(cursor, `translate(${x}px, ${y}px)`);
           return;
         }
-        const from = getComputedStyle(cursor).transform;
-        cursor.hidden = false;
-        await animate(cursor, [{transform: from}, {transform: destination}], 650);
+        await movePointer(cursor, x, y, 650);
       };
       const hidePointer = async() => {
         assertActive();
@@ -2037,28 +2226,20 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       };
       // Animate the auto-sized card while keeping the natural field's layout.
       // Same WAAPI set/clock as reading: Pause, Next and departure own both.
-      const resizeCard = async(measure, settle = () => {}) => {
+      // J-G2 (AN-3): the card reaches its new size at once and only the panel fades and slides
+      // (transform/opacity, no animated height, so no layout work per frame and no stutter).
+      const disclose = async open => {
         await gate();
         assertActive();
-        const from = card.getBoundingClientRect().height;
-        const to = measure();
-        const overflow = card.style.overflow;
-        card.style.overflow = 'hidden';
-        try {
-          await animate(card, [{height: `${from}px`}, {height: `${to}px`}], 520);
-          settle();
-          animations.forEach(animation => {
-            if (animation.effect?.target === card) { animation.cancel(); animations.delete(animation); }
-          });
-        } finally { card.style.overflow = overflow; }
+        if (open) {
+          panel.hidden = false;
+          await animate(panel, [{opacity: 0, transform: 'translateY(-4px)'},
+            {opacity: 1, transform: 'translateY(0)'}], 240, false);
+        } else {
+          await animate(panel, [{opacity: 1}, {opacity: 0}], 160, false);
+          panel.hidden = true;
+        }
       };
-      const disclose = open => resizeCard(() => {
-        panel.hidden = !open;
-        const height = card.getBoundingClientRect().height;
-        // Retain the field layout through closing; hide only at its endpoint.
-        if (!open) { panel.hidden = false; }
-        return height;
-      }, () => { panel.hidden = !open; });
       await reveal(card);
       await phase('orient');
       if (controller.signal.aborted) { return; }
@@ -2080,13 +2261,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await phase('enter');
       if (controller.signal.aborted) { return; }
       await hidePointer();
-      // Recognition grows the natural card through the same pause-aware clock
-      // as disclosure, instead of snapping its final height before the fade.
+      // J-G2 (AN-3): the chips take their place at once, then fade in (no animated height).
       chips.style.opacity = '0';
-      await resizeCard(() => {
-        chips.hidden = false;
-        return card.getBoundingClientRect().height;
-      });
+      chips.hidden = false;
       if (controller.signal.aborted) { return; }
       await reveal(chips);
       await animate(chips, [{opacity: 0}, {opacity: 1}], 260);
@@ -2174,10 +2351,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         updateCursorVisibility();
         return;
       }
-      const from = getComputedStyle(cursor).transform;
-      cursor.hidden = false;
-      await animate(cursor, [{transform: from},
-        {transform: `translate(${point.x}px, ${point.y}px)`}], duration);
+      await movePointer(cursor, point.x, point.y, duration);
     };
     const travel = async(element, duration = 750, cardAnchor = false) => {
       assertActive();
@@ -2700,6 +2874,10 @@ const renderChecklist = (root, config, pathName) => {
   checklist.classList.toggle('is-unlock-path', config.unlockPaths.includes(pathName));
   checklist.classList.toggle('has-guided-feedback', steps.some(step => !!getStepText(step, 'feedback')));
   checklist.setAttribute('data-easyedu-guide-path', pathName);
+  // J-G3: canonical side from the first frame (right; compact viewports dock at the bottom).
+  if (!checklist.classList.contains('is-docked-left') && !checklist.classList.contains('is-docked-right')) {
+    checklist.classList.add('is-docked-right');
+  }
   checklist.toggleAttribute('data-easyedu-guide-checklist-scroll', steps.length > 3);
   const retained = new Set();
 
@@ -3359,6 +3537,7 @@ const bindGuide = (root, config) => {
       if (checklist) {
         const minimized = !checklist.classList.contains('is-minimized');
         checklist.classList.toggle('is-minimized', minimized);
+        checklist.classList.remove('is-avoiding');
         if (isCompactChecklistViewport()) {
           checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
         }
@@ -3685,7 +3864,8 @@ export const destroy = rootOrSelector => {
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
     checklist.hidden = true;
-    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path');
+    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path',
+      'is-avoiding');
   }
 
   if (root.easyeduGuideMutationObserver) {

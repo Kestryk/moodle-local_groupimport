@@ -6,11 +6,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '../..');
-const kit = path.resolve(root, '../easyedu-ui-kit-phase0-mass-admin-20260927');
+const kit = path.resolve(process.argv[2] || path.join(root, '../easyedu-ui-kit-phase0-mass-admin-20260927'));
 const read = file => fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
 const sourceScss = read(path.join(root, 'scss/easyedu/components/_guide-discovery.scss'));
 const kitScss = read(path.join(kit, 'scss/easyedu/components/_guide-discovery.scss'));
-const compiled = read(path.join(root, 'styles.css'));
+const compiled = read(path.join(root, 'styles/student-management.css'));
 const template = read(path.join(root, 'templates/easyedu_guide.mustache'));
 const discovery = read(path.join(root, 'classes/local/guide_discovery.php'));
 const english = read(path.join(root, 'lang/en/local_groupimport.php'));
@@ -18,9 +18,9 @@ const french = read(path.join(root, 'lang/fr/local_groupimport.php'));
 
 assert.equal(sourceScss, kitScss, 'Guide SCSS is mirrored exactly from the pinned Kit checkout');
 for (const needle of [
-    '--easyedu-guide-reading-measure: 42rem',
+    '--easyedu-guide-reading-measure: 38rem',
     '&--lesson-reading',
-    '@container (min-width: 42rem)',
+    '@container (min-width: 36rem)',
     '&__caption--safe-example',
     '&__lane-label',
     'color: var(--easyedu-text);',
