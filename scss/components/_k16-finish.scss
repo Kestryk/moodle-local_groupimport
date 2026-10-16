@@ -56,8 +56,9 @@
     gap: calc(2.55rem - 2rem);
     margin-inline: -0.45rem;
     > .easyedu-related-person-row__selector { margin-right: 0; }
+    // K16-81: the header row now ends with its labels; the "−" shares that right edge.
     > .easyedu-related-person-row__remove {
-      margin-inline-end: calc((2rem - var(--easyedu-related-person-remove-size)) / 2);
+      margin-inline-end: calc((2rem - var(--easyedu-related-person-remove-size)) / 2 - 2px);
     }
   }
   // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and
