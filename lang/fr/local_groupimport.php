@@ -556,7 +556,7 @@ $string['privacy:metadata:history:rowcount'] = 'Le nombre de lignes sélectionn�
 $string['privacy:metadata:history:successcount'] = 'Le nombre d’opérations réussies signalées.';
 $string['privacy:metadata:history:errorcount'] = 'Le nombre d’erreurs signalées.';
 $string['privacy:metadata:history:replacepolicy'] = 'La stratégie de mise à jour choisie pour l’import.';
-$string['privacy:metadata:history:changesjson'] = 'L’état cible, le rapport des lignes et les opérations sur les groupes, groupements et membres enregistrés pour l’import.';
+$string['privacy:metadata:history:changesjson'] = 'Les identifiants des participants (id utilisateur, e-mail, nom d’utilisateur ou numéro d’identification), appartenances visées et rapports de lignes conservés pour l’import.';
 $string['privacy:metadata:history:rollbackuserid'] = 'L’utilisateur qui a restauré l’import.';
 $string['privacy:metadata:history:timerolledback'] = 'La date de restauration de l’import.';
 $string['privacy:metadata:history:timecreated'] = 'La date de confirmation de l’import.';
@@ -1152,3 +1152,7 @@ $string['longlistaddedmembers'] = '{$a} membres supplémentaires affichés';
 $string['longlistaddedmembers_one'] = '{$a} membre supplémentaire affiché';
 $string['longlistaddedgroups'] = '{$a} groupes supplémentaires affichés';
 $string['longlistaddedgroups_one'] = '{$a} groupe supplémentaire affiché';
+
+$string['historyretentiondays'] = 'Conservation de l’historique des imports (jours)';
+$string['historyretentiondays_desc'] = 'Conserver l’historique pendant ce nombre de jours (1–36500 ; défaut 365). Une valeur invalide utilise 365 jours. Une tâche quotidienne efface l’historique expiré et ses données de restauration ; les groupes et appartenances existants restent inchangés.';
+$string['taskpurgeimporthistory'] = 'Effacer l’historique EasyStud expiré';

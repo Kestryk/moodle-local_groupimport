@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-17 [N1] S2: expose subject-scoped import history through Privacy user lists/export/erasure; add configurable 365-day retention and daily history-only purge.
+
 - 2026-10-16 [N1] C-G7: add the bilingual Create-one Guide slide before Batch, retain reading progress across thirteen slides, move the first membership path and expose four-phase scene markers for J-G4.
 
 - 2026-10-16 [N1] K16-14: reuse the Move dialog origin checkbox for optional participant copying through existing addusers; preserve default move, deduplicate multiple source selections, localize results and Guide instructions without new styles.
