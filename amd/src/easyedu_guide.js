@@ -1704,21 +1704,22 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   }
   // Inspection is an explicit, illustrated-only recipe. Unknown kinds must
   // not fall through to membership choreography requiring unrelated nodes.
-  if (!['membership', 'actions', 'inspection'].includes(kind)) { return; }
+  if (!['membership', 'actions', 'inspection', 'simplecreate'].includes(kind)) { return; }
   if (kind === 'inspection' && !['card', 'trigger', 'menu', 'panel', 'input', 'chips'].every(role =>
     scene.querySelector(`[data-guide-inspection-${role}]`))) { return; }
   const defaultMode = kind === 'actions' ? 'actions' : 'add';
   const mode = requestedMode === 'reset' ? defaultMode : requestedMode || scene.easyeduGuideSceneMode || defaultMode;
   const stage = scene.querySelector('[data-guide-stage]');
   const result = scene.querySelector('[data-guide-result]');
-  if (!stage || !result) { return; }
+  // J-G4: the simple-creation scene has no result line; every other kind needs one.
+  if (!stage || (!result && kind !== 'simplecreate')) { return; }
   if (!scene.easyeduGuideStageOriginal) {
     scene.easyeduGuideStageOriginal = stage.innerHTML;
-    scene.easyeduGuideResultOriginal = result.textContent;
+    scene.easyeduGuideResultOriginal = result ? result.textContent : '';
   }
   stage.innerHTML = scene.easyeduGuideStageOriginal;
   delete scene.dataset.guideSceneFinished;
-  result.textContent = scene.easyeduGuideResultOriginal;
+  if (result) { result.textContent = scene.easyeduGuideResultOriginal; }
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
   scene.dataset.guideMode = mode;
   scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
@@ -1731,7 +1732,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const phaseCaption = sceneHeader?.querySelector('[data-guide-phase-caption]');
   const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
   // Count the applicable explanation phases, not animation frames or timers.
-  const applicablePhases = [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
+  // J-G4: the simple-creation scene reads its four phases from its root's labels.
+  const applicablePhases = kind === 'simplecreate' ? [1, 2, 3, 4].map(n => ({dataset: {guidePhase: String(n)}})) :
+    [...scene.querySelectorAll('[data-guide-phase]')].filter(item =>
     !(kind === 'membership' && mode === 'add' && !compact && ['confirm', 'validate'].includes(item.dataset.guidePhase)));
   const liveCopy = live?.querySelector('[data-guide-live-copy]') || live;
   const liveAnnouncement = live?.querySelector('[data-guide-live-announcement]');
@@ -2133,6 +2136,112 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     stage.querySelector('[data-guide-ghost]')?.remove();
   };
   const run = async() => {
+    if (kind === 'simplecreate') {
+      // J-G4 (P-G5, validated 16/10): create ONE group, then ONE grouping, then rename the group.
+      // Illustration only: readonly fields and disabled buttons, never a Moodle command.
+      const pick = selector => stage.querySelector(selector);
+      const cursor = pick('[data-guide-cursor]');
+      const field = role => pick(`[data-guide-simplecreate-input="${role}"]`);
+      const submit = role => pick(`[data-guide-simplecreate-submit="${role}"]`);
+      const created = role => pick(`[data-guide-simplecreate-result="${role}"]`);
+      const groupingStage = pick('[data-guide-simplecreate-grouping-stage]');
+      const cardName = pick('[data-guide-simplecreate-card-name]');
+      const edit = pick('[data-guide-simplecreate-edit]');
+      const rename = pick('[data-guide-simplecreate-rename]');
+      const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
+      const pointAt = async element => {
+        assertActive();
+        if (!cursor || !element || compact) { return; }
+        await gate();
+        const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
+        const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
+        if (still) {
+          await placeCursor(cursor, `translate(${x}px, ${y}px)`);
+          return;
+        }
+        await movePointer(cursor, x, y, 520);
+      };
+      const hidePointer = async() => {
+        if (!cursor || cursor.hidden) { return; }
+        if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
+        cursor.hidden = true;
+      };
+      const press = element => element ? animate(element, [{transform: 'scale(1)'}, {transform: 'scale(.94)'},
+        {transform: 'scale(1)'}], 220, false) : Promise.resolve();
+      const type = async(input, text) => {
+        if (!input) { return; }
+        input.value = '';
+        for (const character of text) {
+          assertActive();
+          input.value += character;
+          await wait(still ? 0 : 45);
+        }
+        input.value = text;
+      };
+      const show = async element => {
+        if (!element) { return; }
+        element.hidden = false;
+        await reveal(element);
+        await animate(element, [{opacity: 0, transform: 'translateY(6px)'}, {opacity: 1, transform: 'translateY(0)'}],
+          160, false);
+      };
+      // Same narration and reading clock as phase(), with the copy carried by the root labels.
+      const say = async number => {
+        assertActive();
+        skipping = false;
+        const text = stage.getAttribute(`data-guide-phase-${number}-label`) || '';
+        await writeLive(text, 'active');
+        if (controller.signal.aborted) { return; }
+        scene.dataset.guidePhase = String(number);
+        advancing = false;
+        syncPlayback(paused ? 'paused' : 'playing');
+        await gate();
+        const words = text.trim().split(/\s+/).filter(Boolean).length;
+        const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
+        const maximum = Math.max(minimum,
+          Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+        const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
+        const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
+        await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
+      };
+      await reveal(stage);
+      await pointAt(field('group'));
+      await say(1);
+      await type(field('group'), sample('name'));
+      await pointAt(submit('group'));
+      await say(2);
+      await press(submit('group'));
+      if (field('group')) { field('group').value = ''; }
+      await show(created('group'));
+      await show(groupingStage);
+      await pointAt(field('grouping'));
+      await say(3);
+      await type(field('grouping'), sample('grouping'));
+      await press(submit('grouping'));
+      if (field('grouping')) { field('grouping').value = ''; }
+      await show(created('grouping'));
+      await pointAt(edit);
+      await say(4);
+      await press(edit);
+      if (cardName && rename) {
+        cardName.hidden = true;
+        rename.hidden = false;
+        await type(rename, sample('renamed'));
+        cardName.textContent = sample('renamed');
+        rename.hidden = true;
+        cardName.hidden = false;
+      }
+      await hidePointer();
+      if (controller.signal.aborted) { return; }
+      await writeLive(scene.dataset.guideFinishedLabel || '', 'finished');
+      if (controller.signal.aborted) { return; }
+      finished = true;
+      advancing = false;
+      syncPlayback('finished');
+      await settleHeader();
+      if (!controller.signal.aborted) { scene.dataset.guideSceneFinished = 'true'; }
+      return;
+    }
     if (kind === 'inspection') {
       const card = stage.querySelector('[data-guide-inspection-card]');
       const trigger = stage.querySelector('[data-guide-inspection-trigger]');
