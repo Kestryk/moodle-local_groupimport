@@ -458,7 +458,9 @@ $string['membersmovedsummary'] = 'Source memberships moved: {$a->removed}; added
 $string['moveselectedmembers'] = 'Move members';
 $string['contextmovemember'] = 'Move to another group';
 $string['contextmoveselectedmembers'] = 'Move selected members to another group';
-$string['movedialogmembers'] = 'Choose the destination group. Only the selected source memberships will move; other group memberships remain unchanged.';
+$string['movedialogmembers'] = 'Choose the destination group. Only the selected source memberships will move; other group memberships remain unchanged. Select "Keep participants in their original group" to copy them without removing their source membership.';
+$string['movememberskeeporigin'] = 'Keep participants in their original group';
+$string['memberscopiedsummary'] = 'Participants copied: __added__; already in the destination: __existing__. Original group memberships are preserved.';
 $string['moveconfirm'] = 'Move selected items';
 $string['moveconfirmone'] = 'Move selected item';
 $string['moveconfirmmany'] = 'Move selected items';
@@ -1077,7 +1079,7 @@ $string['member_path_desc2'] = 'Use "Move members" for the selected members. On 
 $string['member_path_step3'] = 'Search and choose a different destination group';
 $string['member_path_desc3'] = 'Search the destination list and choose another existing group. Review the source and destination; Cancel leaves memberships unchanged.';
 $string['member_path_step4'] = 'Confirm the move after checking its consequences';
-$string['member_path_desc4'] = 'Only confirm if you intend to remove these source memberships and add the destination. Other memberships are preserved. This step completes only after a successful native move; the guide does not undo the operation.';
+$string['member_path_desc4'] = 'Only confirm if you intend to remove these source memberships and add the destination. To copy without removing them, select "Keep participants in their original group", unchecked by default. Other memberships are preserved. This step completes only after a successful native operation; the guide does not undo it.';
 
 // Short navigation labels are separate from complete slide headings.
 $string['guide_nav_1'] = 'The guide';
