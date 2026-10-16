@@ -1182,6 +1182,12 @@
     margin-bottom: 0.86rem;
     margin-top: 0.86rem;
     overflow: hidden;
+    // K16-62: clip, not hidden. A hidden box stays programmatically scrollable, so the active pill's
+    // scrollIntoView slid the whole wrapper (and its arrow) to the left. Only the strip scrolls.
+    overflow: clip;
+    // A clipped box is not a scroll container: keep it from growing to all its pills.
+    max-inline-size: 100%;
+    min-inline-size: 0;
     position: relative;
 
     &::before,
