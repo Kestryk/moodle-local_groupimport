@@ -1,0 +1,162 @@
+<?php
+// Disposable K16 sorting and membership-copy replay, restricted to the dedicated Perf DB.
+define('CLI_SCRIPT', true);
+$options = [];
+for ($i = 1; $i < count($argv); $i += 2) {
+    $options[ltrim($argv[$i], '-')] = $argv[$i + 1] ?? '';
+}
+$root = realpath($options['moodle-root'] ?? '');
+if (!$root || !is_file($root . '/config.php')) {
+    throw new RuntimeException('Explicit Moodle root required');
+}
+require($root . '/config.php');
+if ($CFG->wwwroot !== 'http://localhost:8051' || $CFG->dbname !== 'moodle51perf') {
+    throw new RuntimeException('Dedicated Perf copy only');
+}
+require_once($CFG->dirroot . '/course/lib.php');
+require_once($CFG->dirroot . '/group/lib.php');
+require_once($CFG->libdir . '/enrollib.php');
+require_once($CFG->dirroot . '/user/lib.php');
+$USER = get_admin();
+$file = $options['manifest'] ?? '';
+if (!$file || !is_dir(dirname($file))) {
+    throw new RuntimeException('External manifest directory required');
+}
+function guide_fixture_save(string $file, array $data): void {
+    if (file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), LOCK_EX) === false) {
+        throw new RuntimeException('Cannot persist fixture ownership');
+    }
+}
+function guide_fixture_cleanup(array $data): array {
+    global $DB, $CFG;
+    $courseid = (int)($data['courseId'] ?? 0);
+    $prefix = 'eed-guide-write-';
+    if ($courseid && ($course = $DB->get_record('course', ['id' => $courseid]))) {
+        if ($course->shortname !== ($data['shortname'] ?? '') || !str_starts_with($course->shortname, $prefix)) {
+            throw new RuntimeException('Course ownership mismatch');
+        }
+        $CFG->forced_plugin_settings['tool_recyclebin']['categorybinenable'] = 0;
+        $CFG->forced_plugin_settings['tool_recyclebin']['coursebinenable'] = 0;
+        delete_course($course, false);
+    }
+    foreach (($data['userIds'] ?? []) as $id) {
+        $user = $DB->get_record('user', ['id' => (int)$id]);
+        if ($user && !$user->deleted) {
+            if (!str_starts_with($user->username, $prefix) || $user->auth !== 'nologin') {
+                throw new RuntimeException('Synthetic user ownership mismatch');
+            }
+            delete_user($user);
+        }
+    }
+    $remaining = $courseid && $DB->record_exists('course', ['id' => $courseid]);
+    return ['complete' => !$remaining, 'courseRemoved' => !$remaining,
+        'syntheticUsersDeleted' => count($data['userIds'] ?? [])];
+}
+$action = $options['action'] ?? '';
+if ($action === 'cleanup') {
+    $data = is_file($file) ? json_decode(file_get_contents($file), true) : [];
+    if (!is_array($data)) { throw new RuntimeException('Invalid fixture manifest'); }
+    $id = (int)($data['courseId'] ?? 0);
+    $course = $id ? $DB->get_record('course', ['id' => $id]) : false;
+    if ($course && $course->shortname !== ($data['shortname'] ?? '')) {
+        throw new RuntimeException('Course snapshot ownership mismatch');
+    }
+    $configrestored = true;
+    if (isset($data['showCompleteBefore'])) {
+        $before = $data['showCompleteBefore'];
+        if ($before['exists']) { set_config('showcompleteview', $before['value'], 'local_groupimport'); }
+        else { unset_config('showcompleteview', 'local_groupimport'); }
+        $configrestored = get_config('local_groupimport', 'showcompleteview') === $before['value'];
+        if (!$configrestored) { throw new RuntimeException('Own complete-view setting was not restored'); }
+    }
+    // Remove only this run's named CSV drafts in the test admin's user context.
+    $draftsremoved = 0;
+    if ($id > 5 && str_starts_with($data['shortname'] ?? '', 'eed-guide-write-')) {
+        $contextid = context_user::instance($USER->id)->id;
+        $prefix = 'recette-soir-' . $id . '-';
+        $drafts = $DB->get_records_select('files', 'contextid = ? AND component = ? AND filearea = ? AND ' .
+            $DB->sql_like('filename', '?'), [$contextid, 'user', 'draft', $DB->sql_like_escape($prefix) . '%']);
+        foreach ($drafts as $draft) {
+            $draftfile = get_file_storage()->get_file_by_id($draft->id);
+            if ($draftfile) { $draftfile->delete(); $draftsremoved++; }
+        }
+    }
+    $snapshot = ['groups' => [], 'memberships' => [], 'groupingAssignments' => []];
+    if ($course) {
+        $snapshot['groups'] = array_values($DB->get_records('groups', ['courseid' => $id], 'id', 'id,name'));
+        $snapshot['memberships'] = array_values($DB->get_records_sql(
+            'SELECT gm.id, gm.groupid, gm.userid FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ?', [$id]));
+        $snapshot['groupingAssignments'] = array_values($DB->get_records_sql(
+            'SELECT gg.id, gg.groupingid, gg.groupid FROM {groupings_groups} gg JOIN {groupings} g ON g.id = gg.groupingid WHERE g.courseid = ?', [$id]));
+    }
+    $data['finalCourseState'] = $snapshot;
+    guide_fixture_save($file, $data);
+    echo json_encode(guide_fixture_cleanup($data) + ['finalCourseState' => $snapshot,
+        'ownCsvDraftsRemoved' => $draftsremoved, 'showCompleteRestored' => $configrestored]) . PHP_EOL;
+    exit;
+}
+if ($action !== 'setup' || !preg_match('/^[a-zA-Z0-9-]+$/', $options['run-id'] ?? '')) {
+    throw new RuntimeException('Explicit setup/cleanup and safe run ID required');
+}
+if (is_file($file)) { throw new RuntimeException('Fresh manifest required'); }
+$suffix = substr(hash('sha256', $options['run-id']), 0, 12);
+$data = ['schemaVersion' => 1, 'runId' => $options['run-id'], 'courseId' => 0,
+    'shortname' => 'eed-guide-write-' . $suffix, 'userIds' => []];
+guide_fixture_save($file, $data);
+try {
+    $category = (int)$DB->get_field_sql('SELECT MIN(id) FROM {course_categories}');
+    if (!$category) { throw new RuntimeException('Course category required'); }
+    $course = create_course((object)['fullname' => 'EasyStud guided write QA ' . $suffix,
+        'shortname' => $data['shortname'], 'category' => $category, 'visible' => 1]);
+    $data['courseId'] = (int)$course->id;
+    guide_fixture_save($file, $data);
+    $instances = enrol_get_instances($course->id, true);
+    $manual = array_values(array_filter($instances, static fn($instance) => $instance->enrol === 'manual'))[0] ?? null;
+    $role = $DB->get_record('role', ['shortname' => 'student'], '*', MUST_EXIST);
+    if (!$manual) { throw new RuntimeException('Manual enrollment required'); }
+    $full = !defined('EASYSTUD_K16_SMALL_FIXTURE');
+    $names = $full ? array_merge(['AAA One', 'AAB Two'], array_map(static fn($i) => sprintf('Member %02d', $i), range(1, 16))) : ['One', 'Two'];
+    foreach ($names as $name) {
+        $id = user_create_user((object)['username' => 'eed-guide-write-' . $suffix . '-' . str_replace(' ', '-', strtolower($name)),
+            'firstname' => 'QA Guided', 'lastname' => $name,
+            'email' => $suffix . '-' . str_replace(' ', '-', strtolower($name)) . '@example.invalid',
+            'auth' => 'nologin', 'confirmed' => 1, 'mnethostid' => $CFG->mnet_localhost_id], false, false);
+        $data['userIds'][] = (int)$id;
+        guide_fixture_save($file, $data);
+        enrol_get_plugin('manual')->enrol_user($manual, $id, $role->id);
+    }
+    $data['groupIds'] = [];
+    $names = array_merge(['QA Audit Source Alpha', 'QA Audit Destination Beta', 'QA Audit Empty Gamma', 'QA Audit Unrelated Delta'], array_map(static fn($i) => sprintf('QA Evening Group %03d', $i), range(1, 150)));
+    if (defined('EASYSTUD_K16_COPY_GROUP_NAMES')) { $names = EASYSTUD_K16_COPY_GROUP_NAMES; }
+    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Group %02d', $i), range(1, 10))); }
+    foreach ($names as $name) {
+        $data['groupIds'][] = (int)groups_create_group((object)['courseid' => $course->id, 'name' => $name]);
+    }
+    foreach ($data['userIds'] as $userid) { groups_add_member($data['groupIds'][0], $userid); }
+    groups_add_member($data['groupIds'][1], $data['userIds'][1]);
+    $data['groupingIds'] = [];
+    $names = ['QA Source Structure', 'QA Activity Destination'];
+    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Grouping %02d', $i), range(1, 10))); }
+    foreach ($names as $name) {
+        $data['groupingIds'][] = (int)groups_create_grouping((object)['courseid' => $course->id, 'name' => $name]);
+    }
+    foreach ($data['groupIds'] as $id) { groups_assign_grouping($data['groupingIds'][0], $id); }
+    $data['identifiers'] = array_map(static fn($id) => $DB->get_field('user', 'username', ['id' => $id]), $data['userIds']);
+    $data['showCompleteBefore'] = [
+        'exists' => $DB->record_exists('config_plugins', ['plugin' => 'local_groupimport', 'name' => 'showcompleteview']),
+        'value' => get_config('local_groupimport', 'showcompleteview'),
+    ];
+    guide_fixture_save($file, $data); // Persist the restoration record before changing this own-runtime flag.
+    set_config('showcompleteview', 1, 'local_groupimport');
+    $data['managerUrl'] = $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $course->id . '&lang=fr';
+    guide_fixture_save($file, $data);
+    echo json_encode($data, JSON_UNESCAPED_SLASHES) . PHP_EOL;
+} catch (Throwable $error) {
+    if (isset($data['showCompleteBefore'])) {
+        $before = $data['showCompleteBefore'];
+        if ($before['exists']) { set_config('showcompleteview', $before['value'], 'local_groupimport'); }
+        else { unset_config('showcompleteview', 'local_groupimport'); }
+    }
+    guide_fixture_cleanup($data);
+    throw $error;
+}
