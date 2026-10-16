@@ -30,15 +30,11 @@
   }
   .easyedu-entity-card-empty--group {
     @include easyedu.entity-card-empty-line(var(--easyedu-group));
-    // K16-60: the validated empty-grouping model on the group card grid. The icon is centred on
-    // the 2rem checkbox column, the copy starts on the title column (selectable-card-header 2.55rem);
-    // both minus the line's own 1px transparent border.
-    column-gap: 0;
-    grid-template-columns: calc(2.55rem - 1px) minmax(0, 1fr);
-    .easyedu-entity-card-empty__icon {
-      justify-self: start;
-      margin-inline-start: calc((2rem - 24px) / 2 - 1px);
-    }
+  }
+  // K16-73: on desktop the slot starts on the title column, like the member names (K16-25 grid:
+  // selectable-card-header 2.55rem = 2rem target + gap).
+  &:not(.local-groupimport-easystud--responsive-workspace) .easyedu-entity-card-empty--group {
+    margin-inline-start: 2.55rem;
   }
   // K16-25: member rows share the group header grid. The row is pulled back by its own inset
   // (0.45rem padding; no side border here) so its checkbox sits in the header checkbox column, the name
