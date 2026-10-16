@@ -528,7 +528,7 @@
 
   // At compact phone widths, Grouping and Group count badges compete with the
   // name and essential actions. Counts remain available at 768 px and above.
-  .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-tree__toggle > .badge,
+  .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-grouping__header > .badge,
   .local-groupimport-easystud--responsive-workspace .local-groupimport-easystud-group__header > .badge {
     display: none;
   }

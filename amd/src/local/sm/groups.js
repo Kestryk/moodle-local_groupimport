@@ -163,6 +163,7 @@ export const buildGroupCardContext = (model, group, variant) => {
         picture: group.pictureurl || '',
         hidepicture: group.hidepicture ? '1' : '0',
         nativeurl: (strings.groupnativeurl || '') + '&id=' + group.id,
+        membercount: memberids.length,
         membercountlabel: countLabel(strings.memberscount, memberids.length),
         sesskey: strings.sesskey || '',
         renameurl: strings.renameurl || '',
