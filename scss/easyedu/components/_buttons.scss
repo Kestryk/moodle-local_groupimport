@@ -260,7 +260,12 @@
   }
 }
 
-@mixin close-button($size: small) {
+// K16-80 (Kevin 16/10, standardise reusable controls): ONE Kit Close. The cross is drawn by the
+// component itself (two 1.5 px strokes, centred by geometry), so every close button looks and
+// centres the same whatever icon font or character the template carries (fa-times, &times;,
+// theme icon): that inner content is only kept for compatibility and hidden.
+// $glyph: false keeps the same frame for a sibling window control with its own icon (fullscreen).
+@mixin close-button($size: small, $glyph: true) {
   @include icon-button($size);
 
   background: var(--easyedu-surface);
@@ -272,6 +277,34 @@
   min-width: 1.9rem;
   padding: 0;
   width: 1.9rem;
+
+  @if $glyph {
+    position: relative;
+
+    > * {
+      display: none !important;
+    }
+
+    &::before,
+    &::after {
+      background: currentColor;
+      block-size: 1.5px;
+      border-radius: 1px;
+      content: "";
+      inline-size: 0.75rem;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      position: absolute;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
 
   &:hover,
   &:focus-visible {
