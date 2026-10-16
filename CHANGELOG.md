@@ -6005,3 +6005,5 @@ Maintenance convention:
 - Rebuilt SM/CM and conservative CSS. Dense/ordinary native fixture and acceptance audit remain in progress; no native acceptance claimed.
 
 - K16-01/K16-22 native parity certified: 32 states, 1042 pills at 22px, centre delta 0px, 76 exact counters, eight group and two participant real deferred opens. Kevin audit: zero non-group failures; 18 group failures deferred to the next lot. Fixtures restored.
+
+- 2026-10-16 [N1] K16-54: Group card Select all unfolds through the existing chevron helper before selecting model members; deselection leaves the card open. Preserve styles, templates and long-list policy.

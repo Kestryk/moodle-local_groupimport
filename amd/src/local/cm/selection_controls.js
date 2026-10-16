@@ -52,6 +52,11 @@ export const bindGroupSelectAll = root => {
         }
         const searching = getGroupMemberSearchQuery(group) !== '';
         const deselect = !searching && isGroupFullySelected(group);
+        // A folded card unfolds, as with its members toggle, to show what was selected.
+        const membersToggle = group.querySelector('[data-easystud-group-members-toggle]');
+        if (!deselect && membersToggle && !membersToggle.hidden) {
+            setGroupMembersExpanded(root, group, true);
+        }
         const model = getOnDemandModel(root);
         if (model) {
             const id = group.getAttribute('data-easystud-group-id');
@@ -74,11 +79,6 @@ export const bindGroupSelectAll = root => {
         syncGroupMembersCollapsible(group);
         getGroupMemberRows(group).filter(row => !searching || !row.hidden)
             .forEach(row => setItemSelected(row, !deselect));
-        // A folded card unfolds, as with its members toggle, to show what was selected.
-        const membersToggle = group.querySelector('[data-easystud-group-members-toggle]');
-        if (!deselect && membersToggle && !membersToggle.hidden) {
-            setGroupMembersExpanded(root, group, true);
-        }
         updateSelectionActions(root);
         requestGuideHighlightRefresh(root);
         if (document.activeElement !== button) {

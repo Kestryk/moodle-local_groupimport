@@ -113,3 +113,7 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 - Routed native run 194502370: 16 FR pill states and three real deferred-sheet cells passed; FR390 real response exceeded the harness default 5s readiness assertion. Fixture cleanup complete. Strict settled successor waits the same ready predicate up to 90s, without changing product Motion or acceptance tolerances.
 
 - Settled matrix 195132397 PASS: 32 states, eight real deferred sheets, 18 pre-existing group-only audit failures and no other failures. Participant deferred successor 195622852 PASS FR1600/EN390 (37 visible real group pills and return focus). See long-lists-k16-22-parity-2026-10-15.md.
+
+- k16-54-native.spec.js: browser-only candidate AMD override, isolated2/8/12member fixture, FR1600pilot then FR/EN1600/390; native chevron helper/aria, selected counts, deselect/open invariants, long-list footer visibility and zero console/errors/writes. No runtime publication.
+
+- K16-54 run20261016T143857644Z-8628 PASS:pilot plus12matrix cases;2-member control absence/chevron preserved,8/8and12/12selected then0; four long-footer visibility round trips;0errors/writes, exact fixture restoration. Candidate AMD only in browser response; branch remains unpublished.
