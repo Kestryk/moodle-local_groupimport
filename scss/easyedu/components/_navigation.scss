@@ -898,3 +898,11 @@
   overflow: hidden;
   overscroll-behavior: none;
 }
+
+// J-G3 / CK-7 (P-G2, validated 16/10/2026): during a guided path the floating navigation trigger
+// would sit on the checklist (390 px, bottom left); it steps aside until the path ends.
+body:has(.easyedu-guided-panel[data-easyedu-guide-path]:not([hidden])) .easyedu-navigation__trigger {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}

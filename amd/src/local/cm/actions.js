@@ -37,7 +37,7 @@ import {
     syncGroupingGroupsCollapsible, ensureNestedGroupActionMenus, createMemberItem, updateGroupingBadge,
     syncGroupMembersState, updateStructureSummary, updateStructureEmptyState, createGroupElement,
     createParticipantCatalogGroupElement, createGroupingElement, createIconActionButton, ensureDuplicateButtons,
-    ensureAdvancedSettingsButtons,
+    ensureAdvancedSettingsButtons, writeCountBadge,
 } from './group_cards';
 import {
     expandGroupingSection, syncCatalogFilters, applyContainerGroupSearch, applyGroupMemberSearch,
@@ -132,10 +132,11 @@ export const moveGroupElementToGrouping = (root, groupid, groupingid) => {
         expandGroupingSection(target);
     }
     sourceSections.concat([target]).forEach(section => {
-        const badge = section ? section.querySelector('.local-groupimport-easystud-tree__toggle .badge') : null;
+        const badge = section ? section.querySelector(':scope > .local-groupimport-easystud-grouping__header > .badge') : null;
         const groupcount = section ? section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length : 0;
         if (badge) {
-            badge.textContent = countLabel(badge.getAttribute('data-count-template') || '__count__', groupcount);
+            writeCountBadge(badge, countLabel(badge.getAttribute('data-count-template') || '__count__', groupcount),
+                groupcount, 'fa-layer-group');
         }
     });
     syncUngroupedState(root, getLabels(root));

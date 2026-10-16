@@ -581,11 +581,14 @@
       color: var(--local-groupimport-easystud-grouping);
     }
 
-    .badge {
-      background: #dbe7f1 !important;
-      color: #36546f !important;
-      margin-left: auto;
-    }
+  }
+
+  // Grouping count badge: last child of the header, after the actions.
+  &-grouping__header > .badge {
+    background: #dbe7f1 !important;
+    color: #36546f !important;
+    margin-left: auto;
+    order: 99;
   }
 
   &-tree__toggle[aria-expanded="true"] > .fa {
@@ -1088,8 +1091,9 @@
     }
   }
 
-  // Responsive cards are too narrow for the label beside "Select all": icon-only, named by aria-label.
-  &--responsive-workspace &-group__members-toggle-label {
+  // K16-76 (Kevin 16/10: "See all N members" adds text to busy cards): the fold control is
+  // icon-only everywhere; the label stays as its accessible name (aria-label).
+  &-group__members-toggle-label {
     display: none;
   }
 

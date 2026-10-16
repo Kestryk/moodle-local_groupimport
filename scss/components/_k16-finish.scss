@@ -2,7 +2,6 @@
 @use "../easyedu" as easyedu;
 
 #local-groupimport-easystud {
-  @include easyedu.card-title-accent-overlay;
   // K16-37: the dense aligned recipe belongs to the light responsive cards only; desktop
   // compact (one line) and full-information cards keep their own layouts.
   // :where() keeps the original specificity, so later responsive refinements still win.
@@ -30,11 +29,22 @@
   }
   .easyedu-entity-card-empty--group {
     @include easyedu.entity-card-empty-line(var(--easyedu-group));
-  }
-  // K16-73: on desktop the slot starts on the title column, like the member names (K16-25 grid:
-  // selectable-card-header 2.55rem = 2rem target + gap).
-  &:not(.local-groupimport-easystud--responsive-workspace) .easyedu-entity-card-empty--group {
-    margin-inline-start: 2.55rem;
+    // K16-82 (Kevin 16/10): the empty group looks exactly like the empty grouping, including its
+    // light tree rule on the left (same 2px #dfe8e2 rule, 0.45rem offset, 0.85rem inset as
+    // .local-groupimport-easystud-tree__children).
+    margin-inline-start: calc(0.45rem + 2px + 0.85rem);
+    margin-block-start: 0.7rem;
+    overflow: visible;
+    position: relative;
+
+    &::before {
+      background: #dfe8e2;
+      content: "";
+      inline-size: 2px;
+      inset-block: -0.2rem 0;
+      inset-inline-start: calc(-0.85rem - 2px - 1px);
+      position: absolute;
+    }
   }
   // K16-25: member rows share the group header grid. The row is pulled back by its own inset
   // (0.45rem padding; no side border here) so its checkbox sits in the header checkbox column, the name
@@ -46,8 +56,9 @@
     gap: calc(2.55rem - 2rem);
     margin-inline: -0.45rem;
     > .easyedu-related-person-row__selector { margin-right: 0; }
+    // K16-81: the header row now ends with its labels; the "−" shares that right edge.
     > .easyedu-related-person-row__remove {
-      margin-inline-end: calc((2rem - var(--easyedu-related-person-remove-size)) / 2);
+      margin-inline-end: calc((2rem - var(--easyedu-related-person-remove-size)) / 2 - 2px);
     }
   }
   // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and

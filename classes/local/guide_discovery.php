@@ -330,6 +330,7 @@ final class guide_discovery {
         $groups = [
             'use-this-guide' => ['use-this-guide'],
             'understand-workspace' => ['discovery-concepts', 'reference-0'],
+            'create-one' => [],
             'create-structure' => ['discovery-creation', 'reference-1', 'reference-16'],
             'read-participant-card' => ['reference-4'],
             'read-group-card' => ['reference-5'],
@@ -359,8 +360,13 @@ final class guide_discovery {
         };
         $historical = self::historical_slide_ids();
         $current = self::reading_contract();
-        return ['presentationKey' => 'curriculum-modern-20261010', 'slideIds' => $ids,
+        $previousids = array_values(array_filter($ids, static fn($id) => $id !== 'create-one'));
+        return ['presentationKey' => 'curriculum-simplecreate-20261016', 'slideIds' => $ids,
             'readingIndexMigrations' => [
+                'curriculum-modern-20261010' => array_map(
+                    static fn($id) => array_search($id, $ids, true),
+                    $previousids
+                ),
                 $current['presentationKey'] => $map($current['slideIds']),
                 'discovery-20261006' => $map($historical),
                 'legacy' => $map(array_slice($historical, 4)),
@@ -368,13 +374,13 @@ final class guide_discovery {
     }
 
     /**
-     * Build twelve modern payloads while retaining every currently visible path invitation.
+     * Build thirteen payloads, retaining stable IDs and every visible path invitation.
      */
     public static function modern_curriculum(array $slides): array {
         if (array_column($slides, 'id') !== self::reading_contract()['slideIds']) {
             throw new \LogicException('Unexpected source curriculum; refuse lossy selection.');
         }
-        $sources = ['use-this-guide', 'discovery-concepts', 'discovery-creation',
+        $sources = ['use-this-guide', 'discovery-concepts', 'create-one', 'discovery-creation',
             'reference-4', 'reference-5', 'reference-6', 'discovery-membership',
             'reference-3', 'reference-9', 'discovery-actions', 'reference-7', 'reference-19'];
         $byid = array_column($slides, null, 'id');
@@ -383,10 +389,38 @@ final class guide_discovery {
         // K1 (14/10): two distinct subject glyphs where the Guide repeated one.
         $navicons = ['discovery-creation' => 'fa-plus', 'discovery-membership' => 'fa-right-left'];
         foreach ($sources as $index => $source) {
-            $slide = $byid[$source];
+            $slide = $byid[$source === 'create-one' ? 'discovery-creation' : $source];
             // Merge the unique teaching points, not merely the reading positions.
             // Reuse existing translated topics and the published dt/dd recipe.
-            if ($source === 'discovery-creation') {
+            if ($source === 'create-one') {
+                foreach (['title', 'body', 'category'] as $label) {
+                    $slide[$label === 'body' ? 'content' : $label] =
+                        get_string('discovery_simplecreate_' . $label, 'local_groupimport');
+                }
+                $scene = $slide['discoveryscene'];
+                unset($scene['creation']);
+                $scene['kind'] = 'simplecreate';
+                $scene['simplecreate'] = true;
+                $scene += self::demonstration_entry();
+                foreach (['note', 'groupname', 'groupingname', 'renamed', 'grouplabel', 'groupinglabel',
+                    'groupplaceholder', 'groupingplaceholder', 'addlabel', 'renamelabel', 'emptymembers',
+                    'emptygroups', 'phase1', 'phase2', 'phase3', 'phase4'] as $label) {
+                    $scene[$label] = get_string('discovery_simplecreate_' . $label, 'local_groupimport');
+                }
+                $slide['discoveryscene'] = $scene;
+                $slide['navicon'] = 'fa-plus';
+                $slide['commonintroduction'] = ['topics' => array_map(static function (string $topic): array {
+                    return ['icon' => 'fa-info-circle',
+                        'title' => get_string('discovery_simplecreate_' . $topic . '_title', 'local_groupimport'),
+                        'description' => get_string('discovery_simplecreate_' . $topic . '_body', 'local_groupimport')];
+                }, ['group', 'grouping', 'edit']),
+                    'note' => get_string('discovery_simplecreate_note', 'local_groupimport'),
+                    'lessonreading' => true];
+            } else if ($source === 'discovery-creation') {
+                foreach (['hasguidedpath', 'guidedpath', 'guidedpathlabel', 'guidedpathtitle',
+                    'guidedpathcontent', 'guidedpathsteps'] as $key) {
+                    unset($slide[$key]);
+                }
                 $slide['commonintroduction'] = $byid['reference-16']['commonintroduction'];
             } else if ($source === 'discovery-actions') {
                 $method = $byid['reference-14']['commonintroduction'];

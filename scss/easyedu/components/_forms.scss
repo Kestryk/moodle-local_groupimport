@@ -822,6 +822,13 @@
       text-decoration: none;
     }
 
+    // K16-86: the label's cap ink sat 0.5 px above the count disc and the chevron (ink measured at
+    // 200 %); a relative nudge aligns the three without changing the capsule height.
+    > span:not([aria-hidden="true"]):not([data-easystud-advanced-filters-count]) {
+      // A transform renders at sub-pixel; a relative top was snapped to the pixel grid.
+      transform: translateY(0.5px);
+    }
+
     > .fa {
       font-size: 0.75rem;
       line-height: 1;
@@ -881,8 +888,9 @@
   // cap height, then placed in the middle of the 16 px disc (text-box needs a block container).
   @supports (text-box: trim-both cap alphabetic) and (padding-top: 1cap) {
     display: inline-block;
-    // The font draws its digits ~0.6 px below its cap box (measured at 100 % and 200 %).
-    padding-block-start: calc((16px - 1cap) / 2 - 0.6px);
+    // K16-86 (17/10, ink measured at 200 % on "1"): the digit sat 0.75 px above the disc centre with
+    // the former -0.6 px: the digits' ink is centred on the cap box itself.
+    padding-block-start: calc((16px - 1cap) / 2);
     text-align: center;
     text-box: trim-both cap alphabetic;
     vertical-align: middle;
@@ -1067,9 +1075,11 @@
 // Inline panel revealed under a card, grouping, filter box or compact action.
 // Useful for search fields, paste/add-by-identifier inputs and similar transient
 // controls that should expand smoothly without becoming a full modal.
+// K16-83 (Kevin 16/10: no dotted frames inside cards): the same quiet veil as the card's empty
+// row and member rows (K16-77), no visible border.
 @mixin inline-reveal-panel($max-height: 24rem) {
-  background: color-mix(in srgb, var(--easyedu-surface) 78%, transparent);
-  border: 1px dashed var(--easyedu-card-border);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid transparent;
   border-radius: var(--easyedu-radius-sm);
   margin-top: 0;
   opacity: 0;
