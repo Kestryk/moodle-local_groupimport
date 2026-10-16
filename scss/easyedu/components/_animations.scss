@@ -168,6 +168,12 @@ $motion-document-prefixes: ("html", "[dir");
       }
     }
 
+    // Kit activity dots (P-G4): opacity only, no bounce.
+    @keyframes easyedu-activity-dots {
+      0%, 60%, 100% { opacity: 0.3; }
+      25% { opacity: 1; }
+    }
+
     @keyframes easyedu-card-open {
       from {
         opacity: 0.78;
@@ -420,6 +426,37 @@ $motion-policy-roots: (
 // Use on the list container when pagination replaces visible cards.
 @mixin paginated-list-motion($duration: 0.22s) {
   animation: easyedu-page-swap $duration var(--easyedu-motion-ease) both;
+}
+
+// Kit "in progress" dots (P-G4): the one inline activity component. Three 4px
+// dots, 4px apart, text colour, 4px after the last word. Opacity-only loop of
+// 1.2s with a 160ms stagger; static at 60% as soon as the level is not full.
+@mixin activity-dots {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.25rem;
+  margin-inline-start: 0.25rem;
+  // Dots centred on the text line (measured: 0.28em puts their centre on the
+  // line centre; `middle` sits 2px low).
+  vertical-align: 0.28em;
+  white-space: nowrap;
+  > span {
+    animation: easyedu-activity-dots 1.2s ease-in-out infinite;
+    background: currentColor;
+    border-radius: 50%;
+    box-sizing: border-box;
+    display: block;
+    height: 0.25rem;
+    margin: 0;
+    padding: 0;
+    width: 0.25rem;
+    &:nth-child(2) { animation-delay: 0.16s; }
+    &:nth-child(3) { animation-delay: 0.32s; }
+  }
+  @include motion-restricted($self: true) {
+    > span { animation: none; opacity: 0.6; }
+  }
 }
 
 // Fixed busy indicator used while Ajax actions update the page. The label is
