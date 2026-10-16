@@ -416,6 +416,8 @@ function local_groupimport_build_manage_template_data(
         'noparticipantsfiltered' => get_string('noparticipantsfiltered', 'local_groupimport'),
         'noresultsfiltered' => get_string('noresultsfiltered', 'local_groupimport'),
         'movegroupremoveorigin' => get_string('movegroupremoveorigin', 'local_groupimport'),
+        'movememberskeeporigin' => get_string('movememberskeeporigin', 'local_groupimport'),
+        'memberscopiedsummary' => get_string('memberscopiedsummary', 'local_groupimport'),
         'groupdropmode' => get_string('groupdropmode', 'local_groupimport'),
         'groupdropmodedesc' => get_string('groupdropmodedesc', 'local_groupimport'),
         'groupdropcopy' => get_string('groupdropcopy', 'local_groupimport'),

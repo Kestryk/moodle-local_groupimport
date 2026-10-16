@@ -449,7 +449,9 @@ $string['membersmovedsummary'] = 'Appartenances d’origine déplacées : {$a->r
 $string['moveselectedmembers'] = 'Déplacer les membres';
 $string['contextmovemember'] = 'Déplacer vers un autre groupe';
 $string['contextmoveselectedmembers'] = 'Déplacer la sélection vers un autre groupe';
-$string['movedialogmembers'] = 'Choisissez le groupe de destination. Seules les appartenances d’origine sélectionnées seront déplacées ; les autres groupes resteront inchangés.';
+$string['movedialogmembers'] = 'Choisissez le groupe de destination. Seules les appartenances d’origine sélectionnées seront déplacées ; les autres groupes resteront inchangés. Cochez « Conserver les participants dans le groupe d’origine » pour les copier sans les retirer de leur groupe source.';
+$string['movememberskeeporigin'] = 'Conserver les participants dans le groupe d\'origine';
+$string['memberscopiedsummary'] = 'Participants copiés : __added__ ; déjà présents à destination : __existing__. Les groupes d’origine sont conservés.';
 $string['moveconfirm'] = 'Déplacer les éléments sélectionnés';
 $string['moveconfirmone'] = 'Déplacer l’élément sélectionné';
 $string['moveconfirmmany'] = 'Déplacer les éléments sélectionnés';
@@ -1077,7 +1079,7 @@ $string['member_path_desc2'] = 'Utilisez « Déplacer les membres » pour les me
 $string['member_path_step3'] = 'Rechercher et choisir un autre groupe de destination';
 $string['member_path_desc3'] = 'Recherchez dans la liste de destination et choisissez un autre groupe existant. Vérifiez la source et la destination ; Annuler conserve les appartenances.';
 $string['member_path_step4'] = 'Confirmer le déplacement après vérification';
-$string['member_path_desc4'] = 'Confirmez seulement si vous souhaitez retirer ces appartenances au groupe source et ajouter la destination. Les autres appartenances sont conservées. Cette étape se termine uniquement après un déplacement natif réussi ; le guide n’annule pas l’opération.';
+$string['member_path_desc4'] = 'Confirmez seulement si vous souhaitez retirer ces appartenances au groupe source et ajouter la destination. Pour les copier sans retrait, cochez « Conserver les participants dans le groupe d’origine », décochée par défaut. Les autres appartenances sont conservées. Cette étape se termine uniquement après une opération native réussie ; le guide n’annule pas l’opération.';
 
 // Short navigation labels are separate from complete slide headings.
 $string['guide_nav_1'] = 'Le guide';
