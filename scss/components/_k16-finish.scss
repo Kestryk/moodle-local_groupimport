@@ -54,6 +54,14 @@
       margin-inline-end: calc((2rem - var(--easyedu-related-person-remove-size)) / 2);
     }
   }
+  // K16-68 (Kevin, 16/10: integrate without waiting for Penpot): the responsive "Show groups and
+  // groupings" switch is the same compact Kit selection action as the desktop density switch, on its
+  // own line, left-aligned, with the lane's 0.75rem rhythm instead of a full-width tray button.
+  .local-groupimport-easystud__membership-toggle:not([hidden]) {
+    display: flex;
+    inline-size: fit-content;
+    margin-block: 0.25rem 0.75rem;
+  }
   .easyedu-entity-card-empty--grouping {
     @include easyedu.entity-card-empty-line(var(--easyedu-grouping));
   }
