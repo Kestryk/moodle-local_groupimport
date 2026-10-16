@@ -289,7 +289,51 @@ export const revealChangedPanelActions = (root, before) => {
     });
 };
 
+/**
+ * Give each column of the two focus views its own action bar (K16-69).
+ *
+ * The focus views use the Complete view's panel heading for every column: title, count badge
+ * and the actions of that column. The existing buttons are moved, never copied, so their
+ * listeners and every selector that reads them keep working. They return to their panel bar
+ * in the Complete view and in the responsive workspace.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ */
+export const placeColumnActions = root => {
+    const responsive = isResponsiveWorkspace();
+    const focus = {
+        participants: !responsive && root.classList.contains(participantFocusClass),
+        structure: !responsive && root.classList.contains(structureFocusClass),
+    };
+    const homeSelector = '.local-groupimport-easystud__panel-heading > .local-groupimport-easystud__panel-actions';
+    root.querySelectorAll(homeSelector).forEach(home => {
+        if (!home.easystudColumnActions) {
+            home.easystudColumnActions = Array.from(home.querySelectorAll(':scope > [data-easystud-column-action]'));
+        }
+        const panel = home.closest('[data-easystud-participants-panel], [data-easystud-structure-panel]');
+        const active = !!panel && (panel.hasAttribute('data-easystud-participants-panel') ?
+            focus.participants : focus.structure);
+        const placements = home.easystudColumnActions.map(button => {
+            const column = button.getAttribute('data-easystud-column-action');
+            const slot = active ? panel.querySelector(`[data-easystud-column-actions="${column}"]`) : null;
+            return [button, slot || home];
+        });
+        if (placements.every(([button, target]) => button.parentElement === target)) {
+            return;
+        }
+        // Re-insert in the original order, always before the bar's own overflow toggle.
+        const focused = document.activeElement;
+        placements.forEach(([button, target]) => {
+            target.insertBefore(button, target.querySelector(':scope > [data-easystud-panel-actions-toggle]'));
+        });
+        if (focused && focused !== document.activeElement && placements.some(([button]) => button === focused)) {
+            focused.focus({preventScroll: true});
+        }
+    });
+};
+
 export const syncPanelActionOverflow = root => {
+    placeColumnActions(root);
     root.querySelectorAll('.local-groupimport-easystud__panel-actions').forEach(actions => {
         const {toggle, menu} = ensurePanelActionOverflowControls(root, actions);
         const buttons = getPanelActionButtons(actions);

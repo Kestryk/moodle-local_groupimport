@@ -13,12 +13,6 @@
     margin: 0;
   }
 
-  &-column-heading__title {
-    @include easyedu.type-eyebrow;
-
-    color: var(--easyedu-text-muted);
-  }
-
   &-tree__section--ungrouped > &-tree__toggle {
     @include easyedu.type-section-title;
 

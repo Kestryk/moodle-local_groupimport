@@ -894,14 +894,15 @@ function local_groupimport_build_manage_template_data(
                     'data-compact-label="' . s(get_string('compactparticipants', 'local_groupimport')) . '" ' .
                     'data-detailed-label="' . s(get_string('detailedparticipants', 'local_groupimport')) . '" ' .
                     'data-mobile-compact-label="' . s(get_string('hideparticipantmemberships', 'local_groupimport')) . '" ' .
-                    'data-mobile-detailed-label="' . s(get_string('showparticipantmemberships', 'local_groupimport')) . '"',
+                    'data-mobile-detailed-label="' . s(get_string('showparticipantmemberships', 'local_groupimport')) . '" ' .
+                    'data-easystud-column-action="participants"',
                 'disabled' => false,
             ],
             [
                 'icon' => 'fa-comment-dots',
                 'label' => get_string('messageselectadd'),
                 'class' => 'btn btn-outline-secondary btn-sm',
-                'attribute' => 'data-easystud-message-selected-participants="1"',
+                'attribute' => 'data-easystud-message-selected-participants="1" data-easystud-column-action="participants"',
                 'disabled' => true,
                 'hidden' => !$canmessageparticipants,
             ],
@@ -909,7 +910,7 @@ function local_groupimport_build_manage_template_data(
                 'icon' => 'fa-arrow-right',
                 'label' => get_string('moveselectedparticipants', 'local_groupimport'),
                 'class' => 'btn btn-outline-primary btn-sm local-groupimport-easystud__participant-move-action',
-                'attribute' => 'data-easystud-move-selected-participants="1"',
+                'attribute' => 'data-easystud-move-selected-participants="1" data-easystud-column-action="participants"',
                 'disabled' => true,
             ],
             [
@@ -917,14 +918,14 @@ function local_groupimport_build_manage_template_data(
                 'label' => get_string('deletegroupsselection', 'local_groupimport'),
                 'class' => 'btn btn-outline-danger btn-sm local-groupimport-easystud__participant-group-action ' .
                     'local-groupimport-easystud__participant-group-action--first',
-                'attribute' => 'data-easystud-delete-selected-groups="1"',
+                'attribute' => 'data-easystud-delete-selected-groups="1" data-easystud-column-action="participant-groups"',
                 'disabled' => true,
             ],
             [
                 'icon' => 'fa-arrow-right',
                 'label' => get_string('movegroupsselection', 'local_groupimport'),
                 'class' => 'btn btn-outline-primary btn-sm local-groupimport-easystud__participant-group-action',
-                'attribute' => 'data-easystud-move-selected-groups="1"',
+                'attribute' => 'data-easystud-move-selected-groups="1" data-easystud-column-action="participant-groups"',
                 'disabled' => true,
             ],
         ],
@@ -979,38 +980,40 @@ function local_groupimport_build_manage_template_data(
                 'icon' => 'fa-trash',
                 'label' => get_string('deletegroupsselection', 'local_groupimport'),
                 'class' => 'btn btn-outline-danger btn-sm',
-                'attribute' => 'data-easystud-delete-selected-groups="1"',
+                'attribute' => 'data-easystud-delete-selected-groups="1" data-easystud-column-action="structure-groups"',
             ],
             [
                 'icon' => 'fa-trash',
                 'label' => get_string('deletegroupingsselection', 'local_groupimport'),
                 'class' => 'btn btn-outline-danger btn-sm',
-                'attribute' => 'data-easystud-delete-selected-groupings="1"',
+                'attribute' => 'data-easystud-delete-selected-groupings="1" ' .
+                    'data-easystud-column-action="structure-groupings"',
             ],
             [
                 'icon' => 'fa-arrow-right',
                 'label' => get_string('moveselectedmembers', 'local_groupimport'),
                 'class' => 'btn btn-outline-primary btn-sm',
-                'attribute' => 'data-easystud-move-selected-members="1"',
+                'attribute' => 'data-easystud-move-selected-members="1" data-easystud-column-action="structure-groups"',
                 'disabled' => true,
             ],
             [
                 'icon' => 'fa-user-minus',
                 'label' => get_string('deletemembersselection', 'local_groupimport'),
                 'class' => 'btn btn-outline-danger btn-sm',
-                'attribute' => 'data-easystud-delete-selected-members="1"',
+                'attribute' => 'data-easystud-delete-selected-members="1" data-easystud-column-action="structure-groups"',
             ],
             [
                 'icon' => 'fa-arrow-right',
                 'label' => get_string('moveselectedgroups', 'local_groupimport'),
                 'class' => 'btn btn-outline-primary btn-sm',
-                'attribute' => 'data-easystud-move-selected-groups="1"',
+                'attribute' => 'data-easystud-move-selected-groups="1" data-easystud-column-action="structure-groups"',
             ],
             [
                 'icon' => 'fa-unlink',
                 'label' => get_string('removegroupsfromgroupings', 'local_groupimport'),
                 'class' => 'btn btn-outline-secondary btn-sm',
-                'attribute' => 'data-easystud-remove-selected-groups-from-groupings="1"',
+                'attribute' => 'data-easystud-remove-selected-groups-from-groupings="1" ' .
+                    'data-easystud-column-action="structure-groupings"',
             ],
         ],
         'participantgroupactions' => [

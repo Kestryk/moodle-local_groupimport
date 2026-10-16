@@ -29,7 +29,7 @@ import {
     requestGuideHighlightRefresh,
 } from './shared';
 import {
-    scheduleCompleteListAlignment, schedulePanelActionOverflow, syncPanelActionOverflow,
+    scheduleCompleteListAlignment, schedulePanelActionOverflow, syncPanelActionOverflow, placeColumnActions,
     snapshotPanelActions, revealChangedPanelActions,
 } from './layout';
 import {clearSelectionState} from './selection';
@@ -350,6 +350,8 @@ export const bindLayoutModeToggle = root => {
         root.querySelectorAll('.local-groupimport-easystud__participant-move-action').forEach(button => {
             button.hidden = normalisedmode === 'structure';
         });
+        // Same frame as the mode change: each focus column shows its own actions from the first paint.
+        placeColumnActions(root);
 
         updateRoleFilterMode(root);
         const hasModeDependentCatalogSearch = [

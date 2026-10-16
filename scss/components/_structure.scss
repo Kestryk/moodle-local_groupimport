@@ -1669,11 +1669,6 @@
   }
 }
 
-// Keep the responsive column headings readable against the soft filter surface.
-.local-groupimport-easystud-column-heading__title {
-  color: #607182;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .local-groupimport-easystud-tree__section[data-easystud-grouping-id] {
     @include easyedu.non-draggable-card-hover(

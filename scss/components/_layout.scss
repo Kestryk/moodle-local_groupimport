@@ -1318,12 +1318,14 @@
     width: calc(100% - 0.16rem);
   }
 
+  // K16-69: a focus-view column heading is the Complete view's panel heading (title, count
+  // badge, then the column's own action bar, which reuses the panel action bar recipe).
   &-column-heading {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
-    gap: 0.65rem;
-    justify-content: space-between;
-    margin-bottom: 0.55rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
     min-width: 0;
   }
 
@@ -1332,20 +1334,10 @@
     display: none;
   }
 
-  &-column-heading__title {
-    color: var(--easyedu-text-muted);
-    font-size: 0.76rem;
-    font-weight: 650;
-    letter-spacing: 0.035em;
-    text-transform: uppercase;
-  }
-
-  &-column-heading__actions {
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    justify-content: flex-end;
+  // The panel heading would repeat the column headings: the focus views drop it.
+  &--participant-focus &__panel--participants &__panel-heading,
+  &--structure-focus &__panel--structure &__panel-heading {
+    display: none;
   }
 
   &__role-toggle-wrap {
