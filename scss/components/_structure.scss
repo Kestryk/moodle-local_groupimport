@@ -743,7 +743,7 @@
     &:focus-within {
       border-left-color: var(--local-groupimport-easystud-group-rail);
       @include easyedu.card-focus-context(
-        0 0.45rem 0.95rem rgba(41, 114, 77, 0.15),
+        var(--easyedu-shadow-soft),
         $preserve-identity-rail: true,
         $identity-rail-color: var(--local-groupimport-easystud-group-rail)
       );
@@ -755,6 +755,7 @@
 
     &.is-drop-target,
     &.is-selected {
+      --local-groupimport-group-surface: var(--local-groupimport-easystud-group-soft);
       background: var(--local-groupimport-easystud-group-soft);
       @include easyedu.identity-card-paint(object, selected);
       border-left-color: var(--local-groupimport-easystud-group);
@@ -1010,7 +1011,9 @@
     @include easyedu.preview-fade-list(
       var(--local-groupimport-members-collapsed-height),
       var(--local-groupimport-members-expanded-height),
-      #f4f8fb,
+      // K16-65/K16-74: the fade follows the card's real surface (rest or selected), so the member
+      // list never shows as an opaque block on the green selected card.
+      var(--local-groupimport-group-surface, var(--easyedu-surface-soft)),
       2.45rem
     );
 
@@ -1053,53 +1056,10 @@
     overflow: visible;
     position: relative;
     transition: margin var(--easyedu-motion-fast) ease;
-
-    &::after {
-      background: linear-gradient(
-        180deg,
-        rgba(247, 250, 252, 0) 0%,
-        rgba(247, 250, 252, 0.78) 42%,
-        rgba(247, 250, 252, 0.98) 100%
-      );
-      border-radius: 0 0 0.62rem 0.62rem;
-      bottom: 0;
-      box-shadow: inset 0 -0.45rem 0.8rem rgba(106, 127, 152, 0.08);
-      content: "";
-      height: 3rem;
-      left: 0;
-      opacity: 0;
-      pointer-events: none;
-      position: absolute;
-      right: 0;
-      transition: opacity var(--easyedu-motion-fast) ease;
-      z-index: 2;
-    }
   }
 
   &-grouping__groups.has-extra-groups:not(.is-expanded) {
     max-height: none;
-
-    &::after {
-      opacity: 0;
-    }
-  }
-
-  &-tree__section[data-easystud-grouping-id].is-expanded.is-selected &-grouping__groups::after {
-    background: linear-gradient(
-      180deg,
-      rgba(237, 242, 247, 0) 0%,
-      rgba(237, 242, 247, 0.78) 42%,
-      rgba(237, 242, 247, 0.98) 100%
-    );
-  }
-
-  &-tree__section[data-easystud-grouping-id].is-expanded:focus-within:not(:has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)) &-grouping__groups::after {
-    background: linear-gradient(
-      180deg,
-      rgba(238, 243, 247, 0) 0%,
-      rgba(238, 243, 247, 0.78) 42%,
-      rgba(238, 243, 247, 0.98) 100%
-    );
   }
 
   &-grouping__groups-toggle {
@@ -1108,16 +1068,6 @@
 
   &-group__members > .local-groupimport-easystud-member:not(:last-child) {
     margin-bottom: 0.3rem;
-  }
-
-  &-group__members-more {
-    color: #6f8398;
-    display: none !important;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
-    line-height: 1;
-    margin-top: 0.2rem;
-    text-align: center;
   }
 
   // K16-70 (Kevin 16/10): the fold control is the same Kit action as "Select all" on its row
@@ -1171,10 +1121,6 @@
     max-height: 2.35rem;
     overflow: hidden;
     transition: opacity var(--easyedu-motion-fast) ease;
-  }
-
-  &-member--extra.is-collapsed {
-    opacity: 1;
   }
 
   &-tree__empty {
