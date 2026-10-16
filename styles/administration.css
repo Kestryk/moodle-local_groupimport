@@ -555,6 +555,12 @@ body.jsenabled.local-groupimport-admin-settings-page--loading #page-admin-settin
   100% {opacity: 1;transform: translateY(0) scale(1);
   }
 }
+@keyframes easyedu-activity-dots {
+  0%, 60%, 100% {opacity: 0.3;
+  }
+  25% {opacity: 1;
+  }
+}
 @keyframes easyedu-card-open {
   from {opacity: 0.78;transform: translateY(-0.18rem);
   }

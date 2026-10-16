@@ -1114,6 +1114,12 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   100% {opacity: 1;transform: translateY(0) scale(1);
   }
 }
+@keyframes easyedu-activity-dots {
+  0%, 60%, 100% {opacity: 0.3;
+  }
+  25% {opacity: 1;
+  }
+}
 @keyframes easyedu-card-open {
   from {opacity: 0.78;transform: translateY(-0.18rem);
   }

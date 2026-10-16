@@ -814,16 +814,17 @@
       }
       .easyedu-guide-scene__live {
         display: contents;
-        &-content { grid-column: 2; grid-row: 1; min-width: 0; }
+        // P-G4: the instruction is never truncated (no line-clamp, no CSS "…").
+        // Copy and activity dots flow inline so the dots follow the last word.
+        &-content { grid-column: 2; grid-row: 1; min-width: 0; display: block; }
         [data-guide-live-copy] {
           @include typography.type-body;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden;
+          display: inline;
           white-space: normal;
-          line-height: 1.4;
+          line-height: 1.5;
         }
+        [data-guide-live-complete] { display: inline-block; margin-inline-end: var(--easyedu-action-icon-gap); vertical-align: middle; }
+        [data-guide-live-complete][hidden] { display: none; }
         // type-body paints the child explicitly; finished paint cannot rely
         // on inheriting from the display:contents live region. Keep active
         // narration and all metrics intact, using the existing semantic roles.
@@ -954,36 +955,11 @@
       @include buttons.icon-button($size: small);
       > .fa { margin: 0; line-height: 1; }
     }
-    &__activity {
-      display: inline-grid;
-      grid-template-columns: repeat(3, 0.25rem);
-      grid-template-rows: 0.25rem;
-      align-items: center;
-      gap: 0.1875rem;
-      flex: 0 0 auto;
-      padding: 0;
-      margin: 0;
-      inline-size: 1.125rem;
-      block-size: 0.25rem;
-      white-space: nowrap;
-      letter-spacing: 0;
-      > span {
-        display: block;
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-        width: 0.25rem;
-        height: 0.25rem;
-        background: currentColor;
-        border-radius: 50%;
-        animation: easyedu-guide-activity 1.35s ease-in-out infinite;
-        &:nth-child(2) { animation-delay: 0.18s; }
-        &:nth-child(3) { animation-delay: 0.36s; }
-      }
-    }
+    // The single Kit inline activity dots (animations.activity-dots).
+    &__activity { @include animations.activity-dots; }
     &__live[data-guide-playback-state="paused"] .easyedu-guide-scene__activity > span {
       animation: none;
-      opacity: 0.55;
+      opacity: 0.6;
     }
     &__illustrated-checkbox {
       @include forms.selection-checkbox;
@@ -1425,9 +1401,4 @@
     .easyedu-guide-scene__live, .easyedu-guide-scene__person { transition: none; }
     .easyedu-guide-scene__activity > span { animation: none; }
   }
-}
-
-@keyframes easyedu-guide-activity {
-  0%, 40%, 100% { transform: translateY(0); opacity: 0.55; }
-  20% { transform: translateY(-0.21875rem); opacity: 1; }
 }
