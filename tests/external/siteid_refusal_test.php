@@ -24,7 +24,6 @@ namespace local_groupimport\external;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class siteid_refusal_test extends \advanced_testcase {
-
     /**
      * get_state refuses SITEID, even for an administrator.
      *

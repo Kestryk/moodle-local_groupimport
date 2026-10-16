@@ -28,7 +28,6 @@ require_once($CFG->dirroot . '/group/lib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class membership_assignment {
-
     /**
      * Add a user to one group without changing any other group membership.
      *
@@ -72,10 +71,12 @@ final class membership_assignment {
             'courseid' => $courseid,
         ], '*', MUST_EXIST);
 
-        if ($DB->record_exists('groupings_groups', [
+        if (
+            $DB->record_exists('groupings_groups', [
             'groupingid' => $groupingid,
             'groupid' => $groupid,
-        ])) {
+            ])
+        ) {
             return false;
         }
 

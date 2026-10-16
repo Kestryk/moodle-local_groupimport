@@ -36,9 +36,7 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
     global $DB;
 
     if ($oldversion < 2026010503) {
-
         if (class_exists('\tool_usertours\manager')) {
-
             $tours = [
                 [
                     'name' => 'tour_groupimport_teacher_name,local_groupimport',
@@ -112,20 +110,44 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         $table = new xmldb_table('local_groupimport_history');
 
         if ($dbman->table_exists($table)) {
-            $changesjson = new xmldb_field('changesjson', XMLDB_TYPE_TEXT, null, null, null, null, null,
-                'replacepolicy');
+            $changesjson = new xmldb_field(
+                'changesjson',
+                XMLDB_TYPE_TEXT,
+                null,
+                null,
+                null,
+                null,
+                null,
+                'replacepolicy'
+            );
             if (!$dbman->field_exists($table, $changesjson)) {
                 $dbman->add_field($table, $changesjson);
             }
 
-            $rollbackuserid = new xmldb_field('rollbackuserid', XMLDB_TYPE_INTEGER, '10', null, null, null, null,
-                'changesjson');
+            $rollbackuserid = new xmldb_field(
+                'rollbackuserid',
+                XMLDB_TYPE_INTEGER,
+                '10',
+                null,
+                null,
+                null,
+                null,
+                'changesjson'
+            );
             if (!$dbman->field_exists($table, $rollbackuserid)) {
                 $dbman->add_field($table, $rollbackuserid);
             }
 
-            $timerolledback = new xmldb_field('timerolledback', XMLDB_TYPE_INTEGER, '10', null, null, null, null,
-                'rollbackuserid');
+            $timerolledback = new xmldb_field(
+                'timerolledback',
+                XMLDB_TYPE_INTEGER,
+                '10',
+                null,
+                null,
+                null,
+                null,
+                'rollbackuserid'
+            );
             if (!$dbman->field_exists($table, $timerolledback)) {
                 $dbman->add_field($table, $timerolledback);
             }

@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-16 [N0] K16-17: apply PHP-only Moodle coding style and documentation fixes; reduce codechecker findings from 556 errors/36 warnings to 4 errors/8 warnings, retain API/guard/CLI decisions separately; no runtime or visual changes.
+
 - 2026-10-16 [N1] K16-13: add stable Z-to-A sorting to the shared participant, group and grouping menus; align A-to-Z labels and expose the same grouping pager in compact view without style changes.
 
 - 2026-10-15 [N0] Certify Drawer V1 FR390/768/1280 on SM and Mass Import: focus/Tab/Escape/Close, scroll lock and desktop state; zero page errors/business writes.

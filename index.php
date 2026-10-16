@@ -166,11 +166,11 @@ function local_groupimport_parse_excel_content(string $content, string $filename
     $headerfound = false;
 
     foreach ($rawrows as $rawrow) {
-        $row = array_map(static function($value): string {
+        $row = array_map(static function ($value): string {
             return local_groupimport_clean_cell((string)$value);
         }, $rawrow);
 
-        $hascontent = array_filter($row, static function(string $value): bool {
+        $hascontent = array_filter($row, static function (string $value): bool {
             return $value !== '';
         });
 
@@ -268,7 +268,7 @@ function local_groupimport_get_allowed_import_userfields(): array {
         ? array_map('trim', explode(',', $config->alloweduserfields))
         : ['username'];
 
-    $allowed = array_filter($allowed, static function(string $value): bool {
+    $allowed = array_filter($allowed, static function (string $value): bool {
         return $value !== '';
     });
 
@@ -417,7 +417,9 @@ function local_groupimport_find_import_user(string $identifier, array &$errors):
     return null;
 }
 
-/** Batch import matching; unlike pasted IDs, import compares every enabled field. */
+/**
+ * Batch import matching; unlike pasted IDs, import compares every enabled field.
+ */
 function local_groupimport_find_import_users(array $identifiers): array {
     $identifiers = array_values(array_unique($identifiers));
     $matches = array_fill_keys($identifiers, []);
@@ -428,8 +430,11 @@ function local_groupimport_find_import_users(array $identifiers): array {
                 ? strtolower(preg_replace('/\s+/u', '', $identifier)) : $identifier;
         }
         $custom = strpos($field, 'profile_field_') === 0;
-        $fieldmatches = \local_groupimport\local\batch_reader::users(array_values($values),
-            $custom ? 'profile' : $field, $custom ? [substr($field, strlen('profile_field_'))] : []);
+        $fieldmatches = \local_groupimport\local\batch_reader::users(
+            array_values($values),
+            $custom ? 'profile' : $field,
+            $custom ? [substr($field, strlen('profile_field_'))] : []
+        );
         foreach ($values as $identifier => $value) {
             $users = $fieldmatches[$value] ?? [];
             // Retain the original two-row limit and database first-row behavior
@@ -479,8 +484,11 @@ function local_groupimport_validate_preview_rows(array $rows, context_course $co
     $resolved = local_groupimport_find_import_users($identifiers);
     $enrolled = \local_groupimport\local\batch_reader::enrolled($context);
     $groups = \local_groupimport\local\batch_reader::names('groups', (int)$context->instanceid, $groupnames);
-    $groupings = \local_groupimport\local\batch_reader::names('groupings', (int)$context->instanceid,
-        array_filter($groupingnames, static fn(string $name): bool => $name !== ''));
+    $groupings = \local_groupimport\local\batch_reader::names(
+        'groupings',
+        (int)$context->instanceid,
+        array_filter($groupingnames, static fn(string $name): bool => $name !== '')
+    );
     [$members, $assignments] = \local_groupimport\local\batch_reader::relationships((int)$context->instanceid);
 
     foreach ($rows as $index => $row) {
@@ -756,10 +764,12 @@ function local_groupimport_process_import_rows(
                 }
             }
 
-            if ($groupingid && !$DB->record_exists('groupings_groups', [
+            if (
+                $groupingid && !$DB->record_exists('groupings_groups', [
                 'groupingid' => $groupingid,
                 'groupid' => $groupid,
-            ])) {
+                ])
+            ) {
                 groups_assign_grouping($groupingid, $groupid);
                 $changes['assignedgroupings'][] = [
                     'groupingid' => (int)$groupingid,
@@ -831,8 +841,12 @@ function local_groupimport_process_import_rows(
                 $success[] = get_string('importreplaceremovedmember', 'local_groupimport');
             }
 
-            $currentassignments = $DB->get_records('groupings_groups', ['groupid' => $groupid], '',
-                'id,groupingid,groupid');
+            $currentassignments = $DB->get_records(
+                'groupings_groups',
+                ['groupid' => $groupid],
+                '',
+                'id,groupingid,groupid'
+            );
             foreach ($currentassignments as $currentassignment) {
                 if (isset($targetgroupings[$groupid][(int)$currentassignment->groupingid])) {
                     continue;
@@ -901,8 +915,10 @@ function local_groupimport_rollback_import(stdClass $history, int $userid): stdC
         $memberid = (int)($row['userid'] ?? 0);
         $groupname = clean_param((string)($row['groupname'] ?? ''), PARAM_TEXT);
         $groupingname = clean_param((string)($row['groupingname'] ?? ''), PARAM_TEXT);
-        if (!$memberid || $groupname === '' || !isset($existingusers[$memberid]) ||
-                !isset($enrolledusers[$memberid])) {
+        if (
+            !$memberid || $groupname === '' || !isset($existingusers[$memberid]) ||
+                !isset($enrolledusers[$memberid])
+        ) {
             $result->skipped++;
             continue;
         }
@@ -1066,14 +1082,17 @@ if ($confirmimport && data_submitted()) {
     $confirmedrows = [];
     try {
         $savedpreview = \local_groupimport\local\import_preview::load((int)$course->id, $previewtoken);
-        $confirmedrows = \local_groupimport\local\import_preview::confirm($savedpreview,
-            optional_param('previewpayload', '', PARAM_RAW), [
+        $confirmedrows = \local_groupimport\local\import_preview::confirm(
+            $savedpreview,
+            optional_param('previewpayload', '', PARAM_RAW),
+            [
                 'complete' => optional_param('previewcomplete', 0, PARAM_INT),
                 'enabled' => optional_param_array('rowenabled', [], PARAM_INT),
                 'identifier' => optional_param_array('identifier', [], PARAM_RAW_TRIMMED),
                 'groupname' => optional_param_array('groupname', [], PARAM_RAW_TRIMMED),
                 'groupingname' => optional_param_array('groupingname', [], PARAM_RAW_TRIMMED),
-            ]);
+            ]
+        );
         $importfilename = $savedpreview['filename'];
         $importhash = $savedpreview['filehash'];
     } catch (moodle_exception $exception) {
@@ -1084,9 +1103,19 @@ if ($confirmimport && data_submitted()) {
         $errors[] = get_string('importnorowsselected', 'local_groupimport');
     } else if (!empty($confirmedrows) && empty($errors)) {
         try {
-            $currenthistoryid = \local_groupimport\local\import_execution::run($confirmedrows,
-                static function() use ($confirmedrows, $course, $context, &$success, &$errors,
-                        $replacepolicy, $USER, $importfilename, $importhash): int {
+            $currenthistoryid = \local_groupimport\local\import_execution::run(
+                $confirmedrows,
+                static function () use (
+                    $confirmedrows,
+                    $course,
+                    $context,
+                    &$success,
+                    &$errors,
+                    $replacepolicy,
+                    $USER,
+                    $importfilename,
+                    $importhash
+                ): int {
                     $changes = local_groupimport_process_import_rows(
                         $confirmedrows,
                         $course,
@@ -1106,7 +1135,8 @@ if ($confirmimport && data_submitted()) {
                         $replacepolicy,
                         $changes
                     );
-                });
+                }
+            );
             \local_groupimport\local\import_preview::consume($previewtoken);
         } catch (Throwable $exception) {
             $success = [];
@@ -1117,7 +1147,6 @@ if ($confirmimport && data_submitted()) {
     }
 } else if ($mform->is_cancelled()) {
     redirect(course_get_url($course));
-
 } else if ($data = $mform->get_data()) {
     // Retrieve uploaded file content.
     $content = $mform->get_file_content('importfile');
@@ -1141,8 +1170,11 @@ if ($confirmimport && data_submitted()) {
         $previewrows = local_groupimport_build_preview_rows($parsed, $errors);
 
         if (count($previewrows) > \local_groupimport\local\import_execution::MAX_ROWS) {
-            $errors[] = get_string('importrowlimit', 'local_groupimport',
-                \local_groupimport\local\import_execution::MAX_ROWS);
+            $errors[] = get_string(
+                'importrowlimit',
+                'local_groupimport',
+                \local_groupimport\local\import_execution::MAX_ROWS
+            );
         } else if (!empty($previewrows)) {
             $preview = [
                 'filename' => $filename,
@@ -1175,7 +1207,8 @@ echo $OUTPUT->header();
 $navigationdata = local_groupimport_build_mass_import_navigation_context($course);
 $themestyle = local_groupimport_get_theme_style();
 $themerailroles = local_groupimport_get_theme_rail_roles();
-$navigationmarkup = html_writer::tag('div',
+$navigationmarkup = html_writer::tag(
+    'div',
     $OUTPUT->render_from_template('local_groupimport/easyedu_navigation', $navigationdata),
     [
         'class' => 'local-groupimport-import-navigation local-groupimport-easystud local-groupimport-easystud__navigation',
@@ -1200,7 +1233,7 @@ echo html_writer::start_div('local-groupimport-import easyedu-ui' . ($preview !=
     'data-easyedu-dialog-palette' => $themerailroles,
     'data-easyedu-report-palette' => $themerailroles,
     'style' => $themestyle,
-]);
+        ]);
 
 echo html_writer::start_div('local-groupimport-import__loading-skeleton', [
     'data-easystud-loading-skeleton' => '1',
@@ -1208,18 +1241,21 @@ echo html_writer::start_div('local-groupimport-import__loading-skeleton', [
     'aria-hidden' => 'true',
 ]);
 echo html_writer::start_div('local-groupimport-import__loading-header');
-echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-eyebrow']);
+echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+    'local-groupimport-import__loading-eyebrow']);
 echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-title']);
 echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-intro']);
 echo html_writer::end_div();
 echo html_writer::start_div('local-groupimport-import__loading-navigation', [
     'aria-hidden' => 'true',
 ]);
-echo html_writer::tag('div',
+echo html_writer::tag(
+    'div',
     html_writer::tag('span', '', [
         'class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-navigation-guide',
     ]) .
-    html_writer::tag('div',
+    html_writer::tag(
+        'div',
         html_writer::tag('span', '', [
             'class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-navigation-cue',
         ]),
@@ -1231,16 +1267,24 @@ echo html_writer::end_div();
 echo html_writer::start_div('local-groupimport-import__loading-grid');
 for ($skeletoncard = 0; $skeletoncard < 2; $skeletoncard++) {
     echo html_writer::start_div('local-groupimport-import__loading-card');
-    echo html_writer::tag('div',
-        html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-icon']) .
-        html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-card-title']),
+    echo html_writer::tag(
+        'div',
+        html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+            'local-groupimport-import__loading-icon']) .
+        html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+            'local-groupimport-import__loading-card-title']),
         ['class' => 'local-groupimport-import__loading-card-header']
     );
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-field']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-field local-groupimport-import__loading-field--short']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-row']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-row']);
-    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface local-groupimport-import__loading-button']);
+    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+        'local-groupimport-import__loading-field']);
+    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+        'local-groupimport-import__loading-field local-groupimport-import__loading-field--short']);
+    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+        'local-groupimport-import__loading-row']);
+    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+        'local-groupimport-import__loading-row']);
+    echo html_writer::tag('span', '', ['class' => 'local-groupimport-import__loading-surface ' .
+        'local-groupimport-import__loading-button']);
     echo html_writer::end_div();
 }
 echo html_writer::end_div();
@@ -1249,17 +1293,22 @@ echo html_writer::end_div();
 // Without JavaScript the classic bootstrap cannot release the loading state.
 // Reveal the already server-rendered form and navigation instead of leaving a
 // decorative Skeleton as the only visible Mass Import surface.
-echo html_writer::tag('noscript', html_writer::tag('style',
-    '#local-groupimport-import[data-easystud-loading-state="loading"] > [data-easystud-loading-skeleton] { display: none !important; }' .
-        '#local-groupimport-import[data-easystud-loading-state="loading"] > [data-easystud-real-content] { display: block !important; }'
+echo html_writer::tag('noscript', html_writer::tag(
+    'style',
+    '#local-groupimport-import[data-easystud-loading-state="loading"] > [data-easystud-loading-skeleton] { display: none ' .
+        '!important; }' .
+        '#local-groupimport-import[data-easystud-loading-state="loading"] > [data-easystud-real-content] { display: block ' .
+            '!important; }'
 ));
 
 echo html_writer::start_div('local-groupimport-import__content', [
     'data-easystud-real-content' => '1',
 ]);
 
-echo html_writer::tag('div',
-    html_writer::tag('div',
+echo html_writer::tag(
+    'div',
+    html_writer::tag(
+        'div',
         html_writer::span(get_string('easystudlabel', 'local_groupimport'), 'local-groupimport-import__eyebrow') .
         html_writer::tag('h2', get_string('groupimport', 'local_groupimport'), [
             'class' => 'local-groupimport-import__title easyedu-page-title',
@@ -1276,7 +1325,8 @@ echo html_writer::start_div('local-groupimport-import__grid');
 
 $uploadtoggle = '';
 if ($preview !== null) {
-    $uploadtoggle = html_writer::tag('button',
+    $uploadtoggle = html_writer::tag(
+        'button',
         html_writer::tag('span', '', ['class' => 'fa fa-chevron-right', 'aria-hidden' => 'true']),
         [
             'type' => 'button',
@@ -1292,19 +1342,21 @@ if ($preview !== null) {
 
 // Form card.
 echo html_writer::start_div('local-groupimport-import-card local-groupimport-import-card--upload easyedu-panel');
-echo html_writer::tag('div',
+echo html_writer::tag(
+    'div',
     html_writer::tag('span', '', [
         'class' => 'fa fa-file-csv easyedu-icon-tile easyedu-icon-tile--compact',
         'aria-hidden' => 'true',
     ]) .
-    html_writer::tag('div',
+    html_writer::tag(
+        'div',
         html_writer::tag('h3', get_string('importfile', 'local_groupimport'), [
             'class' => 'local-groupimport-import-card__title easyedu-panel__title',
         ]) .
         html_writer::tag('p', get_string('csvimportintro', 'local_groupimport'), [
             'class' => 'local-groupimport-import-card__description easyedu-panel__description',
-        ])
-        , ['class' => 'easyedu-panel__copy']
+        ]),
+        ['class' => 'easyedu-panel__copy']
     ) .
     $uploadtoggle,
     ['class' => 'local-groupimport-import-card__header easyedu-panel__header easyedu-panel__header--compact-icon']
@@ -1317,17 +1369,27 @@ foreach ($allowedimportfields as $fieldlabel) {
     ]);
 }
 
-echo html_writer::tag('div',
-    html_writer::tag('div',
-        html_writer::tag('span',
+echo html_writer::tag(
+    'div',
+    html_writer::tag(
+        'div',
+        html_writer::tag(
+            'span',
             html_writer::tag('span', '', ['class' => 'fa fa-search', 'aria-hidden' => 'true']),
             ['class' => 'local-groupimport-import-fields__icon easyedu-icon-tile easyedu-icon-tile--small', 'aria-hidden' => 'true']
         ) .
-        html_writer::tag('div',
-            html_writer::tag('strong', get_string('importautodetecttitle', 'local_groupimport'),
-                ['class' => 'easyedu-information__title']) .
-            html_writer::tag('p', get_string('importautodetectintro', 'local_groupimport'),
-                ['class' => 'easyedu-information__description'])
+        html_writer::tag(
+            'div',
+            html_writer::tag(
+                'strong',
+                get_string('importautodetecttitle', 'local_groupimport'),
+                ['class' => 'easyedu-information__title']
+            ) .
+            html_writer::tag(
+                'p',
+                get_string('importautodetectintro', 'local_groupimport'),
+                ['class' => 'easyedu-information__description']
+            )
         ),
         ['class' => 'local-groupimport-import-fields__header easyedu-information__header easyedu-information__header--small-icon']
     ) .
@@ -1353,35 +1415,41 @@ echo html_writer::start_div(
     'local-groupimport-import-card local-groupimport-import-card--results easyedu-panel easyedu-panel--success',
     ['id' => 'local_groupimport-results']
 );
-echo html_writer::tag('div',
+echo html_writer::tag(
+    'div',
     html_writer::tag('span', '', [
         'class' => 'fa fa-clipboard-check easyedu-icon-tile easyedu-icon-tile--compact easyedu-icon-tile--success',
         'aria-hidden' => 'true',
     ]) .
-    html_writer::tag('div',
+    html_writer::tag(
+        'div',
         html_writer::tag('h3', get_string('importresults', 'local_groupimport'), [
             'class' => 'local-groupimport-import-card__title easyedu-panel__title',
         ]) .
         html_writer::tag('p', get_string('csvreportintro', 'local_groupimport'), [
             'class' => 'local-groupimport-import-card__description easyedu-panel__description',
-        ])
-        , ['class' => 'easyedu-panel__copy']
+        ]),
+        ['class' => 'easyedu-panel__copy']
     ),
     ['class' => 'local-groupimport-import-card__header easyedu-panel__header easyedu-panel__header--compact-icon']
 );
 
 if ($preview !== null) {
     $rowcount = count($preview['rows']);
-    $warningcount = count(array_filter($preview['messages'], static function(array $messages): bool {
+    $warningcount = count(array_filter($preview['messages'], static function (array $messages): bool {
         return !empty($messages);
     }));
 
-    echo html_writer::tag('div',
-        html_writer::tag('span',
+    echo html_writer::tag(
+        'div',
+        html_writer::tag(
+            'span',
             html_writer::tag('strong', $rowcount) . ' ' . get_string('importpreviewrows', 'local_groupimport'),
-            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success easyedu-report-summary--success']
+            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success ' .
+                'easyedu-report-summary--success']
         ) .
-        html_writer::tag('span',
+        html_writer::tag(
+            'span',
             html_writer::tag('strong', $warningcount) . ' ' . get_string('importpreviewwarnings', 'local_groupimport'),
             ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--error']
         ),
@@ -1401,9 +1469,11 @@ if ($preview !== null) {
     echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'importfilename', 'value' => $preview['filename']]);
     echo html_writer::empty_tag('input', ['type' => 'hidden', 'name' => 'importhash', 'value' => $preview['filehash']]);
 
-    echo html_writer::tag('div',
+    echo html_writer::tag(
+        'div',
         html_writer::tag('span', '', ['class' => 'fa fa-magic', 'aria-hidden' => 'true']) .
-        html_writer::tag('div',
+        html_writer::tag(
+            'div',
             html_writer::tag('strong', get_string('importpreviewtitle', 'local_groupimport')) .
             html_writer::tag('p', get_string('importpreviewintro', 'local_groupimport', s($preview['filename'])), [
                 'class' => 'mb-0',
@@ -1413,18 +1483,24 @@ if ($preview !== null) {
     );
 
     if (!empty($preview['previousimport'])) {
-        echo html_writer::tag('div',
+        echo html_writer::tag(
+            'div',
             html_writer::tag('span', '', ['class' => 'fa fa-history', 'aria-hidden' => 'true']) .
-            html_writer::tag('p',
-                get_string('previewpreviousimport', 'local_groupimport',
-                    userdate((int)$preview['previousimport']->timecreated)),
+            html_writer::tag(
+                'p',
+                get_string(
+                    'previewpreviousimport',
+                    'local_groupimport',
+                    userdate((int)$preview['previousimport']->timecreated)
+                ),
                 ['class' => 'mb-0']
             ),
             ['class' => 'local-groupimport-import-preview__reimport-alert']
         );
     }
 
-    $strategyoptions = html_writer::tag('label',
+    $strategyoptions = html_writer::tag(
+        'label',
         html_writer::empty_tag('input', [
             'type' => 'radio',
             'name' => 'replacepolicy',
@@ -1432,9 +1508,11 @@ if ($preview !== null) {
             'checked' => 'checked',
             'class' => 'easyedu-segmented-choice__input',
         ]) .
-        html_writer::tag('span',
+        html_writer::tag(
+            'span',
             html_writer::span('', 'fa fa-plus', ['aria-hidden' => 'true']) .
-            html_writer::tag('span',
+            html_writer::tag(
+                'span',
                 html_writer::tag('strong', get_string('reimportkeeptitle', 'local_groupimport')) .
                 html_writer::tag('small', get_string('reimportkeepdesc', 'local_groupimport'))
             ),
@@ -1442,16 +1520,19 @@ if ($preview !== null) {
         ),
         ['class' => 'easyedu-segmented-choice__option']
     );
-    $strategyoptions .= html_writer::tag('label',
+    $strategyoptions .= html_writer::tag(
+        'label',
         html_writer::empty_tag('input', [
             'type' => 'radio',
             'name' => 'replacepolicy',
             'value' => 'replace',
             'class' => 'easyedu-segmented-choice__input',
         ]) .
-        html_writer::tag('span',
+        html_writer::tag(
+            'span',
             html_writer::span('', 'fa fa-sync-alt', ['aria-hidden' => 'true']) .
-            html_writer::tag('span',
+            html_writer::tag(
+                'span',
                 html_writer::tag('strong', get_string('reimportreplacetitle', 'local_groupimport')) .
                 html_writer::tag('small', get_string('reimportreplacedesc', 'local_groupimport'))
             ),
@@ -1465,7 +1546,8 @@ if ($preview !== null) {
         html_writer::div($strategyoptions, 'easyedu-segmented-choice__options'),
         'easyedu-segmented-choice__body'
     );
-    echo html_writer::tag('fieldset',
+    echo html_writer::tag(
+        'fieldset',
         html_writer::tag('legend', $strategylabel, [
             'class' => 'easyedu-segmented-choice__legend',
         ]) . $strategybody,
@@ -1474,8 +1556,10 @@ if ($preview !== null) {
         ]
     );
 
-    echo html_writer::tag('div',
-        html_writer::tag('div',
+    echo html_writer::tag(
+        'div',
+        html_writer::tag(
+            'div',
             html_writer::tag('button', get_string('selectallrows', 'local_groupimport'), [
                 'type' => 'button',
                 'class' => 'easyedu-button easyedu-button--neutral',
@@ -1487,7 +1571,8 @@ if ($preview !== null) {
             ]),
             ['class' => 'local-groupimport-import-preview__bulk-actions']
         ) .
-        html_writer::tag('label',
+        html_writer::tag(
+            'label',
             html_writer::span(get_string('previewsearchlabel', 'local_groupimport'), 'accesshide') .
             html_writer::tag('span', '', ['class' => 'fa fa-search', 'aria-hidden' => 'true']) .
             html_writer::empty_tag('input', [
@@ -1506,8 +1591,10 @@ if ($preview !== null) {
 
     echo html_writer::start_tag('div', ['class' => 'local-groupimport-import-preview__table-wrap']);
     echo html_writer::start_tag('table', ['class' => 'table-reboot easyedu-data-table local-groupimport-import-preview__table']);
-    echo html_writer::tag('thead',
-        html_writer::tag('tr',
+    echo html_writer::tag(
+        'thead',
+        html_writer::tag(
+            'tr',
             html_writer::tag('th', get_string('importpreviewinclude', 'local_groupimport')) .
             html_writer::tag('th', get_string('importpreviewline', 'local_groupimport')) .
             html_writer::tag('th', get_string('importpreviewidentifier', 'local_groupimport')) .
@@ -1522,14 +1609,18 @@ if ($preview !== null) {
         $messages = $preview['messages'][$index] ?? [];
         $status = empty($messages)
             ? html_writer::tag('span', get_string('importpreviewready', 'local_groupimport'), [
-                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--ready easyedu-status',
+                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--ready ' .
+                    'easyedu-status',
             ])
             : html_writer::tag('span', implode(' ', array_map('s', $messages)), [
-                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--warning easyedu-status easyedu-status--warning',
+                'class' => 'local-groupimport-import-preview__status local-groupimport-import-preview__status--warning ' .
+                    'easyedu-status easyedu-status--warning',
             ]);
 
-        echo html_writer::tag('tr',
-            html_writer::tag('td',
+        echo html_writer::tag(
+            'tr',
+            html_writer::tag(
+                'td',
                 html_writer::empty_tag('input', [
                     'type' => 'checkbox',
                     'name' => 'rowenabled[' . $index . ']',
@@ -1539,7 +1630,8 @@ if ($preview !== null) {
                 ])
             ) .
             html_writer::tag('td', (string)$row['line']) .
-            html_writer::tag('td',
+            html_writer::tag(
+                'td',
                 html_writer::empty_tag('input', [
                     'type' => 'text',
                     'name' => 'identifier[' . $index . ']',
@@ -1547,7 +1639,8 @@ if ($preview !== null) {
                     'class' => 'form-control',
                 ])
             ) .
-            html_writer::tag('td',
+            html_writer::tag(
+                'td',
                 html_writer::empty_tag('input', [
                     'type' => 'text',
                     'name' => 'groupname[' . $index . ']',
@@ -1555,7 +1648,8 @@ if ($preview !== null) {
                     'class' => 'form-control',
                 ])
             ) .
-            html_writer::tag('td',
+            html_writer::tag(
+                'td',
                 html_writer::empty_tag('input', [
                     'type' => 'text',
                     'name' => 'groupingname[' . $index . ']',
@@ -1578,7 +1672,8 @@ if ($preview !== null) {
         'type' => 'hidden', 'name' => 'previewcomplete', 'value' => count($preview['rows']),
     ]);
     echo html_writer::end_tag('div');
-    echo html_writer::tag('div',
+    echo html_writer::tag(
+        'div',
         html_writer::tag('span', '', ['class' => 'fa fa-search', 'aria-hidden' => 'true']) .
         html_writer::tag('p', get_string('nopreviewmatches', 'local_groupimport'), ['class' => 'mb-0']),
         [
@@ -1588,13 +1683,16 @@ if ($preview !== null) {
         ]
     );
 
-    echo html_writer::tag('div',
-        html_writer::tag('button',
+    echo html_writer::tag(
+        'div',
+        html_writer::tag(
+            'button',
             html_writer::tag('span', '', ['class' => 'fa fa-check', 'aria-hidden' => 'true']) .
             get_string('submitimport', 'local_groupimport'),
             ['type' => 'submit', 'class' => 'easyedu-button']
         ) .
-        html_writer::link(new moodle_url('/local/groupimport/index.php', ['id' => $course->id]),
+        html_writer::link(
+            new moodle_url('/local/groupimport/index.php', ['id' => $course->id]),
             get_string('cancel', 'local_groupimport'),
             ['class' => 'easyedu-button easyedu-button--neutral']
         ),
@@ -1602,7 +1700,8 @@ if ($preview !== null) {
     );
     echo html_writer::end_tag('form');
 } else if (empty($success) && empty($errors)) {
-    echo html_writer::tag('div',
+    echo html_writer::tag(
+        'div',
         html_writer::tag('svg', html_writer::tag('rect', '', [
             'width' => '100%', 'height' => '100%', 'rx' => '13.6',
         ]), ['class' => 'easyedu-empty__boundary', 'aria-hidden' => 'true', 'focusable' => 'false']) .
@@ -1611,12 +1710,16 @@ if ($preview !== null) {
         ['class' => 'local-groupimport-import-empty easyedu-empty']
     );
 } else {
-    echo html_writer::tag('div',
-        html_writer::tag('span',
+    echo html_writer::tag(
+        'div',
+        html_writer::tag(
+            'span',
             html_writer::tag('strong', count($success)) . ' ' . get_string('successheader', 'local_groupimport'),
-            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success easyedu-report-summary--success']
+            ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--success ' .
+                'easyedu-report-summary--success']
         ) .
-        html_writer::tag('span',
+        html_writer::tag(
+            'span',
             html_writer::tag('strong', count($errors)) . ' ' . get_string('errorheader', 'local_groupimport'),
             ['class' => 'local-groupimport-import-summary__item local-groupimport-import-summary__item--error']
         ),
@@ -1628,13 +1731,15 @@ if ($preview !== null) {
 
     if (!empty($success)) {
         echo html_writer::tag('h4', get_string('successheader', 'local_groupimport'), [
-            'class' => 'local-groupimport-import-report__title local-groupimport-import-report__title--success easyedu-report-title--success',
+            'class' => 'local-groupimport-import-report__title local-groupimport-import-report__title--success ' .
+                'easyedu-report-title--success',
         ]);
         echo html_writer::start_tag('ul', [
             'class' => 'local-groupimport-import-report local-groupimport-import-report--success easyedu-report-list--success',
         ]);
         foreach ($success as $msg) {
-            echo html_writer::tag('li',
+            echo html_writer::tag(
+                'li',
                 html_writer::tag('span', '', ['class' => 'fa fa-check', 'aria-hidden' => 'true']) .
                 html_writer::tag('span', s($msg))
             );
@@ -1650,7 +1755,8 @@ if ($preview !== null) {
             'class' => 'local-groupimport-import-report local-groupimport-import-report--error',
         ]);
         foreach ($errors as $msg) {
-            echo html_writer::tag('li',
+            echo html_writer::tag(
+                'li',
                 html_writer::tag('span', '', ['class' => 'fa fa-exclamation-triangle', 'aria-hidden' => 'true']) .
                 html_writer::tag('span', s($msg))
             );
@@ -1667,7 +1773,8 @@ if ($preview !== null) {
                 ]),
                 html_writer::span('', 'fa fa-file-excel', ['aria-hidden' => 'true']) .
                     html_writer::span(get_string('importexportresults', 'local_groupimport')),
-                ['class' => 'btn btn-outline-primary easyedu-action-with-icon local-groupimport-import__export-results easyedu-button--outline-primary']
+                ['class' => 'btn btn-outline-primary easyedu-action-with-icon local-groupimport-import__export-results ' .
+                    'easyedu-button--outline-primary']
             ),
             'local-groupimport-import-preview__result-actions'
         );
@@ -1682,19 +1789,28 @@ echo html_writer::end_div(); // Grid.
 // join the T045 dialog family (tile + EASYSTUD eyebrow + title + Kit close, sticky footer
 // with Kit buttons). Rows keep every action: restore (or restore again), annotated Excel
 // report, legacy notice and the last restoration date.
-$historytitle = static function(string $titleid, string $title, string $icon, string $closeattribute,
-        string $tilemodifier = ''): string {
-    return html_writer::tag('div',
-        html_writer::tag('div',
+$historytitle = static function (
+    string $titleid,
+    string $title,
+    string $icon,
+    string $closeattribute,
+    string $tilemodifier = ''
+): string {
+    return html_writer::tag(
+        'div',
+        html_writer::tag(
+            'div',
             html_writer::span('', 'easyedu-entity-dialog__icon local-groupimport-import-modal__tile fa ' . $icon .
                 $tilemodifier, ['aria-hidden' => 'true']) .
-            html_writer::tag('div',
+            html_writer::tag(
+                'div',
                 html_writer::span(get_string('pluginname', 'local_groupimport'), 'easyedu-entity-dialog__eyebrow') .
                 html_writer::tag('h3', $title, ['id' => $titleid, 'class' => 'easyedu-modal-title'])
             ),
             ['class' => 'easyedu-entity-dialog__heading']
         ) .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::tag('span', '', ['class' => 'fa fa-times', 'aria-hidden' => 'true']),
             [
                 'type' => 'button',
@@ -1721,10 +1837,14 @@ if (!empty($historyrecords)) {
             local_groupimport_count_string('importhistoryerrorscount', (int)$record->errorcount),
         ];
         $main = html_writer::tag('strong', s($record->filename), ['class' => 'local-groupimport-import-history__file']) .
-            html_writer::tag('span', implode(' &middot; ', array_map('s', $meta)),
-                ['class' => 'local-groupimport-import-history__meta']);
+            html_writer::tag(
+                'span',
+                implode(' &middot; ', array_map('s', $meta)),
+                ['class' => 'local-groupimport-import-history__meta']
+            );
         if ($restored) {
-            $main .= html_writer::tag('span',
+            $main .= html_writer::tag(
+                'span',
                 s(get_string('importhistoryrolledback', 'local_groupimport', userdate((int)$record->timerolledback))),
                 ['class' => 'local-groupimport-import-history__meta local-groupimport-import-history__meta--restored']
             );
@@ -1732,7 +1852,8 @@ if (!empty($historyrecords)) {
 
         $historyactions = '';
         if ($restorable) {
-            $historyactions .= html_writer::tag('button',
+            $historyactions .= html_writer::tag(
+                'button',
                 s(get_string($restored ? 'importhistoryrestoreagain' : 'importhistoryrollback', 'local_groupimport')),
                 [
                     'type' => 'button',
@@ -1761,7 +1882,8 @@ if (!empty($historyrecords)) {
         }
 
         $statekey = $restored ? 'restored' : 'applied';
-        $historyitems .= html_writer::tag('li',
+        $historyitems .= html_writer::tag(
+            'li',
             html_writer::div($main, 'local-groupimport-import-history__item-main') .
             html_writer::tag('span', s(get_string('importhistory' . $statekey, 'local_groupimport')), [
                 'class' => 'local-groupimport-import-history__state local-groupimport-import-history__state--' . $statekey,
@@ -1772,19 +1894,28 @@ if (!empty($historyrecords)) {
         );
     }
 } else {
-    $historyitems = html_writer::tag('li',
+    $historyitems = html_writer::tag(
+        'li',
         html_writer::tag('span', '', ['class' => 'fa fa-inbox', 'aria-hidden' => 'true']) .
         html_writer::tag('span', get_string('importhistoryempty', 'local_groupimport')),
         ['class' => 'local-groupimport-import-history__empty']
     );
 }
 
-echo html_writer::tag('div',
-    html_writer::tag('div',
-        $historytitle('local-groupimport-import-history-title', get_string('importhistory', 'local_groupimport'),
-            'fa-file-import', 'data-local-groupimport-history-close') .
-        html_writer::tag('div',
-            html_writer::tag('div',
+echo html_writer::tag(
+    'div',
+    html_writer::tag(
+        'div',
+        $historytitle(
+            'local-groupimport-import-history-title',
+            get_string('importhistory', 'local_groupimport'),
+            'fa-file-import',
+            'data-local-groupimport-history-close'
+        ) .
+        html_writer::tag(
+            'div',
+            html_writer::tag(
+                'div',
                 html_writer::tag('span', '', ['class' => 'fa fa-info-circle', 'aria-hidden' => 'true']) .
                 html_writer::tag('p', s(get_string('importhistorynotice', 'local_groupimport'))),
                 ['class' => 'easyedu-notice local-groupimport-import-history__notice']
@@ -1795,7 +1926,8 @@ echo html_writer::tag('div',
             html_writer::tag('ul', $historyitems, ['class' => 'local-groupimport-import-history']),
             ['class' => 'local-groupimport-import-modal__body']
         ) .
-        html_writer::tag('div',
+        html_writer::tag(
+            'div',
             html_writer::tag('span', local_groupimport_count_string('importhistorycount', $historycount), [
                 'class' => 'local-groupimport-import-history__summary',
             ]) .
@@ -1804,7 +1936,8 @@ echo html_writer::tag('div',
                 'class' => 'btn easyedu-button',
                 'data-local-groupimport-history-dismiss' => '1',
             ]),
-            ['class' => 'local-groupimport-import-modal__footer local-groupimport-import-modal__footer--summary easyedu-dialog-actions']
+            ['class' => 'local-groupimport-import-modal__footer local-groupimport-import-modal__footer--summary ' .
+                'easyedu-dialog-actions']
         ),
         [
             'class' => 'local-groupimport-import-modal__dialog local-groupimport-import-modal__dialog--history ' .
@@ -1838,10 +1971,13 @@ $rollbackform .= html_writer::empty_tag('input', [
     'value' => '',
     'data-local-groupimport-rollback-id' => '1',
 ]);
-$rollbackform .= html_writer::tag('div',
-    html_writer::tag('div',
+$rollbackform .= html_writer::tag(
+    'div',
+    html_writer::tag(
+        'div',
         html_writer::tag('p', get_string('importrollbackconfirm', 'local_groupimport'), ['class' => 'easyedu-dialog-description']) .
-            html_writer::tag('p',
+            html_writer::tag(
+                'p',
                 html_writer::span('', 'fa fa-file-alt', ['aria-hidden' => 'true']) .
                 html_writer::tag('strong', '', ['data-local-groupimport-rollback-name' => '1']),
                 ['class' => 'local-groupimport-import-rollback__file']
@@ -1850,13 +1986,15 @@ $rollbackform .= html_writer::tag('div',
     ),
     ['class' => 'local-groupimport-import-modal__body']
 );
-$rollbackform .= html_writer::tag('div',
+$rollbackform .= html_writer::tag(
+    'div',
     html_writer::tag('button', get_string('cancel', 'local_groupimport'), [
         'type' => 'button',
         'class' => 'btn easyedu-button--secondary',
         'data-local-groupimport-rollback-close' => '1',
     ]) .
-    html_writer::tag('button',
+    html_writer::tag(
+        'button',
         html_writer::span('', 'fa fa-undo-alt', ['aria-hidden' => 'true']) .
             html_writer::span(get_string('importrollbackconfirmbutton', 'local_groupimport')),
         ['type' => 'submit', 'class' => 'btn easyedu-button--danger easyedu-action-with-icon']
@@ -1865,10 +2003,17 @@ $rollbackform .= html_writer::tag('div',
 );
 $rollbackform .= html_writer::end_tag('form');
 
-echo html_writer::tag('div',
-    html_writer::tag('div',
-        $historytitle('local-groupimport-import-rollback-title', get_string('importrollbacktitle', 'local_groupimport'),
-            'fa-undo-alt', 'data-local-groupimport-rollback-close', ' local-groupimport-import-modal__tile--danger') .
+echo html_writer::tag(
+    'div',
+    html_writer::tag(
+        'div',
+        $historytitle(
+            'local-groupimport-import-rollback-title',
+            get_string('importrollbacktitle', 'local_groupimport'),
+            'fa-undo-alt',
+            'data-local-groupimport-rollback-close',
+            ' local-groupimport-import-modal__tile--danger'
+        ) .
         $rollbackform,
         [
             'class' => 'local-groupimport-import-modal__dialog local-groupimport-import-modal__dialog--confirm ' .
@@ -1885,8 +2030,10 @@ echo html_writer::tag('div',
     ]
 );
 
-echo html_writer::tag('div',
-    html_writer::tag('div',
+echo html_writer::tag(
+    'div',
+    html_writer::tag(
+        'div',
         html_writer::tag('span', '', ['class' => 'fa fa-plus', 'aria-hidden' => 'true']) .
         html_writer::tag('strong', get_string('csvdropready', 'local_groupimport')) .
         html_writer::tag('p', get_string('csvdropsubtitle', 'local_groupimport'), ['class' => 'mb-0']),
