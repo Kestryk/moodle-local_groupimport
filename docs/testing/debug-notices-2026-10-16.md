@@ -1,7 +1,7 @@
 # Developer-debug notices - 16 October 2026
 
 Base: `c2077524`, branch `work/codex1/easystud-debug-notices-20261016`.
-Status: static PASS; native NOT RUN. No product or generated file changed.
+Status: static and scoped native checks PASS. No product or generated file changed.
 
 ## Diagnosis and existing corrections
 
@@ -20,15 +20,17 @@ Status: static PASS; native NOT RUN. No product or generated file changed.
 - No AMD source changed: builds not required. No SCSS, template, language, production JS/PHP or generated asset changed; CRLF retained.
 - No new product API/PHP dependency: compatibility is preserved by the unchanged code, not newly certified on 4.5/5.3.
 
-## Native boundary and reproducible candidate
+## Native evidence on the isolated :8051 copy
 
 The initial source-wrapper preflight failed because its own `tools/playwright/node_modules/@playwright/test/cli.js` was absent. It stopped before fixture setup. Before retry, :8051 was reserved by run `easystud-authenticated-20261016T193302607Z-20120` until 19:50:02Z (observed 19:47:25Z). Per Kevin's instruction, no wait, lease recovery, runtime modification or native retry followed. No debug configuration was changed. Localhost and ports 8052/8054/8055 were untouched.
 
-Candidate files (NOT native-validated):
+The successful run reproduced both historical core notices with exact Moodle APIs in the reversible helper: moodle_page::magic_get_url() emits the DEBUG_DEVELOPER notice when an unset URL is read, and js_call_amd() emits its warning above 1024 serialized characters. It proved the current has_set_url() predicates skip unset URLs and the short JSON bootstrap ID stays below the warning threshold. Page presentation and JSON assertions passed. Payload sizes, per-page results and cleanup evidence are in the JSON report.
+
+Candidate files:
 - `tools/playwright/debug-notices-fixture.php`: exact Perf path + origin allowlist; record/restore original debug settings; real Moodle legacy URL/oversized-AMD probes versus guarded URL/short-ID transport. No course, membership or user fixture changes.
 - `tools/playwright/debug-notices-native.spec.js`: actual developer flag required; FR/EN manager, Mass Import, own settings and another settings section; JSON/bootstrap/Guide/cards readiness and zero debug/console/page errors, result JSON written externally.
 
-When the copy is explicitly free, use its existing installed Playwright wrapper with `-AllowedSpecRoot C:/dev/worktrees/easystud-codex1-debug-notices-20261016/tools/playwright`, this spec, `-MoodleUrl http://localhost:8051/local/groupimport/manage.php?id=5`, `-LeaseResource groupimport-perf-runtime-write`, `-MoodleRoot 'C:/dev/Moodle 51 Perf/moodle'`, and this fixture helper. Keep the wrapper's guaranteed helper cleanup and credential/lease cleanup. Native PASS remains open.
+When the copy is explicitly free, use its existing installed Playwright wrapper with `-AllowedSpecRoot C:/dev/worktrees/easystud-codex1-debug-notices-20261016/tools/playwright`, this spec, `-MoodleUrl http://localhost:8051/local/groupimport/manage.php?id=5`, `-LeaseResource groupimport-perf-runtime-write`, `-MoodleRoot 'C:/dev/Moodle 51 Perf/moodle'`, and this fixture helper. Keep the wrapper's guaranteed helper cleanup and credential/lease cleanup. Native PASS applies to the requested Moodle 5.1 Perf recipe. Moodle 4.5 and 5.3 were not runtime-tested.
 
 Summary JSON: `docs/testing/debug-notices-results-2026-10-16.json`.
 External preflight log: `%LOCALAPPDATA%/EasyEdu/artifacts/easystud/debug-notices-20261016/native.log`.

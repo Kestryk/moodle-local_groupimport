@@ -129,4 +129,4 @@ Final K16-13:12/12PASS,0page/console errors or blocked writes, two screenshots. 
 ## Developer debug notices (16 October)
 - Candidate `debug-notices-native.spec.js` with exact-origin reversible helper: NOT RUN; :8051 reserved after source-wrapper dependency preflight failure.
 - Actual DEBUG_DEVELOPER, JSON transport, Guide/cards, manager/import/settings and unrelated settings, FR/EN; native acceptance remains open.
-- Static 10-case presentation predicate test and security/filter/bootstrap checks PASS; no product or generated assets changed.
+- Static 10-case presentation predicate test and security/filter/bootstrap checks PASS; native notices, console errors and final-run page errors all zero; no product or generated assets changed.

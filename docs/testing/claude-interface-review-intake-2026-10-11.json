@@ -1,13 +1,14 @@
 {
   "codex1DebugNotices20261016": {
-    "status": "static-pass-native-not-run",
+    "status": "static-and-native-pass",
     "base": "c2077524",
     "existingFixes": [
       "d9fa9f09",
       "d3d2ac51"
     ],
     "productChanged": false,
-    "nativeBlocked": "8051 reserved; stop after static per Kevin",
+    "nativeRun": "easystud-authenticated-20261016T200937906Z-36628",
+    "native": "8 FR/EN page cases; zero debug notices, console errors and page errors; first-run page-error anomaly preserved",
     "report": "docs/testing/debug-notices-2026-10-16.md"
   },
   "codex2K1613SortZA20261016": {

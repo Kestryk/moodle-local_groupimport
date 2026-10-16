@@ -134,22 +134,57 @@
     ]
   },
   "native": {
-    "status": "NOT_RUN",
+    "status": "PASS",
     "origin": "http://localhost:8051",
-    "preflight": "Source wrapper missing local Playwright CLI; stopped before credentials, lease or helper setup",
-    "subsequentAvailability": "Reserved by groupimport-perf-runtime-write; did not reacquire or clear the lease",
-    "observedAt": "2026-10-16T19:47:25Z",
-    "reservedRun": "easystud-authenticated-20261016T193302607Z-20120",
-    "reservedUntil": "2026-10-16T19:50:02Z",
-    "debugSettingsChanged": false,
-    "productFilesPublished": false,
-    "runtimeAssertionsPending": [
-      "actual developer notices reproduced through core API",
-      "FR/EN manager, import, settings and unrelated settings page",
-      "zero debug notices and console errors",
-      "Guide and participant cards loaded"
-    ]
+    "debugDeveloper": true,
+    "primaryRun": "easystud-authenticated-20261016T200937906Z-36628",
+    "pages": 8,
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "pageKinds": [
+      "manager",
+      "import",
+      "settings",
+      "otherSettings"
+    ],
+    "debugNotices": 0,
+    "consoleErrors": 0,
+    "pageErrors": 0,
+    "guideLoaded": true,
+    "participantCards": [
+      20,
+      20
+    ],
+    "actualPayloadSizes": {
+      "guideBytesFR": 22074,
+      "managerBytesFR": 1361,
+      "guideBytesEN": 20777,
+      "managerBytesEN": 1255
+    },
+    "coreApiProbes": {
+      "unsetPageUrlWarningReproduced": true,
+      "guardedUrlNoNotice": true,
+      "oversizedAmdArgumentWarningReproduced": true,
+      "shortJsonBootstrapNoNotice": true
+    },
+    "firstRun": "easystud-authenticated-20261016T200736455Z-5456",
+    "firstRunConsoleErrors": 0,
+    "firstRunPageErrors": [
+      "Reactive components needs a main DOM element to dispatch events",
+      "Cannot read properties of undefined (reading querySelectorAll)"
+    ],
+    "firstRunTreatment": "Preserved as cold-run anomaly; diagnostic rerun captured stacks, exercised all 8 pages and passed with zero page errors.",
+    "cleanup": {
+      "credentialsCleared": true,
+      "leaseReleased": true,
+      "fixtureCleanupComplete": true,
+      "debugSettingsRestored": true
+    },
+    "runtimeFilesMatchedBase": true,
+    "productFilesPublished": false
   },
-  "compatibility": "No new product API or PHP requirement; Moodle 4.5/5.3 runtime not tested",
+  "compatibility": "No new product API/PHP requirement; source APIs unchanged. Native checks ran on Moodle 5.1 Perf only; 4.5/5.3 were not runtime-tested.",
   "localhost": "Untouched"
 }

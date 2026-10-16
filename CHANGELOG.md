@@ -1,6 +1,6 @@
 # Changelog
 
-- 2026-10-16 [N0] Recheck existing developer-debug fixes (guarded admin URLs and JSON page bootstrap); add static regression evidence and an isolated native candidate, pending a free :8051 copy.
+- 2026-10-16 [N0] Recheck existing developer-debug fixes (guarded admin URLs and JSON page bootstrap); verify both core warning paths and the existing guards with static tests plus the isolated :8051 FR/EN recipe.
 
 - 2026-10-16 [N1] K16-13: add stable Z-to-A sorting to the shared participant, group and grouping menus; align A-to-Z labels and expose the same grouping pager in compact view without style changes.
 

@@ -15,7 +15,7 @@ test('developer debug pages use guarded URLs and JSON bootstrap on 8051', async(
             result.consoleErrors.push(message.text()); save();
         }
     });
-    page.on('pageerror', error => { result.pageErrors.push(error.message); save(); });
+    page.on('pageerror', error => { result.pageErrors.push({message: error.message, stack: error.stack}); save(); });
     page.setDefaultTimeout(20000);
     page.setDefaultNavigationTimeout(90000);
     await page.goto(base.href, {waitUntil: 'domcontentloaded'});
