@@ -220,3 +220,17 @@ details, assignment flows, filters, identifier paste, context menus, action
 flows, drag and drop, creation formulas, workflows, status grids and keyboard
 shortcuts. Keep labels in plugin language files and add reusable scene markup
 and animations to the kit before using them in another plugin.
+
+## 2026-10-17 — Night Guide source reconciliation
+
+Mirror the accepted Guide rhythm, tablet/phone composition, thirteen-slide Create
+scene, checklist re-docking and numbered navigation pills from EasyStud 6c3ac95f.
+Keep generic ES exports/default labels and the separate Motion/Fullscreen modules;
+consumer adapters retain their AMD/localization mappings. guide_simplecreate is a
+shared partial, mapped to the consumer namespace at synchronization. Shared SCSS
+remains in scss/easyedu/components, not duplicated inside this package.
+
+T037/T038 and the exact source-only adapter roundtrip pass against the dedicated
+canonical branch. No consumer runtime or generated CSS/AMD changes in this sync.
+See docs/testing/guide-kit-mirror-2026-10-17.md in EasyStud for the command list,
+old-design test updates and the unrelated pre-existing button sync diagnostic.
