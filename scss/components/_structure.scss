@@ -1026,7 +1026,8 @@
     margin-top: 0.35rem;
   }
 
-  &-group__members-toggle:not([hidden]) + &-group__select-all-row:not([hidden]) {
+  // K16-57: `~` because the long-list footer (hidden while folded) can sit between them.
+  &-group__members-toggle:not([hidden]) ~ &-group__select-all-row:not([hidden]) {
     align-items: center;
     block-size: 1.55rem;
     margin-top: -1.55rem;
