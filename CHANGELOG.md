@@ -2,6 +2,15 @@
 
 - 2026-10-16 [N1] K16-14: reuse the Move dialog origin checkbox for optional participant copying through existing addusers; preserve default move, deduplicate multiple source selections, localize results and Guide instructions without new styles.
 - 2026-10-16 [N0] K16-17: apply PHP-only Moodle coding style and documentation fixes; reduce codechecker findings from 556 errors/36 warnings to 4 errors/8 warnings, retain API/guard/CLI decisions separately; no runtime or visual changes.
+- 2026-10-16 [N1] Claude K16-69: keep the Complete-view column heading visible.
+- 2026-10-16 [N1] Claude K16-73: give empty group and grouping cards a quiet Kit drop slot.
+- 2026-10-16 [N1] Claude K16-70: use the Kit footer action for group folding, with total badge and responsive icon label.
+- 2026-10-16 [N1] Claude K16-71: use responsive action menus and the Kit close control.
+- 2026-10-16 [N1] Claude K16-74/K16-65: apply flat Kit card surfaces, quiet shadows and a member-row fade.
+- 2026-10-16 [N1] Claude K16-72: use the Kit square close control in the responsive navigation drawer.
+- 2026-10-16 [N1] Claude K16-55: soften the hover disc on card header actions.
+- 2026-10-16 [N1] Claude K16-65: remove the white block from member rows in selected groups.
+- 2026-10-16 [N1] Claude K16-51: use the Kit direct action for the Complete-view group-fold chevron.
 
 - 2026-10-16 [N1] K16-13: add stable Z-to-A sorting to the shared participant, group and grouping menus; align A-to-Z labels and expose the same grouping pager in compact view without style changes.
 
