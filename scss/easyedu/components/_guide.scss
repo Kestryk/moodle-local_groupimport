@@ -366,14 +366,14 @@
     min-height: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 0.05rem 1.25rem 1.1rem;
+    padding: 0 1.5rem 1.5rem;
   }
 
   .easyedu-guide-modal__progress {
     align-items: center;
     background: #fbfcfe;
     display: block;
-    padding: 0.15rem 1.25rem 0.72rem;
+    padding: 0 1.5rem 1rem;
   }
 
   .easyedu-guide-modal__progress-track {
@@ -1179,8 +1179,8 @@
 @mixin guide-rich-navigation {
   .easyedu-guide-nav-wrap {
     flex: 0 0 auto;
-    margin-bottom: 0.86rem;
-    margin-top: 0.86rem;
+    margin-bottom: 0.75rem;
+    margin-top: 1rem;
     overflow: hidden;
     // K16-62: clip, not hidden. A hidden box stays programmatically scrollable, so the active pill's
     // scrollIntoView slid the whole wrapper (and its arrow) to the left. Only the strip scrolls.
@@ -1217,8 +1217,8 @@
     display: flex;
     gap: 0.5rem;
     overflow-x: auto;
-    padding: 0.05rem 3.15rem 0.22rem;
-    scroll-padding-inline: 3.15rem;
+    padding: 0 3rem 0.25rem;
+    scroll-padding-inline: 3rem;
     scroll-snap-type: x proximity;
     scrollbar-width: none;
 
@@ -1235,7 +1235,7 @@
     box-shadow: 0 0.28rem 0.7rem rgba(31, 42, 55, 0.1);
     color: var(--easyedu-primary);
     display: inline-flex;
-    height: 2.2rem;
+    height: 2rem;
     justify-content: center;
     position: absolute;
     top: calc(50% - 0.02rem);
@@ -1245,7 +1245,7 @@
       border-color var(--easyedu-motion-fast) ease,
       opacity var(--easyedu-motion-fast) ease,
       transform var(--easyedu-motion-fast) ease;
-    width: 2.2rem;
+    width: 2rem;
     z-index: 4;
 
     &:hover {
@@ -1267,11 +1267,11 @@
   }
 
   .easyedu-guide-nav-arrow--prev {
-    left: 0.62rem;
+    left: 0.5rem;
   }
 
   .easyedu-guide-nav-arrow--next {
-    right: 0.62rem;
+    right: 0.5rem;
   }
 
   .easyedu-guide-nav .easyedu-guide-nav-item {
