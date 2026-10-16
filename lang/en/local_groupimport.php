@@ -572,7 +572,7 @@ $string['privacy:metadata:history:rowcount'] = 'The number of selected import ro
 $string['privacy:metadata:history:successcount'] = 'The number of successful operations reported.';
 $string['privacy:metadata:history:errorcount'] = 'The number of errors reported.';
 $string['privacy:metadata:history:replacepolicy'] = 'The update strategy chosen for the import.';
-$string['privacy:metadata:history:changesjson'] = 'The target state, row report and group, grouping and membership operations recorded for the import.';
+$string['privacy:metadata:history:changesjson'] = 'Participant ids and imported identifiers (email, username or idnumber), target memberships and row reports recorded for the import.';
 $string['privacy:metadata:history:rollbackuserid'] = 'The user who restored the import.';
 $string['privacy:metadata:history:timerolledback'] = 'When the import was restored.';
 $string['privacy:metadata:history:timecreated'] = 'When the import was confirmed.';
@@ -1155,3 +1155,7 @@ $string['longlistaddedmembers'] = '{$a} more members displayed';
 $string['longlistaddedmembers_one'] = '{$a} more member displayed';
 $string['longlistaddedgroups'] = '{$a} more groups displayed';
 $string['longlistaddedgroups_one'] = '{$a} more group displayed';
+
+$string['historyretentiondays'] = 'Import history retention (days)';
+$string['historyretentiondays_desc'] = 'Keep import history for this many days (1–36500; default 365). Invalid values use 365 days. A daily scheduled task deletes expired history and its restore data; existing groups and memberships are unchanged.';
+$string['taskpurgeimporthistory'] = 'Delete expired EasyStud import history';

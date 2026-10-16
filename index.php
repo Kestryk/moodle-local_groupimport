@@ -702,6 +702,9 @@ function local_groupimport_process_import_rows(
             continue;
         }
 
+        // Bind report rows to the subject even when no membership is applied (Privacy S2).
+        $reportrow['userid'] = (int)$user->id;
+
         if (!is_enrolled($context, $user->id)) {
             $message = get_string('usernotenrolled', 'local_groupimport', $identifier);
             $errors[] = $message;

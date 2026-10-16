@@ -249,5 +249,13 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2026101501, 'local', 'groupimport');
     }
 
+    if ($oldversion < 2026101700) {
+        if (get_config('local_groupimport', 'historyretentiondays') === false) {
+            set_config('historyretentiondays', 365, 'local_groupimport');
+        }
+        // Cron performs expiry later; upgrading never deletes history.
+        upgrade_plugin_savepoint(true, 2026101700, 'local', 'groupimport');
+    }
+
     return true;
 }

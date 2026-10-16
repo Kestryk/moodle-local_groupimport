@@ -1,4 +1,12 @@
 {
+  "codex1SecurityS220261017": {
+    "status": "source-isolated-pass-not-published-phpunit-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s2-20261017",
+    "scope": "Privacy history user lists, subject-only export, scoped erasure and adjustable retention (default 365 days), daily history-only task",
+    "report": "docs/testing/security-s2-history-2026-10-17.md",
+    "validation": "43 in-memory checks, PHP syntax 12/12, security-escaping and filter-engine PASS; no Moodle database/runtime access"
+  },
   "codex1GuideCG720261016": {
     "status": "static-pass-native-not-run-8051-occupied-JG4-pending",
     "base": "ee870566",

@@ -272,6 +272,14 @@ if ($hassiteconfig) {
         $customfieldoptions[$key] = format_string($field->name);
         $fieldoptions[$key] = $customfieldoptions[$key];
     }
+    $settings->add(new admin_setting_configtext(
+        'local_groupimport/historyretentiondays',
+        get_string('historyretentiondays', 'local_groupimport'),
+        get_string('historyretentiondays_desc', 'local_groupimport'),
+        365,
+        PARAM_INT
+    ));
+
     $participantdisplayfieldoptions = ['' => get_string('none')] + $customfieldoptions;
 
     $renderchips = static function (array $fields, string $modifier): string {
