@@ -87,7 +87,7 @@
                                     {{/navcategorymanaged}}
                                     {{#hasguidedpath}}<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                                 </span>
-                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
+                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}<span class="easyedu-guide-nav-item__number">{{navnumber}}</span><span class="easyedu-guide-nav-item__sep"> · </span>{{/navnumber}}<span class="easyedu-guide-nav-item__text">{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span></span>
                             </span>
                             {{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                             {{#requires}}

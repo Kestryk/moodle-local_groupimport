@@ -17,6 +17,19 @@
 @use "tooltips";
 @use "../dialog-palette-classes" as palette;
 
+// Visually hidden, still in the accessibility tree (accessible name stays complete).
+@mixin guide-visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 // A teaching scene composes real card primitives, not a separate visual family.
 @mixin discovery-card($identity) {
   @include cards.object-card($identity);
@@ -1406,7 +1419,27 @@
     .easyedu-guide-modal__progress { padding: 0; gap: 0; border-block-start: 0; }
     .easyedu-guide-nav-wrap { margin-block: 0.5rem; }
     .easyedu-guide-nav { padding-block-end: 0; }
-    .easyedu-guide-nav .easyedu-guide-nav-item { flex-basis: 11.375rem; }
+    // P-G6 option A: numbered 44px pills; only the active one is expanded with its
+    // chapter and title. The strip scrolls inside itself (K16-62 clip on the wrap).
+    .easyedu-guide-nav .easyedu-guide-nav-item {
+      flex: 0 0 2.75rem;
+      justify-content: center;
+      min-height: 2.75rem;
+      padding: 0;
+      &:not(.is-active) {
+        > .fa, .easyedu-guide-nav-item__icon, .easyedu-guide-nav-item__meta,
+        .easyedu-guide-nav-item__sep, .easyedu-guide-nav-item__text,
+        .easyedu-guide-nav-item__requirement { @include guide-visually-hidden; }
+        .easyedu-guide-nav-item__label { text-align: center; }
+      }
+      &.is-active {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        max-inline-size: 11.375rem;
+        padding: 0.25rem 0.75rem;
+        > .fa, .easyedu-guide-nav-item__icon { display: none; }
+      }
+    }
     .easyedu-guide-modal__footer { flex-wrap: wrap; padding: 0.75rem 1rem; }
     // GS10 phone: one footer row. The reading count yields its width and may
     // break between "Step 3" and "of 12" inside the 38px row height.
