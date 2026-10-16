@@ -359,7 +359,9 @@
 // Keep responsive density, faded extras and all disclosure Motion external.
 @mixin related-person-row {
   align-items: center;
-  background: rgba(255, 255, 255, 0.78);
+  // K16-65/K16-74: a lighter veil so the row reads on every card surface (rest or selected green)
+  // instead of a white block.
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid transparent;
   border-radius: 0.6rem;
   display: flex;
