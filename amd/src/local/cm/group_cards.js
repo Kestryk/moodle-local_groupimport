@@ -268,8 +268,12 @@ export const syncGroupMembersCollapsible = group => {
     const toggleLabel = toggle.querySelector('[data-easystud-group-members-toggle-label]');
     if (toggleLabel) {
         const labels = getToggleLabels(group);
-        toggleLabel.textContent = expanded ? (labels.groupmembersshowless || '') :
-            countLabel(labels.groupmembersshowall || '', members.length);
+        // Same total as the card's count badge, not only the rows loaded on screen.
+        const text = expanded ? (labels.groupmembersshowless || '') :
+            countLabel(labels.groupmembersshowall || '', getGroupMemberCount(group));
+        toggleLabel.textContent = text;
+        // The label is hidden where the control is icon-only (responsive, long-list header).
+        toggle.setAttribute('aria-label', text);
     }
     if (more) {
         more.hidden = !cancollapse || expanded;
