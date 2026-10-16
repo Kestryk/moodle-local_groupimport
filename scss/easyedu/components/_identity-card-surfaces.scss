@@ -4,26 +4,32 @@
 // unassigned. See docs/components/cards.md for the original source checkpoint.
 @use "sass:map";
 
+// K16-74 (Kevin 16/10, light facelift keeping the cards' spirit): flat surfaces on Kit tokens,
+// entity-tinted hairlines, no shadow at rest, one soft Kit shadow on hover/selection, no lift.
 $identity-card-paints: (
   person: (
-    rest: (border-top-color: #d6e5f2, border-right-color: #d6e5f2, border-bottom-color: #d6e5f2),
-    hover: (background: #fbfdff, border-color: #cadbea, box-shadow: 0 0.42rem 0.9rem rgba(31, 42, 55, 0.07), transform: translateY(-1px)),
-    selected: (border-color: #8aa6c9, box-shadow: 0 0.55rem 1rem rgba(72, 115, 173, 0.16))
+    rest: (
+      border-top-color: color-mix(in srgb, var(--easyedu-participant) 20%, #fff),
+      border-right-color: color-mix(in srgb, var(--easyedu-participant) 20%, #fff),
+      border-bottom-color: color-mix(in srgb, var(--easyedu-participant) 20%, #fff)
+    ),
+    hover: (background: var(--easyedu-surface), border-color: color-mix(in srgb, var(--easyedu-participant) 32%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    selected: (border-color: color-mix(in srgb, var(--easyedu-participant) 55%, #fff), box-shadow: var(--easyedu-shadow-soft))
   ),
   object: (
-    rest: (background: linear-gradient(180deg, #f9fbfd 0%, #f4f8fb 100%), border: 1px solid #d7e5dc, border-radius: 0.8rem, box-shadow: 0 0.18rem 0.6rem rgba(31, 42, 55, 0.05)),
-    hover: (background: linear-gradient(180deg, #fbfdfc 0%, #f5faf7 100%), border-color: #cbded2, box-shadow: 0 0.42rem 0.9rem rgba(31, 42, 55, 0.07), transform: translateY(-1px)),
-    selected: (border-color: #82ae97, box-shadow: 0 0.55rem 1rem rgba(41, 114, 77, 0.17))
+    rest: (background: var(--easyedu-surface-soft), border: 1px solid color-mix(in srgb, var(--easyedu-group) 18%, #fff), border-radius: var(--easyedu-card-radius), box-shadow: none),
+    hover: (border-color: color-mix(in srgb, var(--easyedu-group) 30%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    selected: (border-color: color-mix(in srgb, var(--easyedu-group) 52%, #fff), box-shadow: var(--easyedu-shadow-soft))
   ),
   container: (
-    rest: (background: linear-gradient(180deg, #fff 0%, #f7fafc 100%), border-color: #d7e0e8),
-    expanded: (background: linear-gradient(180deg, #fff 0%, #f7fafc 100%), box-shadow: 0 0.42rem 0.9rem -0.28rem rgba(106, 127, 152, 0.18)),
-    selected: (border-color: #9eb0c2, box-shadow: 0 0.56rem 1.05rem rgba(106, 127, 152, 0.17)),
-    expanded-selected: (background: #edf2f7, border-color: #9eb0c2, box-shadow: 0 0.5rem 1rem -0.24rem rgba(106, 127, 152, 0.22))
+    rest: (background: var(--easyedu-surface), border-color: color-mix(in srgb, var(--easyedu-grouping) 24%, #fff)),
+    expanded: (background: var(--easyedu-surface), box-shadow: var(--easyedu-shadow-soft)),
+    selected: (border-color: color-mix(in srgb, var(--easyedu-grouping) 55%, #fff), box-shadow: var(--easyedu-shadow-soft)),
+    expanded-selected: (background: var(--easyedu-grouping-soft), border-color: color-mix(in srgb, var(--easyedu-grouping) 55%, #fff), box-shadow: var(--easyedu-shadow-soft))
   ),
   unassigned: (
-    rest: (background: linear-gradient(180deg, #fefbfd 0%, #f7eef5 100%), border-color: #e5d4e0, border-radius: 0.95rem),
-    expanded: (background: linear-gradient(180deg, #fdfafd 0%, #f2e5ef 100%), border-color: #d7bcd0, box-shadow: 0 0.42rem 0.9rem -0.28rem rgba(111, 67, 100, 0.18))
+    rest: (background: #fbf6fa, border-color: #e5d4e0, border-radius: var(--easyedu-card-radius)),
+    expanded: (background: #f8f0f6, border-color: #d7bcd0, box-shadow: var(--easyedu-shadow-soft))
   )
 );
 

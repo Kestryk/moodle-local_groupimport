@@ -223,7 +223,6 @@ export const syncGroupMembersCollapsible = group => {
     }
     const list = group.querySelector('[data-easystud-group-members]');
     const toggle = group.querySelector('[data-easystud-group-members-toggle]');
-    const more = group.querySelector('[data-easystud-group-members-more]');
     if (!list || !toggle) {
         return;
     }
@@ -274,9 +273,6 @@ export const syncGroupMembersCollapsible = group => {
         toggleLabel.textContent = text;
         // The label is hidden where the control is icon-only (responsive, long-list header).
         toggle.setAttribute('aria-label', text);
-    }
-    if (more) {
-        more.hidden = !cancollapse || expanded;
     }
     const footer = windowed ? group.querySelector(':scope > [data-easystud-long-list-footer]') : null;
     if (footer && cancollapse && !expanded) {
@@ -875,7 +871,6 @@ export const createGroupElement = (root, groupdata) => {
         '</div>' +
         '<ul class="local-groupimport-easystud-group__members" data-easystud-group-members="' +
             escapeHtml(groupdata.id) + '"></ul>' +
-        '<span class="local-groupimport-easystud-group__members-more" data-easystud-group-members-more="1" hidden>...</span>' +
         '<button type="button" class="local-groupimport-easystud-group__members-toggle" data-easystud-group-members-toggle="1" hidden>' +
             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
             '<span class="local-groupimport-easystud-group__members-toggle-label" ' +
