@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-16 [N1] K16-13: add stable Z-to-A sorting to the shared participant, group and grouping menus; align A-to-Z labels and expose the same grouping pager in compact view without style changes.
+
 - 2026-10-15 [N0] Certify Drawer V1 FR390/768/1280 on SM and Mass Import: focus/Tab/Escape/Close, scroll lock and desktop state; zero page errors/business writes.
 
 - 2026-10-15 [N1] Integrate Claude Drawer V1: compact scrolling navigation, dedicated space labels, Guide focus and Moodle opener suppression; synchronize canonical Kit0.4.215/e099212 with authorized RTL/JS/template resolutions, preserving M2 and desktop context.
@@ -6005,3 +6007,5 @@ Maintenance convention:
 - Rebuilt SM/CM and conservative CSS. Dense/ordinary native fixture and acceptance audit remain in progress; no native acceptance claimed.
 
 - K16-01/K16-22 native parity certified: 32 states, 1042 pills at 22px, centre delta 0px, 76 exact counters, eight group and two participant real deferred opens. Kevin audit: zero non-group failures; 18 group failures deferred to the next lot. Fixtures restored.
+
+- 2026-10-16 [N1] K16-54: Group card Select all unfolds through the existing chevron helper before selecting model members; deselection leaves the card open. Preserve styles, templates and long-list policy.

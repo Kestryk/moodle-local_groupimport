@@ -364,7 +364,7 @@ export const treeGroupSearchText = (model, card) => {
  *
  * @param {Object} model Participant model.
  * @param {Number[]} ids Group ids.
- * @param {String} mode alpha, filled or empty.
+ * @param {String} mode alpha, alpha-desc, filled or empty.
  * @returns {Number[]}
  */
 export const sortGroupIds = (model, ids, mode) => {
@@ -380,7 +380,7 @@ export const sortGroupIds = (model, ids, mode) => {
         if ((mode === 'filled' || mode === 'empty') && left.count !== right.count) {
             return mode === 'filled' ? right.count - left.count : left.count - right.count;
         }
-        return left.name.localeCompare(right.name);
+        return mode === 'alpha-desc' ? right.name.localeCompare(left.name) : left.name.localeCompare(right.name);
     });
     return keyed.map(item => item.id);
 };
