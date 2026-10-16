@@ -12,12 +12,12 @@ const source = read('amd/src/easyedu_guide.js');
 const start = source.indexOf('const getStateKey =');
 const end = source.indexOf('const getCompletedSteps =', start);
 assert.ok(start >= 0 && end > start, 'Bounded actual storage engine');
-const slideIds = ['use-this-guide', 'understand-workspace', 'create-structure',
+const slideIds = ['use-this-guide', 'understand-workspace', 'create-one', 'create-structure',
     'read-participant-card', 'read-group-card', 'read-grouping-card', 'add-or-move-members',
     'search-filter-select', 'pasted-identifiers', 'choose-right-action',
     'use-groupings-in-activities', 'ready-to-work'];
 const invitations = {
-    'create-structure': 'practice-membership',
+    'create-one': 'practice-membership',
     'read-group-card': 'inspect-group-settings',
     'read-grouping-card': 'inspect-grouping-settings',
     'add-or-move-members': 'reorganise-source-members',
@@ -49,14 +49,12 @@ for (const language of ['en', 'fr']) {
     const data = JSON.parse(execFileSync(process.argv[2],
         [path.join(__dirname, 'guide-current-curriculum-fixture.php'), language], {encoding: 'utf8'}));
     const slides = data.templateData.slides;
-    const navLabels=language==='fr'?['Le guide','Repères','Structure','Participant','Groupe','Groupement','Organiser','Filtrer','Identifiants','Actions','Devoir de groupe','Prêt']:
-        ['The guide','Landmarks','Structure','Participant','Group','Grouping','Organise','Filter','Identifiers','Actions','Group assignment','Ready'];
+    const navLabels=language==='fr'?['Le guide','Repères','Créer','En lot','Participant','Groupe','Groupement','Organiser','Filtrer','Identifiants','Actions','Devoir de groupe','Prêt']:
+        ['The guide','Landmarks','Create','Batch','Participant','Group','Grouping','Organise','Filter','Identifiers','Actions','Group assignment','Ready'];
     assert.deepEqual(slides.map(slide=>slide.navtitle),navLabels);
-    let previousCategory=null;
     slides.forEach((slide,index)=>{
         assert.equal(slide.navnumber,index+1);assert.equal(slide.navcategorymanaged,true);
-        assert.equal(slide.navcategorylabel,slide.category!==previousCategory?slide.category:'');
-        previousCategory=slide.category;
+        assert.equal(slide.navcategorylabel,slide.category, 'Every pill repeats its chapter (K1)');
     });
     assert.deepEqual(slides.map(slide => slide.id), slideIds);
     assert.deepEqual(data.readingContract.slideIds, slideIds);
@@ -146,6 +144,6 @@ for (const language of ['en', 'fr']) {
     assert.equal(JSON.stringify(context.api.loadGuideState(config)), JSON.stringify(cleaned));
     assert.equal(entries.get(key), JSON.stringify(cleaned), 'Unknown path entries retired, known progress retained');
 }
-console.log(JSON.stringify({status: 'PASS', languages: ['en', 'fr'], slidesPerLanguage: 12,
-    invitationsPerLanguage: 6, definitionsPerLanguage: 7, milestones, migratedPositions,
+console.log(JSON.stringify({status: 'PASS', languages: ['en', 'fr'], slidesPerLanguage: 13,
+    invitationsPerLanguage: Object.keys(invitations).length, definitionsPerLanguage: expectedPaths.length, milestones, migratedPositions,
     restoredPathStates, scope: 'Actual PHP payload and isolated actual storage engine; no native workflow, raster or human acceptance'}, null, 2));

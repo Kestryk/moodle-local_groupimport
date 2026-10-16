@@ -1,4 +1,12 @@
 {
+  "codex1GuideCG720261016": {
+    "status": "static-pass-native-not-run-8051-occupied-JG4-pending",
+    "base": "ee870566",
+    "branch": "work/codex1/easystud-guide-cg7-20261016",
+    "scope": "Thirteen-slide programme, bilingual Create-one scene contract, Batch copy and stable progress migrations; no AMD or SCSS changes",
+    "report": "docs/testing/guide-cg7-2026-10-16.md",
+    "publication": "Not published; Claude integrates and implements J-G4 playback"
+  },
   "codex1K1617Codechecker20261016": {
     "status": "source-static-pass-not-published-decisions-open",
     "base": "c2077524",

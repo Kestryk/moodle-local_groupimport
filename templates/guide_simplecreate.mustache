@@ -1,0 +1,48 @@
+{{!
+    @template local_groupimport/guide_simplecreate
+
+    Illustration only. J-G4 owns playback; no Moodle command or form submission.
+    Context: discovery_simplecreate_* strings prepared by guide_discovery.
+}}
+<div data-guide-simplecreate data-guide-stage data-guide-phase="1"
+    data-guide-phase-1-label="{{phase1}}" data-guide-phase-2-label="{{phase2}}"
+    data-guide-phase-3-label="{{phase3}}" data-guide-phase-4-label="{{phase4}}"
+    data-guide-simplecreate-name="{{groupname}}" data-guide-simplecreate-grouping="{{groupingname}}"
+    data-guide-simplecreate-renamed="{{renamed}}">
+    <div class="easyedu-guide-scene__utilities align-items-end w-100">
+        <label class="easyedu-guide-scene__field"><span>{{grouplabel}}</span>
+            <input type="text" data-guide-simplecreate-input="group" placeholder="{{groupplaceholder}}"
+                value="" readonly tabindex="-1" autocomplete="off">
+        </label>
+        <button type="button" class="btn btn-primary" data-guide-simplecreate-submit="group"
+            aria-label="{{addlabel}}" tabindex="-1" disabled><span class="fa fa-plus" aria-hidden="true"></span></button>
+    </div>
+    <div class="easyedu-guide-scene__results" data-guide-simplecreate-result="group" hidden>
+        <span class="easyedu-guide-scene__card">
+            <span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span>
+            <span class="easyedu-guide-scene__card-copy"><strong data-guide-simplecreate-card-name>{{groupname}}</strong>
+                <small>{{emptymembers}}</small>
+                <input type="text" data-guide-simplecreate-rename value="{{groupname}}" readonly tabindex="-1" hidden>
+            </span>
+            <button type="button" class="btn btn-outline-secondary" data-guide-simplecreate-edit
+                aria-label="{{renamelabel}}" tabindex="-1" disabled><span class="fa fa-pencil" aria-hidden="true"></span></button>
+        </span>
+    </div>
+    <div data-guide-simplecreate-grouping-stage hidden>
+        <div class="easyedu-guide-scene__utilities align-items-end w-100">
+            <label class="easyedu-guide-scene__field"><span>{{groupinglabel}}</span>
+                <input type="text" data-guide-simplecreate-input="grouping" placeholder="{{groupingplaceholder}}"
+                    value="" readonly tabindex="-1" autocomplete="off">
+            </label>
+            <button type="button" class="btn btn-primary" data-guide-simplecreate-submit="grouping"
+                aria-label="{{addlabel}}" tabindex="-1" disabled><span class="fa fa-plus" aria-hidden="true"></span></button>
+        </div>
+        <div class="easyedu-guide-scene__results" data-guide-simplecreate-result="grouping" hidden>
+            <span class="easyedu-guide-scene__grouping">
+                <span class="easyedu-guide-scene__identity fa fa-layer-group" aria-hidden="true"></span>
+                <span class="easyedu-guide-scene__card-copy"><strong>{{groupingname}}</strong><small>{{emptygroups}}</small></span>
+            </span>
+        </div>
+    </div>
+    <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"></span>
+</div>
