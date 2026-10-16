@@ -2,7 +2,6 @@
 @use "../easyedu" as easyedu;
 
 #local-groupimport-easystud {
-  @include easyedu.card-title-accent-overlay;
   // K16-37: the dense aligned recipe belongs to the light responsive cards only; desktop
   // compact (one line) and full-information cards keep their own layouts.
   // :where() keeps the original specificity, so later responsive refinements still win.

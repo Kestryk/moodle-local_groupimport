@@ -149,14 +149,14 @@
   padding: 0.7rem 0.85rem;
 }
 
-// Entity-card empty slot (K16-73, Kevin 16/10): a quiet drop slot inside the card, tinted with the
-// entity colour, dashed hairline, bare glyph, message then help. The drag state only intensifies
-// the same slot (entity-card-empty-drop-target), so the empty card already reads as "drop here".
+// Entity-card empty line (K16-77, Kevin 16/10: no dotted frame, Kit styles that respect the card):
+// an empty member row — the related-person-row veil and radius — with a bare entity glyph, the
+// message then the help. Only the drag state marks the drop target (entity-card-empty-drop-target).
 @mixin entity-card-empty-line($color) {
   align-items: center;
-  background: color-mix(in srgb, #{$color} 5%, #fff);
-  border: 1px dashed color-mix(in srgb, #{$color} 34%, #fff);
-  border-radius: var(--easyedu-control-radius);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
   box-sizing: border-box;
   color: var(--easyedu-text-muted);
   column-gap: 10px;
@@ -187,8 +187,8 @@
 }
 
 @mixin entity-card-empty-drop-target {
-  background: color-mix(in srgb, var(--easyedu-primary) 6%, transparent);
-  border: 1px dashed var(--easyedu-primary);
+  background: var(--easyedu-primary-soft);
+  border: 1px solid color-mix(in srgb, var(--easyedu-primary) 45%, #fff);
 }
 
 @mixin search-empty-state {
