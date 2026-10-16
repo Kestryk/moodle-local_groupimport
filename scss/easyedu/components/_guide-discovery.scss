@@ -1184,18 +1184,28 @@
     border: 1px solid var(--easyedu-border);
     border-inline-start: 3px solid var(--easyedu-accent);
     border-radius: 0.875rem;
-    padding: 0.875rem;
+    // C-G4 (P-G2): padding 16 / reduced 12, gaps 8, step padding 12, one side by
+    // default (right); the docking class set by the controller still wins.
+    padding: 1rem;
     gap: 0.75rem;
+    left: auto;
+    right: 1.25rem;
     text-align: start;
     .easyedu-guided-panel__header {
       align-items: center;
-      gap: 0.625rem;
+      gap: 0.75rem;
       > div:first-child { display: grid; gap: 0.25rem; }
-      strong { @include typography.type-control-label; color: var(--easyedu-text); font-size: 0.88rem; }
+      // The title may wrap on 2 lines (type-control-label forces one).
+      strong { @include typography.type-control-label; color: var(--easyedu-text); font-size: 0.88rem; line-height: 1.25rem; white-space: normal; overflow-wrap: anywhere; }
       > div:first-child > span { @include typography.type-caption; text-transform: none; letter-spacing: normal; font-weight: var(--easyedu-font-weight-regular); }
     }
     .easyedu-guided-panel__header-actions { max-width: none; }
     .easyedu-guided-panel__close { @include buttons.close-button; }
+    // Header commands are icon buttons of one size: minimize, expand and close.
+    .easyedu-guided-panel__restore {
+      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
+      & { @include buttons.button-size(small); width: 1.9rem; height: 1.9rem; min-height: 1.9rem; padding: 0; }
+    }
     .easyedu-guided-panel__minimize {
       @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
       // Emit after the utility's nested paint block: otherwise Sass hoists
@@ -1208,20 +1218,23 @@
         padding: 0;
       }
     }
-    .easyedu-guided-panel__restore {
-      @include buttons.guide-adjacent-action($size: small, $override-legacy: true);
-      & { @include buttons.button-size(small); }
-    }
     .easyedu-guided-panel__steps {
       grid-auto-rows: max-content;
       align-content: start;
+      gap: 0.5rem;
     }
     .easyedu-guided-panel__step {
       height: auto;
       align-items: start;
-      padding: 0.625rem;
+      padding: 0.75rem;
+      gap: 0.75rem;
       > span:last-child { gap: 0.25rem; }
-      strong { line-height: 1.4; }
+      strong { line-height: 1.25rem; }
+      // Number: 24px circle centred on the first title line (20px line, -2px).
+      .easyedu-guided-panel__index {
+        width: 1.5rem; height: 1.5rem; min-width: 1.5rem; line-height: 1; margin-block-start: -0.125rem;
+        justify-content: center; align-items: center;
+      }
       small { line-height: 1.5; font-weight: var(--easyedu-font-weight-regular); }
       &.is-locked {
         background: repeating-linear-gradient(-45deg, transparent 0 0.5rem,
@@ -1288,7 +1301,7 @@
       }
       &.is-complete {
         .easyedu-guided-panel__steps { display: none; }
-        gap: 0.625rem;
+        gap: 0.75rem;
         .easyedu-guided-panel__message.is-complete {
           display: flex;
           grid-column: 1;
@@ -1296,7 +1309,7 @@
           height: auto;
           min-height: 0;
           overflow: visible;
-          padding: 0.625rem;
+          padding: 0.75rem;
           [data-easyedu-guide-checklist-message-text] {
             display: block !important;
             min-width: 0;

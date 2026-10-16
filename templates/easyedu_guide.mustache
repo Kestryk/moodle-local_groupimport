@@ -655,11 +655,11 @@
                 <button type="button" class="btn btn-link easyedu-guided-panel__minimize" data-easyedu-guide-checklist-minimize="1" aria-label="{{guideminimizelabel}}" aria-expanded="true">
                     <span class="fa fa-minus" aria-hidden="true"></span>
                 </button>
+                {{#discoverypresentation}}<button type="button" class="btn btn-outline-secondary easyedu-guided-panel__restore" data-easyedu-guide-checklist-restore="1" aria-expanded="false" hidden><span class="fa fa-expand" aria-hidden="true"></span><span class="sr-only">{{guiderestorelabel}}</span></button>{{/discoverypresentation}}
                 <button type="button" class="btn btn-link easyedu-guided-panel__close" data-easyedu-guide-checklist-close="1" aria-label="{{guidecloselabel}}">
                     {{#discoverypresentation}}<span aria-hidden="true">&times;</span>{{/discoverypresentation}}
                     {{^discoverypresentation}}<span class="fa fa-times" aria-hidden="true"></span>{{/discoverypresentation}}
                 </button>
-                {{#discoverypresentation}}<button type="button" class="btn btn-outline-secondary easyedu-guided-panel__restore" data-easyedu-guide-checklist-restore="1" aria-expanded="false" hidden><span class="fa fa-expand" aria-hidden="true"></span><span>{{guiderestorelabel}}</span></button>{{/discoverypresentation}}
             </div>
         </div>
         <div class="easyedu-guide-checklist__items easyedu-guided-panel__steps" data-easyedu-guide-checklist-items></div>
