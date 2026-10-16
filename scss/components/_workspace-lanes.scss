@@ -17,7 +17,7 @@
     }
   }
   .local-groupimport-easystud__panel--structure {
-    border-top-color: var(--easyedu-group-rail);
+    --easyedu-lane-rail-colour: var(--easyedu-group-rail);
   }
   .local-groupimport-easystud__filters,
   .local-groupimport-easystud-create-card,

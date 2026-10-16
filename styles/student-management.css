@@ -11434,11 +11434,11 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .local-groupimport-easystud__layout {gap: var(--easyedu-lane-gap);
 }
-#local-groupimport-easystud .local-groupimport-easystud__panel {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius);border-top: var(--easyedu-lane-rail-width) solid var(--easyedu-participant-rail);padding-inline: 0;
+#local-groupimport-easystud .local-groupimport-easystud__panel {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius);--easyedu-lane-rail-colour: var(--easyedu-participant-rail);background-image: linear-gradient(90deg, var(--easyedu-lane-rail-colour) 0%, color-mix(in srgb, var(--easyedu-lane-rail-colour) 68%, #fff 32%) 100%);background-position: left top;background-repeat: no-repeat;background-size: 100% 0.35rem;padding-inline: 0;
 }
 #local-groupimport-easystud .local-groupimport-easystud__panel > .card-body {padding-inline: var(--easyedu-lane-inset);container: easystud-panel/inline-size;
 }
-#local-groupimport-easystud .local-groupimport-easystud__panel--structure {border-top-color: var(--easyedu-group-rail);
+#local-groupimport-easystud .local-groupimport-easystud__panel--structure {--easyedu-lane-rail-colour: var(--easyedu-group-rail);
 }
 #local-groupimport-easystud .local-groupimport-easystud__filters,
 #local-groupimport-easystud .local-groupimport-easystud-create-card,
@@ -11473,9 +11473,9 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud__participant-content {column-gap: var(--easyedu-lane-gap);row-gap: 0;grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 }
-#local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud__filters {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;border-top: var(--easyedu-lane-rail-width) solid var(--easyedu-participant-rail);align-self: stretch;
+#local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud__filters {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;--easyedu-lane-rail-colour: var(--easyedu-participant-rail);background-image: linear-gradient(90deg, var(--easyedu-lane-rail-colour) 0%, color-mix(in srgb, var(--easyedu-lane-rail-colour) 68%, #fff 32%) 100%);background-position: left top;background-repeat: no-repeat;background-size: 100% 0.35rem;align-self: stretch;
 }
-#local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud-participant-groups__create {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;border-top: var(--easyedu-lane-rail-width) solid var(--easyedu-group-rail);align-self: stretch;
+#local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud-participant-groups__create {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;--easyedu-lane-rail-colour: var(--easyedu-group-rail);background-image: linear-gradient(90deg, var(--easyedu-lane-rail-colour) 0%, color-mix(in srgb, var(--easyedu-lane-rail-colour) 68%, #fff 32%) 100%);background-position: left top;background-repeat: no-repeat;background-size: 100% 0.35rem;align-self: stretch;
 }
 #local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud__participant-list,
 #local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud-participant-groups__list {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: 0 0 var(--easyedu-lane-radius) var(--easyedu-lane-radius);padding-bottom: var(--easyedu-lane-inset);
@@ -11485,9 +11485,9 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud-create-row {margin-bottom: 0;
 }
-#local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud-create-card--group {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;border-top: var(--easyedu-lane-rail-width) solid var(--easyedu-group-rail);
+#local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud-create-card--group {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;--easyedu-lane-rail-colour: var(--easyedu-group-rail);background-image: linear-gradient(90deg, var(--easyedu-lane-rail-colour) 0%, color-mix(in srgb, var(--easyedu-lane-rail-colour) 68%, #fff 32%) 100%);background-position: left top;background-repeat: no-repeat;background-size: 100% 0.35rem;
 }
-#local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud-create-card--grouping {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;border-top: var(--easyedu-lane-rail-width) solid var(--easyedu-grouping-rail);
+#local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud-create-card--grouping {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;--easyedu-lane-rail-colour: var(--easyedu-grouping-rail);background-image: linear-gradient(90deg, var(--easyedu-lane-rail-colour) 0%, color-mix(in srgb, var(--easyedu-lane-rail-colour) 68%, #fff 32%) 100%);background-position: left top;background-repeat: no-repeat;background-size: 100% 0.35rem;
 }
 #local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud-structure-groups,
 #local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud-tree__groupings {background: var(--easyedu-surface-soft);border: 0;box-shadow: none;min-inline-size: 0;padding-inline: var(--easyedu-lane-inset);border-radius: 0 0 var(--easyedu-lane-radius) var(--easyedu-lane-radius);padding-bottom: var(--easyedu-lane-inset);
