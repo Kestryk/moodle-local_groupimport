@@ -59,6 +59,11 @@
     padding: 0;
   }
 
+  // K16-70: in the header the fold control stays an icon button; the footer label is not shown.
+  &-long-list__foldable &-group__header &-group__members-toggle-label {
+    display: none;
+  }
+
   &-long-list__foldable &-group__header &-group__members-toggle[aria-expanded="false"] .fa {
     transform: rotate(-90deg);
   }

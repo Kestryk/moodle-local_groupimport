@@ -1105,6 +1105,8 @@ $string['importatomicfailed'] = 'The import could not be completed. All its chan
 $string['importlimits'] = 'Limits: {$a->rows} rows per import, {$a->mb} MB per file. Split larger files.';
 
 $string['emptygrouphelp'] = 'Drag participants here or use @';
+$string['groupmembersshowall'] = 'See all {$a} members';
+$string['groupmembersshowless'] = 'Show less';
 $string['emptygroupinghelp'] = 'Drag groups here';
 $string['adminsettingenabled'] = 'Enabled';
 $string['adminsettingdisabled'] = 'Disabled';

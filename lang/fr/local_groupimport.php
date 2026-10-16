@@ -1105,6 +1105,8 @@ $string['importatomicfailed'] = 'L’import n’a pas pu aboutir. Tous ses chang
 $string['importlimits'] = 'Limites : {$a->rows} lignes par import, {$a->mb} Mo par fichier. Divisez les fichiers plus volumineux.';
 
 $string['emptygrouphelp'] = 'Glissez des participants ici ou utilisez @';
+$string['groupmembersshowall'] = 'Voir les {$a} membres';
+$string['groupmembersshowless'] = 'Réduire';
 $string['emptygroupinghelp'] = 'Glissez des groupes ici';
 $string['adminsettingenabled'] = 'Activé';
 $string['adminsettingdisabled'] = 'Désactivé';

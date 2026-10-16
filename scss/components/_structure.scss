@@ -1031,8 +1031,9 @@
   &-group__members-toggle:not([hidden]) + &-group__select-all-row:not([hidden]),
   &-group__members-toggle:not([hidden]) + [data-easystud-long-list-footer][hidden] + &-group__select-all-row:not([hidden]) {
     align-items: center;
-    block-size: 1.55rem;
-    margin-top: -1.55rem;
+    // K16-70: the row now carries the Kit action height (button-size small).
+    block-size: 1.9rem;
+    margin-top: -1.9rem;
     pointer-events: none;
     position: relative;
 
@@ -1119,8 +1120,28 @@
     text-align: center;
   }
 
+  // K16-70 (Kevin 16/10): the fold control is the same Kit action as "Select all" on its row
+  // (selection-recovery-action): chevron + "See all N members" / "Show less".
   &-group__members-toggle {
-    @include easyedu.card-reveal-toggle(#d8e1ea, #647588);
+    @include easyedu.selection-recovery-action;
+
+    margin: 0.35rem 0 0;
+    width: fit-content;
+
+    .fa {
+      transition: transform var(--easyedu-motion-fast) ease;
+    }
+
+    &.is-expanded .fa,
+    &[aria-expanded="true"] .fa {
+      transform: rotate(180deg);
+    }
+  }
+
+  // Desktop footer: the chevron starts on the title column, like the member names (K16-25 grid,
+  // selectable-card-header 2.55rem, minus the action's 0.5rem inline padding).
+  &:not(.local-groupimport-easystud--responsive-workspace) &-group > &-group__members-toggle {
+    margin-inline-start: calc(2.55rem - 0.5rem);
   }
 
   &-advanced-filters__toggle.local-groupimport-easystud-group__members-toggle {
