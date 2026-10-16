@@ -30,6 +30,7 @@
         "id": 7,
         "name": "Group A",
         "rawname": "Group A",
+        "membercount": 2,
         "membercountlabel": "2 members",
         "groupingidscsv": "",
         "hasnogrouping": true,
@@ -74,7 +75,7 @@
                 {{/groupingtags}}
             </span>
         {{/groupingtags.0}}
-        <span class="badge bg-light text-dark">{{membercountlabel}}</span>
+        <span class="badge bg-light text-dark" aria-label="{{membercountlabel}}" title="{{membercountlabel}}"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1">{{membercount}}</span></span>
         <button
             type="button"
             class="btn btn-link p-0 local-groupimport-easystud-group__mail-button"

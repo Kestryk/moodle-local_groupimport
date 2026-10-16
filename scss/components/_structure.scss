@@ -581,11 +581,14 @@
       color: var(--local-groupimport-easystud-grouping);
     }
 
-    .badge {
-      background: #dbe7f1 !important;
-      color: #36546f !important;
-      margin-left: auto;
-    }
+  }
+
+  // Grouping count badge: last child of the header, after the actions.
+  &-grouping__header > .badge {
+    background: #dbe7f1 !important;
+    color: #36546f !important;
+    margin-left: auto;
+    order: 99;
   }
 
   &-tree__toggle[aria-expanded="true"] > .fa {

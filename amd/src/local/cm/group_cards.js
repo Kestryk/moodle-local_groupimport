@@ -714,11 +714,39 @@ export const normaliseMemberRemoveLabels = root => {
     });
 };
 
+/**
+ * Write a card count badge: icon + number, the full localized label as accessible name.
+ * The icon and value spans are created once and kept by later updates.
+ *
+ * @param {HTMLElement} badge Count badge.
+ * @param {String} label Full label, e.g. "23 members".
+ * @param {Number} count Count.
+ * @param {String} iconClass Font Awesome icon class.
+ */
+export const writeCountBadge = (badge, label, count, iconClass) => {
+    if (!badge) {
+        return;
+    }
+    let value = badge.querySelector(':scope > [data-easystud-count-value]');
+    if (!value) {
+        badge.textContent = '';
+        const icon = document.createElement('span');
+        icon.className = 'fa ' + iconClass;
+        icon.setAttribute('aria-hidden', 'true');
+        value = document.createElement('span');
+        value.setAttribute('data-easystud-count-value', '1');
+        badge.append(icon, value);
+    }
+    value.textContent = String(count);
+    badge.setAttribute('aria-label', label);
+    badge.setAttribute('title', label);
+};
+
 export const updateGroupingBadge = section => {
     if (!section) {
         return;
     }
-    const badge = section.querySelector('.local-groupimport-easystud-tree__toggle .badge');
+    const badge = section.querySelector(':scope > .local-groupimport-easystud-grouping__header > .badge');
     if (!badge) {
         return;
     }
@@ -734,8 +762,9 @@ export const updateGroupingBadge = section => {
     const count = groupingid && model.groupings.has(Number(groupingid)) ?
         getTreeSectionGroupIds(model, groupingid).length :
         section.querySelectorAll(':scope > .local-groupimport-easystud-tree__children > [data-easystud-group-id]').length;
-    badge.textContent = countLabel(badge.getAttribute('data-count-template') || '__count__', count);
-    section.setAttribute('data-easystud-advanced-count', badge.textContent);
+    const label = countLabel(badge.getAttribute('data-count-template') || '__count__', count);
+    writeCountBadge(badge, label, count, 'fa-layer-group');
+    section.setAttribute('data-easystud-advanced-count', label);
     setCountBadgeState(badge, count, 'grouping');
 };
 
@@ -782,8 +811,9 @@ export const syncGroupMembersState = (group, labels) => {
     }
 
     const total = getGroupMemberCount(group);
-    badge.textContent = countLabel(labels.memberscounttemplate, total);
-    group.setAttribute('data-easystud-advanced-count', badge.textContent);
+    const totalLabel = countLabel(labels.memberscounttemplate, total);
+    writeCountBadge(badge, totalLabel, total, 'fa-users');
+    group.setAttribute('data-easystud-advanced-count', totalLabel);
     setCountBadgeState(badge, total, 'members');
     syncGroupMembersCollapsible(group);
     scheduleGroupingResizeForGroup(group);
@@ -850,7 +880,7 @@ export const createGroupElement = (root, groupdata) => {
         '<div class="local-groupimport-easystud-group__header">' +
             '<span class="local-groupimport-easystud-group__name"></span>' +
             '<span class="local-groupimport-easystud-group__groupings local-groupimport-easystud-group__groupings--inline" hidden></span>' +
-            '<span class="badge bg-light text-dark"></span>' +
+            '<span class="badge bg-light text-dark"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
             '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-group__mail-button" data-easystud-toggle-group-email="' + escapeHtml(groupdata.id) + '" aria-label="' + escapeHtml(labels.addemailstogroup || '') + '" data-easystud-hover-help="' + escapeHtml(labels.addemailstogroup || '') + '">' +
                 '<span class="fa fa-at" aria-hidden="true"></span>' +
             '</button>' +
@@ -954,7 +984,6 @@ export const createGroupingElement = (root, groupingdata) => {
             '<button type="button" class="local-groupimport-easystud-tree__toggle" data-easystud-collapse-toggle="1" aria-expanded="false">' +
                 '<span class="fa fa-chevron-right" aria-hidden="true"></span>' +
                 '<span class="local-groupimport-easystud-grouping__name"></span>' +
-                '<span class="badge bg-secondary text-white" data-count-template="' + escapeHtml(labels.groupscounttemplate || '__count__') + '"></span>' +
             '</button>' +
             '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-group__mail-button" data-easystud-toggle-grouping-groups="' + escapeHtml(groupingdata.id) + '" aria-label="' + escapeHtml(labels.addgroupstogrouping || '') + '" data-easystud-hover-help="' + escapeHtml(labels.addgroupstogrouping || '') + '">' +
                 '<span class="fa fa-layer-group" aria-hidden="true"></span>' +
@@ -976,6 +1005,7 @@ export const createGroupingElement = (root, groupingdata) => {
                     '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + escapeHtml(labels.cancel || '') + '</button>' +
                 '</div>' +
             '</form>' +
+                '<span class="badge bg-secondary text-white" data-count-template="' + escapeHtml(labels.groupscounttemplate || '__count__') + '"><span class="fa fa-layer-group" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
         '</div>' +
         '<div class="local-groupimport-easystud-container-search" data-easystud-container-search-panel="' + escapeHtml(groupingdata.id) + '" hidden>' +
             '<div class="local-groupimport-easystud-container-search__row">' +
