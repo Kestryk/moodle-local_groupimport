@@ -1,5 +1,15 @@
 # Changelog
 
+- 2026-10-16 [N1] Claude K16-69: keep the Complete-view column heading visible.
+- 2026-10-16 [N1] Claude K16-73: give empty group and grouping cards a quiet Kit drop slot.
+- 2026-10-16 [N1] Claude K16-70: use the Kit footer action for group folding, with total badge and responsive icon label.
+- 2026-10-16 [N1] Claude K16-71: use responsive action menus and the Kit close control.
+- 2026-10-16 [N1] Claude K16-74/K16-65: apply flat Kit card surfaces, quiet shadows and a member-row fade.
+- 2026-10-16 [N1] Claude K16-72: use the Kit square close control in the responsive navigation drawer.
+- 2026-10-16 [N1] Claude K16-55: soften the hover disc on card header actions.
+- 2026-10-16 [N1] Claude K16-65: remove the white block from member rows in selected groups.
+- 2026-10-16 [N1] Claude K16-51: use the Kit direct action for the Complete-view group-fold chevron.
+
 - 2026-10-16 [N1] K16-13: add stable Z-to-A sorting to the shared participant, group and grouping menus; align A-to-Z labels and expose the same grouping pager in compact view without style changes.
 
 - 2026-10-15 [N0] Certify Drawer V1 FR390/768/1280 on SM and Mass Import: focus/Tab/Escape/Close, scroll lock and desktop state; zero page errors/business writes.

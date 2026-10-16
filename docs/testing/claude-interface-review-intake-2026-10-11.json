@@ -1,4 +1,13 @@
 {
+  "claudeK1669Evening20261016": { "status": "integrated-and-served", "commit": "d884d6c4", "scope": "Keep the Complete-view column heading visible." },
+  "claudeK1673Evening20261016": { "status": "integrated-and-served", "commit": "65f21ac4", "scope": "Give empty group and grouping cards a quiet Kit drop slot." },
+  "claudeK1670Evening20261016": { "status": "integrated-and-served", "commits": ["013dae2f", "44fa6dc1"], "scope": "Use the Kit footer action for group folding, with total badge and responsive icon label." },
+  "claudeK1671Evening20261016": { "status": "integrated-and-served", "commit": "fe580a60", "scope": "Use responsive action menus and the Kit close control." },
+  "claudeK1674K1665Evening20261016": { "status": "integrated-and-served", "commit": "d094ac27", "scope": "Apply flat Kit card surfaces, quiet shadows and a member-row fade." },
+  "claudeK1672Evening20261016": { "status": "integrated-and-served", "commit": "775bebbd", "scope": "Use the Kit square close control in the responsive navigation drawer." },
+  "claudeK1655Evening20261016": { "status": "integrated-and-served", "commit": "98a9e08e", "scope": "Soften the hover disc on card header actions." },
+  "claudeK1665Evening20261016": { "status": "integrated-and-served", "commit": "7e8146a3", "scope": "Remove the white block from member rows in selected groups." },
+  "claudeK1651Evening20261016": { "status": "integrated-and-served", "commit": "4497f5c5", "scope": "Use the Kit direct action for the Complete-view group-fold chevron." },
   "codex2K1613SortZA20261016": {
     "status": "native-pass-12-cases-FR-EN-1600-390",
     "base": "d884d6c4",
