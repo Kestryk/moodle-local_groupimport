@@ -189,6 +189,19 @@ const syncCollapsedMemberFocus = (member, collapsed) => {
     });
 };
 
+// The detail labels are one JSON attribute on the root: parse it once per root, not once per card.
+const toggleLabelCache = new WeakMap();
+const getToggleLabels = group => {
+    const root = group.closest('[data-easystud-detail-labels]');
+    if (!root) {
+        return {};
+    }
+    if (!toggleLabelCache.has(root)) {
+        toggleLabelCache.set(root, getLabels(root));
+    }
+    return toggleLabelCache.get(root);
+};
+
 export const syncGroupMembersCollapsible = group => {
     if (!group) {
         return;
@@ -251,6 +264,13 @@ export const syncGroupMembersCollapsible = group => {
     toggle.hidden = !cancollapse;
     toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     toggle.classList.toggle('is-expanded', expanded);
+    // K16-70: the fold control names what it does ("See all 23 members" / "Show less").
+    const toggleLabel = toggle.querySelector('[data-easystud-group-members-toggle-label]');
+    if (toggleLabel) {
+        const labels = getToggleLabels(group);
+        toggleLabel.textContent = expanded ? (labels.groupmembersshowless || '') :
+            countLabel(labels.groupmembersshowall || '', members.length);
+    }
     if (more) {
         more.hidden = !cancollapse || expanded;
     }
@@ -854,6 +874,8 @@ export const createGroupElement = (root, groupdata) => {
         '<span class="local-groupimport-easystud-group__members-more" data-easystud-group-members-more="1" hidden>...</span>' +
         '<button type="button" class="local-groupimport-easystud-group__members-toggle" data-easystud-group-members-toggle="1" hidden>' +
             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
+            '<span class="local-groupimport-easystud-group__members-toggle-label" ' +
+                'data-easystud-group-members-toggle-label="1"></span>' +
         '</button>' +
         groupSelectAllRowHtml(groupdata.id, labels) +
         '<div class="local-groupimport-easystud-group-email" data-easystud-group-email-panel="' +
