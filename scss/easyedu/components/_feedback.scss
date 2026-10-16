@@ -149,35 +149,40 @@
   padding: 0.7rem 0.85rem;
 }
 
-// Quiet entity-card empty line. The existing drag state supplies the only target emphasis.
+// Entity-card empty slot (K16-73, Kevin 16/10): a quiet drop slot inside the card, tinted with the
+// entity colour, dashed hairline, bare glyph, message then help. The drag state only intensifies
+// the same slot (entity-card-empty-drop-target), so the empty card already reads as "drop here".
 @mixin entity-card-empty-line($color) {
   align-items: center;
-  background: transparent;
-  border: 1px solid transparent;
+  background: color-mix(in srgb, #{$color} 5%, #fff);
+  border: 1px dashed color-mix(in srgb, #{$color} 34%, #fff);
   border-radius: var(--easyedu-control-radius);
   box-sizing: border-box;
   color: var(--easyedu-text-muted);
+  column-gap: 10px;
   display: grid;
   font-size: 13px;
-  gap: 8px;
-  grid-template-columns: 24px minmax(0, 1fr);
+  grid-template-columns: 18px minmax(0, 1fr);
   justify-content: start;
-  min-block-size: 48px;
-  padding: 4px 0;
+  min-block-size: 46px;
+  padding: 7px 12px;
   text-align: start;
+  transition:
+    background-color var(--easyedu-motion-fast) ease,
+    border-color var(--easyedu-motion-fast) ease;
   .easyedu-entity-card-empty__icon {
     align-items: center;
-    background: color-mix(in srgb, #{$color} 12%, transparent);
-    block-size: 24px;
-    border-radius: 50%;
+    background: none;
+    block-size: 18px;
     color: $color;
     display: inline-flex;
-    font-size: 14px;
-    inline-size: 24px;
+    font-size: 15px;
+    inline-size: 18px;
     justify-content: center;
     line-height: 1;
   }
-  .easyedu-entity-card-empty__copy { display: grid; gap: 2px; }
+  .easyedu-entity-card-empty__copy { display: grid; gap: 1px; min-width: 0; }
+  .easyedu-entity-card-empty__copy > span { font-weight: 600; }
   .easyedu-entity-card-empty__help { color: var(--easyedu-text-muted); font-size: 12px; }
 }
 

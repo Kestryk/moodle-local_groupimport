@@ -740,9 +740,24 @@ export const syncGroupMembersState = (group, labels) => {
     const members = list.querySelectorAll('[data-easystud-member-id]');
     list.querySelectorAll(':scope > .text-muted, :scope > .local-groupimport-easystud-tree__empty').forEach(item => item.remove());
     if (!members.length) {
+        // Same Kit empty slot as the server-rendered card (templates/sm/group_card.mustache).
         const empty = document.createElement('li');
-        empty.className = 'local-groupimport-easystud-tree__empty';
-        empty.textContent = labels.nogroupmembers || '';
+        empty.className = 'local-groupimport-easystud-tree__empty easyedu-entity-card-empty easyedu-entity-card-empty--group';
+        const icon = document.createElement('span');
+        icon.className = 'easyedu-entity-card-empty__icon';
+        icon.setAttribute('aria-hidden', 'true');
+        const glyph = document.createElement('span');
+        glyph.className = 'fa fa-user-plus';
+        icon.appendChild(glyph);
+        const copy = document.createElement('span');
+        copy.className = 'easyedu-entity-card-empty__copy';
+        const message = document.createElement('span');
+        message.textContent = labels.nogroupmembers || '';
+        const help = document.createElement('small');
+        help.className = 'easyedu-entity-card-empty__help';
+        help.textContent = labels.nogroupmembershelp || '';
+        copy.append(message, help);
+        empty.append(icon, copy);
         list.appendChild(empty);
     }
 

@@ -376,6 +376,7 @@ function local_groupimport_build_manage_template_data(
         'addgroups' => get_string('addgroups', 'local_groupimport'),
         'duplicate' => get_string('duplicate', 'local_groupimport'),
         'nogroupmembers' => get_string('nogroupmembers', 'local_groupimport'),
+        'nogroupmembershelp' => get_string('emptygrouphelp', 'local_groupimport'),
         'memberscounttemplate' => local_groupimport_count_template('memberscount'),
         'groupscounttemplate' => local_groupimport_count_template('groupscount'),
         'groupstructuresummarytemplate' => get_string('groupstructuresummary', 'local_groupimport', (object)[
