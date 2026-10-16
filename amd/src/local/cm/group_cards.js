@@ -189,6 +189,19 @@ const syncCollapsedMemberFocus = (member, collapsed) => {
     });
 };
 
+// The detail labels are one JSON attribute on the root: parse it once per root, not once per card.
+const toggleLabelCache = new WeakMap();
+const getToggleLabels = group => {
+    const root = group.closest('[data-easystud-detail-labels]');
+    if (!root) {
+        return {};
+    }
+    if (!toggleLabelCache.has(root)) {
+        toggleLabelCache.set(root, getLabels(root));
+    }
+    return toggleLabelCache.get(root);
+};
+
 export const syncGroupMembersCollapsible = group => {
     if (!group) {
         return;
@@ -210,7 +223,6 @@ export const syncGroupMembersCollapsible = group => {
     }
     const list = group.querySelector('[data-easystud-group-members]');
     const toggle = group.querySelector('[data-easystud-group-members-toggle]');
-    const more = group.querySelector('[data-easystud-group-members-more]');
     if (!list || !toggle) {
         return;
     }
@@ -251,8 +263,16 @@ export const syncGroupMembersCollapsible = group => {
     toggle.hidden = !cancollapse;
     toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     toggle.classList.toggle('is-expanded', expanded);
-    if (more) {
-        more.hidden = !cancollapse || expanded;
+    // K16-70: the fold control names what it does ("See all 23 members" / "Show less").
+    const toggleLabel = toggle.querySelector('[data-easystud-group-members-toggle-label]');
+    if (toggleLabel) {
+        const labels = getToggleLabels(group);
+        // Same total as the card's count badge, not only the rows loaded on screen.
+        const text = expanded ? (labels.groupmembersshowless || '') :
+            countLabel(labels.groupmembersshowall || '', getGroupMemberCount(group));
+        toggleLabel.textContent = text;
+        // The label is hidden where the control is icon-only (responsive, long-list header).
+        toggle.setAttribute('aria-label', text);
     }
     const footer = windowed ? group.querySelector(':scope > [data-easystud-long-list-footer]') : null;
     if (footer && cancollapse && !expanded) {
@@ -740,9 +760,24 @@ export const syncGroupMembersState = (group, labels) => {
     const members = list.querySelectorAll('[data-easystud-member-id]');
     list.querySelectorAll(':scope > .text-muted, :scope > .local-groupimport-easystud-tree__empty').forEach(item => item.remove());
     if (!members.length) {
+        // Same Kit empty slot as the server-rendered card (templates/sm/group_card.mustache).
         const empty = document.createElement('li');
-        empty.className = 'local-groupimport-easystud-tree__empty';
-        empty.textContent = labels.nogroupmembers || '';
+        empty.className = 'local-groupimport-easystud-tree__empty easyedu-entity-card-empty easyedu-entity-card-empty--group';
+        const icon = document.createElement('span');
+        icon.className = 'easyedu-entity-card-empty__icon';
+        icon.setAttribute('aria-hidden', 'true');
+        const glyph = document.createElement('span');
+        glyph.className = 'fa fa-user-plus';
+        icon.appendChild(glyph);
+        const copy = document.createElement('span');
+        copy.className = 'easyedu-entity-card-empty__copy';
+        const message = document.createElement('span');
+        message.textContent = labels.nogroupmembers || '';
+        const help = document.createElement('small');
+        help.className = 'easyedu-entity-card-empty__help';
+        help.textContent = labels.nogroupmembershelp || '';
+        copy.append(message, help);
+        empty.append(icon, copy);
         list.appendChild(empty);
     }
 
@@ -836,9 +871,10 @@ export const createGroupElement = (root, groupdata) => {
         '</div>' +
         '<ul class="local-groupimport-easystud-group__members" data-easystud-group-members="' +
             escapeHtml(groupdata.id) + '"></ul>' +
-        '<span class="local-groupimport-easystud-group__members-more" data-easystud-group-members-more="1" hidden>...</span>' +
         '<button type="button" class="local-groupimport-easystud-group__members-toggle" data-easystud-group-members-toggle="1" hidden>' +
             '<span class="fa fa-chevron-down" aria-hidden="true"></span>' +
+            '<span class="local-groupimport-easystud-group__members-toggle-label" ' +
+                'data-easystud-group-members-toggle-label="1"></span>' +
         '</button>' +
         groupSelectAllRowHtml(groupdata.id, labels) +
         '<div class="local-groupimport-easystud-group-email" data-easystud-group-email-panel="' +

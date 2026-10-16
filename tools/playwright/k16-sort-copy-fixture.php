@@ -106,6 +106,7 @@ try {
     }
     $data['groupIds'] = [];
     $names = ['QA Source Alpha', 'QA Destination Beta', 'QA Activity Gamma'];
+    if (defined('EASYSTUD_K16_COPY_GROUP_NAMES')) { $names = EASYSTUD_K16_COPY_GROUP_NAMES; }
     if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Group %02d', $i), range(1, 10))); }
     foreach ($names as $name) {
         $data['groupIds'][] = (int)groups_create_group((object)['courseid' => $course->id, 'name' => $name]);

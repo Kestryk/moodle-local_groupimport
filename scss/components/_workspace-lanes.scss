@@ -47,9 +47,9 @@
       box-shadow: var(--easyedu-card-shadow-rest);
     }
   }
+  // K16-65: no opaque fill here; the Kit row veil keeps the row light on every card surface.
   .local-groupimport-easystud-member:not(.is-selected):not(.is-drop-target) {
     border: 0;
-    background: var(--easyedu-surface-soft);
   }
 
   // Focus views contain two lanes in a single existing panel. Keep the

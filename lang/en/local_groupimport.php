@@ -1,17 +1,4 @@
 <?php
-$string['importfilerequired'] = 'Add a CSV or Excel file and wait for its upload to finish before previewing the import.';
-$string['activity_path_title'] = 'Prepare a grouping for an activity';
-$string['activity_path_content'] = 'Use existing course groups, or create them first. Only your explicit confirmation changes memberships. Afterwards, choose this grouping separately in the Moodle activity settings.';
-$string['activity_path_step1'] = 'Create or open a grouping';
-$string['activity_path_desc1'] = 'Open an existing grouping using its chevron, or create one with the grouping creation field. If none exists, create it first; the guide never creates course data for you.';
-$string['activity_path_step2'] = 'Select the relevant groups';
-$string['activity_path_desc2'] = 'Select groups using their checkboxes, not participants or members inside a group. If there are no groups, create them first. On mobile, use the Groups view.';
-$string['activity_path_step3'] = 'Search and choose the destination grouping';
-$string['activity_path_desc3'] = 'The Guide opens the action for you: choose the destination grouping in the list.';
-$string['activity_path_step4'] = 'Check the options, then confirm';
-$string['activity_path_desc4'] = 'Check the destination. If the "Remove from the original grouping" checkbox is offered, leaving it unchecked preserves other memberships; checking it removes them. When ready, use "Move selected item" or "Move selected items", depending on the number of groups. Requests are made per group: a failed batch does not roll back earlier successes.';
-$string['activity_path_step5'] = 'Open the destination and verify its groups';
-$string['activity_path_desc5'] = 'Check the groups in the destination grouping. The Guide opens it if needed; if it is already open, verification is immediate. All confirmed groups must be present. Clear filters if needed. Then select this grouping separately in the Moodle activity settings.';
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -34,6 +21,22 @@ $string['activity_path_desc5'] = 'Check the groups in the destination grouping. 
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+
+
+$string['importfilerequired'] = 'Add a CSV or Excel file and wait for its upload to finish before previewing the import.';
+$string['activity_path_title'] = 'Prepare a grouping for an activity';
+$string['activity_path_content'] = 'Use existing course groups, or create them first. Only your explicit confirmation changes memberships. Afterwards, choose this grouping separately in the Moodle activity settings.';
+$string['activity_path_step1'] = 'Create or open a grouping';
+$string['activity_path_desc1'] = 'Open an existing grouping using its chevron, or create one with the grouping creation field. If none exists, create it first; the guide never creates course data for you.';
+$string['activity_path_step2'] = 'Select the relevant groups';
+$string['activity_path_desc2'] = 'Select groups using their checkboxes, not participants or members inside a group. If there are no groups, create them first. On mobile, use the Groups view.';
+$string['activity_path_step3'] = 'Search and choose the destination grouping';
+$string['activity_path_desc3'] = 'The Guide opens the action for you: choose the destination grouping in the list.';
+$string['activity_path_step4'] = 'Check the options, then confirm';
+$string['activity_path_desc4'] = 'Check the destination. If the "Remove from the original grouping" checkbox is offered, leaving it unchecked preserves other memberships; checking it removes them. When ready, use "Move selected item" or "Move selected items", depending on the number of groups. Requests are made per group: a failed batch does not roll back earlier successes.';
+$string['activity_path_step5'] = 'Open the destination and verify its groups';
+$string['activity_path_desc5'] = 'Check the groups in the destination grouping. The Guide opens it if needed; if it is already open, verification is immediate. All confirmed groups must be present. Clear filters if needed. Then select this grouping separately in the Moodle activity settings.';
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -434,7 +437,7 @@ $string['importhistorydesc'] = 'Recent imports for this course. This course-leve
 $string['importhistoryempty'] = 'No import has been recorded for this course yet.';
 $string['importhistoryerrors'] = 'Errors: {$a}';
 $string['importhistoryrows'] = 'Rows: {$a}';
-$string['importhistorysuccess'] = '{$a} success(es)';
+$string['importhistorysuccess'] = 'Successes: {$a}';
 $string['importhistorylegacy'] = 'Details unavailable for rollback';
 $string['importhistoryrollback'] = 'Restore this import';
 $string['importhistoryrolledback'] = 'Last restored on {$a}';
@@ -458,7 +461,9 @@ $string['membersmovedsummary'] = 'Source memberships moved: {$a->removed}; added
 $string['moveselectedmembers'] = 'Move members';
 $string['contextmovemember'] = 'Move to another group';
 $string['contextmoveselectedmembers'] = 'Move selected members to another group';
-$string['movedialogmembers'] = 'Choose the destination group. Only the selected source memberships will move; other group memberships remain unchanged.';
+$string['movedialogmembers'] = 'Choose the destination group. Only the selected source memberships will move; other group memberships remain unchanged. Select "Keep participants in their original group" to copy them without removing their source membership.';
+$string['movememberskeeporigin'] = 'Keep participants in their original group';
+$string['memberscopiedsummary'] = 'Participants copied: __added__; already in the destination: __existing__. Original group memberships are preserved.';
 $string['moveconfirm'] = 'Move selected items';
 $string['moveconfirmone'] = 'Move selected item';
 $string['moveconfirmmany'] = 'Move selected items';
@@ -466,7 +471,7 @@ $string['movegroupremoveorigin'] = 'Remove from the original grouping';
 $string['movedestinationgroup'] = 'Destination group';
 $string['searchdestination'] = 'Search destinations';
 $string['searchfilteroptions'] = 'Search options';
-$string['restoredefaultcolours'] = 'Restore EasyEdu colors';
+$string['restoredefaultcolours'] = 'Restore EasyEdu colours';
 $string['restoredefaultcolours_help'] = 'Restores the five interface colours and both participant badge colours in this form. Save changes to apply them.';
 $string['restoredefaultcolours_pending'] = 'Default colours restored in the form. Save changes to apply them.';
 $string['nofilteroptions'] = 'No matching options';
@@ -485,7 +490,7 @@ $string['groupdropmove'] = 'Move to grouping';
 $string['moveselectedgroups'] = 'Move groups';
 $string['movegroupsselection'] = 'Move groups';
 $string['moveselectedparticipants'] = 'Add to group';
-$string['nativeparticipants'] = 'Enrolled user (Moodle)';
+$string['nativeparticipants'] = 'Enrolled users (Moodle)';
 $string['nativeparticipantsmenu'] = 'Enrolled users (Moodle)';
 $string['newgroupingplaceholder'] = 'New grouping name';
 $string['newgroupplaceholder'] = 'New group name';
@@ -530,7 +535,7 @@ $string['colourpickersaturation'] = 'Saturation';
 $string['colourpickerbrightness'] = 'Brightness';
 $string['colourpickerpalette'] = 'Kit colours';
 $string['colourpickerpanelhex'] = 'HEX · sRGB';
-$string['colourpickerinvalid'] = 'Enter a six-digit Hex colour.';
+$string['colourpickerinvalid'] = 'Enter a six-digit hexadecimal colour.';
 $string['colourpickerapply'] = 'Apply colour';
 $string['colourpickeradjustedtitle'] = 'Readable shade applied';
 $string['colourpickeradjustednotice'] = 'This light colour is kept for soft accents. Text and action colours are darkened automatically for readability.';
@@ -1077,7 +1082,7 @@ $string['member_path_desc2'] = 'Use "Move members" for the selected members. On 
 $string['member_path_step3'] = 'Search and choose a different destination group';
 $string['member_path_desc3'] = 'Search the destination list and choose another existing group. Review the source and destination; Cancel leaves memberships unchanged.';
 $string['member_path_step4'] = 'Confirm the move after checking its consequences';
-$string['member_path_desc4'] = 'Only confirm if you intend to remove these source memberships and add the destination. Other memberships are preserved. This step completes only after a successful native move; the guide does not undo the operation.';
+$string['member_path_desc4'] = 'Only confirm if you intend to remove these source memberships and add the destination. To copy without removing them, select "Keep participants in their original group", unchecked by default. Other memberships are preserved. This step completes only after a successful native operation; the guide does not undo it.';
 
 // Short navigation labels are separate from complete slide headings.
 $string['guide_nav_1'] = 'The guide';
@@ -1105,6 +1110,8 @@ $string['importatomicfailed'] = 'The import could not be completed. All its chan
 $string['importlimits'] = 'Limits: {$a->rows} rows per import, {$a->mb} MB per file. Split larger files.';
 
 $string['emptygrouphelp'] = 'Drag participants here or use @';
+$string['groupmembersshowall'] = 'See all {$a} members';
+$string['groupmembersshowless'] = 'Show less';
 $string['emptygroupinghelp'] = 'Drag groups here';
 $string['adminsettingenabled'] = 'Enabled';
 $string['adminsettingdisabled'] = 'Disabled';

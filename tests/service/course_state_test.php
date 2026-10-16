@@ -24,7 +24,6 @@ namespace local_groupimport\service;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class course_state_test extends \advanced_testcase {
-
     /**
      * Create a course, a student with personal data and a group manager without identity rights.
      *

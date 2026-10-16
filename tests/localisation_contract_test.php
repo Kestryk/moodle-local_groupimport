@@ -5,6 +5,14 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Static English/French localisation contract for EasyStud.
@@ -29,7 +37,7 @@ define('MOODLE_INTERNAL', true);
  */
 function local_groupimport_test_load_language_pack(string $path): array {
     $string = [];
-    require $path;
+    require($path);
     return $string;
 }
 
@@ -102,14 +110,18 @@ if ($englishkeys !== $frenchkeys) {
 }
 
 foreach ($packs['en'] as $key => $englishvalue) {
-    if (local_groupimport_test_placeholders($englishvalue) !==
-            local_groupimport_test_placeholders($packs['fr'][$key])) {
+    if (
+        local_groupimport_test_placeholders($englishvalue) !==
+            local_groupimport_test_placeholders($packs['fr'][$key])
+    ) {
         local_groupimport_test_fail("placeholder parity differs for {$key}");
     }
 }
 
-if (!str_contains($packs['fr']['advancedsettingsnotset'], 'é') ||
-        !str_contains($packs['fr']['moreactions'], '’')) {
+if (
+    !str_contains($packs['fr']['advancedsettingsnotset'], 'é') ||
+        !str_contains($packs['fr']['moreactions'], '’')
+) {
     local_groupimport_test_fail('representative French accents or apostrophes are missing');
 }
 

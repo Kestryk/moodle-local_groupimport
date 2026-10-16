@@ -52,10 +52,12 @@ function xmldb_local_groupimport_install(): void {
     ];
 
     foreach ($tours as $tour) {
-        if ($DB->record_exists('tool_usertours_tours', [
+        if (
+            $DB->record_exists('tool_usertours_tours', [
             'name' => $tour['name'],
             'pathmatch' => $tour['pathmatch'],
-        ])) {
+            ])
+        ) {
             continue;
         }
 

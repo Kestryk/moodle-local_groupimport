@@ -54,6 +54,7 @@ export const bindMoveModal = (root, courseId) => {
     const destination = root.querySelector('[data-easystud-move-destination]');
     const removeOriginWrap = root.querySelector('[data-easystud-move-origin-wrap]');
     const removeOrigin = root.querySelector('[data-easystud-move-remove-origin]');
+    const originLabel = removeOriginWrap?.querySelector('[data-easystud-move-origin-label]');
     const help = root.querySelector('[data-easystud-move-modal-help]');
     const label = root.querySelector('[data-easystud-move-modal-label]');
     const emptyState = root.querySelector('[data-easystud-move-empty]');
@@ -105,6 +106,9 @@ export const bindMoveModal = (root, courseId) => {
             button.disabled = busy;
         });
         destination.disabled = busy;
+        if (removeOrigin) {
+            removeOrigin.disabled = busy;
+        }
         chooser.refresh(chooserLabels());
         confirmButton.disabled = busy || !destination.options.length;
     };
@@ -200,7 +204,12 @@ export const bindMoveModal = (root, courseId) => {
             (labels.moveconfirmmany || '');
         if (removeOriginWrap) {
             const selectedGroups = type === 'group' ? getSelectedItems(root, 'group') : [];
-            removeOriginWrap.hidden = type !== 'group' || getGroupsWithGroupingMembership(root, selectedGroups).length === 0;
+            removeOriginWrap.hidden = type !== 'member' &&
+                (type !== 'group' || getGroupsWithGroupingMembership(root, selectedGroups).length === 0);
+            if (originLabel) {
+                originLabel.textContent = type === 'member' ? (labels.movememberskeeporigin || '') :
+                    (labels.movegroupremoveorigin || '');
+            }
         }
         if (removeOrigin) {
             removeOrigin.checked = false;
@@ -288,21 +297,28 @@ export const bindMoveModal = (root, courseId) => {
                 return;
             }
             const pairs = memberSnapshot;
-            chooser.close();
-            setMemberBusy(true);
-            postAction({
+            const keepOrigin = Boolean(removeOrigin && removeOrigin.checked);
+            const users = [...new Map(pairs.map(pair => [pair.userid, {
+                id: pair.userid, fullname: pair.fullname,
+            }])).values()];
+            const payload = keepOrigin ? {
+                courseid: courseId,
+                action: 'addusers',
+                groupid: value,
+                userids: users.map(user => user.id),
+            } : {
                 courseid: courseId,
                 action: 'movemembers',
                 destinationid: value,
                 groupids: pairs.map(pair => pair.groupid),
                 userids: pairs.map(pair => pair.userid),
-            }).then(response => {
-                const users = [...new Map(pairs.map(pair => [pair.userid, {
-                    id: pair.userid, fullname: pair.fullname,
-                }])).values()];
+            };
+            chooser.close();
+            setMemberBusy(true);
+            postAction(payload).then(response => {
                 appendUsersToGroupCopies(root, value, users, labels);
                 pairs.forEach(pair => {
-                    if (pair.groupid === value) {
+                    if (keepOrigin || pair.groupid === value) {
                         return;
                     }
                     getGroupElementsById(root, pair.groupid).forEach(group => {
@@ -318,7 +334,9 @@ export const bindMoveModal = (root, courseId) => {
                 closeModal();
                 clearSelectionState(root);
                 updateSelectionActions(root);
-                showNotification(root, response.message || '', 'success');
+                const message = keepOrigin ?
+                    formatMoveSummary(labels.memberscopiedsummary, response.added, response.existing) : response.message;
+                showNotification(root, message || '', 'success');
                 emitMemberPathCompletion(root, 'confirm-member-move');
             }).catch(error => {
                 setMemberBusy(false);

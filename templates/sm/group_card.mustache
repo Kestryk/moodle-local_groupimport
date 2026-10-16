@@ -156,11 +156,6 @@
             </li>
         {{/hasmembers}}
     </ul>
-    <span
-        class="local-groupimport-easystud-group__members-more"
-        data-easystud-group-members-more="1"
-        hidden
-    >...</span>
     <button
         type="button"
         class="local-groupimport-easystud-group__members-toggle"
@@ -168,6 +163,7 @@
         hidden
     >
         <span class="fa fa-chevron-down" aria-hidden="true"></span>
+        <span class="local-groupimport-easystud-group__members-toggle-label" data-easystud-group-members-toggle-label="1"></span>
     </button>
     {{! R10-05: shown from three members, laid over the right of the members toggle row (no extra height);
         the button keeps both labels and aria templates for its toggle. }}

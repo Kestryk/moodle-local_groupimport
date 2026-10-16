@@ -376,6 +376,9 @@ function local_groupimport_build_manage_template_data(
         'addgroups' => get_string('addgroups', 'local_groupimport'),
         'duplicate' => get_string('duplicate', 'local_groupimport'),
         'nogroupmembers' => get_string('nogroupmembers', 'local_groupimport'),
+        'nogroupmembershelp' => get_string('emptygrouphelp', 'local_groupimport'),
+        'groupmembersshowall' => local_groupimport_count_template('groupmembersshowall'),
+        'groupmembersshowless' => get_string('groupmembersshowless', 'local_groupimport'),
         'memberscounttemplate' => local_groupimport_count_template('memberscount'),
         'groupscounttemplate' => local_groupimport_count_template('groupscount'),
         'groupstructuresummarytemplate' => get_string('groupstructuresummary', 'local_groupimport', (object)[
@@ -416,6 +419,8 @@ function local_groupimport_build_manage_template_data(
         'noparticipantsfiltered' => get_string('noparticipantsfiltered', 'local_groupimport'),
         'noresultsfiltered' => get_string('noresultsfiltered', 'local_groupimport'),
         'movegroupremoveorigin' => get_string('movegroupremoveorigin', 'local_groupimport'),
+        'movememberskeeporigin' => get_string('movememberskeeporigin', 'local_groupimport'),
+        'memberscopiedsummary' => get_string('memberscopiedsummary', 'local_groupimport'),
         'groupdropmode' => get_string('groupdropmode', 'local_groupimport'),
         'groupdropmodedesc' => get_string('groupdropmodedesc', 'local_groupimport'),
         'groupdropcopy' => get_string('groupdropcopy', 'local_groupimport'),
@@ -1151,8 +1156,10 @@ function local_groupimport_build_easyedu_guide_template_data(array $templatedata
                         'label' => get_string('tutorialvisualkeyboardrange', 'local_groupimport')],
                 ],
             ];
-        } else if (!empty($step['visualparticipantcard']) || !empty($step['visualgroupcard']) ||
-                !empty($step['visualgroupingcard'])) {
+        } else if (
+            !empty($step['visualparticipantcard']) || !empty($step['visualgroupcard']) ||
+                !empty($step['visualgroupingcard'])
+        ) {
             $cardtype = !empty($step['visualparticipantcard']) ? 'participant' :
                 (!empty($step['visualgroupcard']) ? 'group' : 'grouping');
             // Reuse canonical explanation layout; preserve static card and native targets.
@@ -1961,8 +1968,10 @@ function local_groupimport_get_participant_display_settings(array $customfields)
     $detailfields = [];
     foreach (['participantdetailfield1', 'participantdetailfield2'] as $settingname) {
         $fieldkey = !empty($config->{$settingname}) ? (string)$config->{$settingname} : '';
-        if ($fieldkey !== '' && isset($customfields[$fieldkey]) && $fieldkey !== $primaryfield &&
-                !in_array($fieldkey, $detailfields, true)) {
+        if (
+            $fieldkey !== '' && isset($customfields[$fieldkey]) && $fieldkey !== $primaryfield &&
+                !in_array($fieldkey, $detailfields, true)
+        ) {
             $detailfields[] = $fieldkey;
         }
     }
@@ -2011,12 +2020,12 @@ function local_groupimport_load_custom_user_field_values(array $users, array $fi
     foreach (array_chunk(array_keys($users), 1000) as $userids) {
         [$usersql, $userparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED, 'user');
         $recordset = $DB->get_recordset_sql(
-        "SELECT d.id, d.userid, f.shortname, d.data
+            "SELECT d.id, d.userid, f.shortname, d.data
            FROM {user_info_data} d
            JOIN {user_info_field} f ON f.id = d.fieldid
           WHERE d.userid $usersql
             AND f.shortname $fieldsql",
-        $userparams + $fieldparams
+            $userparams + $fieldparams
         );
         try {
             foreach ($recordset as $record) {
@@ -2124,12 +2133,12 @@ function local_groupimport_enrich_users_with_copy_fields(array $users, array $al
         foreach (array_chunk(array_keys($users), 1000) as $userids) {
             [$usersql, $userparams] = $DB->get_in_or_equal($userids, SQL_PARAMS_NAMED);
             $records = $DB->get_records_sql(
-            "SELECT d.userid, f.shortname, d.data
+                "SELECT d.userid, f.shortname, d.data
                FROM {user_info_data} d
                JOIN {user_info_field} f ON f.id = d.fieldid
               WHERE d.userid $usersql
                 AND f.shortname $fieldsql",
-            $userparams + $fieldparams
+                $userparams + $fieldparams
             );
 
             foreach ($records as $record) {
@@ -2418,10 +2427,10 @@ function local_groupimport_build_context_actions_template_data(
     ];
 
     // Every key is always present so Mustache never resolves one from a parent context.
-    $entry = static function(array $values = []): array {
+    $entry = static function (array $values = []): array {
         return array_merge(['isitem' => false, 'isseparator' => false, 'isgroup' => false], $values);
     };
-    $item = static function(string $action, array $definition, string $fieldkey = ''): array {
+    $item = static function (string $action, array $definition, string $fieldkey = ''): array {
         return [
             'action' => $action,
             'contexts' => $definition['contexts'],
@@ -2431,7 +2440,7 @@ function local_groupimport_build_context_actions_template_data(
             'fieldkey' => $fieldkey,
         ];
     };
-    $items = static function(array $keys) use ($actions, $item): array {
+    $items = static function (array $keys) use ($actions, $item): array {
         $result = [];
         foreach ($keys as $action) {
             $definition = $actions[$action];
@@ -2442,8 +2451,14 @@ function local_groupimport_build_context_actions_template_data(
         }
         return $result;
     };
-    $group = static function(string $key, string $contexts, string $icon, string $label, string $multilabel,
-            array $children) use ($entry): array {
+    $group = static function (
+        string $key,
+        string $contexts,
+        string $icon,
+        string $label,
+        string $multilabel,
+        array $children
+    ) use ($entry): array {
         return $entry(['isgroup' => true, 'group' => [
             'key' => $key,
             'contexts' => $contexts,
@@ -2492,18 +2507,32 @@ function local_groupimport_build_context_actions_template_data(
             'grouping-open-advanced-settings',
         ]),
         [
-            $group('add-participants', 'group', 'fa-user-plus',
-                get_string('contextsubmenuaddparticipants', 'local_groupimport'), '',
-                $items(['group-paste-emails', 'group-add-copied-users'])),
-            $group('add-groups', 'grouping', 'fa-layer-group',
-                get_string('contextsubmenuaddgroups', 'local_groupimport'), '',
-                $items(['grouping-paste-groups', 'grouping-add-copied-groups'])),
+            $group(
+                'add-participants',
+                'group',
+                'fa-user-plus',
+                get_string('contextsubmenuaddparticipants', 'local_groupimport'),
+                '',
+                $items(['group-paste-emails', 'group-add-copied-users'])
+            ),
+            $group(
+                'add-groups',
+                'grouping',
+                'fa-layer-group',
+                get_string('contextsubmenuaddgroups', 'local_groupimport'),
+                '',
+                $items(['grouping-paste-groups', 'grouping-add-copied-groups'])
+            ),
         ],
         [
-            $group('copy', 'participant member group grouping', 'fa-copy',
+            $group(
+                'copy',
+                'participant member group grouping',
+                'fa-copy',
                 get_string('contextsubmenucopy', 'local_groupimport'),
                 get_string('contextsubmenucopyselection', 'local_groupimport'),
-                $copychildren),
+                $copychildren
+            ),
             ...$items(['paste-field']),
         ],
         $items([
@@ -2553,7 +2582,8 @@ function local_groupimport_render_quick_create_forms(int $courseid): string {
             'class' => 'form-control',
             'placeholder' => get_string('newgroupplaceholder', 'local_groupimport'),
         ]) .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::span('', 'fa fa-plus', ['aria-hidden' => 'true']),
             [
             'type' => 'submit',
@@ -2577,7 +2607,8 @@ function local_groupimport_render_quick_create_forms(int $courseid): string {
             'class' => 'form-control',
             'placeholder' => get_string('newgroupingplaceholder', 'local_groupimport'),
         ]) .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::span('', 'fa fa-plus', ['aria-hidden' => 'true']),
             [
             'type' => 'submit',
@@ -2608,7 +2639,8 @@ function local_groupimport_render_grouping(int $courseid, array $grouping, array
         'data-selectable-id' => $grouping['id'],
     ]);
     $out .= html_writer::start_div('local-groupimport-easystud-grouping__header');
-    $out .= html_writer::tag('button',
+    $out .= html_writer::tag(
+        'button',
         html_writer::span('', 'fa fa-chevron-down', ['aria-hidden' => 'true']) .
             html_writer::span(s($grouping['name']), 'local-groupimport-easystud-grouping__name') .
             html_writer::span(
@@ -2623,7 +2655,8 @@ function local_groupimport_render_grouping(int $courseid, array $grouping, array
             'aria-expanded' => 'true',
         ]
     );
-    $out .= html_writer::tag('button',
+    $out .= html_writer::tag(
+        'button',
         html_writer::span('', 'fa fa-layer-group', ['aria-hidden' => 'true']),
         [
             'type' => 'button',
@@ -2671,7 +2704,8 @@ function local_groupimport_render_grouping_groups_panel(int $groupingid): string
             'placeholder' => get_string('pastegroupsplaceholder', 'local_groupimport'),
             'data-easystud-grouping-groups-box' => $groupingid,
         ]) .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::span('', 'fa fa-plus me-1', ['aria-hidden' => 'true']) .
             html_writer::span(get_string('addgroups', 'local_groupimport')),
             [
@@ -2703,14 +2737,16 @@ function local_groupimport_render_group(int $courseid, array $group, array $user
         'data-selectable-id' => $group['id'],
         'draggable' => 'true',
     ]);
-    $out .= html_writer::tag('div',
+    $out .= html_writer::tag(
+        'div',
         html_writer::span('', 'fa fa-users local-groupimport-easystud-drag-indicator', ['aria-hidden' => 'true']) .
             html_writer::span(s($group['name']), 'local-groupimport-easystud-group__name') .
             html_writer::span(
                 local_groupimport_count_string('memberscount', (int)$group['membercount']),
                 'badge bg-light text-dark'
             ) .
-            html_writer::tag('button',
+            html_writer::tag(
+                'button',
                 html_writer::span('', 'fa fa-at', ['aria-hidden' => 'true']),
                 [
                     'type' => 'button',
@@ -2756,9 +2792,11 @@ function local_groupimport_render_group(int $courseid, array $group, array $user
  * @return string
  */
 function local_groupimport_render_group_member(int $groupid, array $user): string {
-    return html_writer::tag('li',
+    return html_writer::tag(
+        'li',
         html_writer::span(s($user['fullname']), 'local-groupimport-easystud-member__name') .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::span('&minus;', '', ['aria-hidden' => 'true']),
             [
                 'type' => 'button',
@@ -2797,7 +2835,8 @@ function local_groupimport_render_group_email_panel(int $groupid): string {
             'placeholder' => get_string('pasteemailsplaceholder', 'local_groupimport'),
             'data-easystud-group-email-box' => $groupid,
         ]) .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::span('', 'fa fa-plus me-1', ['aria-hidden' => 'true']) .
             html_writer::span(get_string('addemails', 'local_groupimport')),
             [
@@ -2844,7 +2883,8 @@ function local_groupimport_render_clipboard_modal(): string {
             'id' => 'local-groupimport-easystud-clipboard-title',
             'class' => 'h5 mb-0',
         ]) .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::span('&times;', '', ['aria-hidden' => 'true']),
             [
                 'type' => 'button',
@@ -2884,7 +2924,8 @@ function local_groupimport_render_participant_modal(): string {
         ]) .
         html_writer::end_div() .
         html_writer::end_div() .
-        html_writer::tag('button',
+        html_writer::tag(
+            'button',
             html_writer::span('&times;', '', ['aria-hidden' => 'true']),
             [
                 'type' => 'button',
@@ -2971,7 +3012,8 @@ function local_groupimport_render_context_menu(): string {
         'role' => 'menu',
     ]);
     foreach ($actions as $action => $definition) {
-        $out .= html_writer::tag('button',
+        $out .= html_writer::tag(
+            'button',
             html_writer::span('', 'fa ' . $definition['icon'], ['aria-hidden' => 'true']) .
                 html_writer::span($definition['label']),
             [

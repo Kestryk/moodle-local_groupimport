@@ -673,16 +673,6 @@
     margin: 0.1rem 0 0;
   }
 
-  .easyedu-navigation__panel .easyedu-navigation__close {
-    background: var(--easyedu-surface-soft);
-    border-radius: 999px;
-    flex: 0 0 2.5rem;
-    height: 2.5rem;
-    min-height: 2.5rem;
-    min-width: 2.5rem;
-    width: 2.5rem;
-  }
-
   .easyedu-navigation__panel-scroll {
     gap: 1rem;
     padding: 1rem 1rem calc(1rem + env(safe-area-inset-bottom));

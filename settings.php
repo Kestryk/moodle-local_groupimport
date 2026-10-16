@@ -51,8 +51,16 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
          * @param float $minimumcontrast Contrast below which the rendered shade is adjusted.
          * @param float $softshare Chosen-colour share in the semantic soft surface.
          */
-        public function __construct($name, $visiblename, $description, $defaultsetting, $paramtype = PARAM_RAW,
-                $size = null, float $minimumcontrast = 0.0, float $softshare = 0.0) {
+        public function __construct(
+            $name,
+            $visiblename,
+            $description,
+            $defaultsetting,
+            $paramtype = PARAM_RAW,
+            $size = null,
+            float $minimumcontrast = 0.0,
+            float $softshare = 0.0
+        ) {
             parent::__construct($name, $visiblename, $description, $defaultsetting, $paramtype, $size);
             $this->minimumcontrast = $minimumcontrast;
             $this->softshare = $softshare;
@@ -173,7 +181,7 @@ if (!class_exists('local_groupimport_admin_setting_configcolor')) {
                 $hexattributes['readonly'] = 'readonly';
                 $controlattributes['data-readonly'] = 'true';
                 $controlclasses .= ' is-readonly';
-            } elseif (!$isvalid) {
+            } else if (!$isvalid) {
                 $controlclasses .= ' is-invalid';
             }
 
@@ -222,9 +230,11 @@ if ($hassiteconfig) {
     // Moodle also loads this file while building navigation on other admin
     // pages, sometimes during header rendering. Register the settings tree
     // everywhere, but initialize its presentation only on its own early page.
-    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER && $PAGE->has_set_url() &&
+    if (
+        $PAGE->state === moodle_page::STATE_BEFORE_HEADER && $PAGE->has_set_url() &&
             $PAGE->url->compare(new moodle_url('/admin/settings.php'), URL_MATCH_BASE) &&
-            $PAGE->url->get_param('section') === 'local_groupimport') {
+            $PAGE->url->get_param('section') === 'local_groupimport'
+    ) {
         $PAGE->requires->css('/local/groupimport/styles/administration.css');
         $PAGE->add_body_class('local-groupimport-admin-settings-page--loading');
         // Animation level (user choice, else administrator default) for the Kit CSS and Motion.
@@ -264,7 +274,7 @@ if ($hassiteconfig) {
     }
     $participantdisplayfieldoptions = ['' => get_string('none')] + $customfieldoptions;
 
-    $renderchips = static function(array $fields, string $modifier): string {
+    $renderchips = static function (array $fields, string $modifier): string {
         if (empty($fields)) {
             return html_writer::div(
                 get_string('adminidentifiersnocustomfields', 'local_groupimport'),
@@ -338,9 +348,11 @@ if ($hassiteconfig) {
     // The confirmation opens in place (js/admin_guide_reset.js); the link stays the
     // no-JavaScript fallback to the standalone confirmation page.
     $resetdialog = '';
-    if ($PAGE->state === moodle_page::STATE_BEFORE_HEADER && $PAGE->has_set_url() &&
+    if (
+        $PAGE->state === moodle_page::STATE_BEFORE_HEADER && $PAGE->has_set_url() &&
             $PAGE->url->compare(new moodle_url('/admin/settings.php'), URL_MATCH_BASE) &&
-            $PAGE->url->get_param('section') === 'local_groupimport') {
+            $PAGE->url->get_param('section') === 'local_groupimport'
+    ) {
         $reseturl = new moodle_url('/local/groupimport/reset_guide_welcome.php');
         $resetdialog = $OUTPUT->render_from_template('local_groupimport/guide_welcome_reset', [
             'inline' => true,
@@ -354,12 +366,17 @@ if ($hassiteconfig) {
         ]);
     }
     $featureshtml .= html_writer::div(
-        html_writer::link(new moodle_url('/local/groupimport/reset_guide_welcome.php'),
+        html_writer::link(
+            new moodle_url('/local/groupimport/reset_guide_welcome.php'),
             get_string('guidewelcomereset', 'local_groupimport'),
-            ['class' => 'easyedu-button--secondary', 'data-local-groupimport-welcome-reset-open' => '1']) .
+            ['class' => 'easyedu-button--secondary', 'data-local-groupimport-welcome-reset-open' => '1']
+        ) .
         $resetdialog .
-        html_writer::tag('p', get_string('guidewelcomeresethelp', 'local_groupimport'),
-            ['class' => 'easyedu-caption easyedu-form-note']),
+        html_writer::tag(
+            'p',
+            get_string('guidewelcomeresethelp', 'local_groupimport'),
+            ['class' => 'easyedu-caption easyedu-form-note']
+        ),
         'easyedu-ui'
     );
 
@@ -420,17 +437,22 @@ if ($hassiteconfig) {
 
                 $rows[] = html_writer::div(
                     html_writer::tag('span', '', [
-                        'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-overview-icon',
+                        'class' => 'local-groupimport-admin-settings__loading-surface ' .
+                            'local-groupimport-admin-settings__loading-overview-icon',
                     ]) .
                         html_writer::div(
                             html_writer::tag('span', '', [
-                                'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-card-title',
+                                'class' => 'local-groupimport-admin-settings__loading-surface ' .
+                                    'local-groupimport-admin-settings__loading-card-title',
                             ]) .
                                 html_writer::tag('span', '', [
-                                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-row',
+                                    'class' => 'local-groupimport-admin-settings__loading-surface ' .
+                                        'local-groupimport-admin-settings__loading-row',
                                 ]) .
                                 html_writer::tag('span', '', [
-                                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-row local-groupimport-admin-settings__loading-row--short',
+                                    'class' => 'local-groupimport-admin-settings__loading-surface ' .
+                                        'local-groupimport-admin-settings__loading-row ' .
+                                        'local-groupimport-admin-settings__loading-row--short',
                                 ]),
                             'local-groupimport-admin-settings__loading-overview-copy'
                         ),
@@ -439,13 +461,15 @@ if ($hassiteconfig) {
                 continue;
             }
 
-            $controlclass = 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-form-control';
+            $controlclass = 'local-groupimport-admin-settings__loading-surface ' .
+                'local-groupimport-admin-settings__loading-form-control';
             if ($rowtype === 'control-tall') {
                 $controlclass .= ' local-groupimport-admin-settings__loading-form-control--tall';
             }
             $rows[] = html_writer::div(
                 html_writer::tag('span', '', [
-                    'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-form-label',
+                    'class' => 'local-groupimport-admin-settings__loading-surface ' .
+                        'local-groupimport-admin-settings__loading-form-label',
                 ]) .
                     html_writer::tag('span', '', ['class' => $controlclass]),
                 'local-groupimport-admin-settings__loading-form-row'
@@ -454,7 +478,8 @@ if ($hassiteconfig) {
 
         $adminloadingskeletonsections[] = html_writer::div(
             html_writer::tag('span', '', [
-                'class' => 'local-groupimport-admin-settings__loading-surface local-groupimport-admin-settings__loading-section-title',
+                'class' => 'local-groupimport-admin-settings__loading-surface ' .
+                    'local-groupimport-admin-settings__loading-section-title',
             ]) .
                 html_writer::div(implode('', $rows), 'local-groupimport-admin-settings__loading-form-rows'),
             'local-groupimport-admin-settings__loading-section'
@@ -488,11 +513,17 @@ if ($hassiteconfig) {
     // not reliably participate in the no-script cascade.
     $adminnoscriptfallback = html_writer::tag(
         'noscript',
-        "\n" . html_writer::tag('style',
-            'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > .settingsform > * { display: block !important; }' .
-                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > .settingsform > fieldset:first-of-type > * { display: block !important; }' .
-                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport [data-easystud-loading-skeleton] { display: none !important; }' .
-                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings .settingsform .local-groupimport-admin-settings__loading-skeleton[data-easystud-loading-skeleton] { display: none !important; }'
+        "\n" . html_writer::tag(
+            'style',
+            'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > ' .
+                '.settingsform > * { display: block !important; }' .
+                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings > ' .
+                    '.settingsform > fieldset:first-of-type > * { display: block !important; }' .
+                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport ' .
+                    '[data-easystud-loading-skeleton] { display: none !important; }' .
+                'body.local-groupimport-admin-settings-page--loading #page-admin-setting-local_groupimport #adminsettings ' .
+                    '.settingsform .local-groupimport-admin-settings__loading-skeleton[data-easystud-loading-skeleton] { ' .
+                    'display: none !important; }'
         ) . "\n"
     );
 

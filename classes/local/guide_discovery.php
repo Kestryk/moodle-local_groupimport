@@ -1,14 +1,34 @@
 <?php
 // This file is part of Moodle - http://moodle.org/
-// Moodle is distributed under the GNU GPL v3 or later.
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace local_groupimport\local;
 
 defined('MOODLE_INTERNAL') || die();
 
-/** Product-owned discovery content; illustrations never issue Moodle commands. */
+/**
+ * Product-owned discovery content; illustrations never issue Moodle commands.
+ *
+ * @package    local_groupimport
+ * @copyright  2026 Kevin Jarniac
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 final class guide_discovery {
-    /** Opt-in timed illustration entry; not a native course or guided-path command. */
+    /**
+     * Opt-in timed illustration entry; not a native course or guided-path command.
+     */
     public static function demonstration_entry(): array {
         return [
             'manualstart' => true,
@@ -27,7 +47,9 @@ final class guide_discovery {
         ];
     }
 
-    /** Historical IDs describe content, independently from its reading position. */
+    /**
+     * Historical IDs describe content, independently from its reading position.
+     */
     public static function historical_slide_ids(): array {
         $ids = ['discovery-concepts', 'discovery-creation', 'discovery-membership', 'discovery-actions'];
         for ($index = 0; $index < 20; $index++) {
@@ -36,7 +58,9 @@ final class guide_discovery {
         return $ids;
     }
 
-    /** Explicitly supported reading histories; path IDs and completion stay unchanged. */
+    /**
+     * Explicitly supported reading histories; path IDs and completion stay unchanged.
+     */
     public static function reading_contract(): array {
         $old = self::historical_slide_ids();
         $ids = array_values(array_filter($old, static fn($id) => $id !== 'use-this-guide'));
@@ -46,19 +70,23 @@ final class guide_discovery {
             'readingIndexMigrations' => ['discovery-20261006' => $map, 'legacy' => array_slice($map, 4)]];
     }
 
-    /** Move only the introductory lesson, retaining every other lesson and native target. */
+    /**
+     * Move only the introductory lesson, retaining every other lesson and native target.
+     */
     public static function introduction_first(array $slides): array {
         if (array_column($slides, 'id') !== self::historical_slide_ids()) {
             throw new \LogicException('Update the explicit Guide reading contract before changing the curriculum.');
         }
         $byid = array_column($slides, null, 'id');
-        return array_map(static function($id, $index) use ($byid): array {
+        return array_map(static function ($id, $index) use ($byid): array {
             $slide = $byid[$id];
             $slide['index'] = $index;
             return $slide;
         }, self::reading_contract()['slideIds'], range(0, count($slides) - 1));
     }
-    /** Card-reading copy uses the existing shared explanation recipe, not a new scene engine. */
+    /**
+     * Card-reading copy uses the existing shared explanation recipe, not a new scene engine.
+     */
     public static function card_explanation(string $type): array {
         if (!in_array($type, ['participant', 'group', 'grouping'], true)) {
             throw new \InvalidArgumentException('Unknown Guide card type.');
@@ -130,12 +158,16 @@ final class guide_discovery {
         return $scene;
     }
 
-    /** Modern reading topics reuse the published explanation composition. */
+    /**
+     * Modern reading topics reuse the published explanation composition.
+     */
     public static function action_explanation(string $type): array {
-        if (!in_array($type, [
+        if (
+            !in_array($type, [
                 'filters', 'identifiers', 'destination', 'menu', 'activity', 'ready',
                 'method', 'recap', 'mistakes', 'creation',
-        ], true)) {
+            ], true)
+        ) {
             throw new \InvalidArgumentException('Unknown Guide action explanation.');
         }
         $topics = [];
@@ -152,11 +184,15 @@ final class guide_discovery {
         ];
     }
 
-    /** Shared introduction data; no slide insertion or persisted-index migration. */
+    /**
+     * Shared introduction data; no slide insertion or persisted-index migration.
+     */
     public static function common_introduction(bool $specimens = false): array {
         $topics = [];
-        foreach (['navigation' => 'fa-compass', 'demonstration' => 'fa-play-circle',
-                'interface' => 'fa-eye', 'path' => 'fa-route', 'fullscreen' => 'fa-expand'] as $key => $icon) {
+        foreach (
+            ['navigation' => 'fa-compass', 'demonstration' => 'fa-play-circle',
+                'interface' => 'fa-eye', 'path' => 'fa-route', 'fullscreen' => 'fa-expand'] as $key => $icon
+        ) {
             $topic = ['icon' => $icon,
                 'title' => get_string('guideintro_' . $key . '_title', 'local_groupimport'),
                 'description' => get_string('guideintro_' . $key . '_description', 'local_groupimport')];
@@ -197,7 +233,9 @@ final class guide_discovery {
         return ['topics' => $topics, 'note' => get_string('guideintro_note', 'local_groupimport')];
     }
 
-    /** Prepend the four discovery lessons while retaining the reference curriculum. */
+    /**
+     * Prepend the four discovery lessons while retaining the reference curriculum.
+     */
     public static function prepend(array $legacy): array {
         $definitions = [
             ['concepts', 'fa-sitemap', '[data-easystud-participants-panel]', 'viewParticipants'],
@@ -224,23 +262,29 @@ final class guide_discovery {
             if ($kind === 'membership') {
                 $scene['introalreadyexplained'] = true;
             }
-            foreach (['participant', 'group', 'grouping', 'pattern', 'preview', 'letters', 'syntax',
+            foreach (
+                ['participant', 'group', 'grouping', 'pattern', 'preview', 'letters', 'syntax',
                 'invalid', 'add', 'move', 'cancel', 'destination', 'select', 'menu', 'confirm',
                 'resultadd', 'resultmove', 'resultactions', 'mobile', 'initial', 'kept', 'removed', 'added',
-                'absent', 'validate', 'drag', 'finished', 'pause', 'resume', 'nextphase'] as $label) {
+                'absent', 'validate', 'drag', 'finished', 'pause', 'resume', 'nextphase'] as $label
+            ) {
                 $scene[$label . 'label'] = get_string('discovery_' . $label, 'local_groupimport');
             }
-            foreach (['participanttitle', 'grouptitle', 'groupingtitle', 'patternvalue', 'resulttitle',
+            foreach (
+                ['participanttitle', 'grouptitle', 'groupingtitle', 'patternvalue', 'resulttitle',
                 'emptymembers', 'sourceempty', 'sourcecaption', 'destinationcaption', 'menutitle', 'removeaction',
                 'membershiptitle', 'recaptitle', 'addselect', 'adddrop', 'compactselect', 'compactmenu',
                 'comparemove', 'examplegroup', 'examplegrouping', 'exampletitle', 'examplebody',
                 'syntaxnumbers', 'syntaxletters', 'syntaxcount', 'destinationname',
                 'mobileparticipants', 'mobileaddaction', 'mobileaddconsequence', 'mobileaddselect',
-                'mobileaddmenu', 'mobileaddconfirm', 'mobileaddvalidate'] as $label) {
+                'mobileaddmenu', 'mobileaddconfirm', 'mobileaddvalidate'] as $label
+            ) {
                 $scene[$label] = get_string('discovery_' . $label, 'local_groupimport');
             }
-            $scene['selectioncaption'] = get_string('discovery_selection_' . ($kind === 'actions' ? 'many' : 'one'),
-                'local_groupimport');
+            $scene['selectioncaption'] = get_string(
+                'discovery_selection_' . ($kind === 'actions' ? 'many' : 'one'),
+                'local_groupimport'
+            );
             if ($kind === 'actions') {
                 $scene['note'] = '';
             }
@@ -269,7 +313,7 @@ final class guide_discovery {
         foreach (['label', 'title', 'content'] as $label) {
             $slides[1]['guidedpath' . $label] = get_string('discovery_path_' . $label, 'local_groupimport');
         }
-        $slides[1]['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+        $slides[1]['guidedpathsteps'] = ['items' => array_map(static function (int $step): string {
             return get_string('discovery_path_step' . $step, 'local_groupimport');
         }, [1, 2, 3, 4, 5, 6])];
         foreach ($legacy as $index => $slide) {
@@ -279,7 +323,9 @@ final class guide_discovery {
         return $slides;
     }
 
-    /** Inactive curriculum successor; native activation remains an explicit adapter step. */
+    /**
+     * Inactive curriculum successor; native activation remains an explicit adapter step.
+     */
     public static function modern_reading_contract(): array {
         $groups = [
             'use-this-guide' => ['use-this-guide'],
@@ -303,8 +349,8 @@ final class guide_discovery {
                 $positions[$origin] = array_search($index, $ids, true);
             }
         }
-        $map = static function(array $origins) use ($positions): array {
-            return array_map(static function(string $id) use ($positions): int {
+        $map = static function (array $origins) use ($positions): array {
+            return array_map(static function (string $id) use ($positions): int {
                 if (!array_key_exists($id, $positions)) {
                     throw new \LogicException('Missing explicit Guide migration origin: ' . $id);
                 }
@@ -321,7 +367,9 @@ final class guide_discovery {
             ]];
     }
 
-    /** Build twelve modern payloads while retaining every currently visible path invitation. */
+    /**
+     * Build twelve modern payloads while retaining every currently visible path invitation.
+     */
     public static function modern_curriculum(array $slides): array {
         if (array_column($slides, 'id') !== self::reading_contract()['slideIds']) {
             throw new \LogicException('Unexpected source curriculum; refuse lossy selection.');
@@ -352,8 +400,11 @@ final class guide_discovery {
                         $destination['topics'][1],
                         $menu['topics'][1],
                         ['icon' => 'fa-keyboard', 'title' => $keyboard['title'],
-                            'description' => html_entity_decode(strip_tags($keyboard['content']),
-                                ENT_QUOTES, 'UTF-8')],
+                            'description' => html_entity_decode(
+                                strip_tags($keyboard['content']),
+                                ENT_QUOTES,
+                                'UTF-8'
+                            )],
                     ],
                     'note' => $destination['note'],
                     'lessonreading' => true,
@@ -362,8 +413,10 @@ final class guide_discovery {
             // Keep the optional exercises reachable after their duplicate lessons disappear.
             $invitation = ['discovery-actions' => 'reference-12', 'reference-7' => 'reference-8'][$source] ?? null;
             if ($invitation !== null) {
-                foreach (['hasguidedpath', 'guidedpath', 'guidedpathlabel', 'guidedpathtitle',
-                        'guidedpathcontent', 'guidedpathsteps'] as $key) {
+                foreach (
+                    ['hasguidedpath', 'guidedpath', 'guidedpathlabel', 'guidedpathtitle',
+                        'guidedpathcontent', 'guidedpathsteps'] as $key
+                ) {
                     if (array_key_exists($key, $byid[$invitation])) {
                         $slide[$key] = $byid[$invitation][$key];
                     }
@@ -398,7 +451,7 @@ final class guide_discovery {
                 $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
                 $slide['guidedpathtitle'] = get_string('filter_path_title', 'local_groupimport');
                 $slide['guidedpathcontent'] = get_string('filter_path_content', 'local_groupimport');
-                $slide['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+                $slide['guidedpathsteps'] = ['items' => array_map(static function (int $step): string {
                     return get_string('filter_path_step' . $step, 'local_groupimport');
                 }, [1, 2, 3, 4])];
             }
@@ -408,7 +461,7 @@ final class guide_discovery {
                 foreach (['label', 'title', 'content'] as $label) {
                     $slide['guidedpath' . $label] = get_string('member_path_' . $label, 'local_groupimport');
                 }
-                $slide['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+                $slide['guidedpathsteps'] = ['items' => array_map(static function (int $step): string {
                     return get_string('member_path_step' . $step, 'local_groupimport');
                 }, [1, 2, 3, 4])];
             }
@@ -419,22 +472,27 @@ final class guide_discovery {
                 $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
                 $slide['guidedpathtitle'] = get_string('editor_' . $type . '_title', 'local_groupimport');
                 $slide['guidedpathcontent'] = get_string('editor_' . $type . '_content', 'local_groupimport');
-                $slide['guidedpathsteps'] = ['items' => array_map(static function(int $step): string {
+                $slide['guidedpathsteps'] = ['items' => array_map(static function (int $step): string {
                     return get_string('editor_path_step' . $step, 'local_groupimport');
                 }, [1, 2, 3, 4])];
             }
             if (!empty($slide['guidedpath'])) {
                 $slide['guidedpathlabel'] = get_string('member_path_label', 'local_groupimport');
             }
-            $slide['navtooltip'] = get_string(empty($slide['hasguidedpath']) ? 'guide_nav_tooltip' : 'guide_nav_tooltip_guided',
-                'local_groupimport', (object) ['category' => $category, 'number' => $index + 1,
-                    'title' => $slide['navtitle']]);
+            $slide['navtooltip'] = get_string(
+                empty($slide['hasguidedpath']) ? 'guide_nav_tooltip' : 'guide_nav_tooltip_guided',
+                'local_groupimport',
+                (object) ['category' => $category, 'number' => $index + 1,
+                'title' => $slide['navtitle']]
+            );
             $result[] = $slide;
         }
         return $result;
     }
 
-    /** New ID: retain legacy grouping progress without treating it as new evidence. */
+    /**
+     * New ID: retain legacy grouping progress without treating it as new evidence.
+     */
     public static function activity_grouping_path(): array {
         $definitions = [['open-grouping', 'activityGroupingEntry', 'tutorial:activity-grouping-workspace'],
             ['select-groups', 'activityGroupSelection', 'tutorial:activity-group-workspace'],
@@ -456,7 +514,9 @@ final class guide_discovery {
         return $steps;
     }
 
-    /** Verify native filtered selection without changing course memberships. */
+    /**
+     * Verify native filtered selection without changing course memberships.
+     */
     public static function filter_verification_path(): array {
         $definitions = [['open-filters', 'participantFilterToggle'],
             ['apply-filter', 'participantFilterSearch'],
@@ -478,7 +538,9 @@ final class guide_discovery {
         return $steps;
     }
 
-    /** Inspect actual fields and close; Save is allowed but never required. */
+    /**
+     * Inspect actual fields and close; Save is allowed but never required.
+     */
     public static function editor_inspection_path(string $type): array {
         if (!in_array($type, ['group', 'grouping'], true)) {
             throw new \InvalidArgumentException('Unknown editor inspection context');
@@ -504,7 +566,9 @@ final class guide_discovery {
         return $steps;
     }
 
-    /** Source-member transfer is distinct from assigning global Participants. */
+    /**
+     * Source-member transfer is distinct from assigning global Participants.
+     */
     public static function source_member_path(): array {
         $definitions = [
             ['select-source-member', 'groupMemberSelection'],
@@ -540,7 +604,9 @@ final class guide_discovery {
         return $steps;
     }
 
-    /** Six native milestones; the Guide never creates or transfers participants. */
+    /**
+     * Six native milestones; the Guide never creates or transfers participants.
+     */
     public static function practice_path(): array {
         $definitions = [
             ['create-group', 'groupCreateInput', 'viewGroups'],

@@ -28,7 +28,6 @@ require_once($CFG->dirroot . '/group/lib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_structure {
-
     /**
      * Return course participants, groups and groupings in a UI-friendly shape.
      *
@@ -96,7 +95,7 @@ class course_structure {
                 'description' => $includedetails
                     ? format_text((string)$user->description, FORMAT_HTML, ['context' => $context]) : '',
                 'roles' => array_values($roles[$user->id] ?? []),
-                'groups' => array_values(array_map(static function($groupid) use ($groups): string {
+                'groups' => array_values(array_map(static function ($groupid) use ($groups): string {
                     return isset($groups[$groupid]) ? format_string($groups[$groupid]->name) : '';
                 }, $usergroups)),
                 'groupids' => array_values(array_map('intval', $usergroups)),

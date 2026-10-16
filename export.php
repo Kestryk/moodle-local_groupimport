@@ -50,7 +50,7 @@ if (!is_array($changes)) {
 
 $reportrows = $changes['reportrows'] ?? [];
 if (empty($reportrows)) {
-    $reportrows = array_map(static function(array $row): array {
+    $reportrows = array_map(static function (array $row): array {
         return [
             'identifier' => (string)($row['identifier'] ?? ''),
             'groupname' => (string)($row['groupname'] ?? ''),

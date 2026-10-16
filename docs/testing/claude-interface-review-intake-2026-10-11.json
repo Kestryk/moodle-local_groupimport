@@ -1,4 +1,22 @@
 {
+  "codex1K1617Codechecker20261016": {
+    "status": "source-static-pass-not-published-decisions-open",
+    "base": "c2077524",
+    "branch": "work/codex1/easystud-k16-17-codechecker-20261016",
+    "scope": "PHP whitespace, comments, documentation and constant-string layout only; 43 files scanned, 38 modified",
+    "before": {
+      "errors": 556,
+      "warnings": 36
+    },
+    "after": {
+      "errors": 4,
+      "warnings": 8
+    },
+    "checks": "php-l 38 files; token/value equivalence 43 files; security escaping/filter engine; ten settings predicates PASS",
+    "decisions": "AJAX logging API; standalone CLI localisation test classification; eight existing MOODLE_INTERNAL guards",
+    "report": "docs/testing/k16-17-codechecker-2026-10-16.md",
+    "published": false
+  },
   "codex2K1613SortZA20261016": {
     "status": "native-pass-12-cases-FR-EN-1600-390",
     "base": "d884d6c4",
