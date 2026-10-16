@@ -1138,6 +1138,11 @@
     }
   }
 
+  // Responsive cards are too narrow for the label beside "Select all": icon-only, named by aria-label.
+  &--responsive-workspace &-group__members-toggle-label {
+    display: none;
+  }
+
   // Desktop footer: the chevron starts on the title column, like the member names (K16-25 grid,
   // selectable-card-header 2.55rem, minus the action's 0.5rem inline padding).
   &:not(.local-groupimport-easystud--responsive-workspace) &-group > &-group__members-toggle {
