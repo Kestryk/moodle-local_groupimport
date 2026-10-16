@@ -75,8 +75,14 @@
 
     &:hover,
     &:focus-visible {
-      background: var(--easyedu-card-action-hover-bg, #f7fbff);
-      border-color: var(--easyedu-card-action-hover-border, #bdd0e5);
+      // K16-55 (Kevin 16/10: the circles had grown too big): a 24 px disc inside the unchanged
+      // hit target, without the outline ring. A radial paint, so .p-0 / borders cannot resize it.
+      background: radial-gradient(
+        circle,
+        var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)) 0 0.75rem,
+        transparent calc(0.75rem + 0.6px)
+      );
+      border-color: transparent;
       color: var(--easyedu-primary-strong);
       text-decoration: none;
     }
@@ -85,8 +91,12 @@
     &[aria-pressed="true"],
     &[aria-expanded="true"],
     &.is-active {
-      background: var(--easyedu-card-action-active-bg, #eaf4ff);
-      border-color: var(--easyedu-card-action-active-border, #b8d5ef);
+      background: radial-gradient(
+        circle,
+        var(--easyedu-card-action-active-bg, color-mix(in srgb, var(--easyedu-primary) 16%, #fff)) 0 0.75rem,
+        transparent calc(0.75rem + 0.6px)
+      );
+      border-color: transparent;
       color: var(--easyedu-primary-strong);
     }
 
