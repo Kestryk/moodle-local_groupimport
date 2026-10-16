@@ -487,6 +487,9 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   }
 }
 
+@property --easyedu-guide-press {syntax: "<number>";inherits: true;initial-value: 0;
+}
+
 .local-groupimport-import [data-local-groupimport-file-required] {margin-block-end: 1rem;
 }
 

@@ -8,6 +8,9 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .easyedu-icon-font-pending .dropdown-toggle::after {visibility: hidden;
 }
 
+@property --easyedu-guide-press {syntax: "<number>";inherits: true;initial-value: 0;
+}
+
 body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton] {display: grid !important;
 }
 body.jsenabled.local-groupimport-admin-settings-page--loading [data-easystud-loading-skeleton] {transition: opacity 180ms var(--easyedu-motion-ease, ease);

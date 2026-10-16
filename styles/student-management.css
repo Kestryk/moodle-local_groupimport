@@ -7341,12 +7341,39 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__destination > span:last-child {margin-inline-start: auto;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor {position: absolute;top: 0;left: 0;pointer-events: none;color: var(--easyedu-text);font-size: 1.125rem;z-index: 5;filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white);
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor {position: absolute;top: 0;left: 0;pointer-events: none;z-index: 5;display: flex;line-height: 1;
 }
-:is([data-easyedu-motion-level=minimal], body.easyedu-motion-disabled) .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor,
-.path-local-groupimport:is(.easyedu-motion-disabled) .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor {filter: none;text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-mouse,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-mouse {color: var(--easyedu-text);font-size: 1.125rem;filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white);
+}
+:is([data-easyedu-motion-level=minimal], body.easyedu-motion-disabled) .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-mouse,
+.path-local-groupimport:is(.easyedu-motion-disabled) .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-mouse {filter: none;text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
 }
 
+@property --easyedu-guide-press {syntax: "<number>";inherits: true;initial-value: 0;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-touch,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-touch {--easyedu-guide-press: 0;display: none;position: absolute;top: -1rem;left: -1rem;box-sizing: border-box;inline-size: 2rem;block-size: 2rem;border-radius: 50%;background: color-mix(in srgb, var(--easyedu-accent) 16%, transparent);border: 2px solid color-mix(in srgb, var(--easyedu-accent) 55%, transparent);box-shadow: 0 0 0 1px white;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-touch::after,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-touch::after {content: "";position: absolute;inset: -2px;border-radius: 50%;opacity: min(1, var(--easyedu-guide-press) * 100);background: conic-gradient(var(--easyedu-accent) calc(var(--easyedu-guide-press) * 1turn), transparent 0);-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+}
+:is([data-easyedu-motion-level=minimal], body.easyedu-motion-disabled) .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-touch,
+.path-local-groupimport:is(.easyedu-motion-disabled) .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-touch {background: none;box-shadow: none;
+}
+
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-ripple,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor-ripple {position: absolute;inset: -2px;border-radius: 50%;opacity: 0;border: 2px solid color-mix(in srgb, var(--easyedu-accent) 55%, transparent);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene [data-guide-simplecreate],
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene [data-guide-simplecreate] {position: relative;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor[data-guide-pointer=touch] .easyedu-guide-scene__cursor-mouse,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor[data-guide-pointer=touch] .easyedu-guide-scene__cursor-mouse {display: none;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor[data-guide-pointer=touch] .easyedu-guide-scene__cursor-touch,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__cursor[data-guide-pointer=touch] .easyedu-guide-scene__cursor-touch {display: block;
+}
 .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__steps,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-scene__steps {padding-inline-start: 1.5rem;
 }

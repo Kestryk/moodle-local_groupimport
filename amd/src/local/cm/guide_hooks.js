@@ -92,7 +92,7 @@ export const highlightActiveTryActionsStep = root => {
     if (!step) {
         return;
     }
-    const compact = !!(window.matchMedia && window.matchMedia('(max-width: 64rem)').matches);
+    const compact = Guide.guideModality().narrow;
     const target = (compact ? step.highlightTargetCompact : step.highlightTargetDesktop) ||
         step.highlightTarget || step.target;
     if (target) {

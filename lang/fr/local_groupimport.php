@@ -883,6 +883,7 @@ $string['discovery_mobileaddmenu'] = '2 · Toucher Ajouter à un groupe dans la 
 $string['discovery_mobileaddconfirm'] = '3 · Rechercher et choisir Projet Horizon comme destination. Les appartenances existantes sont conservées.';
 $string['discovery_mobileaddvalidate'] = '4 · Toucher Ajouter pour confirmer. Projet Horizon est ajouté ; Projet Orion et les autres groupes restent.';
 $string['discovery_validate'] = '4 · Cliquer sur Déplacer pour valider. Vérifier ensuite les nouvelles appartenances.';
+$string['discovery_compactvalidate'] = '4 · Toucher Déplacer pour valider. Vérifier ensuite les nouvelles appartenances.';
 $string['discovery_comparemove'] = 'Comparer : déplacer';
 $string['discovery_selection_one'] = '1 membre sélectionné : Alex Dupont';
 $string['discovery_selection_many'] = '2 membres sélectionnés : Alex Dupont et Léa Martin';

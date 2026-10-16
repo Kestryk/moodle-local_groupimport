@@ -1035,9 +1035,15 @@
     &__dialog footer strong { @include buttons.selection-action($solid: true); @include buttons.button-size(small); }
     &__destination { @include text-fields.foundation-text-field($size: small); display: flex; align-items: center; gap: 0.5rem; margin-block: 0.5rem; }
     &__destination > span:last-child { margin-inline-start: auto; }
+    // The pointer is ONE neutral element (K15-30, C-G6): its glyph is the mouse arrow, or, when the
+    // Guide script sets data-guide-pointer="touch" (touch modality), the finger disc below. The element
+    // origin is the target point; the disc is centred on it.
     &__cursor {
-      position: absolute; top: 0; left: 0; pointer-events: none;
-      color: var(--easyedu-text); font-size: 1.125rem; z-index: 5;
+      position: absolute; top: 0; left: 0; pointer-events: none; z-index: 5;
+      display: flex; line-height: 1;
+    }
+    &__cursor-mouse {
+      color: var(--easyedu-text); font-size: 1.125rem;
       // White halo retains a dark silhouette over blue action surfaces.
       filter: drop-shadow(1px 0 0 white) drop-shadow(-1px 0 0 white)
         drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 white);
@@ -1046,6 +1052,47 @@
         filter: none;
         text-shadow: 1px 0 0 white, -1px 0 0 white, 0 1px 0 white, 0 -1px 0 white;
       }
+    }
+    // C-G6 (P-G3, 16/10): Kit touch pointer. 32 px disc, primary at 16 %, 2 px primary ring at 55 %,
+    // 1 px white halo. States are driven by the Guide script on its animation clock: arrival (fade and
+    // 0.8 to 1 scale), tap (press 1 to 0.86 to 1 plus ripple 1 to 1.8), long press (ring fill, then the
+    // ripple), drag (the disc follows the card ghost), departure (fade). Reduced: fades only. Minimal:
+    // the disc is placed, never animated, and shows the ring alone.
+    @at-root {
+      @property --easyedu-guide-press {
+        syntax: "<number>";
+        inherits: true;
+        initial-value: 0;
+      }
+    }
+    &__cursor-touch {
+      --easyedu-guide-press: 0;
+      display: none; position: absolute; top: -1rem; left: -1rem;
+      box-sizing: border-box; inline-size: 2rem; block-size: 2rem; border-radius: 50%;
+      background: color-mix(in srgb, var(--easyedu-accent) 16%, transparent);
+      border: 2px solid color-mix(in srgb, var(--easyedu-accent) 55%, transparent);
+      box-shadow: 0 0 0 1px white;
+      // Long-press progress: a ring that fills clockwise while --easyedu-guide-press goes 0 to 1.
+      &::after {
+        content: ''; position: absolute; inset: -2px; border-radius: 50%;
+        opacity: min(1, calc(var(--easyedu-guide-press) * 100));
+        background: conic-gradient(var(--easyedu-accent) calc(var(--easyedu-guide-press) * 1turn), transparent 0);
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+        mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+      }
+      @include animations.motion-minimal {
+        background: none; box-shadow: none;
+      }
+    }
+    &__cursor-ripple {
+      position: absolute; inset: -2px; border-radius: 50%; opacity: 0;
+      border: 2px solid color-mix(in srgb, var(--easyedu-accent) 55%, transparent);
+    }
+    // The simple-creation stage is a plain block (no __stage class): it is the pointer's containing block.
+    [data-guide-simplecreate] { position: relative; }
+    &__cursor[data-guide-pointer="touch"] {
+      .easyedu-guide-scene__cursor-mouse { display: none; }
+      .easyedu-guide-scene__cursor-touch { display: block; }
     }
     &__steps { padding-inline-start: 1.5rem; }
     &__steps [aria-current] { color: var(--easyedu-accent); font-weight: 600; }

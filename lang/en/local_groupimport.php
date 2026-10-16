@@ -928,6 +928,7 @@ $string['discovery_mobileaddmenu'] = '2 · Tap Add to group in the selection act
 $string['discovery_mobileaddconfirm'] = '3 · Search for and choose Projet Horizon as the destination. Existing memberships are preserved.';
 $string['discovery_mobileaddvalidate'] = '4 · Tap Add to confirm. Projet Horizon is added; Projet Orion and the other groups stay unchanged.';
 $string['discovery_validate'] = '4 · Click Move to confirm, then check the new memberships.';
+$string['discovery_compactvalidate'] = '4 · Tap Move to confirm, then check the new memberships.';
 $string['discovery_comparemove'] = 'Compare: move';
 $string['discovery_selection_one'] = '1 selected member: Alex Dupont';
 $string['discovery_selection_many'] = '2 selected members: Alex Dupont and Léa Martin';
