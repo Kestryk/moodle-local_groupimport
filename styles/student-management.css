@@ -7903,7 +7903,31 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav {padding-block-end: 0;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item,
-.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item {flex-basis: 11.375rem;
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item {flex: 0 0 2.75rem;justify-content: center;min-height: 2.75rem;padding: 0;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) > .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__icon,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__meta,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__sep,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__text,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__requirement,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) > .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__icon,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__meta,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__sep,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__text,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__requirement {border: 0;clip: rect(0 0 0 0);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;white-space: nowrap;width: 1px;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__label,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item:not(.is-active) .easyedu-guide-nav-item__label {text-align: center;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active {flex: 0 0 auto;justify-content: flex-start;max-inline-size: 11.375rem;padding: 0.25rem 0.75rem;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active > .fa,
+.local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active .easyedu-guide-nav-item__icon,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active > .fa,
+.path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-nav .easyedu-guide-nav-item.is-active .easyedu-guide-nav-item__icon {display: none;
   }
   .local-groupimport-easystud-easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer,
 .path-local-groupimport .easyedu-guide.easyedu-guide--discovery .easyedu-guide-modal__footer {flex-wrap: wrap;padding: 0.75rem 1rem;
