@@ -1,4 +1,13 @@
 {
+  "codex2K1613SortZA20261016": {
+    "status": "native-pass-12-cases-FR-EN-1600-390",
+    "base": "d884d6c4",
+    "branch": "work/codex2/easystud-k16-13-sort-za-20261016",
+    "scope": "alpha-desc in shared menus/comparators; A/Z arrow labels FR/EN; no styles",
+    "report": "docs/testing/k16-13-sort-za-2026-10-16.md",
+    "static": "security escaping, filter engine, three production comparators, PHP syntax PASS; ESLint no new diagnostics versus HEAD",
+    "evidence": "C:/dev/Moodle 51 Perf/moodle/local/k16-13-evidence/"
+  },
   "claudeFiveLoading20261013": {
     "status": "five-commits-served-native-N1-pass-T061-part2-open",
     "runtimeHead": "f89ee98cdc44ced2950acbd57e4627a7c241e260",
