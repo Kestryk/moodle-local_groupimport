@@ -238,7 +238,7 @@ export const applyParticipantFilters = (model, filters) => {
  *
  * @param {Object} model Participant model.
  * @param {Number[]} ids Ids in state order.
- * @param {String} mode alpha, filled or empty.
+ * @param {String} mode alpha, alpha-desc, filled or empty.
  * @returns {Number[]}
  */
 export const sortParticipantIds = (model, ids, mode) => {
@@ -250,7 +250,7 @@ export const sortParticipantIds = (model, ids, mode) => {
         if ((mode === 'filled' || mode === 'empty') && left.count !== right.count) {
             return mode === 'filled' ? right.count - left.count : left.count - right.count;
         }
-        return left.name.localeCompare(right.name);
+        return mode === 'alpha-desc' ? right.name.localeCompare(left.name) : left.name.localeCompare(right.name);
     });
     return keyed.map(item => item.id);
 };

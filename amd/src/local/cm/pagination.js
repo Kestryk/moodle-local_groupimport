@@ -24,6 +24,7 @@
 import {countLabel} from '../sm/index';
 import {
     selectedClass, compactClass, structureFocusClass, participantFocusClass, normalise, getLabels, escapeHtml,
+    isResponsiveWorkspace,
 } from './shared';
 import {getGroupMemberCount, getOnDemandList} from './cards';
 import {hasActiveListFilters} from './filters';
@@ -67,7 +68,8 @@ export const getPaginationConfigs = root => {
             inside: true,
         },
         {
-            list: root.classList.contains(structureFocusClass) ?
+            list: (root.classList.contains(structureFocusClass) ||
+                (isResponsiveWorkspace() && root.getAttribute('data-easystud-mobile-view-active') === 'groupings')) ?
                 root.querySelector('[data-easystud-tree] .local-groupimport-easystud-tree__groupings') : null,
             selector: '[data-easystud-grouping-id]',
             limit: 10,
@@ -115,6 +117,8 @@ export const getPagination = (list, inside, position) => {
                         '</button>' +
                         '<span class="local-groupimport-easystud-dropdown__menu" data-easystud-list-sort-menu hidden>' +
                             '<button type="button" data-easystud-list-sort-option="alpha">' + escapeHtml(labels.sortalpha || '') + '</button>' +
+                            '<button type="button" data-easystud-list-sort-option="alpha-desc">' +
+                                escapeHtml(labels.sortalphadesc || '') + '</button>' +
                             '<button type="button" data-easystud-list-sort-option="filled">' + escapeHtml(labels.sortfilledfirst || '') + '</button>' +
                             '<button type="button" data-easystud-list-sort-option="empty">' + escapeHtml(labels.sortemptyfirst || '') + '</button>' +
                         '</span>' +
@@ -192,12 +196,14 @@ const getSortModeLabels = (root, list) => {
     if (list && list.matches('[data-easystud-participant-list]')) {
         return {
             alpha: labels.sortalpha || '',
+            'alpha-desc': labels.sortalphadesc || '',
             filled: labels.sortparticipantswithgroups || '',
             empty: labels.sortparticipantswithoutgroups || '',
         };
     }
     return {
         alpha: labels.sortalpha || '',
+        'alpha-desc': labels.sortalphadesc || '',
         filled: labels.sortfilledfirst || '',
         empty: labels.sortemptyfirst || '',
     };
@@ -221,7 +227,7 @@ export const sortListItems = (list, config) => {
                 return mode === 'filled' ? rightCount - leftCount : leftCount - rightCount;
             }
         }
-        return leftName.localeCompare(rightName);
+        return mode === 'alpha-desc' ? rightName.localeCompare(leftName) : leftName.localeCompare(rightName);
     });
     const anchor = bottomPagination && bottomPagination.parentElement === list ? bottomPagination : null;
     items.forEach(item => list.insertBefore(item, anchor));

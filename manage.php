@@ -442,6 +442,7 @@ function local_groupimport_build_manage_template_data(
         'listeditemscounttemplate' => local_groupimport_count_template('listeditemscount'),
         'sortitems' => get_string('sortitems', 'local_groupimport'),
         'sortalpha' => get_string('sortalpha', 'local_groupimport'),
+        'sortalphadesc' => get_string('sortalphadesc', 'local_groupimport'),
         'sortfilledfirst' => get_string('sortfilledfirst', 'local_groupimport'),
         'sortemptyfirst' => get_string('sortemptyfirst', 'local_groupimport'),
         'sortparticipantswithgroups' => get_string('sortparticipantswithgroups', 'local_groupimport'),
