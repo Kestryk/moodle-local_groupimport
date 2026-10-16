@@ -8,11 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace local_groupimport\service;
 
@@ -24,7 +24,6 @@ namespace local_groupimport\service;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class membership_transfer_test extends \advanced_testcase {
-
     /**
      * Create a private enrolled fixture; resetAfterTest owns all its data.
      *
@@ -46,7 +45,9 @@ final class membership_transfer_test extends \advanced_testcase {
         return [$course, $user, $groups[0], $groups[1], $groups[2]];
     }
 
-    /** Transfer affects only explicit origins, despite repeated responsive pairs. */
+    /**
+     * Transfer affects only explicit origins, despite repeated responsive pairs.
+     */
     public function test_transfer_preserves_unrelated_memberships_and_enrolment(): void {
         [$course, $user, $origin, $destination, $unrelated] = $this->fixture();
         $pair = ['groupid' => $origin->id, 'userid' => $user->id];
@@ -58,7 +59,9 @@ final class membership_transfer_test extends \advanced_testcase {
         $this->assertTrue(is_enrolled(\context_course::instance($course->id), $user->id));
     }
 
-    /** Existing destination membership and same-group selection are safe. */
+    /**
+     * Existing destination membership and same-group selection are safe.
+     */
     public function test_existing_destination_is_retained_and_same_group_is_unchanged(): void {
         [$course, $user, $origin, $destination] = $this->fixture();
         $this->getDataGenerator()->create_group_member(['groupid' => $destination->id, 'userid' => $user->id]);
@@ -71,7 +74,9 @@ final class membership_transfer_test extends \advanced_testcase {
         $this->assertFalse(groups_is_member($origin->id, $user->id));
     }
 
-    /** One learner may be selected in two origins, without duplicate destination. */
+    /**
+     * One learner may be selected in two origins, without duplicate destination.
+     */
     public function test_two_selected_origins_are_removed_without_duplicate_destination(): void {
         [$course, $user, $origin, $destination, $other] = $this->fixture();
         $result = membership_transfer::move_members((int)$course->id, (int)$destination->id, [
@@ -84,7 +89,9 @@ final class membership_transfer_test extends \advanced_testcase {
         $this->assertFalse(groups_is_member($other->id, $user->id));
     }
 
-    /** Validate every pair before mutating even the first valid membership. */
+    /**
+     * Validate every pair before mutating even the first valid membership.
+     */
     public function test_foreign_origin_rejects_the_whole_batch(): void {
         [$course, $user, $origin, $destination] = $this->fixture();
         $foreigncourse = $this->getDataGenerator()->create_course();
@@ -102,7 +109,9 @@ final class membership_transfer_test extends \advanced_testcase {
         $this->assertFalse(groups_is_member($destination->id, $user->id));
     }
 
-    /** A missing or stale source membership must not become a course-wide move. */
+    /**
+     * A missing or stale source membership must not become a course-wide move.
+     */
     public function test_stale_source_is_rejected_without_destination_addition(): void {
         [$course, $user, $origin, $destination] = $this->fixture();
         $unknownuser = $this->getDataGenerator()->create_user();
@@ -118,7 +127,9 @@ final class membership_transfer_test extends \advanced_testcase {
         $this->assertFalse(groups_is_member($destination->id, $unknownuser->id));
     }
 
-    /** Course management capability is mandatory, not just a valid membership. */
+    /**
+     * Course management capability is mandatory, not just a valid membership.
+     */
     public function test_unprivileged_member_cannot_transfer_memberships(): void {
         [$course, $user, $origin, $destination] = $this->fixture();
         $this->setUser($user);

@@ -30,8 +30,11 @@
  * @param context_course $context The course context.
  * @return void
  */
-function local_groupimport_extend_navigation_course(navigation_node $coursenode, stdClass $course,
-        context_course $context): void {
+function local_groupimport_extend_navigation_course(
+    navigation_node $coursenode,
+    stdClass $course,
+    context_course $context
+): void {
     if (!has_capability('moodle/course:managegroups', $context)) {
         return;
     }
@@ -181,8 +184,10 @@ function local_groupimport_is_singular_count(int $count): bool {
  * @return string
  */
 function local_groupimport_count_string(string $identifier, int $count, $a = null): string {
-    if (local_groupimport_is_singular_count($count) &&
-            get_string_manager()->string_exists($identifier . '_one', 'local_groupimport')) {
+    if (
+        local_groupimport_is_singular_count($count) &&
+            get_string_manager()->string_exists($identifier . '_one', 'local_groupimport')
+    ) {
         $identifier .= '_one';
     }
     return get_string($identifier, 'local_groupimport', $a ?? $count);
@@ -328,7 +333,8 @@ function local_groupimport_colour_for_white_contrast(string $hex, float $minimum
     $safe = '#000000';
     for ($step = 0; $step < 16; $step++) {
         $fraction = ($low + $high) / 2;
-        $candidate = sprintf('#%02x%02x%02x',
+        $candidate = sprintf(
+            '#%02x%02x%02x',
             (int)floor($channels[0] * $fraction),
             (int)floor($channels[1] * $fraction),
             (int)floor($channels[2] * $fraction)
@@ -440,8 +446,11 @@ function local_groupimport_prepare_manage_names(array $state, context_course $co
             if (!array_key_exists('rawname', $entity)) {
                 continue;
             }
-            $state[$type][$id]['name'] = format_string((string)$entity['rawname'], true,
-                ['context' => $context, 'escape' => false]);
+            $state[$type][$id]['name'] = format_string(
+                (string)$entity['rawname'],
+                true,
+                ['context' => $context, 'escape' => false]
+            );
         }
     }
     return $state;
@@ -673,7 +682,7 @@ function local_groupimport_normalise_participant_label_value(?string $value): st
                 'ol', 'p', 'pre', 'section', 'summary', 'table', 'tbody', 'td', 'tfoot',
                 'th', 'thead', 'tr', 'ul',
             ];
-            $separatorquery = implode(' | ', array_map(static function(string $tag): string {
+            $separatorquery = implode(' | ', array_map(static function (string $tag): string {
                 return './/' . $tag;
             }, $blocktags));
             $separatornodes = $xpath->query($separatorquery, $root);
@@ -726,7 +735,7 @@ function local_groupimport_history_desired_state(array $changes, int $courseid):
     global $DB;
 
     if (!empty($changes['desiredstate']) && is_array($changes['desiredstate'])) {
-        return array_values(array_filter($changes['desiredstate'], static function($row): bool {
+        return array_values(array_filter($changes['desiredstate'], static function ($row): bool {
             return is_array($row) && !empty($row['userid']) && !empty($row['groupname']);
         }));
     }
@@ -744,7 +753,7 @@ function local_groupimport_history_desired_state(array $changes, int $courseid):
         }
     }
 
-    $groupids = array_unique(array_map(static function(array $membership): int {
+    $groupids = array_unique(array_map(static function (array $membership): int {
         return (int)($membership['groupid'] ?? 0);
     }, $changes['addedmembers'] ?? []));
     foreach (array_filter($groupids) as $groupid) {

@@ -28,7 +28,6 @@ require_once(__DIR__ . '/../lib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class lib_test extends \advanced_testcase {
-
     /**
      * A missing feature flag must preserve the historical import-only flow.
      *
@@ -120,8 +119,10 @@ final class lib_test extends \advanced_testcase {
     public function test_missing_theme_colours_use_canonical_defaults(): void {
         $this->resetAfterTest();
 
-        foreach (['themeprimarycolor', 'themeaccentcolor', 'themeparticipantcolor',
-                'themegroupcolor', 'themegroupingcolor'] as $setting) {
+        foreach (
+            ['themeprimarycolor', 'themeaccentcolor', 'themeparticipantcolor',
+                'themegroupcolor', 'themegroupingcolor'] as $setting
+        ) {
             unset_config($setting, 'local_groupimport');
         }
 
@@ -202,8 +203,10 @@ final class lib_test extends \advanced_testcase {
         // Red was readable on white but not on its pale-red selected surface.
         $adapted = local_groupimport_colour_for_soft_contrast('#ff0000', 0.11);
         $backgroundwhitecontrast = local_groupimport_colour_contrast_against_white('#ffe2e2');
-        $this->assertGreaterThanOrEqual(4.5,
-            local_groupimport_colour_contrast_against_white($adapted) / $backgroundwhitecontrast);
+        $this->assertGreaterThanOrEqual(
+            4.5,
+            local_groupimport_colour_contrast_against_white($adapted) / $backgroundwhitecontrast
+        );
         $this->assertNotSame(local_groupimport_colour_for_white_contrast('#ff0000'), $adapted);
     }
 

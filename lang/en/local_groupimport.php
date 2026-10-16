@@ -1,17 +1,4 @@
 <?php
-$string['importfilerequired'] = 'Add a CSV or Excel file and wait for its upload to finish before previewing the import.';
-$string['activity_path_title'] = 'Prepare a grouping for an activity';
-$string['activity_path_content'] = 'Use existing course groups, or create them first. Only your explicit confirmation changes memberships. Afterwards, choose this grouping separately in the Moodle activity settings.';
-$string['activity_path_step1'] = 'Create or open a grouping';
-$string['activity_path_desc1'] = 'Open an existing grouping using its chevron, or create one with the grouping creation field. If none exists, create it first; the guide never creates course data for you.';
-$string['activity_path_step2'] = 'Select the relevant groups';
-$string['activity_path_desc2'] = 'Select groups using their checkboxes, not participants or members inside a group. If there are no groups, create them first. On mobile, use the Groups view.';
-$string['activity_path_step3'] = 'Search and choose the destination grouping';
-$string['activity_path_desc3'] = 'The Guide opens the action for you: choose the destination grouping in the list.';
-$string['activity_path_step4'] = 'Check the options, then confirm';
-$string['activity_path_desc4'] = 'Check the destination. If the "Remove from the original grouping" checkbox is offered, leaving it unchecked preserves other memberships; checking it removes them. When ready, use "Move selected item" or "Move selected items", depending on the number of groups. Requests are made per group: a failed batch does not roll back earlier successes.';
-$string['activity_path_step5'] = 'Open the destination and verify its groups';
-$string['activity_path_desc5'] = 'Check the groups in the destination grouping. The Guide opens it if needed; if it is already open, verification is immediate. All confirmed groups must be present. Clear filters if needed. Then select this grouping separately in the Moodle activity settings.';
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -34,6 +21,22 @@ $string['activity_path_desc5'] = 'Check the groups in the destination grouping. 
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+
+
+$string['importfilerequired'] = 'Add a CSV or Excel file and wait for its upload to finish before previewing the import.';
+$string['activity_path_title'] = 'Prepare a grouping for an activity';
+$string['activity_path_content'] = 'Use existing course groups, or create them first. Only your explicit confirmation changes memberships. Afterwards, choose this grouping separately in the Moodle activity settings.';
+$string['activity_path_step1'] = 'Create or open a grouping';
+$string['activity_path_desc1'] = 'Open an existing grouping using its chevron, or create one with the grouping creation field. If none exists, create it first; the guide never creates course data for you.';
+$string['activity_path_step2'] = 'Select the relevant groups';
+$string['activity_path_desc2'] = 'Select groups using their checkboxes, not participants or members inside a group. If there are no groups, create them first. On mobile, use the Groups view.';
+$string['activity_path_step3'] = 'Search and choose the destination grouping';
+$string['activity_path_desc3'] = 'The Guide opens the action for you: choose the destination grouping in the list.';
+$string['activity_path_step4'] = 'Check the options, then confirm';
+$string['activity_path_desc4'] = 'Check the destination. If the "Remove from the original grouping" checkbox is offered, leaving it unchecked preserves other memberships; checking it removes them. When ready, use "Move selected item" or "Move selected items", depending on the number of groups. Requests are made per group: a failed batch does not roll back earlier successes.';
+$string['activity_path_step5'] = 'Open the destination and verify its groups';
+$string['activity_path_desc5'] = 'Check the groups in the destination grouping. The Guide opens it if needed; if it is already open, verification is immediate. All confirmed groups must be present. Clear filters if needed. Then select this grouping separately in the Moodle activity settings.';
 
 defined('MOODLE_INTERNAL') || die();
 

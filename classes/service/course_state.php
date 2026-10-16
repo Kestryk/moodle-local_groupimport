@@ -42,7 +42,6 @@ use local_groupimport\local\state_version;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_state {
-
     /** @var int Maximum values per IN () clause; keeps SQL Server under its parameter limit. */
     const CHUNK_SIZE = 1000;
 
@@ -95,7 +94,7 @@ class course_state {
             array_keys($identifierfields),
             [$display['primary']['key'] ?? ''],
             array_column($display['details'], 'key')
-        ), static function(string $key): bool {
+        ), static function (string $key): bool {
             return strpos($key, 'profile_field_') === 0;
         })));
         $customvalues = self::get_custom_field_values($userids, $customkeys);
@@ -251,7 +250,7 @@ class course_state {
             $users[$userid] = [
                 'id' => $userid,
                 // Role id => name: the role filter matches role ids, two roles can share a name.
-                'roles' => array_map(static function(int $roleid) use ($rolenames): string {
+                'roles' => array_map(static function (int $roleid) use ($rolenames): string {
                     return $rolenames[$roleid];
                 }, $userroles[$userid] ?? []),
             ];
@@ -310,7 +309,7 @@ class course_state {
     public static function get_details(\stdClass $course, \context_course $context, string $type, array $ids): array {
         self::assert_context($course, $context);
 
-        $ids = array_values(array_unique(array_filter(array_map('intval', $ids), static function(int $id): bool {
+        $ids = array_values(array_unique(array_filter(array_map('intval', $ids), static function (int $id): bool {
             return $id > 0;
         })));
         if (!$ids) {
@@ -360,7 +359,7 @@ class course_state {
         $identifierfields = self::get_visible_identifier_fields($access);
         $customvalues = self::get_custom_field_values($ids, array_values(array_filter(
             array_keys($identifierfields),
-            static function(string $key): bool {
+            static function (string $key): bool {
                 return strpos($key, 'profile_field_') === 0;
             }
         )));
@@ -550,7 +549,7 @@ class course_state {
         // settings, so a standard field is available to anyone allowed to see user identity
         // (moodle/site:viewuseridentity), even when showuseridentity does not list it.
         // Custom profile fields keep Moodle's identity listing, which applies their own visibility.
-        return array_filter(self::get_identifier_field_definitions(), static function(string $fieldkey) use ($access): bool {
+        return array_filter(self::get_identifier_field_definitions(), static function (string $fieldkey) use ($access): bool {
             $key = \core_text::strtolower($fieldkey);
             if (isset($access['identity'][$key])) {
                 return true;
@@ -603,14 +602,24 @@ class course_state {
      * @param string $filearea File area.
      * @return string Formatted HTML.
      */
-    protected static function format_description(\stdClass $record, \context_course $context, string $component,
-            string $filearea): string {
+    protected static function format_description(
+        \stdClass $record,
+        \context_course $context,
+        string $component,
+        string $filearea
+    ): string {
         $description = (string)($record->description ?? '');
         if ($description === '') {
             return '';
         }
-        $description = file_rewrite_pluginfile_urls($description, 'pluginfile.php', $context->id, $component, $filearea,
-            (int)$record->id);
+        $description = file_rewrite_pluginfile_urls(
+            $description,
+            'pluginfile.php',
+            $context->id,
+            $component,
+            $filearea,
+            (int)$record->id
+        );
         return format_text($description, $record->descriptionformat ?? FORMAT_HTML, ['context' => $context]);
     }
 
@@ -645,8 +654,10 @@ class course_state {
         $details = [];
         foreach (['participantdetailfield1', 'participantdetailfield2'] as $settingname) {
             $fieldkey = !empty($config->{$settingname}) ? (string)$config->{$settingname} : '';
-            if ($fieldkey !== '' && isset($customfields[$fieldkey]) && $fieldkey !== $primarykey &&
-                    !in_array($fieldkey, array_column($details, 'key'), true)) {
+            if (
+                $fieldkey !== '' && isset($customfields[$fieldkey]) && $fieldkey !== $primarykey &&
+                    !in_array($fieldkey, array_column($details, 'key'), true)
+            ) {
                 $details[] = ['key' => $fieldkey, 'label' => $customfields[$fieldkey]];
             }
         }
@@ -746,8 +757,13 @@ class course_state {
         $bygrouping = [];
         foreach (array_chunk($groupingids, self::CHUNK_SIZE) as $chunk) {
             [$insql, $params] = $DB->get_in_or_equal($chunk, SQL_PARAMS_NAMED);
-            $recordset = $DB->get_recordset_select('groupings_groups', "groupingid $insql", $params,
-                'groupingid ASC, groupid ASC', 'id, groupingid, groupid');
+            $recordset = $DB->get_recordset_select(
+                'groupings_groups',
+                "groupingid $insql",
+                $params,
+                'groupingid ASC, groupid ASC',
+                'id, groupingid, groupid'
+            );
             foreach ($recordset as $record) {
                 $bygroup[(int)$record->groupid][] = (int)$record->groupingid;
                 $bygrouping[(int)$record->groupingid][] = (int)$record->groupid;

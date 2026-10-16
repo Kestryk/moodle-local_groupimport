@@ -1,6 +1,18 @@
 <?php
 // This file is part of Moodle - http://moodle.org/
-// Moodle is free software under the GNU GPL v3 or later.
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace local_groupimport\local;
 
@@ -21,7 +33,9 @@ final class batch_reader {
     /** Maximum IN values; leave room for additional SQL Server parameters. */
     public const CHUNK_SIZE = 1000;
 
-    /** Get course-owned records by ID, preserving ordinary Moodle record objects. */
+    /**
+     * Get course-owned records by ID, preserving ordinary Moodle record objects.
+     */
     public static function records(string $table, array $ids, array $conditions = [], string $fields = '*'): array {
         global $DB;
         if (!in_array($table, ['user', 'groups', 'groupings'], true)) {
@@ -43,7 +57,9 @@ final class batch_reader {
         return $result;
     }
 
-    /** Match enabled core/profile fields; callers retain distinct AJAX/import policies. */
+    /**
+     * Match enabled core/profile fields; callers retain distinct AJAX/import policies.
+     */
     public static function users(array $values, string $field, array $shortnames = []): array {
         global $DB;
         $joins = '';
@@ -75,13 +91,15 @@ final class batch_reader {
         return self::matches($values, 'user', $column, $joins, $conditions, $params);
     }
 
-    /** Match group/grouping names with the same database comparison as native lookups. */
+    /**
+     * Match group/grouping names with the same database comparison as native lookups.
+     */
     public static function names(string $table, int $courseid, array $names): array {
         if (!in_array($table, ['groups', 'groupings'], true)) {
             throw new \coding_exception('Unsupported course-name table.');
         }
         if ($table === 'groups') {
-            // groups_get_group_by_name uses PHP == over native cached course
+            // The groups_get_group_by_name function uses PHP == over native cached course
             // data, not SQL collation. Keep its exact case/numeric-name policy.
             $result = [];
             $groups = groups_get_course_data($courseid)->groups;
@@ -107,8 +125,14 @@ final class batch_reader {
      * No LIMIT/order is imposed: duplicate/ambiguous callers can fall back to
      * the historical single-value API where its unspecified first row matters.
      */
-    private static function matches(array $values, string $table, string $column, string $joins,
-            string $conditions, array $fixedparams): array {
+    private static function matches(
+        array $values,
+        string $table,
+        string $column,
+        string $joins,
+        string $conditions,
+        array $fixedparams
+    ): array {
         global $DB;
         $values = array_values(array_unique(array_map('strval', $values)));
         $result = array_fill_keys($values, []);
@@ -138,13 +162,15 @@ final class batch_reader {
         return $result;
     }
 
-    /** All ordinary enrolments, including suspended/disabled, as is_enrolled's default. */
+    /**
+     * All ordinary enrolments, including suspended/disabled, as is_enrolled's default.
+     */
     public static function enrolled(\context_course $context): array {
         global $DB, $USER;
         [$sql, $params] = get_enrolled_sql($context);
         $users = $DB->get_records_sql('SELECT u.id FROM {user} u JOIN (' . $sql . ') e ON e.id = u.id ' .
             'WHERE u.deleted = 0', $params);
-        // is_enrolled checks the current actor's active cached enrolment first.
+        // The is_enrolled function checks the current actor's active cached enrolment first.
         if (!empty($USER->id) && is_enrolled($context, $USER->id)) {
             $users[$USER->id] = (object)['id' => $USER->id];
         }
@@ -156,7 +182,9 @@ final class batch_reader {
         return $users;
     }
 
-    /** Group memberships and grouping assignments, keyed by their actual IDs. */
+    /**
+     * Group memberships and grouping assignments, keyed by their actual IDs.
+     */
     public static function relationships(int $courseid): array {
         global $DB;
         $members = [];

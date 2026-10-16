@@ -29,7 +29,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $observers = [];
-foreach ([
+foreach (
+    [
     '\core\event\group_created',
     '\core\event\group_updated',
     '\core\event\group_deleted',
@@ -45,7 +46,8 @@ foreach ([
     '\core\event\user_enrolment_deleted',
     '\core\event\role_assigned',
     '\core\event\role_unassigned',
-] as $eventname) {
+    ] as $eventname
+) {
     $observers[] = [
         'eventname' => $eventname,
         'callback' => '\local_groupimport\local\state_version::observe',

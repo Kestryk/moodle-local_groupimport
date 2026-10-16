@@ -33,9 +33,9 @@ use local_groupimport\local\motion;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements
-        \core_privacy\local\metadata\provider,
-        \core_privacy\local\request\plugin\provider,
-        \core_privacy\local\request\user_preference_provider {
+    \core_privacy\local\metadata\provider,
+    \core_privacy\local\request\plugin\provider,
+    \core_privacy\local\request\user_preference_provider {
     /**
      * Describe personal data stored by EasyStud.
      *
@@ -43,8 +43,10 @@ class provider implements
      * @return collection
      */
     public static function get_metadata(collection $collection): collection {
-        $collection->add_user_preference(\local_groupimport\local\guide_welcome::PREFERENCE,
-            'privacy:metadata:guidewelcomeseen');
+        $collection->add_user_preference(
+            \local_groupimport\local\guide_welcome::PREFERENCE,
+            'privacy:metadata:guidewelcomeseen'
+        );
         $collection->add_user_preference(motion::PREFERENCE, 'privacy:metadata:motionlevel');
         $collection->add_database_table('local_groupimport_history', [
             'courseid' => 'privacy:metadata:history:courseid',
@@ -73,14 +75,21 @@ class provider implements
     public static function export_user_preferences(int $userid) {
         $value = get_user_preferences(\local_groupimport\local\guide_welcome::PREFERENCE, null, $userid);
         if ($value !== null) {
-            writer::with_context(\context_system::instance())->export_user_preference('local_groupimport',
-                \local_groupimport\local\guide_welcome::PREFERENCE, (string)$value,
-                get_string('privacy:metadata:guidewelcomeseen', 'local_groupimport'));
+            writer::with_context(\context_system::instance())->export_user_preference(
+                'local_groupimport',
+                \local_groupimport\local\guide_welcome::PREFERENCE,
+                (string)$value,
+                get_string('privacy:metadata:guidewelcomeseen', 'local_groupimport')
+            );
         }
         $level = get_user_preferences(motion::PREFERENCE, null, $userid);
         if ($level !== null) {
-            writer::with_context(\context_system::instance())->export_user_preference('local_groupimport',
-                motion::PREFERENCE, (string)$level, get_string('privacy:metadata:motionlevel', 'local_groupimport'));
+            writer::with_context(\context_system::instance())->export_user_preference(
+                'local_groupimport',
+                motion::PREFERENCE,
+                (string)$level,
+                get_string('privacy:metadata:motionlevel', 'local_groupimport')
+            );
         }
     }
 
@@ -186,11 +195,16 @@ class provider implements
                 'courseid' => $context->instanceid,
                 'userid' => $contextlist->get_user()->id,
             ]);
-            $DB->set_field_select('local_groupimport_history', 'rollbackuserid', null,
-                'courseid = :courseid AND rollbackuserid = :userid', [
+            $DB->set_field_select(
+                'local_groupimport_history',
+                'rollbackuserid',
+                null,
+                'courseid = :courseid AND rollbackuserid = :userid',
+                [
                     'courseid' => $context->instanceid,
                     'userid' => $contextlist->get_user()->id,
-                ]);
+                ]
+            );
         }
     }
 }

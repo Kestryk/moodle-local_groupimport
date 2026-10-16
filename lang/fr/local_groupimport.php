@@ -1,17 +1,4 @@
 <?php
-$string['importfilerequired'] = 'Ajoutez un fichier CSV ou Excel et attendez la fin de son chargement avant de prévisualiser l’import.';
-$string['activity_path_title'] = 'Préparer un groupement pour une activité';
-$string['activity_path_content'] = 'Utilisez les groupes du cours, ou créez-les au préalable. Seule votre confirmation explicite modifie les associations. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
-$string['activity_path_step1'] = 'Créer ou ouvrir un groupement';
-$string['activity_path_desc1'] = 'Ouvrez un groupement existant avec son chevron, ou créez-en un dans le champ de création de groupement. S’il n’en existe aucun, créez-le d’abord : le guide ne crée jamais de données à votre place.';
-$string['activity_path_step2'] = 'Sélectionner les groupes concernés';
-$string['activity_path_desc2'] = 'Sélectionnez les groupes avec leurs cases à cocher, pas les participants ni les membres d’un groupe. S’il n’existe aucun groupe, créez-en d’abord. Sur mobile, utilisez la vue Groupes.';
-$string['activity_path_step3'] = 'Rechercher et choisir le groupement de destination';
-$string['activity_path_desc3'] = 'Le Guide ouvre l’action pour vous : choisissez le groupement de destination dans la liste.';
-$string['activity_path_step4'] = 'Vérifier les options, puis confirmer';
-$string['activity_path_desc4'] = 'Vérifiez la destination. Si la case « Retirer du groupement d’origine » est proposée, décochée elle conserve les autres associations ; cochée elle les retire. Lorsque vous êtes prêt, utilisez « Déplacer l’élément sélectionné » ou « Déplacer les éléments sélectionnés », selon le nombre de groupes. Chaque groupe fait l’objet d’une requête : un échec global n’annule pas les réussites précédentes.';
-$string['activity_path_step5'] = 'Ouvrir la destination et vérifier ses groupes';
-$string['activity_path_desc5'] = 'Vérifiez les groupes du groupement de destination. Le Guide l’ouvre si nécessaire ; s’il est déjà ouvert, la vérification est immédiate. Tous les groupes confirmés doivent être présents. Effacez les filtres si nécessaire. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -34,6 +21,20 @@ $string['activity_path_desc5'] = 'Vérifiez les groupes du groupement de destina
  * @copyright  2026 Kevin Jarniac
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+$string['importfilerequired'] = 'Ajoutez un fichier CSV ou Excel et attendez la fin de son chargement avant de prévisualiser l’import.';
+$string['activity_path_title'] = 'Préparer un groupement pour une activité';
+$string['activity_path_content'] = 'Utilisez les groupes du cours, ou créez-les au préalable. Seule votre confirmation explicite modifie les associations. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
+$string['activity_path_step1'] = 'Créer ou ouvrir un groupement';
+$string['activity_path_desc1'] = 'Ouvrez un groupement existant avec son chevron, ou créez-en un dans le champ de création de groupement. S’il n’en existe aucun, créez-le d’abord : le guide ne crée jamais de données à votre place.';
+$string['activity_path_step2'] = 'Sélectionner les groupes concernés';
+$string['activity_path_desc2'] = 'Sélectionnez les groupes avec leurs cases à cocher, pas les participants ni les membres d’un groupe. S’il n’existe aucun groupe, créez-en d’abord. Sur mobile, utilisez la vue Groupes.';
+$string['activity_path_step3'] = 'Rechercher et choisir le groupement de destination';
+$string['activity_path_desc3'] = 'Le Guide ouvre l’action pour vous : choisissez le groupement de destination dans la liste.';
+$string['activity_path_step4'] = 'Vérifier les options, puis confirmer';
+$string['activity_path_desc4'] = 'Vérifiez la destination. Si la case « Retirer du groupement d’origine » est proposée, décochée elle conserve les autres associations ; cochée elle les retire. Lorsque vous êtes prêt, utilisez « Déplacer l’élément sélectionné » ou « Déplacer les éléments sélectionnés », selon le nombre de groupes. Chaque groupe fait l’objet d’une requête : un échec global n’annule pas les réussites précédentes.';
+$string['activity_path_step5'] = 'Ouvrir la destination et vérifier ses groupes';
+$string['activity_path_desc5'] = 'Vérifiez les groupes du groupement de destination. Le Guide l’ouvre si nécessaire ; s’il est déjà ouvert, la vérification est immédiate. Tous les groupes confirmés doivent être présents. Effacez les filtres si nécessaire. Choisissez ensuite ce groupement séparément dans les paramètres de l’activité Moodle.';
 
 defined('MOODLE_INTERNAL') || die();
 

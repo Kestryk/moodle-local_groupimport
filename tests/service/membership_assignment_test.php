@@ -24,7 +24,6 @@ namespace local_groupimport\service;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 final class membership_assignment_test extends \advanced_testcase {
-
     /**
      * Copying a participant adds the destination group and preserves the origin.
      *

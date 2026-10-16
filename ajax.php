@@ -194,8 +194,10 @@ try {
             throw new moodle_exception('invaliddata', 'error');
         }
 
-        if ($name !== (string)$group->name &&
-                ($existing = groups_get_group_by_name($course->id, $name)) && (int)$existing->id !== $groupid) {
+        if (
+            $name !== (string)$group->name &&
+                ($existing = groups_get_group_by_name($course->id, $name)) && (int)$existing->id !== $groupid
+        ) {
             throw new moodle_exception('groupnameexists', 'group', '', $name);
         }
 
@@ -265,8 +267,10 @@ try {
             throw new moodle_exception('invaliddata', 'error');
         }
 
-        if ($name !== (string)$grouping->name &&
-                ($existing = groups_get_grouping_by_name($course->id, $name)) && (int)$existing->id !== $groupingid) {
+        if (
+            $name !== (string)$grouping->name &&
+                ($existing = groups_get_grouping_by_name($course->id, $name)) && (int)$existing->id !== $groupingid
+        ) {
             throw new moodle_exception('groupingnameexists', 'group', '', $name);
         }
 
@@ -365,8 +369,11 @@ try {
 
         $groupingids = [];
         $records = $DB->get_records('groupings_groups', ['groupid' => $groupid], '', 'id, groupingid');
-        $groupings = \local_groupimport\local\batch_reader::records('groupings',
-            array_column($records, 'groupingid'), ['courseid' => $course->id]);
+        $groupings = \local_groupimport\local\batch_reader::records(
+            'groupings',
+            array_column($records, 'groupingid'),
+            ['courseid' => $course->id]
+        );
         foreach ($records as $record) {
             $grouping = $groupings[$record->groupingid] ?? null;
             if ($grouping) {
@@ -393,7 +400,7 @@ try {
             'membercount' => count($members),
             'membercountlabel' => local_groupimport_count_string('memberscount', count($members)),
             'searchtext' => core_text::strtolower(trim(implode(' ', $searchparts))),
-            'members' => array_map(static function($member) use ($newgroupid): array {
+            'members' => array_map(static function ($member) use ($newgroupid): array {
                 return [
                     'userid' => (int)$member->id,
                     'fullname' => fullname($member),
@@ -459,11 +466,13 @@ try {
             if (!is_enrolled($context, $userid)) {
                 continue;
             }
-            if (\local_groupimport\service\membership_assignment::add_user_to_group(
-                (int)$course->id,
-                $groupid,
-                $userid
-            )) {
+            if (
+                \local_groupimport\service\membership_assignment::add_user_to_group(
+                    (int)$course->id,
+                    $groupid,
+                    $userid
+                )
+            ) {
                 $added++;
             } else {
                 $existing++;
@@ -523,11 +532,13 @@ try {
                 $missing[] = $token;
                 continue;
             }
-            if (\local_groupimport\service\membership_assignment::add_user_to_group(
-                (int)$course->id,
-                $groupid,
-                (int)$user->id
-            )) {
+            if (
+                \local_groupimport\service\membership_assignment::add_user_to_group(
+                    (int)$course->id,
+                    $groupid,
+                    (int)$user->id
+                )
+            ) {
                 $addedusers[] = [
                     'id' => (int)$user->id,
                     'fullname' => fullname($user),
@@ -594,11 +605,13 @@ try {
         $addedgroups = [];
         $existing = 0;
         foreach ($matchedgroups as $group) {
-            if (\local_groupimport\service\membership_assignment::add_group_to_grouping(
-                (int)$course->id,
-                (int)$group->id,
-                $groupingid
-            )) {
+            if (
+                \local_groupimport\service\membership_assignment::add_group_to_grouping(
+                    (int)$course->id,
+                    (int)$group->id,
+                    $groupingid
+                )
+            ) {
                 $addedgroups[] = [
                     'id' => (int)$group->id,
                     'name' => format_string($group->name),
@@ -678,8 +691,11 @@ try {
         $groupingids = required_param_array('groupingids', PARAM_INT);
         $deleted = 0;
 
-        $groupings = \local_groupimport\local\batch_reader::records('groupings',
-            $groupingids, ['courseid' => $course->id]);
+        $groupings = \local_groupimport\local\batch_reader::records(
+            'groupings',
+            $groupingids,
+            ['courseid' => $course->id]
+        );
         foreach (array_unique($groupingids) as $groupingid) {
             $grouping = $groupings[$groupingid] ?? null;
             if (!$grouping) {
@@ -761,11 +777,11 @@ function local_groupimport_extract_emails(string $text): array {
  */
 function local_groupimport_extract_user_tokens(string $text): array {
     $parts = preg_split('/[\s,;|]+/u', $text);
-    $tokens = array_map(static function(string $part): string {
+    $tokens = array_map(static function (string $part): string {
         return trim($part);
     }, $parts ?: []);
 
-    return array_values(array_unique(array_filter($tokens, static function(string $token): bool {
+    return array_values(array_unique(array_filter($tokens, static function (string $token): bool {
         return $token !== '';
     })));
 }
@@ -832,7 +848,9 @@ function local_groupimport_find_user_by_identifier(string $token): ?\stdClass {
     return count($matches) === 1 ? reset($matches) : null;
 }
 
-/** Resolve a paste in bulk, retaining numeric ID, core priority and custom ambiguity. */
+/**
+ * Resolve a paste in bulk, retaining numeric ID, core priority and custom ambiguity.
+ */
 function local_groupimport_find_users_by_identifiers(array $tokens): array {
     $pending = array_fill_keys(array_values(array_unique(array_map('trim', $tokens))), null);
     $result = [];
@@ -842,8 +860,12 @@ function local_groupimport_find_users_by_identifiers(array $tokens): array {
             $numericids[] = (int)$token;
         }
     }
-    $users = \local_groupimport\local\batch_reader::records('user', $numericids, ['deleted' => 0],
-        'id, firstname, lastname, email');
+    $users = \local_groupimport\local\batch_reader::records(
+        'user',
+        $numericids,
+        ['deleted' => 0],
+        'id, firstname, lastname, email'
+    );
     foreach ($pending as $token => $unused) {
         if (isset($users[(int)$token]) && ctype_digit((string)$token)) {
             $result[$token] = $users[(int)$token];
@@ -881,8 +903,10 @@ function local_groupimport_find_users_by_identifiers(array $tokens): array {
         $matches = \local_groupimport\local\batch_reader::users(array_keys($pending), 'profile', $shortnames);
         foreach ($matches as $token => $records) {
             if (count($records) === 1) {
-                $result[$token] = (object)array_intersect_key((array)$records[0],
-                    array_flip(['id', 'firstname', 'lastname', 'email']));
+                $result[$token] = (object)array_intersect_key(
+                    (array)$records[0],
+                    array_flip(['id', 'firstname', 'lastname', 'email'])
+                );
             } else if (count($records) > 1) {
                 // Preserve the legacy two-row limit even across duplicate profile rows.
                 $result[$token] = local_groupimport_find_user_by_identifier((string)$token);
@@ -911,7 +935,7 @@ function local_groupimport_extract_group_tokens(string $text, array $coursegroup
         }
     }
     $knownkeys = array_keys($known);
-    usort($knownkeys, static function(string $left, string $right): int {
+    usort($knownkeys, static function (string $left, string $right): int {
         $leftwords = preg_split('/\s+/u', $left) ?: [];
         $rightwords = preg_split('/\s+/u', $right) ?: [];
         $wordcomparison = count($rightwords) <=> count($leftwords);
@@ -932,9 +956,9 @@ function local_groupimport_extract_group_tokens(string $text, array $coursegroup
             continue;
         }
 
-        $words = array_values(array_filter(array_map(static function(string $word): string {
+        $words = array_values(array_filter(array_map(static function (string $word): string {
             return core_text::strtolower(trim($word));
-        }, preg_split('/\s+/u', $part) ?: []), static function(string $word): bool {
+        }, preg_split('/\s+/u', $part) ?: []), static function (string $word): bool {
             return $word !== '';
         }));
 
@@ -963,7 +987,7 @@ function local_groupimport_extract_group_tokens(string $text, array $coursegroup
         }
     }
 
-    return array_values(array_unique(array_filter($tokens, static function(string $token): bool {
+    return array_values(array_unique(array_filter($tokens, static function (string $token): bool {
         return $token !== '';
     })));
 }

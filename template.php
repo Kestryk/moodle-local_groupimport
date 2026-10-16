@@ -77,8 +77,11 @@ $sheet->getStyle('A2:C4')->applyFromArray([
 ]);
 
 $instructions = $spreadsheet->createSheet();
-$instructionstitle = preg_replace('/[\\\\\/\?\*\[\]:]+/u', ' ',
-    get_string('templatesheetinstructions', 'local_groupimport'));
+$instructionstitle = preg_replace(
+    '/[\\\\\/\?\*\[\]:]+/u',
+    ' ',
+    get_string('templatesheetinstructions', 'local_groupimport')
+);
 $instructions->setTitle(core_text::substr(trim($instructionstitle), 0, 31));
 $instructions->fromArray([
     [get_string('templateinstructionstitle', 'local_groupimport')],

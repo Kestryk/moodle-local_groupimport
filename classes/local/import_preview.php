@@ -1,6 +1,18 @@
 <?php
 // This file is part of Moodle - https://moodle.org/
-// Moodle is distributed under the GNU GPL v3 or later.
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace local_groupimport\local;
 
@@ -21,14 +33,16 @@ final class import_preview {
     /** Session previews expire after an hour. */
     private const TTL = 3600;
 
-    /** Save a bounded preview under an unpredictable, session-owned token. */
+    /**
+     * Save a bounded preview under an unpredictable, session-owned token.
+     */
     public static function store(int $courseid, array $preview): string {
         global $SESSION;
         if (count($preview['rows']) > self::MAX_ROWS) {
             throw new \moodle_exception('importrowlimit', 'local_groupimport', '', self::MAX_ROWS);
         }
         $previews = $SESSION->local_groupimport_previews ?? [];
-        $previews = array_filter($previews, static function($entry): bool {
+        $previews = array_filter($previews, static function ($entry): bool {
             return $entry['created'] >= time() - self::TTL;
         });
         while (count($previews) >= 5) {
@@ -40,7 +54,9 @@ final class import_preview {
         return $token;
     }
 
-    /** Resolve only this user's unexpired preview in this course. */
+    /**
+     * Resolve only this user's unexpired preview in this course.
+     */
     public static function load(int $courseid, string $token): array {
         global $SESSION;
         $entry = $SESSION->local_groupimport_previews[$token] ?? null;
@@ -50,7 +66,9 @@ final class import_preview {
         return $entry['preview'];
     }
 
-    /** Consume only after memberships and history have committed. */
+    /**
+     * Consume only after memberships and history have committed.
+     */
     public static function consume(string $token): void {
         global $SESSION;
         unset($SESSION->local_groupimport_previews[$token]);
@@ -63,7 +81,7 @@ final class import_preview {
     public static function confirm(array $preview, string $payload, array $fallback): array {
         $rows = $preview['rows'];
         $count = count($rows);
-        $invalid = static function(): void {
+        $invalid = static function (): void {
             throw new \moodle_exception('importpreviewincomplete', 'local_groupimport');
         };
         if (!$count || $count > self::MAX_ROWS) {
@@ -80,15 +98,19 @@ final class import_preview {
             } catch (\JsonException $exception) {
                 $invalid();
             }
-            if (!is_array($data) || ($data['count'] ?? null) !== $count ||
+            if (
+                !is_array($data) || ($data['count'] ?? null) !== $count ||
                     !is_array($data['edits'] ?? null) || !is_array($data['excluded'] ?? null) ||
-                    count($data['edits']) > $count || count($data['excluded']) > $count) {
+                    count($data['edits']) > $count || count($data['excluded']) > $count
+            ) {
                 $invalid();
             }
             $seen = [];
             foreach ($data['edits'] as $edit) {
-                if (!is_array($edit) || !is_int($edit['index'] ?? null) || $edit['index'] < 0 ||
-                        $edit['index'] >= $count || isset($seen[$edit['index']])) {
+                if (
+                    !is_array($edit) || !is_int($edit['index'] ?? null) || $edit['index'] < 0 ||
+                        $edit['index'] >= $count || isset($seen[$edit['index']])
+                ) {
                     $invalid();
                 }
                 $index = $edit['index'];

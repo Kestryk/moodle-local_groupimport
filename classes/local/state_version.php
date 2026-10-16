@@ -31,7 +31,6 @@ namespace local_groupimport\local;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class state_version {
-
     /** @var string Table holding one row per course. */
     const TABLE = 'local_groupimport_statever';
 
