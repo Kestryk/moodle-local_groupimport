@@ -75,7 +75,10 @@ const DEFAULTS = {
   highlightAutoHideDelay: 9000,
   highlightStyle: 'default',
   // Instruction pauses are minimums, not deadlines: allow reading longer copy.
-  narrationMinimumMs: 2400,
+  // J-G2 (AN-1, AN-9): every phase is readable (3 s at least) and a demo stays within 25 s (4 s at
+  // most per phase; Pause and "Next phase" remain available).
+  narrationMinimumMs: 3000,
+  narrationMaximumMs: 4000,
   narrationWordsPerMinute: 180,
   narrationLeadInMs: 900,
   targets: {},
@@ -1987,6 +1990,25 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await animate(cursorEl, [{opacity: 0}, {opacity: 1}], REDUCED_FADE_MS, false);
     }
   };
+  // J-G2 (AN-2): a pointer that is not shown yet appears near its target (160 ms fade, then a
+  // 24 px approach) instead of crossing the stage from its top-left corner; any travel keeps a
+  // readable speed (0.8 px/ms at most).
+  const POINTER_SPEED = 0.8;
+  const movePointer = async(cursorEl, x, y, duration) => {
+    const destination = `translate(${x}px, ${y}px)`;
+    if (cursorEl.hidden) {
+      const near = `translate(${x - 24}px, ${y + 12}px)`;
+      cursorEl.style.transform = near;
+      cursorEl.hidden = false;
+      await animate(cursorEl, [{transform: near, opacity: 0}, {transform: near, opacity: 1}], 160);
+      await animate(cursorEl, [{transform: near}, {transform: destination}], 220);
+      return;
+    }
+    const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
+    const distance = Math.hypot(x - from.m41, y - from.m42);
+    await animate(cursorEl, [{transform: from.toString()}, {transform: destination}],
+      Math.max(duration, Math.round(distance / POINTER_SPEED)));
+  };
   // Fade the instruction copy, not the entire teaching scene. Its reading pause
   // starts only after the new sentence is visible; no business state is changed.
   const writeLive = async(text, state = 'active', immediate = false) => {
@@ -2095,7 +2117,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const minimum = Number(root.easyeduGuideConfig?.narrationMinimumMs) || DEFAULTS.narrationMinimumMs;
     const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
     const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
-    await wait(Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace)));
+    const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
+    await wait(Math.min(maximum, Math.max(minimum, leadIn + words * 60000 / Math.max(1, pace))));
   };
   root.easyeduGuideSceneStop = () => {
     controller.abort();
@@ -2131,15 +2154,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         await gate();
         assertActive();
         const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
-        const destination = `translate(${target.left - frame.left + target.width / 2}px, ` +
-          `${target.top - frame.top + target.height / 2}px)`;
+        const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
         if (still) {
-          await placeCursor(cursor, destination);
+          await placeCursor(cursor, `translate(${x}px, ${y}px)`);
           return;
         }
-        const from = getComputedStyle(cursor).transform;
-        cursor.hidden = false;
-        await animate(cursor, [{transform: from}, {transform: destination}], 650);
+        await movePointer(cursor, x, y, 650);
       };
       const hidePointer = async() => {
         assertActive();
@@ -2156,28 +2176,20 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       };
       // Animate the auto-sized card while keeping the natural field's layout.
       // Same WAAPI set/clock as reading: Pause, Next and departure own both.
-      const resizeCard = async(measure, settle = () => {}) => {
+      // J-G2 (AN-3): the card reaches its new size at once and only the panel fades and slides
+      // (transform/opacity, no animated height, so no layout work per frame and no stutter).
+      const disclose = async open => {
         await gate();
         assertActive();
-        const from = card.getBoundingClientRect().height;
-        const to = measure();
-        const overflow = card.style.overflow;
-        card.style.overflow = 'hidden';
-        try {
-          await animate(card, [{height: `${from}px`}, {height: `${to}px`}], 520);
-          settle();
-          animations.forEach(animation => {
-            if (animation.effect?.target === card) { animation.cancel(); animations.delete(animation); }
-          });
-        } finally { card.style.overflow = overflow; }
+        if (open) {
+          panel.hidden = false;
+          await animate(panel, [{opacity: 0, transform: 'translateY(-4px)'},
+            {opacity: 1, transform: 'translateY(0)'}], 240, false);
+        } else {
+          await animate(panel, [{opacity: 1}, {opacity: 0}], 160, false);
+          panel.hidden = true;
+        }
       };
-      const disclose = open => resizeCard(() => {
-        panel.hidden = !open;
-        const height = card.getBoundingClientRect().height;
-        // Retain the field layout through closing; hide only at its endpoint.
-        if (!open) { panel.hidden = false; }
-        return height;
-      }, () => { panel.hidden = !open; });
       await reveal(card);
       await phase('orient');
       if (controller.signal.aborted) { return; }
@@ -2199,13 +2211,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await phase('enter');
       if (controller.signal.aborted) { return; }
       await hidePointer();
-      // Recognition grows the natural card through the same pause-aware clock
-      // as disclosure, instead of snapping its final height before the fade.
+      // J-G2 (AN-3): the chips take their place at once, then fade in (no animated height).
       chips.style.opacity = '0';
-      await resizeCard(() => {
-        chips.hidden = false;
-        return card.getBoundingClientRect().height;
-      });
+      chips.hidden = false;
       if (controller.signal.aborted) { return; }
       await reveal(chips);
       await animate(chips, [{opacity: 0}, {opacity: 1}], 260);
@@ -2293,10 +2301,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         updateCursorVisibility();
         return;
       }
-      const from = getComputedStyle(cursor).transform;
-      cursor.hidden = false;
-      await animate(cursor, [{transform: from},
-        {transform: `translate(${point.x}px, ${point.y}px)`}], duration);
+      await movePointer(cursor, point.x, point.y, duration);
     };
     const travel = async(element, duration = 750, cardAnchor = false) => {
       assertActive();
