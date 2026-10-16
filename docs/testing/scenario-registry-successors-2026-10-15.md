@@ -124,3 +124,9 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 Local-supervised `k16-13-sort-za-native.spec.js` uses disposable own8051 `k16-sort-copy-fixture.php`: FR/EN1600/390, three lists, all pages, active/inactive states and round trip alpha -> alpha-desc -> alpha. At most two screenshots, assertions/values in JSON, all product writes blocked. Production comparator unit covers stable ties and unknown-mode fallback. No styles or other runtime ports.
 
 Final K16-13:12/12PASS,0page/console errors or blocked writes, two screenshots. Fixture course/users deleted, leases/credentials/profile cleaned. Exact assertions, SHA256 and run roots in own8051 `local/k16-13-evidence/proof-summary.json`.
+
+
+## Developer debug notices (16 October)
+- Candidate `debug-notices-native.spec.js` with exact-origin reversible helper: NOT RUN; :8051 reserved after source-wrapper dependency preflight failure.
+- Actual DEBUG_DEVELOPER, JSON transport, Guide/cards, manager/import/settings and unrelated settings, FR/EN; native acceptance remains open.
+- Static 10-case presentation predicate test and security/filter/bootstrap checks PASS; no product or generated assets changed.

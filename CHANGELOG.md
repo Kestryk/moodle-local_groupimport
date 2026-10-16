@@ -1,5 +1,7 @@
 # Changelog
 
+- 2026-10-16 [N0] Recheck existing developer-debug fixes (guarded admin URLs and JSON page bootstrap); add static regression evidence and an isolated native candidate, pending a free :8051 copy.
+
 - 2026-10-16 [N1] K16-13: add stable Z-to-A sorting to the shared participant, group and grouping menus; align A-to-Z labels and expose the same grouping pager in compact view without style changes.
 
 - 2026-10-15 [N0] Certify Drawer V1 FR390/768/1280 on SM and Mass Import: focus/Tab/Escape/Close, scroll lock and desktop state; zero page errors/business writes.

@@ -1,0 +1,155 @@
+{
+  "lot": "Divers code - developer debug notices",
+  "date": "2026-10-16",
+  "base": "c2077524e117a248c9d33b63880d0dd3bf48c661",
+  "productChanges": false,
+  "existingFixes": {
+    "settingsGuard": "d9fa9f09",
+    "jsonBootstrap": "d3d2ac51"
+  },
+  "static": {
+    "phpLint": [
+      "settings.php",
+      "manage.php",
+      "tools/playwright/debug-notices-fixture.php",
+      "tools/release/test-settings-presentation.php"
+    ],
+    "presentationPredicates": {
+      "pass": true,
+      "cases": 10,
+      "databaseFreeTestDouble": true,
+      "caseResults": [
+        {
+          "predicate": 0,
+          "case": "unset-url",
+          "presentation": false,
+          "urlReads": 0
+        },
+        {
+          "predicate": 0,
+          "case": "own-settings",
+          "presentation": true,
+          "urlReads": 2
+        },
+        {
+          "predicate": 0,
+          "case": "other-section",
+          "presentation": false,
+          "urlReads": 2
+        },
+        {
+          "predicate": 0,
+          "case": "other-page",
+          "presentation": false,
+          "urlReads": 1
+        },
+        {
+          "predicate": 0,
+          "case": "header-started",
+          "presentation": false,
+          "urlReads": 0
+        },
+        {
+          "predicate": 1,
+          "case": "unset-url",
+          "presentation": false,
+          "urlReads": 0
+        },
+        {
+          "predicate": 1,
+          "case": "own-settings",
+          "presentation": true,
+          "urlReads": 2
+        },
+        {
+          "predicate": 1,
+          "case": "other-section",
+          "presentation": false,
+          "urlReads": 2
+        },
+        {
+          "predicate": 1,
+          "case": "other-page",
+          "presentation": false,
+          "urlReads": 1
+        },
+        {
+          "predicate": 1,
+          "case": "header-started",
+          "presentation": false,
+          "urlReads": 0
+        }
+      ]
+    },
+    "securityEscaping": "PASS",
+    "filterEngine": "PASS",
+    "pageBootstrap": "PASS",
+    "eslint": {
+      "config": "eslint:recommended",
+      "target": "tools/playwright/debug-notices-native.spec.js",
+      "errors": 0,
+      "warnings": 0
+    },
+    "amdSourceDelta": 0,
+    "generatedDelta": 0,
+    "build": "NOT_REQUIRED: no amd/src changes",
+    "lineEndings": "CRLF",
+    "checkResults": [
+      {
+        "name": "php-l settings.php",
+        "exitCode": 0
+      },
+      {
+        "name": "php-l manage.php",
+        "exitCode": 0
+      },
+      {
+        "name": "php-l tools/playwright/debug-notices-fixture.php",
+        "exitCode": 0
+      },
+      {
+        "name": "php-l tools/release/test-settings-presentation.php",
+        "exitCode": 0
+      },
+      {
+        "name": "presentation predicates",
+        "exitCode": 0
+      },
+      {
+        "name": "test-security-escaping.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test-filter-engine.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "test-page-bootstrap.cjs",
+        "exitCode": 0
+      },
+      {
+        "name": "ESLint new spec",
+        "exitCode": 0
+      }
+    ]
+  },
+  "native": {
+    "status": "NOT_RUN",
+    "origin": "http://localhost:8051",
+    "preflight": "Source wrapper missing local Playwright CLI; stopped before credentials, lease or helper setup",
+    "subsequentAvailability": "Reserved by groupimport-perf-runtime-write; did not reacquire or clear the lease",
+    "observedAt": "2026-10-16T19:47:25Z",
+    "reservedRun": "easystud-authenticated-20261016T193302607Z-20120",
+    "reservedUntil": "2026-10-16T19:50:02Z",
+    "debugSettingsChanged": false,
+    "productFilesPublished": false,
+    "runtimeAssertionsPending": [
+      "actual developer notices reproduced through core API",
+      "FR/EN manager, import, settings and unrelated settings page",
+      "zero debug notices and console errors",
+      "Guide and participant cards loaded"
+    ]
+  },
+  "compatibility": "No new product API or PHP requirement; Moodle 4.5/5.3 runtime not tested",
+  "localhost": "Untouched"
+}
