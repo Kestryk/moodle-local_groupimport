@@ -62,6 +62,14 @@
     transition: color var(--easyedu-motion-fast) ease, opacity var(--easyedu-motion-fast) ease;
   }
 
+  // K16-81 (Kevin 16/10): with the actions hidden at rest, the count and groupings labels floated
+  // mid-header. They now close the header row, after the actions: right-aligned on every card at
+  // rest, and the actions appear to their left on hover without moving them.
+  .local-groupimport-easystud-group__header > .badge,
+  .local-groupimport-easystud-group__header > .local-groupimport-easystud-group__groupings {
+    order: 1;
+  }
+
   @media (hover: hover) and (pointer: fine) {
     $rest: ":not(:hover):not(:focus-within):not(.is-selected)";
     .local-groupimport-easystud-user#{$rest} .local-groupimport-easystud-user__detail-button#{$quiet},

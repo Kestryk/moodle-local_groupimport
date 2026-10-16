@@ -125,12 +125,8 @@ export const syncMemberWindow = group => {
     }
     const ids = matchingMemberIds(model, id, query);
     const state = listWindow('members', ids.length, group.easystudMemberLimit);
-    const panel = input ? input.closest('[data-easystud-group-member-search-panel]') : null;
-    if (panel && model.groups.get(id).memberids.length >= listPolicy.members.search && !group.easystudLongSearchReady) {
-        group.easystudLongSearchReady = true;
-        panel.hidden = false;
-        panel.classList.add('is-open');
-    }
+    // K16-84 (Kevin 16/10): a long group no longer opens its member search by itself; the search
+    // stays one click away on the card's search action.
     const toggle = group.querySelector('[data-easystud-group-members-toggle]');
     const ungrouped = !!group.closest('.local-groupimport-easystud-tree__section--ungrouped');
     const folded = ungrouped && toggle && toggle.getAttribute('aria-expanded') !== 'true';

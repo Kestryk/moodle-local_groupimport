@@ -912,12 +912,58 @@ export const setRenameEditing = (form, editing) => {
     }
 };
 
+// K16-85 (Kevin 16/10): one card shows one inline panel at a time. Opening the member search, the
+// add-by-identifier box, the grouping search or the add-groups box closes the card's other open
+// panel (through its own Cancel when it has one, so a pending search is cleared too) and its
+// action loses its active state.
+const INLINE_CARD_PANELS = [
+    ['[data-easystud-group-member-search-panel]', '[data-easystud-group-member-search-toggle]',
+        '[data-easystud-group-member-search-cancel]'],
+    ['[data-easystud-container-search-panel]', '[data-easystud-container-search-toggle]', null],
+    ['[data-easystud-group-email-panel]', '[data-easystud-toggle-group-email]', '[data-easystud-cancel-group-email]'],
+    ['[data-easystud-grouping-groups-panel]', '[data-easystud-toggle-grouping-groups]', null],
+];
+const INLINE_CARD_OWNER = '[data-easystud-group-id], [data-easystud-grouping-id]';
+
+const closeOtherInlinePanels = panel => {
+    const owner = panel.closest(INLINE_CARD_OWNER);
+    if (!owner) {
+        return;
+    }
+    const own = element => element.closest(INLINE_CARD_OWNER) === owner;
+    INLINE_CARD_PANELS.forEach(([panelSelector, toggleSelector, cancelSelector]) => {
+        if (panel.matches(panelSelector)) {
+            return;
+        }
+        owner.querySelectorAll(panelSelector).forEach(other => {
+            if (!own(other) || other.hidden || !other.classList.contains('is-open')) {
+                return;
+            }
+            const cancel = cancelSelector ? other.querySelector(cancelSelector) : null;
+            if (cancel) {
+                cancel.click();
+            } else {
+                // eslint-disable-next-line no-use-before-define
+                setInlinePanelOpen(other, false);
+            }
+        });
+        owner.querySelectorAll(toggleSelector).forEach(toggle => {
+            if (own(toggle)) {
+                toggle.classList.remove('is-active');
+            }
+        });
+    });
+};
+
 export const setInlinePanelOpen = (panel, open) => {
     if (!panel) {
         return Promise.resolve(false);
     }
     const root = panel.closest('#local-groupimport-easystud');
     requestGuideHighlightRefresh(root);
+    if (open) {
+        closeOtherInlinePanels(panel);
+    }
 
     // Canonical framed disclosure is opt-in: preserve accepted tree/card Motion.
     if (panel.matches('[data-easystud-group-member-search-panel], [data-easystud-container-search-panel], ' +
