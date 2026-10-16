@@ -29,10 +29,6 @@
     @include easyedu.type-panel-title;
   }
 
-  &-column-heading__title {
-    @include easyedu.type-eyebrow;
-  }
-
   &__filter-label {
     @include easyedu.type-control-label;
 
