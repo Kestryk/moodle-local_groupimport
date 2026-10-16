@@ -10368,7 +10368,7 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {transit
   to {opacity: 1;transform: translateY(0);
   }
 }
-.easyedu-ui .easyedu-related-person-row {align-items: center;background: rgba(255, 255, 255, 0.78);border: 1px solid transparent;border-radius: 0.6rem;display: flex;gap: 0.5rem;justify-content: space-between;min-height: 2.25rem;padding: 0.25rem 0.45rem 0.25rem 0.45rem;
+.easyedu-ui .easyedu-related-person-row {align-items: center;background: rgba(255, 255, 255, 0.5);border: 1px solid transparent;border-radius: 0.6rem;display: flex;gap: 0.5rem;justify-content: space-between;min-height: 2.25rem;padding: 0.25rem 0.45rem 0.25rem 0.45rem;
 }
 .easyedu-ui .easyedu-related-person-row.is-selected {background: #eef6fc;border-color: #9fbddd;
 }
@@ -11461,7 +11461,7 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 #local-groupimport-easystud .local-groupimport-easystud-group:not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target),
 #local-groupimport-easystud .local-groupimport-easystud-tree__section:not(:hover):not(:focus-within):not(.is-dragging):not(.is-selected):not(.is-drop-target) {box-shadow: var(--easyedu-card-shadow-rest);
 }
-#local-groupimport-easystud .local-groupimport-easystud-member:not(.is-selected):not(.is-drop-target) {border: 0;background: var(--easyedu-surface-soft);
+#local-groupimport-easystud .local-groupimport-easystud-member:not(.is-selected):not(.is-drop-target) {border: 0;
 }
 #local-groupimport-easystud.local-groupimport-easystud--participant-focus .local-groupimport-easystud__layout,
 #local-groupimport-easystud.local-groupimport-easystud--structure-focus .local-groupimport-easystud__layout {gap: 0;

@@ -1893,7 +1893,7 @@ body.easyedu-motion-disabled .easyedu-ui .easyedu-color-picker__trigger {transit
   to {opacity: 1;transform: translateY(0);
   }
 }
-.easyedu-ui .easyedu-related-person-row {align-items: center;background: rgba(255, 255, 255, 0.78);border: 1px solid transparent;border-radius: 0.6rem;display: flex;gap: 0.5rem;justify-content: space-between;min-height: 2.25rem;padding: 0.25rem 0.45rem 0.25rem 0.45rem;
+.easyedu-ui .easyedu-related-person-row {align-items: center;background: rgba(255, 255, 255, 0.5);border: 1px solid transparent;border-radius: 0.6rem;display: flex;gap: 0.5rem;justify-content: space-between;min-height: 2.25rem;padding: 0.25rem 0.45rem 0.25rem 0.45rem;
 }
 .easyedu-ui .easyedu-related-person-row.is-selected {background: #eef6fc;border-color: #9fbddd;
 }
