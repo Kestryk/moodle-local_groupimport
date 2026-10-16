@@ -28,12 +28,22 @@
   box-shadow: none;
   min-inline-size: 0;
   padding-inline: var(--easyedu-lane-inset);
-  @if $segment == whole {
-    border-radius: var(--easyedu-lane-radius);
-    border-top: var(--easyedu-lane-rail-width) solid $rail;
-  } @else if $segment == start {
-    border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;
-    border-top: var(--easyedu-lane-rail-width) solid $rail;
+  @if $segment == whole or $segment == start {
+    @if $segment == whole {
+      border-radius: var(--easyedu-lane-radius);
+    } @else {
+      border-radius: var(--easyedu-lane-radius) var(--easyedu-lane-radius) 0 0;
+    }
+    // K16-61 (Kevin, 16/10): the same top rail as the Mass Import panels (semantic-accent-panel):
+    // a gradient band from the lane identity colour to its tint, painted inside the rounded lane.
+    --easyedu-lane-rail-colour: #{$rail};
+    background-image: linear-gradient(
+      90deg, var(--easyedu-lane-rail-colour) 0%,
+      color-mix(in srgb, var(--easyedu-lane-rail-colour) 68%, #fff 32%) 100%
+    );
+    background-position: left top;
+    background-repeat: no-repeat;
+    background-size: 100% 0.35rem;
   } @else if $segment == end {
     border-radius: 0 0 var(--easyedu-lane-radius) var(--easyedu-lane-radius);
   } @else {
