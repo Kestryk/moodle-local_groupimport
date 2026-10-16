@@ -16,16 +16,24 @@ const headerContract = normalizeMarkup([
     '{{^guideeyebrow}}<p>{{guidesubtitle}}</p>{{/guideeyebrow}}',
 ].join('\n'));
 
-for (const file of [
-    'easyedu-guide-kit/templates/easyedu_guide.mustache',
-    'templates/easyedu_guide.mustache',
+// C-G3 (390): the product template renders a short title ("Guide EasyStud") beside the
+// contextual one, swapped by CSS on phones. The Kit mirror keeps the plain h2 until it is resynchronised.
+const phoneTitleContract = headerContract.replace(
+    '{{#guidemodaltitle}}<h2>{{guidemodaltitle}}</h2>{{/guidemodaltitle}}',
+    '{{#guidemodaltitle}}<h2>{{#guideeyebrow}}<span class="easyedu-guide-modal__title-full">{{/guideeyebrow}}' +
+    '{{guidemodaltitle}}{{#guideeyebrow}}</span><span class="easyedu-guide-modal__title-short">' +
+    '{{guideeyebrow}}</span>{{/guideeyebrow}}</h2>{{/guidemodaltitle}}');
+assert.notEqual(phoneTitleContract, headerContract, 'phone title contract differs from the plain contract');
+for (const [file, contract] of [
+    ['easyedu-guide-kit/templates/easyedu_guide.mustache', headerContract],
+    ['templates/easyedu_guide.mustache', phoneTitleContract],
 ]) {
-    assert.ok(normalizeMarkup(read(file)).includes(headerContract), file + ': shared optional header contract');
+    assert.ok(normalizeMarkup(read(file)).includes(contract), file + ': shared optional header contract');
 }
 
 const productTemplate = read('templates/easyedu_guide.mustache');
 assert.ok(productTemplate.includes('guidehoverlabel'), 'EasyStud launcher copy remains product-owned.');
-assert.ok(productTemplate.includes('{{#guidemodaltitle}}<h2>{{guidemodaltitle}}</h2>{{/guidemodaltitle}}'),
+assert.ok(productTemplate.includes('{{#guidemodaltitle}}<h2>{{#guideeyebrow}}<span class="easyedu-guide-modal__title-full">'),
     'EasyStud can render a contextual title instead of the complete dialog label.');
 
 const php = read('manage.php');

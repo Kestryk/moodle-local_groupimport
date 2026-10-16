@@ -13,7 +13,7 @@
                     <span class="easyedu-guide-modal__hero-icon fa fa-compass" aria-hidden="true"></span>
                     <div>
                         {{#guideeyebrow}}<p class="easyedu-guide-modal__eyebrow">{{guideeyebrow}}</p>{{/guideeyebrow}}
-                        {{#guidemodaltitle}}<h2>{{guidemodaltitle}}</h2>{{/guidemodaltitle}}
+                        {{#guidemodaltitle}}<h2>{{#guideeyebrow}}<span class="easyedu-guide-modal__title-full">{{/guideeyebrow}}{{guidemodaltitle}}{{#guideeyebrow}}</span><span class="easyedu-guide-modal__title-short">{{guideeyebrow}}</span>{{/guideeyebrow}}</h2>{{/guidemodaltitle}}
                         {{^guidemodaltitle}}<h2>{{guidetitle}}</h2>{{/guidemodaltitle}}
                         {{^guideeyebrow}}<p>{{guidesubtitle}}</p>{{/guideeyebrow}}
                     </div>
@@ -87,7 +87,7 @@
                                     {{/navcategorymanaged}}
                                     {{#hasguidedpath}}<span class="easyedu-guide-nav-item__path" aria-hidden="true">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                                 </span>
-                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}{{navnumber}} · {{/navnumber}}{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span>
+                                <span class="easyedu-guide-nav-item__label">{{#navnumber}}<span class="easyedu-guide-nav-item__number">{{navnumber}}</span><span class="easyedu-guide-nav-item__sep"> · </span>{{/navnumber}}<span class="easyedu-guide-nav-item__text">{{#navtitle}}{{navtitle}}{{/navtitle}}{{^navtitle}}{{title}}{{/navtitle}}</span></span>
                             </span>
                             {{#hasguidedpath}}<span class="sr-only">{{guidebadgelabel}}</span>{{/hasguidedpath}}
                             {{#requires}}
@@ -169,7 +169,7 @@
                             {{/requires}}
                             {{#discoveryscene}}
                             <section class="easyedu-guide-scene" data-easyedu-guide-scene="{{kind}}" data-guide-drag-label="{{draglabel}}" data-guide-finished-label="{{finishedlabel}}" data-guide-mobile-participants-label="{{mobileparticipants}}" data-guide-mobile-add-action="{{mobileaddaction}}" data-guide-mobile-add-submit="{{mobileaddsubmit}}" data-guide-mobile-add-consequence="{{mobileaddconsequence}}" aria-label="{{caption}}">
-                                <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example">{{caption}}</p>
+                                <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example"><span class="easyedu-guide-scene__caption-full">{{caption}}</span><span class="easyedu-guide-scene__caption-short">{{captionshort}}</span></p>
                             {{^concepts}}{{^creation}}
                             <header class="easyedu-guide-scene__header{{^membership}} easyedu-guide-scene__header--single{{/membership}}" data-guide-scene-header data-step-label="{{steplabel}}" data-ready-label="{{readylabel}}" data-paused-label="{{pausedlabel}}" data-add-label="{{addmodelabel}}" data-move-label="{{movemodelabel}}">
                                 <div class="easyedu-guide-scene__header-controls">
