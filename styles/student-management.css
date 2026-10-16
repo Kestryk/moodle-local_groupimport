@@ -8545,7 +8545,12 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
   }
   .local-groupimport-easystud-context-menu.is-mobile-sheet .local-groupimport-easystud-context-menu__header {align-items: center;border-bottom: 1px solid var(--easyedu-card-border);display: flex;gap: 0.65rem;justify-content: space-between;min-height: var(--easyedu-touch-target-min);padding: 0.55rem 0.75rem;display: flex;
   }
-  .local-groupimport-easystud-context-menu.is-mobile-sheet .local-groupimport-easystud-context-menu__header button {align-items: center;background: transparent;border: 1px solid var(--easyedu-card-border);border-radius: var(--easyedu-control-radius);display: inline-flex;height: var(--easyedu-touch-target-min);justify-content: center;min-width: var(--easyedu-touch-target-min);padding: 0;width: var(--easyedu-touch-target-min);
+  .local-groupimport-easystud-context-menu.is-mobile-sheet .local-groupimport-easystud-context-menu__header button {align-items: center;border-radius: var(--easyedu-control-radius);display: inline-flex;justify-content: center;line-height: 1;font-size: 0.78rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0.22rem 0.5rem;transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease), opacity var(--easyedu-motion-fast) var(--easyedu-motion-ease), transform var(--easyedu-motion-fast) var(--easyedu-motion-ease);background: var(--easyedu-surface);border: 1px solid var(--easyedu-card-border);box-sizing: border-box;color: var(--easyedu-text-muted);height: 1.9rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0;width: 1.9rem;flex: 0 0 auto;margin: 0;
+  }
+  .local-groupimport-easystud-context-menu.is-mobile-sheet .local-groupimport-easystud-context-menu__header button:focus-visible {box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring);outline: var(--easyedu-focus-outline-width) solid transparent;outline-offset: var(--easyedu-focus-outline-offset);
+  }
+  .local-groupimport-easystud-context-menu.is-mobile-sheet .local-groupimport-easystud-context-menu__header button:hover,
+.local-groupimport-easystud-context-menu.is-mobile-sheet .local-groupimport-easystud-context-menu__header button:focus-visible {background: var(--easyedu-danger-soft);border-color: color-mix(in srgb, var(--easyedu-danger) 22%, #fff 78%);color: var(--easyedu-danger);
   }
   .local-groupimport-easystud-context-menu.is-mobile-sheet .local-groupimport-easystud-context-menu__header strong {min-width: 0;overflow-wrap: anywhere;
   }
