@@ -1026,8 +1026,10 @@
     margin-top: 0.35rem;
   }
 
-  // K16-57: `~` because the long-list footer (hidden while folded) can sit between them.
-  &-group__members-toggle:not([hidden]) ~ &-group__select-all-row:not([hidden]) {
+  // K16-57/K16-66: also when the long-list footer sits between them, but only while it is hidden
+  // (folded card); once the footer shows (unfolded), Select all keeps its own row below it.
+  &-group__members-toggle:not([hidden]) + &-group__select-all-row:not([hidden]),
+  &-group__members-toggle:not([hidden]) + [data-easystud-long-list-footer][hidden] + &-group__select-all-row:not([hidden]) {
     align-items: center;
     block-size: 1.55rem;
     margin-top: -1.55rem;
