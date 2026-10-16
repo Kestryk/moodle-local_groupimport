@@ -268,7 +268,13 @@
         dt { align-items: flex-start; }
       }
 
-      @container (min-width: 42rem) {
+      // C-G2 (768): two columns as soon as the reading lane is 36rem wide, three on desktop.
+      @container (min-width: 36rem) {
+        .easyedu-guide-introduction__topics {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @container (min-width: 52rem) {
         .easyedu-guide-introduction__topics {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
@@ -1333,6 +1339,22 @@
   &[data-easyedu-guide-target-in-dialog] .easyedu-guided-panel:not(.is-minimized) {
     max-height: min(20rem, 35dvh);
     .easyedu-guided-panel__steps { max-height: 6rem; }
+  }
+
+  // C-G2 (768, P-G1): use the screen height, stack the path card, 2-column explanations
+  // (container query above), 16px scene padding. Footer buttons keep their intrinsic width.
+  @media (max-width: 63.999rem) {
+    .easyedu-guide-modal__dialog {
+      --easyedu-guide-modal-height: calc(100dvh - 3rem);
+      --easyedu-guide-modal-max-height: calc(100dvh - 3rem);
+    }
+    .easyedu-guide-guided-card {
+      grid-template-columns: auto minmax(0, 1fr);
+      .easyedu-guide-slide__start { grid-column: 2; justify-self: start; }
+    }
+    .easyedu-guide-scene { padding: 1rem; }
+    // The scene already owns its bottom margin (one 24 / 16 gap, not 24 + 24).
+    .easyedu-guide-scene + .easyedu-guide-guided-card { margin-block-start: 0; }
   }
 
   @media (max-width: 40rem) {
