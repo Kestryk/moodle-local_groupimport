@@ -981,6 +981,54 @@ const dockChecklistAboveTarget = (root, checklist, target, inDialog) => {
   root.easyeduGuideTopDockTarget = target;
 };
 
+// J-G3 (P-G2, validated by Kevin on 16/10/2026): the checklist never covers the step target.
+// Canonical side: right on desktop and tablet, bottom on compact viewports. Before each step the
+// panel is compared with the target plus a 16 px margin; on overlap it moves to the opposite side
+// (left, or top on compact viewports). When neither side fits (target under both lanes, or a
+// usable height under 600 px) it folds into the reduced checklist, marked is-avoiding, and unfolds
+// by itself once a later target leaves room. A checklist the user folded is never reopened.
+const CHECKLIST_AVOID_MARGIN = 16;
+const CHECKLIST_MIN_USABLE_HEIGHT = 600;
+const CHECKLIST_LANE_INSET = 20;
+const CHECKLIST_AVOIDING_CLASS = 'is-avoiding';
+
+const inflateRect = (rect, margin) => ({
+  left: rect.left - margin,
+  right: rect.right + margin,
+  top: rect.top - margin,
+  bottom: rect.bottom + margin,
+});
+
+const foldChecklistAwayFromTarget = (root, checklist, target) => {
+  root.easyeduGuideAvoidTarget = target;
+  if (checklist.classList.contains('is-minimized')) {
+    return;
+  }
+  const focused = document.activeElement;
+  checklist.classList.add('is-minimized', CHECKLIST_AVOIDING_CLASS);
+  checklist.removeAttribute('data-easyedu-guide-checklist-expanded');
+  syncChecklistMinimizeControl(root);
+  if (focused && checklist.contains(focused) && !isVisibleElement(focused)) {
+    const restore = checklist.querySelector('[data-easyedu-guide-checklist-restore]') ||
+      checklist.querySelector(SELECTORS.checklistMinimize);
+    if (isVisibleElement(restore)) {
+      restore.focus({preventScroll: true});
+    }
+  }
+};
+
+const unfoldAvoidingChecklist = (root, checklist) => {
+  root.easyeduGuideAvoidTarget = null;
+  if (!checklist.classList.contains(CHECKLIST_AVOIDING_CLASS)) {
+    return;
+  }
+  checklist.classList.remove(CHECKLIST_AVOIDING_CLASS, 'is-minimized');
+  if (isCompactChecklistViewport()) {
+    checklist.setAttribute('data-easyedu-guide-checklist-expanded', '');
+  }
+  syncChecklistMinimizeControl(root);
+};
+
 const dockChecklistAwayFromTarget = (root, target) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const externalDialog = getExternalTargetDialog(root, target);
@@ -995,36 +1043,47 @@ const dockChecklistAwayFromTarget = (root, target) => {
   if (!checklist || checklist.hidden || !isVisibleElement(target)) {
     return;
   }
+  // A fold made for this same target stays (re-renders must not make it blink).
+  if (checklist.classList.contains(CHECKLIST_AVOIDING_CLASS) && root.easyeduGuideAvoidTarget === target) {
+    return;
+  }
+  unfoldAvoidingChecklist(root, checklist);
 
-  const rect = target.getBoundingClientRect();
-  const viewportMiddle = window.innerWidth / 2;
-  const panel = checklist.getBoundingClientRect();
-  const overlaps = rect.left < panel.right && rect.right > panel.left &&
-    rect.top < panel.bottom && rect.bottom > panel.top;
-  if (window.matchMedia && window.matchMedia('(max-width: 40rem)').matches &&
-      overlaps && !checklist.classList.contains('is-minimized')) {
-    const focused = document.activeElement;
-    checklist.classList.add('is-minimized');
-    checklist.removeAttribute('data-easyedu-guide-checklist-expanded');
-    syncChecklistMinimizeControl(root);
-    if (focused && checklist.contains(focused) && !isVisibleElement(focused)) {
-      const restore = checklist.querySelector('[data-easyedu-guide-checklist-restore]') ||
-        checklist.querySelector(SELECTORS.checklistMinimize);
-      if (isVisibleElement(restore)) { restore.focus({preventScroll: true}); }
+  const zone = inflateRect(target.getBoundingClientRect(), CHECKLIST_AVOID_MARGIN);
+  if (isCompactChecklistViewport()) {
+    if (!rectsOverlap(zone, checklist.getBoundingClientRect())) {
+      return;
+    }
+    dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+    if (rectsOverlap(zone, checklist.getBoundingClientRect())) {
+      foldChecklistAwayFromTarget(root, checklist, target);
     }
     return;
   }
-  // A progress re-render must not reset docking. Move only when the settled
-  // target actually overlaps the panel and another horizontal lane can fit.
-  const hasDock = checklist.classList.contains('is-docked-right') || checklist.classList.contains('is-docked-left');
-  const sideLaneFits = !hasDock || (rectsOverlap(rect, checklist.getBoundingClientRect()) &&
-    rect.width + checklist.getBoundingClientRect().width + 32 <= window.innerWidth);
-  if (sideLaneFits) {
-    const dockRight = rect.left < viewportMiddle;
-    checklist.classList.toggle('is-docked-right', dockRight);
-    checklist.classList.toggle('is-docked-left', !dockRight);
+
+  // Lanes are computed from the panel's declared width (min(26rem, 100vw - 2.5rem)), not from a
+  // rect that may still be mid-transition.
+  const panel = checklist.getBoundingClientRect();
+  const width = Math.min(26 * 16, window.innerWidth - 40);
+  const lane = left => ({left, right: left + width, top: panel.top, bottom: panel.bottom});
+  const rightLane = lane(window.innerWidth - CHECKLIST_LANE_INSET - width);
+  const leftLane = lane(CHECKLIST_LANE_INSET);
+  const usableHeight = window.innerHeight - getFixedTopClearance();
+  let dock = 'right';
+  if (rectsOverlap(zone, rightLane)) {
+    if (rectsOverlap(zone, leftLane) || usableHeight < CHECKLIST_MIN_USABLE_HEIGHT) {
+      foldChecklistAwayFromTarget(root, checklist, target);
+      checklist.classList.add('is-docked-right');
+      checklist.classList.remove('is-docked-left');
+      // The fold goes to the free corner: above the target when it sits low.
+      dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+      return;
+    } else {
+      dock = 'left';
+    }
   }
-  dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+  checklist.classList.toggle('is-docked-right', dock === 'right');
+  checklist.classList.toggle('is-docked-left', dock === 'left');
 };
 
 const showInterfaceReturn = root => {
@@ -1096,7 +1155,8 @@ const hideChecklist = (root, config, clearProgress = false, restoreFocus = false
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
     checklist.hidden = true;
-    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path');
+    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path',
+      'is-avoiding');
     checklist.removeAttribute('data-easyedu-guide-path');
     // A compact checklist is deliberately reopened in its space-saving state
     // for each guided-path entry.  Do not carry a prior manual expansion into
@@ -2759,6 +2819,10 @@ const renderChecklist = (root, config, pathName) => {
   checklist.classList.toggle('is-unlock-path', config.unlockPaths.includes(pathName));
   checklist.classList.toggle('has-guided-feedback', steps.some(step => !!getStepText(step, 'feedback')));
   checklist.setAttribute('data-easyedu-guide-path', pathName);
+  // J-G3: canonical side from the first frame (right; compact viewports dock at the bottom).
+  if (!checklist.classList.contains('is-docked-left') && !checklist.classList.contains('is-docked-right')) {
+    checklist.classList.add('is-docked-right');
+  }
   checklist.toggleAttribute('data-easyedu-guide-checklist-scroll', steps.length > 3);
   const retained = new Set();
 
@@ -3418,6 +3482,7 @@ const bindGuide = (root, config) => {
       if (checklist) {
         const minimized = !checklist.classList.contains('is-minimized');
         checklist.classList.toggle('is-minimized', minimized);
+        checklist.classList.remove('is-avoiding');
         if (isCompactChecklistViewport()) {
           checklist.toggleAttribute('data-easyedu-guide-checklist-expanded', !minimized);
         }
@@ -3744,7 +3809,8 @@ const destroy = rootOrSelector => {
   const checklist = root.querySelector(SELECTORS.checklist);
   if (checklist) {
     checklist.hidden = true;
-    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path');
+    checklist.classList.remove('is-complete', 'is-minimized', 'is-docked-left', 'is-docked-right', 'is-unlock-path',
+      'is-avoiding');
   }
 
   if (root.easyeduGuideMutationObserver) {
