@@ -169,15 +169,6 @@
       z-index: 4;
     }
 
-    // The local Group/Grouping overflow control uses the generic responsive
-    // card-menu positioning and touch target, but remains a plain icon action.
-    // Do not let the generic trigger's transparent border/radius turn it into
-    // a pill at intermediate widths.
-    &-group__actions-toggle.local-groupimport-easystud-card-menu {
-      border: 0;
-      border-radius: 0.4rem;
-    }
-
     // The participant headline content sits slightly above the direct-card
     // positioning origin. Keep the touch target unchanged and compensate only
     // its visual centre line.

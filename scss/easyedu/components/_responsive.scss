@@ -1,5 +1,6 @@
 // Responsive helpers for EasyEdu plugin views.
 
+@use "card-actions";
 @use "focus";
 @use "forms";
 
@@ -334,22 +335,18 @@
     width: 1.82rem;
   }
 
+  // K16-55: same 24 px hover disc as every card action (Kit card-action-disc), painted on the
+  // trigger so it stays centred in the 44 px touch target.
   &:hover,
-  &[aria-expanded="true"] {
+  &[aria-expanded="true"],
+  &:focus-visible {
+    @include card-actions.card-action-disc(var(--easyedu-card-action-hover-bg, var(--easyedu-primary-soft)));
+    border-color: transparent;
     color: var(--easyedu-primary-strong);
-
-    > :first-child {
-      background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, transparent);
-    }
   }
 
   &:focus-visible {
-    background: transparent;
     @include focus.ring($border-color: var(--easyedu-control-focus-border));
-
-    > :first-child {
-      background: color-mix(in srgb, var(--easyedu-primary-soft) 72%, transparent);
-    }
   }
 
   &:disabled,
