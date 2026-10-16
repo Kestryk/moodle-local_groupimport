@@ -230,7 +230,8 @@
                                 <div data-guide-names class="easyedu-guide-scene__results" aria-live="polite" data-invalid="{{invalidlabel}}"></div>
                                 <template data-guide-name-card><span class="easyedu-guide-scene__card"><span class="easyedu-guide-scene__identity fa fa-users" aria-hidden="true"></span><span class="easyedu-guide-scene__card-copy"><strong data-guide-name></strong><small>{{emptymembers}}</small></span></span></template>
                                 {{/creation}}
-                                {{^concepts}}{{^creation}}
+                                {{#simplecreate}}{{> local_groupimport/guide_simplecreate}}{{/simplecreate}}
+                                {{^concepts}}{{^creation}}{{^simplecreate}}
                                 {{#inspection}}
                                 <div class="easyedu-guide-scene__creation-controls easyedu-guide-scene__inspection-stage" data-guide-stage>
                                     <div class="easyedu-guide-scene__inspection-card{{#grouping}} easyedu-guide-scene__inspection-card--grouping{{/grouping}}" data-guide-inspection-card>
@@ -317,7 +318,7 @@
                                         <button type="button" class="btn btn-outline-secondary" data-guide-scene-command="reset"><span class="fa fa-arrow-rotate-left" aria-hidden="true"></span><span>{{reset}}</span></button>
                                     </div>
                                 </div>
-                                {{/inspection}}{{/creation}}{{/concepts}}
+                                {{/inspection}}{{/simplecreate}}{{/creation}}{{/concepts}}
                             </section>
                             {{/discoveryscene}}
                             {{#hasvisualflow}}
