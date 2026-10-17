@@ -220,11 +220,11 @@ const ensurePanelActionOverflowControls = (root, actions) => {
     if (!toggle) {
         toggle = document.createElement('button');
         toggle.type = 'button';
-        toggle.className = 'btn btn-outline-secondary btn-sm local-groupimport-easystud__panel-actions-more';
+        toggle.className = 'local-groupimport-easystud__panel-actions-more';
         toggle.setAttribute('data-easystud-panel-actions-toggle', '1');
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', getLabels(root).moreactions || '');
-        toggle.innerHTML = '<span class="local-groupimport-easystud-action-grip" aria-hidden="true"></span>';
+        toggle.innerHTML = '<span class="fa fa-ellipsis" aria-hidden="true"></span>';
         actions.appendChild(toggle);
     }
     if (!menu) {

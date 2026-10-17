@@ -18,7 +18,9 @@
 // icon font or raster. Applied by card-overflow-trigger and mobile-card-menu-trigger.
 @mixin overflow-ellipsis-glyph {
   &::before {
-    background: radial-gradient(circle, currentColor 0 1.5px, transparent calc(1.5px + 0.6px)) 0 0 / 6px 3px repeat-x;
+    // K17-77: the dots sit at 1.5 / 7.5 / 13.5 px (the 6 px tile is shifted by 1.5 px), so the third
+    // dot is no longer cut in half and the 15 px ink is centred in its trigger.
+    background: radial-gradient(circle, currentColor 0 1.5px, transparent calc(1.5px + 0.6px)) -1.5px 0 / 6px 3px repeat-x;
     content: "";
     display: block;
     font-size: 0;
