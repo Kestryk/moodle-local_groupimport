@@ -370,7 +370,8 @@ check($DB->writes === 0 && $DB->queries === 0 && $DB->starts === 0, 'delete cap 
 $string = [];
 require($root . '/lang/fr/local_groupimport.php');
 check(
-    $string['bulkactionlimit'] === 'Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a été effectuée. Sélectionnez moins d’éléments et réessayez.',
+    $string['bulkactionlimit'] === 'Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a ' .
+    'été effectuée. Sélectionnez moins d’éléments et réessayez.',
     'exact UTF-8 FR bulkactionlimit'
 );
 check($string['bulkitemsskipped'] === 'Éléments non ajoutés : {$a}.', 'exact UTF-8 FR bulkitemsskipped');
