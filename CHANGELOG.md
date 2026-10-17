@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-17 : repli de littéraux CLI/SQL et de fixture, valeurs constantes et instructions conservées ; aucun code de rendu modifié.
+
 - 2026-10-18 [N0] K16-17 : libellé de messagerie local FR/EN compatible Moodle 4.5 et repli de lignes PHP sans changement des jetons exécutables ; Guide, cartes et rendu inchangés.
 
 - 2026-10-17 [N1] K17-79: space participant filters with shared Kit tokens in both workspace views; keep field sizes and filtering unchanged.

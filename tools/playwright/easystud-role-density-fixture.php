@@ -186,7 +186,8 @@ function density_cleanup(array $manifest): array {
         if (
             !str_starts_with($user->username, $prefix) || $user->auth !== 'nologin' ||
                 $DB->record_exists_sql(
-                    'SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid WHERE ue.userid = ? AND e.courseid <> ?',
+                    'SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid ' .
+                    'WHERE ue.userid = ? AND e.courseid <> ?',
                     [$id,
                     $manifest['courseId']]
                 )

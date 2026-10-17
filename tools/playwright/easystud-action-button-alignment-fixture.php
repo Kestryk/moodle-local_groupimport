@@ -49,7 +49,8 @@ for ($index = 1; $index < count($argv); $index++) {
 if ($options['help'] || !$options['moodle-root'] || !$options['action'] || !$options['manifest']) {
     fwrite(
         STDERR,
-        "Usage: php easystud-action-button-alignment-fixture.php --moodle-root=<root> --action=setup|cleanup --manifest=<external-json> [--run-id=<id>]\n"
+        "Usage: php easystud-action-button-alignment-fixture.php " .
+        "--moodle-root=<root> --action=setup|cleanup --manifest=<external-json> [--run-id=<id>]\n"
     );
     exit(2);
 }
