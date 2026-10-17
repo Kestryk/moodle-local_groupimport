@@ -170,8 +170,37 @@ class course_state {
             $useritems[] = $item;
         }
 
-        $groupitems = self::group_items($course, $context, $groups, $memberships, $groupingmemberships);
-        $groupingitems = self::grouping_items($context, $groupings, $groupingmemberships);
+        $groupitems = [];
+        foreach ($groups as $group) {
+            $groupid = (int)$group->id;
+            $pictureurl = get_group_picture_url($group, $course->id, true);
+            $groupitems[] = [
+                'id' => $groupid,
+                // Plain text: the browser escapes at render time (S9); an escaped name would show '&amp;'.
+                'name' => format_string($group->name, true, ['context' => $context, 'escape' => false]),
+                'rawname' => (string)$group->name,
+                'idnumber' => (string)($group->idnumber ?? ''),
+                'memberids' => array_values($memberships['bygroup'][$groupid] ?? []),
+                'groupingids' => array_values($groupingmemberships['bygroup'][$groupid] ?? []),
+                'hasdescription' => trim((string)($group->description ?? '')) !== '',
+                'enrolmentkey' => !empty($group->enrolmentkey),
+                'pictureurl' => !empty($pictureurl) ? $pictureurl->out(false) : '',
+                'hidepicture' => !empty($group->hidepicture),
+            ];
+        }
+
+        $groupingitems = [];
+        foreach ($groupings as $grouping) {
+            $groupingid = (int)$grouping->id;
+            $groupingitems[] = [
+                'id' => $groupingid,
+                'name' => format_string($grouping->name, true, ['context' => $context, 'escape' => false]),
+                'rawname' => (string)$grouping->name,
+                'idnumber' => (string)($grouping->idnumber ?? ''),
+                'groupids' => array_values($groupingmemberships['bygrouping'][$groupingid] ?? []),
+                'hasdescription' => trim((string)($grouping->description ?? '')) !== '',
+            ];
+        }
 
         return [
             'meta' => [
@@ -192,112 +221,6 @@ class course_state {
             'groups' => $groupitems,
             'groupings' => $groupingitems,
         ];
-    }
-
-    /**
-     * Group structure of a course after an action (perf R5): every group and grouping in the build()
-     * shape, without the participants.
-     *
-     * An EasyStud action only changes groups, groupings and memberships: the page applies this to the
-     * state it already holds (the participants' group ids follow from the members) instead of reloading
-     * every participant. The version before and after the action, and the participant count, let it
-     * check that nothing else changed in between (another teacher, an enrolment, a role); otherwise it
-     * reloads the whole state.
-     *
-     * The caller is responsible for login, context validation and capability checks (the same as
-     * build(): moodle/course:managegroups).
-     *
-     * @param \stdClass $course Course record.
-     * @param \context_course $context Matching course context.
-     * @param int $versionbefore State version read before the action.
-     * @return array {previousversion, version, usercount, memberships, groups, groupings}
-     */
-    public static function structure(\stdClass $course, \context_course $context, int $versionbefore): array {
-        self::assert_context($course, $context);
-
-        // Count the events of this request now, so the version returned is final.
-        state_version::flush();
-
-        $groups = groups_get_all_groups(
-            $course->id,
-            0,
-            0,
-            'g.id, g.courseid, g.idnumber, g.name, g.description, g.picture, g.hidepicture, g.enrolmentkey'
-        );
-        $groupings = groups_get_all_groupings($course->id);
-        $memberships = self::get_group_memberships((int)$course->id);
-        $groupingmemberships = self::get_grouping_memberships(array_map('intval', array_keys($groupings)));
-
-        return [
-            'previousversion' => $versionbefore,
-            'version' => state_version::get((int)$course->id),
-            'usercount' => count_enrolled_users($context),
-            'memberships' => $memberships['count'],
-            'groups' => self::group_items($course, $context, $groups, $memberships, $groupingmemberships),
-            'groupings' => self::grouping_items($context, $groupings, $groupingmemberships),
-        ];
-    }
-
-    /**
-     * State items of the groups (shared by build() and structure()).
-     *
-     * @param \stdClass $course Course record.
-     * @param \context_course $context Course context.
-     * @param \stdClass[] $groups Group records.
-     * @param array $memberships get_group_memberships() result.
-     * @param array $groupingmemberships get_grouping_memberships() result.
-     * @return array
-     */
-    protected static function group_items(
-        \stdClass $course,
-        \context_course $context,
-        array $groups,
-        array $memberships,
-        array $groupingmemberships
-    ): array {
-        $groupitems = [];
-        foreach ($groups as $group) {
-            $groupid = (int)$group->id;
-            $pictureurl = get_group_picture_url($group, $course->id, true);
-            $groupitems[] = [
-                'id' => $groupid,
-                // Plain text: the browser escapes at render time (S9); an escaped name would show '&amp;'.
-                'name' => format_string($group->name, true, ['context' => $context, 'escape' => false]),
-                'rawname' => (string)$group->name,
-                'idnumber' => (string)($group->idnumber ?? ''),
-                'memberids' => array_values($memberships['bygroup'][$groupid] ?? []),
-                'groupingids' => array_values($groupingmemberships['bygroup'][$groupid] ?? []),
-                'hasdescription' => trim((string)($group->description ?? '')) !== '',
-                'enrolmentkey' => !empty($group->enrolmentkey),
-                'pictureurl' => !empty($pictureurl) ? $pictureurl->out(false) : '',
-                'hidepicture' => !empty($group->hidepicture),
-            ];
-        }
-        return $groupitems;
-    }
-
-    /**
-     * State items of the groupings (shared by build() and structure()).
-     *
-     * @param \context_course $context Course context.
-     * @param \stdClass[] $groupings Grouping records.
-     * @param array $groupingmemberships get_grouping_memberships() result.
-     * @return array
-     */
-    protected static function grouping_items(\context_course $context, array $groupings, array $groupingmemberships): array {
-        $groupingitems = [];
-        foreach ($groupings as $grouping) {
-            $groupingid = (int)$grouping->id;
-            $groupingitems[] = [
-                'id' => $groupingid,
-                'name' => format_string($grouping->name, true, ['context' => $context, 'escape' => false]),
-                'rawname' => (string)$grouping->name,
-                'idnumber' => (string)($grouping->idnumber ?? ''),
-                'groupids' => array_values($groupingmemberships['bygrouping'][$groupingid] ?? []),
-                'hasdescription' => trim((string)($grouping->description ?? '')) !== '',
-            ];
-        }
-        return $groupingitems;
     }
 
     /**

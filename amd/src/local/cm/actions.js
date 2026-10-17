@@ -45,7 +45,7 @@ import {
 import {
     expandGroupingSection, syncCatalogFilters, applyContainerGroupSearch, applyGroupMemberSearch,
     syncStructurePlaceholders, syncPagination, applyFilters, updateSelectionActions, scheduleOnDemandStateRefresh,
-    applyMembersAddedToState, applyMembersRemovedFromState, isOnDemandStateActive,
+    applyMembersAddedToState, applyMembersRemovedFromState,
 } from './workspace';
 
 let pendingActionCount = 0;
@@ -97,10 +97,6 @@ export const postAction = data => {
         }
         body.set(key, value);
     });
-    // Perf R5: the on-demand page asks for the group structure after the action (no full state reload).
-    if (isOnDemandStateActive(root)) {
-        body.set('withstructure', '1');
-    }
     body.set('sesskey', M.cfg.sesskey);
 
     return trackActionRequest(fetch(M.cfg.wwwroot + '/local/groupimport/ajax.php', {
@@ -114,7 +110,7 @@ export const postAction = data => {
         if (!result.success) {
             throw new Error(result.error || labels.ajaxerror || '');
         }
-        scheduleOnDemandStateRefresh(root, result.structure || null);
+        scheduleOnDemandStateRefresh(root);
         return result;
     }));
 };
@@ -179,50 +175,6 @@ export const postAddEmailsInBatches = (root, courseId, groupid, text) => {
     }, error => {
         if (error.response && error.response.users && error.response.users.length) {
             appendUsersToGroupCopies(root, groupid, error.response.users, labels);
-        }
-        throw error;
-    });
-};
-
-// Perf R5: move groups to a grouping (or out of every grouping, groupingid '0') in batches, instead of one
-// request per group. applyDone(groups, responses) updates the cards of the groups the server committed,
-// also when a later batch fails. Resolves one {success, message, existing} response per group element, in
-// order (two copies of a group share its response). A single group keeps the single-group request.
-export const postMoveGroupsInBatches = (root, courseId, groups, groupingid, removefromorigin, applyDone) => {
-    const idOf = group => group.getAttribute('data-easystud-group-id');
-    const toResponses = (items, response) => {
-        const byId = new Map(((response && response.results) || []).map(entry => [String(entry.groupid), entry]));
-        return items.map(group => {
-            const entry = byId.get(String(idOf(group)));
-            return {success: true, message: response ? response.message : '', existing: !!(entry && entry.existing)};
-        });
-    };
-    if (groups.length === 1) {
-        return postAction({
-            courseid: courseId,
-            action: 'movegroup',
-            groupid: idOf(groups[0]),
-            groupingid,
-            removefromorigin: removefromorigin ? 1 : 0,
-        }).then(response => {
-            const responses = [{success: true, message: response.message, existing: !!response.existing}];
-            applyDone(groups, responses);
-            return responses;
-        });
-    }
-    return postActionInBatches(root, groups, batch => ({
-        courseid: courseId,
-        action: 'movegroup',
-        groupids: batch.map(idOf),
-        groupingid,
-        removefromorigin: removefromorigin ? 1 : 0,
-    })).then(({response, items}) => {
-        const responses = toResponses(items, response);
-        applyDone(items, responses);
-        return responses;
-    }, error => {
-        if (error.doneItems && error.doneItems.length) {
-            applyDone(error.doneItems, toResponses(error.doneItems, error.response));
         }
         throw error;
     });
@@ -330,10 +282,18 @@ export const removeGroupsFromGroupings = (root, courseId, groups) => {
         return Promise.resolve(null);
     }
 
-    // Perf R5: one request per batch of groups instead of one per group.
-    return postMoveGroupsInBatches(root, courseId, groupsToRemove, '0', true, done => {
-        done.forEach(group => moveGroupElementToGrouping(root, group.getAttribute('data-easystud-group-id'), 0));
-    }).then(() => {
+    return Promise.all(groupsToRemove.map(group => {
+        const groupid = group.getAttribute('data-easystud-group-id');
+        return postAction({
+            courseid: courseId,
+            action: 'movegroup',
+            groupid,
+            groupingid: 0,
+        }).then(response => {
+            moveGroupElementToGrouping(root, groupid, 0);
+            return response;
+        });
+    })).then(() => {
         clearSelectionState(root);
         updateSelectionActions(root);
         requestGuideHighlightRefresh(root);
@@ -345,9 +305,6 @@ export const removeGroupsFromGroupings = (root, courseId, groups) => {
 export const postFormAction = formData => {
     const root = document.getElementById('local-groupimport-easystud');
     const labels = root ? JSON.parse(root.getAttribute('data-easystud-detail-labels') || '{}') : {};
-    if (isOnDemandStateActive(root)) {
-        formData.set('withstructure', '1');
-    }
     formData.set('sesskey', M.cfg.sesskey);
 
     return trackActionRequest(fetch(M.cfg.wwwroot + '/local/groupimport/ajax.php', {
@@ -358,7 +315,7 @@ export const postFormAction = formData => {
         if (!result.success) {
             throw new Error(result.error || labels.ajaxerror || '');
         }
-        scheduleOnDemandStateRefresh(root, result.structure || null);
+        scheduleOnDemandStateRefresh(root);
         return result;
     }));
 };

@@ -1052,161 +1052,55 @@ export const applyMembersAddedToState = (root, groupid, userids, removed = []) =
  */
 export const applyMembersRemovedFromState = (root, removed) => applyMembersAddedToState(root, null, [], removed);
 
-// Perf R5: group structures returned by the actions since the last update (ajax.php "structure"), and
-// whether an action answered without one (then the whole state is reloaded, as before).
-let pendingStructures = [];
-let pendingFullRefresh = false;
-
 /**
- * Perf R5: whether the page holds an on-demand course state (actions then ask for the group structure).
+ * SM-RENDU: reload the course state after a successful action (step 3a).
+ *
+ * The server state becomes the source of truth for memberships, groups and groupings,
+ * instead of the group tree rendered in the page. Several actions in a row (moving ten
+ * groups sends ten requests) give one reload. The id selection is kept for the ids that
+ * still exist.
  *
  * @param {HTMLElement|null} root EasyStud root.
- * @returns {Boolean}
  */
-export const isOnDemandStateActive = root => !!(root && getOnDemandModel(root));
-
-/**
- * Install a new course state in the model and redraw the page from it.
- *
- * The id selection is kept for the ids that still exist.
- *
- * @param {HTMLElement} root EasyStud root.
- * @param {Object} model Participant model.
- * @param {Object} raw New course state.
- */
-const installState = (root, model, raw) => {
-    const userids = new Set(raw.users.map(user => user.id));
-    model.selected.forEach(userid => {
-        if (!userids.has(userid)) {
-            model.selected.delete(userid);
-        }
-    });
-    const memberkeys = new Set(raw.groups.reduce((all, group) =>
-        all.concat((group.memberids || []).map(userid => group.id + ':' + userid)), []));
-    model.selectedMembers.forEach((key, memberkey) => {
-        if (!memberkeys.has(memberkey)) {
-            model.selectedMembers.delete(memberkey);
-        }
-    });
-    const groupids = new Set(raw.groups.map(group => group.id));
-    model.selectedGroups.forEach((key, groupid) => {
-        if (!groupids.has(groupid)) {
-            model.selectedGroups.delete(groupid);
-        }
-    });
-    model.raw = raw;
-    model.optimistic = null;
-    if (root.easystudSm && root.easystudSm.raw) {
-        root.easystudSm.raw = raw;
-    }
-    renderAfterModelChange(root, model);
-    root.setAttribute('data-easystud-sm-version', raw.meta.version);
-};
-
-/**
- * Perf R5: the course state after the actions, from the group structures they returned, or null when the
- * whole state must be reloaded instead.
- *
- * Each structure gives the state version before and after its action: they must follow each other from
- * the version the page holds, so a change made in between (another teacher, an enrolment, a role, a
- * native group page) always reloads everything. The participants are kept; their group ids follow from
- * the members, in the server order (ascending group id).
- *
- * @param {Object} raw Course state held by the page.
- * @param {Array<Object>} structures ajax.php "structure" of each action, in any order.
- * @returns {Object|null}
- */
-export const stateFromStructures = (raw, structures) => {
-    if (!raw || !raw.meta || !Array.isArray(raw.users) || !structures.length) {
-        return null;
-    }
-    const ordered = structures.map((structure, index) => ({structure, index})).sort((a, b) =>
-        (Number(a.structure.version) - Number(b.structure.version)) || (a.index - b.index)).map(entry => entry.structure);
-    let version = Number(raw.meta.version || 0);
-    for (const structure of ordered) {
-        if (!Number.isFinite(Number(structure.version)) || Number(structure.previousversion) !== version) {
-            return null;
-        }
-        version = Number(structure.version);
-    }
-    const latest = ordered[ordered.length - 1];
-    if (!Array.isArray(latest.groups) || !Array.isArray(latest.groupings) ||
-            Number(latest.usercount) !== raw.users.length) {
-        return null;
-    }
-    const byUser = new Map();
-    latest.groups.slice().sort((a, b) => a.id - b.id).forEach(group => (group.memberids || []).forEach(userid => {
-        if (!byUser.has(userid)) {
-            byUser.set(userid, []);
-        }
-        byUser.get(userid).push(group.id);
-    }));
-    const users = raw.users.map(user => {
-        const groupids = byUser.get(user.id) || [];
-        const current = user.groupids || [];
-        if (groupids.length === current.length && groupids.every((id, index) => id === current[index])) {
-            return user;
-        }
-        return Object.assign({}, user, {groupids});
-    });
-    const meta = Object.assign({}, raw.meta, {
-        version: latest.version,
-        counts: Object.assign({}, raw.meta.counts || {}, {
-            groups: latest.groups.length,
-            groupings: latest.groupings.length,
-            memberships: latest.memberships,
-        }),
-    });
-    return Object.assign({}, raw, {meta, users, groups: latest.groups, groupings: latest.groupings});
-};
-
-/**
- * SM-RENDU: update the course state after a successful action (step 3a); perf R5.
- *
- * The server state stays the source of truth for memberships, groups and groupings, instead of the
- * group tree rendered in the page. When every action since the last update returned the group
- * structure and no other change happened in between, that structure updates the state the page holds
- * (no participant reloaded). Otherwise, or if anything is inconsistent, the whole state is reloaded as
- * before. Several actions in a row (a batched move) give one update.
- *
- * @param {HTMLElement|null} root EasyStud root.
- * @param {Object|null} [structure] "structure" of the ajax.php response.
- */
-export const scheduleOnDemandStateRefresh = (root, structure = null) => {
+export const scheduleOnDemandStateRefresh = root => {
     if (!root || !getOnDemandModel(root)) {
         return;
     }
-    if (structure && typeof structure === 'object' && Array.isArray(structure.groups)) {
-        pendingStructures.push(structure);
-    } else {
-        pendingFullRefresh = true;
-    }
     window.clearTimeout(onDemandRefreshTimer);
     onDemandRefreshTimer = window.setTimeout(() => {
-        const structures = pendingStructures;
-        const full = pendingFullRefresh;
-        pendingStructures = [];
-        pendingFullRefresh = false;
         const {model, courseId} = getOnDemandParticipants();
         const seq = ++onDemandRefreshSeq;
-        if (!full && getOnDemandModel(root) === model) {
-            try {
-                const raw = stateFromStructures(model.raw, structures);
-                if (raw) {
-                    installState(root, model, raw);
-                    return;
-                }
-            } catch (error) {
-                // Safety net: any inconsistency reloads the whole state below.
-                Log.error(error);
-            }
-        }
         fetchState(courseId).then(raw => {
             // A newer reload is on its way (another action followed): this answer is already stale.
             if (getOnDemandModel(root) !== model || seq !== onDemandRefreshSeq) {
                 return null;
             }
-            installState(root, model, raw);
+            const userids = new Set(raw.users.map(user => user.id));
+            model.selected.forEach(userid => {
+                if (!userids.has(userid)) {
+                    model.selected.delete(userid);
+                }
+            });
+            const memberkeys = new Set(raw.groups.reduce((all, group) =>
+                all.concat((group.memberids || []).map(userid => group.id + ':' + userid)), []));
+            model.selectedMembers.forEach((key, memberkey) => {
+                if (!memberkeys.has(memberkey)) {
+                    model.selectedMembers.delete(memberkey);
+                }
+            });
+            const groupids = new Set(raw.groups.map(group => group.id));
+            model.selectedGroups.forEach((key, groupid) => {
+                if (!groupids.has(groupid)) {
+                    model.selectedGroups.delete(groupid);
+                }
+            });
+            model.raw = raw;
+            model.optimistic = null;
+            if (root.easystudSm && root.easystudSm.raw) {
+                root.easystudSm.raw = raw;
+            }
+            renderAfterModelChange(root, model);
+            root.setAttribute('data-easystud-sm-version', raw.meta.version);
             return raw;
         }).catch(error => {
             Log.error(error);
@@ -1214,5 +1108,5 @@ export const scheduleOnDemandStateRefresh = (root, structure = null) => {
                 rollbackOptimisticMembership(root, model);
             }
         });
-    }, pendingFullRefresh ? 250 : 60);
+    }, 250);
 };

@@ -77,8 +77,7 @@ export const mergeResponses = responses => {
             merged[key] = sum(responses, key);
         }
     });
-    // Perf R5: 'results' lists one entry per moved group (movegroup with groupids).
-    ['users', 'missing', 'results'].forEach(key => {
+    ['users', 'missing'].forEach(key => {
         if (responses.some(response => response && Array.isArray(response[key]))) {
             merged[key] = gather(responses, key);
         }

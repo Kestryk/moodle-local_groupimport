@@ -37,7 +37,7 @@ import {
 } from './guide_hooks';
 import {applyFilters, updateSelectionActions} from './workspace';
 import {
-    handleActionError, postAddUsersInBatches, postMoveGroupsInBatches,
+    handleActionError, postAction, postAddUsersInBatches,
     moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
 } from './actions';
 
@@ -153,16 +153,23 @@ export const bindGroupDragDrop = (root, courseId) => {
 
     const moveGroups = (groups, dropTarget, removefromorigin) => {
         const groupingid = dropTarget.getAttribute('data-easystud-grouping-drop') || '0';
-        // Perf R5: the dragged groups move in batched requests, not one request per group.
-        return postMoveGroupsInBatches(root, courseId, groups, groupingid, removefromorigin, (done, responses) => {
-            done.forEach((group, index) => {
+        return Promise.all(groups.map(group => {
+            const groupid = group.getAttribute('data-easystud-group-id');
+            return postAction({
+                courseid: courseId,
+                action: 'movegroup',
+                groupid,
+                groupingid,
+                removefromorigin: removefromorigin ? 1 : 0,
+            }).then(response => {
                 if (removefromorigin || groupingid === '0') {
-                    moveGroupElementToGrouping(root, group.getAttribute('data-easystud-group-id'), groupingid);
-                } else if (!responses[index].existing) {
+                    moveGroupElementToGrouping(root, groupid, groupingid);
+                } else if (!response.existing) {
                     copyGroupElementToGrouping(root, group, groupingid);
                 }
+                return response;
             });
-        }).then(responses => {
+        })).then(responses => {
             if (groupingid === '0') {
                 return formatCountMessage(labels.groupsremovedfromgroupingscount || '', groups.length);
             }

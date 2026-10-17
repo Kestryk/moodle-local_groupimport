@@ -41,7 +41,7 @@ import {
 import {syncGroupMembersState} from './group_cards';
 import {applyFilters, updateSelectionActions} from './workspace';
 import {
-    handleActionError, postAction, postAddUsersInBatches, postMoveGroupsInBatches,
+    handleActionError, postAction, postAddUsersInBatches,
     moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
 } from './actions';
 
@@ -387,17 +387,23 @@ export const bindMoveModal = (root, courseId) => {
         }
 
         const activityEvidence = captureActivityGroupingConfirmation(root, value, groups);
-        // Perf R5: the selected groups move in batched requests, not one request per group.
-        const removefromorigin = !!(removeOrigin && removeOrigin.checked);
-        postMoveGroupsInBatches(root, courseId, groups, value, removefromorigin, (done, responses) => {
-            done.forEach((group, index) => {
-                if (removefromorigin || value === '0') {
-                    moveGroupElementToGrouping(root, group.getAttribute('data-easystud-group-id'), value);
-                } else if (!responses[index].existing) {
+        Promise.all(groups.map(group => {
+            const groupid = group.getAttribute('data-easystud-group-id');
+            return postAction({
+                courseid: courseId,
+                action: 'movegroup',
+                groupid,
+                groupingid: value,
+                removefromorigin: removeOrigin && removeOrigin.checked ? 1 : 0,
+            }).then(response => {
+                if ((removeOrigin && removeOrigin.checked) || value === '0') {
+                    moveGroupElementToGrouping(root, groupid, value);
+                } else if (!response.existing) {
                     copyGroupElementToGrouping(root, group, value);
                 }
+                return response;
             });
-        }).then(responses => {
+        })).then(responses => {
             closeModal();
             clearSelectionState(root);
             updateSelectionActions(root);
