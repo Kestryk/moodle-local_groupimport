@@ -3079,8 +3079,6 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 .local-groupimport-easystud-message-modal .modal-header .close,
 .local-groupimport-easystud-message-modal .modal-header .btn-close {flex: 0 0 auto;font-size: 1rem;margin: 0;opacity: 1;
 }
-.local-groupimport-easystud-message-modal .modal-header .btn-close::before {content: "×";display: block;font-family: Arial, sans-serif;font-size: 1.25rem;font-weight: 400;line-height: 1;
-}
 .local-groupimport-easystud-message-modal .modal-title {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text);font-size: var(--easyedu-font-size-modal-title);font-weight: var(--easyedu-font-weight-strong);line-height: var(--easyedu-line-height-title);color: var(--easyedu-card-identity-title-color);margin: 0;overflow-wrap: anywhere;
 }
 .local-groupimport-easystud-message-modal .modal-body {display: flex;flex: 1 1 auto;flex-direction: column;min-height: 0;overflow: auto;overscroll-behavior: contain;padding: 1rem;

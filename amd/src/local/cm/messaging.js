@@ -38,6 +38,21 @@ const decorateNativeMessageModalNode = node => {
     const header = node.querySelector('.modal-header');
     if (header) {
         header.classList.add('easyedu-dialog-header-palette--primary');
+        const title = header.querySelector('.modal-title');
+        if (title && !header.querySelector('.easyedu-entity-dialog__heading')) {
+            const heading = document.createElement('div');
+            heading.className = 'easyedu-entity-dialog__heading';
+            const icon = document.createElement('span');
+            icon.className = 'easyedu-entity-dialog__icon fa fa-comment-o';
+            icon.setAttribute('aria-hidden', 'true');
+            const text = document.createElement('div');
+            const brand = document.createElement('span');
+            brand.className = 'easyedu-entity-dialog__eyebrow';
+            brand.textContent = 'EasyStud';
+            header.insertBefore(heading, title);
+            heading.append(icon, text);
+            text.append(brand, title);
+        }
     }
 
     const dialog = node.querySelector('.modal-dialog');
