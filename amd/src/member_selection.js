@@ -13,7 +13,9 @@ export const snapshotMemberPairs = (root, members) => {
         const group = member?.closest('[data-easystud-group-id]');
         const groupid = group?.getAttribute('data-easystud-group-id') || '';
         const userid = member?.getAttribute('data-easystud-member-id') || '';
-        if (!root.contains(member) || !/^\d+$/.test(groupid) || !/^\d+$/.test(userid) ||
+        // The identity is the Group/User pair read from the row, not the row's presence in the DOM: rows of a long
+        // list that are not rendered are detached copies. Only a rendered row outside the workspace is foreign.
+        if (!member || (member.isConnected && !root.contains(member)) || !/^\d+$/.test(groupid) || !/^\d+$/.test(userid) ||
                 /^0+$/.test(groupid) || /^0+$/.test(userid)) {
             throw new Error('Invalid selected membership.');
         }

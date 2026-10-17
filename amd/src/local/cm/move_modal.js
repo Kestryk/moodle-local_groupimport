@@ -179,7 +179,9 @@ export const bindMoveModal = (root, courseId) => {
             try {
                 memberSnapshot = snapshotMemberPairs(root, members);
             } catch (error) {
-                showNotification(root, labels.ajaxerror || '', 'danger');
+                // Never fail silently: tell the user the selection could not be used.
+                memberSnapshot = [];
+                showNotification(root, labels.ajaxerror || (error && error.message) || 'Invalid selected membership.', 'danger');
                 return;
             }
             if (!memberSnapshot.length) {
