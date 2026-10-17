@@ -1,0 +1,330 @@
+{
+  "base": "817dea20",
+  "paritySourcePredecessor": "40df01bf",
+  "canonicalParityPredecessor": "3e1d3a8",
+  "supersedesSourceWip": "a4552fff",
+  "supersedesKitWip": "4c27185",
+  "status": "PASS: bounded additive CSS and all requested static gates",
+  "cascade": {
+    "base": "817dea20",
+    "pages": {
+      "student-management": {
+        "addedRules": 1,
+        "selectors": [
+          ".local-groupimport-easystud .visually-hidden",
+          ".easyedu-guide .visually-hidden"
+        ],
+        "priorOrderedCssUnchanged": true
+      },
+      "mass-import": {
+        "addedRules": 1,
+        "selectors": [
+          ".local-groupimport-import .visually-hidden"
+        ],
+        "priorOrderedCssUnchanged": true
+      },
+      "administration": {
+        "addedRules": 1,
+        "selectors": [
+          ".local-groupimport-admin .visually-hidden"
+        ],
+        "priorOrderedCssUnchanged": true
+      }
+    },
+    "addedDefinition": [
+      [
+        "border",
+        "0",
+        true
+      ],
+      [
+        "clip",
+        "rect(0, 0, 0, 0)",
+        true
+      ],
+      [
+        "height",
+        "1px",
+        true
+      ],
+      [
+        "margin",
+        "-1px",
+        true
+      ],
+      [
+        "overflow",
+        "hidden",
+        true
+      ],
+      [
+        "padding",
+        "0",
+        true
+      ],
+      [
+        "position",
+        "absolute",
+        true
+      ],
+      [
+        "white-space",
+        "nowrap",
+        true
+      ],
+      [
+        "width",
+        "1px",
+        true
+      ]
+    ],
+    "canonicalRecipeFiles": [
+      "scss/easyedu/components/_accessibility.scss",
+      "scss/easyedu/_components.scss"
+    ],
+    "canonicalSharedFiles": 51,
+    "preExistingCanonicalDrift": [],
+    "runtimeAccess": false,
+    "globalRules": 0,
+    "additiveCssPassed": true,
+    "canonicalRecipePassed": true,
+    "fullCanonicalParity": true,
+    "passed": true
+  },
+  "guideGates": {
+    "base": "817dea20",
+    "canonicalCommit": "3e1d3a8",
+    "checks": [
+      {
+        "test": "test-guide-t037-reading-composition.cjs",
+        "exit": 0,
+        "passed": true
+      },
+      {
+        "test": "test-guide-t038-navigation.cjs",
+        "exit": 0,
+        "passed": true
+      },
+      {
+        "test": "test-guide-mirror-roundtrip.cjs",
+        "exit": 0,
+        "passed": true
+      },
+      {
+        "test": "test-tooltip-light-source.cjs",
+        "exit": 0,
+        "passed": true
+      },
+      {
+        "test": "offline-hidden-geometry",
+        "exit": 0,
+        "passed": true
+      }
+    ],
+    "runtimeAccess": false,
+    "passed": true
+  },
+  "offlineBrowser": {
+    "passed": true,
+    "cases": 8,
+    "records": [
+      {
+        "pageName": "student-management",
+        "host": "local-groupimport-easystud",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "student-management",
+        "host": "local-groupimport-easystud",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "student-management",
+        "host": "easyedu-guide",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "student-management",
+        "host": "easyedu-guide",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "mass-import",
+        "host": "local-groupimport-import",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "mass-import",
+        "host": "local-groupimport-import",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "administration",
+        "host": "local-groupimport-admin",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "administration",
+        "host": "local-groupimport-admin",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      }
+    ],
+    "runtimeAccess": false,
+    "nativeAssistiveTechnology": "NOT_TESTED"
+  },
+  "eslintErrors": 0,
+  "eslintWarnings": 0,
+  "officialOtherFiles": {
+    "engine": "official local_codechecker 5.1.0 locallib.php unmodified",
+    "runtimeAccess": false,
+    "errors": 0,
+    "warnings": 0,
+    "files": [
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-filter-disclosure-capsule-source.js.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-filter-disclosure-local-work-preservation.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-filter-disclosure-refresh-preservation.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-guide-navigation-tooltip-source.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-guide-navigation-tooltips.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-mass-report-semantic-palette.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-modal-focus-scope.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-quiet-selection-recovery.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-tooltip-extraction-source.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-view-icon-palette-preservation.cjs.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/docs/history/retired-test-contracts-2026-10-17/test-wave15-corrections-contract.ps1.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/fonts/LICENSE.txt",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      },
+      {
+        "file": "C:/dev/worktrees/easystud-codex1-a10-visually-hidden-817dea20-20261017/tests/fixtures/mass-import-mixed-course5.csv",
+        "errors": 0,
+        "warnings": 0,
+        "issues": []
+      }
+    ]
+  },
+  "runtimeAccess": false,
+  "published": false,
+  "humanAccepted": false
+}

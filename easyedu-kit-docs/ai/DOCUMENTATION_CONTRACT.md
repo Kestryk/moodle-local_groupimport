@@ -1138,3 +1138,11 @@ never duplicate its renderer/placement/grace logic in a consumer. The Moodle
 adapter depends on both motion and easyedu_bubble and must round-trip exactly.
 See docs/testing/guide-bubble-mirror-2026-10-17.md (consumer) or
 docs/guide-bubble-mirror-2026-10-17.md (canonical) for current validation.
+
+
+A10's visually-hidden utility has one public Kit recipe, used through page
+scopes only. Keep descriptions in the DOM/accessibility tree, retain global
+CSS0rules and exact ordered pre-existing page CSS. Require current Guide/Kit
+parity and T037/T038/roundtrip/Light gates; no duplicate native tooltip or
+Guide-controller adaptation belongs in this utility. See
+docs/testing/a10-visually-hidden-817dea20-2026-10-17.md.
