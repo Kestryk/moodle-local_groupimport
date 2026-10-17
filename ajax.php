@@ -392,7 +392,11 @@ try {
 
         $newgroup = (object)[
             'courseid' => $course->id,
-            'name' => ajax_security::copy_name('groups', (int)$course->id, get_string('duplicatedname', 'local_groupimport', $group->name)),
+            'name' => ajax_security::copy_name(
+                'groups',
+                (int)$course->id,
+                get_string('duplicatedname', 'local_groupimport', $group->name)
+            ),
         ];
         $newgroupid = groups_create_group($newgroup);
 
@@ -455,7 +459,11 @@ try {
         $grouping = $DB->get_record('groupings', ['id' => $groupingid, 'courseid' => $course->id], '*', MUST_EXIST);
         $newgrouping = (object)[
             'courseid' => $course->id,
-            'name' => ajax_security::copy_name('groupings', (int)$course->id, get_string('duplicatedname', 'local_groupimport', $grouping->name)),
+            'name' => ajax_security::copy_name(
+                'groupings',
+                (int)$course->id,
+                get_string('duplicatedname', 'local_groupimport', $grouping->name)
+            ),
         ];
         $newgroupingid = groups_create_grouping($newgrouping);
 
