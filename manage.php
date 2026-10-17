@@ -544,7 +544,7 @@ function local_groupimport_build_manage_template_data(
         'moveconfirmmany' => get_string('moveconfirmmany', 'local_groupimport'),
         'addparticipantconfirm' => get_string('discovery_demo_add', 'local_groupimport'),
         'addparticipanttitle' => get_string('moveselectedparticipants', 'local_groupimport'),
-        'messagesendunavailable' => get_string('cannotsendmessages', 'core_message'),
+        'messagesendunavailable' => get_string('messagesendunavailable', 'local_groupimport'),
     ];
 
     $rolefilteroptions = local_groupimport_role_filter_options($users);

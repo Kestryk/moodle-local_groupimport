@@ -232,7 +232,11 @@ if ($confirmimport && data_submitted()) {
                 'rows' => $previewrows,
                 'messages' => local_groupimport_validate_preview_rows($previewrows, $context),
             ];
-            $preview['token'] = \local_groupimport\local\import_preview::store((int)$course->id, $preview, \local_groupimport\local\import_job::max_rows());
+            $preview['token'] = \local_groupimport\local\import_preview::store(
+                (int)$course->id,
+                $preview,
+                \local_groupimport\local\import_job::max_rows()
+            );
         } else if (empty($errors)) {
             $errors[] = get_string('importnorowsdetected', 'local_groupimport');
         }
@@ -491,9 +495,14 @@ if ($backgroundjobid) {
     ], '*', MUST_EXIST);
     echo html_writer::div(
         html_writer::tag('p', get_string('importjobqueued', 'local_groupimport')) .
-        html_writer::tag('p', get_string('importjob' . $job->status, 'local_groupimport') . ' ' . $job->nextrow . ' / ' . $jobhistory->rowcount, [
-            'data-import-job-state' => '1', 'aria-live' => 'polite',
-        ]),
+        html_writer::tag(
+            'p',
+            get_string('importjob' . $job->status, 'local_groupimport') . ' ' . $job->nextrow . ' / ' . $jobhistory->rowcount,
+            [
+                'data-import-job-state' => '1',
+                'aria-live' => 'polite',
+            ]
+        ),
         'easyedu-panel__description',
         ['data-import-job' => $backgroundjobid, 'data-course-id' => $course->id]
     );

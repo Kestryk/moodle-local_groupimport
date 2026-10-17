@@ -1325,3 +1325,5 @@ $string['entityothergroups'] = '+ {$a} other groups';
 $string['entityothergroups_one'] = '+ {$a} other group';
 $string['entityothergroupings'] = '+ {$a} other groupings';
 $string['entityothergroupings_one'] = '+ {$a} other grouping';
+
+$string['messagesendunavailable'] = 'Cannot send messages';

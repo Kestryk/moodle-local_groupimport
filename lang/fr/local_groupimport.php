@@ -1322,3 +1322,5 @@ $string['entityothergroups'] = '+ {$a} autres groupes';
 $string['entityothergroups_one'] = '+ {$a} autre groupe';
 $string['entityothergroupings'] = '+ {$a} autres groupements';
 $string['entityothergroupings_one'] = '+ {$a} autre groupement';
+
+$string['messagesendunavailable'] = 'Impossible d’envoyer des messages';

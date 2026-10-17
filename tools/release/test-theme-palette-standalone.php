@@ -35,7 +35,9 @@ if (!MOODLE_INTERNAL) {
 
 $hassiteconfig = false;
 $testconfig = [];
-require_once(__DIR__ . '/doubles/test_theme_palette_standalone/global/fixture_test_theme_palette_standalone_admin_setting_configtext.php');
+require_once(
+    __DIR__ . '/doubles/test_theme_palette_standalone/global/fixture_test_theme_palette_standalone_admin_setting_configtext.php'
+);
 class_alias('fixture_test_theme_palette_standalone_admin_setting_configtext', 'admin_setting_configtext');
 /**
  * Perform isolated fixture operation get_string.
