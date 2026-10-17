@@ -39,7 +39,7 @@ import {
     captureTryActionsMoveToken, emitTryActionsMoveCompletion,
 } from './guide_hooks';
 import {syncGroupMembersState} from './group_cards';
-import {applyFilters, updateSelectionActions} from './workspace';
+import {applyFilters, updateSelectionActions, applyMembersAddedToState} from './workspace';
 import {
     handleActionError, postAction, moveGroupElementToGrouping, copyGroupElementToGrouping, appendUsersToGroupCopies,
 } from './actions';
@@ -317,6 +317,8 @@ export const bindMoveModal = (root, courseId) => {
             setMemberBusy(true);
             postAction(payload).then(response => {
                 appendUsersToGroupCopies(root, value, users, labels);
+                applyMembersAddedToState(root, value, users.map(user => user.id),
+                    keepOrigin ? [] : pairs.filter(pair => pair.groupid !== value));
                 pairs.forEach(pair => {
                     if (keepOrigin || pair.groupid === value) {
                         return;
@@ -360,6 +362,7 @@ export const bindMoveModal = (root, courseId) => {
                 userids: users.map(user => user.getAttribute('data-user-id')),
             }).then(response => {
                 appendUsersToGroupCopies(root, value, users, labels);
+                applyMembersAddedToState(root, value, users.map(user => user.getAttribute('data-user-id')));
                 users.forEach(user => {
                     const groupids = (user.getAttribute('data-group-ids') || '').split(',').filter(Boolean);
                     if (groupids.indexOf(value) === -1) {

@@ -915,6 +915,75 @@ const renderOnDemandParticipantPage = (root, list, config) => {
 let onDemandRefreshTimer = null;
 
 /**
+ * Rebuild lookups and redraw the lists, the tree sections and the badges from the model.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Object} model Participant model.
+ */
+const renderAfterModelChange = (root, model) => {
+    refreshModel(model);
+    applyFilters(root);
+    syncCatalogFilters(root);
+    root.querySelectorAll('[data-easystud-tree] .local-groupimport-easystud-tree__section').forEach(section => {
+        const children = section.querySelector('.local-groupimport-easystud-tree__children');
+        if (children && children.easystudSmRenderedKey !== undefined && !children.hidden) {
+            ensureTreeSection(root, section);
+            if (section.hasAttribute('data-easystud-guide-activity-destination')) {
+                verifyActivityGrouping(root, section,
+                    Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping'));
+            }
+        }
+        if (section.hasAttribute('data-easystud-grouping-id')) {
+            updateGroupingBadge(section);
+        }
+    });
+    updateSelectionActions(root);
+};
+
+/**
+ * Apply a membership change the server just confirmed to the client state, without waiting for the
+ * state reload (which takes seconds on a large course). The reload that follows stays the source of
+ * truth. Without this, a card is redrawn from the state and the added member disappears again.
+ *
+ * @param {HTMLElement|null} root EasyStud root.
+ * @param {Number|String} groupid Destination group.
+ * @param {Array<Number|String>} userids Users added to the group.
+ * @param {Array<{groupid: Number|String, userid: Number|String}>} removed Memberships removed in the same action.
+ */
+export const applyMembersAddedToState = (root, groupid, userids, removed = []) => {
+    const model = root ? getOnDemandModel(root) : null;
+    const group = model ? model.groups.get(Number(groupid)) : null;
+    if (!group) {
+        return;
+    }
+    const ids = userids.map(Number);
+    group.memberids = group.memberids || [];
+    ids.forEach(userid => {
+        if (!group.memberids.includes(userid)) {
+            group.memberids.push(userid);
+        }
+        const user = model.byId.get(userid);
+        if (user) {
+            user.groupids = user.groupids || [];
+            if (!user.groupids.includes(group.id)) {
+                user.groupids.push(group.id);
+            }
+        }
+    });
+    removed.forEach(pair => {
+        const origin = model.groups.get(Number(pair.groupid));
+        const user = model.byId.get(Number(pair.userid));
+        if (origin) {
+            origin.memberids = (origin.memberids || []).filter(id => id !== Number(pair.userid));
+        }
+        if (user) {
+            user.groupids = (user.groupids || []).filter(id => id !== Number(pair.groupid));
+        }
+    });
+    renderAfterModelChange(root, model);
+};
+
+/**
  * SM-RENDU: reload the course state after a successful action (step 3a).
  *
  * The server state becomes the source of truth for memberships, groups and groupings,
@@ -958,23 +1027,7 @@ export const scheduleOnDemandStateRefresh = root => {
             if (root.easystudSm && root.easystudSm.raw) {
                 root.easystudSm.raw = raw;
             }
-            refreshModel(model);
-            applyFilters(root);
-            syncCatalogFilters(root);
-            root.querySelectorAll('[data-easystud-tree] .local-groupimport-easystud-tree__section').forEach(section => {
-                const children = section.querySelector('.local-groupimport-easystud-tree__children');
-                if (children && children.easystudSmRenderedKey !== undefined && !children.hidden) {
-                    ensureTreeSection(root, section);
-                    if (section.hasAttribute('data-easystud-guide-activity-destination')) {
-                        verifyActivityGrouping(root, section,
-                            Guide.getPathContextToken(getActivityGuideRoot(root), 'prepare-activity-grouping'));
-                    }
-                }
-                if (section.hasAttribute('data-easystud-grouping-id')) {
-                    updateGroupingBadge(section);
-                }
-            });
-            updateSelectionActions(root);
+            renderAfterModelChange(root, model);
             root.setAttribute('data-easystud-sm-version', raw.meta.version);
             return raw;
         }).catch(error => Log.error(error));
