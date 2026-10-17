@@ -41,13 +41,25 @@ const GAP = 10;
 const place = (bubble, node) => {
     const view = bubble.ownerDocument.defaultView;
     const anchor = node.getBoundingClientRect();
+    bubble.style.position = 'fixed';
+    // The width (hence the wrapped height) depends on the left offset of a fixed box: settle the horizontal
+    // position first, then measure the real size before choosing the side.
+    const alignLeft = () => {
+        const width = bubble.getBoundingClientRect().width;
+        bubble.style.left = Math.max(MARGIN, Math.min(anchor.left + (anchor.width - width) / 2,
+            view.innerWidth - width - MARGIN)) + 'px';
+    };
+    bubble.style.top = '0px';
+    alignLeft();
+    alignLeft();
     const size = bubble.getBoundingClientRect();
-    const below = anchor.top - size.height - GAP < MARGIN;
+    // Visible top of the surface: the viewport, or the full-screen / mount container when it starts lower.
+    const host = bubble.parentElement;
+    const isRoot = !host || host === bubble.ownerDocument.body || host === bubble.ownerDocument.documentElement;
+    const floor = Math.max(0, isRoot ? 0 : host.getBoundingClientRect().top) + MARGIN;
+    const below = anchor.top - size.height - GAP < floor;
     bubble.classList.toggle(BUBBLE_CLASS + '--top', !below);
     bubble.classList.toggle(BUBBLE_CLASS + '--bottom', below);
-    bubble.style.position = 'fixed';
-    bubble.style.left = Math.max(MARGIN, Math.min(anchor.left + (anchor.width - size.width) / 2,
-        view.innerWidth - size.width - MARGIN)) + 'px';
     bubble.style.top = (below ? anchor.bottom + GAP : anchor.top - size.height - GAP) + 'px';
 };
 
