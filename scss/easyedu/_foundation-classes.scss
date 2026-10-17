@@ -347,6 +347,12 @@
   .easyedu-ui .easyedu-color-picker__value { @include forms.color-picker-value; }
   @include color-panel.color-panel-classes;
   .easyedu-ui .easyedu-related-person-row { @include cards.related-person-row; }
+  .easyedu-ui .easyedu-related-person-row--group { @include cards.related-person-row-tone(group); }
+  .easyedu-ui .easyedu-related-person-row--grouping { @include cards.related-person-row-tone(grouping); }
+  .easyedu-ui .easyedu-filepicker { @include forms.filepicker; }
+  .easyedu-ui .easyedu-filepicker--compact { @include forms.filepicker(compact); }
+  .easyedu-ui .easyedu-filepicker__icon { @include forms.filepicker-icon; }
+
   .easyedu-ui .easyedu-related-person-row__selector { @include cards.related-person-selection-slot; }
   .easyedu-ui .easyedu-related-person-row__name {
     @include cards.related-person-name;

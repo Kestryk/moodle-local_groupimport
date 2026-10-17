@@ -518,6 +518,8 @@ function local_groupimport_build_manage_template_data(
         'entityimagesupport' => get_string('entityimagesupport', 'local_groupimport'),
         'entityloaderror' => get_string('entityloaderror', 'local_groupimport'),
         'entityothermemberstemplate' => local_groupimport_count_template('entityothermembers'),
+        'entityothergroupstemplate' => local_groupimport_count_template('entityothergroups'),
+        'entityothergroupingstemplate' => local_groupimport_count_template('entityothergroupings'),
         'exportcsvtemplate' => get_string('exportcsvlabel', 'local_groupimport', '__name__'),
         'groupingscounttemplate' => local_groupimport_count_template('groupingscount'),
         'retry' => get_string('entityretry', 'local_groupimport'),

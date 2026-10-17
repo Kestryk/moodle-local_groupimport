@@ -1273,3 +1273,9 @@ $string['paginationnextpage'] = 'Next page';
 $string['paginationlastpage'] = 'Last page';
 $string['paginationnavtop'] = 'List pagination, top';
 $string['paginationnavbottom'] = 'List pagination, bottom';
+
+// Related group/grouping rows use the shared expandable entity list.
+$string['entityothergroups'] = '+ {$a} other groups';
+$string['entityothergroups_one'] = '+ {$a} other group';
+$string['entityothergroupings'] = '+ {$a} other groupings';
+$string['entityothergroupings_one'] = '+ {$a} other grouping';
