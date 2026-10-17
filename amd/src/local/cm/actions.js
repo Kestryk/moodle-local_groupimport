@@ -42,6 +42,7 @@ import {
 import {
     expandGroupingSection, syncCatalogFilters, applyContainerGroupSearch, applyGroupMemberSearch,
     syncStructurePlaceholders, syncPagination, applyFilters, updateSelectionActions, scheduleOnDemandStateRefresh,
+    applyMembersAddedToState, applyMembersRemovedFromState,
 } from './workspace';
 
 let pendingActionCount = 0;
@@ -346,6 +347,7 @@ export const removeMembers = (root, courseId, members) => {
     }
 
     return postAction(payload).then(response => {
+        applyMembersRemovedFromState(root, groupids.map((groupid, index) => ({groupid, userid: userids[index]})));
         validmembers.forEach(member => {
             const group = member.closest('[data-easystud-group-id]');
             const groupid = group ? group.getAttribute('data-easystud-group-id') : '';
@@ -370,7 +372,9 @@ export const removeMembers = (root, courseId, members) => {
     });
 };
 
-export const appendUsersToGroupCopies = (root, groupid, users, labels) => {
+export const appendUsersToGroupCopies = (root, groupid, users, labels, removed = []) => {
+    applyMembersAddedToState(root, groupid,
+        users.map(user => (user.getAttribute ? user.getAttribute('data-user-id') : user.id)), removed);
     getGroupElementsById(root, groupid).forEach(group => {
         const list = group.querySelector('[data-easystud-group-members]');
         if (!list) {

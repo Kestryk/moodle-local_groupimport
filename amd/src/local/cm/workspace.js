@@ -941,35 +941,95 @@ const renderAfterModelChange = (root, model) => {
 };
 
 /**
+ * Remember the memberships of the touched groups and users before the first optimistic change, so a failed
+ * state reload can put the model back to the last server state.
+ *
+ * @param {Object} model Participant model.
+ * @param {Array<Number>} groupids Touched groups.
+ * @param {Array<Number>} userids Touched users.
+ */
+const rememberMembership = (model, groupids, userids) => {
+    const snapshot = model.optimistic = model.optimistic || {groups: new Map(), users: new Map()};
+    groupids.forEach(id => {
+        const group = model.groups.get(id);
+        if (group && !snapshot.groups.has(id)) {
+            snapshot.groups.set(id, (group.memberids || []).slice());
+        }
+    });
+    userids.forEach(id => {
+        const user = model.byId.get(id);
+        if (user && !snapshot.users.has(id)) {
+            snapshot.users.set(id, (user.groupids || []).slice());
+        }
+    });
+};
+
+/**
+ * Put the model back to the memberships it had before the optimistic changes.
+ *
+ * @param {HTMLElement} root EasyStud root.
+ * @param {Object} model Participant model.
+ */
+const rollbackOptimisticMembership = (root, model) => {
+    const snapshot = model.optimistic;
+    if (!snapshot) {
+        return;
+    }
+    model.optimistic = null;
+    snapshot.groups.forEach((memberids, id) => {
+        const group = model.groups.get(id);
+        if (group) {
+            group.memberids = memberids;
+        }
+    });
+    snapshot.users.forEach((groupids, id) => {
+        const user = model.byId.get(id);
+        if (user) {
+            user.groupids = groupids;
+        }
+    });
+    renderAfterModelChange(root, model);
+};
+
+/**
  * Apply a membership change the server just confirmed to the client state, without waiting for the
  * state reload (which takes seconds on a large course). The reload that follows stays the source of
- * truth. Without this, a card is redrawn from the state and the added member disappears again.
+ * truth and replaces this change (or rolls it back if it fails). Without this, a card is redrawn from
+ * the state and an added member disappears again, or a removed one comes back.
  *
  * @param {HTMLElement|null} root EasyStud root.
- * @param {Number|String} groupid Destination group.
+ * @param {Number|String|null} groupid Destination group (null when only removing).
  * @param {Array<Number|String>} userids Users added to the group.
  * @param {Array<{groupid: Number|String, userid: Number|String}>} removed Memberships removed in the same action.
  */
 export const applyMembersAddedToState = (root, groupid, userids, removed = []) => {
     const model = root ? getOnDemandModel(root) : null;
-    const group = model ? model.groups.get(Number(groupid)) : null;
-    if (!group) {
+    if (!model) {
+        return;
+    }
+    const group = groupid === null ? null : model.groups.get(Number(groupid));
+    if (groupid !== null && !group) {
         return;
     }
     const ids = userids.map(Number);
-    group.memberids = group.memberids || [];
-    ids.forEach(userid => {
-        if (!group.memberids.includes(userid)) {
-            group.memberids.push(userid);
-        }
-        const user = model.byId.get(userid);
-        if (user) {
-            user.groupids = user.groupids || [];
-            if (!user.groupids.includes(group.id)) {
-                user.groupids.push(group.id);
+    rememberMembership(model,
+        (group ? [group.id] : []).concat(removed.map(pair => Number(pair.groupid))),
+        ids.concat(removed.map(pair => Number(pair.userid))));
+    if (group) {
+        group.memberids = group.memberids || [];
+        ids.forEach(userid => {
+            if (!group.memberids.includes(userid)) {
+                group.memberids.push(userid);
             }
-        }
-    });
+            const user = model.byId.get(userid);
+            if (user) {
+                user.groupids = user.groupids || [];
+                if (!user.groupids.includes(group.id)) {
+                    user.groupids.push(group.id);
+                }
+            }
+        });
+    }
     removed.forEach(pair => {
         const origin = model.groups.get(Number(pair.groupid));
         const user = model.byId.get(Number(pair.userid));
@@ -982,6 +1042,14 @@ export const applyMembersAddedToState = (root, groupid, userids, removed = []) =
     });
     renderAfterModelChange(root, model);
 };
+
+/**
+ * Apply removed memberships (the "-" of a member) to the client state at once.
+ *
+ * @param {HTMLElement|null} root EasyStud root.
+ * @param {Array<{groupid: Number|String, userid: Number|String}>} removed Removed memberships.
+ */
+export const applyMembersRemovedFromState = (root, removed) => applyMembersAddedToState(root, null, [], removed);
 
 /**
  * SM-RENDU: reload the course state after a successful action (step 3a).
@@ -1024,12 +1092,18 @@ export const scheduleOnDemandStateRefresh = root => {
                 }
             });
             model.raw = raw;
+            model.optimistic = null;
             if (root.easystudSm && root.easystudSm.raw) {
                 root.easystudSm.raw = raw;
             }
             renderAfterModelChange(root, model);
             root.setAttribute('data-easystud-sm-version', raw.meta.version);
             return raw;
-        }).catch(error => Log.error(error));
+        }).catch(error => {
+            Log.error(error);
+            if (getOnDemandModel(root) === model) {
+                rollbackOptimisticMembership(root, model);
+            }
+        });
     }, 250);
 };
