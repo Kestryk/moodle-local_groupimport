@@ -1305,3 +1305,8 @@ $string['selectpreviewpage'] = 'Sélectionner cette page';
 $string['deselectpreviewpage'] = 'Désélectionner cette page';
 $string['selectpreviewresults'] = 'Sélectionner les résultats de cette page';
 $string['deselectpreviewresults'] = 'Désélectionner les résultats de cette page';
+// Related group/grouping rows use the shared expandable entity list.
+$string['entityothergroups'] = '+ {$a} autres groupes';
+$string['entityothergroups_one'] = '+ {$a} autre groupe';
+$string['entityothergroupings'] = '+ {$a} autres groupements';
+$string['entityothergroupings_one'] = '+ {$a} autre groupement';

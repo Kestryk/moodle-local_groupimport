@@ -446,30 +446,6 @@
     }
   }
 
-  &-entity__deposit.local-groupimport-easystud-settings-modal__filepicker {
-    align-content: center;
-    gap: 0.35rem;
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    margin: 0;
-    min-block-size: 7rem;
-    padding: 0.875rem 1rem;
-    text-align: center;
-  }
-
-  &-entity__deposit-icon {
-    color: var(--easyedu-primary);
-    font-size: 1rem;
-    line-height: 1;
-  }
-
-  &-entity__deposit-trigger {
-    @include recipes.dialog-text-action;
-
-    font-size: 0.875rem;
-    font-weight: var(--easyedu-font-weight-semibold);
-  }
-
   &-entity__deposit-support {
     @include easyedu.type-caption;
 

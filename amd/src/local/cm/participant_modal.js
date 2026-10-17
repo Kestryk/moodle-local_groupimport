@@ -33,7 +33,7 @@ import {getSelectedItems} from './selection';
 import {bindAnimatedDetails} from './advanced_settings';
 import {escapeHtml} from './shared';
 import {
-    entitySection, entityIdentity, entityReadonlyField, entitySkeletonField, entityPills, entityRelationSection,
+    entitySection, entityIdentity, entityReadonlyField, entitySkeletonField, entityPills, entityRelationRows, entityRelationSection,
     entityErrorNotice, entityCount, startEntityLoading, setEntityFooterBusy, bindEntityReveal,
 } from './entity_dialog';
 
@@ -68,8 +68,12 @@ export const bindParticipantModal = root => {
         return entityRelationSection({
             title,
             type: tone,
-            countText: entityCount(countTemplate, entries.length),
-            content: entityPills(entries, tone, {
+            countText: tone === 'role' ? entityCount(countTemplate, entries.length) : '',
+            content: tone === 'role' ? entityPills(entries, tone, {
+                lessLabel: labels.showless || '',
+                emptyLabel: labels.advancedsettingsnotset || '',
+            }) : entityRelationRows(entries.map(name => ({name})), tone, {
+                moreTemplate: tone === 'grouping' ? labels.entityothergroupingstemplate : labels.entityothergroupstemplate,
                 lessLabel: labels.showless || '',
                 emptyLabel: labels.advancedsettingsnotset || '',
             }),

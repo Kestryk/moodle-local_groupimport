@@ -232,6 +232,34 @@ export const entityMemberRows = (rows, options = {}) => {
 };
 
 /**
+ * Groups/groupings use the same related-object row, without member commands.
+ *
+ * @param {Object[]} rows Related names and optional member counts.
+ * @param {String} tone Semantic group/grouping variant.
+ * @param {Object} options Translated empty/more/less/count labels.
+ * @returns {String}
+ */
+export const entityRelationRows = (rows, tone, options = {}) => {
+    const entries = (rows || []).filter(row => row && row.name);
+    if (!entries.length) {
+        return '<p class="' + prefix + '__empty">' + escapeHtml(options.emptyLabel || '') + '</p>';
+    }
+    const kind = tone === 'grouping' ? 'grouping' : 'group';
+    const listId = prefix + '-list-' + (++listSequence);
+    const extra = entries.length - visibleRelationLimit;
+    return '<ul class="' + prefix + '__members" id="' + listId + '">' +
+        entries.map((row, index) => '<li class="easyedu-related-person-row easyedu-related-person-row--' +
+            kind + '"' + extraAttribute(index) + '>' +
+            '<span class="easyedu-related-person-row__name" title="' + escapeHtml(row.name) + '">' +
+                escapeHtml(row.name) + '</span>' +
+            (row.members !== undefined && options.metaTemplate ? '<span class="' + prefix + '__member-meta">' +
+                escapeHtml(countLabel(options.metaTemplate, Number(row.members))) + '</span>' : '') +
+            '</li>').join('') + '</ul>' +
+        (extra > 0 ? moreButton(extra, countLabel(options.moreTemplate || '{}', extra), options.lessLabel || '', listId,
+            prefix + '__text-action ' + prefix + '__more') : '');
+};
+
+/**
  * Hidden CSV table read by the existing export (formula-protected cells).
  *
  * @param {Object[]} rows Rows.
@@ -246,7 +274,7 @@ const exportTable = (rows, columns) =>
     '</table>';
 
 /**
- * One relation disclosure section: chevron, title, counter pill, CSV text action.
+ * One relation disclosure section: chevron, title and CSV text action.
  *
  * The native details element keeps the existing disclosure Motion (bindAnimatedDetails)
  * and the data-easystud-settings-list-section hooks of the CSV export.
@@ -254,9 +282,6 @@ const exportTable = (rows, columns) =>
  * @param {Object} section {title, countText, content, rows, columns, exportName, exportLabel, type}.
  * @returns {String}
  */
-// Kevin 16/10 no. 15: the section counters are 22px pills in the tone of their relation.
-const countTones = {role: 'role', group: 'group', groups: 'group', members: 'group', grouping: 'grouping', groupings: 'grouping'};
-
 export const entityRelationSection = section => {
     const rows = section.rows || [];
     const csv = !!section.columns;
@@ -267,8 +292,6 @@ export const entityRelationSection = section => {
         '<summary class="' + prefix + '__relation-summary">' +
             '<span class="' + prefix + '__relation-chevron fa fa-chevron-up" aria-hidden="true"></span>' +
             '<span class="' + prefix + '__relation-title">' + escapeHtml(section.title) + '</span>' +
-            '<span class="' + prefix + '__relation-count ' + prefix + '__pill ' + prefix + '__pill--' +
-                escapeHtml(countTones[section.type] || 'empty') + '">' + escapeHtml(section.countText) + '</span>' +
             (csv ? '<button type="button" class="' + prefix + '__text-action ' + prefix + '__csv" ' +
                 'data-easystud-settings-export="1" aria-label="' + escapeHtml(section.exportLabel || 'CSV') + '"' +
                 (rows.length ? '' : ' disabled') + '>CSV</button>' : '') +

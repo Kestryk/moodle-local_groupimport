@@ -32,7 +32,7 @@
     }
   }
 
-  &-settings-modal__filepicker {
+  &-settings-modal__filepicker:not(.easyedu-filepicker) {
     @include easyedu.settings-modal-filepicker;
   }
 

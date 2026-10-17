@@ -32,8 +32,8 @@ import {areSelectionTypesCompatible} from './shared';
 import {getSelectedMemberRow} from '../sm/groups';
 import {hideEasyStudModal, bindCardModalKeyboard} from './modal';
 import {
-    entitySection, entityIdentity, entityIcon, entitySkeletonField, entitySkeletonRelation, entityPills,
-    entityMemberRows, entityRelationSection, entityErrorNotice, entityCount, startEntityLoading,
+    entitySection, entityIdentity, entityIcon, entitySkeletonField, entitySkeletonRelation,
+    entityMemberRows, entityRelationRows, entityRelationSection, entityErrorNotice, entityCount, startEntityLoading,
     setEntityFooterBusy, bindEntityReveal,
 } from './entity_dialog';
 import {
@@ -693,11 +693,11 @@ const renderAdvancedImageSection = (labels, picture, inputId) => {
             '<div class="local-groupimport-easystud-settings-modal__image local-groupimport-easystud-entity__image-preview">' +
                 preview +
             '</div>' +
-            '<div class="local-groupimport-easystud-settings-modal__filepicker local-groupimport-easystud-entity__deposit">' +
+            '<div class="local-groupimport-easystud-settings-modal__filepicker easyedu-filepicker easyedu-filepicker--compact">' +
                 '<input type="file" id="' + inputId + '" name="imagefile" accept="image/*" ' +
                     'data-easystud-advanced-file-input="1">' +
-                '<span class="local-groupimport-easystud-entity__deposit-icon fa fa-file-import" aria-hidden="true"></span>' +
-                '<button type="button" class="local-groupimport-easystud-entity__deposit-trigger" ' +
+                '<span class="easyedu-filepicker__icon fa fa-file-import" aria-hidden="true"></span>' +
+                '<button type="button" class="easyedu-text-action" ' +
                     'data-easystud-advanced-file-trigger="1" aria-controls="' + inputId + '">' +
                     escapeHtml(labels.entityimagedeposit || '') +
                 '</button>' +
@@ -780,8 +780,10 @@ const renderAdvancedBody = (root, item, state) => {
     const groupingSection = entityRelationSection({
         title: labels.groupings || '',
         type: 'groupings',
-        countText: entityCount(labels.groupingscounttemplate || '', groupGroupingRows.length),
-        content: entityPills(groupGroupingRows.map(row => row.name), 'grouping', {
+        countText: '',
+        content: entityRelationRows(groupGroupingRows, 'grouping', {
+            moreTemplate: labels.entityothergroupingstemplate || '',
+            metaTemplate: labels.memberscounttemplate || '',
             lessLabel: labels.showless || '',
             emptyLabel: labels.advancedsettingsnogroupings || '',
         }),
@@ -796,8 +798,10 @@ const renderAdvancedBody = (root, item, state) => {
     const groupSection = entityRelationSection({
         title: labels.advancedsettingsgroups || '',
         type: 'groups',
-        countText: entityCount(labels.groupscounttemplate || '', groupingGroupRows.length),
-        content: entityPills(groupingGroupRows.map(row => row.name), 'group', {
+        countText: '',
+        content: entityRelationRows(groupingGroupRows, 'group', {
+            moreTemplate: labels.entityothergroupstemplate || '',
+            metaTemplate: labels.memberscounttemplate || '',
             lessLabel: labels.showless || '',
             emptyLabel: labels.advancedsettingsnogroups || '',
         }),

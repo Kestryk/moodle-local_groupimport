@@ -11,6 +11,7 @@
 
 @use "focus";
 @use "typography";
+@use "entity-metadata" as metadata;
 
 @mixin object-card($identity-color) {
   background: var(--easyedu-surface);
@@ -374,6 +375,16 @@
   }
 }
 
+// Related group/grouping rows reuse the existing semantic metadata palette.
+@mixin related-person-row-tone($tone) {
+  @include metadata.entity-card-token-semantic($tone);
+  border-inline-start: 0.1875rem solid currentColor;
+
+  > .easyedu-related-person-row__name {
+    color: inherit;
+  }
+}
+
 @mixin related-person-selection-slot {
   @include card-selection-slot;
   margin-right: 0.1rem;
@@ -412,8 +423,13 @@
 
   span {
     display: block;
-    line-height: 0.8;
-    margin-top: -0.05rem;
+    line-height: 1;
+    margin: 0;
+  }
+
+  // The action remains discoverable on touch screens, which have no hover.
+  @media (hover: none), (pointer: coarse) {
+    opacity: 1;
   }
 
   &:hover,
