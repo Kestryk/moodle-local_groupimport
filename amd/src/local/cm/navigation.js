@@ -46,7 +46,7 @@ export const bindResponsiveGuideLauncher = root => {
     const guideSlot = root.querySelector('[data-easyedu-navigation-guide-slot]');
     const guideSource = root.querySelector('[data-easyedu-navigation-guide-source]');
     const guideNode = guideSource ?
-        guideSource.querySelector('[data-easyedu-guide-root], [data-easystud-open-tutorial]') : null;
+        guideSource.querySelector('[data-easyedu-guide-root]') : null;
     const guideLauncher = guideNode ? guideNode.querySelector('[data-easyedu-guide-open]') : null;
     if (!guideNode || !guideSource || !guideSlot || !guideLauncher) {
         return;
@@ -440,11 +440,10 @@ export const bindMobileEntityViews = root => {
         ? configuredMobileView
         : 'participants';
     const closeResponsiveGuide = () => {
-        root.querySelectorAll('[data-easystud-tutorial-modal], [data-easyedu-guide-modal]').forEach(modal => {
+        root.querySelectorAll('[data-easyedu-guide-modal]').forEach(modal => {
             modal.hidden = true;
         });
-        root.querySelectorAll('[data-easystud-guided-panel], [data-easyedu-guided-panel], ' +
-            '[data-easystud-tutorial-return], [data-easyedu-guide-return]').forEach(panel => {
+        root.querySelectorAll('[data-easyedu-guided-panel], [data-easyedu-guide-return]').forEach(panel => {
             panel.hidden = true;
         });
     };
