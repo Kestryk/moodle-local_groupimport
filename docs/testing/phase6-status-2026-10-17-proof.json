@@ -1,0 +1,116 @@
+{
+  "base": "2827b7c7",
+  "runtimeAccess": false,
+  "integrated": {
+    "S2": {
+      "commit": "b7178779",
+      "ancestorOfBase": true
+    },
+    "S4": {
+      "commit": "cc346284",
+      "ancestorOfBase": true
+    },
+    "S5": {
+      "commit": "c5d73659",
+      "ancestorOfBase": true
+    },
+    "S6": {
+      "commit": "8b3810f9",
+      "ancestorOfBase": true
+    },
+    "S7-M5": {
+      "commit": "b0a59954",
+      "ancestorOfBase": true
+    },
+    "R6-server": {
+      "commit": "e86281d9",
+      "ancestorOfBase": true
+    },
+    "R6-accents": {
+      "commit": "a15feb98",
+      "ancestorOfBase": true
+    },
+    "R8": {
+      "commit": "24f32ec1",
+      "ancestorOfBase": true
+    },
+    "R9": {
+      "commit": "b0dd1637",
+      "ancestorOfBase": true
+    },
+    "R9-UTF8": {
+      "commit": "d7c30b58",
+      "ancestorOfBase": true
+    },
+    "P2-CSS": {
+      "commit": "05a84c57",
+      "ancestorOfBase": true
+    },
+    "P2-JS": {
+      "commit": "c33fbbeb",
+      "ancestorOfBase": true
+    },
+    "P2-oracle": {
+      "commit": "de6b6e4b",
+      "ancestorOfBase": true
+    },
+    "L1L2": {
+      "commit": "df64d0aa",
+      "ancestorOfBase": true
+    },
+    "L1-cleanup": {
+      "commit": "c752f775",
+      "ancestorOfBase": true
+    },
+    "TRI12": {
+      "commit": "35f977b2",
+      "ancestorOfBase": true
+    },
+    "TRI19": {
+      "commit": "d98e5aa7",
+      "ancestorOfBase": true
+    },
+    "TRI38": {
+      "commit": "fcf11a6f",
+      "ancestorOfBase": true
+    },
+    "Node22-validation": {
+      "commit": "8129aef7",
+      "ancestorOfBase": true
+    }
+  },
+  "tests": [
+    {
+      "name": "smoke13",
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "name": "P2-CSS",
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "name": "P2-JS",
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "name": "TRI38",
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "name": "palette-settings",
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "name": "palette-view-icons",
+      "exit": 0,
+      "passed": true
+    }
+  ],
+  "globalCssRules": 0,
+  "pass": true
+}
