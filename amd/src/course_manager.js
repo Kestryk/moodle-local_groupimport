@@ -63,7 +63,7 @@ import {bindOptionalTools, bindPastePreview} from './local/cm/optional_tools';
 import {bindMoveModal} from './local/cm/move_modal';
 import {bindParticipantModal} from './local/cm/participant_modal';
 import {bindContextMenu} from './local/cm/context_menu';
-import {bindSharedGuideTargets, bindTutorialModal} from './local/cm/guide';
+import {bindSharedGuideTargets} from './local/cm/guide';
 
 /**
  * SM-RENDU: say in the participant list that the course state could not be loaded, with a
@@ -207,7 +207,6 @@ export const init = (rootId, courseId, options = {}) => {
             () => bindPagination(root),
             () => bindParticipantModal(root),
             () => bindSharedGuideTargets(root),
-            () => bindTutorialModal(root),
             () => bindOptionalTools(root),
             () => bindPastePreview(root),
             () => bindHoverPopovers(root),
