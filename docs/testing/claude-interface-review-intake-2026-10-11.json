@@ -13,6 +13,13 @@
     "report": "docs/testing/r6-bulk-actions-2026-10-17.md",
     "validation": "34 isolated actual-handler/UTF-8 assertions; no runtime access"
   },
+  "codex1R820261017": {
+    "status": "isolated-sql-pass-not-published",
+    "base": "4110785e",
+    "branch": "work/codex1/easystud-r8-20261017",
+    "report": "docs/testing/r8-history-list-2026-10-17.md",
+    "validation": "68 isolated in-memory SQL assertions; twenty rows / eight fields / 4405 serialized bytes"
+  },
   "codex1SecurityS220261017": {
     "status": "source-isolated-pass-not-published-phpunit-pending",
     "base": "6c3ac95f",
