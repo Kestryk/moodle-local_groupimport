@@ -944,7 +944,6 @@ const closeOtherInlinePanels = panel => {
             if (cancel) {
                 cancel.click();
             } else {
-                // eslint-disable-next-line no-use-before-define
                 setInlinePanelOpen(other, false);
             }
         });

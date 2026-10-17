@@ -203,15 +203,16 @@ export const syncMemberWindow = group => {
 };
 
 /**
- * Supply only the window policy; cards owns the shared token rendering and overflow.
- * @param {HTMLElement} container Metadata row.
- * @returns {Object|null} Normalised payload and bounded materialisation policy.
+ * Normalise a metadata value and discard empty or sentinel values.
+ * @param {*} value Raw metadata value.
+ * @returns {String} Trimmed value, or an empty string for a sentinel.
  */
 export const normaliseTagValue = value => {
     const text = String(value ?? '').trim();
     return text && !['-', '\u2212', '\u2014'].includes(text) ? text : '';
 };
 
+// Supply only the window policy; cards owns shared token rendering and overflow.
 export const syncTagWindow = container => {
     const serialized = container.getAttribute('data-easystud-long-tags');
     if (!serialized) {

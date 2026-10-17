@@ -727,7 +727,6 @@ export const updateSelectionActions = root => {
     }
 };
 
-// Bind optional tools that should not take permanent screen space.
 /**
  * Keep compact membership visibility independent from the desktop card density.
  *
@@ -737,6 +736,7 @@ export const updateSelectionActions = root => {
  *
  * @param {HTMLElement} root The management workspace.
  * @param {Object} options Disclosure options.
+ * @param {Boolean} [options.animate=true] Animate a changed disclosure.
  */
 export const syncParticipantDensity = (root, {animate = true} = {}) => {
     const state = root.easystudParticipantDensity;
