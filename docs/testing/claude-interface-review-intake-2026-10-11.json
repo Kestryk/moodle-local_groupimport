@@ -1,4 +1,11 @@
 {
+  "codex1GuideMirrorResync20261017": {
+    "status": "source-parity-pass-not-published",
+    "base": "4110785e",
+    "branch": "work/codex1/easystud-guide-kit-mirror-resync-20261017",
+    "report": "docs/testing/guide-kit-mirror-resync-2026-10-17.md",
+    "scope": "d44585d8 touch gestures, guideModality public export and source adapter parity"
+  },
   "codex1SecurityS220261017": {
     "status": "source-isolated-pass-not-published-phpunit-pending",
     "base": "6c3ac95f",

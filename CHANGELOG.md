@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Resync Guide mirror for d44585d8 touch gestures and public guideModality export; preserve runtime assets and generic/Moodle adapters.
+
 # Changelog
 
 - 2026-10-17 [N1] S2: expose subject-scoped import history through Privacy user lists/export/erasure; add configurable 365-day retention and daily history-only purge.
