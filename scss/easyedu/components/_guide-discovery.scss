@@ -63,7 +63,8 @@
   .easyedu-guide-label-tooltip {
     @include tooltips.foundation-light-tooltip;
     max-width: min(14rem, calc(100vw - 1.5rem));
-    pointer-events: none;
+    // WCAG 1.4.13: hoverable, the tooltip stays while the pointer is on it.
+    pointer-events: auto;
     position: fixed;
     white-space: normal;
     overflow-wrap: anywhere;

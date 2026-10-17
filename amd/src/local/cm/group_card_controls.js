@@ -570,9 +570,20 @@ const relayTipPalette = (root, tip) => {
     }
 };
 
+// WCAG 1.4.13 grace period: the pointer may cross the gap between a trigger and its popover.
+const HOVER_POPOVER_GRACE_MS = 220;
+
 export const bindHoverPopovers = root => {
     let activeTip = null;
     let activeNode = null;
+    let graceTimer = null;
+
+    const cancelGrace = () => {
+        if (graceTimer !== null) {
+            window.clearTimeout(graceTimer);
+            graceTimer = null;
+        }
+    };
 
     root.querySelectorAll('[data-easystud-hover-help][title]').forEach(node => {
         node.setAttribute('data-easystud-native-title', node.getAttribute('title') || '');
@@ -580,6 +591,7 @@ export const bindHoverPopovers = root => {
     });
 
     const removeTip = () => {
+        cancelGrace();
         if (activeTip) {
             activeTip.remove();
             activeTip = null;
@@ -587,8 +599,15 @@ export const bindHoverPopovers = root => {
         activeNode = null;
     };
 
+    // The popover stays while it is hovered; it leaves shortly after the pointer leaves both it and its trigger.
+    const scheduleRemoval = () => {
+        cancelGrace();
+        graceTimer = window.setTimeout(removeTip, HOVER_POPOVER_GRACE_MS);
+    };
+
     const showTip = node => {
         if (activeNode === node && activeTip) {
+            cancelGrace();
             return;
         }
         removeTip();
@@ -603,6 +622,13 @@ export const bindHoverPopovers = root => {
         activeTip.classList.toggle(hoverPopoverClass + '--long', content.length > 110);
         activeTip.setAttribute('role', 'tooltip');
         activeTip.innerHTML = '<div class="popover-arrow"></div><div class="popover-body">' + escapeHtml(content) + '</div>';
+        const tip = activeTip;
+        tip.addEventListener('mouseenter', cancelGrace);
+        tip.addEventListener('mouseleave', event => {
+            if (!(event.relatedTarget instanceof Node) || !node.contains(event.relatedTarget)) {
+                scheduleRemoval();
+            }
+        });
         relayTipPalette(root, activeTip);
         document.body.appendChild(activeTip);
 
@@ -631,7 +657,10 @@ export const bindHoverPopovers = root => {
             if (event.relatedTarget && node.contains(event.relatedTarget)) {
                 return;
             }
-            removeTip();
+            if (activeTip && event.relatedTarget instanceof Node && activeTip.contains(event.relatedTarget)) {
+                return;
+            }
+            scheduleRemoval();
         }
     }, true);
 
@@ -645,4 +674,15 @@ export const bindHoverPopovers = root => {
     root.addEventListener('focusout', removeTip);
     root.addEventListener('click', removeTip);
     window.addEventListener('scroll', removeTip, true);
+
+    // WCAG 1.4.13: Escape dismisses the popover without closing the dialog that holds its trigger.
+    // The capture phase runs before every dialog handler, which also honour defaultPrevented.
+    window.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || !activeTip) {
+            return;
+        }
+        removeTip();
+        event.preventDefault();
+        event.stopPropagation();
+    }, true);
 };
