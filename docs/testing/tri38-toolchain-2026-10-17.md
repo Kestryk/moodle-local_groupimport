@@ -1,4 +1,10 @@
 # TRI38 — build toolchain provenance and release limitation
+
+> Historical snapshot: this records the Node 20.17.0 inspection on base
+> `05a84c57`. TRI38 was later completed with exact Node 22.11.0/Sass 1.79.1
+> pins and builder parity evidence; see `tri38-exact-versions-2026-10-17.md`
+> and `node22-build-parity-2026-10-17.md`.
+
 Base 05a84c57. Read-only package inspection; no dependency installation or build.
 
 | Tool | Recorded installed version | Release meaning |

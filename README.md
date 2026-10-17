@@ -98,9 +98,13 @@ for export and deletion of this data.
 - Personal Display and animations (ANIM/G1): `docs/display-preferences-2026-10-17.md`.
 - Rebuild its AMD with `node tools/release/build-display-preferences-amd.cjs TOOLCHAIN/node_modules`.
 
-- Moodle requirement: 5.1 or later on this refactor branch.
+- The manifest currently requires Moodle 5.1 (`version.php`). Compatibility
+  with Moodle 4.5 and 5.3 needs its own version-specific release evidence; do
+  not infer support from the minimum-version field alone.
 - SCSS entry point: `scss/easystud.scss`.
-- Compile styles with `sass scss/easystud.scss styles.css --no-source-map`.
+- Build page styles with the pinned Node executable and the conservative
+  builder: `tools/release/build-styles.cjs SASS_ROOT styles.css conservative POSTCSS_ROOT`.
+  The site-wide `styles.css` is intentionally kept free of EasyStud rules.
 - Playwright documentation: `tools/playwright/README.md`.
 - Mass Import loading contract: `docs/testing/mass-import-loading-state.md`.
 - Administration settings loading contract: `docs/testing/admin-settings-loading-state.md`.
@@ -118,24 +122,18 @@ production packages through `.gitattributes` where appropriate.
 
 GNU General Public License v3 or later.
 
-K16 title decoration AMD: rebuild with node tools/release/build-card-title-accent-amd.cjs C:/dev/moodle51-build-501/node_modules, then build-page-bootstrap-amd.cjs with the same toolchain. Runtime source is copied from canonical Kit cards/amd/src/easyedu_card_title_accent.js; preserve exact source parity.
+Card-title accent AMD is generated from the canonical Kit source and checked
+for exact consumer parity. Rebuild it with the dedicated release builder, then
+run the page-bootstrap builder with the same Moodle build dependencies.
 
 ### Release build toolchain provenance
 
-See `tools/release/toolchain-contract.json` and
-`docs/testing/tri38-toolchain-2026-10-17.md`. Sass 1.79.1 and conservative CSS are
-the current builder contract. The referenced Moodle checkout requires Node
-`>=22.11.0 <23`; local standalone Node 20 builds do not certify a release engine.
-Use `check-toolchain.cjs BUILD_ROOT SASS_ROOT EXTERNAL_JSON --release` before a
-release build. Exact validated Node 22 patch remains to be recorded.
-
-
-### Exact build versions (TRI38,17October2026)
-
-`tools/release/build-versions.json` pins Node22.11.0 and Sass1.79.1 exactly.
-All18release builders fail before build work on a different Node version;
-CSS builders verify the loaded Sass compiler. Use the portable Node executable
-and pass the existing Sass package path. No dependency upgrade is required.
-Build page styles through `tools/release/build-styles.cjs SASS_ROOT styles.css
-conservative POSTCSS_ROOT`, not by restoring a site-wide Sass bundle. See
-`docs/testing/tri38-exact-versions-2026-10-17.md` for validation and lint limits.
+`tools/release/build-versions.json` pins Node 22.11.0 and Sass 1.79.1. Release
+builders reject a different Node version before build work; CSS builders also
+check the loaded Sass version. No dependency upgrade is required. Use the
+portable Node 22.11.0 executable and the existing Sass/PostCSS packages. The
+release check and parity evidence are documented in
+`docs/testing/tri38-exact-versions-2026-10-17.md` and
+`docs/testing/node22-build-parity-2026-10-17.md`. The older
+`tri38-toolchain-2026-10-17.md` report is a historical Node 20 inspection, not
+the current toolchain status.
