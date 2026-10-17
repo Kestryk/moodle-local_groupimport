@@ -1,5 +1,7 @@
 - 2026-10-17 [N0] Repin five historical controller tests to current modules and Guide contracts; verify LF and CRLF without product changes.
 
+- 2026-10-17 [N0] L1: remove unreachable self-nested Guide scene selectors and one redundant action-grip priority; preserve ordered active cascade and offline FR/EN rendering.
+
 - 2026-10-17 [N0] L1/L2 page CSS: consolidate duplicate Guide roots with effective specificity preserved; remove 142721 CSS bytes with exact cascade and offline rendering parity.
 
 - 2026-10-17 [N0] TRI38: validate existing portable Node22.11.0 across 11 AMD builders and conservative CSS; 106 generated files match fcf11a6f.
