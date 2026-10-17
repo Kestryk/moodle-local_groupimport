@@ -2753,6 +2753,8 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 .easyedu-ui .easyedu-choice .easyedu-segmented-choice__input:checked + .easyedu-segmented-choice__surface {background: color-mix(in srgb, var(--easyedu-primary-soft) 55%, #fff 45%);border-color: color-mix(in srgb, var(--easyedu-primary) 42%, #fff 58%);color: var(--easyedu-primary-strong);
 }
+.easyedu-ui .easyedu-choice .easyedu-segmented-choice__input:disabled + .easyedu-segmented-choice__surface {cursor: default;opacity: 0.6;
+}
 .easyedu-ui .easyedu-choice.easyedu-segmented-choice--contained {background: transparent;border: 0;border-radius: 0;display: block;padding: 0;
 }
 .easyedu-ui .easyedu-choice.easyedu-segmented-choice--contained > .easyedu-segmented-choice__body {background: var(--easyedu-surface-strong);border: 1px solid var(--easyedu-card-border);border-radius: calc(var(--easyedu-control-radius) + 0.16rem);box-sizing: border-box;display: grid;gap: 0.45rem;min-inline-size: 0;padding: 0.55rem;

@@ -880,26 +880,21 @@
       transition: padding var(--easyedu-motion-slow) var(--easyedu-motion-ease);
     }
     &__phase-caption { @include typography.type-control-label; font-size: 0.78rem; font-weight: 600; grid-column: 1; grid-row: 1; }
+    // E3 (K4): Add/Move are two Kit choice cards (native radios), not a small toggle.
     &__modes {
-      @include forms.segmented-toggle;
+      @include forms.segmented-choice(compact);
+      inline-size: 100%;
+      margin: 0;
       min-inline-size: 0;
-      .btn {
-        @include buttons.button-size(small);
-        @include typography.type-control-label;
-        background: transparent;
-        box-shadow: none;
-        font-weight: 600;
-        &:focus-visible { @include focus.ring; }
-      }
-      .btn[aria-pressed="true"] { background: var(--easyedu-surface); color: var(--easyedu-primary-strong); }
+      .easyedu-segmented-choice__label { @include typography.type-control-label; }
+      .easyedu-segmented-choice__surface strong { @include typography.type-control-label; }
+      .easyedu-segmented-choice__surface small { @include typography.type-caption; }
     }
     @media (max-width: 40rem) {
       // C-G3: the scene is full width (no border, 12px inner padding), so the
       // header sits on the same edge as the rest of the scene: no negative margin.
       &__header { padding-block: 0.375rem; }
       &__header-controls-inner { flex-direction: column; align-items: stretch; }
-      &__modes { display: flex; }
-      &__modes .btn { flex: 1 1 0; min-width: 0; }
       &__header .easyedu-guide-scene__start { width: 100%; margin-inline-start: 0; }
       &__reading { grid-template-columns: minmax(0, 1fr) auto; }
       &__header .easyedu-guide-scene__live-content { grid-column: 1 / -1; grid-row: 2; }

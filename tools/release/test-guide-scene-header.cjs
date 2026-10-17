@@ -34,7 +34,7 @@ fs.mkdirSync(output, {recursive: true});
             assert.equal(await header.locator('[data-guide-live-copy]').innerText(), slide.discoveryscene.resultaddlabel);
             await header.locator('[data-guide-scene-command="move"]').click();
             assert.equal(await header.getAttribute('data-guide-playback-state'), 'idle');
-            assert.equal(await header.locator('[data-guide-scene-command="move"]').getAttribute('aria-pressed'), 'true');
+            assert.equal(await header.locator('[data-guide-scene-command="move"]').isChecked(), true);
             assert.equal(await header.locator('[data-guide-live-copy]').innerText(), slide.discoveryscene.resultmovelabel);
             assert.equal(await scene.locator('[data-guide-membership-origin] b').innerText(), slide.discoveryscene.removedlabel);
             const ready = await header.evaluate(node => {

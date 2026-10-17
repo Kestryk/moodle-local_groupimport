@@ -257,6 +257,12 @@
     color: var(--easyedu-primary-strong);
   }
 
+  // A choice locked while an animation plays stays visible but dimmed (Penpot E3).
+  .easyedu-segmented-choice__input:disabled + .easyedu-segmented-choice__surface {
+    cursor: default;
+    opacity: 0.6;
+  }
+
   @if $size == compact {
     gap: 0.32rem;
     padding: 0.35rem;

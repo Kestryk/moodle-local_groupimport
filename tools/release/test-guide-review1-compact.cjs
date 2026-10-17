@@ -36,18 +36,18 @@ fs.mkdirSync(output, {recursive: true});
                 const body = n.closest('.easyedu-guide-modal__body'), modes = n.querySelector('.easyedu-guide-scene__modes');
                 const memberships = n.querySelector('[data-guide-memberships]');
                 return {position:getComputedStyle(n).position,header:rect(n),body:rect(body),memberships:memberships&&rect(memberships),
-                    modeLabels:[...modes.querySelectorAll('button')].map(b=>b.textContent.trim()),
-                    modes:[...modes.querySelectorAll('button')].map(rect),start:rect(n.querySelector('[data-guide-scene-command="start"]')),
-                    selectedBackground:getComputedStyle(modes.querySelector('[aria-pressed="true"]')).backgroundColor,
+                    modeLabels:[...modes.querySelectorAll('.easyedu-segmented-choice__surface')].map(b=>b.textContent.trim()),
+                    modes:[...modes.querySelectorAll('.easyedu-segmented-choice__surface')].map(rect),start:rect(n.querySelector('[data-guide-scene-command="start"]')),
+                    selectedBackground:getComputedStyle(modes.querySelector('input:checked + .easyedu-segmented-choice__surface')).backgroundColor,
                     startBackground:getComputedStyle(n.querySelector('[data-guide-scene-command="start"]')).backgroundColor,
-                    accessibleName:modes.getAttribute('aria-label')};
+                    accessibleName:modes.querySelector('legend').textContent};
             });
             records.push({language,width,state:'ready',...ready});
             assert.equal(ready.position, 'relative'); assert.ok(ready.accessibleName); assert.equal(ready.modeLabels.length,2);
             assert.notEqual(ready.selectedBackground,ready.startBackground);
             assert.ok(ready.memberships,'Same memberships component lives in ready header');
             assert.ok(ready.memberships.bottom<=ready.body.bottom+1,'Expected memberships visible before Start');
-            if(width===390){assert.ok(Math.abs(ready.modes[0].top-ready.modes[1].top)<1);assert.ok(Math.abs(ready.modes[0].width-ready.modes[1].width)<1);assert.ok(ready.start.top>=ready.modes[0].bottom);}
+            if(width===390){assert.ok(Math.abs(ready.modes[0].width-ready.modes[1].width)<1);assert.ok(ready.modes[1].top>=ready.modes[0].bottom);assert.ok(ready.start.top>=ready.modes[1].bottom);}
             await scene.screenshot({path:path.join(output,`${language}-${width}-ready.png`)});
             await header.locator('[data-guide-scene-command="start"]').click();
             for(const phase of ['select','menu','confirm','validate']){

@@ -53,9 +53,9 @@ const root = path.resolve(__dirname, '../..');
             assert.equal(row.dashed, row.overlap);
         }
         await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="membership"]').dataset.guideSceneFinished === 'true');
-        assert.equal(await page.locator('[data-guide-scene-command="add"]').getAttribute('aria-pressed'), 'true');
+        assert.equal(await page.locator('[data-guide-scene-command="add"]').isChecked(), true);
         await page.locator('[data-guide-scene-command="move"]').click();
-        assert.equal(await page.locator('[data-guide-scene-command="move"]').getAttribute('aria-pressed'), 'true');
+        assert.equal(await page.locator('[data-guide-scene-command="move"]').isChecked(), true);
         await page.locator('[data-easyedu-guide-nav-item="3"]').click();
         await page.waitForFunction(() => document.querySelector('[data-easyedu-guide-scene="actions"]').dataset.guideSceneFinished === 'true', null, {timeout: 60000});
         for (const width of [1280, 768, 390]) {

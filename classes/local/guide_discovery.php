@@ -40,6 +40,8 @@ final class guide_discovery {
             'pausedlabel' => get_string('discovery_demo_paused', 'local_groupimport'),
             'addmodelabel' => get_string('discovery_demo_add', 'local_groupimport'),
             'movemodelabel' => get_string('discovery_demo_move', 'local_groupimport'),
+            'addmodehint' => get_string('discovery_demo_add_hint', 'local_groupimport'),
+            'movemodehint' => get_string('discovery_demo_move_hint', 'local_groupimport'),
             'expectedlabel' => get_string('discovery_demo_expected', 'local_groupimport'),
             'expectedcompactlabel' => get_string('discovery_demo_expected_compact', 'local_groupimport'),
             'unchangedlabel' => get_string('discovery_demo_unchanged', 'local_groupimport'),

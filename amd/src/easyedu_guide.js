@@ -1766,7 +1766,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
   scene.dataset.guideMode = mode;
   scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
-    button.setAttribute('aria-pressed', String(button.dataset.guideSceneCommand === mode));
+    // E3: the two gestures are native radios; the checked state is the single source of truth.
+    button.checked = button.dataset.guideSceneCommand === mode;
   });
   // New compositions own their live region; historical templates keep the
   // sibling fallback. Never attach playback to another scene's header.
@@ -3719,7 +3720,8 @@ const bindGuide = (root, config) => {
 
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
     if (sceneCommand && root.contains(sceneCommand)) {
-      event.preventDefault();
+      // A radio keeps its native selection and keyboard behaviour: never cancel its click.
+      if (sceneCommand.type !== 'radio') { event.preventDefault(); }
       if (sceneCommand.disabled) { return; }
       const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
       if (scene.querySelector('[data-guide-scene-command="start"]') && event.detail > 1) { return; }
