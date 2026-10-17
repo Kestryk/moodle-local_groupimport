@@ -3130,13 +3130,25 @@
     display: none;
   }
 
+  // K17-68 / K17-70: the footer actions stay inside the frame at every width. They wrap onto a second
+  // row instead of overflowing, with the Kit 0.5 rem gap between them (the same gap as the end box),
+  // and each one may shrink below its content width (the label wraps), so that an icon-only
+  // "Display and animations" button (K17-62) lays out exactly like the labelled one.
   .easyedu-guided-panel__footer {
+    align-items: center;
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     justify-content: flex-end;
-    max-height: 3rem;
+    max-height: 6.5rem;
+    min-width: 0;
     opacity: 1;
     overflow: hidden;
     transition: max-height 0.3s var(--easyedu-motion-ease), opacity 0.18s ease, margin 0.22s ease;
+  }
+
+  .easyedu-guided-panel__footer .easyedu-guide-utility {
+    max-width: 100%;
   }
 
   .easyedu-guided-panel__return {
@@ -3155,11 +3167,11 @@
     line-height: 1.18;
     max-width: none;
     min-height: 2.5rem;
-    min-width: max-content;
+    min-width: 0;
     overflow-wrap: anywhere;
     padding: 0.34rem 0.72rem;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
 
     .fa {
       color: currentColor;
@@ -3207,7 +3219,6 @@
 
     .easyedu-guided-panel__return {
       justify-content: center;
-      width: 100%;
     }
 
     .easyedu-guided-panel.is-minimized {

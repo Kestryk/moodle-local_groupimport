@@ -145,6 +145,18 @@
     gap: var(--easyedu-action-icon-gap);
     .fa { color: var(--easyedu-accent); }
   }
+  // K17-68 / K17-70: the footer actions share one touch height and stay inside the frame (they wrap onto a
+  // second row, full width on phones). Defined next to the Kit action it sizes, so the specificity matches.
+  .easyedu-guided-panel__footer > .easyedu-guided-panel__return { max-width: 100%; min-width: 0; }
+  @media (max-width: 64rem) {
+    .easyedu-guided-panel__footer > .easyedu-guided-panel__return { min-height: 2.75rem; }
+  }
+  @media (max-width: 40rem), (max-height: 32rem) {
+    .easyedu-guided-panel__footer > :is(.easyedu-guide-utility, .easyedu-guided-panel__return) {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+  }
   .easyedu-guide-interface-return__dismiss,
   .easyedu-guided-panel__close { @include buttons.close-button; }
   .easyedu-guided-panel__minimize { @include buttons.icon-button($size: small); }
