@@ -248,7 +248,7 @@
                                             <div class="easyedu-guide-scene__actions" aria-hidden="true"><span class="easyedu-guide-scene__inspection-submit">{{addlabel}}</span><span class="easyedu-guide-scene__inspection-trigger" data-guide-inspection-cancel>{{cancellabel}}</span></div>
                                         </div>
                                     </div>
-                                    <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-inspection-cursor hidden aria-hidden="true"></span>
+                                    <span class="easyedu-guide-scene__cursor" data-guide-inspection-cursor hidden aria-hidden="true"><span class="fa fa-mouse-pointer easyedu-guide-scene__cursor-mouse"></span><span class="easyedu-guide-scene__cursor-touch" data-guide-cursor-touch><span class="easyedu-guide-scene__cursor-ripple" data-guide-cursor-ripple></span></span></span>
                                 </div>
                                 <section class="easyedu-guide-scene__recap" data-guide-recap hidden>
                                     <button type="button" class="easyedu-guide-scene__recap-toggle" data-guide-recap-toggle aria-expanded="true"><strong>{{recaptitle}}</strong><span class="fa fa-chevron-down" aria-hidden="true"></span></button>
@@ -285,7 +285,7 @@
                                         <div><p>{{selectioncaption}}</p><span>{{destinationlabel}}</span><div class="easyedu-guide-scene__destination"><span class="fa fa-search" aria-hidden="true"></span><span>{{destinationname}}</span><span class="fa fa-chevron-down" aria-hidden="true"></span></div><p data-guide-consequence>{{consequence}}</p></div>
                                         <footer><span>{{cancellabel}}</span><strong data-guide-simulated-submit>{{movelabel}}</strong></footer>
                                     </div>
-                                    <span class="fa fa-mouse-pointer easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"></span>
+                                    <span class="easyedu-guide-scene__cursor" data-guide-cursor hidden aria-hidden="true"><span class="fa fa-mouse-pointer easyedu-guide-scene__cursor-mouse"></span><span class="easyedu-guide-scene__cursor-touch" data-guide-cursor-touch><span class="easyedu-guide-scene__cursor-ripple" data-guide-cursor-ripple></span></span></span>
                                 </div>
                                 {{#membership}}
                                 <div class="easyedu-guide-scene__memberships" data-guide-memberships>
@@ -303,7 +303,7 @@
                                         <li data-guide-phase="select" data-add="{{addselect}}" data-compact="{{compactselect}}" data-compact-add="{{mobileaddselect}}">{{selectlabel}}</li>
                                         <li data-guide-phase="menu" data-add="{{adddrop}}" data-compact="{{compactmenu}}" data-compact-add="{{mobileaddmenu}}">{{menulabel}}</li>
                                         <li data-guide-phase="confirm" data-add="{{resultaddlabel}}" data-compact-add="{{mobileaddconfirm}}">{{confirmlabel}}</li>
-                                        <li data-guide-phase="validate" data-compact-add="{{mobileaddvalidate}}">{{validatelabel}}</li>
+                                        <li data-guide-phase="validate" data-compact="{{compactvalidate}}" data-compact-add="{{mobileaddvalidate}}">{{validatelabel}}</li>
                                     </ol>
                                     </div>
                                 </section>

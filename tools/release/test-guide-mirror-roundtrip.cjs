@@ -24,7 +24,7 @@ const boundary = body.indexOf('const SELECTORS =');
 const labels = /^(    (?:close|next|previous|start|hint|complete|guidedPath|visited|completedSteps|completeStepFirst): )'[^\r\n]*'(,?)$/gm;
 assert.equal([...body.slice(0, boundary).matchAll(labels)].length, 10);
 body = body.slice(0, boundary).replace(labels, "$1''$2") + body.slice(boundary);
-for (const key of ['getPathContext', 'getPathContextToken', 'setPathContext']) {
+for (const key of ['getPathContext', 'getPathContextToken', 'setPathContext', 'guideModality']) {
     body = body.replace(`export const ${key} =`, `const ${key} =`);
 }
 for (const [key, fallback] of [['guidedPath', 'Guided path'], ['visited', 'visited'], ['completedSteps', 'steps completed']]) {
@@ -35,13 +35,23 @@ const expected = '// This file is generated from the embedded EasyEdu guide kit 
     '// selectors, paths and labels from plugin-specific PHP/Mustache data.\n\n' +
     "define(['local_groupimport/motion'], function(Motion) {\n" + body.trimEnd() + '\n\nreturn {\n' +
     '  destroy: destroy,\n  getPathContext: getPathContext,\n  getPathContextToken: getPathContextToken,\n' +
-    '  setPathContext: setPathContext,\n  init: init\n};\n});\n';
+    '  setPathContext: setPathContext,\n  init: init,\n  guideModality: guideModality\n};\n});\n';
 assert.equal(expected, read(root, 'amd/src/easyedu_guide.js'), 'AMD adapter round trip is exact');
 let api;
-vm.runInNewContext(expected, {define: (deps, factory) => {assert.deepEqual(Array.from(deps), ['local_groupimport/motion']); api = factory({});}});
-for (const key of ['destroy', 'init', 'getPathContext', 'getPathContextToken', 'setPathContext']) {
+let narrow = false;
+let touch = false;
+const window = {matchMedia: query => ({matches: query === '(max-width: 64rem)' ? narrow : touch})};
+vm.runInNewContext(expected, {window, define: (deps, factory) => {assert.deepEqual(Array.from(deps), ['local_groupimport/motion']); api = factory({});}});
+for (const key of ['destroy', 'init', 'getPathContext', 'getPathContextToken', 'setPathContext', 'guideModality']) {
     assert.equal(typeof api[key], 'function', key + ' remains callable');
 }
+for (const [n, t] of [[false, false], [true, false], [false, true], [true, true]]) {
+    narrow = n; touch = t;
+    assert.deepEqual(JSON.parse(JSON.stringify(api.guideModality())),
+        {narrow: n, touch: n || t, pointer: n || t ? 'touch' : 'mouse'});
+}
+window.matchMedia = undefined;
+assert.equal(api.guideModality().pointer, 'mouse');
 let template = read(kit, 'guide/templates/easyedu_guide.mustache');
 assert.equal(template, read(root, 'easyedu-guide-kit/templates/easyedu_guide.mustache'));
 template = template.replace('{{> guide_simplecreate}}', '{{> local_groupimport/guide_simplecreate}}')
@@ -57,4 +67,4 @@ for (const name of ['_guide.scss', '_guide-discovery.scss', '_animations.scss'])
     const file = 'scss/easyedu/components/' + name;
     assert.equal(read(root, file), read(kit, file), file);
 }
-console.log(JSON.stringify({surface: 'guide-mirror-roundtrip', passed: true, amdExports: 5, scss: 3, templates: 2, runtimeAccess: false}));
+console.log(JSON.stringify({surface: 'guide-mirror-roundtrip', passed: true, amdExports: 6, scss: 3, templates: 2, runtimeAccess: false}));

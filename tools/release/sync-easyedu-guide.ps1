@@ -89,7 +89,7 @@ $defaults = [regex]::Replace($defaults, $labelPattern, { param($match)
     $match.Groups[1].Value + "''" + $match.Groups[2].Value
 })
 $wrappedBody = $defaults + $wrappedBody.Substring($defaultsEnd)
-foreach ($contextExport in @('getPathContext', 'getPathContextToken', 'setPathContext')) {
+foreach ($contextExport in @('getPathContext', 'getPathContextToken', 'setPathContext', 'guideModality')) {
     $exportMarker = "export const $contextExport ="
     if (-not $wrappedBody.Contains($exportMarker)) {
         throw "Canonical context export missing: $contextExport"
@@ -116,7 +116,8 @@ return {
   getPathContext: getPathContext,
   getPathContextToken: getPathContextToken,
   setPathContext: setPathContext,
-  init: init
+  init: init,
+  guideModality: guideModality
 };
 });
 "@

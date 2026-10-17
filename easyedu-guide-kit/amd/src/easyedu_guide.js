@@ -149,6 +149,18 @@ const isMotionEnabled = root => getMotionLevel(root) !== 'minimal';
 const getScrollBehavior = root => Motion.scrollBehavior(root);
 const REDUCED_FADE_MS = 120;
 
+// K15-30 / J-G1: ONE modality test for every Guide consumer. 'touch' = a coarse pointer, no hover, or a
+// compact (<= 64rem) Guide: the demos then show a finger (lift, place, tap) instead of a mouse. 'narrow'
+// is the product workspace breakpoint only (it alone swaps the workspace controls and highlight targets).
+const GUIDE_NARROW_QUERY = '(max-width: 64rem)';
+const GUIDE_TOUCH_QUERY = '(pointer: coarse), (hover: none)';
+export const guideModality = () => {
+  const matches = query => !!(window.matchMedia && window.matchMedia(query).matches);
+  const narrow = matches(GUIDE_NARROW_QUERY);
+  const touch = narrow || matches(GUIDE_TOUCH_QUERY);
+  return {touch, narrow, pointer: touch ? 'touch' : 'mouse'};
+};
+
 // Opacity-only copy of keyframes, or null when there is nothing to fade (reduced level).
 const toFadeFrames = frames => {
   if (frames.length < 2 || frames.some(frame => frame.opacity === undefined) ||
@@ -1269,8 +1281,7 @@ const scrollToTarget = (root, target, options = {}) => {
 
 // The compact workspace (no drag and drop, card menus instead of right click)
 // starts at the same width as the product's responsive workspace.
-const RESPONSIVE_STEP_QUERY = '(max-width: 64rem)';
-const isResponsiveStepViewport = () => !!(window.matchMedia && window.matchMedia(RESPONSIVE_STEP_QUERY).matches);
+const isResponsiveStepViewport = () => guideModality().narrow;
 
 // A step may teach a different gesture in the compact workspace. Its optional
 // titleCompact/descriptionCompact/feedbackCompact replace the ordinary copy
@@ -1671,7 +1682,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   const live = scene.querySelector('[data-guide-live]') || scene.parentElement.querySelector('[data-guide-live]');
   const sceneHeader = scene.querySelector('[data-guide-scene-header]');
   const phaseCaption = sceneHeader?.querySelector('[data-guide-phase-caption]');
-  const compact = window.matchMedia('(max-width: 64rem), (pointer: coarse), (hover: none)').matches;
+  // Touch modality (finger pointer, tap wording and flow); re-evaluated on every start and on change.
+  const compact = guideModality().touch;
   // Count the applicable explanation phases, not animation frames or timers.
   // J-G4: the simple-creation scene reads its four phases from its root's labels.
   const applicablePhases = kind === 'simplecreate' ? [1, 2, 3, 4].map(n => ({dataset: {guidePhase: String(n)}})) :
@@ -1953,6 +1965,74 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     await animate(cursorEl, [{transform: from.toString()}, {transform: destination}],
       Math.max(duration, Math.round(distance / POINTER_SPEED)));
   };
+  // J-G1 (K15-30, P-G3): touch pointer gestures on the same WAAPI clock (animate/wait/gate), so Pause, Next phase
+  // and departure own them. A finger does not travel: it lifts (80 ms fade), is placed (160 ms fade and 0.8 to 1
+  // scale), taps (90 ms press, 360 ms ripple), presses and holds (450 ms ring) or drags (follows the card ghost).
+  // 'reduced' keeps the fades only; 'minimal' places the pointer and shows no gesture.
+  const touchDisc = cursorEl => cursorEl.querySelector('[data-guide-cursor-touch]') || cursorEl;
+  const touchRipple = cursorEl => {
+    const ripple = cursorEl.querySelector('[data-guide-cursor-ripple]');
+    // Not awaited: the ripple overlaps the next step and stays owned by the clock (pause, next, departure).
+    if (ripple) {
+      animate(ripple, [{opacity: 0.5, transform: 'scale(1)'}, {opacity: 0, transform: 'scale(1.8)'}], 360, false)
+        .catch(() => { /* Cancelled by departure. */ });
+    }
+  };
+  const touchPointer = {
+    place: async(cursorEl, x, y) => {
+      cursorEl.dataset.guidePointer = 'touch';
+      const destination = `translate(${x}px, ${y}px)`;
+      if (still) { await placeCursor(cursorEl, destination); return; }
+      await gate();
+      assertActive();
+      if (!cursorEl.hidden) { await animate(cursorEl, [{opacity: 1}, {opacity: 0}], 80, false); }
+      cursorEl.style.transform = destination;
+      cursorEl.hidden = false;
+      await animate(cursorEl, [{opacity: 0, transform: `${destination} scale(.8)`},
+        {opacity: 1, transform: `${destination} scale(1)`}], 160, false);
+    },
+    tap: async cursorEl => {
+      if (!cursorEl || cursorEl.hidden) { return; }
+      await gate();
+      assertActive();
+      if (reduced) { return; }
+      touchRipple(cursorEl);
+      await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'},
+        {transform: 'scale(1)'}], 90, false);
+    },
+    longPress: async cursorEl => {
+      if (!cursorEl || cursorEl.hidden) { return; }
+      await gate();
+      assertActive();
+      if (reduced) { return; }
+      await animate(touchDisc(cursorEl), [{transform: 'scale(1)', '--easyedu-guide-press': 0},
+        {transform: 'scale(.86)', '--easyedu-guide-press': 1}], 450, false);
+      touchRipple(cursorEl);
+    },
+    // Press, then follow the card ghost (the caller animates it on the same clock), then release with a ripple.
+    drag: async(cursorEl, dx, dy, duration, companions = []) => {
+      if (!cursorEl || cursorEl.hidden) { return; }
+      const from = new DOMMatrixReadOnly(getComputedStyle(cursorEl).transform);
+      await gate();
+      assertActive();
+      if (reduced) { return; }
+      await animate(touchDisc(cursorEl), [{transform: 'scale(1)'}, {transform: 'scale(.86)'}], 90);
+      await Promise.all([animate(cursorEl, [{transform: from.toString()},
+        {transform: `translate(${from.m41 + dx}px, ${from.m42 + dy}px)`}], duration), ...companions]);
+      touchRipple(cursorEl);
+    }
+  };
+  // The modality can change under a running demo (rotation, window resize): it returns to "Ready".
+  const modalityQueries = [GUIDE_NARROW_QUERY, GUIDE_TOUCH_QUERY].map(query => window.matchMedia?.(query)).filter(Boolean);
+  const onModalityChange = () => {
+    if (guideModality().touch !== compact && !controller.signal.aborted) {
+      playDiscoveryScene(root, scene, undefined, !scene.querySelector('[data-guide-scene-command="start"]'));
+    }
+  };
+  modalityQueries.forEach(query => query.addEventListener?.('change', onModalityChange));
+  controller.signal.addEventListener('abort', () => {
+    modalityQueries.forEach(query => query.removeEventListener?.('change', onModalityChange));
+  }, {once: true});
   // Fade the instruction copy, not the entire teaching scene. Its reading pause
   // starts only after the new sentence is visible; no business state is changed.
   const writeLive = async(text, state = 'active', immediate = false) => {
@@ -2092,10 +2172,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       const sample = name => stage.getAttribute(`data-guide-simplecreate-${name}`) || '';
       const pointAt = async element => {
         assertActive();
-        if (!cursor || !element || compact) { return; }
+        if (!cursor || !element) { return; }
         await gate();
         const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
         const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
+        if (compact) { await touchPointer.place(cursor, x, y); return; }
         if (still) {
           await placeCursor(cursor, `translate(${x}px, ${y}px)`);
           return;
@@ -2107,8 +2188,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         if (!still) { await animate(cursor, [{opacity: 1}, {opacity: 0}], 160, false); }
         cursor.hidden = true;
       };
-      const press = element => element ? animate(element, [{transform: 'scale(1)'}, {transform: 'scale(.94)'},
-        {transform: 'scale(1)'}], 220, false) : Promise.resolve();
+      const press = element => element ? Promise.all([compact ? touchPointer.tap(cursor) : Promise.resolve(),
+        animate(element, [{transform: 'scale(1)'}, {transform: 'scale(.94)'}, {transform: 'scale(1)'}], 220, false)]) :
+        Promise.resolve();
       const type = async(input, text) => {
         if (!input) { return; }
         input.value = '';
@@ -2148,6 +2230,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await reveal(stage);
       await pointAt(field('group'));
       await say(1);
+      if (compact) { await touchPointer.tap(cursor); }
       await type(field('group'), sample('name'));
       await pointAt(submit('group'));
       await say(2);
@@ -2157,7 +2240,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await show(groupingStage);
       await pointAt(field('grouping'));
       await say(3);
+      if (compact) { await touchPointer.tap(cursor); }
       await type(field('grouping'), sample('grouping'));
+      if (compact) { await pointAt(submit('grouping')); }
       await press(submit('grouping'));
       if (field('grouping')) { field('grouping').value = ''; }
       await show(created('grouping'));
@@ -2200,11 +2285,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       // Reuse the shared pointer paint and playback clock, not a mobile mouse.
       const pointAt = async(element) => {
         assertActive();
-        if (!cursor || compact) { return; }
+        if (!cursor) { return; }
         await gate();
         assertActive();
         const target = element.getBoundingClientRect(), frame = stage.getBoundingClientRect();
         const x = target.left - frame.left + target.width / 2, y = target.top - frame.top + target.height / 2;
+        if (compact) { await touchPointer.place(cursor, x, y); return; }
         if (still) {
           await placeCursor(cursor, `translate(${x}px, ${y}px)`);
           return;
@@ -2241,16 +2327,23 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         }
       };
       await reveal(card);
+      // Touch: the finger rests above the card's menu button during the first phase, taps it, then rests on
+      // the menu entry it names (no mouse trajectory).
+      if (compact && compactTrigger) { await pointAt(compactTrigger); }
       await phase('orient');
       if (controller.signal.aborted) { return; }
       if (compact) {
+        await touchPointer.tap(cursor);
         menu.hidden = false;
         await reveal(menu);
         await animate(menu, [{opacity: 0}, {opacity: 1}], 280);
+        await pointAt(menu.querySelector('strong'));
+      } else {
+        await pointAt(trigger);
       }
-      await pointAt(trigger);
       await phase('open');
       if (controller.signal.aborted) { return; }
+      if (compact) { await touchPointer.tap(cursor); }
       await hidePointer();
       menu.hidden = true;
       await disclose(true);
@@ -2260,6 +2353,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       await pointAt(input);
       await phase('enter');
       if (controller.signal.aborted) { return; }
+      if (compact) { await touchPointer.tap(cursor); }
       await hidePointer();
       // J-G2 (AN-3): the chips take their place at once, then fade in (no animated height).
       chips.style.opacity = '0';
@@ -2274,6 +2368,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       if (cancel) { await pointAt(cancel); }
       await phase('return');
       if (controller.signal.aborted) { return; }
+      if (compact) { await touchPointer.tap(cursor); }
       await hidePointer();
       await disclose(false);
       if (controller.signal.aborted) { return; }
@@ -2346,6 +2441,11 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     const travelPoint = async(point, duration) => {
       assertActive();
       cursorPoint = point;
+      if (compact) {
+        await touchPointer.place(cursor, point.x, point.y);
+        updateCursorVisibility();
+        return;
+      }
       if (still) {
         await placeCursor(cursor, `translate(${point.x}px, ${point.y}px)`);
         updateCursorVisibility();
@@ -2364,6 +2464,7 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
     };
     await reveal(person);
     await travel(person, 750, true);
+    if (compact) { await touchPointer.tap(cursor); }
     stage.querySelectorAll('.easyedu-guide-scene__person').forEach(node => node.classList.add('is-selected'));
     stage.querySelectorAll('[data-guide-illustrated-checkbox]').forEach(node => { node.checked = true; });
     await phase('select');
@@ -2383,7 +2484,9 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       }));
       if (controller.signal.aborted) { return; }
       await travel(menu.querySelector('strong'));
-      if (!compact && !still) {
+      if (compact) {
+        await touchPointer.tap(cursor);
+      } else if (!still) {
         await animate(cursor, [{opacity: 1}, {opacity: 0.45}, {opacity: 1}], 180);
       }
       await animate(menu, [{opacity: 1}, {opacity: 0}], 220);
@@ -2391,10 +2494,16 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
       menu.hidden = true;
       await phase('confirm', () => revealPrepared(confirm));
       if (controller.signal.aborted) { return; }
+      if (compact) {
+        // Touch: choose the destination field of the confirmation before pressing the button.
+        await travel(confirm.querySelector('.easyedu-guide-scene__destination'));
+        await touchPointer.tap(cursor);
+      }
       const submit = confirm.querySelector('[data-guide-simulated-submit]');
       await phase('validate');
       await reveal(submit);
       await travel(submit);
+      if (compact) { await touchPointer.tap(cursor); }
       await animate(submit, [{outline: '2px solid currentColor', outlineOffset: '2px'},
         {outline: '2px solid transparent', outlineOffset: '2px'}], 320);
       if (controller.signal.aborted) { return; }
@@ -3107,7 +3216,7 @@ const runShowTargetOpenAction = (root, config, targetButton, callback) => {
 // the shared Guide remains responsible for resolving, scrolling and
 // highlighting the selected visible control.
 const resolveShowTargetKey = targetButton => {
-  const compact = window.matchMedia && window.matchMedia('(max-width: 64rem)').matches;
+  const compact = guideModality().narrow;
   const variant = targetButton.getAttribute(
     compact ? 'data-easyedu-guide-show-target-compact' : 'data-easyedu-guide-show-target-desktop'
   );
@@ -3382,7 +3491,7 @@ const bindGuide = (root, config) => {
   }
   root.dataset.easyeduGuideBound = '1';
   bindNavigationTooltips(root);
-  const responsiveSteps = window.matchMedia ? window.matchMedia(RESPONSIVE_STEP_QUERY) : null;
+  const responsiveSteps = window.matchMedia ? window.matchMedia(GUIDE_NARROW_QUERY) : null;
   if (responsiveSteps && responsiveSteps.addEventListener) {
     addTrackedListener(root, responsiveSteps, 'change', () => refreshResponsiveChecklist(root));
   }
