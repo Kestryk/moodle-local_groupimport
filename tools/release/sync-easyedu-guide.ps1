@@ -63,6 +63,15 @@ foreach ($marker in @("export const destroy =", "export const init =", "export d
 
 $wrappedBody = $canonicalJavascript.Replace("export const destroy =", "const destroy =")
 $wrappedBody = $wrappedBody.Replace($fullscreenImport, '')
+$bubblePath = Resolve-OwnedPath $kitRoot 'guide\amd\src\easyedu_bubble.js'
+$bubbleSource = Read-NormalizedText $bubblePath
+$bubbleImport = "import * as EasyeduBubble from './easyedu_bubble';"
+if (-not $canonicalJavascript.Contains($bubbleImport) -or
+    -not $bubbleSource.Contains('export const createBubbleController =') -or
+    $bubbleSource -match '(?m)^import\s') {
+    throw 'Review changed canonical shared bubble module boundary before synchronization.'
+}
+$wrappedBody = $wrappedBody.Replace($bubbleImport + "`n", '')
 $recapMotionImport = "import {disclosePanel, cancel as cancelRecapPanel} from '../../../motion/amd/src/easyedu_motion';"
 if (-not $canonicalJavascript.Contains($recapMotionImport)) {
     throw 'Review changed canonical recap Motion boundary before synchronization.'
@@ -108,7 +117,7 @@ $runtimeJavascript = @"
 // Keep behaviour aligned with easyedu-guide-kit/amd/src/easyedu_guide.js, then pass
 // selectors, paths and labels from plugin-specific PHP/Mustache data.
 
-define(['local_groupimport/motion'], function(Motion) {
+define(['local_groupimport/motion', 'local_groupimport/easyedu_bubble'], function(Motion, EasyeduBubble) {
 $wrappedBody
 
 return {
@@ -269,6 +278,26 @@ $items += [pscustomobject]@{
     Source = Resolve-OwnedPath $kitRoot 'scss\easyedu\components\_guide-specimen.scss'
     Target = Resolve-OwnedPath $pluginRootPath 'scss\easyedu\components\_guide-specimen.scss'
     Expected = Read-NormalizedText (Resolve-OwnedPath $kitRoot 'scss\easyedu\components\_guide-specimen.scss')
+}
+
+# The one shared bubble is import-free; Motion is injected by its callers.
+foreach ($target in @('easyedu-guide-kit\amd\src\easyedu_bubble.js', 'amd\src\easyedu_bubble.js')) {
+    $items += [pscustomobject]@{
+        Name = "shared bubble $target"
+        Source = $bubblePath
+        Target = Resolve-OwnedPath $pluginRootPath $target
+        Expected = $bubbleSource
+    }
+}
+# Accepted PEN-K17 recipes also depend on the common tokens, overflow and responsive defaults.
+foreach ($relative in @('scss\easyedu\_tokens.scss', 'scss\easyedu\components\_card-actions.scss', 'scss\easyedu\components\_responsive.scss')) {
+    $canonicalShared = Resolve-OwnedPath $kitRoot $relative
+    $items += [pscustomobject]@{
+        Name = "PEN-K17 shared $relative"
+        Source = $canonicalShared
+        Target = Resolve-OwnedPath $pluginRootPath $relative
+        Expected = Read-NormalizedText $canonicalShared
+    }
 }
 
 $drift = New-Object System.Collections.Generic.List[object]

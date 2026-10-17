@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Replace the obsolete Guide mirror with9e628d4f: share the import-free bubble controller, adapt both Moodle dependencies, mirror PEN-K17 templates/SCSS, and retain exact consumer parity; T037/T038/roundtrip PASS.
+
 - 2026-10-17 [N0] Share the personal display preferences recipe and translated Guide entry points with the canonical Kit after ANIM/E1–E4 integration; preserve native preference behavior.
 
 - 2026-10-17 [N1] ANIM/G1 (K17-05): add personal Display and animations window from the desktop icon, responsive drawer and Guide; save full/reduced/minimal or institution default through Moodle and apply the existing M1 policy immediately.
