@@ -1,0 +1,18 @@
+{
+  "base": "db964f08",
+  "canonicalBase": "d4cdfe5",
+  "patchSha256": "bf262aed4f73488224c350961f7177012bec0296e2859b8ccc4751fa39d0ab03",
+  "genericJsSha256": "11255d864e1a8130873bca0091b00e0d8807c1d18971a17af0f0668a0ea4c1d3",
+  "tests": {
+    "t037": 14,
+    "t038": 47,
+    "roundtrip": {
+      "amdExports": 6,
+      "scss": 3,
+      "templates": 2
+    }
+  },
+  "runtimeChanged": false,
+  "published": false,
+  "humanAccepted": false
+}

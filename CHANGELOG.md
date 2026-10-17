@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Resync the Guide mirror to db964f08, combining accepted tooltip accessibility and Codex2 cue/docking/narration fixes; preserve runtime assets.
+
 - 2026-10-17 [N1] Align empty group rows through the shared Kit selection/text tracks; retain the grouping model and tree rule.
 
 - 2026-10-17 [N0] Restore standalone membership-transfer coverage with the real batch reader and course-filtered recordset doubles; no native service change.
