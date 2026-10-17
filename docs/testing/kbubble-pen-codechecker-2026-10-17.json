@@ -1,0 +1,84 @@
+{
+  "base": "9e628d4f",
+  "scope": [
+    "amd/build/easyedu_bubble.min.js",
+    "amd/build/easyedu_bubble.min.js.map",
+    "amd/build/easyedu_guide.min.js",
+    "amd/build/easyedu_guide.min.js.map",
+    "amd/build/local/cm/group_card_controls.min.js",
+    "amd/build/local/cm/group_card_controls.min.js.map",
+    "amd/build/local/cm/group_cards.min.js",
+    "amd/build/local/cm/group_cards.min.js.map",
+    "amd/src/easyedu_bubble.js",
+    "amd/src/easyedu_guide.js",
+    "amd/src/local/cm/group_card_controls.js",
+    "amd/src/local/cm/group_cards.js",
+    "classes/local/guide_specimen.php",
+    "easyedu-guide-kit/templates/easyedu_guide.mustache",
+    "easyedu-guide-kit/templates/guide_specimen.mustache",
+    "lang/en/local_groupimport.php",
+    "lang/fr/local_groupimport.php",
+    "scss/easyedu/_tokens.scss",
+    "scss/easyedu/components/_card-actions.scss",
+    "scss/easyedu/components/_guide-discovery.scss",
+    "scss/easyedu/components/_guide-specimen.scss",
+    "scss/easyedu/components/_responsive.scss",
+    "styles/administration.css",
+    "styles/mass-import.css",
+    "styles/student-management.css",
+    "templates/easyedu_guide.mustache",
+    "templates/guide_specimen.mustache",
+    "tools/release/build-easyedu-bubble-amd.js",
+    "tools/release/build-guide-amd.cjs",
+    "tools/release/build-sm-amd.js",
+    "tools/release/lib/current-presentation-contracts.cjs",
+    "tools/release/test-guide-navigation-tooltips.cjs"
+  ],
+  "php": {
+    "files": 3,
+    "totals": {
+      "errors": 0,
+      "warnings": 1,
+      "fixable": 0
+    }
+  },
+  "otherFiles": {
+    "files": 13,
+    "errors": 0,
+    "warnings": 0
+  },
+  "lint": [
+    {
+      "file": "classes\\local\\guide_specimen.php",
+      "exit": 0
+    },
+    {
+      "file": "lang\\en\\local_groupimport.php",
+      "exit": 0
+    },
+    {
+      "file": "lang\\fr\\local_groupimport.php",
+      "exit": 0
+    }
+  ],
+  "runtimeAccess": false,
+  "passed": true,
+  "eslint": [
+    {
+      "file": "amd/src/easyedu_bubble.js",
+      "errors": 0,
+      "warnings": 0
+    },
+    {
+      "file": "tools/release/build-easyedu-bubble-amd.js",
+      "errors": 0,
+      "warnings": 5
+    }
+  ],
+  "guideTooltipBrowser": {
+    "passed": true,
+    "cases": 9,
+    "nativeMoodle": false
+  },
+  "productChanges": false
+}
