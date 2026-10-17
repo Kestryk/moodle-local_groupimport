@@ -2,25 +2,13 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const {execFileSync} = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
-const baseline = 'd8ab821';
 const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
-const old = file => execFileSync('git', ['show', `${baseline}:${file}`], {cwd: root}).toString().replace(/\r\n/g, '\n');
-const source = read('amd/src/course_manager.js');
-const helperStart = source.indexOf('/**\n * Clear member selection for the folded Group,');
-const bindingStart = source.indexOf('const bindGroupMemberToggles = root => {', helperStart);
+const source = read('amd/src/local/cm/group_card_controls.js').replace(/export /g, '');
+const helperStart = source.indexOf('const clearFoldedGroupMemberSelection =');
+const bindingStart = source.indexOf('/**', helperStart);
 const helper = source.slice(helperStart, bindingStart);
-const call = '            if (expanded) {\n                clearFoldedGroupMemberSelection(root, group);\n            }\n';
-assert.equal(source.split(call).length, 2);
-assert.equal(source.replace(helper, '').replace(call, ''), old('amd/src/course_manager.js'),
-    'Entire original controller/Motion remains identical outside the explicit selection addition');
-for (const file of ['styles.css', 'templates/manage.mustache', 'amd/src/motion.js', 'amd/build/motion.min.js',
-    'amd/src/searchable_choices.js', 'amd/build/searchable_choices.min.js', 'amd/src/member_selection.js',
-    'js/loading_state_bootstrap.js', 'ajax.php', 'lib.php', 'settings.php', 'manage.php',
-    'classes/service/membership_transfer.php']) {
-    assert.equal(read(file), old(file), `${file}: complete preservation`);
-}
+assert(helperStart >= 0 && bindingStart > helperStart);
 const selectedClass = 'is-selected';
 const classes = initial => {
     const values = new Set(initial);
@@ -30,13 +18,16 @@ const classes = initial => {
 const group = id => ({getAttribute: name => { assert.equal(name, 'data-easystud-group-id'); return id; }});
 const member = (owner, selected, userid) => {
     const input = {checked: selected};
-    return {owner, userid, input, classList: classes(selected ? [selectedClass] : []),
+    return {owner, userid, input, getAttribute: () => null, classList: classes(selected ? [selectedClass] : []),
         querySelector: () => input, closest: selector => {
             assert.equal(selector, '[data-easystud-group-id]'); return owner;
         }};
 };
 const extract = (start, end) => source.slice(source.indexOf(start), source.indexOf(end, source.indexOf(start)));
-const actualSelection = extract('const getSelectionInput =', 'const clearSelectionForType =');
+const selection = read('amd/src/local/cm/selection.js').replace(/export /g, '');
+const shared = read('amd/src/local/cm/shared.js').replace(/export /g, '');
+const actualSelection = shared.slice(shared.indexOf('const getSelectionInput ='), shared.indexOf('const areSelectionTypesCompatible =')) +
+    selection.slice(selection.indexOf('const setItemSelected ='), selection.indexOf('const clearSelectionForType ='));
 let cases = 0;
 for (const copies of [1, 2, 4]) {
     for (const selectedCount of [0, 1, 3]) {
@@ -49,7 +40,7 @@ for (const copies of [1, 2, 4]) {
             const preserved = member(other, otherSelected, 0); // Same user, different membership.
             members.push(preserved, member(null, true, 99));
             const run = vm.runInNewContext(actualSelection + helper + '\nclearFoldedGroupMemberSelection;', {
-                selectedClass, getSelectedItems: (node, type) => {
+                getOnDemandModel: () => null, selectedClass, getSelectedItems: (node, type) => {
                     assert.equal(node, members); assert.equal(type, 'member');
                     return node.filter(item => item.classList.contains(selectedClass));
                 }, updateSelectionActions: node => {
@@ -71,17 +62,17 @@ for (const copies of [1, 2, 4]) {
     }
 }
 // Execute the actual event binding through opening, folding and reopening.
-const binding = extract('const bindGroupMemberToggles =', 'const bindTagToggles =') + '\nbindGroupMemberToggles;';
-const handlers = [], attrs = new Map(), tokens = new Map(), events = [];
+const binding = extract('const setGroupMembersExpanded =', 'const bindTagToggles =') + '\nbindGroupMemberToggles;';
+const handlers = [], tokens = new Map(), events = [];
 let expanded = false;
 const owner = group('7');
 const list = {classList: classes([]), setAttribute: (key, value) => tokens.set(key, value),
     getAttribute: key => tokens.get(key), removeAttribute: key => tokens.delete(key)};
-owner.closest = () => null; owner.querySelector = () => list;
+owner.closest = () => null; owner.querySelector = selector => selector.includes('members-toggle') ? toggle : list;
 const toggle = {closest: () => owner, getAttribute: () => expanded ? 'true' : 'false',
     setAttribute: (key, value) => { assert.equal(key, 'aria-expanded'); expanded = value === 'true'; }};
 const node = {addEventListener: (type, handler) => handlers.push(handler), contains: () => true};
-const context = {groupMemberMotionToken: 0, Motion: {timing: {normal: 360}, resize: (target, mutate, options) => {
+const context = {bindLongLists() {}, groupMemberMotionToken: 0, Motion: {timing: {normal: 360}, resize: (target, mutate, options) => {
     assert.equal(target, list); assert.equal(list.classList.contains('is-easyedu-disclosing'), true);
     assert.equal(options.duration, 360); events.push('resize'); mutate(); options.onComplete(); return Promise.resolve(true);
 }}, clearFoldedGroupMemberSelection: (rootNode, target) => {
@@ -97,5 +88,5 @@ vm.runInNewContext(binding, context)(node);
         assert.equal(tokens.size, 0);
     }
     assert.deepEqual(events, ['resize', 'sync', 'resize', 'clear', 'sync', 'resize', 'sync']);
-    console.log(`PASS ${cases} scoped selection cases + 3 actual disclosure directions; unrelated source/CSS/Motion preserved.`);
+    console.log(`PASS ${cases} scoped selection cases + 3 actual disclosure directions; current modular disclosure and scoped selection verified.`);
 })().catch(error => {console.error(error); process.exitCode = 1;});

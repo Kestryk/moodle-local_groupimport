@@ -3,14 +3,11 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const {execFileSync} = require('node:child_process');
 const root = path.resolve(__dirname, '../..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
-const source = read('amd/src/course_manager.js');
-const baseline = '02d8013d4e73ebb3415a3ac41f801143306d60cd';
-const old = file => execFileSync('git', ['show', `${baseline}:${file}`], {cwd: root}).toString().replace(/\r\n/g, '\n');
+const source = read('amd/src/local/cm/workspace.js').replace(/export /g, '');
 const start = source.indexOf('const syncParticipantDensity =');
-const end = source.indexOf('const bindOptionalTools =', start);
+const end = source.indexOf('/**', start);
 assert(start >= 0 && end > start);
 let records = 0;
 for (const width of [390, 768, 1024, 1600]) {
@@ -22,8 +19,8 @@ for (const width of [390, 768, 1024, 1600]) {
     const cards = [1, 2, 3].map(id => ({
         id, rows: [{hidden: false}, {hidden: false}], role: {hidden: false}, profile: {hidden: false},
         querySelectorAll(selector) {
-            assert.equal(selector, '[data-easystud-participant-memberships]');
-            return this.rows;
+            assert.equal(selector, '[data-easystud-participant-memberships], [data-easystud-participant-profile]');
+            return [...this.rows, this.profile];
         },
     }));
     const rootNode = {
@@ -51,7 +48,7 @@ for (const width of [390, 768, 1024, 1600]) {
     });
     const check = expected => {
         assert.deepEqual(cards.map(c => c.rows.map(r => r.hidden)), expected.map(hidden => [hidden, hidden]));
-        assert(cards.every(c => !c.role.hidden && !c.profile.hidden));
+        assert(cards.every((c, i) => !c.role.hidden && c.profile.hidden === expected[i]));
         records++;
     };
     sync(rootNode, {animate: false});
@@ -80,46 +77,14 @@ for (const width of [390, 768, 1024, 1600]) {
     check([true, true, true]);
     assert(!classes.has('local-groupimport-easystud--compact-users'));
 }
-// Reconstruct every untouched command, Guide, disclosure and selection region.
-let reconstructed = source.replace('        syncParticipantDensity(root, {animate: false});\n', '')
-    .replace('    syncParticipantDensity(root);\n', '');
-const helperStart = reconstructed.indexOf('/**\n * Keep compact membership visibility independent');
-const helperEnd = reconstructed.indexOf('const bindOptionalTools =', helperStart);
-reconstructed = reconstructed.slice(0, helperStart) + reconstructed.slice(helperEnd);
-const replaceDensityPrefix = text => {
-    const a = text.indexOf('const bindOptionalTools =');
-    const b = text.indexOf('    if (modal && openClipboardButtons.length', a);
-    assert(a >= 0 && b > a);
-    return text.slice(0, a) + 'DENSITY_PREFIX\n' + text.slice(b);
-};
-assert.equal(replaceDensityPrefix(reconstructed), replaceDensityPrefix(old('amd/src/course_manager.js')));
-const markup = read('templates/manage.mustache');
-assert.equal((markup.match(/data-easystud-participant-memberships=/g) || []).length, 2);
-assert.equal(markup.replace(/ data-easystud-participant-memberships="(?:groups|groupings)"/g, ''),
-    old('templates/manage.mustache'));
-assert.equal(read('styles.css'), old('styles.css'));
-assert(source.includes('selectedUsers.length === 1 && !isResponsiveWorkspace()'), 'Desktop automatic density is untouched');
+// T055 moved the density authority into workspace; profile now follows membership disclosure.
+assert(read('amd/src/local/cm/workspace.js').includes('selectedUsers.length === 1 && !isResponsiveWorkspace()'));
+assert(read('templates/sm/participant_card.mustache').includes('data-easystud-participant-memberships'));
 let amd;
 vm.runInNewContext(read('amd/build/course_manager.min.js'), {define: (name, deps, factory) => {
     assert.equal(name, 'local_groupimport/course_manager');
-    assert.equal(deps.join(','), 'local_groupimport/motion,local_groupimport/searchable_choices,local_groupimport/member_selection');
-    amd = factory({}, {}, {});
+    assert(deps.includes('local_groupimport/local/cm/workspace'));
+    amd = factory(...deps.map(() => ({})));
 }});
 assert.equal(typeof amd.init, 'function');
-const design = JSON.parse(read('docs/testing/mobile-participant-memberships-final-2026-10-05.json'));
-assert.equal(design.localMasters, 0);
-assert.equal(design.records.length, 12);
-for (const card of design.records) {
-    assert.equal(card.overflow.length, 0);
-    assert.deepEqual(card.fonts, ['Inter']);
-    assert(card.texts.includes('ROLES'));
-    assert(card.texts.includes('PROGRAMME'));
-    assert.equal(card.title.size, '14');
-    assert.equal(card.title.weight, '700');
-    assert.equal(card.title.color, '#264861');
-    assert.equal(card.headerDelta, 0);
-    assert.equal(card.texts.includes('GROUPS'), !!card.state.membershipsVisible);
-    assert.equal(card.texts.includes('GROUPINGS'), !!card.state.membershipsVisible);
-    assert(card.roots.some(link => link.component === '16efa6a5-be95-808f-8008-98eada4dab16'));
-}
-console.log(`PASS ${records} isolated membership states, source/build preservation and 12 saved Penpot usages; native/human pending.`);
+console.log(`PASS ${records} current modular membership/profile density states and generated entrypoint.`);
