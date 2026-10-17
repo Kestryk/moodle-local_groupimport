@@ -1443,9 +1443,38 @@
       --easyedu-guide-modal-height: calc(100dvh - 3rem);
       --easyedu-guide-modal-max-height: calc(100dvh - 3rem);
     }
+    // K17-47: every responsive guided-path block (tablet and phone, same markup on
+    // each slide) is one column: centred icon, text from the start edge, then one
+    // full-width step per line and the full-width start action.
     .easyedu-guide-guided-card {
-      grid-template-columns: auto minmax(0, 1fr);
-      .easyedu-guide-slide__start { grid-column: 2; justify-self: start; }
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: stretch;
+      text-align: start;
+      .easyedu-guide-guided-card__icon { grid-column: 1; grid-row: auto; justify-self: center; }
+      .easyedu-guide-guided-card__body {
+        align-items: stretch;
+        justify-items: stretch;
+        text-align: start;
+        > small, > strong, > span { text-align: start; }
+      }
+      .easyedu-guide-guided-card__steps {
+        align-items: stretch;
+        inline-size: 100%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        justify-content: flex-start;
+        li {
+          box-sizing: border-box;
+          display: grid;
+          grid-template-columns: 0.9375rem minmax(0, 1fr);
+          inline-size: 100%;
+          max-inline-size: 100%;
+          min-inline-size: 0;
+          text-align: start;
+        }
+      }
+      .easyedu-guide-slide__start { grid-column: 1; justify-self: stretch; }
     }
     .easyedu-guide-scene { padding: 1rem; }
     // The scene already owns its bottom margin (one 24 / 16 gap, not 24 + 24).
@@ -1454,27 +1483,8 @@
 
   @media (max-width: 40rem) {
     .easyedu-guide-modal__title-wrap > div > p:not(.easyedu-guide-modal__eyebrow) { display: none; }
-    .easyedu-guide-guided-card {
-      grid-template-columns: minmax(0, 1fr);
-      .easyedu-guide-guided-card__icon { justify-self: start; grid-row: 1; }
-      .easyedu-guide-guided-card__steps { justify-content: flex-start; }
-      .easyedu-guide-guided-card__steps li {
-        // The counter owns its left track; the text wraps start-aligned (C-G3).
-        display: grid;
-        grid-template-columns: 0.9375rem minmax(0, 1fr);
-        max-inline-size: 100%;
-        min-inline-size: 0;
-        text-align: start;
-      }
-    }
-    .easyedu-guide-guided-card .easyedu-guide-slide__start { grid-column: 1 / -1; }
-    .easyedu-guide-guided-card .easyedu-guide-guided-card__body { text-align: start; align-items: flex-start; }
-    .easyedu-guide-guided-card .easyedu-guide-slide__start {
-      grid-column: 1 / -1;
-      justify-self: stretch;
-      height: auto;
-      min-height: 2.375rem;
-    }
+    // The guided-path block is shared with tablet (K17-47, see the 63.999rem query).
+    .easyedu-guide-guided-card .easyedu-guide-slide__start { height: auto; min-height: 2.375rem; }
     .easyedu-guide-scene__concepts, .easyedu-guide-scene__stage, .easyedu-guide-scene__results { grid-template-columns: minmax(0, 1fr); }
     .easyedu-guide-scene[data-guide-mode] .easyedu-guide-scene__stage::after,
     .easyedu-guide-scene__dialog { grid-area: 3 / 1; }
