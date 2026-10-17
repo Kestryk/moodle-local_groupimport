@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K16-31 : inventaire statique des redéfinitions locales de composants Kit, mode rapport JSON/lisible avec exceptions explicites ; aucun style modifié.
+
 - 2026-10-18 [N0] K16-17 : repli du diagnostic de la fixture XLSX, sans changer ses jetons exécutables.
 
 - 2026-10-18 [N0] K16-17 : repli de littéraux CLI/SQL et de fixture, valeurs constantes et instructions conservées ; aucun code de rendu modifié.
