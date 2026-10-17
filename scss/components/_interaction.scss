@@ -14,8 +14,9 @@
 
     button {
       &:focus {
-        background: var(--local-groupimport-easystud-surface-soft);
-        color: var(--local-groupimport-easystud-primary);
+        @include easyedu.menu-item-active(
+          var(--local-groupimport-easystud-surface-soft), var(--local-groupimport-easystud-primary), null
+        );
       }
 
       &:focus-visible {
@@ -25,28 +26,16 @@
 
     // An open submenu keeps its trigger in the hover state.
     [data-easystud-context-submenu-toggle][aria-expanded="true"] {
-      background: var(--easyedu-primary-soft);
-      color: var(--easyedu-primary-strong);
-
-      .fa {
-        color: var(--easyedu-primary);
-      }
+      @include easyedu.menu-item-active;
     }
 
     .local-groupimport-easystud-context-menu__chevron.fa {
-      color: var(--easyedu-text-muted);
-      font-size: 0.72rem;
-      margin-inline-start: auto;
+      @include easyedu.menu-item-chevron;
     }
   }
 
   &-context-menu__separator {
-    border-top: 1px solid var(--easyedu-dropdown-border);
-    margin: 0.2rem 0.35rem;
-
-    &[hidden] {
-      display: none;
-    }
+    @include easyedu.menu-separator;
   }
 
   &-context-menu__group {
@@ -75,14 +64,7 @@
 
   // A lone action is shown inline, as a plain top-level item.
   &-context-menu__group.is-flattened &-context-menu__submenu {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    max-height: none;
-    min-width: 0;
-    overflow: visible;
-    padding: 0;
-    position: static;
+    @include easyedu.menu-surface-inline;
   }
 
   [data-selectable-type].is-selected {

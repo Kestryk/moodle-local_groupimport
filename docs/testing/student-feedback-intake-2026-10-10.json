@@ -1610,5 +1610,6 @@
 "k1801EasyStudOnly20261018":{"scope": "EasyStud only", "ccbExcludedWithoutTraversal": true, "styleHashesUnchanged": true, "findingsUnchanged": 553, "runtimeAccess": false, "published": false},
 "k1680Fields20261018":{"base": "f3a56dc5", "declarationsBefore": 55, "declarationsAfter": 50, "newDeclarations": 0, "headlessStandaloneCases": 8, "standaloneVisibleChangesOverHalfPixel": 0, "nativeProbeChangesDocumented": 19, "nativeStatus": "BLOCKED HTTP404 course71 :8051", "runtimeFilesChanged": false, "published": false, "humanAccepted": false},
 "k1680Pills20261018":{"before": 31, "after": 24, "new": 0, "removed": 7, "nativeStatus": "OPEN: course71 :8051 HTTP404", "published": false},
-"k1680Messages20261018":{"base": "9a208010", "before": 26, "after": 14, "new": 0, "headlessStandaloneComparisons": 16, "deltas": 0, "consoleErrors": 0, "nativeStatus": "OPEN: course71 :8051 HTTP404", "published": false}
+"k1680Messages20261018":{"base": "9a208010", "before": 26, "after": 14, "new": 0, "headlessStandaloneComparisons": 16, "deltas": 0, "consoleErrors": 0, "nativeStatus": "OPEN: course71 :8051 HTTP404", "published": false},
+"k1680Menus20261018":{"base": "9a208010", "before": 48, "after": 27, "new": 0, "cascadeParity": "PASS 3 pages byte-identical after CRLF normalization", "renderParity": "PASS 12 state comparisons", "glyphCentering": "FAIL pre-existing, identical before/after", "glyphMaxX": 0.7578125, "glyphMaxY": 0.7578125, "nativeStatus": "OPEN course71 :8051 HTTP404", "published": false, "accepted": false}
 }
