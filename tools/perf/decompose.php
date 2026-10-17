@@ -14,8 +14,10 @@ defined('MOODLE_INTERNAL') || die();
 /** Measure source spans; browser DOM is independently measured by Playwright. */
 function easystud_perf_decompose(string $html): array {
     $regions = [];
-    foreach (['participant-cards', 'group-member-lists', 'group-cards', 'groupings',
-            'data-attributes-json', 'profile-photo-description-markup', 'guide', 'other-page-shell'] as $name) {
+    foreach (
+        ['participant-cards', 'group-member-lists', 'group-cards', 'groupings',
+            'data-attributes-json', 'profile-photo-description-markup', 'guide', 'other-page-shell'] as $name
+    ) {
         $regions[$name] = ['region' => $name, 'bytes' => 0, 'sourceElements' => 0];
     }
     $stack = [];
@@ -48,8 +50,12 @@ function easystud_perf_decompose(string $html): array {
             }
             continue;
         }
-        preg_match_all('~\s([^\s=<>/]+)(?:\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+))?~s', $tag,
-            $parts, PREG_SET_ORDER);
+        preg_match_all(
+            '~\s([^\s=<>/]+)(?:\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+))?~s',
+            $tag,
+            $parts,
+            PREG_SET_ORDER
+        );
         $attrs = [];
         foreach ($parts as $part) {
             $attrs[strtolower($part[1])] = isset($part[2]) ? trim($part[2], "\"'") : '';
@@ -57,8 +63,10 @@ function easystud_perf_decompose(string $html): array {
         $class = $attrs['class'] ?? '';
         $region = $parent;
         // Guide remains one source region; its fictional cards are not native participants.
-        if ($parent === 'guide' || isset($attrs['data-easyedu-guide-root']) ||
-                str_contains($class, 'easyedu-guide__') || str_contains($class, 'easyedu-guide ')) {
+        if (
+            $parent === 'guide' || isset($attrs['data-easyedu-guide-root']) ||
+                str_contains($class, 'easyedu-guide__') || str_contains($class, 'easyedu-guide ')
+        ) {
             $region = 'guide';
         } else if (isset($attrs['data-easystud-user'])) {
             $region = 'participant-cards';
@@ -71,8 +79,10 @@ function easystud_perf_decompose(string $html): array {
         } else if (isset($attrs['data-easystud-grouping-id'])) {
             $region = 'groupings';
             $instances[$region]++;
-        } else if (str_contains($class, 'local-groupimport-easystud-user__avatar') ||
-                ($name === 'img' && $parent === 'participant-cards')) {
+        } else if (
+            str_contains($class, 'local-groupimport-easystud-user__avatar') ||
+                ($name === 'img' && $parent === 'participant-cards')
+        ) {
             $region = 'profile-photo-description-markup';
         }
         if (isset($attrs['data-easystud-member-id'])) {
@@ -105,8 +115,15 @@ function easystud_perf_decompose(string $html): array {
         if (!isset($void[$name]) && !str_ends_with($tag, '/>')) {
             $stack[] = ['tag' => $name, 'region' => $region];
         }
-        if (($name === 'script' || $name === 'style') && preg_match('~</' . $name . '\s*>~i',
-                $html, $end, PREG_OFFSET_CAPTURE, $offset)) {
+        if (
+            ($name === 'script' || $name === 'style') && preg_match(
+                '~</' . $name . '\s*>~i',
+                $html,
+                $end,
+                PREG_OFFSET_CAPTURE,
+                $offset
+            )
+        ) {
             // HTML-looking strings inside JS/CSS do not create DOM elements.
             $regions[$region]['bytes'] += $end[0][1] - $offset;
             $offset = $end[0][1];

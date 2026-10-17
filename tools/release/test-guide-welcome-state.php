@@ -25,10 +25,17 @@ function set_user_preference($name, $value) {
     global $preferences, $userid;
     $preferences[$userid][$name] = $value;
 }
-function isloggedin() { global $userid; return $userid > 0; }
-function isguestuser() { global $guest; return $guest; }
+function isloggedin() {
+    global $userid;
+    return $userid > 0; 
+}
+function isguestuser() {
+    global $guest;
+    return $guest; 
+}
 function require_login($course = null, $autologin = true) {
-    if (!isloggedin()) { throw new RuntimeException('Login required'); }
+    if (!isloggedin()) { throw new RuntimeException('Login required'); 
+    }
 }
 function require_capability($capability, $context) {
     global $admin;
@@ -36,9 +43,13 @@ function require_capability($capability, $context) {
         throw new RuntimeException('Capability required');
     }
 }
-class context_system { public static function instance() { return new self(); } }
+class context_system { public static function instance() {
+        return new self(); 
+} 
+}
 function check($condition, $message) {
-    if (!$condition) { throw new RuntimeException($message); }
+    if (!$condition) { throw new RuntimeException($message); 
+    }
 }
 
 require __DIR__ . '/../../classes/local/guide_welcome.php';
@@ -55,8 +66,11 @@ $guest = true;
 check(!guide_welcome::should_offer(), 'Guest not offered');
 check(!guide_welcome::mark_opened($initial), 'Guest not acknowledged');
 $guest = false;
-try { guide_welcome::reset(); throw new LogicException('Unauthorized reset accepted'); }
-catch (RuntimeException $error) { check($error->getMessage() === 'Capability required', 'Capability guard'); }
+try { guide_welcome::reset();
+    throw new LogicException('Unauthorized reset accepted'); 
+}
+catch (RuntimeException $error) { check($error->getMessage() === 'Capability required', 'Capability guard'); 
+}
 $before = $preferences;
 $admin = true;
 $next = guide_welcome::reset();

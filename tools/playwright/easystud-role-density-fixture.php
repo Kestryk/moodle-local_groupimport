@@ -53,9 +53,11 @@ function density_baseline(int $courseid, int $contextid, array $owned = []): arr
         // Retained fixtures compare precisely the pre-existing rows, never hide
         // another user's changes or modify records to manufacture equality.
         foreach ($records as $id => $record) {
-            if (($key === 'roleDefinitions' && in_array((int)$id, $owned['roleIds'] ?? [], true)) ||
+            if (
+                ($key === 'roleDefinitions' && in_array((int)$id, $owned['roleIds'] ?? [], true)) ||
                     (in_array($key, ['courseAssignments', 'courseEnrolments'], true) &&
-                    in_array((int)$record->userid, $owned['userIds'] ?? [], true))) {
+                    in_array((int)$record->userid, $owned['userIds'] ?? [], true))
+            ) {
                 unset($records[$id]);
             }
         }
@@ -67,25 +69,31 @@ function density_baseline(int $courseid, int $contextid, array $owned = []): arr
 /** Verify retained manual-test data without removing anything. */
 function density_verify_retained(array $manifest): array {
     global $DB;
-    if (($manifest['fixture'] ?? '') !== 'easystud-sm15-role-density' ||
+    if (
+        ($manifest['fixture'] ?? '') !== 'easystud-sm15-role-density' ||
             ($manifest['retention'] ?? '') !== 'manual-testing' ||
             (int)($manifest['courseId'] ?? 0) !== 5 ||
             !preg_match('/^eed-sm15-[a-f0-9]{12}-$/', $manifest['prefix'] ?? '') ||
-            count($manifest['roleIds'] ?? []) !== 12 || count($manifest['userIds'] ?? []) !== 3) {
+            count($manifest['roleIds'] ?? []) !== 12 || count($manifest['userIds'] ?? []) !== 3
+    ) {
         throw new RuntimeException('Unknown retained fixture ownership.');
     }
     $assignments = [];
     foreach ($manifest['userIds'] as $index => $id) {
         $user = $DB->get_record('user', ['id' => $id, 'deleted' => 0], '*', MUST_EXIST);
-        if ($user->auth !== 'nologin' || $user->username !== $manifest['prefix'] . 'user-' . $index ||
-                !$DB->record_exists('user_enrolments', ['userid' => $id, 'enrolid' => $manifest['enrolId']])) {
+        if (
+            $user->auth !== 'nologin' || $user->username !== $manifest['prefix'] . 'user-' . $index ||
+                !$DB->record_exists('user_enrolments', ['userid' => $id, 'enrolid' => $manifest['enrolId']])
+        ) {
             throw new RuntimeException('Retained synthetic user or enrolment changed.');
         }
     }
     foreach ($manifest['roleIds'] as $index => $id) {
         $role = $DB->get_record('role', ['id' => $id], '*', MUST_EXIST);
-        if ($role->shortname !== $manifest['prefix'] . 'role-' . $index || $role->archetype !== '' ||
-                $DB->record_exists('role_capabilities', ['roleid' => $id])) {
+        if (
+            $role->shortname !== $manifest['prefix'] . 'role-' . $index || $role->archetype !== '' ||
+                $DB->record_exists('role_capabilities', ['roleid' => $id])
+        ) {
             throw new RuntimeException('Retained role gained capabilities or lost ownership.');
         }
         $rows = $DB->get_records('role_assignments', ['roleid' => $id]);
@@ -93,8 +101,10 @@ function density_verify_retained(array $manifest): array {
             throw new RuntimeException('Retained role has no assignment.');
         }
         foreach ($rows as $row) {
-            if ((int)$row->contextid !== (int)$manifest['contextId'] ||
-                    !in_array((int)$row->userid, $manifest['userIds'], true)) {
+            if (
+                (int)$row->contextid !== (int)$manifest['contextId'] ||
+                    !in_array((int)$row->userid, $manifest['userIds'], true)
+            ) {
                 throw new RuntimeException('Retained role is assigned outside its fixture.');
             }
             $assignments[] = ['roleId' => (int)$id, 'userId' => (int)$row->userid];
@@ -119,44 +129,57 @@ if ($options['action'] === 'verify-retained') {
 /** Fail closed before deleting anything if the exact fixture ownership drifted. */
 function density_cleanup(array $manifest): array {
     global $DB;
-    if (($manifest['fixture'] ?? '') !== 'easystud-sm15-role-density' ||
+    if (
+        ($manifest['fixture'] ?? '') !== 'easystud-sm15-role-density' ||
             !preg_match('/^eed-sm15-[a-f0-9]{12}-$/', $manifest['prefix'] ?? '') ||
-            empty($manifest['courseId']) || empty($manifest['contextId'])) {
+            empty($manifest['courseId']) || empty($manifest['contextId'])
+    ) {
         throw new RuntimeException('Unknown fixture manifest; cleanup refused.');
     }
     $prefix = $manifest['prefix'];
     $users = [];
     foreach ($manifest['userIds'] as $id) {
         $user = $DB->get_record('user', ['id' => $id, 'deleted' => 0]);
-        if (!$user) { continue; }
-        if (!str_starts_with($user->username, $prefix) || $user->auth !== 'nologin' ||
-                $DB->record_exists_sql('SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid WHERE ue.userid = ? AND e.courseid <> ?', [$id, $manifest['courseId']])) {
+        if (!$user) { continue; 
+        }
+        if (
+            !str_starts_with($user->username, $prefix) || $user->auth !== 'nologin' ||
+                $DB->record_exists_sql('SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid WHERE ue.userid = ? AND e.courseid <> ?', [$id, $manifest['courseId']])
+        ) {
             throw new RuntimeException('Fixture user ownership changed; cleanup refused.');
         }
         $users[] = $user;
     }
     foreach ($manifest['roleIds'] as $id) {
         $role = $DB->get_record('role', ['id' => $id]);
-        if (!$role) { continue; }
-        if (!str_starts_with($role->shortname, $prefix) || $role->archetype !== '' ||
-                $DB->record_exists('role_capabilities', ['roleid' => $id])) {
+        if (!$role) { continue; 
+        }
+        if (
+            !str_starts_with($role->shortname, $prefix) || $role->archetype !== '' ||
+                $DB->record_exists('role_capabilities', ['roleid' => $id])
+        ) {
             throw new RuntimeException('Fixture role ownership changed; cleanup refused.');
         }
         foreach ($DB->get_records('role_assignments', ['roleid' => $id]) as $assignment) {
-            if ((int)$assignment->contextid !== (int)$manifest['contextId'] ||
-                    !in_array((int)$assignment->userid, $manifest['userIds'], true)) {
+            if (
+                (int)$assignment->contextid !== (int)$manifest['contextId'] ||
+                    !in_array((int)$assignment->userid, $manifest['userIds'], true)
+            ) {
                 throw new RuntimeException('Fixture role used elsewhere; cleanup refused.');
             }
         }
     }
     $manual = enrol_get_plugin('manual');
     $instance = $DB->get_record('enrol', ['id' => $manifest['enrolId'], 'courseid' => $manifest['courseId'], 'enrol' => 'manual'], '*', MUST_EXIST);
-    foreach ($users as $user) { $manual->unenrol_user($instance, $user->id); }
+    foreach ($users as $user) { $manual->unenrol_user($instance, $user->id); 
+    }
     foreach ($manifest['roleIds'] as $id) {
-        if ($DB->record_exists('role', ['id' => $id])) { delete_role($id); }
+        if ($DB->record_exists('role', ['id' => $id])) { delete_role($id); 
+        }
     }
     foreach ($users as $user) {
-        if (!delete_user($user)) { throw new RuntimeException('Native fixture user deletion failed.'); }
+        if (!delete_user($user)) { throw new RuntimeException('Native fixture user deletion failed.'); 
+        }
     }
     $after = density_baseline((int)$manifest['courseId'], (int)$manifest['contextId']);
     $complete = $after === $manifest['baseline'];
@@ -177,8 +200,10 @@ if ($options['action'] === 'cleanup') {
     echo json_encode($cleanup, JSON_UNESCAPED_SLASHES) . "\n";
     exit($cleanup['complete'] ? 0 : 1);
 }
-if ($options['action'] !== 'setup' || empty($options['run-id']) ||
-        !preg_match('/^[A-Za-z0-9-]+$/', $options['run-id']) || is_file($manifestpath)) {
+if (
+    $options['action'] !== 'setup' || empty($options['run-id']) ||
+        !preg_match('/^[A-Za-z0-9-]+$/', $options['run-id']) || is_file($manifestpath)
+) {
     throw new RuntimeException('Setup needs a unique safe run-id and a new manifest.');
 }
 $courseid = (int)($options['course-id'] ?? 5);
@@ -189,9 +214,12 @@ $course = get_course($courseid);
 $context = context_course::instance($courseid);
 $instance = null;
 foreach (enrol_get_instances($courseid, true) as $candidate) {
-    if ($candidate->enrol === 'manual') { $instance = $candidate; break; }
+    if ($candidate->enrol === 'manual') { $instance = $candidate;
+        break; 
+    }
 }
-if (!$instance) { throw new RuntimeException('A pre-existing manual enrolment instance is required.'); }
+if (!$instance) { throw new RuntimeException('A pre-existing manual enrolment instance is required.'); 
+}
 $manifest = ['schemaVersion' => 1, 'fixture' => 'easystud-sm15-role-density',
     'prefix' => 'eed-sm15-' . substr(hash('sha256', $options['run-id']), 0, 12) . '-',
     'courseId' => $courseid, 'contextId' => (int)$context->id, 'enrolId' => (int)$instance->id,
@@ -233,9 +261,11 @@ try {
     echo json_encode($manifest, JSON_UNESCAPED_SLASHES) . "\n";
 } catch (Throwable $exception) {
     // Moodle rollback throws. Recheck exact ownership even if ids were rolled back.
-    try { $transaction->rollback($exception); } catch (Throwable $rolledback) {
+    try { $transaction->rollback($exception); 
+    } catch (Throwable $rolledback) {
         $cleanup = density_cleanup($manifest);
-        if (!$cleanup['complete']) { throw new RuntimeException('Setup failed and fixture cleanup is incomplete.', 0, $rolledback); }
+        if (!$cleanup['complete']) { throw new RuntimeException('Setup failed and fixture cleanup is incomplete.', 0, $rolledback); 
+        }
         throw $rolledback;
     }
 }

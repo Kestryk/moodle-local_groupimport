@@ -48,8 +48,10 @@ $result = membership_transfer::move_members(20, 2, [$pair, ['groupid' => 4, 'use
 transfer_check($result === ['added' => 1, 'removed' => 2, 'unchanged' => 0], 'Two selected origins, one destination.');
 transfer_check($DB->members[3] === [10], 'Third unselected origin preserved.');
 
-foreach ([[], [['groupid' => '1garbage', 'userid' => 10]], [['groupid' => 1, 'userid' => 999]],
-        [$pair, ['groupid' => 5, 'userid' => 10]]] as $pairs) {
+foreach (
+    [[], [['groupid' => '1garbage', 'userid' => 10]], [['groupid' => 1, 'userid' => 999]],
+        [$pair, ['groupid' => 5, 'userid' => 10]]] as $pairs
+) {
     $DB = new transfer_mock_database();
     $error = $pairs && end($pairs)['groupid'] === 5 ? 'invalidgroupid' : 'invaliddata';
     transfer_reject($pairs, 2, $error);

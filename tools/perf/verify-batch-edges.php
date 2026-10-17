@@ -48,8 +48,10 @@ function perf_edge_load(string $root, string $entry, string $prefix): void {
         }
         if (is_array($token) && $token[0] === T_STRING && str_starts_with($token[1], 'local_groupimport_')) {
             $code .= $prefix . $token[1];
-        } else if (is_array($token) && $token[0] === T_CONSTANT_ENCAPSED_STRING &&
-                preg_match('/^[\'"]local_groupimport_[a-z_]+[\'"]$/', $token[1])) {
+        } else if (
+            is_array($token) && $token[0] === T_CONSTANT_ENCAPSED_STRING &&
+                preg_match('/^[\'"]local_groupimport_[a-z_]+[\'"]$/', $token[1])
+        ) {
             $code .= $token[1][0] . $prefix . substr($token[1], 1);
         } else {
             $code .= is_array($token) ? $token[1] : $token;
@@ -65,9 +67,11 @@ foreach (['before', 'after'] as $variant) {
 $checks = [];
 $error = null;
 $rolledback = false;
-$relationships = $DB->get_records_sql('SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
+$relationships = $DB->get_records_sql(
+    'SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
     'JOIN {groups} g ON g.id = m.groupid WHERE g.courseid = :courseid ORDER BY m.id',
-    ['courseid' => $manifest['courseId']]);
+    ['courseid' => $manifest['courseId']]
+);
 $relationshash = hash('sha256', json_encode($relationships));
 $transaction = $DB->start_delegated_transaction();
 try {
@@ -153,9 +157,11 @@ try {
 $checks['rollback-profile-field-removed'] = !isset($fieldid) || !$DB->record_exists('user_info_field', ['id' => $fieldid]);
 $checks['rollback-deleted-flag-restored'] = !isset($users[5]) || !$DB->get_field('user', 'deleted', ['id' => $users[5]->id]);
 $checks['rollback-enrolment-restored'] = !isset($users[4]) || is_enrolled($context, $users[4]->id);
-$relationships = $DB->get_records_sql('SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
+$relationships = $DB->get_records_sql(
+    'SELECT m.id, m.groupid, m.userid FROM {groups_members} m ' .
     'JOIN {groups} g ON g.id = m.groupid WHERE g.courseid = :courseid ORDER BY m.id',
-    ['courseid' => $manifest['courseId']]);
+    ['courseid' => $manifest['courseId']]
+);
 $checks['rollback-fixture-memberships-restored'] = hash('sha256', json_encode($relationships)) === $relationshash;
 $result = ['surface' => 'AP-E5-edges', 'level' => 0, 'passed' => $error === null && !in_array(false, $checks, true),
     'checks' => $checks, 'failure' => $error, 'temporaryMutationsRolledBack' => $rolledback];

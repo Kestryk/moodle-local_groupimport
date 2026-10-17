@@ -122,7 +122,8 @@ if ($options['action'] === 'setup') {
         $groups = [];
         foreach (['Alpha group', 'Beta group'] as $name) {
             $groupid = groups_create_group((object)['courseid' => $course->id, 'name' => $name]);
-            if ($name === 'Alpha group') { groups_add_member($groupid, $admin->id); }
+            if ($name === 'Alpha group') { groups_add_member($groupid, $admin->id); 
+            }
             $groups[] = $groupid;
         }
         $groupings = [];

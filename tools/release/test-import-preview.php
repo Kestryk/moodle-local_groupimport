@@ -9,13 +9,13 @@ class moodle_exception extends Exception {
 require(__DIR__ . '/../../classes/local/import_preview.php');
 use local_groupimport\local\import_preview;
 $checks = 0;
-$check = function($condition) use (&$checks) {
+$check = function ($condition) use (&$checks) {
     if (!$condition) {
         throw new RuntimeException('Check ' . ($checks + 1) . ' failed');
     }
     $checks++;
 };
-$reject = function($callback) use ($check) {
+$reject = function ($callback) use ($check) {
     try {
         $callback();
     } catch (moodle_exception $exception) {
@@ -39,10 +39,12 @@ $data = ['count' => 1500, 'edits' => [['index' => 1499, 'identifier' => 'éditio
 $result = import_preview::confirm($preview, json_encode($data), []);
 $check(count($result) === 1498 && $result[1497]['groupname'] === 'Edited < & "');
 $check($result[0]['identifier'] === 'person1');
-foreach (['{', '{}', json_encode(array_replace($data, ['count' => 1499])),
+foreach (
+    ['{', '{}', json_encode(array_replace($data, ['count' => 1499])),
         json_encode(array_replace($data, ['excluded' => [0, 0]])),
         json_encode(array_replace($data, ['excluded' => [-1]])),
-        json_encode(array_replace($data, ['edits' => [['index' => 1500]]]))] as $bad) {
+        json_encode(array_replace($data, ['edits' => [['index' => 1500]]]))] as $bad
+) {
     $reject(fn() => import_preview::confirm($preview, $bad, []));
 }
 $fallback = ['complete' => 1500, 'enabled' => array_fill(0, 1500, 1),

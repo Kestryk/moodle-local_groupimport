@@ -17,7 +17,8 @@ spl_autoload_register(static function (string $class) use ($libraryroot): void {
     foreach ($map as $prefix => $relative) {
         if (str_starts_with($class, $prefix)) {
             $file = $libraryroot . $relative . str_replace('\\', '/', substr($class, strlen($prefix))) . '.php';
-            if (is_file($file)) { require $file; }
+            if (is_file($file)) { require $file; 
+            }
             return;
         }
     }

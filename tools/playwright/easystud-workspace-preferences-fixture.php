@@ -39,8 +39,10 @@ function workspace_preferences_read(string $name): array {
 
 /** Restore both owned configuration records after verifying fixture ownership. */
 function workspace_preferences_cleanup(array $manifest): array {
-    if (($manifest['fixture'] ?? '') !== 'easystud-sm28-workspace-preferences' ||
-            empty($manifest['previous']) || !isset($manifest['applied'])) {
+    if (
+        ($manifest['fixture'] ?? '') !== 'easystud-sm28-workspace-preferences' ||
+            empty($manifest['previous']) || !isset($manifest['applied'])
+    ) {
         throw new RuntimeException('Unknown fixture manifest; cleanup refused.');
     }
     foreach ($manifest['applied'] as $name => $expected) {
@@ -76,8 +78,10 @@ if ($options['action'] === 'cleanup') {
     echo json_encode($cleanup, JSON_UNESCAPED_SLASHES) . "\n";
     exit($cleanup['complete'] ? 0 : 1);
 }
-if ($options['action'] !== 'setup' || empty($options['run-id']) ||
-        !preg_match('/^[A-Za-z0-9-]+$/', $options['run-id']) || is_file($manifestpath)) {
+if (
+    $options['action'] !== 'setup' || empty($options['run-id']) ||
+        !preg_match('/^[A-Za-z0-9-]+$/', $options['run-id']) || is_file($manifestpath)
+) {
     throw new RuntimeException('Setup needs a unique safe run-id and a new manifest.');
 }
 

@@ -125,8 +125,10 @@ for ($i = 0; $i < 37; $i++) {
         groups_assign_grouping($grouping, $id);
     }
     foreach ($manifest['userIds'] as $index => $userid) {
-        if ($index === 0 || ($index === 1 && $i < 15) || $i === 0 ||
-                ($i === 1 && $index < 20) || ($i === 2 && $index < 21)) {
+        if (
+            $index === 0 || ($index === 1 && $i < 15) || $i === 0 ||
+                ($i === 1 && $index < 20) || ($i === 2 && $index < 21)
+        ) {
             groups_add_member($id, $userid);
         }
     }

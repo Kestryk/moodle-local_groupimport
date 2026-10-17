@@ -23,7 +23,13 @@ require dirname(__DIR__, 2) . '/lib.php';
 require dirname(__DIR__, 2) . '/settings.php';
 
 $setting = new local_groupimport_admin_setting_configcolor(
-    'local_groupimport/themeprimarycolor', 'Primary', '', '#0f6cbf', 0, null, 4.5
+    'local_groupimport/themeprimarycolor',
+    'Primary',
+    '',
+    '#0f6cbf',
+    0,
+    null,
+    4.5
 );
 foreach (['#ffffff', '#fff3a5', '#b9ebd0', '#0f6cbf'] as $value) {
     if ($setting->validate($value) !== true) {
@@ -41,8 +47,10 @@ if ($setting->validate('red; display:none') === true) {
 // Regression: #ff0000 adapted for white still fails on #ffe2e2, its
 // conservative 11%-red surface. Check the independent fixed background.
 $adapted = local_groupimport_colour_for_soft_contrast('#ff0000', 0.11);
-if (local_groupimport_colour_contrast_against_white($adapted) /
-        local_groupimport_colour_contrast_against_white('#ffe2e2') < 4.5) {
+if (
+    local_groupimport_colour_contrast_against_white($adapted) /
+        local_groupimport_colour_contrast_against_white('#ffe2e2') < 4.5
+) {
     throw new RuntimeException('Semantic text is unreadable on the chosen soft surface.');
 }
 if (local_groupimport_colour_for_soft_contrast('#0f6cbf', 0.10) !== '#0f6cbf') {
@@ -58,21 +66,25 @@ if ($colours['primary'] !== '#ffffff' || $colours['accent'] !== '#1b7f5a') {
     throw new RuntimeException('Configuration fallback or valid light colour failed.');
 }
 $style = local_groupimport_get_theme_style();
-if (!str_contains($style, '--easyedu-primary-chosen: #ffffff;') ||
+if (
+    !str_contains($style, '--easyedu-primary-chosen: #ffffff;') ||
         !str_contains($style, '--easyedu-primary: #767676;') ||
-        str_contains($style, 'display:none')) {
+        str_contains($style, 'display:none')
+) {
     throw new RuntimeException('Unsafe or incorrect semantic style output.');
 }
 if (local_groupimport_get_theme_rail_roles() !== 'primary') {
     throw new RuntimeException('Malformed accent must not opt into custom rails.');
 }
-foreach ([
+foreach (
+    [
     [[], ''],
     [['themeprimarycolor' => '#0F6CBF', 'themeaccentcolor' => '#1B7F5A'], ''],
     [['themeprimarycolor' => 'bad', 'themeaccentcolor' => 'bad'], ''],
     [['themeaccentcolor' => '#ccddea'], 'success'],
     [['themeprimarycolor' => '#000000', 'themeaccentcolor' => '#ffffff'], 'primary success'],
-] as [$config, $expected]) {
+    ] as [$config, $expected]
+) {
     $testconfig = $config;
     if (local_groupimport_get_theme_rail_roles() !== $expected) {
         throw new RuntimeException('Incorrect custom rail role selection.');

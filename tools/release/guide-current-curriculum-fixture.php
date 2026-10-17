@@ -24,8 +24,12 @@ class html_writer {
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
 $source = file_get_contents(__DIR__ . '/../../manage.php');
 $templatedata = $string;
-preg_match_all("/^\s+'(tutorial[^']+)' => get_string\('([^']+)', 'local_groupimport'\),?$/m",
-    $source, $aliases, PREG_SET_ORDER);
+preg_match_all(
+    "/^\s+'(tutorial[^']+)' => get_string\('([^']+)', 'local_groupimport'\),?$/m",
+    $source,
+    $aliases,
+    PREG_SET_ORDER
+);
 foreach ($aliases as $alias) {
     $templatedata[$alias[1]] = get_string($alias[2], 'local_groupimport');
 }
@@ -34,8 +38,11 @@ $end = strpos($source, "        'selectionmodelabel' =>", $start);
 if ($start === false || $end === false) {
     throw new RuntimeException('Missing actual tutorial definition boundary');
 }
-$array = substr($source, $start + strlen("        'tutorialsteps' => "),
-    $end - $start - strlen("        'tutorialsteps' => "));
+$array = substr(
+    $source,
+    $start + strlen("        'tutorialsteps' => "),
+    $end - $start - strlen("        'tutorialsteps' => ")
+);
 // Only the existing literal steps array is evaluated; never bootstrap manage.php.
 $templatedata['tutorialsteps'] = eval('return ' . rtrim($array, ", \r\n\t") . ';');
 foreach (['local_groupimport_build_easyedu_guide_template_data'] as $name) {
@@ -53,8 +60,13 @@ foreach (['local_groupimport_build_easyedu_guide_template_data'] as $name) {
         }
         $text = is_array($token) ? $token[1] : $token;
         $body .= $text;
-        if ($text === '{' || (is_array($token) && in_array($token[0],
-                [T_CURLY_OPEN, T_DOLLAR_OPEN_CURLY_BRACES], true))) {
+        if (
+            $text === '{' || (is_array($token) && in_array(
+                $token[0],
+                [T_CURLY_OPEN, T_DOLLAR_OPEN_CURLY_BRACES],
+                true
+            ))
+        ) {
             $depth++;
             $opened = true;
         } else if ($text === '}') {
@@ -74,13 +86,17 @@ $end = strpos($source, "        'labels' => [", $start);
 if ($start === false || $end === false) {
     throw new RuntimeException('Missing actual Guide path definition boundary');
 }
-$array = substr($source, $start + strlen("        'paths' => "),
-    $end - $start - strlen("        'paths' => "));
+$array = substr(
+    $source,
+    $start + strlen("        'paths' => "),
+    $end - $start - strlen("        'paths' => ")
+);
 $paths = eval('return ' . rtrim($array, ", \r\n\t") . ';');
 $data = local_groupimport_build_easyedu_guide_template_data($templatedata);
 $moderncontract = \local_groupimport\local\guide_discovery::modern_reading_contract();
 $active = array_column($data['slides'], 'id') === $moderncontract['slideIds'];
-echo json_encode(['language' => $language,
+echo json_encode(
+    ['language' => $language,
     'templateData' => $data,
     'readingContract' => $active ? $moderncontract : \local_groupimport\local\guide_discovery::reading_contract(),
     'paths' => $paths,
@@ -90,4 +106,5 @@ echo json_encode(['language' => $language,
         'nativeActivated' => $active,
     ],
     'scope' => 'Pure presentation and path definitions; native welcome/configuration availability not evaluated'],
-    JSON_THROW_ON_ERROR);
+    JSON_THROW_ON_ERROR
+);

@@ -1,49 +1,84 @@
 <?php
 // Real XLSX serialization/read, private request fixtures, no Moodle bootstrap/runtime/DB.
-require __DIR__.'/spreadsheet-libraries.php';
-define('MOODLE_INTERNAL',true);
-class moodle_exception extends RuntimeException {public function __construct($key,...$rest){parent::__construct($key);}}
-function make_request_directory(){return $GLOBALS['requestdir'];}
-$root=dirname(__DIR__,3);require $root.'/classes/local/import_preview.php';require $root.'/classes/local/import_reader.php';
+require __DIR__ . '/spreadsheet-libraries.php';
+define('MOODLE_INTERNAL', true);
+class moodle_exception extends RuntimeException {public function __construct($key, ...$rest) {
+        parent::__construct($key);
+}
+}
+function make_request_directory() {
+    return $GLOBALS['requestdir'];
+}
+$root = dirname(__DIR__, 3);
+require $root . '/classes/local/import_preview.php';
+require $root . '/classes/local/import_reader.php';
 use local_groupimport\local\import_reader;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-$checks=0;function check($ok,$label){$GLOBALS['checks']++;if(!$ok)throw new RuntimeException($label);}
-$requestdir=sys_get_temp_dir().'/easystud-r9-'.bin2hex(random_bytes(8));mkdir($requestdir);$owned=[];
-function amended(string $bytes,callable $patch): string {
-    $path=$GLOBALS['requestdir'].'/fixture-'.bin2hex(random_bytes(5)).'.xlsx';$GLOBALS['owned'][]=$path;file_put_contents($path,$bytes);
-    $zip=new ZipArchive();if($zip->open($path)!==true)throw new RuntimeException('ZIP open');
-    $xml=$zip->getFromName('xl/worksheets/sheet1.xml');$changed=$patch($xml);check($changed!==$xml,'fixture amendment applied');$zip->addFromString('xl/worksheets/sheet1.xml',$changed);$zip->close();return file_get_contents($path);
+$checks = 0;
+function check($ok, $label) {
+    $GLOBALS['checks']++;
+    if(!$ok)throw new RuntimeException($label);
 }
-function rejected(string $bytes,string $name,string $expected): void {
-    try{import_reader::excel($bytes,$name);}catch(moodle_exception $e){check($e->getMessage()===$expected,'controlled '.$expected);check(glob($GLOBALS['requestdir'].'/import_*')===[],'request cleanup after rejection');return;}
-    throw new RuntimeException('Expected rejection '.$name);
+$requestdir = sys_get_temp_dir() . '/easystud-r9-' . bin2hex(random_bytes(8));
+mkdir($requestdir);
+$owned = [];
+function amended(string $bytes, callable $patch): string {
+    $path = $GLOBALS['requestdir'] . '/fixture-' . bin2hex(random_bytes(5)) . '.xlsx';
+    $GLOBALS['owned'][] = $path;
+    file_put_contents($path, $bytes);
+    $zip = new ZipArchive();
+    if($zip->open($path) !== true)throw new RuntimeException('ZIP open');
+    $xml = $zip->getFromName('xl/worksheets/sheet1.xml');
+    $changed = $patch($xml);
+    check($changed !== $xml, 'fixture amendment applied');
+    $zip->addFromString('xl/worksheets/sheet1.xml', $changed);
+    $zip->close();
+    return file_get_contents($path);
+}
+function rejected(string $bytes, string $name, string $expected): void {
+    try{import_reader::excel($bytes, $name);
+    }catch(moodle_exception $e){check($e->getMessage() === $expected, 'controlled ' . $expected);
+        check(glob($GLOBALS['requestdir'] . '/import_*') === [], 'request cleanup after rejection');
+        return;
+    }
+    throw new RuntimeException('Expected rejection ' . $name);
 }
 try {
-    $book=new Spreadsheet();$sheet=$book->getActiveSheet();$sheet->fromArray([['identifier','groupname','groupingname'],['u@example.test','Équipe','X']]);$sheet->getStyle('A1:C1')->getFont()->setBold(true);
-    $path=$requestdir.'/seed.xlsx';$owned[]=$path;$writer=new Xlsx($book);$writer->setPreCalculateFormulas(false);$writer->save($path);$book->disconnectWorksheets();unset($writer,$book,$sheet);$seed=file_get_contents($path);
-    $expected=['header'=>['identifier','groupname','groupingname'],'rows'=>[['u@example.test','Équipe','X']]];
-    check(import_reader::excel($seed,'normal.xlsx')===$expected,'normal workbook');
-    $column=amended($seed,static fn($xml)=>str_replace('<sheetData>','<cols><col min="1" max="16384" style="1"/></cols><sheetData>',$xml));
-    check(import_reader::excel($column,'all-columns-styled.xlsx')===$expected,'entire column formatting does not materialize cells');
-    $dimension=amended($column,static fn($xml)=>preg_replace('/<dimension ref="[^"]*"\/>/','<dimension ref="A1:XFD1048576"/>',$xml));
-    check(import_reader::excel($dimension,'huge-dimension.xlsx')===$expected,'huge reported dimension with no cells stays bounded');
-    $blank=amended($seed,static fn($xml)=>str_replace('</sheetData>','<row r="4000"><c r="A4000" s="1"/></row></sheetData>',$xml));
-    check(import_reader::excel($blank,'styled-blank.xlsx')===$expected,'within-bound empty formatted row skipped');
-    $far=amended($seed,static fn($xml)=>str_replace('</sheetData>','<row r="1048576"><c r="A1048576" s="1"/></row></sheetData>',$xml));
-    rejected($far,'millionth-row.xlsx','importstructurelimit');
-    $wide=amended($seed,static fn($xml)=>str_replace('</sheetData>','<row r="3"><c r="XFD3" s="1"/></row></sheetData>',$xml));
-    rejected($wide,'far-column.xlsx','importstructurelimit');
-    rejected('<html><table><tr><td>x</td></tr></table></html>','fake.xls',class_exists('PhpOffice\\PhpSpreadsheet\\Reader\\Xls')?'importformatinvalid':'importlegacyxlsunavailable');
-    rejected($seed,'bad.ods','importformatinvalid');
-    check(import_reader::max_bytes(1024)===1024&&import_reader::max_bytes(0)===5242880,'course/site/plugin bytes bounded');
-    $source=file_get_contents($root.'/classes/local/import_reader.php');
-    check(str_contains($source,'$reader->setReadEmptyCells(false);')&&str_contains($source,'$reader->setReadDataOnly(true);'),'native empty/data-only flags retained');
-    check(!str_contains($source,'createReaderForFile'),'no reader auto-detection');
-    check(glob($requestdir.'/import_*')===[],'successful request cleanup');
-    echo json_encode(['surface'=>'r9-formatted-xlsx','passed'=>true,'checks'=>$checks,'maxTestedRow'=>1048576,'maxTestedColumn'=>16384,'peakMemoryBytes'=>memory_get_peak_usage(true),'runtimeAccess'=>false,'databaseConnections'=>0]),"\n";
+    $book = new Spreadsheet();
+    $sheet = $book->getActiveSheet();
+    $sheet->fromArray([['identifier', 'groupname', 'groupingname'], ['u@example.test', 'Équipe', 'X']]);
+    $sheet->getStyle('A1:C1')->getFont()->setBold(true);
+    $path = $requestdir . '/seed.xlsx';
+    $owned[] = $path;
+    $writer = new Xlsx($book);
+    $writer->setPreCalculateFormulas(false);
+    $writer->save($path);
+    $book->disconnectWorksheets();
+    unset($writer, $book, $sheet);
+    $seed = file_get_contents($path);
+    $expected = ['header' => ['identifier', 'groupname', 'groupingname'], 'rows' => [['u@example.test', 'Équipe', 'X']]];
+    check(import_reader::excel($seed, 'normal.xlsx') === $expected, 'normal workbook');
+    $column = amended($seed, static fn($xml)=>str_replace('<sheetData>', '<cols><col min="1" max="16384" style="1"/></cols><sheetData>', $xml));
+    check(import_reader::excel($column, 'all-columns-styled.xlsx') === $expected, 'entire column formatting does not materialize cells');
+    $dimension = amended($column, static fn($xml)=>preg_replace('/<dimension ref="[^"]*"\/>/', '<dimension ref="A1:XFD1048576"/>', $xml));
+    check(import_reader::excel($dimension, 'huge-dimension.xlsx') === $expected, 'huge reported dimension with no cells stays bounded');
+    $blank = amended($seed, static fn($xml)=>str_replace('</sheetData>', '<row r="4000"><c r="A4000" s="1"/></row></sheetData>', $xml));
+    check(import_reader::excel($blank, 'styled-blank.xlsx') === $expected, 'within-bound empty formatted row skipped');
+    $far = amended($seed, static fn($xml)=>str_replace('</sheetData>', '<row r="1048576"><c r="A1048576" s="1"/></row></sheetData>', $xml));
+    rejected($far, 'millionth-row.xlsx', 'importstructurelimit');
+    $wide = amended($seed, static fn($xml)=>str_replace('</sheetData>', '<row r="3"><c r="XFD3" s="1"/></row></sheetData>', $xml));
+    rejected($wide, 'far-column.xlsx', 'importstructurelimit');
+    rejected('<html><table><tr><td>x</td></tr></table></html>', 'fake.xls', class_exists('PhpOffice\\PhpSpreadsheet\\Reader\\Xls') ? 'importformatinvalid' : 'importlegacyxlsunavailable');
+    rejected($seed, 'bad.ods', 'importformatinvalid');
+    check(import_reader::max_bytes(1024) === 1024 && import_reader::max_bytes(0) === 5242880, 'course/site/plugin bytes bounded');
+    $source = file_get_contents($root . '/classes/local/import_reader.php');
+    check(str_contains($source, '$reader->setReadEmptyCells(false);') && str_contains($source, '$reader->setReadDataOnly(true);'), 'native empty/data-only flags retained');
+    check(!str_contains($source, 'createReaderForFile'), 'no reader auto-detection');
+    check(glob($requestdir . '/import_*') === [], 'successful request cleanup');
+    echo json_encode(['surface' => 'r9-formatted-xlsx', 'passed' => true, 'checks' => $checks, 'maxTestedRow' => 1048576, 'maxTestedColumn' => 16384, 'peakMemoryBytes' => memory_get_peak_usage(true), 'runtimeAccess' => false, 'databaseConnections' => 0]), "\n";
 } finally {
     foreach($owned as $path)if(is_file($path))unlink($path);
-    foreach(glob($requestdir.'/import_*') as $path)if(is_file($path))unlink($path);
+    foreach(glob($requestdir . '/import_*') as $path)if(is_file($path))unlink($path);
     rmdir($requestdir);
 }
