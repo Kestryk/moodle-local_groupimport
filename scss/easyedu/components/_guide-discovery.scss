@@ -68,41 +68,6 @@
   .easyedu-guide-nav-item { cursor: pointer; }
   .easyedu-guide-nav-arrow:disabled { cursor: default; }
 
-  .easyedu-guide-label-tooltip {
-    @include tooltips.foundation-light-tooltip;
-    max-width: min(14rem, calc(100vw - 1.5rem));
-    // WCAG 1.4.13: hoverable, the tooltip stays while the pointer is on it.
-    pointer-events: auto;
-    position: fixed;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    z-index: 2;
-
-    &.is-multiline {
-      @include tooltips.foundation-light-tooltip(true);
-      max-width: min(19rem, calc(100vw - 1.5rem));
-    }
-
-    &::before {
-      background: var(--easyedu-tooltip-bg);
-      border-inline-start: 1px solid var(--easyedu-tooltip-border);
-      border-block-start: 1px solid var(--easyedu-tooltip-border);
-      content: "";
-      height: 0.5rem;
-      left: var(--easyedu-tooltip-anchor);
-      position: absolute;
-      top: -0.25rem;
-      transform: translateX(-50%) rotate(45deg);
-      width: 0.5rem;
-    }
-
-    &.is-above::before {
-      bottom: -0.25rem;
-      top: auto;
-      transform: translateX(-50%) rotate(225deg);
-    }
-  }
-
   --easyedu-guide-font-size-control: 0.78rem;
   --easyedu-guide-font-size-body: 0.88rem;
   // Matches the24px safety-note clearance in paired Introduction providers.
@@ -347,7 +312,8 @@
       width: 100%;
       min-width: 0;
       pointer-events: none;
-      .easyedu-guide-nav-item { cursor: default; max-width: 100%; }
+      // The sample pill carries the same Kit bubble and hand cursor as the real ones.
+      .easyedu-guide-nav-item { max-width: 100%; pointer-events: auto; }
     }
     &__action {
       @include buttons.selection-action(primary);

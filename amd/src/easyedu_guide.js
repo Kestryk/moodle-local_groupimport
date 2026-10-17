@@ -3691,6 +3691,7 @@ const bindHighlightAutoRefresh = root => {
 // limits it to copy that is actually clipped. The bubble fades in and out through Motion
 // (instant at the minimal level). The accessible name stays on the control itself.
 const GUIDE_BUBBLE = '[data-easyedu-guide-bubble]';
+const GUIDE_BUBBLE_CLASS = 'local-groupimport-easystud-hover-popover';
 const isClipped = element => element.scrollWidth > element.clientWidth + 1 ||
   element.scrollHeight > element.clientHeight + 1;
 // A pill is clipped when its title or its chapter line is; any other element, when it is itself.
@@ -3698,9 +3699,10 @@ const isClippedCopy = element => [element, ...element.querySelectorAll(
   '.easyedu-guide-nav-item__label, .easyedu-guide-nav-item__meta small')].some(isClipped);
 
 const bindGuideBubbles = root => {
-  if (!root.classList.contains('easyedu-guide--discovery')) return;
   const modal = root.querySelector(SELECTORS.modal);
-  if (!modal) return;
+  if (!root.classList.contains('easyedu-guide--discovery') || !modal) {
+    return;
+  }
   let tooltip = null;
   let target = null;
   let refreshFrame = null;
@@ -3741,10 +3743,17 @@ const bindGuideBubbles = root => {
     }
     hide();
     target = element;
+    // The same Kit bubble as the rest of EasyStud (bindHoverPopovers): same classes, markup and fade.
     tooltip = modal.ownerDocument.createElement('div');
-    tooltip.className = 'easyedu-guide-label-tooltip';
-    tooltip.setAttribute('aria-hidden', 'true');
-    tooltip.textContent = text;
+    tooltip.className = 'popover ' + GUIDE_BUBBLE_CLASS + ' ' + GUIDE_BUBBLE_CLASS + '--top show';
+    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--long', text.length > 110);
+    tooltip.setAttribute('role', 'tooltip');
+    const arrow = modal.ownerDocument.createElement('div');
+    arrow.className = 'popover-arrow';
+    const body = modal.ownerDocument.createElement('div');
+    body.className = 'popover-body';
+    body.textContent = text;
+    tooltip.append(arrow, body);
     // WCAG 1.4.13: the pointer may move onto the bubble, which then stays visible.
     tooltip.addEventListener('pointerenter', cancelGrace);
     tooltip.addEventListener('pointerleave', event => {
@@ -3754,26 +3763,19 @@ const bindGuideBubbles = root => {
     });
     // Append inside the actual fullscreen element, not a global body portal.
     modal.appendChild(tooltip);
-    const margin = 12;
-    const gap = 10;
+    const margin = 8;
     const anchor = element.getBoundingClientRect();
-    let size = tooltip.getBoundingClientRect();
-    if (size.height > 34.5) {
-      tooltip.classList.add('is-multiline');
-      size = tooltip.getBoundingClientRect();
-    }
+    const size = tooltip.getBoundingClientRect();
     const viewport = modal.ownerDocument.defaultView;
+    const below = anchor.top - size.height - 10 < margin;
     const left = Math.max(margin, Math.min(anchor.left + (anchor.width - size.width) / 2,
       viewport.innerWidth - size.width - margin));
-    const above = anchor.bottom + gap + size.height > viewport.innerHeight - margin;
-    const top = Math.max(margin, Math.min(above ? anchor.top - size.height - gap : anchor.bottom + gap,
-      viewport.innerHeight - size.height - margin));
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
-    tooltip.style.setProperty('--easyedu-tooltip-anchor',
-      `${Math.max(12, Math.min(anchor.left + anchor.width / 2 - left, size.width - 12))}px`);
-    tooltip.classList.toggle('is-above', above);
-    void Motion.enter(tooltip, {duration: Motion.timing.normal, distance: above ? '-0.2rem' : '0.2rem'});
+    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--top', !below);
+    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--bottom', below);
+    tooltip.style.position = 'fixed';
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = (below ? anchor.bottom + 10 : anchor.top - size.height - 10) + 'px';
+    void Motion.enter(tooltip, {distance: '0rem', duration: Motion.timing.normal});
   };
   const scheduleHide = () => {
     cancelGrace();

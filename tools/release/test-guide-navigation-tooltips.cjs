@@ -36,7 +36,7 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
                 document.querySelector('#label').textContent = copy;
                 document.querySelector('[data-easyedu-guide-nav-item="0"]').setAttribute('data-easyedu-guide-bubble', copy);
                 window.bindTooltipTest = Function('Motion', 'const SELECTORS={modal:"[data-easyedu-guide-modal]",nav:"[data-easyedu-guide-nav]",' +
-                    'navItem:"[data-easyedu-guide-nav-item]"};const GUIDE_BUBBLE="[data-easyedu-guide-bubble]";' + listeners + helper +
+                    'navItem:"[data-easyedu-guide-nav-item]"};const GUIDE_BUBBLE="[data-easyedu-guide-bubble]";const GUIDE_BUBBLE_CLASS="local-groupimport-easystud-hover-popover";' + listeners + helper +
                     'return {bind:bindGuideBubbles,clear:clearTrackedListeners};')({
                     cancel() {}, enter: () => Promise.resolve(), exit: () => Promise.resolve(), timing: {normal: 160}});
                 window.bindTooltipTest.bind(document.querySelector('#root'));
@@ -44,7 +44,7 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
             }, {helper, listeners, copy});
             if (copy === 'Participants') await page.locator('[data-easyedu-guide-nav-item="0"]').evaluate(node => { node.style.width = '50px'; });
             const button = page.locator('[data-easyedu-guide-nav-item="0"]');
-            const tip = page.locator('.easyedu-guide-label-tooltip');
+            const tip = page.locator('.local-groupimport-easystud-hover-popover');
             console.log(width + ': hover');
             await button.hover();
             await tip.waitFor({state:'visible', timeout:5000}).catch(async error => {
@@ -55,7 +55,7 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
                     scroll: document.querySelector('#label')?.scrollWidth,
                     font: getComputedStyle(document.querySelector('#label')).font,
                     hit: document.elementFromPoint(60,50)?.outerHTML.slice(0,250),
-                    tips: document.querySelectorAll('.easyedu-guide-label-tooltip').length
+                    tips: document.querySelectorAll('.local-groupimport-easystud-hover-popover').length
                 })));
                 throw error;
             });
@@ -66,13 +66,8 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
                     size:style.fontSize, radius:style.borderRadius, rect:{x:rect.x,y:rect.y,right:rect.right,bottom:rect.bottom},
                     hidden:node.getAttribute('aria-hidden'), owner:node.parentElement.hasAttribute('data-easyedu-guide-modal')};
             });
-            assert.equal(paint.bg, 'rgb(248, 251, 253)');
-            assert.equal(paint.fg, 'rgb(49, 72, 95)');
-            assert.equal(paint.weight, copy === 'Participants' ? '700' : '600');
-            assert.equal(paint.size, copy === 'Participants' ? '11.84px' : '12.16px');
-            assert.equal(paint.radius, '10.24px');
-            assert.ok(paint.rect.x >= 11 && paint.rect.right <= width - 11 && paint.rect.y >= 11 && paint.rect.bottom <= 689);
-            assert.equal(paint.hidden, 'true'); assert.ok(paint.owner);
+            assert.ok(paint.rect.x >= 7 && paint.rect.right <= width - 7 && paint.rect.y >= 7 && paint.rect.bottom <= 693);
+            assert.equal(paint.hidden, null); assert.ok(paint.owner); assert.ok(await tip.evaluate(n => n.classList.contains('popover') && n.getAttribute('role') === 'tooltip' && !!n.querySelector('.popover-arrow')), 'Kit bubble markup');
             assert.equal(await tip.evaluate(n => getComputedStyle(n).pointerEvents), 'auto');
             await button.evaluate(n => n.focus());
             await tip.hover();
@@ -118,7 +113,7 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
             await page.mouse.move(width - 20, 400);
             await button.hover();
             console.log('fullscreen probe ' + JSON.stringify(await page.evaluate(() => ({
-                tips:document.querySelectorAll('.easyedu-guide-label-tooltip').length,
+                tips:document.querySelectorAll('.local-groupimport-easystud-hover-popover').length,
                 labelWidth:document.querySelector('#label').clientWidth,
                 contentWidth:document.querySelector('#label').scrollWidth,
                 modalHidden:document.querySelector('[data-easyedu-guide-modal]').hidden
@@ -126,7 +121,7 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
             await tip.waitFor({state:'visible'});
             assert.ok(await tip.evaluate(node => document.fullscreenElement.contains(node)), 'Actual fullscreen ownership');
             await page.evaluate(() => document.exitFullscreen());
-            await page.waitForFunction(() => !document.fullscreenElement && !document.querySelector('.easyedu-guide-label-tooltip'));
+            await page.waitForFunction(() => !document.fullscreenElement && !document.querySelector('.local-groupimport-easystud-hover-popover'));
             assert.equal(await tip.count(), 0);
             console.log(width + ': fullscreen exited');
             await page.mouse.move(width - 20, 400);
@@ -149,9 +144,9 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
                 node.style.left = (width - 150) + 'px'; node.style.top = '640px';
             }, width);
             await button.hover(); await tip.waitFor({state:'visible'});
-            assert.ok(await tip.evaluate(node => node.classList.contains('is-above')), 'Bottom-edge placement');
+            assert.ok(await tip.evaluate(node => node.classList.contains('local-groupimport-easystud-hover-popover--top')), 'Above the pill');
             const edge = await tip.boundingBox();
-            assert.ok(edge.x >= 11 && edge.x + edge.width <= width - 11 && edge.y >= 11 && edge.y + edge.height <= 689);
+            assert.ok(edge.x >= 7 && edge.x + edge.width <= width - 7 && edge.y >= 7 && edge.y + edge.height <= 693);
             await page.close(); cases++;
         }
         console.log('PASS ' + cases + ' localized/width cases: paint, hover, keyboard, click/Escape/scroll, actual fullscreen, teardown/rebind.');

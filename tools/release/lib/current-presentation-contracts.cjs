@@ -70,7 +70,7 @@ function guide() {
         "addTrackedListener(root, modal.ownerDocument, 'scroll'", 'root.easyeduGuideTooltipHide = hide']) {
         assert(helper.includes(marker), marker);
     }
-    assert.equal(declarations(s => s.endsWith(' .easyedu-guide-label-tooltip'))['pointer-events'], 'auto');
+    assert.equal(declarations(s => s === '.local-groupimport-easystud-hover-popover')['pointer-events'], 'auto');
     assert((source.match(/root\.easyeduGuideTooltipHide\?\.\(\);/g) || []).length >= 3, 'Lifecycle hides remain');
     assert(source.includes('delete root.easyeduGuideTooltipHide;'));
 }
