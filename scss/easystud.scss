@@ -1,6 +1,7 @@
 // EasyStud / EasyEdu theme entry point.
 // Keep this file as orchestration only: reusable visual language lives in partials.
 @use "abstracts/tokens";
+@use "components/accessibility";
 @use "components/layout";
 @use "components/mass-import-navigation";
 @use "components/participants";

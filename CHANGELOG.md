@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] A10 candidate : recette Kit visually-hidden compatible Bootstrap 4/5, ajout CSS borné et géométrie isolée vérifiés ; livraison WIP, portes Guide bloquées par une dérive canonique antérieure, aucune publication.
+
 - 2026-10-17 [N1] R6 (4537aad7) : ajout du module navigateur pur de découpage en lots de 500 éléments au maximum, avec agrégation des réponses et suivi des éléments traités en cas d’échec partiel.
 - 2026-10-17 [N1] R6 (7095986e) : les ajouts de participants ou d’identifiants, retraits de membres et suppressions de groupes utilisent des lots successifs, des notifications de progression et un bilan partiel ; le déplacement natif reste transactionnel.
 - 2026-10-17 [N0] R6 (0ac9d9a0) : régénération des cinq source maps AMD des modules de traitement par lots, sans nouvelle modification des sources.

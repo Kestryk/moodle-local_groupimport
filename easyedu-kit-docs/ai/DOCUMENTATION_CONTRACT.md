@@ -1,5 +1,12 @@
 # EasyEdu documentation contract
 
+A10's public visually-hidden recipe is an opt-in Kit accessibility utility;
+the consumer owns page scope only. Preserve text and accessible descriptions,
+never replace it with display:none or aria-hidden. The current candidate has
+exact additive CSS proof but inherited Guide parity failures; do not mark it
+accepted until the owning Guide/canonical synchronization is repaired. See
+docs/testing/a10-visually-hidden-2026-10-17.md.
+
 G1 personal animation choice reuses the server M1 resolver and current-user
 Moodle preference repository. Keep Save explicit, Cancel/Escape reversible and
 the underlying Guide open. The embedded Kit owns the preference-window/radio

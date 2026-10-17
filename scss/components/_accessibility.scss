@@ -1,0 +1,10 @@
+// Page-local alias for themes that do not provide Bootstrap 5's utility.
+// Reusable geometry belongs only to the Kit; this file owns consumer scope.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud .visually-hidden,
+.local-groupimport-import .visually-hidden,
+.local-groupimport-admin .visually-hidden,
+.easyedu-guide .visually-hidden {
+  @include easyedu.visually-hidden;
+}

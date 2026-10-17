@@ -1,0 +1,236 @@
+{
+  "base": "5fbdb52e",
+  "status": "WIP: required Guide gates blocked by inherited canonical drift",
+  "additiveCss": {
+    "base": "5fbdb52e",
+    "pages": {
+      "student-management": {
+        "addedRules": 1,
+        "selectors": [
+          ".local-groupimport-easystud .visually-hidden",
+          ".easyedu-guide .visually-hidden"
+        ],
+        "priorOrderedCssUnchanged": true
+      },
+      "mass-import": {
+        "addedRules": 1,
+        "selectors": [
+          ".local-groupimport-import .visually-hidden"
+        ],
+        "priorOrderedCssUnchanged": true
+      },
+      "administration": {
+        "addedRules": 1,
+        "selectors": [
+          ".local-groupimport-admin .visually-hidden"
+        ],
+        "priorOrderedCssUnchanged": true
+      }
+    },
+    "addedDefinition": [
+      [
+        "border",
+        "0",
+        true
+      ],
+      [
+        "clip",
+        "rect(0, 0, 0, 0)",
+        true
+      ],
+      [
+        "height",
+        "1px",
+        true
+      ],
+      [
+        "margin",
+        "-1px",
+        true
+      ],
+      [
+        "overflow",
+        "hidden",
+        true
+      ],
+      [
+        "padding",
+        "0",
+        true
+      ],
+      [
+        "position",
+        "absolute",
+        true
+      ],
+      [
+        "white-space",
+        "nowrap",
+        true
+      ],
+      [
+        "width",
+        "1px",
+        true
+      ]
+    ],
+    "canonicalRecipeFiles": [
+      "scss/easyedu/components/_accessibility.scss",
+      "scss/easyedu/_components.scss"
+    ],
+    "preExistingCanonicalDrift": [
+      "scss/easyedu/components/_guide-discovery.scss",
+      "scss/easyedu/components/_guide-specimen.scss"
+    ],
+    "runtimeAccess": false,
+    "globalRules": 0,
+    "additiveCssPassed": true,
+    "canonicalRecipePassed": true,
+    "fullCanonicalParity": false,
+    "passed": false
+  },
+  "guideGates": {
+    "base": "5fbdb52e",
+    "runtimeAccess": false,
+    "gates": [
+      {
+        "test": "test-guide-t037-reading-composition.cjs",
+        "exit": 1,
+        "passed": false
+      },
+      {
+        "test": "test-guide-t038-navigation.cjs",
+        "exit": 1,
+        "passed": false
+      },
+      {
+        "test": "test-guide-mirror-roundtrip.cjs",
+        "exit": 1,
+        "passed": false
+      }
+    ],
+    "consumerGuideScssUnchangedFromBase": true,
+    "guideMirrorTrackedDiffEmpty": true,
+    "passed": false,
+    "limit": "Canonical Guide drift predates this additive recipe; no edits to the Guide or its mirror authorized."
+  },
+  "browser": {
+    "passed": true,
+    "cases": 8,
+    "records": [
+      {
+        "pageName": "student-management",
+        "host": "local-groupimport-easystud",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "student-management",
+        "host": "local-groupimport-easystud",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "student-management",
+        "host": "easyedu-guide",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "student-management",
+        "host": "easyedu-guide",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "mass-import",
+        "host": "local-groupimport-import",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "mass-import",
+        "host": "local-groupimport-import",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "administration",
+        "host": "local-groupimport-admin",
+        "nativeUtility": false,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      },
+      {
+        "pageName": "administration",
+        "host": "local-groupimport-admin",
+        "nativeUtility": true,
+        "width": 1,
+        "height": 1,
+        "display": "block",
+        "visibility": "visible",
+        "position": "absolute",
+        "clip": "rect(0px, 0px, 0px, 0px)",
+        "text": "Translated accessible description",
+        "linkedDescription": true
+      }
+    ],
+    "runtimeAccess": false,
+    "nativeAssistiveTechnology": "NOT_TESTED"
+  },
+  "compiler": {
+    "node": "22.11.0",
+    "sass": "1.79.1",
+    "format": "conservative"
+  },
+  "published": false,
+  "humanAccepted": false
+}
