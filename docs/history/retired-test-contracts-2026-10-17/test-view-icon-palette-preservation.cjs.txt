@@ -7,7 +7,8 @@ const baseline = '6a6c65b76a96b5cd99da538b8beb0a54012a6c6f';
 const read = file => fs.readFileSync(path.join(root, file), 'utf8').replace(/\r\n/g, '\n');
 const old = file => execFileSync('git', ['show', `${baseline}:${file}`], {cwd: root}).toString().replace(/\r\n/g, '\n');
 const before = 'easyedu-workspace-view-switcher" role="group" aria-label="{{selectionmodelabel}}"';
-const after = 'easyedu-workspace-view-switcher easyedu-workspace-view-switcher--tiled" role="group" aria-label="{{selectionmodelabel}}"';
+const after = 'easyedu-workspace-view-switcher easyedu-workspace-view-switcher--tiled" role="group"
+ aria-label="{{selectionmodelabel}}"';
 assert.equal(read('templates/manage.mustache'), old('templates/manage.mustache').replace(before, after));
 const css = read('styles.css');
 let blocks = 0;
