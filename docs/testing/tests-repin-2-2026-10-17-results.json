@@ -1,5 +1,5 @@
 {
-  "base": "d01f7208",
+  "base": "db964f08",
   "baseline": [
     {
       "base": "108f0b2c",
@@ -136,6 +136,76 @@
     },
     {
       "base": "d01f7208",
+      "name": "test-modal-focus-scope.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-quiet-selection-recovery.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-wave15-corrections-contract.ps1",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "Generated CSS is missing the Group-modal contextual-help rule."
+    },
+    {
+      "base": "db964f08",
+      "name": "test-view-icon-palette-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-guide-navigation-tooltip-source.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-tooltip-extraction-source.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-filter-disclosure-local-work-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-filter-disclosure-refresh-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-filter-disclosure-capsule-source.js",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "db964f08",
+      "name": "test-mass-report-semantic-palette.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "AssertionError [ERR_ASSERTION]: Exact official old/current paint and geometry"
+    },
+    {
+      "base": "db964f08",
       "name": "test-modal-focus-scope.cjs",
       "exit": 1,
       "timeout": false,
