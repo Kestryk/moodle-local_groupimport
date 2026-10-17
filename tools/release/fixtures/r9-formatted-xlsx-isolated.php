@@ -20,9 +20,9 @@ function rejected(string $bytes,string $name,string $expected): void {
     throw new RuntimeException('Expected rejection '.$name);
 }
 try {
-    $book=new Spreadsheet();$sheet=$book->getActiveSheet();$sheet->fromArray([['identifier','groupname','groupingname'],['u@example.test','?quipe','X']]);$sheet->getStyle('A1:C1')->getFont()->setBold(true);
+    $book=new Spreadsheet();$sheet=$book->getActiveSheet();$sheet->fromArray([['identifier','groupname','groupingname'],['u@example.test','Équipe','X']]);$sheet->getStyle('A1:C1')->getFont()->setBold(true);
     $path=$requestdir.'/seed.xlsx';$owned[]=$path;$writer=new Xlsx($book);$writer->setPreCalculateFormulas(false);$writer->save($path);$book->disconnectWorksheets();unset($writer,$book,$sheet);$seed=file_get_contents($path);
-    $expected=['header'=>['identifier','groupname','groupingname'],'rows'=>[['u@example.test','?quipe','X']]];
+    $expected=['header'=>['identifier','groupname','groupingname'],'rows'=>[['u@example.test','Équipe','X']]];
     check(import_reader::excel($seed,'normal.xlsx')===$expected,'normal workbook');
     $column=amended($seed,static fn($xml)=>str_replace('<sheetData>','<cols><col min="1" max="16384" style="1"/></cols><sheetData>',$xml));
     check(import_reader::excel($column,'all-columns-styled.xlsx')===$expected,'entire column formatting does not materialize cells');
