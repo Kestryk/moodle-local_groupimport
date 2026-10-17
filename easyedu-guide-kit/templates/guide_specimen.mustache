@@ -49,11 +49,11 @@
                 <div class="easyedu-guide-spec__popover">
                     <small class="easyedu-guide-spec__eyebrow">{{eyebrow}}</small>
                     <strong>{{title}}</strong>
-                    <span class="easyedu-guide-spec__chips">
-                        <span class="local-groupimport-easystud-token local-groupimport-easystud-token--role">{{chiproles}}</span>
-                        <span class="local-groupimport-easystud-token local-groupimport-easystud-token--group">{{chipgroups}}</span>
-                        <span class="local-groupimport-easystud-token local-groupimport-easystud-token--grouping">{{chipgroupings}}</span>
-                    </span>
+                    <dl class="easyedu-guide-spec__facts">
+                        {{#rows}}
+                        <div class="easyedu-guide-spec__fact"><dt><span class="fa {{icon}}" aria-hidden="true"></span><span>{{label}}</span></dt><dd>{{value}}</dd></div>
+                        {{/rows}}
+                    </dl>
                 </div>
                 {{/details}}
             </div>

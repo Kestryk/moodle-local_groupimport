@@ -88,9 +88,12 @@ final class guide_specimen {
         $details = [
             'eyebrow' => self::string('participant_details_eyebrow'),
             'title' => self::string('participant_details_title'),
-            'chiproles' => self::string('participant_chip_roles'),
-            'chipgroups' => self::string('participant_chip_groups'),
-            'chipgroupings' => self::string('participant_chip_groupings'),
+            // K17-38: three label/value rows; the numbers are demonstration values.
+            'rows' => [
+                ['icon' => 'fa-user-tag', 'label' => self::string('participant_row_roles'), 'value' => 1],
+                ['icon' => 'fa-users', 'label' => self::string('participant_row_groups'), 'value' => 3],
+                ['icon' => 'fa-layer-group', 'label' => self::string('participant_row_groupings'), 'value' => 2],
+            ],
         ];
         $frames = [];
         foreach ([1, 2, 3] as $number) {

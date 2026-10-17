@@ -1192,9 +1192,9 @@ $string['guidespec_participant_step2'] = 'Choisir l’œil « Voir les détails 
 $string['guidespec_participant_step3'] = 'La fiche s’ouvre';
 $string['guidespec_participant_details_eyebrow'] = 'EasyStud';
 $string['guidespec_participant_details_title'] = 'Détails du participant';
-$string['guidespec_participant_chip_roles'] = '1 rôle';
-$string['guidespec_participant_chip_groups'] = '3 groupes';
-$string['guidespec_participant_chip_groupings'] = '2 groupements';
+$string['guidespec_participant_row_roles'] = 'Rôles';
+$string['guidespec_participant_row_groups'] = 'Groupes';
+$string['guidespec_participant_row_groupings'] = 'Groupements';
 $string['guidespec_filters_label'] = 'Illustration en quatre étapes : saisir «  TD  » dans la recherche, choisir le rôle «  Étudiant  » dans «  Plus de filtres  », sélectionner les résultats, puis effacer la sélection.';
 $string['guidespec_filters_step1'] = 'Saisir « TD » dans la recherche';
 $string['guidespec_filters_step2'] = 'Plus de filtres : Rôle = Étudiant';
