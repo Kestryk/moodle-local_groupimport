@@ -189,12 +189,43 @@ export const entityMemberRows = (rows, options = {}) => {
     }
     const listId = prefix + '-list-' + (++listSequence);
     const extra = rows.length - visibleRelationLimit;
-    return '<ul class="' + prefix + '__members" id="' + listId + '">' +
-            rows.map((row, index) => '<li class="easyedu-related-person-row ' + prefix + '__member"' +
+    const selected = options.selected || [];
+    // K16-15: the rows of a group dialog are the Kit member row of the group cards (selection slot,
+    // name, terminal "-" action); the dialog adds its own hooks, never a second style.
+    const rowMarkup = (row, index) => {
+        const name = escapeHtml(row.name);
+        const isSelected = selected.indexOf(String(row.id)) !== -1;
+        return '<li class="easyedu-related-person-row local-groupimport-easystud-member ' + prefix + '__member' +
+                (isSelected ? ' is-selected' : '') + '" data-easystud-entity-member="' + escapeHtml(row.id) + '"' +
                 extraAttribute(index) + '>' +
-                '<span class="easyedu-related-person-row__name">' + escapeHtml(row.name) + '</span>' +
-                (row.email ? '<span class="' + prefix + '__member-meta">' + escapeHtml(row.email) + '</span>' : '') +
-            '</li>').join('') +
+            '<label class="local-groupimport-easystud-selector local-groupimport-easystud-selector--member ' +
+                    'easyedu-related-person-row__selector" aria-label="' +
+                    escapeHtml((options.selectLabel || '').replace('{name}', row.name)) + '">' +
+                '<input type="checkbox" data-easystud-entity-select="' + escapeHtml(row.id) + '"' +
+                    (isSelected ? ' checked' : '') + '>' +
+                '<span class="local-groupimport-easystud-selector__ui" aria-hidden="true"></span>' +
+            '</label>' +
+            '<span class="easyedu-related-person-row__name">' + name + '</span>' +
+            (row.email ? '<span class="' + prefix + '__member-meta">' + escapeHtml(row.email) + '</span>' : '') +
+            (options.removable ? '<button type="button" class="btn btn-link p-0 ' +
+                'local-groupimport-easystud-member__remove easyedu-related-person-row__remove" ' +
+                'data-easystud-entity-remove="' + escapeHtml(row.id) + '" aria-label="' +
+                escapeHtml((options.removeLabel || '').replace('{name}', row.name)) + '">' +
+                '<span aria-hidden="true">&minus;</span></button>' : '') +
+        '</li>';
+    };
+    const bulk = options.removable ?
+        '<div class="' + prefix + '__bulk" data-easystud-entity-bulk' + (selected.length ? '' : ' hidden') + '>' +
+            '<span class="' + prefix + '__bulk-count" data-easystud-entity-bulk-count role="status">' +
+                escapeHtml((options.selectedTemplate || '').replace('{}', String(selected.length))) + '</span>' +
+            '<button type="button" class="btn btn-outline-primary btn-sm" data-easystud-entity-bulk-move>' +
+                '<span class="fa fa-arrow-right" aria-hidden="true"></span> ' + escapeHtml(options.moveLabel || '') +
+            '</button>' +
+            '<button type="button" class="btn btn-outline-danger btn-sm" data-easystud-entity-bulk-remove>' +
+                '<span class="fa fa-user-minus" aria-hidden="true"></span> ' + escapeHtml(options.bulkRemoveLabel || '') +
+            '</button>' +
+        '</div>' : '';
+    return bulk + '<ul class="' + prefix + '__members" id="' + listId + '">' + rows.map(rowMarkup).join('') +
         '</ul>' +
         (extra > 0 ? moreButton(extra, countLabel(options.moreTemplate || '', extra), options.lessLabel || '', listId,
             prefix + '__text-action ' + prefix + '__more') : '');

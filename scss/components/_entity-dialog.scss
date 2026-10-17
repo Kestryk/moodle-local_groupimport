@@ -380,10 +380,38 @@
     padding-inline: 0.75rem;
   }
 
+  // K16-15: bulk actions of the selected members of a group dialog (same Kit buttons as the
+  // workspace selection bar); shown only while at least one member is selected.
+  &-entity__bulk {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-end: 0.5rem;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &-entity__bulk-count {
+    @include easyedu.type-caption;
+
+    margin-inline-end: auto;
+  }
+
+  // K16-15: with the selection slot and the "-" the row is tighter: the name keeps its width first
+  // (up to two thirds of the row), the e-mail takes the remaining space and truncates.
+  &-entity &-entity__member > .easyedu-related-person-row__name {
+    flex: 0 1 auto;
+    max-inline-size: 66%;
+  }
+
   &-entity__member-meta {
     @include easyedu.type-caption;
 
-    flex: 0 1 auto;
+    flex: 1 1 0;
+    text-align: end;
     min-inline-size: 0;
     overflow: hidden;
     text-overflow: ellipsis;

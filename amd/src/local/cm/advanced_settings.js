@@ -27,6 +27,9 @@ import {fetchDetails} from '../sm/store';
 import {countLabel} from '../sm/index';
 import {requestGuideHighlightRefresh, normalise, getLabels, showNotification, escapeHtml} from './shared';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
+import {getSelectedItems, setItemSelected, clearSelectionState, getActiveSelectionType} from './selection';
+import {areSelectionTypesCompatible} from './shared';
+import {getSelectedMemberRow} from '../sm/groups';
 import {hideEasyStudModal, bindCardModalKeyboard} from './modal';
 import {
     entitySection, entityIdentity, entityIcon, entitySkeletonField, entitySkeletonRelation, entityPills,
@@ -40,7 +43,8 @@ import {
 import {emitEditorInspectionCompletion} from './guide_hooks';
 import {ensureFullGroupMembers} from './group_cards';
 import {ensureTreeSection} from './workspace';
-import {postFormAction} from './actions';
+import {postFormAction, removeMembers, handleActionError} from './actions';
+import {updateSelectionActions} from './workspace';
 
 const clearAdvancedFileDragState = root => {
     root.querySelectorAll('.local-groupimport-easystud-settings-modal__filepicker.is-drag-over')
@@ -287,6 +291,192 @@ const getAdvancedGroupMemberRows = (root, item) => {
             id: userid,
         };
     }).filter(Boolean);
+};
+
+const getDialogSelectedMemberIds = (root, item) => {
+    const groupid = item.getAttribute('data-easystud-group-id');
+    return getSelectedItems(root, 'member').filter(Boolean).filter(member => {
+        const card = member.closest('[data-easystud-group-id]');
+        return card && card.getAttribute('data-easystud-group-id') === groupid;
+    }).map(member => String(member.getAttribute('data-easystud-member-id')));
+};
+
+/**
+ * Members relation section of a group dialog: Kit member rows with selection and "-" (K16-15).
+ *
+ * @param {HTMLElement} root Workspace root.
+ * @param {HTMLElement} item Group card.
+ * @param {Object[]} memberRows {id, name, email}.
+ * @param {String|null} countText Counter text when the card attribute is stale.
+ * @returns {String}
+ */
+const renderMemberSection = (root, item, memberRows, countText = null) => {
+    const labels = getLabels(root);
+    const name = getAdvancedValue(item, 'name');
+    const safeTitle = name.toLowerCase().replace(/[^a-z0-9_-]+/g, '-').replace(/^-|-$/g, '') || 'easystud';
+    return entityRelationSection({
+        title: labels.advancedsettingsmembers || '',
+        type: 'members',
+        countText: countText !== null ? countText : getAdvancedCountLabel(root, item, true),
+        content: entityMemberRows(memberRows, {
+            moreTemplate: labels.entityothermemberstemplate || '',
+            lessLabel: labels.showless || '',
+            emptyLabel: labels.advancedsettingsnomembers || '',
+            removable: true,
+            selected: getDialogSelectedMemberIds(root, item),
+            selectLabel: labels.entityselectmember || '',
+            removeLabel: labels.removeuser || '',
+            selectedTemplate: labels.entitymembersselected || '',
+            moveLabel: labels.movemembers || '',
+            bulkRemoveLabel: labels.deletemembersselection || '',
+        }),
+        rows: memberRows,
+        columns: [
+            {key: 'name', label: labels.advancedsettingsmembername || ''},
+            {key: 'email', label: labels.advancedsettingsmemberemail || ''},
+            {key: 'id', label: labels.advancedsettingsmemberid || ''},
+        ],
+        exportName: 'easystud-' + safeTitle + '-members.csv',
+        exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.advancedsettingsmembers || ''),
+    });
+};
+
+/**
+ * Action item of a member of the dialog group: the card row when it exists, else the detached
+ * row the on-demand model renders for selections (the item the workspace selection uses).
+ *
+ * @param {HTMLElement} root Workspace root.
+ * @param {HTMLElement} item Group card.
+ * @param {String} userid User id.
+ * @returns {HTMLElement|null}
+ */
+const getDialogMemberItem = (root, item, userid) => {
+    const row = item.querySelector('[data-easystud-member-id="' + userid + '"]');
+    if (row) {
+        return row;
+    }
+    const model = getOnDemandModel(root);
+    return model ? getSelectedMemberRow(model, item.getAttribute('data-easystud-group-id'), userid,
+        item.getAttribute('data-easystud-sm-catalog') || 'structure') : null;
+};
+
+const refreshDialogMembers = (root, item, modal) => {
+    const current = modal.querySelector('.local-groupimport-easystud-entity__relation--members');
+    if (!current) {
+        return;
+    }
+    const wasOpen = current.open;
+    const holder = document.createElement('div');
+    const rows = getAdvancedGroupMemberRows(root, item);
+    const template = getLabels(root).memberscounttemplate || '';
+    const countText = template.indexOf('__count__') === -1 ? null : countLabel(template, rows.length);
+    holder.innerHTML = renderMemberSection(root, item, rows, countText);
+    const next = holder.firstElementChild;
+    next.open = wasOpen;
+    current.replaceWith(next);
+    bindAnimatedDetails(next, next.querySelector(':scope > .local-groupimport-easystud-entity__relation-body'),
+        'data-easystud-settings-list-state');
+    const context = modal.querySelector('.local-groupimport-easystud-entity__context');
+    if (context && countText) {
+        context.textContent = [countText, context.textContent.split(' · ')[1] || ''].filter(Boolean).join(' · ');
+    }
+};
+
+const syncDialogBulk = (root, item, modal) => {
+    const selected = getDialogSelectedMemberIds(root, item);
+    modal.querySelectorAll('[data-easystud-entity-select]').forEach(input => {
+        const on = selected.indexOf(input.getAttribute('data-easystud-entity-select')) !== -1;
+        input.checked = on;
+        input.closest('.easyedu-related-person-row').classList.toggle('is-selected', on);
+    });
+    const bulk = modal.querySelector('[data-easystud-entity-bulk]');
+    if (bulk) {
+        bulk.hidden = !selected.length;
+        bulk.querySelector('[data-easystud-entity-bulk-count]').textContent =
+            (getLabels(root).entitymembersselected || '').replace('{}', String(selected.length));
+    }
+};
+
+/**
+ * Selection, "-" and bulk actions of the dialog members: same selection state, removeMembers and
+ * move dialog as the group cards (no second implementation).
+ *
+ * @param {HTMLElement} root Workspace root.
+ * @param {HTMLElement} item Group card.
+ * @param {HTMLElement} modal Dialog.
+ */
+const bindDialogMembers = (root, item, modal) => {
+    const courseId = root.getAttribute('data-easystud-course-id') || '';
+    modal.addEventListener('change', event => {
+        const input = event.target.closest('[data-easystud-entity-select]');
+        if (!input) {
+            return;
+        }
+        const member = getDialogMemberItem(root, item, input.getAttribute('data-easystud-entity-select'));
+        if (!member || (input.checked && !member.classList.contains('is-selected') &&
+                !areSelectionTypesCompatible(getActiveSelectionType(root), 'member'))) {
+            input.checked = false;
+            return;
+        }
+        setItemSelected(member, input.checked);
+        updateSelectionActions(root);
+        syncDialogBulk(root, item, modal);
+    });
+    // The workspace state is refreshed a moment after every action (data-easystud-sm-version changes):
+    // the member list then follows it, whatever the action (removal here, move dialog, a card).
+    const observer = new MutationObserver(() => {
+        if (!modal.isConnected) {
+            observer.disconnect();
+            return;
+        }
+        refreshDialogMembers(root, item, modal);
+    });
+    observer.observe(root, {attributes: true, attributeFilter: ['data-easystud-sm-version']});
+    const removeThen = members => {
+        const ids = members.map(member => String(member.getAttribute('data-easystud-member-id')));
+        return removeMembers(root, courseId, members).then(response => {
+            clearSelectionState(root);
+            updateSelectionActions(root);
+            showNotification(root, (response && response.message) || '', 'success');
+            // Immediate feedback; the refreshed state then rebuilds the list and the counters.
+            modal.querySelectorAll('[data-easystud-entity-member]').forEach(row => {
+                if (ids.indexOf(row.getAttribute('data-easystud-entity-member')) !== -1) {
+                    row.remove();
+                }
+            });
+            syncDialogBulk(root, item, modal);
+            return response;
+        }).catch(error => handleActionError(root, error));
+    };
+    modal.addEventListener('click', event => {
+        const remove = event.target.closest('[data-easystud-entity-remove]');
+        if (remove) {
+            const member = getDialogMemberItem(root, item, remove.getAttribute('data-easystud-entity-remove'));
+            const selected = getSelectedItems(root, 'member').filter(Boolean);
+            if (member) {
+                removeThen(member.classList.contains('is-selected') && selected.length > 1 ? selected : [member]);
+            }
+            return;
+        }
+        if (event.target.closest('[data-easystud-entity-bulk-remove]')) {
+            const selected = getSelectedItems(root, 'member').filter(Boolean);
+            if (selected.length) {
+                removeThen(selected);
+            }
+            return;
+        }
+        if (event.target.closest('[data-easystud-entity-bulk-move]')) {
+            const open = root.querySelector('[data-easystud-move-selected-members]:not([disabled])');
+            if (open) {
+                // Same stacking layer as this dialog: the later one in the document is on top.
+                const moveModal = root.querySelector('[data-easystud-move-modal]');
+                if (moveModal) {
+                    root.appendChild(moveModal);
+                }
+                open.click();
+            }
+        }
+    });
 };
 
 const getAdvancedGroupGroupingRows = (root, item) => {
@@ -567,24 +757,7 @@ const renderAdvancedBody = (root, item, state) => {
         renderAdvancedTextarea(labels.advancedsettingsdescription || '', 'description',
             getAdvancedValue(item, 'raw-description')) +
         (config ? renderAdvancedReadonly(labels.advancedsettingsconfigdata || '', config) : '');
-    const memberSection = entityRelationSection({
-        title: labels.advancedsettingsmembers || '',
-        type: 'members',
-        countText: getAdvancedCountLabel(root, item, true),
-        content: entityMemberRows(memberRows, {
-            moreTemplate: labels.entityothermemberstemplate || '',
-            lessLabel: labels.showless || '',
-            emptyLabel: labels.advancedsettingsnomembers || '',
-        }),
-        rows: memberRows,
-        columns: [
-            {key: 'name', label: labels.advancedsettingsmembername || ''},
-            {key: 'email', label: labels.advancedsettingsmemberemail || ''},
-            {key: 'id', label: labels.advancedsettingsmemberid || ''},
-        ],
-        exportName: 'easystud-' + safeTitle + '-members.csv',
-        exportLabel: (labels.exportcsvtemplate || '').replace('__name__', labels.advancedsettingsmembers || ''),
-    });
+    const memberSection = isgroup ? renderMemberSection(root, item, memberRows) : '';
     const groupingSection = entityRelationSection({
         title: labels.groupings || '',
         type: 'groupings',
@@ -841,6 +1014,9 @@ const openAdvancedSettingsModalNow = (root, item, returnFocus = null, initialSta
         }
     });
     bindEntityReveal(dialog);
+    if (isgroup) {
+        bindDialogMembers(root, item, modal);
+    }
     root.appendChild(modal);
     renderEditor(initialState);
     const focusModal = bindCardModalKeyboard(modal, closeModal);
