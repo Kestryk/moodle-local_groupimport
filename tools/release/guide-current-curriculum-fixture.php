@@ -65,6 +65,7 @@ class html_writer {
     }
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
+require(__DIR__ . '/../../classes/local/guide_specimen.php');
 $source = file_get_contents(__DIR__ . '/../../manage.php');
 $templatedata = $string;
 preg_match_all(

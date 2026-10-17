@@ -33,6 +33,7 @@ function get_string($key, $component) {
     return $string[$key];
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
+require(__DIR__ . '/../../classes/local/guide_specimen.php');
 $manage = file_get_contents(__DIR__ . '/../../manage.php');
 $marker = "        } else if (!empty(\$step['visualtakeaway'])) {";
 $start = strpos($manage, $marker);

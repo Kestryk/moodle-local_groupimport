@@ -1,0 +1,135 @@
+{{!
+    @template local_groupimport/guide_specimen
+
+    Illustration only (E1, K2): current-product specimens that replace the former
+    mini-cards of Guide slides 4, 8, 9, 11 and 12. They are static: no timer, no
+    command, no form control, no data-easystud-* hook. The panel is announced once
+    as an image; the ready recap is a real list whose links only change the slide.
+    Context: prepared by local_groupimport\local\guide_specimen.
+
+    Example context (json):
+    {
+        "kind": "participant",
+        "participant": true,
+        "label": "Illustration",
+        "caption": "Example",
+        "captionshort": "Example",
+        "frames": []
+    }
+}}
+{{#ready}}
+<section class="easyedu-guide-spec easyedu-guide-spec--ready" data-easyedu-guide-specimen="ready" aria-label="{{label}}">
+    <ul class="easyedu-guide-spec__tiles">
+        {{#tiles}}
+        <li class="easyedu-information easyedu-guide-spec__tile">
+            <div class="easyedu-information__header easyedu-information__header--small-icon">
+                <span class="easyedu-icon-tile easyedu-icon-tile--small" aria-hidden="true"><span class="fa {{icon}}"></span></span>
+                <strong class="easyedu-information__title">{{title}}</strong>
+            </div>
+            <p class="easyedu-information__description">{{text}}</p>
+            <button type="button" class="btn btn-link easyedu-guide-spec__review" data-easyedu-guide-goto="{{index}}">
+                <span>{{review}}</span><span class="fa fa-chevron-right" aria-hidden="true"></span>
+            </button>
+        </li>
+        {{/tiles}}
+    </ul>
+</section>
+{{/ready}}
+{{^ready}}
+<figure class="easyedu-guide-spec easyedu-guide-spec--{{kind}}" data-easyedu-guide-specimen="{{kind}}" role="img" aria-label="{{label}}">
+    <p class="easyedu-guide-scene__caption easyedu-guide-scene__caption--safe-example" aria-hidden="true"><span class="easyedu-guide-scene__caption-full">{{caption}}</span><span class="easyedu-guide-scene__caption-short">{{captionshort}}</span></p>
+    {{#participant}}
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        {{#frames}}
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>{{number}}</b><span>{{step}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                {{#card}}{{> local_groupimport/guide_specimen_participant}}{{/card}}
+                {{#details}}
+                <div class="easyedu-guide-spec__popover">
+                    <small class="easyedu-guide-spec__eyebrow">{{eyebrow}}</small>
+                    <strong>{{title}}</strong>
+                    <span class="easyedu-guide-spec__chips">
+                        <span class="local-groupimport-easystud-token local-groupimport-easystud-token--role">{{chiproles}}</span>
+                        <span class="local-groupimport-easystud-token local-groupimport-easystud-token--group">{{chipgroups}}</span>
+                        <span class="local-groupimport-easystud-token local-groupimport-easystud-token--grouping">{{chipgroupings}}</span>
+                    </span>
+                </div>
+                {{/details}}
+            </div>
+        </div>
+        {{/frames}}
+    </div>
+    {{/participant}}
+    {{#filters}}
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        {{#frames}}
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>{{number}}</b><span>{{step}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                <span class="easyedu-search-field">
+                    <span class="fa fa-search" aria-hidden="true"></span>
+                    <input type="search" class="form-control" value="{{searchvalue}}" readonly tabindex="-1" aria-hidden="true">
+                </span>
+                <div class="easyedu-guide-spec__filter{{^rolefilter}} is-spacer{{/rolefilter}}"{{^rolefilter}} aria-hidden="true"{{/rolefilter}}>
+                    <span class="easyedu-guide-spec__filter-label">{{rolelabel}}</span>
+                    <span class="local-groupimport-easystud-token local-groupimport-easystud-token--role">{{rolevalue}}</span>
+                </div>
+                <div class="easyedu-guide-spec__bar">
+                    <span class="btn btn-sm btn-outline-secondary easyedu-guide-spec__select{{#pointselect}} is-guide-pointed{{/pointselect}}">{{selectlabel}}</span>
+                    <span class="easyedu-guide-spec__count">{{countlabel}}</span>
+                </div>
+                <div class="easyedu-guide-spec__list">
+                    {{#cards}}{{> local_groupimport/guide_specimen_participant}}{{/cards}}
+                </div>
+                {{#selectionbar}}
+                <div class="easyedu-guide-spec__selection">
+                    <span class="easyedu-guide-spec__selection-count">{{summary}}</span>
+                    <span class="btn btn-outline-secondary btn-sm foundation-selection-action easyedu-selection-recovery-action{{#pointclear}} is-guide-pointed{{/pointclear}}"><span class="fa fa-times-circle" aria-hidden="true"></span><span>{{clear}}</span></span>
+                </div>
+                {{/selectionbar}}
+            </div>
+        </div>
+        {{/frames}}
+    </div>
+    {{/filters}}
+    {{#identifiers}}
+    <div class="easyedu-guide-spec__frames" aria-hidden="true">
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>1</b><span>{{stepgroup}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                {{#group}}{{> local_groupimport/guide_specimen_group}}{{/group}}
+            </div>
+        </div>
+        <div class="easyedu-guide-spec__frame">
+            <p class="easyedu-guide-spec__step"><b>2</b><span>{{stepgrouping}}</span></p>
+            <div class="easyedu-guide-spec__surface">
+                {{#grouping}}{{> local_groupimport/guide_specimen_grouping}}{{/grouping}}
+            </div>
+        </div>
+    </div>
+    {{/identifiers}}
+    {{#assignment}}
+    <div class="easyedu-guide-spec__flow" aria-hidden="true">
+        <div class="easyedu-guide-spec__surface easyedu-guide-spec__tree">
+            {{#grouping}}{{> local_groupimport/guide_specimen_grouping}}{{/grouping}}
+        </div>
+        <span class="easyedu-guide-spec__arrow fa fa-arrow-right" aria-hidden="true"></span>
+        {{#activity}}
+        <div class="easyedu-information easyedu-guide-spec__activity is-guide-path">
+            <div class="easyedu-information__header easyedu-information__header--small-icon">
+                <span class="easyedu-icon-tile easyedu-icon-tile--small" aria-hidden="true"><span class="fa fa-file-lines"></span></span>
+                <span class="easyedu-guide-spec__activity-copy">
+                    <small class="easyedu-guide-spec__eyebrow">{{eyebrow}}</small>
+                    <strong class="easyedu-information__title">{{type}}</strong>
+                </span>
+            </div>
+            <p class="easyedu-information__description">{{groupmode}}</p>
+            <p class="easyedu-information__description">{{groupinglabel}} <span class="local-groupimport-easystud-token local-groupimport-easystud-token--grouping">{{groupingname}}</span></p>
+            <p class="easyedu-information__description">{{note}}</p>
+        </div>
+        {{/activity}}
+    </div>
+    {{/assignment}}
+</figure>
+{{/ready}}

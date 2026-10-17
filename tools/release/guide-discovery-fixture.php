@@ -60,6 +60,7 @@ class html_writer {
     }
 }
 require(__DIR__ . '/../../classes/local/guide_discovery.php');
+require(__DIR__ . '/../../classes/local/guide_specimen.php');
 $reference = [];
 for ($index = 0; $index < 20; $index++) {
     $reference[] = ['id' => $index === 2 ? 'use-this-guide' : 'reference-' . $index,

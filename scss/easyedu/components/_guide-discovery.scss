@@ -16,6 +16,7 @@
 @use "focus";
 @use "tooltips";
 @use "../dialog-palette-classes" as palette;
+@use "guide-specimen";
 
 // Visually hidden, still in the accessibility tree (accessible name stays complete).
 @mixin guide-visually-hidden {
@@ -674,14 +675,7 @@
   }
 
   .easyedu-guide-scene {
-    @include typography.type-body;
-    font-size: var(--easyedu-guide-font-size-body);
-    padding: 1.5rem;
-    border: 1px solid var(--easyedu-border);
-    border-radius: 0.75rem;
-    background: var(--easyedu-surface-soft);
-    min-width: 0;
-    margin-block: 1.5rem;
+    @include guide-specimen.stage-panel;
 
     [hidden] { display: none; }
     // Scene spacing owns its direct copy only. Nested canonical notices/cards
@@ -1205,6 +1199,8 @@
   }
 
   // Intrinsic, equal-width Kit actions at every width; never stretched (768).
+  @include guide-specimen.guide-specimen;
+
   .easyedu-guide-modal__footer-actions {
     display: grid;
     grid-auto-flow: column;

@@ -392,6 +392,14 @@ final class guide_discovery {
         $navicons = ['discovery-creation' => 'fa-plus', 'discovery-membership' => 'fa-right-left'];
         foreach ($sources as $index => $source) {
             $slide = $byid[$source === 'create-one' ? 'discovery-creation' : $source];
+            // E1 (K2): slides 4, 8, 9, 11 and 12 show a current-product specimen, not the former mini-cards.
+            $specimen = guide_specimen::for_source($source);
+            if ($specimen !== null) {
+                foreach (guide_specimen::replaced_visual_keys() as $legacykey) {
+                    unset($slide[$legacykey]);
+                }
+                $slide['guidespecimen'] = $specimen;
+            }
             // Merge the unique teaching points, not merely the reading positions.
             // Reuse existing translated topics and the published dt/dd recipe.
             if ($source === 'create-one') {

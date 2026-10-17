@@ -110,6 +110,7 @@ const SELECTORS = {
   slide: '[data-easyedu-guide-slide]',
   nav: '[data-easyedu-guide-nav]',
   navItem: '[data-easyedu-guide-nav-item]',
+  gotoSlide: '[data-easyedu-guide-goto]',
   navNext: '[data-easyedu-guide-nav-next]',
   navPrevious: '[data-easyedu-guide-nav-previous]',
   next: '[data-easyedu-guide-next]',
@@ -3809,6 +3810,21 @@ const bindGuide = (root, config) => {
       setActiveSlide(root, Number(navItem.getAttribute('data-easyedu-guide-nav-item') || 0), activeConfig, {
         allowLocked: navItem.classList.contains('is-locked'), persistReading: true
       });
+      return;
+    }
+
+    // E1 (K2): a recap tile reopens an earlier slide through its own navigation item.
+    // It never starts a path or touches the course; locked slides stay locked.
+    const gotoLink = event.target.closest(SELECTORS.gotoSlide);
+    if (gotoLink && root.contains(gotoLink)) {
+      event.preventDefault();
+      syncSlideLocks(root, activeConfig);
+      const target = Number(gotoLink.getAttribute('data-easyedu-guide-goto'));
+      const item = Number.isInteger(target) ?
+        root.querySelector(`${SELECTORS.navItem}[data-easyedu-guide-nav-item="${target}"]`) : null;
+      if (item) {
+        setActiveSlide(root, target, activeConfig, {allowLocked: false, persistReading: true});
+      }
       return;
     }
 

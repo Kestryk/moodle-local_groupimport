@@ -1,0 +1,229 @@
+// E1 (K2): static specimens of the current product, for the Guide slides that used the
+// former mini-cards (participant, filters, identifiers, assignment, ready).
+//
+// A specimen composes the product's own card classes (rail, selector, header,
+// counter, member rows, empty row) and the Kit recipes below. It adds layout
+// only: frames, step captions, a pointer ring and the popover. It never restyles
+// a card, a control or a label. Hover-only card actions stay visible through the
+// product's "Guide target" marker, since an illustration cannot be hovered.
+@use "typography";
+@use "buttons";
+@use "focus";
+@use "menus";
+@use "panels";
+@use "pagination";
+@use "textareas";
+@use "cards";
+@use "feedback";
+
+// The stage surface shared by the timed scenes and the specimens.
+@mixin stage-panel {
+  @include typography.type-body;
+  font-size: var(--easyedu-guide-font-size-body);
+  padding: 1.5rem;
+  border: 1px solid var(--easyedu-border);
+  border-radius: 0.75rem;
+  background: var(--easyedu-surface-soft);
+  min-width: 0;
+  margin-block: 1.5rem;
+}
+
+// Pointer ring around the control a step acts on. An outline follows the control's
+// radius and survives the product's resting-card rules, which reset box shadows.
+@mixin pointer-ring {
+  outline: 2px solid var(--easyedu-primary);
+  outline-offset: 1px;
+}
+
+@mixin guide-specimen {
+  .easyedu-guide-spec {
+    @include stage-panel;
+    margin-inline: 0;
+    pointer-events: none;
+    user-select: none;
+    --easyedu-guide-spec-min: 16rem;
+
+    &--participant { --easyedu-guide-spec-min: 17rem; }
+    &--filters { --easyedu-guide-spec-min: 15rem; }
+    &--identifiers { --easyedu-guide-spec-min: 21rem; }
+
+    &__frames {
+      display: grid;
+      gap: 1.25rem 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--easyedu-guide-spec-min)), 1fr));
+      align-items: start;
+    }
+
+    &__frame { display: grid; gap: 0.5rem; min-width: 0; align-content: start; }
+
+    &__step {
+      @include typography.type-caption;
+      align-items: baseline;
+      color: var(--easyedu-primary-strong);
+      display: flex;
+      font-weight: var(--easyedu-font-weight-semibold);
+      gap: 0.25rem;
+      margin: 0;
+
+      b { font-weight: inherit; &::after { content: " ·"; } }
+      span { min-width: 0; overflow-wrap: anywhere; }
+    }
+
+    &__surface { display: grid; gap: 0.5rem; min-width: 0; }
+
+    &__list { display: grid; gap: 0.5rem; min-width: 0; }
+
+    // The eyebrow reuses the Guide's own caption role.
+    &__eyebrow {
+      @include typography.type-eyebrow;
+      color: var(--easyedu-text-muted);
+      font-size: 0.68rem;
+    }
+
+    // Details opening from the eye: the Kit menu surface with the product's tokens.
+    &__popover {
+      @include menus.menu-surface(small);
+      display: grid;
+      gap: 0.375rem;
+      inline-size: min(100%, 17rem);
+      margin-inline-start: auto;
+      position: static;
+    }
+
+    &__chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+    // "Select results" / count pair of the list's pagination bar.
+    &__bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.375rem; min-width: 0; }
+    &__select { @include pagination.pagination-select-button; white-space: nowrap; }
+    &__count { @include pagination.pagination-count; }
+
+    &__filter {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      min-width: 0;
+    }
+
+    &__filter.is-spacer { visibility: hidden; }
+
+    &__filter-label {
+      @include typography.type-caption;
+      font-weight: var(--easyedu-font-weight-semibold);
+      text-transform: uppercase;
+    }
+
+    // The desktop recovery capsule, placed in the flow instead of fixed to the window.
+    &__selection {
+      @include panels.sticky-selection-panel;
+      inset-inline-start: auto;
+      justify-self: start;
+      position: static;
+      transform: none;
+    }
+
+    &__selection-count { @include panels.sticky-selection-count; }
+
+    // The panel opened by the @ / Add groups action sits inside its card.
+    &__panel { display: grid; gap: 0.5rem; min-width: 0; }
+    &__panel .easyedu-guide-scene__inspection-chips > span { gap: 0.25rem; }
+    &__panel textarea { @include textareas.foundation-textarea($size: small); inline-size: 100%; resize: none; }
+
+    &__flow {
+      align-items: center;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: minmax(0, 3fr) auto minmax(0, 2fr);
+    }
+
+    &__tree { align-self: start; }
+
+    &__arrow { color: var(--easyedu-primary); font-size: 1.25rem; }
+
+    &__activity { margin-block-end: 0; }
+    &__activity-copy { display: grid; gap: 0.125rem; min-width: 0; }
+    &__activity .easyedu-information__title { margin: 0; }
+
+    .is-guide-pointed,
+    .is-guide-path { @include pointer-ring; }
+    .is-guide-pointed { border-radius: 999px; }
+    .is-guide-path { border-radius: 0.75rem; }
+    // A member row sits in a clipped list: it takes the selected-row paint, not a ring.
+    .easyedu-related-person-row.is-guide-path {
+      background: var(--easyedu-primary-soft);
+      outline: 0;
+    }
+
+    // The Guide can sit outside the product root (phone drawer), where the root-scoped
+    // product rules do not reach. The empty rows use the same Kit recipes as the product.
+    .easyedu-entity-card-empty--group {
+      @include feedback.entity-card-empty-line(var(--easyedu-group), $selection-aligned: true);
+    }
+    .easyedu-entity-card-empty--grouping {
+      @include feedback.entity-card-empty-line(var(--easyedu-grouping));
+    }
+
+    // Ready recap: real list, real links; the tiles are the Kit information panel.
+    &--ready {
+      background: transparent;
+      border: 0;
+      margin-block: 1.5rem;
+      padding: 0;
+      pointer-events: auto;
+      user-select: auto;
+    }
+
+    &__tiles {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__tile { margin: 0; align-content: start; }
+    &__tile .easyedu-information__title { margin: 0; }
+    &__tile .easyedu-information__header { align-items: center; }
+
+    &__review {
+      @include buttons.selection-recovery-action;
+      @include buttons.button-size(small);
+      gap: 0.375rem;
+      justify-self: start;
+      margin-block-start: 0.25rem;
+      padding-inline-start: 0;
+
+      .fa { font-size: 0.7rem; }
+    }
+  }
+
+  // Responsive workspace (1024 px): the participant card keeps its selection column,
+  // with the same Kit recipes as the product's responsive card.
+  @media (max-width: 64rem) {
+    .easyedu-guide-spec .local-groupimport-easystud-user {
+      @include cards.person-card-selection-column;
+      > .local-groupimport-easystud-selector {
+        @include cards.person-card-aligned-selector(10px, 44px);
+      }
+    }
+  }
+
+  @media (max-width: 40rem) {
+    // Phone: the card actions live in the card menu, so only the acting control is drawn.
+    .easyedu-guide-spec .local-groupimport-easystud-group__header .btn:not(.is-guide-pointed),
+    .easyedu-guide-spec .local-groupimport-easystud-grouping__header .btn:not(.is-guide-pointed) {
+      display: none;
+    }
+    // Phone: the stage reaches the reading edges like the timed scenes; one column.
+    .easyedu-guide-spec:not(.easyedu-guide-spec--ready) {
+      border: 0;
+      border-radius: 0;
+      margin-inline: calc(-1 * var(--easyedu-guide-reading-inset));
+      padding: 0.75rem;
+    }
+    .easyedu-guide-spec__flow { grid-template-columns: minmax(0, 1fr); }
+    .easyedu-guide-spec__arrow { justify-self: center; transform: rotate(90deg); }
+    .easyedu-guide-spec__popover { margin-inline-start: 0; }
+  }
+}

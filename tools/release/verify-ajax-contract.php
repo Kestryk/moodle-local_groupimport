@@ -267,6 +267,7 @@ function check($name, $condition) {
     }
 }
 require $root . '/classes/local/guide_discovery.php';
+require $root . '/classes/local/guide_specimen.php';
 $DB = new fixture_database();
 $course = (object)['id' => 123];
 check(
