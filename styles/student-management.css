@@ -5849,7 +5849,7 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover > strong {color: var(--easyedu-card-title-ink);font: 600 1rem/1.5 var(--easyedu-font-family-ui);
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__eyebrow {color: var(--easyedu-primary);font-size: 0.625rem;font-weight: var(--easyedu-font-weight-semibold);line-height: 1.2;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__popover .easyedu-guide-spec__eyebrow {color: var(--easyedu-primary);font-size: 0.625rem;font-weight: var(--easyedu-font-weight-semibold);line-height: 1.2;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-spec__facts {display: grid;margin: 0.625rem 0 0;
 }

@@ -99,12 +99,13 @@
         color: var(--easyedu-card-title-ink);
         font: 600 1rem/1.5 var(--easyedu-font-family-ui);
       }
-    }
-    &__popover &__eyebrow {
-      color: var(--easyedu-primary);
-      font-size: 0.625rem;
-      font-weight: var(--easyedu-font-weight-semibold);
-      line-height: 1.2;
+      // Nested here: "&__popover &__eyebrow" repeated the whole Guide root and never matched.
+      .easyedu-guide-spec__eyebrow {
+        color: var(--easyedu-primary);
+        font-size: 0.625rem;
+        font-weight: var(--easyedu-font-weight-semibold);
+        line-height: 1.2;
+      }
     }
     &__facts { display: grid; margin: 0.625rem 0 0; }
     &__fact {
