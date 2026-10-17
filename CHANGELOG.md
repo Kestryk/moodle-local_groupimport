@@ -9,6 +9,8 @@
 
 - 2026-10-17 [N2] K17-09: paginate editable import previews and queue imports above 1,000 rows through resumable native Moodle tasks, with transactional history, Privacy-aware pending rows and one completion notification.
 
+- 2026-10-17 [N0] Correct the groupings language component; diagnose native Moodle 5.3 loading with real AJAX/ESM evidence and document read-only session cache prerequisites without changing product timing.
+
 - 2026-10-17 [N0] Repin P2 historical parity to its retirement snapshot, assert the current surviving contract with six negative mutations, and verify the unchanged production zip in a blank extraction; no product change.
 
 - 2026-10-17 [N0] Preserve native participant-link integration after late secondary-navigation hydration without changing rendering or requiring newer Moodle APIs.

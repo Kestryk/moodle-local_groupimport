@@ -377,7 +377,7 @@ function local_groupimport_build_manage_template_data(
         'paginationnavbottom' => get_string('paginationnavbottom', 'local_groupimport'),
         'paginationparticipants' => get_string('participants'),
         'paginationgroups' => get_string('groups'),
-        'paginationgroupings' => get_string('groupings'),
+        'paginationgroupings' => get_string('groupings', 'group'),
         'entityselectmember' => str_replace('{}', '{name}', get_string('entityselectmember', 'local_groupimport')),
         'entitymembersselected' => get_string('entitymembersselected', 'local_groupimport'),
         'movemembers' => get_string('moveselectedmembers', 'local_groupimport'),
