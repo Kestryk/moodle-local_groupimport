@@ -315,6 +315,7 @@
   .easyedu-ui .easyedu-button--secondary { @include foundation-button(true); }
   .easyedu-ui .easyedu-button--danger { @include foundation-button($danger: true); }
   .easyedu-ui .easyedu-action-with-icon { @include buttons.action-content; }
+  .easyedu-ui .easyedu-inline-icon--leading { @include buttons.inline-icon-leading; }
   .easyedu-ui .foundation-selection-action { @include buttons.selection-action; }
   .easyedu-ui .foundation-selection-action.btn-outline-secondary {
     @include buttons.selection-action(neutral);
