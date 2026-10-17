@@ -3225,6 +3225,21 @@ const expandCompleteChecklist = checklist => {
   checklist.setAttribute('data-easyedu-guide-checklist-expanded', '');
 };
 
+// K17-30: the end box replaces the step list in one frame. Keep the former height and
+// let the panel grow or shrink to the new one while the message fades in; the minimal
+// level applies the end box at once (Motion.resize and Motion.enter are then instant).
+const animateChecklistCompletion = (checklist, fromHeight, message) => {
+  if (!checklist || checklist.hidden || !(fromHeight > 0)) {
+    return;
+  }
+  checklist.classList.add('is-completing');
+  void Motion.resize(checklist, () => checklist, {fromHeight, duration: Motion.timing.slow})
+    .then(() => checklist.classList.remove('is-completing'));
+  [message, checklist.querySelector('.easyedu-guided-panel__done')].filter(Boolean).forEach(element => {
+    void Motion.enter(element, {fromOpacity: 0, distance: '0.25rem', duration: Motion.timing.slow});
+  });
+};
+
 const renderChecklist = (root, config, pathName) => {
   const checklist = root.querySelector(SELECTORS.checklist);
   const list = root.querySelector(SELECTORS.checklistItems);
@@ -3238,6 +3253,9 @@ const renderChecklist = (root, config, pathName) => {
   const previousItems = Array.from(list.children);
   const reusable = checklist.getAttribute('data-easyedu-guide-path') === pathName ?
     new Map(previousItems.map(item => [item.getAttribute('data-easyedu-guide-step-id'), item])) : new Map();
+  const wasHidden = checklist.hidden;
+  const wasComplete = checklist.classList.contains('is-complete');
+  const fromHeight = wasHidden ? 0 : checklist.getBoundingClientRect().height;
   checklist.hidden = false;
   hideInterfaceReturn(root, true);
   const wasMinimized = checklist.classList.contains('is-minimized');
@@ -3333,6 +3351,9 @@ const renderChecklist = (root, config, pathName) => {
     message.classList.toggle('is-complete', allComplete);
     if (allComplete) {
       expandCompleteChecklist(checklist);
+      if (!wasComplete) {
+        animateChecklistCompletion(checklist, fromHeight, message);
+      }
     }
     if (icon) {
       icon.classList.toggle('fa-check-circle', allComplete);
@@ -3362,11 +3383,16 @@ const updateChecklistMessage = (root, config, activeStep) => {
   const completeMessage = message.getAttribute('data-complete-message') || config.labels.complete;
   const activeMessage = getStepText(activeStep, 'feedback') || config.labels.hint || '';
 
+  const wasComplete = checklist.classList.contains('is-complete');
+  const fromHeight = checklist.hidden ? 0 : checklist.getBoundingClientRect().height;
   checklist.classList.toggle('is-complete', complete);
   message.classList.toggle('is-complete', complete);
   if (complete) {
     expandCompleteChecklist(checklist);
     syncChecklistMinimizeControl(root);
+    if (!wasComplete) {
+      animateChecklistCompletion(checklist, fromHeight, message);
+    }
   }
   if (icon) {
     icon.classList.toggle('fa-location-arrow', !complete);

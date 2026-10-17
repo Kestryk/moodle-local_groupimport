@@ -397,7 +397,8 @@ export const resize = (element, mutate, options = {}) => {
     if (!element || typeof mutate !== 'function') {
         return Promise.resolve();
     }
-    const firstHeight = element.getBoundingClientRect().height;
+    // Options.fromHeight: the caller already mutated the element and kept its former height (K17-30).
+    const firstHeight = options.fromHeight === undefined ? element.getBoundingClientRect().height : options.fromHeight;
     cancel(element);
     mutate();
     const lastHeight = element.getBoundingClientRect().height;
