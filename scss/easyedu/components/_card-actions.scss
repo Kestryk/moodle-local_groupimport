@@ -53,6 +53,29 @@
   }
 }
 
+// K17-51 (Kevin 17/10): the one fold chevron of every group card. A card direct action (round
+// 1.85 rem target) whose chevron points right when folded and down when unfolded. The consumer
+// supplies the native button, its accessible name and the fold behaviour.
+@mixin card-fold-chevron {
+  @include card-direct-action;
+
+  margin-inline: 0;
+
+  &:not([aria-expanded="true"]) > .fa {
+    transform: rotate(-90deg);
+  }
+
+  &[aria-expanded="true"] > .fa {
+    transform: none;
+  }
+
+  // A card that has nothing to fold keeps the slot (aligned titles) but no control.
+  &.is-fold-inert {
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
 @mixin card-direct-action {
   // Moodle loads Bootstrap states after plugin CSS. Qualify native .btn
   // composition in the shared recipe, rather than adding consumer !important.
