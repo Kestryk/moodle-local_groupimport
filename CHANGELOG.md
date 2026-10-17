@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Repin P2 parity to the current compiled cascade and exercise current shared pill rendering; keep historical legacy-module input configurable.
+
 - 2026-10-17 [N0] Resync Guide mirror for d44585d8 touch gestures and public guideModality export; preserve runtime assets and generic/Moodle adapters.
 
 - 2026-10-17 [N0] R6: bound four bulk group actions to 500 items, raise execution time, batch enrolment/group reads and transactionally apply native writes with explicit skipped counts; browser chunking remains for Claude.

@@ -1817,5 +1817,11 @@
       ],
       "decisionGate": "none"
     }
-  ]
+  ],
+  "codex1TestsRepin20261017": {
+    "status": "isolated-pass-not-published",
+    "base": "05a84c57",
+    "report": "docs/testing/tests-repin-2026-10-17.md",
+    "checks": "10 CSS assertions and 16 isolated browser cases; zero page errors"
+  }
 }
