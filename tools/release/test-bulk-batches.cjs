@@ -117,5 +117,6 @@ const fakePost = (failOn = 0) => {
     assert(/action: 'removemembers',/.test(actions) && /postActionInBatches\(root, entries/.test(actions));
     assert(!/postAction\(\{\s*courseid: courseId,\s*action: '(addusers|addemails|deletegroups)'/.test(
         ['drag_drop', 'move_modal', 'context_menu', 'quick_actions'].map(name => read('amd/src/local/cm/' + name + '.js')).join('\n')));
+    assert((actions.match(/releaseConfirmedSelection\(root,/g) || []).length === 4, 'confirmed items released on every failed bulk path');
     console.log('bulk batches PASS');
 })().catch(error => { console.error(error); process.exit(1); });

@@ -35,7 +35,7 @@ import {
     rehydrateParticipantMembershipDetails, updateCatalogGroupingTags, syncGroupingChildrenState, syncUngroupedState,
     collapseGroupingSection, findParticipantCard,
 } from './cards';
-import {clearSelectionState} from './selection';
+import {clearSelectionState, releaseConfirmedSelection} from './selection';
 import {
     syncGroupingGroupsCollapsible, ensureNestedGroupActionMenus, createMemberItem, updateGroupingBadge,
     syncGroupMembersState, updateStructureSummary, updateStructureEmptyState, createGroupElement,
@@ -146,6 +146,11 @@ export const postAddUsersInBatches = (root, courseId, groupid, users, applyDone)
     }, error => {
         if (error.doneItems && error.doneItems.length) {
             applyDone(error.doneItems, error.response);
+            // The participants (or the members of the copy) the server confirmed are no longer selected.
+            const doneIds = error.doneItems.map(idOf);
+            releaseConfirmedSelection(root, 'participant', doneIds, item => item.getAttribute('data-user-id'));
+            releaseConfirmedSelection(root, 'member', doneIds, item => item.getAttribute('data-easystud-member-id'));
+            updateSelectionActions(root);
         }
         throw error;
     });
@@ -191,7 +196,9 @@ export const postDeleteGroupsInBatches = (root, courseId, groupids, removeDone) 
         return response;
     }, error => {
         if (error.doneItems && error.doneItems.length) {
+            releaseConfirmedSelection(root, 'group', error.doneItems, item => item.getAttribute('data-selectable-id'));
             removeDone(error.doneItems);
+            updateSelectionActions(root);
         }
         throw error;
     });
@@ -483,7 +490,17 @@ export const removeMembers = (root, courseId, members) => {
         return response;
     }, error => {
         if (error.doneItems && error.doneItems.length) {
+            const pairOf = (groupid, userid) => groupid + ':' + userid;
+            // Release before applyEntries() removes the rows.
+            const doneKeys = error.doneItems.map(entry => pairOf(entry.groupid, entry.userid));
+            const rowKey = item => {
+                const group = item.closest('[data-easystud-group-id]');
+                const groupid = group ? group.getAttribute('data-easystud-group-id') : '';
+                return pairOf(groupid, item.getAttribute('data-easystud-member-id'));
+            };
+            releaseConfirmedSelection(root, 'member', doneKeys, rowKey);
             applyEntries(error.doneItems);
+            updateSelectionActions(root);
         }
         throw error;
     });

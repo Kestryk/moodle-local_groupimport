@@ -25,6 +25,7 @@ import {
     selectedClass, disabledSelectionClass, draggingClass, dropTargetClass, getSelectionInput,
     areSelectionTypesCompatible,
 } from './shared';
+import {unconfirmedKeys} from './bulk_batches';
 import {getOnDemandModel, getOnDemandParticipants} from './state';
 import {getSelectedMemberRow} from '../sm/groups';
 import {
@@ -179,6 +180,17 @@ export const setItemSelected = (item, selected) => {
         const twin = item.isConnected ? catalog.detached.get(groupid) : catalog.pageCards.get(groupid);
         syncSelectionTwin(item, twin, selected);
     }
+};
+
+// R6: after a batch failed part-way, release the items the server confirmed and keep the others selected.
+export const releaseConfirmedSelection = (root, type, doneKeys, keyOf) => {
+    const selected = getSelectedItems(root, type);
+    const keep = new Set(unconfirmedKeys(selected.map(keyOf), doneKeys).map(String));
+    selected.forEach(item => {
+        if (!keep.has(String(keyOf(item)))) {
+            setItemSelected(item, false);
+        }
+    });
 };
 
 export const clearSelectionForType = (root, type, except) => {
