@@ -1152,3 +1152,7 @@ $string['longlistaddedmembers'] = '{$a} membres supplémentaires affichés';
 $string['longlistaddedmembers_one'] = '{$a} membre supplémentaire affiché';
 $string['longlistaddedgroups'] = '{$a} groupes supplémentaires affichés';
 $string['longlistaddedgroups_one'] = '{$a} groupe supplémentaire affiché';
+
+$string['importuserunavailable'] = 'Participant introuvable ou non disponible dans ce cours : {$a}.';
+$string['eventimportapplied'] = 'Import EasyStud appliqué';
+$string['eventimportrolledback'] = 'Historique d’import EasyStud restauré';

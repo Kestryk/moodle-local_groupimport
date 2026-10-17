@@ -1,4 +1,11 @@
 {
+  "codex1SecurityS520261017": {
+    "status": "source-isolated-pass-not-published-phpunit-pending",
+    "base": "6c3ac95f",
+    "branch": "work/codex1/easystud-security-s5-20261017",
+    "report": "docs/testing/security-s5-2026-10-17.md",
+    "validation": "61 isolated checks, lint 9/9, new-file MoodleCS 0/0, escaping/filter PASS; native PHPUnit not run; no runtime access"
+  },
   "codex1GuideCG720261016": {
     "status": "static-pass-native-not-run-8051-occupied-JG4-pending",
     "base": "ee870566",

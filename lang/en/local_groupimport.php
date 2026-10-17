@@ -1154,3 +1154,7 @@ $string['longlistaddedmembers'] = '{$a} more members displayed';
 $string['longlistaddedmembers_one'] = '{$a} more member displayed';
 $string['longlistaddedgroups'] = '{$a} more groups displayed';
 $string['longlistaddedgroups_one'] = '{$a} more group displayed';
+
+$string['importuserunavailable'] = 'Participant not found or unavailable in this course: {$a}.';
+$string['eventimportapplied'] = 'EasyStud import applied';
+$string['eventimportrolledback'] = 'EasyStud import history restored';
