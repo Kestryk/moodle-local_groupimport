@@ -1,5 +1,5 @@
 diff --git a/guide/amd/src/easyedu_guide.js b/guide/amd/src/easyedu_guide.js
-index d5283282..5641a8be 100644
+index d5283282..64de4ca7 100644
 --- a/guide/amd/src/easyedu_guide.js
 +++ b/guide/amd/src/easyedu_guide.js
 @@ -180,7 +180,7 @@ const easeGuideScroll = progress => {
@@ -122,7 +122,14 @@ index d5283282..5641a8be 100644
          scrolled = true;
        }
      }
-@@ -1241,7 +1262,6 @@ const scrollToTarget = (root, target, options = {}) => {
+@@ -1237,11 +1258,13 @@ const scrollToTarget = (root, target, options = {}) => {
+   }
+ 
+   clearHighlightAutoHideTimer(root);
++  // A new step supersedes its predecessor before scrolling, including instant
++  // reduced/minimal scrolling that finishes before the next highlight frame.
++  root.easyeduGuideRefreshTarget = target;
+   dockChecklistAwayFromTarget(root, target);
  
    const topOffset = getScrollTopOffset();
    const checklistBottomClearance = getCompactChecklistBottomClearance(root);
@@ -130,7 +137,7 @@ index d5283282..5641a8be 100644
  
    const alignWindow = () => {
      if (!isVisibleElement(target)) {
-@@ -1264,9 +1284,14 @@ const scrollToTarget = (root, target, options = {}) => {
+@@ -1264,9 +1287,14 @@ const scrollToTarget = (root, target, options = {}) => {
      }
    };
  
@@ -140,7 +147,7 @@ index d5283282..5641a8be 100644
 +  // Measure the outer scroll only after inner scrolling actually finishes.
 +  const epoch = root.easyeduGuidePathEpoch || 0;
 +  const alignAfterScroll = () => {
-+    if (epoch === (root.easyeduGuidePathEpoch || 0) && root.easyeduGuideCurrentTarget === target) {
++    if (epoch === (root.easyeduGuidePathEpoch || 0) && root.easyeduGuideRefreshTarget === target) {
 +      alignWindow();
 +    }
 +  };
@@ -148,7 +155,7 @@ index d5283282..5641a8be 100644
      alignWindow();
    }
  
-@@ -2142,7 +2167,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
+@@ -2142,7 +2170,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
      const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
      const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
      const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);

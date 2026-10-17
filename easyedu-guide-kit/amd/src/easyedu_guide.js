@@ -1258,6 +1258,9 @@ const scrollToTarget = (root, target, options = {}) => {
   }
 
   clearHighlightAutoHideTimer(root);
+  // A new step supersedes its predecessor before scrolling, including instant
+  // reduced/minimal scrolling that finishes before the next highlight frame.
+  root.easyeduGuideRefreshTarget = target;
   dockChecklistAwayFromTarget(root, target);
 
   const topOffset = getScrollTopOffset();
@@ -1287,7 +1290,7 @@ const scrollToTarget = (root, target, options = {}) => {
   // Measure the outer scroll only after inner scrolling actually finishes.
   const epoch = root.easyeduGuidePathEpoch || 0;
   const alignAfterScroll = () => {
-    if (epoch === (root.easyeduGuidePathEpoch || 0) && root.easyeduGuideCurrentTarget === target) {
+    if (epoch === (root.easyeduGuidePathEpoch || 0) && root.easyeduGuideRefreshTarget === target) {
       alignWindow();
     }
   };

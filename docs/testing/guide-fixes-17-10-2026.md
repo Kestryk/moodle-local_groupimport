@@ -22,6 +22,9 @@ est utilisé ; aucune publication sur le runtime principal.
   Le rafraîchissement pendant le défilement suit également la cible la plus
   récente (menu puis confirmation). L’alignement extérieur attend la fin réelle
   du défilement intérieur au lieu de mesurer sa position à mi-parcours.
+  Chaque nouvelle étape remplace explicitement la cible en attente avant le
+  défilement : une sélection précédente ne peut plus reprendre la priorité,
+  y compris quand le défilement réduit/minimal se termine immédiatement.
 
 ## Recette
 
