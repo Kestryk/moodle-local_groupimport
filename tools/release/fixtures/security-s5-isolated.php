@@ -26,6 +26,7 @@ namespace core\event {
      * Isolated fixture double for base.
      */
     class base {
+        /** Fixture teaching-context marker. */
         const LEVEL_TEACHING = 1;
         /**
          * @var mixed Standalone fixture state.
@@ -394,19 +395,23 @@ namespace {
          */
         public function get_records_sql($sql, $params, $offset = 0, $limit = 0) {
             $this->queries[] = $sql;
-            if (!isset($params['enrolcourse']) ||
-            !str_contains(
+            if (
+                !isset($params['enrolcourse']) ||
+                !str_contains(
                 $sql,
                 'JOIN (SELECT userid AS id'
-            ))throw new RuntimeException('Unscoped user read');
-            if (!str_starts_with(
+                )
+            )throw new RuntimeException('Unscoped user read');
+            if (
+                !str_starts_with(
                 $sql,
                 'SELECT DISTINCT u.id '
-            ) &&
-            !str_starts_with(
+                ) &&
+                !str_starts_with(
                 $sql,
                 'SELECT u.id '
-            ))throw new RuntimeException('Excess user fields');
+                )
+            )throw new RuntimeException('Excess user fields');
             $result = [];
             foreach ($this->users as $u) {
                 $field = str_contains(
@@ -438,24 +443,28 @@ namespace {
          */
         public function get_recordset_sql($sql, $params) {
             if (str_contains($sql, 'FROM {groupings}'))return new rows([]);
-            if (str_contains(
+            if (
+                str_contains(
                 $sql,
                 'FROM {groups_members}'
-            ))return new rows(array_values(array_map(
+                )
+            )return new rows(array_values(array_map(
                 fn($r)=>
                 (object)$r,
                 $this->members
             )));
             if (str_contains($sql, 'FROM {groupings_groups}'))return new rows([]);
-            if (!str_starts_with(
+            if (
+                !str_starts_with(
                 $sql,
                 'SELECT r.id, inputs.inputindex'
-            ) ||
-            !str_contains(
+                ) ||
+                !str_contains(
                 $sql,
                 'JOIN (SELECT userid AS id'
-            ) ||
-            !isset($params['enrolcourse']))throw new RuntimeException('Unscoped or excessive batch query');
+                ) ||
+                !isset($params['enrolcourse'])
+            )throw new RuntimeException('Unscoped or excessive batch query');
             $this->queries[] = $sql;
             $field = str_contains(
                 $sql,
@@ -469,12 +478,14 @@ namespace {
             foreach ($params as $key => $value) {
                 if (!preg_match('/^input(\d+)$/', $key, $m))continue;
                 foreach ($this->users as $u) {
-                    if ($this->matches(
+                    if (
+                        $this->matches(
                         $u,
                         $field,
                         $value,
                         $params
-                    ))$result[] = (object)['id' =>
+                        )
+                    )$result[] = (object)['id' =>
                     $u->id,
                     'batchinputindex' =>
                     (int)$m[1]];
@@ -627,9 +638,11 @@ namespace {
     $USER = (object)['id' => 777];
     $enrolled = [5 => [1, 3], 6 => [2]];
     $fields = ['email' => 'Email'];
-    foreach ([1,
+    foreach (
+        [1,
          2,
-         3] as $id)$DB->users[$id] = (object)['id' =>
+         3] as $id
+    )$DB->users[$id] = (object)['id' =>
          $id,
          'email' =>
          "u$id@example.test",
@@ -646,15 +659,16 @@ namespace {
     $DB->groups = [10 => (object)['id' => 10, 'courseid' => 5, 'name' => 'G']];
     $context = new context_course(5);
     foreach (['en', 'fr'] as $language) {
-        foreach (['email' =>
-         'u2@example.test',
-         'username' =>
-         'user2',
-         'idnumber' =>
-         'n2',
-         'profile_field_code' =>
-         'p2'] as $field =>
-         $identifier) {
+        foreach (
+            ['email' =>
+            'u2@example.test',
+            'username' =>
+            'user2',
+            'idnumber' =>
+            'n2',
+            'profile_field_code' =>
+            'p2'] as $field => $identifier
+        ) {
             $fields = [$field => $field];
             $errors = [];
             $known = match ($field) {

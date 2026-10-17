@@ -23,7 +23,9 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-/** Measure source spans; browser DOM is independently measured by Playwright. */
+/**
+ * Measure source spans; browser DOM is independently measured by Playwright.
+ */
 function easystud_perf_decompose(string $html): array {
     $regions = [];
     foreach (

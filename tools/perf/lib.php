@@ -24,7 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-/** Write an external JSON record atomically, without authentication state. */
+/**
+ * Write an external JSON record atomically, without authentication state.
+ */
 function easystud_perf_write(string $path, array $data): void {
     if (!is_dir(dirname($path)) || !is_writable(dirname($path))) {
         throw new RuntimeException('The external output directory must exist and be writable.');
@@ -38,7 +40,9 @@ function easystud_perf_write(string $path, array $data): void {
     }
 }
 
-/** Reject production hosts and settings that invalidate a cache-enabled baseline. */
+/**
+ * Reject production hosts and settings that invalidate a cache-enabled baseline.
+ */
 function easystud_perf_require_local(): array {
     global $CFG;
     if (!in_array(parse_url($CFG->wwwroot, PHP_URL_HOST), ['localhost', '127.0.0.1', '::1'], true)) {
@@ -56,7 +60,9 @@ function easystud_perf_require_local(): array {
     return $cache;
 }
 
-/** Read a manifest; a matching course name alone is never ownership evidence. */
+/**
+ * Read a manifest; a matching course name alone is never ownership evidence.
+ */
 function easystud_perf_manifest(string $path): array {
     $data = json_decode(file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
     if (
@@ -68,7 +74,9 @@ function easystud_perf_manifest(string $path): array {
     return $data;
 }
 
-/** Validate every existing owned object before measurement or deletion. */
+/**
+ * Validate every existing owned object before measurement or deletion.
+ */
 function easystud_perf_validate(array $manifest): void {
     global $DB;
     $courseid = (int)($manifest['courseId'] ?? 0);
@@ -120,7 +128,9 @@ function easystud_perf_validate(array $manifest): void {
     }
 }
 
-/** Hash existing relationship rows; no passwords, names or private messages are read. */
+/**
+ * Hash existing relationship rows; no passwords, names or private messages are read.
+ */
 function easystud_perf_relationships(array $manifest): array {
     global $DB;
     $courseid = (int)($manifest['courseId'] ?? 0);

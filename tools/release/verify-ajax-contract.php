@@ -279,7 +279,8 @@ foreach (['en', 'fr'] as $language) {
     preg_match_all('/^\$string\[\x27([^\x27]+)\x27\]\s*=/m', $langsource, $keys);
     check($language . ' unique language keys', count($keys[1]) === count(array_unique($keys[1])));
     require $root . '/lang/' . $language . '/local_groupimport.php';
-    foreach (['discovery_addselect',
+    foreach (
+        ['discovery_addselect',
          'discovery_adddrop',
          'discovery_mobileaddselect',
          'discovery_mobileaddmenu',
@@ -290,7 +291,8 @@ foreach (['en', 'fr'] as $language) {
          'guideinspection_grouping_open',
          'guideinspection_grouping_enter',
          'guideinspection_grouping_review',
-         'guideinspection_grouping_return'] as $key) {
+         'guideinspection_grouping_return'] as $key
+    ) {
         check($language . ' concise phase ' . $key, mb_strlen($string[$key]) <= 110);
     }
     check($language . ' participant action says Add', $string['moveselectedparticipants'] ===

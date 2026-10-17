@@ -44,7 +44,9 @@ if (!is_dir(dirname($manifestpath)) || !is_writable(dirname($manifestpath))) {
     throw new RuntimeException('External manifest directory must already exist and be writable.');
 }
 
-/** Write the exact configuration ownership record outside Git. */
+/**
+ * Write the exact configuration ownership record outside Git.
+ */
 function workspace_preferences_manifest(string $path, array $manifest): void {
     $json = json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR) . "\n";
     if (file_put_contents($path, $json, LOCK_EX) === false) {
@@ -52,14 +54,18 @@ function workspace_preferences_manifest(string $path, array $manifest): void {
     }
 }
 
-/** Read a raw plugin configuration value without losing missing-value state. */
+/**
+ * Read a raw plugin configuration value without losing missing-value state.
+ */
 function workspace_preferences_read(string $name): array {
     global $DB;
     $record = $DB->get_record('config_plugins', ['plugin' => 'local_groupimport', 'name' => $name]);
     return ['exists' => (bool)$record, 'value' => $record ? (string)$record->value : null];
 }
 
-/** Restore both owned configuration records after verifying fixture ownership. */
+/**
+ * Restore both owned configuration records after verifying fixture ownership.
+ */
 function workspace_preferences_cleanup(array $manifest): array {
     if (
         ($manifest['fixture'] ?? '') !== 'easystud-sm28-workspace-preferences' ||
