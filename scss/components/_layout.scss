@@ -1162,20 +1162,8 @@
   }
 
   &__panel-badge {
+    // Paint comes from count-badge; the existing card-label adoption owns geometry.
     @include easyedu.count-badge(#e8f1fa, #d0dfef, #35556f);
-
-    color: #35556f;
-    display: inline-flex;
-    font-size: 0.78rem;
-    font-weight: 700;
-    line-height: 1.2;
-    padding: 0.2rem 0.55rem;
-  }
-
-  &__panel-badge--accent {
-    background: #edf7f1;
-    border-color: #cee2d6;
-    color: #225842;
   }
 
   &__filters {

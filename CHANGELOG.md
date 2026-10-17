@@ -1,3 +1,4 @@
+- 2026-10-18 ? K16-80 : compteurs des panneaux sans surcharges locales redondantes ; peinture et g?om?trie Kit inchang?es.
 - 2026-10-18 [N0] K18-01 : exclure explicitement CCB du garde-fou Kit unique, sans modifier le relevé EasyStud ni les styles.
 
 - 2026-10-18 [N0] K16-31 : inventaire statique des redéfinitions locales de composants Kit, mode rapport JSON/lisible avec exceptions explicites ; aucun style modifié.

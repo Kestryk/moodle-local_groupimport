@@ -1607,5 +1607,6 @@
 "k1617FixtureLines20261018":{"base": "36988602", "errorsBeforeAfter": [0, 0], "warningsBeforeAfter": [29, 23], "constantValuesAndTokensPreserved": true, "renderingChanged": false, "runtimeAccess": false, "published": false},
 "k1617XlsxDiagnosticWrap20261018":{"productChanges": false, "tokensIdentical": true, "S7M5Checks": 355, "runtimeAccess": false, "published": false},
 "k1631KitSingleSource20261018":{"base": "edc26fa9", "mode": "report-only", "sourceFiles": 35, "candidateDeclarations": 553, "parseErrors": 0, "families": 26, "styleChanges": false, "runtimeAccess": false, "published": false, "humanAccepted": false},
-"k1801EasyStudOnly20261018":{"scope": "EasyStud only", "ccbExcludedWithoutTraversal": true, "styleHashesUnchanged": true, "findingsUnchanged": 553, "runtimeAccess": false, "published": false}
+"k1801EasyStudOnly20261018":{"scope": "EasyStud only", "ccbExcludedWithoutTraversal": true, "styleHashesUnchanged": true, "findingsUnchanged": 553, "runtimeAccess": false, "published": false},
+"k1680Pills20261018":{"before": 31, "after": 24, "new": 0, "removed": 7, "nativeStatus": "OPEN: course71 :8051 HTTP404", "published": false}
 }
