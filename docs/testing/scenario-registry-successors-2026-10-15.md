@@ -1,5 +1,14 @@
 # Preserved native successors, 15 October
 
+guide-fixes-demos-matrix-native.spec.js and guide-fixes-paths-matrix-native.spec.js:
+local-supervised candidates, 17 October, base64db2140. FR/EN1600/1280/768/390,
+three explicit Motion levels; targeted inspection/add/move demos and three
+native paths (group/grouping settings, actions). Own8051 only, disposable course,
+synthetic members, allowlisted addusers, cleanup required. Immutable predecessor
+pilots remain versioned; results and limitations in recette-guide-fixes-17-10-2026.
+CI requires isolated Moodle, credentials, PHP fixture lifecycle and Motion ready.
+No Penpot or human visual acceptance inferred.
+
 drawer-v1-served-native.spec.js: local-supervised FR390/768/1280 SM+MI keyboard/
 inert/scroll lock and desktop check160136613Z-15572 PASS. Compact JSON width is
 panel336px (viewport fixed by test loop/screenshots); no preference/business writes.
