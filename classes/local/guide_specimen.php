@@ -76,6 +76,12 @@ final class guide_specimen {
         ];
     }
 
+    /**
+     * Resolve a specimen label in the plugin language component.
+     *
+     * @param string $key Label suffix after guidespec_.
+     * @return string Translated specimen label.
+     */
     private static function string(string $key): string {
         return get_string('guidespec_' . $key, 'local_groupimport');
     }
@@ -223,6 +229,13 @@ final class guide_specimen {
         return ['ready' => true, 'kind' => 'ready', 'label' => self::string('ready_label'), 'tiles' => $tiles];
     }
 
+    /**
+     * Resolve a specimen label with its placeholder values.
+     *
+     * @param string $key Label suffix after guidespec_.
+     * @param mixed $args Placeholder values passed unchanged to get_string.
+     * @return string Translated specimen label.
+     */
     private static function string_with_args(string $key, $args): string {
         return get_string('guidespec_' . $key, 'local_groupimport', $args);
     }

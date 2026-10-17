@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] K17-12: document the two Guide specimen label helpers without changing their executable tokens.
+
 - 2026-10-17 [N0] K17-12: give isolated PHP fixtures named, documented doubles and a guarded CLI bootstrap; use Moodle developer debugging for AJAX failures. No presentation change.
 
 - 2026-10-17 [N0] Repin P2 historical parity to its retirement snapshot, assert the current surviving contract with six negative mutations, and verify the unchanged production zip in a blank extraction; no product change.
