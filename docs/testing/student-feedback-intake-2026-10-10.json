@@ -1318,5 +1318,6 @@
 "emptyCardAlign20261017":{"base": "108f0b2c", "proof": "FR/EN1600/768/390 native page + reversible nested DOM fixture:24 samples, icon<=0.328125,text<=0.015625; exact group2208 absent", "published": false, "humanAccepted": false},
 "membershipTransferHarness20261017":{"base": "108f0b2c", "proof": "PHP isolated transfer positive/negative/rollback cases and recordset closure PASS; product service unchanged", "published": false, "humanAccepted": false},
 "codecheckerSecondPass20261017":{"base": "108f0b2c", "proof": "MoodleCS1231/124->191/47,zero fixable; ESLint nonEOL109->109,warnings621->598;56PHP lint/token proofs,4JS token proofs,targeted tests+13suite smoke PASS", "published": false, "humanAccepted": false},
-"productionPackage20261017":{"base": "108f0b2c", "proof": "Independent zipfile CRC/content/path checks, required Moodle structure, extracted PHP lint and repeated ZIP hash PASS; no runtime install", "published": false, "humanAccepted": false}
+"productionPackage20261017":{"base": "108f0b2c", "proof": "Independent zipfile CRC/content/path checks, required Moodle structure, extracted PHP lint and repeated ZIP hash PASS; no runtime install", "published": false, "humanAccepted": false},
+"membershipFixtureDocs20261017":{"base": "db964f08", "before": {"errors": 49, "warnings": 0, "fixable": 0}, "after": {"errors": 6, "warnings": 0, "fixable": 0}, "executableTokensIdentical": 901, "phpLint": "PASS", "membershipTransferIsolated": "PASS", "runtimeAccess": false, "published": false}
 }
