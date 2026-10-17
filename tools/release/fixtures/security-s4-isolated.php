@@ -97,9 +97,11 @@ class memory_db {
     public function record_exists_select(string $table, string $sql, array $params): bool {
         $field = str_contains($sql, 'enrolmentkey') ? 'enrolmentkey' : 'idnumber';
         foreach ($this->rows[$table] ?? [] as $row) {
-            if ($row->courseid === $params['course'] &&
-            $row->id !== $params['id'] &&
-            ($row->$field ?? '') === $params['value'])return true;
+            if (
+                $row->courseid === $params['course'] &&
+                $row->id !== $params['id'] &&
+                ($row->$field ?? '') === $params['value']
+            )return true;
         }return false;
     }
 }

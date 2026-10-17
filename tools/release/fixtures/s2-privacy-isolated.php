@@ -154,9 +154,6 @@ namespace core_privacy\local\request {
          * @return mixed Fixture result.
          */
         public function __construct(private \context
-        /**
-         * @var mixed Standalone fixture state.
-         */
         $context, string $component = '') {
         }
         /**

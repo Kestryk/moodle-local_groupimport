@@ -51,14 +51,18 @@ if (!is_dir(dirname($manifestpath)) || !is_writable(dirname($manifestpath))) {
     throw new RuntimeException('External manifest directory must already exist and be writable.');
 }
 
-/** Durable ownership record; no credentials or real-user data. */
+/**
+ * Durable ownership record; no credentials or real-user data.
+ */
 function density_manifest(string $path, array $manifest): void {
     if (file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n", LOCK_EX) === false) {
         throw new RuntimeException('Cannot persist fixture ownership manifest.');
     }
 }
 
-/** Hash the pre-existing definitions and course relationships, not passwords. */
+/**
+ * Hash the pre-existing definitions and course relationships, not passwords.
+ */
 function density_baseline(int $courseid, int $contextid, array $owned = []): array {
     global $DB;
     $queries = [
@@ -94,7 +98,9 @@ function density_baseline(int $courseid, int $contextid, array $owned = []): arr
     return $result;
 }
 
-/** Verify retained manual-test data without removing anything. */
+/**
+ * Verify retained manual-test data without removing anything.
+ */
 function density_verify_retained(array $manifest): array {
     global $DB;
     if (
@@ -154,7 +160,9 @@ if ($options['action'] === 'verify-retained') {
     exit($proof['complete'] ? 0 : 1);
 }
 
-/** Fail closed before deleting anything if the exact fixture ownership drifted. */
+/**
+ * Fail closed before deleting anything if the exact fixture ownership drifted.
+ */
 function density_cleanup(array $manifest): array {
     global $DB;
     if (

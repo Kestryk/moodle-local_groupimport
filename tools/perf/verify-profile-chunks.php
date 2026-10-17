@@ -82,9 +82,6 @@ class profile_chunk_db {
              * @return mixed Fixture result.
              */
             public function __construct(
-                /**
-                 * @var mixed Standalone fixture state.
-                 */
                 array $rows,
                 public profile_chunk_db $db
             ) {

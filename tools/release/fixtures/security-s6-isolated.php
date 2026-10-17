@@ -99,7 +99,8 @@ function workbook(Spreadsheet $book, string $extension = 'xlsx'): string {
 }
 try {
     $csv = "identifier;groupname;groupingname\r\nu@example.test;Équipe été;Promotion\r\n";
-    foreach (['utf8' =>
+    foreach (
+        ['utf8' =>
          $csv,
          'bom' =>
          "\xEF\xBB\xBF" . $csv,
@@ -120,8 +121,8 @@ try {
              $csv,
              'UTF-16BE',
              'UTF-8'
-         )] as $encoding =>
-         $data) {
+         )] as $encoding => $data
+    ) {
         $parsed = reader::csv($data);
         check($parsed['rows'][0] === ['u@example.test', 'Équipe été', 'Promotion'], $encoding . ' accents preserved');
     }

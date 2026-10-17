@@ -45,7 +45,9 @@ easystud_perf_validate($manifest);
 require_once($options['after-root'] . '/classes/local/batch_reader.php');
 \core\session\manager::set_user(get_admin());
 
-/** Load actual pure helpers under distinct names; business logic is unchanged. */
+/**
+ * Load actual pure helpers under distinct names; business logic is unchanged.
+ */
 function perf_edge_load(string $root, string $entry, string $prefix): void {
     $source = file_get_contents($root . '/' . $entry);
     $start = strpos($source, "\nfunction ");

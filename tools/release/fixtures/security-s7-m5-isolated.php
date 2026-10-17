@@ -26,6 +26,7 @@ namespace core\event {
      * Isolated fixture double for base.
      */
     class base {
+        /** Fixture teaching-context marker. */
         const LEVEL_TEACHING = 1;
         /**
          * @var mixed Standalone fixture state.
@@ -226,11 +227,13 @@ namespace {
          */
         public function get_record($table, $conditions, $fields, $strict) {
             if ($GLOBALS['auth'] !== ['login', 'moodle/course:managegroups'])throw new RuntimeException('Lookup before auth');
-            if ($table !== 'local_groupimport_history' ||
-            $conditions !== ['id' =>
-            7,
-            'courseid' =>
-            5])throw new RuntimeException('Unscoped history read');
+            if (
+                $table !== 'local_groupimport_history' ||
+                $conditions !== ['id' =>
+                7,
+                'courseid' =>
+                5]
+            )throw new RuntimeException('Unscoped history read');
             return clone $this->record;
         }
     }
@@ -309,17 +312,20 @@ namespace {
     $probe = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $probesheet = $probe->getActiveSheet();
     policy::write_row($probesheet, 1, ['', '=1+1', '00123']);
-    foreach (['A1',
+    foreach (
+        ['A1',
          'B1',
-         'C1'] as $coordinate)check(
+         'C1'] as $coordinate
+    )check(
              $probesheet->getCell($coordinate)->getDataType() === 's',
              'Explicit type before serialization, including empty'
          );
     $probe->disconnectWorksheets();
     $values = array_merge($unsafe, $safe);
     $rows = [];
-    foreach ($values as $i =>
-         $value)$rows[] = ['identifier' =>
+    foreach (
+        $values as $i => $value
+    )$rows[] = ['identifier' =>
          '00123',
          'groupname' =>
          $value,
