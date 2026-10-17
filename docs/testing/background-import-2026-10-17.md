@@ -1,6 +1,6 @@
 # K17-09 — Imports volumineux et reprise par le cron
 
-Branche dédiée depuis `bc3f48f8`, non publiée sur localhost. Claude intègre et publie après revue.
+Branche dédiée initialement depuis `bc3f48f8`, puis rebasée sans conflit source sur `abf3c636` (`95c6fd19`). Non publiée sur localhost. Claude intègre et publie après revue.
 
 ## Fonctionnement
 
