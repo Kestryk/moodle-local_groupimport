@@ -1,6 +1,6 @@
 # A10 compatibility candidate — NOT FOR INTEGRATION BEFORE PHASE 8
 
-Base108f0b2c. Branch work/codex1/easystud-a10-compat45-20261017 only. No runtime installation or deployment.
+Rebased from108f0b2c onto ae3291b5. Successor branch work/codex1/easystud-a10-compat45-ae329-20261017. Original published branch87b93903 is retained unchanged: no force-push. No runtime installation or deployment.
 
 - IReadFilter accepts untyped arguments to implement Moodle4.5's older native interface. It forwards immediately to the same typed scalar boundary in a private method; the previous filter body and limits are unchanged. This keeps ordinary weak PHP scalar validation, bounds, overflow signalling and TypeErrors on5.1 while allowing the4.5 class to be declared.
 - Four hidden filter-count text spans carry both sr-only and visually-hidden, reusing core Bootstrap utilities for4.5 and5.1; no duplicated CSS or new5.x-only dependency. No other markup changes.
@@ -11,3 +11,5 @@ Proof: test-a10-compat45.cjs uses the actual4.5/5.1 native IReadFilter and Coord
 Required existing tests PASS: escaping, filter engine, five CRLF controller tests, T03714/T03847, isolated release smoke (including actual formatted-XLSX inputs). PHP lint PASS. Evidence: C:/dev/artifacts/a10-compat45-implementation-20261017/.
 
 Not certified: clean4.5 installation,4.5 upgrade fromV1, native course actions/theme/browser assistive-technology acceptance,5.3. Read-only API inventory remains in A10-COMPAT-45-ANALYSE-2026-10-17.md. core/modal_factory has no current product caller, so no replacement is introduced. Message dialog existing4.5 fallbacks remain unchanged. This branch must stay separate until phase8.
+
+Revalidation after rebase:16interface cases,2native Bootstrap utility cases,10existing source/Guide gates and13isolated smoke suites PASS. Version.php remains byte-identical to ae3291b5. Only CHANGELOG/intake unions were needed during rebase, all current values preserved. Source/template patch applied without conflict. The generated/read-only tests were not weakened or repinned.
