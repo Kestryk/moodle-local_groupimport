@@ -1353,7 +1353,6 @@
         gap: 0.5rem;
         justify-content: flex-end;
       }
-      .easyedu-guided-panel__return .fa { display: none; }
       // Penpot end box: only the Kit cross closes from the header (the end box is already compact).
       &:not(.is-minimized) .easyedu-guided-panel__minimize { display: none; }
       // Reduced by the user: the compact bar keeps its own check-less layout.
