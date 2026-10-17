@@ -12,7 +12,9 @@ for (const f of ['scss/easyedu/components/_forms.scss', 'scss/easyedu/_foundatio
 let template = read('templates/manage.mustache');
 assert.equal((template.match(/easyedu-filter-disclosure--capsule /g) || []).length, 4);
 template = template.replace(/easyedu-filter-disclosure--capsule /g, '').replace(
-    /                                <span class="easyedu-filter-disclosure__content">\n                                    (<span class="local-groupimport-easystud-advanced-filters__more">.*?<\/span>)\n                                    (<span class="fa fa-chevron-down" aria-hidden="true"><\/span>)\n                                <\/span>/g,
+    /                                <span class="easyedu-filter-disclosure__content">\n                                    (<span
+ class="local-groupimport-easystud-advanced-filters__more">.*?<\/span>)\n                                    (<span class="fa
+ fa-chevron-down" aria-hidden="true"><\/span>)\n                                <\/span>/g,
     '                                $1\n                                $2');
 assert.equal(template, old('templates/manage.mustache'), 'four exact wrapper/class-only adapters');
 const fingerprint = css => {
@@ -30,6 +32,7 @@ const fingerprint = css => {
 };
 assert.deepEqual(fingerprint(read('styles.css')), fingerprint(old('styles.css')), 'all unrelated CSS/arrow/Show-all preserved');
 const files = cp.execFileSync('git', ['ls-files', 'amd', 'motion', 'choices', 'js', 'settings.php', 'ajax.php',
-    'manage.php', 'index.php', 'lib.php', 'lang', 'scss/components', 'scss/responsive', 'scss/views'], {cwd: root, encoding: 'utf8'}).trim().split('\n');
+    'manage.php', 'index.php', 'lib.php', 'lang', 'scss/components', 'scss/responsive', 'scss/views'], {cwd: root, encoding:
+ 'utf8'}).trim().split('\n');
 for (const file of files) assert.equal(read(file), old(file), file + ' unchanged');
 console.log('PASS SM-54 canonical identity, four exact wrappers, whole unrelated CSS/commands/Motion preserved');

@@ -14,6 +14,8 @@
 - 2026-10-17 [N1] K16-43/44/79: compose entity relationship rows and a compact image filepicker from the Kit, remove duplicate summary counters while retaining context, and keep the shared remove command visible on touch devices.
 
 - 2026-10-17 [N0] Apply approved participant and Mass Import wording outside the Guide; preserve all GTXT Guide, tour and quickcreatehelp values on 2827b7c7.
+- 2026-10-17 [N0] K17-12: physically wrap eight retired test transcripts within the native text-file limit; preserve exact original bytes through reconstruction hashes.
+
 - 2026-10-17 [N0] K17-12: document the two Guide specimen label helpers without changing their executable tokens.
 
 - 2026-10-17 [N0] K17-12: give isolated PHP fixtures named, documented doubles and a guarded CLI bootstrap; use Moodle developer debugging for AJAX failures. No presentation change.

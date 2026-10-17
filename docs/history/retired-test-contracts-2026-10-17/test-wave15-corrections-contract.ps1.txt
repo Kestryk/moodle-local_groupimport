@@ -28,8 +28,10 @@ function Assert-Absent([string]$label, [string]$content, [string]$fragment) {
 $manager = Read-RequiredFile 'amd\src\course_manager.js'
 $managerBuild = Read-RequiredFile 'amd\build\course_manager.min.js'
 # T055: the course manager code lives in amd/src/local/cm (and amd/build/local/cm); read it with course_manager.js.
-$manager = $manager + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/src/local/cm') -Filter '*.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
-$managerBuild = $managerBuild + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/build/local/cm') -Filter '*.min.js' | Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
+$manager = $manager + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/src/local/cm') -Filter '*.js' | Sort-Object Name |
+ ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
+$managerBuild = $managerBuild + "`n" + ((Get-ChildItem -LiteralPath (Join-Path $root 'amd/build/local/cm') -Filter '*.min.js' |
+ Sort-Object Name | ForEach-Object { Get-Content -Raw -LiteralPath $_.FullName }) -join "`n")
 $modal = Read-RequiredFile 'scss\components\_settings-modal.scss'
 $tooltips = Read-RequiredFile 'scss\easyedu\components\_tooltips.scss'
 $guide = Read-RequiredFile 'scss\easyedu\components\_guide.scss'
@@ -41,9 +43,11 @@ $history = Read-RequiredFile 'docs\history\eed-ui-2026-wave15-corrections.md'
 # authoritative Kit control, without Bootstrap's link decoration utility.
 Assert-Contains 'Contextual-help source' $tooltips 'flex: 0 0 1.15rem !important;'
 Assert-Contains 'Contextual-help source' $tooltips 'text-decoration-line: none !important;'
-Assert-Contains 'Contextual-help source' $tooltips 'box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;'
+Assert-Contains 'Contextual-help source' $tooltips 'box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring)
+ !important;'
 Assert-Contains 'Native help markup' $manager '<button type="button" class="btn p-0 icon-no-margin '
-Assert-Absent 'Native help markup' $manager '<button type="button" class="btn btn-link p-0 icon-no-margin local-groupimport-easystud-settings-modal__help'
+Assert-Absent 'Native help markup' $manager '<button type="button" class="btn btn-link p-0 icon-no-margin
+ local-groupimport-easystud-settings-modal__help'
 Assert-Contains 'Enrollment key help consumer' $manager "labels.advancedsettingsenrolmentkeyhelp || ''"
 Assert-Contains 'Group image help consumer' $manager "renderFieldHelp(labels.advancedsettingsimagehelp || '')"
 if ([regex]::Matches($manager, 'renderFieldHelp\(labels\.').Count -ne 1) {
@@ -156,7 +160,8 @@ foreach ($declaration in @(
 if ($styles -notmatch '(?s)\.easyedu-navigation__guide-slot:not\(:empty\)\s*\{[^}]*margin-block-end:\s*1rem;') {
     throw 'Generated compact Guide slot is missing its following-section clearance.'
 }
-if ($styles -notmatch '(?s)\.easyedu-navigation__guide-slot \.easyedu-guide__launcher\s*\{[^}]*border:\s*0\.0625rem solid var\(--easyedu-guide-launcher-resting-border\);') {
+if ($styles -notmatch '(?s)\.easyedu-navigation__guide-slot \.easyedu-guide__launcher\s*\{[^}]*border:\s*0\.0625rem solid
+ var\(--easyedu-guide-launcher-resting-border\);') {
     throw 'Generated compact Guide launcher is missing its visible resting boundary.'
 }
 if ($styles -notmatch '(?s)\.easyedu-navigation__close:hover,.+?background:\s*var\(--easyedu-danger-soft\);') {
