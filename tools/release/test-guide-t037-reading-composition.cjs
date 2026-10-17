@@ -20,13 +20,20 @@ assert.equal(sourceScss, kitScss, 'Guide SCSS is mirrored exactly from the pinne
 for (const needle of [
     '--easyedu-guide-reading-measure: 38rem',
     '&--lesson-reading',
-    '@container (min-width: 36rem)',
+    '@container (min-width: 52rem)',
     '&__caption--safe-example',
     '&__lane-label',
     'color: var(--easyedu-text);',
 ]) {
     assert.ok(sourceScss.includes(needle), 'Missing shared Guide reading recipe: ' + needle);
 }
+// PEN-K17/K17-35 intentionally replaces the historical two-column intermediate lane.
+assert.ok(!sourceScss.includes('@container (min-width: 36rem)'), 'No obsolete two-column reading breakpoint');
+assert.ok(sourceScss.includes('grid-template-columns: repeat(3, minmax(0, 1fr));'),
+    'Accepted wide reading lane has three equal columns');
+assert.ok(sourceScss.includes('border-inline-start: 1px solid var(--easyedu-card-border);')
+    && sourceScss.includes('border-block-start: 1px solid var(--easyedu-card-border);'),
+    'Accepted wide and stacked reading lanes retain their one-pixel separators');
 assert.ok(compiled.includes('.easyedu-guide-scene__caption--safe-example'), 'Generated CSS contains the safe-example caption');
 assert.ok(template.includes('easyedu-guide-introduction{{#lessonreading}} easyedu-guide-introduction--lesson-reading{{/lessonreading}}'),
     'Template keeps the lesson-reading opt-in explicit');
@@ -39,4 +46,4 @@ assert.ok(discovery.includes("'lessonreading' => true"), 'Compatible card/action
 assert.ok(discovery.includes("'sourcecaption'"), 'Discovery data supplies a source lane label');
 assert.ok(english.includes("$string['discovery_sourcecaption'] = 'Source group';"), 'English source lane text is localized');
 assert.ok(french.includes("$string['discovery_sourcecaption'] = 'Groupe source';"), 'French source lane text is localized');
-console.log(JSON.stringify({surface: 'T037-guide-reading-composition', level: 0, passed: true, checks: 14}));
+console.log(JSON.stringify({surface: 'T037-guide-reading-composition', level: 0, passed: true, checks: 17}));

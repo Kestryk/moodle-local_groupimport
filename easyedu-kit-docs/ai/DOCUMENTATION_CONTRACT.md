@@ -1130,3 +1130,11 @@ by the positioned toggle root. Source parity does not certify native behavior.
 ANIM uses the single preferences-classes recipe and generic display_preferences
 composition. Guide entry buttons dispatch the consumer adapter; translated labels,
 Moodle preference persistence and lifecycle stay outside the generic Guide engine.
+
+
+The current Guide imports the single shared easyedu_bubble controller alongside
+fullscreen and Motion. Motion is injected into the import-free bubble module;
+never duplicate its renderer/placement/grace logic in a consumer. The Moodle
+adapter depends on both motion and easyedu_bubble and must round-trip exactly.
+See docs/testing/guide-bubble-mirror-2026-10-17.md (consumer) or
+docs/guide-bubble-mirror-2026-10-17.md (canonical) for current validation.
