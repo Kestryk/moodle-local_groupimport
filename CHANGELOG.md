@@ -1,3 +1,7 @@
+- 2026-10-17 [N1] R6 (4537aad7) : ajout du module navigateur pur de découpage en lots de 500 éléments au maximum, avec agrégation des réponses et suivi des éléments traités en cas d’échec partiel.
+- 2026-10-17 [N1] R6 (7095986e) : les ajouts de participants ou d’identifiants, retraits de membres et suppressions de groupes utilisent des lots successifs, des notifications de progression et un bilan partiel ; le déplacement natif reste transactionnel.
+- 2026-10-17 [N0] R6 (0ac9d9a0) : régénération des cinq source maps AMD des modules de traitement par lots, sans nouvelle modification des sources.
+
 - 2026-10-17 [N0] L1/L2 coherent389b832d successor: preserve the already-applied root/dead-rule cleanup; prove four conservative page sheets ordered-identical, global CSS0rules and all50shared Kit definitions aligned; no new consumer removals.
 
 - 2026-10-17 [N0] TRI38: pin Node22.11.0/Sass1.79.1, guard all18release builders and verify loaded Sass; normalize bubble source-map input line endings, preserve generated assets and dependency versions.
