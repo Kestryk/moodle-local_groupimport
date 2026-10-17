@@ -269,9 +269,19 @@ final class import_reader {
                  * @param string $worksheetname Sheet.
                  * @return bool
                  */
-                public function readCell(string $columnaddress, int $row, string $worksheetname = ''): bool {
+                public function readCell($columnaddress, $row, $worksheetname = ''): bool {
+                    // Moodle 4.5 ships an untyped interface; validate before using its values.
                     if (
-                        $row > import_preview::MAX_ROWS + 1 ||
+                        !is_string($columnaddress) || !preg_match('/^[A-Z]{1,3}$/iD', $columnaddress) ||
+                            (!is_int($row) && !(is_string($row) && ctype_digit($row))) ||
+                            !is_string($worksheetname)
+                    ) {
+                        $this->overflow = true;
+                        return false;
+                    }
+                    $row = (int)$row;
+                    if (
+                        $row < 1 || $row > import_preview::MAX_ROWS + 1 ||
                             Coordinate::columnIndexFromString($columnaddress) > import_reader::MAX_COLUMNS
                     ) {
                         $this->overflow = true;

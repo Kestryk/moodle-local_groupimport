@@ -1,0 +1,86 @@
+{
+  "base": "5fbdb52e",
+  "probes": {
+    "passed": true,
+    "results": [
+      {
+        "library": "C:/dev/Moodle45-Clean/server/moodle/lib",
+        "passed": true,
+        "cases": 19,
+        "runtimeAccess": false
+      },
+      {
+        "library": "C:/dev/moodle51-build-501/public/lib",
+        "passed": true,
+        "cases": 19,
+        "runtimeAccess": false
+      },
+      {
+        "library": "C:/dev/Moodle 53/moodle/public/lib",
+        "passed": true,
+        "cases": 19,
+        "runtimeAccess": false
+      }
+    ]
+  },
+  "phpcs": {
+    "errors": 0,
+    "warnings": 0,
+    "fixable": 0
+  },
+  "phpLint": "PASS",
+  "productFiles": [
+    "classes/local/import_reader.php"
+  ],
+  "runtimeAccess": false,
+  "requiresUnchanged": true,
+  "published": false,
+  "humanAccepted": false,
+  "s6-45": {
+    "suite": "S6-isolated-real-spreadsheets",
+    "passed": true,
+    "checks": 39,
+    "csvRows": 3000,
+    "confirmationCeilingUnchanged": 1000,
+    "realFormats": [
+      "xlsx"
+    ],
+    "legacyXlsReaderAvailable": false,
+    "databaseConnections": 0,
+    "runtimeAccess": false
+  },
+  "s6-51": {
+    "suite": "S6-isolated-real-spreadsheets",
+    "passed": true,
+    "checks": 39,
+    "csvRows": 3000,
+    "confirmationCeilingUnchanged": 1000,
+    "realFormats": [
+      "xlsx"
+    ],
+    "legacyXlsReaderAvailable": false,
+    "databaseConnections": 0,
+    "runtimeAccess": false
+  },
+  "r9-45": {
+    "surface": "r9-formatted-xlsx",
+    "passed": true,
+    "checks": 21,
+    "maxTestedRow": 1048576,
+    "maxTestedColumn": 16384,
+    "peakMemoryBytes": 27262976,
+    "runtimeAccess": false,
+    "databaseConnections": 0
+  },
+  "r9-51": {
+    "surface": "r9-formatted-xlsx",
+    "passed": true,
+    "checks": 21,
+    "maxTestedRow": 1048576,
+    "maxTestedColumn": 16384,
+    "peakMemoryBytes": 27262976,
+    "runtimeAccess": false,
+    "databaseConnections": 0
+  },
+  "newTestEslintErrors": 0
+}
