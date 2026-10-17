@@ -60,7 +60,8 @@ $checks = 0;
  */
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if (!$ok) { throw new RuntimeException($label);
+    if (!$ok) {
+        throw new RuntimeException($label);
     }
 }
 $requestdir = sys_get_temp_dir() . '/easystud-r9-' . bin2hex(random_bytes(8));
@@ -77,7 +78,8 @@ function amended(string $bytes, callable $patch): string {
     $GLOBALS['owned'][] = $path;
     file_put_contents($path, $bytes);
     $zip = new ZipArchive();
-    if ($zip->open($path) !== true) { throw new RuntimeException('ZIP open');
+    if ($zip->open($path) !== true) {
+        throw new RuntimeException('ZIP open');
     }
     $xml = $zip->getFromName('xl/worksheets/sheet1.xml');
     $changed = $patch($xml);
@@ -211,11 +213,15 @@ try {
          0]),
          "\n";
 } finally {
-    foreach ($owned as $path) { if (is_file($path)) { unlink($path);
+    foreach ($owned as $path) {
+        if (is_file($path)) {
+            unlink($path);
+        }
     }
-    }
-    foreach (glob($requestdir . '/import_*') as $path) { if (is_file($path)) { unlink($path);
-    }
+    foreach (glob($requestdir . '/import_*') as $path) {
+        if (is_file($path)) {
+            unlink($path);
+        }
     }
     rmdir($requestdir);
 }

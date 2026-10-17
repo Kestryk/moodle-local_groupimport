@@ -147,7 +147,8 @@ class memory_db {
      * @return mixed Fixture result.
      */
     public function mutate() {
-        if (++$this->writes === $this->failat) { throw new RuntimeException('native-failure');
+        if (++$this->writes === $this->failat) {
+            throw new RuntimeException('native-failure');
         }
     }
     /**
@@ -183,7 +184,8 @@ class memory_db {
         unset($params['courseid']);
         $out = [];
         foreach ($params as $id) {
-            if (isset($this->groups[$id]) && $this->groups[$id]->courseid === $course) { $out[$id] = $this->groups[$id];
+            if (isset($this->groups[$id]) && $this->groups[$id]->courseid === $course) {
+                $out[$id] = $this->groups[$id];
             }
         }return $out;
     }
@@ -336,7 +338,8 @@ function local_groupimport_extract_user_tokens($s) {
 function local_groupimport_find_users_by_identifiers($tokens) {
     $out = [];
     foreach ($tokens as $t) {
-        if (preg_match('/^user([0-9]+)$/', $t, $m)) { $out[$t] = (object)['id' => (int)$m[1]];
+        if (preg_match('/^user([0-9]+)$/', $t, $m)) {
+            $out[$t] = (object)['id' => (int)$m[1]];
         }
     }return $out;
 }
@@ -346,7 +349,8 @@ require $root . '/classes/local/batch_reader.php';
 require $root . '/classes/local/ajax_security.php';
 $assignment = file_get_contents($root . '/classes/service/membership_assignment.php');
 $bootstrap = "require_once(\$CFG->dirroot . '/group/lib.php');";
-if (substr_count($assignment, $bootstrap) !== 1) { throw new RuntimeException('Review changed native bootstrap');
+if (substr_count($assignment, $bootstrap) !== 1) {
+    throw new RuntimeException('Review changed native bootstrap');
 }
 eval(substr(str_replace($bootstrap, '', $assignment), 5));
 use local_groupimport\local\bulk_action;
@@ -368,7 +372,8 @@ $checks = 0;
  */
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if (!$ok) { throw new RuntimeException($label);
+    if (!$ok) {
+        throw new RuntimeException($label);
     }
 }
 /**
@@ -393,7 +398,8 @@ function reset_state() {
          12,
          'courseid' =>
          6]];
-    for ($i = 1; $i <= 500; $i++) { $db->enrolled[$i] = (object)['id' => $i];
+    for ($i = 1; $i <= 500; $i++) {
+        $db->enrolled[$i] = (object)['id' => $i];
     }
     $GLOBALS['USER'] = (object)['id' => 0];
     core_php_time_limit::$calls = [];

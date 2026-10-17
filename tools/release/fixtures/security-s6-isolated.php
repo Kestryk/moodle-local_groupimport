@@ -62,7 +62,8 @@ $checks = 0;
  */
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if (!$ok) { throw new RuntimeException($label);
+    if (!$ok) {
+        throw new RuntimeException($label);
     }
 }
 /**
@@ -133,7 +134,8 @@ try {
     check(reader::csv("a;b;c\n1;\"He said \"\"yes\"\"\";3\n")['rows'][0][1] === 'He said "yes"', 'Escaped quotes');
     check(reader::csv("a\tb\tc\n1\t2\t3\n")['rows'][0] === ['1', '2', '3'], 'TSV');
     check(reader::csv("\n\n a;b;c\r1;2;3\r")['header'] === ['a', 'b', 'c'], 'Blank preamble and CR newlines');
-    $many = "identifier;groupname;groupingname\n";for ($i = 0; $i < 3000; $i++) { $many .= "u$i@example.test;G$i;X\n";
+    $many = "identifier;groupname;groupingname\n";for ($i = 0; $i < 3000; $i++) {
+        $many .= "u$i@example.test;G$i;X\n";
     }
     check(count(reader::csv($many)['rows']) === 3000, '3000 rows retained');
     $max = "a;b;c\n" . str_repeat("1;2;3\n", 5000);
@@ -154,15 +156,17 @@ try {
         'Site/course/plugin byte cap'
     );
     $formats = ['xlsx'];
-    if (class_exists(Xls::class)) { $formats[] = 'xls';
-    } else { rejects(
-        fn()=>
-        reader::excel(
-            'legacy placeholder',
-            'legacy.xls'
-        ),
-        'Omitted native legacy XLS reader reports controlled failure'
-    );
+    if (class_exists(Xls::class)) {
+        $formats[] = 'xls';
+    } else {
+        rejects(
+            fn()=>
+            reader::excel(
+                'legacy placeholder',
+                'legacy.xls'
+            ),
+            'Omitted native legacy XLS reader reports controlled failure'
+        );
     }
     foreach ($formats as $extension) {
         $book = new Spreadsheet();
@@ -219,20 +223,24 @@ try {
         $owned[] = $path;
         $zip = new ZipArchive();
         $zip->open($path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-        if ($kind === 'large') { $zip->addFromString(
-            'oversized.xml',
-            str_repeat(
-                'a',
-                10485761
-            )
-        );} else { for ($i = 0; $i < 257; $i++) { $zip->addFromString(
-            'entry' . $i,
-            'x'
-        );
+        if ($kind === 'large') {
+            $zip->addFromString(
+                'oversized.xml',
+                str_repeat(
+                    'a',
+                    10485761
+                )
+            );
+        } else {
+            for ($i = 0; $i < 257; $i++) {
+                $zip->addFromString(
+                    'entry' . $i,
+                    'x'
+                );
+            }
         }
-        }
-        $zip->close();
-        rejects(fn()=>reader::excel(file_get_contents($path), 'bomb.xlsx'), 'XLSX ' . $kind . ' limit');
+            $zip->close();
+            rejects(fn()=>reader::excel(file_get_contents($path), 'bomb.xlsx'), 'XLSX ' . $kind . ' limit');
     }
     check(glob($requestdir . '/import_*') === [], 'All request input temporaries cleaned');
     echo json_encode(['suite' =>
@@ -254,11 +262,15 @@ try {
          'runtimeAccess' =>
          false]) . PHP_EOL;
 } finally {
-    foreach ($owned as $path) { if (is_file($path)) { unlink($path);
+    foreach ($owned as $path) {
+        if (is_file($path)) {
+            unlink($path);
+        }
     }
-    }
-    foreach (glob($requestdir . '/import_*') as $path) { if (is_file($path)) { unlink($path);
-    }
+    foreach (glob($requestdir . '/import_*') as $path) {
+        if (is_file($path)) {
+            unlink($path);
+        }
     }
     rmdir($requestdir);
 }
