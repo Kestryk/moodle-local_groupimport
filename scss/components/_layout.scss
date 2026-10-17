@@ -1305,18 +1305,12 @@
   &-advanced-filters select:focus,
   &-advanced-filters select:focus-visible {
     @include easyedu.ring($border-color: var(--easyedu-control-focus-border));
-    border-color: var(--easyedu-control-focus-border) !important;
-    box-shadow: 0 0 0 var(--easyedu-focus-ring-width) var(--easyedu-focus-ring) !important;
-  }
-
-  &-advanced-filters .form-select:focus:not(:focus-visible),
-  &-advanced-filters select:focus:not(:focus-visible) {
-    outline: 0;
   }
 
   &__filter-group .form-select,
   &__filter-group .custom-select,
   &__filter-group select {
+    @include easyedu.native-select-control($native-affordance: true);
     margin: 0.08rem;
     width: calc(100% - 0.16rem);
   }
@@ -1360,7 +1354,7 @@
   }
 
   &__role-select {
-    min-height: calc(1.5em + 0.75rem + 2px);
+    @include easyedu.native-select-control($native-affordance: true);
     width: 100%;
   }
 
