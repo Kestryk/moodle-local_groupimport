@@ -55,10 +55,6 @@ export const ensureFullGroupMembers = group => {
         return;
     }
     const root = getOnDemandParticipants().root;
-    rows.forEach(row => row.querySelectorAll('[data-easystud-hover-help][title]').forEach(node => {
-        node.setAttribute('data-easystud-native-title', node.getAttribute('title') || '');
-        node.removeAttribute('title');
-    }));
     normaliseMemberRemoveLabels(root);
     if (group.hasAttribute('data-easystud-sm-catalog')) {
         syncGroupCardSelection(model, group);
@@ -537,13 +533,11 @@ export const ensureNestedGroupActionMenus = (root, cards = null) => {
         overflowed.forEach(source => {
             source.classList.add('is-easystud-card-action-overflow');
             const clone = source.cloneNode(true);
-            const label = source.getAttribute('aria-label') || source.getAttribute('data-easystud-hover-help') ||
-                source.getAttribute('title') || '';
+            const label = source.getAttribute('aria-label') || source.getAttribute('data-easystud-hover-help') || '';
             clone.removeAttribute('id');
             clone.classList.remove('is-easystud-card-action-overflow');
             clone.classList.add('local-groupimport-easystud-group__actions-menu-item');
             clone.removeAttribute('data-easystud-hover-help');
-            clone.removeAttribute('title');
             if (label) {
                 const labelNode = document.createElement('span');
                 labelNode.className = 'local-groupimport-easystud-group__actions-menu-label';
@@ -709,7 +703,6 @@ export const normaliseMemberRemoveLabels = root => {
 
         const label = (labels.removeuser || '').replace('{name}', name.textContent.trim());
         button.setAttribute('aria-label', label);
-        button.setAttribute('title', label);
         button.setAttribute('data-easystud-hover-help', label);
     });
 };
@@ -739,7 +732,8 @@ export const writeCountBadge = (badge, label, count, iconClass) => {
     }
     value.textContent = String(count);
     badge.setAttribute('aria-label', label);
-    badge.setAttribute('title', label);
+    // K17-21: the Kit bubble, never the native title.
+    badge.setAttribute('data-easystud-hover-help', label);
 };
 
 export const updateGroupingBadge = section => {
@@ -880,7 +874,7 @@ export const createGroupElement = (root, groupdata) => {
         '<div class="local-groupimport-easystud-group__header">' +
             '<span class="local-groupimport-easystud-group__name"></span>' +
             '<span class="local-groupimport-easystud-group__groupings local-groupimport-easystud-group__groupings--inline" hidden></span>' +
-            '<span class="badge bg-light text-dark"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
+            '<span class="badge local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--members local-groupimport-easystud-count-badge--empty"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
             '<button type="button" class="btn btn-link p-0 local-groupimport-easystud-group__mail-button" data-easystud-toggle-group-email="' + escapeHtml(groupdata.id) + '" aria-label="' + escapeHtml(labels.addemailstogroup || '') + '" data-easystud-hover-help="' + escapeHtml(labels.addemailstogroup || '') + '">' +
                 '<span class="fa fa-at" aria-hidden="true"></span>' +
             '</button>' +
@@ -1005,7 +999,7 @@ export const createGroupingElement = (root, groupingdata) => {
                     '<button type="button" class="btn btn-sm btn-outline-secondary" data-easystud-rename-cancel="1">' + escapeHtml(labels.cancel || '') + '</button>' +
                 '</div>' +
             '</form>' +
-                '<span class="badge bg-secondary text-white" data-count-template="' + escapeHtml(labels.groupscounttemplate || '__count__') + '"><span class="fa fa-layer-group" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
+                '<span class="badge local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--grouping local-groupimport-easystud-count-badge--empty" data-count-template="' + escapeHtml(labels.groupscounttemplate || '__count__') + '"><span class="fa fa-layer-group" aria-hidden="true"></span><span data-easystud-count-value="1"></span></span>' +
         '</div>' +
         '<div class="local-groupimport-easystud-container-search" data-easystud-container-search-panel="' + escapeHtml(groupingdata.id) + '" hidden>' +
             '<div class="local-groupimport-easystud-container-search__row">' +

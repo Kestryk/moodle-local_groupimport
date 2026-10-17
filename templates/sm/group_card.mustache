@@ -75,7 +75,7 @@
                 {{/groupingtags}}
             </span>
         {{/groupingtags.0}}
-        <span class="badge bg-light text-dark" aria-label="{{membercountlabel}}" title="{{membercountlabel}}"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1">{{membercount}}</span></span>
+        <span class="badge {{countbadgeclass}}" aria-label="{{membercountlabel}}" data-easystud-hover-help="{{membercountlabel}}" role="img"><span class="fa fa-users" aria-hidden="true"></span><span data-easystud-count-value="1">{{membercount}}</span></span>
         <button
             type="button"
             class="btn btn-link p-0 local-groupimport-easystud-group__mail-button"
@@ -143,7 +143,6 @@
                     data-group-id="{{groupid}}"
                     data-user-id="{{userid}}"
                     aria-label="{{removeuserlabel}}"
-                    title="{{removeuserlabel}}"
                     data-easystud-hover-help="{{removeuserlabel}}"
                 >
                     <span aria-hidden="true">&minus;</span>

@@ -235,10 +235,6 @@ export const decorateOnDemandGroupCards = (root, cards) => {
         applyGroupMemberSearchToGroup(root, card);
         setCountBadgeState(card.querySelector('.local-groupimport-easystud-group__header .badge'),
             getGroupMemberCount(card), 'members');
-        card.querySelectorAll('[data-easystud-hover-help][title]').forEach(node => {
-            node.setAttribute('data-easystud-native-title', node.getAttribute('title') || '');
-            node.removeAttribute('title');
-        });
     }));
     normaliseMemberRemoveLabels(root);
     syncResponsiveDragAvailability(root);

@@ -2270,6 +2270,8 @@ function local_groupimport_build_grouping_template_data(int $courseid, array $gr
         ]))->out(false),
         'groupcount' => (int)$grouping['groupcount'],
         'countlabel' => local_groupimport_count_string('groupscount', (int)$grouping['groupcount']),
+        'countbadgeclass' => 'local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--grouping ' .
+            'local-groupimport-easystud-count-badge--' . ((int)$grouping['groupcount'] ? 'filled' : 'empty'),
         'counttemplate' => local_groupimport_count_template('groupscount'),
         'sesskey' => sesskey(),
         'renameurl' => (new moodle_url('/local/groupimport/manage.php', ['id' => $courseid]))->out(false),
@@ -2616,7 +2618,7 @@ function local_groupimport_render_quick_create_forms(int $courseid): string {
             'type' => 'submit',
             'class' => 'btn btn-primary local-groupimport-easystud-icon-button',
             'aria-label' => get_string('creategroup', 'local_groupimport'),
-            'title' => get_string('creategroup', 'local_groupimport'),
+            'data-easystud-hover-help' => get_string('creategroup', 'local_groupimport'),
             ]
         ) .
         html_writer::end_tag('form');
@@ -2641,7 +2643,7 @@ function local_groupimport_render_quick_create_forms(int $courseid): string {
             'type' => 'submit',
             'class' => 'btn btn-outline-primary local-groupimport-easystud-icon-button',
             'aria-label' => get_string('creategrouping', 'local_groupimport'),
-            'title' => get_string('creategrouping', 'local_groupimport'),
+            'data-easystud-hover-help' => get_string('creategrouping', 'local_groupimport'),
             ]
         ) .
         html_writer::end_tag('form');
@@ -2685,17 +2687,18 @@ function local_groupimport_render_grouping(int $courseid, array $grouping, array
             'class' => 'btn btn-link p-0 local-groupimport-easystud-group__mail-button',
             'data-easystud-toggle-grouping-groups' => $grouping['id'],
             'aria-label' => get_string('addgroupstogrouping', 'local_groupimport'),
-            'title' => get_string('addgroupstogrouping', 'local_groupimport'),
+            'data-easystud-hover-help' => get_string('addgroupstogrouping', 'local_groupimport'),
         ]
     );
     $out .= html_writer::span(
         html_writer::span('', 'fa fa-layer-group', ['aria-hidden' => 'true']) .
             html_writer::span((string)(int)$grouping['groupcount'], '', ['data-easystud-count-value' => '1']),
-        'badge bg-secondary text-white',
+        'badge local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--grouping ' .
+            'local-groupimport-easystud-count-badge--' . ((int)$grouping['groupcount'] ? 'filled' : 'empty'),
         [
             'data-count-template' => local_groupimport_count_template('groupscount'),
             'aria-label' => local_groupimport_count_string('groupscount', (int)$grouping['groupcount']),
-            'title' => local_groupimport_count_string('groupscount', (int)$grouping['groupcount']),
+            'data-easystud-hover-help' => local_groupimport_count_string('groupscount', (int)$grouping['groupcount']),
         ]
     );
     $out .= html_writer::end_div();
@@ -2776,10 +2779,11 @@ function local_groupimport_render_group(int $courseid, array $group, array $user
             html_writer::span(
                 html_writer::span('', 'fa fa-users', ['aria-hidden' => 'true']) .
                     html_writer::span((string)(int)$group['membercount'], '', ['data-easystud-count-value' => '1']),
-                'badge bg-light text-dark',
+                'badge local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--members ' .
+                    'local-groupimport-easystud-count-badge--' . ((int)$group['membercount'] ? 'filled' : 'empty'),
                 [
                     'aria-label' => local_groupimport_count_string('memberscount', (int)$group['membercount']),
-                    'title' => local_groupimport_count_string('memberscount', (int)$group['membercount']),
+                    'data-easystud-hover-help' => local_groupimport_count_string('memberscount', (int)$group['membercount']),
                 ]
             ) .
             html_writer::tag(
@@ -2790,7 +2794,7 @@ function local_groupimport_render_group(int $courseid, array $group, array $user
                     'class' => 'btn btn-link p-0 local-groupimport-easystud-group__mail-button',
                     'data-easystud-toggle-group-email' => $group['id'],
                     'aria-label' => get_string('addemailstogroup', 'local_groupimport'),
-                    'title' => get_string('addemailstogroup', 'local_groupimport'),
+                    'data-easystud-hover-help' => get_string('addemailstogroup', 'local_groupimport'),
                 ]
             ),
         ['class' => 'local-groupimport-easystud-group__header']
@@ -2842,7 +2846,7 @@ function local_groupimport_render_group_member(int $groupid, array $user): strin
                 'data-group-id' => $groupid,
                 'data-user-id' => $user['id'],
                 'aria-label' => get_string('removeuserfromgroup', 'local_groupimport', $user['fullname']),
-                'title' => get_string('removeuserfromgroup', 'local_groupimport', $user['fullname']),
+                'data-easystud-hover-help' => get_string('removeuserfromgroup', 'local_groupimport', $user['fullname']),
             ]
         ),
         [

@@ -585,34 +585,49 @@ export const bindHoverPopovers = root => {
         }
     };
 
-    root.querySelectorAll('[data-easystud-hover-help][title]').forEach(node => {
-        node.setAttribute('data-easystud-native-title', node.getAttribute('title') || '');
-        node.removeAttribute('title');
-    });
-
-    const removeTip = () => {
+    // K17-21..26: the Kit bubble is the only bubble (native title attributes are no longer rendered). It
+    // fades in and out through Motion (no animation at the Minimal level). A leaving bubble is inert, and it
+    // is replaced at once when another one opens, so a single bubble is ever visible.
+    const removeTip = (immediate = false) => {
         cancelGrace();
-        if (activeTip) {
-            activeTip.remove();
-            activeTip = null;
-        }
+        const tip = activeTip;
+        activeTip = null;
         activeNode = null;
+        if (!tip) {
+            return;
+        }
+        if (immediate || tip.hasAttribute('data-easystud-leaving')) {
+            Motion.cancel(tip);
+            tip.remove();
+            return;
+        }
+        tip.setAttribute('data-easystud-leaving', '1');
+        tip.style.pointerEvents = 'none';
+        void Motion.exit(tip, {distance: '0rem', duration: Motion.timing.normal}).then(() => tip.remove());
     };
 
     // The popover stays while it is hovered; it leaves shortly after the pointer leaves both it and its trigger.
     const scheduleRemoval = () => {
         cancelGrace();
-        graceTimer = window.setTimeout(removeTip, HOVER_POPOVER_GRACE_MS);
+        graceTimer = window.setTimeout(() => removeTip(), HOVER_POPOVER_GRACE_MS);
     };
+
+    // K17-22: a pill that carries data-easystud-hover-help-truncated only opens its bubble when its text
+    // is really cut off.
+    const isCutOff = node => node.scrollWidth > node.clientWidth + 1;
 
     const showTip = node => {
         if (activeNode === node && activeTip) {
             cancelGrace();
             return;
         }
-        removeTip();
+        removeTip(true);
+        document.querySelectorAll('.' + hoverPopoverClass + '[data-easystud-leaving]').forEach(leaving => {
+            Motion.cancel(leaving);
+            leaving.remove();
+        });
         const content = node.getAttribute('data-easystud-hover-help') || '';
-        if (!content) {
+        if (!content || (node.hasAttribute('data-easystud-hover-help-truncated') && !isCutOff(node))) {
             return;
         }
         activeNode = node;
@@ -642,6 +657,7 @@ export const bindHoverPopovers = root => {
             window.scrollX + 8,
             Math.min(window.scrollX + window.innerWidth - tiprect.width - 8, left)
         ) + 'px';
+        void Motion.enter(activeTip, {distance: '0rem', duration: Motion.timing.normal});
     };
 
     root.addEventListener('mouseenter', event => {
@@ -671,9 +687,9 @@ export const bindHoverPopovers = root => {
         }
     });
 
-    root.addEventListener('focusout', removeTip);
-    root.addEventListener('click', removeTip);
-    window.addEventListener('scroll', removeTip, true);
+    root.addEventListener('focusout', () => removeTip());
+    root.addEventListener('click', () => removeTip(true));
+    window.addEventListener('scroll', () => removeTip(true), true);
 
     // WCAG 1.4.13: Escape dismisses the popover without closing the dialog that holds its trigger.
     // The capture phase runs before every dialog handler, which also honour defaultPrevented.

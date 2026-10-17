@@ -73,7 +73,7 @@ const buildAvatar = user => {
         return user.avatarhtml;
     }
     const name = escapeHtml(user.avatarname || user.fullname);
-    return '<span class="userinitials size-100" title="' + name + '" aria-label="' + name + '" role="img">' +
+    return '<span class="userinitials size-100" aria-label="' + name + '" role="img">' +
         escapeHtml(user.initials || '') + '</span>';
 };
 

@@ -165,6 +165,9 @@ export const buildGroupCardContext = (model, group, variant) => {
         nativeurl: (strings.groupnativeurl || '') + '&id=' + group.id,
         membercount: memberids.length,
         membercountlabel: countLabel(strings.memberscount, memberids.length),
+        // K17-52: the Kit count-badge state is rendered with the card, so the label never flashes dark.
+        countbadgeclass: 'local-groupimport-easystud-count-badge local-groupimport-easystud-count-badge--members ' +
+            'local-groupimport-easystud-count-badge--' + (memberids.length ? 'filled' : 'empty'),
         sesskey: strings.sesskey || '',
         renameurl: strings.renameurl || '',
         renameaction: 'renamegroup',

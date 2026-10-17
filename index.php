@@ -1797,7 +1797,6 @@ if (!empty($historyrecords)) {
                     html_writer::span(s(get_string('importhistoryexportshort', 'local_groupimport'))),
                 [
                     'class' => 'local-groupimport-import-history__action local-groupimport-import-history__export',
-                    'title' => get_string('importexportresults', 'local_groupimport'),
                     'aria-label' => get_string('importexportresults', 'local_groupimport') . ' (' . $record->filename . ')',
                 ]
             );

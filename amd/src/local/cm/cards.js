@@ -593,7 +593,9 @@ export const syncParticipantTagOverflow = scope => {
             token.hidden = !text;
             if (!token.hidden) {
                 token.textContent = text;
-                token.title = text;
+                // K17-22: the Kit bubble, shown only when the pill text is really truncated (no native title).
+                token.setAttribute('data-easystud-hover-help', text);
+                token.setAttribute('data-easystud-hover-help-truncated', '1');
             }
             return !token.hidden;
         });
@@ -631,7 +633,6 @@ export const syncParticipantTagOverflow = scope => {
 
         if (expanded) {
             toggle.textContent = toggle.getAttribute('data-less-label') || getLabels(root).showless || '';
-            toggle.title = toggle.textContent;
             return;
         }
 
@@ -673,7 +674,6 @@ export const syncParticipantTagOverflow = scope => {
         if (hidden) {
             toggle.textContent = '+' + hidden;
             toggle.setAttribute('data-more-label', '+' + hidden);
-            toggle.title = '+' + hidden;
         } else {
             toggle.hidden = true;
             toggle.setAttribute('aria-expanded', 'false');
