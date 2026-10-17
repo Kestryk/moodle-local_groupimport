@@ -1,0 +1,14 @@
+// Shared accessibility primitives; no CSS is emitted until a consumer opts in.
+// Compatible with Bootstrap 4's sr-only and Bootstrap 5's visually-hidden geometry.
+// This recipe preserves the node and its accessible text; it is not display:none.
+@mixin visually-hidden {
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}

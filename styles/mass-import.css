@@ -1,3 +1,5 @@
+.local-groupimport-import .visually-hidden {border: 0 !important;clip: rect(0, 0, 0, 0) !important;height: 1px !important;margin: -1px !important;overflow: hidden !important;padding: 0 !important;position: absolute !important;white-space: nowrap !important;width: 1px !important;
+}
 .local-groupimport-easystud__navigation {margin: 0;position: relative;
 }
 .local-groupimport-easystud__navigation [data-easyedu-navigation-desktop] {position: relative;align-items: stretch;background: linear-gradient(105deg, color-mix(in srgb, var(--easyedu-primary-soft) 34%, #fff 66%) 0%, color-mix(in srgb, var(--easyedu-surface) 96%, #fff 4%) 48%, color-mix(in srgb, var(--easyedu-accent-soft) 26%, #fff 74%) 100%);border: 1px solid color-mix(in srgb, var(--easyedu-card-border) 72%, #fff 28%);border-radius: calc(var(--easyedu-control-radius) + 0.12rem);box-shadow: none;display: flex;flex-wrap: nowrap;gap: 0;justify-content: center;margin: 0 0 1.05rem;overflow-x: auto;overflow-y: hidden;padding: var(--easyedu-focus-ring-width) 0.42rem;scrollbar-width: none;white-space: nowrap;
