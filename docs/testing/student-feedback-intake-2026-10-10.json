@@ -1607,5 +1607,6 @@
 "k1617FixtureLines20261018":{"base": "36988602", "errorsBeforeAfter": [0, 0], "warningsBeforeAfter": [29, 23], "constantValuesAndTokensPreserved": true, "renderingChanged": false, "runtimeAccess": false, "published": false},
 "k1617XlsxDiagnosticWrap20261018":{"productChanges": false, "tokensIdentical": true, "S7M5Checks": 355, "runtimeAccess": false, "published": false},
 "k1631KitSingleSource20261018":{"base": "edc26fa9", "mode": "report-only", "sourceFiles": 35, "candidateDeclarations": 553, "parseErrors": 0, "families": 26, "styleChanges": false, "runtimeAccess": false, "published": false, "humanAccepted": false},
-"k1801EasyStudOnly20261018":{"scope": "EasyStud only", "ccbExcludedWithoutTraversal": true, "styleHashesUnchanged": true, "findingsUnchanged": 553, "runtimeAccess": false, "published": false}
+"k1801EasyStudOnly20261018":{"scope": "EasyStud only", "ccbExcludedWithoutTraversal": true, "styleHashesUnchanged": true, "findingsUnchanged": 553, "runtimeAccess": false, "published": false},
+"k1680Menus20261018":{"base": "9a208010", "before": 48, "after": 27, "new": 0, "cascadeParity": "PASS 3 pages byte-identical after CRLF normalization", "renderParity": "PASS 12 state comparisons", "glyphCentering": "FAIL pre-existing, identical before/after", "glyphMaxX": 0.7578125, "glyphMaxY": 0.7578125, "nativeStatus": "OPEN course71 :8051 HTTP404", "published": false, "accepted": false}
 }

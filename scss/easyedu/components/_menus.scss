@@ -2,6 +2,46 @@
 
 @use "focus";
 
+// Shared item state; null keeps the inherited icon colour for plain focus.
+@mixin menu-item-active($surface: var(--easyedu-primary-soft), $text: var(--easyedu-primary-strong), $icon: var(--easyedu-primary)) {
+  background: $surface;
+  color: $text;
+  @if $icon != null {
+    .fa { color: $icon; }
+  }
+}
+
+@mixin menu-item-chevron {
+  color: var(--easyedu-text-muted);
+  font-size: 0.72rem;
+  margin-inline-start: auto;
+}
+
+@mixin menu-separator {
+  border-top: 1px solid var(--easyedu-dropdown-border);
+  margin: 0.2rem 0.35rem;
+  &[hidden] { display: none; }
+}
+
+@mixin menu-submenu-indent($flat: false) {
+  padding-inline-start: if($flat, 0, 1.6rem);
+}
+
+// Inline action groups retain placement in the normal document flow.
+@mixin menu-surface-inline($nested: false) {
+  background: transparent;
+  border: 0;
+  @if $nested { border-radius: 0; }
+  box-shadow: none;
+  max-height: none;
+  min-width: 0;
+  overflow: visible;
+  padding: 0;
+  @if $nested { @include menu-submenu-indent; }
+  position: static;
+}
+
+
 @mixin menu-surface($size: regular) {
   $min-width: 12rem;
   $padding: 0.35rem;
@@ -72,14 +112,9 @@
 
   &:hover,
   &:focus-visible {
-    background: var(--easyedu-primary-soft);
-    color: var(--easyedu-primary-strong);
+    @include menu-item-active;
     outline: 0;
     text-decoration: none;
-
-    .fa {
-      color: var(--easyedu-primary);
-    }
   }
 
   &:focus-visible {

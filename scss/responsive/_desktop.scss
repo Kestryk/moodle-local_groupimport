@@ -361,20 +361,11 @@
 
     // Sheet submenus expand inline under their trigger (accordion).
     &-context-menu.is-mobile-sheet &-context-menu__submenu {
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
-      max-height: none;
-      min-width: 0;
-      overflow: visible;
-      padding: 0;
-      padding-inline-start: 1.6rem;
-      position: static;
+      @include easyedu.menu-surface-inline($nested: true);
     }
 
     &-context-menu.is-mobile-sheet &-context-menu__group.is-flattened &-context-menu__submenu {
-      padding-inline-start: 0;
+      @include easyedu.menu-submenu-indent($flat: true);
     }
 
     &-context-menu.is-mobile-sheet &-context-menu__group > button,
