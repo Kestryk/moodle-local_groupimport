@@ -1,3 +1,5 @@
+- 2026-10-18 [N0] K18-01 : exclure explicitement CCB du garde-fou Kit unique, sans modifier le relevé EasyStud ni les styles.
+
 - 2026-10-18 [N0] K16-31 : inventaire statique des redéfinitions locales de composants Kit, mode rapport JSON/lisible avec exceptions explicites ; aucun style modifié.
 
 - 2026-10-18 [N0] K16-17 : repli du diagnostic de la fixture XLSX, sans changer ses jetons exécutables.

@@ -8,6 +8,8 @@
 // E03 styles/**, styles.css, amd/build/**: generated outputs, never source repairs.
 // E04 vendor/node_modules, .git, tools/tests/docs: dependencies or non-product
 //     fixtures/examples. Their styles are not the plugin's active source cascade.
+// E05 course_banner_builder/local_course_banner_builder: K18-01 defers all CCB
+//     work until EasyStud V2. Never traverse it, even when --root names CCB.
 // No declaration-level exception: token-valued overrides, responsive rules,
 // disabled states, focus and !important remain findings, never silently allowed.
 // Layout-only gap/margin/position/display and animation timing are out of scope.
@@ -24,6 +26,8 @@ const EXCEPTIONS = [
     {id: 'E03', pattern: '^(?:styles/|styles\\.css$|amd/build/)', reason: 'Sorties générées, exclues des sources.'},
     {id: 'E04', pattern: '(?:^|/)(?:vendor|node_modules|\\.git|tools|tests|docs|easyedu-kit-docs)(?:/|$)',
         reason: 'Dépendances et exemples/fixtures hors cascade produit.'},
+    {id: 'E05', pattern: '(?:^|/)(?:course_banner_builder|local_course_banner_builder)(?:/|$)',
+        reason: 'K18-01 : CCB hors périmètre jusqu’à EasyStud V2, sans parcours de ses sources.'},
 ];
 
 // F01–F22 match the 17/10 standardisation inventory; F23–F26 extend the requested
@@ -146,6 +150,10 @@ function scanText(text, file, syntax, postcss, localMixins = {}) {
 function walk(root) {
     const files = [];
     const skipped = [];
+    const rootException = exception(path.resolve(root).split(path.sep).join('/') + '/');
+    if (rootException && rootException.id === 'E05') {
+        return {files, skipped: [{file: '.', exception: 'E05', reason: rootException.reason}]};
+    }
     function visit(directory) {
         for (const entry of fs.readdirSync(directory, {withFileTypes: true}).sort((a, b) => a.name.localeCompare(b.name))) {
             const absolute = path.join(directory, entry.name);
@@ -198,10 +206,13 @@ function selfTest(syntax, postcss) {
     assert.ok(exception('scss/easyedu/components/_buttons.scss'));
     assert.ok(exception('styles/student-management.css'));
     assert.ok(exception('easyedu-guide-kit/scss/_guide.scss'));
+    assert.equal(exception('local/course_banner_builder/scss/_controls.scss').id, 'E05');
+    assert.equal(exception('local_course_banner_builder/styles.scss').id, 'E05');
+    assert.deepEqual(walk(path.resolve('not-present', 'course_banner_builder')).files, []);
     assert.equal(exception('scss/components/_buttons.scss'), undefined);
     assert.throws(() => syntax.parse('.btn { color: red;'));
     process.stdout.write('PASS Kit single-source parser: ' + checks.length +
-        ' fixture contracts, indirect mixin, invalid syntax and 4 exclusion checks.\n');
+        ' fixture contracts, indirect mixin, invalid syntax and 7 exclusion checks (CCB never traversed).\n');
 }
 
 function collectMixins(source, root, syntax, postcss) {
