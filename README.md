@@ -128,3 +128,14 @@ the current builder contract. The referenced Moodle checkout requires Node
 `>=22.11.0 <23`; local standalone Node 20 builds do not certify a release engine.
 Use `check-toolchain.cjs BUILD_ROOT SASS_ROOT EXTERNAL_JSON --release` before a
 release build. Exact validated Node 22 patch remains to be recorded.
+
+
+### Exact build versions (TRI38,17October2026)
+
+`tools/release/build-versions.json` pins Node22.11.0 and Sass1.79.1 exactly.
+All18release builders fail before build work on a different Node version;
+CSS builders verify the loaded Sass compiler. Use the portable Node executable
+and pass the existing Sass package path. No dependency upgrade is required.
+Build page styles through `tools/release/build-styles.cjs SASS_ROOT styles.css
+conservative POSTCSS_ROOT`, not by restoring a site-wide Sass bundle. See
+`docs/testing/tri38-exact-versions-2026-10-17.md` for validation and lint limits.

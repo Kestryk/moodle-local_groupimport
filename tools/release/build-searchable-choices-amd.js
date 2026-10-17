@@ -1,5 +1,6 @@
 /* eslint-env node */
 // Build the canonical Kit controller using the existing validated toolchain.
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('node:fs');
 const path = require('node:path');
 const toolchainRoot = process.argv[2];

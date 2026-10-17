@@ -2,6 +2,7 @@
 // Build an external worktree with Moodle's Babel plugins and Terser, without
 // overwriting the shared build checkout's source. Its component path supplies
 // Moodle's module-name resolver; the compiled input is always this worktree.
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('fs');
 const path = require('path');
 const buildRoot = path.resolve(process.argv[2] || '');

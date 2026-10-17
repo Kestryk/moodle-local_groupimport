@@ -1,4 +1,5 @@
 // Deterministic generated AMD/map; toolchain path supplied by the caller.
+require('./verify-build-versions.cjs').assertNode();
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),vm=require('node:vm');
 if(!process.argv[2])throw Error('Supply the directory containing terser.');
 const terser=require(path.join(path.resolve(process.argv[2]),'terser'));

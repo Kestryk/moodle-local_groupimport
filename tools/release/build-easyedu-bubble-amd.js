@@ -2,6 +2,7 @@
 // Compile only this worktree's shared Kit bubble (K-BUBBLE) using the existing Moodle toolchain.
 // Moodle's add-module-to-define plugin needs the file inside the build checkout; the module only
 // uses named exports, so naming the define() call is all it would do (same as build-sm-amd.js).
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('fs');
 const path = require('path');
 if (!process.argv[2]) { throw new Error('Pass the Moodle build checkout root.'); }
@@ -15,7 +16,7 @@ global.fetch = undefined;
 const babel = require(path.join(buildRoot, 'node_modules/@babel/core'));
 const terser = require(path.join(buildRoot, 'node_modules/terser'));
 const plugin = name => require.resolve(name, {paths: [buildRoot]});
-const result = babel.transformSync(fs.readFileSync(source, 'utf8'), {
+const result = babel.transformSync(fs.readFileSync(source, 'utf8').replace(/\r\n/g, '\n'), {
     filename: source,
     babelrc: false, configFile: false, sourceMaps: true,
     sourceFileName: '../src/easyedu_bubble.js', comments: false,

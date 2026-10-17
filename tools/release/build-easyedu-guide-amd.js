@@ -1,5 +1,6 @@
 /* eslint-env node */
 
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('fs');
 const path = require('path');
 

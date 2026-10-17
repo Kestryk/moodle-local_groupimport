@@ -1,4 +1,5 @@
 /* eslint-env node */
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('node:fs');
 const path = require('node:path');
 const toolchain = process.argv[2];
