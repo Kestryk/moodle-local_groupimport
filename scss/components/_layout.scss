@@ -852,7 +852,7 @@
   &-action-grip {
     @include easyedu.action-menu-trigger-icon;
 
-    margin: 0 !important;
+    margin: 0;
   }
 
   &__panel-actions-menu {
