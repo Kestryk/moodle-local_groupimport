@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Align empty group rows through the shared Kit selection/text tracks; retain the grouping model and tree rule.
+
 - 2026-10-17 [N0] Audit all tracked PHP and AMD sources with Moodle rules; apply token-preserving PHP formatting and JavaScript documentation fixes, and merge duplicate intake evidence without product behavior changes.
 
 - 2026-10-17 [N0] Repin five historical controller tests to current modules and Guide contracts; verify LF and CRLF without product changes.
