@@ -31,7 +31,13 @@ const median = a => [...a].sort((x, y) => x - y)[Math.floor(a.length / 2)];
             const loadMs = Date.now() - start;
             await page.locator('.local-groupimport-easystud:not(.local-groupimport-easystud--booting)').waitFor({timeout: 180000});
             const readyMs = Date.now() - start;
+            let prefetchMs = null;
             await page.waitForTimeout(Number(delay));
+            if (process.env.WAIT_PREFETCH) {
+                const t = Date.now();
+                await page.waitForFunction(() => document.querySelector('[data-easyedu-display-dialog]'), null, {timeout: 120000}).catch(() => {});
+                prefetchMs = Date.now() - t + Number(delay);
+            }
             let opener;
             if (width === 1600) {
                 opener = page.locator('[data-easyedu-navigation] .easyedu-navigation__preferences-source [data-easyedu-display-open]').first();
@@ -57,7 +63,7 @@ const median = a => [...a].sort((x, y) => x - y)[Math.floor(a.length / 2)];
             await opener.click();
             await page.waitForFunction(() => window.__t.t1, null, {timeout: 60000});
             const t = await page.evaluate(() => window.__t);
-            rows.push({openMs: Math.round(t.t1 - t.t0), loadMs, readyMs, dialogs: await page.locator('[data-easyedu-display-dialog]').count(), errors: errors.length});
+            rows.push({openMs: Math.round(t.t1 - t.t0), loadMs, readyMs, prefetchMs, dialogs: await page.locator('[data-easyedu-display-dialog]').count(), errors: errors.length});
             await ctx.close();
         }
         const kept = rows.slice(1);
