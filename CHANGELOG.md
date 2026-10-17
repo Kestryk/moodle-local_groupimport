@@ -6,6 +6,8 @@
 
 - 2026-10-17 [N0] TRI19: add a bounded standalone release smoke gate and native PHPUnit import-policy coverage; record unexecuted native PHPUnit/Behat and legacy Behat selector debt.
 
+- 2026-10-17 [N0] TRI38: record exact build package versions and Moodle Node requirement; add read-only preflight that rejects the observed unsupported Node 20 in release mode.
+
 - 2026-10-17 [N0] Resync Guide mirror for d44585d8 touch gestures and public guideModality export; preserve runtime assets and generic/Moodle adapters.
 
 - 2026-10-17 [N0] R6: bound four bulk group actions to 500 items, raise execution time, batch enrolment/group reads and transactionally apply native writes with explicit skipped counts; browser chunking remains for Claude.
