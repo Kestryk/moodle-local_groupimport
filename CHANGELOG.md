@@ -6,6 +6,8 @@
 
 - 2026-10-17 [N0] R9: verify S6 already bounds Excel readers and skips empty formatted cells; add genuine formatted-XLSX regressions without product changes.
 
+- 2026-10-17 [N0] P2: retire inactive tutorial markup and main stylesheet; preserve active workspace rules and current Guide rendering/cascade. Reserved legacy JS cleanup remains for Claude.
+
 # Changelog
 
 - 2026-10-17 [N1] S2: expose subject-scoped import history through Privacy user lists/export/erasure; add configurable 365-day retention and daily history-only purge.

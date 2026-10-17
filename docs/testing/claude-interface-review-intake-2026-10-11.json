@@ -28,6 +28,14 @@
     "report": "docs/testing/r9-formatted-xlsx-2026-10-17.md",
     "validation": "21 formatted-XLSX assertions under 128MiB plus 37 S6 assertions; no runtime"
   },
+  "codex1P220261017": {
+    "status": "markup-main-css-retired-static-parity-pass-reserved-js-cleanup-pending",
+    "base": "4110785e",
+    "branch": "work/codex1/easystud-p2-20261017",
+    "report": "docs/testing/p2-tutorial-retirement-2026-10-17.md",
+    "validation": "13 CSS + 12 real Mustache assertions, T037/T038, escaping/filter; no runtime",
+    "pageCssReductionBytes": 46610
+  },
   "codex1SecurityS220261017": {
     "status": "source-isolated-pass-not-published-phpunit-pending",
     "base": "6c3ac95f",

@@ -1,6 +1,6 @@
 // Shared EasyEdu guide integration used by the active EasyStud guide.
-// The legacy tutorial remains a guarded fallback until parity validation is
-// complete, while all active guide visuals stay scoped to this root.
+// Active guide visuals stay scoped to this root; the obsolete tutorial markup
+// has been retired.
 @use "../easyedu" as easyedu;
 
 .local-groupimport-easystud-easyedu-guide,
