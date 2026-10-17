@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] TRI38: pin Node22.11.0/Sass1.79.1, guard all18release builders and verify loaded Sass; normalize bubble source-map input line endings, preserve generated assets and dependency versions.
+
 - 2026-10-17 [N0] Verify K-BUBBLE/PEN-K17 on9e628d4f: official PHP/non-PHP checker and new bubble/builder ESLint have zero errors; localized bubble fixture9/9 PASS; no product changes.
 
 - 2026-10-17 [N0] Replace the obsolete Guide mirror with9e628d4f: share the import-free bubble controller, adapt both Moodle dependencies, mirror PEN-K17 templates/SCSS, and retain exact consumer parity; T037/T038/roundtrip PASS.

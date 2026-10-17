@@ -1,5 +1,6 @@
 /* eslint-env node */
 // Compile only this worktree's Motion source using the existing Moodle toolchain.
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('fs');
 const path = require('path');
 if (!process.argv[2]) { throw new Error('Pass the Moodle build checkout root.'); }

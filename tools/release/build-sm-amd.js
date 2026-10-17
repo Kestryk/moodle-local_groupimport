@@ -2,6 +2,7 @@
 // Compile the SM-RENDU modules (amd/src/local/sm/*.js) and the course manager modules
 // (amd/src/local/cm/*.js, T055) with the Moodle Babel plugins and Terser.
 // Usage: node tools/release/build-sm-amd.js <Moodle build checkout root>
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('fs');
 const path = require('path');
 if (!process.argv[2]) { throw new Error('Pass the Moodle build checkout root.'); }

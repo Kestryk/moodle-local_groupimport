@@ -1,5 +1,6 @@
 /* eslint-env node */
 // Business-only membership identity helper; no Kit styling or HTTP commands.
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('node:fs');
 const path = require('node:path');
 const toolchainRoot = process.argv[2];

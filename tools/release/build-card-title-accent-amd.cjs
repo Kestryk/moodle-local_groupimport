@@ -1,3 +1,4 @@
+require('./verify-build-versions.cjs').assertNode();
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 if(!process.argv[2])throw Error('Supply terser toolchain directory.');const terser=require(path.join(path.resolve(process.argv[2]),'terser'));
 const root=path.resolve(__dirname,'../..');

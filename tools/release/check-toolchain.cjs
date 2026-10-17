@@ -14,4 +14,8 @@ const nodeCompatible=major===22&&minor>=11;
 const result={surface:'TRI38-toolchain-preflight',provenancePassed:true,node:process.versions.node,nodeRequired:engine,nodeCompatible,packages,releaseValidated:false,runtimeAccess:false};
 fs.writeFileSync(output,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
 // Inspection is always usable; explicit release mode fails closed on an unsupported engine.
-if(flags.includes('--release')&&!nodeCompatible)process.exitCode=1;
+if(flags.includes('--release')) {
+ const guard=require('./verify-build-versions.cjs');
+ guard.assertNode();
+ guard.assertSass(require(path.resolve(sassRoot)));
+}

@@ -1,6 +1,7 @@
 'use strict';
 // Keep readable SCSS and every value, selector, declaration and cascade position.
 // Never reserialize through CSSOM: unknown/vendor properties must survive too.
+require('./verify-build-versions.cjs').assertNode();
 const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
 const {rules} = require('./audit-css.cjs');
 function compactDeclarations(css) {
@@ -49,7 +50,7 @@ if (require.main === module) {
             return;
         }
         const sass = require(path.resolve(sassModule));
-        assert(sass.info.includes('1.79.1'), 'Preserve established consumer Sass 1.79.1');
+        require('./verify-build-versions.cjs').assertSass(sass);
         const expanded = sass.compile(path.resolve(__dirname, '../../scss/easystud.scss'), {
             style: 'expanded', charset: false, sourceMap: false, logger: sass.Logger.silent,
         }).css;

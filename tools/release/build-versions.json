@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "node": "22.11.0",
+  "sass": "1.79.1",
+  "cssFormat": "conservative",
+  "reference": "389b832d",
+  "policy": "Exact build versions; no dependency installation or upgrade."
+}

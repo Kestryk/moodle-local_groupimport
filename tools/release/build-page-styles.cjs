@@ -1,6 +1,7 @@
 'use strict';
 // Compile once, then retain ordered rule subsequences for each accessible page.
 // Never regroup declarations or move rules across media/supports boundaries.
+require('./verify-build-versions.cjs').assertNode();
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {compactDeclarations}=require('./build-styles.cjs');
 const root=path.resolve(__dirname,'../..');
@@ -13,7 +14,7 @@ function targets(selector){
 }
 function build(sassModule,postcssModule){
  const sass=require(path.resolve(sassModule)),postcss=require(path.resolve(postcssModule));
- assert(sass.info.includes('1.79.1'));
+ require('./verify-build-versions.cjs').assertSass(sass);
  const css=compactDeclarations(sass.compile(path.join(root,'scss/easystud.scss'),{style:'expanded',charset:false,sourceMap:false,logger:sass.Logger.silent}).css);
  const parsed=postcss.parse(css);const report={sourceBytes:Buffer.byteLength(css),pages:{}};
  fs.mkdirSync(path.join(root,'styles'),{recursive:true});
