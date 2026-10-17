@@ -318,7 +318,9 @@ namespace {
                         "\n",
                         policy::text($value)
                     ),
-                    'Group literal XLSX roundtrip index ' . $i . ' actual=' . bin2hex((string)$sheet->getCell('B' . $r)->getValue()) . ' expected=' . bin2hex(policy::text($value))
+                    'Group literal XLSX roundtrip index ' . $i . ' actual=' .
+                    bin2hex((string)$sheet->getCell('B' . $r)->getValue()) .
+                    ' expected=' . bin2hex(policy::text($value))
                 );
                 check(
                     $sheet->getCell('A' . $r)->getValue() === '00123' &&
