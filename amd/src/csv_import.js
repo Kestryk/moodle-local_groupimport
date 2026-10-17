@@ -270,7 +270,9 @@ const initImportFileRequirement = root => {
     const deposit = root.querySelector('.easyedu-file-deposit--moodle');
     const form = deposit?.closest('form');
     const notice = form?.querySelector('[data-local-groupimport-file-required]');
-    if (!form || !notice || form.dataset.easyeduImportRequirementBound === '1') { return; }
+    if (!form || !notice || form.dataset.easyeduImportRequirementBound === '1') {
+ return;
+}
     form.dataset.easyeduImportRequirementBound = '1';
     form.addEventListener('submit', event => {
         if (isImportFileReady(deposit)) {
@@ -604,7 +606,9 @@ const initPreviewTools = root => {
             });
             previewForm.querySelector('[name="previewpayload"]').value = JSON.stringify({count: rows.length, edits, excluded});
             // One structured field stays independent of max_input_vars, including edited cells.
-            controls.forEach(input => { input.disabled = true; });
+            controls.forEach(input => {
+ input.disabled = true;
+});
         });
     }
     if (!search || rows.length === 0) {
@@ -915,7 +919,9 @@ export const init = (rootId) => {
     };
 
     window.addEventListener('dragenter', event => {
-        if (isDepositEvent(event)) { hideGlobalOverlay(); return; }
+        if (isDepositEvent(event)) {
+ hideGlobalOverlay(); return;
+}
         if (!hasFiles(event)) {
             return;
         }
@@ -924,7 +930,9 @@ export const init = (rootId) => {
     });
 
     window.addEventListener('dragover', event => {
-        if (isDepositEvent(event)) { hideGlobalOverlay(); return; }
+        if (isDepositEvent(event)) {
+ hideGlobalOverlay(); return;
+}
         if (!hasFiles(event)) {
             return;
         }
@@ -934,7 +942,9 @@ export const init = (rootId) => {
     });
 
     window.addEventListener('dragleave', event => {
-        if (isDepositEvent(event) && deposit.contains(event.relatedTarget)) { return; }
+        if (isDepositEvent(event) && deposit.contains(event.relatedTarget)) {
+ return;
+}
         if (!hasFiles(event)) {
             return;
         }
@@ -946,7 +956,9 @@ export const init = (rootId) => {
 
     window.addEventListener('drop', event => {
         // The native drop target owns its upload/progress lifecycle.
-        if (isDepositEvent(event)) { hideOverlay(); return; }
+        if (isDepositEvent(event)) {
+ hideOverlay(); return;
+}
         if (routingdrop) {
             return;
         }

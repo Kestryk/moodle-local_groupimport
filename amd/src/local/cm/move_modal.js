@@ -198,7 +198,9 @@ export const bindMoveModal = (root, courseId) => {
             type === 'participant' ? 'data-move-participants-help' : 'data-move-groups-help') || '';
         label.textContent = body.getAttribute(type === 'participant' || type === 'member' ?
             'data-move-participants-label' : 'data-move-groups-label') || '';
-        if (title) { title.textContent = type === 'participant' ? (labels.addparticipanttitle || moveTitle) : moveTitle; }
+        if (title) {
+ title.textContent = type === 'participant' ? (labels.addparticipanttitle || moveTitle) : moveTitle;
+}
         confirmButton.textContent = type === 'participant' ? (labels.addparticipantconfirm || '') : selectedCount === 1 ?
             (labels.moveconfirmone || '') :
             (labels.moveconfirmmany || '');

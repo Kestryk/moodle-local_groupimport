@@ -393,7 +393,9 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
     refresh();
     select.after(host);
     select.hidden = true;
-    originalLabels.forEach(label => { label.htmlFor = trigger.id; });
+    originalLabels.forEach(label => {
+ label.htmlFor = trigger.id;
+});
     const controller = {
         host, trigger, clear, refresh, close,
         destroy: () => {
@@ -406,7 +408,9 @@ const enhanceNativeSelect = (select, labels, multiple, options) => {
                 panelAnimation = null;
             }
             select.removeEventListener('change', syncValue);
-            originalLabels.forEach(label => { label.htmlFor = select.id; });
+            originalLabels.forEach(label => {
+ label.htmlFor = select.id;
+});
             select.hidden = originalHidden;
             host.remove();
             controls.delete(select);
