@@ -1,0 +1,37 @@
+// K17-CAR (Kevin 17/10/2026): card focus ring and card details that follow the Kit.
+//
+// K17-18: the Kit focus ring (card-focus-context, no 24) shows on every card type in every
+// state. The selected state repainted the card shadow after the focus rule and hid the ring;
+// these rules restate the same Kit ring for a selected card, with the same arguments as the
+// unselected focus rule of the card type.
+@use "../easyedu" as easyedu;
+
+.local-groupimport-easystud {
+  &-user.is-selected:focus-within {
+    border-left-color: var(--local-groupimport-easystud-participant);
+    @include easyedu.card-focus-context(0 0.45rem 0.95rem rgba(72, 115, 173, 0.14));
+    border-color: var(--easyedu-control-focus-border) !important;
+  }
+
+  &-group.is-selected:focus-within {
+    border-left-color: var(--local-groupimport-easystud-group-rail);
+    @include easyedu.card-focus-context(
+      var(--easyedu-shadow-soft),
+      $preserve-identity-rail: true,
+      $identity-rail-color: var(--local-groupimport-easystud-group-rail)
+    );
+  }
+
+  &-tree__section[data-easystud-grouping-id].is-selected:focus-within:not(
+    :has(> .local-groupimport-easystud-tree__children .local-groupimport-easystud-group:focus-within)
+  ) {
+    border-left-color: var(--local-groupimport-easystud-grouping-rail);
+    @include easyedu.card-focus-context(0 0.5rem 1rem rgba(106, 127, 152, 0.15));
+  }
+
+  // K17-19: the light responsive group card has a 0.75rem inline padding; the empty-slot connector
+  // keeps the same 2px inside the content there too.
+  &--responsive-workspace &-group {
+    --easyedu-empty-card-padding: 0.75rem;
+  }
+}

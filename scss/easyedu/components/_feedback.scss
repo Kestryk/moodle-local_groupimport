@@ -185,7 +185,9 @@
       content: "";
       inline-size: 2px;
       inset-block: -0.2rem 0;
-      inset-inline-start: calc(-0.85rem - 2px);
+      // K17-19: the connector stays inside the card content (never over the identity rail); the card
+      // publishes its inline padding as --easyedu-empty-card-padding.
+      inset-inline-start: calc(2px - var(--easyedu-empty-card-padding, 0.7rem));
       position: absolute;
     }
     @media (max-width: 64rem) {
