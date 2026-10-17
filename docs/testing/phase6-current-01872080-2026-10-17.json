@@ -1,0 +1,142 @@
+{
+  "base": "01872080",
+  "runtimeAccess": false,
+  "integrated": {
+    "S2": {
+      "commit": "b7178779",
+      "ancestorOfBase": true
+    },
+    "S4": {
+      "commit": "cc346284",
+      "ancestorOfBase": true
+    },
+    "S5": {
+      "commit": "c5d73659",
+      "ancestorOfBase": true
+    },
+    "S6": {
+      "commit": "8b3810f9",
+      "ancestorOfBase": true
+    },
+    "S7-M5": {
+      "commit": "b0a59954",
+      "ancestorOfBase": true
+    },
+    "R6-server": {
+      "commit": "e86281d9",
+      "ancestorOfBase": true
+    },
+    "R6-accents": {
+      "commit": "a15feb98",
+      "ancestorOfBase": true
+    },
+    "R8": {
+      "commit": "24f32ec1",
+      "ancestorOfBase": true
+    },
+    "R9": {
+      "commit": "b0dd1637",
+      "ancestorOfBase": true
+    },
+    "R9-UTF8": {
+      "commit": "d7c30b58",
+      "ancestorOfBase": true
+    },
+    "P2-CSS": {
+      "commit": "05a84c57",
+      "ancestorOfBase": true
+    },
+    "P2-JS": {
+      "commit": "c33fbbeb",
+      "ancestorOfBase": true
+    },
+    "P2-oracle": {
+      "commit": "de6b6e4b",
+      "ancestorOfBase": true
+    },
+    "L1L2": {
+      "commit": "df64d0aa",
+      "ancestorOfBase": true
+    },
+    "L1-cleanup": {
+      "commit": "c752f775",
+      "ancestorOfBase": true
+    },
+    "TRI12": {
+      "commit": "35f977b2",
+      "ancestorOfBase": true
+    },
+    "TRI19": {
+      "commit": "d98e5aa7",
+      "ancestorOfBase": true
+    },
+    "TRI38": {
+      "commit": "fcf11a6f",
+      "ancestorOfBase": true
+    },
+    "Node22-validation": {
+      "commit": "8129aef7",
+      "ancestorOfBase": true
+    }
+  },
+  "kitDefaults": {
+    "buttons": {
+      "wholeFileMatchesAcceptedKit": true,
+      "pluginSha256": "3b21c6808a83b90883ca73e751f556546a408dce9538054907a6d2fc22f4547b",
+      "kitSha256": "3b21c6808a83b90883ca73e751f556546a408dce9538054907a6d2fc22f4547b"
+    },
+    "navigation": {
+      "wholeFileMatchesAcceptedKit": true,
+      "pluginSha256": "6f3bbbb74e90f57d0cc2089578696cc019c3f65f6421052ab0553f962de1f3ae",
+      "kitSha256": "6f3bbbb74e90f57d0cc2089578696cc019c3f65f6421052ab0553f962de1f3ae"
+    },
+    "tooltips": {
+      "wholeFileMatchesAcceptedKit": true,
+      "pluginSha256": "2a2ee78f7090816f1b17c94bec5eed4e35c80ecb3549de85010e12c9f25bc657",
+      "kitSha256": "2a2ee78f7090816f1b17c94bec5eed4e35c80ecb3549de85010e12c9f25bc657"
+    }
+  },
+  "series": {
+    "fiches": {
+      "commit": "a5f48845",
+      "ancestorOfBase": true
+    },
+    "readonlySessionsReport": {
+      "commit": "8ecaec55",
+      "ancestorOfBase": true
+    },
+    "asyncImport": {
+      "commit": "820a03f0",
+      "ancestorOfBase": true
+    },
+    "asyncImportPrivacy": {
+      "commit": "02a650e7",
+      "ancestorOfBase": true
+    },
+    "ANIM": {
+      "commit": "447746c9",
+      "ancestorOfBase": true
+    },
+    "responsiveSearch": {
+      "commit": "9457a96a",
+      "ancestorOfBase": true
+    },
+    "tourPreservation": {
+      "commit": "e143c4a8",
+      "ancestorOfBase": true
+    }
+  },
+  "newChecks": {
+    "codecheckerBranch": "6be67917",
+    "sourceErrors": 0,
+    "sourceWarnings": 49,
+    "packageErrors": 0,
+    "packageWarnings": 12,
+    "isolatedSuitesOn018": 13,
+    "GuideMirrorSource": "356710fc",
+    "GuideMirrorKit": "6973139",
+    "T037": 14,
+    "T038": 49,
+    "roundtripPassed": true
+  }
+}

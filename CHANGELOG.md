@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Record the current points 2–3 audit on 01872080: verify 26 integrated predecessors, exact Kit defaults, passed security/import gates and the current Guide mirror; retain reserved-module and native-test limits without product changes.
+
 - 2026-10-17 [N0] Share the personal display preferences recipe and translated Guide entry points with the canonical Kit after ANIM/E1–E4 integration; preserve native preference behavior.
 
 - 2026-10-17 [N1] ANIM/G1 (K17-05): add personal Display and animations window from the desktop icon, responsive drawer and Guide; save full/reduced/minimal or institution default through Moodle and apply the existing M1 policy immediately.
