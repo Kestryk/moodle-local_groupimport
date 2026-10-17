@@ -19,7 +19,8 @@ const tracked = git('ls-files', '-z').split('\0').filter(Boolean).sort();
 const trees = new Set(['amd', 'classes', 'db', 'fonts', 'js', 'lang', 'pix', 'scss', 'styles', 'templates']);
 const topFiles = new Set(['LICENSE', 'README.md', 'CHANGELOG.md', 'styles.css']);
 function included(name) {
-    if (name.split('/').some(part => ['node_modules', 'vendor', '.git', 'tests', 'testing', 'fixtures', 'sandbox'].includes(part))) {
+    if (/(?:^|[-_/])(tests?|fixtures?|sandbox|screenshots?|captures?)(?:[-_.\/]|$)/i.test(name) ||
+            name.split('/').some(part => ['node_modules', 'vendor', '.git', 'tests', 'testing', 'fixtures', 'sandbox'].includes(part))) {
         return false;
     }
     return name.includes('/') ? trees.has(name.split('/')[0]) : topFiles.has(name) || /^[a-z][a-z0-9_]*\.php$/.test(name);
