@@ -275,28 +275,15 @@
 
         + .easyedu-guide-introduction__topic { border-block-start: 1px solid var(--easyedu-card-border); }
 
+        // K17-60: same type scale as the other Guide texts (base dt = control label, dd = caption).
         dt {
           align-items: center;
           gap: 0.5rem;
           color: var(--easyedu-card-title-ink);
-          font-size: var(--easyedu-font-size-section-title);
-          font-weight: var(--easyedu-font-weight-semibold);
-          line-height: 1.5;
-          .fa { flex: 0 0 1rem; font-size: 1rem; line-height: 1; color: var(--easyedu-primary); }
-        }
-
-        dd {
-          color: var(--easyedu-text-muted);
-          font-size: 1rem;
-          font-weight: var(--easyedu-font-weight-regular);
-          line-height: 1.5;
         }
       }
 
       .easyedu-guide-introduction__note {
-        color: var(--easyedu-text-muted);
-        font-size: 0.875rem;
-        line-height: 1.5;
         padding-inline: 1rem;
       }
 
@@ -884,7 +871,8 @@
           column-gap: 0.75rem;
           grid-template-columns: 2rem minmax(0, 1fr);
         }
-        [data-guide-live-complete] {
+        // K17-65: one class deeper than the running-state rule (inline-block), so the mark is a centred flex disc.
+        .easyedu-guide-scene__live [data-guide-live-complete] {
           align-items: center;
           background: var(--easyedu-success-mark-soft);
           border-radius: 50%;
@@ -898,7 +886,7 @@
           margin: 0;
           width: 2rem;
         }
-        [data-guide-live-complete][hidden] { display: none; }
+        .easyedu-guide-scene__live [data-guide-live-complete][hidden] { display: none; }
         [data-guide-live-copy] {
           display: grid;
           grid-column: 2;
@@ -1917,6 +1905,8 @@
         min-inline-size: 0;
         padding: 0.125rem 0.25rem;
         transition: background-color var(--easyedu-motion-fast) ease;
+        // K17-61: hovering a number lights its zone, so it shows the hand cursor like every hover target.
+        cursor: pointer;
         &:hover { background: var(--easyedu-primary-soft); }
       }
     }
@@ -1941,6 +1931,15 @@
         .btn { @include buttons.selection-action; @include buttons.button-size(small); }
         .btn .fa { margin: 0; line-height: 1; }
       }
+      // K17-65: once the mini demonstration is done, its replay action is the Kit Secondary (white, no icon),
+      // exactly like "Rejouer" on the end card of the other demonstrations.
+      &[data-guide-loupe-state="done"] .easyedu-guide-anatomy__loupe-bar .btn {
+        @include foundation.foundation-button($secondary: true, $matched-size: true);
+        margin: 0;
+        > .fa { display: none; }
+      }
+      // The action keeps the Secondary height from the first state, so nothing moves when its label changes.
+      &-bar .btn { min-block-size: 2.35rem; @media (pointer: coarse) { min-block-size: var(--easyedu-touch-target-min); } }
       // K17-39: the caption keeps room for its longest line count (two lines on a phone), so the page below
       // never moves when the narration changes.
       &-caption { @include typography.type-caption; margin: 0; min-block-size: 1.5em; }
