@@ -1,0 +1,258 @@
+{
+  "base": "d01f7208",
+  "baseline": [
+    {
+      "base": "108f0b2c",
+      "name": "test-quiet-selection-recovery.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-wave15-corrections-contract.ps1",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "Generated CSS is missing the Group-modal contextual-help rule."
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-view-icon-palette-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-guide-navigation-tooltip-source.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-tooltip-extraction-source.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-filter-disclosure-local-work-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-filter-disclosure-refresh-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-filter-disclosure-capsule-source.js",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-mass-report-semantic-palette.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "AssertionError [ERR_ASSERTION]: Exact official old/current paint and geometry"
+    },
+    {
+      "base": "108f0b2c",
+      "name": "test-modal-focus-scope.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-quiet-selection-recovery.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-wave15-corrections-contract.ps1",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "Generated CSS is missing the Group-modal contextual-help rule."
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-view-icon-palette-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-guide-navigation-tooltip-source.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-tooltip-extraction-source.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-filter-disclosure-local-work-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-filter-disclosure-refresh-preservation.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-filter-disclosure-capsule-source.js",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-mass-report-semantic-palette.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "AssertionError [ERR_ASSERTION]: Exact official old/current paint and geometry"
+    },
+    {
+      "base": "d01f7208",
+      "name": "test-modal-focus-scope.cjs",
+      "exit": 1,
+      "timeout": false,
+      "firstFailure": "  throw new AssertionError(obj);"
+    }
+  ],
+  "current": [
+    {
+      "name": "test-quiet-selection-recovery.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-wave15-corrections-contract.ps1",
+      "exit": 0
+    },
+    {
+      "name": "test-view-icon-palette-preservation.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-guide-navigation-tooltip-source.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-tooltip-extraction-source.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-filter-disclosure-local-work-preservation.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-filter-disclosure-refresh-preservation.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-filter-disclosure-capsule-source.js",
+      "exit": 0
+    },
+    {
+      "name": "test-modal-focus-scope.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-group-toggle-count-labels.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-security-escaping.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-filter-engine.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-folded-group-member-selection.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-guide-move-context.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-mobile-move-availability-source.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-mobile-participant-memberships.cjs",
+      "exit": 0
+    },
+    {
+      "name": "test-guide-source-member-path.cjs",
+      "exit": 0
+    }
+  ],
+  "isolatedBrowser": {
+    "massAssertions": 387,
+    "massWidths": [
+      1600,
+      768,
+      390
+    ],
+    "guideCases": 9,
+    "guideWidths": [
+      1280,
+      768,
+      390
+    ]
+  },
+  "mutations": [
+    {
+      "contract": "selection",
+      "deliberateDefectCaught": true
+    },
+    {
+      "contract": "tiles",
+      "deliberateDefectCaught": true
+    },
+    {
+      "contract": "tooltip",
+      "deliberateDefectCaught": true
+    },
+    {
+      "contract": "guide",
+      "deliberateDefectCaught": true
+    },
+    {
+      "contract": "filters",
+      "deliberateDefectCaught": true
+    },
+    {
+      "contract": "filterCapsule",
+      "deliberateDefectCaught": true
+    }
+  ],
+  "runtimeAccess": false,
+  "published": false,
+  "humanAccepted": false
+}

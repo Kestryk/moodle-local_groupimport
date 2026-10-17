@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Repin obsolete whole-file test oracles to current page CSS and modular contracts; verify offline tooltip/palette behavior and singular accessible group-member counts.
+
 - 2026-10-17 [N1] Align empty group rows through the shared Kit selection/text tracks; retain the grouping model and tree rule.
 
 - 2026-10-17 [N0] Restore standalone membership-transfer coverage with the real batch reader and course-filtered recordset doubles; no native service change.

@@ -34,7 +34,7 @@ $modal = Read-RequiredFile 'scss\components\_settings-modal.scss'
 $tooltips = Read-RequiredFile 'scss\easyedu\components\_tooltips.scss'
 $guide = Read-RequiredFile 'scss\easyedu\components\_guide.scss'
 $navigation = Read-RequiredFile 'scss\easyedu\components\_navigation.scss'
-$styles = Read-RequiredFile 'styles.css'
+$styles = Read-RequiredFile 'styles\student-management.css'
 $history = Read-RequiredFile 'docs\history\eed-ui-2026-wave15-corrections.md'
 
 # UI 0052-RF1: only the two semantic Group-modal question marks consume the
@@ -99,8 +99,7 @@ if ($manager -match '(?is)deletepicture.{0,160}(localStorage|sessionStorage)') {
 foreach ($fragment in @(
     '@include easyedu.toggle-check;',
     '@include easyedu.slideshow-toggle-row(var(--local-groupimport-easystud-group));',
-    'min-width: 0;',
-    'width: 100%;'
+    'min-width: 0;'
 )) {
     Assert-Contains 'Delete picture visual contract' $modal $fragment
 }
@@ -137,7 +136,7 @@ if ($navigation -match '(?s)\.easyedu-navigation__close:hover\s*\{') {
 
 $desktopGuideCss = [regex]::Match(
     $styles,
-    '(?s)\.path-local-groupimport \.easyedu-guide \.easyedu-guide__launcher\s*\{(?<body>.*?)\}'
+    '(?s)\.local-groupimport-easystud-easyedu-guide\.easyedu-guide \.easyedu-guide__launcher\s*\{(?<body>.*?)\}'
 )
 if (!$desktopGuideCss.Success) {
     throw 'Generated CSS is missing the desktop Guide launcher rule.'

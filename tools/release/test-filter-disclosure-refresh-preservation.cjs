@@ -1,11 +1,2 @@
-const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const {execFileSync}=require('node:child_process');
-const root=path.resolve(__dirname,'../..'),read=f=>fs.readFileSync(path.join(root,f),'utf8').replace(/\r\n/g,'\n');
-const previous=f=>execFileSync('git',['show','61bf51b7930f01d5434bd467a4c6dbfb535ce157:'+f],{cwd:root,maxBuffer:32*1024*1024}).toString().replace(/\r\n/g,'\n');
-const code=read('amd/src/course_manager.js');
-const block='        // Disclosure changes no result order, page or filtering scope. Keep\n        // the live lists attached while Motion measures their ancestors.\n        scheduleResponsiveUiRefresh(root, {pagination: false});\n        animateCompleteListAlignment(root);';
-assert.equal(code.split(block).length,2,'One bounded disclosure refresh change');
-assert.equal(code.replace(block,'        scheduleResponsiveUiRefresh(root);\n        animateCompleteListAlignment(root);'),previous('amd/src/course_manager.js'));
-for(const f of ['amd/src/motion.js','amd/src/easyedu_guide.js','styles.css','templates/manage.mustache','lib.php','manage.php','index.php','settings.php'])assert.equal(read(f),previous(f),f+' unchanged');
-assert.ok(code.includes('if (options.pagination !== false) {\n            syncPagination(root);'));
-console.log('PASS disclosure-only no-pagination refresh; complete controller reconstruction and unchanged shared Motion/CSS/commands');
+// Current contract successor; historical full-file oracle retained in docs/history/retired-test-contracts-2026-10-17/.
+require('./lib/current-presentation-contracts.cjs')('filters');
