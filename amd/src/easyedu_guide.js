@@ -2111,6 +2111,12 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   delete scene.dataset.guidePhase;
   const recap = scene.querySelector('[data-guide-recap]');
   if (recap) { prepareRecapDisclosure(recap); recap.hidden = true; }
+  // K17-44: the four renderings of the filter slide are the recap shown once its demonstration ends.
+  const filtersRecap = kind === 'filters' ?
+    scene.closest('[data-easyedu-guide-slide]')?.querySelector('[data-guide-filters-recap]') : null;
+  if (filtersRecap) {
+    filtersRecap.hidden = true;
+  }
   const origin = scene.querySelector('[data-guide-membership-origin]');
   const target = scene.querySelector('[data-guide-membership-target]');
   if (origin) { origin.classList.remove('is-removed'); origin.querySelector('b').textContent = origin.dataset.kept; }

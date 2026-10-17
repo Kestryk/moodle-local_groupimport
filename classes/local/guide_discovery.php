@@ -515,6 +515,11 @@ final class guide_discovery {
                     'lessonreading' => true,
                 ];
             }
+            if ($source === 'reference-3' && $specimen !== null) {
+                // K17-44: the four renderings become an animated demonstration; they are its recap.
+                $slide['filtersdemo'] = true;
+                $slide['discoveryscene'] = self::filters_demonstration();
+            }
             // Keep the optional exercises reachable after their duplicate lessons disappear.
             $invitation = ['discovery-actions' => 'reference-12', 'reference-7' => 'reference-8'][$source] ?? null;
             if ($invitation !== null) {
