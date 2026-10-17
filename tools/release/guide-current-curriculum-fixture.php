@@ -15,9 +15,23 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Complete production Guide presentation, without Moodle bootstrap, session or database.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('MOODLE_INTERNAL', true);
 $language = ($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en';
 require(__DIR__ . '/../../lang/' . $language . '/local_groupimport.php');
+/**
+ * Perform isolated fixture operation get_string.
+ * @param mixed $key Fixture argument.
+ * @param mixed $component Fixture argument.
+ * @param mixed $a Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_string($key, $component, $a = null) {
     global $string, $language;
     if ($component === 'core' && $key === 'closebuttontitle') {
@@ -28,10 +42,24 @@ function get_string($key, $component, $a = null) {
     }
     return $string[$key];
 }
+/**
+ * Perform isolated fixture operation s.
+ * @param mixed $value Fixture argument.
+ * @return mixed Fixture result.
+ */
 function s($value) {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
+/**
+ * Isolated fixture double for html_writer.
+ */
 class html_writer {
+    /**
+     * Perform isolated fixture operation tag.
+     * @param mixed $name Fixture argument.
+     * @param mixed $value Fixture argument.
+     * @return mixed Fixture result.
+     */
     public static function tag($name, $value) {
         return '<' . $name . '>' . $value . '</' . $name . '>';
     }

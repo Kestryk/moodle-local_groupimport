@@ -14,7 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-/** Isolated AJAX surface verification: actual dispatch, no Moodle bootstrap or database. */
+/** Isolated AJAX surface verification: actual dispatch, no Moodle bootstrap or database.  * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('MOODLE_INTERNAL', true);
 define('PARAM_INT', 'int');
 define('MUST_EXIST', true);
@@ -32,37 +34,109 @@ $dispatch = substr($source, $start, $end - $start);
 $checks = [];
 $injected = null;
 $created = null;
+/**
+ * Isolated fixture double for moodle_exception.
+ */
 class moodle_exception extends RuntimeException {
 }
-class dml_exception extends moodle_exception { public $debuginfo = 'synthetic SQL detail';
+/**
+ * Isolated fixture double for dml_exception.
+ */
+class dml_exception extends moodle_exception {
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    public $debuginfo = 'synthetic SQL detail';
 }
+/**
+ * Isolated fixture double for moodle_url.
+ */
 class moodle_url {
+    /**
+     * Perform isolated fixture operation __construct.
+     * @param mixed $path Fixture argument.
+     * @param mixed $params Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function __construct($path, $params) {
     }
+    /**
+     * Perform isolated fixture operation out.
+     * @param mixed $escape Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function out($escape) {
         return '/synthetic';
     }
 }
-class core_text { public static function strtolower($value) {
+/**
+ * Isolated fixture double for core_text.
+ */
+class core_text {
+    /**
+     * Perform isolated fixture operation strtolower.
+     * @param mixed $value Fixture argument.
+     * @return mixed Fixture result.
+     */
+    public static function strtolower($value) {
         return strtolower($value);
+    }
 }
-}
+/**
+ * Isolated fixture double for fixture_database.
+ */
 class fixture_database {
+    /**
+     * Perform isolated fixture operation get_records.
+     * @param mixed $table Fixture argument.
+     * @param mixed $conditions Fixture argument.
+     * @param mixed $sort Fixture argument.
+     * @param mixed $fields Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_records($table, $conditions, $sort, $fields) {
         return [];
     }
+    /**
+     * Perform isolated fixture operation get_record.
+     * @param mixed $table Fixture argument.
+     * @param mixed $conditions Fixture argument.
+     * @param mixed $fields Fixture argument.
+     * @param mixed $strict Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_record($table, $conditions, $fields, $strict = false) {
         return (object)['id' => 11, 'courseid' => 123, 'name' => 'Synthetic grouping'];
     }
 }
+/**
+ * Isolated fixture double for identifier_database.
+ */
 class identifier_database {
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public $fields = [];
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public $users;
+    /**
+     * Perform isolated fixture operation __construct.
+     * @return mixed Fixture result.
+     */
     public function __construct() {
         $this->users = [(object)['id' => 42, 'deleted' => 0, 'firstname' => 'SyntheticFirst',
             'lastname' => 'SyntheticLast', 'username' => 'synthetic-user', 'email' => 'synthetic@example.test',
             'idnumber' => 'SYN-42']];
     }
+    /**
+     * Perform isolated fixture operation get_record.
+     * @param mixed $table Fixture argument.
+     * @param mixed $conditions Fixture argument.
+     * @param mixed $fields Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_record($table, $conditions, $fields) {
         $this->fields[] = array_keys($conditions)[0];
         foreach ($this->users as $user) {
@@ -75,21 +149,52 @@ class identifier_database {
         }
         return null;
     }
+    /**
+     * Perform isolated fixture operation get_in_or_equal.
+     * @param mixed $fields Fixture argument.
+     * @param mixed $style Fixture argument.
+     * @param mixed $prefix Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_in_or_equal($fields, $style, $prefix) {
         return ['IN (:field0)', ['field0' => $fields[0]]];
     }
+    /**
+     * Perform isolated fixture operation get_records_sql.
+     * @param mixed $sql Fixture argument.
+     * @param mixed $params Fixture argument.
+     * @param mixed $start Fixture argument.
+     * @param mixed $limit Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_records_sql($sql, $params, $start, $limit) {
         $this->fields[] = 'profile_field_' . $params['field0'];
         return $params['data'] === 'SyntheticSchool' && $params['field0'] === 'School' ? $this->users : [];
     }
 }
+/**
+ * Perform isolated fixture operation get_config.
+ * @param mixed $component Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_config($component) {
     global $allowedfields;
     return (object)['alloweduserfields' => $allowedfields];
 }
+/**
+ * Perform isolated fixture operation required_param.
+ * @param mixed $name Fixture argument.
+ * @param mixed $type Fixture argument.
+ * @return mixed Fixture result.
+ */
 function required_param($name, $type) {
     return 11;
 }
+/**
+ * Perform isolated fixture operation groups_get_group.
+ * @param mixed $id Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_get_group($id) {
     global $injected;
     if ($injected) {
@@ -97,22 +202,50 @@ function groups_get_group($id) {
     }
     return (object)['id' => $id, 'courseid' => 123, 'name' => 'Synthetic group'];
 }
+/**
+ * Perform isolated fixture operation groups_create_group.
+ * @param mixed $record Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_create_group($record) {
     global $created;
     $created = $record;
     return 12;
 }
+/**
+ * Perform isolated fixture operation groups_create_grouping.
+ * @param mixed $record Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_create_grouping($record) {
     global $created;
     $created = $record;
     return 12;
 }
+/**
+ * Perform isolated fixture operation groups_get_members.
+ * @param mixed $id Fixture argument.
+ * @param mixed $fields Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_get_members($id, $fields) {
     return [];
 }
+/**
+ * Perform isolated fixture operation format_string.
+ * @param mixed $value Fixture argument.
+ * @return mixed Fixture result.
+ */
 function format_string($value) {
     return $value;
 }
+/**
+ * Perform isolated fixture operation get_string.
+ * @param mixed $key Fixture argument.
+ * @param mixed $component Fixture argument.
+ * @param mixed $a Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_string($key, $component, $a = null) {
     global $string;
     if (!isset($string[$key])) {
@@ -120,6 +253,12 @@ function get_string($key, $component, $a = null) {
     }
     return is_scalar($a) ? str_replace('{$a}', (string)$a, $string[$key]) : $string[$key];
 }
+/**
+ * Perform isolated fixture operation check.
+ * @param mixed $name Fixture argument.
+ * @param mixed $condition Fixture argument.
+ * @return mixed Fixture result.
+ */
 function check($name, $condition) {
     global $checks;
     $checks[$name] = (bool)$condition;
@@ -140,7 +279,18 @@ foreach (['en', 'fr'] as $language) {
     preg_match_all('/^\$string\[\x27([^\x27]+)\x27\]\s*=/m', $langsource, $keys);
     check($language . ' unique language keys', count($keys[1]) === count(array_unique($keys[1])));
     require $root . '/lang/' . $language . '/local_groupimport.php';
-    foreach (['discovery_addselect', 'discovery_adddrop', 'discovery_mobileaddselect', 'discovery_mobileaddmenu', 'discovery_mobileaddvalidate', 'guideinspection_group_open', 'guideinspection_group_enter', 'guideinspection_group_review', 'guideinspection_grouping_open', 'guideinspection_grouping_enter', 'guideinspection_grouping_review', 'guideinspection_grouping_return'] as $key) {
+    foreach (['discovery_addselect',
+         'discovery_adddrop',
+         'discovery_mobileaddselect',
+         'discovery_mobileaddmenu',
+         'discovery_mobileaddvalidate',
+         'guideinspection_group_open',
+         'guideinspection_group_enter',
+         'guideinspection_group_review',
+         'guideinspection_grouping_open',
+         'guideinspection_grouping_enter',
+         'guideinspection_grouping_review',
+         'guideinspection_grouping_return'] as $key) {
         check($language . ' concise phase ' . $key, mb_strlen($string[$key]) <= 110);
     }
     check($language . ' participant action says Add', $string['moveselectedparticipants'] ===
@@ -265,11 +415,18 @@ if (!empty($argv[1])) {
     file_put_contents($argv[1], $report);
 }
 echo $report;
-
+/**
+ * Perform isolated fixture operation data_submitted.
+ * @return mixed Fixture result.
+ */
 function data_submitted() {
     global $submitted;
     return $submitted;
 }
+/**
+ * Perform isolated fixture operation require_sesskey.
+ * @return mixed Fixture result.
+ */
 function require_sesskey() {
     global $validkey, $guardcalls;
     $guardcalls++;

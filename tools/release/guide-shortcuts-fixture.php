@@ -17,6 +17,14 @@
 
 define('MOODLE_INTERNAL', true);
 require(__DIR__ . '/../../lang/' . (($argv[1] ?? 'en') === 'fr' ? 'fr' : 'en') . '/local_groupimport.php');
+/**
+ * Perform isolated fixture operation get_string.
+ * @param mixed $key Fixture argument.
+ * @param mixed $component Fixture argument.
+ * @return mixed Fixture result.
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 function get_string($key, $component) {
     global $string;
     if (!isset($string[$key])) {

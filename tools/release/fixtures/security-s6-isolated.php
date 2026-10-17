@@ -15,12 +15,34 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // No Moodle bootstrap, runtime request or database connection.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 require __DIR__ . '/spreadsheet-libraries.php';
 define('MOODLE_INTERNAL', true);
-class moodle_exception extends RuntimeException {public function __construct($key, $component = '', ...$rest) {
+/**
+ * Isolated fixture double for moodle_exception.
+ */
+class moodle_exception extends RuntimeException {
+    /**
+     * Perform isolated fixture operation __construct.
+     * @param mixed $key Fixture argument.
+     * @param mixed $component Fixture argument.
+     * @param mixed $rest Fixture argument.
+     * @return mixed Fixture result.
+     */
+    public function __construct($key, $component = '', ...$rest) {
         parent::__construct($key);
+    }
 }
-}
+/**
+ * Perform isolated fixture operation make_request_directory.
+ * @return mixed Fixture result.
+ */
 function make_request_directory() {
     return $GLOBALS['requestdir'];
 }
@@ -32,10 +54,22 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
 $checks = 0;
+/**
+ * Perform isolated fixture operation check.
+ * @param mixed $ok Fixture argument.
+ * @param mixed $label Fixture argument.
+ * @return mixed Fixture result.
+ */
 function check($ok, $label) {
     $GLOBALS['checks']++;
     if (!$ok)throw new RuntimeException($label);
 }
+/**
+ * Perform isolated fixture operation rejects.
+ * @param mixed $call Fixture argument.
+ * @param mixed $label Fixture argument.
+ * @return mixed Fixture result.
+ */
 function rejects($call, $label) {
     try {
         $call();
@@ -47,6 +81,12 @@ function rejects($call, $label) {
 $requestdir = sys_get_temp_dir() . '/easystud-s6-' . bin2hex(random_bytes(8));
 mkdir($requestdir);
 $owned = [];
+/**
+ * Perform isolated fixture operation workbook.
+ * @param Spreadsheet $book Fixture argument.
+ * @param string $extension Fixture argument.
+ * @return string Fixture result.
+ */
 function workbook(Spreadsheet $book, string $extension = 'xlsx'): string {
     $path = $GLOBALS['requestdir'] . '/fixture-' . bin2hex(random_bytes(5)) . '.' . $extension;
     $GLOBALS['owned'][] = $path;
@@ -59,7 +99,29 @@ function workbook(Spreadsheet $book, string $extension = 'xlsx'): string {
 }
 try {
     $csv = "identifier;groupname;groupingname\r\nu@example.test;Équipe été;Promotion\r\n";
-    foreach (['utf8' => $csv, 'bom' => "\xEF\xBB\xBF" . $csv, 'cp1252' => mb_convert_encoding($csv, 'Windows-1252', 'UTF-8'), 'utf16le' => "\xFF\xFE" . mb_convert_encoding($csv, 'UTF-16LE', 'UTF-8'), 'utf16be' => "\xFE\xFF" . mb_convert_encoding($csv, 'UTF-16BE', 'UTF-8')] as $encoding => $data) {
+    foreach (['utf8' =>
+         $csv,
+         'bom' =>
+         "\xEF\xBB\xBF" . $csv,
+         'cp1252' =>
+         mb_convert_encoding(
+             $csv,
+             'Windows-1252',
+             'UTF-8'
+         ),
+         'utf16le' =>
+         "\xFF\xFE" . mb_convert_encoding(
+             $csv,
+             'UTF-16LE',
+             'UTF-8'
+         ),
+         'utf16be' =>
+         "\xFE\xFF" . mb_convert_encoding(
+             $csv,
+             'UTF-16BE',
+             'UTF-8'
+         )] as $encoding =>
+         $data) {
         $parsed = reader::csv($data);
         check($parsed['rows'][0] === ['u@example.test', 'Équipe été', 'Promotion'], $encoding . ' accents preserved');
     }
@@ -82,10 +144,22 @@ try {
     rejects(fn()=>reader::csv(implode(';', array_fill(0, 65, 'a')) . "\n"), 'Column bound');
     rejects(fn()=>reader::csv(str_repeat(implode(';', array_fill(0, 64, 'x')) . "\n", 800)), 'CSV cell bound');
     rejects(fn()=>reader::csv("\n\n"), 'Empty rejected');
-    check(reader::max_bytes(0) === 5242880 && reader::max_bytes(1000) === 1000 && reader::max_bytes(99999999) === 5242880, 'Site/course/plugin byte cap');
+    check(
+        reader::max_bytes(0) === 5242880 &&
+         reader::max_bytes(1000) === 1000 &&
+         reader::max_bytes(99999999) === 5242880,
+        'Site/course/plugin byte cap'
+    );
     $formats = ['xlsx'];
     if (class_exists(Xls::class))$formats[] = 'xls';
-    else rejects(fn()=>reader::excel('legacy placeholder', 'legacy.xls'), 'Omitted native legacy XLS reader reports controlled failure');
+    else rejects(
+        fn()=>
+        reader::excel(
+            'legacy placeholder',
+            'legacy.xls'
+        ),
+        'Omitted native legacy XLS reader reports controlled failure'
+    );
     foreach ($formats as $extension) {
         $book = new Spreadsheet();
         $book->getActiveSheet()->fromArray([['identifier', 'groupname', 'groupingname'], ['u@example.test', 'Équipe été', 'X']]);
@@ -109,7 +183,16 @@ try {
     $baseline = $native->load($nativepath);
     $expected = $baseline->getActiveSheet()->toArray('', false, false, false);
     $baseline->disconnectWorksheets();
-    check(reader::excel($data, 'active.xlsx')['rows'][0] === array_map('strval', $expected[1]), 'Native data-only active-sheet selection preserved');
+    check(
+        reader::excel(
+            $data,
+            'active.xlsx'
+        )['rows'][0] === array_map(
+            'strval',
+            $expected[1]
+        ),
+        'Native data-only active-sheet selection preserved'
+    );
     $book = new Spreadsheet();
     $book->getActiveSheet()->fromArray([['a', 'b'], ['u', '=1+1']]);
     $parsed = reader::excel(workbook($book), 'formula.xlsx');
@@ -132,12 +215,38 @@ try {
         $owned[] = $path;
         $zip = new ZipArchive();
         $zip->open($path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-        if ($kind === 'large')$zip->addFromString('oversized.xml', str_repeat('a', 10485761));else for ($i = 0; $i < 257; $i++)$zip->addFromString('entry' . $i, 'x');
+        if ($kind === 'large')$zip->addFromString(
+            'oversized.xml',
+            str_repeat(
+                'a',
+                10485761
+            )
+        );else for ($i = 0; $i < 257; $i++)$zip->addFromString(
+            'entry' . $i,
+            'x'
+        );
         $zip->close();
         rejects(fn()=>reader::excel(file_get_contents($path), 'bomb.xlsx'), 'XLSX ' . $kind . ' limit');
     }
     check(glob($requestdir . '/import_*') === [], 'All request input temporaries cleaned');
-    echo json_encode(['suite' => 'S6-isolated-real-spreadsheets', 'passed' => true, 'checks' => $checks, 'csvRows' => 3000, 'confirmationCeilingUnchanged' => 1000, 'realFormats' => $formats, 'legacyXlsReaderAvailable' => class_exists('PhpOffice\\PhpSpreadsheet\\Reader\\Xls'), 'databaseConnections' => 0, 'runtimeAccess' => false]) . PHP_EOL;
+    echo json_encode(['suite' =>
+         'S6-isolated-real-spreadsheets',
+         'passed' =>
+         true,
+         'checks' =>
+         $checks,
+         'csvRows' =>
+         3000,
+         'confirmationCeilingUnchanged' =>
+         1000,
+         'realFormats' =>
+         $formats,
+         'legacyXlsReaderAvailable' =>
+         class_exists('PhpOffice\\PhpSpreadsheet\\Reader\\Xls'),
+         'databaseConnections' =>
+         0,
+         'runtimeAccess' =>
+         false]) . PHP_EOL;
 } finally {
     foreach ($owned as $path)if (is_file($path))unlink($path);
     foreach (glob($requestdir . '/import_*') as $path)if (is_file($path))unlink($path);

@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Actual consumer presentation fixture; no Moodle session, DB or business action.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 ob_start();
 require(__DIR__ . '/guide-current-curriculum-fixture.php');
 $data = json_decode(ob_get_clean(), true, 512, JSON_THROW_ON_ERROR);

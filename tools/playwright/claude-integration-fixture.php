@@ -16,6 +16,13 @@
 // Deterministic, disposable fixture for the supervised Claude integration review.
 // It never accepts credentials and records every mutable id in its manifest.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('CLI_SCRIPT', true);
 
 $options = ['moodle-root' => null, 'action' => null, 'manifest' => null, 'run-id' => null, 'help' => false];
@@ -36,7 +43,10 @@ for ($index = 1; $index < count($argv); $index++) {
 }
 
 if ($options['help'] || !$options['moodle-root'] || !$options['action'] || !$options['manifest']) {
-    fwrite(STDERR, "Usage: php easystud-action-button-alignment-fixture.php --moodle-root=<root> --action=setup|cleanup --manifest=<external-json> [--run-id=<id>]\n");
+    fwrite(
+        STDERR,
+        "Usage: php easystud-action-button-alignment-fixture.php --moodle-root=<root> --action=setup|cleanup --manifest=<external-json> [--run-id=<id>]\n"
+    );
     exit(2);
 }
 
@@ -50,16 +60,29 @@ require_once($CFG->dirroot . '/course/lib.php');
 require_once($CFG->dirroot . '/group/lib.php');
 require_once($CFG->libdir . '/enrollib.php');
 $USER = get_admin();
-
+/**
+ * Perform isolated fixture operation output_fixture_json.
+ * @param array $value Fixture argument.
+ * @return void Fixture result.
+ */
 function output_fixture_json(array $value): void {
     echo json_encode($value, JSON_UNESCAPED_SLASHES) . PHP_EOL;
 }
-
+/**
+ * Perform isolated fixture operation fixture_fail.
+ * @param string $message Fixture argument.
+ * @return void Fixture result.
+ */
 function fixture_fail(string $message): void {
     fwrite(STDERR, $message . PHP_EOL);
     exit(1);
 }
-
+/**
+ * Perform isolated fixture operation fixture_write_manifest.
+ * @param string $path Fixture argument.
+ * @param array $manifest Fixture argument.
+ * @return void Fixture result.
+ */
 function fixture_write_manifest(string $path, array $manifest): void {
     $directory = dirname($path);
     if (!is_dir($directory) || !is_writable($directory)) {
@@ -67,7 +90,11 @@ function fixture_write_manifest(string $path, array $manifest): void {
     }
     file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . PHP_EOL, LOCK_EX);
 }
-
+/**
+ * Perform isolated fixture operation fixture_cleanup_course.
+ * @param int $courseid Fixture argument.
+ * @return array Fixture result.
+ */
 function fixture_cleanup_course(int $courseid): array {
     global $DB, $CFG;
     // Only this disposable QA course: skip recycling its empty test shell.

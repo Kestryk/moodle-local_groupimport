@@ -15,33 +15,126 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Execute the four actual AJAX branch bodies with in-memory native adapters only.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('MOODLE_INTERNAL', true);
 define('PARAM_INT', 1);
 define('PARAM_TEXT', 2);
 define('SQL_PARAMS_NAMED', 1);
-class moodle_exception extends RuntimeException {public function __construct($key, ...$rest) {
+/**
+ * Isolated fixture double for moodle_exception.
+ */
+class moodle_exception extends RuntimeException {
+    /**
+     * Perform isolated fixture operation __construct.
+     * @param mixed $key Fixture argument.
+     * @param mixed $rest Fixture argument.
+     * @return mixed Fixture result.
+     */
+    public function __construct($key, ...$rest) {
         parent::__construct($key);
+    }
 }
-}
+/**
+ * Isolated fixture double for context_course.
+ */
 class context_course {
 }
-class core_php_time_limit {public static array $calls = [];
+/**
+ * Isolated fixture double for core_php_time_limit.
+ */
+class core_php_time_limit {
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    public static array $calls = [];
+    /**
+     * Perform isolated fixture operation raise.
+     * @param mixed $s Fixture argument.
+     * @return mixed Fixture result.
+     */
     public static function raise($s) {
         self::$calls[] = $s;
     }
 }
+/**
+ * Isolated fixture double for memory_db.
+ */
 class memory_db {
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public array $members = [], $groups = [], $enrolled = [], $events = [];
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public int $starts = 0, $commits = 0, $rollbacks = 0, $queries = 0, $writes = 0, $failat = 0;
+    /**
+     * Perform isolated fixture operation start_delegated_transaction.
+     * @return mixed Fixture result.
+     */
     public function start_delegated_transaction() {
         $this->starts++;
         $saved = [$this->members, $this->groups, $this->events];
         return new class ($this, $saved) {
-            public function __construct(private $db, private $saved) {
+            /**
+             * Perform isolated fixture operation __construct.
+             * @param private $db Fixture argument.
+             * @param private $saved Fixture argument.
+             * @return mixed Fixture result.
+             */
+            public function __construct(
+                /**
+                 * @var mixed Standalone fixture state.
+                 */
+                /**
+                 * @var mixed Standalone fixture state.
+                 */
+                private $db,
+                private $saved
+            ) {
             }
+            /**
+             * Perform isolated fixture operation allow_commit.
+             * @return mixed Fixture result.
+             */
             public function allow_commit() {
                 $this->db->commits++;
             }
+            /**
+             * Perform isolated fixture operation rollback.
+             * @param mixed $e Fixture argument.
+             * @return mixed Fixture result.
+             */
             public function rollback($e) {
                 [$this->db->members, $this->db->groups, $this->db->events] = $this->saved;
                 $this->db->rollbacks++;
@@ -49,16 +142,40 @@ class memory_db {
             }
         };
     }
+    /**
+     * Perform isolated fixture operation mutate.
+     * @return mixed Fixture result.
+     */
     public function mutate() {
         if (++$this->writes === $this->failat)throw new RuntimeException('native-failure');
     }
+    /**
+     * Perform isolated fixture operation get_records_sql.
+     * @param mixed $sql Fixture argument.
+     * @param mixed $params Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_records_sql($sql, $params) {
         $this->queries++;
         return $this->enrolled;
     }
+    /**
+     * Perform isolated fixture operation get_in_or_equal.
+     * @param mixed $ids Fixture argument.
+     * @param mixed $rest Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_in_or_equal($ids, ...$rest) {
         return ['IN (...)', array_values($ids)];
     }
+    /**
+     * Perform isolated fixture operation get_records_select.
+     * @param mixed $table Fixture argument.
+     * @param mixed $sql Fixture argument.
+     * @param mixed $params Fixture argument.
+     * @param mixed $rest Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_records_select($table, $sql, $params, ...$rest) {
         $this->queries++;
         $course = $params['courseid'];
@@ -69,18 +186,47 @@ class memory_db {
         }return $out;
     }
 }
+/**
+ * Perform isolated fixture operation required_param.
+ * @param mixed $key Fixture argument.
+ * @param mixed $type Fixture argument.
+ * @return mixed Fixture result.
+ */
 function required_param($key, $type) {
     return $GLOBALS['input'][$key];
 }
+/**
+ * Perform isolated fixture operation required_param_array.
+ * @param mixed $key Fixture argument.
+ * @param mixed $type Fixture argument.
+ * @return mixed Fixture result.
+ */
 function required_param_array($key, $type) {
     return $GLOBALS['input'][$key];
 }
+/**
+ * Perform isolated fixture operation groups_get_group.
+ * @param mixed $id Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_get_group($id) {
     return $GLOBALS['DB']->groups[$id] ?? false;
 }
+/**
+ * Perform isolated fixture operation groups_is_member.
+ * @param mixed $g Fixture argument.
+ * @param mixed $u Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_is_member($g, $u) {
     return isset($GLOBALS['DB']->members["$g:$u"]);
 }
+/**
+ * Perform isolated fixture operation groups_add_member.
+ * @param mixed $g Fixture argument.
+ * @param mixed $u Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_add_member($g, $u) {
     $db = $GLOBALS['DB'];
     $db->mutate();
@@ -88,6 +234,12 @@ function groups_add_member($g, $u) {
     $db->events[] = "add:$g:$u";
     return true;
 }
+/**
+ * Perform isolated fixture operation groups_remove_member.
+ * @param mixed $g Fixture argument.
+ * @param mixed $u Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_remove_member($g, $u) {
     $db = $GLOBALS['DB'];
     $db->mutate();
@@ -95,9 +247,20 @@ function groups_remove_member($g, $u) {
     $db->events[] = "remove:$g:$u";
     return true;
 }
+/**
+ * Perform isolated fixture operation groups_remove_member_allowed.
+ * @param mixed $g Fixture argument.
+ * @param mixed $u Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_remove_member_allowed($g, $u) {
     return $u !== 99;
 }
+/**
+ * Perform isolated fixture operation groups_delete_group.
+ * @param mixed $id Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_delete_group($id) {
     $db = $GLOBALS['DB'];
     $db->mutate();
@@ -105,27 +268,69 @@ function groups_delete_group($id) {
     $db->events[] = "delete:$id";
     return true;
 }
+/**
+ * Perform isolated fixture operation get_enrolled_sql.
+ * @param mixed $c Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_enrolled_sql($c) {
     return ['SELECT id FROM enrolled', []];
 }
+/**
+ * Perform isolated fixture operation isguestuser.
+ * @param mixed $id Fixture argument.
+ * @return mixed Fixture result.
+ */
 function isguestuser($id) {
     return false;
 }
+/**
+ * Perform isolated fixture operation is_enrolled.
+ * @param mixed $args Fixture argument.
+ * @return mixed Fixture result.
+ */
 function is_enrolled(...$args) {
     throw new RuntimeException('Unexpected per-user enrolment query');
 }
+/**
+ * Perform isolated fixture operation get_string.
+ * @param mixed $key Fixture argument.
+ * @param mixed $args Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_string($key, ...$args) {
     return $key;
 }
+/**
+ * Perform isolated fixture operation local_groupimport_count_string.
+ * @param mixed $key Fixture argument.
+ * @param mixed $count Fixture argument.
+ * @return mixed Fixture result.
+ */
 function local_groupimport_count_string($key, $count) {
     return "$key:$count";
 }
+/**
+ * Perform isolated fixture operation fullname.
+ * @param mixed $user Fixture argument.
+ * @return mixed Fixture result.
+ */
 function fullname($user) {
     return 'User ' . $user->id;
 }
+/**
+ * Perform isolated fixture operation local_groupimport_extract_user_tokens.
+ * @param mixed $s Fixture argument.
+ * @return mixed Fixture result.
+ */
 function local_groupimport_extract_user_tokens($s) {
     return array_values(array_unique(preg_split('/\\s+/', trim($s), -1, PREG_SPLIT_NO_EMPTY)));
 }
+/**
+ * Perform isolated fixture operation local_groupimport_find_users_by_identifiers.
+ * @param mixed $tokens Fixture argument.
+ * @return mixed Fixture result.
+ */
 function local_groupimport_find_users_by_identifiers($tokens) {
     $out = [];
     foreach ($tokens as $t) {
@@ -151,18 +356,48 @@ foreach (['addusers', 'addemails', 'removemembers', 'deletegroups'] as $name) {
     $bodies[$name] = substr($source, $start, $end - $start);
 }
 $checks = 0;
+/**
+ * Perform isolated fixture operation check.
+ * @param mixed $ok Fixture argument.
+ * @param mixed $label Fixture argument.
+ * @return mixed Fixture result.
+ */
 function check($ok, $label) {
     $GLOBALS['checks']++;
     if (!$ok)throw new RuntimeException($label);
 }
+/**
+ * Perform isolated fixture operation reset_state.
+ * @return mixed Fixture result.
+ */
 function reset_state() {
     $GLOBALS['DB'] = new memory_db();
     $db = $GLOBALS['DB'];
-    $db->groups = [10 => (object)['id' => 10, 'courseid' => 5], 11 => (object)['id' => 11, 'courseid' => 5], 12 => (object)['id' => 12, 'courseid' => 6]];
+    $db->groups = [10 =>
+         (object)['id' =>
+         10,
+         'courseid' =>
+         5],
+         11 =>
+         (object)['id' =>
+         11,
+         'courseid' =>
+         5],
+         12 =>
+         (object)['id' =>
+         12,
+         'courseid' =>
+         6]];
     for ($i = 1; $i <= 500; $i++)$db->enrolled[$i] = (object)['id' => $i];
     $GLOBALS['USER'] = (object)['id' => 0];
     core_php_time_limit::$calls = [];
 }
+/**
+ * Perform isolated fixture operation action.
+ * @param mixed $name Fixture argument.
+ * @param mixed $input Fixture argument.
+ * @return mixed Fixture result.
+ */
 function action($name, $input) {
     global $DB;
     $context = new context_course();
@@ -172,6 +407,13 @@ function action($name, $input) {
     eval('use local_groupimport\\local\\bulk_action; use local_groupimport\\local\\ajax_security; ' . $GLOBALS['bodies'][$name]);
     return $response;
 }
+/**
+ * Perform isolated fixture operation rejection.
+ * @param mixed $name Fixture argument.
+ * @param mixed $input Fixture argument.
+ * @param mixed $message Fixture argument.
+ * @return mixed Fixture result.
+ */
 function rejection($name, $input, $message) {
     try {
         action($name, $input);
@@ -205,7 +447,24 @@ check(count($r['users']) === 2 && $r['missing'] === ['unknown', 'user999'], 'ema
 check($r['skipped'] === 2 && str_contains($r['message'], 'bulkitemsskipped'), 'explicit email partial summary');
 check($DB->queries === 1 && $DB->commits === 1, 'email grouped enrolment/commit');
 reset_state();
-rejection('addemails', ['groupid' => 10, 'emails' => implode(' ', array_map(fn($i)=>'user' . $i, range(1, 501)))], 'bulkactionlimit');
+rejection(
+    'addemails',
+    ['groupid' =>
+         10,
+         'emails' =>
+         implode(
+             ' ',
+             array_map(
+                 fn($i)=>
+                 'user' . $i,
+                 range(
+                     1,
+                     501
+                 )
+             )
+         )],
+    'bulkactionlimit'
+);
 check($DB->writes === 0 && $DB->starts === 0, 'email cap no writes');
 reset_state();
 $DB->failat = 2;
@@ -240,7 +499,20 @@ rejection('deletegroups', ['groupids' => range(1, 501)], 'bulkactionlimit');
 check($DB->writes === 0 && $DB->queries === 0 && $DB->starts === 0, 'delete cap before reads/writes');
 $string = [];
 require $root . '/lang/fr/local_groupimport.php';
-check($string['bulkactionlimit'] === 'Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a été effectuée. Sélectionnez moins d’éléments et réessayez.', 'exact UTF-8 FR bulkactionlimit');
+check(
+    $string['bulkactionlimit'] === 'Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a été effectuée. Sélectionnez moins d’éléments et réessayez.',
+    'exact UTF-8 FR bulkactionlimit'
+);
 check($string['bulkitemsskipped'] === 'Éléments non ajoutés : {$a}.', 'exact UTF-8 FR bulkitemsskipped');
 check(!str_contains($string['bulkactionlimit'] . $string['bulkitemsskipped'], '?'), 'no encoding replacement');
-echo json_encode(['surface' => 'r6-server', 'passed' => true, 'checks' => $checks, 'databaseConnections' => 0, 'runtimeAccess' => false]), "\n";
+echo json_encode(['surface' =>
+         'r6-server',
+         'passed' =>
+         true,
+         'checks' =>
+         $checks,
+         'databaseConnections' =>
+         0,
+         'runtimeAccess' =>
+         false]),
+         "\n";

@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Execute only the existing pure quick-create parser functions; no Moodle bootstrap.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 $source = file_get_contents(__DIR__ . '/../../ajax.php');
 $start = strpos($source, 'function local_groupimport_extract_create_names(');
 if ($start === false) {

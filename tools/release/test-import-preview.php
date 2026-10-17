@@ -16,7 +16,18 @@
 // Isolated transport tests: no Moodle/database/session fixture writes.
 
 define('MOODLE_INTERNAL', true);
+/**
+ * Isolated fixture double for moodle_exception.
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class moodle_exception extends Exception {
+    /**
+     * Perform isolated fixture operation __construct.
+     * @param mixed $code Fixture argument.
+     * @param mixed $args Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function __construct($code, ...$args) {
         parent::__construct($code);
     }

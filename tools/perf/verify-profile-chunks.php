@@ -14,13 +14,31 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-/** AP-E7: execute both actual functions against deterministic Moodle DML doubles. */
+/** AP-E7: execute both actual functions against deterministic Moodle DML doubles.  * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('SQL_PARAMS_NAMED', 2);
 $options = getopt('', ['before:', 'after:']);
 $checks = [];
+/**
+ * Isolated fixture double for profile_chunk_db.
+ */
 class profile_chunk_db {
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public array $sizes = [];
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public int $closed = 0;
+    /**
+     * Perform isolated fixture operation get_in_or_equal.
+     * @param mixed $values Fixture argument.
+     * @param mixed $type Fixture argument.
+     * @param mixed $prefix Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_in_or_equal($values, $type, $prefix = 'param') {
         $params = [];
         foreach (array_values($values) as $i => $value) {
@@ -31,6 +49,11 @@ class profile_chunk_db {
         }
         return ['IN (' . implode(',', array_map(static fn($key) => ':' . $key, array_keys($params))) . ')', $params];
     }
+    /**
+     * Perform isolated fixture operation rows.
+     * @param array $params Fixture argument.
+     * @return array Fixture result.
+     */
     public function rows(array $params): array {
         $rows = [];
         foreach ($params as $key => $id) {
@@ -44,16 +67,44 @@ class profile_chunk_db {
         }
         return $rows;
     }
+    /**
+     * Perform isolated fixture operation get_recordset_sql.
+     * @param mixed $sql Fixture argument.
+     * @param mixed $params Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_recordset_sql($sql, $params) {
         return new class ($this->rows($params), $this) extends ArrayIterator {
-            public function __construct(array $rows, public profile_chunk_db $db) {
+            /**
+             * Perform isolated fixture operation __construct.
+             * @param array $rows Fixture argument.
+             * @param profile_chunk_db $db Fixture argument.
+             * @return mixed Fixture result.
+             */
+            public function __construct(
+                /**
+                 * @var mixed Standalone fixture state.
+                 */
+                array $rows,
+                public profile_chunk_db $db
+            ) {
                 parent::__construct($rows);
             }
+            /**
+             * Perform isolated fixture operation close.
+             * @return void Fixture result.
+             */
             public function close(): void {
                 $this->db->closed++;
             }
         };
     }
+    /**
+     * Perform isolated fixture operation get_records_sql.
+     * @param mixed $sql Fixture argument.
+     * @param mixed $params Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_records_sql($sql, $params) {
         $rows = [];
         // Preserve the historical userid-first-column collision, not a redesign.
@@ -63,6 +114,11 @@ class profile_chunk_db {
         return $rows;
     }
 }
+/**
+ * Perform isolated fixture operation local_groupimport_normalise_participant_label_value.
+ * @param mixed $value Fixture argument.
+ * @return mixed Fixture result.
+ */
 function local_groupimport_normalise_participant_label_value($value) {
     return trim(strip_tags($value));
 }

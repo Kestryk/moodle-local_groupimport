@@ -15,23 +15,70 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Executes only isolated policy/functions; no Moodle bootstrap or database connection.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('SITEID', 1);
-class moodle_exception extends RuntimeException { public function __construct($key, $component) {
+/**
+ * Isolated fixture double for moodle_exception.
+ */
+class moodle_exception extends RuntimeException {
+    /**
+     * Perform isolated fixture operation __construct.
+     * @param mixed $key Fixture argument.
+     * @param mixed $component Fixture argument.
+     * @return mixed Fixture result.
+     */
+    public function __construct($key, $component) {
         parent::__construct($key);
+    }
 }
-}
+/**
+ * Isolated fixture double for coding_exception.
+ */
 class coding_exception extends RuntimeException {
 }
+/**
+ * Isolated fixture double for core_text.
+ */
 class core_text {
+    /**
+     * Perform isolated fixture operation strlen.
+     * @param mixed $s Fixture argument.
+     * @return mixed Fixture result.
+     */
     public static function strlen($s) {
         return mb_strlen($s);
     }
+    /**
+     * Perform isolated fixture operation substr.
+     * @param mixed $s Fixture argument.
+     * @param mixed $a Fixture argument.
+     * @param mixed $b Fixture argument.
+     * @return mixed Fixture result.
+     */
     public static function substr($s, $a, $b) {
         return mb_substr($s, $a, $b);
     }
 }
+/**
+ * Isolated fixture double for memory_db.
+ */
 class memory_db {
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public array $rows = [];
+    /**
+     * Perform isolated fixture operation record_exists.
+     * @param string $table Fixture argument.
+     * @param array $conditions Fixture argument.
+     * @return bool Fixture result.
+     */
     public function record_exists(string $table, array $conditions): bool {
         foreach ($this->rows[$table] ?? [] as $row) {
             $ok = true;
@@ -40,25 +87,63 @@ class memory_db {
             }if ($ok)return true;
         }return false;
     }
+    /**
+     * Perform isolated fixture operation record_exists_select.
+     * @param string $table Fixture argument.
+     * @param string $sql Fixture argument.
+     * @param array $params Fixture argument.
+     * @return bool Fixture result.
+     */
     public function record_exists_select(string $table, string $sql, array $params): bool {
         $field = str_contains($sql, 'enrolmentkey') ? 'enrolmentkey' : 'idnumber';
         foreach ($this->rows[$table] ?? [] as $row) {
-            if ($row->courseid === $params['course'] && $row->id !== $params['id'] && ($row->$field ?? '') === $params['value'])return true;
+            if ($row->courseid === $params['course'] &&
+            $row->id !== $params['id'] &&
+            ($row->$field ?? '') === $params['value'])return true;
         }return false;
     }
 }
+/**
+ * Perform isolated fixture operation check_password_policy.
+ * @param mixed $key Fixture argument.
+ * @param mixed $message Fixture argument.
+ * @return mixed Fixture result.
+ */
 function check_password_policy($key, &$message) {
     return $key === 'Strong-key-12!';
 }
+/**
+ * Perform isolated fixture operation groups_get_group.
+ * @param mixed $id Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_get_group($id) {
     return $GLOBALS['groups'][$id] ?? false;
 }
+/**
+ * Perform isolated fixture operation groups_remove_member_allowed.
+ * @param mixed $group Fixture argument.
+ * @param mixed $userid Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_remove_member_allowed($group, $userid) {
     return ($GLOBALS['components'][$group->id . ':' . $userid] ?? '') !== 'enrol_meta';
 }
+/**
+ * Perform isolated fixture operation groups_is_member.
+ * @param mixed $groupid Fixture argument.
+ * @param mixed $userid Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_is_member($groupid, $userid) {
     return isset($GLOBALS['members'][$groupid . ':' . $userid]);
 }
+/**
+ * Perform isolated fixture operation groups_remove_member.
+ * @param mixed $groupid Fixture argument.
+ * @param mixed $userid Fixture argument.
+ * @return mixed Fixture result.
+ */
 function groups_remove_member($groupid, $userid) {
     unset($GLOBALS['members'][$groupid . ':' . $userid]);
     $GLOBALS['removals']++;
@@ -68,10 +153,22 @@ $root = dirname(__DIR__, 3);
 require $root . '/classes/local/ajax_security.php';
 use local_groupimport\local\ajax_security as policy;
 $checks = 0;
+/**
+ * Perform isolated fixture operation check.
+ * @param mixed $value Fixture argument.
+ * @param mixed $label Fixture argument.
+ * @return mixed Fixture result.
+ */
 function check($value, $label) {
     $GLOBALS['checks']++;
     if (!$value)throw new RuntimeException($label);
 }
+/**
+ * Perform isolated fixture operation rejects.
+ * @param callable $call Fixture argument.
+ * @param string $label Fixture argument.
+ * @return mixed Fixture result.
+ */
 function rejects(callable $call, string $label) {
     try {
         $call();
@@ -81,6 +178,12 @@ function rejects(callable $call, string $label) {
     }throw new RuntimeException($label);
 }
 // Load only named pure functions from an owned source file, never its page bootstrap.
+/**
+ * Perform isolated fixture operation load_functions.
+ * @param string $file Fixture argument.
+ * @param array $names Fixture argument.
+ * @return void Fixture result.
+ */
 function load_functions(string $file, array $names): void {
     $tokens = token_get_all(file_get_contents($file));
     for ($i = 0; $i < count($tokens); $i++) {
@@ -159,7 +262,10 @@ rejects(fn()=>policy::image_upload(['error' => UPLOAD_ERR_INI_SIZE], (object)[])
 rejects(fn()=>policy::image_upload(['error' => UPLOAD_ERR_OK, 'tmp_name' => __FILE__], (object)[]), 'Not an HTTP upload');
 $tmp = tempnam(sys_get_temp_dir(), 's4-image-');
 try {
-    file_put_contents($tmp, base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a/qcAAAAASUVORK5CYII='));
+    file_put_contents(
+        $tmp,
+        base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a/qcAAAAASUVORK5CYII=')
+    );
     policy::validate_image_file($tmp, 1000);
     check(true, 'Decoded PNG');
     rejects(fn()=>policy::validate_image_file($tmp, 1), 'Actual byte limit');
@@ -171,7 +277,27 @@ try {
     unlink($tmp);
 }
 $source = file_get_contents($root . '/ajax.php');
-check(strpos($source, 'ajax_security::require_request') < strpos($source, 'require_sesskey();'), 'Method/site check before dispatch');
+check(
+    strpos(
+        $source,
+        'ajax_security::require_request'
+    ) < strpos(
+        $source,
+        'require_sesskey();'
+    ),
+    'Method/site check before dispatch'
+);
 check(substr_count($source, 'ajax_security::remove_members(') === 2, 'Both removal actions guarded');
 check(!str_contains($source, '$searchparts[] = $member->email'), 'No email search leak');
-echo json_encode(['suite' => 'S4-isolated', 'parser' => $file, 'passed' => true, 'checks' => $checks, 'databaseConnections' => 0, 'runtimeAccess' => false]) . PHP_EOL;
+echo json_encode(['suite' =>
+         'S4-isolated',
+         'parser' =>
+         $file,
+         'passed' =>
+         true,
+         'checks' =>
+         $checks,
+         'databaseConnections' =>
+         0,
+         'runtimeAccess' =>
+         false]) . PHP_EOL;

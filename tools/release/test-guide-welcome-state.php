@@ -16,6 +16,13 @@
 // Isolated contract harness: no Moodle bootstrap, database, credentials or runtime.
 // Complements (does not replace) the real advanced_testcase candidate.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('MOODLE_INTERNAL', true);
 
 $config = [];
@@ -23,46 +30,104 @@ $preferences = [];
 $userid = 1;
 $admin = false;
 $guest = false;
-
+/**
+ * Perform isolated fixture operation get_config.
+ * @param mixed $component Fixture argument.
+ * @param mixed $name Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_config($component, $name) {
     global $config;
     return $config[$component][$name] ?? false;
 }
+/**
+ * Perform isolated fixture operation set_config.
+ * @param mixed $name Fixture argument.
+ * @param mixed $value Fixture argument.
+ * @param mixed $component Fixture argument.
+ * @return mixed Fixture result.
+ */
 function set_config($name, $value, $component) {
     global $config;
     $config[$component][$name] = $value;
 }
+/**
+ * Perform isolated fixture operation get_user_preferences.
+ * @param mixed $name Fixture argument.
+ * @param mixed $default Fixture argument.
+ * @return mixed Fixture result.
+ */
 function get_user_preferences($name, $default = null) {
     global $preferences, $userid;
     return $preferences[$userid][$name] ?? $default;
 }
+/**
+ * Perform isolated fixture operation set_user_preference.
+ * @param mixed $name Fixture argument.
+ * @param mixed $value Fixture argument.
+ * @return mixed Fixture result.
+ */
 function set_user_preference($name, $value) {
     global $preferences, $userid;
     $preferences[$userid][$name] = $value;
 }
+/**
+ * Perform isolated fixture operation isloggedin.
+ * @return mixed Fixture result.
+ */
 function isloggedin() {
     global $userid;
     return $userid > 0;
 }
+/**
+ * Perform isolated fixture operation isguestuser.
+ * @return mixed Fixture result.
+ */
 function isguestuser() {
     global $guest;
     return $guest;
 }
+/**
+ * Perform isolated fixture operation require_login.
+ * @param mixed $course Fixture argument.
+ * @param mixed $autologin Fixture argument.
+ * @return mixed Fixture result.
+ */
 function require_login($course = null, $autologin = true) {
     if (!isloggedin()) {
         throw new RuntimeException('Login required');
     }
 }
+/**
+ * Perform isolated fixture operation require_capability.
+ * @param mixed $capability Fixture argument.
+ * @param mixed $context Fixture argument.
+ * @return mixed Fixture result.
+ */
 function require_capability($capability, $context) {
     global $admin;
     if ($capability !== 'moodle/site:config' || !$admin) {
         throw new RuntimeException('Capability required');
     }
 }
-class context_system { public static function instance() {
+/**
+ * Isolated fixture double for context_system.
+ */
+class context_system {
+    /**
+     * Perform isolated fixture operation instance.
+     * @return mixed Fixture result.
+     */
+    public static function instance() {
         return new self();
+    }
 }
-}
+/**
+ * Perform isolated fixture operation check.
+ * @param mixed $condition Fixture argument.
+ * @param mixed $message Fixture argument.
+ * @return mixed Fixture result.
+ */
 function check($condition, $message) {
     if (!$condition) {
         throw new RuntimeException($message);

@@ -16,6 +16,13 @@
 // Local-supervised SM-15 only. Never modifies existing users or role permissions.
 // Run through Invoke-EasyStudRolesDensitySupervised.ps1 with both exclusive leases.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('CLI_SCRIPT', true);
 
 $options = getopt('', ['moodle-root:', 'action:', 'manifest:', 'run-id:', 'course-id::', 'retain']);
@@ -57,9 +64,15 @@ function density_baseline(int $courseid, int $contextid, array $owned = []): arr
     $queries = [
         'roleDefinitions' => ['SELECT id, name, shortname, description, sortorder, archetype FROM {role} ORDER BY id', []],
         'courseAssignments' => ['SELECT * FROM {role_assignments} WHERE contextid = ? ORDER BY id', [$contextid]],
-        'courseEnrolments' => ['SELECT ue.* FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid WHERE e.courseid = ? ORDER BY ue.id', [$courseid]],
+        'courseEnrolments' =>
+         ['SELECT ue.* FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid WHERE e.courseid = ? ORDER BY ue.id',
+         [$courseid]],
+
         'courseGroups' => ['SELECT * FROM {groups} WHERE courseid = ? ORDER BY id', [$courseid]],
-        'courseMembers' => ['SELECT gm.* FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ? ORDER BY gm.id', [$courseid]],
+        'courseMembers' =>
+         ['SELECT gm.* FROM {groups_members} gm JOIN {groups} g ON g.id = gm.groupid WHERE g.courseid = ? ORDER BY gm.id',
+         [$courseid]],
+
         'courseGroupings' => ['SELECT * FROM {groupings} WHERE courseid = ? ORDER BY id', [$courseid]],
     ];
     $result = [];
@@ -160,7 +173,11 @@ function density_cleanup(array $manifest): array {
         }
         if (
             !str_starts_with($user->username, $prefix) || $user->auth !== 'nologin' ||
-                $DB->record_exists_sql('SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid WHERE ue.userid = ? AND e.courseid <> ?', [$id, $manifest['courseId']])
+                $DB->record_exists_sql(
+                    'SELECT 1 FROM {user_enrolments} ue JOIN {enrol} e ON e.id = ue.enrolid WHERE ue.userid = ? AND e.courseid <> ?',
+                    [$id,
+                    $manifest['courseId']]
+                )
         ) {
             throw new RuntimeException('Fixture user ownership changed; cleanup refused.');
         }
@@ -187,7 +204,17 @@ function density_cleanup(array $manifest): array {
         }
     }
     $manual = enrol_get_plugin('manual');
-    $instance = $DB->get_record('enrol', ['id' => $manifest['enrolId'], 'courseid' => $manifest['courseId'], 'enrol' => 'manual'], '*', MUST_EXIST);
+    $instance = $DB->get_record(
+        'enrol',
+        ['id' =>
+         $manifest['enrolId'],
+         'courseid' =>
+         $manifest['courseId'],
+         'enrol' =>
+         'manual'],
+        '*',
+        MUST_EXIST
+    );
     foreach ($users as $user) {
         $manual->unenrol_user($instance, $user->id);
     }

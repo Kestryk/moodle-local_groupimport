@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated contract extension, no Moodle bootstrap or persistent data.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 require __DIR__ . '/test-guide-welcome-state.php';
 use local_groupimport\local\guide_welcome;
 $userid = 3;

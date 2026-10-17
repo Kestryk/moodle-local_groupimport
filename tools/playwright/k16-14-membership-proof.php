@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated fixture reset and SQL proof; never usable on another runtime or course5.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('CLI_SCRIPT', true);
 $options = getopt('', ['moodle-root:', 'manifest:', 'action:', 'existing:', 'multi:']);
 require($options['moodle-root'] . '/config.php');

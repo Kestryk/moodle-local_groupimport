@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated service control-flow proof, NOT Moodle DB/API/event integration proof.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
@@ -26,12 +33,24 @@ require_once(__DIR__ . '/../../classes/local/batch_reader.php');
 require_once(__DIR__ . '/../../classes/service/membership_transfer.php');
 
 use local_groupimport\service\membership_transfer;
-
+/**
+ * Perform isolated fixture operation transfer_check.
+ * @param bool $condition Fixture argument.
+ * @param string $message Fixture argument.
+ * @return void Fixture result.
+ */
 function transfer_check(bool $condition, string $message): void {
     if (!$condition) {
         throw new RuntimeException($message);
     }
 }
+/**
+ * Perform isolated fixture operation transfer_reject.
+ * @param array $pairs Fixture argument.
+ * @param int $destination Fixture argument.
+ * @param string $error Fixture argument.
+ * @return void Fixture result.
+ */
 function transfer_reject(array $pairs, int $destination = 2, string $error = 'invaliddata'): void {
     global $DB;
     $before = $DB->members;

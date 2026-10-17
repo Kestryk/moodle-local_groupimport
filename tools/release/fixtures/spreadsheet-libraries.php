@@ -15,6 +15,13 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Standalone third-party libraries only; never load Moodle config/bootstrap.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 $libraryroot = $argv[1] ?? '';
 if (!is_dir($libraryroot . '/phpspreadsheet/phpspreadsheet/src/PhpSpreadsheet')) {
     throw new RuntimeException('Pass the path of the Moodle lib directory (read-only libraries).');

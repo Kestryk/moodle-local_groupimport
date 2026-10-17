@@ -15,8 +15,19 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Actual production list query against request-only in-memory SQLite, never Moodle/MariaDB.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 $root = dirname(__DIR__, 3);
 $source = file_get_contents($root . '/index.php');
+/**
+ * Perform isolated fixture operation local_groupimport_history_table_exists.
+ * @return mixed Fixture result.
+ */
 function local_groupimport_history_table_exists() {
     return $GLOBALS['historyexists'];
 }
@@ -44,26 +55,66 @@ for ($i = 0; $i < count($tokens); $i++) {
     eval($code);
 }
 $checks = 0;
+/**
+ * Perform isolated fixture operation check.
+ * @param mixed $ok Fixture argument.
+ * @param mixed $label Fixture argument.
+ * @return mixed Fixture result.
+ */
 function check($ok, $label) {
     $GLOBALS['checks']++;
     if (!$ok)throw new RuntimeException($label);
 }
-$DB = new class {
+$DB = new
+/**
+ * Isolated fixture double for __construct.
+ */
+class {
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public PDO $pdo;
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public int $calls = 0;
+    /**
+     * @var mixed Standalone fixture state.
+     */
     public string $lastsql = '';
+    /**
+     * Perform isolated fixture operation __construct.
+     * @return mixed Fixture result.
+     */
     public function __construct() {
         $this->pdo = new PDO('sqlite::memory:');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo->exec('CREATE TABLE local_groupimport_history(id INTEGER PRIMARY KEY,courseid INTEGER,filename TEXT,timecreated INTEGER,rowcount INTEGER,successcount INTEGER,errorcount INTEGER,timerolledback INTEGER,changesjson TEXT,reportjson TEXT,filehash TEXT)');
     }
+    /**
+     * Perform isolated fixture operation sql_length.
+     * @param mixed $field Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function sql_length($field) {
         return 'LENGTH(' . $field . ')';
     }
+    /**
+     * Perform isolated fixture operation get_records_sql.
+     * @param mixed $sql Fixture argument.
+     * @param mixed $params Fixture argument.
+     * @param mixed $start Fixture argument.
+     * @param mixed $limit Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function get_records_sql($sql, $params, $start, $limit) {
         $this->calls++;
         $this->lastsql = $sql;
-        $sql = str_replace('{local_groupimport_history}', 'local_groupimport_history', $sql) . ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$start;
+        $sql = str_replace(
+            '{local_groupimport_history}',
+            'local_groupimport_history',
+            $sql
+        ) . ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$start;
         $q = $this->pdo->prepare($sql);
         $q->execute($params);
         $rows = $q->fetchAll(PDO::FETCH_OBJ);
@@ -87,9 +138,24 @@ $historyexists = true;
 $rows = local_groupimport_get_import_history(5);
 check(count($rows) === 20 && array_keys($rows) === range(25, 6), 'newest 20 scoped to course');
 foreach ($rows as $id => $r) {
-    check(array_keys(get_object_vars($r)) === ['id', 'filename', 'timecreated', 'rowcount', 'successcount', 'errorcount', 'timerolledback', 'haschanges'], 'eight scalar columns only');
+    check(
+        array_keys(get_object_vars($r)) === ['id',
+         'filename',
+         'timecreated',
+         'rowcount',
+         'successcount',
+         'errorcount',
+         'timerolledback',
+         'haschanges'],
+        'eight scalar columns only'
+    );
     check((bool)$r->haschanges === !empty($original[$id]), 'null/empty/valid detail availability unchanged');
-    check($r->filename === 'Import ' . $id . '.csv' && $r->rowcount === 3000 && $r->errorcount === 10, 'display metadata unchanged');
+    check(
+        $r->filename === 'Import ' . $id . '.csv' &&
+         $r->rowcount === 3000 &&
+         $r->errorcount === 10,
+        'display metadata unchanged'
+    );
 }
 check(strlen(serialize($rows)) < 10000, 'large payloads absent from list serialization');
 check(count(local_groupimport_get_import_history(5, 3)) === 3, 'custom limit retained');
@@ -97,4 +163,20 @@ check(local_groupimport_get_import_history(999) === [], 'unknown course empty');
 check(str_contains($source, '$restorable = !empty($record->haschanges);'), 'renderer uses computed bit');
 check(str_contains($source, "\$history->changesjson"), 'restore still reads detail record');
 check(str_contains($source, "'filehash' => \$filehash"), 'matching-import detail path preserved');
-echo json_encode(['surface' => 'r8-history-list', 'passed' => true, 'checks' => $checks, 'rowsReturned' => 20, 'projectedFields' => 8, 'serializedBytes' => strlen(serialize($rows)), 'moodleConnections' => 0, 'runtimeAccess' => false]), "\n";
+echo json_encode(['surface' =>
+         'r8-history-list',
+         'passed' =>
+         true,
+         'checks' =>
+         $checks,
+         'rowsReturned' =>
+         20,
+         'projectedFields' =>
+         8,
+         'serializedBytes' =>
+         strlen(serialize($rows)),
+         'moodleConnections' =>
+         0,
+         'runtimeAccess' =>
+         false]),
+         "\n";

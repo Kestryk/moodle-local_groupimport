@@ -15,19 +15,43 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Isolated colour-settings contract: no Moodle database, settings write or cache.
 
+/**
+ * Standalone local_groupimport test fixture or release helper.
+ *
+ * @package local_groupimport
+ * @copyright 2026 Kevin Jarniac
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 define('MOODLE_INTERNAL', true);
 $hassiteconfig = false;
 $testconfig = [];
-
+/**
+ * Isolated fixture double for admin_setting_configtext.
+ */
 class admin_setting_configtext {
+    /**
+     * Perform isolated fixture operation __construct.
+     * @param mixed $arguments Fixture argument.
+     * @return mixed Fixture result.
+     */
     public function __construct(...$arguments) {
     }
 }
-
+/**
+ * Perform isolated fixture operation get_string.
+ * @param string $key Fixture argument.
+ * @param string $component Fixture argument.
+ * @return string Fixture result.
+ */
 function get_string(string $key, string $component = ''): string {
     return $key;
 }
-
+/**
+ * Perform isolated fixture operation get_config.
+ * @param string $component Fixture argument.
+ * @param string $key Fixture argument.
+ * @return string Fixture result.
+ */
 function get_config(string $component, string $key): string {
     global $testconfig;
     return $testconfig[$key] ?? '';
