@@ -4507,18 +4507,28 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading {container-type: inline-size;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topics {grid-template-columns: minmax(0, 1fr);gap: 1rem;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topics {grid-template-columns: minmax(0, 1fr);gap: 0;margin-block: 1rem 0.75rem;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic {grid-template-columns: minmax(0, 1fr);align-content: start;gap: 0.5rem;padding-block-end: 0;border-block-end: 0;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic {grid-template-columns: minmax(0, 1fr);align-content: start;gap: 0.75rem;padding: 1rem;border-block-end: 0;
 }
-.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic dt {align-items: flex-start;
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic + .easyedu-guide-introduction__topic {border-block-start: 1px solid var(--easyedu-card-border);
 }
-@container (min-width: 36rem) {
-  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topics {grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic dt {align-items: center;gap: 0.5rem;color: var(--easyedu-card-title-ink);font-size: var(--easyedu-font-size-section-title);font-weight: var(--easyedu-font-weight-semibold);line-height: 1.5;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic dt .fa {flex: 0 0 1rem;font-size: 1rem;line-height: 1;color: var(--easyedu-primary);
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic dd {color: var(--easyedu-text-muted);font-size: 1rem;font-weight: var(--easyedu-font-weight-regular);line-height: 1.5;
+}
+.local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__note {color: var(--easyedu-text-muted);font-size: 0.875rem;line-height: 1.5;padding-inline: 1rem;
 }
 @container (min-width: 52rem) {
   .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topics {grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic {padding: 1.5rem;
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__topic + .easyedu-guide-introduction__topic {border-block-start: 0;border-inline-start: 1px solid var(--easyedu-card-border);
+  }
+  .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction--lesson-reading .easyedu-guide-introduction__note {padding-inline: 1.5rem;
   }
 }
 .local-groupimport-easystud-easyedu-guide.easyedu-guide.easyedu-guide--discovery .easyedu-guide-introduction__note {font-family: var(--easyedu-font-family-ui);font-weight: var(--easyedu-font-weight-regular);letter-spacing: 0;color: var(--easyedu-text-muted);font-size: var(--easyedu-font-size-caption);line-height: 1.4;color: var(--easyedu-text-muted);margin: 0;
