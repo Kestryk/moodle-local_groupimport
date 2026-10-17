@@ -13,6 +13,8 @@
 
 - 2026-10-17 [N1] K16-43/44/79: compose entity relationship rows and a compact image filepicker from the Kit, remove duplicate summary counters while retaining context, and keep the shared remove command visible on touch devices.
 
+- 2026-10-17 [N0] Apply approved participant and Mass Import wording outside the Guide; preserve all GTXT Guide, tour and quickcreatehelp values on 2827b7c7.
+
 - 2026-10-17 [N0] Repin P2 historical parity to its retirement snapshot, assert the current surviving contract with six negative mutations, and verify the unchanged production zip in a blank extraction; no product change.
 
 - 2026-10-17 [N0] Preserve native participant-link integration after late secondary-navigation hydration without changing rendering or requiring newer Moodle APIs.
