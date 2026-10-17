@@ -625,6 +625,7 @@ try {
         });
 
         $response['success'] = true;
+        $response['added'] = count($addedusers);
         $response['users'] = $addedusers;
         $response['existing'] = $existing;
         $response['missing'] = $missing;

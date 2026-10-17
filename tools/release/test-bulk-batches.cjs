@@ -89,6 +89,29 @@ const fakePost = (failOn = 0) => {
     api.progressNotifier(labels, message => progress.push(message))(2, 3);
     assert.equal(progress.at(-1), 'Batch 2 of 3');
 
+    // addemails responses carry the added users but no `added` counter: the summary must still say 600 (R6 recette).
+    const emailPost = payload => Promise.resolve({success: true, users: payload.emails.split(String.fromCharCode(10)).map(id => ({id})),
+        existing: 0, missing: [], skipped: 0});
+    const emails = await api.postInBatches({post: emailPost, items: ids(600), labels, payload: batch => ({emails: batch.join(String.fromCharCode(10))})});
+    assert.equal(emails.response.added, 600, 'added derived from users when the server sends no counter');
+    assert.equal(api.addSummaryMessage(labels, emails.response), 'added 600 existing 0');
+    // A server that does send `added` is trusted over the users list.
+    assert.equal(api.mergeResponses([{added: 2, users: [1, 2, 3]}, {added: 1, users: [4]}]).added, 3);
+
+    // Selection after a failure: confirmed items are released, the others stay selected (800 selected, 500 confirmed).
+    const selected = ids(800);
+    const midway = fakePost(2);
+    await assert.rejects(api.postInBatches({post: midway.post, items: selected, labels, payload: batch => ({userids: batch})}),
+        error => {
+            const kept = api.unconfirmedKeys(selected, error.doneItems);
+            assert.equal(kept.length, 300, '300 stay selected');
+            same(kept, error.failedItems, 'the kept selection is exactly the unconfirmed items');
+            assert(!kept.some(key => error.doneItems.includes(key)), 'no confirmed item stays selected');
+            return true;
+        });
+    same(api.unconfirmedKeys(['1', '2', '3'], [2]), ['1', '3'], 'keys compared as text');
+    same(api.unconfirmedKeys(selected, []), selected, 'nothing confirmed: everything stays selected');
+
     // Wiring: every bounded action goes through the batch helpers, never a direct unbounded post.
     const actions = read('amd/src/local/cm/actions.js');
     assert(/action: 'removemembers',/.test(actions) && /postActionInBatches\(root, entries/.test(actions));

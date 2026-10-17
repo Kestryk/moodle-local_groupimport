@@ -53,7 +53,16 @@ export const splitIdentifierTokens = text => {
     });
 };
 
-const sum = (responses, key) => responses.reduce((total, response) => total + (Number(response && response[key]) || 0), 0);
+// Counter of one response. addemails reports the participants it added in `users` (older servers sent no `added`).
+const countOf = (response, key) => {
+    if (response && response[key] !== undefined) {
+        return Number(response[key]) || 0;
+    }
+    return key === 'added' && response && Array.isArray(response.users) ? response.users.length : 0;
+};
+const hasCount = (response, key) => Boolean(response) && (response[key] !== undefined ||
+    (key === 'added' && Array.isArray(response.users)));
+const sum = (responses, key) => responses.reduce((total, response) => total + countOf(response, key), 0);
 const gather = (responses, key) => responses.reduce((all, response) => all.concat((response && response[key]) || []), []);
 
 // Merge the batch responses: counters are summed, lists concatenated, the other fields come from the last batch.
@@ -64,7 +73,7 @@ export const mergeResponses = responses => {
     }
     const merged = Object.assign({}, last);
     ['added', 'existing', 'skipped', 'removed', 'deleted'].forEach(key => {
-        if (responses.some(response => response && response[key] !== undefined)) {
+        if (responses.some(response => hasCount(response, key))) {
             merged[key] = sum(responses, key);
         }
     });
@@ -75,6 +84,12 @@ export const mergeResponses = responses => {
     });
     merged.batches = responses.length;
     return merged;
+};
+
+// Keys of the selected items the server did not confirm: they stay selected after a failed batch.
+export const unconfirmedKeys = (selectedKeys, doneKeys) => {
+    const done = new Set((doneKeys || []).map(String));
+    return (selectedKeys || []).filter(key => !done.has(String(key)));
 };
 
 const fill = (template, values) => Object.keys(values).reduce(
