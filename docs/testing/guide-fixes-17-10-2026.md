@@ -25,6 +25,16 @@ est utilisé ; aucune publication sur le runtime principal.
   Chaque nouvelle étape remplace explicitement la cible en attente avant le
   défilement : une sélection précédente ne peut plus reprendre la priorité,
   y compris quand le défilement réduit/minimal se termine immédiatement.
+  À 768 px, le repli garde son état mais recalcule la place disponible après
+  sa transition : le premier rectangle, encore grand, n’empêche plus le dock
+  supérieur du panneau réduit. Les conteneurs intérieurs réservent la même
+  marge inférieure que le défilement extérieur (valeurs existantes), afin de
+  ne pas laisser une cible sous les actions fixes en bas de l’écran.
+
+La spec successive attend les animations réelles après l’ajout. Elle ne clique
+sur « Effacer la sélection » que si une case de participant reste cochée ;
+une barre sortante sans sélection ne constitue plus un faux prérequis. Les
+oracles de surbrillance, de clic natif et de non-recouvrement restent stricts.
 
 ## Recette
 

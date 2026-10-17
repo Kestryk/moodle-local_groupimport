@@ -1,5 +1,5 @@
 diff --git a/guide/amd/src/easyedu_guide.js b/guide/amd/src/easyedu_guide.js
-index d5283282..64de4ca7 100644
+index d5283282..33b07afd 100644
 --- a/guide/amd/src/easyedu_guide.js
 +++ b/guide/amd/src/easyedu_guide.js
 @@ -180,7 +180,7 @@ const easeGuideScroll = progress => {
@@ -97,7 +97,17 @@ index d5283282..64de4ca7 100644
      }
      scheduleHighlightRefresh(root, target, shouldDock);
      if (now - startTime < 800) {
-@@ -1197,8 +1212,13 @@ const isScrollableContainer = element => {
+@@ -1001,6 +1016,9 @@ const dockChecklistAwayFromTarget = (root, target) => {
+   }
+   // A fold made for this same target stays (re-renders must not make it blink).
+   if (checklist.classList.contains(CHECKLIST_AVOIDING_CLASS) && root.easyeduGuideAvoidTarget === target) {
++    // Folding can finish after the first dock measurement. Keep the fold, but
++    // recheck the now smaller panel against a moving sheet or control.
++    dockChecklistAboveTarget(root, checklist, target, !!externalDialog);
+     return;
+   }
+   unfoldAvoidingChecklist(root, checklist);
+@@ -1197,8 +1215,13 @@ const isScrollableContainer = element => {
      element.scrollHeight > element.clientHeight + 2;
  };
  
@@ -112,7 +122,7 @@ index d5283282..64de4ca7 100644
    let parent = target.parentElement;
  
    while (parent && parent !== document.body && parent !== document.documentElement) {
-@@ -1220,7 +1240,8 @@ const scrollScrollableAncestorsToTarget = (root, target, bottomClearance = 0) =>
+@@ -1220,7 +1243,8 @@ const scrollScrollableAncestorsToTarget = (root, target, bottomClearance = 0) =>
  
        nextTop = Math.max(0, Math.min(nextTop, parent.scrollHeight - parent.clientHeight));
        if (Math.abs(nextTop - parent.scrollTop) > 1) {
@@ -122,7 +132,7 @@ index d5283282..64de4ca7 100644
          scrolled = true;
        }
      }
-@@ -1237,11 +1258,13 @@ const scrollToTarget = (root, target, options = {}) => {
+@@ -1237,11 +1261,18 @@ const scrollToTarget = (root, target, options = {}) => {
    }
  
    clearHighlightAutoHideTimer(root);
@@ -134,10 +144,27 @@ index d5283282..64de4ca7 100644
    const topOffset = getScrollTopOffset();
    const checklistBottomClearance = getCompactChecklistBottomClearance(root);
 -  const scrolledInnerContainer = scrollScrollableAncestorsToTarget(root, target, checklistBottomClearance);
++  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
++  const bottomOffset = Math.max(
++    Math.min(Math.max(viewportHeight * 0.18, 110), 180),
++    checklistBottomClearance
++  );
  
    const alignWindow = () => {
      if (!isVisibleElement(target)) {
-@@ -1264,9 +1287,14 @@ const scrollToTarget = (root, target, options = {}) => {
+@@ -1249,11 +1280,6 @@ const scrollToTarget = (root, target, options = {}) => {
+       return;
+     }
+     const rect = target.getBoundingClientRect();
+-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+-    const bottomOffset = Math.max(
+-      Math.min(Math.max(viewportHeight * 0.18, 110), 180),
+-      checklistBottomClearance
+-    );
+     const usableHeight = Math.max(160, viewportHeight - topOffset - bottomOffset);
+     const needsScroll = rect.top < topOffset ||
+       rect.bottom > viewportHeight - bottomOffset ||
+@@ -1264,9 +1290,14 @@ const scrollToTarget = (root, target, options = {}) => {
      }
    };
  
@@ -151,11 +178,11 @@ index d5283282..64de4ca7 100644
 +      alignWindow();
 +    }
 +  };
-+  if (!scrollScrollableAncestorsToTarget(root, target, checklistBottomClearance, alignAfterScroll)) {
++  if (!scrollScrollableAncestorsToTarget(root, target, bottomOffset, alignAfterScroll)) {
      alignWindow();
    }
  
-@@ -2142,7 +2170,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
+@@ -2142,7 +2173,18 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
      const pace = Number(root.easyeduGuideConfig?.narrationWordsPerMinute) || DEFAULTS.narrationWordsPerMinute;
      const leadIn = Number(root.easyeduGuideConfig?.narrationLeadInMs) || DEFAULTS.narrationLeadInMs;
      const maximum = Math.max(minimum, Number(root.easyeduGuideConfig?.narrationMaximumMs) || DEFAULTS.narrationMaximumMs);
