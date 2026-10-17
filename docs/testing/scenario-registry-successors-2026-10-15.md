@@ -147,3 +147,10 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 Local-supervised `k16-13-sort-za-native.spec.js` uses disposable own8051 `k16-sort-copy-fixture.php`: FR/EN1600/390, three lists, all pages, active/inactive states and round trip alpha -> alpha-desc -> alpha. At most two screenshots, assertions/values in JSON, all product writes blocked. Production comparator unit covers stable ties and unknown-mode fallback. No styles or other runtime ports.
 
 Final K16-13:12/12PASS,0page/console errors or blocked writes, two screenshots. Fixture course/users deleted, leases/credentials/profile cleaned. Exact assertions, SHA256 and run roots in own8051 `local/k16-13-evidence/proof-summary.json`.
+
+
+## V2 performance, 2026-10-17
+
+`perf-v2-native.spec.js` and identical interrupted-run successor `perf-v2-resumed-native.spec.js` pin 74323514 / 6c3ac95f on owned8051 only. Five cold/warm pairs per surface/width/version; CDP bytes, FCP/readiness, native CLI get_state and real search input. Source/compiled assets are copied by hashes without builds or product changes. The first account interruption had no measurements; the supervised successor reached its 1700s limit after 82 completed navigations. `perf-v2-continuation-native.spec.js` retains completed pairs and archives interrupted attempts, then measures only missing cases on equivalent disposable fixtures. Course71 is absent: the report identifies its synthetic800 replacement. Initial profile, warm OS/database and installed schema remain explicit limits; performance threshold results are separate from browser readiness. Final evidence and cleanup: `perf-v2-17-10-2026.md` and its JSON files.
+
+Final continuation20261017T052044441Z-752 PASS:120/120ready navigations,120search series,30CLI service samples,0page/console errors.5s maximum exceeded in12/12current cases; development debugging and absent course71 are explicit limits.303product files restored to74323514;7owned courses/6000unique accounts cleaned through native APIs,0active objects remaining. No product build or change.
