@@ -54,17 +54,22 @@ window.matchMedia = undefined;
 assert.equal(api.guideModality().pointer, 'mouse');
 let template = read(kit, 'guide/templates/easyedu_guide.mustache');
 assert.equal(template, read(root, 'easyedu-guide-kit/templates/easyedu_guide.mustache'));
-template = template.replace('{{> guide_simplecreate}}', '{{> local_groupimport/guide_simplecreate}}')
+template = template.replace(/{{> (guide_\w+)}}/g, '{{> local_groupimport/$1}}')
     .replace('<span class="easyedu-guide__launcher-label">{{guideopenlabel}}</span>', '<span class="easyedu-guide__launcher-label" aria-hidden="true">{{guidehoverlabel}}</span>')
     .replace('aria-hidden="true">Everything is set</span>', 'aria-hidden="true">{{guidechecklistdonelabel}}</span>')
     .replace('data-complete-message="Everything is set"', 'data-complete-message="{{guidechecklistdonelabel}}"')
     .replace('<span data-easyedu-guide-checklist-message-text>Everything is set</span>', '<span data-easyedu-guide-checklist-message-text>{{guidechecklistdonelabel}}</span>');
 assert.equal(template, read(root, 'templates/easyedu_guide.mustache'));
-const partial = read(kit, 'guide/templates/guide_simplecreate.mustache');
-assert.equal(partial, read(root, 'easyedu-guide-kit/templates/guide_simplecreate.mustache'));
-assert.equal(partial.replace('@template guide_simplecreate', '@template local_groupimport/guide_simplecreate'), read(root, 'templates/guide_simplecreate.mustache'));
-for (const name of ['_guide.scss', '_guide-discovery.scss', '_animations.scss']) {
+for (const name of ['guide_simplecreate', 'guide_specimen', 'guide_specimen_group', 'guide_specimen_grouping', 'guide_specimen_participant', 'guide_anatomy']) {
+    const file = 'templates/' + name + '.mustache';
+    const partial = read(kit, 'guide/' + file);
+    assert.equal(partial, read(root, 'easyedu-guide-kit/' + file));
+    const localized = partial.replace('@template ' + name, '@template local_groupimport/' + name)
+        .replace(/{{> (guide_\w+)}}/g, '{{> local_groupimport/$1}}');
+    assert.equal(localized, read(root, file), name + ' consumer partial is an exact adapter');
+}
+for (const name of ['_guide.scss', '_guide-discovery.scss', '_guide-specimen.scss', '_animations.scss']) {
     const file = 'scss/easyedu/components/' + name;
     assert.equal(read(root, file), read(kit, file), file);
 }
-console.log(JSON.stringify({surface: 'guide-mirror-roundtrip', passed: true, amdExports: 6, scss: 3, templates: 2, runtimeAccess: false}));
+console.log(JSON.stringify({surface: 'guide-mirror-roundtrip', passed: true, amdExports: 6, scss: 4, templates: 7, runtimeAccess: false}));

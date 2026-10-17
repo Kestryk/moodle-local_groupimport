@@ -35,6 +35,7 @@ const DEFAULTS = {
     guidedPath: 'Guided path',
     guidedPathSeparator: ': ',
     completedSteps: 'steps completed',
+    completeTitle: '',
     visited: 'visited',
     stepCompleted: 'Completed',
     stepLocked: 'Locked',
@@ -51,6 +52,7 @@ const SELECTORS = {
   slide: '[data-easyedu-guide-slide]',
   nav: '[data-easyedu-guide-nav]',
   navItem: '[data-easyedu-guide-nav-item]',
+  gotoSlide: '[data-easyedu-guide-goto]',
   navNext: '[data-easyedu-guide-nav-next]',
   navPrevious: '[data-easyedu-guide-nav-previous]',
   next: '[data-easyedu-guide-next]',
@@ -1588,10 +1590,90 @@ const toggleRecapDisclosure = recap => {
 
 const stopDiscoveryScene = root => {
   root.querySelectorAll('[data-guide-recap-body]').forEach(cancelRecapPanel);
+  if (root.easyeduGuideLoupeStop) {
+    root.easyeduGuideLoupeStop();
+  }
   if (root.easyeduGuideSceneStop) {
     root.easyeduGuideSceneStop();
     root.easyeduGuideSceneStop = null;
   }
+};
+
+// E4 (K5): three-phase mini demonstration of a group card's search loupe (about 6.5 s). Fictional
+// members, no Moodle call. Phase changes use Motion.enter, so the animation level applies; at the
+// minimal level the same phases change without movement.
+const LOUPE_PHASE_MS = [1500, 2600, 2400];
+const runLoupeDemo = (root, demo) => {
+  stopDiscoveryScene(root);
+  const q = key => demo.querySelector(`[data-guide-loupe-${key}]`);
+  const trigger = q('trigger');
+  const panel = q('panel');
+  const input = q('input');
+  const caption = q('caption');
+  const button = q('start');
+  const label = q('start-label');
+  const rows = [...demo.querySelectorAll('.easyedu-guide-anatomy__members li')];
+  const query = demo.dataset.query || '';
+  const timers = [];
+  const after = (ms, fn) => {
+    timers.push(setTimeout(fn, ms));
+  };
+  const reset = () => {
+    trigger.classList.remove('is-pointed');
+    panel.hidden = true;
+    input.textContent = '';
+    rows.forEach(row => {
+      row.hidden = false;
+      row.classList.remove('is-match');
+    });
+  };
+  const finish = done => {
+    timers.splice(0).forEach(clearTimeout);
+    reset();
+    root.easyeduGuideLoupeStop = null;
+    demo.dataset.guideLoupeState = done ? 'done' : 'idle';
+    button.disabled = false;
+    button.setAttribute('aria-busy', 'false');
+    label.textContent = done ? demo.dataset.replayLabel : demo.dataset.startLabel;
+    caption.textContent = done ? demo.dataset.doneLabel : demo.dataset.idleLabel;
+  };
+  const enter = node => {
+    if (isMotionEnabled(root)) {
+      Motion.enter(node);
+    }
+  };
+  root.easyeduGuideLoupeStop = () => finish(false);
+  reset();
+  demo.dataset.guideLoupeState = 'running';
+  button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
+  label.textContent = demo.dataset.runningLabel;
+  // Phase 1: the pointer touches the loupe.
+  caption.textContent = demo.dataset.phase1;
+  trigger.classList.add('is-pointed');
+  // Phase 2: the panel opens in the card and the query is typed.
+  after(LOUPE_PHASE_MS[0], () => {
+    caption.textContent = demo.dataset.phase2;
+    trigger.classList.remove('is-pointed');
+    panel.hidden = false;
+    enter(panel);
+    [...query].forEach((char, index) => after(450 + index * 330, () => {
+      input.textContent += char;
+    }));
+  });
+  // Phase 3: the list narrows to the match; Cancel restores it.
+  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1], () => {
+    caption.textContent = demo.dataset.phase3;
+    rows.forEach(row => {
+      const match = (row.dataset.name || '').includes(query);
+      row.hidden = !match;
+      row.classList.toggle('is-match', match);
+      if (match) {
+        enter(row);
+      }
+    });
+  });
+  after(LOUPE_PHASE_MS[0] + LOUPE_PHASE_MS[1] + LOUPE_PHASE_MS[2], () => finish(true));
 };
 
 // Names are generated locally from the exercise input, never through Moodle APIs.
@@ -1706,7 +1788,8 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
   scene.easyeduGuideSceneMode = mode === 'reset' ? null : mode;
   scene.dataset.guideMode = mode;
   scene.querySelectorAll('[data-guide-scene-command="add"], [data-guide-scene-command="move"]').forEach(button => {
-    button.setAttribute('aria-pressed', String(button.dataset.guideSceneCommand === mode));
+    // E3: the two gestures are native radios; the checked state is the single source of truth.
+    button.checked = button.dataset.guideSceneCommand === mode;
   });
   // New compositions own their live region; historical templates keep the
   // sibling fallback. Never attach playback to another scene's header.
@@ -2970,11 +3053,11 @@ const updateChecklistHeader = (root, config, activeStep = null) => {
 
   if (title) {
     title.textContent = complete ?
-      (config.labels.complete || config.labels.guidedPath || 'Guided path') :
+      (config.labels.completeTitle || config.labels.complete || config.labels.guidedPath || 'Guided path') :
       `${config.labels.guidedPath || 'Guided path'}${config.labels.guidedPathSeparator || ': '}${getStepText(step, 'title') || getPathLabel(pathName, config)}`;
   }
   if (subtitle) {
-    subtitle.textContent = `${completeCount}/${steps.length} ${config.labels.completedSteps || 'steps completed'}`;
+    subtitle.textContent = `${completeCount} / ${steps.length} ${config.labels.completedSteps || 'steps completed'}`;
   }
   scrollActiveChecklistItemIntoView(root);
 };
@@ -3002,6 +3085,13 @@ const syncChecklistMinimizeControl = root => {
     icon.classList.toggle('fa-minus', !minimized);
     icon.classList.toggle('fa-expand', minimized);
   }
+};
+
+// E2 (K9): a finished path always opens its full end box, also on compact viewports where
+// in-progress paths start reduced. The user can still reduce it afterwards.
+const expandCompleteChecklist = checklist => {
+  checklist.classList.remove('is-minimized');
+  checklist.setAttribute('data-easyedu-guide-checklist-expanded', '');
 };
 
 const renderChecklist = (root, config, pathName) => {
@@ -3110,6 +3200,9 @@ const renderChecklist = (root, config, pathName) => {
     const text = message.querySelector('[data-easyedu-guide-checklist-message-text]');
     checklist.classList.toggle('is-complete', allComplete);
     message.classList.toggle('is-complete', allComplete);
+    if (allComplete) {
+      expandCompleteChecklist(checklist);
+    }
     if (icon) {
       icon.classList.toggle('fa-check-circle', allComplete);
       icon.classList.toggle('fa-location-arrow', !allComplete);
@@ -3140,6 +3233,10 @@ const updateChecklistMessage = (root, config, activeStep) => {
 
   checklist.classList.toggle('is-complete', complete);
   message.classList.toggle('is-complete', complete);
+  if (complete) {
+    expandCompleteChecklist(checklist);
+    syncChecklistMinimizeControl(root);
+  }
   if (icon) {
     icon.classList.toggle('fa-location-arrow', !complete);
     icon.classList.toggle('fa-check-circle', complete);
@@ -3657,9 +3754,18 @@ const bindGuide = (root, config) => {
       return;
     }
 
+    const loupeStart = event.target.closest('[data-guide-loupe-start]');
+    if (loupeStart && root.contains(loupeStart)) {
+      event.preventDefault();
+      if (!loupeStart.disabled) {
+        runLoupeDemo(root, loupeStart.closest('[data-guide-loupe]'));
+      }
+      return;
+    }
     const sceneCommand = event.target.closest('[data-guide-scene-command]');
     if (sceneCommand && root.contains(sceneCommand)) {
-      event.preventDefault();
+      // A radio keeps its native selection and keyboard behaviour: never cancel its click.
+      if (sceneCommand.type !== 'radio') { event.preventDefault(); }
       if (sceneCommand.disabled) { return; }
       const scene = sceneCommand.closest('[data-easyedu-guide-scene]');
       if (scene.querySelector('[data-guide-scene-command="start"]') && event.detail > 1) { return; }
@@ -3750,6 +3856,21 @@ const bindGuide = (root, config) => {
       setActiveSlide(root, Number(navItem.getAttribute('data-easyedu-guide-nav-item') || 0), activeConfig, {
         allowLocked: navItem.classList.contains('is-locked'), persistReading: true
       });
+      return;
+    }
+
+    // E1 (K2): a recap tile reopens an earlier slide through its own navigation item.
+    // It never starts a path or touches the course; locked slides stay locked.
+    const gotoLink = event.target.closest(SELECTORS.gotoSlide);
+    if (gotoLink && root.contains(gotoLink)) {
+      event.preventDefault();
+      syncSlideLocks(root, activeConfig);
+      const target = Number(gotoLink.getAttribute('data-easyedu-guide-goto'));
+      const item = Number.isInteger(target) ?
+        root.querySelector(`${SELECTORS.navItem}[data-easyedu-guide-nav-item="${target}"]`) : null;
+      if (item) {
+        setActiveSlide(root, target, activeConfig, {allowLocked: false, persistReading: true});
+      }
       return;
     }
 
@@ -3986,12 +4107,12 @@ const bindGuide = (root, config) => {
     });
   });
 
-  const closeChecklist = root.querySelector(SELECTORS.checklistClose);
-  if (closeChecklist) {
+  // The header cross and the end box "Close" button share one command.
+  root.querySelectorAll(SELECTORS.checklistClose).forEach(closeChecklist => {
     addTrackedListener(root, closeChecklist, 'click', () => {
       hideChecklist(root, config, false, true);
     });
-  }
+  });
 
   const returnFromInterface = root.querySelector(SELECTORS.interfaceReturnButton);
   if (returnFromInterface) {

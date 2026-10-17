@@ -175,10 +175,20 @@
                                 <div class="easyedu-guide-scene__header-controls">
                                 <div class="easyedu-guide-scene__header-controls-inner">
                                     {{#membership}}
-                                    <div class="easyedu-guide-scene__modes" role="group" aria-label="{{comparelabel}}">
-                                        <button type="button" class="btn" data-guide-scene-command="add" aria-pressed="true">{{addmodelabel}}</button>
-                                        <button type="button" class="btn" data-guide-scene-command="move" aria-pressed="false">{{movemodelabel}}</button>
-                                    </div>
+                                    <fieldset class="easyedu-guide-scene__modes easyedu-segmented-choice" data-guide-modes>
+                                        <legend class="easyedu-segmented-choice__legend">{{comparelabel}}</legend>
+                                        <span class="easyedu-segmented-choice__label" aria-hidden="true">{{comparelabel}}</span>
+                                        <div class="easyedu-segmented-choice__options">
+                                            <label class="easyedu-segmented-choice__option">
+                                                <input type="radio" class="easyedu-segmented-choice__input" name="easyedu-guide-membership-mode" value="add" data-guide-scene-command="add" checked>
+                                                <span class="easyedu-segmented-choice__surface"><span class="fa fa-plus" aria-hidden="true"></span><span><strong>{{addmodelabel}}</strong><small>{{addmodehint}}</small></span></span>
+                                            </label>
+                                            <label class="easyedu-segmented-choice__option">
+                                                <input type="radio" class="easyedu-segmented-choice__input" name="easyedu-guide-membership-mode" value="move" data-guide-scene-command="move">
+                                                <span class="easyedu-segmented-choice__surface"><span class="fa fa-right-left" aria-hidden="true"></span><span><strong>{{movemodelabel}}</strong><small>{{movemodehint}}</small></span></span>
+                                            </label>
+                                        </div>
+                                    </fieldset>
                                     {{/membership}}
                                     {{#manualstart}}
                                     <button type="button" class="btn btn-primary easyedu-guide-scene__start" data-guide-scene-command="start" data-start-label="{{startlabel}}" data-running-label="{{runninglabel}}" data-replay-label="{{replaylabel}}" aria-busy="false"><span class="fa fa-play" aria-hidden="true"></span><span data-guide-start-label>{{startlabel}}</span></button>
@@ -321,6 +331,8 @@
                                 {{/inspection}}{{/simplecreate}}{{/creation}}{{/concepts}}
                             </section>
                             {{/discoveryscene}}
+                            {{#guidespecimen}}{{> guide_specimen}}{{/guidespecimen}}
+                            {{^guidespecimen}}{{#anatomy}}{{> guide_anatomy}}{{/anatomy}}{{/guidespecimen}}
                             {{#hasvisualflow}}
                                 <div class="easyedu-guide-visual easyedu-guide-visual--flow" aria-hidden="true">
                                     <span class="easyedu-guide-mini-card easyedu-guide-mini-card--source">
@@ -652,6 +664,7 @@
                 <strong data-easyedu-guide-checklist-title>{{guidechecklisttitle}}</strong>
                 <span data-easyedu-guide-checklist-subtitle>{{guideguidedpathlabel}}</span>
             </div>
+            <span class="easyedu-guided-panel__done fa fa-check" aria-hidden="true"></span>
             <div class="easyedu-guided-panel__header-actions">
                 <button type="button" class="btn btn-link easyedu-guided-panel__minimize" data-easyedu-guide-checklist-minimize="1" aria-label="{{guideminimizelabel}}" aria-expanded="true">
                     <span class="fa fa-minus" aria-hidden="true"></span>
@@ -679,8 +692,9 @@
         <div class="easyedu-guided-panel__footer">
             <button type="button" class="btn btn-outline-primary btn-sm easyedu-guided-panel__return" data-easyedu-guide-checklist-return="1">
                 <span class="fa fa-question-circle" aria-hidden="true"></span>
-                <span>{{guidereturnbutton}}</span>
+                <span>{{guidechecklistreturnlabel}}</span>
             </button>
+            <button type="button" class="btn btn-primary btn-sm easyedu-guided-panel__end-close" data-easyedu-guide-checklist-close="1">{{guidechecklistendclose}}</button>
         </div>
     </aside>
 </div>
