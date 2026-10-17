@@ -131,8 +131,11 @@
   // "Show in interface" command docks on its left as the tertiary action,
   // then Previous / Next on the right (reading and Tab order = visual order).
   // Rhythm 12/24 and 38px Kit controls (AUDIT-GUIDE-RYTHME-2026-10-15).
+  // K17-20: the reading count and the docked command are two groups, so they
+  // are separated by the Kit gap (16px) and not by the 8px action gap.
   .easyedu-guide-modal__footer {
-    gap: 0.5rem;
+    column-gap: var(--easyedu-gap);
+    row-gap: 0.5rem;
     padding: 0.75rem 1.5rem;
   }
 
@@ -569,6 +572,17 @@
       overflow-wrap: anywhere;
       text-overflow: clip;
       white-space: normal;
+    }
+
+    // K17-27: the French rendering is the reference for every language. The
+    // title stays on one line (ellipsis, full text in the Guide bubble) so a
+    // longer translation never makes the pills taller or wraps their text.
+    > .easyedu-guide-nav-item__label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      // The number, separator and title spans keep the one-line rule.
+      span { overflow-wrap: normal; white-space: inherit; }
     }
   }
 
