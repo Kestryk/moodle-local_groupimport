@@ -7,6 +7,7 @@ if (PHP_SAPI !== 'cli') {
 define('MOODLE_INTERNAL', true);
 define('EASYEDU_TEST_MEMBER_TRANSFER', true);
 $CFG = (object)['dirroot' => __DIR__ . '/fixtures/membership-transfer-mock'];
+require_once(__DIR__ . '/../../classes/local/batch_reader.php');
 require_once(__DIR__ . '/../../classes/service/membership_transfer.php');
 
 use local_groupimport\service\membership_transfer;
@@ -36,6 +37,7 @@ transfer_check($result === ['added' => 1, 'removed' => 1, 'unchanged' => 0], 'De
 transfer_check($DB->members[2] === [10] && $DB->members[1] === [11], 'Move only the selected origin.');
 transfer_check($DB->members[3] === [10] && $DB->members[4] === [10], 'Preserve unrelated memberships.');
 transfer_check($DB->calls === [['add', 2, 10], ['remove', 1, 10]] && $DB->committed, 'Native call order / commit.');
+transfer_check($DB->closed === 2, 'Both native relationship recordsets close.');
 
 $DB = new transfer_mock_database();
 $DB->members[2] = [10];
