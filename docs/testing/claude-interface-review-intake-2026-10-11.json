@@ -1847,5 +1847,12 @@
     "report": "docs/testing/tri38-toolchain-2026-10-17.md",
     "nodeObserved": "20.17.0",
     "nodeRequired": ">=22.11.0 <23"
+  },
+  "codex1L1L2PageCss20261017": {
+    "status": "page-css-single-root-parity-pass-native-pending-original-L1-cleanup-separate",
+    "base": "fcf11a6f",
+    "report": "docs/testing/l1l2-guide-page-css-2026-10-17.md",
+    "removedBytes": 142721,
+    "validation": "3795 ordered-rule proof and 12 offline FR/EN portal cases / 1295 elements"
   }
 }
