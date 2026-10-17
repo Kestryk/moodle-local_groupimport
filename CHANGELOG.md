@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Record 60 debug-off timings on owned8051 and the read-only-session MUC prerequisite blocking B/C; restore configuration bytes/settings and preserve product code.
+
 - 2026-10-17 [N0] Record pinned own8051 V2 performance, five cold/warm pairs, native PHP get_state and TRI8 search timings; preserve product code.
 
 - 2026-10-17 [N0] Resync the Guide mirror to db964f08, combining accepted tooltip accessibility and Codex2 cue/docking/narration fixes; preserve runtime assets.
