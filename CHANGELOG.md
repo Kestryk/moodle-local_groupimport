@@ -1,5 +1,7 @@
 - 2026-10-17 [N0] Resync Guide mirror for d44585d8 touch gestures and public guideModality export; preserve runtime assets and generic/Moodle adapters.
 
+- 2026-10-17 [N1] J-G3: reacquire active Guide controls after replacement and preserve the canonical checklist docking classes over its default position; provide the Kit mirror patch.
+
 - 2026-10-17 [N1] J-G2: rebalance real narration phases for desktop Add, inspections and compact Move without height animation; keep the shared Motion clock.
 
 - 2026-10-17 [N1] C-G3: shorten only the mobile simulation badge to Exemple / Example; preserve the long safety label.
