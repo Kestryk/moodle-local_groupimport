@@ -2759,7 +2759,7 @@ function local_groupimport_render_grouping_groups_panel(int $groupingid): string
         ]) .
         html_writer::tag(
             'button',
-            html_writer::span('', 'fa fa-plus me-1', ['aria-hidden' => 'true']) .
+            html_writer::span('', 'fa fa-plus easyedu-inline-icon--leading', ['aria-hidden' => 'true']) .
             html_writer::span(get_string('addgroups', 'local_groupimport')),
             [
                 'type' => 'button',
@@ -2896,7 +2896,7 @@ function local_groupimport_render_group_email_panel(int $groupid): string {
         ]) .
         html_writer::tag(
             'button',
-            html_writer::span('', 'fa fa-plus me-1', ['aria-hidden' => 'true']) .
+            html_writer::span('', 'fa fa-plus easyedu-inline-icon--leading', ['aria-hidden' => 'true']) .
             html_writer::span(get_string('addemails', 'local_groupimport')),
             [
                 'type' => 'button',

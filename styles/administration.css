@@ -873,6 +873,9 @@ body.easyedu-motion-disabled :is(.easyedu-ui, .easyedu-guide, .easyedu-guide-hig
 .easyedu-ui .easyedu-action-with-icon [class*=" fa-"] {align-items: center;display: inline-flex;flex: 0 0 auto;justify-content: center;line-height: 1;margin-inline: 0;min-inline-size: 1em;width: 1em;
 }
 
+.easyedu-ui .easyedu-inline-icon--leading {margin-inline-end: 0.25rem;
+}
+
 .easyedu-ui .foundation-selection-action {align-items: center;column-gap: 0.35rem;display: inline-flex;justify-content: center;line-height: 1.2;row-gap: 0.35rem;font-size: 0.78rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0.22rem 0.5rem;transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }
 .easyedu-ui .foundation-selection-action .fa,

@@ -90,6 +90,11 @@
   }
 }
 
+// Native inline controls keep the Bootstrap spacing-one contract in both theme generations.
+@mixin inline-icon-leading {
+  margin-inline-end: 0.25rem;
+}
+
 // Shared geometry for every action that combines one icon and a translated
 // label. The parent owns spacing; glyph whitespace and product selectors do
 // not. This can be consumed independently from the semantic button skin.

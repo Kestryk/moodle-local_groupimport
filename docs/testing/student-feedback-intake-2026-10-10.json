@@ -1,4 +1,47 @@
 {
+  "a10InlineIcon20261017": {
+    "base": "4474ffde",
+    "scope": "A10 Bootstrap 4/5 inline icon spacing in two native add forms",
+    "kitBranch": "work/codex1/easyedu-kit-a10-inline-icon-20261017",
+    "kitCommit": "6f3279c",
+    "recipe": "inline-icon-leading / easyedu-inline-icon--leading",
+    "spacing": "0.25rem, existing Bootstrap spacing-one value; 4px at 16px root",
+    "changes": "Two PHP class strings only; no logic, JS, templates, Guide or card layout change",
+    "measurements": {
+      "pages": 16,
+      "buttons": 32,
+      "frEnWidths": [
+        1600,
+        390
+      ],
+      "before45GapPx": 0,
+      "after45GapPx": 4,
+      "before51GapPx": 4,
+      "after51GapPx": 4,
+      "geometry51Unchanged": true,
+      "maxContentCenterDxPx": 0,
+      "consoleErrors": 0
+    },
+    "css": "One added opt-in class rule per page; previous ordered rules unchanged; global zero rules",
+    "checks": {
+      "phpLint": "PASS",
+      "moodleCsErrors": 0,
+      "moodleCsWarnings": 0,
+      "otherErrors": 0,
+      "otherWarnings": 0,
+      "filters": "PASS",
+      "escaping": "PASS",
+      "t037": 17,
+      "t038": 49,
+      "roundtrip": "PASS",
+      "node": "22.11.0",
+      "sass": "1.79.1"
+    },
+    "nativeMoodle": false,
+    "published": false,
+    "humanAccepted": false,
+    "proofDirectory": "C:/dev/artifacts/codex1-a10-inline-icon-20261017"
+  },
   "k1780ParticipantGrouping20261017": {
     "base": "71a8f0cd",
     "scope": "K17-80: expose the existing participant grouping select in Complete view and apply its values in every view",
