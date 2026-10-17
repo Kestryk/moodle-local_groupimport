@@ -1404,6 +1404,12 @@ html.easyedu-navigation-open body {overflow: hidden;overscroll-behavior: none;
 }
 .local-groupimport-easystud-advanced-filters__more {display: inline-flex;margin: 0;text-align: center;
 }
+.local-groupimport-easystud [data-easystud-filters] [data-easystud-advanced-filters=participants] {margin-block-start: var(--easyedu-gap);
+}
+.local-groupimport-easystud [data-easystud-filters] [data-easystud-advanced-filters=participants] .local-groupimport-easystud__filters-grid {gap: var(--easyedu-gap);
+}
+.local-groupimport-easystud [data-easystud-filters] [data-easystud-advanced-filters=participants] .local-groupimport-easystud__filter-group {gap: calc(var(--easyedu-gap) / 2);
+}
 .local-groupimport-easystud-advanced-filters__toggle {align-items: center;background: transparent;border: 1px solid transparent;border-radius: 999px;color: var(--easyedu-text-muted);display: inline-flex;font-family: inherit;font-size: 0.76rem;font-weight: var(--easyedu-font-weight-regular);line-height: 1.1;gap: 0.42rem;justify-content: center;min-width: 0;transition: background-color var(--easyedu-motion-fast) ease, border-color var(--easyedu-motion-fast) ease, color var(--easyedu-motion-fast) ease, box-shadow var(--easyedu-motion-fast) ease;border-radius: var(--easyedu-control-radius);min-height: 2.1rem;padding: 0.42rem 0.68rem;width: 100%;margin: 0;
 }
 .local-groupimport-easystud-advanced-filters__toggle:hover:not(:disabled):not([aria-disabled=true]) {color: var(--easyedu-primary-strong);
@@ -10919,9 +10925,9 @@ body:has(:is(.easyedu-modal-layer, .easyedu-message-dialog)[aria-modal=true]:not
 }
 #local-groupimport-easystud .easyedu-filter-actions > button {align-self: flex-end;justify-self: end;inline-size: fit-content;margin: 0 0 0 auto;
 }
-#local-groupimport-easystud [data-easystud-advanced-filters] > div {display: grid;row-gap: 12px;
+#local-groupimport-easystud [data-easystud-advanced-filters] > div:not(.local-groupimport-easystud__filters-grid) {display: grid;row-gap: 12px;
 }
-#local-groupimport-easystud [data-easystud-advanced-filters] > div > .easyedu-filter-actions {margin-block-start: 0;
+#local-groupimport-easystud [data-easystud-advanced-filters] > div:not(.local-groupimport-easystud__filters-grid) > .easyedu-filter-actions {margin-block-start: 0;
 }
 #local-groupimport-easystud .local-groupimport-easystud__filters-reset {align-items: center;column-gap: 0.35rem;display: inline-flex;justify-content: center;line-height: 1.2;row-gap: 0.35rem;font-size: 0.78rem;min-height: 1.9rem;min-width: 1.9rem;padding: 0.22rem 0.5rem;transition: background-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), border-color var(--easyedu-motion-normal) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-normal) var(--easyedu-motion-ease), color var(--easyedu-motion-normal) var(--easyedu-motion-ease), opacity var(--easyedu-motion-normal) var(--easyedu-motion-ease), transform var(--easyedu-motion-normal) var(--easyedu-motion-ease);
 }

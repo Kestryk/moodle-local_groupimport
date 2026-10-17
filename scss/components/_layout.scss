@@ -1281,6 +1281,18 @@
     text-align: center;
   }
 
+  [data-easystud-filters] [data-easystud-advanced-filters="participants"] {
+    margin-block-start: var(--easyedu-gap);
+
+    .local-groupimport-easystud__filters-grid {
+      gap: var(--easyedu-gap);
+    }
+
+    .local-groupimport-easystud__filter-group {
+      gap: calc(var(--easyedu-gap) / 2);
+    }
+  }
+
   &-advanced-filters__toggle {
     @include easyedu.filter-disclosure-trigger(wide);
 
