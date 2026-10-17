@@ -1,5 +1,20 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Execute the four actual AJAX branch bodies with in-memory native adapters only.
+
 define('MOODLE_INTERNAL', true);
 define('PARAM_INT', 1);
 define('PARAM_TEXT', 2);
@@ -21,7 +36,7 @@ class memory_db {
     public function start_delegated_transaction() {
         $this->starts++;
         $saved = [$this->members, $this->groups, $this->events];
-        return new class($this, $saved) {
+        return new class ($this, $saved) {
             public function __construct(private $db, private $saved) {
             }
             public function allow_commit() {
@@ -35,7 +50,7 @@ class memory_db {
         };
     }
     public function mutate() {
-        if(++$this->writes === $this->failat)throw new RuntimeException('native-failure');
+        if (++$this->writes === $this->failat)throw new RuntimeException('native-failure');
     }
     public function get_records_sql($sql, $params) {
         $this->queries++;
@@ -49,7 +64,8 @@ class memory_db {
         $course = $params['courseid'];
         unset($params['courseid']);
         $out = [];
-        foreach($params as $id){if(isset($this->groups[$id]) && $this->groups[$id]->courseid === $course)$out[$id] = $this->groups[$id];
+        foreach ($params as $id) {
+            if (isset($this->groups[$id]) && $this->groups[$id]->courseid === $course)$out[$id] = $this->groups[$id];
         }return $out;
     }
 }
@@ -112,7 +128,8 @@ function local_groupimport_extract_user_tokens($s) {
 }
 function local_groupimport_find_users_by_identifiers($tokens) {
     $out = [];
-    foreach($tokens as $t){if(preg_match('/^user([0-9]+)$/', $t, $m))$out[$t] = (object)['id' => (int)$m[1]];
+    foreach ($tokens as $t) {
+        if (preg_match('/^user([0-9]+)$/', $t, $m))$out[$t] = (object)['id' => (int)$m[1]];
     }return $out;
 }
 $root = dirname(__DIR__, 3);
@@ -121,13 +138,13 @@ require $root . '/classes/local/batch_reader.php';
 require $root . '/classes/local/ajax_security.php';
 $assignment = file_get_contents($root . '/classes/service/membership_assignment.php');
 $bootstrap = "require_once(\$CFG->dirroot . '/group/lib.php');";
-if(substr_count($assignment, $bootstrap) !== 1)throw new RuntimeException('Review changed native bootstrap');
+if (substr_count($assignment, $bootstrap) !== 1)throw new RuntimeException('Review changed native bootstrap');
 eval(substr(str_replace($bootstrap, '', $assignment), 5));
 use local_groupimport\local\bulk_action;
 use local_groupimport\local\ajax_security;
 $source = file_get_contents($root . '/ajax.php');
 $bodies = [];
-foreach(['addusers', 'addemails', 'removemembers', 'deletegroups'] as $name){
+foreach (['addusers', 'addemails', 'removemembers', 'deletegroups'] as $name) {
     $marker = "} else if (\$action === '$name') {";
     $start = strpos($source, $marker) + strlen($marker);
     $end = strpos($source, "} else if (\$action === '", $start);
@@ -136,13 +153,13 @@ foreach(['addusers', 'addemails', 'removemembers', 'deletegroups'] as $name){
 $checks = 0;
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if(!$ok)throw new RuntimeException($label);
+    if (!$ok)throw new RuntimeException($label);
 }
 function reset_state() {
     $GLOBALS['DB'] = new memory_db();
     $db = $GLOBALS['DB'];
     $db->groups = [10 => (object)['id' => 10, 'courseid' => 5], 11 => (object)['id' => 11, 'courseid' => 5], 12 => (object)['id' => 12, 'courseid' => 6]];
-    for($i = 1; $i <= 500; $i++)$db->enrolled[$i] = (object)['id' => $i];
+    for ($i = 1; $i <= 500; $i++)$db->enrolled[$i] = (object)['id' => $i];
     $GLOBALS['USER'] = (object)['id' => 0];
     core_php_time_limit::$calls = [];
 }
@@ -156,8 +173,10 @@ function action($name, $input) {
     return $response;
 }
 function rejection($name, $input, $message) {
-    try{action($name, $input);
-    }catch(Throwable $e){check($e->getMessage() === $message, $name . ' expected ' . $message);
+    try {
+        action($name, $input);
+    } catch (Throwable $e) {
+        check($e->getMessage() === $message, $name . ' expected ' . $message);
         return;
     }throw new RuntimeException('Expected rejection');
 }

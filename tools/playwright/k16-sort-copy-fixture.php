@@ -1,5 +1,20 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Disposable K16 sorting and membership-copy replay, restricted to the dedicated Perf DB.
+
 define('CLI_SCRIPT', true);
 $options = [];
 for ($i = 1; $i < count($argv); $i += 2) {
@@ -55,7 +70,8 @@ function guide_fixture_cleanup(array $data): array {
 $action = $options['action'] ?? '';
 if ($action === 'cleanup') {
     $data = is_file($file) ? json_decode(file_get_contents($file), true) : [];
-    if (!is_array($data)) { throw new RuntimeException('Invalid fixture manifest');
+    if (!is_array($data)) {
+        throw new RuntimeException('Invalid fixture manifest');
     }
     $id = (int)($data['courseId'] ?? 0);
     $course = $id ? $DB->get_record('course', ['id' => $id]) : false;
@@ -82,7 +98,8 @@ if ($action === 'cleanup') {
 if ($action !== 'setup' || !preg_match('/^[a-zA-Z0-9-]+$/', $options['run-id'] ?? '')) {
     throw new RuntimeException('Explicit setup/cleanup and safe run ID required');
 }
-if (is_file($file)) { throw new RuntimeException('Fresh manifest required');
+if (is_file($file)) {
+    throw new RuntimeException('Fresh manifest required');
 }
 $suffix = substr(hash('sha256', $options['run-id']), 0, 12);
 $data = ['schemaVersion' => 1, 'runId' => $options['run-id'], 'courseId' => 0,
@@ -90,7 +107,8 @@ $data = ['schemaVersion' => 1, 'runId' => $options['run-id'], 'courseId' => 0,
 guide_fixture_save($file, $data);
 try {
     $category = (int)$DB->get_field_sql('SELECT MIN(id) FROM {course_categories}');
-    if (!$category) { throw new RuntimeException('Course category required');
+    if (!$category) {
+        throw new RuntimeException('Course category required');
     }
     $course = create_course((object)['fullname' => 'EasyStud guided write QA ' . $suffix,
         'shortname' => $data['shortname'], 'category' => $category, 'visible' => 1]);
@@ -99,7 +117,8 @@ try {
     $instances = enrol_get_instances($course->id, true);
     $manual = array_values(array_filter($instances, static fn($instance) => $instance->enrol === 'manual'))[0] ?? null;
     $role = $DB->get_record('role', ['shortname' => 'student'], '*', MUST_EXIST);
-    if (!$manual) { throw new RuntimeException('Manual enrollment required');
+    if (!$manual) {
+        throw new RuntimeException('Manual enrollment required');
     }
     $full = !defined('EASYSTUD_K16_SMALL_FIXTURE');
     $names = $full ? array_merge(['One', 'Two'], array_map(static fn($i) => sprintf('Member %02d', $i), range(1, 16))) : ['One', 'Two'];
@@ -114,9 +133,11 @@ try {
     }
     $data['groupIds'] = [];
     $names = ['QA Source Alpha', 'QA Destination Beta', 'QA Activity Gamma'];
-    if (defined('EASYSTUD_K16_COPY_GROUP_NAMES')) { $names = EASYSTUD_K16_COPY_GROUP_NAMES;
+    if (defined('EASYSTUD_K16_COPY_GROUP_NAMES')) {
+        $names = EASYSTUD_K16_COPY_GROUP_NAMES;
     }
-    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Group %02d', $i), range(1, 10)));
+    if ($full) {
+        $names = array_merge($names, array_map(static fn($i) => sprintf('QA Group %02d', $i), range(1, 10)));
     }
     foreach ($names as $name) {
         $data['groupIds'][] = (int)groups_create_group((object)['courseid' => $course->id, 'name' => $name]);
@@ -125,12 +146,14 @@ try {
     groups_add_member($data['groupIds'][1], $data['userIds'][1]);
     $data['groupingIds'] = [];
     $names = ['QA Source Structure', 'QA Activity Destination'];
-    if ($full) { $names = array_merge($names, array_map(static fn($i) => sprintf('QA Grouping %02d', $i), range(1, 10)));
+    if ($full) {
+        $names = array_merge($names, array_map(static fn($i) => sprintf('QA Grouping %02d', $i), range(1, 10)));
     }
     foreach ($names as $name) {
         $data['groupingIds'][] = (int)groups_create_grouping((object)['courseid' => $course->id, 'name' => $name]);
     }
-    foreach ($data['groupIds'] as $id) { groups_assign_grouping($data['groupingIds'][0], $id);
+    foreach ($data['groupIds'] as $id) {
+        groups_assign_grouping($data['groupingIds'][0], $id);
     }
     $data['managerUrl'] = $CFG->wwwroot . '/local/groupimport/manage.php?id=' . $course->id . '&lang=fr';
     guide_fixture_save($file, $data);

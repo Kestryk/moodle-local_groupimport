@@ -1,5 +1,20 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // No Moodle bootstrap, runtime request or database connection.
+
 require __DIR__ . '/spreadsheet-libraries.php';
 define('MOODLE_INTERNAL', true);
 class moodle_exception extends RuntimeException {public function __construct($key, $component = '', ...$rest) {
@@ -19,11 +34,13 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls;
 $checks = 0;
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if(!$ok)throw new RuntimeException($label);
+    if (!$ok)throw new RuntimeException($label);
 }
 function rejects($call, $label) {
-    try{$call();
-    }catch(moodle_exception$e){check(true, $label);
+    try {
+        $call();
+    } catch (moodle_exception$e) {
+        check(true, $label);
         return;
     }throw new RuntimeException($label);
 }
@@ -40,9 +57,9 @@ function workbook(Spreadsheet $book, string $extension = 'xlsx'): string {
     $book->disconnectWorksheets();
     return $content;
 }
-try{
+try {
     $csv = "identifier;groupname;groupingname\r\nu@example.test;Équipe été;Promotion\r\n";
-    foreach(['utf8' => $csv, 'bom' => "\xEF\xBB\xBF" . $csv, 'cp1252' => mb_convert_encoding($csv, 'Windows-1252', 'UTF-8'), 'utf16le' => "\xFF\xFE" . mb_convert_encoding($csv, 'UTF-16LE', 'UTF-8'), 'utf16be' => "\xFE\xFF" . mb_convert_encoding($csv, 'UTF-16BE', 'UTF-8')] as $encoding => $data){
+    foreach (['utf8' => $csv, 'bom' => "\xEF\xBB\xBF" . $csv, 'cp1252' => mb_convert_encoding($csv, 'Windows-1252', 'UTF-8'), 'utf16le' => "\xFF\xFE" . mb_convert_encoding($csv, 'UTF-16LE', 'UTF-8'), 'utf16be' => "\xFE\xFF" . mb_convert_encoding($csv, 'UTF-16BE', 'UTF-8')] as $encoding => $data) {
         $parsed = reader::csv($data);
         check($parsed['rows'][0] === ['u@example.test', 'Équipe été', 'Promotion'], $encoding . ' accents preserved');
     }
@@ -52,7 +69,7 @@ try{
     check(reader::csv("a;b;c\n1;\"He said \"\"yes\"\"\";3\n")['rows'][0][1] === 'He said "yes"', 'Escaped quotes');
     check(reader::csv("a\tb\tc\n1\t2\t3\n")['rows'][0] === ['1', '2', '3'], 'TSV');
     check(reader::csv("\n\n a;b;c\r1;2;3\r")['header'] === ['a', 'b', 'c'], 'Blank preamble and CR newlines');
-    $many = "identifier;groupname;groupingname\n";for($i = 0; $i < 3000; $i++)$many .= "u$i@example.test;G$i;X\n";
+    $many = "identifier;groupname;groupingname\n";for ($i = 0; $i < 3000; $i++)$many .= "u$i@example.test;G$i;X\n";
     check(count(reader::csv($many)['rows']) === 3000, '3000 rows retained');
     $max = "a;b;c\n" . str_repeat("1;2;3\n", 5000);
     check(count(reader::csv($max)['rows']) === 5000, '5000 parser boundary');
@@ -67,9 +84,9 @@ try{
     rejects(fn()=>reader::csv("\n\n"), 'Empty rejected');
     check(reader::max_bytes(0) === 5242880 && reader::max_bytes(1000) === 1000 && reader::max_bytes(99999999) === 5242880, 'Site/course/plugin byte cap');
     $formats = ['xlsx'];
-    if(class_exists(Xls::class))$formats[] = 'xls';
+    if (class_exists(Xls::class))$formats[] = 'xls';
     else rejects(fn()=>reader::excel('legacy placeholder', 'legacy.xls'), 'Omitted native legacy XLS reader reports controlled failure');
-    foreach($formats as $extension){
+    foreach ($formats as $extension) {
         $book = new Spreadsheet();
         $book->getActiveSheet()->fromArray([['identifier', 'groupname', 'groupingname'], ['u@example.test', 'Équipe été', 'X']]);
         $data = workbook($book, $extension);
@@ -110,17 +127,19 @@ try{
     $book = new Spreadsheet();
     $book->getActiveSheet()->setCellValue('A1', 'a')->setCellValue('BL1001', 'too-dense');
     rejects(fn()=>reader::excel(workbook($book), 'cells.xlsx'), 'Excel aggregate cell bound');
-    foreach(['large', 'entries'] as $kind){$path = $requestdir . '/zip-' . $kind . '.xlsx';
+    foreach (['large', 'entries'] as $kind) {
+        $path = $requestdir . '/zip-' . $kind . '.xlsx';
         $owned[] = $path;
         $zip = new ZipArchive();
         $zip->open($path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-        if($kind === 'large')$zip->addFromString('oversized.xml', str_repeat('a', 10485761));else for($i = 0; $i < 257; $i++)$zip->addFromString('entry' . $i, 'x');
+        if ($kind === 'large')$zip->addFromString('oversized.xml', str_repeat('a', 10485761));else for ($i = 0; $i < 257; $i++)$zip->addFromString('entry' . $i, 'x');
         $zip->close();
         rejects(fn()=>reader::excel(file_get_contents($path), 'bomb.xlsx'), 'XLSX ' . $kind . ' limit');
     }
     check(glob($requestdir . '/import_*') === [], 'All request input temporaries cleaned');
     echo json_encode(['suite' => 'S6-isolated-real-spreadsheets', 'passed' => true, 'checks' => $checks, 'csvRows' => 3000, 'confirmationCeilingUnchanged' => 1000, 'realFormats' => $formats, 'legacyXlsReaderAvailable' => class_exists('PhpOffice\\PhpSpreadsheet\\Reader\\Xls'), 'databaseConnections' => 0, 'runtimeAccess' => false]) . PHP_EOL;
-}finally{foreach($owned as $path)if(is_file($path))unlink($path);
-    foreach(glob($requestdir . '/import_*') as $path)if(is_file($path))unlink($path);
+} finally {
+    foreach ($owned as $path)if (is_file($path))unlink($path);
+    foreach (glob($requestdir . '/import_*') as $path)if (is_file($path))unlink($path);
     rmdir($requestdir);
 }

@@ -1,5 +1,20 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 // Executes only isolated policy/functions; no Moodle bootstrap or database connection.
+
 define('SITEID', 1);
 class moodle_exception extends RuntimeException { public function __construct($key, $component) {
         parent::__construct($key);
@@ -18,16 +33,17 @@ class core_text {
 class memory_db {
     public array $rows = [];
     public function record_exists(string $table, array $conditions): bool {
-        foreach($this->rows[$table] ?? [] as $row) {
+        foreach ($this->rows[$table] ?? [] as $row) {
             $ok = true;
-            foreach($conditions as $key => $value){$ok = $ok && ($row->$key ?? null) === $value;
-            }if($ok)return true;
+            foreach ($conditions as $key => $value) {
+                $ok = $ok && ($row->$key ?? null) === $value;
+            }if ($ok)return true;
         }return false;
     }
     public function record_exists_select(string $table, string $sql, array $params): bool {
         $field = str_contains($sql, 'enrolmentkey') ? 'enrolmentkey' : 'idnumber';
-        foreach($this->rows[$table] ?? [] as $row) {
-            if($row->courseid === $params['course'] && $row->id !== $params['id'] && ($row->$field ?? '') === $params['value'])return true;
+        foreach ($this->rows[$table] ?? [] as $row) {
+            if ($row->courseid === $params['course'] && $row->id !== $params['id'] && ($row->$field ?? '') === $params['value'])return true;
         }return false;
     }
 }
@@ -54,32 +70,38 @@ use local_groupimport\local\ajax_security as policy;
 $checks = 0;
 function check($value, $label) {
     $GLOBALS['checks']++;
-    if(!$value)throw new RuntimeException($label);
+    if (!$value)throw new RuntimeException($label);
 }
 function rejects(callable $call, string $label) {
-    try{$call();
-    }catch(moodle_exception $e){check(true, $label);
+    try {
+        $call();
+    } catch (moodle_exception $e) {
+        check(true, $label);
         return;
     }throw new RuntimeException($label);
 }
 // Load only named pure functions from an owned source file, never its page bootstrap.
 function load_functions(string $file, array $names): void {
     $tokens = token_get_all(file_get_contents($file));
-    for($i = 0; $i < count($tokens); $i++){
-        if(!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION)continue;
-        $name = '';for($j = $i + 1; $j < count($tokens); $j++){if(is_array($tokens[$j]) && $tokens[$j][0] === T_STRING){$name = $tokens[$j][1];
+    for ($i = 0; $i < count($tokens); $i++) {
+        if (!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION)continue;
+        $name = '';for ($j = $i + 1; $j < count($tokens); $j++) {
+            if (is_array($tokens[$j]) && $tokens[$j][0] === T_STRING) {
+                $name = $tokens[$j][1];
                 break;
-        }if($tokens[$j] === '(')break;
+            }if ($tokens[$j] === '(')break;
         }
-        if(!in_array($name, $names, true))continue;
+        if (!in_array($name, $names, true))continue;
         $body = '';
         $depth = 0;
         $started = false;
-        for($j = $i; $j < count($tokens); $j++){$t = $tokens[$j];
+        for ($j = $i; $j < count($tokens); $j++) {
+            $t = $tokens[$j];
             $body .= is_array($t) ? $t[1] : $t;
-            if($t === '{'){$depth++;
+            if ($t === '{') {
+                $depth++;
                 $started = true;
-            }if($t === '}' && --$depth === 0 && $started)break;
+            }if ($t === '}' && --$depth === 0 && $started)break;
         }
         eval($body);
     }
@@ -90,8 +112,8 @@ $DB = new memory_db();
 $CFG = (object)['groupenrolmentkeypolicy' => false];
 policy::require_request('POST', 5);
 check(true, 'POST accepted');
-foreach(['GET', 'HEAD', 'PUT', 'DELETE', ''] as $method)rejects(fn()=>policy::require_request($method, 5), 'Non-POST blocked');
-foreach([0, -1, 1] as $id)rejects(fn()=>policy::require_request('POST', $id), 'Invalid/site course');
+foreach (['GET', 'HEAD', 'PUT', 'DELETE', ''] as $method)rejects(fn()=>policy::require_request($method, 5), 'Non-POST blocked');
+foreach ([0, -1, 1] as $id)rejects(fn()=>policy::require_request('POST', $id), 'Invalid/site course');
 policy::validate_name(str_repeat('é', 254));
 check(true, 'Unicode name boundary');
 rejects(fn()=>policy::validate_name(str_repeat('é', 255)), 'Overlong name');
@@ -136,7 +158,7 @@ check(policy::image_upload(null, (object)[]) === null, 'No upload');
 rejects(fn()=>policy::image_upload(['error' => UPLOAD_ERR_INI_SIZE], (object)[]), 'Upload transport error');
 rejects(fn()=>policy::image_upload(['error' => UPLOAD_ERR_OK, 'tmp_name' => __FILE__], (object)[]), 'Not an HTTP upload');
 $tmp = tempnam(sys_get_temp_dir(), 's4-image-');
-try{
+try {
     file_put_contents($tmp, base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a/qcAAAAASUVORK5CYII='));
     policy::validate_image_file($tmp, 1000);
     check(true, 'Decoded PNG');
@@ -145,7 +167,8 @@ try{
     rejects(fn()=>policy::validate_image_file($tmp, 1000), 'SVG/script rejected');
     file_put_contents($tmp, 'pretend jpg');
     rejects(fn()=>policy::validate_image_file($tmp, 1000), 'Fake image');
-}finally{unlink($tmp);
+} finally {
+    unlink($tmp);
 }
 $source = file_get_contents($root . '/ajax.php');
 check(strpos($source, 'ajax_security::require_request') < strpos($source, 'require_sesskey();'), 'Method/site check before dispatch');
