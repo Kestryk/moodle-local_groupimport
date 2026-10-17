@@ -1,0 +1,3216 @@
+{
+  "security-settled": {
+    "checks": [
+      {
+        "lot": "S2/S5/S6/R9",
+        "point": "native API and generated inputs",
+        "status": "PASS",
+        "measure": {
+          "checks": [
+            {
+              "lot": "S2",
+              "point": "real Privacy export isolates the subject",
+              "status": "PASS",
+              "measure": {
+                "export": [
+                  {
+                    "imports": [
+                      {
+                        "historyid": 32,
+                        "timecreated": 1792208009,
+                        "importedbyself": false,
+                        "rolledbackbyself": true,
+                        "changes": {
+                          "desiredstate": [
+                            {
+                              "userid": 36562,
+                              "identifier": "old-subject@example.invalid"
+                            }
+                          ],
+                          "reportrows": [
+                            {
+                              "userid": 36562,
+                              "identifier": "old-subject@example.invalid",
+                              "status": "success"
+                            }
+                          ]
+                        },
+                        "timerolledback": 0
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "lot": "S2",
+              "point": "Privacy deletion preserves peer history",
+              "status": "PASS",
+              "measure": {
+                "changes": {
+                  "desiredstate": [
+                    {
+                      "userid": 36563,
+                      "identifier": "peer@example.invalid"
+                    }
+                  ],
+                  "reportrows": [
+                    {
+                      "userid": 36563,
+                      "identifier": "peer@example.invalid",
+                      "status": "success"
+                    }
+                  ]
+                },
+                "rollbackuserid": null
+              }
+            },
+            {
+              "lot": "S2",
+              "point": "manual scheduled task deletes expired only",
+              "status": "PASS",
+              "measure": {
+                "retentionDays": 30,
+                "expiredDeleted": true,
+                "recentKept": true
+              }
+            },
+            {
+              "lot": "S5",
+              "point": "native lookup enrolled only",
+              "status": "PASS",
+              "measure": {
+                "enrolledFound": [
+                  36562
+                ],
+                "outsideFound": []
+              }
+            },
+            {
+              "lot": "S2",
+              "point": "all pre-existing history restored",
+              "status": "PASS",
+              "measure": {
+                "beforeCount": 13,
+                "afterCount": 13
+              }
+            },
+            {
+              "lot": "S6",
+              "point": "multiline-utf8.csv",
+              "status": "PASS",
+              "measure": {
+                "rows": [
+                  [
+                    "codex2-k16-01-a6143e6e07e5-0@example.invalid",
+                    "Équipe été\nDeuxième ligne",
+                    "Promotion"
+                  ]
+                ]
+              }
+            },
+            {
+              "lot": "S6",
+              "point": "multiline-cp1252.csv",
+              "status": "PASS",
+              "measure": {
+                "rows": [
+                  [
+                    "codex2-k16-01-a6143e6e07e5-0@example.invalid",
+                    "Équipe été\nDeuxième ligne",
+                    "Promotion"
+                  ]
+                ]
+              }
+            },
+            {
+              "lot": "R9/S6",
+              "point": "native reader 3000 formatted rows",
+              "status": "PASS",
+              "measure": {
+                "rows": 3000,
+                "durationMs": 738,
+                "peakMemoryBytes": 48234496
+              }
+            }
+          ],
+          "seed": {
+            "historyid": 34
+          },
+          "files": [
+            "multiline-utf8.csv",
+            "multiline-cp1252.csv",
+            "formatted-3000.xlsx"
+          ]
+        }
+      },
+      {
+        "lot": "S4",
+        "point": "GET rejected",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "error": "Data submitted is invalid",
+            "errorcode": "invaliddata",
+            "stacktrace": "* line 37 of \\moodle\\local\\groupimport\\classes\\local\\ajax_security.php: core\\exception\\moodle_exception thrown\n* line 38 of \\moodle\\local\\groupimport\\ajax.php: call to local_groupimport\\local\\ajax_security::require_request()\n",
+            "debuginfo": "\r\nError code: invaliddata",
+            "reproductionlink": "http://localhost:8051/"
+          }
+        }
+      },
+      {
+        "lot": "S4",
+        "point": "site course out of scope rejected",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": false,
+            "error": "Data submitted is invalid"
+          }
+        }
+      },
+      {
+        "lot": "S4",
+        "point": "missing sesskey rejected",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "error": "A required parameter (sesskey) was missing",
+            "errorcode": "missingparam",
+            "stacktrace": "* line 574 of \\moodle\\lib\\classes\\param.php: core\\exception\\moodle_exception thrown\n* line 452 of \\moodle\\lib\\classes\\param.php: call to core\\param->get_request_parameter()\n* line 659 of \\moodle\\lib\\moodlelib.php: call to core\\param->required_param()\n* line 73 of \\moodle\\lib\\sessionlib.php: call to required_param()\n* line 84 of \\moodle\\lib\\sessionlib.php: call to confirm_sesskey()\n* line 39 of \\moodle\\local\\groupimport\\ajax.php: call to require_sesskey()\n",
+            "debuginfo": "\r\nError code: missingparam",
+            "reproductionlink": "http://localhost:8051/"
+          }
+        }
+      },
+      {
+        "lot": "R6",
+        "point": "501 native addusers rejected",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": false,
+            "error": "This request exceeds the limit of 500 items. No changes were made. Select fewer items and try again."
+          },
+          "text": "{\"success\":false,\"error\":\"This request exceeds the limit of 500 items. No changes were made. Select fewer items and try again.\"}"
+        }
+      },
+      {
+        "lot": "S7-M5",
+        "point": "download and inspect native report XLSX",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "inspection": [
+            {
+              "lot": "S7-M5",
+              "point": "downloaded XLSX has no formula cells",
+              "status": "PASS",
+              "measure": {
+                "formulas": [],
+                "values": [
+                  "Learner identifier",
+                  "Group name",
+                  "Grouping name (optional)",
+                  "Import status",
+                  "Details",
+                  "'=1+1",
+                  "'=1+1",
+                  "'=1+1",
+                  "Applied",
+                  "'=1+1",
+                  "'+SUM(1,1)",
+                  "'+SUM(1,1)",
+                  "'+SUM(1,1)",
+                  "Applied",
+                  "'+SUM(1,1)",
+                  "'-1+1",
+                  "'-1+1",
+                  "'-1+1",
+                  "Applied",
+                  "'-1+1",
+                  "'@SUM(1,1)",
+                  "'@SUM(1,1)",
+                  "'@SUM(1,1)",
+                  "Applied",
+                  "'@SUM(1,1)"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "lot": "R8",
+        "point": "history list excludes large changes payload",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "bytes": 326986,
+          "hasHistory": true,
+          "hasHeavyPayload": false
+        }
+      },
+      {
+        "lot": "S6",
+        "point": "multiline-utf8.csv native editable preview and cancel",
+        "status": "PASS",
+        "measure": {
+          "upload": {},
+          "previewRows": 1,
+          "firstGroup": "Équipe étéDeuxième ligne",
+          "cancelled": true
+        }
+      },
+      {
+        "lot": "S6",
+        "point": "multiline-cp1252.csv native editable preview and cancel",
+        "status": "PASS",
+        "measure": {
+          "upload": {},
+          "previewRows": 1,
+          "firstGroup": "Équipe étéDeuxième ligne",
+          "cancelled": true
+        }
+      },
+      {
+        "lot": "S6/R9",
+        "point": "formatted-3000.xlsx native editable preview and cancel",
+        "status": "FAIL",
+        "measure": {
+          "upload": {}
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('[data-local-groupimport-preview-row]')\nExpected: \u001b[32m3000\u001b[39m\nReceived: \u001b[31m0\u001b[39m\nTimeout:  120000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 120000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-local-groupimport-preview-row]')\u001b[22m\n\u001b[2m    238 × locator resolved to 0 elements\u001b[22m\n\u001b[2m        - unexpected value \"0\"\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\security-settled\\easystud\\authenticated\\easystud-authenticated-20261017T033257846Z-37448\\playwright-output\\v2-security-settled-native-18f83-d-navigation-native-own8051\\fail-10.png"
+      },
+      {
+        "lot": "S6",
+        "point": "native picker obeys course maxbytes 1024",
+        "status": "FAIL",
+        "measure": {
+          "setting": {
+            "maxbytes": 1024
+          },
+          "upload": {
+            "url": "http://localhost:8051/draftfile.php/5/user/draft/638004520/v2-227-formatted-3000.xlsx",
+            "id": 638004520,
+            "file": "v2-227-formatted-3000.xlsx"
+          }
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\security-settled\\easystud\\authenticated\\easystud-authenticated-20261017T033257846Z-37448\\playwright-output\\v2-security-settled-native-18f83-d-navigation-native-own8051\\fail-11.png"
+      }
+    ],
+    "errors": [],
+    "consoleErrors": []
+  },
+  "long-lists-final": {
+    "rows": [
+      {
+        "lang": "fr",
+        "width": 1600,
+        "stage": "PASS",
+        "memberFocus": "36691",
+        "selectedMembers": 60,
+        "groupFocus": "8280",
+        "selectedGroups": 16,
+        "ungroupedFirst": "8377",
+        "pillHeights": [
+          22,
+          22,
+          22,
+          22
+        ],
+        "pageSize": 10,
+        "live": "6 sur 15 affichés",
+        "rawWidthDelta": -15,
+        "overflow": 0,
+        "status": "PASS"
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "stage": "group-window",
+        "status": "FAIL",
+        "error": "locator.isVisible: Error: strict mode violation: locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]') resolved to 2 elements:\n    1) <button type=\"button\" aria-label=\"Rechercher des participants\" data-easystud-group-member-search-toggle=\"8277\" data-easystud-hover-help=\"Rechercher des participants\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button is-easystud-card-action-overflow\">…</button> aka getByLabel('Rechercher des participants').nth(1)\n    2) <button type=\"button\" aria-label=\"Rechercher des participants\" data-easystud-group-member-search-toggle=\"8277\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button local-groupimport-easystud-group__actions-menu-item\">…</button> aka getByLabel('Rechercher des participants').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]')\u001b[22m\n",
+        "capture": "failure-long-fr-768.png"
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "stage": "group-window",
+        "status": "FAIL",
+        "error": "locator.isVisible: Error: strict mode violation: locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]') resolved to 2 elements:\n    1) <button type=\"button\" aria-label=\"Rechercher des participants\" data-easystud-group-member-search-toggle=\"8277\" data-easystud-hover-help=\"Rechercher des participants\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button is-easystud-card-action-overflow\">…</button> aka getByLabel('Rechercher des participants').nth(1)\n    2) <button type=\"button\" aria-label=\"Rechercher des participants\" data-easystud-group-member-search-toggle=\"8277\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button local-groupimport-easystud-group__actions-menu-item\">…</button> aka getByLabel('Rechercher des participants').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]')\u001b[22m\n",
+        "capture": "failure-long-fr-390.png"
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "stage": "PASS",
+        "memberFocus": "36691",
+        "selectedMembers": 60,
+        "groupFocus": "8280",
+        "selectedGroups": 16,
+        "ungroupedFirst": "8377",
+        "pillHeights": [
+          22,
+          22,
+          22,
+          22
+        ],
+        "pageSize": 10,
+        "live": "15 of 15 shown",
+        "rawWidthDelta": -15,
+        "overflow": 0,
+        "status": "PASS"
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "stage": "group-window",
+        "status": "FAIL",
+        "error": "locator.isVisible: Error: strict mode violation: locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]') resolved to 2 elements:\n    1) <button type=\"button\" aria-label=\"Search participants\" data-easystud-hover-help=\"Search participants\" data-easystud-group-member-search-toggle=\"8277\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button is-easystud-card-action-overflow\">…</button> aka getByLabel('Search participants').nth(1)\n    2) <button type=\"button\" aria-label=\"Search participants\" data-easystud-group-member-search-toggle=\"8277\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button local-groupimport-easystud-group__actions-menu-item\">…</button> aka getByLabel('Search participants').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]')\u001b[22m\n",
+        "capture": "failure-long-en-768.png"
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "stage": "group-window",
+        "status": "FAIL",
+        "error": "locator.isVisible: Error: strict mode violation: locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]') resolved to 2 elements:\n    1) <button type=\"button\" aria-label=\"Search participants\" data-easystud-hover-help=\"Search participants\" data-easystud-group-member-search-toggle=\"8277\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button is-easystud-card-action-overflow\">…</button> aka getByLabel('Search participants').nth(1)\n    2) <button type=\"button\" aria-label=\"Search participants\" data-easystud-group-member-search-toggle=\"8277\" class=\"btn btn-link p-0 local-groupimport-easystud-group__member-search-button local-groupimport-easystud-group__actions-menu-item\">…</button> aka getByLabel('Search participants').nth(2)\n\nCall log:\n\u001b[2m    - checking visibility of locator('#local-groupimport-easystud').locator('[data-easystud-grouping-id=\"1829\"]').locator('[data-easystud-group-id=\"8277\"]').locator('[data-easystud-group-member-search-toggle]')\u001b[22m\n",
+        "capture": "failure-long-en-390.png"
+      }
+    ],
+    "errors": [],
+    "blockedWrites": [],
+    "consoleErrors": []
+  },
+  "long-lists-compact-selection": {
+    "rows": [
+      {
+        "lang": "fr",
+        "width": 768,
+        "stage": "ungrouped-pages",
+        "memberFocus": "36871",
+        "selectedMembers": 60,
+        "groupFocus": "8820",
+        "selectedGroups": 16,
+        "status": "FAIL",
+        "error": "locator.check: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-catalog-show-ungrouped=\"structure\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\" data-easystud-catalog-show-ungrouped=\"structure\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <nav aria-label=\"Navigation du site\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  13 × retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Navigation du site\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Navigation du site\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <nav aria-label=\"Navigation du site\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n",
+        "capture": "failure-long-fr-768.png"
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "stage": "ungrouped-pages",
+        "memberFocus": "36871",
+        "selectedMembers": 60,
+        "groupFocus": "8820",
+        "selectedGroups": 16,
+        "status": "FAIL",
+        "error": "locator.check: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-catalog-show-ungrouped=\"structure\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\" data-easystud-catalog-show-ungrouped=\"structure\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <nav aria-label=\"Navigation du site\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  14 × retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groupes sans groupement</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Navigation du site\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Navigation du site\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n",
+        "capture": "failure-long-fr-390.png"
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "stage": "ungrouped-pages",
+        "memberFocus": "36871",
+        "selectedMembers": 60,
+        "groupFocus": "8820",
+        "selectedGroups": 16,
+        "status": "FAIL",
+        "error": "locator.check: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-catalog-show-ungrouped=\"structure\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\" data-easystud-catalog-show-ungrouped=\"structure\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <nav aria-label=\"Site navigation\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  13 × retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Site navigation\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Site navigation\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 500ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <nav aria-label=\"Site navigation\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n",
+        "capture": "failure-long-en-768.png"
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "stage": "ungrouped-pages",
+        "memberFocus": "36871",
+        "selectedMembers": 60,
+        "groupFocus": "8820",
+        "selectedGroups": 16,
+        "status": "FAIL",
+        "error": "locator.check: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-catalog-show-ungrouped=\"structure\"]')\u001b[22m\n\u001b[2m    - locator resolved to <input type=\"checkbox\" data-easystud-catalog-show-ungrouped=\"structure\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\u001b[2m    - done scrolling\u001b[22m\n\u001b[2m    - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is not stable\u001b[22m\n\u001b[2m  2 × retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m      - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <nav aria-label=\"Site navigation\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  14 × retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span>Groups without groupings</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Site navigation\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m       - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <nav aria-label=\"Site navigation\" class=\"navbar fixed-top bg-body navbar-expand\">…</nav> intercepts pointer events\u001b[22m\n\u001b[2m  - retrying click action\u001b[22m\n\u001b[2m    - waiting 500ms\u001b[22m\n",
+        "capture": "failure-long-en-390.png"
+      }
+    ],
+    "errors": [],
+    "blockedWrites": [],
+    "consoleErrors": []
+  },
+  "ungrouped-final": {
+    "rows": [
+      {
+        "lang": "fr",
+        "width": 768,
+        "stage": "PASS",
+        "ungroupedFirst": "10030",
+        "pillHeights": [
+          22,
+          22,
+          22,
+          22
+        ],
+        "pageSize": 10,
+        "live": "15 sur 15 affichés",
+        "rawWidthDelta": -15,
+        "overflow": 0,
+        "status": "PASS"
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "stage": "PASS",
+        "ungroupedFirst": "10030",
+        "pillHeights": [
+          22,
+          22
+        ],
+        "pageSize": 6,
+        "live": "15 sur 15 affichés",
+        "rawWidthDelta": -15,
+        "overflow": 0,
+        "status": "PASS"
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "stage": "PASS",
+        "ungroupedFirst": "10030",
+        "pillHeights": [
+          22,
+          22,
+          22,
+          22
+        ],
+        "pageSize": 10,
+        "live": "15 of 15 shown",
+        "rawWidthDelta": -15,
+        "overflow": 0,
+        "status": "PASS"
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "stage": "PASS",
+        "ungroupedFirst": "10030",
+        "pillHeights": [
+          22,
+          22
+        ],
+        "pageSize": 6,
+        "live": "15 of 15 shown",
+        "rawWidthDelta": -15,
+        "overflow": 0,
+        "status": "PASS"
+      }
+    ],
+    "errors": [],
+    "blockedWrites": [],
+    "consoleErrors": []
+  },
+  "memberships-settled": {
+    "checks": [
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "K16-14",
+        "point": "keep source copy and immediate destination count",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109060",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109061",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109060",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109062",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109061",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "1"
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "minus removes copied member and immediately decrements",
+        "status": "PASS",
+        "measure": {
+          "response": {
+            "success": true,
+            "message": "Utilisateur retiré du groupe."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109060",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109061",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "K16-14",
+        "point": "unchecked moves and immediately updates both cards",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109060",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109061",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "removed": 1,
+            "unchanged": 0,
+            "message": "Appartenances d’origine déplacées : 1 ; ajouts à destination : 1 ; appartenances inchangées : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109063",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109061",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "0"
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "K16-15",
+        "point": "group details expose checkbox and minus",
+        "status": "PASS",
+        "measure": {
+          "eyeCandidates": 1,
+          "checkboxCount": 3,
+          "minusCount": 2
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "empty-touch",
+        "point": "empty group help",
+        "status": "PASS",
+        "measure": {
+          "text": "Glissez des participants ici ou utilisez @",
+          "coarse": false
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "quick membership removal count",
+        "status": "PASS",
+        "measure": {
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109061",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "participant context menu immediately adds to empty destination",
+        "status": "FAIL",
+        "measure": {},
+        "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-user-id=\"37109\"]:visible').first().locator('[data-easystud-card-menu]')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-haspopup=\"menu\" aria-expanded=\"false\" data-easystud-card-menu=\"1\" aria-label=\"Ouvrir les actions\" class=\"local-groupimport-easystud-card-menu\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    38 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-fr-1600.png"
+      },
+      {
+        "lang": "fr",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "native participant drag immediately updates empty source group",
+        "status": "FAIL",
+        "measure": {},
+        "error": "page.waitForResponse: Timeout 20000ms exceeded while waiting for event \"response\"",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-fr-1600.png"
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "lot": "K16-14",
+        "point": "keep source copy and immediate destination count",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109064",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109065",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109064",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109066",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109065",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "1"
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "lot": "K16-14b",
+        "point": "minus removes copied member and immediately decrements",
+        "status": "PASS",
+        "measure": {
+          "response": {
+            "success": true,
+            "message": "Utilisateur retiré du groupe."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109064",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109065",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "lot": "K16-14",
+        "point": "unchecked moves and immediately updates both cards",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109064",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109065",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "removed": 1,
+            "unchanged": 0,
+            "message": "Appartenances d’origine déplacées : 1 ; ajouts à destination : 1 ; appartenances inchangées : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109067",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109065",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "0"
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "lot": "K16-15",
+        "point": "group details expose checkbox and minus",
+        "status": "PASS",
+        "measure": {
+          "eyeCandidates": 0,
+          "checkboxCount": 3,
+          "minusCount": 2
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "lot": "empty-touch",
+        "point": "empty group help",
+        "status": "PASS",
+        "measure": {
+          "text": "Utilisez @ ou « Ajouter à un groupe »",
+          "coarse": false
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "lot": "K16-14b",
+        "point": "quick membership removal count",
+        "status": "FAIL",
+        "measure": {},
+        "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-group-id=\"9550\"]:visible').first().locator('[data-easystud-member-id=\"37109\"]').locator(':scope > .local-groupimport-easystud-selector')\u001b[22m\n\u001b[2m    - locator resolved to <label aria-label=\"Mode sélection\" class=\"local-groupimport-easystud-selector local-groupimport-easystud-selector--member easyedu-related-person-row__selector\">…</label>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    38 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-fr-768.png"
+      },
+      {
+        "lang": "fr",
+        "width": 768,
+        "lot": "K16-14b",
+        "point": "participant context menu immediately adds to empty destination",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109067",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109068",
+                "groupid": "9551",
+                "userid": "37109"
+              },
+              {
+                "id": "109065",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "lot": "K16-14",
+        "point": "keep source copy and immediate destination count",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109069",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109070",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109069",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109071",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109070",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "1"
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "lot": "K16-14b",
+        "point": "minus removes copied member and immediately decrements",
+        "status": "PASS",
+        "measure": {
+          "response": {
+            "success": true,
+            "message": "Utilisateur retiré du groupe."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109069",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109070",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "lot": "K16-14",
+        "point": "unchecked moves and immediately updates both cards",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109069",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109070",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "removed": 1,
+            "unchanged": 0,
+            "message": "Appartenances d’origine déplacées : 1 ; ajouts à destination : 1 ; appartenances inchangées : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109072",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109070",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "0"
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "lot": "K16-15",
+        "point": "group details expose checkbox and minus",
+        "status": "PASS",
+        "measure": {
+          "eyeCandidates": 0,
+          "checkboxCount": 3,
+          "minusCount": 2
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "lot": "empty-touch",
+        "point": "empty group help",
+        "status": "PASS",
+        "measure": {
+          "text": "Utilisez @ ou « Ajouter à un groupe »",
+          "coarse": true
+        }
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "lot": "K16-14b",
+        "point": "quick membership removal count",
+        "status": "FAIL",
+        "measure": {},
+        "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-group-id=\"9550\"]:visible').first().locator('[data-easystud-member-id=\"37109\"]').locator(':scope > .local-groupimport-easystud-selector')\u001b[22m\n\u001b[2m    - locator resolved to <label aria-label=\"Mode sélection\" class=\"local-groupimport-easystud-selector local-groupimport-easystud-selector--member easyedu-related-person-row__selector\">…</label>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    38 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-fr-390.png"
+      },
+      {
+        "lang": "fr",
+        "width": 390,
+        "lot": "K16-14b",
+        "point": "participant context menu immediately adds to empty destination",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109072",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109073",
+                "groupid": "9551",
+                "userid": "37109"
+              },
+              {
+                "id": "109070",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "K16-14",
+        "point": "keep source copy and immediate destination count",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109074",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109075",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109074",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109076",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109075",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "1"
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "minus removes copied member and immediately decrements",
+        "status": "PASS",
+        "measure": {
+          "response": {
+            "success": true,
+            "message": "User removed from the group."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109074",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109075",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "K16-14",
+        "point": "unchecked moves and immediately updates both cards",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109074",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109075",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "removed": 1,
+            "unchanged": 0,
+            "message": "Source memberships moved: 1; added at destination: 1; unchanged: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109077",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109075",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "0"
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "K16-15",
+        "point": "group details expose checkbox and minus",
+        "status": "PASS",
+        "measure": {
+          "eyeCandidates": 1,
+          "checkboxCount": 3,
+          "minusCount": 2
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "empty-touch",
+        "point": "empty group help",
+        "status": "PASS",
+        "measure": {
+          "text": "Drag participants here or use @",
+          "coarse": false
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "quick membership removal count",
+        "status": "PASS",
+        "measure": {
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109075",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "participant context menu immediately adds to empty destination",
+        "status": "FAIL",
+        "measure": {},
+        "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-user-id=\"37109\"]:visible').first().locator('[data-easystud-card-menu]')\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" aria-haspopup=\"menu\" aria-expanded=\"false\" aria-label=\"Open actions\" data-easystud-card-menu=\"1\" class=\"local-groupimport-easystud-card-menu\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    38 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-en-1600.png"
+      },
+      {
+        "lang": "en",
+        "width": 1600,
+        "lot": "K16-14b",
+        "point": "native participant drag immediately updates empty source group",
+        "status": "FAIL",
+        "measure": {},
+        "error": "page.waitForResponse: Timeout 20000ms exceeded while waiting for event \"response\"",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-en-1600.png"
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "lot": "K16-14",
+        "point": "keep source copy and immediate destination count",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109078",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109079",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109078",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109080",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109079",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "1"
+        }
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "lot": "K16-14b",
+        "point": "minus removes copied member and immediately decrements",
+        "status": "PASS",
+        "measure": {
+          "response": {
+            "success": true,
+            "message": "User removed from the group."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109078",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109079",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "lot": "K16-14",
+        "point": "unchecked moves and immediately updates both cards",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109078",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109079",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "removed": 1,
+            "unchanged": 0,
+            "message": "Source memberships moved: 1; added at destination: 1; unchanged: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109081",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109079",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "0"
+        }
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "lot": "K16-15",
+        "point": "group details expose checkbox and minus",
+        "status": "PASS",
+        "measure": {
+          "eyeCandidates": 0,
+          "checkboxCount": 3,
+          "minusCount": 2
+        }
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "lot": "empty-touch",
+        "point": "empty group help",
+        "status": "PASS",
+        "measure": {
+          "text": "Use @ or “Add to a group”",
+          "coarse": false
+        }
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "lot": "K16-14b",
+        "point": "quick membership removal count",
+        "status": "FAIL",
+        "measure": {},
+        "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-group-id=\"9550\"]:visible').first().locator('[data-easystud-member-id=\"37109\"]').locator(':scope > .local-groupimport-easystud-selector')\u001b[22m\n\u001b[2m    - locator resolved to <label aria-label=\"Selection mode\" class=\"local-groupimport-easystud-selector local-groupimport-easystud-selector--member easyedu-related-person-row__selector\">…</label>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    38 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-en-768.png"
+      },
+      {
+        "lang": "en",
+        "width": 768,
+        "lot": "K16-14b",
+        "point": "participant context menu immediately adds to empty destination",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109081",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109082",
+                "groupid": "9551",
+                "userid": "37109"
+              },
+              {
+                "id": "109079",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "lot": "K16-14",
+        "point": "keep source copy and immediate destination count",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109083",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109084",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109083",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109085",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109084",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "1"
+        }
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "lot": "K16-14b",
+        "point": "minus removes copied member and immediately decrements",
+        "status": "PASS",
+        "measure": {
+          "response": {
+            "success": true,
+            "message": "User removed from the group."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109083",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109084",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "lot": "K16-14",
+        "point": "unchecked moves and immediately updates both cards",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "before": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109083",
+                "groupid": "9549",
+                "userid": "37109"
+              },
+              {
+                "id": "109084",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "removed": 1,
+            "unchanged": 0,
+            "message": "Source memberships moved: 1; added at destination: 1; unchanged: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109086",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109084",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          },
+          "destinationCount": "2",
+          "sourceCount": "0"
+        }
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "lot": "K16-15",
+        "point": "group details expose checkbox and minus",
+        "status": "PASS",
+        "measure": {
+          "eyeCandidates": 0,
+          "checkboxCount": 3,
+          "minusCount": 2
+        }
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "lot": "empty-touch",
+        "point": "empty group help",
+        "status": "PASS",
+        "measure": {
+          "text": "Use @ or “Add to a group”",
+          "coarse": true
+        }
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "lot": "K16-14b",
+        "point": "quick membership removal count",
+        "status": "FAIL",
+        "measure": {},
+        "error": "locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-group-id=\"9550\"]:visible').first().locator('[data-easystud-member-id=\"37109\"]').locator(':scope > .local-groupimport-easystud-selector')\u001b[22m\n\u001b[2m    - locator resolved to <label aria-label=\"Selection mode\" class=\"local-groupimport-easystud-selector local-groupimport-easystud-selector--member easyedu-related-person-row__selector\">…</label>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not enabled\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    38 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not enabled\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\memberships-settled\\easystud\\authenticated\\easystud-authenticated-20261017T040140744Z-40232\\playwright-output\\v2-members-settled-native--66af0-ntity-contents-FR-EN-native\\failure-members-en-390.png"
+      },
+      {
+        "lang": "en",
+        "width": 390,
+        "lot": "K16-14b",
+        "point": "participant context menu immediately adds to empty destination",
+        "status": "PASS",
+        "measure": {
+          "stage": "choose-destination",
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "after": {
+            "courseId": 239,
+            "userId": 37109,
+            "groupIds": [
+              9549,
+              9550,
+              9551,
+              9552
+            ],
+            "rows": [
+              {
+                "id": "109086",
+                "groupid": "9550",
+                "userid": "37109"
+              },
+              {
+                "id": "109087",
+                "groupid": "9551",
+                "userid": "37109"
+              },
+              {
+                "id": "109084",
+                "groupid": "9552",
+                "userid": "37109"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "consoleErrors": [],
+    "completed": true
+  },
+  "menu-drag": {
+    "checks": [
+      {
+        "lot": "K16-14b",
+        "lang": "fr",
+        "width": 1600,
+        "point": "native context menu adds and updates destination without reload",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109397",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109398",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "count": "2",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109397",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109399",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109398",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "fr",
+        "width": 1600,
+        "point": "native held participant drag onto empty group updates immediately",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109397",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109399",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109398",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "drag": {
+            "from": {
+              "x": 115,
+              "y": 589.859375
+            },
+            "to": {
+              "x": 846.640625,
+              "y": 539.984375
+            },
+            "heldMs": 750
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "count": "1",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109397",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109399",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109400",
+                "groupid": "9744",
+                "userid": "37175"
+              },
+              {
+                "id": "109398",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "fr",
+        "width": 768,
+        "point": "native context menu adds and updates destination without reload",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109401",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109402",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "count": "2",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109401",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109403",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109402",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "fr",
+        "width": 390,
+        "point": "native context menu adds and updates destination without reload",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109404",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109405",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants ajoutés : 1 ; déjà présents dans ce groupe : 0."
+          },
+          "count": "2",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109404",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109406",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109405",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "en",
+        "width": 1600,
+        "point": "native context menu adds and updates destination without reload",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109407",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109408",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "count": "2",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109407",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109409",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109408",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "en",
+        "width": 1600,
+        "point": "native held participant drag onto empty group updates immediately",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109407",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109409",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109408",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "drag": {
+            "from": {
+              "x": 115,
+              "y": 589.859375
+            },
+            "to": {
+              "x": 846.640625,
+              "y": 539.984375
+            },
+            "heldMs": 750
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "count": "1",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109407",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109409",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109410",
+                "groupid": "9744",
+                "userid": "37175"
+              },
+              {
+                "id": "109408",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "en",
+        "width": 768,
+        "point": "native context menu adds and updates destination without reload",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109411",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109412",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "count": "2",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109411",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109413",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109412",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "en",
+        "width": 390,
+        "point": "native context menu adds and updates destination without reload",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109414",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109415",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "added": 1,
+            "existing": 0,
+            "skipped": 0,
+            "message": "Participants added: 1; already in this group: 0."
+          },
+          "count": "2",
+          "after": {
+            "courseId": 243,
+            "userId": 37175,
+            "groupIds": [
+              9742,
+              9743,
+              9744,
+              9745
+            ],
+            "rows": [
+              {
+                "id": "109414",
+                "groupid": "9742",
+                "userid": "37175"
+              },
+              {
+                "id": "109416",
+                "groupid": "9743",
+                "userid": "37175"
+              },
+              {
+                "id": "109415",
+                "groupid": "9745",
+                "userid": "37175"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "consoleErrors": [],
+    "completed": true
+  },
+  "quick-remove": {
+    "checks": [
+      {
+        "lot": "K16-14b",
+        "lang": "fr",
+        "width": 1600,
+        "point": "quick removal from isolated member selection updates count",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109090",
+                "groupid": "9553",
+                "userid": "37111"
+              },
+              {
+                "id": "109091",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "message": "Utilisateur retiré du groupe."
+          },
+          "count": "0",
+          "after": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109091",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "fr",
+        "width": 768,
+        "point": "quick removal from isolated member selection updates count",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109092",
+                "groupid": "9553",
+                "userid": "37111"
+              },
+              {
+                "id": "109093",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "message": "Utilisateur retiré du groupe."
+          },
+          "count": "0",
+          "after": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109093",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "fr",
+        "width": 390,
+        "point": "quick removal from isolated member selection updates count",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109094",
+                "groupid": "9553",
+                "userid": "37111"
+              },
+              {
+                "id": "109095",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "message": "Utilisateur retiré du groupe."
+          },
+          "count": "0",
+          "after": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109095",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "en",
+        "width": 1600,
+        "point": "quick removal from isolated member selection updates count",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109096",
+                "groupid": "9553",
+                "userid": "37111"
+              },
+              {
+                "id": "109097",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "message": "User removed from the group."
+          },
+          "count": "0",
+          "after": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109097",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "en",
+        "width": 768,
+        "point": "quick removal from isolated member selection updates count",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109098",
+                "groupid": "9553",
+                "userid": "37111"
+              },
+              {
+                "id": "109099",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "message": "User removed from the group."
+          },
+          "count": "0",
+          "after": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109099",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "lot": "K16-14b",
+        "lang": "en",
+        "width": 390,
+        "point": "quick removal from isolated member selection updates count",
+        "status": "PASS",
+        "measure": {
+          "before": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109100",
+                "groupid": "9553",
+                "userid": "37111"
+              },
+              {
+                "id": "109101",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          },
+          "response": {
+            "success": true,
+            "message": "User removed from the group."
+          },
+          "count": "0",
+          "after": {
+            "courseId": 240,
+            "userId": 37111,
+            "groupIds": [
+              9553,
+              9554,
+              9555,
+              9556
+            ],
+            "rows": [
+              {
+                "id": "109101",
+                "groupid": "9556",
+                "userid": "37111"
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "consoleErrors": [],
+    "completed": true
+  },
+  "entity-member": {
+    "checks": [
+      {
+        "lot": "K16-15",
+        "lang": "fr",
+        "width": 1600,
+        "point": "dialog checkbox toggles and minus removes membership",
+        "status": "FAIL",
+        "measure": {
+          "before": {
+            "courseId": 244,
+            "userId": 37177,
+            "groupIds": [
+              9746,
+              9747,
+              9748,
+              9749
+            ],
+            "rows": [
+              {
+                "id": "109419",
+                "groupid": "9746",
+                "userid": "37177"
+              },
+              {
+                "id": "109420",
+                "groupid": "9749",
+                "userid": "37177"
+              }
+            ]
+          },
+          "checkboxToggled": true,
+          "response": {
+            "success": true,
+            "message": "Utilisateur retiré du groupe."
+          }
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeHidden\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]')\nExpected: hidden\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeHidden\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]')\u001b[22m\n\u001b[2m    13 × locator resolved to <div role=\"dialog\" aria-modal=\"true\" id=\"yui_3_18_1_1_1792210611280_52\" data-easystud-editor-context=\"group\" data-easystud-advanced-settings-modal=\"1\" aria-labelledby=\"local-groupimport-easystud-editor-title-group\" class=\"local-groupimport-easystud-modal local-groupimport-easystud-settings-modal easyedu-modal-layer\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\entity-member\\easystud\\authenticated\\easystud-authenticated-20261017T041612561Z-16972\\playwright-output\\v2-entity-member-native-V2-61506-og-checkbox-and-minus-FR-EN\\failure-fr-1600.png"
+      },
+      {
+        "lot": "K16-15",
+        "lang": "fr",
+        "width": 768,
+        "point": "dialog checkbox toggles and minus removes membership",
+        "status": "FAIL",
+        "measure": {
+          "before": {
+            "courseId": 244,
+            "userId": 37177,
+            "groupIds": [
+              9746,
+              9747,
+              9748,
+              9749
+            ],
+            "rows": [
+              {
+                "id": "109421",
+                "groupid": "9746",
+                "userid": "37177"
+              },
+              {
+                "id": "109422",
+                "groupid": "9749",
+                "userid": "37177"
+              }
+            ]
+          }
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeChecked\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\nExpected: checked\nReceived: unchecked\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeChecked\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\u001b[22m\n\u001b[2m    14 × locator resolved to <input type=\"checkbox\" id=\"yui_3_18_1_1_1792210630498_39\" data-easystud-entity-select=\"37177\"/>\u001b[22m\n\u001b[2m       - unexpected value \"unchecked\"\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\entity-member\\easystud\\authenticated\\easystud-authenticated-20261017T041612561Z-16972\\playwright-output\\v2-entity-member-native-V2-61506-og-checkbox-and-minus-FR-EN\\failure-fr-768.png"
+      },
+      {
+        "lot": "K16-15",
+        "lang": "fr",
+        "width": 390,
+        "point": "dialog checkbox toggles and minus removes membership",
+        "status": "FAIL",
+        "measure": {
+          "before": {
+            "courseId": 244,
+            "userId": 37177,
+            "groupIds": [
+              9746,
+              9747,
+              9748,
+              9749
+            ],
+            "rows": [
+              {
+                "id": "109423",
+                "groupid": "9746",
+                "userid": "37177"
+              },
+              {
+                "id": "109424",
+                "groupid": "9749",
+                "userid": "37177"
+              }
+            ]
+          }
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeChecked\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\nExpected: checked\nReceived: unchecked\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeChecked\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\u001b[22m\n\u001b[2m    14 × locator resolved to <input type=\"checkbox\" id=\"yui_3_18_1_1_1792210646368_39\" data-easystud-entity-select=\"37177\"/>\u001b[22m\n\u001b[2m       - unexpected value \"unchecked\"\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\entity-member\\easystud\\authenticated\\easystud-authenticated-20261017T041612561Z-16972\\playwright-output\\v2-entity-member-native-V2-61506-og-checkbox-and-minus-FR-EN\\failure-fr-390.png"
+      },
+      {
+        "lot": "K16-15",
+        "lang": "en",
+        "width": 1600,
+        "point": "dialog checkbox toggles and minus removes membership",
+        "status": "FAIL",
+        "measure": {
+          "before": {
+            "courseId": 244,
+            "userId": 37177,
+            "groupIds": [
+              9746,
+              9747,
+              9748,
+              9749
+            ],
+            "rows": [
+              {
+                "id": "109425",
+                "groupid": "9746",
+                "userid": "37177"
+              },
+              {
+                "id": "109426",
+                "groupid": "9749",
+                "userid": "37177"
+              }
+            ]
+          },
+          "checkboxToggled": true,
+          "response": {
+            "success": true,
+            "message": "User removed from the group."
+          }
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeHidden\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]')\nExpected: hidden\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeHidden\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]')\u001b[22m\n\u001b[2m    13 × locator resolved to <div role=\"dialog\" aria-modal=\"true\" id=\"yui_3_18_1_1_1792210661058_52\" data-easystud-editor-context=\"group\" data-easystud-advanced-settings-modal=\"1\" aria-labelledby=\"local-groupimport-easystud-editor-title-group\" class=\"local-groupimport-easystud-modal local-groupimport-easystud-settings-modal easyedu-modal-layer\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\entity-member\\easystud\\authenticated\\easystud-authenticated-20261017T041612561Z-16972\\playwright-output\\v2-entity-member-native-V2-61506-og-checkbox-and-minus-FR-EN\\failure-en-1600.png"
+      },
+      {
+        "lot": "K16-15",
+        "lang": "en",
+        "width": 768,
+        "point": "dialog checkbox toggles and minus removes membership",
+        "status": "FAIL",
+        "measure": {
+          "before": {
+            "courseId": 244,
+            "userId": 37177,
+            "groupIds": [
+              9746,
+              9747,
+              9748,
+              9749
+            ],
+            "rows": [
+              {
+                "id": "109427",
+                "groupid": "9746",
+                "userid": "37177"
+              },
+              {
+                "id": "109428",
+                "groupid": "9749",
+                "userid": "37177"
+              }
+            ]
+          }
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeChecked\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\nExpected: checked\nReceived: unchecked\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeChecked\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\u001b[22m\n\u001b[2m    14 × locator resolved to <input type=\"checkbox\" id=\"yui_3_18_1_1_1792210680415_39\" data-easystud-entity-select=\"37177\"/>\u001b[22m\n\u001b[2m       - unexpected value \"unchecked\"\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\entity-member\\easystud\\authenticated\\easystud-authenticated-20261017T041612561Z-16972\\playwright-output\\v2-entity-member-native-V2-61506-og-checkbox-and-minus-FR-EN\\failure-en-768.png"
+      },
+      {
+        "lot": "K16-15",
+        "lang": "en",
+        "width": 390,
+        "point": "dialog checkbox toggles and minus removes membership",
+        "status": "FAIL",
+        "measure": {
+          "before": {
+            "courseId": 244,
+            "userId": 37177,
+            "groupIds": [
+              9746,
+              9747,
+              9748,
+              9749
+            ],
+            "rows": [
+              {
+                "id": "109429",
+                "groupid": "9746",
+                "userid": "37177"
+              },
+              {
+                "id": "109430",
+                "groupid": "9749",
+                "userid": "37177"
+              }
+            ]
+          }
+        },
+        "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeChecked\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\nExpected: checked\nReceived: unchecked\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeChecked\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#local-groupimport-easystud').locator('[data-easystud-advanced-settings-modal]').locator('[data-easystud-entity-select=\"37177\"]')\u001b[22m\n\u001b[2m    14 × locator resolved to <input type=\"checkbox\" id=\"yui_3_18_1_1_1792210700022_39\" data-easystud-entity-select=\"37177\"/>\u001b[22m\n\u001b[2m       - unexpected value \"unchecked\"\u001b[22m\n",
+        "capture": "C:\\dev\\Moodle 51 Perf\\moodle\\local\\recette-v2-lots-20261017\\entity-member\\easystud\\authenticated\\easystud-authenticated-20261017T041612561Z-16972\\playwright-output\\v2-entity-member-native-V2-61506-og-checkbox-and-minus-FR-EN\\failure-en-390.png"
+      }
+    ],
+    "errors": [],
+    "consoleErrors": [],
+    "completed": true
+  },
+  "teacher-username": {
+    "checks": [
+      {
+        "lot": "S5",
+        "point": "native import applies enrolled user only",
+        "status": "PASS",
+        "measure": {
+          "upload": {
+            "url": "http://localhost:8051/draftfile.php/37939/user/draft/898577394/scope.csv",
+            "id": 898577394,
+            "file": "scope.csv"
+          },
+          "preview": [
+            "2Ready",
+            "3Participant not found or unavailable in this course: codex2-k16-01-70da2d6c094a-59."
+          ],
+          "database": {
+            "groups": [
+              {
+                "name": "QA Teacher Applied",
+                "members": [
+                  37113
+                ]
+              }
+            ],
+            "outsideEnrolled": false
+          }
+        }
+      },
+      {
+        "lot": "S6",
+        "point": "non-admin upload honours course maxbytes",
+        "status": "PASS",
+        "measure": {
+          "bytes": 3000,
+          "maxbytes": 1024,
+          "upload": {
+            "error": "The file scope.csv is too large. The maximum size you can upload is 1 KB.",
+            "errorcode": "maxbytesfile",
+            "stacktrace": "* line 203 of \\moodle\\repository\\upload\\lib.php: file_exception thrown\n* line 64 of \\moodle\\repository\\upload\\lib.php: call to repository_upload->process_upload()\n* line 328 of \\moodle\\repository\\repository_ajax.php: call to repository_upload->upload()\n",
+            "debuginfo": "\r\nError code: maxbytesfile",
+            "reproductionlink": "http://localhost:8051/local/groupimport/index.php?id=241&lang=en"
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "consoleErrors": []
+  },
+  "bulk-resume": {
+    "checks": [
+      {
+        "lot": "R6",
+        "point": "addusers refuses 501 before mutations",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": false,
+            "error": "This request exceeds the limit of 500 items. No changes were made. Select fewer items and try again."
+          }
+        }
+      },
+      {
+        "lot": "R6",
+        "point": "addemails refuses 501 before mutations",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": false,
+            "error": "This request exceeds the limit of 500 items. No changes were made. Select fewer items and try again."
+          }
+        }
+      },
+      {
+        "lot": "R6",
+        "point": "removemembers refuses 501 before mutations",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": false,
+            "error": "This request exceeds the limit of 500 items. No changes were made. Select fewer items and try again."
+          }
+        }
+      },
+      {
+        "lot": "R6",
+        "point": "deletegroups refuses 501 before mutations",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": false,
+            "error": "This request exceeds the limit of 500 items. No changes were made. Select fewer items and try again."
+          }
+        }
+      },
+      {
+        "lot": "R6",
+        "point": "500 repeated existing members accepted without duplicates",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": true,
+            "added": 0,
+            "existing": 1,
+            "skipped": 0,
+            "message": "Participants added: 0; already in this group: 1."
+          }
+        }
+      },
+      {
+        "lot": "S4",
+        "point": "foreign course cannot rename own fixture group",
+        "status": "PASS",
+        "measure": {
+          "http": 200,
+          "json": {
+            "success": false,
+            "error": "Data submitted is invalid"
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "consoleErrors": [],
+    "completed": true
+  }
+}

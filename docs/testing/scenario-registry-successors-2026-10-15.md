@@ -124,3 +124,29 @@ Final K16 pill native191524016Z-17864 PASS32bilingual states/128card samples,104
 Local-supervised `k16-13-sort-za-native.spec.js` uses disposable own8051 `k16-sort-copy-fixture.php`: FR/EN1600/390, three lists, all pages, active/inactive states and round trip alpha -> alpha-desc -> alpha. At most two screenshots, assertions/values in JSON, all product writes blocked. Production comparator unit covers stable ties and unknown-mode fallback. No styles or other runtime ports.
 
 Final K16-13:12/12PASS,0page/console errors or blocked writes, two screenshots. Fixture course/users deleted, leases/credentials/profile cleaned. Exact assertions, SHA256 and run roots in own8051 `local/k16-13-evidence/proof-summary.json`.
+
+## V2 lots, 17 October — isolated own8051 candidates
+
+`v2-security-settled-native.spec.js`: local-supervised native Privacy provider,
+retention/task, AJAX negative gates, bounded action, report download, lightweight
+history, multiline CSV/edit/cancel and formatted XLSX preview. Native API fixture
+helper rolls back pre-existing history; browser picker writes only owned drafts.
+`v2-teacher-username-native.spec.js`: native teacher login, course-scoped import
+with configured username and non-admin course maxbytes. Temporary users deleted.
+`v2-bulk-native.spec.js`: four 501-item rejections, 500 repeated existing members,
+foreign-course group refusal; owned memberships snapshotted before/after.
+`v2-members-settled-native.spec.js`, `v2-menu-drag-native.spec.js` and
+`v2-quick-remove-native.spec.js`: FR/EN1600/768/390 native owned memberships,
+copy/move, immediate counts, entity member controls, coarse-pointer empty help,
+context menu, held desktop drag and isolated quick removal. SQL proof retained.
+`v2-long-lists-final-native.spec.js` (desktop), compact selection and compact DOM
+successors: 180 groups, bounded member/group windows, ungrouped pagination and
+membership tags. Earlier immutable specs retain obsolete-selector and timing
+failures; they are not promoted as product regressions. Final per-point results
+are in `recette-v2-lots-17-10-2026.md` and its JSON.
+All are CI candidates requiring isolated Moodle, saved authentication and owned
+fixtures; no generated media committed. No shared Platform registry modified.
+Functional extension: `v2-entity-member-native.spec.js` exercises the dialog
+checkbox and last-member removal; failures and native receipts are retained
+in the V2 report. `v2-long-lists-ungrouped-native.spec.js` is the final compact
+filter-label/tree pagination successor (FR/EN768/390 PASS).
