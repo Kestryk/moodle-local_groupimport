@@ -65,11 +65,27 @@ const redirectNativeParticipantsPage = (courseId, managerUrl) => {
 
 // Replace the visible course Participants tab/link with the EasyStud manager URL.
 const replaceSecondaryParticipantsLinks = (courseId, managerUrl) => {
-    document.querySelectorAll('.secondary-navigation a[href], .moremenu a[href], a[data-key="participants"][href]').forEach(link => {
+    document.querySelectorAll('.secondary-navigation a[href], .secondarynav-tabbar a[href], .moremenu a[href], ' +
+        'a[data-key="participants"][href]').forEach(link => {
         const url = parseUrl(link.getAttribute('href'));
         if (isNativeParticipantsUrl(url, courseId)) {
             link.setAttribute('href', managerUrl);
         }
+    });
+};
+
+// React navigation can hydrate after the initial timers. Watch only its stable hosts,
+// and only child replacement: rewriting a link must not trigger another observer cycle.
+const observeSecondaryParticipantsLinks = (courseId, managerUrl) => {
+    if (typeof MutationObserver !== 'function') {
+        return;
+    }
+    document.querySelectorAll('.secondary-navigation, .secondarynav-tabbar').forEach(host => {
+        if (host.parentElement?.closest('.secondary-navigation, .secondarynav-tabbar')) {
+            return;
+        }
+        const observer = new MutationObserver(() => replaceSecondaryParticipantsLinks(courseId, managerUrl));
+        observer.observe(host, {childList: true, subtree: true});
     });
 };
 
@@ -162,6 +178,7 @@ export const init = (courseId, managerUrl, nativeParticipantsUrl, managerLabel, 
     };
 
     enhance();
+    observeSecondaryParticipantsLinks(courseId, managerUrl);
     bindParticipantsNavigationSelector();
     window.setTimeout(enhance, 250);
     window.setTimeout(enhance, 1000);
