@@ -28,6 +28,8 @@
 
 - 2026-10-17 [N0] Resync Guide mirror for d44585d8 touch gestures and public guideModality export; preserve runtime assets and generic/Moodle adapters.
 
+- 2026-10-17 [N1] J-G2: rebalance real narration phases for desktop Add, inspections and compact Move without height animation; keep the shared Motion clock.
+
 - 2026-10-17 [N1] C-G3: shorten only the mobile simulation badge to Exemple / Example; preserve the long safety label.
 
 - 2026-10-17 [N0] R6: bound four bulk group actions to 500 items, raise execution time, batch enrolment/group reads and transactionally apply native writes with explicit skipped counts; browser chunking remains for Claude.
