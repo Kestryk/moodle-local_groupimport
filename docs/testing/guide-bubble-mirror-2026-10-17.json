@@ -46,5 +46,33 @@
   },
   "runtimeAccess": false,
   "mainMerged": false,
-  "humanAccepted": false
+  "humanAccepted": false,
+  "canonicalCommit": "22425104199fc217adeac60247a43ecb1afb5762",
+  "optionalTriChecks": {
+    "base": "9e628d4f",
+    "runtimeAccess": false,
+    "checks": [
+      {
+        "name": "TRI19-smoke",
+        "exit": 0,
+        "passed": true
+      },
+      {
+        "name": "TRI31-palette-settings",
+        "exit": 0,
+        "passed": true
+      },
+      {
+        "name": "TRI31-palette-view",
+        "exit": 0,
+        "passed": true
+      }
+    ]
+  },
+  "optionalTriOpen": [
+    "TRI2 finished-path Restart composition: GNAV owner",
+    "TRI8 measured debounce experiment: reserved local/cm owner",
+    "TRI19 native PHPUnit/Behat not run",
+    "TRI31 full native palette matrix not run"
+  ]
 }

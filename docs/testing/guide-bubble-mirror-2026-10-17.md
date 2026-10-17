@@ -42,3 +42,16 @@ localhost publication. Evidence: C:/dev/artifacts/guide-bubble-mirror-20261017/.
 
 The central Kit main integration/other-consumer gate remains separate. This
 bounded mirror does not certify inherited Motion API or CCB/EasyExam tests.
+
+## Final pin and optional TRI check
+
+Canonical commit: `22425104199fc217adeac60247a43ecb1afb5762`.
+
+On this current revision, the13-suite isolated TRI19 smoke and the two
+standalone TRI31 palette contracts (settings/view icons) pass. PHPUnit/Behat
+native execution and the complete native custom-palette matrix remain open.
+TRI2's explicit finished-path Restart composition belongs to the active GNAV
+delivery; existing resetPathProgress/automatic reset on relaunch are not
+mislabelled as its acceptance. TRI8's measured debounce experiment touches
+reserved local/cm filtering and remains with its owner; no arbitrary timeout
+is introduced. These open items do not authorize another Guide or CAR rewrite.
