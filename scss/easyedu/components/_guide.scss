@@ -3227,8 +3227,20 @@
 // A host's stable document gutter reduces even viewport units in Chrome.
 // Release that reservation only while this Guide occupies the native top layer;
 // the host's original rule automatically resumes on exit without inline styles.
-html.easyedu-guide-dialog-open:has(.easyedu-guide-modal:fullscreen) {
+// A class set by the Guide script replaces :has(), which re-evaluated the whole
+// document on every fullscreen change (K17-41).
+html.easyedu-guide-dialog-open.easyedu-guide-is-fullscreen {
   scrollbar-gutter: auto;
+}
+
+// K17-41: while the Guide owns fullscreen, the host page around it is covered by
+// the top layer. Skip its style/layout work; the script keeps each block's measured
+// size so the page and its scroll position are intact on exit.
+[data-easyedu-guide-parked] {
+  block-size: var(--easyedu-guide-parked-height);
+  box-sizing: border-box;
+  content-visibility: hidden;
+  inline-size: var(--easyedu-guide-parked-width);
 }
 
 .easyedu-guide-highlight {
