@@ -13,8 +13,9 @@
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-define(['core/templates', 'core_user/repository', 'core/notification', 'local_groupimport/motion'],
-function(Templates, UserRepository, Notification, Motion) {
+define(['core/templates', 'core_user/repository', 'core/notification', 'local_groupimport/motion',
+    'local_groupimport/easyedu_bubble'],
+function(Templates, UserRepository, Notification, Motion, Bubble) {
     const levels = ['full', 'reduced', 'minimal'];
     let initialized = false;
 
@@ -29,45 +30,37 @@ function(Templates, UserRepository, Notification, Motion) {
         let saving = false;
         let selected = current;
         const effective = value => levels.includes(value) ? value : defaultLevel;
-        let tooltip = null;
-        let tooltipTimer = null;
-        const hideTooltip = () => {
-            if (tooltip) {
-                tooltip.remove();
-                tooltip = null;
-            }
-        };
+        // K17-74 / K-BUBBLE: the nav icon uses the one Kit bubble (the same controller as every other hover
+        // bubble), never a local tooltip style. It is mounted in the EasyStud root so it keeps the palette.
+        const bubble = Bubble.createBubbleController({Motion, mount: () => document.querySelector('.easyedu-ui')});
+        const triggerOf = target => target instanceof Element ? target.closest('[data-easyedu-display-tooltip]') : null;
         const showTooltip = event => {
-            window.clearTimeout(tooltipTimer);
-            if (tooltip && tooltip.contains(event.target)) {
+            const trigger = triggerOf(event.target);
+            if (!trigger || (event.type === 'pointerover' && trigger.contains(event.relatedTarget)) ||
+                    trigger.matches(':active') || (event.type === 'focusin' && !trigger.matches(':focus-visible'))) {
                 return;
             }
-            const trigger = event.target.closest('[data-easyedu-display-tooltip]');
-            if (!trigger || trigger.matches(':active')) {
-                return;
-            }
-            hideTooltip();
-            tooltip = document.createElement('div');
-            tooltip.className = 'easyedu-control-tooltip';
-            tooltip.setAttribute('role', 'tooltip');
-            tooltip.textContent = trigger.getAttribute('aria-label');
-            document.querySelector('.easyedu-ui').append(tooltip);
-            const rect = trigger.getBoundingClientRect();
-            const width = tooltip.getBoundingClientRect().width;
-            tooltip.style.left = `${Math.max(8, Math.min(rect.right - width, window.innerWidth - width - 8))}px`;
-            tooltip.style.top = `${rect.bottom + 8}px`;
+            bubble.show(trigger, trigger.getAttribute('aria-label'));
         };
         document.addEventListener('pointerover', showTooltip);
         document.addEventListener('focusin', showTooltip);
-        document.addEventListener('pointerout', () => {
-            tooltipTimer = window.setTimeout(hideTooltip, 150);
+        document.addEventListener('pointerout', event => {
+            const trigger = triggerOf(event.target);
+            if (trigger && bubble.isActive(trigger) && !trigger.contains(event.relatedTarget) &&
+                    !bubble.contains(event.relatedTarget)) {
+                bubble.scheduleHide();
+            }
         });
-        document.addEventListener('focusout', hideTooltip);
-        window.addEventListener('resize', hideTooltip);
-        window.addEventListener('scroll', hideTooltip, true);
+        document.addEventListener('focusout', () => {
+            bubble.release();
+            bubble.hide(false);
+        });
+        document.addEventListener('click', () => bubble.hide());
+        window.addEventListener('resize', () => bubble.hide());
+        window.addEventListener('scroll', () => bubble.hide(), true);
         document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') {
-                hideTooltip();
+            if (event.key === 'Escape' && bubble.isOpen()) {
+                bubble.dismiss();
             }
         });
 
@@ -167,7 +160,7 @@ function(Templates, UserRepository, Notification, Motion) {
                 return;
             }
             event.preventDefault();
-            hideTooltip();
+            bubble.hide();
             opener = trigger;
             // Serialize initial rendering so rapid clicks cannot create duplicate dialogs.
             pending = pending || create().catch(error => {

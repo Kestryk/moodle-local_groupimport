@@ -128,13 +128,6 @@
     &:focus-visible { @include focus.ring; }
   }
   .easyedu-ui .easyedu-direct-icon { @include card-actions.card-direct-action; }
-  .easyedu-ui .easyedu-control-tooltip {
-    @include tooltips.tooltip-surface;
-    position: fixed;
-    z-index: var(--easyedu-modal-layer);
-    max-inline-size: min(20rem, calc(100vw - 1rem));
-    pointer-events: auto;
-  }
   :is(.easyedu-ui, .easyedu-guide) .easyedu-guide-utility { @include buttons.guide-adjacent-action($size: small); }
   .easyedu-ui .easyedu-navigation__preferences-source {
     display: flex;

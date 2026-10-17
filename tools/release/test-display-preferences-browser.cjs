@@ -25,10 +25,12 @@ function render(file,lang) {
     window.saved=[];window.failSave=false;window.exports={};
     window.define=(name,deps,factory)=>{
      if(name==='local_groupimport/motion'){factory(window.motion={});return;}
-     window.exports=factory({renderForPromise:async()=>({html,js:''}),appendNodeContents:(root,markup)=>root.insertAdjacentHTML('beforeend',markup)}, {setUserPreference:async(name,value)=>{if(window.failSave)throw Error('offline');window.saved.push({name,value});}}, {exception:error=>{throw error;}}, window.motion);
+     if(name==='local_groupimport/easyedu_bubble'){factory(window.bubbleModule={});return;}
+     window.exports=factory({renderForPromise:async()=>({html,js:''}),appendNodeContents:(root,markup)=>root.insertAdjacentHTML('beforeend',markup)}, {setUserPreference:async(name,value)=>{if(window.failSave)throw Error('offline');window.saved.push({name,value});}}, {exception:error=>{throw error;}}, window.motion, window.bubbleModule);
     };
    },{html});
    await page.addScriptTag({content:fs.readFileSync(path.join(root,'amd/build/motion.min.js'),'utf8')});
+   await page.addScriptTag({content:fs.readFileSync(path.join(root,'amd/build/easyedu_bubble.min.js'),'utf8')});
    await page.addScriptTag({content:fs.readFileSync(path.join(root,'amd/build/display_preferences.min.js'),'utf8')});
    await page.evaluate(()=>window.exports.init('reduced','default'));
    const trigger=page.locator('[data-easyedu-display-open]');

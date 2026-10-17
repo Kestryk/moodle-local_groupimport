@@ -37,7 +37,7 @@ const results = [], errors = [];
                 if (viewportWidth === 1600) {
                     opener = navigation.locator('.easyedu-navigation__preferences-source [data-easyedu-display-open]');
                     await opener.hover();
-                    await page.locator('.easyedu-control-tooltip').waitFor({state: 'visible'});
+                    await page.locator('.local-groupimport-easystud-hover-popover').waitFor({state: 'visible'});
                 } else {
                     await navigation.locator('[data-easyedu-navigation-open]').click();
                     opener = navigation.locator('[data-easyedu-navigation-panel] [data-easyedu-display-open]');
