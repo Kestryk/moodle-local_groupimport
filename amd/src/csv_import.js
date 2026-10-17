@@ -587,7 +587,8 @@ const initPreviewTools = root => {
             const excluded = [];
             const controls = [];
             rows.forEach((row, index) => {
-                const edit = {index};
+                const rowindex = Number(row.dataset.previewIndex ?? index);
+                const edit = {index: rowindex};
                 let changed = false;
                 ['identifier', 'groupname', 'groupingname'].forEach(field => {
                     const input = row.querySelector('input[name^="' + field + '["]');
@@ -600,11 +601,13 @@ const initPreviewTools = root => {
                 }
                 const checkbox = row.querySelector('input[name^="rowenabled["]');
                 if (!checkbox.checked) {
-                    excluded.push(index);
+                    excluded.push(rowindex);
                 }
                 controls.push(checkbox);
             });
-            previewForm.querySelector('[name="previewpayload"]').value = JSON.stringify({count: rows.length, edits, excluded});
+            previewForm.querySelector('[name="previewpayload"]').value = JSON.stringify({
+                count: Number(previewForm.dataset.previewTotal || rows.length), edits, excluded
+            });
             // One structured field stays independent of max_input_vars, including edited cells.
             controls.forEach(input => {
  input.disabled = true;

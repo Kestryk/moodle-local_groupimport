@@ -1218,7 +1218,7 @@ $string['importrowlimit'] = 'Cet import dépasse la limite de {$a} lignes. Divis
 $string['importfilelimit'] = 'Le fichier dépasse la limite de {$a} Mo. Réduisez sa taille avant de continuer.';
 
 $string['importatomicfailed'] = 'L’import n’a pas pu aboutir. Tous ses changements ont été annulés ; aucun import n’a été appliqué. Prévisualisez à nouveau le fichier avant de réessayer.';
-$string['importlimits'] = 'Limites : {$a->rows} lignes par import, {$a->mb} Mo par fichier. Divisez les fichiers plus volumineux.';
+$string['importlimits'] = 'Plafonds de sécurité : {$a->rows} lignes par import, {$a->mb} Mo par fichier. Au-delà de 1 000 lignes, l’import est traité en arrière-plan par le cron Moodle.';
 
 $string['emptygrouphelp'] = 'Glissez des participants ici ou utilisez @';
 $string['groupmembersshowall'] = 'Voir les {$a} membres';
@@ -1284,3 +1284,24 @@ $string['displaymotionreading'] = 'Dans les trois niveaux, les durées de lectur
 $string['displaymotiondefault'] = 'Valeur de l’établissement :';
 $string['displaymotionreset'] = 'Revenir à la valeur de l’établissement';
 $string['displaymotionsaveerror'] = 'Votre choix n’a pas pu être enregistré. Veuillez réessayer.';
+// K17-09: bounded, resumable background imports.
+$string['importmaxrows'] = 'Nombre maximal de lignes par import';
+$string['importmaxrows_desc'] = 'Plafond de sécurité (de 1 à 100 000 lignes ; défaut : 50 000). Les limites de taille, de colonnes et de cellules restent actives. Au-delà de 1 000 lignes, le cron Moodle traite l’import par lots transactionnels.';
+$string['importjobqueued'] = 'Import en arrière-plan. Vous pouvez quitter cette page. Moodle vous avertira une fois l’import terminé.';
+$string['importjobrunning'] = 'Import en cours';
+$string['importjobcompleted'] = 'Import terminé';
+$string['importjobcomplete'] = 'Import terminé';
+$string['importjobretry'] = 'En attente de reprise par le cron après une erreur';
+$string['importjobcancelled'] = 'Import annulé';
+$string['importjobunavailable'] = 'La progression est indisponible. Actualisez cette page pour réessayer ; la tâche en arrière-plan continue.';
+$string['importjobbusy'] = 'Un autre import est en cours dans ce cours. Le cron Moodle réessaiera cet import.';
+$string['importjobactive'] = 'Cet import est encore en cours. Attendez sa fin pour le restaurer.';
+$string['importjobnotificationfailed'] = 'La notification de fin n’a pas pu être envoyée. Le cron Moodle réessaiera.';
+$string['importjobcompletemessage'] = 'Votre import de {$a->rows} lignes est terminé ({$a->errors} erreurs signalées). Ouvrez l’historique des imports du cours pour consulter le rapport ou le restaurer.';
+$string['messageprovider:importcomplete'] = 'Fin des imports en arrière-plan';
+$string['privacy:metadata:importjobs'] = 'Progression des imports en arrière-plan liée à l’historique existant. Les identifiants en attente sont conservés dans cet historique couvert par Privacy et effacés avec lui.';
+$string['previewsearchpageonly'] = 'Rechercher dans cette page d’aperçu';
+$string['selectpreviewpage'] = 'Sélectionner cette page';
+$string['deselectpreviewpage'] = 'Désélectionner cette page';
+$string['selectpreviewresults'] = 'Sélectionner les résultats de cette page';
+$string['deselectpreviewresults'] = 'Désélectionner les résultats de cette page';

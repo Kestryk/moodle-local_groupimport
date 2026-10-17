@@ -48,6 +48,29 @@ final class purge_import_history extends \core\task\scheduled_task {
     public function execute(): void {
         global $DB;
         $cutoff = time() - self::retention_days() * DAYSECS;
-        $DB->delete_records_select('local_groupimport_history', 'timecreated < :cutoff', ['cutoff' => $cutoff]);
+        $expired = $DB->get_recordset_select('local_groupimport_history', 'timecreated < :cutoff', ['cutoff' => $cutoff]);
+        try {
+            foreach ($expired as $history) {
+                $lock = \core\lock\lock_config::get_lock_factory('local_groupimport')->get_lock(
+                    'importcourse_' . $history->courseid,
+                    5
+                );
+                if (!$lock) {
+                    continue;
+                }
+                try {
+                    $DB->delete_records('local_groupimport_jobs', ['historyid' => $history->id]);
+                    $DB->delete_records('local_groupimport_history', ['id' => $history->id]);
+                } finally {
+                    $lock->release();
+                }
+            }
+        } finally {
+            $expired->close();
+        }
+        $DB->delete_records_select(
+            'local_groupimport_jobs',
+            'NOT EXISTS (SELECT 1 FROM {local_groupimport_history} h WHERE h.id = historyid)'
+        );
     }
 }

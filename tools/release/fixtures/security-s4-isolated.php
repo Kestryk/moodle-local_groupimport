@@ -22,93 +22,27 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../../tools/release/fixtures/source_file.php');
 define('SITEID', 1);
-/**
- * Isolated fixture double for moodle_exception.
- */
-class moodle_exception extends RuntimeException {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $key Fixture argument.
-     * @param mixed $component Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct($key, $component) {
-        parent::__construct($key);
-    }
-}
-/**
- * Isolated fixture double for coding_exception.
- */
-class coding_exception extends RuntimeException {
-}
-/**
- * Isolated fixture double for core_text.
- */
-class core_text {
-    /**
-     * Perform isolated fixture operation strlen.
-     * @param mixed $s Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public static function strlen($s) {
-        return mb_strlen($s);
-    }
-    /**
-     * Perform isolated fixture operation substr.
-     * @param mixed $s Fixture argument.
-     * @param mixed $a Fixture argument.
-     * @param mixed $b Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public static function substr($s, $a, $b) {
-        return mb_substr($s, $a, $b);
-    }
-}
-/**
- * Isolated fixture double for memory_db.
- */
-class memory_db {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public array $rows = [];
-    /**
-     * Perform isolated fixture operation record_exists.
-     * @param string $table Fixture argument.
-     * @param array $conditions Fixture argument.
-     * @return bool Fixture result.
-     */
-    public function record_exists(string $table, array $conditions): bool {
-        foreach ($this->rows[$table] ?? [] as $row) {
-            $ok = true;
-            foreach ($conditions as $key => $value) {
-                $ok = $ok && ($row->$key ?? null) === $value;
-            }if ($ok) {
-                return true;
-            }
-        }return false;
-    }
-    /**
-     * Perform isolated fixture operation record_exists_select.
-     * @param string $table Fixture argument.
-     * @param string $sql Fixture argument.
-     * @param array $params Fixture argument.
-     * @return bool Fixture result.
-     */
-    public function record_exists_select(string $table, string $sql, array $params): bool {
-        $field = str_contains($sql, 'enrolmentkey') ? 'enrolmentkey' : 'idnumber';
-        foreach ($this->rows[$table] ?? [] as $row) {
-            if (
-                $row->courseid === $params['course'] &&
-                $row->id !== $params['id'] &&
-                ($row->$field ?? '') === $params['value']
-            ) {
-                return true;
-            }
-        }return false;
-    }
-}
+require_once(__DIR__ . '/doubles/security_s4_isolated/global/fixture_security_s4_isolated_moodle_exception.php');
+class_alias('fixture_security_s4_isolated_moodle_exception', 'moodle_exception');
+require_once(__DIR__ . '/doubles/security_s4_isolated/global/fixture_security_s4_isolated_coding_exception.php');
+class_alias('fixture_security_s4_isolated_coding_exception', 'coding_exception');
+require_once(__DIR__ . '/doubles/security_s4_isolated/global/fixture_security_s4_isolated_core_text.php');
+class_alias('fixture_security_s4_isolated_core_text', 'core_text');
+require_once(__DIR__ . '/doubles/security_s4_isolated/global/fixture_security_s4_isolated_memory_db.php');
+class_alias('fixture_security_s4_isolated_memory_db', 'memory_db');
 /**
  * Perform isolated fixture operation check_password_policy.
  * @param mixed $key Fixture argument.
@@ -156,7 +90,7 @@ function groups_remove_member($groupid, $userid) {
     return true;
 }
 $root = dirname(__DIR__, 3);
-require $root . '/classes/local/ajax_security.php';
+require($root . '/classes/local/ajax_security.php');
 use local_groupimport\local\ajax_security as policy;
 $checks = 0;
 /**
@@ -222,7 +156,7 @@ function load_functions(string $file, array $names): void {
                 break;
             }
         }
-        eval($body);
+        require(\local_groupimport_fixture_source_file($body));
     }
 }
 $file = ($argv[1] ?? 'ajax') === 'manage' ? 'manage.php' : 'ajax.php';

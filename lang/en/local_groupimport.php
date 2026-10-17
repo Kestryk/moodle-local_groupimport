@@ -1220,7 +1220,7 @@ $string['importrowlimit'] = 'This import exceeds the limit of {$a} rows. Split t
 $string['importfilelimit'] = 'The file exceeds the limit of {$a} MB. Reduce its size before continuing.';
 
 $string['importatomicfailed'] = 'The import could not be completed. All its changes were rolled back; no import was applied. Preview the file again before retrying.';
-$string['importlimits'] = 'Limits: {$a->rows} rows per import, {$a->mb} MB per file. Split larger files.';
+$string['importlimits'] = 'Safety limits: {$a->rows} rows per import, {$a->mb} MB per file. More than 1,000 rows run in the background through Moodle cron.';
 
 $string['emptygrouphelp'] = 'Drag participants here or use @';
 $string['groupmembersshowall'] = 'See all {$a} members';
@@ -1286,3 +1286,24 @@ $string['displaymotionreading'] = 'Reading times (Guide, messages) and functiona
 $string['displaymotiondefault'] = 'Institution default:';
 $string['displaymotionreset'] = 'Return to the institution default';
 $string['displaymotionsaveerror'] = 'Your choice could not be saved. Please try again.';
+// K17-09: bounded, resumable background imports.
+$string['importmaxrows'] = 'Maximum rows per import';
+$string['importmaxrows_desc'] = 'Safety ceiling (1 to 100,000 rows; default 50,000). File size, column and cell limits also apply. More than 1,000 rows run through Moodle cron in transactional batches.';
+$string['importjobqueued'] = 'Import in the background. You may leave this page. Moodle will notify you when the import finishes.';
+$string['importjobrunning'] = 'Importing';
+$string['importjobcompleted'] = 'Import completed';
+$string['importjobcomplete'] = 'Import completed';
+$string['importjobretry'] = 'Waiting for cron to resume after an error';
+$string['importjobcancelled'] = 'Import cancelled';
+$string['importjobunavailable'] = 'Progress is unavailable. Refresh this page to try again; the background task is not stopped.';
+$string['importjobbusy'] = 'Another import is running in this course. Moodle cron will retry this import.';
+$string['importjobactive'] = 'This import is still running. Restore it only after completion.';
+$string['importjobnotificationfailed'] = 'The completion notification could not be delivered. Moodle cron will retry it.';
+$string['importjobcompletemessage'] = 'Your import of {$a->rows} rows has finished ({$a->errors} reported errors). Open the course import history for the report or to restore it.';
+$string['messageprovider:importcomplete'] = 'Background import completion';
+$string['privacy:metadata:importjobs'] = 'Background import progress linked to the existing import history. Pending identifiers are stored in that Privacy-aware history and erased with it.';
+$string['previewsearchpageonly'] = 'Search this preview page';
+$string['selectpreviewpage'] = 'Select this page';
+$string['deselectpreviewpage'] = 'Deselect this page';
+$string['selectpreviewresults'] = 'Select this page’s results';
+$string['deselectpreviewresults'] = 'Deselect this page’s results';

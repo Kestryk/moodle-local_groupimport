@@ -22,8 +22,15 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../../tools/release/fixtures/source_file.php');
 $root = dirname(__DIR__, 3);
-$source = file_get_contents($root . '/index.php');
+$source = file_get_contents($root . '/index.php') . file_get_contents($root . '/importlib.php');
 /**
  * Perform isolated fixture operation local_groupimport_history_table_exists.
  * @return mixed Fixture result.
@@ -60,7 +67,7 @@ for ($i = 0; $i < count($tokens); $i++) {
             break;
         }
     }
-    eval($code);
+    require(\local_groupimport_fixture_source_file($code));
 }
 $checks = 0;
 /**
@@ -75,66 +82,8 @@ function check($ok, $label) {
         throw new RuntimeException($label);
     }
 }
-$DB = new
-/**
- * Isolated fixture double for __construct.
- */
-class {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public PDO $pdo;
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public int $calls = 0;
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public string $lastsql = '';
-    /**
-     * Perform isolated fixture operation __construct.
-     * @return mixed Fixture result.
-     */
-    public function __construct() {
-        $this->pdo = new PDO('sqlite::memory:');
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo->exec('CREATE TABLE local_groupimport_history(id INTEGER PRIMARY KEY,courseid INTEGER,filename TEXT,timecreated INTEGER,rowcount INTEGER,successcount INTEGER,errorcount INTEGER,timerolledback INTEGER,changesjson TEXT,reportjson TEXT,filehash TEXT)');
-    }
-    /**
-     * Perform isolated fixture operation sql_length.
-     * @param mixed $field Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function sql_length($field) {
-        return 'LENGTH(' . $field . ')';
-    }
-    /**
-     * Perform isolated fixture operation get_records_sql.
-     * @param mixed $sql Fixture argument.
-     * @param mixed $params Fixture argument.
-     * @param mixed $start Fixture argument.
-     * @param mixed $limit Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_records_sql($sql, $params, $start, $limit) {
-        $this->calls++;
-        $this->lastsql = $sql;
-        $sql = str_replace(
-            '{local_groupimport_history}',
-            'local_groupimport_history',
-            $sql
-        ) . ' LIMIT ' . (int)$limit . ' OFFSET ' . (int)$start;
-        $q = $this->pdo->prepare($sql);
-        $q->execute($params);
-        $rows = $q->fetchAll(PDO::FETCH_OBJ);
-        $result = [];
-        foreach ($rows as $row) {
-            $result[$row->id] = $row;
-        }
-        return $result;
-    }
-};
+require_once(__DIR__ . '/doubles/r8_history_list_isolated/global/fixture_r8_history_list_isolated_anonymous_1.php');
+$DB = new fixture_r8_history_list_isolated_anonymous_1();
 $insert = $DB->pdo->prepare('INSERT INTO local_groupimport_history VALUES (?,?,?,?,?,?,?,?,?,?,?)');
 $detail = json_encode(['large' => str_repeat('x', 512 * 1024)]);
 $original = [];

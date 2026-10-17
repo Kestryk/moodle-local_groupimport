@@ -22,180 +22,20 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+defined('MOODLE_INTERNAL') || die();
+
 defined('EASYEDU_TEST_MEMBER_TRANSFER') || die();
 
-/**
- * Isolated fixture double for moodle_exception.
- */
-class moodle_exception extends Exception {
-    /**
-     * @var string In-memory fixture state.
-     */
-    public string $errorcode;
-    /**
-     * Perform the isolated __construct fixture operation.
-     *
-     * @param string $code Fixture argument.
-     * @param string $component Fixture argument.
-     */
-    public function __construct(string $code, string $component = 'error') {
-        $this->errorcode = $code;
-        parent::__construct($code);
-    }
-}
-/**
- * Isolated fixture double for required_capability_exception.
- */
-class required_capability_exception extends moodle_exception {
-}
-/**
- * Isolated fixture double for context_course.
- */
-class context_course {
-    /**
-     * @var int In-memory fixture state.
-     */
-    public int $id;
-    /**
-     * Perform the isolated instance fixture operation.
-     *
-     * @param int $id Fixture argument.
-     * @return self Fixture result.
-     */
-    public static function instance(int $id): self {
-        $context = new self();
-        $context->id = $id;
-        return $context;
-    }
-}
-/**
- * Isolated fixture double for transfer_mock_database.
- */
-class transfer_mock_database {
-    /**
-     * @var array In-memory fixture state.
-     */
-    public array $members = [1 => [10, 11], 2 => [], 3 => [10], 4 => [10], 5 => [10]];
-    /**
-     * @var array In-memory fixture state.
-     */
-    public array $groups;
-    /**
-     * @var array In-memory fixture state.
-     */
-    public array $calls = [];
-    /**
-     * @var bool In-memory fixture state.
-     */
-    public bool $privileged = true;
-    /**
-     * @var array In-memory fixture state.
-     */
-    public array $enrolled = [10, 11];
-    /**
-     * @var array In-memory fixture state.
-     */
-    public array $protected = [];
-    /**
-     * @var int In-memory fixture state.
-     */
-    public int $failadd = 0;
-    /**
-     * @var int In-memory fixture state.
-     */
-    public int $failremove = 0;
-    /**
-     * @var bool In-memory fixture state.
-     */
-    public bool $committed = false;
-    /**
-     * @var bool In-memory fixture state.
-     */
-    public bool $rolledback = false;
-    /**
-     * Perform the isolated __construct fixture operation.
-     *
-     */
-    public function __construct() {
-        foreach ([1, 2, 3, 4, 5] as $id) {
-            $this->groups[$id] = (object)['id' => $id, 'courseid' => $id === 5 ? 99 : 20];
-        }
-    }
-    /**
-     * @var int In-memory fixture state.
-     */
-    public int $closed = 0;
-    /**
-     * Perform the isolated get_records_sql fixture operation.
-     *
-     * @param string $sql Fixture argument.
-     * @param array $params Fixture argument.
-     * @return array Fixture result.
-     */
-    public function get_records_sql(string $sql, array $params): array {
-        if (!str_contains($sql, 'SELECT u.id FROM {user}')) {
-            throw new RuntimeException('Unexpected enrolled-user query.');
-        }
-        return array_combine($this->enrolled, array_map(static fn($id) => (object)['id' => $id], $this->enrolled));
-    }
-    /**
-     * Perform the isolated get_recordset_sql fixture operation.
-     *
-     * @param string $sql Fixture argument.
-     * @param array $params Fixture argument.
-     * @return transfer_mock_recordset Fixture result.
-     */
-    public function get_recordset_sql(string $sql, array $params): transfer_mock_recordset {
-        $rows = [];
-        if (str_contains($sql, '{groups_members}')) {
-            foreach ($this->members as $groupid => $users) {
-                if ($this->groups[$groupid]->courseid !== $params['courseid']) {
-                    continue;
-                }
-                foreach ($users as $userid) {
-                    $rows[] = (object)['groupid' => $groupid, 'userid' => $userid];
-                }
-            }
-        } else if (!str_contains($sql, '{groupings_groups}')) {
-            throw new RuntimeException('Unexpected relationship query.');
-        }
-        return new transfer_mock_recordset($rows, $this);
-    }
-    /**
-     * Perform the isolated start_delegated_transaction fixture operation.
-     *
-     * @return transfer_mock_transaction Fixture result.
-     */
-    public function start_delegated_transaction(): transfer_mock_transaction {
-        return new transfer_mock_transaction($this);
-    }
-}
-/**
- * Isolated fixture double for transfer_mock_recordset.
- */
-class transfer_mock_recordset extends ArrayIterator {
-    /**
-     * Perform the isolated __construct fixture operation.
-     *
-     * @param array $rows Fixture argument.
-     * @param transfer_mock_database $db Fixture argument.
-     */
-    public function __construct(
-        array $rows,
-        /** @var transfer_mock_database In-memory recordset owner. */
-        private transfer_mock_database $db
-    ) {
-        parent::__construct($rows);
-    }
-    /**
-     * Perform the isolated close fixture operation.
-     *
-     * @return void Fixture result.
-     */
-    public function close(): void {
-        $this->db->closed++;
-    }
-}
+require_once(__DIR__ . '/doubles/lib/global/fixture_lib_moodle_exception.php');
+class_alias('fixture_lib_moodle_exception', 'moodle_exception');
+require_once(__DIR__ . '/doubles/lib/global/fixture_lib_required_capability_exception.php');
+class_alias('fixture_lib_required_capability_exception', 'required_capability_exception');
+require_once(__DIR__ . '/doubles/lib/global/fixture_lib_context_course.php');
+class_alias('fixture_lib_context_course', 'context_course');
+require_once(__DIR__ . '/doubles/lib/global/fixture_lib_transfer_mock_database.php');
+class_alias('fixture_lib_transfer_mock_database', 'transfer_mock_database');
+require_once(__DIR__ . '/doubles/lib/global/fixture_lib_transfer_mock_recordset.php');
+class_alias('fixture_lib_transfer_mock_recordset', 'transfer_mock_recordset');
 /**
  * Perform the isolated get_enrolled_sql fixture operation.
  *
@@ -214,47 +54,8 @@ function get_enrolled_sql(context_course $context): array {
 function isguestuser(int $userid): bool {
     return false;
 }
-/**
- * Isolated fixture double for transfer_mock_transaction.
- */
-class transfer_mock_transaction {
-    /**
-     * @var transfer_mock_database In-memory fixture state.
-     */
-    private transfer_mock_database $db;
-    /**
-     * @var array In-memory fixture state.
-     */
-    private array $before;
-    /**
-     * Perform the isolated __construct fixture operation.
-     *
-     * @param transfer_mock_database $db Fixture argument.
-     */
-    public function __construct(transfer_mock_database $db) {
-        $this->db = $db;
-        $this->before = $db->members;
-    }
-    /**
-     * Perform the isolated allow_commit fixture operation.
-     *
-     * @return void Fixture result.
-     */
-    public function allow_commit(): void {
-        $this->db->committed = true;
-    }
-    /**
-     * Perform the isolated rollback fixture operation.
-     *
-     * @param Throwable $exception Fixture argument.
-     * @return void Fixture result.
-     */
-    public function rollback(Throwable $exception): void {
-        $this->db->members = $this->before;
-        $this->db->rolledback = true;
-        throw $exception;
-    }
-}
+require_once(__DIR__ . '/doubles/lib/global/fixture_lib_transfer_mock_transaction.php');
+class_alias('fixture_lib_transfer_mock_transaction', 'transfer_mock_transaction');
 /**
  * Perform the isolated require_capability fixture operation.
  *

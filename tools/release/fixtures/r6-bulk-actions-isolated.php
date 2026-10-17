@@ -22,174 +22,29 @@
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-define('MOODLE_INTERNAL', true);
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/../../../tools/release/fixtures/source_file.php');
 define('PARAM_INT', 1);
 define('PARAM_TEXT', 2);
 define('SQL_PARAMS_NAMED', 1);
-/**
- * Isolated fixture double for moodle_exception.
- */
-class moodle_exception extends RuntimeException {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $key Fixture argument.
-     * @param mixed $rest Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct($key, ...$rest) {
-        parent::__construct($key);
-    }
-}
-/**
- * Isolated fixture double for context_course.
- */
-class context_course {
-}
-/**
- * Isolated fixture double for core_php_time_limit.
- */
-class core_php_time_limit {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public static array $calls = [];
-    /**
-     * Perform isolated fixture operation raise.
-     * @param mixed $s Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public static function raise($s) {
-        self::$calls[] = $s;
-    }
-}
-/**
- * Isolated fixture double for memory_db.
- */
-class memory_db {
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public array $members = [], $groups = [], $enrolled = [], $events = [];
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    /**
-     * @var mixed Standalone fixture state.
-     */
-    public int $starts = 0, $commits = 0, $rollbacks = 0, $queries = 0, $writes = 0, $failat = 0;
-    /**
-     * Perform isolated fixture operation start_delegated_transaction.
-     * @return mixed Fixture result.
-     */
-    public function start_delegated_transaction() {
-        $this->starts++;
-        $saved = [$this->members, $this->groups, $this->events];
-        return new class ($this, $saved) {
-            /**
-             * Perform isolated fixture operation __construct.
-             * @param private $db Fixture argument.
-             * @param private $saved Fixture argument.
-             * @return mixed Fixture result.
-             */
-            public function __construct(
-                /**
-                 * @var mixed Standalone fixture state.
-                 */
-                /**
-                 * @var mixed Standalone fixture state.
-                 */
-                private $db,
-                private $saved
-            ) {
-            }
-            /**
-             * Perform isolated fixture operation allow_commit.
-             * @return mixed Fixture result.
-             */
-            public function allow_commit() {
-                $this->db->commits++;
-            }
-            /**
-             * Perform isolated fixture operation rollback.
-             * @param mixed $e Fixture argument.
-             * @return mixed Fixture result.
-             */
-            public function rollback($e) {
-                [$this->db->members, $this->db->groups, $this->db->events] = $this->saved;
-                $this->db->rollbacks++;
-                throw $e;
-            }
-        };
-    }
-    /**
-     * Perform isolated fixture operation mutate.
-     * @return mixed Fixture result.
-     */
-    public function mutate() {
-        if (++$this->writes === $this->failat) {
-            throw new RuntimeException('native-failure');
-        }
-    }
-    /**
-     * Perform isolated fixture operation get_records_sql.
-     * @param mixed $sql Fixture argument.
-     * @param mixed $params Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_records_sql($sql, $params) {
-        $this->queries++;
-        return $this->enrolled;
-    }
-    /**
-     * Perform isolated fixture operation get_in_or_equal.
-     * @param mixed $ids Fixture argument.
-     * @param mixed $rest Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_in_or_equal($ids, ...$rest) {
-        return ['IN (...)', array_values($ids)];
-    }
-    /**
-     * Perform isolated fixture operation get_records_select.
-     * @param mixed $table Fixture argument.
-     * @param mixed $sql Fixture argument.
-     * @param mixed $params Fixture argument.
-     * @param mixed $rest Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function get_records_select($table, $sql, $params, ...$rest) {
-        $this->queries++;
-        $course = $params['courseid'];
-        unset($params['courseid']);
-        $out = [];
-        foreach ($params as $id) {
-            if (isset($this->groups[$id]) && $this->groups[$id]->courseid === $course) {
-                $out[$id] = $this->groups[$id];
-            }
-        }return $out;
-    }
-}
+require_once(__DIR__ . '/doubles/r6_bulk_actions_isolated/global/fixture_r6_bulk_actions_isolated_moodle_exception.php');
+class_alias('fixture_r6_bulk_actions_isolated_moodle_exception', 'moodle_exception');
+require_once(__DIR__ . '/doubles/r6_bulk_actions_isolated/global/fixture_r6_bulk_actions_isolated_context_course.php');
+class_alias('fixture_r6_bulk_actions_isolated_context_course', 'context_course');
+require_once(__DIR__ . '/doubles/r6_bulk_actions_isolated/global/fixture_r6_bulk_actions_isolated_core_php_time_limit.php');
+class_alias('fixture_r6_bulk_actions_isolated_core_php_time_limit', 'core_php_time_limit');
+require_once(__DIR__ . '/doubles/r6_bulk_actions_isolated/global/fixture_r6_bulk_actions_isolated_memory_db.php');
+class_alias('fixture_r6_bulk_actions_isolated_memory_db', 'memory_db');
 /**
  * Perform isolated fixture operation required_param.
  * @param mixed $key Fixture argument.
@@ -344,15 +199,15 @@ function local_groupimport_find_users_by_identifiers($tokens) {
     }return $out;
 }
 $root = dirname(__DIR__, 3);
-require $root . '/classes/local/bulk_action.php';
-require $root . '/classes/local/batch_reader.php';
-require $root . '/classes/local/ajax_security.php';
+require($root . '/classes/local/bulk_action.php');
+require($root . '/classes/local/batch_reader.php');
+require($root . '/classes/local/ajax_security.php');
 $assignment = file_get_contents($root . '/classes/service/membership_assignment.php');
 $bootstrap = "require_once(\$CFG->dirroot . '/group/lib.php');";
 if (substr_count($assignment, $bootstrap) !== 1) {
     throw new RuntimeException('Review changed native bootstrap');
 }
-eval(substr(str_replace($bootstrap, '', $assignment), 5));
+require(\local_groupimport_fixture_source_file(substr(str_replace($bootstrap, '', $assignment), 5)));
 use local_groupimport\local\bulk_action;
 use local_groupimport\local\ajax_security;
 $source = file_get_contents($root . '/ajax.php');
@@ -416,7 +271,7 @@ function action($name, $input) {
     $course = (object)['id' => 5];
     $response = ['success' => false];
     $GLOBALS['input'] = $input;
-    eval('use local_groupimport\\local\\bulk_action; use local_groupimport\\local\\ajax_security; ' . $GLOBALS['bodies'][$name]);
+    require(\local_groupimport_fixture_source_file('use local_groupimport\\local\\bulk_action; use local_groupimport\\local\\ajax_security; ' . $GLOBALS['bodies'][$name]));
     return $response;
 }
 /**
@@ -510,7 +365,7 @@ reset_state();
 rejection('deletegroups', ['groupids' => range(1, 501)], 'bulkactionlimit');
 check($DB->writes === 0 && $DB->queries === 0 && $DB->starts === 0, 'delete cap before reads/writes');
 $string = [];
-require $root . '/lang/fr/local_groupimport.php';
+require($root . '/lang/fr/local_groupimport.php');
 check(
     $string['bulkactionlimit'] === 'Cette requête dépasse la limite de {$a} éléments. Aucune modification n’a été effectuée. Sélectionnez moins d’éléments et réessayez.',
     'exact UTF-8 FR bulkactionlimit'

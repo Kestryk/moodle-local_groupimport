@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
  */
 final class import_preview {
     /** Explicit preview bound, independent of PHP max_input_vars. */
-    public const MAX_ROWS = 5000;
+    public const MAX_ROWS = 100000;
     /** Maximum uploaded file size. */
     public const MAX_BYTES = 5242880;
     /** Session previews expire after an hour. */
@@ -36,9 +36,9 @@ final class import_preview {
     /**
      * Save a bounded preview under an unpredictable, session-owned token.
      */
-    public static function store(int $courseid, array $preview): string {
+    public static function store(int $courseid, array $preview, int $maxrows = self::MAX_ROWS): string {
         global $SESSION;
-        if (count($preview['rows']) > self::MAX_ROWS) {
+        if (count($preview['rows']) > min(self::MAX_ROWS, $maxrows)) {
             throw new \moodle_exception('importrowlimit', 'local_groupimport', '', self::MAX_ROWS);
         }
         $previews = $SESSION->local_groupimport_previews ?? [];
@@ -156,5 +156,106 @@ final class import_preview {
             }
         }
         return array_values(array_diff_key($rows, $excluded));
+    }
+    /**
+     * Save edits for the server-selected page; unseen rows cannot be overwritten.
+     * @param int $courseid Authorised course.
+     * @param string $token Session-owned token.
+     * @param string $payload Compact browser payload.
+     * @param array $fallback Complete controls of the current page, for no JS.
+     * @param int $nextpage Requested next page, or minus one to stay.
+     * @return array Updated preview with its token.
+     */
+    public static function save_page(
+        int $courseid,
+        string $token,
+        string $payload,
+        array $fallback,
+        int $nextpage = -1
+    ): array {
+        global $SESSION;
+        $preview = self::load($courseid, $token);
+        $count = count($preview['rows']);
+        $start = (int)($preview['page'] ?? 0) * 100;
+        $indexes = range($start, min($count, $start + 100) - 1);
+        $fail = static function (): void {
+            throw new \moodle_exception('importpreviewincomplete', 'local_groupimport');
+        };
+        if ($payload !== '') {
+            if (strlen($payload) > self::MAX_BYTES) {
+                $fail();
+            }
+            $data = json_decode($payload, true);
+            if (
+                !is_array($data) || ($data['count'] ?? null) !== $count ||
+                    !is_array($data['edits'] ?? null) || !is_array($data['excluded'] ?? null)
+            ) {
+                $fail();
+            }
+        } else {
+            if (($fallback['complete'] ?? null) !== $count) {
+                $fail();
+            }
+            $data = ['count' => $count, 'edits' => [], 'excluded' => []];
+            foreach (['identifier', 'groupname', 'groupingname'] as $field) {
+                if (array_keys($fallback[$field] ?? []) !== $indexes) {
+                    $fail();
+                }
+            }
+            if (array_diff(array_keys($fallback['enabled'] ?? []), $indexes)) {
+                $fail();
+            }
+            foreach ($indexes as $index) {
+                $data['edits'][] = [
+                    'index' => $index,
+                    'identifier' => $fallback['identifier'][$index],
+                    'groupname' => $fallback['groupname'][$index],
+                    'groupingname' => $fallback['groupingname'][$index],
+                ];
+                if (($fallback['enabled'][$index] ?? 0) !== 1) {
+                    $data['excluded'][] = $index;
+                }
+            }
+        }
+        foreach ($data['edits'] as $edit) {
+            if (!is_array($edit) || !in_array($edit['index'] ?? null, $indexes, true)) {
+                $fail();
+            }
+        }
+        foreach ($data['excluded'] as $index) {
+            if (!in_array($index, $indexes, true)) {
+                $fail();
+            }
+        }
+        // Reuse the strict S6 decoder, including lengths/types/duplicate checks.
+        $edits = $data;
+        $edits['excluded'] = [];
+        $preview['rows'] = self::confirm($preview, json_encode($edits, JSON_THROW_ON_ERROR), []);
+        self::confirm($preview, json_encode($data, JSON_THROW_ON_ERROR), []);
+        $excluded = $preview['excluded'] ?? [];
+        foreach ($indexes as $index) {
+            unset($excluded[$index]);
+        }
+        foreach ($data['excluded'] as $index) {
+            $excluded[$index] = true;
+        }
+        $preview['excluded'] = $excluded;
+        if ($nextpage >= 0) {
+            $preview['page'] = min((int)ceil($count / 100) - 1, $nextpage);
+        }
+        $SESSION->local_groupimport_previews[$token]['preview'] = $preview;
+        $preview['token'] = $token;
+        return $preview;
+    }
+
+    /**
+     * Confirm every page's saved edits and exclusions, without loading the DOM.
+     * @param array $preview Session-owned preview.
+     * @return array Selected rows.
+     */
+    public static function selected_rows(array $preview): array {
+        $data = ['count' => count($preview['rows']), 'edits' => [],
+            'excluded' => array_keys($preview['excluded'] ?? [])];
+        return self::confirm($preview, json_encode($data, JSON_THROW_ON_ERROR), []);
     }
 }

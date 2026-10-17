@@ -13,25 +13,29 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
-// Isolated transport tests: no Moodle/database/session fixture writes.
 
-define('MOODLE_INTERNAL', true);
 /**
- * Isolated fixture double for moodle_exception.
+ * Standalone CLI test fixture and release validation.
+ *
+ * @package local_groupimport
  * @copyright 2026 Kevin Jarniac
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class moodle_exception extends Exception {
-    /**
-     * Perform isolated fixture operation __construct.
-     * @param mixed $code Fixture argument.
-     * @param mixed $args Fixture argument.
-     * @return mixed Fixture result.
-     */
-    public function __construct($code, ...$args) {
-        parent::__construct($code);
-    }
+
+// Isolated transport tests: no Moodle/database/session fixture writes.
+define('CLI_SCRIPT', true);
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
 }
+
+require_once(__DIR__ . '/../../tools/release/fixtures/standalone/config.php');
+if (!MOODLE_INTERNAL) {
+    die('CLI fixtures only.');
+}
+
+require_once(__DIR__ . '/doubles/test_import_preview/global/fixture_test_import_preview_moodle_exception.php');
+class_alias('fixture_test_import_preview_moodle_exception', 'moodle_exception');
 require(__DIR__ . '/../../classes/local/import_preview.php');
 use local_groupimport\local\import_preview;
 $checks = 0;
@@ -91,5 +95,6 @@ $reject(fn() => import_preview::load(5, $token));
 $token = import_preview::store(5, $preview);
 $SESSION->local_groupimport_previews[$token]['created'] = time() - 3601;
 $reject(fn() => import_preview::load(5, $token));
-$reject(fn() => import_preview::store(5, ['rows' => array_fill(0, 5001, $rows[0])]));
+$reject(fn() => import_preview::store(5, ['rows' => array_fill(0, import_preview::MAX_ROWS + 1, $rows[0])]));
+$reject(fn() => import_preview::store(5, $preview, 1000));
 echo json_encode(['passed' => true, 'checks' => $checks, 'largeEditedPreview' => 1500]) . PHP_EOL;

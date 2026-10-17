@@ -65,6 +65,17 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
             'timecreated' => 'privacy:metadata:history:timecreated',
         ], 'privacy:metadata:history');
 
+        $collection->add_database_table('local_groupimport_jobs', [
+            'historyid' => 'privacy:metadata:importjobs',
+            'status' => 'privacy:metadata:importjobs',
+            'cursor' => 'privacy:metadata:importjobs',
+            'failcount' => 'privacy:metadata:importjobs',
+            'elapsedms' => 'privacy:metadata:importjobs',
+            'peakbytes' => 'privacy:metadata:importjobs',
+            'timecreated' => 'privacy:metadata:history:timecreated',
+            'timemodified' => 'privacy:metadata:history:timecreated',
+            'timenotified' => 'privacy:metadata:history:timecreated',
+        ], 'privacy:metadata:importjobs');
         return $collection;
     }
 
@@ -277,7 +288,13 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
     public static function delete_data_for_all_users_in_context(context $context): void {
         global $DB;
         if ($context instanceof context_course) {
-            $DB->delete_records('local_groupimport_history', ['courseid' => $context->instanceid]);
+            $lock = self::import_lock((int)$context->instanceid);
+            try {
+                $DB->delete_records('local_groupimport_history', ['courseid' => $context->instanceid]);
+                self::delete_orphan_jobs();
+            } finally {
+                $lock->release();
+            }
         } else if ($context instanceof context_user) {
             self::delete_user_preferences((int)$context->instanceid);
         }
@@ -329,32 +346,63 @@ class provider implements core_userlist_provider, metadata_provider, plugin_prov
         foreach ($userids as $userid) {
             $identifiers[$userid] = self::user_identifiers($userid);
         }
-        $records = $DB->get_recordset('local_groupimport_history', ['courseid' => $context->instanceid]);
+        $lock = self::import_lock((int)$context->instanceid);
         try {
-            foreach ($records as $record) {
-                if (in_array((int)$record->userid, $userids, true)) {
-                    $DB->delete_records('local_groupimport_history', ['id' => $record->id]);
-                    continue;
+            $records = $DB->get_recordset('local_groupimport_history', ['courseid' => $context->instanceid]);
+            try {
+                foreach ($records as $record) {
+                    if (in_array((int)$record->userid, $userids, true)) {
+                        $DB->delete_records('local_groupimport_history', ['id' => $record->id]);
+                        continue;
+                    }
+                    $changes = history_privacy::decode((string)$record->changesjson);
+                    $filtered = $changes;
+                    foreach ($userids as $userid) {
+                        $filtered = history_privacy::filter($filtered, $userid, $identifiers[$userid], false);
+                    }
+                    $update = (object)['id' => $record->id];
+                    if ($filtered !== $changes) {
+                        $update->changesjson = json_encode($filtered, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+                    }
+                    if (in_array((int)$record->rollbackuserid, $userids, true)) {
+                        $update->rollbackuserid = null;
+                        $update->timerolledback = null;
+                    }
+                    if (count((array)$update) > 1) {
+                        $DB->update_record('local_groupimport_history', $update);
+                    }
                 }
-                $changes = history_privacy::decode((string)$record->changesjson);
-                $filtered = $changes;
-                foreach ($userids as $userid) {
-                    $filtered = history_privacy::filter($filtered, $userid, $identifiers[$userid], false);
-                }
-                $update = (object)['id' => $record->id];
-                if ($filtered !== $changes) {
-                    $update->changesjson = json_encode($filtered, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
-                }
-                if (in_array((int)$record->rollbackuserid, $userids, true)) {
-                    $update->rollbackuserid = null;
-                    $update->timerolledback = null;
-                }
-                if (count((array)$update) > 1) {
-                    $DB->update_record('local_groupimport_history', $update);
-                }
+            } finally {
+                $records->close();
             }
+            self::delete_orphan_jobs();
         } finally {
-            $records->close();
+            $lock->release();
         }
+    }
+
+    /**
+     * Serialize Privacy erasure with resumable import commits in this course.
+     * @param int $courseid Course id.
+     * @return \core\lock\lock
+     */
+    private static function import_lock(int $courseid): \core\lock\lock {
+        $lock = \core\lock\lock_config::get_lock_factory('local_groupimport')->get_lock('importcourse_' . $courseid, 5);
+        if (!$lock) {
+            throw new \moodle_exception('importjobbusy', 'local_groupimport');
+        }
+        return $lock;
+    }
+
+    /**
+     * Erased history must not leave identifiable progress rows behind.
+     * @return void
+     */
+    private static function delete_orphan_jobs(): void {
+        global $DB;
+        $DB->delete_records_select(
+            'local_groupimport_jobs',
+            'NOT EXISTS (SELECT 1 FROM {local_groupimport_history} h WHERE h.id = historyid)'
+        );
     }
 }
