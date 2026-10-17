@@ -351,6 +351,9 @@
   gap: 0.55rem;
   min-height: var(--easyedu-control-height);
   padding: 0.35rem 0.65rem;
+  // K16-45: the visually hidden native input is absolute; the toggle must contain it, otherwise it
+  // anchors to the dialog and focusing it scrolls the whole dialog (footer pushed up, white gap).
+  position: relative;
   transition:
     background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),
     border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease),

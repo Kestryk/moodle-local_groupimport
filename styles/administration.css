@@ -1026,7 +1026,7 @@ body.easyedu-motion-disabled :is(.easyedu-ui, .easyedu-guide, .easyedu-guide-hig
   }
 }
 
-.easyedu-ui .easyedu-toggle-check {align-items: center;background: var(--easyedu-surface-soft);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);color: var(--easyedu-text-muted);cursor: pointer;display: inline-flex;font-size: 0.82rem;font-weight: 700;gap: 0.55rem;min-height: var(--easyedu-control-height);padding: 0.35rem 0.65rem;transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease);
+.easyedu-ui .easyedu-toggle-check {align-items: center;background: var(--easyedu-surface-soft);border: 1px solid var(--easyedu-control-border);border-radius: var(--easyedu-control-radius);color: var(--easyedu-text-muted);cursor: pointer;display: inline-flex;font-size: 0.82rem;font-weight: 700;gap: 0.55rem;min-height: var(--easyedu-control-height);padding: 0.35rem 0.65rem;position: relative;transition: background-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), border-color var(--easyedu-motion-fast) var(--easyedu-motion-ease), box-shadow var(--easyedu-motion-fast) var(--easyedu-motion-ease), color var(--easyedu-motion-fast) var(--easyedu-motion-ease);
 }
 .easyedu-ui .easyedu-toggle-check:hover {background: var(--easyedu-surface);border-color: var(--easyedu-control-focus-border);
 }
