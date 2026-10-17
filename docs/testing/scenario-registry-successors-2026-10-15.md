@@ -1,5 +1,19 @@
 # Preserved native successors, 15 October
 
+guide-fixes-m1-desktop-add-native.spec.js: targeted successor on daa587f3,
+FR/EN1600/1280 Reduced/Minimal. Both select/menu narration phases must appear
+and remain readable for at least8.8s per sampled phase; reduced animation <=120ms,
+no transform/height; minimal has no animations. Replaces only the eight obsolete
+desktop Add measurements in the 24-cell matrix. Same owned fixture and cleanup.
+
+guide-fixes-paths-settled-fr-native.spec.js and guide-fixes-paths-settled-en-native.spec.js:
+successors on product359c4739, same 24 cells and strict 2px cue/paint/overlap
+oracles. Wait finite subtree animations after native add and inspect checked
+selection before invoking Clear; never force a click on an outgoing empty bar.
+The FR768/reduced pilot passes all three paths. Final results are recorded in
+recette-guide-fixes-17-10-2026; prior candidates and failed receipts are retained.
+Same isolated own8051 fixture, native addusers allowlist and cleanup prerequisites.
+
 guide-fixes-demos-matrix-native.spec.js and guide-fixes-paths-matrix-native.spec.js:
 local-supervised candidates, 17 October, base64db2140. FR/EN1600/1280/768/390,
 three explicit Motion levels; targeted inspection/add/move demos and three

@@ -4,18 +4,21 @@ const root=path.resolve(process.argv[2]),repo=path.resolve(__dirname,'../..');
 function find(dir,name){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?find(path.join(dir,e.name),name):e.name===name?[path.join(dir,e.name)]:[]);}
 function read(stage,name){const files=find(path.join(root,stage),name);if(files.length!==1)throw Error(stage+': expected one receipt');return {file:files[0],...JSON.parse(fs.readFileSync(files[0],'utf8'))};}
 const demos=read('matrix-demos','guide-refonte.json'),pathStages=[read('matrix-paths-settled-fr','guide-paths.json'),read('matrix-paths-settled-en','guide-paths.json')];
-if(!demos.completed||pathStages.some(p=>!p.completed))throw Error('Matrix not complete; preserve the partial receipts');
+const m1=read('m1-add','guide-refonte.json');
+if(!demos.completed||!m1.completed||pathStages.some(p=>!p.completed))throw Error('Matrix not complete; preserve the partial receipts');
+const replaced=r=>r.lot.startsWith('J-G2/')&&r.width>=1280&&r.level!=='full'&&r.measure.mode==='add';
+const currentDemoChecks=[...demos.checks.filter(r=>!replaced(r)),...m1.checks.filter(r=>r.lot.startsWith('J-G2/'))];
 const paths=Object.fromEntries(['checks','errors','consoleErrors','blockedWrites','receipts','restores'].map(k=>[k,pathStages.flatMap(p=>p[k])]));
-const rows=[...demos.checks,...paths.checks];
+const rows=[...currentDemoChecks,...paths.checks];
 const short=r=>({lang:r.lang,width:r.width,level:r.level,point:r.point,status:r.status,error:r.error,capture:r.capture});
-const timings=demos.checks.filter(r=>r.lot.startsWith('J-G2/')).map(r=>({...short(r),kind:r.measure.kind,mode:r.measure.mode,elapsedMs:r.measure.elapsedMs,firstFinishedMs:r.measure.firstFinishedMs,heightAnimation:r.measure.samples?.some(s=>s.animations.some(a=>a.frames.some(f=>'height'in f)))}));
+const timings=currentDemoChecks.filter(r=>r.lot.startsWith('J-G2/')).map(r=>({...short(r),kind:r.measure.kind,mode:r.measure.mode,elapsedMs:r.measure.elapsedMs,firstFinishedMs:r.measure.firstFinishedMs,readingPhases:r.measure.readingPhases,phaseIds:r.measure.phaseIds,heightAnimation:r.measure.samples?.some(s=>s.animations.some(a=>a.frames.some(f=>'height'in f)))}));
 const badges=paths.checks.filter(r=>r.lot==='C-G3').map(r=>({...short(r),...r.measure}));
 const cues=paths.checks.filter(r=>r.lot==='J-G3/C-G4').map(r=>({...short(r),...r.measure}));
-const errors=[...demos.errors,...paths.errors],consoleErrors=[...demos.consoleErrors,...paths.consoleErrors];
+const errors=[...demos.errors,...paths.errors,...m1.errors],consoleErrors=[...demos.consoleErrors,...paths.consoleErrors,...m1.consoleErrors];
 const failed=rows.filter(r=>r.status==='FAIL').map(short);
 const cells=Array.from(new Set(rows.map(r=>[r.lang,r.width,r.level].join('/'))));
 const blockedWrites=[...demos.blockedWrites,...paths.blockedWrites].map(({data,...r})=>({...r,action:r.action||new URLSearchParams(data||'').get('action')}));
-const result={base:'64db2140',source:{demos:'ce872af0',paths:'359c4739'},cells,errors,consoleErrors,blockedWrites,timings,badges,cues,failed,receipts:paths.receipts,restores:paths.restores,raw:[demos.file,...pathStages.map(p=>p.file)].map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')}))};
+const result={base:'64db2140',source:{demos:'ce872af0',paths:'359c4739',m1DesktopAdd:'daa587f3'},cells,errors,consoleErrors,blockedWrites,timings,badges,cues,failed,receipts:paths.receipts,restores:paths.restores,raw:[demos.file,m1.file,...pathStages.map(p=>p.file)].map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')}))};
 const status=(rs,expected)=>rs.length===expected&&rs.every(r=>r.status==='PASS')?'PASS':'FAIL';
 result.expected={cells:24,badges:18,timings:72,paths:72,nativeAdds:12};
 result.lots={'C-G3':status(badges,18),'J-G2':status(timings,72),'J-G3':status(cues,72)};
@@ -25,7 +28,7 @@ if(cells.length!==24)for(const lot of Object.keys(result.lots))result.lots[lot]=
 result.counts={pass:rows.filter(r=>r.status==='PASS').length,fail:failed.length,na:rows.filter(r=>r.status==='N/A').length,cells:cells.length,pageErrors:errors.length,consoleErrors:consoleErrors.length};
 fs.writeFileSync(path.join(repo,'docs/testing/recette-guide-fixes-17-10-2026.json'),JSON.stringify(result,null,2)+'\n');
 const full=timings.filter(r=>r.level==='full').map(r=>r.firstFinishedMs??r.elapsedMs);
-const lines=['# Recette ciblée des correctifs du Guide — 17 octobre 2026','','Suite de `662a1560`. Base `64db2140`, démos `ce872af0`, parcours `359c4739`, runtime :8051 uniquement.','Les compléments changent seulement le ciblage, le docking et le défilement des parcours ; les démos et leur horloge sont identiques. Leurs 72 lectures ne sont donc pas répétées.','',
+const lines=['# Recette ciblée des correctifs du Guide — 17 octobre 2026','','Suite de `662a1560`. Base `64db2140`, démos `ce872af0`, parcours `359c4739`, complément M1 `daa587f3`, runtime :8051 uniquement.','Le complément M1 conserve la seconde phase de lecture de l’ajout desktop en Réduites/Minimales, auparavant sautée par la garde du fantôme animé. Les huit cellules concernées sont rejouées et remplacent les mesures antérieures correspondantes ; les autres branches de démo et les parcours restent inchangés.','',
 '| Lot | Résultat | Preuve |','| --- | --- | --- |',
 `| C-G3 | ${result.lots['C-G3']} | ${badges.length} badges mobiles ; variante courte FR/EN, texte long conservé. |`,
 `| J-G2 | ${result.lots['J-G2']} | ${timings.length} démos ; Complètes ${Math.min(...full).toFixed(0)}–${Math.max(...full).toFixed(0)} ms ; aucune animation de hauteur. |`,
