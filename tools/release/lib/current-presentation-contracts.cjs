@@ -65,11 +65,18 @@ function guide() {
     const source = read('amd/src/easyedu_guide.js');
     const a = source.indexOf('const bindGuideBubbles ='), b = source.indexOf('const bindGuide =', a);
     assert(a >= 0 && b > a); const helper = source.slice(a, b);
-    for (const marker of ["target === element", "tooltip.addEventListener('pointerenter', cancelGrace)",
-        'window.setTimeout(() => hide(false), 220)', 'modal.appendChild(tooltip)', "event.key !== 'Escape'", 'event.stopPropagation()',
+    for (const marker of ['EasyeduBubble.createBubbleController({Motion, mount: () => modal})', 'bubble.show(element, text)',
+        "event.key !== 'Escape'", 'event.stopPropagation()',
         "addTrackedListener(root, modal.ownerDocument, 'scroll'", 'root.easyeduGuideTooltipHide = hide']) {
         assert(helper.includes(marker), marker);
     }
+    // K-BUBBLE: one Kit bubble controller behind the Guide and EasyStud bubbles.
+    const kit = read('amd/src/easyedu_bubble.js');
+    for (const marker of ['tip && anchor === node', "bubble.addEventListener('pointerenter', cancelGrace)",
+        'export const GRACE_MS = 220;', 'window.setTimeout(() => hide(false), GRACE_MS)', 'host.appendChild(bubble)']) {
+        assert(kit.includes(marker), marker);
+    }
+    assert(read('amd/src/local/cm/group_card_controls.js').includes("import {createBubbleController} from '../../easyedu_bubble';"));
     assert.equal(declarations(s => s === '.local-groupimport-easystud-hover-popover')['pointer-events'], 'auto');
     assert((source.match(/root\.easyeduGuideTooltipHide\?\.\(\);/g) || []).length >= 3, 'Lifecycle hides remain');
     assert(source.includes('delete root.easyeduGuideTooltipHide;'));

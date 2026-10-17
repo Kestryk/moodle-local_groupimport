@@ -2,7 +2,7 @@
 // Keep behaviour aligned with easyedu-guide-kit/amd/src/easyedu_guide.js, then pass
 // selectors, paths and labels from plugin-specific PHP/Mustache data.
 
-define(['local_groupimport/motion'], function(Motion) {
+define(['local_groupimport/motion', 'local_groupimport/easyedu_bubble'], function(Motion, EasyeduBubble) {
 // Opt-in native fullscreen lifecycle. The caller owns translated controls,
 // shared paint and modal focus. Never request fullscreen without a user action.
 const createFullscreenController = (element, onChange = () => {}) => {
@@ -4017,11 +4017,10 @@ const bindHighlightAutoRefresh = root => {
 
 // K17-21 to K17-26 (Guide part): the Guide never shows a native browser bubble. Every
 // element that needs one carries data-easyedu-guide-bubble="text"; this single Kit-styled
-// bubble replaces the native title (no double bubble). data-easyedu-guide-bubble-when="truncated"
+// bubble replaces the native title (no double bubble), through the shared easyedu_bubble controller. data-easyedu-guide-bubble-when="truncated"
 // limits it to copy that is actually clipped. The bubble fades in and out through Motion
 // (instant at the minimal level). The accessible name stays on the control itself.
 const GUIDE_BUBBLE = '[data-easyedu-guide-bubble]';
-const GUIDE_BUBBLE_CLASS = 'local-groupimport-easystud-hover-popover';
 const isClipped = element => element.scrollWidth > element.clientWidth + 1 ||
   element.scrollHeight > element.clientHeight + 1;
 // A pill is clipped when its title or its chapter line is; any other element, when it is itself.
@@ -4033,31 +4032,14 @@ const bindGuideBubbles = root => {
   if (!root.classList.contains('easyedu-guide--discovery') || !modal) {
     return;
   }
-  let tooltip = null;
-  let target = null;
+  // K-BUBBLE: the same Kit bubble controller as the rest of EasyStud (bindHoverPopovers), mounted
+  // inside the actual fullscreen element rather than a global body portal.
+  const bubble = EasyeduBubble.createBubbleController({Motion, mount: () => modal});
   let refreshFrame = null;
-  let graceTimer = null;
-  const cancelGrace = () => {
-    if (graceTimer !== null) window.clearTimeout(graceTimer);
-    graceTimer = null;
-  };
   const hide = (immediate = true) => {
-    cancelGrace();
     if (refreshFrame !== null) window.cancelAnimationFrame(refreshFrame);
     refreshFrame = null;
-    const leaving = tooltip;
-    tooltip = null;
-    target = null;
-    if (!leaving) {
-      return;
-    }
-    if (immediate) {
-      Motion.cancel(leaving);
-      leaving.remove();
-      return;
-    }
-    leaving.style.pointerEvents = 'none';
-    void Motion.exit(leaving, {duration: Motion.timing.normal, distance: '0rem'}).then(() => leaving.remove());
+    bubble.hide(immediate);
   };
   root.easyeduGuideTooltipHide = hide;
   const show = element => {
@@ -4067,49 +4049,7 @@ const bindGuideBubbles = root => {
       hide(false);
       return;
     }
-    if (target === element) {
-      cancelGrace();
-      return;
-    }
-    hide();
-    target = element;
-    // The same Kit bubble as the rest of EasyStud (bindHoverPopovers): same classes, markup and fade.
-    tooltip = modal.ownerDocument.createElement('div');
-    tooltip.className = 'popover ' + GUIDE_BUBBLE_CLASS + ' ' + GUIDE_BUBBLE_CLASS + '--top show';
-    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--long', text.length > 110);
-    tooltip.setAttribute('role', 'tooltip');
-    const arrow = modal.ownerDocument.createElement('div');
-    arrow.className = 'popover-arrow';
-    const body = modal.ownerDocument.createElement('div');
-    body.className = 'popover-body';
-    body.textContent = text;
-    tooltip.append(arrow, body);
-    // WCAG 1.4.13: the pointer may move onto the bubble, which then stays visible.
-    tooltip.addEventListener('pointerenter', cancelGrace);
-    tooltip.addEventListener('pointerleave', event => {
-      if (!target?.contains(event.relatedTarget)) {
-        scheduleHide();
-      }
-    });
-    // Append inside the actual fullscreen element, not a global body portal.
-    modal.appendChild(tooltip);
-    const margin = 8;
-    const anchor = element.getBoundingClientRect();
-    const size = tooltip.getBoundingClientRect();
-    const viewport = modal.ownerDocument.defaultView;
-    const below = anchor.top - size.height - 10 < margin;
-    const left = Math.max(margin, Math.min(anchor.left + (anchor.width - size.width) / 2,
-      viewport.innerWidth - size.width - margin));
-    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--top', !below);
-    tooltip.classList.toggle(GUIDE_BUBBLE_CLASS + '--bottom', below);
-    tooltip.style.position = 'fixed';
-    tooltip.style.left = left + 'px';
-    tooltip.style.top = (below ? anchor.bottom + 10 : anchor.top - size.height - 10) + 'px';
-    void Motion.enter(tooltip, {distance: '0rem', duration: Motion.timing.normal});
-  };
-  const scheduleHide = () => {
-    cancelGrace();
-    graceTimer = window.setTimeout(() => hide(false), 220);
+    bubble.show(element, text);
   };
   const bubbleFor = element => element?.closest?.(GUIDE_BUBBLE);
   addTrackedListener(root, modal, 'pointerover', event => {
@@ -4119,11 +4059,11 @@ const bindGuideBubbles = root => {
   });
   addTrackedListener(root, modal, 'pointerout', event => {
     const element = bubbleFor(event.target);
-    if (element && element === target && !element.contains(event.relatedTarget)) {
-      if (tooltip?.contains(event.relatedTarget)) {
+    if (element && bubble.isActive(element) && !element.contains(event.relatedTarget)) {
+      if (bubble.contains(event.relatedTarget)) {
         return;
       }
-      scheduleHide();
+      bubble.scheduleHide();
     }
   });
   addTrackedListener(root, modal, 'focusin', event => {
@@ -4138,7 +4078,7 @@ const bindGuideBubbles = root => {
       return;
     }
     // WCAG 1.4.13: dismissing the bubble must not also close the Guide.
-    const wasOpen = tooltip !== null;
+    const wasOpen = bubble.isOpen();
     hide();
     if (wasOpen) {
       event.preventDefault();

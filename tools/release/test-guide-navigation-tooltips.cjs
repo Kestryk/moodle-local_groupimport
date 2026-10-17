@@ -12,6 +12,9 @@ const slice = (start, end) => {
 };
 const helper = slice('const isClipped =', 'const bindGuide =');
 const listeners = slice('const addTrackedListener =', 'const setTrackedTimeout =');
+// K-BUBBLE: the Guide delegates markup, placement, grace and fade to the shared Kit bubble module.
+const kitBubble = 'const EasyeduBubble = (() => {' + fs.readFileSync(path.join(root, 'amd/src/easyedu_bubble.js'), 'utf8')
+    .replace(/^export const /gm, 'const ') + '\nreturn {createBubbleController};\n})();';
 const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'utf8');
 (async() => {
     const browser = await chromium.launch({headless:true, channel:'chrome'});
@@ -32,16 +35,16 @@ const css = fs.readFileSync(path.join(root, 'styles/student-management.css'), 'u
                 '</nav><button id="fullscreen" style="position:absolute;bottom:30px">Fullscreen</button></div></div></div>' +
                 '<style>[data-easyedu-guide-nav-item]{width:130px}.easyedu-guide-nav-copy{display:block!important}' +
                 '#root .easyedu-guide-nav-copy>span{display:block;width:3ch;overflow:hidden;overflow-wrap:normal;text-overflow:ellipsis;white-space:nowrap}</style>');
-            await page.evaluate(({helper, listeners, copy}) => {
+            await page.evaluate(({helper, listeners, kitBubble, copy}) => {
                 document.querySelector('#label').textContent = copy;
                 document.querySelector('[data-easyedu-guide-nav-item="0"]').setAttribute('data-easyedu-guide-bubble', copy);
                 window.bindTooltipTest = Function('Motion', 'const SELECTORS={modal:"[data-easyedu-guide-modal]",nav:"[data-easyedu-guide-nav]",' +
-                    'navItem:"[data-easyedu-guide-nav-item]"};const GUIDE_BUBBLE="[data-easyedu-guide-bubble]";const GUIDE_BUBBLE_CLASS="local-groupimport-easystud-hover-popover";' + listeners + helper +
+                    'navItem:"[data-easyedu-guide-nav-item]"};const GUIDE_BUBBLE="[data-easyedu-guide-bubble]";' + kitBubble + listeners + helper +
                     'return {bind:bindGuideBubbles,clear:clearTrackedListeners};')({
                     cancel() {}, enter: () => Promise.resolve(), exit: () => Promise.resolve(), timing: {normal: 160}});
                 window.bindTooltipTest.bind(document.querySelector('#root'));
                 document.querySelector('#fullscreen').onclick = () => document.querySelector('[data-easyedu-guide-modal]').requestFullscreen();
-            }, {helper, listeners, copy});
+            }, {helper, listeners, kitBubble, copy});
             if (copy === 'Participants') await page.locator('[data-easyedu-guide-nav-item="0"]').evaluate(node => { node.style.width = '50px'; });
             const button = page.locator('[data-easyedu-guide-nav-item="0"]');
             const tip = page.locator('.local-groupimport-easystud-hover-popover');

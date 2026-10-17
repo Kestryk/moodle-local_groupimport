@@ -23,7 +23,8 @@
  */
 
 import * as Motion from '../../motion';
-import {hoverPopoverClass, isResponsiveWorkspace, requestGuideHighlightRefresh, escapeHtml} from './shared';
+import {createBubbleController} from '../../easyedu_bubble';
+import {isResponsiveWorkspace, requestGuideHighlightRefresh} from './shared';
 import {scheduleGroupGroupingOverflow, syncParticipantTagOverflow, setInlinePanelOpen} from './cards';
 import {getSelectedItems, setItemSelected, getActiveSelectionType} from './selection';
 import {getOnDemandModel} from './state';
@@ -570,94 +571,23 @@ const relayTipPalette = (root, tip) => {
     }
 };
 
-// WCAG 1.4.13 grace period: the pointer may cross the gap between a trigger and its popover.
-const HOVER_POPOVER_GRACE_MS = 220;
-
 export const bindHoverPopovers = root => {
-    let activeTip = null;
-    let activeNode = null;
-    let graceTimer = null;
-
-    const cancelGrace = () => {
-        if (graceTimer !== null) {
-            window.clearTimeout(graceTimer);
-            graceTimer = null;
-        }
-    };
-
-    // K17-21..26: the Kit bubble is the only bubble (native title attributes are no longer rendered). It
-    // fades in and out through Motion (no animation at the Minimal level). A leaving bubble is inert, and it
-    // is replaced at once when another one opens, so a single bubble is ever visible.
-    const removeTip = (immediate = false) => {
-        cancelGrace();
-        const tip = activeTip;
-        activeTip = null;
-        activeNode = null;
-        if (!tip) {
-            return;
-        }
-        if (immediate || tip.hasAttribute('data-easystud-leaving')) {
-            Motion.cancel(tip);
-            tip.remove();
-            return;
-        }
-        tip.setAttribute('data-easystud-leaving', '1');
-        tip.style.pointerEvents = 'none';
-        void Motion.exit(tip, {distance: '0rem', duration: Motion.timing.normal}).then(() => tip.remove());
-    };
-
-    // The popover stays while it is hovered; it leaves shortly after the pointer leaves both it and its trigger.
-    const scheduleRemoval = () => {
-        cancelGrace();
-        graceTimer = window.setTimeout(() => removeTip(), HOVER_POPOVER_GRACE_MS);
-    };
+    // K17-21..26 / K-BUBBLE: the Kit bubble is the only bubble (native title attributes are no longer rendered).
+    // The shared easyedu_bubble controller owns its markup, placement, grace period and fade, exactly as in the
+    // Guide; a single bubble is ever visible. Bubbles mount on document.body and carry the admin palette.
+    const bubble = createBubbleController({Motion, mount: () => document.body, decorate: tip => relayTipPalette(root, tip)});
 
     // K17-22: a pill that carries data-easystud-hover-help-truncated only opens its bubble when its text
     // is really cut off.
     const isCutOff = node => node.scrollWidth > node.clientWidth + 1;
 
     const showTip = node => {
-        if (activeNode === node && activeTip) {
-            cancelGrace();
-            return;
-        }
-        removeTip(true);
-        document.querySelectorAll('.' + hoverPopoverClass + '[data-easystud-leaving]').forEach(leaving => {
-            Motion.cancel(leaving);
-            leaving.remove();
-        });
         const content = node.getAttribute('data-easystud-hover-help') || '';
         if (!content || (node.hasAttribute('data-easystud-hover-help-truncated') && !isCutOff(node))) {
+            bubble.hide();
             return;
         }
-        activeNode = node;
-
-        activeTip = document.createElement('div');
-        activeTip.className = 'popover ' + hoverPopoverClass + ' ' + hoverPopoverClass + '--top show';
-        activeTip.classList.toggle(hoverPopoverClass + '--long', content.length > 110);
-        activeTip.setAttribute('role', 'tooltip');
-        activeTip.innerHTML = '<div class="popover-arrow"></div><div class="popover-body">' + escapeHtml(content) + '</div>';
-        const tip = activeTip;
-        tip.addEventListener('mouseenter', cancelGrace);
-        tip.addEventListener('mouseleave', event => {
-            if (!(event.relatedTarget instanceof Node) || !node.contains(event.relatedTarget)) {
-                scheduleRemoval();
-            }
-        });
-        relayTipPalette(root, activeTip);
-        document.body.appendChild(activeTip);
-
-        const rect = node.getBoundingClientRect();
-        const tiprect = activeTip.getBoundingClientRect();
-        const top = window.scrollY + rect.top - tiprect.height - 10;
-        const left = window.scrollX + rect.left + ((rect.width - tiprect.width) / 2);
-
-        activeTip.style.top = Math.max(window.scrollY + 8, top) + 'px';
-        activeTip.style.left = Math.max(
-            window.scrollX + 8,
-            Math.min(window.scrollX + window.innerWidth - tiprect.width - 8, left)
-        ) + 'px';
-        void Motion.enter(activeTip, {distance: '0rem', duration: Motion.timing.normal});
+        bubble.show(node, content);
     };
 
     root.addEventListener('mouseenter', event => {
@@ -673,10 +603,10 @@ export const bindHoverPopovers = root => {
             if (event.relatedTarget && node.contains(event.relatedTarget)) {
                 return;
             }
-            if (activeTip && event.relatedTarget instanceof Node && activeTip.contains(event.relatedTarget)) {
+            if (bubble.contains(event.relatedTarget)) {
                 return;
             }
-            scheduleRemoval();
+            bubble.scheduleHide();
         }
     }, true);
 
@@ -687,17 +617,17 @@ export const bindHoverPopovers = root => {
         }
     });
 
-    root.addEventListener('focusout', () => removeTip());
-    root.addEventListener('click', () => removeTip(true));
-    window.addEventListener('scroll', () => removeTip(true), true);
+    root.addEventListener('focusout', () => bubble.hide(false));
+    root.addEventListener('click', () => bubble.hide());
+    window.addEventListener('scroll', () => bubble.hide(), true);
 
     // WCAG 1.4.13: Escape dismisses the popover without closing the dialog that holds its trigger.
     // The capture phase runs before every dialog handler, which also honour defaultPrevented.
     window.addEventListener('keydown', event => {
-        if (event.key !== 'Escape' || !activeTip) {
+        if (event.key !== 'Escape' || !bubble.isOpen()) {
             return;
         }
-        removeTip();
+        bubble.hide(false);
         event.preventDefault();
         event.stopPropagation();
     }, true);
