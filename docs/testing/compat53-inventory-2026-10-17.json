@@ -68,7 +68,14 @@
       "present": {
         "4.5": true,
         "5.1": true,
-        "5.3": false
+        "5.3": true
+      },
+      "resolution53": {
+        "source": "public/lib/classes/output/requirements/page_requirements_manager.php",
+        "line": 1642,
+        "mapping": "@moodle/lms/core/log:default",
+        "coreJsCallAmdLine": 1929,
+        "risk": "low; native 5.3 console still unverified"
       }
     },
     {
@@ -141,19 +148,7 @@
     }
   ],
   "modalFactoryDirectUses": 0,
-  "coreLogSourceGap": "No src/log.js or built log.min.js in local53 copy; core/notification still imports it. Not evidence of an intentional API removal; source/build completeness needs review before native certification.",
-  "reservedDeprecatedCalls": [
-    {
-      "file": "classes/service/course_state.php",
-      "line": 380,
-      "call": "user_get_user_details"
-    },
-    {
-      "file": "classes/service/course_state.php",
-      "line": 562,
-      "call": "user_get_user_details"
-    }
-  ],
+  "reservedDeprecatedCalls": [],
   "contrastCalculations": [
     {
       "pair": [
@@ -185,5 +180,25 @@
     }
   ],
   "contrastIsNativeVisualProof": false,
-  "runtimeAccess": false
+  "runtimeAccess": false,
+  "inventoryCorrectedAgainst": "a5d0ffab",
+  "commentOnlyMentions": [
+    {
+      "file": "classes/service/course_state.php",
+      "line": 380,
+      "name": "user_get_user_details"
+    },
+    {
+      "file": "classes/service/course_state.php",
+      "line": 562,
+      "name": "user_get_user_details"
+    }
+  ],
+  "coreLogResolution53": {
+    "source": "public/lib/classes/output/requirements/page_requirements_manager.php",
+    "line": 1642,
+    "mapping": "@moodle/lms/core/log:default",
+    "coreJsCallAmdLine": 1929,
+    "risk": "low; native 5.3 console still unverified"
+  }
 }

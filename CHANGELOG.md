@@ -1,3 +1,5 @@
+- 2026-10-17 [N0] Correct two false-positive Moodle5.3 inventory findings and record the a5d0ffab isolated gate, production archive and explicit historical-test limits; no product behavior change.
+
 - 2026-10-17 [N0] Preserve native participant-link integration after late secondary-navigation hydration without changing rendering or requiring newer Moodle APIs.
 
 - 2026-10-17 [N0] K16-15: allow explicit member selection from compact group details and retain dialog keyboard focus after member removal or deferred section refresh.

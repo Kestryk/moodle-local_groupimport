@@ -1,0 +1,265 @@
+{
+  "commit": "a5d0ffab",
+  "node": "22.11.0",
+  "smoke": {
+    "surface": "TRI19-isolated-release-smoke",
+    "passed": true,
+    "results": [
+      {
+        "name": "preview",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "passed": true,
+          "checks": 17,
+          "largeEditedPreview": 1500
+        },
+        "error": ""
+      },
+      {
+        "name": "execution",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "passed": true,
+          "atomicCommitAndRollback": true,
+          "limitBeforeWrites": 1000
+        },
+        "error": ""
+      },
+      {
+        "name": "privacy",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "suite": "S2-isolated",
+          "passed": true,
+          "checks": 43,
+          "databaseConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "ajax",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "suite": "S4-isolated",
+          "parser": "ajax.php",
+          "passed": true,
+          "checks": 44,
+          "databaseConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "manage",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "suite": "S4-isolated",
+          "parser": "manage.php",
+          "passed": true,
+          "checks": 44,
+          "databaseConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "identity",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "suite": "S5-isolated",
+          "passed": true,
+          "checks": 61,
+          "databaseConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "reader",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "suite": "S6-isolated-real-spreadsheets",
+          "passed": true,
+          "checks": 37,
+          "csvRows": 3000,
+          "confirmationCeilingUnchanged": 1000,
+          "realFormats": [
+            "xlsx"
+          ],
+          "legacyXlsReaderAvailable": false,
+          "databaseConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "export",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "suite": "S7-M5-real-export-isolated",
+          "passed": true,
+          "checks": 355,
+          "locales": [
+            "en",
+            "fr"
+          ],
+          "formulaNodes": 0,
+          "databaseConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "bulk",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "surface": "r6-server",
+          "passed": true,
+          "checks": 34,
+          "databaseConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "history",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "surface": "r8-history-list",
+          "passed": true,
+          "checks": 68,
+          "rowsReturned": 20,
+          "projectedFields": 8,
+          "serializedBytes": 4405,
+          "moodleConnections": 0,
+          "runtimeAccess": false
+        },
+        "error": ""
+      },
+      {
+        "name": "formatted-xlsx",
+        "exit": 0,
+        "passed": true,
+        "result": {
+          "surface": "r9-formatted-xlsx",
+          "passed": true,
+          "checks": 21,
+          "maxTestedRow": 1048576,
+          "maxTestedColumn": 16384,
+          "peakMemoryBytes": 27262976,
+          "runtimeAccess": false,
+          "databaseConnections": 0
+        },
+        "error": ""
+      },
+      {
+        "name": "test-security-escaping.cjs",
+        "exit": 0,
+        "passed": true,
+        "error": ""
+      },
+      {
+        "name": "test-filter-engine.cjs",
+        "exit": 0,
+        "passed": true,
+        "error": ""
+      }
+    ],
+    "runtimeAccess": false,
+    "nativePhpunit": "NOT_RUN",
+    "nativeBehat": "NOT_RUN"
+  },
+  "extraTests": [
+    {
+      "test": "test-security-escaping.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.2
+    },
+    {
+      "test": "test-security-csv-export.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.14
+    },
+    {
+      "test": "test-guide-welcome-security.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.14
+    },
+    {
+      "test": "test-filter-engine.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.17
+    },
+    {
+      "test": "test-long-lists-pills-browser.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.42,
+      "note": "16 cases; corrected required Playwright/output arguments",
+      "log": "long-lists-correct-args.log"
+    },
+    {
+      "test": "test-tutorial-retirement.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 22.44
+    },
+    {
+      "test": "test-tutorial-js-retirement.cjs",
+      "status": "FAIL",
+      "code": 1,
+      "seconds": 0.41
+    },
+    {
+      "test": "test-guide-t037-reading-composition.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.16
+    },
+    {
+      "test": "test-guide-t038-navigation.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.16
+    },
+    {
+      "test": "test-guide-mirror-roundtrip.cjs",
+      "status": "PASS",
+      "code": 0,
+      "seconds": 0.34
+    }
+  ],
+  "package": {
+    "commit": "a5d0ffab1da82e5f556f9bf7c579c6b5b9162d50",
+    "bytes": 1964949,
+    "fileCount": 306,
+    "sha256": "5113d999d2c5bd759e8a868b31daea3059677ebcaa91a4264cb938f2060a5797",
+    "crc": "PASS",
+    "trackedBytes": "PASS",
+    "excludedEntriesFound": [],
+    "structure": "PASS",
+    "nativeInstallation": "NOT_RUN: static only; runtime forbidden"
+  },
+  "runtimeAccess": false,
+  "publication": false,
+  "limits": [
+    "P2 JS retirement whole-file oracle fails after unrelated A11Y addition; original failure preserved",
+    "No native installation or runtime acceptance",
+    "Kit92 scripts include46 inherited failures; foreign defaults not arbitrated"
+  ]
+}
