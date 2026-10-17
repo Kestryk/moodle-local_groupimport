@@ -1,10 +1,10 @@
 # Tests anciens et libellé du chevron — 17 octobre 2026
 
-Branche `work/codex1/easystud-tests-repin-2-20261017`, base `d01f7208`. Aucun accès Moodle, session, base de données ou service ; aucun fichier produit JS/AMD/CSS/template modifié. Seul changement produit : deux chaînes singulières FR/EN. Les navigateurs utilisent `setContent` et bloquent toutes les requêtes réseau.
+Branche `work/codex1/easystud-tests-repin-2-db964-20261017`, base `db964f08` ; successeur sans force-push de la branche précédente. Aucun accès Moodle, session, base de données ou service ; aucun fichier produit JS/AMD/CSS/template modifié. Seul changement produit : deux chaînes singulières FR/EN. Les navigateurs utilisent `setContent` et bloquent toutes les requêtes réseau.
 
 ## Avant / après
 
-Les dix tests signalés (dont les trois `test-filter-disclosure-*`) échouent tous sur **108f0b2c**, et encore sur **d01f7208** avant adaptation : 20 exécutions, sans timeout. Les arguments Kit, PostCSS, Playwright et Acorn ont été fournis ; Mass Import atteignait bien son assertion historique de rendu, pas une erreur d'invocation PHP. Sur la base 108f0b2c, le worktree package n'avait ajouté que ses outils de paquet : les entrées de ces contrats étaient inchangées.
+Les dix tests signalés (dont les trois `test-filter-disclosure-*`) échouent tous sur **108f0b2c**, et encore sur **d01f7208** avant adaptation : 20 exécutions, sans timeout. Nouveau rejeu depuis db964f08 : les dix échouent encore avant adaptation, soit 30 échecs de base documentés au total. Les dix oracles et le test navigateur archivés restent byte-identiques sur db964f08. Les arguments Kit, PostCSS, Playwright et Acorn ont été fournis ; Mass Import atteignait bien son assertion historique de rendu, pas une erreur d'invocation PHP. Sur la base 108f0b2c, le worktree package n'avait ajouté que ses outils de paquet : les entrées de ces contrats étaient inchangées.
 
 Les onze anciens fichiers, y compris le test navigateur du Guide, sont conservés intégralement dans `docs/history/retired-test-contracts-2026-10-17/`. Leurs empreintes correspondent aux blobs de d01f7208. Les comparaisons de fichiers entiers contre une révision antérieure à T055/aux feuilles par page sont **retirées comme contrats obsolètes** ; elles ne sont pas présentées comme des preuves de parité avec cet ancien design. Les successeurs testent les composants actuels. Aucun échec actif n'est ignoré ou converti en succès.
 
@@ -29,7 +29,7 @@ Le helper partagé `tools/release/lib/current-presentation-contracts.cjs` évite
 - Guide : **9 cas navigateur PASS**, trois libellés FR/EN courts/longs × 1280/768/390 ; peinture, limites écran, clavier, clic, défilement, vrai plein écran, teardown/rebind. Ajouts : rester sur la bulle au-delà de 220 ms, premier Échap réservé à la bulle, second rendu au Guide. La fixture utilise la classe actuelle du libellé et force explicitement une troncature pour éprouver ce chemin ; ce n'est pas une modification du style produit.
 - Six mutations en mémoire rejetées par les assertions : focus supprimé, padding tiled parasite, graisse de bulle erronée, mauvaise touche Échap, pagination appelée lors du dépliage, capsule manquante. Aucun fichier produit muté.
 - `php -l` FR/EN et fixture : PASS. Aucun build requis : aucun amd/src ni SCSS modifié.
-- Le miroir corrigé reste sur sa **branche distincte** : T037 14, T038 47 et roundtrip 6 exports AMD / 3 SCSS / 2 templates PASS avec le Kit A11Y. Cette branche de tests ne prétend pas réparer à elle seule le miroir.
+- Le miroir corrigé reste sur sa **branche distincte** : T037 14, T038 47 et roundtrip 6 exports AMD / 3 SCSS / 2 templates PASS avec le Kit db964 (base d4cdfe5, A11Y et patch Codex2). Cette branche de tests ne prétend pas réparer à elle seule le miroir.
 
 ## « Voir les 0 membres »
 
@@ -41,7 +41,9 @@ Ajout de `groupmembersshowall_one` : FR **Voir 0 membre / Voir 1 membre**, EN **
 
 Node : `C:/dev/tools/node-v22.11.0-win-x64/node.exe` ; PHP : `C:/xampp/php/php.exe`.
 Modules Moodle/Acorn/PostCSS : `C:/dev/moodle51-build-501/node_modules` (ou MOODLE_NODE_MODULES pour le helper).
-Kit : `C:/dev/worktrees/easyedu-ui-kit-guide-a11y-20261017`.
+Kit : `C:/dev/worktrees/easyedu-ui-kit-guide-db964-20261017`.
 Playwright : `C:/dev/Moodle 51/MoodleWindowsInstaller-latest-501/server/moodle/local/groupimport/tools/playwright/node_modules` ; fournir `/playwright` au test Guide, le répertoire node_modules au test Mass Import ; PHP en troisième argument Mass Import. Chrome installé, mode headless.
 
-Logs complets, lanceurs, comparaison des bases et mutations : `C:/dev/artifacts/a11y-followup-20261017/`. Les JSON versionnés contiennent les résultats et empreintes ; aucun secret ni log volumineux embarqué. Ces preuves sont isolées : aucune recette native ni acceptation humaine nouvelle.
+Logs complets, lanceurs, comparaison des bases et mutations : `C:/dev/artifacts/a11y-followup-db964-20261017/`. Les JSON versionnés contiennent les résultats et empreintes ; aucun secret ni log volumineux embarqué. Ces preuves sont isolées : aucune recette native ni acceptation humaine nouvelle.
+
+Reprise 6 h 10 : seul CHANGELOG/intake a nécessité une union ; toutes les valeurs de db964 sont conservées, ajout de testsRepin220261017 uniquement. Les deux chaînes se sont appliquées sans conflit. Aucun fichier source de Claude modifié ; les anciennes branches poussées restent conservées.
