@@ -182,6 +182,16 @@
     color: var(--easyedu-primary-strong);
   }
 
+  // The selected state paints its own shadow later in the cascade: keep the
+  // keyboard ring on top of it.
+  &[aria-pressed="true"]:focus-visible,
+  &.is-active:focus-visible {
+    @include focus.ring(
+      $border-color: var(--easyedu-control-focus-border),
+      $base-shadow: var(--easyedu-shadow-soft)
+    );
+  }
+
   &:disabled,
   &[aria-disabled="true"] {
     cursor: not-allowed;

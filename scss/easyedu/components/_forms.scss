@@ -858,8 +858,7 @@
   }
 
   &:focus-visible > .easyedu-filter-disclosure__content {
-    outline: 1.5px solid color-mix(in srgb, var(--easyedu-primary) 35%, transparent);
-    outline-offset: 1px;
+    @include focus.ring;
   }
 }
 

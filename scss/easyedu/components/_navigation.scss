@@ -1,4 +1,5 @@
 @use "buttons";
+@use "focus";
 @use "responsive";
 @use "typography";
 @use "animations";
@@ -276,6 +277,10 @@
       gap: 0.42rem;
       inline-size: min(12rem, calc(100vw - var(--easyedu-navigation-trigger-safe-edge)));
       transform: translate(0.14rem, -50%);
+    }
+
+    &:focus-visible {
+      @include focus.ring($base-shadow: 0 0.3rem 0.7rem rgba(35, 53, 72, 0.22));
     }
 
     &[aria-expanded="true"] {

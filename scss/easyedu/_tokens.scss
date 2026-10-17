@@ -50,10 +50,12 @@
   // Global surfaces and text.
   --easyedu-border: #d7dfe8;
   --easyedu-border-strong: #b9c6d4;
-  --easyedu-focus-ring: rgba(15, 108, 191, 0.22);
-  --easyedu-focus-ring-accent: rgba(27, 127, 90, 0.22);
-  --easyedu-focus-ring-danger: rgba(161, 43, 43, 0.22);
-  --easyedu-focus-ring-warning: rgba(154, 101, 15, 0.22);
+  // WCAG 2.2 (1.4.11, 2.4.7): focus rings are opaque and reach at least 3:1
+  // against the white and tinted surfaces they sit on. Change them here only.
+  --easyedu-focus-ring: #0f6cbf;
+  --easyedu-focus-ring-accent: #1b7f5a;
+  --easyedu-focus-ring-danger: #a12b2b;
+  --easyedu-focus-ring-warning: #9a650f;
   --easyedu-focus-ring-width: 0.18rem;
   --easyedu-focus-outline-width: 0.125rem;
   --easyedu-focus-outline-offset: 0.125rem;
