@@ -1606,5 +1606,6 @@
 "k1617PrepasseSafe20261018":{"base": "c41871e9", "scope": ["Moodle 4.5 local unavailable-message label", "PHP line wrapping with identical executable tokens"], "subjects": 2, "phpErrorsTouched": 0, "phpWarningsTouched": 1, "officialOtherErrors": 0, "eslintErrorsBeforeAfter": [105, 105], "eslintWarningsBeforeAfter": [580, 580], "amdSourcesUnchanged": true, "guideAndCardsUntouched": true, "languageAppendOnly": true, "nativeRuntime": false, "published": false, "humanAccepted": false},
 "k1617FixtureLines20261018":{"base": "36988602", "errorsBeforeAfter": [0, 0], "warningsBeforeAfter": [29, 23], "constantValuesAndTokensPreserved": true, "renderingChanged": false, "runtimeAccess": false, "published": false},
 "k1617XlsxDiagnosticWrap20261018":{"productChanges": false, "tokensIdentical": true, "S7M5Checks": 355, "runtimeAccess": false, "published": false},
-"k1631KitSingleSource20261018":{"base": "edc26fa9", "mode": "report-only", "sourceFiles": 35, "candidateDeclarations": 553, "parseErrors": 0, "families": 26, "styleChanges": false, "runtimeAccess": false, "published": false, "humanAccepted": false}
+"k1631KitSingleSource20261018":{"base": "edc26fa9", "mode": "report-only", "sourceFiles": 35, "candidateDeclarations": 553, "parseErrors": 0, "families": 26, "styleChanges": false, "runtimeAccess": false, "published": false, "humanAccepted": false},
+"k1801EasyStudOnly20261018":{"scope": "EasyStud only", "ccbExcludedWithoutTraversal": true, "styleHashesUnchanged": true, "findingsUnchanged": 553, "runtimeAccess": false, "published": false}
 }
