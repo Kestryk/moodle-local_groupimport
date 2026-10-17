@@ -160,7 +160,8 @@ namespace {
      */
     function require_capability($capability, $context) {
         $GLOBALS['auth'][] = $capability;
-        if ($GLOBALS['denied']) { throw new RuntimeException('Denied');
+        if ($GLOBALS['denied']) {
+            throw new RuntimeException('Denied');
         }
     }
     /**
@@ -227,7 +228,8 @@ namespace {
          * @return mixed Fixture result.
          */
         public function get_record($table, $conditions, $fields, $strict) {
-            if ($GLOBALS['auth'] !== ['login', 'moodle/course:managegroups']) { throw new RuntimeException('Lookup before auth');
+            if ($GLOBALS['auth'] !== ['login', 'moodle/course:managegroups']) {
+                throw new RuntimeException('Lookup before auth');
             }
             if (
                 $table !== 'local_groupimport_history' ||
@@ -235,7 +237,8 @@ namespace {
                 7,
                 'courseid' =>
                 5]
-            ) { throw new RuntimeException('Unscoped history read');
+            ) {
+                throw new RuntimeException('Unscoped history read');
             }
             return clone $this->record;
         }
@@ -252,7 +255,8 @@ namespace {
         $skip = false;
         $requires = 0;
         foreach ($tokens as $token) {
-            if (is_array($token) && $token[0] === T_OPEN_TAG) { continue;
+            if (is_array($token) && $token[0] === T_OPEN_TAG) {
+                continue;
             }
             if (is_array($token) && $token[0] === T_REQUIRE_ONCE) {
                 $skip = true;
@@ -260,13 +264,15 @@ namespace {
                 continue;
             }
             if ($skip) {
-                if ($token === ';') { $skip = false;
+                if ($token === ';') {
+                    $skip = false;
                 }
                 continue;
             }
             $source .= is_array($token) ? $token[1] : $token;
         }
-        if ($requires !== 2) { throw new RuntimeException('Review changed bootstrap boundary');
+        if ($requires !== 2) {
+            throw new RuntimeException('Review changed bootstrap boundary');
         }
         eval($source);
     }
@@ -279,7 +285,8 @@ namespace {
      */
     function check($ok, $label) {
         $GLOBALS['checks']++;
-        if (!$ok) { throw new RuntimeException($label);
+        if (!$ok) {
+            throw new RuntimeException($label);
         }
     }
     $root = dirname(__DIR__, 3);
@@ -314,9 +321,11 @@ namespace {
          '',
          "'already literal",
          'safe = value'];
-    foreach ($unsafe as $value) { check(policy::text($value) === "'" . $value, 'Executable prefix neutralized');
+    foreach ($unsafe as $value) {
+        check(policy::text($value) === "'" . $value, 'Executable prefix neutralized');
     }
-    foreach ($safe as $value) { check(policy::text($value) === $value, 'Safe text unchanged');
+    foreach ($safe as $value) {
+        check(policy::text($value) === $value, 'Safe text unchanged');
     }
     $probe = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
     $probesheet = $probe->getActiveSheet();
@@ -325,17 +334,19 @@ namespace {
         ['A1',
          'B1',
          'C1'] as $coordinate
-    ) { check(
-        $probesheet->getCell($coordinate)->getDataType() === 's',
-        'Explicit type before serialization, including empty'
-    );
+    ) {
+        check(
+            $probesheet->getCell($coordinate)->getDataType() === 's',
+            'Explicit type before serialization, including empty'
+        );
     }
     $probe->disconnectWorksheets();
     $values = array_merge($unsafe, $safe);
     $rows = [];
     foreach (
         $values as $i => $value
-    ) { $rows[] = ['identifier' =>
+    ) {
+        $rows[] = ['identifier' =>
          '00123',
          'groupname' =>
          $value,
@@ -507,11 +518,15 @@ namespace {
          'runtimeAccess' =>
          false]) . PHP_EOL;
     } finally {
-        foreach ($files as $p) { if (is_file($p)) { unlink($p);
+        foreach ($files as $p) {
+            if (is_file($p)) {
+                unlink($p);
+            }
         }
-        }
-        foreach (glob($requestdir . '/report_*') as $p) { if (is_file($p)) { unlink($p);
-        }
+        foreach (glob($requestdir . '/report_*') as $p) {
+            if (is_file($p)) {
+                unlink($p);
+            }
         }
         rmdir($requestdir);
     }

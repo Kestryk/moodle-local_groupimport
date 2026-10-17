@@ -33,16 +33,19 @@ function local_groupimport_history_table_exists() {
 }
 $tokens = token_get_all($source);
 for ($i = 0; $i < count($tokens); $i++) {
-    if (!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION) { continue;
+    if (!is_array($tokens[$i]) || $tokens[$i][0] !== T_FUNCTION) {
+        continue;
     }
     $name = '';for ($j = $i + 1; $j < count($tokens); $j++) {
         if (is_array($tokens[$j]) && $tokens[$j][0] === T_STRING) {
             $name = $tokens[$j][1];
             break;
-        }if ($tokens[$j] === '(') { break;
+        }if ($tokens[$j] === '(') {
+            break;
         }
     }
-    if ($name !== 'local_groupimport_get_import_history') { continue;
+    if ($name !== 'local_groupimport_get_import_history') {
+        continue;
     }
     $code = '';
     $depth = 0;
@@ -53,7 +56,8 @@ for ($i = 0; $i < count($tokens); $i++) {
         if ($tok === '{') {
             $depth++;
             $started = true;
-        }if ($tok === '}' && --$depth === 0 && $started) { break;
+        }if ($tok === '}' && --$depth === 0 && $started) {
+            break;
         }
     }
     eval($code);
@@ -67,7 +71,8 @@ $checks = 0;
  */
 function check($ok, $label) {
     $GLOBALS['checks']++;
-    if (!$ok) { throw new RuntimeException($label);
+    if (!$ok) {
+        throw new RuntimeException($label);
     }
 }
 $DB = new
@@ -124,7 +129,8 @@ class {
         $q->execute($params);
         $rows = $q->fetchAll(PDO::FETCH_OBJ);
         $result = [];
-        foreach ($rows as $row) { $result[$row->id] = $row;
+        foreach ($rows as $row) {
+            $result[$row->id] = $row;
         }
         return $result;
     }
