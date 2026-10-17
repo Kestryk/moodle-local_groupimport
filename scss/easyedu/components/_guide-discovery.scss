@@ -902,16 +902,33 @@
     @media (max-width: 40rem) {
       // C-G3: the scene is full width (no border, 12px inner padding), so the
       // header sits on the same edge as the rest of the scene: no negative margin.
-      &__header { padding-block: 0.375rem; }
-      &__header-controls-inner { flex-direction: column; align-items: stretch; }
+      // K17-46: the step block breathes on a phone. Kit padding on every side, one Kit gap between its rows
+      // (narration, then the full-width action) in the ready and finished states, and the same inner gap
+      // between the stacked controls.
+      &__header { padding: var(--easyedu-guide-scene-header-gap); }
+      &__header-controls-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--easyedu-guide-scene-header-gap);
+      }
       &__header .easyedu-guide-scene__start { width: 100%; margin-inline-start: 0; }
       &__reading { grid-template-columns: minmax(0, 1fr) auto; }
       &__header .easyedu-guide-scene__live-content { grid-column: 1 / -1; grid-row: 2; }
+      // K17-46: once the step caption and the playback buttons are gone, the result line takes the first row
+      // (no empty row above it).
+      &__header[data-guide-playback-state="finished"] .easyedu-guide-scene__live-content { grid-row: 1; }
       &__header .easyedu-guide-scene__playback { grid-column: 2; grid-row: 1; }
       &__header--single {
         grid-template-columns: minmax(0, 1fr);
-        .easyedu-guide-scene__reading { grid-column: 1; grid-row: 1; }
+        .easyedu-guide-scene__reading {
+          grid-column: 1;
+          grid-row: 1;
+          padding-block-end: var(--easyedu-guide-scene-header-gap);
+        }
         .easyedu-guide-scene__header-controls { grid-column: 1; grid-row: 2; inline-size: auto; }
+        &[data-guide-playback-state="playing"], &[data-guide-playback-state="paused"] {
+          .easyedu-guide-scene__reading { padding-block-end: 0; }
+        }
       }
     }
     &__actions .btn[data-guide-scene-command="add"],
