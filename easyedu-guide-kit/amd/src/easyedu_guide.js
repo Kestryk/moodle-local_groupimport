@@ -2570,52 +2570,54 @@ const playDiscoveryScene = (root, scene, requestedMode, start = true) => {
         }));
         if (controller.signal.aborted) { return; }
       }
-    } else if (!compact && !still) {
+    } else if (!compact) {
       await phase('menu');
       if (controller.signal.aborted) { return; }
-      const ghost = person.cloneNode(true);
-      ghost.removeAttribute('data-guide-person');
-      ghost.setAttribute('data-guide-ghost', '');
-      ghost.setAttribute('aria-hidden', 'true');
-      ghost.querySelectorAll('small').forEach(node => node.remove());
-      ghost.classList.remove('is-selected');
-      const badge = document.createElement('span');
-      badge.className = 'easyedu-guide-scene__drag-badge';
-      const grip = document.createElement('span');
-      grip.className = 'fa fa-grip-vertical';
-      badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
-      ghost.appendChild(badge);
-      stage.appendChild(ghost);
-      const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
-      ghost.style.left = `${a.left - b.left}px`;
-      ghost.style.top = `${a.top - b.top}px`;
-      await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
-      const destinationNode = stage.querySelector('[data-guide-destination]');
-      const destination = destinationNode.getBoundingClientRect();
-      const dx = destination.left - a.left, dy = destination.top - a.top + 32;
-      const startPoint = {...cursorPoint};
-      // One displacement, duration and easing for ghost and pointer. Track
-      // actual animated paint to reveal the destination only while hovering.
-      const trackDrop = () => {
-        if (controller.signal.aborted || !ghost.isConnected) { return; }
-        const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
-        destinationNode.classList.toggle('is-guide-drop-target',
-          card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
-        dropFrame = requestAnimationFrame(trackDrop);
-      };
-      trackDrop();
-      await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
-        {transform: `translate(${dx}px,${dy}px)`}], 1200),
-        travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
-      if (controller.signal.aborted) { return; }
-      cancelAnimationFrame(dropFrame); dropFrame = null;
-      member.hidden = false;
-      await wait(220);
-      destinationNode.classList.remove('is-guide-drop-target');
-      await Promise.all([animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
-        {transform: 'translate(0,0)', opacity: 0.2}], 650), travelPoint(startPoint, 650)]);
-      await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
-      ghost.remove();
+      if (!still) {
+        const ghost = person.cloneNode(true);
+        ghost.removeAttribute('data-guide-person');
+        ghost.setAttribute('data-guide-ghost', '');
+        ghost.setAttribute('aria-hidden', 'true');
+        ghost.querySelectorAll('small').forEach(node => node.remove());
+        ghost.classList.remove('is-selected');
+        const badge = document.createElement('span');
+        badge.className = 'easyedu-guide-scene__drag-badge';
+        const grip = document.createElement('span');
+        grip.className = 'fa fa-grip-vertical';
+        badge.append(grip, document.createTextNode(scene.dataset.guideDragLabel || ''));
+        ghost.appendChild(badge);
+        stage.appendChild(ghost);
+        const a = person.getBoundingClientRect(), b = stage.getBoundingClientRect();
+        ghost.style.left = `${a.left - b.left}px`;
+        ghost.style.top = `${a.top - b.top}px`;
+        await animate(ghost, [{opacity: 0, transform: 'scale(.96)'}, {opacity: 1, transform: 'scale(1)'}], 180);
+        const destinationNode = stage.querySelector('[data-guide-destination]');
+        const destination = destinationNode.getBoundingClientRect();
+        const dx = destination.left - a.left, dy = destination.top - a.top + 32;
+        const startPoint = {...cursorPoint};
+        // One displacement, duration and easing for ghost and pointer. Track
+        // actual animated paint to reveal the destination only while hovering.
+        const trackDrop = () => {
+          if (controller.signal.aborted || !ghost.isConnected) { return; }
+          const card = ghost.getBoundingClientRect(), drop = destinationNode.getBoundingClientRect();
+          destinationNode.classList.toggle('is-guide-drop-target',
+            card.right >= drop.left && card.left <= drop.right && card.bottom >= drop.top && card.top <= drop.bottom);
+          dropFrame = requestAnimationFrame(trackDrop);
+        };
+        trackDrop();
+        await Promise.all([animate(ghost, [{transform: 'translate(0,0)'},
+          {transform: `translate(${dx}px,${dy}px)`}], 1200),
+          travelPoint({x: startPoint.x + dx, y: startPoint.y + dy}, 1200)]);
+        if (controller.signal.aborted) { return; }
+        cancelAnimationFrame(dropFrame); dropFrame = null;
+        member.hidden = false;
+        await wait(220);
+        destinationNode.classList.remove('is-guide-drop-target');
+        await Promise.all([animate(ghost, [{transform: `translate(${dx}px,${dy}px)`, opacity: 1},
+          {transform: 'translate(0,0)', opacity: 0.2}], 650), travelPoint(startPoint, 650)]);
+        await animate(ghost, [{opacity: 0.2}, {opacity: 0}], 180);
+        ghost.remove();
+      }
     }
     if (controller.signal.aborted) { return; }
     member.hidden = false;

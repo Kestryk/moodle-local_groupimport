@@ -14,6 +14,9 @@ est utilisé ; aucune publication sur le runtime principal.
   de lecture des consignes existantes, sur l’horloge annulable/pausable ;
   aucune boucle décorative ni animation de hauteur. Motion et ses niveaux
   restent inchangés : réduction des gestes, pas du temps de lecture.
+  Le desktop Réduites/Minimales présente également la seconde consigne de
+  l’ajout : seule la création du fantôme animé reste réservée à Complètes.
+  La garde antérieure englobait à tort la lecture de cette consigne.
 - J-G3 : si le nœud suivi disparaît, le Guide résout à nouveau la cible de
   l’étape active. Une cible temporaire de feuille/menu encore visible garde
   sa priorité. La position par défaut de la checklist ne s’applique qu’en
