@@ -40,11 +40,13 @@ function xmldb_local_groupimport_install(): void {
 
     $tours = [
         [
+            'key' => 'teacher',
             'name' => 'tour_groupimport_teacher_name,local_groupimport',
             'pathmatch' => '/local/groupimport/index.php%',
             'json' => __DIR__ . '/tours/local_groupimport_teacher_guide.json',
         ],
         [
+            'key' => 'coursehome',
             'name' => 'tour_groupimport_coursehome_name,local_groupimport',
             'pathmatch' => '/course/view.php%',
             'json' => __DIR__ . '/tours/local_groupimport_course_home_hint.json',
@@ -70,6 +72,7 @@ function xmldb_local_groupimport_install(): void {
             continue;
         }
 
-        \tool_usertours\manager::import_tour_from_json($json);
+        $imported = \tool_usertours\manager::import_tour_from_json($json);
+        \local_groupimport\local\tour_preservation::remember_import($tour['key'], (int)$imported->get_id());
     }
 }

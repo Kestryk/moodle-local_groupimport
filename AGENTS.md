@@ -1,5 +1,12 @@
 # EasyEdu agent contract
 
+K17-11 user-tour updates require provenance captured immediately after an
+actual plugin import and an exact match of every tour/step/attachment field.
+Never adopt an existing tour by name, path, selector or even identical content.
+Unmarked historical tours stay untouched. Preserve IDs, progress and unrelated
+tour ordering; native tour removal renumbers other tours. See
+`docs/testing/tour-preservation-k17-11-2026-10-17.md` and its rolled-back fixture.
+
 Compact Guide fit must cover both Add and Move with full EN/FR names. A0.25px
 sum can wrap a whole flex item; preserve that strict failure, not a relaxed row
 oracle. Prefer existing scene gutters/caption roles to smaller fonts or duplicate

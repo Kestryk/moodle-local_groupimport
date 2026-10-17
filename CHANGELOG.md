@@ -5,6 +5,8 @@
 
 - 2026-10-17 [N1] K17-21: keep the existing Kit group-search field visible in responsive Groups after desktop Structure focus is cleared; preserve filtering and desktop composition.
 
+- 2026-10-17 [N1] K17-11: preserve all unmarked or modified user tours; refresh only proven unchanged plugin imports after a complete tour, step and attachment comparison, retaining tour IDs, progress and unrelated tour ordering.
+
 - 2026-10-17 [N0] Repin P2 historical parity to its retirement snapshot, assert the current surviving contract with six negative mutations, and verify the unchanged production zip in a blank extraction; no product change.
 
 - 2026-10-17 [N0] Preserve native participant-link integration after late secondary-navigation hydration without changing rendering or requiring newer Moodle APIs.

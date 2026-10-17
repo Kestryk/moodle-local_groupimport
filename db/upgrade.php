@@ -39,11 +39,13 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         if (class_exists('\tool_usertours\manager')) {
             $tours = [
                 [
+                    'key' => 'teacher',
                     'name' => 'tour_groupimport_teacher_name,local_groupimport',
                     'pathmatch' => '/local/groupimport/index.php%',
                     'json' => __DIR__ . '/tours/local_groupimport_teacher_guide.json',
                 ],
                 [
+                    'key' => 'coursehome',
                     'name' => 'tour_groupimport_coursehome_name,local_groupimport',
                     'pathmatch' => '/course/view.php%',
                     'json' => __DIR__ . '/tours/local_groupimport_course_home_hint.json',
@@ -61,7 +63,8 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
                 if ($json === false || trim($json) === '') {
                     continue;
                 }
-                \tool_usertours\manager::import_tour_from_json($json);
+                $imported = \tool_usertours\manager::import_tour_from_json($json);
+                \local_groupimport\local\tour_preservation::remember_import($tour['key'], (int)$imported->get_id());
             }
         }
 
@@ -163,35 +166,8 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
     }
 
     if ($oldversion < 2026071300) {
-        // Replace only the unchanged legacy Mass Import tour. Administrators
-        // who customised its targets keep their local version.
-        if (class_exists('\tool_usertours\manager') && class_exists('\tool_usertours\tour')) {
-            $dbman = $DB->get_manager();
-            $tourtable = new xmldb_table('tool_usertours_tours');
-            $steptable = new xmldb_table('tool_usertours_steps');
-            if ($dbman->table_exists($tourtable) && $dbman->table_exists($steptable)) {
-                $tour = $DB->get_record('tool_usertours_tours', [
-                    'name' => 'tour_groupimport_teacher_name,local_groupimport',
-                    'pathmatch' => '/local/groupimport/index.php%',
-                ]);
-                $legacytargets = ['#local_groupimport-page', '#id_userfield', '#id_submitbutton'];
-                $steps = $tour ? $DB->get_records('tool_usertours_steps', ['tourid' => $tour->id]) : [];
-                $isstale = false;
-                foreach ($steps as $step) {
-                    if (in_array($step->targetvalue, $legacytargets, true)) {
-                        $isstale = true;
-                        break;
-                    }
-                }
-
-                $tourfile = __DIR__ . '/tours/local_groupimport_teacher_guide.json';
-                $json = file_exists($tourfile) ? file_get_contents($tourfile) : false;
-                if ($tour && $isstale && $json !== false && trim($json) !== '') {
-                    \tool_usertours\tour::instance($tour->id)->remove();
-                    \tool_usertours\manager::import_tour_from_json($json);
-                }
-            }
-        }
+        // K17-11: unknown provenance and any local change preserve the entire tour.
+        \local_groupimport\local\tour_preservation::upgrade('teacher');
 
         upgrade_plugin_savepoint(true, 2026071300, 'local', 'groupimport');
     }
@@ -220,20 +196,8 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
     }
 
     if ($oldversion < 2026101500) {
-        // The course-home invitation belongs to staff, never to students.
-        // Update only its role filter: preserve targets, steps, other filters
-        // and any local tour text/configuration on existing installations.
-        if (class_exists('\\tool_usertours\\tour')) {
-            $tours = $DB->get_records('tool_usertours_tours', [
-                'name' => 'tour_groupimport_coursehome_name,local_groupimport',
-                'pathmatch' => '/course/view.php%',
-            ]);
-            foreach ($tours as $record) {
-                \tool_usertours\tour::instance($record->id)
-                    ->set_filter_values('role', ['editingteacher', 'teacher', 'manager', '-1'])
-                    ->persist();
-            }
-        }
+        // Apply staff-only defaults only to a proven, completely unchanged import.
+        \local_groupimport\local\tour_preservation::upgrade('coursehome');
         upgrade_plugin_savepoint(true, 2026101500, 'local', 'groupimport');
     }
 
@@ -255,6 +219,13 @@ function xmldb_local_groupimport_upgrade(int $oldversion): bool {
         }
         // Cron performs expiry later; upgrading never deletes history.
         upgrade_plugin_savepoint(true, 2026101700, 'local', 'groupimport');
+    }
+
+    if ($oldversion < 2026101701) {
+        // Never adopt historical unmarked tours, even if their text matches.
+        \local_groupimport\local\tour_preservation::upgrade('teacher');
+        \local_groupimport\local\tour_preservation::upgrade('coursehome');
+        upgrade_plugin_savepoint(true, 2026101701, 'local', 'groupimport');
     }
 
     return true;
